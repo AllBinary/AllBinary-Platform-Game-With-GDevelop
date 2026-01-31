@@ -97,7 +97,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
                     public final GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
                     <xsl:for-each select="events" >
-                    public final GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />GDNode;
+                    //public final GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />GDNode;
                     </xsl:for-each>
             </xsl:for-each>
             <xsl:for-each select="eventsBasedObjects" >
@@ -106,7 +106,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
                     public final GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
                     <xsl:for-each select="events" >
-                    public final GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />GDNode;
+                    //public final GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />GDNode;
                     </xsl:for-each>
                 </xsl:for-each>
             </xsl:for-each>
@@ -127,7 +127,21 @@ Created By: Travis Berthelot
             <xsl:for-each select="eventsFunctions" >
                 <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
                         GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = null;
+                    <xsl:for-each select="events" >
+                        GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />GDNode = null;
+                    </xsl:for-each>
             </xsl:for-each>
+            <xsl:for-each select="eventsBasedObjects" >
+                <xsl:variable name="eventsBasedObjectsName" ><xsl:value-of select="name" /></xsl:variable>
+                <xsl:for-each select="eventsFunctions" >
+                    <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
+                        GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = null;
+                    <xsl:for-each select="events" >
+                        GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />GDNode = null;
+                    </xsl:for-each>
+                </xsl:for-each>
+            </xsl:for-each>
+            
         </xsl:for-each>
 
                         try {
@@ -148,15 +162,57 @@ Created By: Travis Berthelot
             <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>
             <xsl:for-each select="eventsFunctions" >
                 <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
-                        this.<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
+                        this.<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = null;
+                    <xsl:for-each select="events" >
+                        <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = null;
+                    </xsl:for-each>
             </xsl:for-each>
+            <xsl:for-each select="eventsBasedObjects" >
+                <xsl:variable name="eventsBasedObjectsName" ><xsl:value-of select="name" /></xsl:variable>
+                <xsl:for-each select="eventsFunctions" >
+                    <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
+                        this.<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = null;
+                        <xsl:for-each select="events" >
+                        <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = null;
+                        </xsl:for-each>
+                </xsl:for-each>
+            </xsl:for-each>
+            
         </xsl:for-each>
 
                     }
 
         <xsl:for-each select="eventsFunctionsExtensions" >
             <xsl:for-each select="eventsFunctions" >
+                <xsl:call-template name="eventsFunctions" />
+            </xsl:for-each>
+            <xsl:for-each select="eventsBasedObjects" >
+                <xsl:for-each select="eventsFunctions" >
+                    <xsl:call-template name="eventsFunctions" />
+                </xsl:for-each>
+            </xsl:for-each>
+        </xsl:for-each>
 
+                    public int round(final int value) {
+                        return value;
+                    }
+
+                    public long round(final long value) {
+                        return value;
+                    }
+                    
+                    public float round(final float value) {
+                        return Math.round(value);
+                    }
+                    
+                    public int GetArgumentAsNumber(final int value) {
+                        return value;
+                    }
+
+                }
+    </xsl:template>
+
+    <xsl:template name="eventsFunctions" >
                 <xsl:variable name="objectsGroupsAsString" >,<xsl:for-each select="objectsGroups" ><xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="layer" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="objectsAsString" >,<xsl:for-each select="/game/objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
@@ -194,28 +250,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
 
-                    </xsl:call-template>                
-
-            </xsl:for-each>
-        </xsl:for-each>
-
-                    public int round(final int value) {
-                        return value;
-                    }
-
-                    public long round(final long value) {
-                        return value;
-                    }
-                    
-                    public float round(final float value) {
-                        return Math.round(value);
-                    }
-                    
-                    public int GetArgumentAsNumber(final int value) {
-                        return value;
-                    }
-
-                }
+                    </xsl:call-template>
     </xsl:template>
-
+    
 </xsl:stylesheet>

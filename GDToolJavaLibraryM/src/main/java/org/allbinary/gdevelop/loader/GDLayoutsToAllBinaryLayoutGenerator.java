@@ -878,18 +878,21 @@ public class GDLayoutsToAllBinaryLayoutGenerator
 
             final Replace replace12 = new Replace("MouseX(&quot;&quot;", "MouseX(EMPTY_STRING");
             layoutGameXmlAsString = replace12.all(layoutGameXmlAsString);
-
             final Replace replace13 = new Replace("MouseY(&quot;&quot;", "MouseY(EMPTY_STRING");
             layoutGameXmlAsString = replace13.all(layoutGameXmlAsString);
 
             final Replace replace14 = new Replace("CameraX(&quot;&quot;", "CameraX(EMPTY_STRING");
             layoutGameXmlAsString = replace14.all(layoutGameXmlAsString);
-            
             final Replace replace15 = new Replace("CameraY(&quot;&quot;", "CameraY(EMPTY_STRING");
             layoutGameXmlAsString = replace15.all(layoutGameXmlAsString);
-
             final Replace replace16 = new Replace("CameraWidth(&quot;&quot;", "CameraWidth(EMPTY_STRING");
             layoutGameXmlAsString = replace16.all(layoutGameXmlAsString);
+            
+            final Replace replace17 = new Replace(" V", " &#8595;");
+            layoutGameXmlAsString = replace17.all(layoutGameXmlAsString);
+            final Replace replace18 = new Replace("V ", "&#8595; ");
+            layoutGameXmlAsString = replace18.all(layoutGameXmlAsString);
+            
 
             
 
