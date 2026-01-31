@@ -74,11 +74,10 @@ Created By: Travis Berthelot
                             gameLayer = (GDGameLayer) <xsl:value-of select="$name" />GDGameLayerList.get(index);
                             //<xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gameLayer.gdObject;
 
-                            objectArray[1] = gameLayer;
-                            intArray[2] = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                            intArray[3] = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                            intArray[4] = <xsl:for-each select="parameters" ><xsl:if test="position() = 5" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                            intArray[5] = <xsl:for-each select="parameters" ><xsl:if test="position() = 6" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                            //extensionMapping
+                            <xsl:call-template name="extensionMapping" >
+                                <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
+                            </xsl:call-template>
                             
                             gdExtensionGDNodes.<xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null);
                         
@@ -101,11 +100,10 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                         
                         <xsl:text>&#10;</xsl:text>
-                            objectArray[1] = gameLayer;
-                            intArray[2] = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                            intArray[3] = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                            intArray[4] = <xsl:for-each select="parameters" ><xsl:if test="position() = 5" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                            intArray[5] = <xsl:for-each select="parameters" ><xsl:if test="position() = 6" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                        //extensionMapping
+                        <xsl:call-template name="extensionMapping" >
+                            <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
+                        </xsl:call-template>
                             
                             gdExtensionGDNodes.<xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null);
 
@@ -184,11 +182,11 @@ Created By: Travis Berthelot
 
                         //final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = ((<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$name" />GDGameLayer.gdObject);<xsl:text>&#10;</xsl:text>
 
-                        objectArray[1] = <xsl:value-of select="$name" />GDGameLayer;
-                        intArray[2] = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                        intArray[3] = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                        intArray[4] = <xsl:for-each select="parameters" ><xsl:if test="position() = 5" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                        intArray[5] = <xsl:for-each select="parameters" ><xsl:if test="position() = 6" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                            //extensionMapping
+                        <xsl:call-template name="extensionMapping" >
+                            <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
+                            <xsl:with-param name="objectOverride" ><xsl:value-of select="$name" />GDGameLayer</xsl:with-param>
+                        </xsl:call-template>
                             
                         gdExtensionGDNodes.<xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null);
 
@@ -220,11 +218,10 @@ Created By: Travis Berthelot
                             gameLayer = (GDGameLayer) <xsl:value-of select="$name" />GDGameLayerList.get(index2);
                             //<xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gameLayer.gdObject;
 
-                            objectArray[1] = gameLayer;
-                            intArray[2] = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                            intArray[3] = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                            intArray[4] = <xsl:for-each select="parameters" ><xsl:if test="position() = 5" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                            intArray[5] = <xsl:for-each select="parameters" ><xsl:if test="position() = 6" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                            //extensionMapping
+                            <xsl:call-template name="extensionMapping" >
+                                <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
+                            </xsl:call-template>
                             
                             gdExtensionGDNodes.<xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null);
 
@@ -242,11 +239,10 @@ Created By: Travis Berthelot
                         
                         <xsl:text>&#10;</xsl:text>
 
-                        objectArray[1] = gameLayer;
-                        intArray[2] = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                        intArray[3] = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                        intArray[4] = <xsl:for-each select="parameters" ><xsl:if test="position() = 5" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                        intArray[5] = <xsl:for-each select="parameters" ><xsl:if test="position() = 6" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                        //extensionMapping
+                        <xsl:call-template name="extensionMapping" >
+                            <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
+                        </xsl:call-template>
                             
                         gdExtensionGDNodes.<xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null);
 
@@ -254,6 +250,32 @@ Created By: Travis Berthelot
                         
                         return true;
                     }
+
+    </xsl:template>
+
+    <xsl:template name="extensionMapping" >
+        <xsl:param name="extensionNameAndExtensionFunction" />
+        <xsl:param name="objectOverride" />
+
+        <xsl:choose>
+                            <xsl:when test="$extensionNameAndExtensionFunction = 'SnapToGrid::SnapObjectToVirtualGrid'" >
+                                <xsl:if test="string-length($objectOverride) > 0" >
+                            objectArray[1] = <xsl:value-of select="$objectOverride" />;
+                                </xsl:if>
+                                <xsl:if test="string-length($objectOverride) = 0" >
+                            objectArray[1] = gameLayer;        
+                                </xsl:if>
+                                
+                            intArray[2] = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                            intArray[3] = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                            intArray[4] = <xsl:for-each select="parameters" ><xsl:if test="position() = 5" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                            intArray[5] = <xsl:for-each select="parameters" ><xsl:if test="position() = 6" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                            </xsl:when>
+                            <xsl:otherwise>
+                            //<xsl:value-of select="$extensionNameAndExtensionFunction" /> - NOT_IMPLEMENTED
+                            </xsl:otherwise>
+
+        </xsl:choose>
 
     </xsl:template>
 
