@@ -90,6 +90,10 @@ Created By: Travis Berthelot
                 <xsl:text>&#10;</xsl:text>
                 //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
             </xsl:when>
+            <xsl:when test="$typeValue = 'SelectBox::SelectBox'" >
+                <xsl:text>&#10;</xsl:text>
+                //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED - probably not needed
+            </xsl:when>
 
             <xsl:otherwise>
                 <xsl:text>&#10;</xsl:text><xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
@@ -932,6 +936,10 @@ Created By: Travis Berthelot
                 <xsl:text>&#10;</xsl:text>
                 //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
             </xsl:when>
+            <xsl:when test="$typeValue = 'SelectBox::SelectBox'" >
+                <xsl:text>&#10;</xsl:text>
+                //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED - probably not needed
+            </xsl:when>
 
             <xsl:otherwise>
                 <xsl:text>&#10;</xsl:text><xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
@@ -1343,6 +1351,10 @@ Created By: Travis Berthelot
             <xsl:when test="$typeValue = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
                 <xsl:text>&#10;</xsl:text>
                 //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+            </xsl:when>
+            <xsl:when test="$typeValue = 'SelectBox::SelectBox'" >
+                <xsl:text>&#10;</xsl:text>
+                //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED - probably not needed
             </xsl:when>
 
             <xsl:otherwise>

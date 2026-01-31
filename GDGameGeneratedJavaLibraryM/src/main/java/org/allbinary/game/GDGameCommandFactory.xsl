@@ -37,7 +37,7 @@ public class GDGameCommandFactory {
     }
 
     <xsl:for-each select="layouts" >
-    public final Command <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_GD_LAYOUT  = new Command("<xsl:value-of select="name" />", Command.SCREEN, 1);
+    public final Command <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, ' ', '_')" /></xsl:with-param></xsl:call-template>_GD_LAYOUT  = new Command("<xsl:value-of select="name" />", Command.SCREEN, 1);
     </xsl:for-each>                
          
     
