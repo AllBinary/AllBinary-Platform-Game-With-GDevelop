@@ -17,6 +17,7 @@ Created By: Travis Berthelot
 
     <xsl:output method="html" indent="yes" />
     <xsl:template name="leaderboardsIsLeaderboardViewLoadedConditionGDNode" >
+        <xsl:param name="forExtension" />
         <xsl:param name="parametersAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
@@ -30,7 +31,8 @@ Created By: Travis Berthelot
                     <xsl:variable name="hasOtherConditions" ><xsl:for-each select="preceding-sibling::conditions" >found</xsl:for-each></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "highscores <xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
 
-                        //Leaderboards::IsLeaderboardViewLoaded - condition
+                        //Leaderboards::IsLeaderboardViewLoaded - condition - //forExtension=<xsl:value-of select="$forExtension" />
+                        <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
                         public boolean process() throws Exception {
 
@@ -164,6 +166,28 @@ Created By: Travis Berthelot
                            }
                                                         
                            return false;
+                        }
+                        </xsl:if>
+
+                        <xsl:if test="contains($forExtension, 'found')" >
+                        @Override
+                        public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
+                            
+                            //Map from object array with action params
+                            final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
+                            this.process(gameLayer, intArray[3], intArray[5]);
+
+                            return true;
+                        }
+                        </xsl:if>
+
+                        public void process(final GDGameLayer gameLayer, final int x, final int y) {
+                            final GDObject gdObject = gameLayer.gdObject;
+                            this.process(gdObject, x, y);
+                        }
+
+                        public void process(final GDObject gdObject, final int x, final int y) {
+                            throw new RuntimeException();
                         }
                         
                     };

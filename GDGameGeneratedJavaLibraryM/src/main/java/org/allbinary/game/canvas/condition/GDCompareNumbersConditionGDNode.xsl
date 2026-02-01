@@ -18,6 +18,7 @@ Created By: Travis Berthelot
     <xsl:output method="html" indent="yes" />
 
     <xsl:template name="compareNumbersConditionGDNode" >
+        <xsl:param name="forExtension" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
         <xsl:param name="objectsGroupsAsString" />
@@ -140,7 +141,8 @@ Created By: Travis Berthelot
                         //firstOrBeforeFourthParam=<xsl:value-of select="$firstOrBeforeFourthParam" /> <xsl:if test="contains($hasObject2, 'found')" > found as Object</xsl:if><xsl:if test="contains($hasObjectGroup2, 'found')" > found as ObjectGroup</xsl:if>
                         //paramOneNameObjectsGroups=<xsl:value-of select="$paramOneNameObjectsGroups" />
                         //paramTwoNameObjectsGroups=<xsl:value-of select="$paramTwoNameObjectsGroups" />
-                        //BuiltinCommonInstructions::CompareNumbers - //CompareNumbers - condition
+                        //BuiltinCommonInstructions::CompareNumbers - //CompareNumbers - condition - //forExtension=<xsl:value-of select="$forExtension" />
+                        <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
@@ -266,6 +268,28 @@ Created By: Travis Berthelot
                             }
                             return false;
                         }                                
+                        </xsl:if>
+
+                        <xsl:if test="contains($forExtension, 'found')" >
+                        @Override
+                        public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
+                            
+                            //Map from object array with action params
+                            final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
+                            this.process(gameLayer, intArray[3], intArray[5]);
+
+                            return true;
+                        }
+                        </xsl:if>
+
+                        public void process(final GDGameLayer gameLayer, final int x, final int y) {
+                            final GDObject gdObject = gameLayer.gdObject;
+                            this.process(gdObject, x, y);
+                        }
+
+                        public void process(final GDObject gdObject, final int x, final int y) {
+                            throw new RuntimeException();
+                        }
 
                     };
 

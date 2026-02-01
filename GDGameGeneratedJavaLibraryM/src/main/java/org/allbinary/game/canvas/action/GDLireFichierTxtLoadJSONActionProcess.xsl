@@ -17,6 +17,7 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="lireFichierTxtLoadJSONActionProcess" >
+        <xsl:param name="forExtension" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
@@ -29,7 +30,8 @@ Created By: Travis Berthelot
                         private final String RECORD_ID = <xsl:value-of select="$param1" />;
                         private final String SECOND_PARAM = <xsl:value-of select="$param2" />;
 
-                        //LireFichierTxt - action - START
+                        //LireFichierTxt - action - START - //forExtension=<xsl:value-of select="$forExtension" />
+                        <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
@@ -62,7 +64,28 @@ Created By: Travis Berthelot
                             return true;
                         }
                         //LireFichierTxt - action - END
+                        </xsl:if>
 
+                        <xsl:if test="contains($forExtension, 'found')" >
+                        @Override
+                        public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
+                            
+                            //Map from object array with action params
+                            final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
+                            this.process(gameLayer, intArray[3], intArray[5]);
+
+                            return true;
+                        }
+                        </xsl:if>
+
+                        public void process(final GDGameLayer gameLayer, final int x, final int y) {
+                            final GDObject gdObject = gameLayer.gdObject;
+                            this.process(gdObject, x, y);
+                        }
+
+                        public void process(final GDObject gdObject, final int x, final int y) {
+                            throw new RuntimeException();
+                        }
     </xsl:template>
 
 </xsl:stylesheet>

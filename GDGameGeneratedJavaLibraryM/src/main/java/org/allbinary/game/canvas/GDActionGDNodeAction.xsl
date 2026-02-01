@@ -218,6 +218,9 @@ Created By: Travis Berthelot
 
                         <xsl:if test="contains($actionWithTextObjectString, 'found')" >
                         <xsl:call-template name="textObjectStringActionProcess" >
+                            <xsl:with-param name="forExtension" >
+                                <xsl:value-of select="$forExtension" />
+                            </xsl:with-param>
                             <xsl:with-param name="layoutIndex" >
                                 <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
@@ -235,6 +238,9 @@ Created By: Travis Berthelot
                     <xsl:when test="$typeValue = 'TextContainerCapability::TextContainerBehavior::SetValue'" >
                         
                         <xsl:call-template name="textContainerCapabilityTextContainerBehaviorSetValueActionProcess" >
+                            <xsl:with-param name="forExtension" >
+                                <xsl:value-of select="$forExtension" />
+                            </xsl:with-param>
                             <xsl:with-param name="layoutIndex" >
                                 <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
@@ -251,6 +257,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'TextObject::ChangeColor'" >
 
                     <xsl:call-template name="textObjectChangeColorActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -267,6 +276,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'SceneBackground'" >
 
                     <xsl:call-template name="sceneBackgroundActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -282,6 +294,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ChangeAnimation'" >
                     
                     <xsl:call-template name="changeAnimationActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -298,6 +313,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'SetNumberObjectVariable' or $typeValue = 'ModVarObjet'" >
                     
                     <xsl:call-template name="setNumberObjectVariableActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -313,6 +331,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ModVarSceneTxt'" >
 
                     <xsl:call-template name="modVarSceneTxtActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -328,6 +349,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ModVarObjetTxt'" >
 
                     <xsl:call-template name="modVarObjetTxtActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -348,6 +372,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'LinkedObjects::LinkObjects'" >
                     
                     <xsl:call-template name="linkedObjectsLinkObjectsActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -512,6 +539,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::FillColor'" >
                     
                     <xsl:call-template name="primitiveDrawingFillColorActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -588,6 +618,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::Rectangle'" >
                     
                     <xsl:call-template name="primitiveDrawingRectangleActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -612,6 +645,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'SetBooleanObjectVariable'" >
                     
                     <xsl:call-template name="setObjectVariableAsBooleanActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -640,6 +676,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ObjectVariablePushNumber'" >
 
                     <xsl:call-template name="objectVariablePushNumberActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -664,6 +703,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'HideLayer'" >
 
                     <xsl:call-template name="hideLayerActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -679,6 +721,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ShowLayer'" >
 
                     <xsl:call-template name="showLayerActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -695,6 +740,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'Montre' or $typeValue = 'Show'" >
 
                     <xsl:call-template name="montreAsShowActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -710,6 +758,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'Cache' or $typeValue = 'Hide'" >
 
                     <xsl:call-template name="cacheAsHideActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -725,6 +776,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'TextEntryObject::String'" >
 
                     <xsl:call-template name="textEntryObjectAsStringActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -740,6 +794,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'PlaySound'" >
                     
                     <xsl:call-template name="playSoundActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -755,6 +812,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'PlayMusic'" >
                     
                     <xsl:call-template name="playMusicActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -770,6 +830,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'PlayMusicCanal'" >
                     
                     <xsl:call-template name="playMusicCanalActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -785,6 +848,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'StopMusicCanal'" >
                     
                     <xsl:call-template name="stopMusicCanalActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -800,6 +866,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'PlaySoundCanal' or $typeValue = 'PlaySoundOnChannel'" >
                     
                     <xsl:call-template name="playSoundCanalActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -815,6 +884,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'StopSoundCanal'" >
                     
                     <xsl:call-template name="stopSoundCanalActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -831,6 +903,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ResetTimer'" >
                     
                     <xsl:call-template name="resetTimerActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -846,6 +921,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'PauseTimer'" >
                     
                     <xsl:call-template name="pauseTimerActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -861,6 +939,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'UnPauseTimer'" >
 
                     <xsl:call-template name="unPauseTimerActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -877,6 +958,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ChangeScale'" >
                     
                     <xsl:call-template name="changeScaleActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -893,6 +977,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ResetObjectTimer'" >
                     
                     <xsl:call-template name="resetObjectTimerActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -909,6 +996,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'Opacity'" >
                     
                     <xsl:call-template name="opacityActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -924,6 +1014,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'Create'" >
 
                     <xsl:call-template name="createActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -949,6 +1042,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'CreateByName'" >
 
                     <xsl:call-template name="createByNameActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -974,6 +1070,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'SetAngle'" >
                     
                     <xsl:call-template name="setAngleActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -990,6 +1089,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ChangePlan'" >
                     
                     <xsl:call-template name="changePlanActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1006,6 +1108,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ChangeColor'" >
                     
                     <xsl:call-template name="changeColorActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1022,6 +1127,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'Scene'" >
 
                     <xsl:call-template name="sceneActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1038,6 +1146,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'SetFullScreen'" >
 
                     <xsl:call-template name="setFullScreenActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1054,6 +1165,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'LaunchFile'" >
 
                     <xsl:call-template name="launchFileActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1070,6 +1184,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'MettreX' or $typeValue = 'SetX'" >
 
                     <xsl:call-template name="mettreXActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1088,6 +1205,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'MettreY' or $typeValue = 'SetY'" >
 
                     <xsl:call-template name="mettreYActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1128,6 +1248,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'MettreAutourPos'" >
 
                     <xsl:call-template name="mettreAutourPosActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1146,6 +1269,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ModVarScene'" >
 
                     <xsl:call-template name="modVarSceneActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1165,6 +1291,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'SetNumberVariable' or $typeValue = 'ModVarGlobal'" >
 
                     <xsl:call-template name="modVarGlobalActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1185,6 +1314,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'Delete'" >
                     
                     <xsl:call-template name="deleteActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1201,6 +1333,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'Quit'" >
 
                     <xsl:call-template name="quitActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1217,6 +1352,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'SetGlobalVariableAsBoolean'" >
 
                     <xsl:call-template name="setGlobalVariableAsBooleanActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1233,6 +1371,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'SetBooleanVariable'" >
 
                     <xsl:call-template name="setSceneVariableAsBooleanActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1249,6 +1390,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'SetStringVariable'" >
 
                     <xsl:call-template name="setStringVariableActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1265,6 +1409,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'JSONToVariableStructure'" >
 
                     <xsl:call-template name="jsonToVariableStructureActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1281,6 +1428,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'JSONToGlobalVariableStructure'" >
                     //JSON to global variable from scene variable - JSONPersistance
                     <xsl:call-template name="jsonToGlobalVariableStructureActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1296,6 +1446,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'RotateTowardPosition'" >
 
                     <xsl:call-template name="rotateTowardPositionActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1312,6 +1465,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'Rotate'" >
 
                     <xsl:call-template name="rotateActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1347,6 +1503,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'AddForceAL'" >
 
                     <xsl:call-template name="addForceALActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1363,6 +1522,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'AddForceXY'" >
                     
                     <xsl:call-template name="addForceXYActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1385,6 +1547,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'Arreter'" >
 
                     <xsl:call-template name="stopForceActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1412,6 +1577,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ActivateBehavior'" >
                     
                     <xsl:call-template name="activateBehaviorActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1459,6 +1627,9 @@ Created By: Travis Berthelot
                 
                 <xsl:when test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetIndex'" >
                     <xsl:call-template name="animatableCapabilityAnimatableBehaviorSetIndexActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1473,6 +1644,9 @@ Created By: Travis Berthelot
   
                 <xsl:when test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetName'" >
                     <xsl:call-template name="animatableCapabilityAnimatableBehaviorSetNameActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1487,6 +1661,9 @@ Created By: Travis Berthelot
   
                 <xsl:when test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetSpeedScale'" >
                     <xsl:call-template name="animatableCapabilityAnimatableBehaviorSetSpeedScaleActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1631,6 +1808,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ScalableCapability::ScalableBehavior::SetValue'" >
                     //TWB - does this work?
                     <xsl:call-template name="scalableBehaviorSetValueActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1645,6 +1825,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ScalableCapability::ScalableBehavior::SetX'" >
                     //TWB - does this work?
                     <xsl:call-template name="scalableBehaviorSetXActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1659,6 +1842,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ScalableCapability::ScalableBehavior::SetY'" >
                     //TWB - does this work?
                     <xsl:call-template name="scalableBehaviorSetYActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1675,6 +1861,9 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
 <!-- 
                     <xsl:call-template name="resizableCapabilityResizableBehaviorSetWidthActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1691,6 +1880,9 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
 <!-- 
                     <xsl:call-template name="resizableCapabilityResizableBehaviorSetHeightActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1707,6 +1899,9 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED - Started work on but disabled - getSetSizeForObject
 <!-- 
                     <xsl:call-template name="resizableCapabilityResizableBehaviorSetSizeActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1739,6 +1934,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ChangeSprite'" >
                     
                     <xsl:call-template name="changeSpriteActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -1922,6 +2120,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'PathfindingBehavior::SetDestination'" >
 
                     <xsl:call-template name="pathfindingBehaviorSetDestinationActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -2029,6 +2230,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'EcrireFichierTxt'" >
                     //Save JSON - JSONPersistance
                     <xsl:call-template name="ecrireFichierTxtSaveJSONActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -2043,6 +2247,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'LireFichierTxt'" >
                     //Load JSON - JSONPersistance
                     <xsl:call-template name="lireFichierTxtLoadJSONActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -2058,6 +2265,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'Leaderboards::SavePlayerScore'" >
 
                     <xsl:call-template name="leaderboardsSavePlayerScoreActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -2072,6 +2282,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'PanelSpriteSlider::PanelSpriteSlider::SetValue'" >
                     
                     <xsl:call-template name="panelSpriteSliderPanelSpriteSliderSetValueActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -2088,6 +2301,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'TextInputVirtualKeyboard::TextInputVirtualKeyboard::closeKeyboard'" >
                     
                     <xsl:call-template name="textInputVirtualKeyboardTextInputVirtualKeyboardCloseKeyboardActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -2103,6 +2319,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'TextInputVirtualKeyboard::TextInputVirtualKeyboard::openKeyboard'" >
                     
                     <xsl:call-template name="textInputVirtualKeyboardTextInputVirtualKeyboardOpenKeyboardActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -2119,6 +2338,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'CameraX'" >
                     
                     <xsl:call-template name="cameraXActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -2128,6 +2350,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'CameraY'" >
                     
                     <xsl:call-template name="cameraYActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -2157,6 +2382,9 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'Create'" >
                         
                         <xsl:call-template name="createEndActionProcess" >
+                            <xsl:with-param name="forExtension" >
+                                <xsl:value-of select="$forExtension" />
+                            </xsl:with-param>
                             <xsl:with-param name="layoutIndex" >
                                 <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
@@ -2176,6 +2404,9 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'CreateByName'" >
 
                         <xsl:call-template name="createByNameEndActionProcess" >
+                            <xsl:with-param name="forExtension" >
+                               <xsl:value-of select="$forExtension" />
+                            </xsl:with-param>
                             <xsl:with-param name="layoutIndex" >
                                 <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>

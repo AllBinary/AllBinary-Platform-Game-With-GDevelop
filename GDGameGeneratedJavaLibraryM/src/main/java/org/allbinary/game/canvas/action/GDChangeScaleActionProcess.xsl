@@ -17,6 +17,7 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="changeScaleActionProcess" >
+        <xsl:param name="forExtension" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
@@ -26,7 +27,8 @@ Created By: Travis Berthelot
                                 <xsl:variable name="paramThree1" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$paramThree0" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$paramOne" />.</xsl:with-param><xsl:with-param name="replacementText" >globals.</xsl:with-param></xsl:call-template></xsl:variable>
                                 <xsl:variable name="paramThree" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$paramThree1" /></xsl:with-param><xsl:with-param name="find" >ObjectTimerElapsedTime(</xsl:with-param><xsl:with-param name="replacementText" >ObjectTimerElapsedTime(index, </xsl:with-param></xsl:call-template></xsl:variable>
         
-                        //ChangeScale - action
+                        //ChangeScale - action - //forExtension=<xsl:value-of select="$forExtension" />
+                        <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
@@ -68,6 +70,28 @@ Created By: Travis Berthelot
                             }
 
                             return true;
+                        }
+                        </xsl:if>
+
+                        <xsl:if test="contains($forExtension, 'found')" >
+                        @Override
+                        public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
+                            
+                            //Map from object array with action params
+                            final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
+                            this.process(gameLayer, intArray[3], intArray[5]);
+
+                            return true;
+                        }
+                        </xsl:if>
+
+                        public void process(final GDGameLayer gameLayer, final int x, final int y) {
+                            final GDObject gdObject = gameLayer.gdObject;
+                            this.process(gdObject, x, y);
+                        }
+
+                        public void process(final GDObject gdObject, final int x, final int y) {
+                            throw new RuntimeException();
                         }
 
     </xsl:template>
