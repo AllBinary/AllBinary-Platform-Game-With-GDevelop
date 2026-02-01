@@ -888,9 +888,9 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             final Replace replace16 = new Replace("CameraWidth(&quot;&quot;", "CameraWidth(EMPTY_STRING");
             layoutGameXmlAsString = replace16.all(layoutGameXmlAsString);
             
-            final Replace replace17 = new Replace(" V", " &#8595;");
+            final Replace replace17 = new Replace("\"value\": \" V\"", "\"value\": \" &#8595;\"");
             layoutGameXmlAsString = replace17.all(layoutGameXmlAsString);
-            final Replace replace18 = new Replace("V ", "&#8595; ");
+            final Replace replace18 = new Replace("\"value\": \"V \"", "\"value\": \"&#8595; \"");
             layoutGameXmlAsString = replace18.all(layoutGameXmlAsString);
             
 
