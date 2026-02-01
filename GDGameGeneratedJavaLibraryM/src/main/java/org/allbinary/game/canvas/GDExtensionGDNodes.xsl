@@ -90,18 +90,18 @@ Created By: Travis Berthelot
                     private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
    
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-
+        
         <xsl:for-each select="eventsFunctionsExtensions" >
             <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>
             <xsl:for-each select="eventsFunctions" >
                 <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
-                    public final GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
+                    <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>public final GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
             </xsl:for-each>
             <xsl:for-each select="eventsBasedObjects" >
                 <xsl:variable name="eventsBasedObjectsName" ><xsl:value-of select="name" /></xsl:variable>
                 <xsl:for-each select="eventsFunctions" >
                     <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
-                    public final GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
+                    <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>public final GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
                 </xsl:for-each>
             </xsl:for-each>
             <xsl:for-each select="globalVariables" >
@@ -120,13 +120,13 @@ Created By: Travis Berthelot
             <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>
             <xsl:for-each select="eventsFunctions" >
                 <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
-                        GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = null;
+                        <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = null;
             </xsl:for-each>
             <xsl:for-each select="eventsBasedObjects" >
                 <xsl:variable name="eventsBasedObjectsName" ><xsl:value-of select="name" /></xsl:variable>
                 <xsl:for-each select="eventsFunctions" >
                     <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
-                        GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = null;
+                        <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = null;
                 </xsl:for-each>
             </xsl:for-each>
             
@@ -137,8 +137,11 @@ Created By: Travis Berthelot
                             logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
 
                             <xsl:for-each select="eventsFunctionsExtensions" >
-                                //eventsFunctionsExtensions
-                                <xsl:call-template name="extensionGDNode" />
+                                <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>
+                            //eventsFunctionsExtensions - <xsl:value-of select="extensionName" />
+                                <xsl:if test="not($extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick')" >
+                            <xsl:call-template name="extensionGDNode" />
+                                </xsl:if>
                             </xsl:for-each>
                             
                             logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
@@ -151,13 +154,13 @@ Created By: Travis Berthelot
             <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>
             <xsl:for-each select="eventsFunctions" >
                 <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
-                        this.<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
+                        <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>this.<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
             </xsl:for-each>
             <xsl:for-each select="eventsBasedObjects" >
                 <xsl:variable name="eventsBasedObjectsName" ><xsl:value-of select="name" /></xsl:variable>
                 <xsl:for-each select="eventsFunctions" >
                     <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
-                        this.<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
+                        <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>this.<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
                 </xsl:for-each>
             </xsl:for-each>
             
@@ -166,6 +169,9 @@ Created By: Travis Berthelot
                     }
 
         <xsl:for-each select="eventsFunctionsExtensions" >
+            <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>
+            //eventsFunctionsExtensions - <xsl:value-of select="extensionName" />
+            <xsl:if test="not($extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick')" >
             <xsl:for-each select="eventsFunctions" >
                 <xsl:call-template name="eventsFunctions" />
             </xsl:for-each>
@@ -174,6 +180,7 @@ Created By: Travis Berthelot
                     <xsl:call-template name="eventsFunctions" />
                 </xsl:for-each>
             </xsl:for-each>
+            </xsl:if>
         </xsl:for-each>
 
                     public int round(final int value) {

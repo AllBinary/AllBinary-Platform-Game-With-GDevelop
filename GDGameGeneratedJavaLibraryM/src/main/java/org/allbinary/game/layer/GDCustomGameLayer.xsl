@@ -1126,7 +1126,6 @@ Created By: Travis Berthelot
 //            }
 //        }
 
-        final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
         if(this.gdObject.isBehaviorEnabledArray[gdBehaviorUtil.PATHFINDING_BEHAVIOR_INDEX]) {
             
 <!--            if(this.x != this.ox || this.y != this.oy) {
@@ -1143,7 +1142,6 @@ Created By: Travis Berthelot
         }
     }
     
-    private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();    
     public void setAllBinaryGameLayerManager(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception {
 
         super.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
