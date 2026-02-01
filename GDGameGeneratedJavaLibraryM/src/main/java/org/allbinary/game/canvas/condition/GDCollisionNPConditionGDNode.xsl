@@ -96,10 +96,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="id" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
 
                         //CollisionNP - //collisionNPConditionGDNode
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$nodeList" />] != null) {
-                            throw new RuntimeException("<xsl:value-of select="$nodeList" />");
-                        }
-                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$nodeList" />] = new GDNode(<xsl:value-of select="$nodeList" />) {
+                    <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>final GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(<xsl:value-of select="$nodeList" />) {
 
                             <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                             private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
@@ -383,7 +380,15 @@ Created By: Travis Berthelot
                             throw new RuntimeException();
                         }
                             
-                        };
+                    };
+
+                    <xsl:if test="not(contains($forExtension, 'found'))" >
+                    if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
+                        throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
+                    }
+                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
+                    </xsl:if>
+
     </xsl:template>
 
 </xsl:stylesheet>

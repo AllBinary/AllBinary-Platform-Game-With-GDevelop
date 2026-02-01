@@ -144,7 +144,15 @@ Created By: Travis Berthelot
                             throw new RuntimeException();
                         }
 
-                };
+                    };
+                
+                    <xsl:if test="not(contains($forExtension, 'found'))" >
+                    if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
+                        throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
+                    }
+                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
+                    </xsl:if>
+                
     </xsl:template>
 
 </xsl:stylesheet>

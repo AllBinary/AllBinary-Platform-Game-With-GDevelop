@@ -63,6 +63,8 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.layout.GDObject;
+                import org.allbinary.game.layout.BaseGDNodeStats;
+                import org.allbinary.game.layout.GDNodeStatsFactory;
                 import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.string.CommonStrings;
@@ -90,6 +92,7 @@ Created By: Travis Berthelot
                     private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
    
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                    private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
         
         <xsl:for-each select="eventsFunctionsExtensions" >
             <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>
@@ -160,7 +163,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="eventsBasedObjectsName" ><xsl:value-of select="name" /></xsl:variable>
                 <xsl:for-each select="eventsFunctions" >
                     <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
-                        <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>this.<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
+                        <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>this.<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
                 </xsl:for-each>
             </xsl:for-each>
             

@@ -2379,6 +2379,8 @@ Created By: Travis Berthelot
                 </xsl:otherwise>
                 </xsl:choose>
 
+                <xsl:if test="not(contains($forExtension, 'found'))" >
+
                 <xsl:if test="$typeValue = 'Create'" >
                         
                         <xsl:call-template name="createEndActionProcess" >
@@ -2467,6 +2469,8 @@ Created By: Travis Berthelot
                         }
                         </xsl:if>
 
+                </xsl:if>
+            
                     };
                     
                     public final GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode();

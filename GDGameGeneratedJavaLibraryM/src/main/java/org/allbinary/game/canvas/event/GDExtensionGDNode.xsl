@@ -76,7 +76,7 @@ Created By: Travis Berthelot
                             <xsl:for-each select="eventsFunctions" >
                                 //eventsFunctions - <xsl:value-of select="$extensionName" />
                                 <xsl:call-template name="eventsFunctionsGDNode" >
-                                    <xsl:with-param name="extensionName" ><xsl:value-of select="$extensionName" /></xsl:with-param>
+                                    <xsl:with-param name="extensionName" ><xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" /></xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
 
