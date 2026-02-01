@@ -39,8 +39,7 @@ Created By: Travis Berthelot
                             super.reset();
                         }
                         
-                        //BuiltinCommonInstructions::Once - condition
-                         - //forExtension=<xsl:value-of select="$forExtension" />
+                        //BuiltinCommonInstructions::Once - condition - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
                         public boolean process() throws Exception {
