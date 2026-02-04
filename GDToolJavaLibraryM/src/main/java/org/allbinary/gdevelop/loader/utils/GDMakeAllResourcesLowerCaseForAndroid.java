@@ -11,8 +11,11 @@
  * Created By: Travis Berthelot
  * 
  */
-package org.allbinary.gdevelop.loader;
+package org.allbinary.gdevelop.loader.utils;
 
+import org.allbinary.gdevelop.loader.GDJSONGeneratorBase;
+import org.allbinary.gdevelop.loader.GDJSONPersistence;
+import org.allbinary.gdevelop.loader.GDToolStrings;
 import org.allbinary.logic.io.file.FileUnamedUtil;
 
 import org.json.JSONArray;
@@ -22,11 +25,11 @@ import org.json.JSONObject;
  *
  * @author User
  */
-public class MakeAllResourcesLowerCaseForAndroid extends GDJSONGeneratorBase {
+public class GDMakeAllResourcesLowerCaseForAndroid extends GDJSONGeneratorBase {
 
     private final FileUnamedUtil fileUnamedUtil = FileUnamedUtil.getInstance();
 
-    public MakeAllResourcesLowerCaseForAndroid() {
+    public GDMakeAllResourcesLowerCaseForAndroid() {
     }
 
     private final String TEXTURE = "Texture: ";
@@ -133,7 +136,7 @@ public class MakeAllResourcesLowerCaseForAndroid extends GDJSONGeneratorBase {
         final GDJSONPersistence gdJSONPersistence = GDJSONPersistence.getInstance();
         final JSONObject gameAsConfigurationJSONObject = gdJSONPersistence.load();
         
-        new MakeAllResourcesLowerCaseForAndroid().process(gameAsConfigurationJSONObject);
+        new GDMakeAllResourcesLowerCaseForAndroid().process(gameAsConfigurationJSONObject);
         final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
         gdJSONPersistence.save(gdToolStrings.ROOT_PATH + "game_updated.json", gameAsConfigurationJSONObject);
     }
