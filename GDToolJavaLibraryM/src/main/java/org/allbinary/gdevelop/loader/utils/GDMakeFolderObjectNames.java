@@ -1,0 +1,77 @@
+/*
+ * AllBinary Open License Version 1
+ * Copyright (c) 2025 AllBinary
+ * 
+ * By agreeing to this license you and any business entity you represent are
+ * legally bound to the AllBinary Open License Version 1 legal agreement.
+ * 
+ * You may obtain the AllBinary Open License Version 1 legal agreement from
+ * AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+ * 
+ * Created By: Travis Berthelot
+ * 
+ */
+package org.allbinary.gdevelop.loader.utils;
+
+import org.allbinary.logic.io.file.AbFile;
+import org.allbinary.logic.io.file.FileListFetcher;
+import org.allbinary.logic.string.StringMaker;
+import org.allbinary.logic.string.StringUtil;
+import org.allbinary.util.BasicArrayList;
+
+/**
+ *
+ * @author User
+ */
+public class GDMakeFolderObjectNames {
+        
+    public static void main(String[] args) throws Exception {
+        final FileListFetcher fileListFetcher = FileListFetcher.getInstance();
+        final StringUtil stringUtil = StringUtil.getInstance();
+        final StringMaker stringMaker = new StringMaker();
+
+        final String SM_ENV = "sm_env_";
+    
+        final String RESOURCE_0 = ",\n" + "              {\n" +
+"                \"objectName\": \"";
+
+        final String RESOURCE_2 = "\"\n" +
+"              }\n";
+        
+        final String _GLB = ".glb";
+
+        final BasicArrayList fileList = fileListFetcher.getFiles(
+            "G:\\mnt\\bc\\mydev\\abngdgames\\fps\\assets\\",
+            new String[] {"glb"});
+
+        final int size = fileList.size();
+        System.out.println("size: " + size);
+        AbFile file;
+        for (int index = 0; index < size; index++)
+        {
+            file = (AbFile) fileList.get(index);
+
+            if (file.isDirectory()) {
+                //System.out.println("Now in Directory: " + file.getPath());
+
+                String path = file.getAbsolutePath();
+            } else
+            {
+                String path = file.getAbsolutePath();
+                
+                if(path.indexOf(SM_ENV) >= 0) {
+                    final int lastIndex = path.lastIndexOf('\\') + 1;
+                    final String fileNameAsString = path.substring(lastIndex).replace(_GLB, stringUtil.EMPTY_STRING);
+
+                    stringMaker.append(RESOURCE_0);
+                    stringMaker.append(fileNameAsString);
+                    stringMaker.append(RESOURCE_2);
+                }
+            }
+        }
+        
+        System.out.println(stringMaker.toString());
+    }
+    
+    
+}

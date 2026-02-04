@@ -16,6 +16,7 @@ package org.allbinary.gdevelop.loader.utils;
 import org.allbinary.logic.io.file.AbFile;
 import org.allbinary.logic.io.file.FileListFetcher;
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.util.BasicArrayList;
 
@@ -23,7 +24,7 @@ import org.allbinary.util.BasicArrayList;
  *
  * @author User
  */
-public class GDAddResources {
+public class GDMakeScene3dModel3dObject {
         
     public static void main(String[] args) throws Exception {
         final FileListFetcher fileListFetcher = FileListFetcher.getInstance();
@@ -33,16 +34,38 @@ public class GDAddResources {
         final String SM_ENV = "sm_env_";
     
         final String RESOURCE_0 = ",\n" +
-"      {\n" +
-"        \"file\": \"assets/";
+"        {\n" +
+"          \"assetStoreId\": \"\",\n" +
+"          \"name\": \"";
+
         final String RESOURCE_2 = "\",\n" +
-"        \"kind\": \"model3D\",\n" +
-"        \"metadata\": \"\",\n" +
-"        \"name\": \"";
-        final String RESOURCE_4 = "\",\n" +
-"        \"userAdded\": false\n" +
-"      }";
+"          \"type\": \"Scene3D::Model3DObject\",\n" +
+"          \"variables\": [],\n" +
+"          \"effects\": [],\n" +
+"          \"behaviors\": [],\n" +
+"          \"content\": {\n" +
+"            \"centerLocation\": \"ModelOrigin\",\n" +
+"            \"crossfadeDuration\": 0.10000000149011612,\n" +
+"            \"depth\": 82.36488093201797,\n" +
+"            \"height\": 100.94850314523642,\n" +
+"            \"isCastingShadow\": true,\n" +
+"            \"isReceivingShadow\": true,\n" +
+"            \"keepAspectRatio\": true,\n" +
+"            \"materialType\": \"StandardWithoutMetalness\",\n" +
+"            \"modelResourceName\": \"";
+
+        final String RESOURCE_4 = ".glb\",\n" +
+"            \"originLocation\": \"ModelOrigin\",\n" +
+"            \"rotationX\": 90,\n" +
+"            \"rotationY\": 0,\n" +
+"            \"rotationZ\": 90,\n" +
+"            \"width\": 74.02601269532515,\n" +
+"            \"animations\": []\n" +
+"          }\n" +
+"        }";
         
+        final String _GLB = ".glb";
+
         final BasicArrayList fileList = fileListFetcher.getFiles(
             "G:\\mnt\\bc\\mydev\\abngdgames\\fps\\assets\\",
             new String[] {"glb"});
@@ -64,7 +87,7 @@ public class GDAddResources {
                 
                 if(path.indexOf(SM_ENV) >= 0) {
                     final int lastIndex = path.lastIndexOf('\\') + 1;
-                    final String fileNameAsString = path.substring(lastIndex);
+                    final String fileNameAsString = path.substring(lastIndex).replace(_GLB, StringUtil.getInstance().EMPTY_STRING);
 
                     stringMaker.append(RESOURCE_0);
                     stringMaker.append(fileNameAsString);
