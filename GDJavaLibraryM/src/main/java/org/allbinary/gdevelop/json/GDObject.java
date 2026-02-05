@@ -55,7 +55,7 @@ public class GDObject
         final JSONArray behaviorsJSONArray = jsonObject.getJSONArray(gdProjectStrings.BEHAVIORS);
         size = behaviorsJSONArray.length();
         for(int index = 0; index < size; index++) {
-            this.behaviorContentList.add(new GDBehaviorContent(behaviorsJSONArray.getJSONObject(index)));
+            this.behaviorContentList.add(new GDBehavior(behaviorsJSONArray.getJSONObject(index)));
         }        
         
     }

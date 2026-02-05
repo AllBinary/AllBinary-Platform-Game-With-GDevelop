@@ -12,18 +12,18 @@ import org.json.JSONObject;
  *
  * @author User
  */
-public class GDBehaviorContent
+public class GDBehavior
 {
     public final String name;
     public final String type;
-    public final JSONObject contentJSONObject;
+    public final JSONObject jsonObject;
     
-    public GDBehaviorContent(final JSONObject jsonObject) {
+    public GDBehavior(final JSONObject jsonObject) {
         
         final GDProjectStrings gdProjectStrings = GDProjectStrings.getInstance();
         
         this.type = jsonObject.getString(gdProjectStrings.TYPE);
         this.name = jsonObject.getString(gdProjectStrings.NAME);
-        this.contentJSONObject = jsonObject;        
+        this.jsonObject = jsonObject;        
     }
 }

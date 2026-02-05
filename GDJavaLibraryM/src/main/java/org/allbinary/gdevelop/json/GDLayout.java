@@ -109,7 +109,7 @@ public class GDLayout
         size = behaviorsJSONArray.length();
         for(int index = 0; index < size; index++) {
             nextJSONObject = behaviorsJSONArray.getJSONObject(index);
-            this.behaviorContentList.add(new GDBehaviorContent(nextJSONObject));
+            this.behaviorContentList.add(new GDBehavior(nextJSONObject));
         }
         
         final GDEventFactory eventFactory = GDEventFactory.getInstance();
