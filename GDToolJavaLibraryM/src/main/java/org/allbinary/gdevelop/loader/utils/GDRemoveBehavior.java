@@ -41,25 +41,7 @@ public class GDRemoveBehavior extends GDJSONGeneratorBase {
     
     public void process(final JSONObject gameAsConfigurationJSONObject) throws Exception {
         final JSONObject jsonObject = gameAsConfigurationJSONObject.getJSONObject(this.gdProjectStrings.RESOURCES);
-        final JSONArray jsonArray = jsonObject.getJSONArray(this.gdProjectStrings.RESOURCES);
-        this.processResources(jsonArray);
         super.process(gameAsConfigurationJSONObject);
-    }
-
-    private void processResources(final JSONArray jsonArray) {
-        System.out.println("Resource Total: " + jsonArray.length());
-
-        //final int size = jsonArray.length();
-        JSONObject jsonObject;
-        String value;
-        for(int index = 0; index < jsonArray.length(); index++) {
-            jsonObject = jsonArray.getJSONObject(index);
-            value = jsonObject.getString(this.gdProjectStrings.FILE);
-            jsonObject.put(this.gdProjectStrings.FILE, fileUnamedUtil.process(value));
-            value = jsonObject.getString(this.gdProjectStrings.NAME);
-            jsonObject.put(this.gdProjectStrings.NAME, fileUnamedUtil.process(value));
-        }
-
     }
 
     private void processObjects(final JSONObject layoutJSONObject) throws Exception {
