@@ -17,6 +17,8 @@ import org.json.JSONObject;
  */
 public class GDObject
 {
+    public final JSONObject jsonObject;
+    
     public final String type;
     public final String name;
     public final String tags;
@@ -27,6 +29,8 @@ public class GDObject
     public final BasicArrayList behaviorContentList = new BasicArrayList();
     
     public GDObject(final String type, final JSONObject jsonObject) {
+        
+        this.jsonObject = jsonObject;
         
         final GDProjectStrings gdProjectStrings = GDProjectStrings.getInstance();
 
