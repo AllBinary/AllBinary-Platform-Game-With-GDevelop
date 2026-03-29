@@ -19,30 +19,33 @@ import org.allbinary.logic.string.StringMaker;
  *
  * @author User
  */
-//
-public class GDMakeFolderObjectNames {
+//Level
+public class GDMakeArrayFromResources {
         
     public static void main(String[] args) throws Exception {
 
-        final String SM_ENV = "sm_env_";
+        //final String RESOURCE_START = "\\sm_env_";
+        //final String RESOURCE_START = "\\sk_animal_dog_";
+        final String RESOURCE_START = "\\character_";
     
-        final String RESOURCE_0 = ",\n" + "              {\n" +
-"                \"objectName\": \"";
-
+        final String RESOURCE_0 = "            {\n" +
+"              \"type\": \"string\",\n" +
+"              \"value\": \"";
         final String RESOURCE_2 = "\"\n" +
-"              }\n";
+"            },\n";
         
-        final GLBVisitor glbVisitor = new GLBVisitor(SM_ENV) {
+        final GLBVisitor glbVisitor = new GLBVisitor(RESOURCE_START) {
 
             public void append(final String fileNameAsString, final String name, final StringMaker stringMaker) {
                 stringMaker.append(RESOURCE_0);
-                stringMaker.append(name);
+                stringMaker.append(fileNameAsString);
                 stringMaker.append(RESOURCE_2);
             }
 
         };
 
         new GLBProcessing().process(glbVisitor);
+
     }
     
     

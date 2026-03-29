@@ -18,6 +18,7 @@ import org.allbinary.media.audio.EarlySoundsFactory;
 import org.allbinary.media.audio.Sounds;
 import org.allbinary.game.init.DefaultGameInitializationListener;
 import org.allbinary.game.input.event.RawKeyEventHandler;
+import org.allbinary.input.motion.gesture.observer.GDGameMotionGestureListener;
 import org.allbinary.string.CommonLabels;
 import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
 import org.allbinary.media.audio.GDGameSoundsFactory;
@@ -44,9 +45,10 @@ Pointer.Listener
         final BasicMotionGesturesHandler motionGesturesHandler =
             motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();
 
-        motionGesturesHandler.addListener(
-            new GameMotionGestureListener(
-            MotionGestureReceiveInterfaceFactory.getInstance()));
+        motionGesturesHandler.addListener(new GameMotionGestureListener(
+            MotionGestureReceiveInterfaceFactory.getInstance()));    
+
+        motionGesturesHandler.addListener(new GDGameMotionGestureListener());
         
         PlayN.keyboard().setListener(this);
         PlayN.mouse().setListener(this);

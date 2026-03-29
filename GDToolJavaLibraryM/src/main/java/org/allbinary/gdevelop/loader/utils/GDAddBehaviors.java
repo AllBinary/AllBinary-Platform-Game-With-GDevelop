@@ -33,18 +33,68 @@ public class GDAddBehaviors extends GDJSONGeneratorBase {
 
     private final FileUnamedUtil fileUnamedUtil = FileUnamedUtil.getInstance();
 
+    final String RESOURCE_START = "character_";
+    
+    private final String FIND_BEHAVIOR3 = "Material3D::Material3D";
+    private final String FIND_BEHAVIOR4 = "PathfindingBehavior::PathfindingBehavior";
+    private final String FIND_BEHAVIOR5 = "Physics3D::PhysicsCharacter3D";
     private final String FIND_BEHAVIOR = "Physics3D::Physics3DBehavior";
-    private final String FIND_BEHAVIOR2 = "PathfindingBehavior::PathfindingObstacleBehavior";
+//    private final String FIND_BEHAVIOR2 = "PathfindingBehavior::PathfindingObstacleBehavior";
         //"PathfindingBehavior::PathfindingBehavior";
 
-    private final String BEHAVIOR2 = "{\n" +
-"              \"name\": \"PathfindingObstacle\",\n" +
-"              \"type\": \"PathfindingBehavior::PathfindingObstacleBehavior\",\n" +
-"              \"cost\": 2,\n" +
-"              \"impassable\": true\n" +
-"            }";
-    private final JSONObject behavior2JSONObject = new JSONObject(BEHAVIOR2);
+//    private final String BEHAVIOR2 = "{\n" +
+//"              \"name\": \"PathfindingObstacle\",\n" +
+//"              \"type\": \"PathfindingBehavior::PathfindingObstacleBehavior\",\n" +
+//"              \"cost\": 2,\n" +
+//"              \"impassable\": true\n" +
+//"            }";
+//    private final JSONObject behavior2JSONObject = new JSONObject(BEHAVIOR2);
 
+    private final String BEHAVIOR3 = "            {\n" +
+"              \"name\": \"Material3D\",\n" +
+"              \"type\": \"Material3D::Material3D\"\n" +
+"            }\n";
+    private final JSONObject behavior3JSONObject = new JSONObject(BEHAVIOR3);
+
+    private final String BEHAVIOR4 = "{\n" +
+"              \"name\": \"Pathfinding\",\n" +
+"              \"type\": \"PathfindingBehavior::PathfindingBehavior\",\n" +
+"              \"extraBorder\": 10,\n" +
+"              \"angularMaxSpeed\": 180,\n" +
+"              \"rotateObject\": true,\n" +
+"              \"angleOffset\": 0,\n" +
+"              \"cellHeight\": 20,\n" +
+"              \"maxSpeed\": 180,\n" +
+"              \"gridOffsetY\": 0,\n" +
+"              \"cellWidth\": 20,\n" +
+"              \"acceleration\": 180,\n" +
+"              \"allowDiagonals\": true,\n" +
+"              \"gridOffsetX\": 0,\n" +
+"              \"smoothingMaxCellGap\": 1\n" +
+"            }";
+    private final JSONObject behavior4JSONObject = new JSONObject(BEHAVIOR4);
+    
+    private final String BEHAVIOR5 = "{\n" +
+"              \"name\": \"PhysicsCharacter3D\",\n" +
+"              \"type\": \"Physics3D::PhysicsCharacter3D\",\n" +
+"              \"fallingSpeedMax\": 700,\n" +
+"              \"forwardDeceleration\": 1200,\n" +
+"              \"sidewaysSpeedMax\": 400,\n" +
+"              \"slopeMaxAngle\": 50,\n" +
+"              \"physics3D\": \"Physics3D\",\n" +
+"              \"sidewaysDeceleration\": 800,\n" +
+"              \"forwardAcceleration\": 1200,\n" +
+"              \"forwardSpeedMax\": 600,\n" +
+"              \"sidewaysAcceleration\": 800,\n" +
+"              \"jumpHeight\": 200,\n" +
+"              \"shouldBindObjectAndForwardAngle\": true,\n" +
+"              \"canBePushed\": true,\n" +
+"              \"gravity\": 1000,\n" +
+"              \"jumpSustainTime\": 0.2,\n" +
+"              \"stairHeightMax\": 20\n" +
+"            }";
+    private final JSONObject behavior5JSONObject = new JSONObject(BEHAVIOR5);
+            
     private final String BEHAVIOR = "{\n" +
 "              \"name\": \"Physics3D\",\n" +
 "              \"type\": \"Physics3D::Physics3DBehavior\",\n" +
@@ -96,7 +146,8 @@ public class GDAddBehaviors extends GDJSONGeneratorBase {
             jsonObject = jsonArray.getJSONObject(index);
             //System.out.println(jsonObject.get(this.gdProjectStrings.NAME));
             final GDObject gdObject = GDObjectFactory.getInstance().create(jsonObject);
-            if(gdObject.name.indexOf("sm_env") >= 0) {
+            if(gdObject.name.startsWith(RESOURCE_START)) {
+            //if(gdObject.name.indexOf(RESOURCE_START) >= 0) {
                 this.process(gdObject);
             }
         }
@@ -108,25 +159,36 @@ public class GDAddBehaviors extends GDJSONGeneratorBase {
         final BasicArrayList behaviorList = gdObject.behaviorContentList;
         final int size = behaviorList.size();
         System.out.println("Behavior Total: " + size);
-        boolean found = false;
+        final boolean[] found = new boolean[5];
         boolean found2 = false;
         for(int index = 0; index < size; index++) {
             GDBehavior gdBehaviorContent = (GDBehavior) behaviorList.get(index);
             //System.out.println("Behavior: " + gdBehaviorContent.jsonObject);
             if(gdBehaviorContent.type.compareTo(FIND_BEHAVIOR) == 0) {
-                found = true;
+                found[0] = true;
             }
-            if(gdBehaviorContent.type.compareTo(FIND_BEHAVIOR2) == 0) {
-                found = true;
+//            if(gdBehaviorContent.type.compareTo(FIND_BEHAVIOR2) == 0) {
+//                found[1] = true;
+//            }
+            if(gdBehaviorContent.type.compareTo(FIND_BEHAVIOR3) == 0) {
+                found[2] = true;
+            }
+            if(gdBehaviorContent.type.compareTo(FIND_BEHAVIOR4) == 0) {
+                found[3] = true;
+            }
+            if(gdBehaviorContent.type.compareTo(FIND_BEHAVIOR5) == 0) {
+                found[4] = true;
             }
         }
         
-        if(found && found2) {
+        if(found[0] && found[1]) {
             //System.out.println("GDObject - Already had the needed Behaviors: " + gdObject.name);
         } else {
             System.out.println("GDObject -Adding Behaviors: " + gdObject.name);
-            behaviorsJSONArray.put(behavior2JSONObject);
+            behaviorsJSONArray.put(behavior3JSONObject);
+            behaviorsJSONArray.put(behavior4JSONObject);
             behaviorsJSONArray.put(behaviorJSONObject);
+            behaviorsJSONArray.put(behavior5JSONObject);
         }
     }
 
