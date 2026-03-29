@@ -21,10 +21,9 @@ import org.allbinary.logic.string.StringMaker;
  */
 public class GLBVisitor {
 
-    public final String STARTS_WITH;
+    public final String STARTS_WITH = GDGame0.getInstance().RESOURCE_START;
     
-    public GLBVisitor(final String string) {
-        this.STARTS_WITH = string;
+    public GLBVisitor() {
     }
     
     public void append(final String fileNameAsString, final String name, final StringMaker stringMaker) {

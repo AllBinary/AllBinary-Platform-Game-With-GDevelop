@@ -22,12 +22,6 @@ import org.allbinary.logic.string.StringMaker;
 public class GDMakeResources {
         
     public static void main(String[] args) throws Exception {
-
-        //final String RESOURCE_START = "\\sm_env_";
-        //final String RESOURCE_START = "\\sk_animal_dog_";
-        //final String RESOURCE_START = "\\character_";
-        //final String RESOURCE_START = "\\sk_chr_kid_";
-        final String RESOURCE_START = "\\sk_chr_";
     
         final String RESOURCE_0 = ",\n" +
 "      {\n" +
@@ -39,14 +33,14 @@ public class GDMakeResources {
         final String RESOURCE_4 = "\",\n" +
 "        \"userAdded\": false\n" +
 "      }";
-        
-        final GLBVisitor glbVisitor = new GLBVisitor(RESOURCE_START) {
+
+        final GLBVisitor glbVisitor = new GLBVisitor() {
 
             public void append(final String fileNameAsString, final String name, final StringMaker stringMaker) {
                 stringMaker.append(RESOURCE_0);
-                stringMaker.append(name);
+                stringMaker.append(fileNameAsString);
                 stringMaker.append(RESOURCE_2);
-                stringMaker.append(name);
+                stringMaker.append(fileNameAsString);
                 stringMaker.append(RESOURCE_4);
             }
 

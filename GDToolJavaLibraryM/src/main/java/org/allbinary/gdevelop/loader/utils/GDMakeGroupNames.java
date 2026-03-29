@@ -23,15 +23,13 @@ public class GDMakeGroupNames {
         
     public static void main(String[] args) throws Exception {
 
-        final String SM_ENV = "sm_env_";
-    
         final String RESOURCE_0 = ",\n" + "              {\n" +
 "                \"name\": \"";
 
         final String RESOURCE_2 = "\"\n" +
 "              }\n";
         
-        final GLBVisitor glbVisitor = new GLBVisitor(SM_ENV) {
+        final GLBVisitor glbVisitor = new GLBVisitor() {
 
             public void append(final String fileNameAsString, final String name, final StringMaker stringMaker) {
                 stringMaker.append(RESOURCE_0);

@@ -30,6 +30,14 @@ public class GDGame0 {
     
     public final String PATH = 
         //"G:\\mnt\\bc\\mydev\\abngdgames\\fps\\assets\\";
-        "G:\\mnt\\bc\\mydev\\abngdgames\\multiverse_plateau\\assets\\";
+        //"G:\\mnt\\bc\\mydev\\abngdgames\\multiverse_plateau\\assets\\";
+        "G:\\mnt\\bc\\mydev\\abngdgames\\multiverse_plateau\\a\\";
 
+    //public final String RESOURCE_START = "\\sm_env_";
+    //public final String RESOURCE_START = "\\sk_animal_dog_";
+    //public final String RESOURCE_START = "\\character_";
+    //public final String RESOURCE_START = "\\sk_chr_kid_";
+    public final String RESOURCE_START = "\\sk_chr_";
+    
+    
 }
