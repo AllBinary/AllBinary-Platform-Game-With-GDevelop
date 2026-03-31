@@ -34,7 +34,7 @@ public class GDMakeArrayFromResources {
 
             public void append(final String fileNameAsString, final String name, final StringMaker stringMaker) {
                 stringMaker.append(RESOURCE_0);
-                stringMaker.append(fileNameAsString);
+                stringMaker.append(name);
                 stringMaker.append(RESOURCE_2);
             }
 
