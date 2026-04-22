@@ -26,10 +26,10 @@ public class GDToAndroidResourceStringsXmlGradleGenerator extends GDNameFileGene
 
     private String name;
     
-    private static final String OUTPUT_PATH = GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameAndroidApplicationNoLicensingGradle\\app\\src\\main\\res\\values\\";
+    private static final String OUTPUT_PATH = GDToolStrings.getInstance().ROOT_PATH + "platformx\\android\\GDGameAndroidApplicationNoLicensingGradle\\app\\src\\main\\res\\values\\";
         
     public GDToAndroidResourceStringsXmlGradleGenerator() {
-        super(GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameAndroidApplicationNoLicensingGradle\\strings.xml.original",
+        super(GDToolStrings.getInstance().ROOT_PATH + "platformx\\android\\GDGameAndroidApplicationNoLicensingGradle\\strings.xml.original",
                 OUTPUT_PATH + "strings.xml");
     }
 
