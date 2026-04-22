@@ -19,17 +19,17 @@
     <properties>
         <outputPath>..\Resources\</outputPath>
         
-        <outputPath2>..\platform\android\GDGameAndroidApplicationM\src\main\res\drawable\</outputPath2>
-        <outputPath3>..\platform\android\GDGameAndroidApplicationM\src\main\res\raw\</outputPath3>
-        <outputPath4>..\platform\android\GDGameAndroidApplicationNoLicensingGradle\app\src\main\res\drawable\</outputPath4>
-        <outputPath5>..\platform\android\GDGameAndroidApplicationNoLicensingGradle\app\src\main\res\raw\</outputPath5>
+        <outputPath2>..\platformx\android\GDGameAndroidApplicationM\src\main\res\drawable\</outputPath2>
+        <outputPath3>..\platformx\android\GDGameAndroidApplicationM\src\main\res\raw\</outputPath3>
+        <outputPath4>..\platformx\android\GDGameAndroidApplicationNoLicensingGradle\app\src\main\res\drawable\</outputPath4>
+        <outputPath5>..\platformx\android\GDGameAndroidApplicationNoLicensingGradle\app\src\main\res\raw\</outputPath5>
         <outputPath6>..\platform\html\GDGamePlayNWarM\war\gd\res\</outputPath6>
-        <outputPath7>..\platform\j2se\GDGameJ2SEApplicationM\src\main\resources\</outputPath7>
+        <outputPath7>..\platformx\j2se\GDGameJ2SEApplicationM\src\main\resources\</outputPath7>
 
-        <outputPath9>..\platform\android\GDGameThreedAndroidApplicationM\src\main\res\drawable\</outputPath9>
-        <outputPath10>..\platform\android\GDGameThreedAndroidApplicationM\src\main\res\raw\</outputPath10>
-        <outputPath11>..\platform\android\GDGameThreedAndroidApplicationNoLicensingGradle\app\src\main\res\drawable\</outputPath11>
-        <outputPath12>..\platform\android\GDGameThreedAndroidApplicationNoLicensingGradle\app\src\main\res\raw\</outputPath12>
+        <outputPath9>..\platformx\android\GDGameThreedAndroidApplicationM\src\main\res\drawable\</outputPath9>
+        <outputPath10>..\platformx\android\GDGameThreedAndroidApplicationM\src\main\res\raw\</outputPath10>
+        <outputPath11>..\platformx\android\GDGameThreedAndroidApplicationNoLicensingGradle\app\src\main\res\drawable\</outputPath11>
+        <outputPath12>..\platformx\android\GDGameThreedAndroidApplicationNoLicensingGradle\app\src\main\res\raw\</outputPath12>
         
     </properties>
 

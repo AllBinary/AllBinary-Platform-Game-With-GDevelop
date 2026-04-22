@@ -21,6 +21,7 @@ import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 import org.json.JSONObject;
 import org.json.JSONTokener;

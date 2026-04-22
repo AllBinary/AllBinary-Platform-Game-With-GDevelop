@@ -24,6 +24,7 @@ import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonLabels;
 import org.allbinary.time.TimeDelayHelper;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 /**
  *

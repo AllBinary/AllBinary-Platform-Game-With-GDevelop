@@ -25,6 +25,7 @@ import org.allbinary.logic.io.file.FileListFetcher;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 /**
  *

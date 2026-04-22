@@ -18,8 +18,8 @@
 
     <properties>
 
-        <outputPath3>../GDGameThreedAndroidApplicationNoLicensingGradle\app\src\main\res\raw</outputPath3>
-        <outputPath4>../GDGameThreedAndroidApplicationNoLicensingGradle\app\src\main\res\drawable</outputPath4>
+        <outputPath3>../../../platformx/android/GDGameThreedAndroidApplicationNoLicensingGradle\app\src\main\res\raw</outputPath3>
+        <outputPath4>../../../platformx/android/GDGameThreedAndroidApplicationNoLicensingGradle\app\src\main\res\drawable</outputPath4>
         <inputPath>..\..\..\Resources\3d\images\release\</inputPath>
         <inputPath2>..\..\..\Resources\3d\images\wait\</inputPath2>
         <inputPath5>..\..\..\Resources\3d\images\gd\</inputPath5>

@@ -1,4 +1,4 @@
-1.  Make the AllBinary Game Plaform Client libraries accessible with following the 
+1.  Make the AllBinary Game Platform Client libraries accessible with following the 
     instructions at the following page:
 
     https://github.com/AllBinary/AllBinary-Platform/blob/master/HOW_TO_BUILD_OR_ACCESS_GAME_PLATFORM_CLIENTS.txt

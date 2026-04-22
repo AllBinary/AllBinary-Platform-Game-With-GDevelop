@@ -18,10 +18,10 @@
 
     <properties>
 
-        <outputPath>../GDGameAndroidApplicationM\src\main\res\raw</outputPath>
-        <outputPath2>../GDGameAndroidApplicationM\src\main\res\drawable</outputPath2>
-        <outputPath3>../GDGameAndroidApplicationNoLicensingGradle\app\src\main\res\raw</outputPath3>
-        <outputPath4>../GDGameAndroidApplicationNoLicensingGradle\app\src\main\res\drawable</outputPath4>
+        <outputPath>../../../platformx/android/GDGameAndroidApplicationM\src\main\res\raw</outputPath>
+        <outputPath2>../../../platformx/android/GDGameAndroidApplicationM\src\main\res\drawable</outputPath2>
+        <outputPath3>../../../platformx/android/GDGameAndroidApplicationNoLicensingGradle\app\src\main\res\raw</outputPath3>
+        <outputPath4>../../../platformx/android/GDGameAndroidApplicationNoLicensingGradle\app\src\main\res\drawable</outputPath4>
         
         <inputPath>..\..\..\Resources\2d\images\release\</inputPath>
         <inputPath2>..\..\..\Resources\2d\images\wait\</inputPath2>

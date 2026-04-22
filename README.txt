@@ -33,7 +33,7 @@ Who is responsible for this repo?
 
 Travis Berthelot travisberthelot@allbinary.com
 
-What is the AllBinary Plaform Game?
+What is the AllBinary Platform Game?
 
 The AllBinary Platform Game is the simplest game state management example for the 
 AllBinary Platform.
