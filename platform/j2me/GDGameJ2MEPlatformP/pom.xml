@@ -31,7 +31,7 @@
         <module>../GDGameTouchJ2ME</module>
         -->
         <module>../GDGameJ2MEM</module>
-        <module>../GDGameJ2MEApplicationM</module>
+        <module>../../../platformx/j2me/GDGameJ2MEApplicationM</module>
     </modules>
 
 </project>

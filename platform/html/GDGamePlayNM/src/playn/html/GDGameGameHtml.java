@@ -18,6 +18,7 @@ package playn.html;
 import org.allbinary.playn.AllBinaryPlayNGame;
 import org.allbinary.playn.AllBinaryPlayNGameRunnable;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import playn.core.GDGameMidletFactory;
 import playn.core.PlayN;
 import playn.core.GDGameProcessor;
@@ -34,7 +35,7 @@ public class GDGameGameHtml extends HtmlGame {
     platform.assetManager().setPathPrefix("gd/res/", false);
     
     
-    final BasicArrayList list = new BasicArrayList();
+    final BasicArrayList list = new BasicArrayListD();
     
     list.add(new GDGameProcessor(list));
 

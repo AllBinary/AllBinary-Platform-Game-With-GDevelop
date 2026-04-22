@@ -543,14 +543,14 @@ Created By: Travis Berthelot
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="name2" ><xsl:value-of select="$name" />,</xsl:variable>
                     //action under condition
-                    private final BasicArrayList <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList = new BasicArrayList();
+                    private final BasicArrayList <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList = new BasicArrayListD();
                 </xsl:if>
                 <xsl:if test="not(actions)" >
                 <xsl:if test="events" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="name2" ><xsl:value-of select="$name" />,</xsl:variable>
                     //event under condition
-                    private final BasicArrayList <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList = new BasicArrayList();
+                    private final BasicArrayList <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList = new BasicArrayListD();
                 </xsl:if>
                 </xsl:if>
                 
@@ -597,13 +597,13 @@ Created By: Travis Berthelot
                 <xsl:if test="actions" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //action under whileCondition
-                    private final BasicArrayList <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList = new BasicArrayList();
+                    private final BasicArrayList <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList = new BasicArrayListD();
                 </xsl:if>
                 <xsl:if test="not(actions)" >
                 <xsl:if test="events" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //event under whileCondition
-                    private final BasicArrayList <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList = new BasicArrayList();
+                    private final BasicArrayList <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList = new BasicArrayListD();
                 </xsl:if>
                 </xsl:if>
                 
@@ -656,7 +656,7 @@ Created By: Travis Berthelot
                                 </xsl:for-each>
                             </xsl:variable>
                             //action under whileCondition
-                            private final BasicArrayList <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList = new BasicArrayList();
+                            private final BasicArrayList <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList = new BasicArrayListD();
                         </xsl:if>
                         <xsl:if test="not(../../actions)" >
                             <xsl:if test="../../events" >
@@ -668,7 +668,7 @@ Created By: Travis Berthelot
                                     </xsl:for-each>
                                 </xsl:variable>
                                 //event under whileCondition
-                                private final BasicArrayList <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList = new BasicArrayList();
+                                private final BasicArrayList <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList = new BasicArrayListD();
                             </xsl:if>
                         </xsl:if>
                     </xsl:if>

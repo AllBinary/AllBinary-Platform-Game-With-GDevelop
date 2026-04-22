@@ -51,7 +51,7 @@ public class GDTestLoadAll
         
         //final BasicArrayList files = FileListFetcher.getInstance().getFiles(gdToolStrings.ROOT_PATH, "json");
         final String includeExtension = "json";
-        final BasicArrayList includeExtensionBasicArrayList = new BasicArrayList();
+        final BasicArrayList includeExtensionBasicArrayList = new BasicArrayListD();
         includeExtensionBasicArrayList.add(includeExtension);
         final VisitorFileFilter visitorFileFilter = new VisitorFileFilter(
                 new DirectoryOrIncludeFileExtensionBooleanFileVisitor(includeExtensionBasicArrayList));
@@ -69,7 +69,7 @@ public class GDTestLoadAll
             abFile = ((AbFile) files[index]);
             jsonFileName = abFile.getAbsolutePath();
             if(!abFile.isDirectory() && jsonFileName.indexOf(GIT) < 0) {
-                logUtil.put(this.gdToolStrings.FILENAME + jsonFileName, this, commonStrings.PROCESS);
+                logUtil.putF(this.gdToolStrings.FILENAME + jsonFileName, this, commonStrings.PROCESS);
 
                 final FileInputStream inputStream = new FileInputStream(jsonFileName);
                 sharedBytes.outputStream.reset();

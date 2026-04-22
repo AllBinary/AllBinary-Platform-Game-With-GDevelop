@@ -53,7 +53,7 @@ public class GDDelete {
                 }
                 if (!exclude) {
                     stringMaker.delete(0, stringMaker.length());
-                    logUtil.put(stringMaker.append("Deleting: ").append(abFile.getAbsolutePath()).toString(), this, commonStrings.PROCESS);
+                    logUtil.putF(stringMaker.append("Deleting: ").append(abFile.getAbsolutePath()).toString(), this, commonStrings.PROCESS);
                     abFile.delete();
                 }
             }
@@ -64,21 +64,21 @@ public class GDDelete {
 
         final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
         final FileListFetcher fileListFetcher = FileListFetcher.getInstance();
-        final BasicArrayList exclusionList0 = new BasicArrayList();
+        final BasicArrayList exclusionList0 = new BasicArrayListD();
 
         final BasicArrayList files0 = fileListFetcher.getFiles(
               gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java", this.gdToolStrings.XML);
         
         this.process(files0, exclusionList0);
 
-        final BasicArrayList exclusionList0b = new BasicArrayList();
+        final BasicArrayList exclusionList0b = new BasicArrayListD();
 
         final BasicArrayList files0b = fileListFetcher.getFiles(
               gdToolStrings.ROOT_PATH + "GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\", this.gdToolStrings.JSON);
         
         this.process(files0b, exclusionList0b);
         
-        final BasicArrayList exclusionList = new BasicArrayList();
+        final BasicArrayList exclusionList = new BasicArrayListD();
         
         exclusionList.add("TouchButtonAndroidResources.java");
         exclusionList.add("StartRunnable.java");
@@ -96,7 +96,7 @@ public class GDDelete {
 
         this.process(files, exclusionList);
 
-        final BasicArrayList exclusionList2 = new BasicArrayList();
+        final BasicArrayList exclusionList2 = new BasicArrayListD();
         
         exclusionList2.add("GDGameGameCanvas.java");
         exclusionList2.add("GDGameStartCanvas.java");
@@ -110,7 +110,7 @@ public class GDDelete {
         
         this.process(files2, exclusionList2);
 
-        final BasicArrayList exclusionList3 = new BasicArrayList();
+        final BasicArrayList exclusionList3 = new BasicArrayListD();
         
         exclusionList3.add("GDGameAllBinarySceneControllerFactory.java");
         exclusionList3.add("GDGameSoftwareInfo.java");
@@ -135,7 +135,7 @@ public class GDDelete {
         
         this.process(files3, exclusionList3);
 
-        final BasicArrayList exclusionList3b = new BasicArrayList();
+        final BasicArrayList exclusionList3b = new BasicArrayListD();
         
         exclusionList3b.add("PlatformAssetManager.java");
         
@@ -144,7 +144,7 @@ public class GDDelete {
         
         this.process(files3b, exclusionList3b);
         
-        final BasicArrayList exclusionList4 = new BasicArrayList();
+        final BasicArrayList exclusionList4 = new BasicArrayListD();
         
         exclusionList4.add("GDGameThreedLevelBuilder.java");
         exclusionList4.add("AppRendererShaderUpdaterFactory.java");
@@ -154,7 +154,7 @@ public class GDDelete {
 
         this.process(files4, exclusionList4);
 
-        final BasicArrayList exclusionList5 = new BasicArrayList();
+        final BasicArrayList exclusionList5 = new BasicArrayListD();
         
         //exclusionList3.add("GDGameAllBinarySceneControllerFactory.java");
         
@@ -163,7 +163,7 @@ public class GDDelete {
         
         this.process(files5, exclusionList5);
 
-        final BasicArrayList exclusionList20 = new BasicArrayList();
+        final BasicArrayList exclusionList20 = new BasicArrayListD();
         
         //exclusionList20.add("GDResources.java");
         
@@ -172,7 +172,7 @@ public class GDDelete {
         
         this.process(files20, exclusionList20);
 
-        final BasicArrayList exclusionList21 = new BasicArrayList();
+        final BasicArrayList exclusionList21 = new BasicArrayListD();
         
         //exclusionList21.add("GDGameSounds.java");
         //exclusionList21.add("GameSoundsFactory.java");
@@ -182,7 +182,7 @@ public class GDDelete {
         
         this.process(files21, exclusionList21);
                 
-        final BasicArrayList exclusionList6 = new BasicArrayList();
+        final BasicArrayList exclusionList6 = new BasicArrayListD();
         
         exclusionList6.add("GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
         exclusionList6.add("GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
@@ -197,7 +197,7 @@ public class GDDelete {
         
         this.process(files6b, exclusionList6);
         
-        final BasicArrayList exclusionList7 = new BasicArrayList();
+        final BasicArrayList exclusionList7 = new BasicArrayListD();
         
         exclusionList7.add("GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
         exclusionList7.add("GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
@@ -212,7 +212,7 @@ public class GDDelete {
         
         this.process(files17, exclusionList7);
         
-        final BasicArrayList exclusionList8 = new BasicArrayList();
+        final BasicArrayList exclusionList8 = new BasicArrayListD();
         
         exclusionList8.add("GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
         exclusionList8.add("GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
@@ -222,7 +222,7 @@ public class GDDelete {
         
         this.process(files8, exclusionList8);
 
-        final BasicArrayList exclusionList9 = new BasicArrayList();
+        final BasicArrayList exclusionList9 = new BasicArrayListD();
         
         exclusionList9.add("GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
         exclusionList9.add("GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
@@ -252,7 +252,7 @@ public class GDDelete {
         
         this.process(files29, exclusionList9);
         
-        final BasicArrayList exclusionList10 = new BasicArrayList();
+        final BasicArrayList exclusionList10 = new BasicArrayListD();
         
         exclusionList10.add("GDGameEarlyResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory.java");
         exclusionList10.add("GDGameGameResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory.java");
@@ -265,7 +265,7 @@ public class GDDelete {
         
         this.process(files10, exclusionList10);
         
-        final BasicArrayList exclusionList11 = new BasicArrayList();
+        final BasicArrayList exclusionList11 = new BasicArrayListD();
 
         //exclusionList11.add("GDGameAndroidMin3dView.java");
         //exclusionList11.add("GDGameAndroidOpenGLESView.java");
@@ -277,7 +277,7 @@ public class GDDelete {
 
         this.process(files11, exclusionList11);
         
-        final BasicArrayList exclusionList12 = new BasicArrayList();
+        final BasicArrayList exclusionList12 = new BasicArrayListD();
 
         exclusionList12.add("GDGameMIDletFactory.java");
         exclusionList12.add("GDGameAndroidActivityBase.java");

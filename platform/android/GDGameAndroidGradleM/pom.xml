@@ -19,7 +19,7 @@
     <properties>
         <inputPath>target\dependency\</inputPath>
         <inputPath2>src\main\other\</inputPath2>
-        <outputPath>..\GDGameAndroidApplicationNoLicensingGradle\app\src\main\java\</outputPath>        
+        <outputPath>..\..\..\platformx\android\GDGameAndroidApplicationNoLicensingGradle\app\src\main\java\</outputPath>        
     </properties>
 
     <dependencies>
@@ -67,17 +67,19 @@
                     <groupId>org.allbinary</groupId>
                     <artifactId>MusicAndroidJavaLibrary</artifactId>
                 </exclusion>-->
-<!--                <exclusion>
+                <exclusion>
                     <groupId>org.allbinary</groupId>
                     <artifactId>FileLicenseInitInfoJavaLibrary</artifactId>
-                </exclusion>-->
+                </exclusion>
             </exclusions>
         </dependency>
-<!--        <dependency>
+        <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>HardCodedLicenseInitInfoJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
-        </dependency>                -->
+            <!-- AllBinary Platform Version End -->
+        </dependency>                
         
 <!--        <dependency>
             <groupId>org.allbinary</groupId>

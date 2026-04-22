@@ -7,6 +7,7 @@ package org.allbinary.gdevelop.extensions.builtin.sprite;
 
 import org.allbinary.gdevelop.json.GDProjectStrings;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONObject;
 
 /**
@@ -24,7 +25,7 @@ public class GDContent
     public final Number animationSpeedScale;
     public final Number animationFps;
     
-    public final BasicArrayList directionList = new BasicArrayList();
+    public final BasicArrayList directionList = new BasicArrayListD();
     
     public GDContent(final JSONObject jsonObject) {
      

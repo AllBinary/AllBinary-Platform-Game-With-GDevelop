@@ -55,7 +55,7 @@ Created By: Travis Berthelot
                                     //.append("<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>: ")
                                     //.append(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>)
                                     //.append(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>GDGameLayer.getVelocityProperties().getVelocityXBasicDecimalP())
-                                    //.append(':')
+                                    //.append(commonSeps.COLON)
                                     //.append(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>GDGameLayer.getVelocityProperties().getVelocityYBasicDecimalP())
                                     //.toString(), this, commonStrings.PROCESS);
 

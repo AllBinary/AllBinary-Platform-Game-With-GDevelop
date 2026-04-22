@@ -60,8 +60,8 @@ public class GDGameThreedLevelBuilderFactory {
     }
     
     
-    public final BasicArrayList list = new BasicArrayList();
-    public final BasicArrayList cameraList = new BasicArrayList();
+    public final BasicArrayList list = new BasicArrayListD();
+    public final BasicArrayList cameraList = new BasicArrayListD();
     
     private GDGameThreedLevelBuilderFactory() {
         <xsl:for-each select="layouts" >

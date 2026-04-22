@@ -8,6 +8,7 @@ package org.allbinary.gdevelop.json;
 
 import java.util.HashMap;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -23,7 +24,7 @@ public class GDVariable
     public final boolean boolValue;
     
     public final HashMap<String, GDVariable> childVariableMap = new HashMap();
-    public final BasicArrayList childVariableList = new BasicArrayList();
+    public final BasicArrayList childVariableList = new BasicArrayListD();
     
     public GDVariable(final JSONObject jsonObject) {
 

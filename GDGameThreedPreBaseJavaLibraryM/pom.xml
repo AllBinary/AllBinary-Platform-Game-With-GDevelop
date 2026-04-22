@@ -114,16 +114,6 @@
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameThreedJ2SEWithSWTJOGLResourceJavaLibrary</artifactId>
-            
-<!--            <groupId>org.allbinary</groupId>
-            <artifactId>AppNoneOpenGLESJavaLibrary</artifactId>-->
-            <version>${allbinary.platform.version}</version>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameTouchJavaLibrary</artifactId>
             <optional>true</optional>
         </dependency>

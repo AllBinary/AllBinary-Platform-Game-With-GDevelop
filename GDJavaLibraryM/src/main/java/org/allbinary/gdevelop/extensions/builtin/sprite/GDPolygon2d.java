@@ -6,9 +6,9 @@
 package org.allbinary.gdevelop.extensions.builtin.sprite;
 
 import org.allbinary.gdevelop.json.GDProjectStrings;
-import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.PointFactory;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -18,7 +18,7 @@ import org.json.JSONObject;
  */
 public class GDPolygon2d
 {
-    public final BasicArrayList pointList = new BasicArrayList();
+    public final BasicArrayList pointList = new BasicArrayListD();
     
     public GDPolygon2d(final JSONArray jsonArray) {
         
@@ -29,7 +29,7 @@ public class GDPolygon2d
         JSONObject jsonObject;
         for(int index = 0; index < size; index++) {
             jsonObject = jsonArray.getJSONObject(index);
-            this.pointList.add(pointFactory.getInstance(jsonObject.getInt(projectStrings.X), jsonObject.getInt(projectStrings.Y)));
+            this.pointList.add(pointFactory.getInstance0(jsonObject.getInt(projectStrings.X), jsonObject.getInt(projectStrings.Y)));
         }        
     }
 }

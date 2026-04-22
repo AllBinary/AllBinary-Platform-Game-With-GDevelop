@@ -24,7 +24,7 @@ import org.json.JSONObject;
  */
 public class ReduceObjectsForTesting extends GDJSONGeneratorBase {
     
-    private final BasicArrayList list = new BasicArrayList();
+    private final BasicArrayList list = new BasicArrayListD();
     
     private final String ENEMY = "Enemy";
     private final String ATTACK = "Attack";

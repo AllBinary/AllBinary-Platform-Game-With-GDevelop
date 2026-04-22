@@ -618,6 +618,8 @@ Created By: Travis Berthelot
                         <xsl:value-of select="$name" />ImageArray[0],
                         <xsl:value-of select="$name" />ImageArray[0].getWidth(),
                         <xsl:value-of select="$name" />ImageArray[0].getHeight(),
+                        0,
+                        0,
                         angleIncrement,
                         AnimationBehaviorFactory.getInstance()
                         //new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)

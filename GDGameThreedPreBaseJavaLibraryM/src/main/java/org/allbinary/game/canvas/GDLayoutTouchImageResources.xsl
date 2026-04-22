@@ -134,7 +134,7 @@ Created By: Travis Berthelot
 
                         //try {
                         
-                            logUtil.put(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
+                            logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
 
                             final PointFactory pointFactory = PointFactory.getInstance();
 

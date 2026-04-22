@@ -56,7 +56,7 @@ public class GDLayoutsToAllBinaryGenerator
         this.end = end;
     }
 
-    private BasicArrayList nameList = new BasicArrayList();
+    private BasicArrayList nameList = new BasicArrayListD();
     
     
     public void loadLayout(final GDLayout layout, final int index, final int size) throws Exception {
@@ -83,7 +83,7 @@ public class GDLayoutsToAllBinaryGenerator
             sharedBytes.outputStream.reset();
 
             final String xslPath = gdToolStrings.ROOT_PATH + this.xslPath;
-            logUtil.put(xslPath, this, commonStrings.PROCESS);
+            logUtil.putF(xslPath, this, commonStrings.PROCESS);
             
             final InputStream inputStream = new FileInputStream(xslPath);
             final String xslDocumentStr = new String(streamUtil.getByteArray(inputStream, sharedBytes.outputStream, sharedBytes.byteArray));
@@ -116,11 +116,11 @@ public class GDLayoutsToAllBinaryGenerator
                 stringMaker.delete(0, stringMaker.length());
                 final String fileName = stringMaker.append(START).append(stringUtil.toString(this.nameList.get(index))).append(END).toString();
 
-                logUtil.put(this.gdToolStrings.FILENAME + fileName, this, commonStrings.PROCESS);
+                logUtil.putF(this.gdToolStrings.FILENAME + fileName, this, commonStrings.PROCESS);
 
                 this.bufferedWriterUtil.overwrite(fileName, result);
 
-                logUtil.put(RESULT + result, this, commonStrings.PROCESS);
+                logUtil.putF(RESULT + result, this, commonStrings.PROCESS);
             }
 
         } catch (Exception e)
@@ -130,7 +130,7 @@ public class GDLayoutsToAllBinaryGenerator
         }
 
         stringMaker.delete(0, stringMaker.length());
-        logUtil.put(stringMaker.append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS);
+        logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS);
     }
 
 //    public static void main(String[] args) throws Exception

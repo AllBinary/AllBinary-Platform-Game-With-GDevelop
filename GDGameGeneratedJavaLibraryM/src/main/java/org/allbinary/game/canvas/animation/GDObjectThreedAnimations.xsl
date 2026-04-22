@@ -161,7 +161,7 @@ Created By: Travis Berthelot
             </xsl:otherwise>
         </xsl:choose>
 
-                final BasicArrayList <xsl:value-of select="name" />List = new BasicArrayList();
+                final BasicArrayList <xsl:value-of select="name" />List = new BasicArrayListD();
                 final Object3d[] <xsl:value-of select="name" />Object3dArray = min3dSceneResourcesFactory.get(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME);
                 final int[] loopTotalArray = {<xsl:for-each select="animations" ><xsl:for-each select="directions" ><xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>,</xsl:for-each></xsl:for-each>};
                 final long[] frameDelayTime = {<xsl:for-each select="animations" ><xsl:for-each select="directions" ><xsl:value-of select="timeBetweenFrames * 1000" />,</xsl:for-each></xsl:for-each>};
@@ -719,7 +719,7 @@ Created By: Travis Berthelot
             </xsl:otherwise>
         </xsl:choose>
 
-                final BasicArrayList <xsl:value-of select="name" />List = new BasicArrayList();
+                final BasicArrayList <xsl:value-of select="name" />List = new BasicArrayListD();
                 final Object3d[] <xsl:value-of select="name" />Object3dArray = min3dSceneResourcesFactory.get(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME);
                 final int[] loopTotalArray = {<xsl:for-each select="animations" ><xsl:for-each select="directions" ><xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>,</xsl:for-each></xsl:for-each>};
                 final long[] frameDelayTime = {<xsl:for-each select="animations" ><xsl:for-each select="directions" ><xsl:value-of select="timeBetweenFrames * 1000" />,</xsl:for-each></xsl:for-each>};

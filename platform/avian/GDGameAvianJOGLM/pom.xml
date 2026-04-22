@@ -20,7 +20,7 @@
         <inputPath2>src\main\java\</inputPath2>
         <inputPath7>src\main\resources\</inputPath7>
         <inputPath>target\dependency\</inputPath>
-        <outputPath>..\GDGameAvianJOGLApplicationM\src\main\java\</outputPath>
+        <outputPath>..\..\..\platformx\avian\GDGameAvianJOGLApplicationM\src\main\java\</outputPath>
         <outputPath3>..\..\..\..\..\..\..\avian\gd_gl\org.allbinary\src\</outputPath3>
         <outputPath4>..\..\..\..\..\..\..\avian\gd_gl\org.allbinary\resources</outputPath4>
         
@@ -31,7 +31,7 @@
         <inputPath4>..\..\..\Resources\sounds\release\</inputPath4>
 -->
         <inputPath5>${project.build.directory}/resources</inputPath5>
-        <inputPath6>..\..\..\..\working_thirdparty\media\speech\resource\</inputPath6>
+<!--        <inputPath6>..\..\..\..\working_thirdparty\media\speech\resource\</inputPath6>-->
         <outputPath2>..\..\..\..\..\..\..\avian\gd_gl\org.allbinary\resources</outputPath2>
         <outputPath4>..\..\..\..\..\..\..\..\..\..\avian\gd_gl\org.allbinary\src\</outputPath4>
 <!--        <outputPath2>..\GDGameAvianJOGLApplicationM\src\main\resources\</outputPath2>-->
@@ -723,10 +723,10 @@
                                     <directory>${inputPath5}</directory>
                                     <filtering>false</filtering>
                                 </resource>
-                                <resource>
+<!--                                <resource>
                                     <directory>${inputPath6}</directory>
                                     <filtering>false</filtering>
-                                </resource>
+                                </resource>-->
                                 <resource>
                                     <directory>${inputPath7}</directory>
                                     <filtering>false</filtering>

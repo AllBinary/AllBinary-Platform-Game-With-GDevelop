@@ -10,6 +10,7 @@ import org.allbinary.string.CommonStrings;
 
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -24,7 +25,7 @@ public class GDResourceFolder
     private static final String RESOURCES = "Resources: ";
     
     public final String name;
-    public final BasicArrayList resourceList = new BasicArrayList();
+    public final BasicArrayList resourceList = new BasicArrayListD();
     
     public GDResourceFolder(final JSONObject jsonObject) {
      
@@ -41,6 +42,6 @@ public class GDResourceFolder
         }
         
         final CommonStrings commonStrings = CommonStrings.getInstance();
-        logUtil.put(RESOURCES + this.resourceList.size(), this, commonStrings.CONSTRUCTOR);
+        logUtil.putF(RESOURCES + this.resourceList.size(), this, commonStrings.CONSTRUCTOR);
     }
 }

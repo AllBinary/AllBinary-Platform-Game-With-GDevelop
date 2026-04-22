@@ -19,7 +19,7 @@
     <properties>
         <inputPath>target\dependency\</inputPath>
         <inputPath2>src\main\other\</inputPath2>
-        <outputPath>..\GDGameThreedAndroidApplicationNoLicensingGradle\app\src\main\java\</outputPath>        
+        <outputPath>..\..\..\platformx\android\GDGameThreedAndroidApplicationNoLicensingGradle\app\src\main\java\</outputPath>        
     </properties>
 
     <dependencies>

@@ -7,6 +7,7 @@
 package org.allbinary.gdevelop.json;
 
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -17,7 +18,7 @@ import org.json.JSONObject;
 public class GDExternalLayout
 {
     public final String name;
-    public final BasicArrayList initialInstanceList = new BasicArrayList();
+    public final BasicArrayList initialInstanceList = new BasicArrayListD();
     //public final EditorSettings editorSettings;
     public final String associatedLayout;
     

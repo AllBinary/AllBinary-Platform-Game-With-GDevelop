@@ -14,6 +14,7 @@
 package org.allbinary.game.configuration;
 
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 import org.allbinary.game.configuration.GameConfigurationCentral;
 import org.allbinary.game.configuration.GameConfigurationSingleton;
@@ -33,7 +34,7 @@ public class GDGameGameFeatures implements InitInterface
     
     public void init()
     {
-        //BasicArrayList exclusiveOrientationSensorList = new BasicArrayList();
+        //BasicArrayList exclusiveOrientationSensorList = new BasicArrayListD();
 
         SensorFeatureFactory sensorFeatureFactory =
                 SensorFeatureFactory.getInstance();
@@ -45,7 +46,7 @@ public class GDGameGameFeatures implements InitInterface
         //exclusiveOrientationSensorList.add(sensorFeatureFactory.NO_ORIENTATION);
 
         /*
-        BasicArrayList exclusiveOrientationTypeList = new BasicArrayList();
+        BasicArrayList exclusiveOrientationTypeList = new BasicArrayListD();
         exclusiveOrientationTypeList.add(GameFeature.YAW_AND_PITCH);
         exclusiveOrientationTypeList.add(GameFeature.PITCH_AND_ROLL);
         */
@@ -62,7 +63,7 @@ public class GDGameGameFeatures implements InitInterface
         // gameConfigurationSingleton.add(gameConfigurationCentral.CONTROL_LEVEL);
         gameConfigurationSingleton.add(gameConfigurationCentral.SPEED);
 
-        BasicArrayList multipleList = new BasicArrayList();
+        BasicArrayList multipleList = new BasicArrayListD();
 
         multipleList.add(gameFeatureFactory.SOUND);
         multipleList.add(gameFeatureFactory.SCREEN_SHAKE);

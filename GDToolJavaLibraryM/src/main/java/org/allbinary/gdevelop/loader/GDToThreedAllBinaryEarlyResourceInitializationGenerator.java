@@ -60,7 +60,7 @@ public class GDToThreedAllBinaryEarlyResourceInitializationGenerator
         final Replace replace = new Replace(GD_KEY, stringMaker.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
-        logUtil.put(this.gdToolStrings.FILENAME + RESOURCE_INITIALIZATION, this, commonStrings.PROCESS);
+        logUtil.putF(this.gdToolStrings.FILENAME + RESOURCE_INITIALIZATION, this, commonStrings.PROCESS);
 
         this.bufferedWriterUtil.overwrite(RESOURCE_INITIALIZATION, newFileAsString);
 

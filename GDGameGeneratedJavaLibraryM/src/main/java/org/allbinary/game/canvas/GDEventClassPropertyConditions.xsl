@@ -90,7 +90,7 @@ Created By: Travis Berthelot
                     //TextObject::String
                     <xsl:if test="preceding-sibling::actions[type/value/text() = 'Create']/parameters[2]/text() = parameters[1]/text()">
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    //public final BasicArrayList <xsl:value-of select="$name" />GDObjectList = new BasicArrayList();
+                    //public final BasicArrayList <xsl:value-of select="$name" />GDObjectList = new BasicArrayListD();
                     </xsl:if>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ModVarSceneTxt'" >
@@ -132,7 +132,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="paramThree" ><xsl:value-of select="substring($paramThree3, 0, string-length($paramThree3))" /></xsl:variable>
                     
                     public float[] <xsl:value-of select="$paramOne" />PortionElapsedTotalArray = new float[10];
-                    public final BasicArrayList <xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList = new BasicArrayList();
+                    public final BasicArrayList <xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList = new BasicArrayListD();
 
                     public float ObjectTimerElapsedTime(final int index, final String name) {
                         final GDGameLayer gameLayer = (GDGameLayer) <xsl:value-of select="$paramOne" />GDGameLayerList.get(index);

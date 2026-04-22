@@ -12,6 +12,7 @@ import org.allbinary.string.CommonStrings;
 
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -49,12 +50,12 @@ public class GDProject
 
     public GDResourcesManager resourcesManager;
 
-    public final BasicArrayList objectList = new BasicArrayList();
+    public final BasicArrayList objectList = new BasicArrayListD();
     
-    public final BasicArrayList variableList = new BasicArrayList();
+    public final BasicArrayList variableList = new BasicArrayListD();
     
-    public final BasicArrayList layoutList = new BasicArrayList();
-    public final BasicArrayList externalLayoutList = new BasicArrayList();
+    public final BasicArrayList layoutList = new BasicArrayListD();
+    public final BasicArrayList externalLayoutList = new BasicArrayListD();
     
     public void load(final JSONObject gameAsConfiguration) throws JSONException {
  
@@ -97,7 +98,7 @@ public class GDProject
             this.objectList.add(objectFactory.create(objectJSONObject));
         }
         
-        logUtil.put(OBJECTS + this.objectList.size(), this, LOAD);
+        logUtil.putF(OBJECTS + this.objectList.size(), this, LOAD);
         
         final JSONArray variableJSONArray = gameAsConfiguration.getJSONArray(gdProjectStrings.VARIABLES);
         size = variableJSONArray.length();
@@ -105,7 +106,7 @@ public class GDProject
             this.variableList.add(new GDVariable(variableJSONArray.getJSONObject(index)));
         }
         
-        logUtil.put(VARIABLES + this.variableList.size(), this, LOAD);
+        logUtil.putF(VARIABLES + this.variableList.size(), this, LOAD);
         
         final JSONArray layoutsJSONArray = gameAsConfiguration.getJSONArray(gdProjectStrings.LAYOUTS);
         size = layoutsJSONArray.length();
@@ -114,7 +115,7 @@ public class GDProject
             this.layoutList.add(new GDLayout(objectJSONObject));
         }
 
-        logUtil.put(LAYOUTS + this.layoutList.size(), this, LOAD);
+        logUtil.putF(LAYOUTS + this.layoutList.size(), this, LOAD);
         
         final JSONArray externalLayoutsJSONArray = gameAsConfiguration.getJSONArray(gdProjectStrings.EXTERNAL_LAYOUTS);
         size = externalLayoutsJSONArray.length();
@@ -123,7 +124,7 @@ public class GDProject
             this.externalLayoutList.add(new GDExternalLayout(objectJSONObject));
         }
         
-        logUtil.put(EXTERNAL_LAYOUT + this.externalLayoutList.size(), this, LOAD);        
+        logUtil.putF(EXTERNAL_LAYOUT + this.externalLayoutList.size(), this, LOAD);        
     }
         
 }

@@ -118,8 +118,8 @@ Created By: Travis Berthelot
                     private final GDGlobalsGDObjectsFactory gdGlobalsObjectsFactory = GDGlobalsGDObjectsFactory.getInstance();
                     private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
                     
-                    public final BasicArrayList layoutNameList = new BasicArrayList();
-                    public final BasicArrayList layoutGDNodeList = new BasicArrayList();
+                    public final BasicArrayList layoutNameList = new BasicArrayListD();
+                    public final BasicArrayList layoutGDNodeList = new BasicArrayListD();
                     
                     private final String CREATE_INSTANCES = "createInstances";
                     
@@ -147,7 +147,7 @@ Created By: Travis Berthelot
 
                         try {
                         
-                            logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                            logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
 
                     <xsl:call-template name="scale" >
                         <xsl:with-param name="layoutIndex" >

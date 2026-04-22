@@ -49,7 +49,7 @@ public class GDToAllBinaryGenerationTool
 
     private final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(Integer.MAX_VALUE);
 
-    private final BasicArrayList duplicateCheckList = new BasicArrayList();
+    private final BasicArrayList duplicateCheckList = new BasicArrayListD();
 
     private final GDNameGenerator[] gdNameFileGeneratorArray = {
         new GDToAndroidManifestGenerator(),
@@ -99,7 +99,7 @@ public class GDToAllBinaryGenerationTool
     //private final GDLayoutsToAllBinaryGenerator startRunnableThreedGenerator = new GDLayoutsToAllBinaryGenerator(
             //"GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDLayoutStartRunnable.xsl"
             //"GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameStart", "CanvasRunnable.java");
-    private final BasicArrayList layoutList = new BasicArrayList();
+    private final BasicArrayList layoutList = new BasicArrayListD();
 
     private final String LOAD_STANDARD_EVENT = "loadStandardEvent";
     
@@ -173,7 +173,7 @@ public class GDToAllBinaryGenerationTool
         fixQuotes = replace6.all(fixQuotes);
 
         final String fileName = gdToolStrings.GAME_XML_PATH;
-        logUtil.put(this.gdToolStrings.FILENAME + fileName, this, commonStrings.PROCESS);
+        logUtil.putF(this.gdToolStrings.FILENAME + fileName, this, commonStrings.PROCESS);
 
         this.bufferedWriterUtil.overwrite(fileName, fixQuotes);
         //this.bufferedWriterUtil.overwrite(fileName, xml);
@@ -215,7 +215,7 @@ public class GDToAllBinaryGenerationTool
         //"GDGameAndroidEarlyResourceInitialization"
         
         stringMaker.delete(0, stringMaker.length());
-        logUtil.put(stringMaker.append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS);
+        logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS);
     }
 
     public void xmlConversionHack(JSONObject gameAsConfigurationJSONObject) {
@@ -247,18 +247,18 @@ public class GDToAllBinaryGenerationTool
 
         final JSONArray layoutJSONArray = gameAsConfigurationJSONObject.getJSONArray(gdProjectStrings.LAYOUTS);
         final int size4 = layoutJSONArray.length();
-        logUtil.put(LAYOUT_TOTAL + size4, this, commonStrings.PROCESS);
+        logUtil.putF(LAYOUT_TOTAL + size4, this, commonStrings.PROCESS);
         for(int index2 = 0; index2 < size4; index2++) {
 
             final JSONObject layoutJSONObject = layoutJSONArray.getJSONObject(index2);
             final JSONArray jsonArray = layoutJSONObject.getJSONArray(gdProjectStrings.OBJECTS);
             final int size3 = jsonArray.length();
-            logUtil.put(OBJECTS + size3, this, commonStrings.PROCESS);
+            logUtil.putF(OBJECTS + size3, this, commonStrings.PROCESS);
             for (int index = 0; index < size3; index++) {
 
                 JSONObject jsonObject = jsonArray.getJSONObject(index);
                 if(jsonObject.has(this.gdProjectStrings.CONTENT)) {
-                    logUtil.put(CONTENT_REMOVE + index, this, commonStrings.PROCESS);
+                    logUtil.putF(CONTENT_REMOVE + index, this, commonStrings.PROCESS);
                     Object object = jsonObject.remove(gdProjectStrings.CONTENT);
                     jsonObject.put(gdProjectStrings.CONTENT + X, object);
                 }
@@ -359,7 +359,7 @@ public class GDToAllBinaryGenerationTool
     private void loadEvents(final BasicArrayList eventList)
     {
 
-        logUtil.put(StringUtil.getInstance().EMPTY_STRING, this, "loadEvents");
+        logUtil.putF(StringUtil.getInstance().EMPTY_STRING, this, "loadEvents");
 
         final GDEventTypeFactory eventTypeFactory = GDEventTypeFactory.getInstance();
         final int size = eventList.size();
@@ -384,7 +384,7 @@ public class GDToAllBinaryGenerationTool
 
     private void loadStandardEvent(final GDStandardEvent standardEvent)
     {
-        logUtil.put(StringUtil.getInstance().EMPTY_STRING, this, LOAD_STANDARD_EVENT);
+        logUtil.putF(StringUtil.getInstance().EMPTY_STRING, this, LOAD_STANDARD_EVENT);
         this.loadEvents(standardEvent.eventList);
         this.loadActions(standardEvent.actionList);
     }
@@ -393,14 +393,14 @@ public class GDToAllBinaryGenerationTool
     {
         final int size = actionList.size();
         
-        logUtil.put(ACTION_LIST_SIZE + size, this, LOAD_ACTIONS);
+        logUtil.putF(ACTION_LIST_SIZE + size, this, LOAD_ACTIONS);
         
         GDInstruction instruction;
         for (int index = 0; index < size; index++)
         {
             instruction = (GDInstruction) actionList.get(index);
 
-            logUtil.put(INSTRUCTION_TYPE_VALUE + instruction.typeValue, this, LOAD_ACTIONS);
+            logUtil.putF(INSTRUCTION_TYPE_VALUE + instruction.typeValue, this, LOAD_ACTIONS);
 
             if (instruction.typeValue.indexOf(this.PRELOAD_SOUND) >= 0)
             {
@@ -420,7 +420,7 @@ public class GDToAllBinaryGenerationTool
     {
         final int size = parametersExpressionList.size();
         
-        logUtil.put(PARAMETERS_EXPRESSION_LIST + size, this, LOAD_EXPRESSION);
+        logUtil.putF(PARAMETERS_EXPRESSION_LIST + size, this, LOAD_EXPRESSION);
         
         GDExpression expression;
         String param;
@@ -430,7 +430,7 @@ public class GDToAllBinaryGenerationTool
         {
             expression = (GDExpression) parametersExpressionList.get(1);
 
-            logUtil.put(PARAMETERS_EXPRESSION + expression, this, LOAD_EXPRESSION);
+            logUtil.putF(PARAMETERS_EXPRESSION + expression, this, LOAD_EXPRESSION);
             
             param = expression.plainString;
             

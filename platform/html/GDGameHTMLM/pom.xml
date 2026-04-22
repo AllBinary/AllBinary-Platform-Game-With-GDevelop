@@ -19,7 +19,7 @@
     <properties>
         <buildLabel>${project.version}</buildLabel>
         <inputPath>target\dependency</inputPath>
-        <outputPath>..\GDGameHTMLTempM\src</outputPath>
+        <outputPath>..\..\..\platformx\html\GDGameHTMLTempM\src</outputPath>
     </properties>
 
     <dependencies>

@@ -47,7 +47,7 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
     public boolean isCollision(final CollidableCompositeLayer collisionLayer)
     {
         //final StringMaker stringBuilder = new StringMaker();
-        //logUtil.put(stringBuilder.append(':').append(this.ownerLayer.getName()).append(':').append(collisionLayer.getName()).toString(), this, IS_COLLISION);
+        //logUtil.put(stringBuilder.append(commonSeps.COLON).append(this.ownerLayer.getName()).append(commonSeps.COLON).append(collisionLayer.getName()).toString(), this, IS_COLLISION);
         
 //        if(!this.ownerLayer.getName().startsWith("player_bullet") || !collisionLayer.getName().startsWith("player_bullet")) {
 //            final StringMaker stringBuilder = new StringMaker();
@@ -94,7 +94,7 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
 
         if(this.conditionWIthGroupActions.groupWithActionsList.size() > 0) {
             //final StringMaker stringBuilder = new StringMaker();
-            //logUtil.put(stringBuilder.append(COLLIDE).append(':').append(this.ownerLayer.getName()).append(':').append(collisionLayer.getName()).toString(), this, COLLIDE);
+            //logUtil.put(stringBuilder.append(COLLIDE).append(commonSeps.COLON).append(this.ownerLayer.getName()).append(commonSeps.COLON).append(collisionLayer.getName()).toString(), this, COLLIDE);
 
             final GroupInterface[] groupInterfaceArray = collisionLayer.getGroupInterface();
             //final GroupInterface[] groupInterfaceArray = this.ownerLayer.getGroupInterface();

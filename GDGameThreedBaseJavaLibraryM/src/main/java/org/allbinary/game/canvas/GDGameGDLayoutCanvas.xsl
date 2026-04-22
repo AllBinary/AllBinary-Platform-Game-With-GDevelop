@@ -422,7 +422,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
                 this.setWait(WAIT);
                 this.loadState();
 
-                BasicArrayList list = new BasicArrayList();
+                BasicArrayList list = new BasicArrayListD();
 
                 Features features = Features.getInstance();
 

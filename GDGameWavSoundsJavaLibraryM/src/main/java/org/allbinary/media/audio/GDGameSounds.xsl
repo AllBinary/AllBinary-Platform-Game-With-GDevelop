@@ -47,7 +47,7 @@ extends BaseSoundsFactory
         //soundInterfaceArray = new Sound[1];
         int index = 0;
 
-        final BasicArrayList list = new BasicArrayList();
+        final BasicArrayList list = new BasicArrayListD();
         
     list.add(SelectSound.getInstance());
     list.add(ErrorSound.getInstance());

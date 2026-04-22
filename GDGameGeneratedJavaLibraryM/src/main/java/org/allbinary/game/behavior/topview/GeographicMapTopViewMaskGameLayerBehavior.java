@@ -28,6 +28,7 @@ import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellType;
 import org.allbinary.media.graphics.geography.map.SimpleGeographicMapCellPositionFactory;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.allbinary.view.ViewPosition;
 
 /**
@@ -42,8 +43,8 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     
     private final MultiGeographicMapBehavior geographicMapBehavior = new MultiGeographicMapBehavior();
 
-    public final BasicArrayList unsafeGeographicMapCellPositionList = new BasicArrayList();
-    public final BasicArrayList unsafePossibleGeographicMapCellPositionList = new BasicArrayList();
+    public final BasicArrayList unsafeGeographicMapCellPositionList = new BasicArrayListD();
+    public final BasicArrayList unsafePossibleGeographicMapCellPositionList = new BasicArrayListD();
     
     private final boolean autoStepBlocks;
     //private final int offsetY;

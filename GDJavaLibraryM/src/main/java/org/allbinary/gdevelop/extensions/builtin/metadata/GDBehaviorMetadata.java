@@ -11,6 +11,7 @@ import org.allbinary.gdevelop.project.GDBehavior;
 import org.allbinary.gdevelop.project.GDBehaviorsSharedData;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 /**
  *
@@ -35,8 +36,8 @@ public class GDBehaviorMetadata
     public final GDBehavior behavior;
     public final GDBehaviorsSharedData behaviorsSharedData;
 
-    public final BasicArrayList conditionInstructionMetadataList = new BasicArrayList();
-    public final BasicArrayList actionInstructionMetadataList = new BasicArrayList();
+    public final BasicArrayList conditionInstructionMetadataList = new BasicArrayListD();
+    public final BasicArrayList actionInstructionMetadataList = new BasicArrayListD();
 
     private final HashMap<String, GDInstructionMetadata> nameToConditionInstructionMetadataMap = new HashMap();
     private final HashMap<String, GDInstructionMetadata> nameToActionInstructionMetadataMap = new HashMap();

@@ -9,6 +9,7 @@ import org.allbinary.gdevelop.json.GDProjectStrings;
 
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -23,7 +24,7 @@ public class GDDirection
     public final boolean looping;
     public final int timeBetweenFrames;
     
-    public final BasicArrayList spriteList = new BasicArrayList();
+    public final BasicArrayList spriteList = new BasicArrayListD();
     
     public GDDirection(final JSONObject jsonObject) {
         

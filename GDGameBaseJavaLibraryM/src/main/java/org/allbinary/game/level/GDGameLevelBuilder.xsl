@@ -392,7 +392,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final ImageCache imageCache = ImageCacheFactory.getInstance();
         final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
 
-        final BasicArrayList geographicMapList = new BasicArrayList();
+        final BasicArrayList geographicMapList = new BasicArrayListD();
 
         TiledMap map = null;
         

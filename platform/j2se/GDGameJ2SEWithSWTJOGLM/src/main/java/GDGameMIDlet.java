@@ -62,7 +62,7 @@ public class GDGameMIDlet
         {
             final LogUtil logUtil = LogUtil.getInstance();
             
-            logUtil.put(commonStrings.START, this, commonStrings.INIT);
+            logUtil.putF(commonStrings.START, this, commonStrings.INIT);
 
             ResourceUtil.getInstance().setClassLoader(this.getClass().getClassLoader());
 

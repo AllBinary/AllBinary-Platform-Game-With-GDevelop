@@ -21,7 +21,7 @@
         <inputPath2>src\main\java\</inputPath2>
         <inputPath7>src\main\resources\</inputPath7>
         <inputPath>target\dependency\</inputPath>
-        <outputPath>..\GDGameThreedAvianJOGLApplicationM\src\main\java\</outputPath>
+        <outputPath>..\..\..\platformx\avian\GDGameThreedAvianJOGLApplicationM\src\main\java\</outputPath>
         <outputPath3>..\..\..\..\..\..\..\avian\gd_3d\org.allbinary\src\</outputPath3>
         <outputPath4>..\..\..\..\..\..\..\avian\gd_3d\org.allbinary\resources</outputPath4>
         

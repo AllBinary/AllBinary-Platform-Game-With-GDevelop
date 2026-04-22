@@ -40,6 +40,7 @@ import org.allbinary.media.graphics.geography.map.racetrack.RaceTrackGeographicM
 import org.allbinary.media.graphics.geography.map.racetrack.RaceTrackInfo;
 import org.allbinary.time.GameTickTimeDelayHelperFactory;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 import org.mapeditor.core.Animation;
 import org.mapeditor.core.Frame;
@@ -77,7 +78,7 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
         
         this.map = map;
 
-        final BasicArrayList tileList = new BasicArrayList();
+        final BasicArrayList tileList = new BasicArrayListD();
         this.createAnimationTiles(tileList);
 
         final int size = tileList.size();
@@ -134,7 +135,7 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
         for(int index = 0; index < size; index++) {
             tile = (Tile) tileList.get(index);
             animationTileIndex =  tiledLayer.createAnimatedTile(tile.getId());
-            logUtil.put(CREATING_ANIMATION_TILE + animationTileIndex, this, commonStrings.PROCESS);
+            logUtil.putF(CREATING_ANIMATION_TILE + animationTileIndex, this, commonStrings.PROCESS);
             this.animationArray[index] = animation = tile.getAnimation();
             this.animationTileIndexArray[index] = animationTileIndex;
             allBinaryJ2METiledLayer.updateCells(((TileLayer) map.getLayer(0)).getMapArray(), ((Frame) animation.getFrame().get(0)).getTileid(), animationTileIndex);

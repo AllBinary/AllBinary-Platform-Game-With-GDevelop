@@ -16,7 +16,6 @@ import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.game.canvas.GDGameThreedLevelBuilder;
-import org.allbinary.game.gd.level.GDPlatformUtil;
 import org.allbinary.game.layer.CameraLayer;
 import org.allbinary.game.layer.GDGameLayerManager;
 import org.allbinary.game.layer.SimpleUserFollowCameraLayer;
@@ -24,11 +23,12 @@ import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
 import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.graphics.RectangleFactory;
 import org.allbinary.graphics.opengles.OpenGLCapabilities;
-import org.allbinary.graphics.opengles.OpenGLVersionValidator;
 import org.allbinary.graphics.threed.min3d.renderer.AllBinaryToMin3dRendererFactory;
+import org.allbinary.logic.math.MathData;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.system.os.OperatingSystemFactory;
 import org.allbinary.logic.system.os.OperatingSystemInterface;
+import org.allbinary.string.CommonSeps;
 import org.allbinary.view.ViewPosition;
  
 public class GDGameSceneController 
@@ -176,7 +176,7 @@ extends AllBinaryGameSceneController
                     ////new SimpleFollowCameraLayer(
                     ////new ExampleRotateAroundTargetCameraLayer(
                     ////new ExampleLockedCameraLayer(
-                    vehicleCamera, RectangleFactory.SINGLETON, new ViewPosition(),
+                    vehicleCamera, RectangleFactory.SINGLETON, ViewPosition.getInstanceD(),
                         distance, distance, distance);
 
                 if (layerManager.getGameInfo().getGameType() != GameTypeFactory.getInstance().BOT) {
@@ -207,7 +207,7 @@ extends AllBinaryGameSceneController
 //                        //new ExampleLockedCameraLayer(
 //                        camera,
 //                        RectangleFactory.SINGLETON,
-//                        new ViewPosition(),
+//                        ViewPosition.getInstanceD(),
 //                        distance, distance, distance);
 //
 //                    //cameraLayer.setRotationX(90);
@@ -244,7 +244,7 @@ extends AllBinaryGameSceneController
             cameraInputProcessor.process(gdGameCameraSetup);
             
             camera.position.append(stringMaker);
-            stringMaker.append('-').append('>');
+            stringMaker.append(CommonSeps.getInstance().DASH).append(MathData.getInstance().GREATER_THAN);
             camera.target.getPosition().append(stringMaker);
             PreLogUtil.put(stringMaker.toString(), this, this.sceneStrings.BUILD_SCENE);
             

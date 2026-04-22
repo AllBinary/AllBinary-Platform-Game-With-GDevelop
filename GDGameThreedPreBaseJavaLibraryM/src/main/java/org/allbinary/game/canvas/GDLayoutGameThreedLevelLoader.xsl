@@ -121,7 +121,7 @@ Created By: Travis Berthelot
 
                         //try {
                         
-                            logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                            logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
                         
                         <xsl:if test="string-length($layoutName) > 0" >
                         <xsl:for-each select="/game/properties/customTextures" >

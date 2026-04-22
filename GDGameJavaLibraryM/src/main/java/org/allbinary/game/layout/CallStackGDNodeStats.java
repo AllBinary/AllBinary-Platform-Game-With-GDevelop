@@ -17,6 +17,7 @@ import org.allbinary.string.CommonStrings;
 
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.string.CommonSeps;
 
 /**
  *
@@ -47,24 +48,25 @@ public class CallStackGDNodeStats {
     public void log(final StringMaker stringBuilder, final Object object) {
         
         final CommonStrings commonStrings = CommonStrings.getInstance();
+        final CommonSeps commonSeps = CommonSeps.getInstance();
         
         stringBuilder.delete(0, stringBuilder.length());
         
         //stringBuilder.append(this.getClass().getName());
-        //stringBuilder.append(':');
+        //stringBuilder.append(commonSeps.COLON);
 
         for(int index2 = 0; index2 < total; index2++) {
             for(int index = 0; index < SIZE; index++) {
                 if(callStack[index][index2] != 0) {
-                    stringBuilder.append(index2);
-                    stringBuilder.append(':');
-                    stringBuilder.append(index);
-                    stringBuilder.append(':');
-                    stringBuilder.append(callStack[index][index2]);
-                    stringBuilder.append(';');
+                    stringBuilder.appendint(index2);
+                    stringBuilder.append(commonSeps.COLON);
+                    stringBuilder.appendint(index);
+                    stringBuilder.append(commonSeps.COLON);
+                    stringBuilder.appendint(callStack[index][index2]);
+                    stringBuilder.append(commonSeps.SEMICOLON);
                     if(stringBuilder.length() > 256) {
                         
-                        logUtil.put(stringBuilder.toString(), object, commonStrings.PROCESS);
+                        logUtil.putF(stringBuilder.toString(), object, commonStrings.PROCESS);
                         stringBuilder.delete(0, stringBuilder.length());
                     }
                 }
@@ -72,7 +74,7 @@ public class CallStackGDNodeStats {
         }
 
         if(stringBuilder.length() > 0) {
-            logUtil.put(stringBuilder.toString(), object, commonStrings.PROCESS);
+            logUtil.putF(stringBuilder.toString(), object, commonStrings.PROCESS);
         }
         
     }

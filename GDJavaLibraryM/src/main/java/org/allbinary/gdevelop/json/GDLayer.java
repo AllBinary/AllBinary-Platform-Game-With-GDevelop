@@ -7,8 +7,10 @@
 package org.allbinary.gdevelop.json;
 
 import org.allbinary.graphics.color.BasicColor;
+import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.color.BasicColorUtil;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -26,8 +28,8 @@ public class GDLayer
 
     public final BasicColor ambientLightBasicColor;
 
-    public final BasicArrayList cameraList = new BasicArrayList();
-    public final BasicArrayList effectsList = new BasicArrayList();
+    public final BasicArrayList cameraList = new BasicArrayListD();
+    public final BasicArrayList effectsList = new BasicArrayListD();
     
     public GDLayer(final JSONObject jsonObject) {
         
@@ -58,7 +60,7 @@ public class GDLayer
         }
 
         if(jsonObject.has(gdProjectStrings.AMBIENT_LIGHT_COLOR_R)) {
-            this.ambientLightBasicColor = new BasicColor(BasicColorUtil.getInstance().ALPHA, 
+            this.ambientLightBasicColor = BasicColorFactory.getInstance().createInstanceARGB(BasicColorUtil.getInstance().ALPHA,
                 jsonObject.getInt(gdProjectStrings.AMBIENT_LIGHT_COLOR_R),
                 jsonObject.getInt(gdProjectStrings.AMBIENT_LIGHT_COLOR_G),
                 jsonObject.getInt(gdProjectStrings.AMBIENT_LIGHT_COLOR_B),

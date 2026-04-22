@@ -10,6 +10,7 @@ import org.allbinary.gdevelop.json.GDProjectStrings;
 import org.allbinary.gdevelop.json.event.GDExpression;
 import org.allbinary.gdevelop.json.event.GDInstruction;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
@@ -19,7 +20,7 @@ import org.json.JSONArray;
  */
 public class GDWhileEvent extends GDStandardEvent
 {
-    public final BasicArrayList whileConditionInstructionList = new BasicArrayList();
+    public final BasicArrayList whileConditionInstructionList = new BasicArrayListD();
 
     public final boolean infiniteLoopWarning;
     public final boolean justCreatedByTheUser;

@@ -164,7 +164,7 @@ Created By: Travis Berthelot
 
                     private GD<xsl:value-of select="$layoutIndex" />SpecialAnimation() {
 
-                        logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                        logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
                     
                         <xsl:call-template name="scale" >
                             <xsl:with-param name="layoutIndex" >
@@ -326,7 +326,7 @@ Created By: Travis Berthelot
                         //Behavior - animation
                         //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
                         //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList != null) {
-                           final BasicArrayList removeList = new BasicArrayList();
+                           final BasicArrayList removeList = new BasicArrayListD();
                            size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size();
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                            <xsl:for-each select="behaviors" >

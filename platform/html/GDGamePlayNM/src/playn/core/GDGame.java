@@ -63,7 +63,7 @@ Pointer.Listener
     {
         try
         {
-            logUtil.put(CommonStrings.getInstance().START, this, CommonStrings.getInstance().INIT);
+            logUtil.putF(CommonStrings.getInstance().START, this, CommonStrings.getInstance().INIT);
 
             final Features features = Features.getInstance();
 

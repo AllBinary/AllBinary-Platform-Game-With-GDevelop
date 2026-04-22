@@ -22,6 +22,7 @@ import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
 import org.allbinary.media.graphics.geography.map.SimpleGeographicMapCellPositionFactory;
 import org.allbinary.time.TimeDelayHelper;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.allbinary.util.BasicArrayListUtil;
 import org.allbinary.util.ImmutableBasicArrayList;
 
@@ -74,9 +75,9 @@ public class GDWaypointBehavior
                 
         this.completeTimeDelayHelper = new TimeDelayHelper(30000);
         
-        this.targetList = new BasicArrayList();
+        this.targetList = new BasicArrayListD();
 
-        this.possibleTargetList = new BasicArrayList();
+        this.possibleTargetList = new BasicArrayListD();
 
         this.setWaypointPathsList(GDWaypointBehavior.DEFAULT);
 
@@ -315,7 +316,7 @@ public class GDWaypointBehavior
         final StringMaker stringBuffer = new StringMaker();
 
         stringBuffer.append("isTrackingWaypoint: ");
-        stringBuffer.append(this.isTrackingWaypoint());
+        stringBuffer.appendboolean(this.isTrackingWaypoint());
         stringBuffer.append(" sensorAction: ");
         stringBuffer.append(this.sensorAction.name);
         stringBuffer.append(" getCurrentTargetLayerInterface: ");
@@ -323,9 +324,9 @@ public class GDWaypointBehavior
 
         if (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER) {
             stringBuffer.append(" Target Range: ");
-            stringBuffer.append(this.getCurrentTargetDistance());
+            stringBuffer.appendint(this.getCurrentTargetDistance());
             stringBuffer.append(" >= ");
-            stringBuffer.append(this.longWeaponRange + this.currentTargetLayerInterface.getHalfHeight());
+            stringBuffer.appendint(this.longWeaponRange + this.currentTargetLayerInterface.getHalfHeight());
         }
         return stringBuffer.toString();
 
@@ -432,7 +433,7 @@ public class GDWaypointBehavior
         this.currentTargetLayerInterface = currentTargetLayerInterface;
         if(this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER) {
             this.currentTargetGeographicMapCellPosition = ((PathFindingLayerInterface) this.currentTargetLayerInterface).getCurrentGeographicMapCellPosition();
-            //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target? ").append(this.currentTargetGeographicMapCellPosition).append(' ').append(this.currentTargetLayerInterface).toString(), this, "updatePathOnTargetMove");            
+            //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target? ").append(this.currentTargetGeographicMapCellPosition).append(commonSeps.SPACE).append(this.currentTargetLayerInterface).toString(), this, "updatePathOnTargetMove");            
         } else {
             this.currentTargetGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
         }

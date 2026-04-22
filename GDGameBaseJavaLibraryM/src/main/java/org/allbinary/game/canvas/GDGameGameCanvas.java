@@ -22,6 +22,7 @@ import org.allbinary.input.gyro.AllBinaryOrientationSensor;
 import org.allbinary.input.gyro.GyroSensorFactory;
 import org.allbinary.media.audio.GDGameSoundsFactory;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringUtil;
@@ -102,7 +103,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
 
     public void mediaInit() throws Exception
     {
-        logUtil.put(commonStrings.START, this, "mediaInit");
+        logUtil.putF(commonStrings.START, this, "mediaInit");
         AllBinaryMediaManager.init(GDGameSoundsFactory.getInstance());
     }
 
@@ -194,7 +195,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
                 this.setWait(WAIT);
                 this.loadState();
 
-                BasicArrayList list = new BasicArrayList();
+                BasicArrayList list = new BasicArrayListD();
 
                 Features features = Features.getInstance();
                 

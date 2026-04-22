@@ -49,7 +49,7 @@ public class GDRotationBehavior extends GDAnimationBehaviorBase {
             //super.toString(stringMaker);
             //stringMaker.toString()
             final CommonStrings commonStrings = CommonStrings.getInstance();
-            logUtil.put(new StringMaker().append(animationInterfaceFactoryInterfaceArray[index].toString()).append(" index: ").append(index).toString(), this, commonStrings.CONSTRUCTOR, e);
+            logUtil.put(new StringMaker().append(animationInterfaceFactoryInterfaceArray[index].toString()).append(" index: ").appendint(index).toString(), this, commonStrings.CONSTRUCTOR, e);
             logUtil.put(gdObject.toString(), this, commonStrings.CONSTRUCTOR, e);
         }
             }
@@ -125,7 +125,7 @@ public class GDRotationBehavior extends GDAnimationBehaviorBase {
 
     public void toString(final GDObject gdObject, final StringMaker stringBuffer) {
         final RotationAnimation rotationAnimation = this.rotationAnimationInterfaceArray[gdObject.animation];
-        stringBuffer.append(GraphicsStrings.getInstance().ANGLE).append(rotationAnimation.getAngleInfoP().getAngle());
+        stringBuffer.append(GraphicsStrings.getInstance().ANGLE).appendint(rotationAnimation.getAngleInfoP().getAngle());
     }
     
 }

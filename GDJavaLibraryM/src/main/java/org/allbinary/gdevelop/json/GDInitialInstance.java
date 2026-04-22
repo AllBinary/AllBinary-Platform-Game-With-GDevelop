@@ -8,6 +8,7 @@ package org.allbinary.gdevelop.json;
 
 import java.util.HashMap;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -31,7 +32,7 @@ public class GDInitialInstance
     public final double width;
     public final double height;
 
-    public final BasicArrayList initialVariableList = new BasicArrayList();
+    public final BasicArrayList initialVariableList = new BasicArrayListD();
     //public final boolean locked;
     public final String persistentUuid;
 

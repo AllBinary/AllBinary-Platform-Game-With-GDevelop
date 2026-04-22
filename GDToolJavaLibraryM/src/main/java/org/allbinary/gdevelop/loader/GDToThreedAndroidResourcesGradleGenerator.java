@@ -45,7 +45,7 @@ public class GDToThreedAndroidResourcesGradleGenerator
     
     private final String BLANK_LINE = "public final int blank = R.raw.blank;\n";
 
-    private final BasicArrayList resourceList = new BasicArrayList();
+    private final BasicArrayList resourceList = new BasicArrayListD();
     
     private String packageName;
     private boolean isBlank;
@@ -155,7 +155,7 @@ public class GDToThreedAndroidResourcesGradleGenerator
         final Replace replace = new Replace(GD_KEY, resourceStringMaker.toString());
         final String newFileAsString = replace.all(newFileAsString2);
 
-        logUtil.put(this.gdToolStrings.FILENAME + RESOURCE, this, commonStrings.PROCESS);
+        logUtil.putF(this.gdToolStrings.FILENAME + RESOURCE, this, commonStrings.PROCESS);
         
         this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);        
     }

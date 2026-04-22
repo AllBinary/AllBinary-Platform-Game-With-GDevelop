@@ -71,7 +71,7 @@ public class PlayerInput extends PlayerGameInput
         if (keyInteger != null) {
             this.keyEventList.add(keyInteger);
         } else {
-            logUtil.put("Danger Passed Null KeyEvent", this, commonStrings.ADD);
+            logUtil.putF("Danger Passed Null KeyEvent", this, commonStrings.ADD);
         }
     }
 

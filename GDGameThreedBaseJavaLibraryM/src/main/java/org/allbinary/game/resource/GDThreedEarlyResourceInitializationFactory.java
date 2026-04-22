@@ -14,6 +14,7 @@
 package org.allbinary.game.resource;
 
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 /**
  *
@@ -30,5 +31,5 @@ public class GDThreedEarlyResourceInitializationFactory {
     
     private static final GDThreedEarlyResourceInitializationFactory instance = new GDThreedEarlyResourceInitializationFactory();
     
-    public final BasicArrayList list = new BasicArrayList();
+    public final BasicArrayList list = new BasicArrayListD();
 }

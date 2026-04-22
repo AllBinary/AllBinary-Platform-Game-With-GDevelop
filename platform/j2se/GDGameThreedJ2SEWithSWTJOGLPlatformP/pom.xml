@@ -34,7 +34,7 @@
         <module>../GDGameThreedJ2SEWithSWTJOGLBaseJavaLibraryM</module>
 
         <module>../GDGameThreedJ2SEWithSWTJOGLM</module>
-        <module>../GDGameThreedJ2SEWithSWTJOGLApplicationM</module>
+        <module>../../../platformx/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM</module>
 
         <module>../../GDGameJOGLResourcesJavaLibraryM</module>
 

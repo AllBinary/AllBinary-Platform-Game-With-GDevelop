@@ -19,7 +19,7 @@
     <properties>
         <inputPath>target\dependency\</inputPath>
         <inputPath2>src\main\other\</inputPath2>
-        <outputPath>..\GDGameAndroidApplicationM\src\main\java\</outputPath>        
+        <outputPath>..\..\..\platformx\android\GDGameAndroidApplicationM\src\main\java\</outputPath>        
     </properties>
 
     <dependencies>

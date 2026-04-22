@@ -9,12 +9,14 @@ package org.allbinary.gdevelop.json;
 import org.allbinary.gdevelop.json.event.GDEvent;
 import org.allbinary.gdevelop.json.event.builtin.GDEventFactory;
 import org.allbinary.graphics.color.BasicColor;
+import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.color.BasicColorUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringUtil;
 
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -38,15 +40,15 @@ public class GDLayout
     public final boolean stopSoundsOnStartup;
     public final boolean disableInputWhenNotFocused;
 
-    public final BasicArrayList objectList = new BasicArrayList();
-    public final BasicArrayList initialInstanceList = new BasicArrayList();
-    public final BasicArrayList layerList = new BasicArrayList();
+    public final BasicArrayList objectList = new BasicArrayListD();
+    public final BasicArrayList initialInstanceList = new BasicArrayListD();
+    public final BasicArrayList layerList = new BasicArrayListD();
     
-    private final BasicArrayList variableList = new BasicArrayList();
+    private final BasicArrayList variableList = new BasicArrayListD();
     
-    public final BasicArrayList behaviorContentList = new BasicArrayList();
+    public final BasicArrayList behaviorContentList = new BasicArrayListD();
     
-    public final BasicArrayList eventList = new BasicArrayList();
+    public final BasicArrayList eventList = new BasicArrayListD();
     
     public GDLayout(final JSONObject jsonObject) {
         
@@ -54,7 +56,7 @@ public class GDLayout
         
         this.name = jsonObject.getString(gdProjectStrings.NAME);
         
-        this.basicColor = new BasicColor(BasicColorUtil.getInstance().ALPHA, 
+        this.basicColor = BasicColorFactory.getInstance().createInstanceARGB(BasicColorUtil.getInstance().ALPHA,
                 jsonObject.getInt(gdProjectStrings.R),
                 jsonObject.getInt(gdProjectStrings.G_V),
                 jsonObject.getInt(gdProjectStrings.B),

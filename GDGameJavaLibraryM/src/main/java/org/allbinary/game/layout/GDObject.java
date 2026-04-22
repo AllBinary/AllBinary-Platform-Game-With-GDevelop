@@ -241,7 +241,7 @@ public class GDObject
 
         //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
         //stringBuilder.delete(0, stringBuilder.length());
-        //logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append('g').append(objectStrings.ANGLE).append(adjustedAngle).append(':').append(this.x).append(':').append(x).append(':').append(halfWidth).toString());
+        //logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append('g').append(objectStrings.ANGLE).append(adjustedAngle).append(commonSeps.COLON).append(this.x).append(commonSeps.COLON).append(x).append(commonSeps.COLON).append(halfWidth).toString());
 
         // + this.width
         return (int) (this.x + (x * offsetX) + this.offsetBehavior.PointX(this.halfWidth));
@@ -360,10 +360,10 @@ public class GDObject
         return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON)
                 .append(this.name)
                 .append(commonSeps.SPACE)
-                .append(positionStrings.X_LABEL).append(this.x)
-                .append(positionStrings.Y_LABEL).append(this.y)
-                .append(commonLabels.WIDTH_LABEL).append(this.width)
-                .append(commonLabels.HEIGHT_LABEL).append(this.height)
+                .append(positionStrings.X_LABEL).appendint(this.x)
+                .append(positionStrings.Y_LABEL).appendint(this.y)
+                .append(commonLabels.WIDTH_LABEL).appendint(this.width)
+                .append(commonLabels.HEIGHT_LABEL).appendint(this.height)
                 .toString();
     }
 
@@ -376,34 +376,34 @@ public class GDObject
 
         final StringMaker stringBuilder = new StringMaker();
         return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON)
-                .append(this.name).append(this.hashCode())
+                .append(this.name).appendint(this.hashCode())
                 .append(commonSeps.SPACE)
-                .append(positionStrings.X_LABEL).append(this.x)
-                .append(positionStrings.Y_LABEL).append(this.y)
+                .append(positionStrings.X_LABEL).appendint(this.x)
+                .append(positionStrings.Y_LABEL).appendint(this.y)
                 .append(commonSeps.SPACE)
-                .append(positionStrings.Z_LABEL).append(this.zOrder)
+                .append(positionStrings.Z_LABEL).appendint(this.zOrder)
 //                .append(commonSeps.SPACE)
 //                .append(commonLabels.WIDTH_LABEL).append(this.canvasWidth)
 //                .append(commonSeps.SPACE)
 //                .append(commonLabels.HEIGHT_LABEL).append(this.canvasHeight)
                 .append(commonSeps.SPACE)
-                .append(commonLabels.WIDTH_LABEL).append(this.width)
+                .append(commonLabels.WIDTH_LABEL).appendint(this.width)
                 .append(commonSeps.SPACE)
-                .append(commonLabels.HEIGHT_LABEL).append(this.height)
+                .append(commonLabels.HEIGHT_LABEL).appendint(this.height)
                 .append(commonSeps.SPACE)
-                .append(commonLabels.WIDTH_LABEL).append(this.halfWidth)
+                .append(commonLabels.WIDTH_LABEL).appendint(this.halfWidth)
                 .append(commonSeps.SPACE)
-                .append(commonLabels.HEIGHT_LABEL).append(this.halfHeight)
+                .append(commonLabels.HEIGHT_LABEL).appendint(this.halfHeight)
                 .append(commonSeps.SPACE)
-                .append(graphicsStrings.ANIMATION).append(this.animation)
+                .append(graphicsStrings.ANIMATION).appendint(this.animation)
                 .append(commonSeps.SPACE)
-                .append(graphicsStrings.ANGLE).append(commonSeps.COLON).append(this.angle)
+                .append(graphicsStrings.ANGLE).append(commonSeps.COLON).appendint(this.angle)
                 .append(commonSeps.SPACE)
-                .append(graphicsStrings.MOVEMENT_ANGLE).append(commonSeps.COLON).append(this.movement_angle)
+                .append(graphicsStrings.MOVEMENT_ANGLE).append(commonSeps.COLON).appendint(this.movement_angle)
                 .append(commonSeps.SPACE)
-                .append(graphicsStrings.ROTATION).append(commonSeps.COLON).append(this.rotationP)
+                .append(graphicsStrings.ROTATION).append(commonSeps.COLON).appendfloat(this.rotationP)
                 .append(commonSeps.SPACE)
-                .append(graphicsStrings.OPACITY).append(commonSeps.COLON).append(this.opacity)
+                .append(graphicsStrings.OPACITY).append(commonSeps.COLON).appendfloat(this.opacity)
                 .toString();
     }
 }

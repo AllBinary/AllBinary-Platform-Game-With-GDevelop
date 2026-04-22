@@ -45,17 +45,17 @@ public class GDCopy {
 
             final int size = files.size();
             stringMaker.delete(0, stringMaker.length());
-            logUtil.put(stringMaker.append("Total Files for Copying: ").append(size).toString(), this, commonStrings.PROCESS);
+            logUtil.putF(stringMaker.append("Total Files for Copying: ").appendint(size).toString(), this, commonStrings.PROCESS);
             AbFile file;
             AbPath toAbPath;
             AbPath fromAbPath;
             for (int index = 0; index < size; index++) {
                 file = (AbFile) files.get(index);
                 stringMaker.delete(0, stringMaker.length());
-                logUtil.put(stringMaker.append("Copying From File: ").append(file.getPath()).toString(), this, commonStrings.PROCESS);
+                logUtil.putF(stringMaker.append("Copying From File: ").append(file.getPath()).toString(), this, commonStrings.PROCESS);
                 //logUtil.put("File: " + file.isFile(), this, commonStrings.PROCESS);
                 stringMaker.delete(0, stringMaker.length());
-                logUtil.put(stringMaker.append("Copying To File: ").append(PATH).append(file.getName()).toString(), this, commonStrings.PROCESS);
+                logUtil.putF(stringMaker.append("Copying To File: ").append(PATH).append(file.getName()).toString(), this, commonStrings.PROCESS);
                 fromAbPath = new AbPath(file.getPath());
                 toAbPath = new AbPath(PATH + file.getName());
                 fileUtil.copy(fromAbPath, toAbPath);

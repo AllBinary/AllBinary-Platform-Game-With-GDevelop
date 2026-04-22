@@ -46,6 +46,7 @@ import org.allbinary.math.FrameUtil;
 import org.allbinary.media.ScaleProperties;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.allbinary.view.ViewPosition;
 
 /**
@@ -94,7 +95,7 @@ public class GDGameLayer
 
     public final Rectangle[][] rectangleArrayOfArrays;
 
-    public final BasicArrayList linkedGDGameLayerList = new BasicArrayList();    
+    public final BasicArrayList linkedGDGameLayerList = new BasicArrayListD();    
 
     public GDObject gdObject;
 
@@ -111,7 +112,7 @@ public class GDGameLayer
     protected Processor processor = moveProcessor;
 
     public VelocityBehaviorBase velocityBehavior = DragVelocityBehavior.instance;
-
+    
 //    private float lastScaleX = 1;
 //    private float lastScaleY = 1;
     
@@ -614,16 +615,16 @@ public class GDGameLayer
             
             //if(animationBehaviorBase.getInstance() == this.animationBehavior) {
             //if(this.indexedAnimationInterfaceArray[this.gdObject.animation] instanceof CustomTextAnimation) {
-                //logUtil.put(new StringMaker().append(this.gdObject.name).append(viewPosition.getX()).append(' ').append(viewPosition.getY()).append(this.getWidth()).toString(), this, PAINT);
+                //logUtil.put(new StringMaker().append(this.gdObject.name).append(viewPosition.getX()).append(commonSeps.SPACE).append(viewPosition.getY()).append(this.getWidth()).toString(), this, PAINT);
 //            if(this.isFirst) {
 //                this.isFirst = false;
                 //logUtil.put(this.gdObject.name + indexedAnimationInterfaceArray[this.gdObject.animation], this, PAINT);
-                //graphics.drawString(new StringMaker().append(this.gdObject.name).append(viewPosition.getX()).append(' ').append(viewPosition.getY()).append(this.getWidth()).toString(), x, y, 0);
+                //graphics.drawString(new StringMaker().append(this.gdObject.name).append(viewPosition.getX()).append(commonSeps.SPACE).append(viewPosition.getY()).append(this.getWidth()).toString(), x, y, 0);
                 //graphics.drawImage(img, this.x, this.y, Graphics.TOP | Graphics.LEFT);
             //}
             
 //            if(this.gdObject.animation > this.indexedAnimationInterfaceArray.length - 1) {
-//                logUtil.put(new StringMaker().append(this.gdObject.name).append(':').append(this.gdObject.animation).append('>').append(this.indexedAnimationInterfaceArray.length).toString(), this, PAINT);
+//                logUtil.put(new StringMaker().append(this.gdObject.name).append(commonSeps.COLON).append(this.gdObject.animation).append('>').append(this.indexedAnimationInterfaceArray.length).toString(), this, PAINT);
 //            }
 
             //for (int index = 0; index < SIZE; index++) {
@@ -633,7 +634,7 @@ public class GDGameLayer
             this.primitiveDrawing.paint(graphics, x, y);
             
             //this.paintPoints(graphics);
-            //this.paintDebug(graphics);
+            this.paintDebug(graphics);
             
             //if(this.gdObject instanceof GD1GDObjectsFactory.Icons) graphics.drawString(Integer.toString(((GD1GDObjectsFactory.Icons)this.gdObject).itemIndex), x, y, 0);
         }
@@ -694,7 +695,7 @@ public class GDGameLayer
 //        graphics.drawLine(this.x + x + halfWidth, this.y + startY + halfHeight, this.x + x + halfWidth, this.y + endY + halfHeight);
 //
 //        stringBuilder.delete(0, stringBuilder.length());
-//        logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(objectStrings.ANGLE).append(index).append(':').append(this.x).append(':').append(x).append(':').append(halfWidth).toString());
+//        logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(objectStrings.ANGLE).append(index).append(commonSeps.COLON).append(this.x).append(commonSeps.COLON).append(x).append(commonSeps.COLON).append(halfWidth).toString());
 //        
 //        }
         
@@ -711,7 +712,7 @@ public class GDGameLayer
 //
 //            if (angle != this.gdObject.angle) {
 //                stringBuilder.delete(0, stringBuilder.length());
-//                logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(angle).append(':').append(this.gdObject.angle).toString());
+//                logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(angle).append(commonSeps.COLON).append(this.gdObject.angle).toString());
 //            } else {
 //                stringBuilder.delete(0, stringBuilder.length());
 //                logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(angle).toString());
@@ -770,7 +771,7 @@ public class GDGameLayer
 
 //            if (angle != this.gdObject.angle) {
 //                stringBuilder.delete(0, stringBuilder.length());
-//                logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(angle).append(':').append(this.gdObject.angle).toString());
+//                logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(angle).append(commonSeps.COLON).append(this.gdObject.angle).toString());
 //            } else {
 //                stringBuilder.delete(0, stringBuilder.length());
 //                logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(angle).toString());

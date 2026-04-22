@@ -22,6 +22,7 @@ import org.allbinary.input.motion.button.FullTouchButton;
 import org.allbinary.input.motion.button.TouchButton;
 import org.allbinary.input.motion.button.CommonButtons;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.allbinary.util.BasicArrayListUtil;
 
 import org.allbinary.string.CommonStrings;
@@ -40,9 +41,9 @@ extends BaseTouchInput
     {
         try
         {
-            logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+            logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
             
-            final BasicArrayList list = new BasicArrayList();
+            final BasicArrayList list = new BasicArrayListD();
             
             TouchButtonLocationHelper touchButtonLocationHelper = new TouchButtonLocationHelper();
 

@@ -8,6 +8,7 @@ package org.allbinary.gdevelop.extensions.builtin.metadata;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 /**
  *
@@ -42,7 +43,7 @@ public class GDInstructionMetadata
 
     public final GDExtraInformation codeExtraInformation = new GDExtraInformation();
 
-    public final BasicArrayList parameterList = new BasicArrayList();
+    public final BasicArrayList parameterList = new BasicArrayListD();
 
     public boolean hidden;
     public int usageComplexity = 5;

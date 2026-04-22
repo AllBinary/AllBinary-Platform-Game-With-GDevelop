@@ -31,7 +31,7 @@
         <module>../GDGameHTMLResourcesJavaLibraryM</module>
         <module>../GDGameHTMLM</module>
         <module>../GDGameHTMLJavaLibraryM</module>
-        <module>../GDGameHTMLTempM</module>
+        <module>../../../platformx/html/GDGameHTMLTempM</module>
         <module>../GDGameHTMLPlaynJavaLibraryM</module>
         <module>../GDGamePlayNM</module>
         <!--

@@ -47,7 +47,7 @@ public class GDTransformGenerator extends GDNameGenerator {
         String result = this.process(updatedXslDocumentStr, xmlDocumentStr);
         result = this.format(result);
 
-        logUtil.put(this.gdToolStrings.FILENAME + outputFile, this, commonStrings.PROCESS);
+        logUtil.putF(this.gdToolStrings.FILENAME + outputFile, this, commonStrings.PROCESS);
         
         this.bufferedWriterUtil.overwrite(outputFile, result);
         

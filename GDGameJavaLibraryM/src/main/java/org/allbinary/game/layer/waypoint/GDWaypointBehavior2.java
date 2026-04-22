@@ -26,6 +26,7 @@ import org.allbinary.thread.PathFindingThreadPool;
 import org.allbinary.thread.ThreadPool;
 import org.allbinary.time.TimeDelayHelper;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.allbinary.util.BasicArrayListUtil;
 
 public class GDWaypointBehavior2 
@@ -84,7 +85,7 @@ extends GDWaypointBehavior
         
         this.progressTimeDelayHelper = new TimeDelayHelper(5000);
         
-        this.wanderPathsList = new BasicArrayList();
+        this.wanderPathsList = new BasicArrayListD();
 
         this.waypointPathRunnable = 
             //J2MEUtil.isHTML() ? new MultipassWaypointPathRunnable() : 
@@ -315,7 +316,7 @@ extends GDWaypointBehavior
                 return;
             }
 
-            //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - retarget? ").append(this.currentTargetGeographicMapCellPosition).append(' ').append(geographicMapCellPosition).toString(), this, UPDATE_PATH_ON_TARGET_MOVE);
+            //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - retarget? ").append(this.currentTargetGeographicMapCellPosition).append(commonSeps.SPACE).append(geographicMapCellPosition).toString(), this, UPDATE_PATH_ON_TARGET_MOVE);
             if (this.currentTargetGeographicMapCellPosition != geographicMapCellPosition) {
                 //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(reason).toString(), this, UPDATE_PATH_ON_TARGET_MOVE);
 
@@ -612,7 +613,7 @@ extends GDWaypointBehavior
         return false;
     }
     
-    // private final BasicArrayList midWaypointlist = new BasicArrayList();
+    // private final BasicArrayList midWaypointlist = new BasicArrayListD();
     // Insert Mid waypoints to get around buildings or move out of build area
     // Use collide to keep away from units
     /*
@@ -828,7 +829,7 @@ extends GDWaypointBehavior
             //this.removeWaypoint(waypointLayer, ALREADY_THERE);
         }
     }
-    private static final BasicArrayList runningWaypointPathList = new BasicArrayList();
+    private static final BasicArrayList runningWaypointPathList = new BasicArrayListD();
     
     //private final String RUN_WAYPOINT_PATH_TASK = "runWaypointPathTask";
     
@@ -944,7 +945,7 @@ extends GDWaypointBehavior
 
             stringBuffer.append(TARGET_DISTANCE);
             stringBuffer.append(CommonSeps.getInstance().SPACE);
-            stringBuffer.append(getCurrentTargetDistance());
+            stringBuffer.appendint(getCurrentTargetDistance());
         }
 
         return stringBuffer.toString();
@@ -971,7 +972,7 @@ extends GDWaypointBehavior
     
     private class BuildingSteeringVisitor extends SteeringVisitor
     {
-        private final BasicArrayList positionList = new BasicArrayList();
+        private final BasicArrayList positionList = new BasicArrayListD();
         
         @Override
         public Object visit(Object object)

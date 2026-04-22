@@ -120,7 +120,7 @@ Created By: Travis Berthelot
 
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
-                        public final BasicArrayList <xsl:value-of select="name" />GDGameLayerFactoryList = new BasicArrayList();
+                        public final BasicArrayList <xsl:value-of select="name" />GDGameLayerFactoryList = new BasicArrayListD();
                         <xsl:for-each select="objects" >
                         </xsl:for-each>
                     </xsl:for-each>
@@ -150,7 +150,7 @@ Created By: Travis Berthelot
 
                         //try {
                         
-                            logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                            logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
 
                     final Features features = Features.getInstance();
                     final OpenGLFeatureFactory openGLFeatureFactory = OpenGLFeatureFactory.getInstance();

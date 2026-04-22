@@ -32,7 +32,7 @@ BaseResourceAnimationInterfaceFactoryInterfaceFactory
 
     public void init(int level) throws Exception
     {
-        logUtil.put(this.getName(), this, "init");
+        logUtil.putF(this.getName(), this, "init");
         
         //this.init(OpenGLImageCacheFactory.getInstance(), level);
 
@@ -51,7 +51,7 @@ BaseResourceAnimationInterfaceFactoryInterfaceFactory
 
         if (level == resourceLoadingLevelFactory.LOAD_EARLY.getLevel())
         {
-            logUtil.put(this.getName(), this, "isLoadingLevel");
+            logUtil.putF(this.getName(), this, "isLoadingLevel");
             return true;
         }
         else
@@ -76,7 +76,7 @@ BaseResourceAnimationInterfaceFactoryInterfaceFactory
             (features.isFeature(openGLFeatureFactory.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory.OPENGL_3D))
             )
         {
-            logUtil.put(this.getName(), this, "isFeature");
+            logUtil.putF(this.getName(), this, "isFeature");
             return true;
         } else
         {

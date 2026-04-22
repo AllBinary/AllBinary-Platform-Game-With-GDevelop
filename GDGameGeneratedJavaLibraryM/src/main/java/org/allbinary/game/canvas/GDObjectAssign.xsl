@@ -169,7 +169,7 @@ Created By: Travis Berthelot
                 </xsl:for-each>
                 //objectsGroupsGDGameLayer - END
                 
-                final BasicArrayList <xsl:value-of select="name" />BehaviorList = new BasicArrayList();
+                final BasicArrayList <xsl:value-of select="name" />BehaviorList = new BasicArrayListD();
                 
                 <xsl:for-each select="behaviors" >
                 //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" />
@@ -286,7 +286,7 @@ Created By: Travis Berthelot
                                 );
                 this.<xsl:value-of select="name" />RectangleArrayOfArrays = new Rectangle[0][0];
 
-                final BasicArrayList <xsl:value-of select="name" />BehaviorList = new BasicArrayList();
+                final BasicArrayList <xsl:value-of select="name" />BehaviorList = new BasicArrayListD();
                 
                 //PrimitiveDrawing::Drawer - factory
                 this.<xsl:value-of select="name" />GDGameLayerFactory = new GDCustomGameLayerFactory(

@@ -35,6 +35,6 @@ extends BaseTouchInput
     
     public void build()
     {
-       logUtil.put(commonStrings.START, this, "build");
+       logUtil.putF(commonStrings.START, this, "build");
     }
 }

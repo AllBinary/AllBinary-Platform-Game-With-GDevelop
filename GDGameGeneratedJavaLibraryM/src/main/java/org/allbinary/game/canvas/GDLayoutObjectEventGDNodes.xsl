@@ -118,7 +118,7 @@ Created By: Travis Berthelot
 
                         try {
                         
-                            logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                            logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
 
                     //objectEventLayout - //eventsCreateAssignGDObjectGDNodesObjectEvent - START
                     <xsl:call-template name="eventsCreateAssignGDObjectGDNodesObjectEvent" >

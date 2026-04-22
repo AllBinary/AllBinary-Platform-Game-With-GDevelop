@@ -116,12 +116,12 @@ Created By: Travis Berthelot
                     
                     <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
-                    public final BasicArrayList <xsl:value-of select="$name" />GDObjectFactoryList = new BasicArrayList();
+                    public final BasicArrayList <xsl:value-of select="$name" />GDObjectFactoryList = new BasicArrayListD();
                     </xsl:for-each>
                     
                     private GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory() {
                     
-                        logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                        logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
                     
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >

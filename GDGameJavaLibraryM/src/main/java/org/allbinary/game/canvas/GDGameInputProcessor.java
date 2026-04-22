@@ -23,6 +23,7 @@ import org.allbinary.layer.AllBinaryLayerManager;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 /**
  *
@@ -37,10 +38,10 @@ public class GDGameInputProcessor {
     //protected final boolean isSingleKeyProcessing = 
         //InputFeatureFactory.getInstance().isSingleKeyProcessing();
     
-    private final BasicArrayList gameKeyEventList = new BasicArrayList();
-    private final BasicArrayList removalGameKeyEventList = new BasicArrayList();
-    private final BasicArrayList keyEventList = new BasicArrayList();
-    private final BasicArrayList removalKeyEventList = new BasicArrayList();
+    private final BasicArrayList gameKeyEventList = new BasicArrayListD();
+    private final BasicArrayList removalGameKeyEventList = new BasicArrayListD();
+    private final BasicArrayList keyEventList = new BasicArrayListD();
+    private final BasicArrayList removalKeyEventList = new BasicArrayListD();
     private final PlayerGameInput playerGameInput = new PlayerInput(keyEventList, removalKeyEventList, gameKeyEventList, removalGameKeyEventList, 0);
 
     public void process(final AllBinaryLayerManager allbinaryLayerManager, final Animation specialAnimation) throws Exception {
@@ -134,7 +135,7 @@ public class GDGameInputProcessor {
         catch (Exception e)
         {
             final CommonStrings commonStrings = CommonStrings.getInstance();
-            logUtil.put(commonStrings.EXCEPTION, this, gameInputStrings.PROCESS_INPUT);
+            logUtil.putF(commonStrings.EXCEPTION, this, gameInputStrings.PROCESS_INPUT);
         }
     }
 

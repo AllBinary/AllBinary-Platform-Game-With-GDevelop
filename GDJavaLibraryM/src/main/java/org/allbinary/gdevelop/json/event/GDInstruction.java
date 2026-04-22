@@ -8,6 +8,7 @@ package org.allbinary.gdevelop.json.event;
 
 import org.allbinary.gdevelop.json.GDProjectStrings;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -20,8 +21,8 @@ public class GDInstruction
     public final String typeValue;
     //public final boolean inverted;
     
-    public final BasicArrayList parametersExpressionList = new BasicArrayList();
-    //public final BasicArrayList subInstructionList = new BasicArrayList();
+    public final BasicArrayList parametersExpressionList = new BasicArrayListD();
+    //public final BasicArrayList subInstructionList = new BasicArrayListD();
     
     //originalInstruction?
     

@@ -18,6 +18,7 @@ package org.allbinary.animation.image;
 
 import javax.microedition.lcdui.Graphics;
 
+import org.allbinary.animation.IndexedAnimationBehavior;
 import org.allbinary.animation.threed.ThreedAnimation;
 
 import org.allbinary.animation.IndexedAnimation;
@@ -49,9 +50,9 @@ implements ColorChangeListener
             int[] dxArray, int[] dyArray, int y, int width) 
     throws Exception
     {
-        super(animationInterfaceArray, basicColorArray, dxArray, dyArray, y, width);
+        super(animationInterfaceArray, basicColorArray, dxArray, dyArray, y, width, new IndexedAnimationBehavior(1, 250));
         
-        logUtil.put("Constructor", this, this.getClass().getName());
+        logUtil.putF("Constructor", this, this.getClass().getName());
         
         //testGameDemoSceneController = (GDGameSceneController) 
             //GDGameAllBinarySceneControllerFactory.getInstance();

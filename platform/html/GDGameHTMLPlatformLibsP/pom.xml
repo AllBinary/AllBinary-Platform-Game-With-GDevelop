@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.allbinary.game.gd</groupId>
+        <artifactId>GDGameParent</artifactId>
+        <!-- Game Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- Game Version Start -->
+    </parent>
+
+    <artifactId>GDGameHTMLPlatformLibsP</artifactId>
+    <packaging>pom</packaging>
+
+    <name>GDGameHTMLPlatformLibsP</name>
+    <url>http://www.allbinary.com/</url>
+
+    <properties>
+        <buildLabel>${version}</buildLabel>
+    </properties>
+
+    <modules>
+
+        <module>../../../resource/GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
+        <module>../../../resource/GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
+                
+        <!--
+        <module>../GDGameTouchHTMLM</module>
+        -->
+        <module>../GDGameHTMLResourcesJavaLibraryM</module>
+        <module>../GDGameHTMLM</module>
+        <module>../GDGameHTMLJavaLibraryM</module>
+<!--        <module>../../../platformx/html/GDGameHTMLTempM</module>-->
+        <module>../GDGameHTMLPlaynJavaLibraryM</module>
+        <module>../GDGamePlayNM</module>
+        <!--
+        <module>../GDGamePlayNWarM</module>
+        -->
+    </modules>
+
+</project>

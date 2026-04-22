@@ -7,6 +7,7 @@ package org.allbinary.gdevelop.extensions.builtin.sprite;
 
 import org.allbinary.gdevelop.json.GDProjectStrings;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -19,7 +20,7 @@ public class GDAnimation
     public final String name;
     public final boolean useMultipleDirections;
     
-    public final BasicArrayList directionList = new BasicArrayList();
+    public final BasicArrayList directionList = new BasicArrayListD();
     
     public GDAnimation(final JSONObject jsonObject) {
      

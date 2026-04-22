@@ -19,7 +19,7 @@
     <properties>
         <inputPath2>src\main\java\</inputPath2>
         <inputPath>target\dependency\</inputPath>
-        <outputPath>..\GDGameJ2MEApplicationM\src\main\java\</outputPath>
+        <outputPath>..\..\..\platformx\j2me\GDGameJ2MEApplicationM\src\main\java\</outputPath>
     </properties>
 
     <dependencies>

@@ -23,6 +23,7 @@ import org.allbinary.string.CommonSeps;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.allbinary.util.CircularIndexUtil;
 
 /**
@@ -34,18 +35,18 @@ public class GDPrimitiveDrawing extends Animation {
 
     
     public final BasicArrayList[] animationListArray = {
-        new BasicArrayList(), new BasicArrayList(), new BasicArrayList(), 
-        new BasicArrayList(), new BasicArrayList(), new BasicArrayList(), 
-        new BasicArrayList(), new BasicArrayList(), new BasicArrayList(), 
+        new BasicArrayListD(), new BasicArrayListD(), new BasicArrayListD(), 
+        new BasicArrayListD(), new BasicArrayListD(), new BasicArrayListD(), 
+        new BasicArrayListD(), new BasicArrayListD(), new BasicArrayListD(), 
     };
 
     private final CircularIndexUtil circularIndexUtil = CircularIndexUtil.getInstance(animationListArray.length);
 
-    public final BasicArrayList colorAnimationInUseList = new BasicArrayList();
-    public final BasicArrayList colorAnimationCacheList = new BasicArrayList();
+    public final BasicArrayList colorAnimationInUseList = new BasicArrayListD();
+    public final BasicArrayList colorAnimationCacheList = new BasicArrayListD();
     
-    public final BasicArrayList aRetangleFilledAnimationInUseList = new BasicArrayList();
-    public final BasicArrayList aRetangleFilledAnimationCacheList = new BasicArrayList();
+    public final BasicArrayList aRetangleFilledAnimationInUseList = new BasicArrayListD();
+    public final BasicArrayList aRetangleFilledAnimationCacheList = new BasicArrayListD();
 
     public BasicArrayList animationList = animationListArray[animationListArray.length - 1];
     

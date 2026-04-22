@@ -15,6 +15,7 @@ package org.allbinary.game.layout;
 
 import org.allbinary.thread.NullRunnable;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 /**
  *
@@ -22,7 +23,7 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDNodes {
     
-    public final BasicArrayList runnableList = new BasicArrayList();
+    public final BasicArrayList runnableList = new BasicArrayListD();
     
     public void process() {
 

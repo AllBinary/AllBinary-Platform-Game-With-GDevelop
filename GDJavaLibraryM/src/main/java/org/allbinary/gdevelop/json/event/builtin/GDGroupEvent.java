@@ -10,6 +10,7 @@ import org.allbinary.gdevelop.json.GDProjectStrings;
 import org.allbinary.gdevelop.json.event.GDEvent;
 import org.allbinary.gdevelop.json.event.GDExpression;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -28,8 +29,8 @@ public class GDGroupEvent extends GDEvent
     public final int colorG; // = 176;
     public final int colorB; // = 228;
     
-    public final BasicArrayList parametersExpressionList = new BasicArrayList();
-    public final BasicArrayList eventList = new BasicArrayList();
+    public final BasicArrayList parametersExpressionList = new BasicArrayListD();
+    public final BasicArrayList eventList = new BasicArrayListD();
     
     public GDGroupEvent(final String type, final JSONObject jsonObject) {
         super(type, jsonObject);

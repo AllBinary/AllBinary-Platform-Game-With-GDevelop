@@ -43,7 +43,7 @@ public class GDImageSizeGenerator {
 
     public BasicArrayList process(final BasicArrayList files) throws IOException {
         
-        final BasicArrayList list = new BasicArrayList();
+        final BasicArrayList list = new BasicArrayListD();
         
         final StringMaker stringMaker = new StringMaker();
         AbFile abFile;
@@ -58,8 +58,8 @@ public class GDImageSizeGenerator {
                 if(abFile.getAbsolutePath().endsWith(this.gdToolStrings.PNG)) {
                     bufferedImage = ImageIO.read(AbFileNativeUtil.get(abFile));
                     final String name = abFile.getName().substring(0, abFile.getName().length() - 4).toUpperCase();
-                    stringMaker.append(arrayIndex).append(name).append(this.commonSeps.SPACE).append(bufferedImage.getWidth())
-                        .append(this.commonSeps.COMMA).append(this.commonSeps.SPACE).append(bufferedImage.getHeight()).append(this.commonSeps.NEW_LINE);
+                    stringMaker.appendint(arrayIndex).append(name).append(this.commonSeps.SPACE).appendint(bufferedImage.getWidth())
+                        .append(this.commonSeps.COMMA).append(this.commonSeps.SPACE).appendint(bufferedImage.getHeight()).append(this.commonSeps.NEW_LINE);
                     final GDResource gdResource = new GDResource(name, bufferedImage.getWidth(), bufferedImage.getHeight());
                     list.add(gdResource);
                     arrayIndex++;

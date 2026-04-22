@@ -30,11 +30,11 @@ public class GDResources {
         return instance;
     }
     
-    public final BasicArrayList androidResourceList = new BasicArrayList();
-    public final BasicArrayList resourceNameList = new BasicArrayList();
-    public final BasicArrayList resourceList = new BasicArrayList();
+    public final BasicArrayList androidResourceList = new BasicArrayListD();
+    public final BasicArrayList resourceNameList = new BasicArrayListD();
+    public final BasicArrayList resourceList = new BasicArrayListD();
 
-    public final BasicArrayList playSoundAndroidResourceNameList = new BasicArrayList();
-    public final BasicArrayList playSoundResourcePathList = new BasicArrayList();
+    public final BasicArrayList playSoundAndroidResourceNameList = new BasicArrayListD();
+    public final BasicArrayList playSoundResourcePathList = new BasicArrayListD();
     
 }

@@ -117,7 +117,7 @@ Created By: Travis Berthelot
 
                         try {
                         
-                            logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                            logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
 
                             <xsl:for-each select="../externalEvents" >
                                 <xsl:if test="$layoutName = associatedLayout" >

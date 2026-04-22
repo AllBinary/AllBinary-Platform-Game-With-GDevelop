@@ -35,17 +35,17 @@
         
         
         <module>../GDGameJ2SEM</module>
-        <module>../GDGameJ2SEApplicationM</module>
+        <module>../../../platformx/j2se/GDGameJ2SEApplicationM</module>
 
         <module>../GDGameJ2SEWithSWTM</module>
-        <module>../GDGameJ2SEWithSWTApplicationM</module>
+        <module>../../../platformx/j2se/GDGameJ2SEWithSWTApplicationM</module>
 
-<!--
+
         <module>../GDGameJ2SEWithSWTJOGLJavaLibraryM</module>
         <module>../../GDGameJOGLResourcesJavaLibraryM</module>
         <module>../GDGameJ2SEWithSWTJOGLM</module>
-        <module>../GDGameJ2SEWithSWTJOGLApplicationM</module>
--->
+        <module>../../../platformx/j2se/GDGameJ2SEWithSWTJOGLApplicationM</module>
+
     </modules>
 
 </project>

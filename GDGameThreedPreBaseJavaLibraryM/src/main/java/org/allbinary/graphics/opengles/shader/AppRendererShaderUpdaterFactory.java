@@ -199,7 +199,7 @@ public class AppRendererShaderUpdaterFactory extends ShaderUpdater {
         shaderComposite.uniformTextureUnitOpenGLProcessor = new UniformTextureOpenGLProcessor(shaderComposite, 3);
 
         if (shaderManager == ShaderManager.getInstance()) {
-            logUtil.put("Shaders already loaded", this, renderStrings.ON_SURFACE_CREATED);
+            logUtil.putF("Shaders already loaded", this, renderStrings.ON_SURFACE_CREATED);
         } else {
 
             final OpenGLVersionValidator openGLVersionValidator = OpenGLVersionValidator.getInstance();
@@ -214,11 +214,11 @@ public class AppRendererShaderUpdaterFactory extends ShaderUpdater {
                     shader.shaderName = appShaderResources.getFragmentShader(index);
                     this.loadShader(gl, shader, shaderManager.GL_FRAGMENT_SHADER, max, byteArray1);
                     shaderComposite.init(gl);
-                    logUtil.put("shader programHandle: " + shaderComposite.programHandle, this, this.rendererStrings.ON_SURFACE_CREATED);
+                    logUtil.putF("shader programHandle: " + shaderComposite.programHandle, this, this.rendererStrings.ON_SURFACE_CREATED);
 
                     shaderComposite.compositeShaderUpdater.onSurfaceCreated(gl, eglConfig, shaderComposite.programHandle);
                 } else {
-                    logUtil.put("shader is not available: " + index, this, this.rendererStrings.ON_SURFACE_CREATED);
+                    logUtil.putF("shader is not available: " + index, this, this.rendererStrings.ON_SURFACE_CREATED);
                 }
             }
         }
@@ -230,14 +230,14 @@ public class AppRendererShaderUpdaterFactory extends ShaderUpdater {
                     
         String resource = shader.shaderName;
         try {
-            logUtil.put(resource, this, this.rendererStrings.ON_SURFACE_CREATED);
+            logUtil.putF(resource, this, this.rendererStrings.ON_SURFACE_CREATED);
             final InputStream inputStream = resourceUtil.getResourceAsStream(resource);
             final BasicArrayList stringList = shader.shaderStringList = simpleFileUtil.loadFileAsList(inputStream, max, byteArray1, 1);
             String[] shaderAsStringArray = (String[]) stringList.toArray(new String[stringList.size()]);
             shader.shaderAsString = this.simpleFileUtil.createStringFromArrayOfStrings(shaderAsStringArray);
             //logUtil.put("shaderAsString: " + shader.shaderAsString, this, this.rendererStrings.ON_SURFACE_CREATED);
             shader.shaderHandle = shaderManager.loadShader(gl, resource, shader.shaderStringList, shaderType);
-            logUtil.put("shaderHandle: " + shader.shaderHandle, this, this.rendererStrings.ON_SURFACE_CREATED);
+            logUtil.putF("shaderHandle: " + shader.shaderHandle, this, this.rendererStrings.ON_SURFACE_CREATED);
         } catch (Exception e) {
             logUtil.put(commonStrings.EXCEPTION + resource, this, this.rendererStrings.ON_SURFACE_CREATED, e);
         }

@@ -137,7 +137,7 @@ Created By: Travis Berthelot
 
                         try {
                         
-                            logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                            logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
 
                             <xsl:for-each select="eventsFunctionsExtensions" >
                                 <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>

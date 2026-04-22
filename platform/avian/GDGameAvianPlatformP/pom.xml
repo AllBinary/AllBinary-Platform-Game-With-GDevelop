@@ -24,9 +24,9 @@
     <modules>
         
         <module>../GDGameAvianM</module>
-        <module>../GDGameAvianApplicationM</module>
+        <module>../../../platformx/avian/GDGameAvianApplicationM</module>
         <module>../GDGameAvianJOGLM</module>
-        <module>../GDGameAvianJOGLApplicationM</module>
+        <module>../../../platformx/avian/GDGameAvianJOGLApplicationM</module>
 
     </modules>
 

@@ -13,6 +13,7 @@ import org.allbinary.string.CommonStrings;
 
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -22,9 +23,9 @@ import org.json.JSONObject;
  */
 public class GDStandardEvent extends GDEvent
 {
-    public final BasicArrayList conditionList = new BasicArrayList();
-    public final BasicArrayList actionList = new BasicArrayList();
-    public final BasicArrayList eventList = new BasicArrayList();
+    public final BasicArrayList conditionList = new BasicArrayListD();
+    public final BasicArrayList actionList = new BasicArrayListD();
+    public final BasicArrayList eventList = new BasicArrayListD();
     
     public GDStandardEvent(final String type, final JSONObject jsonObject) {
         super(type, jsonObject);

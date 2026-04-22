@@ -340,11 +340,11 @@ Created By: Travis Berthelot
                         
                         <xsl:if test="1" >
                             new StaticTileLayerIntoPositionViewPosition(),
-                            //new ViewPosition(),
+                            //ViewPosition.getInstanceD(),
                         </xsl:if>
                         <xsl:if test="0" >
                             new StaticTileLayerIntoPositionViewPosition(),
-                            //new ViewPosition(),
+                            //ViewPosition.getInstanceD(),
                         </xsl:if>
 
                     </xsl:if>
@@ -353,7 +353,7 @@ Created By: Travis Berthelot
         </xsl:for-each>
         
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
-                            new ViewPosition(),
+                            ViewPosition.getInstanceD(),
         </xsl:if>
                             gdObject, animationBehavior, resetAnimationBehavior);
 
@@ -1131,7 +1131,7 @@ Created By: Travis Berthelot
 <!--            if(this.x != this.ox || this.y != this.oy) {
                 this.ox = this.x;
                 this.oy = this.y;
-                logUtil.put(new StringMaker().append(this.getName()).append(' ').append(this.x).append(' ').append(this.y).toString(), this, GameStrings.getInstance().PROCESS_TICK);
+                logUtil.put(new StringMaker().append(this.getName()).append(commonSeps.SPACE).append(this.x).append(commonSeps.SPACE).append(this.y).toString(), this, GameStrings.getInstance().PROCESS_TICK);
             }-->
             
             this.captionAnimationHelper.tick();
@@ -1620,7 +1620,7 @@ Created By: Travis Berthelot
             } else {
                 final String reason = 
                     stringUtil.EMPTY_STRING;
-                    //new StringMaker().append(' ').append(geographicMapCellHistory.getTotalVisited()).append(' ').append(currentGeographicMapCellPosition).append(" - trying to move but not on path: ").append(pathList).toString();
+                    //new StringMaker().append(commonSeps.SPACE).append(geographicMapCellHistory.getTotalVisited()).append(commonSeps.SPACE).append(currentGeographicMapCellPosition).append(" - trying to move but not on path: ").append(pathList).toString();
                 this.rtsLogHelper.notOnPath(this, geographicMapCellHistory, currentGeographicMapCellPosition, pathList);
                 this.getWaypointBehavior().updatePathOnTargetMove(reason);
                 return true;

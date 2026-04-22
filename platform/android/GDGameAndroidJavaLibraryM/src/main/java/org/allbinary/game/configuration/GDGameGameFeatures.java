@@ -2,6 +2,7 @@ package org.allbinary.game.configuration;
 
 import org.allbinary.input.gyro.OrientationData;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 import org.allbinary.game.configuration.GameConfigurationCentral;
 import org.allbinary.game.configuration.GameConfigurationSingleton;
@@ -21,7 +22,7 @@ public class GDGameGameFeatures extends Init
     {
         final String GRAPHICS_OPTIONS = "Graphics Options";
         
-        BasicArrayList exclusiveOrientationSensorList = new BasicArrayList();
+        BasicArrayList exclusiveOrientationSensorList = new BasicArrayListD();
 
         SensorFeatureFactory sensorFeatureFactory = 
             SensorFeatureFactory.getInstance();
@@ -39,7 +40,7 @@ public class GDGameGameFeatures extends Init
           //      SensorFeatureFactory.getInstance().SIMULATED_ORIENTATION_SENSORS);
         
         /*
-        BasicArrayList exclusiveOrientationTypeList = new BasicArrayList();
+        BasicArrayList exclusiveOrientationTypeList = new BasicArrayListD();
         exclusiveOrientationTypeList.add(GameFeature.YAW_AND_PITCH);
         exclusiveOrientationTypeList.add(GameFeature.PITCH_AND_ROLL);
         */
@@ -56,7 +57,7 @@ public class GDGameGameFeatures extends Init
         // gameConfigurationSingleton.add(gameConfigurationCentral.CONTROL_LEVEL);
         gameConfigurationSingleton.add(gameConfigurationCentral.SPEED);
 
-        BasicArrayList multipleList = new BasicArrayList();
+        BasicArrayList multipleList = new BasicArrayListD();
 
         multipleList.add(GameFeatureFactory.getInstance().SOUND);
         multipleList.add(GameFeatureFactory.getInstance().SCREEN_SHAKE);

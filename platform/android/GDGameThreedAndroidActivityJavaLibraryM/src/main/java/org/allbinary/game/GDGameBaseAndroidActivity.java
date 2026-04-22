@@ -138,7 +138,7 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
     {
         try
         {
-            logUtil.put(commonStrings.START, this, CommonStateStrings.getInstance().CREATE);
+            logUtil.putF(commonStrings.START, this, CommonStateStrings.getInstance().CREATE);
 
             //final String UNLOCKED = "unlock_gd_levels";
             //InApplicationPurchaseFactory.getInstance().init(this, bundle);
@@ -151,7 +151,7 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
                 this.setBackgrounds();
             }
 
-            logUtil.put(commonStrings.END, this, CommonStateStrings.getInstance().CREATE);
+            logUtil.putF(commonStrings.END, this, CommonStateStrings.getInstance().CREATE);
         } catch (Exception e)
         {
             logUtil.put(commonStrings.EXCEPTION, this, CommonStateStrings.getInstance().CREATE, e);
@@ -162,13 +162,13 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
     {
         try
         {
-            logUtil.put(commonStrings.START, this, CommonStateStrings.getInstance().START);
+            logUtil.putF(commonStrings.START, this, CommonStateStrings.getInstance().START);
 
             super.onStart();
 
             super.onStart(new GDGameMIDletFactory());
 
-            logUtil.put(commonStrings.END, this, CommonStateStrings.getInstance().START);
+            logUtil.putF(commonStrings.END, this, CommonStateStrings.getInstance().START);
         } catch (Exception e)
         {
             logUtil.put(commonStrings.EXCEPTION, this, CommonStateStrings.getInstance().START, e);
@@ -210,7 +210,7 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
 
         if (!InitEmulatorFactory.getInstance().isInitEmulator())
         {
-            logUtil.put("Init Base GameFeatures", this, "initEmulator");
+            logUtil.putF("Init Base GameFeatures", this, "initEmulator");
 
             Features features = Features.getInstance();
             
@@ -277,7 +277,7 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
 
     public void setBackgrounds() throws Exception
     {
-        logUtil.put(commonStrings.START, this, "setBackground");
+        logUtil.putF(commonStrings.START, this, "setBackground");
 
         final AndroidResources androidResources = AndroidResources.getInstance();
         

@@ -122,7 +122,7 @@ public class GDToAndroidResourcesGradleGenerator
         final String newFileAsString = replace.all(newFileAsString2);
 
         stringMaker.delete(0, stringMaker.length());
-        logUtil.put(stringMaker.append(this.gdToolStrings.FILENAME).append(RESOURCE).toString(), this, commonStrings.PROCESS);
+        logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(RESOURCE).toString(), this, commonStrings.PROCESS);
         
         this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);        
     }

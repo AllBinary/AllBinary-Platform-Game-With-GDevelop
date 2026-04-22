@@ -68,7 +68,7 @@ public class GDResourceFactory
             return this.BITMAP_FONT;
         } else {
             final CommonStrings commonStrings = CommonStrings.getInstance();
-            logUtil.put(kind, this, commonStrings.CONSTRUCTOR);
+            logUtil.putF(kind, this, commonStrings.CONSTRUCTOR);
             throw new RuntimeException(kind);
         }        
     }

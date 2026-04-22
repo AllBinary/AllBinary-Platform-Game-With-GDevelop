@@ -17,6 +17,7 @@ import org.allbinary.string.CommonStrings;
 
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.string.CommonSeps;
 
 /**
  *
@@ -48,6 +49,7 @@ public class CallCountGDNodeStats {
     public void log(final StringMaker stringBuilder) {
         
         final CommonStrings commonStrings = CommonStrings.getInstance();
+        final CommonSeps commonSeps = CommonSeps.getInstance();
         
         stringBuilder.delete(0, stringBuilder.length());
         
@@ -56,19 +58,19 @@ public class CallCountGDNodeStats {
         for(int index = 0; index < SIZE; index++) {
             for(int index2 = 0; index2 < 15000; index2++) {
                 if(totalCalls[index][index2] > 20) {
-                    stringBuilder.append(index);
-                    stringBuilder.append(':');
-                    stringBuilder.append(index2);
-                    stringBuilder.append(':');
-                    stringBuilder.append(totalCalls[index][index2]);
+                    stringBuilder.appendint(index);
+                    stringBuilder.append(commonSeps.COLON);
+                    stringBuilder.appendint(index2);
+                    stringBuilder.append(commonSeps.COLON);
+                    stringBuilder.appendlong(totalCalls[index][index2]);
                 }
             }
         }
 
-        stringBuilder.append('\n');
+        stringBuilder.append(commonSeps.NEW_LINE);
         
         if(stringBuilder.length() > TOTAL_CALLS.length() + 1) {
-            logUtil.put(stringBuilder.toString(), this, commonStrings.PROCESS);
+            logUtil.putF(stringBuilder.toString(), this, commonStrings.PROCESS);
         }
         
     }

@@ -7,6 +7,7 @@ package org.allbinary.gdevelop.extensions.builtin.sprite;
 
 import org.allbinary.gdevelop.json.GDProjectStrings;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -19,11 +20,11 @@ public class GDSprite
     public final boolean hasCustomCollisionMask;
     public final String imageAsString;
 
-    public final BasicArrayList pointList = new BasicArrayList();
+    public final BasicArrayList pointList = new BasicArrayListD();
     public final GDPoint originPoint;
     public final GDPoint centerPoint;
     
-    public final BasicArrayList polygon2dList = new BasicArrayList();
+    public final BasicArrayList polygon2dList = new BasicArrayListD();
     
     public GDSprite(final JSONObject jsonObject) {
         final GDProjectStrings projectStrings = GDProjectStrings.getInstance();

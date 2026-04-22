@@ -140,7 +140,7 @@ public class PlatformAssetManager {
         
         final RequestedText requestedText2 = (RequestedText) textToResource.get(resource);
         if(requestedText2 != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> requestedText2.text != null) {
-            logUtil.put("Text already loaded: " + resource, this, GET_TEXT);
+            logUtil.putF("Text already loaded: " + resource, this, GET_TEXT);
             final byte[] byteArray = requestedText2.text.getBytes();
             final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArray);
             //return new Object[] {byteArrayInputStream, text.length()};
@@ -148,27 +148,27 @@ public class PlatformAssetManager {
         } else {
             
             if(requestedText2 != null) {
-                logUtil.put("Already Loading Text: " + resource, this, GET_TEXT);
+                logUtil.putF("Already Loading Text: " + resource, this, GET_TEXT);
             } else {
-                logUtil.put("Loading Text: " + resource, this, GET_TEXT);
+                logUtil.putF("Loading Text: " + resource, this, GET_TEXT);
 
                 final String text = this.getTextResource(resource).getText();
                 final RequestedText requestedText = new RequestedText();
                 requestedText.text = text;
                 textToResource.put(resource, requestedText);
-                logUtil.put("Loaded Text: " + text.length(), this, GET_TEXT);
+                logUtil.putF("Loaded Text: " + text.length(), this, GET_TEXT);
                 
 //                final ResourceCallback callback = new ResourceCallback() {
 //                    @Override
 //                    public void done(Object resource) {
-//                        logUtil.put(DONE, this, GET_TEXT);
+//                        logUtil.putF(DONE, this, GET_TEXT);
 //                        text = (String) resource;
 //                        requestProcessing = false;
 //                    }
 //
 //                    @Override
 //                    public void error(Throwable e) {
-//                        logUtil.put(CommonStrings.getInstance().EXCEPTION_LABEL + ERROR, this, GET_TEXT);
+//                        logUtil.putF(CommonStrings.getInstance().EXCEPTION_LABEL + ERROR, this, GET_TEXT);
 //                        requestProcessing = false;
 //                    }
 //                };
@@ -178,14 +178,14 @@ public class PlatformAssetManager {
 //                final RequestCallback requestCallback = new RequestCallback() {
 //                    @Override
 //                    public void onResponseReceived(Request req, Response resp) {
-//                        logUtil.put(DONE, this, GET_TEXT);
+//                        logUtil.putF(DONE, this, GET_TEXT);
 //                        text = resp.getText();
 //                        requestProcessing = false;
 //                    }
 //
 //                    @Override
 //                    public void onError(Request res, Throwable throwable) {
-//                        logUtil.put(CommonStrings.getInstance().EXCEPTION_LABEL + ERROR, this, GET_TEXT);
+//                        logUtil.putF(CommonStrings.getInstance().EXCEPTION_LABEL + ERROR, this, GET_TEXT);
 //                        requestProcessing = false;
 //                    }
 //                };
@@ -197,7 +197,7 @@ public class PlatformAssetManager {
 //                }
             }
 
-            //logUtil.put("Null Text May not have loaded yet: " + resource, this, GET_TEXT);
+            //logUtil.putF("Null Text May not have loaded yet: " + resource, this, GET_TEXT);
             return null;
         }
 

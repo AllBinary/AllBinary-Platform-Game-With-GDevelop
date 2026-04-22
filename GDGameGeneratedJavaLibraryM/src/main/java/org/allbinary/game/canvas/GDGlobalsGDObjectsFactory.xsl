@@ -101,7 +101,7 @@ Created By: Travis Berthelot
 
                     <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
-                    public final BasicArrayList <xsl:value-of select="$name" />GDObjectFactoryList = new BasicArrayList();
+                    public final BasicArrayList <xsl:value-of select="$name" />GDObjectFactoryList = new BasicArrayListD();
                     </xsl:for-each>
                                         
                     <xsl:variable name="hasObjectsGroup" ><xsl:for-each select="objectsGroups" >found</xsl:for-each></xsl:variable>

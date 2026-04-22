@@ -142,7 +142,7 @@ public class GDResourceSelection {
 
             final StringMaker stringMaker = new StringMaker();
             final CommonStrings commonStrings = CommonStrings.getInstance();
-            logUtil.put(stringMaker.append("hasRotationImages: ").append(hasRotationImages).toString(), this, commonStrings.PROCESS);
+            logUtil.putF(stringMaker.append("hasRotationImages: ").appendboolean(hasRotationImages).toString(), this, commonStrings.PROCESS);
         }
 
         return hasRotationImages;

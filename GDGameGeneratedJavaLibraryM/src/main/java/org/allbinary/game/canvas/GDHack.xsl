@@ -957,7 +957,7 @@ Created By: Travis Berthelot
             
             <xsl:if test="contains($hasNoConditionsButDoesHaveUsedAction, 'found')" >
             <xsl:if test="not(contains($hasCreate, 'found'))" >
-                        final BasicArrayList gameLayerList = new BasicArrayList();
+                        final BasicArrayList gameLayerList = new BasicArrayListD();
             </xsl:if>
             </xsl:if>
                         //final StringMaker stringBuilder = new StringMaker();

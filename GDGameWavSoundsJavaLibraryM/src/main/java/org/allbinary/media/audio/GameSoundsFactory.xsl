@@ -79,7 +79,7 @@ Created By: Travis Berthelot
                     private final LogUtil logUtil = LogUtil.getInstance();
                     private final CommonStrings commonStrings = CommonStrings.getInstance();
 
-                    public final BasicArrayList soundList = new BasicArrayList();
+                    public final BasicArrayList soundList = new BasicArrayListD();
 
                     public GD<xsl:value-of select="$layoutIndex" />GameSoundsFactory() {
 

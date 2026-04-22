@@ -28,6 +28,7 @@ import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.graphics.threed.min3d.Min3dSceneResourcesFactory;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 /**
  *
@@ -77,9 +78,9 @@ public class GameAreaBoxUtil {
 
     public void addGameLayerFactories(final BaseResourceAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory) throws Exception {
 
-        final BasicArrayList gameLayerList = new BasicArrayList();
-        final BasicArrayList gameLayerDestroyedList = new BasicArrayList();
-        final BasicArrayList behaviorList = new BasicArrayList();
+        final BasicArrayList gameLayerList = new BasicArrayListD();
+        final BasicArrayList gameLayerDestroyedList = new BasicArrayListD();
+        final BasicArrayList behaviorList = new BasicArrayListD();
                 
         final Group btn_rotate_leftGroupInterface = GroupFactory.getInstance().getNextGroup(BOX);
         
@@ -137,7 +138,7 @@ public class GameAreaBoxUtil {
 
     public void addAnimations(final BaseResourceAnimationInterfaceFactoryInterfaceFactory baseResourceAnimationInterfaceFactoryInterfaceFactory) throws Exception {
 
-        final BasicArrayList boxList = new BasicArrayList();
+        final BasicArrayList boxList = new BasicArrayListD();
         final Object3d[] boxObject3dArray = min3dSceneResourcesFactory.get(this.BOX_ANIMATION_NAME);
         final int boxSize = boxObject3dArray.length;
         for (int index = 0; index < boxSize; index++) {
@@ -151,7 +152,7 @@ public class GameAreaBoxUtil {
         baseResourceAnimationInterfaceFactoryInterfaceFactory.add(this.BOX_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(boxProceduralAnimationInterfaceFactoryInterfaceArray));
 
         final Rectangle boxLayerInfo = new Rectangle(
-                PointFactory.getInstance().getInstance(
+                PointFactory.getInstance().getInstance0(
                         0,
                         0),
                 0, 0
@@ -160,7 +161,7 @@ public class GameAreaBoxUtil {
         baseResourceAnimationInterfaceFactoryInterfaceFactory.addRectangle(this.BOX_RECTANGLE_NAME_2, boxLayerInfo);
 
         final Rectangle boxLayerInfo2 = new Rectangle(
-                PointFactory.getInstance().getInstance(
+                PointFactory.getInstance().getInstance0(
                         192,
                         320),
                 0, 0
@@ -169,7 +170,7 @@ public class GameAreaBoxUtil {
         baseResourceAnimationInterfaceFactoryInterfaceFactory.addRectangle(this.BOX_RECTANGLE_NAME_2, boxLayerInfo2);
 
         final Rectangle boxLayerInfo3 = new Rectangle(
-                PointFactory.getInstance().getInstance(
+                PointFactory.getInstance().getInstance0(
                         0,
                         320),
                 0, 0
@@ -178,7 +179,7 @@ public class GameAreaBoxUtil {
         baseResourceAnimationInterfaceFactoryInterfaceFactory.addRectangle(this.BOX_RECTANGLE_NAME_3, boxLayerInfo3);
 
         final Rectangle boxLayerInfo4 = new Rectangle(
-                PointFactory.getInstance().getInstance(
+                PointFactory.getInstance().getInstance0(
                         192,
                         0),
                 0, 0

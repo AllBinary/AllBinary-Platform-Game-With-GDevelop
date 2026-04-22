@@ -11,6 +11,7 @@ import org.allbinary.string.CommonStrings;
 
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -25,8 +26,8 @@ public class GDResourcesManager
     private final String RESOURCES = "GDResources: ";
 //    private final String RESOURCE_FOLDERS = "GDResourceFolders: ";
     
-    public final BasicArrayList resourceList = new BasicArrayList();
-//    public final BasicArrayList resourceFolderList = new BasicArrayList();
+    public final BasicArrayList resourceList = new BasicArrayListD();
+//    public final BasicArrayList resourceFolderList = new BasicArrayListD();
     
     public GDResourcesManager(final JSONObject jsonObject) {
         
@@ -43,7 +44,7 @@ public class GDResourcesManager
             this.resourceList.add(resourceFactory.create(nextJSONObject));
         }
 
-        logUtil.put(RESOURCES + this.resourceList.size(), this, commonStrings.CONSTRUCTOR);
+        logUtil.putF(RESOURCES + this.resourceList.size(), this, commonStrings.CONSTRUCTOR);
 
 //        final JSONArray resourceFoldersJSONArray = jsonObject.getJSONArray(gdProjectStrings.RESOURCE_FOLDERS);
 //        size = resourceFoldersJSONArray.length();

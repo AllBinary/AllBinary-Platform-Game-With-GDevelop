@@ -19,6 +19,7 @@ import org.allbinary.graphics.RectangleFactory;
 import org.allbinary.layer.AllBinaryLayer;
 import org.allbinary.layer.LayerInterfaceFactoryInterface;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 /**
  *
@@ -68,9 +69,9 @@ public class GDFlagLayerInterfaceFactory
 //                    featuredAnimationInterfaceFactoryInterfaceFactory.getRectangle(GDFlagResources.getInstance().RESOURCE),
 //            x, y);
 
-        final BasicArrayList gameLayerList = new BasicArrayList();
-        final BasicArrayList gameLayerDestroyedList = new BasicArrayList();
-        final BasicArrayList behaviorList = new BasicArrayList();
+        final BasicArrayList gameLayerList = new BasicArrayListD();
+        final BasicArrayList gameLayerDestroyedList = new BasicArrayListD();
+        final BasicArrayList behaviorList = new BasicArrayListD();
 
         final Group[] groupInterface = {};
         final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray = 

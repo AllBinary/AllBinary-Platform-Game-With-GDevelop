@@ -14,7 +14,9 @@
 package org.allbinary.game.layer.special;
 
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.string.CommonSeps;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 /**
  *
@@ -22,8 +24,8 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDConditionWithGroupActions 
 {
-    public final BasicArrayList groupWithActionsList = new BasicArrayList();
-    public final BasicArrayList actionForGroupsList = new BasicArrayList();
+    public final BasicArrayList groupWithActionsList = new BasicArrayListD();
+    public final BasicArrayList actionForGroupsList = new BasicArrayListD();
     
     public GDConditionWithGroupActions()
     {
@@ -34,8 +36,8 @@ public class GDConditionWithGroupActions
         stringBuilder.append("GDConditionWithGroupActions: ");
         
         final int size = this.groupWithActionsList.size();
-        stringBuilder.append(size);
-        stringBuilder.append(' ');
+        stringBuilder.appendint(size);
+        stringBuilder.append(CommonSeps.getInstance().SPACE);
         for(int index = 0; index < size; index++) {
             stringBuilder.append(this.groupWithActionsList.get(index).toString());
         }

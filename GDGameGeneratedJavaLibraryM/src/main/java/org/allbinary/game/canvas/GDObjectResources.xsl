@@ -31,7 +31,7 @@ Created By: Travis Berthelot
             <xsl:otherwise>
         <xsl:for-each select="objectsGroups" >
             //<xsl:value-of select="name" />
-            public BasicArrayList <xsl:value-of select="name" />ImageArrayList = new BasicArrayList();
+            public BasicArrayList <xsl:value-of select="name" />ImageArrayList = new BasicArrayListD();
 
             <!-- Groups are not allowed in exclusion list currently -->
             <xsl:if test="$useExclusionList != 'true'" >

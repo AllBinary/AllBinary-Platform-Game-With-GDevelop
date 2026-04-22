@@ -52,7 +52,7 @@ public class JSONPersistance extends BasicPersitance
         final RecordEnumeration recordEnum = 
             recordStore.enumerateRecords(null, null,true);
         
-        logUtil.put(new StringMaker().append(this.persistanceStrings.NUMBER_OF_RECORDS).append(recordEnum.numRecords()).toString(), this, this.persistanceStrings.LOAD_ALL);
+        logUtil.putF(new StringMaker().append(this.persistanceStrings.NUMBER_OF_RECORDS).appendint(recordEnum.numRecords()).toString(), this, this.persistanceStrings.LOAD_ALL);
         
         final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
         final StringMaker stringBuffer = new StringMaker();
@@ -66,7 +66,7 @@ public class JSONPersistance extends BasicPersitance
             id = recordEnum.nextRecordId();
 
             stringBuffer.delete(0, stringBuffer.length());
-            logUtil.put(stringBuffer.append(JSON_).append(this.persistanceStrings.LOADING_ID).append(id).toString(), this, this.persistanceStrings.LOAD_ALL);
+            logUtil.putF(stringBuffer.append(JSON_).append(this.persistanceStrings.LOADING_ID).appendint(id).toString(), this, this.persistanceStrings.LOAD_ALL);
             
             byteArrayInputStream = 
                 new ByteArrayInputStream(recordStore.getRecord(id));
@@ -75,7 +75,7 @@ public class JSONPersistance extends BasicPersitance
             for (int index = 0; index < size; index++)
             {
                 value = inputStream.readUTF();
-                logUtil.put(value, this, this.persistanceStrings.LOAD_ALL);
+                logUtil.putF(value, this, this.persistanceStrings.LOAD_ALL);
                 valueList.add(value);
             }
 
@@ -87,7 +87,7 @@ public class JSONPersistance extends BasicPersitance
     
     public void save(final AbeClientInformationInterface abeClientInformation, final String stringAsJSON) throws Exception
     {
-        logUtil.put(new StringMaker().append(JSON_).append(this.persistanceStrings.SAVING).append(stringAsJSON).toString(), this, this.commonStrings.SAVE);
+        logUtil.putF(new StringMaker().append(JSON_).append(this.persistanceStrings.SAVING).append(stringAsJSON).toString(), this, this.commonStrings.SAVE);
         
         final RecordStore recordStore = RecordStore.openRecordStore(
                 this.getRecordId(abeClientInformation), true);

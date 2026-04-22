@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.allbinary.game.gd</groupId>
+  <artifactId>GDGameThreedAndroidPlatformLibsP</artifactId>
+  <packaging>pom</packaging>
+  <!-- AllBinary Platform Version Start -->
+  <version>1.0.0-SNAPSHOT</version>
+  <!-- AllBinary Platform Version End -->
+
+  <name>GDGameThreedAndroidPlatformLibsP</name>
+  <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+
+    <modules>
+
+        <module>../GDGameThreedAndroidRawResourcesJavaLibraryM</module>
+        <!--
+        <module>../GDGameThreedAndroidResourcesTempJavaLibraryM</module>
+        -->
+        <module>../GDGameThreedAndroidResourceJavaLibraryM</module>
+        
+        <module>../../../resource/GDGameOpenGLTwoDAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
+<!--        <module>../../../resource/GDGameOpenGLThreedAnimationResourceJavaLibraryM</module>-->
+        <module>../GDGameThreedAndroidJavaLibraryM</module>
+        <module>../GDGameThreedAndroidActivityJavaLibraryM</module>
+        
+        <module>../GDGameThreedAndroidClientInfoJavaLibraryM</module>
+        
+        <module>../../../platformx/android/GDGameThreedAndroidM</module>
+        
+<!--        <module>../../../platformx/android/GDGameThreedAndroidGradleM</module>-->
+        <!--
+        <module>../../../platformx/android/GDGameThreedAndroidApplicationM</module>
+        -->
+
+    </modules>
+
+</project>

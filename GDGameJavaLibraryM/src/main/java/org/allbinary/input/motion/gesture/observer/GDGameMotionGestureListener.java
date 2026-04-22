@@ -27,6 +27,7 @@ import org.allbinary.logic.util.event.AllBinaryEventObject;
 import org.allbinary.math.RectangleCollisionUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 public class GDGameMotionGestureListener implements MotionGestureEventListener
 {
@@ -35,11 +36,11 @@ public class GDGameMotionGestureListener implements MotionGestureEventListener
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final RectangleCollisionUtil rectangleCollisionUtil = RectangleCollisionUtil.getInstance();
 
-    private BasicArrayList gameLayerDraggedList = new BasicArrayList();
+    private BasicArrayList gameLayerDraggedList = new BasicArrayListD();
 
     public GDGameMotionGestureListener()
     {
-        logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+        logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
     }
 
     @Override

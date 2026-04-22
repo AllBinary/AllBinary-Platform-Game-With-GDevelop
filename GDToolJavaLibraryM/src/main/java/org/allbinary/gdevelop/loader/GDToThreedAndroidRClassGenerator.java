@@ -43,8 +43,8 @@ public class GDToThreedAndroidRClassGenerator
     
     private final String SELECT = "select";
     
-    private final BasicArrayList fileAsStringList = new BasicArrayList();
-    private final BasicArrayList paramList = new BasicArrayList();
+    private final BasicArrayList fileAsStringList = new BasicArrayListD();
+    private final BasicArrayList paramList = new BasicArrayListD();
     
     public GDToThreedAndroidRClassGenerator() {
     }
@@ -52,7 +52,7 @@ public class GDToThreedAndroidRClassGenerator
     public void processResource(final String fileAsString) {
         
         if(fileAsString.compareTo(this.gdToolStrings.BLANK) == 0) {
-            logUtil.put(SKIPPING + fileAsString, this, commonStrings.PROCESS);
+            logUtil.putF(SKIPPING + fileAsString, this, commonStrings.PROCESS);
             return;
         }
         
@@ -131,7 +131,7 @@ public class GDToThreedAndroidRClassGenerator
         final Replace replace = new Replace(GD_KEY, stringMaker.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
-        logUtil.put(this.gdToolStrings.FILENAME + R, this, commonStrings.PROCESS);
+        logUtil.putF(this.gdToolStrings.FILENAME + R, this, commonStrings.PROCESS);
         
         this.bufferedWriterUtil.overwrite(R, newFileAsString);        
     }

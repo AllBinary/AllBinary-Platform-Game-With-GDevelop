@@ -63,7 +63,7 @@
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
-        
+                
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameThreedPreBaseJavaLibrary</artifactId>

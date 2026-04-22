@@ -8,6 +8,7 @@ package org.allbinary.gdevelop.extensions.builtin.sprite;
 import org.allbinary.gdevelop.json.GDObject;
 import org.allbinary.gdevelop.json.GDProjectStrings;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -17,7 +18,7 @@ import org.json.JSONObject;
  */
 public class GDSpriteObject extends GDObject
 {
-    private final BasicArrayList animationList = new BasicArrayList();
+    private final BasicArrayList animationList = new BasicArrayListD();
     
     public GDSpriteObject(final String type, final JSONObject jsonObject) {
         super(type, jsonObject);

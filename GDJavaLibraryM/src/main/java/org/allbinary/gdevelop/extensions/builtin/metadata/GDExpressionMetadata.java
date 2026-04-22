@@ -7,6 +7,7 @@ package org.allbinary.gdevelop.extensions.builtin.metadata;
 
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 /**
  *
@@ -27,7 +28,7 @@ public class GDExpressionMetadata
     public final String extensionNamespace;
     public final boolean isPrivate;
 
-    public final BasicArrayList parameterMetadataList = new BasicArrayList();
+    public final BasicArrayList parameterMetadataList = new BasicArrayListD();
 
     public boolean shown;
     public String helpPath;

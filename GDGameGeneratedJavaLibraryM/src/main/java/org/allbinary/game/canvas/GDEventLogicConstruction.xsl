@@ -1466,7 +1466,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="nodeList" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
                         //Child VarScene conditions with actions
-                        final BasicArrayList nodeList<xsl:value-of select="$nodeList" /> = new BasicArrayList();
+                        final BasicArrayList nodeList<xsl:value-of select="$nodeList" /> = new BasicArrayListD();
                         <xsl:for-each select="../events" >
                             <xsl:if test="actions" >
                         //1

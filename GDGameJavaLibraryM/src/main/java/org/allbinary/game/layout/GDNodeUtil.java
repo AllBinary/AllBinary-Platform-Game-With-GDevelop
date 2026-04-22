@@ -14,6 +14,7 @@
 package org.allbinary.game.layout;
 
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 /**
  *
@@ -30,7 +31,7 @@ public class GDNodeUtil {
         return instance;
     }
 
-    public final BasicArrayList gdNodesList = new BasicArrayList();    
+    public final BasicArrayList gdNodesList = new BasicArrayListD();    
     
     public GDNodes getInstance(final int index) {
         while(index > gdNodesList.size() - 1) {

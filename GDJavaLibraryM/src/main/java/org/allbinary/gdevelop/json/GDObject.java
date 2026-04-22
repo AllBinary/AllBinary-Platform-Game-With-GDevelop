@@ -8,6 +8,7 @@ package org.allbinary.gdevelop.json;
 
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -23,10 +24,10 @@ public class GDObject
     public final String name;
     public final String tags;
     
-    public final BasicArrayList variableList = new BasicArrayList();
+    public final BasicArrayList variableList = new BasicArrayListD();
     
-    public final BasicArrayList effectsList = new BasicArrayList();
-    public final BasicArrayList behaviorContentList = new BasicArrayList();
+    public final BasicArrayList effectsList = new BasicArrayListD();
+    public final BasicArrayList behaviorContentList = new BasicArrayListD();
     
     public GDObject(final String type, final JSONObject jsonObject) {
         

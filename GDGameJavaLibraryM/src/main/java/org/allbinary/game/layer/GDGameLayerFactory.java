@@ -86,7 +86,7 @@ public class GDGameLayerFactory
     public GDGameLayer create(final int layoutIndex, final String name, final GDObject gdObject, final float scaleX, final float scaleY, final GDConditionWithGroupActions collidableBehavior) throws Exception {
         
         if(!name.startsWith(gdObject.name)) {
-            logUtil.put(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").append(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(this.animationInterfaceFactoryInterfaceArray.length > 0 ? this.animationInterfaceFactoryInterfaceArray[0].toString() : "empty").toString(), this, "create", new Exception());
+            logUtil.put(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").appendint(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(this.animationInterfaceFactoryInterfaceArray.length > 0 ? this.animationInterfaceFactoryInterfaceArray[0].toString() : "empty").toString(), this, "create", new Exception());
         }
         
         final Rectangle rectangle = new Rectangle(
@@ -109,7 +109,7 @@ public class GDGameLayerFactory
                 this.proceduralAnimationInterfaceFactoryInterfaceArray,
                 rectangle, 
                 this.rectangleArrayOfArrays,
-                new ViewPosition(), 
+                ViewPosition.getInstanceD(), 
                 gdObject, this.animationBehaviorFactory.create(),
                 this.resetAnimationBehavior);
         
