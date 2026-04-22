@@ -95,6 +95,7 @@ Created By: Travis Berthelot
         import org.allbinary.media.graphics.geography.map.GeographicMapEventHandler;
         import org.allbinary.media.graphics.geography.map.SimpleGeographicMapCellPositionFactory;
         import org.allbinary.util.BasicArrayList;
+        import org.allbinary.util.BasicArrayListD;
         import org.allbinary.view.ViewPosition;
 
     <xsl:variable name="foundPathFindingBehavior" >
@@ -1301,7 +1302,7 @@ Created By: Travis Berthelot
         final BasicTopViewGeographicMapCellTypeFactory basicTopViewGeographicMapCellTypeFactory = (BasicTopViewGeographicMapCellTypeFactory) geographicMapInterface.getGeographicMapCellTypeFactory();
         if(geographicMapCellType.getTravelCost() == basicTopViewGeographicMapCellTypeFactory.BLOCK_CELL_TYPE.cost) {
             geographicMapCellPositionBasicArrayList.remove(geographicMapCellPosition);
-            //logUtil.put(REMOVING_LAST_CELLPOSITION + geographicMapCellPosition, this, commonStrings.INIT);
+            //logUtil.putF(REMOVING_LAST_CELLPOSITION + geographicMapCellPosition, this, commonStrings.INIT);
         }
         
         geographicMapCellHistory.track(geographicMapCellPositionBasicArrayList);

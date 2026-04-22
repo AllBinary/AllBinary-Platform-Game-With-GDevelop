@@ -68,7 +68,7 @@ Created By: Travis Berthelot
                         public boolean process() throws Exception {
                             super.processStats();
 
-                            //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                         <xsl:if test="contains($hasObjectGroup, 'found')" >
                             final int size3 = <xsl:call-template name="globals" >
@@ -206,7 +206,7 @@ Created By: Travis Berthelot
                         
                             super.processGDStats(gameLayer);
 
-                            //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
 
                         <xsl:if test="contains($param3, '.') and not(contains($gdObjectName, 'Variable('))" >
                             GDObject <xsl:value-of select="$gdObjectName" /> = gameLayer.gdObject;

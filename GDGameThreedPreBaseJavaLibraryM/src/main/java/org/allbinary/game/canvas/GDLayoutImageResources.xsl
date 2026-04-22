@@ -87,6 +87,7 @@ Created By: Travis Berthelot
                 import org.allbinary.media.image.ImageCopyUtil;
                 import org.allbinary.media.image.ImageScaleUtil;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.util.BasicArrayListD;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources extends SpecialAnimation
@@ -249,7 +250,7 @@ Created By: Travis Berthelot
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             image = imageArray[index];
                             if (image.getWidth() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> image.getHeight() <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> image.getWidth() % image.getHeight() != 0) {
-                                logUtil.put(new StringMaker().append(index).append(name).append(image.getWidth()).append(commonSeps.COLON).append(image.getHeight()).toString(), this, commonStrings.PROCESS, new Exception());
+                                logUtil.put(new StringMaker().appendint(index).append(name).appendint(image.getWidth()).append(commonSeps.COLON).appendint(image.getHeight()).toString(), this, commonStrings.PROCESS, new Exception());
                             }
                         }
                     }

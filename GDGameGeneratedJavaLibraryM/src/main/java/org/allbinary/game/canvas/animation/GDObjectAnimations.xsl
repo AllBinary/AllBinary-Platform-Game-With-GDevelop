@@ -63,7 +63,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    logUtil.put("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
+                    logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
                 }    
                 
 <!--                <xsl:for-each select="animations" ><xsl:for-each select="directions/sprites/image" ><xsl:if test="position() != 1" >found</xsl:if></xsl:for-each></xsl:for-each>-->
@@ -113,7 +113,7 @@ Created By: Travis Berthelot
                 this.add(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
                 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
-                                pointFactory.getInstance(
+                                pointFactory.getInstance0(
                                 <xsl:if test="animations/directions/sprites/originPoint/x != 0" >
                                 (<xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/x" />), 
                                 </xsl:if>
@@ -244,7 +244,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    logUtil.put("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
+                    logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
                 }    
 
                 <xsl:variable name="hasMoreThanOneImage" ><xsl:for-each select="animations" ><xsl:for-each select="directions/sprites/image" ><xsl:if test="position() != 1" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
@@ -321,7 +321,7 @@ Created By: Travis Berthelot
                 this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
                 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
-                                pointFactory.getInstance(
+                                pointFactory.getInstance0(
                                 <xsl:if test="animations/directions/sprites/originPoint/x != 0" >
                                 (<xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/x" />), 
                                 </xsl:if>
@@ -450,7 +450,7 @@ Created By: Travis Berthelot
                 final float newX = (<xsl:value-of select="$name" />LayerInfo.getWidth() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getWidth()) / 2;
                 final float newY = (<xsl:value-of select="$name" />LayerInfo.getHeight() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getHeight()) / 2;
                 final Rectangle <xsl:value-of select="$name" />RotationCollisionMask = new Rectangle(
-                                pointFactory.getInstance((int) (newX * 3 * halfScale), (int) (newY * 3 * halfScale)), (int) (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * halfScale), (int) (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * halfScale)
+                                pointFactory.getInstance0((int) (newX * 3 * halfScale), (int) (newY * 3 * halfScale)), (int) (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * halfScale), (int) (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * halfScale)
                                 );
                         </xsl:if>
                     </xsl:if>
@@ -477,7 +477,7 @@ Created By: Travis Berthelot
                 //customCollisionMask - <xsl:value-of select="$image" />
                                     <xsl:if test="$position = 1" >
                 final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
-                                pointFactory.getInstance((int) (<xsl:value-of select="array[1]/x" /> * scale), (int) (<xsl:value-of select="array[1]/y" /> * scale)),
+                                pointFactory.getInstance0((int) (<xsl:value-of select="array[1]/x" /> * scale), (int) (<xsl:value-of select="array[1]/y" /> * scale)),
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * scale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * scale)
                                 );
 
@@ -559,7 +559,7 @@ Created By: Travis Berthelot
                             
                             <xsl:for-each select="customCollisionMask" >
                 final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
-                                pointFactory.getInstance((int) (<xsl:value-of select="array[1]/x" /> * scale), (int) (<xsl:value-of select="array[1]/y" /> * scale)),
+                                pointFactory.getInstance0((int) (<xsl:value-of select="array[1]/x" /> * scale), (int) (<xsl:value-of select="array[1]/y" /> * scale)),
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * scale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * scale)
                                 );
 
@@ -620,7 +620,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    logUtil.put("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
+                    logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
                 }    
                     
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
@@ -633,7 +633,7 @@ Created By: Travis Berthelot
                 this.add(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
                 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
-                                pointFactory.getInstance(0, 0),
+                                pointFactory.getInstance0(0, 0),
                                 0, 0
                                 );
 

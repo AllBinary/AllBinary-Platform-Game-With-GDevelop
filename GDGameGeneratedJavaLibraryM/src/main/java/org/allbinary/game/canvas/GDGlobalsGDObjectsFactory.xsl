@@ -72,6 +72,7 @@ Created By: Travis Berthelot
                 
                 import org.allbinary.logic.string.StringUtil;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.util.BasicArrayListD;
                 
                 public class GDGlobalsGDObjectsFactory
                 {

@@ -341,7 +341,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
     
     public void draw(Graphics graphics)
     {
-        //logUtil.put(commonStrings.START, this, "draw");
+        //logUtil.putF(commonStrings.START, this, "draw");
         
         this.clear(graphics);
 

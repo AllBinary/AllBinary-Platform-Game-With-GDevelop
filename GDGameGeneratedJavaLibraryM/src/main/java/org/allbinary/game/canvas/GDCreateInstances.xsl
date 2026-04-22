@@ -31,7 +31,7 @@ Created By: Travis Berthelot
         <xsl:variable name="hasCentreCamera" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera'" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
         
                     //instances create - START
-                    logUtil.put(commonStrings.START, this, CREATE_INSTANCES);
+                    logUtil.putF(commonStrings.START, this, CREATE_INSTANCES);
                     
                     //Create - Instances - START
                     final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
@@ -171,12 +171,12 @@ Created By: Travis Berthelot
                         //btn_ - //Rectangle
                         //Touch Rectangle
                         //final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
-                        //    pointFactory.getInstance(<xsl:value-of select="name" />.x, <xsl:value-of select="name" />.y),
+                        //    pointFactory.getInstance0(<xsl:value-of select="name" />.x, <xsl:value-of select="name" />.y),
                         //    (int) (<xsl:value-of select="name" />.Width(globals.graphics) * scaleTouchButtons), (int) (<xsl:value-of select="name" />.Height(globals.graphics) * scaleTouchButtons));
                         //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         </xsl:if>
                         
-                        final GDGameLayer <xsl:value-of select="name" />GDGameLayer = <xsl:call-template name="globalResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:value-of select="$layoutIndex" />, stringBuilder.append(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME).append(CommonSeps.getInstance().UNDERSCORE).append(index).toString(), <xsl:value-of select="name" />, 
+                        final GDGameLayer <xsl:value-of select="name" />GDGameLayer = <xsl:call-template name="globalResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:value-of select="$layoutIndex" />, stringBuilder.append(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME).append(CommonSeps.getInstance().UNDERSCORE).appendint(index).toString(), <xsl:value-of select="name" />, 
                         scale, scale,     
                         null); //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDConditionWithGroupActions);
                         <xsl:value-of select="name" />GDGameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
@@ -203,7 +203,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                     
-                    logUtil.put(commonStrings.END, this, CREATE_INSTANCES);
+                    logUtil.putF(commonStrings.END, this, CREATE_INSTANCES);
                     //instances create - END
     </xsl:template>
 

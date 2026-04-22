@@ -93,6 +93,7 @@ Created By: Travis Berthelot
                 import org.allbinary.time.GameTickTimeDelayHelper;
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.util.BasicArrayListD;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.media.audio.PlayerComposite;
                 import org.allbinary.media.audio.Sound;
@@ -156,7 +157,7 @@ Created By: Travis Berthelot
                         
                     </xsl:call-template>
                     
-                    logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                    logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
 
                         } catch(Exception e) {
                             logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);

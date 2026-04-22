@@ -38,7 +38,7 @@ Created By: Travis Berthelot
                             super.processStats();
                         
                             <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                            //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="$nodeId" />, this, commonStrings.PROCESS);
+                            //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="$nodeId" />, this, commonStrings.PROCESS);
 
                         <xsl:variable name="param4" >
                             <xsl:for-each select="parameters" >
@@ -121,7 +121,7 @@ Created By: Travis Berthelot
 
                                 </xsl:if>
                                 <xsl:if test="position() = 3" >
-                                    //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="$nodeId" />, this, commonStrings.PROCESS);
+                                    //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="$nodeId" />, this, commonStrings.PROCESS);
                                     <xsl:if test="text() = '='" >gameLayer.setText(</xsl:if>
                                 </xsl:if>
                                 <xsl:if test="position() = 4" >
@@ -147,7 +147,7 @@ Created By: Travis Berthelot
                         public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                             super.processGDStats(gameLayer);
                         
-                            //logUtil.put(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                            //logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                             
                         <xsl:if test="contains($hasObjectGroup3, 'found') or contains($hasObject3, 'found')" >
                             <xsl:variable name="gameLayerName" ><xsl:value-of select="$beforeSecondParam" /></xsl:variable>

@@ -64,6 +64,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.util.BasicArrayListD;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />GameSoundsFactory
@@ -85,7 +86,7 @@ Created By: Travis Berthelot
 
                         try {
                         
-                            logUtil.put(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
+                            logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
 
 <!--
                     <xsl:call-template name="playsound" >

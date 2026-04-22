@@ -41,7 +41,7 @@ Created By: Travis Berthelot
                         
                             public void run() {
                                 try {
-                                    //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                    //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                                     gdNodeStatsFactory.push(0, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
 
@@ -114,7 +114,7 @@ Created By: Travis Berthelot
                                 this.currentRunnable = this.runnable;
                             //} else {
                                 //Best to not remark out when parent conditions include: SourisBouton, SourisSurObjet, or KeyFromTextPressed
-                                //logUtil.put(commonStrings.EXCEPTION_LABEL + "Runnable already set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception());
+                                //logUtil.putF(commonStrings.EXCEPTION_LABEL + "Runnable already set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception());
                             //}
                         </xsl:if>
 
@@ -165,7 +165,7 @@ Created By: Travis Berthelot
                                         </xsl:for-each>
                                                                     
                             } else {
-                                //logUtil.put(commonStrings.EXCEPTION_LABEL + "Runnable was not set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE);
+                                //logUtil.putF(commonStrings.EXCEPTION_LABEL + "Runnable was not set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE);
                             }
                         </xsl:if>
                         
@@ -176,7 +176,7 @@ Created By: Travis Berthelot
                         public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                             super.processStats(motionGestureEvent);
 
-                            //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, commonStrings.PROCESS);
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, commonStrings.PROCESS);
                                 <xsl:for-each select="parameters" >
                                     <xsl:if test="position() = 1" >
                             //final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RectangleList.size();
@@ -216,7 +216,7 @@ Created By: Travis Berthelot
                                 //if (rectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY() - 2, <xsl:value-of select="text()" />Rectangle.getMaxX(), <xsl:value-of select="text()" />Rectangle.getMaxY() + 2, point.getX(), point.getY()))
                                 if (rectangleCollisionUtil.isInside(gameLayer.getXP(), gameLayer.getYP() - 2, gameLayer.getX2(), gameLayer.getY2() + 2, point.getX(), point.getY()))
                                 {
-                                    //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "Inside: " + lastMotionGestureInput, this, commonStrings.PROCESS);
+                                    //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "Inside: " + lastMotionGestureInput, this, commonStrings.PROCESS);
                                     <xsl:if test="$inverted != 'true'" >
                                     <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
                                         runnable.run();
@@ -236,7 +236,7 @@ Created By: Travis Berthelot
                                         //}
                                         //globals.currentButtonGDNodePressed = this;
 
-                                        //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "press", this, commonStrings.PROCESS);
+                                        //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "press", this, commonStrings.PROCESS);
                                         
                                         this.process();
                                         
@@ -270,7 +270,7 @@ Created By: Travis Berthelot
 
                                     } else if(lastMotionGestureInput == touchMotionGestureFactory.RELEASED) {
                                     
-                                        //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "release", this, commonStrings.PROCESS);
+                                        //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "release", this, commonStrings.PROCESS);
 
                                         this.processReleased();
                                     <!--

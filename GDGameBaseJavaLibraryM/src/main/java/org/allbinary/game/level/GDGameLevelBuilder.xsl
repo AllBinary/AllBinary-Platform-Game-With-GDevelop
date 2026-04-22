@@ -90,6 +90,7 @@ import org.allbinary.media.graphics.geography.map.GeographicMapInterface;
 import org.allbinary.media.graphics.geography.map.platform.TileSetToGeographicMapUtil;
 import org.allbinary.util.ArrayUtil;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.mapeditor.loader.TiledMapLoaderFromJSONFactory;
 import org.mapeditor.core.TileLayer;
 import org.mapeditor.core.TileSet;

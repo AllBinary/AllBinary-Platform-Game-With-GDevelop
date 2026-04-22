@@ -121,7 +121,7 @@ Created By: Travis Berthelot
                 public boolean process() throws Exception {
                     super.processStats();
 
-                    //logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                     <xsl:if test="contains($hasObjectGroup, 'found')" >
                     final int size3 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$object" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$object" />GDGameLayerListOfList.size();
@@ -239,7 +239,7 @@ Created By: Travis Berthelot
                 public boolean process() throws Exception {
                     super.processStats();
                     
-                    //logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                     <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
                     final int eSize = <xsl:value-of select="repeatExpression" />;
@@ -322,7 +322,7 @@ Created By: Travis Berthelot
                 <xsl:if test="whileConditions" >
                 //whileConditions
                     
-                    //logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                     <xsl:for-each select="whileConditions" >
                     //whileConditions - //<xsl:value-of select="type/value" /> - call
                     while(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
@@ -341,7 +341,7 @@ Created By: Travis Berthelot
                 <xsl:if test="not(actions)" >
                 //Events only - No actions or conditions
 
-                    //logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                 <xsl:for-each select="events" >
                     <!-- CollisionNP is already handled. -->
                     <xsl:variable name="eventWithBuilderCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = '(Used when using the AllBinary Collision Processing) CollisionNP'" >found</xsl:if></xsl:for-each></xsl:variable>
@@ -426,7 +426,7 @@ Created By: Travis Berthelot
                 public boolean process(final int index3) throws Exception {
                     super.processStats();
                     
-                    //logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                     <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
                     final int eSize = <xsl:value-of select="repeatExpression" />;
@@ -509,7 +509,7 @@ Created By: Travis Berthelot
                 <xsl:if test="whileConditions" >
                 //whileConditions
                     
-                    //logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                     <xsl:for-each select="whileConditions" >
                     //whileConditions - //<xsl:value-of select="type/value" /> - call
                     while(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index3)) {
@@ -528,7 +528,7 @@ Created By: Travis Berthelot
                 <xsl:if test="not(actions)" >
                 //Events only - No actions or conditions
 
-                    //logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                 <xsl:for-each select="events" >
                     <!-- CollisionNP is already handled. -->
                     <xsl:variable name="eventWithBuilderCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = '(Used when using the AllBinary Collision Processing) CollisionNP'" >found</xsl:if></xsl:for-each></xsl:variable>
@@ -614,7 +614,7 @@ Created By: Travis Berthelot
                 public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                     super.processStats(motionGestureEvent);
 
-                    //logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, commonStrings.PROCESS);
+                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, commonStrings.PROCESS);
                     <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
                     final int eSize = <xsl:value-of select="repeatExpression" />;
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> eSize; index++) {
@@ -651,7 +651,7 @@ Created By: Travis Berthelot
                 <xsl:if test="whileConditions" >
                 //whileConditions
                     
-                    //logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                     <xsl:for-each select="whileConditions" >
                     //whileConditions - //<xsl:value-of select="type/value" /> - call
                     while(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput)) {
@@ -670,7 +670,7 @@ Created By: Travis Berthelot
                 <xsl:if test="not(actions)" >
                 //Events only - No actions or conditions
 
-                    //logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                 <xsl:for-each select="events" >
                     <!-- CollisionNP is already handled. -->
                     <xsl:variable name="eventWithBuilderCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = '(Used when using the AllBinary Collision Processing) CollisionNP'" >found</xsl:if></xsl:for-each></xsl:variable>
@@ -774,7 +774,7 @@ Created By: Travis Berthelot
                 public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                     super.processGDStats(gameLayer);
 
-                    //logUtil.put(EVENT_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    //logUtil.putF(EVENT_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                     <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
                     final int eSize = <xsl:value-of select="repeatExpression" />;
@@ -898,7 +898,7 @@ Created By: Travis Berthelot
                 public void processReleased() throws Exception { 
                     super.processReleasedStats();
 
-                    //logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "release, this, globals.PROCESS_RELEASE);
+                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "release, this, globals.PROCESS_RELEASE);
 
                     <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
                     final int eSize = <xsl:value-of select="repeatExpression" />;

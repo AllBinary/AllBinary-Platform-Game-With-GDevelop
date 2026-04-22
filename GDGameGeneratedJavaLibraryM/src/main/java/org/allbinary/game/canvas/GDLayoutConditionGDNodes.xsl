@@ -120,6 +120,7 @@ Created By: Travis Berthelot
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.time.TimeDelayHelper;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.util.BasicArrayListD;
                 import org.allbinary.logic.NullUtil;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.game.layer.behavior.GDBehaviorUtil;
@@ -210,7 +211,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     //conditionLayout - //eventsCreateAssignGDObject - END
 
-                    logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                    logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
 
                         } catch(Exception e) {
                             logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);

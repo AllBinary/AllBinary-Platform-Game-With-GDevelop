@@ -37,6 +37,7 @@ import org.allbinary.input.gyro.AllBinaryOrientationSensor;
 import org.allbinary.input.gyro.GyroSensorFactory;
 import org.allbinary.media.audio.GDGameSoundsFactory;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -328,7 +329,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
     public void mediaInit() throws Exception
     {
-        logUtil.put(commonStrings.START, this, "mediaInit");
+        logUtil.putF(commonStrings.START, this, "mediaInit");
         AllBinaryMediaManager.init(GDGameSoundsFactory.getInstance());
     }
 
@@ -397,7 +398,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     {
         try
         {
-            //logUtil.put(commonStrings.START, this, "threadInit");
+            //logUtil.putF(commonStrings.START, this, "threadInit");
 
             final int portion = 60;
             super.init(this.abeClientInformation);
@@ -472,7 +473,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
     public void buildGame(boolean isProgress) throws Exception
     {
-        //logUtil.put(commonStrings.START, this, "buildGame");
+        //logUtil.putF(commonStrings.START, this, "buildGame");
     
         this.specialAnimation = GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance(this, gameLayerManager);
         this.setPlayingGameState();
@@ -679,7 +680,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         //if (this.isFirst)
         //{
             //this.isFirst = false;
-            //logUtil.put(commonStrings.START, this, DRAW);
+            //logUtil.putF(commonStrings.START, this, DRAW);
         //}
 
         this.clear(graphics);
@@ -905,7 +906,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     //Special end case for GDevelop
     public void end2() {
 //        try {
-//            logUtil.put(this.commonStrings.END, this, this.commonStrings.END);
+//            logUtil.putF(this.commonStrings.END, this, this.commonStrings.END);
 //            this.cleanupGame();
 //            this.specialAnimation = SpecialAnimation.getInstance();
 //            this.setGameSpecificPaintableP(NullPaintable.getInstance());
@@ -924,7 +925,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             this.specialAnimation.reset();
             //GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance().clear();
             GDGameGlobals.getInstance().reset();
-            logUtil.put(this.commonStrings.END, this, this.commonStrings.END);
+            logUtil.putF(this.commonStrings.END, this, this.commonStrings.END);
         } catch (Exception e)
         {
             logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.END, e);

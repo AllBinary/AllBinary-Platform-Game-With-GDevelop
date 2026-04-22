@@ -32,7 +32,7 @@ Created By: Travis Berthelot
                                 @Override
                                 public boolean process() throws Exception {
                             
-                                    //logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                                     <xsl:for-each select="events" >
                                         
@@ -70,7 +70,7 @@ Created By: Travis Berthelot
                                 public void processReleased() throws Exception { 
                                     super.processReleasedStats();
 
-                                    //logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                                     <xsl:for-each select="events" >
                                         
@@ -126,7 +126,7 @@ Created By: Travis Berthelot
                                 @Override
                                 public boolean process() throws Exception {
                             
-                                    logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:value-of select="name" />", this, commonStrings.PROCESS);
+                                    logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:value-of select="name" />", this, commonStrings.PROCESS);
                                     
                                     //Create the Objects in the layout=<xsl:value-of select="name" />
                                     <xsl:call-template name="createInstances" >
@@ -145,7 +145,7 @@ Created By: Travis Berthelot
                                 public void processReleased() throws Exception { 
                                     super.processReleasedStats();
 
-                                    //logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                                 }
 

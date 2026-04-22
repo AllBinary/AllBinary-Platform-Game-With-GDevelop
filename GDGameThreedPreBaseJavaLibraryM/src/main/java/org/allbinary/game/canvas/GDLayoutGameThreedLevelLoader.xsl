@@ -132,7 +132,7 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                         </xsl:if>
                         
-                            //logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                            //logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
 
                         <xsl:if test="$layoutIndex = 0" >                            
                             new GDGlobalGameThreedLevelBuilder().build(gl, glInstanceVersion);

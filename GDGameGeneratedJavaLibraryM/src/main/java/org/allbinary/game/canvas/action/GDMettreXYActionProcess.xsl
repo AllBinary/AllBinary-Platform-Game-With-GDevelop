@@ -232,10 +232,10 @@ Created By: Travis Berthelot
 
                             try {
 
-                                //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                                 //if(gdObject == null) {
-                                //    logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "gdObject was null", this, commonStrings.PROCESS);
+                                //    logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "gdObject was null", this, commonStrings.PROCESS);
                                 //    return;
                                 //}
                             
@@ -363,7 +363,7 @@ Created By: Travis Berthelot
                                 //Touch Rectangle
                                 //name2=<xsl:value-of select="$name2" /><xsl:text>&#10;</xsl:text>
                                 //final Rectangle <xsl:value-of select="$name" />Rectangle = new Rectangle(
-                                //    pointFactory.getInstance(<xsl:value-of select="$name" />.x, <xsl:value-of select="$name" />.y),
+                                //    pointFactory.getInstance0(<xsl:value-of select="$name" />.x, <xsl:value-of select="$name" />.y),
                                 //    (int) (<xsl:value-of select="$name" />.Width(globals.graphics) * scaleTouchButtons), (int) (<xsl:value-of select="$name" />.Height(globals.graphics) * scaleTouchButtons));
                                 //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />RectangleList.add(<xsl:value-of select="$name" />Rectangle);
                                 </xsl:if>
@@ -562,10 +562,10 @@ Created By: Travis Berthelot
 
                             try {
 
-                                //logUtil.put(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                //logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                                 //if(gdObject == null) {
-                                //    logUtil.put(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "gdObject was null", this, commonStrings.PROCESS);
+                                //    logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "gdObject was null", this, commonStrings.PROCESS);
                                 //    return;
                                 //}
 
@@ -762,7 +762,7 @@ Created By: Travis Berthelot
                                 //Touch Rectangle
                                 //name2=<xsl:value-of select="$name2" /><xsl:text>&#10;</xsl:text>
                                 //final Rectangle <xsl:value-of select="$name" />Rectangle = new Rectangle(
-                                //    pointFactory.getInstance(<xsl:value-of select="$name" />.x, <xsl:value-of select="$name" />.y),
+                                //    pointFactory.getInstance0(<xsl:value-of select="$name" />.x, <xsl:value-of select="$name" />.y),
                                 //    (int) (<xsl:value-of select="$name" />.Width(globals.graphics) * scaleTouchButtons), (int) (<xsl:value-of select="$name" />.Height(globals.graphics) * scaleTouchButtons));
                                 //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />RectangleList.add(<xsl:value-of select="$name" />Rectangle);
                                 </xsl:if>

@@ -486,7 +486,7 @@ Created By: Travis Berthelot
                         </xsl:for-each>
 
                     private int id;
-                    private GPoint point = PointFactory.getInstance().ZERO_ZERO;
+                    private GPoint point = pointFactory.getInstance().ZERO_ZERO;
                     private float stickForceX = 0.0f;
                     private float stickForceY = 0.0f;
 

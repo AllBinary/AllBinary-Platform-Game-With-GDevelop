@@ -147,7 +147,7 @@ Created By: Travis Berthelot
                                 </xsl:if>
                             </xsl:for-each>
                             
-                            logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                            logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
 
                         } catch(Exception e) {
                             logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);

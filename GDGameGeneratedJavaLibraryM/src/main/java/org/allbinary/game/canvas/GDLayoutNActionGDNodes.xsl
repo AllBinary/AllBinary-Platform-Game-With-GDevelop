@@ -149,6 +149,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.NullUtil;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.util.BasicArrayListD;
                 import org.allbinary.media.audio.PlayerComposite;
                 import org.allbinary.thread.SecondaryThreadPool;
                 import org.allbinary.game.layer.behavior.GDBehaviorUtil;

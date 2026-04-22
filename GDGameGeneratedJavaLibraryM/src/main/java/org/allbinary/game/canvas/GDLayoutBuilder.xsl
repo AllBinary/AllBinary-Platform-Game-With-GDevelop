@@ -119,6 +119,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.util.event.AllBinaryEventObject;
                 import org.allbinary.thread.NullRunnable;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.util.BasicArrayListD;
                 import org.allbinary.logic.NullUtil;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
@@ -207,7 +208,7 @@ Created By: Travis Berthelot
                                 </xsl:with-param>
                             </xsl:call-template>
                             
-                            logUtil.put(new StringMaker().append(commonStrings.START).append(":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder scale: ").append(scale).toString(), this, commonStrings.CONSTRUCTOR);
+                            logUtil.putF(new StringMaker().append(commonStrings.START).append(":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder scale: ").appendfloat(scale).toString(), this, commonStrings.CONSTRUCTOR);
 
                     <xsl:call-template name="findMousePositionNeeded" >
                         <xsl:with-param name="totalRecursions" >
@@ -293,13 +294,13 @@ Created By: Travis Berthelot
 
                         this.build();
                         
-                        logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                        logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
                     }
 
                     public void build() {
                     
                         try {
-                            logUtil.put(commonStrings.START, this, commonStrings.PROCESS);
+                            logUtil.putF(commonStrings.START, this, commonStrings.PROCESS);
 
                             <xsl:call-template name="scale" >
                                 <xsl:with-param name="layoutIndex" >
@@ -423,7 +424,7 @@ Created By: Travis Berthelot
                         //allBinaryGameLayerManager.log();
                         //groupLayerManagerListener.log();
 
-                        logUtil.put("DepartScene - completed newCanvas is now false", this, commonStrings.PROCESS);
+                        logUtil.putF("DepartScene - completed newCanvas is now false", this, commonStrings.PROCESS);
                         gameGlobalsFactory.newCanvas = false;
                         initialized = true;
 
@@ -431,7 +432,7 @@ Created By: Travis Berthelot
                             logUtil.put(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e);
                         }
                     
-                        logUtil.put(commonStrings.END, this, commonStrings.PROCESS);
+                        logUtil.putF(commonStrings.END, this, commonStrings.PROCESS);
                     }
                     
                     public int SceneWindowWidth() {

@@ -714,7 +714,7 @@ Created By: Travis Berthelot
 
                         try {
 
-                            //logUtil.put(EVENT_AS_STRING_COLLISION_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                            //logUtil.putF(EVENT_AS_STRING_COLLISION_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                             //if(gameLayerArray[0] != null) {
                                 //if(gameLayerArray[1] != null) {

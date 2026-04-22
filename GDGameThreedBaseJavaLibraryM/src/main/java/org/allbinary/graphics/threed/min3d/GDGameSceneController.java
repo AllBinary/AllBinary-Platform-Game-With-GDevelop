@@ -163,7 +163,7 @@ extends AllBinaryGameSceneController
                 //final int distanceY = 5;
                 //final int distanceZ = 5;
                 //final ViewPosition viewPosition = new StaticViewPosition(0, 0, 0);
-                //final org.allbinary.graphics.Rectangle rectangle = new org.allbinary.graphics.Rectangle(PointFactory.getInstance().getInstance(0, 0), 0, 0);
+                //final org.allbinary.graphics.Rectangle rectangle = new org.allbinary.graphics.Rectangle(pointFactory.getInstance().getInstance(0, 0), 0, 0);
                 final OperatingSystemInterface operatingSystem =
                     OperatingSystemFactory.getInstance().getOperatingSystemInstance();
                 final int distance = operatingSystem.isOverScan() ? (AndroidUtil.isAndroid() ? 550 : 650) : (AndroidUtil.isAndroid() ? 200 : 300);

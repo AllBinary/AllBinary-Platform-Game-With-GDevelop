@@ -246,7 +246,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
         String indexAsString;
         for (int index = startIndex; index < size; index++) {
             //stringMaker.delete(0, stringMaker.length());
-            //logUtil.put(stringMaker.append("layout:").append(index).toString(), this, commonStrings.PROCESS);
+            //logUtil.put(stringMaker.append("layout:").appendint(index).toString(), this, commonStrings.PROCESS);
 
             indexAsString = Integer.toString(index);
             final Replace replace = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, indexAsString);

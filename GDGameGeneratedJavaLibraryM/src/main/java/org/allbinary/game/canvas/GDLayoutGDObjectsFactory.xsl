@@ -80,6 +80,7 @@ Created By: Travis Berthelot
                 import org.allbinary.string.CommonStrings;
                 import org.allbinary.logic.string.StringUtil;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.util.BasicArrayListD;
                 import org.allbinary.game.layer.behavior.GDBehaviorUtil;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
@@ -132,7 +133,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     //objectsGroups - END
 
-                        logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                        logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
                     }
                     
                     //objectsGroups - START

@@ -261,7 +261,7 @@ Created By: Travis Berthelot
                             gdObject.height = (int) (customTextAnimationFactory.getHeight());
 
                             final Rectangle rectangle = new Rectangle(
-                                PointFactory.getInstance().ZERO_ZERO,
+                                pointFactory.getInstance().ZERO_ZERO,
                                 (int) (this.layerInfo.getWidth()), 
                                 (int) (this.layerInfo.getHeight())
                             );
@@ -281,7 +281,7 @@ Created By: Travis Berthelot
                 };
                 this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
                 this.<xsl:value-of select="name" />LayerInfo = new Rectangle(
-                                pointFactory.getInstance(0, 0),
+                                pointFactory.getInstance0(0, 0),
                                 0, 0
                                 );
                 this.<xsl:value-of select="name" />RectangleArrayOfArrays = new Rectangle[0][0];

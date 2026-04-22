@@ -119,7 +119,7 @@ Created By: Travis Berthelot
                                 @Override
                                 public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
                                                         
-                                    //logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                 <xsl:for-each select="../objectGroups" >
                             //objectGroups

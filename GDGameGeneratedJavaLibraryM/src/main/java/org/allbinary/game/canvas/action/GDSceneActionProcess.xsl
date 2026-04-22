@@ -51,11 +51,11 @@ Created By: Travis Berthelot
                                 //logUtil.put("gameGlobalsFactory.newDisplaybleTime > gameTickTimeDelayHelper.startTime - 250: " + gameGlobalsFactory.newDisplaybleTime + " > " + (gameTickTimeDelayHelper.startTime - 250), this, commonStrings.PROCESS);
                                 
                                 if(gameGlobalsFactory.newCanvas) {
-                                    logUtil.put(gdStrings.CANVAS_NEW + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                    logUtil.putF(gdStrings.CANVAS_NEW + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                                 } else if(inputOnNewScene) {
-                                    logUtil.put(gdStrings.SCENE_NEW + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                    logUtil.putF(gdStrings.SCENE_NEW + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                                 } else {
-                                    logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                    logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                                     PathFindingThreadPool.getInstance().clear();
                                     final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                                     final MyCanvas abCanvas = (MyCanvas) abToGBUtil.abCanvas;
@@ -121,7 +121,7 @@ Created By: Travis Berthelot
 
                             try {
 
-                                logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                                 final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                                 final MyCanvas abCanvas = (MyCanvas) abToGBUtil.abCanvas;
@@ -131,9 +131,9 @@ Created By: Travis Berthelot
                                 //logUtil.put("gameGlobalsFactory.newDisplaybleTime > gameTickTimeDelayHelper.startTime - 250: " + gameGlobalsFactory.newDisplaybleTime + " > " + (gameTickTimeDelayHelper.startTime - 250), this, commonStrings.PROCESS);
 
                                 if(gameGlobalsFactory.newCanvas) {
-                                    logUtil.put(gdStrings.CANVAS_NEW + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                    logUtil.putF(gdStrings.CANVAS_NEW + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                                 } else if(inputOnNewScene) {
-                                    logUtil.put(gdStrings.SCENE_NEW + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                    logUtil.putF(gdStrings.SCENE_NEW + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                                 } else {
                                     //<xsl:value-of select="$command" />
                                     <xsl:if test="contains($command, 'https://localhost/about.html')" >

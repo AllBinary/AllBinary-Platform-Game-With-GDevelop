@@ -36,7 +36,7 @@ Created By: Travis Berthelot
                         public boolean process() throws Exception {
                             super.processStats();
 
-                            //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                             <xsl:for-each select=".." >
                             <xsl:for-each select="events" >
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
@@ -68,7 +68,7 @@ Created By: Travis Berthelot
                         public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                             super.processStats(motionGestureEvent);
 
-                            //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                             if(lastMotionGestureInput == touchMotionGestureFactory.RELEASED) {
                                 this.released = true;

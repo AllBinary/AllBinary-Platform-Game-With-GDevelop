@@ -115,6 +115,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.NullUtil;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.util.BasicArrayListD;
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 
                 //LayoutGlobals name=<xsl:value-of select="$layoutName" />

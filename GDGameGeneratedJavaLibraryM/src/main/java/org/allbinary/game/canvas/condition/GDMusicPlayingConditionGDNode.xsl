@@ -35,7 +35,7 @@ Created By: Travis Berthelot
                             super.processStats();
                             
                             if(true) {
-                                //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                                 
                                 <xsl:if test="../actions" >
                                 //MusicPlaying - actions - START

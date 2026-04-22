@@ -106,6 +106,7 @@ Created By: Travis Berthelot
                 import org.allbinary.time.TimeDelayHelper;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.util.BasicArrayListD;
 
                 //GameGlobals name=<xsl:value-of select="properties/name" />
                 public class GDGameGlobals extends GDGlobals
@@ -392,7 +393,7 @@ Created By: Travis Berthelot
 
                         layerManagerEventHandler.addListener(layerManagerEventListener);
                         
-                        logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                        logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
                     }
                     
                     public void reset() {

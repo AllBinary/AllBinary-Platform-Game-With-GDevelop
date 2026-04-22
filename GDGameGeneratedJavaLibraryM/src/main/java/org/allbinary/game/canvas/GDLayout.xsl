@@ -105,6 +105,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.NullUtil;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.util.BasicArrayListD;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimation extends GDSpecialAnimation
@@ -192,7 +193,7 @@ Created By: Travis Berthelot
                         
                         gdNodeStatsFactory.log(stringBuilder, this);
                         
-                        logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                        logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
                     }
 
                     public void process() {
@@ -240,7 +241,7 @@ Created By: Travis Berthelot
                             final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) gameLayer.gdObject;
                             if(motionGestureEvent.getId() == <xsl:value-of select="name" />.getId()) {
                                 <xsl:value-of select="name" />.setId(-1);
-                                <xsl:value-of select="name" />.setPoint(PointFactory.getInstance().ZERO_ZERO);
+                                <xsl:value-of select="name" />.setPoint(pointFactory.getInstance().ZERO_ZERO);
                             }
                         }
                             </xsl:if>
@@ -423,7 +424,7 @@ Created By: Travis Berthelot
 
                             //Rectangle 2
                             final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
-                                pointFactory.getInstance(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
+                                pointFactory.getInstance0(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
                                 <xsl:value-of select="name" />GDobject.Width(globals.graphics), <xsl:value-of select="name" />GDobject.Height(globals.graphics));
                             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         }
@@ -511,7 +512,7 @@ Created By: Travis Berthelot
                         
                         <xsl:if test="not(contains($hasHighscoreSubmissionComplete, 'found'))" >
                         //This layout should not be the highscore layout
-                        logUtil.put("This layout should not be the highscore layout", this, commonStrings.PROCESS);
+                        logUtil.putF("This layout should not be the highscore layout", this, commonStrings.PROCESS);
                         globals.highscoreSubmissionComplete = false;
                         </xsl:if>
 

@@ -31,7 +31,7 @@ Created By: Travis Berthelot
                         public boolean process() throws Exception {
                             super.processStats();
                             
-                            //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                            //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
         <xsl:if test="../conditions" >
             //Sibling Conditions
@@ -121,7 +121,7 @@ Created By: Travis Berthelot
                         @Override
                         public void processReleased() throws Exception { //Rotate
                             super.processReleasedStats();
-                            //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE);
+                            //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE);
 
         <xsl:if test="../conditions" >
             //Sibling Conditions
@@ -234,7 +234,7 @@ Created By: Travis Berthelot
                         public boolean processGPaint(final GDObject <xsl:value-of select="$name" />, final GDObject gdObject2IsNull, final Graphics graphics) {
                         
                             try {
-                                //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                                 //Parameters - 3
 
                                 <xsl:if test="../conditions/type/value = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
@@ -267,7 +267,7 @@ Created By: Travis Berthelot
 
                         @Override
                         public boolean processReleased(final GDObject <xsl:value-of select="$name" />) {
-                            //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                            //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                             <xsl:variable name="isAllowedToRelease" >
                                 <xsl:for-each select="../conditions" >

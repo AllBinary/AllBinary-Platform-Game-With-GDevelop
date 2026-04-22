@@ -411,7 +411,7 @@ Created By: Travis Berthelot
                         index++;
                     }
                     //+ stringMaker.toString()
-                    //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + LAYOUT, this, commonStrings.PROCESS);
+                    //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + LAYOUT, this, commonStrings.PROCESS);
                     final GDNode layoutGDNode = (GDNode) gdLayoutGDNodes.layoutGDNodeList.get(index);
                     //externalLinkLayoutGDNode - process
                     layoutGDNode.process();
@@ -423,7 +423,7 @@ Created By: Travis Berthelot
                 public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                     super.processGDStats(gameLayer);
 
-                    //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                     this.process();
                     
@@ -2459,7 +2459,7 @@ Created By: Travis Berthelot
                                 <xsl:variable name="typeValue" select="type/value" />
                                 <xsl:if test="$typeValue = 'SourisSurObjet'" >
                             //Condition - //SourisSurObjet - call - motionGestureEvent
-                            //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
                                 </xsl:if>
                             </xsl:for-each>

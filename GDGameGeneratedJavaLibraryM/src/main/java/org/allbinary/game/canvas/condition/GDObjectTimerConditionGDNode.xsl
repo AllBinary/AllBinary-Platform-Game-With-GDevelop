@@ -94,7 +94,7 @@ Created By: Travis Berthelot
 
                                         timeDelayHelper = (TimeDelayHelper) <xsl:value-of select="$list" />.get(index);
                                         if(<xsl:if test="$inverted = 'true'" >!</xsl:if>timeDelayHelper.isTime(startTime)) {
-                                            //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                                             <xsl:variable name="conditionPosition" ><xsl:value-of select="position()" /></xsl:variable>
                                             <xsl:for-each select=".." >
@@ -153,7 +153,7 @@ Created By: Travis Berthelot
                                 this.currentRunnable = this.runnable;
                             //} else {
                                 //Best to not remark out when parent conditions include: SourisBouton, SourisSurObjet, or KeyFromTextPressed
-                                //logUtil.put(commonStrings.EXCEPTION_LABEL + "Runnable already set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception());
+                                //logUtil.putF(commonStrings.EXCEPTION_LABEL + "Runnable already set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception());
                             //}
 
                             return true;
@@ -166,7 +166,7 @@ Created By: Travis Berthelot
                             if(this.currentRunnable != NullRunnable.getInstance()) {
                                 this.currentRunnable = NullRunnable.getInstance();
                             } else {
-                                logUtil.put(commonStrings.EXCEPTION_LABEL + "Runnable was not set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE);
+                                logUtil.putF(commonStrings.EXCEPTION_LABEL + "Runnable was not set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE);
                             }
                         }
 

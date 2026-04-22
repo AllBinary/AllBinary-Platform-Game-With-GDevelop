@@ -92,6 +92,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.string.StringMaker;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.util.BasicArrayListD;
 
                 //LayoutExternalEvent name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes extends SpecialAnimation
@@ -173,7 +174,7 @@ Created By: Travis Berthelot
                                 </xsl:if>
                             </xsl:for-each>
                             
-                            logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                            logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
 
                         } catch(Exception e) {
                             logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);

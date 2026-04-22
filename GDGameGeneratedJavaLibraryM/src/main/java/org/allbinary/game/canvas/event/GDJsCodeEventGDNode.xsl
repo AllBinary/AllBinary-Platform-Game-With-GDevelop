@@ -59,7 +59,7 @@ Created By: Travis Berthelot
                                                 try {
                                                     textToSpeech.process(speech);
                                                 } catch(Exception e) {
-                                                    logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
+                                                    logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                                                 }
                                             }
                                         };

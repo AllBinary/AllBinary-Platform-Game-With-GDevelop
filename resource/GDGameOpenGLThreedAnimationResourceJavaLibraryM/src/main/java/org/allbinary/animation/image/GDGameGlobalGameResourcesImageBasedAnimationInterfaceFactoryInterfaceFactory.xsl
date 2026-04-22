@@ -118,6 +118,7 @@ import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.logic.math.PrimitiveIntUtil;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.game.canvas.GDGameThreedAnimationResources;
 

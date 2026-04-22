@@ -88,7 +88,7 @@ public class <GDLayout> extends StartCanvas
 
     public void initPostPaint() throws Exception
     {
-        //logUtil.put("initPostPaint", this, "initPostPaint");
+        //logUtil.putF("initPostPaint", this, "initPostPaint");
 
         //this.setBasicGameDemoPaintable(
                 //new GDGameMenuPaintable(new FormPaintable(this.getMenuForm()))
@@ -181,7 +181,7 @@ public class <GDLayout> extends StartCanvas
 
 //    protected int getNextRandom()
 //    {
-//    	PreLogUtil.put("******************Demo Next Random Is Always 1", this, "getNextRandom");
+//    	PrelogUtil.putF("******************Demo Next Random Is Always 1", this, "getNextRandom");
 //        // return MyRandom.getAbsoluteNextInt(Integer.MAX_VALUE / 10) + 1;
 //        return 1;
 //    }

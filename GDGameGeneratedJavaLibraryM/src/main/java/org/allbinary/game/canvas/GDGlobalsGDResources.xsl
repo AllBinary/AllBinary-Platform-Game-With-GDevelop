@@ -87,6 +87,7 @@ Created By: Travis Berthelot
                 
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.util.BasicArrayListD;
                 import org.allbinary.game.layer.GDRotationBehaviorFactory;
                 import org.allbinary.game.configuration.feature.Features;
                 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
@@ -184,7 +185,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     //objectsGroups - END
 
-                    logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                    logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
 
                         //} catch(Exception e) {
                             //logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);

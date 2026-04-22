@@ -61,10 +61,10 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                             if(gdGameLayerList.contains(gdGameLayer)) {
-                                //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + gdGameLayer, this, commonStrings.PROCESS);
+                                //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + gdGameLayer, this, commonStrings.PROCESS);
                                 gdGameLayerRemoveList.add(gdGameLayer);
                             } //else {
-                                //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " Already added for deletion from LayerManager: " + gdGameLayer, this, commonStrings.PROCESS);
+                                //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " Already added for deletion from LayerManager: " + gdGameLayer, this, commonStrings.PROCESS);
                             //}
                                 
                         <xsl:if test="contains($hasObjectGroup2, 'found')" >
@@ -93,7 +93,7 @@ Created By: Travis Berthelot
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList.size(); index++) {
                         
                                 gdGameLayer = (GDGameLayer) gdGameLayerList.get(index);
-                                //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + gdGameLayer, this, commonStrings.PROCESS);
+                                //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + gdGameLayer, this, commonStrings.PROCESS);
                                 //This removes itself from the list
                                 gdGameLayer.setDestroyed(true);
                                 //gdGameLayerRemoveList.add(gdGameLayer);
@@ -239,7 +239,7 @@ Created By: Travis Berthelot
                                             
                             try {
 
-                                //logUtil.put(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if></xsl:for-each>, this, commonStrings.PROCESS);
+                                //logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if></xsl:for-each>, this, commonStrings.PROCESS);
 
                                     //Parameters - 5
                                     
@@ -257,10 +257,10 @@ Created By: Travis Berthelot
                                             //final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
                                             //if(allBinaryGameLayerManager.getLayerManager().contains(<xsl:value-of select="$firstParam" />GDGameLayer)) {
                                                 //allBinaryGameLayerManager.remove(<xsl:value-of select="$firstParam" />GDGameLayer);-->
-                                                //logUtil.put(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + <xsl:value-of select="$firstParam" />GDGameLayer, this, commonStrings.PROCESS);
+                                                //logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + <xsl:value-of select="$firstParam" />GDGameLayer, this, commonStrings.PROCESS);
                                                 <xsl:value-of select="$firstParam" />GDGameLayer.setDestroyed(true);
 <!--                                            //} else {
-                                                //logUtil.put(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + " LayerManager does not have (probably already removed/destroyed): " + <xsl:value-of select="$firstParam" />GDGameLayer, this, commonStrings.PROCESS);
+                                                //logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + " LayerManager does not have (probably already removed/destroyed): " + <xsl:value-of select="$firstParam" />GDGameLayer, this, commonStrings.PROCESS);
                                             //}-->
                                     <xsl:text>&#10;</xsl:text>
 

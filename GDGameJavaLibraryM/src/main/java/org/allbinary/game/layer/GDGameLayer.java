@@ -695,7 +695,7 @@ public class GDGameLayer
 //        graphics.drawLine(this.x + x + halfWidth, this.y + startY + halfHeight, this.x + x + halfWidth, this.y + endY + halfHeight);
 //
 //        stringBuilder.delete(0, stringBuilder.length());
-//        logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(objectStrings.ANGLE).append(index).append(commonSeps.COLON).append(this.x).append(commonSeps.COLON).append(x).append(commonSeps.COLON).append(halfWidth).toString());
+//        logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(objectStrings.ANGLE).appendint(index).append(commonSeps.COLON).append(this.x).append(commonSeps.COLON).append(x).append(commonSeps.COLON).append(halfWidth).toString());
 //        
 //        }
         

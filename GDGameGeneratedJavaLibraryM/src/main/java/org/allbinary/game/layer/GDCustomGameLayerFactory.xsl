@@ -37,6 +37,7 @@ import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 public class GDCustomGameLayerFactory extends GDGameLayerFactory
 {
@@ -87,12 +88,12 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
         
         if(!name.startsWith(gdObject.name)) {
             final StringUtil stringUtil = StringUtil.getInstance();
-            logUtil.put(new StringMaker().append(name).append(" 0GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").append(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(stringUtil.toString(this.animationInterfaceFactoryInterfaceArray[0])).toString(), this, "create", new Exception());
+            logUtil.put(new StringMaker().append(name).append(" 0GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").appendint(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(stringUtil.toString(this.animationInterfaceFactoryInterfaceArray[0])).toString(), this, "create", new Exception());
         }
 
         final int gdObjectWidth = gdObject.Width(null);
         final int gdObjectHeight = gdObject.Height(null);
-        ////logUtil.put(new StringMaker().append(name).append(" 1GDObject name: ").append(gdObject.name).append(" gdObjectWidth: ").append(gdObjectWidth).append("gdObjectHeight: ").append(gdObjectHeight).append(" this.width: ").append(this.width).append(" this.height: ").append(this.height).toString(), this, "create");
+        ////logUtil.put(new StringMaker().append(name).append(" 1GDObject name: ").append(gdObject.name).append(" gdObjectWidth: ").appendint(gdObjectWidth).append("gdObjectHeight: ").appendint(gdObjectHeight).append(" this.width: ").appendint(this.width).append(" this.height: ").appendint(this.height).toString(), this, "create");
         if(gdObjectWidth != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> gdObjectHeight != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> (this.width != gdObjectWidth || this.height != gdObjectHeight)) {
             this.layerInfo.setWidth(gdObjectWidth);
             this.layerInfo.setHeight(gdObjectHeight);

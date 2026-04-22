@@ -73,6 +73,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.NullUtil;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.util.BasicArrayListD;
 
                 //Game name=<xsl:value-of select="$gameName" />
                 public class GDGlobalsSpecialAnimation extends GDSpecialAnimation
@@ -109,7 +110,7 @@ Created By: Travis Berthelot
                         
                     public GDGlobalsSpecialAnimation() {
 
-                        logUtil.put(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
+                        logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
                     }
 
                     public void process(final long timeDelta) {
@@ -232,7 +233,7 @@ Created By: Travis Berthelot
 
                             //TextObject::Text - //Rectangle 1
                             final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
-                                pointFactory.getInstance(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
+                                pointFactory.getInstance0(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
                                 <xsl:value-of select="name" />GDobject.Width(globals.graphics) * scale, <xsl:value-of select="name" />GDobject.Height(globals.graphics) * scale);
                             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         }

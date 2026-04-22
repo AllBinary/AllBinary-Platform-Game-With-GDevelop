@@ -712,7 +712,7 @@ extends GDWaypointBehavior
             /*
             if(this.getOwnerAdvancedRTSGameLayer().isSelected())
             {
-                logUtil.put(commonStrings.START, this, "selected: processTargeting");
+                logUtil.putF(commonStrings.START, this, "selected: processTargeting");
             }
             */
             

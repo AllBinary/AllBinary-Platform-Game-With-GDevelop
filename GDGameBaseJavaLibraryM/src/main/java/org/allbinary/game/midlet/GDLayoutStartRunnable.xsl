@@ -87,7 +87,7 @@ public class GDGameStart<GDLayout>CanvasRunnable implements Runnable
 
             this.demoGameMidlet.postDemoSetup();
 
-            logUtil.put(commonStrings.END_RUNNABLE, this, commonStrings.RUN);
+            logUtil.putF(commonStrings.END_RUNNABLE, this, commonStrings.RUN);
         }
         catch (Exception e)
         {

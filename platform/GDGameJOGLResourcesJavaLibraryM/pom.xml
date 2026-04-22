@@ -68,7 +68,7 @@
                         </goals>
                         <configuration>
                             <includes>**\/*.wav, **\/*.png, **\/*.html</includes>
-                            <outputDirectory>../j2se/GDGameJ2SEWithSWTJOGLApplicationM/src/main/resources/</outputDirectory>
+                            <outputDirectory>../../platformx/j2se/GDGameJ2SEWithSWTJOGLApplicationM/src/main/resources/</outputDirectory>
                             <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
                             <overWriteSnapshots>true</overWriteSnapshots>
                             <overWriteReleases>true</overWriteReleases>
@@ -82,7 +82,7 @@
                         </goals>
                         <configuration>
                             <includes>**\/*.wav, **\/*.png, **\/*.html</includes>
-                            <outputDirectory>../j2se/GDGameJ2SEWithSWTJOGLFastBuildApplicationM/src/main/resources/</outputDirectory>
+                            <outputDirectory>../../platformx/j2se/GDGameJ2SEWithSWTJOGLFastBuildApplicationM/src/main/resources/</outputDirectory>
                             <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
                             <overWriteSnapshots>true</overWriteSnapshots>
                             <overWriteReleases>true</overWriteReleases>
@@ -96,7 +96,7 @@
                         </goals>
                         <configuration>
                             <includes>**\/*.wav, **\/*.png, **\/*.html</includes>
-                            <outputDirectory>../j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/resources/</outputDirectory>
+                            <outputDirectory>../../platformx/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/resources/</outputDirectory>
                             <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
                             <overWriteSnapshots>true</overWriteSnapshots>
                             <overWriteReleases>true</overWriteReleases>
@@ -110,7 +110,7 @@
                         </goals>
                         <configuration>
                             <includes>**\/*.wav, **\/*.png, **\/*.html</includes>
-                            <outputDirectory>../j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/main/resources/</outputDirectory>
+                            <outputDirectory>../../platformx/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/main/resources/</outputDirectory>
                             <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
                             <overWriteSnapshots>true</overWriteSnapshots>
                             <overWriteReleases>true</overWriteReleases>
@@ -124,7 +124,7 @@
                         </goals>
                         <configuration>
                             <includes>**\/*.wav, **\/*.png, **\/*.html</includes>
-                            <outputDirectory>../avian/GDGameAvianJOGLApplicationM/src/main/resources/</outputDirectory>
+                            <outputDirectory>../../platformx/avian/GDGameAvianJOGLApplicationM/src/main/resources/</outputDirectory>
                             <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
                             <overWriteSnapshots>true</overWriteSnapshots>
                             <overWriteReleases>true</overWriteReleases>
@@ -138,7 +138,7 @@
                         </goals>
                         <configuration>
                             <includes>**\/*.wav, **\/*.png, **\/*.html</includes>
-                            <outputDirectory>../avian/GDGameThreedAvianJOGLApplicationM/src/main/resources/</outputDirectory>
+                            <outputDirectory>../../platformx/avian/GDGameThreedAvianJOGLApplicationM/src/main/resources/</outputDirectory>
                             <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
                             <overWriteSnapshots>true</overWriteSnapshots>
                             <overWriteReleases>true</overWriteReleases>

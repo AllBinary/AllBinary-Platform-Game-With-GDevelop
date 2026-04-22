@@ -20,15 +20,15 @@
         <inputPath2>src\main\java\</inputPath2>
         <inputPath7>src\main\resources\</inputPath7>
         <inputPath>target\dependency\</inputPath>
-        <outputPath>..\GDGameJ2SEWithSWTJOGLApplicationM\src\main\java\</outputPath>
+        <outputPath>..\..\..\platformx\j2se\GDGameJ2SEWithSWTJOGLApplicationM\src\main\java\</outputPath>
         
         <inputPath3>..\..\..\Resources\2d\images\raw\</inputPath3>
         <inputPath4>..\..\..\Resources\sounds\release\</inputPath4>
 <!--        <inputPath4>..\..\..\Resources\sounds\ogg_stereo\</inputPath4>-->
         <inputPath5>${project.build.directory}/resources</inputPath5>
         <inputPath6>..\..\..\..\working_thirdparty\media\speech\resource\</inputPath6>
-        <outputPath2>..\GDGameJ2SEWithSWTJOGLApplicationM\src\main\resources\</outputPath2>
-        <outputPath3>..\GDGameJ2SEWithSWTJOGLFastBuildApplicationM\src\main\resources\</outputPath3>
+        <outputPath2>..\..\..\platformx\j2se\GDGameJ2SEWithSWTJOGLApplicationM\src\main\resources\</outputPath2>
+        <outputPath3>..\..\..\platformx\j2se\GDGameJ2SEWithSWTJOGLFastBuildApplicationM\src\main\resources\</outputPath3>
         
     </properties>
 

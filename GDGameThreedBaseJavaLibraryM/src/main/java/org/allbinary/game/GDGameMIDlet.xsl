@@ -107,7 +107,7 @@ public class GDGameMIDlet extends
        final StringMaker stringBuilder = new StringMaker();
        for(short index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> SIZE; index++) {
            stringBuilder.delete(0, stringBuilder.length());
-           groupNames[index] = stringBuilder.append(GROUP_).append(index).toString();
+           groupNames[index] = stringBuilder.append(GROUP_).appendint(index).toString();
    }
        GroupFactory.getInstance().init(SIZE, groupNames);
        GroupLayerManagerListener.getInstance().init(SIZE);
@@ -154,7 +154,7 @@ public class GDGameMIDlet extends
 
     public synchronized void set<xsl:value-of select="$name" />RunnableInterface() throws Exception
     {
-        logUtil.put(commonStrings.START, this, "set<xsl:value-of select="$name" />");
+        logUtil.putF(commonStrings.START, this, "set<xsl:value-of select="$name" />");
 
         ////TWB - Loading Feature Change - Can remove remark after testing
         ProgressCanvasFactory.getInstance().start();
@@ -193,7 +193,7 @@ public class GDGameMIDlet extends
 
     public synchronized void set<xsl:value-of select="$name" />RunnableInterface() throws Exception
     {
-        logUtil.put(commonStrings.START, this, "set<xsl:value-of select="$name" />");
+        logUtil.putF(commonStrings.START, this, "set<xsl:value-of select="$name" />");
 
         ////TWB - Loading Feature Change - Can remove remark after testing
         ProgressCanvasFactory.getInstance().start();
@@ -245,15 +245,15 @@ public class GDGameMIDlet extends
 
    protected void mediaShutdown() throws Exception
    {
-        //PreLogUtil.put(commonStrings.START, this, "mediaShutdown - postStopGameCanvasRunnableInterface");
+        //PrelogUtil.putF(commonStrings.START, this, "mediaShutdown - postStopGameCanvasRunnableInterface");
 
-        logUtil.put(commonStrings.START, this,
+        logUtil.putF(commonStrings.START, this,
                 "mediaShutdown - postStopGameCanvasRunnableInterface");
 
         AllBinaryMediaManagerShutdown.shutdown(EarlySoundsFactory.getInstance());
         AllBinaryMediaManagerShutdown.shutdown(GDGameSoundsFactory.getInstance());
 
-        logUtil.put(commonStrings.END, this,
+        logUtil.putF(commonStrings.END, this,
                 "mediaShutdown - postStopGameCanvasRunnableInterface");
    }
 
@@ -261,7 +261,7 @@ public class GDGameMIDlet extends
 //    {
         <!--
         <xsl:if test="$totalLayouts > 1" >
-        logUtil.put(commonStrings.START, this, "setDemo");
+        logUtil.putF(commonStrings.START, this, "setDemo");
 
         ProgressCanvasFactory.getInstance().start();
 
@@ -283,14 +283,14 @@ public class GDGameMIDlet extends
     protected void setDisplay(final Displayable newDisplay)
     {
         gameGlobalsFactory.newDisplaybleTime = System.currentTimeMillis();
-        //logUtil.put("newDisplaybleTime: " + gameGlobalsFactory.newDisplaybleTime, this, "setDisplay");
+        //logUtil.putF("newDisplaybleTime: " + gameGlobalsFactory.newDisplaybleTime, this, "setDisplay");
         super.setDisplay(newDisplay);
     }
 
     //private final String NEW_CANVAS = commonStrings.START + "newCanvas";
     public void startGameCanvasRunnableInterface() throws Exception {
     
-        //logUtil.put(NEW_CANVAS, this, "startGameCanvasRunnableInterface");
+        //logUtil.putF(NEW_CANVAS, this, "startGameCanvasRunnableInterface");
 
         gameGlobalsFactory.newCanvas = true;
         super.startGameCanvasRunnableInterface();
@@ -330,7 +330,7 @@ public class GDGameMIDlet extends
                 }
                 else
                 {
-                    logUtil.put("Starting Game Too Often", this, MidletStrings.getInstance().COMMAND_ACTION);
+                    logUtil.putF("Starting Game Too Often", this, MidletStrings.getInstance().COMMAND_ACTION);
                 }
            
        </xsl:for-each>                

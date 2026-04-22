@@ -28,7 +28,7 @@ Created By: Travis Berthelot
 
         //caller=<xsl:value-of select="$caller" /> - //paintDebugButtons - START
         final BasicColorSetUtil basicColorUtil = BasicColorSetUtil.getInstance();
-        basicColorUtil.setBasicColorP(
+        basicColorUtil.setBasicColorP3(
                 graphics, BasicColorFactory.getInstance().RED, BasicColorFactory.getInstance().RED.intValue());
         
         <xsl:for-each select="events" >

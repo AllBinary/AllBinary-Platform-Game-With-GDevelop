@@ -133,7 +133,7 @@ public class GDGameMotionGestureListener implements MotionGestureEventListener
     {
         try
         {
-            //logUtil.put(commonStrings.START, this, "release");
+            //logUtil.putF(commonStrings.START, this, "release");
 
             final int size = gameLayerDraggedList.size();
             
