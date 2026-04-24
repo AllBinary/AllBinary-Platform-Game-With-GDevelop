@@ -38,9 +38,9 @@
         
         <module>../GDGameThreedAndroidClientInfoJavaLibraryM</module>
         
-        <module>../../../platformx/android/GDGameThreedAndroidM</module>
+        <module>../../../platform/android/GDGameThreedAndroidM</module>
         
-        <module>../../../platformx/android/GDGameThreedAndroidGradleM</module>
+        <module>../../../platform/android/GDGameThreedAndroidGradleM</module>
         <!--
         <module>../../../platformx/android/GDGameThreedAndroidApplicationM</module>
         -->

@@ -144,7 +144,7 @@ extends BaseTouchInput
             if(basicTouchButtonCellPositionFactory.THIRD_FROM_BOTTOM_RIGHT != 
                 CellPositionFactory.getInstance().NONE)
             {
-                TouchButton WEAPON = new TouchButton(basicTouchInputFactory.SPECIAL_BUTTON_FIVE,
+                TouchButton WEAPON = TouchButton.create(basicTouchInputFactory.SPECIAL_BUTTON_FIVE,
                         TouchButtonGenericActionResource.getInstance(),
                         commonButtons.NORMAL_BUTTON,
                         basicTouchButtonCellPositionFactory.THIRD_FROM_BOTTOM_RIGHT,
@@ -155,7 +155,7 @@ extends BaseTouchInput
                 list.add(WEAPON);
             }
             
-            TouchButton SPECIAL3 = new TouchButton(
+            TouchButton SPECIAL3 = TouchButton.create(
                     basicTouchInputFactory.SPECIAL_BUTTON_SIX,
                     TouchButtonGenericActionResource.getInstance(),
                     commonButtons.NORMAL_BUTTON,
@@ -164,7 +164,7 @@ extends BaseTouchInput
                     touchButtonLocationHelper.getRowsRemainderHalf()
                     );
 
-            TouchButton SPECIAL4 = new TouchButton(
+            TouchButton SPECIAL4 = TouchButton.create(
                     basicTouchInputFactory.SPECIAL_BUTTON_SEVEN_TESTING_ONLY,
                     TouchButtonGenericActionResource.getInstance(),
                     commonButtons.NORMAL_BUTTON,
@@ -174,7 +174,7 @@ extends BaseTouchInput
                     );
             
             /*
-            TouchButton ROTATE_Z = new TouchButton(basicTouchInputFactory.SPECIAL_BUTTON_EIGHT_TESTING_ONLY,
+            TouchButton ROTATE_Z = TouchButton.create(basicTouchInputFactory.SPECIAL_BUTTON_EIGHT_TESTING_ONLY,
                     animationInterface,
                     commonButtons.NORMAL_BUTTON,
                     basicTouchButtonCellPositionFactory.SECOND_FROM_TOP_LEFT,

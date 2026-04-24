@@ -151,12 +151,12 @@ public class GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInt
     
     public GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
-        super("Game Image Animations");
+        super("Game Image Animations", new Hashtable(), new Hashtable(), new Hashtable());
     }
 
     public GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
-        super(name);
+        super(name, new Hashtable(), new Hashtable(), new Hashtable());
     }
     
     public void init(int level)

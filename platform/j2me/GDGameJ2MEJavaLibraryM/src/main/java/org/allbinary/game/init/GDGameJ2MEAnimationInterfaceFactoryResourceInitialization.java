@@ -36,7 +36,7 @@ extends ResourceInitialization
         
         //TWB - TouchButton
         FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance().add(
-                new TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory());
+                TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.create());
         
         FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance().add(
                 new GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory());

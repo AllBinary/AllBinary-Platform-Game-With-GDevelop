@@ -417,7 +417,7 @@ Created By: Travis Berthelot
 
                     private final LayerManagerEventListener layerManagerEventListener;
                     
-                    public final GameTickTimeDelayHelper globalsGameTickTimeDelayHelper = new GameTickTimeDelayHelper();
+                    public final GameTickTimeDelayHelper globalsGameTickTimeDelayHelper = new GameTickTimeDelayHelper(System.currentTimeMillis());
                  
                     private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals() {
                     

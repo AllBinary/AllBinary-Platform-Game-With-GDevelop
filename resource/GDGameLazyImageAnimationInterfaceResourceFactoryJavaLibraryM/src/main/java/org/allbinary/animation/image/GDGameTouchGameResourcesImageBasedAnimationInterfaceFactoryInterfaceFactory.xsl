@@ -137,12 +137,12 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
             
     public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
-        super("Game Image Animations");
+        super("Game Image Animations", new Hashtable(), new Hashtable(), new Hashtable());
     }
 
     public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
-        super(name);
+        super(name, new Hashtable(), new Hashtable(), new Hashtable());
     }
     
     public void init(int level)

@@ -159,12 +159,12 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageB
 
     public GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
-        super("Game Image Animations");
+        super("Game Image Animations", new Hashtable(), new Hashtable(), new Hashtable());
     }
 
     public GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
-        super(name);
+        super(name, new Hashtable(), new Hashtable(), new Hashtable());
     }
     
     public void init(int level)

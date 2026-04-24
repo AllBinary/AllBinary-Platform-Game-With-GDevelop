@@ -14,6 +14,7 @@
 package org.allbinary.game.canvas;
 
 import javax.microedition.lcdui.CommandListener;
+import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Graphics;
 
 import org.allbinary.game.init.GDGameStaticInitializerFactory;
@@ -98,7 +99,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
         super.initSpecialPaint();
 
         this.setStartIntermissionPaintable(new StartIntermissionPaintable(
-                this, new String[] {StringUtil.getInstance().EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED));
+                this, new String[] {StringUtil.getInstance().EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED, Font.getDefaultFont()));
     }
 
     public void mediaInit() throws Exception
