@@ -231,7 +231,7 @@ Created By: Travis Berthelot
                 this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
                 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
-                                pointFactory.getInstance0(
+                                pointFactory.createXY(
                                 <xsl:if test="animations/directions/sprites/originPoint/x != 0" >
                                 (<xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/x" />), 
                                 </xsl:if>
@@ -351,7 +351,7 @@ Created By: Travis Berthelot
                 final float newX = (<xsl:value-of select="$name" />LayerInfo.getWidth() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getWidth()) / 2;
                 final float newY = (<xsl:value-of select="$name" />LayerInfo.getHeight() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getHeight()) / 2;
                 final Rectangle <xsl:value-of select="$name" />RotationCollisionMask = new Rectangle(
-                                pointFactory.getInstance0((int) (newX * 3 * autoScale), (int) (newY * 3 * autoScale)), (int) (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * autoScale), (int) (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * autoScale)
+                                pointFactory.createXY((int) (newX * 3 * autoScale), (int) (newY * 3 * autoScale)), (int) (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * autoScale), (int) (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * autoScale)
                                 );
                 for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$animationTotal" />; index2++) {
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 360; index++) {
@@ -385,7 +385,7 @@ Created By: Travis Berthelot
                 //logUtil.putF("<xsl:value-of select="$name" /> hackScale: " + hackScale, this, commonStrings.INIT);
 
                 final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
-                                pointFactory.getInstance0((int) (<xsl:value-of select="array[1]/x" /> * hackScale), (int) (<xsl:value-of select="array[1]/y" /> * hackScale)),
+                                pointFactory.createXY((int) (<xsl:value-of select="array[1]/x" /> * hackScale), (int) (<xsl:value-of select="array[1]/y" /> * hackScale)),
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * hackScale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * hackScale)
                                 );
 
@@ -473,7 +473,7 @@ Created By: Travis Berthelot
                 final float newX = (<xsl:value-of select="$name" />LayerInfo.getWidth() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getWidth()) / 2;
                 final float newY = (<xsl:value-of select="$name" />LayerInfo.getHeight() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getHeight()) / 2;
                 final Rectangle <xsl:value-of select="$name" />RotationCollisionMask = new Rectangle(
-                                pointFactory.getInstance0((int) (newX * 3 * autoScale), (int) (newY * 3 * autoScale)), (int) (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * autoScale), (int) (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * autoScale)
+                                pointFactory.createXY((int) (newX * 3 * autoScale), (int) (newY * 3 * autoScale)), (int) (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * autoScale), (int) (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * autoScale)
                                 );
                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 360; index++) {
                     rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][index] = <xsl:value-of select="$name" />RotationCollisionMask;
@@ -498,7 +498,7 @@ Created By: Travis Berthelot
                             <xsl:for-each select="customCollisionMask" >
                 //logUtil.putF("<xsl:value-of select="$name" /> scale: " + scale, this, commonStrings.INIT);
                 final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
-                                pointFactory.getInstance0((int) (<xsl:value-of select="array[1]/x" /> * scale), (int) (<xsl:value-of select="array[1]/y" /> * scale)),
+                                pointFactory.createXY((int) (<xsl:value-of select="array[1]/x" /> * scale), (int) (<xsl:value-of select="array[1]/y" /> * scale)),
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * scale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * scale)
                                 );
 
@@ -584,7 +584,7 @@ Created By: Travis Berthelot
                 this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
                 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
-                                pointFactory.getInstance0(0, 0),
+                                pointFactory.createXY(0, 0),
                                 0, 0
                                 );
 
@@ -786,7 +786,7 @@ Created By: Travis Berthelot
                 this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="$name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
 
                 final Rectangle <xsl:value-of select="$name" />LayerInfo = new Rectangle(
-                                pointFactory.getInstance0(0, 0),
+                                pointFactory.createXY(0, 0),
                 <xsl:for-each select="childrenContent" >
                     <xsl:for-each select="Background" >
                         <xsl:value-of select="width" />, <xsl:value-of select="height" />
@@ -825,7 +825,7 @@ Created By: Travis Berthelot
                 this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
-                                pointFactory.getInstance0(0, 0),
+                                pointFactory.createXY(0, 0),
                                 <xsl:value-of select="name" />TextAnimationSize * (12 - 1), <xsl:value-of select="name" />TextAnimationSize
                                 );
 
@@ -872,7 +872,7 @@ Created By: Travis Berthelot
                 this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
-                                pointFactory.getInstance0(0, 0),
+                                pointFactory.createXY(0, 0),
                                 <xsl:value-of select="name" />TextInputAnimationSize * (12 - 1), <xsl:value-of select="name" />TextInputAnimationSize
                                 );
 

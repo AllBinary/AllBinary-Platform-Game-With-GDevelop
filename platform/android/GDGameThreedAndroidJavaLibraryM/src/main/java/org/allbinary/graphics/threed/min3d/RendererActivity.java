@@ -10,12 +10,10 @@ import org.allbinary.AndroidResources;
 import org.allbinary.string.CommonStateStrings;
 import org.allbinary.data.resource.ResourceUtil;
 import org.allbinary.device.OpenGLESGraphicsCompositeFactory;
-import org.allbinary.device.OpenGLESGraphicsFactory;
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.view.OptimizedGLSurfaceView;
 import org.microemu.opengles.device.PlatformOpenGLESGraphicsFactory;
@@ -52,7 +50,7 @@ public class RendererActivity extends Activity //implements ISceneController
         {
             super.onCreate(savedInstanceState);
 
-            ResourceUtil.getInstance().setContext(this);
+            ResourceUtil.getInstance().setContextFromActivity(this);
             ResourceUtil.getInstance().setResources(this.getResources());
 
             final Features features = Features.getInstance();

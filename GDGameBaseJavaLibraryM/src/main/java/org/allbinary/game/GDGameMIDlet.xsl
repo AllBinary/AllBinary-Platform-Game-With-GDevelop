@@ -55,7 +55,10 @@ import org.allbinary.canvas.GameGlobalsFactory;
 import org.allbinary.game.GameInfo;
 import org.allbinary.game.GameMode;
 import org.allbinary.game.GameTypeFactory;
+import org.allbinary.game.midlet.LicenseCheckRunnableFactory;
+import org.allbinary.game.midlet.LicensedDemoSetupFactory;
 import org.allbinary.game.PlayerTypesFactory;
+import org.allbinary.game.score.HighScoresCanvasNoInputProcessorFactory;
 import org.allbinary.game.displayable.canvas.GameCanvasRunnableInterface;
 import org.allbinary.game.identification.GroupFactory;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
@@ -98,7 +101,7 @@ public class GDGameMIDlet extends
 
    public GDGameMIDlet(final ClientInformationFactory clientInformationFactory)
    {
-       super(clientInformationFactory, LicenseLoadingTypeFactory.getIntance().OTHER);
+       super(clientInformationFactory, LicenseLoadingTypeFactory.getIntance().OTHER, new LicensedDemoSetupFactory(), new LicenseCheckRunnableFactory());
        //this.setSaveGameForm(SaveGameForm.getInstance(this, "Save Game"));
        
        //com.sun.lwuit.Display.init(this);
@@ -219,11 +222,14 @@ public class GDGameMIDlet extends
 
    protected HighScoresCanvas createHighScoresCanvas() throws Exception
    {
+       final AllBinaryGameLayerManager layerManager = this.createGameLayerManager();
        return new HighScoresCanvas(this,
-               this.createGameLayerManager(),
+           layerManager,
+           layerManager.getGameInfo(),
                new HighScoresPaintable(),
                //new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance())
-               NoHighScoresFactory.getInstance()
+               NoHighScoresFactory.getInstance(), 
+               new HighScoresCanvasNoInputProcessorFactory()
               );
    }
 
@@ -327,7 +333,7 @@ public class GDGameMIDlet extends
            <xsl:variable name="name" ><xsl:value-of select="translate($name3, ' ', '')" /></xsl:variable>
            <xsl:if test="position() != 1" >} else </xsl:if>if(command.equals(gdGameCommandFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, ' ', '_')" /></xsl:with-param></xsl:call-template>_GD_LAYOUT)) {
            
-                if (this.gameStartTimeHelper.isTime())
+                if (this.gameStartTimeHelper.isTimeTNT())
                 {
                     <!--
                     <xsl:if test="position() = 1 and $totalLayouts > 1" >this.setDemo();</xsl:if>

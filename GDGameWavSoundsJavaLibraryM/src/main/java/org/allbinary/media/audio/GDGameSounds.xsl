@@ -55,13 +55,13 @@ extends BaseSoundsFactory
 
 <xsl:for-each select="layouts" >        
     final GD<xsl:value-of select="position() - 1" />GameMusicFactory gd<xsl:value-of select="position() - 1" />GameMusicFactory = GD<xsl:value-of select="position() - 1" />GameMusicFactory.getInstance();
-    list.addAll(gd<xsl:value-of select="position() - 1" />GameMusicFactory.soundList);
+    list.addAllList(gd<xsl:value-of select="position() - 1" />GameMusicFactory.soundList);
                 
     final GD<xsl:value-of select="position() - 1" />GameSoundsFactory gd<xsl:value-of select="position() - 1" />GameSoundsFactory = GD<xsl:value-of select="position() - 1" />GameSoundsFactory.getInstance();
-    list.addAll(gd<xsl:value-of select="position() - 1" />GameSoundsFactory.soundList);
+    list.addAllList(gd<xsl:value-of select="position() - 1" />GameSoundsFactory.soundList);
 </xsl:for-each>
 
-        soundInterfaceArray = (Sound[]) list.toArray(new Sound[list.size()]);
+        soundInterfaceArray = (Sound[]) list.toArrayType(new Sound[list.size()]);
     }
     
     public Sound[] getSoundInterfaceArray() throws Exception

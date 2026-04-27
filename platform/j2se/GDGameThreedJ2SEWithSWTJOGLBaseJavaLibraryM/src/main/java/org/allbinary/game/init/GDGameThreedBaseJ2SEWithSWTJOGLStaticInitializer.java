@@ -4,7 +4,6 @@ import javax.microedition.lcdui.CommandListener;
 
 import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.game.gd.configuration.GDGameGameFeatures;
-import org.allbinary.game.init.GDGameStaticInitializer;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 
@@ -23,7 +22,7 @@ public class GDGameThreedBaseJ2SEWithSWTJOGLStaticInitializer extends GDGameStat
         super.initKey(portion);
         
         //AndroidGameKey.init();
-        ProgressCanvasFactory.getInstance().addPortion(50, "Game Keys");        
+        ProgressCanvasFactory.getInstance().addNormalPortion(50, "Game Keys");
     }
 
     public void init(final AbeClientInformationInterface abeClientInformation, final CommandListener commandListener, final int level) throws Exception
@@ -40,7 +39,7 @@ public class GDGameThreedBaseJ2SEWithSWTJOGLStaticInitializer extends GDGameStat
         new GDGameGameFeatures().init();
 
         //GameOptionsForm.init(commandListener, new GDGameGameFeatures(), "Game Options");
-        ProgressCanvasFactory.getInstance().addPortion(50, "Game Options");
+        ProgressCanvasFactory.getInstance().addNormalPortion(50, "Game Options");
     }
     
     protected void setAndroidGameInitialized(boolean androidGameInitialized)

@@ -43,7 +43,7 @@ Created By: Travis Berthelot
                 allBinaryGameLayerManager.insert(gameLayer);
             }
                                 
-            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.addAll(
+            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.addAllList(
                 globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList);
                             </xsl:if>
                         </xsl:if>
@@ -67,7 +67,7 @@ Created By: Travis Berthelot
                 allBinaryGameLayerManager.insert(gameLayer);
             }
 
-            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.addAll(
+            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.addAllList(
                 globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList);
                 </xsl:if>
             </xsl:for-each>
@@ -157,8 +157,8 @@ Created By: Travis Berthelot
 -->
                         <xsl:for-each select="points" >
                 //Point name=<xsl:value-of select="name" /> x=<xsl:value-of select="x" /> y=<xsl:value-of select="y" />
-                //public final GPoint <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_POINT = pointFactory.getInstance0(<xsl:value-of select="x" />, <xsl:value-of select="y" />, 0);
-                public final GPoint <xsl:value-of select="name" /> = pointFactory.getInstance0((int) (<xsl:value-of select="x" /> * 36 / 25 <xsl:if test="not(contains($hasMoreThanOneImageOrRotationDisabled, 'found'))" >* 1.44f</xsl:if>), (int) (<xsl:value-of select="y" /> * 36 / 25 <xsl:if test="not(contains($hasMoreThanOneImageOrRotationDisabled, 'found'))" >* 1.44f</xsl:if>), 0);
+                //public final GPoint <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_POINT = pointFactory.createXY(<xsl:value-of select="x" />, <xsl:value-of select="y" />, 0);
+                public final GPoint <xsl:value-of select="name" /> = pointFactory.createXY((int) (<xsl:value-of select="x" /> * 36 / 25 <xsl:if test="not(contains($hasMoreThanOneImageOrRotationDisabled, 'found'))" >* 1.44f</xsl:if>), (int) (<xsl:value-of select="y" /> * 36 / 25 <xsl:if test="not(contains($hasMoreThanOneImageOrRotationDisabled, 'found'))" >* 1.44f</xsl:if>), 0);
                         </xsl:for-each>
                     </xsl:for-each>
                 </xsl:for-each>

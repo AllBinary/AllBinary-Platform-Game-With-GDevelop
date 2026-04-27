@@ -19,11 +19,6 @@ import org.allbinary.animation.vector.ARectangleFilledAnimation;
 import org.allbinary.graphics.color.BasicColor;
 
 import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.string.CommonSeps;
-import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.string.StringMaker;
-import org.allbinary.util.BasicArrayList;
-import org.allbinary.util.CircularIndexUtil;
 
 /**
  *
@@ -58,10 +53,10 @@ public class GDRectOnlyPrimitiveDrawing extends Animation {
     }
 
     @Override
-    public void paint(final Graphics graphics, final int x, final int y)
+    public void paintXY(final Graphics graphics, final int x, final int y)
     {
-        colorAnimation.paint(graphics, x, y);
-        rectangleFilledAnimation.paint(graphics, x, y);
+        colorAnimation.paintXY(graphics, x, y);
+        rectangleFilledAnimation.paintXY(graphics, x, y);
     }
 
     @Override

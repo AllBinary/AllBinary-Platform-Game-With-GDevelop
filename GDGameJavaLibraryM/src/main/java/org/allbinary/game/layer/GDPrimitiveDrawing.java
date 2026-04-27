@@ -19,9 +19,6 @@ import org.allbinary.animation.vector.ARectangleFilledAnimation;
 import org.allbinary.graphics.color.BasicColor;
 
 import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.string.CommonSeps;
-import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.string.StringMaker;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
 import org.allbinary.util.CircularIndexUtil;
@@ -40,7 +37,7 @@ public class GDPrimitiveDrawing extends Animation {
         new BasicArrayListD(), new BasicArrayListD(), new BasicArrayListD(), 
     };
 
-    private final CircularIndexUtil circularIndexUtil = CircularIndexUtil.getInstance(animationListArray.length);
+    private final CircularIndexUtil circularIndexUtil = CircularIndexUtil.create(animationListArray.length);
 
     public final BasicArrayList colorAnimationInUseList = new BasicArrayListD();
     public final BasicArrayList colorAnimationCacheList = new BasicArrayListD();
@@ -58,10 +55,10 @@ public class GDPrimitiveDrawing extends Animation {
         //logUtil.put("nextFrame: " + this.animationListArray[this.circularIndexUtil.getIndex()].size(), this, commonStrings.PROCESS);
         this.animationListArray[this.circularIndexUtil.getIndex()].clear();
         
-        this.colorAnimationCacheList.addAll(this.colorAnimationInUseList);
+        this.colorAnimationCacheList.addAllList(this.colorAnimationInUseList);
         this.colorAnimationInUseList.clear();
         
-        this.aRetangleFilledAnimationCacheList.addAll(this.aRetangleFilledAnimationInUseList);
+        this.aRetangleFilledAnimationCacheList.addAllList(this.aRetangleFilledAnimationInUseList);
         this.aRetangleFilledAnimationInUseList.clear();
     }
 
@@ -73,7 +70,7 @@ public class GDPrimitiveDrawing extends Animation {
             this.animationListArray[this.circularIndexUtil.getIndex()].add(colorAnimation);
             this.colorAnimationInUseList.add(colorAnimation);
         } else {
-            final Animation colorAnimation = (Animation) colorAnimationCacheList.remove(colorAnimationCacheList.size() - 1);
+            final Animation colorAnimation = (Animation) colorAnimationCacheList.removeAt(colorAnimationCacheList.size() - 1);
             colorAnimation.setBasicColorP(basicColor);
             this.animationListArray[this.circularIndexUtil.getIndex()].add(colorAnimation);
             this.colorAnimationInUseList.add(colorAnimation);
@@ -92,7 +89,7 @@ public class GDPrimitiveDrawing extends Animation {
             this.animationListArray[this.circularIndexUtil.getIndex()].add(rectangleFilledAnimation);
             this.aRetangleFilledAnimationInUseList.add(rectangleFilledAnimation);
         } else {
-            final ARectangleFilledAnimation rectangleFilledAnimation = (ARectangleFilledAnimation) aRetangleFilledAnimationCacheList.remove(aRetangleFilledAnimationCacheList.size() - 1);
+            final ARectangleFilledAnimation rectangleFilledAnimation = (ARectangleFilledAnimation) aRetangleFilledAnimationCacheList.removeAt(aRetangleFilledAnimationCacheList.size() - 1);
             rectangleFilledAnimation.x = x;
             rectangleFilledAnimation.y = y;
             rectangleFilledAnimation.width = x2 - x;
@@ -108,7 +105,7 @@ public class GDPrimitiveDrawing extends Animation {
 //    private int lastSize;
 
     @Override
-    public void paint(final Graphics graphics, final int x, final int y)
+    public void paintXY(final Graphics graphics, final int x, final int y)
     {
         final BasicArrayList animationList = this.animationList;
         final int size = animationList.size();
@@ -119,7 +116,7 @@ public class GDPrimitiveDrawing extends Animation {
 //        }
 
         for (int index = 0; index < size; index++) {
-            ((Animation) animationList.get(index)).paint(graphics, x, y);
+            ((Animation) animationList.get(index)).paintXY(graphics, x, y);
         }
     }
 

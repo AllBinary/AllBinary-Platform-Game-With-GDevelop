@@ -44,7 +44,6 @@ import org.allbinary.logic.math.ScaleFactorFactory;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.math.FrameUtil;
 import org.allbinary.media.ScaleProperties;
-import org.allbinary.string.CommonSeps;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
 import org.allbinary.view.ViewPosition;
@@ -105,7 +104,7 @@ public class GDGameLayer
     protected Processor moveProcessor = new Processor() {
         
         @Override
-        public void process(final long timeDelta) throws Exception {
+        public void processt(final long timeDelta) throws Exception {
             move();
         }
     };
@@ -188,7 +187,7 @@ public class GDGameLayer
                 );
         */
         
-        this.initPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
+        this.initPositionXYZ(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
         this.initPosition();
 
         //logUtil.put(this.gdObject.toShortString(), this, commonStrings.CONSTRUCTOR);
@@ -265,7 +264,7 @@ public class GDGameLayer
         this.dimensionalBehavior.reset(this, gdObject);
         
         this.gdObject = gdObject;
-        this.initPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
+        this.initPositionXYZ(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
         this.initPosition();
         this.setDestroyed(false);
     }
@@ -444,7 +443,7 @@ public class GDGameLayer
         //angle *= Math.PI / 180.0;
         
         this.gdObject.forceAngle = (short) adjustedAngle;
-        this.velocityInterface.setVelocity((long) length * SCALE_FACTOR2, (short) adjustedAngle, (short) 0);
+        this.velocityInterface.setVelocityi((long) length * SCALE_FACTOR2, (short) adjustedAngle, (short) 0);
         //this.Force((int) (noDecimalTrigTable.cos((short) angle) * length) / SCALE, (int) (noDecimalTrigTable.sin((short) angle) * length) / SCALE, clearing);
         
         //if(this.getName().equals(PLAYER_0)) {
@@ -467,7 +466,7 @@ public class GDGameLayer
         if(clearing == 1) {
             if(this.processor == this.moveProcessor) {
                 this.processor = new Processor() {
-                    public void process(final long timeDelta) throws Exception {
+                    public void processt(final long timeDelta) throws Exception {
                         move();
                         updateGDObject(timeDelta);
                     }
@@ -478,14 +477,14 @@ public class GDGameLayer
 
     public void StopForce() {
         
-        this.velocityInterface.setVelocity(0, (short) 0, (short) 0);
+        this.velocityInterface.setVelocityi(0, (short) 0, (short) 0);
 
     }
     
     public void AddForce(final int x, final int y) {
         
-        this.velocityInterface.getVelocityXBasicDecimalP().set(x * SCALE_FACTOR2);
-        this.velocityInterface.getVelocityYBasicDecimalP().set(y * SCALE_FACTOR2);
+        this.velocityInterface.getVelocityXBasicDecimalP().setint(x * SCALE_FACTOR2);
+        this.velocityInterface.getVelocityYBasicDecimalP().setint(y * SCALE_FACTOR2);
     }
     
     //private static final String FORCE = "force";
@@ -515,7 +514,7 @@ public class GDGameLayer
     }
 
     public void process(final long timeDelta) throws Exception {
-        this.processor.process(timeDelta);
+        this.processor.processt(timeDelta);
     }
     
     public void updateGDObject(final long timeDelta)
@@ -628,10 +627,10 @@ public class GDGameLayer
 //            }
 
             //for (int index = 0; index < SIZE; index++) {
-            this.indexedAnimationInterfaceArray[this.gdObject.animation].paint(graphics, x, y);
+            this.indexedAnimationInterfaceArray[this.gdObject.animation].paintXY(graphics, x, y);
             //}
 
-            this.primitiveDrawing.paint(graphics, x, y);
+            this.primitiveDrawing.paintXY(graphics, x, y);
             
             //this.paintPoints(graphics);
             this.paintDebug(graphics);
@@ -864,9 +863,9 @@ public class GDGameLayer
         throw new RuntimeException();
     }
     
-    public void toString(final StringMaker stringBuffer) {
+    public void toStringAppend(final StringMaker stringBuffer) {
 
-        super.toString(stringBuffer);
+        super.toStringAppend(stringBuffer);
         if(this.dimensionalBehavior != null) {
             this.dimensionalBehavior.getAnimationBehavior().toString(this.gdObject, stringBuffer);
         }
@@ -877,7 +876,7 @@ public class GDGameLayer
     {
         final StringMaker stringBuffer = new StringMaker();
 
-        this.toString(stringBuffer);
+        this.toStringAppend(stringBuffer);
  
         return stringBuffer.toString();
     }

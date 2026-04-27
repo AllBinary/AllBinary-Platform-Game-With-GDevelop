@@ -80,6 +80,7 @@ Created By: Travis Berthelot
 package org.allbinary.animation.image;
 
 import java.util.Hashtable;
+
 import javax.microedition.lcdui.Image;
 
 import org.allbinary.animation.AnimationBehaviorFactory;

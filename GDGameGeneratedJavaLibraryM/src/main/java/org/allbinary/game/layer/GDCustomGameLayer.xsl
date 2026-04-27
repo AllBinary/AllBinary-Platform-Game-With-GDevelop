@@ -1391,7 +1391,7 @@ Created By: Travis Berthelot
         
     }
 
-    public void trackTo(final int dx, final int dy) 
+    public void trackToDX(final int dx, final int dy)
         throws Exception {
 
         final int angleOfTarget = 0;

@@ -290,12 +290,12 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
                     <!--
                     <xsl:for-each select="directions/sprites/image" >
-                    final Image <xsl:value-of select="$name" /><xsl:value-of select="$animationName" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" /><xsl:value-of select="$animationName" />ResourceArray[<xsl:value-of select="position() - 1" />]);
+                    final Image <xsl:value-of select="$name" /><xsl:value-of select="$animationName" />Image<xsl:value-of select="position() - 1" /> = imageCache.getWithKey(<xsl:value-of select="$name" /><xsl:value-of select="$animationName" />ResourceArray[<xsl:value-of select="position() - 1" />]);
 //                    if(<xsl:value-of select="$name" /><xsl:value-of select="$animationName" />Image<xsl:value-of select="position() - 1" /> == null) {
 //                        throw new RuntimeException();
 //                    }
                     -->
-                    final Image <xsl:value-of select="$name" /><xsl:value-of select="$animationName" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
+                    final Image <xsl:value-of select="$name" /><xsl:value-of select="$animationName" />Image<xsl:value-of select="position() - 1" /> = imageCache.getWithKey(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
 //                    if(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> == null) {
 //                        throw new RuntimeException();
 //                    }
@@ -306,21 +306,21 @@ Created By: Travis Berthelot
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
                     <!--
                     <xsl:for-each select="directions/sprites/image" >
-                    final Image <xsl:value-of select="$name" /><xsl:value-of select="$animationName" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" /><xsl:value-of select="$animationName" />ResourceArray[<xsl:value-of select="position() - 1" />]);
+                    final Image <xsl:value-of select="$name" /><xsl:value-of select="$animationName" />Image<xsl:value-of select="position() - 1" /> = imageCache.getWithKey(<xsl:value-of select="$name" /><xsl:value-of select="$animationName" />ResourceArray[<xsl:value-of select="position() - 1" />]);
 //                    if(<xsl:value-of select="$name" /><xsl:value-of select="$animationName" />Image<xsl:value-of select="position() - 1" /> == null) {
 //                        throw new RuntimeException();
 //                    }
                     -->
                     final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = 
                         <xsl:if test="position() = 1" >
-                        imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
+                        imageCache.getWithKey(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
                         </xsl:if>
                         <xsl:if test="position() > 1" >
                            <xsl:if test="not(contains($uppercaseImage, '_HOVER') or contains($uppercaseImage, '_CLICKED') or contains($uppercaseImage, '_HIGHLIGHTED') or contains($uppercaseImage, '_SELECTED'))" >
-                        imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
+                        imageCache.getWithKey(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
                             </xsl:if>
                             <xsl:if test="contains($uppercaseImage, '_HOVER') or contains($uppercaseImage, '_CLICKED') or contains($uppercaseImage, '_HIGHLIGHTED') or contains($uppercaseImage, '_SELECTED')" >
-                        AndroidUtil.isMemoryRestrictive() ? <xsl:value-of select="$name" />Image0 : imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
+                        AndroidUtil.isMemoryRestrictive() ? <xsl:value-of select="$name" />Image0 : imageCache.getWithKey(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
                             </xsl:if>
                         </xsl:if>
 //                    if(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> == null) {
@@ -337,13 +337,13 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="type" /> - content
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
-                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[0]);
+                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.getWithKey(<xsl:value-of select="$name" />ResourceArray[0]);
 //                    if(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> == null) {
 //                        throw new RuntimeException();
 //                    }
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
-                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[0]);
+                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.getWithKey(<xsl:value-of select="$name" />ResourceArray[0]);
 //                    if(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> == null) {
 //                        throw new RuntimeException();
 //                    }
@@ -353,7 +353,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="texture" >
                     //TiledSpriteObject::TiledSprite - texture
                     <xsl:variable name="image" select="substring-before(text(), '.')" />
-                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[0]);
+                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.getWithKey(<xsl:value-of select="$name" />ResourceArray[0]);
                 </xsl:for-each>
                 </xsl:if>
 
@@ -371,19 +371,19 @@ Created By: Travis Berthelot
                 <xsl:for-each select="childrenContent" >
                     //<xsl:value-of select="$typeValue" /> - childrenContent
                     <xsl:for-each select="Background" >
-                    final Image <xsl:value-of select="$name" />BackgroundImage = imageCache.get(<xsl:value-of select="$name" />ResourceArray[0]);
+                    final Image <xsl:value-of select="$name" />BackgroundImage = imageCache.getWithKey(<xsl:value-of select="$name" />ResourceArray[0]);
                     </xsl:for-each>
                     <xsl:for-each select="FillBar" >
-                    final Image <xsl:value-of select="$name" />FillBarImage = imageCache.get(<xsl:value-of select="$name" />ResourceArray[1]);
+                    final Image <xsl:value-of select="$name" />FillBarImage = imageCache.getWithKey(<xsl:value-of select="$name" />ResourceArray[1]);
                     <xsl:if test="contains($hasMirrorFillBarBehavior, 'found')" >
-                    final Image <xsl:value-of select="$mirrorFillBarBehaviorImage" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[2]);
+                    final Image <xsl:value-of select="$mirrorFillBarBehaviorImage" /> = imageCache.getWithKey(<xsl:value-of select="$name" />ResourceArray[2]);
                     </xsl:if>
                     </xsl:for-each>
                     <xsl:for-each select="Border" >
-                    final Image <xsl:value-of select="$name" />BorderImage = imageCache.get(<xsl:value-of select="$name" />ResourceArray[0]);
+                    final Image <xsl:value-of select="$name" />BorderImage = imageCache.getWithKey(<xsl:value-of select="$name" />ResourceArray[0]);
                     </xsl:for-each>
                     <xsl:for-each select="Thumb" >
-                    final Image <xsl:value-of select="$name" />ThumbImage = imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:if test="../Border" >1</xsl:if><xsl:if test="not(../Border)" >3</xsl:if>]);
+                    final Image <xsl:value-of select="$name" />ThumbImage = imageCache.getWithKey(<xsl:value-of select="$name" />ResourceArray[<xsl:if test="../Border" >1</xsl:if><xsl:if test="not(../Border)" >3</xsl:if>]);
                     </xsl:for-each>
                 </xsl:for-each>
 

@@ -58,7 +58,7 @@ extends BaseTouchInput
             
             BasicTouchInputFactory basicTouchInputFactory = BasicTouchInputFactory.getInstance();
             
-            TouchButton UP = TouchButton.create(basicTouchInputFactory.UP,
+            TouchButton UP = new TouchButton(basicTouchInputFactory.UP,
                     animationInterface,
                     hintAnimationInterface,
                     commonButtons.NORMAL_BUTTON, 
@@ -67,7 +67,7 @@ extends BaseTouchInput
                     touchButtonLocationHelper.getRowsRemainderHalf()
                     );
 
-            TouchButton DOWN = TouchButton.create(basicTouchInputFactory.DOWN,
+            TouchButton DOWN = new TouchButton(basicTouchInputFactory.DOWN,
                     animationInterface,
                     hintAnimationInterface,
                     commonButtons.NORMAL_BUTTON,
@@ -76,7 +76,7 @@ extends BaseTouchInput
                     touchButtonLocationHelper.getRowsRemainderHalf()
                     );
             
-            TouchButton LEFT = TouchButton.create(basicTouchInputFactory.LEFT,
+            TouchButton LEFT = new TouchButton(basicTouchInputFactory.LEFT,
                     animationInterface,
                     hintAnimationInterface,
                     commonButtons.NORMAL_BUTTON,
@@ -85,7 +85,7 @@ extends BaseTouchInput
                     touchButtonLocationHelper.getRowsRemainderHalf()
                     );
 
-            TouchButton RIGHT = TouchButton.create(basicTouchInputFactory.RIGHT,
+            TouchButton RIGHT = new TouchButton(basicTouchInputFactory.RIGHT,
                     animationInterface,
                     hintAnimationInterface,
                     commonButtons.NORMAL_BUTTON,
@@ -94,7 +94,7 @@ extends BaseTouchInput
                     touchButtonLocationHelper.getRowsRemainderHalf()
                     );
 
-            TouchButton LEFT_STRAFE = TouchButton.create(basicTouchInputFactory.SPECIAL_BUTTON_FOUR,
+            TouchButton LEFT_STRAFE = new TouchButton(basicTouchInputFactory.SPECIAL_BUTTON_FOUR,
                     animationInterface,
                     hintAnimationInterface,
                     commonButtons.NORMAL_BUTTON,
@@ -103,7 +103,7 @@ extends BaseTouchInput
                     touchButtonLocationHelper.getRowsRemainderHalf()
                     );
 
-            TouchButton RIGHT_STRAFE = TouchButton.create(basicTouchInputFactory.SPECIAL_BUTTON_THREE,
+            TouchButton RIGHT_STRAFE = new TouchButton(basicTouchInputFactory.SPECIAL_BUTTON_THREE,
                     animationInterface,
                     hintAnimationInterface,
                     commonButtons.NORMAL_BUTTON,
@@ -133,7 +133,7 @@ extends BaseTouchInput
                 list.add(WEAPON);
             }
             
-            TouchButton ZOOM_IN = TouchButton.create(basicTouchInputFactory.SPECIAL_BUTTON_ONE,
+            TouchButton ZOOM_IN = new TouchButton(basicTouchInputFactory.SPECIAL_BUTTON_ONE,
                     animationInterface,
                     hintAnimationInterface,
                     commonButtons.NORMAL_BUTTON,
@@ -142,7 +142,7 @@ extends BaseTouchInput
                     touchButtonLocationHelper.getRowsRemainderHalf()
                     );
 
-            TouchButton ZOOM_OUT = TouchButton.create(basicTouchInputFactory.SPECIAL_BUTTON_FIVE,
+            TouchButton ZOOM_OUT = new TouchButton(basicTouchInputFactory.SPECIAL_BUTTON_FIVE,
                     animationInterface,
                     hintAnimationInterface,
                     commonButtons.NORMAL_BUTTON,

@@ -50,7 +50,7 @@ public class SliderAnimationInterfaceFactory
     }
     
     @Override
-    protected Animation getInstance(final Animation[] animationInterfaceArray) {
+    protected Animation createAnimation(final Animation[] animationInterfaceArray) {
         return new SliderAnimation((IndexedAnimation[]) animationInterfaceArray, this.scaleProperties.scaleWidth, this.scaleProperties.scaleHeight, this.animationBehaviorFactory.getOrCreateInstance());
     }
  

@@ -31,7 +31,7 @@ public class GDPrimitiveDrawingAnimationFactory implements
     }
 
     @Override
-    public Animation getInstance(Animation animationInterface)
+    public Animation getInstanceAnimation(Animation animationInterface)
         throws Exception {
         return new GDPrimitiveDrawing();
     }

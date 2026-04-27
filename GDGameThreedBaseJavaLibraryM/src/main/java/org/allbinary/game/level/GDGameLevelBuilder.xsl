@@ -475,7 +475,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         </xsl:for-each>
 
-        final BasicGeographicMap[] geographicMapInterfaceArray = (BasicGeographicMap[]) geographicMapList.toArray(new BasicGeographicMap[geographicMapList.size()]);
+        final BasicGeographicMap[] geographicMapInterfaceArray = (BasicGeographicMap[]) geographicMapList.toArrayType(new BasicGeographicMap[geographicMapList.size()]);
         
                 <xsl:value-of select="$tileMapGenerator" />
                 <xsl:if test="contains($tileMapGenerator, 'TileMapGenerator')" >

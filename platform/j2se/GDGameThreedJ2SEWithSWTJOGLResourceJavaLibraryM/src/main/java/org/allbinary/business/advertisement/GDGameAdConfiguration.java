@@ -26,7 +26,7 @@ public class GDGameAdConfiguration extends AdConfiguration
         return directionArray;
     }
 
-    public void process(int state)
+    public void processDemo(int state)
     {
     }
 }

@@ -13,6 +13,7 @@
 */
 package org.allbinary.animation.image;
 
+import java.util.Hashtable;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 
@@ -27,21 +28,21 @@ public class GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFac
 {
     public GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
-        super("Early Image Animations");
+        super("Early Image Animations", new Hashtable(), new Hashtable(), new Hashtable());
     }
 
     public GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
-        super(name);
+        super(name, new Hashtable(), new Hashtable(), new Hashtable());
     }
     
     public void init(int level)
     throws Exception
     {
-        this.init(ImageCacheFactory.getInstance(), level);
+        this.initImageCache(ImageCacheFactory.getInstance(), level);
     }
 
-    protected void init(ImageCache imageCache, int level)
+    protected void initImageCache(ImageCache imageCache, int level)
     throws Exception
     {
         if(this.isInitialized())

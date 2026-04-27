@@ -36,7 +36,7 @@ Turn= Right, 6, or K
 Reverse= Down, 8, or M
         */
         
-    	super(BasicColorFactory.getInstance().RED);
+    	super("Help Screen", BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().RED);
         
         this.setInputInfoP(new String[]{"Line 1", "Line 2"});
     }

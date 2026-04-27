@@ -32,9 +32,9 @@
         <module>../GDGameAndroidResourcesTempJavaLibraryM</module>
         <module>../GDGameAndroidSoundsJavaLibraryM</module>
         
-        <module>../../../platformx/android/GDGameAndroidGradleM</module>
+        <module>../../../platform/android/GDGameAndroidGradleM</module>
         <!--
-        <module>../../../platformx/android/GDGameAndroidApplicationM</module>
+        <module>../../../platform/android/GDGameAndroidApplicationM</module>
         -->
         
     </modules>

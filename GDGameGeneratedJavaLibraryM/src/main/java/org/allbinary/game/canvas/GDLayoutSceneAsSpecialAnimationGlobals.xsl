@@ -198,7 +198,7 @@ Created By: Travis Berthelot
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
                         public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME = "<xsl:value-of select="name" />";
-                        public final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME);
+                        public final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroupByName(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME);
                         //public final BasicArrayList <xsl:value-of select="name" />GDObjectListOfList = new BasicArrayListD();
                         public final BasicArrayList <xsl:value-of select="name" />GDGameLayerListOfList = new BasicArrayListD();
                         public final BasicArrayList <xsl:value-of select="name" />GDGameLayerRemoveListOfList = new BasicArrayListD();

@@ -36,12 +36,12 @@ Created By: Travis Berthelot
 
                             logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
-                            final BasicColor backgroundBasicColor = smallBasicColorCacheFactory.getInstance(
-                                basicColorUtil.get(255,
+                            final BasicColor backgroundBasicColor = smallBasicColorCacheFactory.getAndOrCreate(
+                                basicColorUtil.getARGB(255,
                                     <xsl:value-of select="$rgbParam" />));
                                     //ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />
-                            final BasicColor foregroundBasicColor = smallBasicColorCacheFactory.getInstance(
-                                basicColorUtil.get(255, 
+                            final BasicColor foregroundBasicColor = smallBasicColorCacheFactory.getAndOrCreate(
+                                basicColorUtil.getARGB(255, 
                                     255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue));
                                     //ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />
 

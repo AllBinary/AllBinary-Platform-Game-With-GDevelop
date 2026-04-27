@@ -64,10 +64,10 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
     
     public GDGeographicMap(final AllBinaryTiledLayerFactoryInterface tiledLayerFactoryInterface, final TileLayer tileLayer, final int[] cellTypeIdToGeographicMapCellType, final TiledMap map, final Image tileSetImage, final GeographicMapCellTypeFactory geographicMapCellTypeFactory, final BasicColor foregroundColor, final BasicColor backgroundColor, final BasicColor debugColor, final CustomMapGeneratorBaseFactory customMapGeneratorBaseFactory) throws Exception {
         super(new RaceTrackInfo(
-                SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()),
-                SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()).toString(), 
+                SmallIntegerSingletonFactory.getInstance().getAt(tileLayer.getId()),
+                SmallIntegerSingletonFactory.getInstance().getAt(tileLayer.getId()).toString(),
                 new RaceTrackFrictionProperties(0, 0), foregroundColor, backgroundColor, 0, 0, 0),
-                new RaceTrackData(SmallIntegerSingletonFactory.getInstance().getInstance(0), map.getTileWidth(), map.getTileHeight(), map.getTileWidth() / 4, map.getTileHeight() / 4, cellTypeIdToGeographicMapCellType, tileLayer.getMapArray()),
+                new RaceTrackData(SmallIntegerSingletonFactory.getInstance().getAt(0), map.getTileWidth(), map.getTileHeight(), map.getTileWidth() / 4, map.getTileHeight() / 4, cellTypeIdToGeographicMapCellType, tileLayer.getMapArray()),
                 //cellTypeIdToGeographicMapCellType,
                 //AllBinaryTiledLayerFactory
                 tiledLayerFactoryInterface,
@@ -186,20 +186,20 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
 
     //TWB temp hack for the strange positioning I use for GD builds.
     @Override
-    public GeographicMapCellPosition getCellPositionAt(final int x, final int y) throws Exception
+    public GeographicMapCellPosition getCellPositionAtXY(final int x, final int y) throws Exception
     {
         final AllBinaryTiledLayer allBinaryTiledLayer = this.getAllBinaryTiledLayer();
         //ForcedLogUtil.log(new StringMaker().append("getCellPositionAt").append(x + allBinaryTiledLayer.getX()).append(',').append(y + allBinaryTiledLayer.getY()).toString(), this);
-        return super.getCellPositionAt(x + allBinaryTiledLayer.getXP(), y + allBinaryTiledLayer.getYP());
+        return super.getCellPositionAtXY(x + allBinaryTiledLayer.getXP(), y + allBinaryTiledLayer.getYP());
         //return super.getCellPositionAt(x, y);
 }
 
     @Override
-    public GeographicMapCellPosition getCellPositionAtNoThrow(final int x, final int y)
+    public GeographicMapCellPosition getCellPositionAtXYNoThrow(final int x, final int y)
     {
         final AllBinaryTiledLayer allBinaryTiledLayer = this.getAllBinaryTiledLayer();
         //ForcedLogUtil.log(new StringMaker().append("getCellPositionAt").append(x + allBinaryTiledLayer.getX()).append(',').append(y + allBinaryTiledLayer.getY()).toString(), this);
-        return super.getCellPositionAtNoThrow(x + allBinaryTiledLayer.getXP(), y + allBinaryTiledLayer.getYP());
+        return super.getCellPositionAtXYNoThrow(x + allBinaryTiledLayer.getXP(), y + allBinaryTiledLayer.getYP());
         //return super.getCellPositionAtNoThrow(x, y);
     }
     

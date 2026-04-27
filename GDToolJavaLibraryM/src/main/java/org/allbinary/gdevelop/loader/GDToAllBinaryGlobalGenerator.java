@@ -71,7 +71,7 @@ public class GDToAllBinaryGlobalGenerator
 
     public void process() throws Exception {
         
-        timeDelayHelper.setStartTime();
+        timeDelayHelper.setStartTimeTNT();
         
         //final String MIDLET_REPLACED = gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet_replaced.xsl";
         //final String MIDLET_XML = gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.xml";
@@ -141,7 +141,7 @@ public class GDToAllBinaryGlobalGenerator
         }
         
         stringMaker.delete(0, stringMaker.length());
-        logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS);
+        logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, commonStrings.PROCESS);
         
     }
     

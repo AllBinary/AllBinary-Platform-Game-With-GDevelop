@@ -156,7 +156,7 @@ public class AppRendererShaderUpdaterFactory extends ShaderUpdater {
             openGLCapabilities.VERSION_3_0, 
         new Shader[]{ new Shader(), new Shader()},
 
-        new SimpleCompositeShaderUpdater(StringUtil.getInstance().getArrayInstance(), new String[]{"lightPos", "lightColor", "cameraPos", "myTexture"}, new String[] { semanticStrings.POSITION, semanticStrings.COLOR, semanticStrings.NORMAL, semanticStrings.TEXCOORD}),
+        new SimpleCompositeShaderUpdater(StringUtil.getInstance().getArrayInstance(), new String[]{"lightPos", "lightColor", "cameraPos", "myTexture"}, new String[] { semanticStrings.POSITION, semanticStrings.COLOR, semanticStrings.NORMAL, semanticStrings.TEXCOORD}, new int[4]),
         SimpleShaderInitializer.getInstance(),
         ModelViewProjection.getInstance(),
         null,
@@ -233,7 +233,7 @@ public class AppRendererShaderUpdaterFactory extends ShaderUpdater {
             logUtil.putF(resource, this, this.rendererStrings.ON_SURFACE_CREATED);
             final InputStream inputStream = resourceUtil.getResourceAsStream(resource);
             final BasicArrayList stringList = shader.shaderStringList = simpleFileUtil.loadFileAsList(inputStream, max, byteArray1, 1);
-            String[] shaderAsStringArray = (String[]) stringList.toArray(new String[stringList.size()]);
+            String[] shaderAsStringArray = (String[]) stringList.toArrayType(new String[stringList.size()]);
             shader.shaderAsString = this.simpleFileUtil.createStringFromArrayOfStrings(shaderAsStringArray);
             //logUtil.put("shaderAsString: " + shader.shaderAsString, this, this.rendererStrings.ON_SURFACE_CREATED);
             shader.shaderHandle = shaderManager.loadShader(gl, resource, shader.shaderStringList, shaderType);

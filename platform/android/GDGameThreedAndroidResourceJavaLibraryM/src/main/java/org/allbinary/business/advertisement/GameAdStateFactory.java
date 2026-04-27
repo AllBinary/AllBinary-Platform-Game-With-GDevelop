@@ -5,7 +5,7 @@ import org.allbinary.game.canvas.GDGameSoftwareInfo;
 
 import org.allbinary.logic.system.SoftwareInformation;
 
-public class GameAdStateFactory
+public class GameAdStateFactory implements GameAdStateFactoryInterface
 {
     private static final GameAdStateFactory instance = new GameAdStateFactory();
 
@@ -25,7 +25,7 @@ public class GameAdStateFactory
         return this.gameAdState;
     }
     
-    public GameAdState getInstance(SoftwareInformation softwareInformation)
+    public GameAdStateBase getInstanceForApp(final SoftwareInformation softwareInformation)
     throws Exception
     {
         if(softwareInformation == GDGameSoftwareInfo.getInstance())

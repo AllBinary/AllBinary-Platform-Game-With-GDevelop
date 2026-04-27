@@ -43,7 +43,7 @@ Created By: Travis Berthelot
                                 
                                 public void process(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
                                 {
-                                    this.releasedGameInputProcessor.process(allbinaryLayerManager, gameKeyEvent);
+                                    this.releasedGameInputProcessor.processEvent(allbinaryLayerManager, gameKeyEvent);
                                 
                             <xsl:for-each select="../events" >
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
@@ -133,7 +133,7 @@ Created By: Travis Berthelot
 
                             </xsl:for-each>
 
-                                    this.releasedGameInputProcessor.processReleased(allbinaryLayerManager, gameKeyEvent);
+                                    this.releasedGameInputProcessor.processReleasedEvent(allbinaryLayerManager, gameKeyEvent);
                                 }
 
                             };

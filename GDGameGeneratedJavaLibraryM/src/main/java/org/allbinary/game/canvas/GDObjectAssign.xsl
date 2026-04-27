@@ -200,8 +200,8 @@ Created By: Travis Berthelot
 
                 <xsl:if test="type = 'TextObject::Text'" >
                     
-                colorAsInt = basicColorUtil.get(255, <xsl:for-each select="color" ><xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />);</xsl:for-each>
-                basicColor = smallBasicColorCacheFactory.getInstance(colorAsInt);
+                colorAsInt = basicColorUtil.getARGB(255, <xsl:for-each select="color" ><xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />);</xsl:for-each>
+                basicColor = smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
 
                 //TextObject::Text - set the layer size from the initial text
                 final CustomTextAnimationFactory <xsl:value-of select="name" />CustomTextAnimationFactory = (CustomTextAnimationFactory) <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray[0];
@@ -212,8 +212,8 @@ Created By: Travis Berthelot
 
                 <xsl:if test="type = 'PanelSpriteSlider::PanelSpriteSlider'" >
 
-                colorAsInt = basicColorUtil.get(255, <xsl:for-each select="childrenContent" ><xsl:for-each select="Label" ><xsl:for-each select="color" ><xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />);</xsl:for-each></xsl:for-each></xsl:for-each>
-                basicColor = smallBasicColorCacheFactory.getInstance(colorAsInt);
+                colorAsInt = basicColorUtil.getARGB(255, <xsl:for-each select="childrenContent" ><xsl:for-each select="Label" ><xsl:for-each select="color" ><xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />);</xsl:for-each></xsl:for-each></xsl:for-each>
+                basicColor = smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
 
                 //PanelSpriteSlider::PanelSpriteSlider - set the layer size from the initial text
                 final SliderAnimationInterfaceFactory <xsl:value-of select="name" />SliderAnimationInterfaceFactory = (SliderAnimationInterfaceFactory) <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray[0];
@@ -281,7 +281,7 @@ Created By: Travis Berthelot
                 };
                 this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
                 this.<xsl:value-of select="name" />LayerInfo = new Rectangle(
-                                pointFactory.getInstance0(0, 0),
+                                pointFactory.createXY(0, 0),
                                 0, 0
                                 );
                 this.<xsl:value-of select="name" />RectangleArrayOfArrays = new Rectangle[0][0];

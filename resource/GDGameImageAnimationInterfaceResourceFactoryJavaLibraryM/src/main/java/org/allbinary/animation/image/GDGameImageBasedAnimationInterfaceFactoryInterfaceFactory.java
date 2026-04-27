@@ -13,6 +13,7 @@
 */
 package org.allbinary.animation.image;
 
+import java.util.Hashtable;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
@@ -29,21 +30,21 @@ public class GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory
 
     public GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
-        super("Image Animations");
+        super("Image Animations", new Hashtable(), new Hashtable(), new Hashtable());
     }
 
     public GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
-        super(name);
+        super(name, new Hashtable(), new Hashtable(), new Hashtable());
     }
     
     public void init(int level)
     throws Exception
     {
-        this.init(ImageCacheFactory.getInstance(), level);
+        this.initImageCache(ImageCacheFactory.getInstance(), level);
     }
 
-    protected void init(ImageCache imageCache, int level)
+    protected void initImageCache(ImageCache imageCache, int level)
     throws Exception
     {
         if(this.isInitialized())
@@ -59,11 +60,11 @@ public class GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory
         ProgressCanvas progressCanvas = 
             ProgressCanvasFactory.getInstance();
 
-        progressCanvas.addPortion(portion, loadingString + index++);
+        progressCanvas.addNormalPortion(portion, loadingString + index++);
 
         this.addRectangles();
                 
-        progressCanvas.addPortion(portion, loadingString + index++);
+        progressCanvas.addNormalPortion(portion, loadingString + index++);
 
         //Image EXPLOSION_IMAGE = imageCache.get(
           //      ExplosionResources.getInstance().EXPLOSION_60_RESOURCE);

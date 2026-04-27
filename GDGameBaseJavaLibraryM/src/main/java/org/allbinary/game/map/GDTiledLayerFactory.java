@@ -49,7 +49,7 @@ public class GDTiledLayerFactory implements AllBinaryTiledLayerFactoryInterface 
         throws Exception {
 
         useAsMiniAllBinaryTiledLayer = new PlacementAllBinaryJ2METiledLayer(
-            SmallIntegerSingletonFactory.getInstance().getInstance(-1),
+            SmallIntegerSingletonFactory.getInstance().getAt(-1),
             new TiledLayer(
                 map.getWidth(),
                 map.getHeight(),

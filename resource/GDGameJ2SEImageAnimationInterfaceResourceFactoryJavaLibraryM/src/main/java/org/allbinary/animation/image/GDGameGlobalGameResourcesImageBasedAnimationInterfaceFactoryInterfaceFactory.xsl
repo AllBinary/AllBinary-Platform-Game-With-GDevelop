@@ -85,6 +85,8 @@ Created By: Travis Berthelot
 */
 package org.allbinary.animation.image;
 
+import java.util.Hashtable;
+
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.Font;
 
@@ -143,12 +145,12 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
     
     public GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
-        super("Game Image Animations");
+        super("Game Image Animations", new Hashtable(), new Hashtable(), new Hashtable());
     }
 
     public GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
-        super(name);
+        super(name, new Hashtable(), new Hashtable(), new Hashtable());
     }
     
     public void init(int level)

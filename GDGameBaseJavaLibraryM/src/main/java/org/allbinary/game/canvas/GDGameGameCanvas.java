@@ -25,10 +25,8 @@ import org.allbinary.media.audio.GDGameSoundsFactory;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
 
-import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringUtil;
 
-import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.ai.OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer;
 import org.allbinary.game.GameInfo;
 import org.allbinary.game.GameTypeFactory;
@@ -145,7 +143,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
             {
                 super.initConfigurable(abeClientInformation);
 
-                progressCanvas.addPortion(portion, "Group Manager");
+                progressCanvas.addNormalPortion(portion, "Group Manager");
                 GroupLayerManagerListener.getInstance().init(3);
 
                 AllBinaryVibration.init();
@@ -160,7 +158,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
                 }
             } else
             {
-            	progressCanvas.addPortion(4, "Skipping Configurable");
+            	progressCanvas.addNormalPortion(4, "Skipping Configurable");
             }
             
         } catch (Exception e)
@@ -174,7 +172,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
         try
         {
             final int portion = 60;
-            super.init(abeClientInformation);
+            super.initApp(abeClientInformation);
 
             if (!this.isRunning())
             {
@@ -191,7 +189,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
                 ProgressCanvas progressCanvas = 
                     ProgressCanvasFactory.getInstance();
                 
-                progressCanvas.addPortion(portion, "Main Processors");
+                progressCanvas.addNormalPortion(portion, "Main Processors");
 
                 this.setWait(WAIT);
                 this.loadState();
@@ -224,10 +222,10 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
 
                 gameLayerManager.setLayerProcessorList(list);
 
-                progressCanvas.addPortion(portion, "Initializing Game");
+                progressCanvas.addNormalPortion(portion, "Initializing Game");
             }
 
-            this.buildGame(false);
+            this.buildGameInit(false);
 
         } catch (Exception e)
         {
@@ -235,7 +233,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
         }
     }
 
-    public void buildGame(boolean isProgress) throws Exception
+    public void buildGameInit(boolean isProgress) throws Exception
     {
         this.loadResources(gameLayerManager.getGameInfo().getCurrentLevel());
         
@@ -270,11 +268,11 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
 
         //Some games update intermission here
 
-        progressCanvas.addPortion(portion, "Building Game Level");
+        progressCanvas.addNormalPortion(portion, "Building Game Level");
 
         //new GDGameLevelBuilder(this.getLayerManager()).build();
 
-        progressCanvas.addPortion(portion, "Set Background");
+        progressCanvas.addNormalPortion(portion, "Set Background");
 
         //Some games update backgrounds here
 
@@ -289,7 +287,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
 
         gameLayerManager.append(new PlayerGameInputGameLayer(0));
 
-        progressCanvas.addPortion(portion, "Ending Custom Build");
+        progressCanvas.addNormalPortion(portion, "Ending Custom Build");
 
         if (gameLayerManager.getGameInfo().getGameType() != GameTypeFactory.getInstance().BOT)
         {
@@ -385,7 +383,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
     
     protected void processGame() throws Exception
     {
-        if (playerTimeDelayHelper.isTime())
+        if (playerTimeDelayHelper.isTimeTNT())
         {
             if(this.features.isFeature(soundGameFeature))
             {

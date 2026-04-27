@@ -110,7 +110,7 @@ public class GDCustomCollisionMaskImageGenerator extends GDCustomCollisionMaskRe
         maxX++;
         maxY++;
         
-        final Rectangle rectangle = new Rectangle(PointFactory.getInstance().getInstance0(minX, minY), maxX - minX, maxY - minY);
+        final Rectangle rectangle = new Rectangle(PointFactory.getInstance().createXY(minX, minY), maxX - minX, maxY - minY);
         System.out.println(rectangle.toString());
         return rectangle;
     }

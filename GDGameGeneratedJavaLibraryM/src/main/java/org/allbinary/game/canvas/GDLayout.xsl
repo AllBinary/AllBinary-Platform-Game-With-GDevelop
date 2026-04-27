@@ -424,7 +424,7 @@ Created By: Travis Berthelot
 
                             //Rectangle 2
                             final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
-                                pointFactory.getInstance0(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
+                                pointFactory.createXY(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
                                 <xsl:value-of select="name" />GDobject.Width(globals.graphics), <xsl:value-of select="name" />GDobject.Height(globals.graphics));
                             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         }

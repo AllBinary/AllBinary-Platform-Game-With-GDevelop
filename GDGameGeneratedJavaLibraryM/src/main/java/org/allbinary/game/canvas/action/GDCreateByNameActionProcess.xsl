@@ -247,7 +247,7 @@ Created By: Travis Berthelot
                                 //stringBuilder.delete(0, stringBuilder.length());
                             } else {
                                 //stringBuilder.append("Cached: ");
-                                <xsl:value-of select="text()" />GDGameLayer = (GDGameLayer) <xsl:value-of select="text()" />CacheGDGameLayerList.remove(0);
+                                <xsl:value-of select="text()" />GDGameLayer = (GDGameLayer) <xsl:value-of select="text()" />CacheGDGameLayerList.removeAt(0);
                                 
                                 //if(!<xsl:value-of select="text()" />GDGameLayer.getName().startsWith(gdObject.name)) {
                                     //logUtil.put(new StringMaker().append(<xsl:value-of select="text()" />GDGameLayer.getName()).append(" GDObject name: ").append(gdObject.name).toString(), this, "create", new Exception());

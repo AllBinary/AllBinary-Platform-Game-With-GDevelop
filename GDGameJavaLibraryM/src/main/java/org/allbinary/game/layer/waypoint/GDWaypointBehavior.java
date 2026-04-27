@@ -142,7 +142,7 @@ public class GDWaypointBehavior
 
                 this.targetList.add(advancedRTSGameLayer);
 
-                this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().addWaypointFromBuilding(this.associatedAdvancedRTSGameLayer, advancedRTSGameLayer, this.targetList);
+                this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().addWaypointFromBuildingList(this.associatedAdvancedRTSGameLayer, advancedRTSGameLayer, this.targetList);
             }
         }
     }
@@ -165,9 +165,9 @@ public class GDWaypointBehavior
                 throw new Exception("Trying to add a dead: " + rtsLayer);
             }
             
-            this.targetList.add(index, rtsLayer);
+            this.targetList.addAt(index, rtsLayer);
 
-            this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().insertWaypoint(this.associatedAdvancedRTSGameLayer, index, rtsLayer, this.getName(), this.targetList);
+            this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().insertWaypointList(this.associatedAdvancedRTSGameLayer, index, rtsLayer, this.getName(), this.targetList);
 
             return true;
         }
@@ -195,7 +195,7 @@ public class GDWaypointBehavior
 
         final int size = pathsList.size();
         
-        this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().setRandomGeographicMapCellHistory(this.associatedAdvancedRTSGameLayer, pathsList);
+        this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().setRandomGeographicMapCellHistoryList(this.associatedAdvancedRTSGameLayer, pathsList);
 
         if (size > 0)
         {
@@ -225,7 +225,7 @@ public class GDWaypointBehavior
                 geographicMapCellPositionBasicArrayList);
 
         this.setTrackingWaypoint(true);
-        this.getCompleteTimeDelayHelper().setStartTime();
+        this.getCompleteTimeDelayHelper().setStartTimeTNT();
     }
         
     protected boolean canInsertWaypoint(final int index, final CollidableDestroyableDamageableLayer rtsLayer)
@@ -297,11 +297,11 @@ public class GDWaypointBehavior
                 this.getCurrentTargetDistance() >= this.longWeaponRange +
                 this.currentTargetLayerInterface.getHalfHeight()))
         {
-            repeatedToLong.setStartTime();
+            repeatedToLong.setStartTimeTNT();
             return true;
         }
         
-        if(repeatedToLong.isTime())
+        if(repeatedToLong.isTimeTNT())
         {
             final String message = "Repeating too long: " + this.getMovementLogicAsString();
             ForcedLogUtil.log(message, this.associatedAdvancedRTSGameLayer);

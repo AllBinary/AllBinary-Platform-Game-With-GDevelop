@@ -252,9 +252,9 @@ extends GDWaypointBehavior
                 // and Change Target if Target Dead
                         isCurrentTargetDestroyed))
         {
-            this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processPossibleTarget(this.associatedAdvancedRTSGameLayer, this, layerInterface, anotherTargetDistance);
+            this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processSetTarget(this.associatedAdvancedRTSGameLayer, this, layerInterface, anotherTargetDistance);
 
-            this.setTarget(layerInterface, anotherTargetDistance);
+            this.setTargetWithDistance(layerInterface, anotherTargetDistance);
         }
         // Really close target go for it
         // else if (this.currentTargetDistance < this.longWeaponRange + 10 //&&
@@ -267,7 +267,7 @@ extends GDWaypointBehavior
         {
             this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processPossibleTargetCloser(this.associatedAdvancedRTSGameLayer, this, layerInterface, anotherTargetDistance);
             
-            this.setTarget(layerInterface, anotherTargetDistance);
+            this.setTargetWithDistance(layerInterface, anotherTargetDistance);
         }
         //else
           //  if(this.getOwnerAdvancedRTSGameLayer().isTakingDamage())
@@ -284,7 +284,7 @@ extends GDWaypointBehavior
             )
         {
             //If not progressing move to next position
-            if (this.progressTimeDelayHelper.isTime() && 
+            if (this.progressTimeDelayHelper.isTimeTNT() &&
                     this.nextUnvisitedPathGeographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION)
             {
                 this.associatedAdvancedRTSGameLayer.teleportTo(
@@ -292,7 +292,7 @@ extends GDWaypointBehavior
             }
 
             //If path taking a long time then
-            if (this.getCompleteTimeDelayHelper().isTime())
+            if (this.getCompleteTimeDelayHelper().isTimeTNT())
             {
                 final GeographicMapCellPosition geographicMapCellPosition =
                     (GeographicMapCellPosition) this.currentGeographicMapCellHistory.getTracked().get(
@@ -339,11 +339,11 @@ extends GDWaypointBehavior
         final int anotherTargetDistance = layerDistanceUtil.getDistance(
             (AllBinaryLayer) this.associatedAdvancedRTSGameLayer, (AllBinaryLayer) layerInterface);
         
-        this.setTarget(layerInterface, anotherTargetDistance);
+        this.setTargetWithDistance(layerInterface, anotherTargetDistance);
     }
     
     @Override
-    public void setTarget(final PathFindingLayerInterface layerInterface, final int anotherTargetDistance)
+    public void setTargetWithDistance(final PathFindingLayerInterface layerInterface, final int anotherTargetDistance)
         throws Exception
     {
         
@@ -418,7 +418,7 @@ extends GDWaypointBehavior
             // Ignore new path if target changed - this shouldn't happen but?
             if (this.currentTargetLayerInterface == this.waypointPathRunnable.getTargetLayer())
             {
-                this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().setTargetPath(this.associatedAdvancedRTSGameLayer, this);
+                this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().setTargetPathIgnoreNewPath(this.associatedAdvancedRTSGameLayer, this);
                 
                 this.insertWaypoint(0, this.currentTargetLayerInterface);
                 this.setRandomGeographicMapCellHistory(this.waypointPathsList);
@@ -482,7 +482,7 @@ extends GDWaypointBehavior
 
                     if (this.visitIfAtMidPoint(geographicMapCellPosition))
                     {
-                        this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processWaypointTracked(this.associatedAdvancedRTSGameLayer, geographicMapCellPosition);
+                        this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processWaypointTrackedVisit(this.associatedAdvancedRTSGameLayer, geographicMapCellPosition);
                     }
 
                     if (this.currentGeographicMapCellHistory.isAllVisited2() &&
@@ -768,7 +768,7 @@ extends GDWaypointBehavior
                     this.currentTargetLayerInterface.getHalfHeight());
             }
 
-            this.associatedAdvancedRTSGameLayer.trackTo(dx, dy);
+            this.associatedAdvancedRTSGameLayer.trackToDXY(dx, dy);
         }
         else
         {
@@ -802,7 +802,7 @@ extends GDWaypointBehavior
 
         if (this.getCurrentPathGeographicMapCellPosition() != this.nextUnvisitedPathGeographicMapCellPosition)
         {
-            this.progressTimeDelayHelper.setStartTime();
+            this.progressTimeDelayHelper.setStartTimeTNT();
         }
     }
     
@@ -859,7 +859,7 @@ extends GDWaypointBehavior
 
         this.targetList.remove(waypointLayer);
 
-        this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().removeWaypoint(this.associatedAdvancedRTSGameLayer, this, this.targetList);
+        this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().removeWaypointList(this.associatedAdvancedRTSGameLayer, this, this.targetList);
         
         if (this.currentTargetLayerInterface == waypointLayer)
         {

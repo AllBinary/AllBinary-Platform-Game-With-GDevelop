@@ -79,7 +79,7 @@ public class JSONPersistance extends BasicPersitance
                 valueList.add(value);
             }
 
-            this.idList.add(smallIntegerSingletonFactory.getInstance(id));
+            this.idList.add(smallIntegerSingletonFactory.getAt(id));
         }
 
         recordStore.closeRecordStore();

@@ -317,7 +317,7 @@ public class GDToAllBinaryResourcesGenerator
         final boolean hasRotationImages = this.gdResourceSelection.hasRotationImages();
         this.appendResources(hasRotationImages);
         
-        this.timeDelayHelper.setStartTime();
+        this.timeDelayHelper.setStartTimeTNT();
         
         final String RESOURCE_ORIGINAL = this.gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.origin";
         final String RESOURCE = this.gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.java";
@@ -341,7 +341,7 @@ public class GDToAllBinaryResourcesGenerator
         this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);        
         
         stringMaker.delete(0, stringMaker.length());
-        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsed()).toString(), this, this.commonStrings.PROCESS);
+        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, this.commonStrings.PROCESS);
         
         return usedList;
     }
@@ -358,7 +358,7 @@ public class GDToAllBinaryResourcesGenerator
         final GDImageSizeGenerator gdImageSizeGenerator = new GDImageSizeGenerator();
         final BasicArrayList gdResourceList = gdImageSizeGenerator.process(files);
         
-        this.timeDelayHelper.setStartTime();
+        this.timeDelayHelper.setStartTimeTNT();
         
         final String LAZY_RESOURCE_ORIGINAL = this.gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.origin";
         final String LAZY_RESOURCE = this.gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.java";
@@ -384,7 +384,7 @@ public class GDToAllBinaryResourcesGenerator
         this.bufferedWriterUtil.overwrite(LAZY_RESOURCE, newFileAsString);        
         
         stringMaker.delete(0, stringMaker.length());
-        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsed()).toString(), this, this.commonStrings.PROCESS);
+        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, this.commonStrings.PROCESS);
         
     }
     

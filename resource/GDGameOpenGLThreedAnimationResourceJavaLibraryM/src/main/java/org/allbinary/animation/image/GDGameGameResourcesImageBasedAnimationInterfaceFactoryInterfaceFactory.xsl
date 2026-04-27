@@ -80,6 +80,8 @@ Created By: Travis Berthelot
 */
 package org.allbinary.animation.image;
 
+import java.util.Hashtable;
+
 import javax.microedition.lcdui.Image;
 
 import min3d.animation.AnimationObject3d;
@@ -174,7 +176,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
 
     public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
-        super("GDGame OpenGL ImageArray Animations");
+        super("GDGame OpenGL ImageArray Animations", new Hashtable(), new Hashtable(), new Hashtable());
     
         <xsl:for-each select="/game/properties/threedAnimationAdjustment" >
             <xsl:if test="position" >
@@ -193,7 +195,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
 
     public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
-        super(name);
+        super(name, new Hashtable(), new Hashtable(), new Hashtable());
     }
     
     public void loadDayTrack(final String loadingString) throws Exception
@@ -211,7 +213,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
             return;
         }
     
-        super.init(OpenGLImageCacheFactory.getInstance(), level);        
+        super.initImageCache(OpenGLImageCacheFactory.getInstance(), level);        
     
         final ImageCache imageCache = OpenGLImageCacheFactory.getInstance();
         

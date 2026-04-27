@@ -149,8 +149,8 @@ Created By: Travis Berthelot
                     //PrimitiveDrawing::FillColor - START
                         <xsl:for-each select="//actions[type/value = 'PrimitiveDrawing::FillColor']" >
                             
-                            public BasicColor <xsl:for-each select="parameters" ><xsl:if test="position() = 2" >RGB_<xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', '_')" />_BASIC_COLOR</xsl:if></xsl:for-each> = smallBasicColorCacheFactory.getInstance(
-                                basicColorUtil.get(255, 
+                            public BasicColor <xsl:for-each select="parameters" ><xsl:if test="position() = 2" >RGB_<xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', '_')" />_BASIC_COLOR</xsl:if></xsl:for-each> = smallBasicColorCacheFactory.getAndOrCreate(
+                                basicColorUtil.getARGB(255, 
                                 <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:if></xsl:for-each>)
                                 );
                                 //"<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >RGB_<xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', '_')" />_BASIC_COLOR</xsl:if></xsl:for-each>"
@@ -190,7 +190,7 @@ Created By: Travis Berthelot
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
                         public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME = "<xsl:value-of select="name" />";
-                        public final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME);
+                        public final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroupByName(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME);
                         //public final BasicArrayList <xsl:value-of select="name" />GDObjectListOfList = new BasicArrayListD();
                         public final BasicArrayList <xsl:value-of select="name" />GDGameLayerListOfList = new BasicArrayListD();
                         public final BasicArrayList <xsl:value-of select="name" />GDGameLayerRemoveListOfList = new BasicArrayListD();

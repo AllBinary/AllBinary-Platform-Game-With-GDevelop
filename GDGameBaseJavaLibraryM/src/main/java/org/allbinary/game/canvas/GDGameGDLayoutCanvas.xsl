@@ -206,12 +206,12 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
                                <xsl:variable name="typeValue" select="type/value" />
                                <xsl:if test="$typeValue = 'SceneBackground'" >
         //SceneBackground - this is probably better handled as gdnode.
-        final BasicColor backgroundBasicColor = smallBasicColorCacheFactory.getInstance(
-                                basicColorUtil.get(255,
+        final BasicColor backgroundBasicColor = smallBasicColorCacheFactory.getAndOrCreate(
+                                basicColorUtil.getARGB(255,
                                <xsl:for-each select="parameters" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:for-each>));
                                //GD_LAYOUT_COLOR
-        final BasicColor foregroundBasicColor = smallBasicColorCacheFactory.getInstance(
-                                basicColorUtil.get(255,
+        final BasicColor foregroundBasicColor = smallBasicColorCacheFactory.getAndOrCreate(
+                                basicColorUtil.getARGB(255,
                                255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue));
                                //GD_LAYOUT_COLOR
                                </xsl:if>
@@ -223,12 +223,12 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         <xsl:if test="not(contains($foundSceneBackground, 'found'))" >
         //Using Layout Color before any - //SceneBackground Action
-        final BasicColor backgroundBasicColor = smallBasicColorCacheFactory.getInstance(
-                                basicColorUtil.get(255,
+        final BasicColor backgroundBasicColor = smallBasicColorCacheFactory.getAndOrCreate(
+                                basicColorUtil.getARGB(255,
                                <xsl:value-of select="r" />, <xsl:value-of select="v" />, <xsl:value-of select="b" />));
                                //GD_LAYOUT_COLOR
-        final BasicColor foregroundBasicColor = smallBasicColorCacheFactory.getInstance(
-                                basicColorUtil.get(255,
+        final BasicColor foregroundBasicColor = smallBasicColorCacheFactory.getAndOrCreate(
+                                basicColorUtil.getARGB(255,
                                255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue));
                                //GD_LAYOUT_COLOR
         </xsl:if>
@@ -264,7 +264,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
             public void paint(Graphics graphics)
             {
-                specialAnimation.paint(graphics, 0, 0);
+                specialAnimation.paintXY(graphics, 0, 0);
             }
 
             public void paintThreed(Graphics graphics)
@@ -353,7 +353,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             {
                 super.initConfigurable(abeClientInformation);
 
-                //progressCanvas.addPortion(portion, "Group Manager");
+                //progressCanvas.addNormalPortion(portion, "Group Manager");
                 //GroupLayerManagerListener.getInstance().init(SIZE);
 
                 AllBinaryVibration.init();
@@ -368,7 +368,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
                 }
             } else
             {
-            	progressCanvas.addPortion(4, "Skipping Configurable");
+            	progressCanvas.addNormalPortion(4, "Skipping Configurable");
             }
 
         } catch (Exception e)
@@ -384,7 +384,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             //logUtil.putF(commonStrings.START, this, "threadInit");
 
             final int portion = 60;
-            super.init(this.abeClientInformation);
+            super.initApp(this.abeClientInformation);
 
             if (!this.isRunning())
             {
@@ -401,7 +401,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
                 ProgressCanvas progressCanvas =
                     ProgressCanvasFactory.getInstance();
 
-                progressCanvas.addPortion(portion, "Main Processors");
+                progressCanvas.addNormalPortion(portion, "Main Processors");
 
                 this.setWait(WAIT);
                 this.loadState();
@@ -436,7 +436,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
                 gameLayerManager.setLayerProcessorList(list);
 
-                progressCanvas.addPortion(portion, "Initializing Game");
+                progressCanvas.addNormalPortion(portion, "Initializing Game");
             }
 
             this.addPlayerGameInput(this.gameInputProcessor.getPlayerGameInput());
@@ -444,7 +444,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             this.buildGame(false);
 
             <xsl:if test="number($layoutIndex) = 0" >
-            FullScreenUtil.getInstance().init(this, this.getCustomCommandListener());
+            FullScreenUtil.getInstance().initOnRun(this, this.getCustomCommandListener());
             //this.close();
             </xsl:if>
         
@@ -493,13 +493,13 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         //Some games update intermission here
 
-        progressCanvas.addPortion(portion, "Building Game Level");
+        progressCanvas.addNormalPortion(portion, "Building Game Level");
 
         final AllBinaryGameLayerManager layerManager = this.getLayerManager();
 
         new GDGame<GDLayout>LevelBuilder(layerManager).build();
 
-        progressCanvas.addPortion(portion, "Set Background");
+        progressCanvas.addNormalPortion(portion, "Set Background");
 
         <xsl:variable name="hasOneOrMoreTileMaps" ><xsl:for-each select="objects" ><xsl:if test="type = 'TileMap::TileMap'" >found</xsl:if></xsl:for-each></xsl:variable>
         <xsl:variable name="hasOneOrMoreTiledSprites" ><xsl:for-each select="objects" ><xsl:if test="type = 'TiledSpriteObject::TiledSprite'" >found</xsl:if></xsl:for-each></xsl:variable>
@@ -558,7 +558,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         //gameLayerManager.append(new PlayerGameInputGameLayer(0));
 
-        progressCanvas.addPortion(portion, "Ending Custom Build");
+        progressCanvas.addNormalPortion(portion, "Ending Custom Build");
 
         if (gameLayerManager.getGameInfo().getGameType() != GameTypeFactory.getInstance().BOT)
         {
@@ -672,7 +672,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
     protected void processGame() throws Exception
     {
-        if (playerTimeDelayHelper.isTime())
+        if (playerTimeDelayHelper.isTimeTNT())
         {
             if(this.features.isFeature(soundGameFeature))
             {
@@ -683,7 +683,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         super.processGame();
 
         /*
-        if (playerTimeDelayHelper.isTime())
+        if (playerTimeDelayHelper.isTimeTNT())
         {
             if (!this.primaryPlayerQueue.process())
             {

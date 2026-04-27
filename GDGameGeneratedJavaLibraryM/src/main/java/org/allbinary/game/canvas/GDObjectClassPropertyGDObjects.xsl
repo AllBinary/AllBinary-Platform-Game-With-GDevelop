@@ -66,7 +66,7 @@ Created By: Travis Berthelot
                     public int[] <xsl:value-of select="name" /> = {
                             <xsl:for-each select="children" >
                                 <xsl:if test="contains(value, ';')" >
-                        basicColorUtil.get(<xsl:value-of select="translate(translate(value, '\&quot;', ''), ';', ',')" />),
+                        basicColorUtil.getARGB(<xsl:value-of select="translate(translate(value, '\&quot;', ''), ';', ',')" />),
                                 </xsl:if>
                                 <xsl:if test="not(contains(value, ';'))" >
                         <xsl:value-of select="value" />,
@@ -143,7 +143,7 @@ Created By: Travis Berthelot
                     this.<xsl:value-of select="name" /> = new int[] {
                             <xsl:for-each select="children" >
                                 <xsl:if test="contains(value, ';')" >
-                        basicColorUtil.get(<xsl:value-of select="translate(translate(value, '\&quot;', ''), ';', ',')" />),
+                        basicColorUtil.getARGB(<xsl:value-of select="translate(translate(value, '\&quot;', ''), ';', ',')" />),
                                 </xsl:if>
                                 <xsl:if test="not(contains(value, ';'))" >
                         <xsl:value-of select="value" />,

@@ -120,7 +120,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
 
         for (int index2 = 0; index2 < xslTotal0; index2++) {
 
-            timeDelayHelper.setStartTime();
+            timeDelayHelper.setStartTimeTNT();
 
             //logUtil.put("xsl index: " + index2, this, commonStrings.PROCESS);
             stringMaker.delete(0, stringMaker.length());
@@ -149,7 +149,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             }
 
             stringMaker.delete(0, stringMaker.length());
-            logUtil.putF(stringMaker.appendint(index2).append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS);
+            logUtil.putF(stringMaker.appendint(index2).append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, commonStrings.PROCESS);
         }
     }
 
@@ -255,7 +255,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
 
                 //stringMaker.delete(0, stringMaker.length());
                 //logUtil.put(stringMaker.append("xslt:").append(index2).toString(), this, commonStrings.PROCESS);
-                timeDelayHelper.setStartTime();
+                timeDelayHelper.setStartTimeTNT();
 
                 //logUtil.put("xsl index: " + index2, this, commonStrings.PROCESS);
                 stringMaker.delete(0, stringMaker.length());
@@ -286,7 +286,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                 }
 
                 stringMaker.delete(0, stringMaker.length());
-                logUtil.putF(stringMaker.appendint(index).append(this.commonSeps.COMMA).appendint(index2).append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS);
+                logUtil.putF(stringMaker.appendint(index).append(this.commonSeps.COMMA).appendint(index2).append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, commonStrings.PROCESS);
             }
 
         }
@@ -432,7 +432,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
 
                     //stringMaker.delete(0, stringMaker.length());
                     //logUtil.put(stringMaker.append("xslt:").append(index2).toString(), this, commonStrings.PROCESS);
-                    timeDelayHelper.setStartTime();
+                    timeDelayHelper.setStartTimeTNT();
 
                     //logUtil.put("xsl index: " + index2, this, commonStrings.PROCESS);
                     String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
@@ -463,7 +463,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                     this.bufferedWriterUtil.overwrite(fileName, result);
 
                     stringMaker.delete(0, stringMaker.length());
-                    logUtil.putF(stringMaker.appendint(fileIndex).append(this.commonSeps.COMMA).appendint(index2).append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS);
+                    logUtil.putF(stringMaker.appendint(fileIndex).append(this.commonSeps.COMMA).appendint(index2).append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, commonStrings.PROCESS);
                 }
 
             }
@@ -579,7 +579,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
 
                     //stringMaker.delete(0, stringMaker.length());
                     //logUtil.put(stringMaker.append("xslt:").append(index2).toString(), this, commonStrings.PROCESS);
-                    timeDelayHelper.setStartTime();
+                    timeDelayHelper.setStartTimeTNT();
 
                     //logUtil.put("xsl index: " + index2, this, commonStrings.PROCESS);
                     String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
@@ -609,7 +609,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                     this.bufferedWriterUtil.overwrite(fileName, result);
 
                     stringMaker.delete(0, stringMaker.length());
-                    logUtil.putF(stringMaker.appendint(fileIndex).append(this.commonSeps.COMMA).appendint(index2).append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS);
+                    logUtil.putF(stringMaker.appendint(fileIndex).append(this.commonSeps.COMMA).appendint(index2).append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, commonStrings.PROCESS);
                 }
 
             }
@@ -775,7 +775,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
         //TWB - need to update to allow loading for every layout.
         String indexAsString;
         for (int index = startIndex; index < size; index++) {
-            timeDelayHelper.setStartTime();
+            timeDelayHelper.setStartTimeTNT();
 
             indexAsString = Integer.toString(index);
             final Replace replace = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, indexAsString);
@@ -803,7 +803,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
 
                 //logUtil.put(RESULT + result, this, commonStrings.PROCESS);
                 stringMaker.delete(0, stringMaker.length());
-                logUtil.putF(stringMaker.appendint(index).append(this.commonSeps.COMMA).appendint(index2).append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS);
+                logUtil.putF(stringMaker.appendint(index).append(this.commonSeps.COMMA).appendint(index2).append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, commonStrings.PROCESS);
             }
         }
     }

@@ -27,7 +27,6 @@ import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.ColorChangeEvent;
 import org.allbinary.graphics.color.ColorChangeListener;
 import org.allbinary.logic.util.event.AllBinaryEventObject;
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.media.graphics.geography.map.ColorFromEventUtil;
 import org.allbinary.view.CenterViewPositionFactory;
@@ -65,7 +64,7 @@ implements ColorChangeListener
         this.color = basicColor.intValue();
     }
     
-    public void paint(Graphics graphics, int ax, int ay)
+    public void paintXY(Graphics graphics, int ax, int ay)
     {
         graphics.setColor(color);
         
@@ -89,7 +88,7 @@ implements ColorChangeListener
                 this.basicSetColorUtil.setBasicColorP(graphics, this.basicColorArray[index]);
             }
             //logUtil.put("deltaX: " + deltaX + " " + x, this, "paint");
-            this.animationInterfaceArray[index].paint(graphics, deltaX, deltaY);
+            this.animationInterfaceArray[index].paintXY(graphics, deltaX, deltaY);
         }
     }
     

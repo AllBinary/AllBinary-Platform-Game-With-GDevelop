@@ -75,7 +75,7 @@ public class GDGameInputProcessor {
         for(int index = 0; index < size; index++) {
             gameKeyEvent = (GameKeyEvent) gameKeyEventList.get(index);
             //logUtil.put("press key: " + gameKeyEvent.getKey(), this, gameInputStrings.PROCESS_INPUT);
-            globals.inputProcessorArray[gameKeyEvent.getKey()].process(allbinaryLayerManager, gameKeyEvent);
+            globals.inputProcessorArray[gameKeyEvent.getKey()].processEvent(allbinaryLayerManager, gameKeyEvent);
         }
 
         final int size2 = removalGameKeyEventList.size();
@@ -83,7 +83,7 @@ public class GDGameInputProcessor {
         for(int index = 0; index < size2; index++) {
             gameKeyEvent = (GameKeyEvent) removalGameKeyEventList.get(index);
             //logUtil.put("release key: " + gameKeyEvent.getKey(), this, gameInputStrings.PROCESS_INPUT);
-            globals.inputProcessorArray[gameKeyEvent.getKey()].processReleased(allbinaryLayerManager, gameKeyEvent);
+            globals.inputProcessorArray[gameKeyEvent.getKey()].processReleasedEvent(allbinaryLayerManager, gameKeyEvent);
         }
 
         Integer keyAsInteger;

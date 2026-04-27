@@ -135,7 +135,7 @@ public class GDToAllBinaryGenerationTool
 
     public void process() throws Exception
     {
-        timeDelayHelper.setStartTime();
+        timeDelayHelper.setStartTimeTNT();
 
         final GDJSONPersistence gdJSONPersistence = GDJSONPersistence.getInstance();
         final JSONObject gameAsConfigurationJSONObject = gdJSONPersistence.load();
@@ -216,7 +216,7 @@ public class GDToAllBinaryGenerationTool
         //"GDGameAndroidEarlyResourceInitialization"
         
         stringMaker.delete(0, stringMaker.length());
-        logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS);
+        logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, commonStrings.PROCESS);
     }
 
     public void xmlConversionHack(JSONObject gameAsConfigurationJSONObject) {

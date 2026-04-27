@@ -48,7 +48,7 @@ Created By: Travis Berthelot
                                 
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
-                                            final int colorAsInt = basicColorUtil.get(255, </xsl:if>
+                                            final int colorAsInt = basicColorUtil.getARGB(255, </xsl:if>
                                         <xsl:if test="position() = 2" >
                                             <xsl:if test="contains(text(), ';')" >
                                                 <xsl:value-of select="translate(substring(text(), 2, string-length(text()) - 2), ';', ',')" />
@@ -63,13 +63,13 @@ Created By: Travis Berthelot
                                     
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
-                                        final BasicColor basicColor = smallBasicColorCacheFactory.getInstance(colorAsInt);
+                                        final BasicColor basicColor = smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
                                         final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size();
                                         GDGameLayer gameLayer;
                                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                             gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index);
                                             gameLayer.setBasicColor(basicColor);
-                                            //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />TextAnimation.setBasicColor(smallBasicColorCacheFactory.getInstance(colorAsInt));
+                                            //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />TextAnimation.setBasicColor(smallBasicColorCacheFactory.getAndOrCreate(colorAsInt));
                                         }
                                         </xsl:if>
                                     </xsl:for-each>
@@ -107,7 +107,7 @@ Created By: Travis Berthelot
 
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
-                                            final int colorAsInt = basicColorUtil.get(255, </xsl:if>
+                                            final int colorAsInt = basicColorUtil.getARGB(255, </xsl:if>
                                         <xsl:if test="position() = 2" >
                                             <xsl:if test="contains(text(), ';')" >
                                                 <xsl:value-of select="translate(substring(text(), 2, string-length(text()) - 2), ';', ',')" />
@@ -123,9 +123,9 @@ Created By: Travis Berthelot
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
                                             
-                                        final BasicColor basicColor = smallBasicColorCacheFactory.getInstance(colorAsInt);
+                                        final BasicColor basicColor = smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
                                         gameLayer.setBasicColor(basicColor);
-                                        //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />TextAnimation.setBasicColor(smallBasicColorCacheFactory.getInstance(colorAsInt));
+                                        //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />TextAnimation.setBasicColor(smallBasicColorCacheFactory.getAndOrCreate(colorAsInt));
 
                                         </xsl:if>
                                     </xsl:for-each>

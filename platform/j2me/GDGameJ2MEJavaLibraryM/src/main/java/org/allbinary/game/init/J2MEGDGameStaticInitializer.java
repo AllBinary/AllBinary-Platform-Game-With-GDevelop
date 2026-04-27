@@ -49,7 +49,7 @@ public class J2MEGDGameStaticInitializer
         
         this.setPlatformGameInitialized(true);
         
-        ProgressCanvasFactory.getInstance().addPortion(50, "Game Options");
+        ProgressCanvasFactory.getInstance().addNormalPortion(50, "Game Options");
         
         new GDGameGameFeatures().init();
         //GameOptionsForm.init(commandListener, new GDGameGameFeatures(), "Game Options");

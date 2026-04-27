@@ -1,5 +1,6 @@
 package org.allbinary.animation.image;
 
+import java.util.Hashtable;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.graphics.threed.min3d.Min3dSceneResourcesFactory;
@@ -15,7 +16,7 @@ extends BaseResourceAnimationInterfaceFactoryInterfaceFactory
 {
     public GDGameOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory()
     {
-        super("GDGame OpenGL ImageArray Animations");
+        super("GDGame OpenGL ImageArray Animations", new Hashtable(), new Hashtable(), new Hashtable());
     }
 
     private final int portion = 120;
@@ -35,7 +36,7 @@ extends BaseResourceAnimationInterfaceFactoryInterfaceFactory
     public void init(int level) 
     throws Exception
     {
-        super.init(OpenGLImageCacheFactory.getInstance(), level);        
+        super.initImageCache(OpenGLImageCacheFactory.getInstance(), level);
         
         final String loadingString = this.toString() + " Loading: ";
 

@@ -41,7 +41,7 @@ public class PlayerInput extends PlayerGameInput
     }
 
     @Override
-    public synchronized void onDownKeyEvent(final Integer keyInteger) {
+    public synchronized void onDownKey(final Integer keyInteger) {
         //PreLogUtil.put(new StringMaker().append(CommonLabels.getInstance().START_LABEL).append(keyInteger.toString()).toString(), this, "onDownKeyEvent");
         if(keyInteger.intValue() > 0) {
             this.addKey(keyInteger);
@@ -100,7 +100,7 @@ public class PlayerInput extends PlayerGameInput
         //Integer keyInteger;
         for (int index = list.size(); --index >= 0;) {
             //keyInteger = (Integer) list.objectArray[index];
-            list.remove(index);
+            list.removeAt(index);
         }
         //System.out.println("List Size After: " + list.size());
     }
@@ -117,7 +117,7 @@ public class PlayerInput extends PlayerGameInput
             for (int index2 = list.size(); --index2 >= 0;) {
                 if (list.objectArray[index2] == object) {
                     //logUtil.put("keyup2: " + object, this, commonStrings.PROCESS);
-                    list.remove(index2);
+                    list.removeAt(index2);
                 }
             }
         }

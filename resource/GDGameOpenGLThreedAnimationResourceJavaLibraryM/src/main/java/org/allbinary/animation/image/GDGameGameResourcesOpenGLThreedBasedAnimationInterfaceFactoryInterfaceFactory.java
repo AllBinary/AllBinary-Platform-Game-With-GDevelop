@@ -1,41 +1,19 @@
 package org.allbinary.animation.image;
 
-import min3d.core.Object3d;
-import min3d.vos.Number3d;
-
-import org.allbinary.animation.threed.MultiThreedAnimationSingletonFactory;
-import org.allbinary.animation.threed.MultiThreedAutoRotateAnimationFactory;
-import org.allbinary.animation.threed.ThreedAnimationSingletonFactory;
-import org.allbinary.animation.threed.ThreedAutoRotateAnimationFactory;
+import java.util.Hashtable;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
-import org.allbinary.graphics.threed.min3d.Min3dSceneResourcesFactory;
-import org.allbinary.image.opengles.OpenGLImageCacheFactory;
-
-import org.allbinary.animation.AnimationInterfaceFactoryInterface;
-import org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory;
-import org.allbinary.animation.NullRotationAnimationFactory;
-import org.allbinary.animation.NullRotationAnimationFactory;
-import org.allbinary.animation.SingletonAnimationInterfaceFactory;
-import org.allbinary.animation.VectorAnimationInterfaceFactory;
-import org.allbinary.animation.compound.AutoCompoundRotationAnimationInterfaceFactory;
-import org.allbinary.animation.compound.CompoundIndexedAnimationInterfaceFactory;
-import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
-import org.allbinary.game.combat.damage.ExplosionResources;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
-import org.allbinary.graphics.PointFactory;
-import org.allbinary.graphics.Rectangle;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
-import org.allbinary.image.ImageCache;
 
 public class GDGameGameResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory
         extends BaseResourceAnimationInterfaceFactoryInterfaceFactory
 {
     public GDGameGameResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory()
     {
-        super("OpenGL Image Animations");
+        super("OpenGL Image Animations", new Hashtable(), new Hashtable(), new Hashtable());
     }
 
     private int index = 1;

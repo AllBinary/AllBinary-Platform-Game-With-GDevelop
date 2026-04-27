@@ -29,7 +29,7 @@ public class GDGameOpenGLESImageBasedAnimationInterfaceFactoryInterfaceFactory
 
     public void init(int level) throws Exception
     {
-        super.init(OpenGLImageCacheFactory.getInstance(), level);
+        super.initImageCache(OpenGLImageCacheFactory.getInstance(), level);
     }
     
     public boolean isFeature()

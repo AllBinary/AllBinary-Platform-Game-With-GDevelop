@@ -25,8 +25,8 @@
         <inputPath4>..\..\..\Resources\sounds\release\ogg\</inputPath4>
         <inputPath5>src\main\resources\</inputPath5>
 
-        <outputPath>..\GDGameThreedJ2SEWithSWTJOGLApplicationM\src\main\java\</outputPath>
-        <outputPath2>..\GDGameThreedJ2SEWithSWTJOGLApplicationM\src\main\resources\</outputPath2>
+        <outputPath>..\..\..\platformx\j2se\GDGameThreedJ2SEWithSWTJOGLApplicationM\src\main\java\</outputPath>
+        <outputPath2>..\..\..\platformx\j2se\GDGameThreedJ2SEWithSWTJOGLApplicationM\src\main\resources\</outputPath2>
                 
     </properties>
 

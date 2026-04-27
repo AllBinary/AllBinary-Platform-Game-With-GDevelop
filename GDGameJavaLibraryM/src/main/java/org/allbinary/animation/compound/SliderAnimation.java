@@ -127,12 +127,12 @@ public class SliderAnimation
     }
 
     @Override
-    public void paint(final Graphics graphics, final int x, final int y)
+    public void paintXY(final Graphics graphics, final int x, final int y)
     {
         int size = this.animationInterfaceArray.length;
         for(int index = 0; index < size; index++)
         {
-            this.animationInterfaceArray[index].paint(graphics, x, y);
+            this.animationInterfaceArray[index].paintXY(graphics, x, y);
         }
         
 //        if(this.hasFocus) {

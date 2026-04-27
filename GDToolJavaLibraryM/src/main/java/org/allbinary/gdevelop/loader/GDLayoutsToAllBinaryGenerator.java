@@ -71,7 +71,7 @@ public class GDLayoutsToAllBinaryGenerator
     {
         try
         {
-            timeDelayHelper.setStartTime();
+            timeDelayHelper.setStartTimeTNT();
             
             final String RESULT = "result: ";
 
@@ -131,7 +131,7 @@ public class GDLayoutsToAllBinaryGenerator
         }
 
         stringMaker.delete(0, stringMaker.length());
-        logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS);
+        logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, commonStrings.PROCESS);
     }
 
 //    public static void main(String[] args) throws Exception

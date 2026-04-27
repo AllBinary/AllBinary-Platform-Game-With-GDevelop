@@ -47,7 +47,7 @@ public class GDFlagLayerInterfaceFactory
     private static final String NAME = "GDFlagLayerInterfaceFactory";
     
     @Override
-    public AllBinaryLayer getInstance(final Hashtable hashtable, final int x, final int y, final int z)
+    public AllBinaryLayer getNextInstance(final Hashtable hashtable, final int x, final int y, final int z)
         throws Exception
     {
         //logUtil.put(LayerUtil.toString(hashtable, x, y, z), this, commonStrings.GET_INSTANCE);

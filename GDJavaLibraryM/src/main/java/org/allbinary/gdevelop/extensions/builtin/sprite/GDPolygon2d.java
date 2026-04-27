@@ -29,7 +29,7 @@ public class GDPolygon2d
         JSONObject jsonObject;
         for(int index = 0; index < size; index++) {
             jsonObject = jsonArray.getJSONObject(index);
-            this.pointList.add(pointFactory.getInstance0(jsonObject.getInt(projectStrings.X), jsonObject.getInt(projectStrings.Y)));
+            this.pointList.add(pointFactory.createXY(jsonObject.getInt(projectStrings.X), jsonObject.getInt(projectStrings.Y)));
         }        
     }
 }
