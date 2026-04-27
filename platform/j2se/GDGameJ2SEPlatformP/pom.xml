@@ -42,7 +42,7 @@
 
 
         <module>../GDGameJ2SEWithSWTJOGLJavaLibraryM</module>
-        <module>../../GDGameJOGLResourcesJavaLibraryM</module>
+<!--        <module>../../GDGameJOGLResourcesJavaLibraryM</module>-->
         <module>../GDGameJ2SEWithSWTJOGLM</module>
         <module>../../../platformx/j2se/GDGameJ2SEWithSWTJOGLApplicationM</module>
 
