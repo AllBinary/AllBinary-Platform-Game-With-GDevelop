@@ -37,7 +37,7 @@ public class GDPrimitiveDrawing extends Animation {
         new BasicArrayListD(), new BasicArrayListD(), new BasicArrayListD(), 
     };
 
-    private final CircularIndexUtil circularIndexUtil = CircularIndexUtil.create(animationListArray.length);
+    private final CircularIndexUtil circularIndexUtil = CircularIndexUtil.createInstance(animationListArray.length);
 
     public final BasicArrayList colorAnimationInUseList = new BasicArrayListD();
     public final BasicArrayList colorAnimationCacheList = new BasicArrayListD();

@@ -28,6 +28,7 @@
         <module>../GDJavaLibraryM</module>
 
         <module>../resource/GDGameResourceJavaLibraryM</module>
+        
         <!--
         <module>../platform/j2me/GDGameJ2MEJavaLibraryM</module>
         <module>../platform/j2se/GDGameJ2SEJavaLibraryM</module>
@@ -45,6 +46,7 @@
         <module>../resource/GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
         <module>../resource/GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
         
+        <module>../platform/GDGamePlatformResourceJavaLibraryM</module>
         <module>../platform/j2se/GDGamePCClientInfoJavaLibraryM</module>
         <module>../platform/j2me/GDGameJ2MEJavaLibraryM</module>
         <module>../GDGameGeneratedJavaLibraryM</module>
