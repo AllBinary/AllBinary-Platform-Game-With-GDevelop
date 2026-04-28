@@ -38,11 +38,12 @@
         
         <module>../GDGameThreedAndroidClientInfoJavaLibraryM</module>
         
-        <module>../../../platform/android/GDGameThreedAndroidM</module>
+        <module>../GDGameThreedAndroidM</module>
         
-        <module>../../../platform/android/GDGameThreedAndroidGradleM</module>
+        <module>../GDGameThreedBaseAndroidWithSWTJOGLJavaLibraryM</module>
+        <module>../GDGameThreedAndroidGradleM</module>
         <!--
-        <module>../../../platformx/android/GDGameThreedAndroidApplicationM</module>
+        <module>./platformx/android/GDGameThreedAndroidApplicationM</module>
         -->
 
     </modules>

@@ -25,9 +25,6 @@
         <!--
         -->
         <module>../../GDGameP</module>
-        
-
-        <module>../GDGamePlatformResourceJavaLibraryM</module>
 
         <!--
         <module>../j2me/GDGameJ2MEPlatformP</module>
