@@ -74,9 +74,9 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
     
     public final GDConditionWithGroupActions conditionWIthGroupActions;
     
-    public GDCustomCollidableBehavior(final CollidableCompositeLayer ownerLayer, final GDConditionWithGroupActions collidableBehavior, final boolean collidable)
+    public GDCustomCollidableBehavior(final GDConditionWithGroupActions collidableBehavior, final boolean collidable)
     {
-        super(ownerLayer, collidable);
+        super(collidable);
         
         this.conditionWIthGroupActions = collidableBehavior;
     }
@@ -84,38 +84,39 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
     //private final String IS_COLLISION = "isCollision";
     //private final String B = "BatEnemy";
 
-    public boolean isCollision(final CollidableCompositeLayer collisionLayer) 
+    @Override
+    public boolean isCollision(final CollidableCompositeLayer ownerLayer, final CollidableCompositeLayer collisionLayer) 
     {
-//        final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) this.ownerLayer);
+//        final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) ownerLayer);
 //        if (customGameLayer.gdObject.name.compareTo(B) == 0) {
 //            logUtil.put("isCollision: " + customGameLayer.toString(), this, commonStrings.PROCESS);
 //        }
         
         //final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-        //if(((GDCustomGameLayer) this.ownerLayer).gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
+        //if(((GDCustomGameLayer) ownerLayer).gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
         final GDCustomGameLayer collisionMaskCustomGameLayer = ((GDCustomGameLayer) collisionLayer);
         <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
         final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
         if(collisionMaskCustomGameLayer.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
             
-            return this.isCollision3(collisionMaskCustomGameLayer);
+            return this.isCollision3(ownerLayer, collisionMaskCustomGameLayer);
         } else {
-            if(this.ownerLayer != collisionLayer) {
-                return super.isCollision(collisionLayer);
+            if(ownerLayer != collisionLayer) {
+                return super.isCollision(ownerLayer, collisionLayer);
                 //return this.isCollision2(collisionLayer);
             }            
         }
         return false;
         </xsl:if>
         <xsl:if test="not(contains($hasLayoutWithTileMapAndIsTopView, 'found'))" >
-        return super.isCollision(collisionLayer);
+        return super.isCollision(ownerLayer, collisionLayer);
         </xsl:if>
             
     }
     
     <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
 //    GeographicMapCellPosition lastGeographicMapCellPosition;
-    public boolean isCollision3(final GDCustomGameLayer collisionMaskCustomGameLayer) {
+    public boolean isCollision3(final CollidableCompositeLayer ownerLayer, final GDCustomGameLayer collisionMaskCustomGameLayer) {
         
         try {
             
@@ -133,7 +134,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
 
             if(geographicMapInterfaceArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
 
-                final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) this.ownerLayer);
+                final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) ownerLayer);
                 final GDObject gdObject = collisionMaskCustomGameLayer.gdObject;
                 final GeographicMapCellPosition geographicMapCellPosition = customGameLayer.topViewGameBehavior.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(
                     geographicMapInterfaceArray, geographicMapCellTypeArray, customGameLayer.getVelocityProperties(), customGameLayer, gdObject.x, gdObject.y);
@@ -166,12 +167,12 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
     </xsl:if>
     
     // TODO TWB Special Super Efficient Collision Processing
-    public boolean isCollision2(final CollidableCompositeLayer collisionLayer)
+    public boolean isCollision2(final CollidableCompositeLayer ownerLayer, final CollidableCompositeLayer collisionLayer)
     {
         //final StringMaker stringBuilder = new StringMaker();
-        //logUtil.put(stringBuilder.append(commonSeps.COLON).append(this.ownerLayer.getName()).append(commonSeps.COLON).append(collisionLayer.getName()).toString(), this, IS_COLLISION);
+        //logUtil.put(stringBuilder.append(commonSeps.COLON).append(ownerLayer.getName()).append(commonSeps.COLON).append(collisionLayer.getName()).toString(), this, IS_COLLISION);
         
-//        if(!this.ownerLayer.getName().startsWith("player_bullet") || !collisionLayer.getName().startsWith("player_bullet")) {
+//        if(!ownerLayer.getName().startsWith("player_bullet") || !collisionLayer.getName().startsWith("player_bullet")) {
 //            final StringMaker stringBuilder = new StringMaker();
 //            final String string = this.toString(collisionLayer, stringBuilder);
 //            logUtil.put(string, this, "isCollision");
@@ -182,11 +183,11 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
         //if(this.collidableBehavior.groupCollisionList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
         if(((GDCustomCollidableBehavior) collisionLayer.getCollidableInferface()).conditionWIthGroupActions.groupWithActionsList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
             //stringBuilder.delete(0, stringBuilder.length());
-            //logUtil.put(stringBuilder.append(this.ownerLayer.getGroupInterface()[0]).append(" != ").append(collisionLayer.getGroupInterface()[0]).toString(), this, IS_COLLISION);
-            if (this.ownerLayer.getGroupInterface()[0] != collisionLayer.getGroupInterface()[0]) {
+            //logUtil.put(stringBuilder.append(ownerLayer.getGroupInterface()[0]).append(" != ").append(collisionLayer.getGroupInterface()[0]).toString(), this, IS_COLLISION);
+            if (ownerLayer.getGroupInterface()[0] != collisionLayer.getGroupInterface()[0]) {
                 //stringBuilder.delete(0, stringBuilder.length());
                 //logUtil.put(this.toString(collisionLayer, stringBuilder), this, "isCollision - super");
-                return super.isCollision(collisionLayer);
+                return super.isCollision(ownerLayer, collisionLayer);
             }
         } else {
             //stringBuilder.delete(0, stringBuilder.length());
@@ -200,23 +201,24 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
     
     // TODO TWB Special Super Efficient Collision Processing
     //public void collide(CollidableDestroyableDamageableTeamLayer collisionLayer)
-    public void collide(final CollidableCompositeLayer collisionLayer)
+    @Override
+    public void collide(final CollidableCompositeLayer ownerLayer, final CollidableCompositeLayer collisionLayer)
             throws Exception
     {
         if(((CollidableDestroyableDamageableLayer) collisionLayer).isDestroyed()) {
             return;
         }
         
-        if(((CollidableDestroyableDamageableLayer) this.ownerLayer).isDestroyed()) {
+        if(((CollidableDestroyableDamageableLayer) ownerLayer).isDestroyed()) {
             return;
         }
 
         if(this.conditionWIthGroupActions.groupWithActionsList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
             //final StringMaker stringBuilder = new StringMaker();
-            //logUtil.put(stringBuilder.append(COLLIDE).append(commonSeps.COLON).append(this.ownerLayer.getName()).append(commonSeps.COLON).append(collisionLayer.getName()).toString(), this, COLLIDE);
+            //logUtil.put(stringBuilder.append(COLLIDE).append(commonSeps.COLON).append(ownerLayer.getName()).append(commonSeps.COLON).append(collisionLayer.getName()).toString(), this, COLLIDE);
 
             final GroupInterface[] groupInterfaceArray = collisionLayer.getGroupInterface();
-            //final GroupInterface[] groupInterfaceArray = this.ownerLayer.getGroupInterface();
+            //final GroupInterface[] groupInterfaceArray = ownerLayer.getGroupInterface();
 
             final int size = groupInterfaceArray.length;
             int indexOfGroup;
@@ -236,7 +238,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
                     if(true) throw new RuntimeException();
                     final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
                     tempGameLayerUtil.clear();
-                    tempGameLayerUtil.gameLayerArray[0] = this.ownerLayer;
+                    tempGameLayerUtil.gameLayerArray[0] = ownerLayer;
                     tempGameLayerUtil.gameLayerArray[1] = collisionLayer;
                     node.processM(tempGameLayerUtil.gameLayerArray);
                     tempGameLayerUtil.clear2();
@@ -244,30 +246,32 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
                 }
             }
         } else {
-            //logUtil.put("collide: No Groups for: " + this.ownerLayer, this, COLLIDE);
+            //logUtil.put("collide: No Groups for: " + ownerLayer, this, COLLIDE);
         }
 
-        //((CollidableDestroyableDamageableLayer) this.ownerLayer).damage(
+        //((CollidableDestroyableDamageableLayer) ownerLayer).damage(
                 //((CollidableDestroyableDamageableLayer) collidableInterfaceCompositeInterface).getDamage(0), 0);
     }
 
-    public boolean isCollision(final CollidableInterfaceCompositeInterface collidableInterfaceCompositeInterface)
+    @Override
+    public boolean isCollisionInterface(final CollidableCompositeLayer ownerLayer, final CollidableInterfaceCompositeInterface collidableInterfaceCompositeInterface)
     {
         ForcedLogUtil.log("No Longer Used", this);
         return false;
     }
     
-    public void collide(final CollidableInterfaceCompositeInterface collidableInterfaceCompositeInterface)
+    @Override
+    public void collideInterface(final CollidableCompositeLayer ownerLayer, final CollidableInterfaceCompositeInterface collidableInterfaceCompositeInterface)
             throws Exception
     {
         ForcedLogUtil.log("No Longer Used", this);
     }
     
-    public String toString(final CollidableCompositeLayer collisionLayer, final StringMaker stringBuilder) {
+    public String toString(final CollidableCompositeLayer ownerLayer, final CollidableCompositeLayer collisionLayer, final StringMaker stringBuilder) {
 
-        int size = this.ownerLayer.getGroupInterface().length;
+        int size = ownerLayer.getGroupInterface().length;
         for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-            stringBuilder.append(stringUtil.toString(this.ownerLayer.getGroupInterface()[index]));
+            stringBuilder.append(stringUtil.toString(ownerLayer.getGroupInterface()[index]));
         }
         stringBuilder.append(" != ");
         size = collisionLayer.getGroupInterface().length;

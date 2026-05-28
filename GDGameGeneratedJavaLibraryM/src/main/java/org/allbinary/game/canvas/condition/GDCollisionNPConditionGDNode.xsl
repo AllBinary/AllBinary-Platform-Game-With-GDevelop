@@ -166,7 +166,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
-                        if(<xsl:if test="$inverted = 'true'" >!</xsl:if>gameLayer2.getCollidableInferface().isCollision(gameLayer)) {
+                        if(<xsl:if test="$inverted = 'true'" >!</xsl:if>gameLayer2.getCollidableInferface().isCollision(gameLayer2, gameLayer)) {
 
                             if(gameLayer2.isDestroyed()) {
                                logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " Collision not allowed is already destroyed", this, commonStrings.PROCESS);
@@ -286,7 +286,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
-                        if(<xsl:if test="$inverted = 'true'" >!</xsl:if>gameLayer2.getCollidableInferface().isCollision(gameLayer)) {
+                        if(<xsl:if test="$inverted = 'true'" >!</xsl:if>gameLayer2.getCollidableInferface().isCollision(gameLayer2, gameLayer)) {
 
                             if(gameLayer2.isDestroyed()) {
                                logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " GD Collision not allowed is already destroyed", this, commonStrings.PROCESS);

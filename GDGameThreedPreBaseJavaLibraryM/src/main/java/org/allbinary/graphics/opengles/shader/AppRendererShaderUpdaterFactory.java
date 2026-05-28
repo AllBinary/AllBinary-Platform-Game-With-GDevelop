@@ -232,7 +232,7 @@ public class AppRendererShaderUpdaterFactory extends ShaderUpdater {
         try {
             logUtil.putF(resource, this, this.rendererStrings.ON_SURFACE_CREATED);
             final InputStream inputStream = resourceUtil.getResourceAsStream(resource);
-            final BasicArrayList stringList = shader.shaderStringList = simpleFileUtil.loadFileAsList(inputStream, max, byteArray1, 1);
+            final BasicArrayList stringList = shader.shaderStringList = simpleFileUtil.loadFileAsListReturnLine(inputStream, max, byteArray1, 1);
             String[] shaderAsStringArray = (String[]) stringList.toArrayType(new String[stringList.size()]);
             shader.shaderAsString = this.simpleFileUtil.createStringFromArrayOfStrings(shaderAsStringArray);
             //logUtil.put("shaderAsString: " + shader.shaderAsString, this, this.rendererStrings.ON_SURFACE_CREATED);

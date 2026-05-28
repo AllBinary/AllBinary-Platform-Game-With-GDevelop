@@ -248,7 +248,7 @@ public class GDToAllBinaryResourcesGenerator
             resource = (String) this.gdResources.resourceList.get(index);
             if(resource.endsWith(this.TSJ)) {
                 
-                this.logUtil.putF(new StringMaker().append(this.gdToolStrings.FILENAME).append(resource).toString(), this, this.commonStrings.PROCESS);
+                this.logUtil.putF(new StringMaker().append(this.gdToolStrings.FILENAME).append(resource).toString(), this, commonStrings.PROCESS);
                 this.appendImmediatelyLoadedImages(resource);
                 
             //PanelSpriteSlider::PanelSpriteSlider -> texture must not lazy load textures                
@@ -280,7 +280,7 @@ public class GDToAllBinaryResourcesGenerator
         final JSONObject jsonObject = (JSONObject) jsonTokener.nextValue();
         final String imagePath = jsonObject.getString(IMAGE);
         
-        this.logUtil.putF(new StringMaker().append(this.gdToolStrings.FILENAME).append(imagePath).toString(), this, this.commonStrings.PROCESS);
+        this.logUtil.putF(new StringMaker().append(this.gdToolStrings.FILENAME).append(imagePath).toString(), this, commonStrings.PROCESS);
         
         this.appendImmediatelyLoadedImage(imagePath);
         
@@ -336,12 +336,12 @@ public class GDToAllBinaryResourcesGenerator
         final String newFileAsString = replace.all(androidRFileAsString);
 
         stringMaker.delete(0, stringMaker.length());
-        logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(RESOURCE).toString(), this, this.commonStrings.PROCESS);
+        logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(RESOURCE).toString(), this, commonStrings.PROCESS);
         
         this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);        
         
         stringMaker.delete(0, stringMaker.length());
-        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, this.commonStrings.PROCESS);
+        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, commonStrings.PROCESS);
         
         return usedList;
     }
@@ -379,12 +379,12 @@ public class GDToAllBinaryResourcesGenerator
         final String newFileAsString = replace.all(androidRFileAsString);
 
         stringMaker.delete(0, stringMaker.length());
-        this.logUtil.putF(this.gdToolStrings.FILENAME + LAZY_RESOURCE, this, this.commonStrings.PROCESS);
+        this.logUtil.putF(this.gdToolStrings.FILENAME + LAZY_RESOURCE, this, commonStrings.PROCESS);
         
         this.bufferedWriterUtil.overwrite(LAZY_RESOURCE, newFileAsString);        
         
         stringMaker.delete(0, stringMaker.length());
-        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, this.commonStrings.PROCESS);
+        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, commonStrings.PROCESS);
         
     }
     

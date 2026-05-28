@@ -61,10 +61,10 @@ public class GDGame
         final BasicMotionGesturesHandler motionGesturesHandler =
             motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();
 
-        motionGesturesHandler.addListener(new GameMotionGestureListener(
+        motionGesturesHandler.addListenerInterface(new GameMotionGestureListener(
             MotionGestureReceiveInterfaceFactory.getInstance()));    
 
-        motionGesturesHandler.addListener(new GDGameMotionGestureListener());
+        motionGesturesHandler.addListenerInterface(new GDGameMotionGestureListener());
 
         new DefaultGameInitializationListener();
     }
@@ -184,7 +184,7 @@ public class GDGame
 
     protected void exit(boolean isProgress) {
         this.glSurfaceView.onDetachedFromWindow();
-        super.exit(isProgress);
+        super.exitProgress(isProgress);
     }
     
     public void stopAll()

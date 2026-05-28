@@ -112,7 +112,7 @@ public class GDToAllBinaryRotationGenerator
                     new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
 
             stringMaker.delete(0, stringMaker.length());
-            logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(outputArray[index2]).toString(), this, this.commonStrings.PROCESS);
+            logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(outputArray[index2]).toString(), this, commonStrings.PROCESS);
             this.bufferedWriterUtil.overwrite(outputArray[index2], result);
         }
         

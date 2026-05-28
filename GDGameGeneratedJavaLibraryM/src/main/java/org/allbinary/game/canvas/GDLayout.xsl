@@ -441,8 +441,8 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                     <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
-                        BasicMotionGesturesHandler.getInstance().addListener(globals.eventListenerInterfaceLastPoint);
-                        MovedMotionGesturesHandler.getInstance().addListener(globals.eventListenerInterfaceLastPoint);
+                        BasicMotionGesturesHandler.getInstance().addListenerInterface(globals.eventListenerInterfaceLastPoint);
+                        MovedMotionGesturesHandler.getInstance().addListenerInterface(globals.eventListenerInterfaceLastPoint);
                     </xsl:if>
 
                         GDFormInputProcessor.getInstance().open();

@@ -133,9 +133,9 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
         //gameLayer.setInitialScale(scaleX, scaleY);
 
         if(gameLayer.hasCollisionMask()) {
-            gameLayer.setCollidableInferface(new GDCustomMaskCollidableBehavior(gameLayer, collidableBehavior, true));
+            gameLayer.setCollidableInferface(new GDCustomMaskCollidableBehavior(collidableBehavior, true));
         } else {
-            gameLayer.setCollidableInferface(new GDCustomCollidableBehavior(gameLayer, collidableBehavior, true));
+            gameLayer.setCollidableInferface(new GDCustomCollidableBehavior(collidableBehavior, true));
         }
 
         //logUtil.put(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(" w/h/d: ").append(gameLayer.getWidth()).append('/').append(gameLayer.getHeight()).append('/').append(gameLayer.getDepth()).toString(), this, "create");

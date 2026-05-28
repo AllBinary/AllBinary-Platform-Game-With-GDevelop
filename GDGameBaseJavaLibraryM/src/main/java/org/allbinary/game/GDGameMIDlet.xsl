@@ -359,7 +359,7 @@ public class GDGameMIDlet extends
             logUtil.put(commonStrings.EXCEPTION, this, MidletStrings.getInstance().COMMAND_ACTION, e);
             if (command != GameCommandsFactory.getInstance().EXIT_COMMAND)
             {
-                this.exit(false);
+                this.exitProgress(false);
             }
         }
     }

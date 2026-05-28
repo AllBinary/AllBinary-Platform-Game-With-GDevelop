@@ -30,12 +30,11 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
 {
     //protected final LogUtil logUtil = LogUtil.getInstance();
 
-    
     public final GDConditionWithGroupActions conditionWIthGroupActions;
     
-    public GDWithAllBinaryCollidableBehavior(final CollidableCompositeLayer ownerLayer, final GDConditionWithGroupActions collidableBehavior, final boolean collidable)
+    public GDWithAllBinaryCollidableBehavior(final GDConditionWithGroupActions collidableBehavior, final boolean collidable)
     {
-        super(ownerLayer, collidable);
+        super(collidable);
         
         this.conditionWIthGroupActions = collidableBehavior;
     }
@@ -44,7 +43,7 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
 
     // TODO TWB Special Super Efficient Collision Processing
     @Override
-    public boolean isCollision(final CollidableCompositeLayer collisionLayer)
+    public boolean isCollision(final CollidableCompositeLayer ownerLayer, final CollidableCompositeLayer collisionLayer)
     {
         //final StringMaker stringBuilder = new StringMaker();
         //logUtil.put(stringBuilder.append(commonSeps.COLON).append(this.ownerLayer.getName()).append(commonSeps.COLON).append(collisionLayer.getName()).toString(), this, IS_COLLISION);
@@ -61,11 +60,11 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
         if(((GDWithAllBinaryCollidableBehavior) collisionLayer.getCollidableInferface()).conditionWIthGroupActions.groupWithActionsList.size() > 0) {
             //stringBuilder.delete(0, stringBuilder.length());
             //logUtil.put(stringBuilder.append(this.ownerLayer.getGroupInterface()[0]).append(" != ").append(collisionLayer.getGroupInterface()[0]).toString(), this, IS_COLLISION);
-            if (this.ownerLayer.getGroupInterface()[0] != collisionLayer.getGroupInterface()[0]) {
+            if (ownerLayer.getGroupInterface()[0] != collisionLayer.getGroupInterface()[0]) {
                 //stringBuilder.delete(0, stringBuilder.length());
                 //logUtil.put(this.toString(collisionLayer, stringBuilder), this, "isCollision - super");
-                if(this.ownerLayer != collisionLayer) {
-                    return super.isCollision(collisionLayer);
+                if(ownerLayer != collisionLayer) {
+                    return super.isCollision(ownerLayer, collisionLayer);
                 }
             }
         } else {
@@ -81,14 +80,14 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
     // TODO TWB Special Super Efficient Collision Processing
     //public void collide(CollidableDestroyableDamageableTeamLayer collisionLayer)
     @Override
-    public void collide(final CollidableCompositeLayer collisionLayer)
+    public void collide(final CollidableCompositeLayer ownerLayer, final CollidableCompositeLayer collisionLayer)
             throws Exception
     {
         if(((CollidableDestroyableDamageableLayer) collisionLayer).isDestroyed()) {
             return;
         }
         
-        if(((CollidableDestroyableDamageableLayer) this.ownerLayer).isDestroyed()) {
+        if(((CollidableDestroyableDamageableLayer) ownerLayer).isDestroyed()) {
             return;
         }
 
@@ -115,7 +114,7 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
                     node = ((GDNode) this.conditionWIthGroupActions.actionForGroupsList.get(indexOfGroup));
                     final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
                     tempGameLayerUtil.clear();
-                    tempGameLayerUtil.gameLayerArray[0] = this.ownerLayer;
+                    tempGameLayerUtil.gameLayerArray[0] = ownerLayer;
                     tempGameLayerUtil.gameLayerArray[1] = collisionLayer;
                     //node.processM(node.gameLayerArray, null, null);
                     node.processM(tempGameLayerUtil.gameLayerArray);
@@ -131,24 +130,24 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
     }
 
     @Override
-    public boolean isCollisionInterface(final CollidableInterfaceCompositeInterface collidableInterfaceCompositeInterface)
+    public boolean isCollisionInterface(final CollidableCompositeLayer ownerLayer, final CollidableInterfaceCompositeInterface collidableInterfaceCompositeInterface)
     {
         ForcedLogUtil.log("No Longer Used", this);
         return false;
     }
     
     @Override
-    public void collideInterface(final CollidableInterfaceCompositeInterface collidableInterfaceCompositeInterface)
+    public void collideInterface(final CollidableCompositeLayer ownerLayer, final CollidableInterfaceCompositeInterface collidableInterfaceCompositeInterface)
             throws Exception
     {
         ForcedLogUtil.log("No Longer Used", this);
     }
     
-    public String toString(final CollidableCompositeLayer collisionLayer, final StringMaker stringBuilder) {
+    public String toString(final CollidableCompositeLayer ownerLayer, final CollidableCompositeLayer collisionLayer, final StringMaker stringBuilder) {
         final StringUtil stringUtil = StringUtil.getInstance();
-        int size = this.ownerLayer.getGroupInterface().length;
+        int size = ownerLayer.getGroupInterface().length;
         for (int index = 0; index < size; index++) {
-            stringBuilder.append(stringUtil.toString(this.ownerLayer.getGroupInterface()[index]));
+            stringBuilder.append(stringUtil.toString(ownerLayer.getGroupInterface()[index]));
         }
         stringBuilder.append(" != ");
         size = collisionLayer.getGroupInterface().length;

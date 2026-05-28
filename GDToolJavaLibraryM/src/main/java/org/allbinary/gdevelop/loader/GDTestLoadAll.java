@@ -20,6 +20,7 @@ import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
 
@@ -57,7 +58,7 @@ public class GDTestLoadAll
         final VisitorFileFilter visitorFileFilter = new VisitorFileFilter(
                 new DirectoryOrIncludeFileExtensionBooleanFileVisitor(includeExtensionBasicArrayList));
         
-        final AbFile[] files = FileWrapperUtil.wrapFiles(new AbFile(gdToolStrings.ROOT_PATH).listFiles(visitorFileFilter));
+        final AbFile[] files = FileWrapperUtil.wrapFiles(AbFile.createAbFileFromRawPath(gdToolStrings.ROOT_PATH).listFilesFileFilter(visitorFileFilter));
         //final int size = files.size();
         final int size = files.length;
         String jsonFileName = gdToolStrings.GAME_JSON_PATH;

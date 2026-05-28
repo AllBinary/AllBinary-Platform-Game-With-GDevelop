@@ -824,7 +824,7 @@ public class GDGameLayer
 //        stringBuilder.delete(0, stringBuilder.length());
 //        logUtil.put(stringBuilder.append(" c: ").append(EnemiesGDGameLayer.c).append(" r: ").append(EnemiesGDGameLayer.r).toString(), this, commonStrings.PROCESS);
 
-        this.getCollidableInferface().paint(graphics);
+        this.getCollidableInferface().paint(this, graphics);
     }
         
 //    public int c;

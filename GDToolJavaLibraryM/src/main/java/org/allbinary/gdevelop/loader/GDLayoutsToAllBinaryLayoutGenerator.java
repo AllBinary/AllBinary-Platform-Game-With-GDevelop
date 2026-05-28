@@ -372,7 +372,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
         
         final String nodeListAsString = this.getBuiltInGDNodeListAsString(gameXmlAsString, layoutIndex);
         final Tokenizer tokenizer = new Tokenizer(commonSeps.SPACE);
-        return tokenizer.getTokens(nodeListAsString, new BasicArrayListD());
+        return tokenizer.getTokensFromString(nodeListAsString, new BasicArrayListD());
 
     }
 
@@ -510,7 +510,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
         
         final String nodeListAsString = this.getActionGDNodeListAsString(gameXmlAsString, layoutIndex);
         final Tokenizer tokenizer = new Tokenizer(commonSeps.SPACE);
-        return tokenizer.getTokens(nodeListAsString, new BasicArrayListD());
+        return tokenizer.getTokensFromString(nodeListAsString, new BasicArrayListD());
 
     }
     

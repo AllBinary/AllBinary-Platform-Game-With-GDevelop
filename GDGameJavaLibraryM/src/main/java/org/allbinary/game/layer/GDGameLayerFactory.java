@@ -115,7 +115,7 @@ public class GDGameLayerFactory
         
         //gameLayer.setInitialScale(scaleX, scaleY);
 
-        gameLayer.setCollidableInferface(new GDWithAllBinaryCollidableBehavior(gameLayer, collidableBehavior, true));
+        gameLayer.setCollidableInferface(new GDWithAllBinaryCollidableBehavior(collidableBehavior, true));
 
         //logUtil.put(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(" w/h/d: ").append(gameLayer.getWidth()).append('/').append(gameLayer.getHeight()).append('/').append(gameLayer.getDepth()).toString(), this, "create");
         

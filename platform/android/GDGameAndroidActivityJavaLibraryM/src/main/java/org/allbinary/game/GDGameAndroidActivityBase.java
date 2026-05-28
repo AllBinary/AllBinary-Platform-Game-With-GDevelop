@@ -14,6 +14,7 @@ import org.allbinary.AllBinaryAndroidGameInitializationUtil;
 import org.allbinary.AndroidResources;
 import org.allbinary.string.CommonStateStrings;
 import org.allbinary.android.activity.game.GameMidletActivity;
+import org.allbinary.android.activity.progress.ProgressHelper;
 import org.allbinary.business.advertisement.GameAdStateFactory;
 import org.allbinary.configuration.ApplicationConfiguration;
 import org.allbinary.emulator.InitEmulatorFactory;
@@ -42,6 +43,7 @@ public class GDGameAndroidActivityBase extends GameMidletActivity
     public GDGameAndroidActivityBase()
     {
         //super(new ProgressHelper(AndroidResources.id.progressbar));
+        super(ProgressHelper.NULL_PROGRESS_HELPER);
         
         try
         {
@@ -290,7 +292,7 @@ public class GDGameAndroidActivityBase extends GameMidletActivity
 
             Hashtable hashtable = ImageCacheFactory.getInstance().getHashtableP();
 
-            hashtable.put(AndroidBasicTitleProgressBar.RESOURCE, new Image(bitmap));
+            hashtable.put(AndroidBasicTitleProgressBar.RESOURCE, Image.createImageBitmap(bitmap));
             
             AndroidBasicTitleProgressBar.setBackgroundResource(
                     androidResources.drawable.gd_wait_256_by_256

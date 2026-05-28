@@ -38,10 +38,10 @@ public class GDGameMIDlet
         final BasicMotionGesturesHandler motionGesturesHandler =
             motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();
 
-        motionGesturesHandler.addListener(new GameMotionGestureListener(
+        motionGesturesHandler.addListenerInterface(new GameMotionGestureListener(
             MotionGestureReceiveInterfaceFactory.getInstance()));    
 
-        motionGesturesHandler.addListener(new GDGameMotionGestureListener());
+        motionGesturesHandler.addListenerInterface(new GDGameMotionGestureListener());
         
         new DefaultGameInitializationListener();
     }

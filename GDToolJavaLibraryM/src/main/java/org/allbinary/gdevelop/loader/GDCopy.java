@@ -18,9 +18,9 @@ import org.allbinary.logic.io.file.FileListFetcher;
 import org.allbinary.logic.io.file.FileUtil;
 import org.allbinary.logic.io.path.AbPath;
 import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.util.BasicArrayList;
 
 public class GDCopy {
@@ -56,8 +56,8 @@ public class GDCopy {
                 //logUtil.put("File: " + file.isFile(), this, commonStrings.PROCESS);
                 stringMaker.delete(0, stringMaker.length());
                 logUtil.putF(stringMaker.append("Copying To File: ").append(PATH).append(file.getName()).toString(), this, commonStrings.PROCESS);
-                fromAbPath = new AbPath(file.getPath());
-                toAbPath = new AbPath(PATH + file.getName());
+                fromAbPath = new AbPath(file.getPath(), StringUtil.getInstance().EMPTY_STRING);
+                toAbPath = new AbPath(PATH + file.getName(), StringUtil.getInstance().EMPTY_STRING);
                 fileUtil.copy(fromAbPath, toAbPath);
             }
 
