@@ -56,7 +56,7 @@ public class GDWaypointBehavior
     private final BasicArrayList possibleTargetList;
     
     private int currentTargetDistance = Integer.MAX_VALUE;
-    protected CollidableDestroyableDamageableLayer currentTargetLayerInterface = CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER;
+    protected CollidableDestroyableDamageableLayer currentTargetLayerInterface = CollidableDestroyableDamageableLayer.getNullInstance();
     protected GeographicMapCellPosition currentTargetGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
     
     private boolean trackingWaypoint;
@@ -293,7 +293,7 @@ public class GDWaypointBehavior
         
         if(this.isTrackingWaypoint() ||
                 this.sensorAction == SensorActionFactory.getInstance().EVADE ||
-                (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER &&
+                (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance() &&
                 this.getCurrentTargetDistance() >= this.longWeaponRange +
                 this.currentTargetLayerInterface.getHalfHeight()))
         {
@@ -322,7 +322,7 @@ public class GDWaypointBehavior
         stringBuffer.append(" getCurrentTargetLayerInterface: ");
         stringBuffer.append(StringUtil.getInstance().toString(this.currentTargetLayerInterface));
 
-        if (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER) {
+        if (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance()) {
             stringBuffer.append(" Target Range: ");
             stringBuffer.appendint(this.getCurrentTargetDistance());
             stringBuffer.append(" >= ");
@@ -431,7 +431,7 @@ public class GDWaypointBehavior
     protected void setCurrentTargetLayerInterface(CollidableDestroyableDamageableLayer currentTargetLayerInterface) throws Exception
     {
         this.currentTargetLayerInterface = currentTargetLayerInterface;
-        if(this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER) {
+        if(this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance()) {
             this.currentTargetGeographicMapCellPosition = ((PathFindingLayerInterface) this.currentTargetLayerInterface).getCurrentGeographicMapCellPosition();
             //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target? ").append(this.currentTargetGeographicMapCellPosition).append(commonSeps.SPACE).append(this.currentTargetLayerInterface).toString(), this, "updatePathOnTargetMove");            
         } else {

@@ -59,7 +59,7 @@ public class GDFlagLayerInterfaceFactory
 //        final VisualWaypointLayer layer = new VisualWaypointLayer(
 //            RemoteInfo.REMOTE_INFO,
 //            (AdvancedRTSGameLayer) hashtable.get(Layer.ID),
-//            (Group[]) hashtable.get(Group.ID),
+//            (Group[]) hashtable.get(this.groupCommonFactory.ID),
 //            GDFlagResources.getInstance().NAME,
 //            new StringMaker().append(GDFlagResources.getInstance().NAME).append(
 //                    CommonSeps.getInstance().SPACE).append(index++).toString(),

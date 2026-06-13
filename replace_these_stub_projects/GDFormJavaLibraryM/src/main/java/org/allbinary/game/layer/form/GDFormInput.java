@@ -29,7 +29,7 @@ public class GDFormInput
 {
     
     //@Override
-    public void onEvent(final int keyCode, final int deviceId, final boolean repeated) {
+    public void onEventRaw(final int keyCode, final int deviceId, final boolean repeated) {
 
     }
 

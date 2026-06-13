@@ -48,7 +48,7 @@ public class CustomTextBoxIndexedAnimation extends IndexedAnimation
     }
 
     @Override
-    public void paintThreed(Graphics graphics, int x, int y, int z)
+    public void paintThreedXYZ(Graphics graphics, int x, int y, int z)
     {
 
     }    
@@ -59,8 +59,8 @@ public class CustomTextBoxIndexedAnimation extends IndexedAnimation
     }
 
     @Override
-    public void onEvent(final int keyCode, final int deviceId, final boolean repeated) {
-        this.customTextBox.onEvent(keyCode, deviceId, repeated);
+    public void onEventRaw(final int keyCode, final int deviceId, final boolean repeated) {
+        this.customTextBox.onEventRaw(keyCode, deviceId, repeated);
     }
     
 }

@@ -54,7 +54,7 @@ extends GDWaypointBehavior
     private boolean waitingOnTargetPath;
     private boolean waitingOnWaypointPath;
     
-    private CollidableDestroyableDamageableLayer targetWithoutCachedPathLayerInterface = CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER;
+    private CollidableDestroyableDamageableLayer targetWithoutCachedPathLayerInterface = CollidableDestroyableDamageableLayer.getNullInstance();
 
     private static final String WANDERING = "Order?"; //"Lalala" //"What Now? //"Wander";
     private static final String THINKING = "Thinking";
@@ -127,7 +127,7 @@ extends GDWaypointBehavior
 
         //logUtil.put("", this, "processTick");
         
-        if(this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER && this.getCurrentGeographicMapCellHistory().getTotalVisited() > this.getCurrentGeographicMapCellHistory().getTotalNotVisited()) {
+        if(this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance() && this.getCurrentGeographicMapCellHistory().getTotalVisited() > this.getCurrentGeographicMapCellHistory().getTotalNotVisited()) {
             this.updatePathOnTargetMove(VISITED_MOST_OF_THE_PATH);
         }
         
@@ -210,7 +210,7 @@ extends GDWaypointBehavior
                 (CollidableDestroyableDamageableLayer) layerInterface);
 
         // String destroyedTarget = NULL;
-        // if (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER)
+        // if (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance())
         // {
         // destroyedTarget =
         // Boolean.toString(this.currentTargetLayerInterface.isDestroyed());
@@ -240,7 +240,7 @@ extends GDWaypointBehavior
             this.getCurrentTargetDistance() > anotherTargetDistance;
             
         boolean isCurrentTargetDestroyed = 
-            this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER && this.currentTargetLayerInterface.isDestroyed();
+            this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance() && this.currentTargetLayerInterface.isDestroyed();
 
         this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processPossibleTarget(this.associatedAdvancedRTSGameLayer, this, layerInterface, anotherTargetDistance, isShorterThanCurrentTargetDistance, isCurrentTargetDestroyed);
 
@@ -309,7 +309,7 @@ extends GDWaypointBehavior
     public void updatePathOnTargetMove(final String reason) throws Exception {
         
         final CollidableDestroyableDamageableLayer currentTargetLayerInterface = this.currentTargetLayerInterface;
-        if (currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER) {
+        if (currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance()) {
             final GeographicMapCellPosition geographicMapCellPosition = ((PathFindingLayerInterface) currentTargetLayerInterface).getCurrentGeographicMapCellPosition();
 
             if (geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
@@ -402,7 +402,7 @@ extends GDWaypointBehavior
     private void setTargetPath()
         throws Exception
     {
-        if(this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER)
+        if(this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance())
         {
             if(this.currentTargetLayerInterface.isDestroyed())
             {
@@ -486,7 +486,7 @@ extends GDWaypointBehavior
                     }
 
                     if (this.currentGeographicMapCellHistory.isAllVisited2() &&
-                        this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER)
+                        this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance())
                     {
                         final PathFindingLayerInterface oldWaypointLayer = (PathFindingLayerInterface)
                             this.currentTargetLayerInterface;
@@ -509,7 +509,7 @@ extends GDWaypointBehavior
                 // this.removeWaypoint(waypointLayer);
                 // Otherwise Move towards waypoint
                 // If currentlyTargeting enemy then check priority
-                if (this.currentTargetLayerInterface == CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER ||
+                if (this.currentTargetLayerInterface == CollidableDestroyableDamageableLayer.getNullInstance() ||
                     this.waypointOverridesAttacking)
                 {
                     //logUtil.put("", this, "processWaypoint");
@@ -538,7 +538,7 @@ extends GDWaypointBehavior
 
                 // If out of waypoints and without target then check sensors
                 /*
-                if (this.currentTargetLayerInterface == CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER &&
+                if (this.currentTargetLayerInterface == CollidableDestroyableDamageableLayer.getNullInstance() &&
                 this.getWaypointList().size() == 0)
                 {
                 logUtil.put(
@@ -662,7 +662,7 @@ extends GDWaypointBehavior
     private void processTargetList()
         throws Exception
     {
-        //this.targetWithoutCachedPathLayerInterface = CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER;
+        //this.targetWithoutCachedPathLayerInterface = CollidableDestroyableDamageableLayer.getNullInstance();
 
         for (int index = this.getPossibleTargetList().size() - 1; index >= 0; index--)
         {
@@ -682,7 +682,7 @@ extends GDWaypointBehavior
         }
 
         //TWB - I don't think this is called currently
-        if (this.targetWithoutCachedPathLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER)
+        if (this.targetWithoutCachedPathLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance())
         {
             //logUtil.put("" + this.targetWithoutCachedPathLayerInterface, this, "processTargetList");
             
@@ -695,7 +695,7 @@ extends GDWaypointBehavior
             this.runWaypointPathTask(
                 (PathFindingLayerInterface) this.currentTargetLayerInterface);
             
-            this.targetWithoutCachedPathLayerInterface = CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER;
+            this.targetWithoutCachedPathLayerInterface = CollidableDestroyableDamageableLayer.getNullInstance();
         }
 
         this.getPossibleTargetList().clear();
@@ -704,7 +704,7 @@ extends GDWaypointBehavior
     private void processTargeting() throws Exception
     {
         
-        if (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER &&
+        if (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance() &&
             (this.isInSensorRange(this.currentTargetLayerInterface, this.getCurrentTargetDistance()) ||
             this.isTrackingWaypoint() || targetWithoutSensors))
         {
@@ -881,7 +881,7 @@ extends GDWaypointBehavior
 //        this.waitingOnWaypointPath = false;
         
         //this.waypointPathsList = BasicArrayListUtil.getImmutableInstance();
-        this.setCurrentTargetLayerInterface(CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER);
+        this.setCurrentTargetLayerInterface(CollidableDestroyableDamageableLayer.getNullInstance());
         this.setTrackingWaypoint(false);
         this.setCurrentTargetDistance(Integer.MAX_VALUE);
         TrackingEventHandler.getInstance().fireEvent(
@@ -934,7 +934,7 @@ extends GDWaypointBehavior
     {
         final StringMaker stringBuffer = new StringMaker();
 
-        if (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER)
+        if (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance())
         {
             stringBuffer.append(TARGET_LAYER);
             stringBuffer.append(CommonSeps.getInstance().SPACE);

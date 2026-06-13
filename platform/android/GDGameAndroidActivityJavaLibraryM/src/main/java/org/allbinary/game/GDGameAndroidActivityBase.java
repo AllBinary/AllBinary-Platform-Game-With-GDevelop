@@ -92,7 +92,7 @@ public class GDGameAndroidActivityBase extends GameMidletActivity
         
         final AndroidResources androidResources = AndroidResources.getInstance();
         
-        this.initViewIds(
+        this.initViewIdsFromArrays(
                 new int[] {
                         androidResources.id.gd,
                         androidResources.id.gd_gl
@@ -152,7 +152,7 @@ public class GDGameAndroidActivityBase extends GameMidletActivity
 
             super.onStart();
 
-            super.onStart(new GDGameMIDletFactory());
+            super.onStartMidlet(new GDGameMIDletFactory());
 
             logUtil.putF(commonStrings.END, this, CommonStateStrings.getInstance().START);
         } catch (Exception e)

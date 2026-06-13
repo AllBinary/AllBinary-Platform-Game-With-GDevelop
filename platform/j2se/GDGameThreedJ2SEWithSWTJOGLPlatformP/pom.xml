@@ -29,7 +29,7 @@
         
         <module>../../../resource/GDGameOpenGLThreedAnimationResourceJavaLibraryM</module>
 
-        <module>../GDGameThreedBaseJ2SEWithSWTJOGLJavaLibraryM</module>
+<!--        <module>../GDGameThreedBaseJ2SEWithSWTJOGLJavaLibraryM</module>-->
         <module>../GDGameThreedJ2SEWithSWTJOGLJavaLibraryM</module>
         <module>../GDGameThreedJ2SEWithSWTJOGLBaseJavaLibraryM</module>
 

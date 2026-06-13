@@ -29,7 +29,7 @@ import org.allbinary.media.graphics.geography.map.GeographicMapCellType;
 import org.allbinary.media.graphics.geography.map.SimpleGeographicMapCellPositionFactory;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
-import org.allbinary.view.ViewPosition;
+import org.allbinary.view.ViewPositionBase;
 
 /**
  *
@@ -102,7 +102,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
         final int frame = customGameLayer.getIndexedAnimationInterface().getFrame();
         final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame];
         final GPoint maskPoint = maskRectangle.getPoint();
-        final ViewPosition viewPosition = customGameLayer.getViewPosition();
+        final ViewPositionBase viewPosition = customGameLayer.getViewPosition();
         final int viewX = viewPosition.getX();
         final int viewY = viewPosition.getY();
         
@@ -125,7 +125,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
         final int frame = customGameLayer.getIndexedAnimationInterface().getFrame();
         final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame];
         final GPoint maskPoint = maskRectangle.getPoint();
-        final ViewPosition viewPosition = customGameLayer.getViewPosition();
+        final ViewPositionBase viewPosition = customGameLayer.getViewPosition();
         final int viewX = viewPosition.getX();
         final int viewY = viewPosition.getY();
 
@@ -141,7 +141,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
         final int frame = customGameLayer.getIndexedAnimationInterface().getFrame();
         final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame];
         final GPoint maskPoint = maskRectangle.getPoint();
-        final ViewPosition viewPosition = customGameLayer.getViewPosition();
+        final ViewPositionBase viewPosition = customGameLayer.getViewPosition();
         final int viewX = viewPosition.getX();
         final int viewY = viewPosition.getY();
         

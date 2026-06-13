@@ -262,14 +262,16 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         {
             final SpecialAnimation specialAnimation = GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance();
 
+            @Override
             public void paint(Graphics graphics)
             {
                 specialAnimation.paintXY(graphics, 0, 0);
             }
 
+            @Override
             public void paintThreed(Graphics graphics)
             {
-                specialAnimation.paintThreed(graphics, 0, 0, 0);
+                specialAnimation.paintThreedXYZ(graphics, 0, 0, 0);
             }
 
         }
@@ -358,7 +360,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
                 AllBinaryVibration.init();
 
-                super.initConfigurable(portion);
+                super.initConfigurablePortion(portion);
 
                 ChangedGameFeatureListener.getInstance().setChanged(false);
 
@@ -571,9 +573,9 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         this.getStartIntermissionInterface().setEnabled(true);
         this.getEndLevelIntermissionInterface().setEnabled(false);
 
-        // A canvas not in GameState.PLAYING_GAME_STATE will not appear in
+        // A canvas not in this.gameStateFactory.PLAYING_GAME_STATE will not appear in
         // democanvas
-        this.setGameState(GameState.PLAYING_GAME_STATE);
+        this.setGameState(this.gameStateFactory.PLAYING_GAME_STATE);
     }
 
     public void setGameState(GameState gameState) throws Exception
@@ -582,7 +584,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         IntermissionFactory intermissionFactory = IntermissionFactory.getInstance();
 
-        if (this.getGameState() == GameState.PLAYING_GAME_STATE)
+        if (this.getGameState() == this.gameStateFactory.PLAYING_GAME_STATE)
         {
             this.setMainStateProcessor(this.getProcessGameProcessor());
         }

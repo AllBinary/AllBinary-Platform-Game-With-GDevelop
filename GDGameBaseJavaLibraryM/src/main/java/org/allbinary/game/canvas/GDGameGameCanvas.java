@@ -18,6 +18,7 @@ import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Graphics;
 
 import org.allbinary.game.init.GDGameStaticInitializerFactory;
+import org.allbinary.game.state.GameStateFactory;
 import org.allbinary.input.accelerometer.AccelerometerSensorFactory;
 import org.allbinary.input.gyro.AllBinaryOrientationSensor;
 import org.allbinary.input.gyro.GyroSensorFactory;
@@ -302,7 +303,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
         
         // A canvas not in GameState.PLAYING_GAME_STATE will not appear in
         // democanvas
-        this.setGameState(GameState.PLAYING_GAME_STATE);
+        this.setGameState(this.gameStateFactory.PLAYING_GAME_STATE);
     }
 
     public void setGameState(GameState gameState) throws Exception
@@ -311,7 +312,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
 
         IntermissionFactory intermissionFactory = IntermissionFactory.getInstance();
         
-        if (this.getGameState() == GameState.PLAYING_GAME_STATE)
+        if (this.getGameState() == this.gameStateFactory.PLAYING_GAME_STATE)
         {
             this.setMainStateProcessor(this.getProcessGameProcessor());
         }

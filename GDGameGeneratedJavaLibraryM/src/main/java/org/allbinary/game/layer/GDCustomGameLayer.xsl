@@ -51,6 +51,7 @@ Created By: Travis Berthelot
         import org.allbinary.game.configuration.feature.Features;
         import org.allbinary.game.configuration.feature.InputFeatureFactory;
         import org.allbinary.game.identification.Group;
+        import org.allbinary.game.identification.GroupCommonFactory;
         import org.allbinary.game.layer.form.GDSliderAnimationBehavior;
         import org.allbinary.game.layer.form.GDTextInputAnimationBehavior;
         import org.allbinary.game.layer.behavior.GDBehaviorUtil;
@@ -159,6 +160,7 @@ Created By: Travis Berthelot
                     private final BasicGeographicMapUtil basicGeographicMapUtil = BasicGeographicMapUtil.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                     private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
+                    private final GroupCommonFactory groupCommonFactory = GroupCommonFactory.getInstance();
 
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
                     private final BasicColorFactory basicColorFactory = BasicColorFactory.getInstance();
@@ -736,7 +738,7 @@ Created By: Travis Berthelot
     public void paint(final Graphics graphics) {
         super.paint(graphics);
         
-        final ViewPosition viewPosition = this.getViewPosition();
+        final ViewPositionBase viewPosition = this.getViewPosition();
         final int x = viewPosition.getX();
         final int y = viewPosition.getY();
         
@@ -1183,9 +1185,9 @@ Created By: Travis Berthelot
     }
             
     public void updateWaypointBehavior(final BasicGeographicMap geographicMapInterface) throws Exception {
-        
+
         final Hashtable hashtable = new Hashtable();
-        hashtable.put(Group.ID, this.getGroupInterface());
+        hashtable.put(groupCommonFactory.ID, this.getGroupInterface());
         hashtable.put(Layer.ID, this);
         hashtable.put(AllBinaryGameLayerManager.ID, allBinaryGameLayerManagerP);
         

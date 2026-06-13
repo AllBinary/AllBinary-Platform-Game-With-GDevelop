@@ -30,7 +30,7 @@ import org.allbinary.logic.util.event.AllBinaryEventObject;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.media.graphics.geography.map.ColorFromEventUtil;
 import org.allbinary.view.CenterViewPositionFactory;
-import org.allbinary.view.ViewPosition;
+import org.allbinary.view.ViewPositionBase;
 
 public class GDGameThreedTitleAnimation
 extends TitleAnimation 
@@ -92,7 +92,7 @@ implements ColorChangeListener
         }
     }
     
-    private final ViewPosition viewPosition = new CenterViewPositionFactory().getInstance(0);
+    private final ViewPositionBase viewPosition = new CenterViewPositionFactory().getInstance(0);
     
     public void paintThreed(Graphics graphics, int x, int y, int z)
     {
@@ -147,7 +147,7 @@ implements ColorChangeListener
             //cameraLayer.getRotationY()
             //halfHeight / 2
 
-            this.animationInterfaceArray[index].paintThreed(graphics, 
+            this.animationInterfaceArray[index].paintThreedXYZ(graphics, 
                     viewPosition.getX(), 
                     viewPosition.getY(),
                     //ay,

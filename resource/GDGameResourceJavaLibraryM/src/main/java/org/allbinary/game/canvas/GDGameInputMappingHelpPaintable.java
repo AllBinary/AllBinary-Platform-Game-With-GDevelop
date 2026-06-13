@@ -46,7 +46,7 @@ public class GDGameInputMappingHelpPaintable
         
     }
 
-    public void paintThreed(Graphics graphics, int x, int y, int z)
+    public void paintThreedXYZ(Graphics graphics, int x, int y, int z)
     {
     }
     

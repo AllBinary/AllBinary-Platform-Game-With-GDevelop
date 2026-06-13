@@ -65,7 +65,7 @@ import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellType;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
-import org.allbinary.view.ViewPosition;
+import org.allbinary.view.ViewPositionBase;
 import org.allbinary.media.graphics.geography.map.SimpleGeographicMapCellPositionFactory;
 
 /**
@@ -127,13 +127,13 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
             final int frame = collisionMaskCustomGameLayer2.getIndexedAnimationInterface().getFrame();
             final Rectangle ownerMaskRectangle = collisionMaskCustomGameLayer2.rectangleArrayOfArrays[collisionMaskCustomGameLayer2.gdObject.animation][frame];
             final GPoint ownerMaskPoint = ownerMaskRectangle.getPoint();
-            final ViewPosition ownerViewPosition = ownerLayer.getViewPosition();
+            final ViewPositionBase ownerViewPosition = ownerLayer.getViewPosition();
             final int ownerViewX = ownerViewPosition.getX();
             final int ownerViewY = ownerViewPosition.getY();
             
 //            final Rectangle maskRectangle = collisionMaskCustomGameLayer.rectangleArrayOfArrays[.gdObject.animation][frame3];
 //            final GPoint maskPoint = maskRectangle.getPoint();
-            final ViewPosition viewPosition = customGameLayer.getViewPosition();
+            final ViewPositionBase viewPosition = customGameLayer.getViewPosition();
             final int viewX = viewPosition.getX();
             final int viewY = viewPosition.getY();
 
@@ -242,13 +242,13 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
             final int frame = collisionMackCustomGameLayer.getIndexedAnimationInterface().getFrame();
             final Rectangle ownerMaskRectangle = collisionMackCustomGameLayer.rectangleArrayOfArrays[collisionMackCustomGameLayer.gdObject.animation][frame];
             final GPoint ownerMaskPoint = ownerMaskRectangle.getPoint();
-            final ViewPosition ownerViewPosition = ownerLayer.getViewPosition();
+            final ViewPositionBase ownerViewPosition = ownerLayer.getViewPosition();
             final int ownerViewX = ownerViewPosition.getX();
             final int ownerViewY = ownerViewPosition.getY();
             
 //            final Rectangle maskRectangle = collisionMaskCustomGameLayer.rectangleArrayOfArrays[.gdObject.animation][frame3];
 //            final GPoint maskPoint = maskRectangle.getPoint();
-            final ViewPosition viewPosition = customGameLayer.getViewPosition();
+            final ViewPositionBase viewPosition = customGameLayer.getViewPosition();
             final int viewX = viewPosition.getX();
             final int viewY = viewPosition.getY();
 
@@ -363,7 +363,7 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
             final Rectangle ownerMaskRectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame];
             final GPoint ownerMaskPoint = ownerMaskRectangle.getPoint();
 
-            final ViewPosition viewPosition = ownerLayer.getViewPosition();
+            final ViewPositionBase viewPosition = ownerLayer.getViewPosition();
             final int viewX = viewPosition.getX();
             final int viewY = viewPosition.getY();
 

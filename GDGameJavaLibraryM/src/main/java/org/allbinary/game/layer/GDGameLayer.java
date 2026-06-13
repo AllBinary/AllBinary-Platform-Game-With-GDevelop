@@ -47,6 +47,7 @@ import org.allbinary.media.ScaleProperties;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
 import org.allbinary.view.ViewPosition;
+import org.allbinary.view.ViewPositionBase;
 
 /**
  *
@@ -608,7 +609,7 @@ public class GDGameLayer
 
             //int x = this.x - quarterWidth;
             //int y = this.y - quarterHeight;
-            final ViewPosition viewPosition = this.getViewPosition();
+            final ViewPositionBase viewPosition = this.getViewPosition();
             final int x = viewPosition.getX();
             final int y = viewPosition.getY();
             
@@ -650,14 +651,14 @@ public class GDGameLayer
     {
         try
         {
-            final ViewPosition viewPosition = this.getViewPosition();
+            final ViewPositionBase viewPosition = this.getViewPosition();
             final int x = viewPosition.getX();
             final int y = viewPosition.getY();
             final int z = viewPosition.getZ();
 
-            this.indexedAnimationInterfaceArray[this.gdObject.animation].paintThreed(graphics, x, y, z);
+            this.indexedAnimationInterfaceArray[this.gdObject.animation].paintThreedXYZ(graphics, x, y, z);
             
-            this.primitiveDrawing.paintThreed(graphics, x, y, z);
+            this.primitiveDrawing.paintThreedXYZ(graphics, x, y, z);
 
         }
         catch (Exception e)
@@ -727,7 +728,7 @@ public class GDGameLayer
 //        stringBuilder.delete(0, stringBuilder.length());
 //        final String location = stringBuilder.append(Integer.toString(x)).append(',').append(Integer.toString(y)).toString();
 //        
-//        final ViewPosition viewPosition = this.getViewPosition();
+//        final ViewPositionBase viewPosition = this.getViewPosition();
 //        final int viewX = viewPosition.getX();
 //        final int viewY = viewPosition.getY();
 //        graphics.drawString(location, viewX - this.getHalfWidth(), viewY - this.getHalfHeight(), 0);
@@ -805,7 +806,7 @@ public class GDGameLayer
 //        this.basicSetColorUtil.setBasicColorP(graphics, BasicColorFactory.getInstance().LIGHT_RED);
 //        this.paintAngle((short) this.getRotationAnimationInterface().getFrame(), graphics);
         
-//        final ViewPosition viewPosition = this.getViewPosition();
+//        final ViewPositionBase viewPosition = this.getViewPosition();
 //        final int viewX = viewPosition.getX();
 //        final int viewY = viewPosition.getY();
 //        graphics.drawString(stringMaker.append(viewX).append(commonSeps.COMMA).append(viewY).toString(), x, y, 0);
