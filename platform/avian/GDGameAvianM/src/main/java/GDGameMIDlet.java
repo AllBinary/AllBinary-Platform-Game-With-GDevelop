@@ -41,7 +41,7 @@ public class GDGameMIDlet
 
         motionGesturesHandler.addListenerInterface(
             new GameMotionGestureListener(
-            MotionGestureReceiveInterfaceFactory.getInstance()));    
+            MotionGestureReceiveInterfaceFactory.getInstance()));
 
         motionGesturesHandler.addListenerInterface(new GDGameMotionGestureListener());
         
