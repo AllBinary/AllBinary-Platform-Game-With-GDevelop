@@ -24,7 +24,8 @@ public class GameAdStateFactory implements GameAdStateFactoryInterface
     {
         return this.gameAdState;
     }
-    
+
+    @Override
     public GameAdStateBase getInstanceForApp(final SoftwareInformation softwareInformation)
     throws Exception
     {
