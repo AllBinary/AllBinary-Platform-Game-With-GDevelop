@@ -37,6 +37,8 @@
 
         <module>../j2se/GDGameThreedJ2SEWithSWTJOGLPlatformP</module>
         <module>../android/GDGameThreedAndroidPlatformP</module>
+        
+        <module>../avian/GDGameThreedAvianJOGLM</module>
 
         
     </modules>
