@@ -106,10 +106,10 @@ public class GDForm
     public void keyRepeated(int keyCode) {
     }
 
-    public void keyPressed(int keyCode, int deviceId) {
+    public void keyPressedByDevice(int keyCode, int deviceId) {
     }
     
-    public void keyReleased(int keyCode, int deviceId) {
+    public void keyReleasedByDevice(int keyCode, int deviceId) {
     }
 
     public void showNotify() {
