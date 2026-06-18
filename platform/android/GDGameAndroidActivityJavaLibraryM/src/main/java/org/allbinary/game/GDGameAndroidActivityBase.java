@@ -15,6 +15,7 @@ import org.allbinary.AndroidResources;
 import org.allbinary.string.CommonStateStrings;
 import org.allbinary.android.activity.game.GameMidletActivity;
 import org.allbinary.android.activity.progress.ProgressHelper;
+import org.allbinary.business.advertisement.GameAdStateBase;
 import org.allbinary.business.advertisement.GameAdStateFactory;
 import org.allbinary.configuration.ApplicationConfiguration;
 import org.allbinary.emulator.InitEmulatorFactory;
@@ -47,7 +48,7 @@ public class GDGameAndroidActivityBase extends GameMidletActivity
         
         try
         {
-            final GameAdState gameAdState = 
+            final GameAdStateBase gameAdState = 
                 GameAdStateFactory.getInstance().getInstanceForApp(
                 		GDGameSoftwareInfo.getInstance());
 
