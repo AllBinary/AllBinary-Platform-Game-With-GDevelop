@@ -29,27 +29,34 @@ public class GDForm
     public void close() throws Exception {
     }
 
+    //@Override
     public void onMotionGestureEvent(final MotionGestureEvent motionGestureEvent) {
         
     }
-    
+
+    //@Override
     public void onPressGameKeyEvent(GameKeyEvent gameKeyEvent) {
     }
 
+    //@Override
     public void onDownGameKeyEvent(GameKeyEvent gameKeyEvent) {
     }
 
+    @Override
     public void onDownKeyEvent(final GameKeyEvent keyInteger) throws Exception {
         
     }
-    
+
+    @Override
     public void onDownKey(final Integer keyInteger) throws Exception {
         
     }
-    
+
+    //@Override
     public void onUpGameKeyEvent(GameKeyEvent gameKeyEvent) {
     }
 
+    @Override
     public void onEvent(AllBinaryEventObject eventObject) {
     }
 
@@ -100,15 +107,19 @@ public class GDForm
     public void keyPressed(int keyCode) {
     }
 
+    //@Override
     public void keyReleased(int keyCode) {
     }
 
+    //@Override
     public void keyRepeated(int keyCode) {
     }
 
+    //@Override
     public void keyPressedByDevice(int keyCode, int deviceId) {
     }
-    
+
+    //@Override
     public void keyReleasedByDevice(int keyCode, int deviceId) {
     }
 
