@@ -25,6 +25,8 @@ package org.allbinary.game;
 
 import javax.microedition.lcdui.Command;
 
+import org.allbinary.logic.string.StringUtil;
+
 public class GDGameCommandFactory {
     
     private static final GDGameCommandFactory instance = new GDGameCommandFactory();
@@ -37,7 +39,7 @@ public class GDGameCommandFactory {
     }
 
     <xsl:for-each select="layouts" >
-    public final Command <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, ' ', '_')" /></xsl:with-param></xsl:call-template>_GD_LAYOUT  = new Command("<xsl:value-of select="name" />", Command.SCREEN, 1);
+    public final Command <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, ' ', '_')" /></xsl:with-param></xsl:call-template>_GD_LAYOUT  = new Command("<xsl:value-of select="name" />", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1);
     </xsl:for-each>                
          
     

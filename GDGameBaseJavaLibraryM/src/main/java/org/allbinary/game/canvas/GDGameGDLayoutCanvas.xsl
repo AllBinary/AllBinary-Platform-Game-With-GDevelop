@@ -174,7 +174,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         
         this.abeClientInformation = abeClientInformation;
         
-        musicManager = MusicManagerFactory.create(GD<xsl:value-of select="$layoutIndex" />GameMusicFactory.getInstance().soundList);
+        musicManager = MusicManagerFactory.createMusicManager(GD<xsl:value-of select="$layoutIndex" />GameMusicFactory.getInstance().soundList);
 
         this.cleanupGame();
 

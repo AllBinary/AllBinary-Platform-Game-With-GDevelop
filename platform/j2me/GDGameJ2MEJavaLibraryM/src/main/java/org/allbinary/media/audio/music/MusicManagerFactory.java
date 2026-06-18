@@ -26,7 +26,7 @@ public class MusicManagerFactory {
     /**
      * @return the instance
      */
-    public static MusicManager create(final BasicArrayList list) {
+    public static MusicManager createMusicManager(final BasicArrayList list) {
         return new MusicManager(MusicService.class, list);
     }
 }

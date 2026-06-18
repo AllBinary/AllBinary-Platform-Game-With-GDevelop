@@ -20,6 +20,7 @@ import java.io.DataOutputStream;
 
 import javax.microedition.rms.RecordEnumeration;
 import javax.microedition.rms.RecordStore;
+import org.allbinary.TsUtil;
 
 import org.allbinary.logic.string.StringMaker;
 
@@ -31,6 +32,8 @@ import org.allbinary.logic.system.security.licensing.AbeClientInformationInterfa
 public class JSONPersistance extends BasicPersitance
 {
     protected final LogUtil logUtil = LogUtil.getInstance();
+    
+    private final TsUtil tsUtil = TsUtil.getInstance();
 
     private static final String JSON_ = "JSON ";
 
@@ -69,7 +72,7 @@ public class JSONPersistance extends BasicPersitance
             logUtil.putF(stringBuffer.append(JSON_).append(this.persistanceStrings.LOADING_ID).appendint(id).toString(), this, this.persistanceStrings.LOAD_ALL);
             
             byteArrayInputStream = 
-                new ByteArrayInputStream(recordStore.getRecord(id));
+                new ByteArrayInputStream(this.tsUtil.getRecord(recordStore, id));
             inputStream = new DataInputStream(byteArrayInputStream);
 
             for (int index = 0; index < size; index++)
