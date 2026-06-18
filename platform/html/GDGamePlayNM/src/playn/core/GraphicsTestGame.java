@@ -174,7 +174,7 @@ public class GraphicsTestGame implements Game, Keyboard.Listener
             falling = true;
         }
         
-        ImageModifierUtil.getInstanceOrCreate().setAlpha(this.originalImage, this.imageArray[0], 0, alpha);
+        ImageModifierUtil.getInstanceOrCreate().setAlpha(this.originalImage, this.imageArray[0], 0, (int) (alpha * 255));
     }
 
     private void touchMove(float x, float y)

@@ -91,6 +91,7 @@
     </dependencies>
         
     <build>
+        <sourceDirectory>src</sourceDirectory>
 
         <plugins>
 

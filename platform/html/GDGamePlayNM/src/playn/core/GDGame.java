@@ -45,10 +45,10 @@ Pointer.Listener
         final BasicMotionGesturesHandler motionGesturesHandler =
             motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();
 
-        motionGesturesHandler.addListener(new GameMotionGestureListener(
+        motionGesturesHandler.addListenerInterface(new GameMotionGestureListener(
             MotionGestureReceiveInterfaceFactory.getInstance()));    
 
-        motionGesturesHandler.addListener(new GDGameMotionGestureListener());
+        motionGesturesHandler.addListenerInterface(new GDGameMotionGestureListener());
         
         PlayN.keyboard().setListener(this);
         PlayN.mouse().setListener(this);
@@ -100,19 +100,19 @@ Pointer.Listener
 
             final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
 
-            gameConfigurationCentral.VIBRATION.setDefaultValue(smallIntegerSingletonFactory.getInstance(0));
+            gameConfigurationCentral.VIBRATION.setDefaultValue(smallIntegerSingletonFactory.getAt(0));
             gameConfigurationCentral.VIBRATION.setDefault();
 
-            gameConfigurationCentral.SPEED_CHALLENGE_LEVEL.setDefaultValue(smallIntegerSingletonFactory.getInstance(4));
+            gameConfigurationCentral.SPEED_CHALLENGE_LEVEL.setDefaultValue(smallIntegerSingletonFactory.getAt(4));
             gameConfigurationCentral.SPEED_CHALLENGE_LEVEL.setDefault();
 
-            gameConfigurationCentral.SPEED.setDefaultValue(smallIntegerSingletonFactory.getInstance(9));
+            gameConfigurationCentral.SPEED.setDefaultValue(smallIntegerSingletonFactory.getAt(9));
             gameConfigurationCentral.SPEED.setDefault();
 
-            gameConfigurationCentral.PLAYER_INPUT_WAIT.setDefaultValue(smallIntegerSingletonFactory.getInstance(0));
+            gameConfigurationCentral.PLAYER_INPUT_WAIT.setDefaultValue(smallIntegerSingletonFactory.getAt(0));
             gameConfigurationCentral.PLAYER_INPUT_WAIT.setDefault();
 
-            gameConfigurationCentral.SCALE.setDefaultValue(smallIntegerSingletonFactory.getInstance(3));
+            gameConfigurationCentral.SCALE.setDefaultValue(smallIntegerSingletonFactory.getAt(3));
             gameConfigurationCentral.SCALE.setDefault();
 
             features.removeDefault(sensorFeatureFactory.ORIENTATION_SENSORS);
