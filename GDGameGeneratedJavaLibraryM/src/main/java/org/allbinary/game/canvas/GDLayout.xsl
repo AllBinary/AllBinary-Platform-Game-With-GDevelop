@@ -408,29 +408,31 @@ Created By: Travis Berthelot
                     -->
                     //eventsPaint - END
 
-                    //instances - START
+                    //instances - START - layout
                     <xsl:for-each select="instances" >
                         <xsl:variable name="textObjectTextName" >TextObject::Text:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:if test="contains($objectsAsString, $textObjectTextName)" >
-                        //TextObject::Text instance
-                        final int <xsl:value-of select="name" />Size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.size();
-                        if(<xsl:value-of select="name" />Size != 0) {
+                        //TextObject::Text instance - layout
+                        if(true) {
+                            final int <xsl:value-of select="name" />Size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.size();
+                            if(<xsl:value-of select="name" />Size != 0) {
+ 
+                            <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /></xsl:variable>
+    
+                                final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="name" />GDobject = (<xsl:value-of select="$gdObjectFactory" />) ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject;
+                                final int <xsl:value-of select="name" />X = x + <xsl:value-of select="name" />GDobject.x;
+                                final int <xsl:value-of select="name" />Y = y + <xsl:value-of select="name" />GDobject.y;
 
-                        <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /></xsl:variable>
-
-                            final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="name" />GDobject = (<xsl:value-of select="$gdObjectFactory" />) ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject;
-                            final int <xsl:value-of select="name" />X = x + <xsl:value-of select="name" />GDobject.x;
-                            final int <xsl:value-of select="name" />Y = y + <xsl:value-of select="name" />GDobject.y;
-
-                            //Rectangle 2
-                            final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
-                                pointFactory.createXY(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
-                                <xsl:value-of select="name" />GDobject.Width(globals.graphics), <xsl:value-of select="name" />GDobject.Height(globals.graphics));
-                            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
+                                //Rectangle 2
+                                final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
+                                    pointFactory.createXY(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
+                                    <xsl:value-of select="name" />GDobject.Width(globals.graphics), <xsl:value-of select="name" />GDobject.Height(globals.graphics));
+                                <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
+                            }
                         }
                         </xsl:if>
                     </xsl:for-each>
-                    //instances - END
+                    //instances - END - layout
 
                         //gdNodeStatsFactory.log(stringBuilder, this);
                     }
