@@ -41,7 +41,8 @@ Created By: Travis Berthelot
                             
                                 private boolean hasPressed = false;
                                 
-                                public void process(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
+                                @Override
+                                public void processEvent(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
                                 {
                                     this.releasedGameInputProcessor.processEvent(allbinaryLayerManager, gameKeyEvent);
 
@@ -89,7 +90,8 @@ Created By: Travis Berthelot
 
                                 }
 
-                                public void processReleased(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
+                                @Override
+                                public void processReleasedEvent(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
                                 {
 
                             <xsl:for-each select="../events" >
@@ -145,8 +147,9 @@ Created By: Travis Berthelot
                             globals.unmappedInputProcessorArray[index] = new GameInputProcessor() {
                                 
                                 private boolean hasPressed = false;
-                                
-                                public void process(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
+
+                                @Override
+                                public void processEvent(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
                                 {
                             <xsl:for-each select="../actions" >
                                 //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
@@ -155,7 +158,8 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                                 }
 
-                                public void processReleased(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
+                                @Override
+                                public void processReleasedEvent(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
                                 {
                             <xsl:for-each select="../actions" >
                                 //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
@@ -173,6 +177,7 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                                 }
 
+                                @Override
                                 public void processReleased(final AllBinaryLayerManager allbinaryLayerManager, final Integer keyAsInteger) throws Exception
                                 {
                             <xsl:for-each select="../actions" >

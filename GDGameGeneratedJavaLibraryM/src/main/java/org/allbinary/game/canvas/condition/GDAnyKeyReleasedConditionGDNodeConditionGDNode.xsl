@@ -41,11 +41,13 @@ Created By: Travis Berthelot
                                 
                                 private boolean hasPressed = false;
                                 
-                                public void process(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception {
+                                @Override
+                                public void processEvent(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception {
                                     hasPressed = true;
                                 }
 
-                                public void processReleased(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
+                                @Override
+                                public void processReleasedEvent(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
                                 {
                                     if(hasPressed) {
                                         hasPressed = false;
