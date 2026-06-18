@@ -14,6 +14,7 @@ import org.allbinary.midlet.MidletFactoryInterface;
 public class GDGameMidletFactory
     extends MidletFactoryInterface {
 
+    @Override
     public MIDlet getInstance() {
         return new GDGame();
     }

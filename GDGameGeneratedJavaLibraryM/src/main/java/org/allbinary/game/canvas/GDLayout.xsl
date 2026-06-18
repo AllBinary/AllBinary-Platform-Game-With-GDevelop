@@ -289,7 +289,7 @@ Created By: Travis Berthelot
                     }
                     
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size10; index++) {
-                        motionEventList.remove(0);
+                        motionEventList.removeAt(0);
                     }
 
                     }                                

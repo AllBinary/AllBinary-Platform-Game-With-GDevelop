@@ -31,9 +31,10 @@ public class GDGameProcessor
         this.list = list;
     }
 
+    @Override
     public void process() throws Exception
     {
-        this.list.remove(0);
+        this.list.removeAt(0);
 
         if (TouchScreenFactory.getInstance().isTouch())
         {

@@ -59,6 +59,7 @@ Pointer.Listener
         //playNToAllBinaryKeyInputUtil.log();
     }
 
+    @Override
     protected void init()
     {
         try
@@ -124,6 +125,7 @@ Pointer.Listener
         }
     }
 
+    @Override
     public void stopAll()
     {
         try
@@ -177,6 +179,7 @@ Pointer.Listener
         }
     }
 
+    @Override
     public void onPointerStart(final Pointer.Event mouseEvent)
     {
         try
@@ -207,6 +210,7 @@ Pointer.Listener
         }
     }
 
+    @Override
     public void onPointerDrag(final Pointer.Event mouseEvent)
     {
         try
@@ -222,6 +226,7 @@ Pointer.Listener
         }
     }
 
+    @Override
     public void onMouseDown(final Mouse.ButtonEvent mouseEvent)
     {
 //        try
@@ -237,6 +242,7 @@ Pointer.Listener
 //        }
     }
 
+    @Override
     public void onMouseUp(final Mouse.ButtonEvent mouseEvent)
     {
 //        try
@@ -252,6 +258,7 @@ Pointer.Listener
 //        }
     }
 
+    @Override
     public void onMouseMove(final Mouse.MotionEvent mouseEvent)
     {
         try
@@ -265,6 +272,7 @@ Pointer.Listener
         }
     }
 
+    @Override
     public void onMouseWheelScroll(final Mouse.WheelEvent event)
     {
         
