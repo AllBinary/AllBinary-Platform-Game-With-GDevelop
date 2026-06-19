@@ -236,31 +236,31 @@ Created By: Travis Berthelot
 
                     public float RandomFloatInRange(final double min, final double max) {
                         final double next = (max - min);
-                        //logUtil.put("NEXT: " + next, this, commonStrings.PROCESS);
+                        //logUtil.putF("NEXT: " + next, this, commonStrings.PROCESS);
                         final float nextF = (float) next * 1000;
-                        //logUtil.put("NEXTF: " + nextF, this, commonStrings.PROCESS);
+                        //logUtil.putF("NEXTF: " + nextF, this, commonStrings.PROCESS);
                         final int nextI = Math.round(nextF);
-                        //logUtil.put("NEXTI: " + nextI, this, commonStrings.PROCESS);
+                        //logUtil.putF("NEXTI: " + nextI, this, commonStrings.PROCESS);
                         final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
-                        //logUtil.put("RANDOM: " + random, this, commonStrings.PROCESS);
+                        //logUtil.putF("RANDOM: " + random, this, commonStrings.PROCESS);
                         final float randomF = (float) random;
-                        //logUtil.put("RANDOMF: " + randomF, this, commonStrings.PROCESS);
+                        //logUtil.putF("RANDOMF: " + randomF, this, commonStrings.PROCESS);
                         final float result = (float) min + (randomF / 1000);
-                        //logUtil.put("RESULT: " + result, this, commonStrings.PROCESS);
+                        //logUtil.putF("RESULT: " + result, this, commonStrings.PROCESS);
                         return result;
                     }
                     
                     public float RandomFloatInRange(final float min, final float max) {
                         final float nextF = (float) (max - min) * 1000;
-                        //logUtil.put("NEXTF: " + nextF, this, commonStrings.PROCESS);
+                        //logUtil.putF("NEXTF: " + nextF, this, commonStrings.PROCESS);
                         final int nextI = Math.round(nextF);
-                        //logUtil.put("NEXTI: " + nextI, this, commonStrings.PROCESS);
+                        //logUtil.putF("NEXTI: " + nextI, this, commonStrings.PROCESS);
                         final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
-                        //logUtil.put("RANDOM: " + random, this, commonStrings.PROCESS);
+                        //logUtil.putF("RANDOM: " + random, this, commonStrings.PROCESS);
                         final float randomF = (float) random;
-                        //logUtil.put("RANDOMF: " + randomF, this, commonStrings.PROCESS);
+                        //logUtil.putF("RANDOMF: " + randomF, this, commonStrings.PROCESS);
                         final float result = (float) min + (randomF / 1000);
-                        //logUtil.put("RESULT: " + result, this, commonStrings.PROCESS);
+                        //logUtil.putF("RESULT: " + result, this, commonStrings.PROCESS);
                         return result;
                     }
 

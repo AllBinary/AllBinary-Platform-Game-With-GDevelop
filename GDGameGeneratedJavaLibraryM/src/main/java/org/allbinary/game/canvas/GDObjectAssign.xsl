@@ -254,7 +254,7 @@ Created By: Travis Berthelot
                         @Override
                         public Rectangle init(final GDObject gdObject, final float scaleX, final float scaleY) {
                             //text animation sizing
-                            //logUtil.put("CustomTextAnimation", this, "init");
+                            //logUtil.putF("CustomTextAnimation", this, "init");
                             final CustomTextAnimationFactory customTextAnimationFactory = (CustomTextAnimationFactory) animationInterfaceFactoryInterfaceArray[0];
 
                             gdObject.width = (int) (customTextAnimationFactory.getWidth());

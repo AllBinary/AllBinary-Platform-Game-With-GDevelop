@@ -54,11 +54,11 @@ Created By: Travis Berthelot
                             
                             final int key = keyAsInteger.intValue();
                             if(hasReleased[key]) {
-                                //logUtil.put("append: " + keyAsInteger, this, commonStrings.PROCESS);
+                                //logUtil.putF("append: " + keyAsInteger, this, commonStrings.PROCESS);
                                 hasReleased[key] = false;
                                 ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry) ((GDGameLayer) globals.TextEntryGDGameLayerList.get(0)).gdObject).stringMaker.append((char) key);
                             } else {
-                                //logUtil.put("not append: " + keyAsInteger, this, commonStrings.PROCESS);
+                                //logUtil.putF("not append: " + keyAsInteger, this, commonStrings.PROCESS);
                             }
 
                             return true;

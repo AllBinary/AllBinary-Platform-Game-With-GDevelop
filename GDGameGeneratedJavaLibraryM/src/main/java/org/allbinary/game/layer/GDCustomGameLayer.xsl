@@ -378,7 +378,7 @@ Created By: Travis Berthelot
             //final String MOVE_AND_LAND = "moveAndLand";
             //logUtil.put(new StringMaker().append("Should Land at: ").append(this.gravityActionIndex).append(" y: ").append(y).toString(), this, MOVE_AND_LAND);
         } else {
-            //logUtil.put("do not move", this, "moveAndLand");
+            //logUtil.putF("do not move", this, "moveAndLand");
                     
             //CollisionNP
             <xsl:for-each select=".." >
@@ -406,7 +406,7 @@ Created By: Travis Berthelot
             //final String MOVE_AND_LAND = "moveAndLand";
             //logUtil.put(new StringMaker().append("Should Land at: ").append(this.gravityActionIndex).append(" y: ").append(y).toString(), this, MOVE_AND_LAND);
         } else {
-            //logUtil.put("do not move", this, "moveAndLand");
+            //logUtil.putF("do not move", this, "moveAndLand");
                     
             //CollisionNP
             <xsl:for-each select=".." >
@@ -485,7 +485,7 @@ Created By: Travis Berthelot
         
         <xsl:if test="contains($hasDraggableBehavior, 'found')" >
         this.isDraggable = gdObject.isBehaviorEnabledArray[gdBehaviorUtil.DRAGGABLE_BEHAVIOR_INDEX];
-        //logUtil.put("isDraggable: " + isDraggable, this, commonStrings.CONSTRUCTOR);
+        //logUtil.putF("isDraggable: " + isDraggable, this, commonStrings.CONSTRUCTOR);
         </xsl:if>
                 
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
@@ -549,7 +549,7 @@ Created By: Travis Berthelot
         //String lastString = "";
     public void move() {
         try {
-            //logUtil.put("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move");
+            //logUtil.putF("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move");
 
 //            if(gameGlobals.PlayerGDGameLayerList.size() >= 0) {
 //                final GDGameLayer player = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
@@ -558,9 +558,9 @@ Created By: Travis Berthelot
 //                    if(lastString.compareTo(layerManagerAsString) != 0)
 //                    lastString = layerManagerAsString;
 //                    if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
-//                        logUtil.put("1this.allBinaryGameLayerManager: " + this.allBinaryGameLayerManagerP, this, "move");
+//                        logUtil.putF("1this.allBinaryGameLayerManager: " + this.allBinaryGameLayerManagerP, this, "move");
 //                    } else {
-//                        logUtil.put("0this.allBinaryGameLayerManager: " + this.allBinaryGameLayerManagerP, this, "move");
+//                        logUtil.putF("0this.allBinaryGameLayerManager: " + this.allBinaryGameLayerManagerP, this, "move");
 //                    }
 //                }
 //            }
@@ -640,7 +640,7 @@ Created By: Travis Berthelot
     
     public void move2() {
         try {
-            //logUtil.put("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move2");
+            //logUtil.putF("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move2");
 
             if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
 
@@ -851,7 +851,7 @@ Created By: Travis Berthelot
             if(geographicMapInterfaceArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
                 this.platformGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this);
             } else {
-                //logUtil.put("Map was null, this, "move");
+                //logUtil.putF("Map was null, this, "move");
             }
 
         } catch (Exception e) {
@@ -861,7 +861,7 @@ Created By: Travis Berthelot
 
     public void up()
     {
-        //logUtil.put("Jump", this, "processInput");
+        //logUtil.putF("Jump", this, "processInput");
 
         this.platformGameBehavior.up((VelocityProperties) this.velocityInterface, acceleration, initialJumpBehavior, 4);
         
@@ -898,7 +898,7 @@ Created By: Travis Berthelot
       this.velocityInterface.getVelocityXBasicDecimalP().add(-this.acceleration.getReverse());
       this.velocityInterface.limitXYToForwardAndReverseMaxVelocity();
 
-      //logUtil.put("Right: dx: " + this.velocityInterface.getVelocityXBasicDecimalP().getUnscaled(), this, "processInput");
+      //logUtil.putF("Right: dx: " + this.velocityInterface.getVelocityXBasicDecimalP().getUnscaled(), this, "processInput");
       
       //this.getVelocityProperties().addVelocity(this.acceleration.getReverse(), 180);
 
@@ -912,7 +912,7 @@ Created By: Travis Berthelot
        this.velocityInterface.getVelocityXBasicDecimalP().add(this.acceleration.getReverse());
        this.velocityInterface.limitXYToForwardAndReverseMaxVelocity();
 
-       //logUtil.put("Left: dx: " + this.velocityInterface.getVelocityXBasicDecimalP().getUnscaled(), this, "processInput");
+       //logUtil.putF("Left: dx: " + this.velocityInterface.getVelocityXBasicDecimalP().getUnscaled(), this, "processInput");
 
        //this.getVelocityProperties().addVelocity(this.acceleration.getReverse(), 0);
        //this.specialAnimationArray[this.specialIndex++] = LEFT;
@@ -1042,7 +1042,7 @@ Created By: Travis Berthelot
         catch (Exception e)
         {
             logUtil.put(commonStrings.EXCEPTION, this, "processInput");
-            //logUtil.put("Danger Danger Danger ^^^%%$*($)*@)!$", this, "processInput", e);
+            //logUtil.putF("Danger Danger Danger ^^^%%$*($)*@)!$", this, "processInput", e);
         }
 
     }
@@ -1409,7 +1409,7 @@ Created By: Travis Berthelot
 
         if(list.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0)
         {
-            //logUtil.put("Chasing", this, "trackTo");
+            //logUtil.putF("Chasing", this, "trackTo");
 
             for(int index = list.size() - 1; index <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> 0; index--)
             {
@@ -1436,7 +1436,7 @@ Created By: Travis Berthelot
     protected void fireOrMove()
         throws Exception
     {
-        //logUtil.put("Move/Attack: trackingWaypoint: " + this.trackingWaypoint + " sensorAction: " + this.sensorAction + " currentTargetDistance &gt;= longWeaponRange " + this.currentTargetDistance + "&gt;=" + this.longWeaponRange, this, "trackTo");
+        //logUtil.putF("Move/Attack: trackingWaypoint: " + this.trackingWaypoint + " sensorAction: " + this.sensorAction + " currentTargetDistance &gt;= longWeaponRange " + this.currentTargetDistance + "&gt;=" + this.longWeaponRange, this, "trackTo");
 
         final GameKeyEventFactory gameKeyEventFactory = GameKeyEventFactory.getInstance();
         
@@ -1461,12 +1461,12 @@ Created By: Travis Berthelot
 
             this.rtsLayer2LogHelper.steeringFireOrStop(this);
             
-            //logUtil.put("Attacking: " + this.currentTargetLayerInterface.getName() + " anotherTargetDistance: " + anotherTargetDistance + " Range: " + this.currentTargetDistance, this, "trackTo");
+            //logUtil.putF("Attacking: " + this.currentTargetLayerInterface.getName() + " anotherTargetDistance: " + anotherTargetDistance + " Range: " + this.currentTargetDistance, this, "trackTo");
 
             //logUtil.put(TrackingEventHandler.getInstance().toString(), this, "processTargeting");
 
-            //logUtil.put("Attacking: " + this.currentTargetLayerInterface.getName() + " X: " + this.currentTargetLayerInterface.getX() + " ? " + this.x + " Y: " + this.currentTargetLayerInterface.getY() + " ? " + this.y, this, "processTargeting");
-            //logUtil.put("Attacking: " + this.currentTargetLayerInterface.getName() + " at Range: " + this.currentTargetDistance + "&gt;=" + this.longWeaponRange, this, "processTargeting");
+            //logUtil.putF("Attacking: " + this.currentTargetLayerInterface.getName() + " X: " + this.currentTargetLayerInterface.getX() + " ? " + this.x + " Y: " + this.currentTargetLayerInterface.getY() + " ? " + this.y, this, "processTargeting");
+            //logUtil.putF("Attacking: " + this.currentTargetLayerInterface.getName() + " at Range: " + this.currentTargetDistance + "&gt;=" + this.longWeaponRange, this, "processTargeting");
 
             this.allStop();
             //this.getGameKeyEventList().add(gameKeyEventFactory.getInstance(this, Canvas.KEY_NUM0));

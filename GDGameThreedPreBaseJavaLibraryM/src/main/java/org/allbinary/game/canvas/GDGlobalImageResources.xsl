@@ -110,7 +110,7 @@ Created By: Travis Berthelot
                         private final GDResources gdResources = GDResources.getInstance();
                         private final GDGlobalSpecialAnimationResources animationInterfaceFactoryInterfaceFactory = GDGlobalSpecialAnimationResources.getInstance();
 
-                    <xsl:call-template name="imageProperties" >
+                    <xsl:call-template name="objectProperties" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>

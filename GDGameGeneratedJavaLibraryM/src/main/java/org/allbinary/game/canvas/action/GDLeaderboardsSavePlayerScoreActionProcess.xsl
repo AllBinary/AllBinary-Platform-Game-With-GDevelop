@@ -133,7 +133,7 @@ Created By: Travis Berthelot
                                             highScoreUtil.update(name);
                                             highScoreUtil.saveHighScore();
                                             highScoreUtil.submit(abCanvas);
-                                            //logUtil.put("saved highscores", this, commonStrings.PROCESS);
+                                            //logUtil.putF("saved highscores", this, commonStrings.PROCESS);
                                             globals.highscoreSubmissionComplete = true;
                                             } catch(Exception e) {
                                                 logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
@@ -155,7 +155,7 @@ Created By: Travis Berthelot
                                                 gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
                                                 final HighScore highScore = abCanvas.createHighScore(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
                                                 final HighScoreUtil highScoreUtil = new HighScoreUtil(basicHighScoresFactory, highScoresHelperBase, abeClientInformation, gameInfo, abCanvas.getCustomCommandListener(), name, highScore);
-                                                //logUtil.put("set highscores", this, commonStrings.PROCESS);
+                                                //logUtil.putF("set highscores", this, commonStrings.PROCESS);
                                                 globals.highscoreSubmissionComplete = true;
                                             } catch(Exception e) {
                                                 logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
@@ -312,7 +312,7 @@ Created By: Travis Berthelot
                                             highScoreUtil.update(name);
                                             highScoreUtil.saveHighScore();
                                             highScoreUtil.submit(abCanvas);
-                                            //logUtil.put("saved highscores", this, commonStrings.PROCESS);
+                                            //logUtil.putF("saved highscores", this, commonStrings.PROCESS);
                                             globals.highscoreSubmissionComplete = true;
                                             } catch(Exception e) {
                                                 logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
@@ -334,7 +334,7 @@ Created By: Travis Berthelot
                                                 gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
                                                 final HighScore highScore = abCanvas.createHighScore(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
                                                 final HighScoreUtil highScoreUtil = new HighScoreUtil(basicHighScoresFactory, highScoresHelperBase, abeClientInformation, gameInfo, abCanvas.getCustomCommandListener(), name, highScore);
-                                                //logUtil.put("set highscores", this, commonStrings.PROCESS);
+                                                //logUtil.putF("set highscores", this, commonStrings.PROCESS);
                                                 globals.highscoreSubmissionComplete = true;
                                             } catch(Exception e) {
                                                 logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);

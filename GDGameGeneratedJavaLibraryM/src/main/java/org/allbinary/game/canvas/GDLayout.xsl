@@ -333,9 +333,9 @@ Created By: Travis Berthelot
                            <xsl:for-each select="behaviors" >
                                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
                                <xsl:if test="type = 'DestroyOutsideBehavior::DestroyOutside'" >
-                               //logUtil.put("Behavior objectName=<xsl:value-of select="$objectName" /> name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />: check", this, commonStrings.PROCESS);
+                               //logUtil.putF("Behavior objectName=<xsl:value-of select="$objectName" /> name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />: check", this, commonStrings.PROCESS);
                                if(globals.destroyOutsideBehavior.process(globals.<xsl:value-of select="$objectName" />GDGameLayerList, index, globals.graphics)) {
-                                   //logUtil.put("Behavior objectName=<xsl:value-of select="$objectName" /> name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />: remove", this, commonStrings.PROCESS);
+                                   //logUtil.putF("Behavior objectName=<xsl:value-of select="$objectName" /> name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />: remove", this, commonStrings.PROCESS);
                                    removeList.add(globals.<xsl:value-of select="$objectName" />GDGameLayerList.get(index));
                                }
                                </xsl:if>
@@ -347,7 +347,7 @@ Created By: Travis Berthelot
                                gdGameLayer = (GDGameLayer) removeList.get(index);
                                //This removes itself from the list
                                gdGameLayer.setDestroyed(true);
-                               //logUtil.put("Behavior objectName=<xsl:value-of select="name" /> size=<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList size: " + <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size(), this, commonStrings.PROCESS);
+                               //logUtil.putF("Behavior objectName=<xsl:value-of select="name" /> size=<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList size: " + <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size(), this, commonStrings.PROCESS);
                            }
 
                         </xsl:if>
@@ -439,7 +439,7 @@ Created By: Travis Berthelot
 
                     public void open() {
                     
-                        //logUtil.put("scene - open", this, commonStrings.PROCESS);
+                        //logUtil.putF("scene - open", this, commonStrings.PROCESS);
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                     <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
@@ -460,7 +460,7 @@ Created By: Travis Berthelot
 
                     public void close() {
                     
-                        //logUtil.put("scene - close", this, commonStrings.PROCESS);
+                        //logUtil.putF("scene - close", this, commonStrings.PROCESS);
 
                         GDFormInputProcessor.getInstance().close();
 
@@ -489,12 +489,12 @@ Created By: Travis Berthelot
                     public void reinitInstances() throws Exception {
                     
                         if(!clear) {
-                            //logUtil.put("scene - reinitInstances - duplicate", this, commonStrings.PROCESS);
+                            //logUtil.putF("scene - reinitInstances - duplicate", this, commonStrings.PROCESS);
                             //throw new RuntimeException();
                             return;
                         }
                     
-                        //logUtil.put("scene - reinitInstances", this, commonStrings.PROCESS);
+                        //logUtil.putF("scene - reinitInstances", this, commonStrings.PROCESS);
 
                     this.globals.reset();
 
@@ -523,7 +523,7 @@ Created By: Travis Berthelot
                     
                     public void reset() {
 
-                        //logUtil.put("scene - clear", this, commonStrings.PROCESS);
+                        //logUtil.putF("scene - clear", this, commonStrings.PROCESS);
 
                         clear = true;
 

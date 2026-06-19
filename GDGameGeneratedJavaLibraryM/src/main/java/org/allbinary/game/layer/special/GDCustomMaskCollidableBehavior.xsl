@@ -108,7 +108,7 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
     
 //        final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) ownerLayer);
 //        if (customGameLayer.gdObject.name.compareTo(B) == 0) {
-//            logUtil.put("isCollision: " + customGameLayer.toString(), this, commonStrings.PROCESS);
+//            logUtil.putF("isCollision: " + customGameLayer.toString(), this, commonStrings.PROCESS);
 //        }
         
         final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
@@ -187,7 +187,7 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
 //                if(customGameLayer.gdObject.name.compareTo(B) == 0) {
 //                    if(lastGeographicMapCellPosition != geographicMapCellPosition) {
 //                        lastGeographicMapCellPosition = geographicMapCellPosition;
-//                       logUtil.put("geographicMapCellPosition: " + geographicMapCellPosition, this, commonStrings.PROCESS);
+//                       logUtil.putF("geographicMapCellPosition: " + geographicMapCellPosition, this, commonStrings.PROCESS);
 //                    }
 //                }
 
@@ -314,7 +314,7 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
 //                stringBuilder.append(" groups: ");
 //                logUtil.put(this.toString(collisionLayer, stringBuilder), this, COLLIDE);
                 if (indexOfGroup <xsl:text disable-output-escaping="yes" >&gt;</xsl:text>= 0) {
-                    //logUtil.put("groupIndex: " + indexOfGroup, this, COLLIDE);
+                    //logUtil.putF("groupIndex: " + indexOfGroup, this, COLLIDE);
                     node = ((GDNode) this.conditionWIthGroupActions.actionForGroupsList.get(indexOfGroup));
                     
                     if(true) throw new RuntimeException();
@@ -327,7 +327,7 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
                 }
             }
         } else {
-            //logUtil.put("collide: No Groups for: " + ownerLayer, this, COLLIDE);
+            //logUtil.putF("collide: No Groups for: " + ownerLayer, this, COLLIDE);
         }
 
         //((CollidableDestroyableDamageableLayer) ownerLayer).damage(

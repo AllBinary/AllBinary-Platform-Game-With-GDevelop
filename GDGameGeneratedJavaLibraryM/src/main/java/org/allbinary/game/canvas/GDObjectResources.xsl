@@ -15,7 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     
-    <xsl:template name="imageProperties" >
+    <xsl:template name="objectProperties" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="instancesAsString" />
@@ -31,6 +31,10 @@ Created By: Travis Berthelot
             <xsl:otherwise>
         <xsl:for-each select="objectsGroups" >
             //<xsl:value-of select="name" />
+
+            <xsl:variable name="isTextObject" ><xsl:for-each select="objects" ><xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable><xsl:for-each select="//objects" ><xsl:if test="name = $name" ><xsl:if test="type = 'TextObject::Text'" >found</xsl:if></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
+            
+            <xsl:if test="not(contains($isTextObject, 'found'))" >
             public BasicArrayList <xsl:value-of select="name" />ImageArrayList = new BasicArrayListD();
 
             <!-- Groups are not allowed in exclusion list currently -->
@@ -54,6 +58,18 @@ Created By: Travis Berthelot
             }
             </xsl:if>
             
+            </xsl:if>
+            
+            <xsl:if test="contains($isTextObject, 'found')" >
+            public int get<xsl:value-of select="name" />Width(final int createIndex) {
+                return 0;
+            }
+                        
+            public int get<xsl:value-of select="name" />Height(final int createIndex) {
+                return 0;
+            }
+            </xsl:if>
+
         </xsl:for-each>
             </xsl:otherwise>
         </xsl:choose>

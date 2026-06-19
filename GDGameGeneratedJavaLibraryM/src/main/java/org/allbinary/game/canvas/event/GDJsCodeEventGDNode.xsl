@@ -49,7 +49,7 @@ Created By: Travis Berthelot
                                     
                                     //final String voiceName = ;
                                     final String speech = globals.<xsl:value-of select="$speechVariable" />;
-                                    logUtil.put("Speaking: " + speech, this, commonStrings.PROCESS);
+                                    logUtil.putF("Speaking: " + speech, this, commonStrings.PROCESS);
                                     
                                     if(speech != null) {
                                         //textToSpeech.process(voiceName, speech);

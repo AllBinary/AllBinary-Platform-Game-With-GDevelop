@@ -373,7 +373,7 @@
             </xsl:if>
             <!-- 
             } else {
-                //logUtil.put("<xsl:value-of select="$gdGameLayer" /> was smaller than <xsl:value-of select="$gdGameLayer" /> at index: " + index, this, commonStrings.PROCESS);
+                //logUtil.putF("<xsl:value-of select="$gdGameLayer" /> was smaller than <xsl:value-of select="$gdGameLayer" /> at index: " + index, this, commonStrings.PROCESS);
             }
             -->
             
@@ -429,7 +429,7 @@
             //if(globals.<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
                 <xsl:value-of select="$gdGameLayer" />.updatePosition();
             //} else {
-                //logUtil.put("<xsl:value-of select="$gdGameLayer" /> was smaller than <xsl:value-of select="$gdGameLayer" /> at index: " + index, this, commonStrings.PROCESS);
+                //logUtil.putF("<xsl:value-of select="$gdGameLayer" /> was smaller than <xsl:value-of select="$gdGameLayer" /> at index: " + index, this, commonStrings.PROCESS);
             //}
             </xsl:if>
             <xsl:if test="not(contains($parametersAsString0, $gdObjectName))" >

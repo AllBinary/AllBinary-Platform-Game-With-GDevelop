@@ -106,7 +106,7 @@ Created By: Travis Berthelot
 
                         private final PlatformAssetManager platformAssetManager = PlatformAssetManager.getInstance();
 
-                    <xsl:call-template name="imageProperties" >
+                    <xsl:call-template name="objectProperties" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
