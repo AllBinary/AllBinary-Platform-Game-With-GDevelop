@@ -107,7 +107,7 @@ Created By: Travis Berthelot
         <xsl:if test="not(contains(disabled, 'true'))" >
                     try {
 
-            <xsl:variable name="alreadyUsedParentCondition" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'SourisSurObjet'" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="alreadyUsedParentCondition" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'SourisSurObjet' or type/value = 'IsCursorOnObject'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="hasCondition" ><xsl:for-each select="conditions" >found</xsl:for-each></xsl:variable>
             <xsl:variable name="hadConditionOtherThanThis" ><xsl:for-each select="conditions" ><xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >found</xsl:if></xsl:for-each></xsl:variable>
             <!-- position() = 1 and -->
@@ -159,7 +159,7 @@ Created By: Travis Berthelot
             <xsl:if test="not(contains($hasOnceCondition, 'found'))" >
             //hasOnceCondition - not - //Conditions - START
             <xsl:for-each select="conditions" >
-                <xsl:if test="type/value = 'DepartScene'" >
+                <xsl:if test="type/value = 'DepartScene' or type/value = 'SceneJustBegins'" >
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
@@ -218,7 +218,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:if test="($conditionPosition = '' and position() = 1) or position() = $conditionPosition + 1" >
                 <xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >
-                <xsl:if test="not(type/value = 'DepartScene' or type/value = 'SoundPlaying') and (not(contains($caller, 'eventsCreateAssignGDObject') and type/value = 'NbObjet'))" >
+                <xsl:if test="not(type/value = 'DepartScene' or type/value = 'SceneJustBegins' or type/value = 'SoundPlaying') and (not(contains($caller, 'eventsCreateAssignGDObject') and type/value = 'NbObjet'))" >
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
@@ -310,10 +310,10 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                 </xsl:variable>
 
-                <xsl:if test="not((not(contains($processSubParentCondition, 'foundfound') and type/value = 'SetStringVariable')) or type/value = 'ModVarScene' or type/value = 'PlaySound' or type/value = 'Montre' or type/value = 'Delete' or (type/value = 'MettreXY' and contains($isMultitouchSupported, 'found')))" >
+                <xsl:if test="not((not(contains($processSubParentCondition, 'foundfound') and type/value = 'SetStringVariable')) or type/value = 'ModVarScene' or type/value = 'PlaySound' or type/value = 'Montre' or type/value = 'Delete' or ((type/value = 'MettreXY' or type/value = 'SetXY') and contains($isMultitouchSupported, 'found')))" >
             //Could I call this - //<xsl:value-of select="$processSubParentCondition" /> - //NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                 </xsl:if>
-                <xsl:if test="(not(contains($processSubParentCondition, 'foundfound')) and type/value = 'SetStringVariable') or (type/value = 'ModVarScene' or type/value = 'PlaySound' or type/value = 'Montre' or (type/value = 'MettreXY' and contains($isMultitouchSupported, 'found')))" >
+                <xsl:if test="(not(contains($processSubParentCondition, 'foundfound')) and type/value = 'SetStringVariable') or (type/value = 'ModVarScene' or type/value = 'PlaySound' or type/value = 'Montre' or ((type/value = 'MettreXY' or type/value = 'SetXY') and contains($isMultitouchSupported, 'found')))" >
                     <xsl:if test="not(contains($processSubParentCondition, 'foundfound')) and type/value = 'SetStringVariable'" >
             //TWB - was not calling this before - //<xsl:value-of select="$processSubParentCondition" /> - //NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> - //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                     </xsl:if>
@@ -596,7 +596,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="typeValue" select="type/value" />
                         <xsl:if test="($conditionPosition = '' and position() = 1) or position() = $conditionPosition + 1" >
                             <xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >
-                                <xsl:if test="not(type/value = 'DepartScene' or type/value = 'SoundPlaying') and (not(contains($caller, 'eventsCreateAssignGDObject') and type/value = 'NbObjet'))" >
+                                <xsl:if test="not(type/value = 'DepartScene' or type/value = 'SceneJustBegins' or type/value = 'SoundPlaying') and (not(contains($caller, 'eventsCreateAssignGDObject') and type/value = 'NbObjet'))" >
 
                                     <xsl:if test="not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene'" >
                                         <xsl:for-each select="../events" >found</xsl:for-each>
@@ -631,7 +631,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="typeValue" select="type/value" />
                             <xsl:if test="($conditionPosition = '' and position() = 1) or position() = $conditionPosition + 1" >
                                 <xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >
-                                    <xsl:if test="not(type/value = 'DepartScene' or type/value = 'SoundPlaying') and (not(contains($caller, 'eventsCreateAssignGDObject') and type/value = 'NbObjet'))" >
+                                    <xsl:if test="not(type/value = 'DepartScene' or type/value = 'SceneJustBegins' or type/value = 'SoundPlaying') and (not(contains($caller, 'eventsCreateAssignGDObject') and type/value = 'NbObjet'))" >
                                         <xsl:if test="type/value = 'VariableAsBoolean'" >found</xsl:if>
                                     </xsl:if>
                                 </xsl:if>
@@ -659,7 +659,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:if test="($conditionPosition = '' and position() = 1) or position() = $conditionPosition + 1" >
                 <xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >
-                <xsl:if test="not(type/value = 'DepartScene' or type/value = 'SoundPlaying') and (not(contains($caller, 'eventsCreateAssignGDObject') and type/value = 'NbObjet'))" >
+                <xsl:if test="not(type/value = 'DepartScene' or type/value = 'SceneJustBegins' or type/value = 'SoundPlaying') and (not(contains($caller, 'eventsCreateAssignGDObject') and type/value = 'NbObjet'))" >
                 <xsl:if test="contains($caller, 'eventsCreateAssignGDObject')" >found</xsl:if>
                 </xsl:if>
                 </xsl:if>
@@ -854,7 +854,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:if test="($conditionPosition = '' and position() = 1) or position() = $conditionPosition + 1" >
                 <xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >
-                <xsl:if test="not(type/value = 'DepartScene' or type/value = 'SoundPlaying') and (not(contains($caller, 'eventsCreateAssignGDObject') and type/value = 'NbObjet'))" >
+                <xsl:if test="not(type/value = 'DepartScene' or type/value = 'SceneJustBegins' or type/value = 'SoundPlaying') and (not(contains($caller, 'eventsCreateAssignGDObject') and type/value = 'NbObjet'))" >
                 //Condition - END
                 }
                 </xsl:if>
@@ -916,7 +916,7 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'UnPauseTimer'" >found</xsl:if>
                 <xsl:if test="$typeValue = 'Opacity'" >found</xsl:if>
                 <xsl:if test="$caller = 'externalEventsCreateAssignGDObject - //eventsCreateAssignXGDObjectGDNodesOtherEvent - //hackProcessing2'" ><xsl:if test="$typeValue = 'ModVarScene'" >found</xsl:if></xsl:if>
-                <xsl:if test="$typeValue = 'MettreX' or $typeValue = 'SetX'" >found</xsl:if><xsl:if test="$typeValue = 'MettreY' or $typeValue = 'SetY'" >found</xsl:if><xsl:if test="$typeValue = 'MettreXY'" >found</xsl:if><xsl:if test="$typeValue = 'MettreAutourPos'" >found</xsl:if>
+                <xsl:if test="$typeValue = 'MettreX' or $typeValue = 'SetX'" >found</xsl:if><xsl:if test="$typeValue = 'MettreY' or $typeValue = 'SetY'" >found</xsl:if><xsl:if test="$typeValue = 'MettreXY' or $typeValue = 'SetXY'" >found</xsl:if><xsl:if test="$typeValue = 'MettreAutourPos' or $typeValue = 'PutAroundPosition'" >found</xsl:if>
                 <xsl:if test="$typeValue = 'SetAngle'" >found</xsl:if>
                 <xsl:if test="$typeValue = 'ChangePlan'" >found</xsl:if>
                 <xsl:if test="$typeValue = 'ChangeColor'" >found</xsl:if>
@@ -926,11 +926,12 @@ Created By: Travis Berthelot
             </xsl:for-each></xsl:variable>
                         
             <xsl:if test="contains($usedCondition, 'found') or contains($usedActions, 'found')" >
-                        <xsl:variable name="listSize" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'MettreY' or type/value = 'SetY' or type/value = 'MettreXY' or type/value = 'MettreAutourPos'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="total" ><xsl:value-of select="count(actions[type/value = 'MettreY' or type/value = 'SetY' or type/value = 'MettreXY' or type/value = 'SetXY' or type/value = 'MettreAutourPos' or type/value = 'PutAroundPosition'])" /></xsl:variable>
+                        <xsl:variable name="listSize" ><xsl:for-each select="actions" ><xsl:if test="position() > 1" > + </xsl:if><xsl:if test="type/value = 'MettreY' or type/value = 'SetY' or type/value = 'MettreXY' or type/value = 'SetXY' or type/value = 'MettreAutourPos' or type/value = 'PutAroundPosition'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if></xsl:for-each></xsl:if><xsl:if test="not(type/value = 'MettreY' or type/value = 'SetY' or type/value = 'MettreXY' or type/value = 'SetXY' or type/value = 'MettreAutourPos' or type/value = 'PutAroundPosition')" >0</xsl:if></xsl:for-each></xsl:variable>
                         
                         //GDAction - START - //listSize=<xsl:value-of select="$listSize" />
                         final int size = <xsl:if test="string-length($listSize) = 0 and not(repeatExpression or $eventTypeUp2Branches = 'BuiltinCommonInstructions::ForEach')" >1;</xsl:if>
-                        <xsl:if test="string-length($listSize) > 0 and not(repeatExpression or $eventTypeUp2Branches = 'BuiltinCommonInstructions::ForEach')" ><xsl:value-of select="$listSize" />; //MettreY //MettreXY</xsl:if>
+                        <xsl:if test="string-length($listSize) > 0 and not(repeatExpression or $eventTypeUp2Branches = 'BuiltinCommonInstructions::ForEach')" >(<xsl:value-of select="$listSize" />) / <xsl:value-of select="$total" />; //Hack</xsl:if>
                         <xsl:if test="$eventTypeUp2Branches = 'BuiltinCommonInstructions::ForEach'" >globals.<xsl:value-of select="substring-before(substring-after($parametersAsString, ':'), ',')" />GDGameLayerList.size();</xsl:if>
                         <xsl:if test="repeatExpression" >eSize;</xsl:if>
             
@@ -1220,7 +1221,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                 </xsl:if>
 
-                <xsl:if test="$typeValue = 'MettreXY'" >
+                <xsl:if test="$typeValue = 'MettreXY' or $typeValue = 'SetXY'" >
                     //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                     //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Action - //MettreXY - call
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(((GDGameLayer) globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />GDGameLayerList.get(index))</xsl:if></xsl:for-each>, null, globals.graphics);
@@ -1235,7 +1236,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
-                <xsl:if test="$typeValue = 'MettreAutourPos'" >
+                <xsl:if test="$typeValue = 'MettreAutourPos' or $typeValue = 'PutAroundPosition'" >
                     //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                     //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Action - //MettreXY - call
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(((GDGameLayer) globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />GDGameLayerList.get(index))</xsl:if></xsl:for-each>, null, globals.graphics);
@@ -1352,7 +1353,7 @@ Created By: Travis Berthelot
                                             ((GDGameLayer) gameLayerList.get(index2)).updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
                                         }
                                     } else {
-                                        logUtil.putF("updateGDObject failed: <xsl:for-each select="actions" ><xsl:if test="type/value = 'MettreX' or type/value = 'SetX' or type/value = 'MettreY' or type/value = 'SetY' or type/value = 'MettreXY' or type/value = 'SetAngle' or type/value = 'ChangePlan' or type/value = 'ChangeAnimation' or type/value = 'SetNumberObjectVariable'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />GDGameLayer </xsl:if></xsl:for-each></xsl:if></xsl:for-each>was null", this, commonStrings.PROCESS, new Exception());
+                                        logUtil.putF("updateGDObject failed: <xsl:for-each select="actions" ><xsl:if test="type/value = 'MettreX' or type/value = 'SetX' or type/value = 'MettreY' or type/value = 'SetY' or type/value = 'MettreXY' or type/value = 'SetXY' or type/value = 'SetAngle' or type/value = 'ChangePlan' or type/value = 'ChangeAnimation' or type/value = 'SetNumberObjectVariable'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />GDGameLayer </xsl:if></xsl:for-each></xsl:if></xsl:for-each>was null", this, commonStrings.PROCESS, new Exception());
                                     }
 
                                 }

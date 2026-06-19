@@ -26,7 +26,7 @@ Created By: Travis Berthelot
         
                         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
-                        //MettreX - //SetX? - //forExtension=<xsl:value-of select="$forExtension" />
+                        //SetX - was //MettreX - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         public boolean process() {
                         

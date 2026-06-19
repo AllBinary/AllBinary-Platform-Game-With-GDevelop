@@ -755,6 +755,12 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
+                <xsl:when test="$typeValue = 'CacheSouris' or $typeValue = 'HideCursor'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:when>
+                <xsl:when test="$typeValue = 'MontreSouris' or $typeValue = 'ShowCursor'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:when>
                 <xsl:when test="$typeValue = 'Cache' or $typeValue = 'Hide'" >
 
                     <xsl:call-template name="cacheAsHideActionProcess" >
@@ -1223,7 +1229,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
-                <xsl:when test="$typeValue = 'MettreXY'" >
+                <xsl:when test="$typeValue = 'MettreXY' or $typeValue = 'SetXY'" >
 
                     <xsl:call-template name="mettreXYActionProcess" >
                         <xsl:with-param name="forExtension" >
@@ -1245,7 +1251,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                                 
-                <xsl:when test="$typeValue = 'MettreAutourPos'" >
+                <xsl:when test="$typeValue = 'MettreAutourPos' or $typeValue = 'PutAroundPosition'" >
 
                     <xsl:call-template name="mettreAutourPosActionProcess" >
                         <xsl:with-param name="forExtension" >
@@ -2427,7 +2433,7 @@ Created By: Travis Berthelot
 
                             <xsl:for-each select="../conditions" >
                                 <xsl:variable name="typeValue" select="type/value" />
-                                <xsl:if test="$typeValue = 'SourisSurObjet'" >
+                                <xsl:if test="$typeValue = 'SourisSurObjet' or $typeValue = 'IsCursorOnObject'" >
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
@@ -2446,10 +2452,10 @@ Created By: Travis Berthelot
                         ../events
                         -->
                         <xsl:variable name="childEventWithUsedEvent" ><xsl:for-each select="../events" ><xsl:call-template name="childEventWithUsedEvent" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="motionGestureEvent" >true</xsl:with-param></xsl:call-template></xsl:for-each></xsl:variable>
-                        <xsl:variable name="hasSourisSurObjetCondition" ><xsl:for-each select="../conditions" ><xsl:variable name="typeValue" select="type/value" /><xsl:if test="$typeValue = 'SourisSurObjet'" >found</xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="hasSourisSurObjetCondition" ><xsl:for-each select="../conditions" ><xsl:variable name="typeValue" select="type/value" /><xsl:if test="$typeValue = 'SourisSurObjet' or $typeValue = 'IsCursorOnObject'" >found</xsl:if></xsl:for-each></xsl:variable>
                         
                         <xsl:if test="contains($childEventWithUsedEvent, 'found') and contains($hasSourisSurObjetCondition, 'found')" >
-                        //SourisSurObjet - motionGestureEvent
+                        //IsCursorOnObject - motionGestureEvent
                         @Override
                         public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                             super.processStats(motionGestureEvent);
@@ -2457,8 +2463,8 @@ Created By: Travis Berthelot
                             //Conditions - START
                             <xsl:for-each select="../conditions" >
                                 <xsl:variable name="typeValue" select="type/value" />
-                                <xsl:if test="$typeValue = 'SourisSurObjet'" >
-                            //Condition - //SourisSurObjet - call - motionGestureEvent
+                                <xsl:if test="$typeValue = 'SourisSurObjet' or $typeValue = 'IsCursorOnObject'" >
+                            //Condition - //IsCursorOnObject - call - motionGestureEvent
                             //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
                                 </xsl:if>

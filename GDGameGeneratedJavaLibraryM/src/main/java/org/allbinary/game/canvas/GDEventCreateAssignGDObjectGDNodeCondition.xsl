@@ -12,7 +12,6 @@ AllBinary or the root directory of AllBinary's AllBinary Platform repository.
 
 Created By: Travis Berthelot
 -->
-
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
@@ -574,8 +573,8 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:when>
                         
-                    <xsl:when test="$typeValue = 'SourisSurObjet'" >
-                        //SourisSurObjet - Some are Handled by AllBinary Event Listeners?
+                    <xsl:when test="$typeValue = 'SourisSurObjet' or $typeValue = 'IsCursorOnObject'" >
+                        //IsCursorOnObject - Some are Handled by AllBinary Event Listeners?
                         <xsl:call-template name="sourisSurObjetConditionGDNode" >
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
@@ -867,7 +866,7 @@ Created By: Travis Berthelot
                     </xsl:when>
 
                     <xsl:when test="$typeValue = 'MouseButtonPressed' or $typeValue = 'MouseButtonFromTextPressed'" >
-                        //<xsl:value-of select="$typeValue" /> - //MouseButtonPressed - Some Handled by AllBinary Event Listeners? should have as a sub condition //SourisSurObjet
+                        //<xsl:value-of select="$typeValue" /> - //MouseButtonPressed - Some Handled by AllBinary Event Listeners? should have as a sub condition //IsCursorOnObject
                         <xsl:call-template name="mouseButtonPressedConditionGDNode" >
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
@@ -1133,10 +1132,10 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:when>
 
-                <xsl:when test="$typeValue = 'DepartScene'" >
+                <xsl:when test="$typeValue = 'DepartScene' or $typeValue = 'SceneJustBegins'" >
                     
                     <xsl:if test="$hasParentOnceCondition = 'true'" >
-                    //DepartScene - condition - eventsOnceConditionProcessActions    
+                    //SceneJustBegins - condition - eventsOnceConditionProcessActions    
                     </xsl:if>
                     <xsl:if test="$hasParentOnceCondition != 'true'" >
                         <xsl:call-template name="departSceneConditionGDNode" />

@@ -28,7 +28,7 @@ Created By: Travis Berthelot
             <xsl:with-param name="baseLayer" >true</xsl:with-param>
         </xsl:call-template>
                 
-        <xsl:variable name="hasCentreCamera" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera'" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
+        <xsl:variable name="hasCentreCamera" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera' or type/value = 'CenterCameraOnObject'" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
         
                     //instances create - START
                     logUtil.putF(commonStrings.START, this, CREATE_INSTANCES);

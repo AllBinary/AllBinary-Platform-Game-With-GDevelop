@@ -23,7 +23,7 @@ Created By: Travis Berthelot
             <xsl:variable name="eventId" >[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:variable>
             <xsl:variable name="hasCollisionCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = '(Used when using the AllBinary Collision Processing) CollisionNP'" >found</xsl:if></xsl:for-each></xsl:variable>
 
-            <xsl:variable name="hasNeededCondition" ><xsl:for-each select="conditions" ><xsl:if test="not(contains($hasCollisionCondition, 'found'))" ><xsl:if test="type/value = 'BuiltinCommonInstructions::Once'" >found</xsl:if></xsl:if><xsl:if test="type/value = 'DepartScene'" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="hasNeededCondition" ><xsl:for-each select="conditions" ><xsl:if test="not(contains($hasCollisionCondition, 'found'))" ><xsl:if test="type/value = 'BuiltinCommonInstructions::Once'" >found</xsl:if></xsl:if><xsl:if test="type/value = 'DepartScene' or type/value = 'SceneJustBegins'" >found</xsl:if></xsl:for-each></xsl:variable>
 
             <xsl:if test="contains($hasNeededCondition, 'found')" >
             //Event nodeId=<xsl:value-of select="generate-id()" /> - [<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" /> totalRecursions=<xsl:value-of select="$totalRecursions" />
@@ -51,7 +51,7 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                     </xsl:if>
                 </xsl:if>
-                <xsl:if test="type/value = 'DepartScene'" >
+                <xsl:if test="type/value = 'DepartScene' or type/value = 'SceneJustBegins'" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - [<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /> totalRecursions=<xsl:value-of select="$totalRecursions" />
                     //eventsOnceConditionProcessActions - //Condition - //DepartScene - builder
                     <xsl:for-each select=".." >

@@ -860,10 +860,12 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
             private void add<xsl:value-of select="name" />TextInputObjectAnimations(final ImageCache imageCache) throws Exception {
 
-                final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> * 3 / 2;
+                final int maxLength = (<xsl:value-of select="content/maxLength" /> == 0) ? 8 : <xsl:value-of select="content/maxLength" />;
+                final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> * 3;
+                //final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> * 3 / 2;
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
-                    new CustomTextBoxIndexedAnimationFactory(<xsl:value-of select="name" />TextInputAnimationSize)
+                    new CustomTextBoxIndexedAnimationFactory(<xsl:value-of select="name" />TextInputAnimationSize, maxLength)
                 };
 
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];

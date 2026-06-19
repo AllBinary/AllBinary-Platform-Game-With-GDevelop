@@ -146,7 +146,7 @@ Created By: Travis Berthelot
                                 </xsl:for-each>
                             </xsl:variable>
 
-                        //MettreXY - //SetXY? - //forExtension=<xsl:value-of select="$forExtension" />
+                        //SetXY - was //MettreXY - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         public boolean process() {
 
@@ -188,7 +188,7 @@ Created By: Travis Berthelot
                             return true;
                         }
 
-                        //MettreXY
+                        //SetXY
                         public boolean process(final int index2) {
 
                             //boolean result = false;
@@ -449,7 +449,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                     </xsl:call-template>
                     <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
-                    //Not from parent - //MettreXY
+                    //Not from parent - //SetXY
                     public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                     
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);

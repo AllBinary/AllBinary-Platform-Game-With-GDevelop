@@ -38,7 +38,7 @@ Created By: Travis Berthelot
                             
                             //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
-                            <xsl:variable name="hasSourisSurObjet" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'SourisSurObjet'" >found</xsl:if></xsl:for-each></xsl:variable>
+                            <xsl:variable name="hasSourisSurObjet" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'SourisSurObjet' or type/value = 'IsCursorOnObject'" >found</xsl:if></xsl:for-each></xsl:variable>
 
                             <xsl:if test="not(contains($hasSourisSurObjet, 'found'))" >
                                 <xsl:for-each select="../actions" >
@@ -64,7 +64,7 @@ Created By: Travis Berthelot
                             <xsl:for-each select=".." >
 
                             <xsl:for-each select="conditions" >
-                                <xsl:if test="type/value = 'SourisSurObjet'" >
+                                <xsl:if test="type/value = 'SourisSurObjet' or type/value = 'IsCursorOnObject'" >
                                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />

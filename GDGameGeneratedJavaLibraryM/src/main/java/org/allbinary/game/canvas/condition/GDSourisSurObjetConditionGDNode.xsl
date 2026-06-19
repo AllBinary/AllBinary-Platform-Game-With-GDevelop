@@ -27,7 +27,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="release" ><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >found</xsl:if></xsl:for-each><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="press" ><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
                 
-                    //sourisSurObjetConditionGDNode - //Condition - //SourisSurObjet - //release=<xsl:value-of select="$release" /> - //press=<xsl:value-of select="$press" /> //inverted=<xsl:value-of select="$inverted" /> - GDNode
+                    //sourisSurObjetConditionGDNode - //Condition - //IsCursorOnObject - //release=<xsl:value-of select="$release" /> - //press=<xsl:value-of select="$press" /> //inverted=<xsl:value-of select="$inverted" /> - GDNode
                     <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>final GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                     
                     <xsl:variable name="conditionNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
@@ -36,7 +36,7 @@ Created By: Travis Berthelot
 
                         //private final DisplayPointScalar displayPointScalar = DisplayPointScalar.getInstance();
 
-                        //SourisSurObjet - runnable
+                        //IsCursorOnObject - runnable
                         private final Runnable runnable = new Runnable() {
                         
                             public void run() {
@@ -66,14 +66,14 @@ Created By: Travis Berthelot
                                         <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                                         <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                                         //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> parameters=<xsl:value-of select="$parametersAsString" />
-                                        //Condition - //SourisSurObjet - //Event - //<xsl:value-of select="type" /> - call - press/release - under SourisSurObjet press 
+                                        //Condition - //IsCursorOnObject - //Event - //<xsl:value-of select="type" /> - call - press/release - under SourisSurObjet press 
                                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                                         </xsl:if>
                                         </xsl:if>
                                         <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                                         //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
                                         <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                                        //Event - //BuiltinCommonInstructions::Link - call - //SourisSurObjet
+                                        //Event - //BuiltinCommonInstructions::Link - call - //IsCursorOnObject
                                         <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process();
                                         </xsl:if>
                                         </xsl:for-each>
@@ -103,7 +103,7 @@ Created By: Travis Berthelot
                             }
                         };
 
-                        //SourisSurObjet - condition - //forExtension=<xsl:value-of select="$forExtension" />
+                        //IsCursorOnObject - was //SourisSurObjet - condition - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
                         public boolean process() throws Exception {
@@ -150,14 +150,14 @@ Created By: Travis Berthelot
                                         <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                                         <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                                         //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> parameters=<xsl:value-of select="$parametersAsString" />
-                                        //Condition - //SourisSurObjet - //Event - //<xsl:value-of select="type" /> - call - press/release - under SourisSurObjet press 
+                                        //Condition - //IsCursorOnObject - //Event - //<xsl:value-of select="type" /> - call - press/release - under SourisSurObjet press 
                                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                                         </xsl:if>
                                         </xsl:if>
                                         <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                                         //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
                                         <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                                        //Event - //BuiltinCommonInstructions::Link - call - //SourisSurObjet
+                                        //Event - //BuiltinCommonInstructions::Link - call - //IsCursorOnObject
                                         <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processReleased();
                                         </xsl:if>
                                         </xsl:for-each>
@@ -171,7 +171,6 @@ Created By: Travis Berthelot
                         
                         }
                                             
-                        //SourisSurObjet
                         @Override
                         public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                             super.processStats(motionGestureEvent);
@@ -261,7 +260,7 @@ Created By: Travis Berthelot
                                         <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                                         <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                                         //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> parameters=<xsl:value-of select="$parametersAsString" />
-                                        //Condition - //SourisSurObjet - //Event - //<xsl:value-of select="type" /> - call - press - under SourisSurObjet press
+                                        //Condition - //IsCursorOnObject - //Event - //<xsl:value-of select="type" /> - call - press - under SourisSurObjet press
                                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                                         </xsl:if>
                                         </xsl:if>
@@ -292,7 +291,7 @@ Created By: Travis Berthelot
                                         <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                                         <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                                         //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> parameters=<xsl:value-of select="$parametersAsString" />
-                                        //Condition - //SourisSurObjet - //Event - //<xsl:value-of select="type" /> - call - release - under SourisSurObjet release 
+                                        //Condition - //IsCursorOnObject - //Event - //<xsl:value-of select="type" /> - call - release - under SourisSurObjet release 
                                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                                         </xsl:if>
                                         </xsl:if>

@@ -20,7 +20,7 @@ Created By: Travis Berthelot
 
         <xsl:for-each select="events" >
             <xsl:for-each select="actions" >
-                <xsl:if test="type/value = 'CentreCamera'" >
+                <xsl:if test="type/value = 'CentreCamera' or type/value = 'CenterCameraOnObject'" >
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                     //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
@@ -28,8 +28,8 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:for-each>
         
-        <xsl:variable name="baseLayerScale" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3 and text() = '&quot;&quot;'" ><xsl:for-each select="../parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
-        <xsl:variable name="tileMapScale" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera'" ><xsl:for-each select="parameters" ><xsl:if test="text() = '&quot;TileMap&quot;'" ><xsl:for-each select="../parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
+        <xsl:variable name="baseLayerScale" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera' or type/value = 'CenterCameraOnObject'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3 and text() = '&quot;&quot;'" ><xsl:for-each select="../parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
+        <xsl:variable name="tileMapScale" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera' or type/value = 'CenterCameraOnObject'" ><xsl:for-each select="parameters" ><xsl:if test="text() = '&quot;TileMap&quot;'" ><xsl:for-each select="../parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
 
         <xsl:if test="string-length($baseLayerScale) > 0" >
                     //CentreCamera - Base layer
@@ -56,7 +56,7 @@ Created By: Travis Berthelot
 
         <xsl:for-each select="events" >
             <xsl:for-each select="actions" >
-                <xsl:if test="type/value = 'CentreCamera'" >
+                <xsl:if test="type/value = 'CentreCamera' or type/value = 'CenterCameraOnObject'" >
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                     //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
@@ -64,9 +64,9 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:for-each>
         
-        <xsl:variable name="baseLayerScale" ><xsl:if test="$baseLayer = 'true'" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4 and text() = '&quot;&quot;'" ><xsl:for-each select="../parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:for-each></xsl:if></xsl:variable>
-        <xsl:variable name="baseLayerName" ><xsl:if test="$baseLayer = 'true'" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera'" ><xsl:if test="parameters[4] = '&quot;&quot;'" ><xsl:value-of select="parameters[2]" /></xsl:if></xsl:if></xsl:for-each></xsl:for-each></xsl:if></xsl:variable>
-        <xsl:variable name="tileMapScale" ><xsl:if test="$tileMap = 'true'" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera'" ><xsl:for-each select="parameters" ><xsl:if test="text() = '&quot;TileMap&quot;'" ><xsl:for-each select="../parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:for-each></xsl:if></xsl:variable>
+        <xsl:variable name="baseLayerScale" ><xsl:if test="$baseLayer = 'true'" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera' or type/value = 'CenterCameraOnObject'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4 and text() = '&quot;&quot;'" ><xsl:for-each select="../parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:for-each></xsl:if></xsl:variable>
+        <xsl:variable name="baseLayerName" ><xsl:if test="$baseLayer = 'true'" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera' or type/value = 'CenterCameraOnObject'" ><xsl:if test="parameters[4] = '&quot;&quot;'" ><xsl:value-of select="parameters[2]" /></xsl:if></xsl:if></xsl:for-each></xsl:for-each></xsl:if></xsl:variable>
+        <xsl:variable name="tileMapScale" ><xsl:if test="$tileMap = 'true'" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera' or type/value = 'CenterCameraOnObject'" ><xsl:for-each select="parameters" ><xsl:if test="text() = '&quot;TileMap&quot;'" ><xsl:for-each select="../parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:for-each></xsl:if></xsl:variable>
 
         <xsl:if test="string-length($baseLayerScale) > 0" >
                     //CentreCamera - Base layer
@@ -129,7 +129,7 @@ Created By: Travis Berthelot
 
         <xsl:for-each select="events" >
             <xsl:for-each select="actions" >
-                <xsl:if test="type/value = 'CentreCamera'" >
+                <xsl:if test="type/value = 'CentreCamera' or type/value = 'CenterCameraOnObject'" >
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                     //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
@@ -137,9 +137,9 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:for-each>
         
-        <xsl:variable name="baseLayerScale" ><xsl:if test="$baseLayer = 'true'" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4 and text() = '&quot;&quot;'" ><xsl:for-each select="../parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:for-each></xsl:if></xsl:variable>
-        <xsl:variable name="baseLayerName" ><xsl:if test="$baseLayer = 'true'" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera'" ><xsl:if test="parameters[4] = '&quot;&quot;'" ><xsl:value-of select="parameters[2]" /></xsl:if></xsl:if></xsl:for-each></xsl:for-each></xsl:if></xsl:variable>
-        <xsl:variable name="tileMapScale" ><xsl:if test="$tileMap = 'true'" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera'" ><xsl:for-each select="parameters" ><xsl:if test="text() = '&quot;TileMap&quot;'" ><xsl:for-each select="../parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:for-each></xsl:if></xsl:variable>
+        <xsl:variable name="baseLayerScale" ><xsl:if test="$baseLayer = 'true'" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera' or type/value = 'CenterCameraOnObject'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4 and text() = '&quot;&quot;'" ><xsl:for-each select="../parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:for-each></xsl:if></xsl:variable>
+        <xsl:variable name="baseLayerName" ><xsl:if test="$baseLayer = 'true'" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera' or type/value = 'CenterCameraOnObject'" ><xsl:if test="parameters[4] = '&quot;&quot;'" ><xsl:value-of select="parameters[2]" /></xsl:if></xsl:if></xsl:for-each></xsl:for-each></xsl:if></xsl:variable>
+        <xsl:variable name="tileMapScale" ><xsl:if test="$tileMap = 'true'" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera' or type/value = 'CenterCameraOnObject'" ><xsl:for-each select="parameters" ><xsl:if test="text() = '&quot;TileMap&quot;'" ><xsl:for-each select="../parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:for-each></xsl:if></xsl:variable>
 
         <xsl:if test="string-length($baseLayerScale) > 0" >
                     //CentreCamera - Base layer

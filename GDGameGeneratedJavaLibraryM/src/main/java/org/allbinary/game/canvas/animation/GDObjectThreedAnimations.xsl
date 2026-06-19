@@ -884,7 +884,8 @@ Created By: Travis Berthelot
             <xsl:when test="$typeValue = 'TextInput::TextInputObject'" >
             private void add<xsl:value-of select="name" />TextInputObjectAnimations(final ImageCache imageCache, final int level) throws Exception {
             
-                final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> / 2;
+                final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" />;
+                //final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> / 2;
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
                     new CustomTextBoxIndexedAnimationFactory(<xsl:value-of select="name" />TextInputAnimationSize)

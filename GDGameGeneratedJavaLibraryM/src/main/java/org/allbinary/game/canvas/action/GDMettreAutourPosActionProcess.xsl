@@ -37,7 +37,7 @@ Created By: Travis Berthelot
                                 </xsl:for-each>
                             </xsl:variable>
 
-                        //MettreAutourPos - x, y, distance, angle - //forExtension=<xsl:value-of select="$forExtension" />
+                        //PutAroundPosition - was //MettreAutourPos - x, y, distance, angle - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         public boolean process() {
                             if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {

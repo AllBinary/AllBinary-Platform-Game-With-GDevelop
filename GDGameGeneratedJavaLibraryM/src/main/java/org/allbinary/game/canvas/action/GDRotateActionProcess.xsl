@@ -271,8 +271,7 @@ Created By: Travis Berthelot
 
                             <xsl:variable name="isAllowedToRelease" >
                                 <xsl:for-each select="../conditions" >
-                                    <xsl:variable name="typeValue" select="type/value" />
-                                    <xsl:if test="$typeValue = 'SourisSurObjet' or $typeValue = 'KeyFromTextPressed'" >true</xsl:if>
+                                    <xsl:if test="type/value = 'SourisSurObjet' or type/value = 'IsCursorOnObject' or type/value = 'KeyFromTextPressed'" >true</xsl:if>
                                 </xsl:for-each>
                             </xsl:variable>
 

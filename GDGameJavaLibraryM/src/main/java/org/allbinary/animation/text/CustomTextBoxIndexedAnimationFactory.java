@@ -36,16 +36,18 @@ public class CustomTextBoxIndexedAnimationFactory
     protected final LogUtil logUtil = LogUtil.getInstance();
 
 
-    private final CommonStrings commonStrings = CommonStrings.getInstance();
+    //private final CommonStrings commonStrings = CommonStrings.getInstance();
 
     public ScaleProperties scaleProperties;
+    private final int maxLength;
 
-    public CustomTextBoxIndexedAnimationFactory(final int fontSize) {
+    public CustomTextBoxIndexedAnimationFactory(final int fontSize, final int maxLength) {
         
         //logUtil.putF(this.commonStrings.START + fontSize, this, this.commonStrings.CONSTRUCTOR);
         
         this.scaleProperties = new ScaleProperties();
         this.scaleProperties.scaleHeight = fontSize;
+        this.maxLength = maxLength;
     }
     
     @Override
@@ -63,7 +65,7 @@ public class CustomTextBoxIndexedAnimationFactory
             abCanvas.getCustomCommandListener(),
             StringUtil.getInstance().EMPTY_STRING,
             StringUtil.getInstance().EMPTY_STRING,
-            8, TextField.ANY, font,
+            this.maxLength, TextField.ANY, font,
             abCanvas.getLayerManager().getBackgroundBasicColor(),
             abCanvas.getLayerManager().getForegroundBasicColor());
 

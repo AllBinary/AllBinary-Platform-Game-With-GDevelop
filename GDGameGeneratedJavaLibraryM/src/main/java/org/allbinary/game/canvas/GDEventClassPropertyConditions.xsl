@@ -79,7 +79,7 @@ Created By: Travis Berthelot
                 //repeatExpression=<xsl:value-of select="repeatExpression" />
             </xsl:if>
 
-            <xsl:variable name="hasQualifyingParentConditions" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'DepartScene'" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="hasQualifyingParentConditions" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'DepartScene' or type/value = 'SceneJustBegins'" >found</xsl:if></xsl:for-each></xsl:variable>
 
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />

@@ -35,16 +35,15 @@ Created By: Travis Berthelot
 
             <!-- conditions - START -->
             <xsl:for-each select="conditions" >
-                <xsl:variable name="typeValue" select="type/value" />
-                <xsl:if test="$typeValue = 'SourisSurObjet'" >
+                <xsl:if test="type/value = 'SourisSurObjet' or type/value = 'IsCursorOnObject'" >
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                    <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
+                    <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
 
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             //<xsl:value-of select="$conditionAsString" />
-                            //SourisSurObjet - debug paint for <xsl:value-of select="text()" /> - show rect around button
+                            //IsCursorOnObject - debug paint for <xsl:value-of select="text()" /> - show rect around button
 //                            if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle != null) {                            
 //                                final GPoint rectangePoint = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle.getPoint();
 //                                graphics.drawRect(rectangePoint.getX(), rectangePoint.getY(), <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle.getWidth(), <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle.getHeight());

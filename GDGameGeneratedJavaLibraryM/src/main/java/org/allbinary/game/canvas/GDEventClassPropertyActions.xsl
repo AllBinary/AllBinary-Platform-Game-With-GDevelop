@@ -134,7 +134,7 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
 
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
 
-            <xsl:variable name="hasParentButtonSibling" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'SourisSurObjet'" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="hasParentButtonSibling" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'SourisSurObjet' or type/value = 'IsCursorOnObject'" >found</xsl:if></xsl:for-each></xsl:variable>
             
             <xsl:choose>
                 <xsl:when test ="($hasParentOnceCondition = 'true' and not(contains($hasParentButtonSibling, 'found'))) or conditions/type/value = 'BuiltinCommonInstructions::Once'">
@@ -224,7 +224,7 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                     <xsl:with-param name="hasParentButton" ><xsl:if test="not(contains($hasParentButtonSibling, 'found'))" ><xsl:value-of select="$hasParentButton" /></xsl:if><xsl:if test="contains($hasParentButtonSibling, 'found')" >true</xsl:if></xsl:with-param>
                 </xsl:call-template>
             </xsl:if>
-            <xsl:if test="conditions/type/value = 'DepartScene'" >
+            <xsl:if test="conditions/type/value = 'DepartScene' or conditions/type/value = 'SceneJustBegins'" >
                 //hasParentDepartSceneCondition=true
                 //hasParentOnceCondition=<xsl:value-of select="$hasParentOnceCondition" />
                 <xsl:call-template name="eventsClassPropertyArrayActions" >
@@ -243,7 +243,7 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                 </xsl:call-template>
             </xsl:if>
 
-            <xsl:if test="not(conditions/type/value = 'DepartScene' and conditions/type/value = 'BuiltinCommonInstructions::Once')" >
+            <xsl:if test="not((conditions/type/value = 'DepartScene' or conditions/type/value = 'SceneJustBegins') and conditions/type/value = 'BuiltinCommonInstructions::Once')" >
                 //hasParentDepartSceneCondition=<xsl:value-of select="$hasParentDepartSceneCondition" />
                 //hasParentOnceCondition=<xsl:value-of select="$hasParentOnceCondition" />
                 <xsl:call-template name="eventsClassPropertyArrayActions" >
@@ -325,7 +325,7 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
             </xsl:choose>
 
             <xsl:choose>
-                <xsl:when test ="$hasParentDepartSceneCondition = 'true' or conditions/type/value = 'DepartScene'">
+                <xsl:when test ="$hasParentDepartSceneCondition = 'true' or conditions/type/value = 'DepartScene' or conditions/type/value = 'SceneJustBegins'">
                     <!-- DepartScene sibling/parent condition -->
                     <xsl:for-each select="actions" >
                         <xsl:variable name="typeValue" select="type/value" />
@@ -486,7 +486,7 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                     <xsl:with-param name="hasParentButton" ><xsl:if test="not(contains($hasParentButtonSibling, 'found'))" ><xsl:value-of select="$hasParentButton" /></xsl:if><xsl:if test="contains($hasParentButtonSibling, 'found')" >true</xsl:if></xsl:with-param>
                 </xsl:call-template>
             </xsl:if>
-            <xsl:if test="conditions/type/value = 'DepartScene'" >
+            <xsl:if test="conditions/type/value = 'DepartScene' or conditions/type/value = 'SceneJustBegins'" >
                 //hasParentDepartSceneCondition=true
                 //hasParentOnceCondition=<xsl:value-of select="$hasParentOnceCondition" />
                 <xsl:call-template name="eventsClassPropertyActions" >
@@ -505,7 +505,7 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                 </xsl:call-template>
             </xsl:if>
 
-            <xsl:if test="not(conditions/type/value = 'DepartScene' and conditions/type/value = 'BuiltinCommonInstructions::Once')" >
+            <xsl:if test="not(conditions/type/value = 'DepartScene' and conditions/type/value = 'SceneJustBegins' and conditions/type/value = 'BuiltinCommonInstructions::Once')" >
                 //hasParentDepartSceneCondition=<xsl:value-of select="$hasParentDepartSceneCondition" />
                 //hasParentOnceCondition=<xsl:value-of select="$hasParentOnceCondition" />
                 <xsl:call-template name="eventsClassPropertyActions" >
