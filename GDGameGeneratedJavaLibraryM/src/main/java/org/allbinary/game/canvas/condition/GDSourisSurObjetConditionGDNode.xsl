@@ -213,15 +213,15 @@ Created By: Travis Berthelot
                                 
                                 //logUtil.putF("<xsl:value-of select="text()" />Rectangle: " + <xsl:value-of select="text()" />Rectangle.toString(), this, commonStrings.PROCESS);
                                 //if (rectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY() - 2, <xsl:value-of select="text()" />Rectangle.getMaxX(), <xsl:value-of select="text()" />Rectangle.getMaxY() + 2, point.getX(), point.getY()))
-                                if (rectangleCollisionUtil.isInside(gameLayer.getXP(), gameLayer.getYP() - 2, gameLayer.getX2(), gameLayer.getY2() + 2, point.getX(), point.getY()))
+                                if (<xsl:if test="$inverted = 'true'" >!</xsl:if>rectangleCollisionUtil.isInside(gameLayer.getXP(), gameLayer.getYP() - 2, gameLayer.getX2(), gameLayer.getY2() + 2, point.getX(), point.getY()))
                                 {
                                     //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "Inside: " + lastMotionGestureInput, this, commonStrings.PROCESS);
-                                    <xsl:if test="$inverted != 'true'" >
+<!--                                    <xsl:if test="$inverted != 'true'" >
                                     <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
                                         runnable.run();
                                         return true;
                                     </xsl:if>
-                                    </xsl:if>
+                                    </xsl:if>-->
                                     <xsl:if test="contains($press, 'found')" >
                                     //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
                                     if (lastMotionGestureInput == touchMotionGestureFactory.PRESSED) {
@@ -317,13 +317,13 @@ Created By: Travis Berthelot
                                     this.processReleased();
                                     </xsl:if>
                                     
-                                    <xsl:if test="$inverted = 'true'" >
+<!--                                    <xsl:if test="$inverted = 'true'" >
                                     //Inverted
                                     <xsl:if test="not(contains($press, 'found')) or contains($release, 'found')" >
                                     runnable.run();
                                     return true;
                                     </xsl:if>
-                                    </xsl:if>
+                                    </xsl:if>-->
                                 }
                             } 
                             //if(size == 0) {
