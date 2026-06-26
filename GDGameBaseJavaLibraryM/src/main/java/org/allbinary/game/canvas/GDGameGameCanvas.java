@@ -33,6 +33,7 @@ import org.allbinary.game.GameInfo;
 import org.allbinary.game.GameTypeFactory;
 import org.allbinary.game.IntermissionFactory;
 import org.allbinary.game.collision.OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer;
+import org.allbinary.game.combat.canvas.CombatGameCanvas;
 import org.allbinary.game.configuration.GameSpeed;
 import org.allbinary.game.configuration.event.ChangedGameFeatureListener;
 import org.allbinary.game.configuration.feature.Features;
@@ -97,8 +98,21 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
     {
         super.initSpecialPaint();
 
-        this.setStartIntermissionPaintable(new StartIntermissionPaintable(
-                this, new String[] {StringUtil.getInstance().EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED, Font.getDefaultFont()));
+        class GDStartIntermissionPaintable extends StartIntermissionPaintable {
+
+            GDStartIntermissionPaintable(final AllBinaryGameCanvas combatGameCanvas) {
+                super(combatGameCanvas, new String[] {StringUtil.getInstance().EMPTY_STRING}, BasicColorFactory.getInstance().RED, Font.getDefaultFont());
+                this.lineYOffsetArray = new int[]{0};
+            }
+
+//            @Override
+//            public void updateMeasurement(final Graphics graphics) {
+//                super.updateMeasurement(graphics);
+//            }
+        };
+        
+        this.setStartIntermissionPaintable(new GDStartIntermissionPaintable(this));
+
     }
 
     public void mediaInit() throws Exception

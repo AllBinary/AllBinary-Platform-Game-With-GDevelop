@@ -23,6 +23,7 @@ import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.RotationAnimation;
 import org.allbinary.animation.text.CustomTextAnimation;
 import org.allbinary.animation.text.GetTextInterface;
+import org.allbinary.animation.text.TextChangeListener;
 import org.allbinary.canvas.Processor;
 import org.allbinary.game.combat.CombatBaseBehavior;
 import org.allbinary.game.combat.damage.DamageableBaseBehavior;
@@ -64,6 +65,8 @@ public class GDGameLayer
 
     protected final FrameUtil frameUtil = FrameUtil.getInstance();
 
+    private static final String HACK_ANIMATION_NAME = "ttack";
+    
     //protected final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
     private final ScaleFactorFactory scaleFactorFactory = ScaleFactorFactory.getInstance();
     //protected final int SCALE = noDecimalTrigTable.SCALE * 10; //* GameSpeed.getInstance().getSpeed();
@@ -115,9 +118,23 @@ public class GDGameLayer
     
 //    private float lastScaleX = 1;
 //    private float lastScaleY = 1;
+
+    class GDTextChangeListener extends TextChangeListener {
+        
+        private final GDGameLayer gameLayer;
+        
+        GDTextChangeListener(final GDGameLayer gameLayer) {
+            this.gameLayer = gameLayer;
+        }
+        
+        public void onMeasure() {
+            this.gameLayer.onMeasure();
+        }
+
+    };
     
-    private static final String HACK_ANIMATION_NAME = "ttack";
-    
+    private TextChangeListener textChangeListener = new GDTextChangeListener(this);
+
     public GDGameLayer(final Animation primitiveDrawing, 
             final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
             final BasicArrayList behaviorList,
@@ -841,13 +858,17 @@ public class GDGameLayer
     
     public void setText(final String text) {
         final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.initIndexedAnimationInterfaceArray[0]);
-        customTextAnimation.setText(text);
+        customTextAnimation.setTextWithOnMeasure(text, this.textChangeListener);
+    }
+
+    public void onMeasure() {
+        final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.initIndexedAnimationInterfaceArray[0]);
         this.gdObject.width = customTextAnimation.getWidth();
-        this.gdObject.height = customTextAnimation.getHeight();
+        this.gdObject.height = customTextAnimation.getFontHeight();
         this.setWidth(this.gdObject.width);
         this.setHeight(this.gdObject.height);
     }
-    
+
     public String Text() {
         return ((GetTextInterface) this.initIndexedAnimationInterfaceArray[0]).getText();
     }

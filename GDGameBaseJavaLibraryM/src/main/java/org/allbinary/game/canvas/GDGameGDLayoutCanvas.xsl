@@ -305,10 +305,24 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         final int fontSize = 24;
         final Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, fontSize);        
         final StringUtil stringUtil = StringUtil.getInstance();
-        this.setStartIntermissionPaintable(
-            new StartIntermissionPaintable(this, new String[] {stringUtil.EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED, font)
-            //new StartIntermissionPaintable(this, new String[] {stringUtil.EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED)
-            );
+            
+
+        class GDStartIntermissionPaintable extends StartIntermissionPaintable {
+
+            //Font.getDefaultFont()
+            GDStartIntermissionPaintable(final AllBinaryGameCanvas combatGameCanvas) {
+                super(combatGameCanvas, new String[] {StringUtil.getInstance().EMPTY_STRING}, BasicColorFactory.getInstance().RED, font);
+                this.lineYOffsetArray = new int[]{0};
+            }
+
+//            @Override
+//            public void updateMeasurement(final Graphics graphics) {
+//                super.updateMeasurement(graphics);
+//            }
+        };
+        
+        this.setStartIntermissionPaintable(new GDStartIntermissionPaintable(this));
+
         </xsl:if>
     }
 
