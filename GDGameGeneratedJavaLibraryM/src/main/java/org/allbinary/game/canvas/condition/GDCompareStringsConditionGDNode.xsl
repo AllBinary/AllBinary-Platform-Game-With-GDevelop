@@ -35,7 +35,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="param3" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         <xsl:variable name="param3WithoutQuotes" ><xsl:value-of select="translate($param3, $quote, '')" /></xsl:variable>
                         <xsl:variable name="param3Updated" ><xsl:value-of select="translate(translate(translate(translate(translate($param3WithoutQuotes, '=', 'equal'), '+', 'plus'), '-', 'minus'), '*', 'multiply'), '/', 'divide')" /></xsl:variable>
-                        <xsl:variable name="param3AsFinalString" >__<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$param3Updated" /></xsl:with-param></xsl:call-template></xsl:variable>
+                        <xsl:variable name="param3AsFinalString" >__<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate($param3Updated, '.', '_'), ')', '_'), '(', '_')" /></xsl:with-param></xsl:call-template></xsl:variable>
 
                 <xsl:variable name="hasObjectGroup" >
                     <xsl:for-each select="//objectsGroups" >
@@ -72,7 +72,21 @@ Created By: Travis Berthelot
                 //objectName=<xsl:value-of select="$objectName" />
 
                         //GDStringLiteral - BuiltinCommonInstructions::CompareStrings
-                        private final String <xsl:value-of select="$param3AsFinalString" /> = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                        private final String <xsl:value-of select="$param3AsFinalString" /> = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:call-template name="string-replace-all" >
+                                            <xsl:with-param name="text" >
+                                    <xsl:call-template name="string-replace-all" >
+                                        <xsl:with-param name="text" >
+                                            <xsl:value-of select="text()" />
+                                        </xsl:with-param>                                
+                                        <xsl:with-param name="find" >&quot;&quot;</xsl:with-param>
+                                        <xsl:with-param name="replacementText" >stringUtil.EMPTY_STRING</xsl:with-param>
+                                    </xsl:call-template>
+                                        </xsl:with-param>
+                                        <xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param>
+                                        <xsl:with-param name="replacementText" ></xsl:with-param>
+                                    </xsl:call-template>
+                        </xsl:if>
+                        </xsl:for-each>;
                         
                         //BuiltinCommonInstructions::CompareStrings - condition - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >

@@ -19,23 +19,88 @@ Created By: Travis Berthelot
 
     <xsl:template name="textContainerCapabilityTextContainerBehaviorValueConditionGDNode" >
         <xsl:param name="forExtension" />
+        <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
 
+        <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
+        
         <xsl:variable name="quote" >"</xsl:variable>
                     //textContainerCapabilityTextContainerBehaviorValueConditionGDNode - //Condition - //TextContainerCapability::TextContainerBehavior::Value - GDNode
                     <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>final GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                     
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
-                                        
+
+                        <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="param4" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" >
+                                    <xsl:call-template name="string-replace-all" >
+                                        <xsl:with-param name="text" >
+                                    <xsl:call-template name="string-replace-all" >
+                                        <xsl:with-param name="text" >
+                                            <xsl:value-of select="text()" />
+                                        </xsl:with-param>                                
+                                        <xsl:with-param name="find" >&quot;&quot;</xsl:with-param>
+                                        <xsl:with-param name="replacementText" >stringUtil.EMPTY_STRING</xsl:with-param>
+                                    </xsl:call-template>
+                                        </xsl:with-param>
+                                        <xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param>
+                                        <xsl:with-param name="replacementText" ></xsl:with-param>
+                                    </xsl:call-template>
+                        </xsl:if>
+                        </xsl:for-each>
+                        </xsl:variable>
+
+                <xsl:variable name="hasObjectGroup" >
+                    <xsl:for-each select="//objectsGroups" >
+                        <xsl:if test="contains($param, name)" >found</xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:variable name="objectGroupName" >
+                    <xsl:for-each select="//objectsGroups" >
+                        <xsl:if test="contains($param, name)" ><xsl:value-of select="name" /></xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+
+                <xsl:variable name="hasObject" >
+                    <xsl:for-each select="/game/layouts" >
+                        <xsl:if test="$layoutIndex = position() - 1" >
+                            <xsl:for-each select="objects" >
+                                <xsl:if test="contains($param, name)" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:variable name="objectName" >
+                    <xsl:for-each select="/game/layouts" >
+                        <xsl:if test="$layoutIndex = position() - 1" >
+                            <xsl:for-each select="objects" >
+                                <xsl:if test="contains($param, name)" ><xsl:value-of select="name" /></xsl:if>
+                            </xsl:for-each>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                //hasObjectGroup=<xsl:value-of select="$hasObjectGroup" />
+                //objectGroupName=<xsl:value-of select="$objectGroupName" />
+                //hasObject=<xsl:value-of select="$hasObject" />
+                //objectName=<xsl:value-of select="$objectName" />
+                                            
                         //TextContainerCapability::TextContainerBehavior::Value - condition - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
-                            logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + commonStrings.NOT_IMPLEMENTED, this, commonStrings.PROCESS);
-                            
-                            return true;
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+
+                    <xsl:if test="contains($hasObject, 'found')" >
+                    final BasicArrayList gdGameLayerList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$objectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$objectName" />GDGameLayerList;
+                    final GDGameLayer <xsl:value-of select="$objectName" /> = (GDGameLayer) gdGameLayerList.get(0);
+                    </xsl:if>
+                                                        
+                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.Text()</xsl:if><xsl:if test="position() = 3" >.compareTo(<xsl:value-of select="$param4" />) <xsl:if test="text() = '='" >== 0</xsl:if><xsl:if test="text() = '!='" >!= 0</xsl:if></xsl:if></xsl:for-each>)) {
+                                //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" ><xsl:call-template name="replace-escaped-conditionals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if><xsl:text> </xsl:text></xsl:for-each>", this, commonStrings.PROCESS);
+                                return true;
+                            }
+                            return false;
                         }
                         </xsl:if>
 
