@@ -999,7 +999,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
 
-                <xsl:when test="$typeValue = 'Opacity'" >
+                <xsl:when test="$typeValue = 'Opacity' or $typeValue = 'OpacityCapability::OpacityBehavior::SetValue'" >
                     
                     <xsl:call-template name="opacityActionProcess" >
                         <xsl:with-param name="forExtension" >
@@ -1016,7 +1016,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     
-                </xsl:when>
+                </xsl:when>                
                 <xsl:when test="$typeValue = 'Create'" >
 
                     <xsl:call-template name="createActionProcess" >
@@ -1806,11 +1806,7 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'EffectCapability::EffectBehavior::EnableEffect'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:when>
-                
-                <xsl:when test="$typeValue = 'OpacityCapability::OpacityBehavior::SetValue'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:when>
-                
+                                
                 <xsl:when test="$typeValue = 'ScalableCapability::ScalableBehavior::SetValue'" >
                     //TWB - does this work?
                     <xsl:call-template name="scalableBehaviorSetValueActionProcess" >
