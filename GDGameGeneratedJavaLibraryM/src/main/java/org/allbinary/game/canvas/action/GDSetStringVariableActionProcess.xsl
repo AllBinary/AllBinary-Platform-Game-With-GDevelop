@@ -51,6 +51,7 @@ Created By: Travis Berthelot
                         </xsl:variable>
                         
                         //objectInParam=<xsl:value-of select="$objectInParam" /> hasObject=<xsl:value-of select="$hasObject" /> hasObjectGroup=<xsl:value-of select="$hasObjectGroup" />
+                        <xsl:text>&#10;</xsl:text>
                         <xsl:if test="contains($hasObject, 'found')" >
                         final GDGameLayer <xsl:value-of select="$objectInParam" /> = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$objectInParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$objectInParam" />GDGameLayerList.get(0);
                         </xsl:if>
