@@ -35,6 +35,11 @@ Created By: Travis Berthelot
                 //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:when>
 
+            <xsl:when test="type = 'BuiltinCommonInstructions::Else'" >
+            //<xsl:value-of select="type" /> NOT_IMPLEMENTED
+            throw new RuntimeException();
+            </xsl:when>
+
             <xsl:when test="type = 'BuiltinCommonInstructions::While'" >
                 //Event - //BuiltinCommonInstructions::While - call - //eventsProcess
                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();

@@ -93,6 +93,11 @@ Created By: Travis Berthelot
                     <xsl:param name="totalRecursions" ><xsl:value-of select="$totalRecursions" /></xsl:param>
                 </xsl:call-template>
             </xsl:when>
+            <xsl:when test="type = 'BuiltinCommonInstructions::Else'" >
+            //<xsl:value-of select="type" /> NOT_IMPLEMENTED
+            throw new RuntimeException();
+            </xsl:when>
+            
             <xsl:when test="type = 'BuiltinCommonInstructions::ForEach'" >
 
                 <xsl:variable name="object" ><xsl:value-of select="object" /></xsl:variable>
