@@ -395,6 +395,14 @@ Created By: Travis Berthelot
                     public double cos(final double angle) {
                         return Math.cos(angle);
                     }
+
+                    public int max(final int min, final int max) {
+                        return Math.max(min, max);
+                    }
+                    
+                    public int ceil(final double value) {
+                        return (int) Math.ceil(value);
+                    }
                     
                     public double ToRad(final double angdeg) {
                         //return Math.toRadians(angdeg);

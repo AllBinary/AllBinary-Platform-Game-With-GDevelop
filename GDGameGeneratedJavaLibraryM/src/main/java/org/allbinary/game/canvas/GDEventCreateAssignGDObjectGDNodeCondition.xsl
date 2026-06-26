@@ -118,12 +118,11 @@ Created By: Travis Berthelot
                 
                 <xsl:when test="$typeValue = 'TextContainerCapability::TextContainerBehavior::Value'" >
 
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-<!--                    <xsl:call-template name="textContainerCapabilityTextContainerBehaviorValueConditionGDNode" >
+                    <xsl:call-template name="textContainerCapabilityTextContainerBehaviorValueConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
-                    -->
+                    </xsl:call-template>
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Inventory::Count'" >
