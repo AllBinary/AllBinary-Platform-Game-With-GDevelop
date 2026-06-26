@@ -836,6 +836,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             gameXmlAsString = replace10.all(gameXmlAsString);
             final Replace replace11 = new Replace("Text::Value()", "Text()");
             gameXmlAsString = replace11.all(gameXmlAsString);
+            final Replace replace1 = new Replace("FileSystem::", "FileSystem.");
+            gameXmlAsString = replace1.all(gameXmlAsString);
             
             
             String layoutGameXmlAsString = new String(gameXmlAsString);

@@ -122,6 +122,7 @@ Created By: Travis Berthelot
                 import org.allbinary.media.audio.Sound;
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
                 import org.allbinary.thread.PathFindingThreadPool;
+                import org.allbinary.logic.io.file.FileSystem;
                 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
                 import org.allbinary.string.CommonPhoneStrings;
                 import org.allbinary.time.TimeDelayHelper;
