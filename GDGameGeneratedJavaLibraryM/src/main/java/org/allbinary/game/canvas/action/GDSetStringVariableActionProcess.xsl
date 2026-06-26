@@ -30,10 +30,31 @@ Created By: Travis Berthelot
                         super.processStats();
 
                         //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-
+                        
                         <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         <xsl:variable name="param3" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        
+                        <xsl:variable name="lastObjectInParam3" ><xsl:call-template name="after-lastIndexOf" ><xsl:with-param name="string" ><xsl:value-of select="$param3" /></xsl:with-param><xsl:with-param name="char" select="' '" /></xsl:call-template></xsl:variable>
+                        <xsl:variable name="objectInParam0" ><xsl:value-of select="substring-before($lastObjectInParam3, '.')" /></xsl:variable>
+                        <xsl:variable name="objectInParam" ><xsl:if test="not(contains($objectInParam0, '(globals') or contains($objectInParam0, '(gameGlobals'))" ><xsl:value-of select="$objectInParam0" /></xsl:if></xsl:variable>
+                        
+                        <xsl:variable name="hasObject" >
+                            <xsl:for-each select="//objects" >
+                                <xsl:if test="name = $objectInParam" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+                        <xsl:variable name="hasObjectGroup" >
+                            <xsl:for-each select="//objectsGroups" >
+                                <xsl:if test="name = $objectInParam" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+                        
+                        //objectInParam=<xsl:value-of select="$objectInParam" /> hasObject=<xsl:value-of select="$hasObject" /> hasObjectGroup=<xsl:value-of select="$hasObjectGroup" />
+                        <xsl:if test="contains($hasObject, 'found')" >
+                        final GDGameLayer <xsl:value-of select="$objectInParam" /> = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$objectInParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$objectInParam" />GDGameLayerList.get(0);
+                        </xsl:if>
+
                         <xsl:if test="$param2 = '='" ><xsl:value-of select="$param1" /> = <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$param3" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>;</xsl:if>
                         <xsl:if test="$param2 = '+'" ><xsl:value-of select="$param1" /> = new StringMaker().append(<xsl:value-of select="$param1" />).append(<xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$param3" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>).toString();</xsl:if>
 
