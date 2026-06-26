@@ -74,7 +74,6 @@ Created By: Travis Berthelot
                 import org.allbinary.game.configuration.feature.Features;
                 import org.allbinary.game.configuration.persistance.JSONPersistance;
                 import org.allbinary.game.input.GDRGameInputProcessor;
-                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
                 import org.allbinary.game.layer.GDGameLayer;
@@ -86,28 +85,32 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.rand.MyRandomFactory;
+                import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.color.SmallBasicColorCacheFactory;
                 import org.allbinary.graphics.color.BasicColorUtil;
+                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.input.motion.gesture.MotionGestureInput;
-                import org.allbinary.string.CommonStrings;
-                import org.allbinary.string.CommonSeps;
-                import org.allbinary.logic.string.StringMaker;
-                import org.allbinary.logic.string.StringUtil;
-                import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.input.motion.button.TouchScreenFactory;
                 import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
+                import org.allbinary.math.RectangleCollisionUtil;
+                import org.allbinary.string.CommonStrings;
+                import org.allbinary.string.CommonSeps;
+                import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.logic.string.StringMaker;
+                import org.allbinary.logic.string.StringUtil;
+                import org.allbinary.logic.io.file.FileSystem;
+                import org.allbinary.logic.NullUtil;
+                import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+                import org.allbinary.logic.system.os.GenericOperatingSystem;
+                import org.allbinary.logic.system.os.OperatingSystemFactory;
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.time.GameTickTimeDelayHelper;
-                import org.allbinary.logic.NullUtil;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
-                import org.allbinary.logic.math.SmallIntegerSingletonFactory;
                 import org.allbinary.thread.NullRunnable;
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
-                import org.allbinary.logic.system.os.GenericOperatingSystem;
-                import org.allbinary.logic.system.os.OperatingSystemFactory;
 
                 //LayoutExternalCondition name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes extends SpecialAnimation
@@ -126,6 +129,7 @@ Created By: Travis Berthelot
                         private final StringUtil stringUtil = StringUtil.getInstance();
                         private final NullUtil nullUtil = NullUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+                        private final RectangleCollisionUtil rectangleCollisionUtil = RectangleCollisionUtil.getInstance();
                         private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
                         private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
                         private final TouchScreenFactory touchScreenFactory = TouchScreenFactory.getInstance();
@@ -212,6 +216,22 @@ Created By: Travis Berthelot
 
                     public double Variable(final double value) {
                         return value;
+                    }
+
+                    public String VariableString(final String string) {
+                        return string;
+                    }
+
+                    public String VariableString(final Object object) {
+                        return object.toString();
+                    }
+
+                    public int VariableChildCount(final String[] array) {
+                        return array.length;
+                    }
+
+                    public int VariableChildCount(final int[] array) {
+                        return array.length;
                     }
                     
                     public String GlobalVariable(final String value) {

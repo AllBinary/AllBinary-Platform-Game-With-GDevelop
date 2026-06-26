@@ -119,7 +119,7 @@ Created By: Travis Berthelot
                                 </xsl:if>
                                 <xsl:if test="position() = 3" >
                                     //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="$nodeId" />, this, commonStrings.PROCESS);
-                                    <xsl:if test="text() = '='" >gameLayer.setText(</xsl:if>
+                                    <xsl:if test="text() = '=' or text() = '+'" >gameLayer.setText(</xsl:if>
                                 </xsl:if>
                                 <xsl:if test="position() = 4" >
                                     <xsl:if test="text() = '&quot;&quot;'" >stringUtil.EMPTY_STRING</xsl:if>
@@ -169,7 +169,7 @@ Created By: Travis Berthelot
                         </xsl:if>                                
 
                             <xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 3" ><xsl:if test="text() = '='" >gameLayer.setText(</xsl:if></xsl:if>
+                                <xsl:if test="position() = 3" ><xsl:if test="text() = '=' or text() = '+'" >gameLayer.setText(</xsl:if></xsl:if>
                                 <xsl:if test="position() = 4" >
                                     <xsl:if test="text() = '&quot;&quot;'" >stringUtil.EMPTY_STRING</xsl:if>
                                     <xsl:if test="text() != '&quot;&quot;'" >
