@@ -19,6 +19,7 @@ import org.allbinary.gdevelop.json.event.builtin.GDGroupEvent;
 import org.allbinary.gdevelop.json.event.builtin.GDLinkEvent;
 import org.allbinary.gdevelop.json.event.builtin.GDStandardEvent;
 import org.allbinary.gdevelop.json.resource.GDResource;
+import org.allbinary.gdevelop.loader.utils.XmlUnicodeReplacer;
 import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringUtil;
@@ -157,7 +158,7 @@ public class GDToAllBinaryGenerationTool
 
         stringMaker.delete(0, stringMaker.length());
         final String xml = stringMaker.append("<game>").append(XML.toString(gameAsConfigurationJSONObject)).append("<variables><value>movement_angle</value><value>angle</value></variables></game>\n").toString();
-        final String formattedXml = XmlDocumentHelper.getInstance().format(xml);
+        final String formattedXml = XmlUnicodeReplacer.sanitize(XmlDocumentHelper.getInstance().format(xml));
         final String QUOTE = "\"";
         final Replace replace = new Replace(QUOTE, "&quot;");
         final Replace replace2 = new Replace("'", "&apos;");

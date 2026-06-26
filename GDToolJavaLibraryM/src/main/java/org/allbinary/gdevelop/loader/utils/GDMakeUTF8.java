@@ -16,9 +16,6 @@ package org.allbinary.gdevelop.loader.utils;
 import org.allbinary.gdevelop.loader.GDJSONGeneratorBase;
 import org.allbinary.gdevelop.loader.GDJSONPersistence;
 import org.allbinary.gdevelop.loader.GDToolStrings;
-import org.allbinary.logic.io.file.FileUnamedUtil;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
