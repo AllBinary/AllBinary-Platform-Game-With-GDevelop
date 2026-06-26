@@ -71,6 +71,7 @@ Created By: Travis Berthelot
                 //hasObject=<xsl:value-of select="$hasObject" />
                 //objectName=<xsl:value-of select="$objectName" />
 
+                        //GDStringLiteral - BuiltinCommonInstructions::CompareStrings
                         private final String <xsl:value-of select="$param3AsFinalString" /> = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
                         
                         //BuiltinCommonInstructions::CompareStrings - condition - //forExtension=<xsl:value-of select="$forExtension" />

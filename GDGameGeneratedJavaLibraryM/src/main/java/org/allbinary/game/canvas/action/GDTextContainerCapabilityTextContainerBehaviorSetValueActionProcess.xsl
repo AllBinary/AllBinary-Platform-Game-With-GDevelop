@@ -25,7 +25,7 @@ Created By: Travis Berthelot
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 4" >
                                     <xsl:if test="contains(text(), '&quot;') and not(contains(text(), '+')) and text() != '&quot;&quot;'" >
-                                        //GDStringLiteral
+                                        //GDStringLiteral - TextContainerCapability::TextContainerBehavior::SetValue
                                         private final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate(text(), '?', '_'), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template> = <xsl:value-of select="text()" />;
                                     </xsl:if>
                                 </xsl:if>

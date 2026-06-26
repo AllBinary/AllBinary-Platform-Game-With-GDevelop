@@ -36,6 +36,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="param3Updated" ><xsl:value-of select="translate(translate(translate(translate(translate($param3WithoutQuotes, '=', 'equal'), '+', 'plus'), '-', 'minus'), '*', 'multiply'), '/', 'divide')" /></xsl:variable>
                         <xsl:variable name="param3AsFinalString" >__<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$param3Updated" /></xsl:with-param></xsl:call-template></xsl:variable>
 
+                        //GDStringLiteral - StringVariable
                         private final String <xsl:value-of select="$param3AsFinalString" /> = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
                         
                         //StringVariable - condition - //forExtension=<xsl:value-of select="$forExtension" />
