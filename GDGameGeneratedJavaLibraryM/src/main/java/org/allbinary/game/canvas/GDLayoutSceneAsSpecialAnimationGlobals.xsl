@@ -384,8 +384,16 @@ Created By: Travis Berthelot
                         new BasicArrayListD(),
                         new BasicArrayListD()
                     };
+                    public int inUseScrollingMotionEventListIndex = 0;
+                    public int processingScrollingMotionEventListIndex = 0;
+                    public BasicArrayList[] scrollingMotionEventListOfList = {
+                        new BasicArrayListD(),
+                        new BasicArrayListD()
+                    };
+                            
                     //public GDNode currentButtonGDNodePressed = null;
                     MotionGestureInput lastMotionGestureInput = null;
+                    MotionGestureInput lastScrollingMotionGestureInput = null;
                     </xsl:if>
 
                     //eventsClassPropertyActions - START

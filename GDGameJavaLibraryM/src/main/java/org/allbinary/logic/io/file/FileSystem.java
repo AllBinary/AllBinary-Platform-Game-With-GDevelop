@@ -1,0 +1,47 @@
+/*
+ * AllBinary Open License Version 1
+ * Copyright (c) 2026 AllBinary
+ * 
+ * By agreeing to this license you and any business entity you represent are
+ * legally bound to the AllBinary Open License Version 1 legal agreement.
+ * 
+ * You may obtain the AllBinary Open License Version 1 legal agreement from
+ * AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+ * 
+ * Created By: Travis Berthelot
+ * 
+ */
+package org.allbinary.logic.io.file;
+
+import java.io.File;
+
+import org.allbinary.logic.io.path.AbPathData;
+import org.allbinary.logic.string.StringUtil;
+import org.allbinary.logic.system.os.SystemProperties;
+
+/**
+ *
+ * @author User
+ */
+public class FileSystem {
+    
+    public static String DirectoryName(final String currentDirPath) {
+        return AbPathData.getInstance().removeNameFromPath(currentDirPath, FileSystem.PathDelimiter());
+    }
+    
+    public static String[] ReadDirectory(final String currentDirPath) {
+        return AbFileSystem.getFilesAsStringArrayForPath(currentDirPath);
+    }
+    
+    public static String UserHomePath() {
+        return SystemProperties.getInstance().getUserHomePath();
+    }
+    
+    public static String PathDelimiter() {
+        return FilePathData.getInstance().SEPARATOR;
+    }
+    
+    public static String ExtensionName(final String fullPath) {
+        return AbPathData.getInstance().getExtension(fullPath);
+    }
+}

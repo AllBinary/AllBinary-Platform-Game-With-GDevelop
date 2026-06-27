@@ -46,10 +46,10 @@ public class GDGameMIDlet
         final BasicMotionGesturesHandler motionGesturesHandler =
             motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();
 
-        motionGesturesHandler.addListener(new GameMotionGestureListener(
+        motionGesturesHandler.addListenerInterface(new GameMotionGestureListener(
             MotionGestureReceiveInterfaceFactory.getInstance()));    
 
-        motionGesturesHandler.addListener(new GDGameMotionGestureListener());
+        motionGesturesHandler.addListenerInterface(new GDGameMotionGestureListener());
         
         new DefaultGameInitializationListener();
     }
@@ -105,19 +105,19 @@ public class GDGameMIDlet
             final SmallIntegerSingletonFactory smallIntegerSingletonFactory = 
                     SmallIntegerSingletonFactory.getInstance();
 
-            gameConfigurationCentral.VIBRATION.setDefaultValue(smallIntegerSingletonFactory.getInstance(0));
+            gameConfigurationCentral.VIBRATION.setDefaultValue(smallIntegerSingletonFactory.getAt(0));
             gameConfigurationCentral.VIBRATION.setDefault();
 
-            gameConfigurationCentral.SPEED_CHALLENGE_LEVEL.setDefaultValue(smallIntegerSingletonFactory.getInstance(4));
+            gameConfigurationCentral.SPEED_CHALLENGE_LEVEL.setDefaultValue(smallIntegerSingletonFactory.getAt(4));
             gameConfigurationCentral.SPEED_CHALLENGE_LEVEL.setDefault();
 
-            gameConfigurationCentral.SPEED.setDefaultValue(smallIntegerSingletonFactory.getInstance(9));
+            gameConfigurationCentral.SPEED.setDefaultValue(smallIntegerSingletonFactory.getAt(9));
             gameConfigurationCentral.SPEED.setDefault();
 
-            gameConfigurationCentral.PLAYER_INPUT_WAIT.setDefaultValue(smallIntegerSingletonFactory.getInstance(0));
+            gameConfigurationCentral.PLAYER_INPUT_WAIT.setDefaultValue(smallIntegerSingletonFactory.getAt(0));
             gameConfigurationCentral.PLAYER_INPUT_WAIT.setDefault();
 
-            gameConfigurationCentral.SCALE.setDefaultValue(smallIntegerSingletonFactory.getInstance(3));
+            gameConfigurationCentral.SCALE.setDefaultValue(smallIntegerSingletonFactory.getAt(3));
             gameConfigurationCentral.SCALE.setDefault();
 
 
@@ -157,7 +157,7 @@ public class GDGameMIDlet
 
     protected void exit(boolean isProgress) {
         this.glSurfaceView.onDetachedFromWindow();
-        super.exit(isProgress);
+        super.exitProgress(isProgress);
     }
     
     public void stopAll()
@@ -268,7 +268,15 @@ public class GDGameMIDlet
     //public void mouseWheelMoved(MouseWheelEvent mouseEvent)
     public void mouseWheelMoved(final int x, final int y, final int button)
     {
-        //logUtil.put(commonStrings.START, this, "mouseWheelMoved");
+        try
+        {
+            //logUtil.putF(commonStrings.START, this, "mouseWheelMoved");
+            this.motionRecognizer.processScrolledMotionEvent(x, y, this.DEVICE_ID, button);
+        }
+        catch (Exception e)
+        {
+            logUtil.put(commonStrings.EXCEPTION, this, "mouseWheelMoved", e);
+        }
     }
 
     /*

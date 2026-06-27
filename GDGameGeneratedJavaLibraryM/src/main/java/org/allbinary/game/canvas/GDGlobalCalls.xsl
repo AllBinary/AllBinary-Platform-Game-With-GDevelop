@@ -373,7 +373,7 @@
                                 </xsl:for-each>
                                 </xsl:if>
                         
-                        public final String[] <xsl:value-of select="name" /> = {
+                        public String[] <xsl:value-of select="name" /> = {
                                         <xsl:for-each select="children" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template>,
                                         <xsl:text>&#10;</xsl:text>
                                         </xsl:for-each>                                        

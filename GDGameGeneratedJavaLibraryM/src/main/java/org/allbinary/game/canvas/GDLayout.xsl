@@ -196,6 +196,124 @@ Created By: Travis Berthelot
                         
                         logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
                     }
+                    
+                    private void processMotionEvents() throws Exception {
+
+                        <xsl:for-each select="objects" >
+                            <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
+                        GPoint point;
+                        GDGameLayer gameLayer;
+                        final int size2 = globals.<xsl:value-of select="name" />GDGameLayerList.size();
+                            </xsl:if>
+                        </xsl:for-each>
+
+                        final BasicArrayList motionEventList = (BasicArrayList) globals.motionEventListOfList[globals.processingMotionEventListIndex];
+                        int motionEventSize = motionEventList.size();
+                        MotionGestureEvent motionGestureEvent;
+                        MotionGestureInput motionGestureInput;
+                        boolean pressedAlready = false;
+                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> motionEventSize; index++) {
+
+                            motionGestureEvent = (MotionGestureEvent) motionEventList.get(index);
+                            motionGestureInput = motionGestureEvent.getMotionGesture();
+
+                            if (motionGestureInput == touchMotionGestureFactory.PRESSED) {
+                                globals.lastMotionGestureInput = motionGestureInput;
+                                pressedAlready = true;
+                            } else if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
+                            
+                        <xsl:for-each select="objects" >
+                            <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
+                            for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
+                                //SpriteMultitouchJoystick::SpriteMultitouchJoystick
+                                gameLayer = (GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(index2);
+                                final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) gameLayer.gdObject;
+                                if(motionGestureEvent.getId() == <xsl:value-of select="name" />.getId()) {
+                                    <xsl:value-of select="name" />.setId(-1);
+                                    <xsl:value-of select="name" />.setPoint(pointFactory.getInstance().ZERO_ZERO);
+                                }
+                            }
+                            </xsl:if>
+                        </xsl:for-each>
+
+                                if(pressedAlready) {
+                                    motionEventSize = index;
+                                    break;
+                                }
+                                globals.lastMotionGestureInput = motionGestureInput;
+                            }
+
+                        <xsl:for-each select="objects" >
+                            <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
+                            for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
+                                //SpriteMultitouchJoystick::SpriteMultitouchJoystick
+                                gameLayer = (GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(index2);
+                                point = motionGestureEvent.getCurrentPoint();
+                                if (rectangleCollisionUtil.isInside(gameLayer.getXP(), gameLayer.getYP() - 2, gameLayer.getX2(), gameLayer.getY2() + 2, point.getX(), point.getY())) {
+                                    final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) gameLayer.gdObject;
+
+                                    <xsl:value-of select="name" />.setId(motionGestureEvent.getId());
+                                    <xsl:value-of select="name" />.setPoint(point);
+                                    final float portionOfX = ((float) point.getX() - gameLayer.getXP() - gameLayer.getHalfWidth()) / (float) gameLayer.getWidth() * 2;
+                                    final float portionOfY = -((float) point.getY() - gameLayer.getYP() - gameLayer.getHalfHeight()) / (float) gameLayer.getHeight() * 2;
+                                    //logUtil.put(new StringMaker().append(portionOfX).append("portionOfX: ").append(point.getX()).append(" - ").append(gameLayer.getXP()).append(" / ").append(gameLayer.getWidth()).toString(), this, commonStrings.CONSTRUCTOR);
+                                    //logUtil.put(new StringMaker().append(portionOfY).append("portionOfY: ").append(point.getY()).append(" - ").append(gameLayer.getYP()).append(" / ").append(gameLayer.getHeight()).toString(), this, commonStrings.CONSTRUCTOR);
+                                    <xsl:value-of select="name" />.setStickForceX(portionOfX);
+                                    <xsl:value-of select="name" />.setStickForceY(portionOfY);
+                                    gameLayer.getDimensionalBehavior().getAnimationBehavior().set(gameLayer, <xsl:value-of select="name" />);
+                                }                            
+                            }
+                            </xsl:if>
+                        </xsl:for-each>
+
+                            //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
+                            globals.lastPointGDNode.process(motionGestureEvent, globals.lastMotionGestureInput);
+
+                            //MouseButton
+                        <xsl:call-template name="processNodesForScrollingMotionGestureEvent" >
+                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                        </xsl:call-template>
+
+                        }
+                    
+                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> motionEventSize; index++) {
+                            motionEventList.removeAt(0);
+                        }
+
+                        //Scrolling - START
+                        final BasicArrayList scrollingMotionEventList = (BasicArrayList) globals.scrollingMotionEventListOfList[globals.processingMotionEventListIndex];
+                        motionEventSize = scrollingMotionEventList.size();
+                        pressedAlready = false;
+                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> motionEventSize; index++) {
+
+                            motionGestureEvent = (MotionGestureEvent) scrollingMotionEventList.get(index);
+                            motionGestureInput = motionGestureEvent.getMotionGesture();
+
+                            if (motionGestureInput == touchMotionGestureFactory.PRESSED) {
+                                globals.lastMotionGestureInput = motionGestureInput;
+                                pressedAlready = true;
+                            } else if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
+                            
+                                if(pressedAlready) {
+                                    motionEventSize = index;
+                                    break;
+                                }
+                                globals.lastScrollingMotionGestureInput = motionGestureInput;
+                            }
+
+                            //MouseButton
+                        <xsl:call-template name="processNodesForMotionGestureEvent" >
+                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                        </xsl:call-template>
+
+                        }
+
+                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> motionEventSize; index++) {
+                            motionEventList.removeAt(0);
+                        }
+                        //Scrolling - END
+
+                    }
 
                     public void process() {
                         
@@ -211,91 +329,17 @@ Created By: Travis Berthelot
                             globals.inUseMotionEventListIndex = 1;
                         }
 
-                        if(true) {
-
-                        GDGameLayer gameLayer;
-                        <xsl:for-each select="objects" >
-                            <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
-                        final int size2 = globals.<xsl:value-of select="name" />GDGameLayerList.size();
-                            </xsl:if>
-                        </xsl:for-each>
-                        
-                        final BasicArrayList motionEventList = (BasicArrayList) globals.motionEventListOfList[globals.processingMotionEventListIndex];
-                        int size10 = motionEventList.size();
-                        MotionGestureEvent motionGestureEvent;
-                        boolean pressedAlready = false;
-                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size10; index++) {
-                        
-                            motionGestureEvent = (MotionGestureEvent) motionEventList.get(index);
-                            
-                            final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
-                            if (motionGestureInput == touchMotionGestureFactory.PRESSED) {
-                                globals.lastMotionGestureInput = motionGestureInput;
-                                pressedAlready = true;
-                            } else if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
-                            
-                        <xsl:for-each select="objects" >
-                            <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
-                        for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
-                            //SpriteMultitouchJoystick::SpriteMultitouchJoystick
-                            gameLayer = (GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(index2);
-                            final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) gameLayer.gdObject;
-                            if(motionGestureEvent.getId() == <xsl:value-of select="name" />.getId()) {
-                                <xsl:value-of select="name" />.setId(-1);
-                                <xsl:value-of select="name" />.setPoint(pointFactory.getInstance().ZERO_ZERO);
-                            }
+                        if(globals.processingScrollingMotionEventListIndex == 0) {
+                            globals.processingScrollingMotionEventListIndex = 1;
+                            globals.inUseScrollingMotionEventListIndex = 0;
+                        } else {
+                            globals.processingScrollingMotionEventListIndex = 0;
+                            globals.inUseScrollingMotionEventListIndex = 1;
                         }
-                            </xsl:if>
-                        </xsl:for-each>
 
-                                if(pressedAlready) {
-                                    size10 = index;
-                                    break;
-                                }
-                                globals.lastMotionGestureInput = motionGestureInput;
-                            }
+                        this.processMotionEvents();
 
-                        GPoint point;
-                        <xsl:for-each select="objects" >
-                            <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
-                        for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
-                            //SpriteMultitouchJoystick::SpriteMultitouchJoystick
-                            gameLayer = (GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(index2);
-                            point = motionGestureEvent.getCurrentPoint();
-                            if (rectangleCollisionUtil.isInside(gameLayer.getXP(), gameLayer.getYP() - 2, gameLayer.getX2(), gameLayer.getY2() + 2, point.getX(), point.getY())) {
-                                final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) gameLayer.gdObject;
-
-                                <xsl:value-of select="name" />.setId(motionGestureEvent.getId());
-                                <xsl:value-of select="name" />.setPoint(point);
-                                final float portionOfX = ((float) point.getX() - gameLayer.getXP() - gameLayer.getHalfWidth()) / (float) gameLayer.getWidth() * 2;
-                                final float portionOfY = -((float) point.getY() - gameLayer.getYP() - gameLayer.getHalfHeight()) / (float) gameLayer.getHeight() * 2;
-                                //logUtil.put(new StringMaker().append(portionOfX).append("portionOfX: ").append(point.getX()).append(" - ").append(gameLayer.getXP()).append(" / ").append(gameLayer.getWidth()).toString(), this, commonStrings.CONSTRUCTOR);
-                                //logUtil.put(new StringMaker().append(portionOfY).append("portionOfY: ").append(point.getY()).append(" - ").append(gameLayer.getYP()).append(" / ").append(gameLayer.getHeight()).toString(), this, commonStrings.CONSTRUCTOR);
-                                <xsl:value-of select="name" />.setStickForceX(portionOfX);
-                                <xsl:value-of select="name" />.setStickForceY(portionOfY);
-                                gameLayer.getDimensionalBehavior().getAnimationBehavior().set(gameLayer, <xsl:value-of select="name" />);
-                            }                            
-                        }
-                            </xsl:if>
-                        </xsl:for-each>
-
-                            //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
-                            globals.lastPointGDNode.process(motionGestureEvent, globals.lastMotionGestureInput);
-
-                        //MouseButton
-                        <xsl:call-template name="processNodesForMotionGestureEvent" >
-                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                        </xsl:call-template>
-
-                    }
-                    
-                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size10; index++) {
-                        motionEventList.removeAt(0);
-                    }
-
-                    }                                
-
-                    gdNodes.process();
+                        gdNodes.process();
 
                         gdGlobalsSpecialAnimation.process(globals.globalsGameTickTimeDelayHelper.timeDelta);
 
@@ -414,7 +458,20 @@ Created By: Travis Berthelot
                         <xsl:variable name="textObjectTextName" >TextObject::Text:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:if test="contains($objectsAsString, $textObjectTextName)" >
                         //TextObject::Text instance - layout
-                        if(true) {
+                        this.textObjectText<xsl:value-of select="position()" />(x, y);
+                        </xsl:if>
+                    </xsl:for-each>
+                    //instances - END - layout
+
+                        //gdNodeStatsFactory.log(stringBuilder, this);
+                    }
+
+                    //instances - START - layout
+                    <xsl:for-each select="instances" >
+                        <xsl:variable name="textObjectTextName" >TextObject::Text:<xsl:value-of select="name" /></xsl:variable>
+                        <xsl:if test="contains($objectsAsString, $textObjectTextName)" >
+                        //TextObject::Text instance - layout
+                        private void textObjectText<xsl:value-of select="position()" />(final int x, final int y) {
                             final int <xsl:value-of select="name" />Size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.size();
                             if(<xsl:value-of select="name" />Size != 0) {
  
@@ -434,9 +491,6 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                     //instances - END - layout
-
-                        //gdNodeStatsFactory.log(stringBuilder, this);
-                    }
 
                     public void open() {
                     

@@ -1,5 +1,4 @@
 
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.data.resource.ResourceUtil;
 import org.allbinary.game.canvas.GDGameSoftwareInfo;
@@ -226,7 +225,15 @@ public class GDGameMIDlet
     //public void mouseWheelMoved(MouseWheelEvent mouseEvent)
     public void mouseWheelMoved(final int x, final int y, final int button)
     {
-        //logUtil.put(commonStrings.START, this, "mouseWheelMoved");
+        try
+        {
+            //logUtil.putF(commonStrings.START, this, "mouseWheelMoved");
+            this.motionRecognizer.processScrolledMotionEvent(x, y, this.DEVICE_ID, button);
+        }
+        catch (Exception e)
+        {
+            logUtil.put(commonStrings.EXCEPTION, this, "mouseWheelMoved", e);
+        }
     }
 
     /*

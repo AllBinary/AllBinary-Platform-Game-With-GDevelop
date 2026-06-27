@@ -98,6 +98,11 @@ public class GDGameMotionGestureListener implements MotionGestureEventListener
     }
 
     @Override
+    public void onScrolledMotionGestureEvent(MotionGestureEvent motionGestureEvent) {
+        
+    }
+
+    @Override
     public void onPressedMotionGestureEvent(MotionGestureEvent ev)
     {   
         final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();

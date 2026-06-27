@@ -636,6 +636,36 @@
         
     </xsl:template>
 
+    <xsl:template name="processNodesForScrollingMotionGestureEvent" >
+        <xsl:param name="totalRecursions" />
+
+        <xsl:for-each select="events" >
+<!--            //Events - <xsl:value-of select="$totalRecursions" />-->
+
+            <xsl:for-each select="conditions" >
+                
+<!--                //Conditions - <xsl:value-of select="$totalRecursions" />-->
+                <xsl:if test="type/value = 'IsMouseWheelScrollingUp'" >
+                            //IsMouseWheelScrollingUp - eventListener
+                            globals.mouseWheelScrollingUpGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processScrolling(motionGestureEvent, globals.lastScrollingMotionGestureInput);
+                </xsl:if>
+                <xsl:if test="type/value = 'IsMouseWheelScrollingDown'" >
+                            //IsMouseWheelScrollingDown - eventListener
+                            globals.mouseWheelScrollingDownGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processScrolling(motionGestureEvent, globals.lastScrollingMotionGestureInput);
+                </xsl:if>
+                                
+            </xsl:for-each>
+
+            <xsl:call-template name="processNodesForScrollingMotionGestureEvent" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="number($totalRecursions) + 1" />
+                </xsl:with-param>
+            </xsl:call-template>
+
+        </xsl:for-each>
+        
+    </xsl:template>
+
     <!-- Events - <xsl:value-of select="$totalRecursions" /> -->
 <!--
         //<xsl:value-of select="$totalRecursions" />:events:<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="type" />

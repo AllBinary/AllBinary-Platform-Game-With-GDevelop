@@ -98,6 +98,10 @@ public class GDNode
         return false;
     }
 
+    public boolean processScrolling(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+        return false;
+    }
+    
     protected void processStats(final MotionGestureEvent motionGestureEvent) {
         this.nodeStatsFactory.push(5, name);
     }

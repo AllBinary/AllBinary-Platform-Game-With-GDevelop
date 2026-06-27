@@ -48,7 +48,8 @@ Created By: Travis Berthelot
                             //Skipping instance name=<xsl:value-of select="name" /> exclusionType=<xsl:value-of select="$exclusionObjectsAsString" />
                         </xsl:if>
                         <xsl:if test="not(contains($exclusionObjectsAsString, $colonName))" >
-                            
+
+                        //Create - btn_ - START
                         <xsl:text>&#10;</xsl:text>
                         if(true) {
                             //logUtil.putF("<xsl:value-of select="$name" />", this, commonStrings.CONSTRUCTOR);
@@ -191,8 +192,7 @@ Created By: Travis Berthelot
                         //logUtil.putF("<xsl:value-of select="$gameLayer" />.gdObject.zOrder" + <xsl:value-of select="$gameLayer" />.gdObject.zOrder, this, commonStrings.PROCESS);
                         //logUtil.putF("<xsl:value-of select="$gameLayer" />.getZ()" + <xsl:value-of select="$gameLayer" />.getZ(), this, commonStrings.PROCESS);
                         allBinaryGameLayerManager.insert(<xsl:value-of select="name" />GDGameLayer);
-                        //Create - Instances - END
-                        
+
                         <xsl:for-each select=".." >
                             <xsl:call-template name="globalUpdateCentreCameraActions" >
                                 <xsl:with-param name="baseLayer" >true</xsl:with-param>
@@ -200,6 +200,8 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                         
                         }
+                        //Create - btn_ - END
+                        //Create - Instances - END
                         </xsl:if>
                     </xsl:for-each>
                     

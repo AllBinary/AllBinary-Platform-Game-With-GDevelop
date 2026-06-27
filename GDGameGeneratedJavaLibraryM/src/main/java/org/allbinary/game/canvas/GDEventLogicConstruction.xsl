@@ -1224,7 +1224,7 @@ Created By: Travis Berthelot
                             }
                         
                             
-                            gameGlobalsFactory.point = motionGestureEvent.getCurrentPoint();
+                            //gameGlobalsFactory.point = motionGestureEvent.getCurrentPoint();
 
                             globals.motionEventListOfList[globals.inUseMotionEventListIndex].add(motionGestureEvent);
 
@@ -1262,6 +1262,11 @@ Created By: Travis Berthelot
                             } catch(Exception e) {
                                 logUtil.put(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e);
                             }
+                        }
+
+                        @Override
+                        public void onScrolledMotionGestureEvent(MotionGestureEvent motionGestureEvent) {
+                            globals.scrollingMotionEventListOfList[globals.inUseScrollingMotionEventListIndex].add(motionGestureEvent);
                         }
 
                     };
@@ -1388,6 +1393,27 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                     public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+
+                        return gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
+
+                    }
+                };
+
+                </xsl:if>
+
+                <xsl:if test="type/value = 'IsMouseWheelScrollingUp' or type/value = 'IsMouseWheelScrollingDown'" >
+                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
+                                        
+                <xsl:if test="type/value = 'IsMouseWheelScrollingUp'" >
+                    //GDNode - //IsMouseWheelScrollingUp - eventListener
+                    globals.mouseWheelScrollingUpGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                </xsl:if>
+                <xsl:if test="type/value = 'IsMouseWheelScrollingDown'" >
+                    //GDNode - //IsMouseWheelScrollingDown - eventListener
+                    globals.mouseWheelScrollingDownGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                </xsl:if>
+
+                    public boolean processScrolling(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
 
                         return gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
 

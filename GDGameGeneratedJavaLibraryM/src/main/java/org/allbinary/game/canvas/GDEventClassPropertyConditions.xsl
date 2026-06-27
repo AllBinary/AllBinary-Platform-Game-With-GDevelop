@@ -174,6 +174,16 @@ Created By: Travis Berthelot
                     //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
                     public GDNode mouseButtonFromTextPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
                 </xsl:if>
+                <xsl:if test="$typeValue = 'IsMouseWheelScrollingUp'" >
+                    //GDNode - //IsMouseWheelScrollingUp  - eventListener
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    public GDNode mouseWheelScrollingUpGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                </xsl:if>
+                <xsl:if test="$typeValue = 'IsMouseWheelScrollingDown'" >
+                    //GDNode - //IsMouseWheelScrollingDown  - eventListener
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    public GDNode mouseWheelScrollingDownGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                </xsl:if>
                 <xsl:if test="$typeValue = 'SourisBouton'" >
                     //GDNode - //MouseButton - //SourisBouton - eventListener
                     //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;

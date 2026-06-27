@@ -100,6 +100,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDPanelSpriteSliderPanelSpriteSliderSetValueActionProcess.xsl" />
     <xsl:import href="./action/GDTextInputVirtualKeyboardTextInputVirtualKeyboardOpenKeyboardActionProcess.xsl" />
     <xsl:import href="./action/GDTextInputVirtualKeyboardTextInputVirtualKeyboardCloseKeyboardActionProcess.xsl" />
+    <xsl:import href="./action/GDFileSystemReadDirectoryActionProcess.xsl" />
     
     <xsl:import href="./action/GDExtensionActionProcess.xsl" />
     
@@ -2227,6 +2228,23 @@ Created By: Travis Berthelot
                 </xsl:when>
                 <xsl:when test="$typeValue = 'TopDownMovementBehavior::TopDownMovementBehavior::SetVelocityY'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:when>
+
+                <xsl:when test="$typeValue = 'FileSystem::ReadDirectory'" >
+                    <xsl:call-template name="fileSystemReadDirectoryActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'EcrireFichierTxt'" >
