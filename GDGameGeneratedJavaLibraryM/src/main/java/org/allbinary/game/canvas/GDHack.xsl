@@ -931,7 +931,7 @@ Created By: Travis Berthelot
                         
                         //GDAction - START - //listSize=<xsl:value-of select="$listSize" />
                         final int size = <xsl:if test="string-length($listSize) = 0 and not(repeatExpression or $eventTypeUp2Branches = 'BuiltinCommonInstructions::ForEach')" >1;</xsl:if>
-                        <xsl:if test="string-length($listSize) > 0 and not(repeatExpression or $eventTypeUp2Branches = 'BuiltinCommonInstructions::ForEach')" ><xsl:if test="$total > 0" >(<xsl:value-of select="$listSize" />) / <xsl:value-of select="$total" /></xsl:if><xsl:if test="$total = 0" >0</xsl:if>; //Hack</xsl:if>
+                        <xsl:if test="string-length($listSize) > 0 and not(repeatExpression or $eventTypeUp2Branches = 'BuiltinCommonInstructions::ForEach')" ><xsl:if test="$total > 0" >(<xsl:value-of select="$listSize" />) / <xsl:value-of select="$total" /></xsl:if><xsl:if test="$total = 0" >1</xsl:if>; //Hack</xsl:if>
                         <xsl:if test="$eventTypeUp2Branches = 'BuiltinCommonInstructions::ForEach'" >globals.<xsl:value-of select="substring-before(substring-after($parametersAsString, ':'), ',')" />GDGameLayerList.size();</xsl:if>
                         <xsl:if test="repeatExpression" >eSize;</xsl:if>
             
