@@ -27,23 +27,30 @@ import org.allbinary.string.CommonStrings;
 public class FileSystem {
     
     public static String DirectoryName(final String currentDirPath) {
-        return AbPathData.getInstance().removeNameFromPath(currentDirPath, FileSystem.PathDelimiter());
+//        final LogUtil logUtil = LogUtil.getInstance();
+//        final CommonStrings commonStrings = CommonStrings.getInstance();
+        final String name = AbPathData.getInstance().removeNameFromPath(currentDirPath, FilePathData.getInstance().SEPARATORCHAR);
+//        logUtil.putF(new StringMaker().append(currentDirPath).append(" FileSystem::DirectoryName: ").append(name).toString(), currentDirPath, commonStrings.PROCESS);
+        return name;
     }
     
     public static String[] ReadDirectory(final String currentDirPath, String[] fileList) {
+        final LogUtil logUtil = LogUtil.getInstance();
+        final CommonStrings commonStrings = CommonStrings.getInstance();
+        
         final StringUtil stringUtil = StringUtil.getInstance();
         final String[] realFilePathAsStringArray = AbFileSystem.getFilesAsStringArrayForPath(currentDirPath);
         final int totalPages = (realFilePathAsStringArray.length / 15) + 1;
+//        logUtil.putF(new StringMaker().append("FileSystem::ReadDirectory totalPages: ").appendint(totalPages).toString(), currentDirPath, commonStrings.PROCESS);
 
         fileList = new String[totalPages * 15];
         
         final int size = realFilePathAsStringArray.length;
         
-//        final LogUtil logUtil = LogUtil.getInstance();
-//        final CommonStrings commonStrings = CommonStrings.getInstance();
-//        logUtil.putF(new StringMaker().append("total files in directory: ").appendint(size).toString(), currentDirPath, commonStrings.PROCESS);
+        logUtil.putF(new StringMaker().append("FileSystem::ReadDirectory - total files: ").appendint(size).toString(), currentDirPath, commonStrings.PROCESS);
         
         final int remainingPageSize = fileList.length - realFilePathAsStringArray.length;
+//        logUtil.putF(new StringMaker().append("FileSystem::ReadDirectory size: ").appendint(size).append(" remainingPageSize: ").appendint(remainingPageSize).toString(), currentDirPath, commonStrings.PROCESS);
         for(int index = size; index < remainingPageSize; index++) {
             fileList[index] = stringUtil.EMPTY_STRING;
         }
@@ -59,8 +66,12 @@ public class FileSystem {
         return SystemProperties.getInstance().getUserHomePath();
     }
     
-    public static String PathDelimiter() {
-        return FilePathData.getInstance().SEPARATOR;
+    public static char PathDelimiter() {
+//        final LogUtil logUtil = LogUtil.getInstance();
+//        final CommonStrings commonStrings = CommonStrings.getInstance();
+        final char SEPARATOR = FilePathData.getInstance().SEPARATORCHAR;
+//        logUtil.putF(new StringMaker().appendchar(SEPARATOR).append(" FileSystem::PathDelimiter").toString(), SEPARATOR, commonStrings.PROCESS);
+        return SEPARATOR;
     }
     
     public static String ExtensionName(final String fullPath) {
