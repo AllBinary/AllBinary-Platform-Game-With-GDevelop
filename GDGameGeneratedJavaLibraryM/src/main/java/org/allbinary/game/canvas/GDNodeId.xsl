@@ -666,6 +666,77 @@
         
     </xsl:template>
 
+    <xsl:template name="isChildNode" >
+        <xsl:param name="possibleChildNodeId" />
+        <xsl:for-each select="events" >
+            <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+            <xsl:if test="$nodeId = $possibleChildNodeId" >found</xsl:if>
+            <xsl:for-each select="events" >
+                <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                <xsl:if test="$nodeId = $possibleChildNodeId" >found</xsl:if>
+                <xsl:call-template name="isChildNode" >
+                    <xsl:with-param name="possibleChildNodeId" ><xsl:value-of select="$possibleChildNodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="actions" >
+                <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                <xsl:if test="$nodeId = $possibleChildNodeId" >found</xsl:if>
+                <xsl:call-template name="isChildNode" >
+                    <xsl:with-param name="possibleChildNodeId" ><xsl:value-of select="$possibleChildNodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="conditions" >
+                <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                <xsl:if test="$nodeId = $possibleChildNodeId" >found</xsl:if>
+                <xsl:call-template name="isChildNode" >
+                    <xsl:with-param name="possibleChildNodeId" ><xsl:value-of select="$possibleChildNodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+
+            <xsl:call-template name="isChildNode" >
+                <xsl:with-param name="possibleChildNodeId" ><xsl:value-of select="$possibleChildNodeId" /></xsl:with-param>
+            </xsl:call-template>
+
+        </xsl:for-each>
+
+    </xsl:template>
+
+    <xsl:template name="getParentNode" >
+        <xsl:param name="possibleParentNodeIdentifier" />
+        <xsl:param name="possibleChildNodeId" />
+        <xsl:for-each select="events" >
+            <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+            <xsl:if test="$nodeId = $possibleChildNodeId" ><xsl:value-of select="$possibleParentNodeIdentifier" /></xsl:if>
+            <xsl:for-each select="events" >
+                <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                <xsl:if test="$nodeId = $possibleChildNodeId" ><xsl:value-of select="$possibleParentNodeIdentifier" /></xsl:if>
+                <xsl:call-template name="getParentNode" >
+                    <xsl:with-param name="possibleChildNodeId" ><xsl:value-of select="$possibleChildNodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="actions" >
+                <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                <xsl:if test="$nodeId = $possibleChildNodeId" ><xsl:value-of select="$possibleParentNodeIdentifier" /></xsl:if>
+                <xsl:call-template name="getParentNode" >
+                    <xsl:with-param name="possibleChildNodeId" ><xsl:value-of select="$possibleChildNodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="conditions" >
+                <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                <xsl:if test="$nodeId = $possibleChildNodeId" ><xsl:value-of select="$possibleParentNodeIdentifier" /></xsl:if>
+                <xsl:call-template name="getParentNode" >
+                    <xsl:with-param name="possibleChildNodeId" ><xsl:value-of select="$possibleChildNodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+
+            <xsl:call-template name="getParentNode" >
+                <xsl:with-param name="possibleChildNodeId" ><xsl:value-of select="$possibleChildNodeId" /></xsl:with-param>
+            </xsl:call-template>
+
+        </xsl:for-each>
+
+    </xsl:template>
+
     <!-- Events - <xsl:value-of select="$totalRecursions" /> -->
 <!--
         //<xsl:value-of select="$totalRecursions" />:events:<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="type" />

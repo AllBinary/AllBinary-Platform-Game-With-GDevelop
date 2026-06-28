@@ -81,10 +81,11 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.game.rand.MyRandomFactory;
+                import org.allbinary.input.motion.gesture.MotionGestureInput;
+                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.string.CommonStrings;
                 import org.allbinary.string.CommonSeps;
                 import org.allbinary.logic.string.StringUtil;
-                
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.logic.NullUtil;
                 import org.allbinary.util.ArrayUtil;

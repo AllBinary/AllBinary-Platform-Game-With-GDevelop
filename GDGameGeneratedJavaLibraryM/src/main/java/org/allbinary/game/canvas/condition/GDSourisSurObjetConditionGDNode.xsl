@@ -22,14 +22,68 @@ Created By: Travis Berthelot
         <xsl:param name="parametersAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
+        
+        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+
+        <xsl:variable name="isExternalEvent" >
+            <xsl:for-each select="//externalEvents" >
+                <xsl:call-template name="isChildNode" >
+                    <xsl:with-param name="possibleChildNodeId" >
+                        <xsl:value-of select="$nodeId" />
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+        </xsl:variable>
+        //isExternalEvent=<xsl:value-of select="$isExternalEvent" /><xsl:text>&#10;</xsl:text>
+
+        <xsl:variable name="externalEventName" >
+            <xsl:for-each select="//externalEvents" >
+                <xsl:call-template name="getParentNode" >
+                    <xsl:with-param name="possibleParentNodeIdentifier" >
+                        <xsl:value-of select="name" />
+                    </xsl:with-param>
+                    <xsl:with-param name="possibleChildNodeId" >
+                        <xsl:value-of select="$nodeId" />
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+        </xsl:variable>
+        //externalEventName=<xsl:value-of select="$externalEventName" /><xsl:text>&#10;</xsl:text>
+
+        <xsl:variable name="isThisInExternlEventCalledFromPress" >
+            <xsl:for-each select="//conditions" >
+                <xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed'" >
+                    <xsl:for-each select="../events" >
+                        <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
+                            <xsl:if test="target = $externalEventName" >found</xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:variable>
+        //isThisInExternlEventCalledFromPress=<xsl:value-of select="$isThisInExternlEventCalledFromPress" /><xsl:text>&#10;</xsl:text>
+
+        <xsl:variable name="isThisInExternlEventCalledFromRelease" >
+            <xsl:for-each select="//conditions" >
+                <xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >
+                    <xsl:for-each select="../events" >
+                        <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
+                            <xsl:if test="target = $externalEventName" >found</xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:variable>
+        //isThisInExternlEventCalledFromRelease=<xsl:value-of select="$isThisInExternlEventCalledFromRelease" /><xsl:text>&#10;</xsl:text>
+
                     <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
                     <xsl:variable name="conditions" ><xsl:for-each select="../../conditions" >found</xsl:for-each></xsl:variable>
-                    <xsl:variable name="release" ><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >found</xsl:if></xsl:for-each><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:variable name="press" ><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
-                
+                    <xsl:variable name="release" ><xsl:if test="contains($isThisInExternlEventCalledFromRelease, 'found')" >found</xsl:if><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >found</xsl:if></xsl:for-each><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="press" ><xsl:if test="contains($isThisInExternlEventCalledFromPress, 'found')" >found</xsl:if><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
+
                     //sourisSurObjetConditionGDNode - //Condition - //IsCursorOnObject - //release=<xsl:value-of select="$release" /> - //press=<xsl:value-of select="$press" /> //inverted=<xsl:value-of select="$inverted" /> - GDNode
                     <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>final GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
-                    
+
                     <xsl:variable name="conditionNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
@@ -216,6 +270,7 @@ Created By: Travis Berthelot
                                 if (<xsl:if test="$inverted = 'true'" >!</xsl:if>rectangleCollisionUtil.isInside(gameLayer.getXP(), gameLayer.getYP() - 2, gameLayer.getX2(), gameLayer.getY2() + 2, point.getX(), point.getY()))
                                 {
                                     //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "Inside: " + lastMotionGestureInput, this, commonStrings.PROCESS);
+
 <!--                                    <xsl:if test="$inverted != 'true'" >
                                     <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
                                         runnable.run();
@@ -223,6 +278,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                     </xsl:if>-->
                                     <xsl:if test="contains($press, 'found')" >
+                                    //press
                                     //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
                                     if (lastMotionGestureInput == touchMotionGestureFactory.PRESSED) {
                                         
@@ -300,6 +356,7 @@ Created By: Travis Berthelot
                                     }
                                     </xsl:if>
                                     <xsl:if test="contains($release, 'found')" >
+                                    //release
                                     //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
                                     if (lastMotionGestureInput == touchMotionGestureFactory.PRESSED) {
 
