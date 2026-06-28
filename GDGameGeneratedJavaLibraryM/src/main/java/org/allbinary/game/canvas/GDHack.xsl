@@ -288,14 +288,15 @@ Created By: Travis Berthelot
             <xsl:text>&#10;</xsl:text>
             //Action - //<xsl:value-of select="type/value" /> - call h1
 
-            <xsl:if test="type/value = 'AddForceXY' or type/value = 'CameraX' or type/value = 'CameraY' or type/value = 'Cache' or type/value = 'Montre' or type/value = 'Show' or type/value = 'Hide' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'PlaySoundOnChannel' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue' or type/value = 'SetNumberVariable' or type/value = 'BuiltinExternalLayouts::CreateObjectsFromExternalLayout'" >
             <xsl:if test="contains($alreadyUsedCondition, 'found')" >
             //Skipping Action since a alreadyUsedCondition is used
             </xsl:if>
             <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
-<!--                <xsl:if test="type/value = 'SetNumberVariable'" >
-                    //TWB - was not called beforeXYZ
-                </xsl:if>-->
+                
+            <xsl:if test="type/value = 'SetX'" >
+            //Was not called before h1
+            </xsl:if>
+            <xsl:if test="type/value = 'SetX' or type/value = 'AddForceXY' or type/value = 'CameraX' or type/value = 'CameraY' or type/value = 'Cache' or type/value = 'Montre' or type/value = 'Show' or type/value = 'Hide' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'PlaySoundOnChannel' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue' or type/value = 'SetNumberVariable' or type/value = 'FileSystem::ReadDirectory' or type/value = 'BuiltinExternalLayouts::CreateObjectsFromExternalLayout'" >
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
             </xsl:if>
             </xsl:if>
