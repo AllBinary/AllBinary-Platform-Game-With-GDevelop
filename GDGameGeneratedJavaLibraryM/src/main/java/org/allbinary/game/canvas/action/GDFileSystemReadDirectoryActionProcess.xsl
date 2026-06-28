@@ -48,7 +48,7 @@ Created By: Travis Berthelot
                         //param1=<xsl:value-of select="$param1" /> hasObject=<xsl:value-of select="$hasObject" /> hasObjectGroup=<xsl:value-of select="$hasObjectGroup" />
                         <xsl:text>&#10;</xsl:text>
 
-                        <xsl:value-of select="$param2" /> = FileSystem.ReadDirectory(<xsl:value-of select="$param1" />);
+                        <xsl:value-of select="$param2" /> = FileSystem.ReadDirectory(<xsl:value-of select="$param1" />, <xsl:value-of select="$param2" />);
 
                         return true;
                     }

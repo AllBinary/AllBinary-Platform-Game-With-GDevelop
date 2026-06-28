@@ -63,6 +63,7 @@ public class GDGameLayer
         {
     protected final LogUtil logUtil = LogUtil.getInstance();
 
+    protected final StringUtil stringUtil = StringUtil.getInstance();
     protected final FrameUtil frameUtil = FrameUtil.getInstance();
 
     private static final String HACK_ANIMATION_NAME = "ttack";
@@ -856,9 +857,17 @@ public class GDGameLayer
         this.setText(Integer.toString(value));
     }
     
-    public void setText(final String text) {
+    public void setText(String text) {
+        
         final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.initIndexedAnimationInterfaceArray[0]);
-        customTextAnimation.setTextWithOnMeasure(text, this.textChangeListener);
+        
+        if(text == null) {
+            customTextAnimation.setTextWithOnMeasure(this.stringUtil.EMPTY_STRING, this.textChangeListener);
+        } else {
+            customTextAnimation.setTextWithOnMeasure(text, this.textChangeListener);
+        }
+        
+        
     }
 
     public void onMeasure() {

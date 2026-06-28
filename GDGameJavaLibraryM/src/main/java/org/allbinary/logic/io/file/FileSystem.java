@@ -13,11 +13,12 @@
  */
 package org.allbinary.logic.io.file;
 
-import java.io.File;
-
+import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.io.path.AbPathData;
+import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.logic.system.os.SystemProperties;
+import org.allbinary.string.CommonStrings;
 
 /**
  *
@@ -29,8 +30,29 @@ public class FileSystem {
         return AbPathData.getInstance().removeNameFromPath(currentDirPath, FileSystem.PathDelimiter());
     }
     
-    public static String[] ReadDirectory(final String currentDirPath) {
-        return AbFileSystem.getFilesAsStringArrayForPath(currentDirPath);
+    public static String[] ReadDirectory(final String currentDirPath, String[] fileList) {
+        final StringUtil stringUtil = StringUtil.getInstance();
+        final String[] realFilePathAsStringArray = AbFileSystem.getFilesAsStringArrayForPath(currentDirPath);
+        final int totalPages = (realFilePathAsStringArray.length / 15) + 1;
+
+        fileList = new String[totalPages * 15];
+        
+        final int size = realFilePathAsStringArray.length;
+        
+//        final LogUtil logUtil = LogUtil.getInstance();
+//        final CommonStrings commonStrings = CommonStrings.getInstance();
+//        logUtil.putF(new StringMaker().append("total files in directory: ").appendint(size).toString(), currentDirPath, commonStrings.PROCESS);
+        
+        final int remainingPageSize = fileList.length - realFilePathAsStringArray.length;
+        for(int index = size; index < remainingPageSize; index++) {
+            fileList[index] = stringUtil.EMPTY_STRING;
+        }
+        
+        for(int index = 0; index < size; index++) {
+            fileList[index] = realFilePathAsStringArray[index];
+        }
+
+        return fileList;
     }
     
     public static String UserHomePath() {
