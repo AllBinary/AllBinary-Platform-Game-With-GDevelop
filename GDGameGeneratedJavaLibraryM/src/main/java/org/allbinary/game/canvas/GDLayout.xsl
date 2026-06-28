@@ -95,6 +95,7 @@ Created By: Travis Berthelot
                 import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.input.motion.gesture.observer.MovedMotionGesturesHandler;
+                import org.allbinary.input.motion.gesture.observer.ScrolledMotionGesturesHandler;
                 
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.math.RectangleCollisionUtil;
@@ -270,7 +271,7 @@ Created By: Travis Berthelot
                             globals.lastPointGDNode.process(motionGestureEvent, globals.lastMotionGestureInput);
 
                             //MouseButton
-                        <xsl:call-template name="processNodesForScrollingMotionGestureEvent" >
+                        <xsl:call-template name="processNodesForMotionGestureEvent" >
                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                         </xsl:call-template>
 
@@ -302,14 +303,14 @@ Created By: Travis Berthelot
                             }
 
                             //MouseButton
-                        <xsl:call-template name="processNodesForMotionGestureEvent" >
+                        <xsl:call-template name="processNodesForScrollingMotionGestureEvent" >
                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                         </xsl:call-template>
 
                         }
 
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> motionEventSize; index++) {
-                            motionEventList.removeAt(0);
+                            scrollingMotionEventList.removeAt(0);
                         }
                         //Scrolling - END
 
@@ -500,6 +501,7 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
                         BasicMotionGesturesHandler.getInstance().addListenerInterface(globals.eventListenerInterfaceLastPoint);
                         MovedMotionGesturesHandler.getInstance().addListenerInterface(globals.eventListenerInterfaceLastPoint);
+                        ScrolledMotionGesturesHandler.getInstance().addListenerInterface(globals.eventListenerInterfaceLastPoint);
                     </xsl:if>
 
                         GDFormInputProcessor.getInstance().open();
@@ -522,6 +524,7 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
                         MovedMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterfaceLastPoint);
                         BasicMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterfaceLastPoint);
+                        ScrolledMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterfaceLastPoint);
                     </xsl:if>
                     
                         final int size = globals.motionEventListOfList.length;

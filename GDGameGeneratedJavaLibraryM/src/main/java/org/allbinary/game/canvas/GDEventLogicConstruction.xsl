@@ -1266,6 +1266,7 @@ Created By: Travis Berthelot
 
                         @Override
                         public void onScrolledMotionGestureEvent(MotionGestureEvent motionGestureEvent) {
+                            //logUtil.putF(new StringMaker().append("motionGestureEvent: ").append(motionGestureEvent.getMotionGesture().getName()).toString(), this, "onScrolledMotionGestureEvent");
                             globals.scrollingMotionEventListOfList[globals.inUseScrollingMotionEventListIndex].add(motionGestureEvent);
                         }
 

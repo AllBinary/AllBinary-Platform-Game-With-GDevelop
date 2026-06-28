@@ -55,6 +55,8 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDSourisBoutonConditionGDNode.xsl" />
     <xsl:import href="./condition/GDMouseButtonPressedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDMouseButtonReleasedConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDIsMouseWheelScrollingUpConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDIsMouseWheelScrollingDownConditionGDNode.xsl" />
     <xsl:import href="./condition/GDDepartSceneConditionGDNode.xsl" />
     <xsl:import href="./condition/GDNumberVariableConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSceneVariableAsBooleanConditionGDNode.xsl" />
@@ -902,10 +904,22 @@ Created By: Travis Berthelot
                     </xsl:when>
                 
                 <xsl:when test="$typeValue = 'IsMouseWheelScrollingUp'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+
+                        <xsl:call-template name="mouseWheelScrollingUpConditionGDNode" >
+                            <xsl:with-param name="forExtension" >
+                                <xsl:value-of select="$forExtension" />
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    
                 </xsl:when>
                 <xsl:when test="$typeValue = 'IsMouseWheelScrollingDown'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+
+                        <xsl:call-template name="mouseWheelScrollingDownConditionGDNode" >
+                            <xsl:with-param name="forExtension" >
+                                <xsl:value-of select="$forExtension" />
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    
                 </xsl:when>                
                 <xsl:when test="$typeValue = 'PopStartedTouch'" >
                     
