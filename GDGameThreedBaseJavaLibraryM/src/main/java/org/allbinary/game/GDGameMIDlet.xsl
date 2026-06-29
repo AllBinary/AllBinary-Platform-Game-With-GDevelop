@@ -117,6 +117,7 @@ public class GDGameMIDlet extends
 
    }
 
+   @Override
    protected HelpPaintable getHelpPaintable()
    throws Exception
    {
@@ -142,7 +143,7 @@ public class GDGameMIDlet extends
     -->
     <!--
     <xsl:if test="position() = 2 or $totalLayouts = 1" >
-   public GameCanvasRunnableInterface createGameCanvasRunnableInterface(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
+   public GameCanvasRunnableInterface createGameCanvasRunnable(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
    {
        return new <xsl:value-of select="$name" />(this.abeClientInformation, this, allBinaryGameLayerManager);
        //return new GDGameGameCanvas(this.abeClientInformation, this, allBinaryGameLayerManager);
@@ -169,6 +170,7 @@ public class GDGameMIDlet extends
     -->
 
     <xsl:if test="position() = 1" >
+   @Override
    public GameCanvasRunnableInterface createDemoGameCanvasRunnableInterface() throws Exception
    {
        return this.create<xsl:value-of select="$name" />RunnableInterface();
@@ -176,24 +178,28 @@ public class GDGameMIDlet extends
     </xsl:if>
 
     <xsl:if test="position() = 2 or $totalLayouts = 1" >
-   public GameCanvasRunnableInterface createGameCanvasRunnableInterface(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
+   @Override
+   public GameCanvasRunnableInterface createGameCanvasRunnable(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
    {
        return this.create<xsl:value-of select="$name" />RunnableInterface(allBinaryGameLayerManager);
    }    
     </xsl:if>
 
+   @Override
    public GameCanvasRunnableInterface create<xsl:value-of select="$name" />RunnableInterface() throws Exception
    {
        return new <xsl:value-of select="$name" />(this.abeClientInformation, this, this.createGameLayerManager());
        //return new GDGameGameCanvas(this.abeClientInformation, this, this.createGameLayerManager());
    }    
 
+   @Override
    public GameCanvasRunnableInterface create<xsl:value-of select="$name" />RunnableInterface(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
    {
        return new <xsl:value-of select="$name" />(this.abeClientInformation, this, allBinaryGameLayerManager);
        //return new GDGameGameCanvas(this.abeClientInformation, this, allBinaryGameLayerManager);
    }    
 
+    @Override
     public synchronized void set<xsl:value-of select="$name" />RunnableInterface() throws Exception
     {
         logUtil.putF(commonStrings.START, this, "set<xsl:value-of select="$name" />");
@@ -210,7 +216,7 @@ public class GDGameMIDlet extends
     
 </xsl:for-each>                
 
-
+   @Override
    protected HighScoresCanvas createHighScoresCanvas() throws Exception
    {
        final AllBinaryGameLayerManager layerManager = this.createGameLayerManager();
@@ -224,12 +230,14 @@ public class GDGameMIDlet extends
               );
    }
 
+   @Override
    public int getHighestLevel()
    {
 	   PreLogUtil.put("******************Demo Level Limited To: 6", this, "getMaxLevel");
        return LicenseLevelUtil.getInstance().getMaxLevel(GDGameLayerManager.MAX_LEVEL, 6);
    }
 
+   @Override
    protected AllBinaryGameLayerManager createGameLayerManager()
    {
        final GameInfo gameInfo = new GameInfo(
@@ -249,6 +257,7 @@ public class GDGameMIDlet extends
    }
    */
 
+   @Override
    protected void mediaShutdown() throws Exception
    {
         //PrelogUtil.putF(commonStrings.START, this, "mediaShutdown - postStopGameCanvasRunnableInterface");
@@ -286,6 +295,7 @@ public class GDGameMIDlet extends
         -->
 //    }
 
+    @Override
     protected void setDisplay(final Displayable newDisplay)
     {
         gameGlobalsFactory.newDisplaybleTime = System.currentTimeMillis();
@@ -294,6 +304,7 @@ public class GDGameMIDlet extends
     }
 
     //private final String NEW_CANVAS = commonStrings.START + "newCanvas";
+    @Override
     public void startGameCanvasRunnableInterface() throws Exception {
     
         //logUtil.putF(NEW_CANVAS, this, "startGameCanvasRunnableInterface");
@@ -302,6 +313,7 @@ public class GDGameMIDlet extends
         super.startGameCanvasRunnableInterface();
     }
 
+    @Override
     public synchronized void commandAction(final Command command, final Displayable displayable2) {
 
         try {
