@@ -20,136 +20,103 @@
             </xsl:when>
             <xsl:otherwise>
 
-<!--        <xsl:variable name="idsFound2" >
-        <xsl:for-each select="/game" >
-            <xsl:for-each select="objects" >
-                <xsl:if test="contains($text, name)"><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />found</xsl:if>
-            </xsl:for-each>
-            <xsl:for-each select="variables" >
-                <xsl:if test="contains($text, name)"><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />found</xsl:if>
-            </xsl:for-each>
-        </xsl:for-each>
-        </xsl:variable>-->
+<!--                <xsl:variable name="idsFound2" >
+                    <xsl:for-each select="/game" >
+                        <xsl:for-each select="variables" >
+                             remove globals. and gameGlobals. check when globals are not added by default 
+                            <xsl:variable name="gameGlobalsName" >gameGlobals.<xsl:value-of select="name" /></xsl:variable>
+                            <xsl:variable name="globalsName" >globals.<xsl:value-of select="name" /></xsl:variable>
+                            <xsl:if test="contains($text, name) and not(contains($text, $gameGlobalsName) or contains($text, $globalsName))">
+                                <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />found</xsl:if>
+                        </xsl:for-each>
+                    </xsl:for-each>
+                </xsl:variable>-->
 
-        <xsl:variable name="idsFound" >
-        <xsl:for-each select="/game/layouts" >
-            <xsl:if test="$layoutIndex = position() - 1" >
-<!--            <xsl:for-each select="objects" >
-                <xsl:if test="contains($text, name)"><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />found</xsl:if>
-            </xsl:for-each>-->
-            <xsl:for-each select="variables" >
-                <!-- remove globals. and gameGlobals. check when globals are not added by default -->
-                <xsl:variable name="gameGlobalsName" >gameGlobals.<xsl:value-of select="name" /></xsl:variable>
-                <xsl:variable name="globalsName" >globals.<xsl:value-of select="name" /></xsl:variable>
-                <xsl:if test="contains($text, name) and not(contains($text, $gameGlobalsName) or contains($text, $globalsName))"><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />found</xsl:if>
-            </xsl:for-each>
-            </xsl:if>
-        </xsl:for-each>
-        </xsl:variable>
+                <xsl:if test="contains($text, 'Global') and not(contains($text, 'GlobalVariable'))" >gameGlobals.</xsl:if>
+
+                <xsl:variable name="idsFound" >
+                    <xsl:for-each select="/game/layouts" >
+                        <xsl:if test="$layoutIndex = position() - 1" >
+                            <xsl:for-each select="variables" >
+                                <!-- remove globals. and gameGlobals. check when globals are not added by default -->
+                                <xsl:variable name="gameGlobalsName" >gameGlobals.<xsl:value-of select="name" /></xsl:variable>
+                                <xsl:variable name="globalsName" >globals.<xsl:value-of select="name" /></xsl:variable>
+                                <xsl:if test="contains($text, name) and not(contains($text, $gameGlobalsName) or contains($text, $globalsName))">
+                                    <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
         
-<!--idsFound2=<xsl:value-of select="$idsFound2" />-->
-<!--text=<xsl:value-of select="$text" />-->
-<!--idsFound=<xsl:value-of select="$idsFound" />-->
+                <!--idsFound2=<xsl:value-of select="$idsFound2" />-->
+                <!--text=<xsl:value-of select="$text" />-->
+                <!--idsFound=<xsl:value-of select="$idsFound" />-->
 
-<!--        <xsl:if test="contains($idsFound2, 'found')" >
+<!--                <xsl:if test="contains($idsFound2, 'found') and not(contains($idsFound, 'found'))" >
 
-        <xsl:for-each select="/game" >
-            <xsl:for-each select="objects" >
+                    <xsl:for-each select="/game" >
+                        <xsl:for-each select="variables" >
                 
-        <xsl:choose>
-            <xsl:when test="contains($text, name)">
-                <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                            <xsl:choose>
+                                <xsl:when test="contains($text, name)">
+                                    <xsl:variable name="id" >
+                                        <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />
+                                    </xsl:variable>
 
-                <xsl:if test="starts-with($idsFound, $id)" >
-                <xsl:value-of select="substring-before($text, name)" />gameGlobals.<xsl:value-of select="name" />
+                                    <xsl:if test="starts-with($idsFound2, $id)" >
+                                        <xsl:value-of select="substring-before($text, name)" />gameGlobals.<xsl:value-of select="name" />
 
-                <xsl:call-template name="addGlobals">
-                    <xsl:with-param name="text" select="substring-after($text, name)" />
-                    <xsl:with-param name="layoutIndex" select="$layoutIndex" />
-                </xsl:call-template>
-                </xsl:if>
-            </xsl:when>
-            <xsl:otherwise>
-            </xsl:otherwise>
-        </xsl:choose>
-
-            </xsl:for-each>
-            <xsl:for-each select="variables" >
+                                        <xsl:call-template name="addGlobals">
+                                            <xsl:with-param name="text" select="substring-after($text, name)" />
+                                            <xsl:with-param name="layoutIndex" select="$layoutIndex" />
+                                        </xsl:call-template>
+                                    </xsl:if>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                </xsl:otherwise>
+                            </xsl:choose>
                 
-        <xsl:choose>
-            <xsl:when test="contains($text, name)">
-                <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-
-                <xsl:if test="starts-with($idsFound, $id)" >
-                <xsl:value-of select="substring-before($text, name)" />gameGlobals.<xsl:value-of select="name" />
-
-                <xsl:call-template name="addGlobals">
-                    <xsl:with-param name="text" select="substring-after($text, name)" />
-                    <xsl:with-param name="layoutIndex" select="$layoutIndex" />
-                </xsl:call-template>
-                </xsl:if>
-            </xsl:when>
-            <xsl:otherwise>
-            </xsl:otherwise>
-        </xsl:choose>
-                
-            </xsl:for-each>
-        </xsl:for-each>
+                        </xsl:for-each>
+                    </xsl:for-each>
         
-        </xsl:if>-->
-        
-<!--        <xsl:if test="not(contains($idsFound2, 'found'))" >-->
-
-        <xsl:for-each select="/game/layouts" >
-            <xsl:if test="$layoutIndex = position() - 1" >
-<!--            <xsl:for-each select="objects" >
-
-        <xsl:choose>
-            <xsl:when test="contains($text, name)">
-                <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-
-                <xsl:if test="starts-with($idsFound, $id)" >
-                <xsl:value-of select="substring-before($text, name)" />globals.<xsl:value-of select="name" />
-
-                <xsl:call-template name="addGlobals">
-                    <xsl:with-param name="text" select="substring-after($text, name)" />
-                    <xsl:with-param name="layoutIndex" select="$layoutIndex" />
-                </xsl:call-template>
                 </xsl:if>
-            </xsl:when>
-            <xsl:otherwise>
-            </xsl:otherwise>
-        </xsl:choose>
-                
-            </xsl:for-each>-->
-            <xsl:for-each select="variables" >
-                
-        <xsl:choose>
-            <xsl:when test="contains($text, name)">
-                <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-
-                <xsl:if test="starts-with($idsFound, $id)" >
-                <xsl:value-of select="substring-before($text, name)" />globals.<xsl:value-of select="name" />
-
-                <xsl:call-template name="addGlobals">
-                    <xsl:with-param name="text" select="substring-after($text, name)" />
-                    <xsl:with-param name="layoutIndex" select="$layoutIndex" />
-                </xsl:call-template>
-                </xsl:if>
-            </xsl:when>
-            <xsl:otherwise>
-            </xsl:otherwise>
-        </xsl:choose>
-
-            </xsl:for-each>
-            </xsl:if>
-        </xsl:for-each>
         
-<!--        </xsl:if>-->
+                <xsl:if test="contains($idsFound, 'found') and not(contains($idsFound2, 'found'))" >-->
+
+                    <xsl:for-each select="/game/layouts" >
+                        <xsl:if test="$layoutIndex = position() - 1" >
+
+                            <xsl:for-each select="variables" >
                 
-        <xsl:if test="not(contains($idsFound, 'found'))" >
-        <xsl:value-of select="$text" />
-        </xsl:if>
+                                <xsl:choose>
+                                    <xsl:when test="contains($text, name)">
+                                        <xsl:variable name="id" >
+                                            <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />
+                                        </xsl:variable>
+
+                                        <xsl:if test="starts-with($idsFound, $id)" >
+                                            <xsl:value-of select="substring-before($text, name)" />globals.<xsl:value-of select="name" />
+
+                                            <xsl:call-template name="addGlobals">
+                                                <xsl:with-param name="text" select="substring-after($text, name)" />
+                                                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
+                                            </xsl:call-template>
+                                        </xsl:if>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+
+                            </xsl:for-each>
+                        </xsl:if>
+                    </xsl:for-each>
+        
+<!--                </xsl:if>-->
+                
+<!--                <xsl:if test="not(contains($idsFound, 'found') or contains($idsFound2, 'found'))" >-->
+                <xsl:if test="not(contains($idsFound, 'found'))" >
+                    <xsl:value-of select="$text" />
+                </xsl:if>
 
             </xsl:otherwise>
         </xsl:choose>
