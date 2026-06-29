@@ -807,12 +807,8 @@ Created By: Travis Berthelot
                             //Should we call these - //caller=<xsl:value-of select="$caller" /> - //hackProcessing2
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
                                 </xsl:if>
-                                <xsl:if test="contains($notAlreadyUsedConditionButWithSpecificAction, 'found') and type = 'BuiltinCommonInstructions::Standard'" >
-                            //I am now calling this2 - //<xsl:value-of select="type" />
-                                </xsl:if>
                             </xsl:if>
                             <xsl:if test="not(contains($hasSubCondition, 'found')) and $caller = 'otherEventLayout - //eventsCreateAssignXGDObjectGDNodesOtherEvent'" >
-                            //Was not called before 2b - //NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
                             </xsl:if>
                     <xsl:if test="contains($isInsideCondiion, 'found')" >
