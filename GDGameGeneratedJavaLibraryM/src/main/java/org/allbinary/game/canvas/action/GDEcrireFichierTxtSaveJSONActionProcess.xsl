@@ -29,7 +29,7 @@ Created By: Travis Berthelot
                         private final String RECORD_ID = <xsl:value-of select="$param1" />;
                         private final String SECOND_PARAM = <xsl:value-of select="$param2" />;
                         
-                        //EcrireFichierTxt - action - START - //forExtension=<xsl:value-of select="$forExtension" />
+                        //EcrireFichierTxt - //Save - action - START - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
                         public boolean process() throws Exception {

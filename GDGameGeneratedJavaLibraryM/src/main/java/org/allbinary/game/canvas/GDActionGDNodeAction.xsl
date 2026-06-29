@@ -2264,7 +2264,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
-                <xsl:when test="$typeValue = 'LireFichierTxt'" >
+                <xsl:when test="$typeValue = 'ReadStringFromStorage' or $typeValue = 'LireFichierTxt'" >
                     //Load JSON - JSONPersistance
                     <xsl:call-template name="lireFichierTxtLoadJSONActionProcess" >
                         <xsl:with-param name="forExtension" >
