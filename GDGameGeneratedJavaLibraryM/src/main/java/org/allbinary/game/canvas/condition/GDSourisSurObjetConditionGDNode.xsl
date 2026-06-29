@@ -76,10 +76,18 @@ Created By: Travis Berthelot
         </xsl:variable>
         //isThisInExternlEventCalledFromRelease=<xsl:value-of select="$isThisInExternlEventCalledFromRelease" /><xsl:text>&#10;</xsl:text>
 
+<!--        //../../../conditions/<xsl:if test="../subInstructions" ></xsl:if><xsl:for-each select="../../../conditions" ><xsl:value-of select="type/value" /></xsl:for-each>
+        //../../conditions/<xsl:for-each select="../../conditions" ><xsl:value-of select="type/value" /></xsl:for-each>
+        //../conditions/<xsl:for-each select="../conditions" ><xsl:value-of select="type/value" /></xsl:for-each>
+        //conditions/<xsl:for-each select="conditions" ><xsl:value-of select="type/value" /></xsl:for-each>-->
+
+<!--        //<xsl:if test="../subInstructions" ><xsl:for-each select="../../../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:if>-->
+
+                    <xsl:variable name="foundSubInstructions" ><xsl:if test="../subInstructions" >found</xsl:if></xsl:variable>
                     <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
                     <xsl:variable name="conditions" ><xsl:for-each select="../../conditions" >found</xsl:for-each></xsl:variable>
                     <xsl:variable name="release" ><xsl:if test="contains($isThisInExternlEventCalledFromRelease, 'found')" >found</xsl:if><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >found</xsl:if></xsl:for-each><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:variable name="press" ><xsl:if test="contains($isThisInExternlEventCalledFromPress, 'found')" >found</xsl:if><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="press" ><xsl:if test="contains($isThisInExternlEventCalledFromPress, 'found')" >found</xsl:if><xsl:if test="../subInstructions" ><xsl:for-each select="../../../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:if><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
 
                     //sourisSurObjetConditionGDNode - //Condition - //IsCursorOnObject - //release=<xsl:value-of select="$release" /> - //press=<xsl:value-of select="$press" /> //inverted=<xsl:value-of select="$inverted" /> - GDNode
                     <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>final GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
@@ -271,12 +279,6 @@ Created By: Travis Berthelot
                                 {
                                     //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "Inside: " + lastMotionGestureInput, this, commonStrings.PROCESS);
 
-<!--                                    <xsl:if test="$inverted != 'true'" >
-                                    <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
-                                        runnable.run();
-                                        return true;
-                                    </xsl:if>
-                                    </xsl:if>-->
                                     <xsl:if test="contains($press, 'found')" >
                                     //press
                                     //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
@@ -295,64 +297,18 @@ Created By: Travis Berthelot
                                         
                                         this.process();
                                         
-                                        <!--
-                                        <xsl:for-each select="../../actions" >
-                                            <xsl:variable name="hasTimerChildCondition" ><xsl:call-template name="hasTimerChildCondition" /></xsl:variable>
-                                            //press=<xsl:value-of select="contains($press, 'found')" /> //hasTimerChildCondition=<xsl:value-of select="contains($hasTimerChildCondition, 'found')" />
-                                        <xsl:if test="contains($press, 'found') or not(contains($conditions, 'found')) or contains($hasTimerChildCondition, 'found')" >
-                                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                                        //Action - call - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
-                                        //Action - //<xsl:value-of select="type/value" /> - call - press
-                                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                                        </xsl:if>
-                                        </xsl:for-each>
-
-                                        <xsl:for-each select="../../events" >
-                                        <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
-                                            <xsl:variable name="hasTimerChildCondition" ><xsl:call-template name="hasTimerChildCondition" /></xsl:variable>
-                                            //press=<xsl:value-of select="contains($press, 'found')" /> //hasTimerChildCondition=<xsl:value-of select="contains($hasTimerChildCondition, 'found')" />
-                                        <xsl:if test="contains($press, 'found') or not(contains($conditions, 'found')) or contains($hasTimerChildCondition, 'found')" >
-                                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                                        //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> parameters=<xsl:value-of select="$parametersAsString" />
-                                        //Condition - //IsCursorOnObject - //Event - //<xsl:value-of select="type" /> - call - press - under SourisSurObjet press
-                                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                                        </xsl:if>
-                                        </xsl:if>
-                                        </xsl:for-each>
-                                    -->
+                                    <xsl:if test="$inverted != 'true'" >
+                                    <xsl:if test="contains($foundSubInstructions, 'found')" >
+                                        //Calculator
+                                        return true;
+                                    </xsl:if>
+                                    </xsl:if>
 
                                     } else if(lastMotionGestureInput == touchMotionGestureFactory.RELEASED) {
                                     
                                         //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "release", this, commonStrings.PROCESS);
 
                                         this.processReleased();
-                                    <!--
-                                        <xsl:for-each select="../../actions" >
-                                            <xsl:variable name="hasTimerChildCondition" ><xsl:call-template name="hasTimerChildCondition" /></xsl:variable>
-                                            //release=<xsl:value-of select="contains($release, 'found')" /> //hasTimerChildCondition=<xsl:value-of select="contains($hasTimerChildCondition, 'found')" />
-                                        <xsl:if test="(contains($press, 'found') and type/value = 'Rotate') or contains($release, 'found') or contains($hasTimerChildCondition, 'found')" >
-                                        //Action - call - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
-                                        //Action - //<xsl:value-of select="type/value" /> - call - release
-                                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
-                                        </xsl:if>
-                                        </xsl:for-each>    
-                                        <xsl:for-each select="../../events" >
-                                        <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
-                                            <xsl:variable name="hasTimerChildCondition" ><xsl:call-template name="hasTimerChildCondition" /></xsl:variable>
-                                            //release=<xsl:value-of select="contains($release, 'found')" /> //hasTimerChildCondition=<xsl:value-of select="contains($hasTimerChildCondition, 'found')" />
-                                        //and type/value = 'Rotate')
-                                        <xsl:if test="contains($press, 'found') or contains($release, 'found') or contains($hasTimerChildCondition, 'found')" >
-                                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                                        //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> parameters=<xsl:value-of select="$parametersAsString" />
-                                        //Condition - //IsCursorOnObject - //Event - //<xsl:value-of select="type" /> - call - release - under SourisSurObjet release 
-                                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
-                                        </xsl:if>
-                                        </xsl:if>
-                                        </xsl:for-each>
-                                    -->
                                     }
                                     </xsl:if>
                                     <xsl:if test="contains($release, 'found')" >
