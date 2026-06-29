@@ -139,9 +139,10 @@ Created By: Travis Berthelot
                     new LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>
                     new OneRowSpriteIndexedAnimationFactory(
-                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />],
+                    PrimitiveIntUtil.getArrayInstance(),
                     //)
-                    ,<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth() / <xsl:value-of select="count(directions/sprites)" />, <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight()
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth() / <xsl:value-of select="count(directions/sprites)" />, <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight()
                                 <xsl:for-each select=".." >
                                     <xsl:for-each select=".." >
                                     <xsl:variable name="hasInstance" ><xsl:for-each select="instances" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>

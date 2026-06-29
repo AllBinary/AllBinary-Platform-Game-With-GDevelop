@@ -83,7 +83,7 @@ Created By: Travis Berthelot
                                     </xsl:call-template>
                                         </xsl:with-param>
                                         <xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param>
-                                        <xsl:with-param name="replacementText" ></xsl:with-param>
+                                        <xsl:with-param name="replacementText" >"</xsl:with-param>
                                     </xsl:call-template>
                         </xsl:if>
                         </xsl:for-each>;

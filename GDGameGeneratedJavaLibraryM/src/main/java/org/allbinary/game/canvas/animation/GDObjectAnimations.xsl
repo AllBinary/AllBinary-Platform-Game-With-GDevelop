@@ -79,7 +79,7 @@ Created By: Travis Berthelot
                     new LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>
                     //<xsl:value-of select="$platform" />
-                    new OneRowSpriteIndexedAnimationFactory(
+                    OneRowSpriteIndexedAnimationFactory.createFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]
                     //,
                     //-<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth() / 2,
