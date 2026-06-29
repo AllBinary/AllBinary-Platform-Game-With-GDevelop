@@ -1224,7 +1224,7 @@ Created By: Travis Berthelot
                             }
                         
                             
-                            //gameGlobalsFactory.point = motionGestureEvent.getCurrentPoint();
+                            gameGlobalsFactory.point = motionGestureEvent.getCurrentPoint();
 
                             globals.motionEventListOfList[globals.inUseMotionEventListIndex].add(motionGestureEvent);
 
