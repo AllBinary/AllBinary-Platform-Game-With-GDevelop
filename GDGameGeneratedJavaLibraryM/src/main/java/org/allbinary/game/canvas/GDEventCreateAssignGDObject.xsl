@@ -888,7 +888,7 @@ Created By: Travis Berthelot
                     if(<xsl:value-of select="$gameLayerName" />GDGameLayer != null) {
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gameLayerName" />GDGameLayer, null, globals.graphics);
                     } else {
-                        logUtil.put(commonStrings.EXCEPTION_LABEL + "<xsl:value-of select="$gameLayerName" />GDGameLayer was null", this, commonStrings.PROCESS);
+                        logUtil.putF(commonStrings.EXCEPTION_LABEL + "<xsl:value-of select="$gameLayerName" />GDGameLayer was null", this, commonStrings.PROCESS);
                     }
                 </xsl:if>
 
