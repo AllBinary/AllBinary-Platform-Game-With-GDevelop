@@ -81,6 +81,7 @@ import org.allbinary.game.tick.OptimizedTickableLayerProcessor;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.color.BasicColor;
+import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.color.SmallBasicColorCacheFactory;
 import org.allbinary.graphics.color.BasicColorUtil;
 import org.allbinary.graphics.color.BasicColorFactory;
@@ -302,8 +303,6 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             
         <xsl:if test="not(number($layoutIndex) = 0 or position() = last() or contains($name2, 'game_options') or contains($name2, 'score') or contains($name2, 'over'))" >
         GameNotificationEventHandler.getInstance().enabled = true;
-        final int fontSize = 24;
-        final Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, fontSize);        
         final StringUtil stringUtil = StringUtil.getInstance();
             
 
@@ -311,7 +310,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
             //Font.getDefaultFont()
             GDStartIntermissionPaintable(final AllBinaryGameCanvas combatGameCanvas) {
-                super(combatGameCanvas, new String[] {StringUtil.getInstance().EMPTY_STRING}, BasicColorFactory.getInstance().RED, font);
+                super(combatGameCanvas, new String[] {StringUtil.getInstance().EMPTY_STRING}, BasicColorFactory.getInstance().RED, Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, 24));
                 this.lineYOffsetArray = new int[]{0};
             }
 

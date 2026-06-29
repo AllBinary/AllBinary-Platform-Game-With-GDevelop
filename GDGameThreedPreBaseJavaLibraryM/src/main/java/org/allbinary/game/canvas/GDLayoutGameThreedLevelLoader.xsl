@@ -80,6 +80,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.color.BasicColor;
+                import org.allbinary.graphics.color.BasicColorFactory;
                 import org.allbinary.image.ImageCache;
                 import org.allbinary.image.ImageCacheFactory;
                 import org.allbinary.string.CommonStrings;

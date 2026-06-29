@@ -35,6 +35,7 @@ import org.allbinary.game.paint.ColorFillPaintableFactory;
 import org.allbinary.game.score.BasicHighScoresFactory;
 import org.allbinary.game.score.NoHighScoresFactory;
 import org.allbinary.graphics.color.BasicColor;
+import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.form.FormPaintable;
 import org.allbinary.graphics.paint.NullInitUpdatePaintable;
 import org.allbinary.graphics.paint.NullPaintable;

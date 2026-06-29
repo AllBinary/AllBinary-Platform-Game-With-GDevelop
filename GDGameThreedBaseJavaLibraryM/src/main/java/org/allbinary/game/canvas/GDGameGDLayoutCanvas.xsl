@@ -319,13 +319,23 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             
         <xsl:if test="not(number($layoutIndex) = 0 or position() = last() or contains($name2, 'game_options') or contains($name2, 'score') or contains($name2, 'over'))" >
         GameNotificationEventHandler.getInstance().enabled = true;
-        final int fontSize = 24;
-        final Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, fontSize);        
-        final StringUtil stringUtil = StringUtil.getInstance();
-        this.setStartIntermissionPaintable(
-            new StartIntermissionPaintable(this, new String[] {stringUtil.EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED, font)
-            //new StartIntermissionPaintable(this, new String[] {stringUtil.EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED)
-            );
+
+        class GDStartIntermissionPaintable extends StartIntermissionPaintable {
+
+            //Font.getDefaultFont()
+            GDStartIntermissionPaintable(final AllBinaryGameCanvas combatGameCanvas) {
+                super(combatGameCanvas, new String[] {StringUtil.getInstance().EMPTY_STRING}, BasicColorFactory.getInstance().RED, Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, 24));
+                this.lineYOffsetArray = new int[]{0};
+            }
+
+//            @Override
+//            public void updateMeasurement(final Graphics graphics) {
+//                super.updateMeasurement(graphics);
+//            }
+        };
+        
+        this.setStartIntermissionPaintable(new GDStartIntermissionPaintable(this));
+
         </xsl:if>
     }
 
