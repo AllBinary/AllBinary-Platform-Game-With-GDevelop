@@ -22,7 +22,7 @@ import org.allbinary.util.BasicArrayList;
  */
 public class MusicManagerFactory {
     
-    public static MusicManager create(final BasicArrayList soundList) {
+    public static MusicManager createMusicManager(final BasicArrayList soundList) {
         return new MusicManager(MusicService.class, soundList);
         //return new MusicManager(soundList);
     }
