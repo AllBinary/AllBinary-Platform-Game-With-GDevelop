@@ -688,7 +688,7 @@ Created By: Travis Berthelot
                             final int fontSize = scaleProperties.scaleHeight;
                             scaleProperties.scaleHeight = (int) fontSize - (fontSize / 4);
                             this.font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, scaleProperties.scaleHeight);
-                            logUtil.put(new StringMaker().append("setInitialScale - font: ").appendint(font.getSize()).toString(), this, commonStrings.PROCESS);
+                            logUtil.putF(new StringMaker().append("setInitialScale - font: ").appendint(font.getSize()).toString(), this, commonStrings.PROCESS);
                         }
 
                     },
