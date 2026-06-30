@@ -672,7 +672,8 @@ Created By: Travis Berthelot
                         <xsl:value-of select="$name" />ImageArray[1], 
                         sequenceArray,
                         (<xsl:value-of select="$name" />ImageArray[0].getWidth() - <xsl:value-of select="$name" />ImageArray[1].getWidth()) / 2,
-                        (<xsl:value-of select="$name" />ImageArray[0].getHeight() - <xsl:value-of select="$name" />ImageArray[1].getHeight()) / 2
+                        (<xsl:value-of select="$name" />ImageArray[0].getHeight() - <xsl:value-of select="$name" />ImageArray[1].getHeight()) / 2,
+                        AnimationBehaviorFactory.getInstance()
                     )
                     ,
                         <xsl:if test="not(contains($hasMirrorFillBarBehavior, 'found'))" >
@@ -684,7 +685,8 @@ Created By: Travis Berthelot
                     new RightToLeftImageAnimationFactory(
                         <xsl:value-of select="$name" />ImageArray[2],
                         (<xsl:value-of select="$name" />ImageArray[0].getWidth() - <xsl:value-of select="$name" />ImageArray[2].getWidth()) / 2,
-                        (<xsl:value-of select="$name" />ImageArray[0].getHeight() - <xsl:value-of select="$name" />ImageArray[2].getHeight()) / 2
+                        (<xsl:value-of select="$name" />ImageArray[0].getHeight() - <xsl:value-of select="$name" />ImageArray[2].getHeight()) / 2,
+                        AnimationBehaviorFactory.getInstance()
                     )
                     ,
                             </xsl:if>
@@ -706,7 +708,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     <xsl:for-each select="Label" >
                     //Label
-                    new CustomTextAnimationFactory(stringUtil.EMPTY_STRING, <xsl:value-of select="$name" />TextAnimationSize, 0, -1) {
+                    CustomTextAnimationFactory.createDXY(stringUtil.EMPTY_STRING, <xsl:value-of select="$name" />TextAnimationSize, 0, -1, AnimationBehaviorFactory.getInstance()) {
                         public void setInitialScale(final ScaleProperties scaleProperties) {
                             //super.setInitialScale(scaleProperties);
                             this.scaleProperties = scaleProperties;

@@ -313,7 +313,8 @@ Created By: Travis Berthelot
 
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
 
-                final SimultaneousCompoundIndexedAnimationInterfaceFactory simultaneousCompoundIndexedAnimationInterfaceFactory = new SimultaneousCompoundIndexedAnimationInterfaceFactory(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray);
+                final SimultaneousCompoundIndexedAnimationInterfaceFactory simultaneousCompoundIndexedAnimationInterfaceFactory = 
+                    new SimultaneousCompoundIndexedAnimationInterfaceFactory(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray, AnimationBehaviorFactory.getInstance());
                 final AnimationInterfaceFactoryInterface[] joystickAnimationInterfaceFactoryInterfaceArray = {
                     simultaneousCompoundIndexedAnimationInterfaceFactory
                 };
