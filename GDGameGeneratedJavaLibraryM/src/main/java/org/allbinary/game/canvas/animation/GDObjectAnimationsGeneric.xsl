@@ -813,7 +813,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
             private void add<xsl:value-of select="name" />TextInputObjectAnimations(final ImageCache imageCache) throws Exception {
 
-                final int maxLength = (<xsl:value-of select="content/maxLength" /> == 0) ? 8 : <xsl:value-of select="content/maxLength" />;
+                final int maxLength = <xsl:if test="content/maxLength" >(<xsl:value-of select="content/maxLength" /> == 0) ? 8 : <xsl:value-of select="content/maxLength" />;</xsl:if><xsl:if test="not(content/maxLength)" >8;</xsl:if>
                 final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" />;
                 //final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> / 2;
 
