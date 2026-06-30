@@ -45,6 +45,7 @@ Created By: Travis Berthelot
                             int rightVolume = 100;
                             <xsl:if test="string-length($volume) > 0 and number($volume) = $volume" >
                             final int volume = <xsl:value-of select="$volume" />;
+                            //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + volume, this, commonStrings.PROCESS);
                             leftVolume = volume;
                             rightVolume = volume;
                             player.setVolume(leftVolume, rightVolume);

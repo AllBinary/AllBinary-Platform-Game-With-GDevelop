@@ -12,6 +12,7 @@ gen/
 
 Resources/**
 
+**/stage2/**
 **/com/sun/speech/**
 package.html
 *.Manifest

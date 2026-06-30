@@ -213,7 +213,7 @@
         </dependency>
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>J2SEMediaMIDPJorbisJavaLibrary</artifactId>
+            <artifactId>J2SEMediaMIDPMiniAudioJavaLibrary</artifactId>
 <!--
             <artifactId>J2SEMediaMIDPJorbisJavaLibrary</artifactId>
             <artifactId>J2SEMediaMIDPMinimalJavaLibrary</artifactId>
