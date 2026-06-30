@@ -194,21 +194,18 @@ public class GDGameMIDlet extends
    }    
     </xsl:if>
 
-   @Override
    public GameCanvasRunnableInterface create<xsl:value-of select="$name" />RunnableInterface() throws Exception
    {
        return new <xsl:value-of select="$name" />(this.abeClientInformation, this, this.createGameLayerManager());
        //return new GDGameGameCanvas(this.abeClientInformation, this, this.createGameLayerManager());
    }    
 
-   @Override
    public GameCanvasRunnableInterface create<xsl:value-of select="$name" />RunnableInterface(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
    {
        return new <xsl:value-of select="$name" />(this.abeClientInformation, this, allBinaryGameLayerManager);
        //return new GDGameGameCanvas(this.abeClientInformation, this, allBinaryGameLayerManager);
    }    
 
-    @Override
     public synchronized void set<xsl:value-of select="$name" />RunnableInterface() throws Exception
     {
         logUtil.putF(commonStrings.START, this, "set<xsl:value-of select="$name" />");
