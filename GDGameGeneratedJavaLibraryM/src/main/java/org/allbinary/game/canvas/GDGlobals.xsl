@@ -337,7 +337,7 @@ Created By: Travis Berthelot
 
         final CommonStrings commonStrings = CommonStrings.getInstance();
         final StringMaker stringMaker = new StringMaker();
-        logUtil.put(stringMaker.append("PlatformerMap: RandomDungeon: ").append(this.RandomDungeon).toString(), this, commonStrings.PROCESS);
+        this.logUtil.putF(stringMaker.append("PlatformerMap: RandomDungeon: ").appendboolean(this.RandomDungeon).toString(), this, commonStrings.PROCESS);
 
                                 </xsl:if>
                             </xsl:if>

@@ -48,7 +48,7 @@ Created By: Travis Berthelot
                                 
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
-                                            final int colorAsInt = basicColorUtil.getARGB(255, </xsl:if>
+                                            final int colorAsInt = basicColorUtil.get(255, </xsl:if>
                                         <xsl:if test="position() = 2" >
                                             <xsl:if test="contains(text(), ';')" >
                                                 <xsl:value-of select="translate(substring(text(), 2, string-length(text()) - 2), ';', ',')" />
@@ -107,7 +107,7 @@ Created By: Travis Berthelot
 
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
-                                            final int colorAsInt = basicColorUtil.getARGB(255, </xsl:if>
+                                            final int colorAsInt = basicColorUtil.get(255, </xsl:if>
                                         <xsl:if test="position() = 2" >
                                             <xsl:if test="contains(text(), ';')" >
                                                 <xsl:value-of select="translate(substring(text(), 2, string-length(text()) - 2), ';', ',')" />

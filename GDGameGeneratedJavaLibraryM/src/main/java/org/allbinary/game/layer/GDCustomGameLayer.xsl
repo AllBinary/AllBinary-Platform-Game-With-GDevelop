@@ -98,6 +98,7 @@ Created By: Travis Berthelot
         import org.allbinary.util.BasicArrayList;
         import org.allbinary.util.BasicArrayListD;
         import org.allbinary.view.ViewPosition;
+        import org.allbinary.view.ViewPositionBase;
 
     <xsl:variable name="foundPathFindingBehavior" >
         <xsl:for-each select="//behaviorsSharedData" >
@@ -367,6 +368,7 @@ Created By: Travis Berthelot
                     
                     topViewGameBehavior = new org.allbinary.game.behavior.topview.GeographicMapTopViewMaskGameLayerBehavior(64, false, 6) {
 
+    @Override
     public void moveAndLand(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final GeographicMapCellPosition geographicMapCellPosition, final VelocityProperties velocityProperties, final AllBinaryLayer layer, final int x, final int y) throws Exception {
         
         //logUtil.put(new StringMaker().append("x: ").append(x).append(" y: ").append(y).append(CommonSeps.getInstance().SPACE).append(layer.getViewPosition().getX()).toString(), this, "moveAndLand");
@@ -394,7 +396,8 @@ Created By: Travis Berthelot
                     } else {
 
                     topViewGameBehavior = new org.allbinary.game.behavior.topview.GeographicMapTopViewGameLayerBehavior2(64, false, 6) {
-                    
+    
+    @Override
     public void moveAndLand(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final GeographicMapCellPosition geographicMapCellPosition, final VelocityProperties velocityProperties, final AllBinaryLayer layer, final int x, final int y) throws Exception {
         
         //logUtil.put(new StringMaker().append("x: ").append(x).append(" y: ").append(y).append(CommonSeps.getInstance().SPACE).append(layer.getViewPosition().getX()).toString(), this, "moveAndLand");
@@ -547,6 +550,8 @@ Created By: Travis Berthelot
         private int total;
             
         //String lastString = "";
+
+    @Override
     public void move() {
         try {
             //logUtil.putF("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move");
@@ -568,9 +573,9 @@ Created By: Travis Berthelot
             if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
 
             if(this.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
-                if(total <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 5) {
-                    total++;
-                    logUtil.put(new StringMaker().append("0LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(stringUtil.toString(this.allBinaryGameLayerManagerP)).toString(), this, "move");
+                if(this.total <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 5) {
+                    this.total++;
+                    logUtil.putF(new StringMaker().append("0LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).appendint(this.gdObject.x).append(",").appendint(this.gdObject.y).append(" LayerManager: ").append(stringUtil.toString(this.allBinaryGameLayerManagerP)).toString(), this, "move");
                 }
                 return;
             }
@@ -632,7 +637,8 @@ Created By: Travis Berthelot
             logUtil.put(commonStrings.EXCEPTION, this, "move", e);
         }
     }
-                    
+
+    @Override                    
     public void updatePosition() {
         super.updatePosition();
         this.move();
@@ -645,7 +651,7 @@ Created By: Travis Berthelot
             if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
 
             if(this.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
-                logUtil.put(new StringMaker().append("1LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(stringUtil.toString(this.allBinaryGameLayerManagerP)).toString(), this, "move");
+                this.logUtil.putF(new StringMaker().append("1LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).appendint(this.gdObject.x).append(",").appendint(this.gdObject.y).append(" LayerManager: ").append(stringUtil.toString(this.allBinaryGameLayerManagerP)).toString(), this, "move");
                 return;
             }
 
@@ -708,33 +714,40 @@ Created By: Travis Berthelot
         this.move2();
     }
 
+    @Override
     public void terrainMove(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final int dx, final int dy) {
         this.topViewCharacterBehavior.terrainMove(this, geographicMapInterfaceArray, dx, dy);
     }
     
+    @Override
     public void terrainEvent(final int dx, final int dy, 
             final BasicGeographicMap[] geographicMapInterfaceArray,
             final GeographicMapCellType[] geographicMapCellTypeArray,
             final GeographicMapCellPosition geographicMapCellPosition) throws Exception {
     }
 
+    @Override
     public void upp()
     {
     }
 
+    @Override
     public void leftp()
     {
     }
 
+    @Override
     public void rightp()
     {
     }
 
+    @Override
     public void reset() throws Exception
     {
     }
                     
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >                    
+    @Override
     public void paint(final Graphics graphics) {
         super.paint(graphics);
         
@@ -742,9 +755,9 @@ Created By: Travis Berthelot
         final int x = viewPosition.getX();
         final int y = viewPosition.getY();
         
-        this.captionAnimation.paint(graphics, x, y);
+        this.captionAnimation.paintXY(graphics, x, y);
 
-        this.pathAnimation.paint(graphics, x, y);
+        this.pathAnimation.paintXY(graphics, x, y);
 
 //        if(this.topViewGameBehavior.blockGeographicMapCellPosition != null) {
 //        graphics.setColor(BasicColorFactory.getInstance().RED.intValue());
@@ -1195,7 +1208,7 @@ Created By: Travis Berthelot
                 new GDWaypointBehavior2(
                         this, 
                         (CollidableDestroyableDamageableLayer) 
-                        waypointLayerInterfaceFactoryInterface.getInstance(
+                        waypointLayerInterfaceFactoryInterface.getNextInstance(
                                 hashtable, x, y, z))
                 );
 
@@ -1307,7 +1320,7 @@ Created By: Travis Berthelot
             //logUtil.putF(REMOVING_LAST_CELLPOSITION + geographicMapCellPosition, this, commonStrings.INIT);
         }
         
-        geographicMapCellHistory.track(geographicMapCellPositionBasicArrayList);
+        geographicMapCellHistory.trackAll(geographicMapCellPositionBasicArrayList);
             
     }
     
@@ -1318,7 +1331,7 @@ Created By: Travis Berthelot
         final BasicGeographicMap geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0];
         
         final GeographicMapCellPosition geographicMapCellPosition =
-            geographicMapInterface.getCellPositionAtNoThrow(
+            geographicMapInterface.getCellPositionAtXYNoThrow(
             this.x + this.getHalfWidth(),
             this.y + this.getHalfHeight());
 
@@ -1342,7 +1355,7 @@ Created By: Travis Berthelot
         final BasicGeographicMap geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0];
         
         final GeographicMapCellPosition geographicMapCellPosition =
-            geographicMapInterface.getCellPositionAtNoThrow(
+            geographicMapInterface.getCellPositionAtXYNoThrow(
             this.x,
             this.y);
 
@@ -1389,11 +1402,11 @@ Created By: Travis Berthelot
 
         this.rtsLogHelper.trackTo(this, nextUnvisitedPathGeographicMapCellPosition, dx, dy, reason);
         
-        this.trackTo(dx, dy);
+        this.trackToDXY(dx, dy);
         
     }
 
-    public void trackToDX(final int dx, final int dy)
+    public void trackToDXY(final int dx, final int dy)
         throws Exception {
 
         final int angleOfTarget = 0;
@@ -1564,7 +1577,7 @@ Created By: Travis Berthelot
             
             //TWB - This is probably covering up and issue with the existing visit logic.
             if(geographicMapCellHistory.visit(currentGeographicMapCellPosition)) {
-                this.waypoint2LogHelper.processWaypointTracked(this, currentGeographicMapCellPosition);
+                this.waypoint2LogHelper.processWaypointTrackedVisit(this, currentGeographicMapCellPosition);
             } else {
                 final String reason = 
                     stringUtil.EMPTY_STRING;
@@ -1581,7 +1594,7 @@ Created By: Travis Berthelot
                             
             //TWB - This is probably covering up and issue with the existing visit logic.
             if(geographicMapCellHistory.visit(nextUnvisitedPathGeographicMapCellPosition)) {
-                this.waypoint2LogHelper.processWaypointTracked(this, nextUnvisitedPathGeographicMapCellPosition);
+                this.waypoint2LogHelper.processWaypointTrackedVisit(this, nextUnvisitedPathGeographicMapCellPosition);
             } else {
                 final String reason = 
                     stringUtil.EMPTY_STRING;
@@ -1685,18 +1698,22 @@ Created By: Travis Berthelot
 
     }
 
+    @Override
     public boolean isWaypointListEmptyOrOnlyTargets() {
         return false;
     }
 
+    @Override
     public TrackingEvent getTrackingEvent() {
         return null;
     }
 
+    @Override
     public boolean buildingChase(final AllBinaryLayer allbinaryLayer, final GeographicMapCellPosition cellPosition) throws Exception {
         return false;
     }
     
+    @Override
     public void allStop() {
         
     }
@@ -1754,6 +1771,7 @@ Created By: Travis Berthelot
 
     }
 
+    @Override
     public void right()
     throws Exception
     {
@@ -1778,6 +1796,7 @@ Created By: Travis Berthelot
 
     }
 
+    @Override
     public void left()
     throws Exception
     {

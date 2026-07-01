@@ -61,7 +61,7 @@ Created By: Travis Berthelot
 <xsl:text>                        </xsl:text>final int oldSize = ((<xsl:value-of select="$gdObjectFactory" />) paramOneGameLayer.gdObject).<xsl:value-of select="$secondParam" />.length;
                         <xsl:text>&#10;</xsl:text>         
 <xsl:text>                        </xsl:text>((<xsl:value-of select="$gdObjectFactory" />) paramOneGameLayer.gdObject).<xsl:value-of select="$secondParam" /> = 
-                                      arrayUtil.copyOf(((<xsl:value-of select="$gdObjectFactory" />) paramOneGameLayer.gdObject).<xsl:value-of select="$secondParam" />, 
+                                      arrayUtil.copyOfint(((<xsl:value-of select="$gdObjectFactory" />) paramOneGameLayer.gdObject).<xsl:value-of select="$secondParam" />, 
                                       ((<xsl:value-of select="$gdObjectFactory" />) paramOneGameLayer.gdObject).<xsl:value-of select="$secondParam" />.length + 1);
 
 <xsl:text>                        </xsl:text>

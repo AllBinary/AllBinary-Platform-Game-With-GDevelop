@@ -121,7 +121,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
         try {
             
             if(collisionMaskCustomGameLayer.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
-                logUtil.put(new StringMaker().append("LayerManager was null: ").append(stringUtil.toString(collisionMaskCustomGameLayer.allBinaryGameLayerManagerP)).toString(), this, "move");
+                logUtil.putF(new StringMaker().append("LayerManager was null: ").append(stringUtil.toString(collisionMaskCustomGameLayer.allBinaryGameLayerManagerP)).toString(), this, "move");
                 return false;
             }
             
@@ -136,7 +136,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
 
                 final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) ownerLayer);
                 final GDObject gdObject = collisionMaskCustomGameLayer.gdObject;
-                final GeographicMapCellPosition geographicMapCellPosition = customGameLayer.topViewGameBehavior.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(
+                final GeographicMapCellPosition geographicMapCellPosition = customGameLayer.topViewGameBehavior.getGeographicMapCellPositionIfNotSolidBlockOrOffMapLocation(
                     geographicMapInterfaceArray, geographicMapCellTypeArray, customGameLayer.getVelocityProperties(), customGameLayer, gdObject.x, gdObject.y);
 
 //                if(customGameLayer.gdObject.name.compareTo(B) == 0) {

@@ -301,7 +301,7 @@
                         public int[] <xsl:value-of select="name" /> = {
                             <xsl:for-each select="children" >
                                 <xsl:if test="contains(value, ';')" >
-                            basicColorUtil.getARGB(<xsl:value-of select="translate(translate(value, '\&quot;', ''), ';', ',')" />),
+                            basicColorUtil.getARGB(255, <xsl:value-of select="translate(translate(value, '\&quot;', ''), ';', ',')" />),
                                 </xsl:if>
                                 <xsl:if test="not(contains(value, ';'))" >
                             <xsl:value-of select="value" />,
@@ -421,7 +421,7 @@
                         this.<xsl:value-of select="name" /> = new int[] {
                             <xsl:for-each select="children" >
                                 <xsl:if test="contains(value, ';')" >
-                            basicColorUtil.getARGB(<xsl:value-of select="translate(translate(value, '\&quot;', ''), ';', ',')" />),
+                            basicColorUtil.getARGB(255, <xsl:value-of select="translate(translate(value, '\&quot;', ''), ';', ',')" />),
                                 </xsl:if>
                                 <xsl:if test="not(contains(value, ';'))" >
                             <xsl:value-of select="value" />,
