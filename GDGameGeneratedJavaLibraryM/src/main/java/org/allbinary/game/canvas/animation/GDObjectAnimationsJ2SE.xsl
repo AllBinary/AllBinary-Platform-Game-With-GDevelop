@@ -180,7 +180,7 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($lazy, 'true')" >
                     new LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>
-                    AllBinaryJ2SEImageRotationAnimationFactory.createDXY((
+                    new AllBinaryJ2SEImageRotationAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />],
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth(),
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight(),
@@ -656,7 +656,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="childrenContent" >
                     <xsl:for-each select="Background" >
                     //Background
-                    AllBinaryJ2SEImageRotationAnimationFactory.createDXY((
+                    new AllBinaryJ2SEImageRotationAnimationFactory(
                         <xsl:value-of select="$name" />ImageArray[0],
                         <xsl:value-of select="$name" />ImageArray[0].getWidth(),
                         <xsl:value-of select="$name" />ImageArray[0].getHeight(),
@@ -694,7 +694,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     <xsl:for-each select="Thumb" >
                     //Thumb
-                    AllBinaryJ2SEImageRotationAnimationFactory.createDXY((
+                    AllBinaryJ2SEImageRotationAnimationFactory.createDXY(
                         <xsl:value-of select="$name" />ImageArray[4],
                         <xsl:value-of select="$name" />ImageArray[4].getWidth(),
                         <xsl:value-of select="$name" />ImageArray[4].getHeight(),

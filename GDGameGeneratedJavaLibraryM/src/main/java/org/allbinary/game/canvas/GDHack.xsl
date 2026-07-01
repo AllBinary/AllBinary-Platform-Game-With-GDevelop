@@ -464,23 +464,34 @@ Created By: Travis Berthelot
                         <xsl:if test="name = $gameLayerName" >found</xsl:if>
                     </xsl:for-each>
                 </xsl:variable>
+
+                    <xsl:if test="contains($hasObjectGroup, 'found')" >
+                    if(true) {
+                    //TWB - skip processing delete on object group for now
+                    final int size3 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerListOfList.size();
+                    for(int index3 = 0; index3 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; index3++) {
+                        final BasicArrayList <xsl:value-of select="$gameLayerName" />GDGameLayerList = (BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerListOfList.get(index3);
+                    </xsl:if>
+
+                    <xsl:if test="not(contains($hasObjectGroup, 'found'))" >
+                        //TWB - skip not
+                        final BasicArrayList <xsl:value-of select="$gameLayerName" />GDGameLayerList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList;
+                    </xsl:if>
+                    if(<xsl:value-of select="$gameLayerName" />GDGameLayerList.size() != 0) {
+
+                        final GDGameLayer <xsl:value-of select="$gameLayerName" />GDGameLayer = (GDGameLayer) <xsl:value-of select="$gameLayerName" />GDGameLayerList.get(0);
+                        if(<xsl:value-of select="$gameLayerName" />GDGameLayer != null) {
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gameLayerName" />GDGameLayer, null, globals.graphics);
+                        } else {
+                            this.logUtil.putF(commonStrings.EXCEPTION_LABEL + "<xsl:value-of select="$gameLayerName" />GDGameLayer was null", this, commonStrings.PROCESS);
+                        }
+
+                    }
                     
                     <xsl:if test="contains($hasObjectGroup, 'found')" >
-                    //TWB - skip processing delete on object group for now
-                    ...
-                    </xsl:if>
-                    <xsl:if test="not(contains($hasObjectGroup, 'found'))" >
-                    if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList.size() != 0) {
-
-                    final GDGameLayer <xsl:value-of select="$gameLayerName" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(0);
-                    if(<xsl:value-of select="$gameLayerName" />GDGameLayer != null) {
-                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gameLayerName" />GDGameLayer, null, globals.graphics);
-                    } else {
-                        logUtil.putF(commonStrings.EXCEPTION_LABEL + "<xsl:value-of select="$gameLayerName" />GDGameLayer was null", this, commonStrings.PROCESS);
                     }
-
-                    }
-                    </xsl:if>
+                    }</xsl:if>
+                    
 
                         </xsl:if>
                 </xsl:if>
