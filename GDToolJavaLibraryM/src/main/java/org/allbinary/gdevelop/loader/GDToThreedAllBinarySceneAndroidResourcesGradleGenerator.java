@@ -46,8 +46,8 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
     {
         final String GD_KEY = "//GD";
         
-        final String RESOURCE_INITIALIZATION_ORIGINAL = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameThreedAndroidEarlyResourceInitialization.origin";
-        final String RESOURCE_INITIALIZATION = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameThreedAndroidEarlyResourceInitialization.java";
+        final String RESOURCE_INITIALIZATION_ORIGINAL = this.gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameThreedAndroidEarlyResourceInitialization.origin";
+        final String RESOURCE_INITIALIZATION = this.gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameThreedAndroidEarlyResourceInitialization.java";
         
         final StringMaker stringMaker = new StringMaker();
 
@@ -64,7 +64,7 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
         final Replace replace = new Replace(GD_KEY, stringMaker.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
-        logUtil.putF(this.gdToolStrings.FILENAME + RESOURCE_INITIALIZATION, this, commonStrings.PROCESS);
+        this.logUtil.putF(this.gdToolStrings.FILENAME + RESOURCE_INITIALIZATION, this, this.commonStrings.PROCESS);
 
         this.bufferedWriterUtil.overwrite(RESOURCE_INITIALIZATION, newFileAsString);
 
@@ -95,30 +95,30 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
                 stringMaker.append(this.gdToolStrings.NOT_USED_FOR_THREED_GAMES);
             }
 
-            if (resource.endsWith(gdToolStrings.UNDERSCORE_0) && 
-                    (resource.indexOf(gdToolStrings._TOUCH_) < 0 || resource.indexOf(gdToolStrings._BLANK_) < 0)) {
+            if (resource.endsWith(this.gdToolStrings.UNDERSCORE_0) && 
+                    (resource.indexOf(this.gdToolStrings._TOUCH_) < 0 || resource.indexOf(this.gdToolStrings._BLANK_) < 0)) {
                 stringMaker.append(this.commonSeps.COMMENT);
             }
             
             //hasRotationImages?
             if (!hasRotationImages) {
                 for (int index2 = 2; index2 < size2; index2++) {
-                    if (resource.endsWith(commonSeps.UNDERSCORE + index2)
-                        && (resource.indexOf(gdToolStrings._TOUCH_) < 0 || resource.indexOf(gdToolStrings._BLANK_) < 0)) {
+                    if (resource.endsWith(this.commonSeps.UNDERSCORE + index2)
+                        && (resource.indexOf(this.gdToolStrings._TOUCH_) < 0 || resource.indexOf(this.gdToolStrings._BLANK_) < 0)) {
                         stringMaker.append(this.commonSeps.COMMENT);
                     }
                 }
             }
             
-            stringMaker.append(gdToolStrings.RESOURCE_0);
-            stringMaker.append(gdToolStrings.GD_RESOURCE);
+            stringMaker.append(this.gdToolStrings.RESOURCE_0);
+            stringMaker.append(this.gdToolStrings.GD_RESOURCE);
             stringMaker.append(resource);
-            stringMaker.append(gdToolStrings._RESOURCE);
-            stringMaker.append(gdToolStrings.RESOURCE_1);
+            stringMaker.append(this.gdToolStrings._RESOURCE);
+            stringMaker.append(this.gdToolStrings.RESOURCE_1);
             final String androidResource = ((String) androidResourceList.get(index));
             stringMaker.append(androidResource);
             stringMaker.append(extension);
-            stringMaker.append(gdToolStrings.RESOURCE_2);
+            stringMaker.append(this.gdToolStrings.RESOURCE_2);
         }        
     }
     

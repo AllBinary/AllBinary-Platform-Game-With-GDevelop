@@ -30,7 +30,7 @@ public class GDGameTitleAnimationFactory
      */
     public static GDGameTitleAnimationFactory getInstance()
     {
-        return instance;
+        return GDGameTitleAnimationFactory.instance;
     }
 
     public final TitleAnimation getInstance(IndexedAnimation[] animationInterfaceArray) throws Exception

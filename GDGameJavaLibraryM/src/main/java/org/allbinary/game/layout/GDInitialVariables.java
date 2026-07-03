@@ -25,7 +25,7 @@ public class GDInitialVariables {
      * @return the instance
      */
     public static GDInitialVariables getInstance() {
-        return instance;
+        return GDInitialVariables.instance;
     }
     
     public void reset() {

@@ -32,13 +32,14 @@ public class PathFindingBehavior extends GDBehavior {
      * @return the instance
      */
     public static PathFindingBehavior getInstance() {
-        return instance;
+        return PathFindingBehavior.instance;
     }
     
     private PathFindingBehavior() {
         
     }
 
+    @Override
     public boolean process(final BasicArrayList gameLayerList, final int index, final Graphics graphics) {
 
         final GDGameLayer gameLayer = (GDGameLayer) gameLayerList.get(index);

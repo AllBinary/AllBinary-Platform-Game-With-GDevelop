@@ -28,7 +28,7 @@ public class ScalableProcessor extends ScalableBaseProcessor {
      * @return the instance
      */
     public static ScalableProcessor getInstance() {
-        return instance;
+        return ScalableProcessor.instance;
     }
     
     @Override

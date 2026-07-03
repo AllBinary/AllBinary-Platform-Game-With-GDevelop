@@ -94,6 +94,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
         this(abeClientInformation, null, allBinaryGameLayerManager);
     }
     
+    @Override
     protected void initSpecialPaint()
     {
         super.initSpecialPaint();
@@ -115,6 +116,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
 
     }
 
+    @Override
     public void mediaInit() throws Exception
     {
         logUtil.putF(commonStrings.START, this, "mediaInit");
@@ -122,6 +124,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
     }
 
     //Don't Auto Hide instead update the list
+    @Override
     protected  void updateTouch()
     throws Exception
     {
@@ -147,6 +150,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
         }
     }
 
+    @Override
     protected synchronized void initConfigurable(final AbeClientInformationInterface abeClientInformation) throws Exception
     {
         try
@@ -182,6 +186,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
         }
     }
 
+    @Override
     protected void threadInit() throws Exception
     {
         try
@@ -248,6 +253,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
         }
     }
 
+    @Override
     public void buildGameInit(boolean isProgress) throws Exception
     {
         this.loadResources(gameLayerManager.getGameInfo().getCurrentLevel());
@@ -320,6 +326,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
         this.setGameState(this.gameStateFactory.PLAYING_GAME_STATE);
     }
 
+    @Override
     public void setGameState(GameState gameState) throws Exception
     {
         super.setGameState(gameState);

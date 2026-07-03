@@ -25,7 +25,7 @@ public class GDBehaviorUtil {
      * @return the behaviorTracker
      */
     public static GDBehaviorUtil getInstance() {
-        return instance;
+        return GDBehaviorUtil.instance;
     }
 
     //Only GD instance specific behaviors
@@ -34,13 +34,13 @@ public class GDBehaviorUtil {
     public final int PATHFINDING_BEHAVIOR_INDEX = 0;
     public final int DRAGGABLE_BEHAVIOR_INDEX = 1;
 
-    public final int MAX = DRAGGABLE_BEHAVIOR_INDEX + 1;
+    public final int MAX = this.DRAGGABLE_BEHAVIOR_INDEX + 1;
 
     public GDBehavior getInstance(final int index) {
         
-        if(index == PATHFINDING_BEHAVIOR_INDEX) {
+        if(index == this.PATHFINDING_BEHAVIOR_INDEX) {
             return PathFindingBehavior.getInstance();
-        } else if(index == DRAGGABLE_BEHAVIOR_INDEX) {
+        } else if(index == this.DRAGGABLE_BEHAVIOR_INDEX) {
             return DraggableBehavior.getInstance();
         } else {
             throw new RuntimeException();

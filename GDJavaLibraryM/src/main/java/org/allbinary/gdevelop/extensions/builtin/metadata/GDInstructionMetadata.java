@@ -83,11 +83,11 @@ public class GDInstructionMetadata
             final boolean parameterIsOptional)
     {
         final String supplementaryInformation
-                = (parameterFactory.isObject(type)
-                || parameterFactory.isBehavior(type))
+                = (this.parameterFactory.isObject(type)
+                || this.parameterFactory.isBehavior(type))
                 ? (optionalObjectType.isEmpty()
                 ? this.stringUtil.EMPTY_STRING
-                : extensionNamespace + optionalObjectType)
+                : this.extensionNamespace + optionalObjectType)
                 : optionalObjectType;
 
         final GDParameterMetadata parameterMetadata = new GDParameterMetadata(
@@ -127,19 +127,19 @@ public class GDInstructionMetadata
         final int operatorParamIndex = this.parameterList.size() - 2;
         final int valueParamIndex = this.parameterList.size() - 1;
 
-        if (objectInstruction || behaviorInstruction)
+        if (this.objectInstruction || this.behaviorInstruction)
         {
             final StringBuilder stringBuilder = new StringBuilder();
 
             stringBuilder.append(this.sentence);
-            stringBuilder.append(_OF_PARAM0_);
-            stringBuilder.append(_PARAM);
+            stringBuilder.append(GDInstructionMetadata._OF_PARAM0_);
+            stringBuilder.append(GDInstructionMetadata._PARAM);
             stringBuilder.append(operatorParamIndex);
-            stringBuilder.append(commonSeps.UNDERSCORE);
-            stringBuilder.append(commonSeps.SPACE);
-            stringBuilder.append(_PARAM);
+            stringBuilder.append(this.commonSeps.UNDERSCORE);
+            stringBuilder.append(this.commonSeps.SPACE);
+            stringBuilder.append(GDInstructionMetadata._PARAM);
             stringBuilder.append(valueParamIndex);
-            stringBuilder.append(commonSeps.UNDERSCORE);
+            stringBuilder.append(this.commonSeps.UNDERSCORE);
 
             this.sentence = stringBuilder.toString();
 
@@ -148,14 +148,14 @@ public class GDInstructionMetadata
             final StringBuilder stringBuilder = new StringBuilder();
 
             stringBuilder.append(this.sentence);
-            stringBuilder.append(commonSeps.SPACE);
-            stringBuilder.append(_PARAM);
+            stringBuilder.append(this.commonSeps.SPACE);
+            stringBuilder.append(GDInstructionMetadata._PARAM);
             stringBuilder.append(operatorParamIndex);
-            stringBuilder.append(commonSeps.UNDERSCORE);
-            stringBuilder.append(commonSeps.SPACE);
-            stringBuilder.append(_PARAM);
+            stringBuilder.append(this.commonSeps.UNDERSCORE);
+            stringBuilder.append(this.commonSeps.SPACE);
+            stringBuilder.append(GDInstructionMetadata._PARAM);
             stringBuilder.append(valueParamIndex);
-            stringBuilder.append(commonSeps.UNDERSCORE);
+            stringBuilder.append(this.commonSeps.UNDERSCORE);
 
             this.sentence = stringBuilder.toString();
         }
@@ -197,7 +197,7 @@ public class GDInstructionMetadata
         final int operatorParamIndex = this.parameterList.size() - 2;
         final int valueParamIndex = this.parameterList.size() - 1;
 
-        if (objectInstruction || behaviorInstruction)
+        if (this.objectInstruction || this.behaviorInstruction)
         {
 
             final StringBuilder stringBuilder = new StringBuilder();
@@ -205,15 +205,15 @@ public class GDInstructionMetadata
             stringBuilder.append("Change ");
             stringBuilder.append(this.sentence);
             stringBuilder.append(" of _PARAM0_: ");
-            stringBuilder.append(this._PARAM);
+            stringBuilder.append(GDInstructionMetadata._PARAM);
             stringBuilder.append(operatorParamIndex);
-            stringBuilder.append(commonSeps.UNDERSCORE);
-            stringBuilder.append(commonSeps.SPACE);
-            stringBuilder.append(this._PARAM);
+            stringBuilder.append(this.commonSeps.UNDERSCORE);
+            stringBuilder.append(this.commonSeps.SPACE);
+            stringBuilder.append(GDInstructionMetadata._PARAM);
             stringBuilder.append(valueParamIndex);
-            stringBuilder.append(commonSeps.UNDERSCORE);
+            stringBuilder.append(this.commonSeps.UNDERSCORE);
 
-            sentence = stringBuilder.toString();
+            this.sentence = stringBuilder.toString();
 
         } else
         {
@@ -223,15 +223,15 @@ public class GDInstructionMetadata
             stringBuilder.append("Change ");
             stringBuilder.append(this.sentence);
             stringBuilder.append(": ");
-            stringBuilder.append(this._PARAM);
+            stringBuilder.append(GDInstructionMetadata._PARAM);
             stringBuilder.append(operatorParamIndex);
-            stringBuilder.append(commonSeps.UNDERSCORE);
-            stringBuilder.append(commonSeps.SPACE);
-            stringBuilder.append(this._PARAM);
+            stringBuilder.append(this.commonSeps.UNDERSCORE);
+            stringBuilder.append(this.commonSeps.SPACE);
+            stringBuilder.append(GDInstructionMetadata._PARAM);
             stringBuilder.append(valueParamIndex);
-            stringBuilder.append(commonSeps.UNDERSCORE);
+            stringBuilder.append(this.commonSeps.UNDERSCORE);
 
-            sentence = stringBuilder.toString();
+            this.sentence = stringBuilder.toString();
         }
 
         return this;
@@ -239,19 +239,19 @@ public class GDInstructionMetadata
 
     public GDInstructionMetadata markAsSimple()
     {
-        usageComplexity = 2;
+        this.usageComplexity = 2;
         return this;
     }
 
     public GDInstructionMetadata markAsAdvanced()
     {
-        usageComplexity = 7;
+        this.usageComplexity = 7;
         return this;
     }
 
     public GDInstructionMetadata markAsComplex()
     {
-        usageComplexity = 9;
+        this.usageComplexity = 9;
         return this;
     }
 

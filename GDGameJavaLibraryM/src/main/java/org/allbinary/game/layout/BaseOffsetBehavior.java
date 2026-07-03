@@ -25,7 +25,7 @@ public class BaseOffsetBehavior {
      * @return the instance
      */
     public static BaseOffsetBehavior getInstance() {
-        return instance;
+        return BaseOffsetBehavior.instance;
     }
     
     public int PointX(final int value) {

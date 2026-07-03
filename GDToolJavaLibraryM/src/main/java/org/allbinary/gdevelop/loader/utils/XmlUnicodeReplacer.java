@@ -48,7 +48,7 @@ public class XmlUnicodeReplacer {
 
     public static void main(String[] args) throws IOException {
         if (args.length < 1 || args.length > 3) {
-            printUsageAndExit();
+            XmlUnicodeReplacer.printUsageAndExit();
             return;
         }
 
@@ -58,7 +58,7 @@ public class XmlUnicodeReplacer {
 
         if (!Files.exists(inputPath)) {
             final StringBuilder messageBuilder = new StringBuilder();
-            messageBuilder.append(INPUT_FILE_NOT_FOUND_PREFIX);
+            messageBuilder.append(XmlUnicodeReplacer.INPUT_FILE_NOT_FOUND_PREFIX);
             messageBuilder.append(inputPath);
             System.err.println(messageBuilder.toString());
             System.exit(2);
@@ -71,7 +71,7 @@ public class XmlUnicodeReplacer {
         Files.writeString(outputPath, replaced, charset);
 
         final StringBuilder messageBuilder = new StringBuilder();
-        messageBuilder.append(OUTPUT_WRITTEN_PREFIX);
+        messageBuilder.append(XmlUnicodeReplacer.OUTPUT_WRITTEN_PREFIX);
         messageBuilder.append(outputPath.toAbsolutePath());
         System.out.println(messageBuilder.toString());
         
@@ -79,39 +79,39 @@ public class XmlUnicodeReplacer {
 
     public static String sanitize(final String content) {
 
-        final List<String> positions = findNonAsciiPositions(content, 20);
-        final int totalCount = countNonAsciiOccurrences(content);
+        final List<String> positions = XmlUnicodeReplacer.findNonAsciiPositions(content, 20);
+        final int totalCount = XmlUnicodeReplacer.countNonAsciiOccurrences(content);
 
-        System.out.println(TARGET_UNICODE_RANGE);
+        System.out.println(XmlUnicodeReplacer.TARGET_UNICODE_RANGE);
         final StringBuilder foundCountBuilder = new StringBuilder();
-        foundCountBuilder.append(FOUND_NON_ASCII_PREFIX);
+        foundCountBuilder.append(XmlUnicodeReplacer.FOUND_NON_ASCII_PREFIX);
         foundCountBuilder.append(totalCount);
         System.out.println(foundCountBuilder.toString());
 
         if (!positions.isEmpty()) {
             final StringBuilder firstBuilder = new StringBuilder();
-            firstBuilder.append(FIRST_PREFIX);
+            firstBuilder.append(XmlUnicodeReplacer.FIRST_PREFIX);
             firstBuilder.append(positions.size());
-            firstBuilder.append(FIRST_SUFFIX);
+            firstBuilder.append(XmlUnicodeReplacer.FIRST_SUFFIX);
             System.out.println(firstBuilder.toString());
             for (String position : positions) {
                 final StringBuilder positionBuilder = new StringBuilder();
-                positionBuilder.append(POSITION_PREFIX);
+                positionBuilder.append(XmlUnicodeReplacer.POSITION_PREFIX);
                 positionBuilder.append(position);
                 System.out.println(positionBuilder.toString());
             }
         }
 
-        final String replaced = replaceNonAscii(content);
+        final String replaced = XmlUnicodeReplacer.replaceNonAscii(content);
 
         if (totalCount > 0) {
             final StringBuilder replacedBuilder = new StringBuilder();
-            replacedBuilder.append(REPLACED_PREFIX);
-            replacedBuilder.append(REPLACEMENT);
+            replacedBuilder.append(XmlUnicodeReplacer.REPLACED_PREFIX);
+            replacedBuilder.append(XmlUnicodeReplacer.REPLACEMENT);
             System.out.println(replacedBuilder.toString());
             throw new RuntimeException();
         } else {
-            System.out.println(NO_NON_ASCII);
+            System.out.println(XmlUnicodeReplacer.NO_NON_ASCII);
         }
         
         return replaced;
@@ -120,7 +120,7 @@ public class XmlUnicodeReplacer {
     private static int countNonAsciiOccurrences(final String content) {
         int count = 0;
         for (int i = 0; i < content.length(); i++) {
-            if (content.charAt(i) > ASCII_MAX) {
+            if (content.charAt(i) > XmlUnicodeReplacer.ASCII_MAX) {
                 count++;
             }
         }
@@ -131,8 +131,8 @@ public class XmlUnicodeReplacer {
         final StringBuilder stringBuilder = new StringBuilder(content.length());
         for (int i = 0; i < content.length(); i++) {
             final char current = content.charAt(i);
-            if (current > ASCII_MAX) {
-                stringBuilder.append(REPLACEMENT);
+            if (current > XmlUnicodeReplacer.ASCII_MAX) {
+                stringBuilder.append(XmlUnicodeReplacer.REPLACEMENT);
             } else {
                 stringBuilder.append(current);
             }
@@ -147,16 +147,16 @@ public class XmlUnicodeReplacer {
 
         for (int i = 0; i < content.length(); i++) {
             final char current = content.charAt(i);
-            if (current > ASCII_MAX) {
-                final String unicode = String.format(UNICODE_FORMAT, (int) current);
+            if (current > XmlUnicodeReplacer.ASCII_MAX) {
+                final String unicode = String.format(XmlUnicodeReplacer.UNICODE_FORMAT, (int) current);
                 final StringBuilder positionBuilder = new StringBuilder();
-                positionBuilder.append(POSITION_LINE_PREFIX);
+                positionBuilder.append(XmlUnicodeReplacer.POSITION_LINE_PREFIX);
                 positionBuilder.append(line);
-                positionBuilder.append(POSITION_COLUMN_PREFIX);
+                positionBuilder.append(XmlUnicodeReplacer.POSITION_COLUMN_PREFIX);
                 positionBuilder.append(column);
-                positionBuilder.append(POSITION_INDEX_PREFIX);
+                positionBuilder.append(XmlUnicodeReplacer.POSITION_INDEX_PREFIX);
                 positionBuilder.append(i);
-                positionBuilder.append(POSITION_UNICODE_PREFIX);
+                positionBuilder.append(XmlUnicodeReplacer.POSITION_UNICODE_PREFIX);
                 positionBuilder.append(unicode);
                 positions.add(positionBuilder.toString());
                 if (positions.size() >= limit) {
@@ -176,11 +176,11 @@ public class XmlUnicodeReplacer {
     }
 
     private static void printUsageAndExit() {
-        System.err.println(USAGE);
-        System.err.println(EXAMPLES);
-        System.err.println(EXAMPLE_1);
-        System.err.println(EXAMPLE_2);
-        System.err.println(EXAMPLE_3);
+        System.err.println(XmlUnicodeReplacer.USAGE);
+        System.err.println(XmlUnicodeReplacer.EXAMPLES);
+        System.err.println(XmlUnicodeReplacer.EXAMPLE_1);
+        System.err.println(XmlUnicodeReplacer.EXAMPLE_2);
+        System.err.println(XmlUnicodeReplacer.EXAMPLE_3);
         System.exit(1);
     }
 }

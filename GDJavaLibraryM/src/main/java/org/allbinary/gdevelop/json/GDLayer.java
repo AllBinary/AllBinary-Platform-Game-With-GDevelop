@@ -38,7 +38,7 @@ public class GDLayer
         if(jsonObject.has(gdProjectStrings.NAME)) {
             this.name = jsonObject.getString(gdProjectStrings.NAME);
         } else {
-            this.name = Integer.toHexString(hashCode());
+            this.name = Integer.toHexString(this.hashCode());
         }
         
         if(jsonObject.has(gdProjectStrings.VISIBILITY)) {

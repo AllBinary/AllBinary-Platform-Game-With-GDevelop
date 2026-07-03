@@ -38,15 +38,15 @@ public class GDRectOnlyPrimitiveDrawing extends Animation {
 
     public void addFillColor(final BasicColor basicColor) {
                 
-        colorAnimation.setBasicColorP(basicColor);
+        this.colorAnimation.setBasicColorP(basicColor);
     }
 
     public void addFillRectangle(final int x, final int y, final int x2, final int y2) {
         
-        rectangleFilledAnimation.x = x;
-        rectangleFilledAnimation.y = y;
-        rectangleFilledAnimation.width = x2 - x;
-        rectangleFilledAnimation.height = y2 - y;
+        this.rectangleFilledAnimation.x = x;
+        this.rectangleFilledAnimation.y = y;
+        this.rectangleFilledAnimation.width = x2 - x;
+        this.rectangleFilledAnimation.height = y2 - y;
         
         //logUtil.put(new StringMaker().append("addFillRectangle: ").append(x).append(CommonSeps.getInstance().COMMA).append(y).append(CommonSeps.getInstance().COMMA).append(x2).append(CommonSeps.getInstance().COMMA).append(y2).toString(), this, commonStrings.PROCESS);
         //logUtil.put("addFillRectangle: " + this.animationListArray[this.circularIndexUtil.getIndex()].size(), this, commonStrings.PROCESS);
@@ -55,8 +55,8 @@ public class GDRectOnlyPrimitiveDrawing extends Animation {
     @Override
     public void paintXY(final Graphics graphics, final int x, final int y)
     {
-        colorAnimation.paintXY(graphics, x, y);
-        rectangleFilledAnimation.paintXY(graphics, x, y);
+        this.colorAnimation.paintXY(graphics, x, y);
+        this.rectangleFilledAnimation.paintXY(graphics, x, y);
     }
 
     @Override

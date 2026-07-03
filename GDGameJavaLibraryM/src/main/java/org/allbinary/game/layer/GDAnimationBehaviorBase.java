@@ -35,7 +35,7 @@ public class GDAnimationBehaviorBase {
      * @return the instance
      */
     public static GDAnimationBehaviorBase getInstance() {
-        return instance;
+        return GDAnimationBehaviorBase.instance;
     }
     
     public IndexedAnimation[] init(final GDObject gdObject, final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray) {
@@ -51,8 +51,8 @@ public class GDAnimationBehaviorBase {
             //super.toString(stringMaker);
             //stringMaker.toString()
             final CommonStrings commonStrings = CommonStrings.getInstance();
-            logUtil.put(new StringMaker().append(animationInterfaceFactoryInterfaceArray[index].toString()).append(" index: ").appendint(index).toString(), this, commonStrings.CONSTRUCTOR, e);
-            logUtil.put(gdObject.toString(), this, commonStrings.CONSTRUCTOR, e);
+            this.logUtil.put(new StringMaker().append(animationInterfaceFactoryInterfaceArray[index].toString()).append(" index: ").appendint(index).toString(), this, commonStrings.CONSTRUCTOR, e);
+            this.logUtil.put(gdObject.toString(), this, commonStrings.CONSTRUCTOR, e);
         }
             }
         

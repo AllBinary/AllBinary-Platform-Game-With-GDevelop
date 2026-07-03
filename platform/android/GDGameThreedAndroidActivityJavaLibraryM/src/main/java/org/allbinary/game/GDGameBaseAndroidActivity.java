@@ -62,10 +62,11 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
         }
         catch (Exception e)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e);
         }
     }
 
+    @Override
     protected void initOpenGL()
     throws Exception
     {
@@ -75,6 +76,7 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
         openGLConfiguration.write();        
     }
     
+    @Override
     protected void init()
     {
         super.init();
@@ -82,6 +84,7 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
         AllBinaryAndroidGameInitializationUtil.init();
     }
 
+    @Override
     protected void initViewIds() 
     throws Exception
     {
@@ -138,7 +141,7 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
     {
         try
         {
-            logUtil.putF(commonStrings.START, this, CommonStateStrings.getInstance().CREATE);
+            this.logUtil.putF(this.commonStrings.START, this, CommonStateStrings.getInstance().CREATE);
 
             //final String UNLOCKED = "unlock_gd_levels";
             //InApplicationPurchaseFactory.getInstance().init(this, bundle);
@@ -151,27 +154,28 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
                 this.setBackgrounds();
             }
 
-            logUtil.putF(commonStrings.END, this, CommonStateStrings.getInstance().CREATE);
+            this.logUtil.putF(this.commonStrings.END, this, CommonStateStrings.getInstance().CREATE);
         } catch (Exception e)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, CommonStateStrings.getInstance().CREATE, e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, CommonStateStrings.getInstance().CREATE, e);
         }
     }
 
+    @Override
     public void onStart()
     {
         try
         {
-            logUtil.putF(commonStrings.START, this, CommonStateStrings.getInstance().START);
+            this.logUtil.putF(this.commonStrings.START, this, CommonStateStrings.getInstance().START);
 
             super.onStart();
 
             super.onStartMidlet(new GDGameMIDletFactory());
 
-            logUtil.putF(commonStrings.END, this, CommonStateStrings.getInstance().START);
+            this.logUtil.putF(this.commonStrings.END, this, CommonStateStrings.getInstance().START);
         } catch (Exception e)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, CommonStateStrings.getInstance().START, e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, CommonStateStrings.getInstance().START, e);
         }
     }
 
@@ -204,13 +208,14 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
     }
     */
 
+    @Override
     public void initEmulator() throws Exception
     {
         super.initEmulator();
 
         if (!InitEmulatorFactory.getInstance().isInitEmulator())
         {
-            logUtil.putF("Init Base GameFeatures", this, "initEmulator");
+            this.logUtil.putF("Init Base GameFeatures", this, "initEmulator");
 
             Features features = Features.getInstance();
             
@@ -277,7 +282,7 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
 
     public void setBackgrounds() throws Exception
     {
-        logUtil.putF(commonStrings.START, this, "setBackground");
+        this.logUtil.putF(this.commonStrings.START, this, "setBackground");
 
         final AndroidResources androidResources = AndroidResources.getInstance();
         

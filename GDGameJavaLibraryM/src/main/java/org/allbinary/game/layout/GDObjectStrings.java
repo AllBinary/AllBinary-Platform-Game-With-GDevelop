@@ -26,7 +26,7 @@ public class GDObjectStrings
      */
     public static GDObjectStrings getInstance()
     {
-        return instance;
+        return GDObjectStrings.instance;
     }
     
     public final String GDOBJECT = "GDObject";

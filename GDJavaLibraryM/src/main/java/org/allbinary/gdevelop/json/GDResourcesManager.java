@@ -44,7 +44,7 @@ public class GDResourcesManager
             this.resourceList.add(resourceFactory.create(nextJSONObject));
         }
 
-        logUtil.putF(RESOURCES + this.resourceList.size(), this, commonStrings.CONSTRUCTOR);
+        this.logUtil.putF(this.RESOURCES + this.resourceList.size(), this, commonStrings.CONSTRUCTOR);
 
 //        final JSONArray resourceFoldersJSONArray = jsonObject.getJSONArray(gdProjectStrings.RESOURCE_FOLDERS);
 //        size = resourceFoldersJSONArray.length();

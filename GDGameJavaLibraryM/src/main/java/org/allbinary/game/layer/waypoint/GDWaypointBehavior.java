@@ -129,7 +129,7 @@ public class GDWaypointBehavior
     throws Exception
     {
         if (advancedRTSGameLayer == PrimaryWaypointHelper.getInstance().getWaypointLayer()
-                || advancedRTSGameLayer.getParentLayer() == associatedAdvancedRTSGameLayer.getParentLayer())
+                || advancedRTSGameLayer.getParentLayer() == this.associatedAdvancedRTSGameLayer.getParentLayer())
         {
             if (!this.targetList.contains(advancedRTSGameLayer))
             {
@@ -215,7 +215,7 @@ public class GDWaypointBehavior
         if(this.associatedAdvancedRTSGameLayer.isShowMoreCaptionStates())
         {
             this.associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(
-                    PATHING, BasicColorFactory.getInstance().GREEN);
+                    GDWaypointBehavior.PATHING, BasicColorFactory.getInstance().GREEN);
         }
         
         this.currentGeographicMapCellHistory.init();
@@ -297,11 +297,11 @@ public class GDWaypointBehavior
                 this.getCurrentTargetDistance() >= this.longWeaponRange +
                 this.currentTargetLayerInterface.getHalfHeight()))
         {
-            repeatedToLong.setStartTimeTNT();
+            this.repeatedToLong.setStartTimeTNT();
             return true;
         }
         
-        if(repeatedToLong.isTimeTNT())
+        if(this.repeatedToLong.isTimeTNT())
         {
             final String message = "Repeating too long: " + this.getMovementLogicAsString();
             ForcedLogUtil.log(message, this.associatedAdvancedRTSGameLayer);
@@ -354,7 +354,7 @@ public class GDWaypointBehavior
     @Override
     public BasicArrayList getWaypointPathsList()
     {
-        return waypointPathsList;
+        return this.waypointPathsList;
     }
     
     /**
@@ -362,7 +362,7 @@ public class GDWaypointBehavior
      */
     protected boolean isMoving()
     {
-        return moving;
+        return this.moving;
     }
 
     /**
@@ -379,12 +379,12 @@ public class GDWaypointBehavior
     @Override
     public boolean isTrackingWaypoint()
     {
-        return trackingWaypoint;
+        return this.trackingWaypoint;
     }
     
     protected BasicArrayList getPossibleTargetList()
     {
-        return possibleTargetList;
+        return this.possibleTargetList;
     }
 
     protected void setLastPathGeographicMapCellPosition(GeographicMapCellPosition lastPathGeographicMapCellPosition)
@@ -394,7 +394,7 @@ public class GDWaypointBehavior
 
     protected GeographicMapCellPosition getLastPathGeographicMapCellPosition()
     {
-        return lastPathGeographicMapCellPosition;
+        return this.lastPathGeographicMapCellPosition;
     }
     
     protected void setCurrentPathGeographicMapCellPosition(
@@ -407,7 +407,7 @@ public class GDWaypointBehavior
     @Override
     public GeographicMapCellPosition getCurrentPathGeographicMapCellPosition()
     {
-        return currentPathGeographicMapCellPosition;
+        return this.currentPathGeographicMapCellPosition;
     }
     
     protected void setSensorAction(SensorAction sensorAction)
@@ -417,7 +417,7 @@ public class GDWaypointBehavior
 
     protected SensorAction getSensorAction()
     {
-        return sensorAction;
+        return this.sensorAction;
     }
     
     /**
@@ -425,7 +425,7 @@ public class GDWaypointBehavior
      */
     protected BasicArrayList getTargetList()
     {
-        return targetList;
+        return this.targetList;
     }
 
     protected void setCurrentTargetLayerInterface(CollidableDestroyableDamageableLayer currentTargetLayerInterface) throws Exception
@@ -442,7 +442,7 @@ public class GDWaypointBehavior
     @Override
     public CollidableDestroyableDamageableLayer getCurrentTargetLayerInterface()
     {
-        return currentTargetLayerInterface;
+        return this.currentTargetLayerInterface;
     }
 
     protected void setCurrentTargetDistance(int currentTargetDistance)
@@ -452,18 +452,18 @@ public class GDWaypointBehavior
 
     protected int getCurrentTargetDistance()
     {
-        return currentTargetDistance;
+        return this.currentTargetDistance;
     }
 
     protected TimeDelayHelper getCompleteTimeDelayHelper()
     {
-        return completeTimeDelayHelper;
+        return this.completeTimeDelayHelper;
     }
 
     @Override
     public GeographicMapCellHistory getCurrentGeographicMapCellHistory()
     {
-        return currentGeographicMapCellHistory;
+        return this.currentGeographicMapCellHistory;
     }
 
     protected void setTrackingWaypoint(boolean trackingWaypoint)

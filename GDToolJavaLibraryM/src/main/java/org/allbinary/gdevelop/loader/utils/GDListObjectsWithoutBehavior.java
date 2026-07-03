@@ -40,6 +40,7 @@ public class GDListObjectsWithoutBehavior extends GDJSONGeneratorBase {
     private final String TEXTURE = "Texture: ";
     private final String IMAGE = "Image: ";
     
+    @Override
     public void process(final JSONObject gameAsConfigurationJSONObject) throws Exception {
         final JSONObject jsonObject = gameAsConfigurationJSONObject.getJSONObject(this.gdProjectStrings.RESOURCES);
         final JSONArray jsonArray = jsonObject.getJSONArray(this.gdProjectStrings.RESOURCES);
@@ -56,9 +57,9 @@ public class GDListObjectsWithoutBehavior extends GDJSONGeneratorBase {
         for(int index = 0; index < jsonArray.length(); index++) {
             jsonObject = jsonArray.getJSONObject(index);
             value = jsonObject.getString(this.gdProjectStrings.FILE);
-            jsonObject.put(this.gdProjectStrings.FILE, fileUnamedUtil.process(value));
+            jsonObject.put(this.gdProjectStrings.FILE, this.fileUnamedUtil.process(value));
             value = jsonObject.getString(this.gdProjectStrings.NAME);
-            jsonObject.put(this.gdProjectStrings.NAME, fileUnamedUtil.process(value));
+            jsonObject.put(this.gdProjectStrings.NAME, this.fileUnamedUtil.process(value));
         }
 
     }
@@ -87,7 +88,7 @@ public class GDListObjectsWithoutBehavior extends GDJSONGeneratorBase {
         for(int index = 0; index < size; index++) {
             GDBehavior gdBehaviorContent = (GDBehavior) behaviorList.get(index);
             //System.out.println("Behavior: " + gdBehaviorContent.jsonObject);
-            if(gdBehaviorContent.type.compareTo(FIND_BEHAVIOR) == 0) {
+            if(gdBehaviorContent.type.compareTo(this.FIND_BEHAVIOR) == 0) {
                 found = true;
             } 
         }
@@ -99,6 +100,7 @@ public class GDListObjectsWithoutBehavior extends GDJSONGeneratorBase {
         }
     }
 
+    @Override
     public void processLayout(final JSONObject jsonObject) throws Exception {
         this.processObjects(jsonObject);
     }

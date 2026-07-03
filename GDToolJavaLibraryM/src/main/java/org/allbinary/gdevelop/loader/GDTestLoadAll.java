@@ -58,10 +58,10 @@ public class GDTestLoadAll
         final VisitorFileFilter visitorFileFilter = new VisitorFileFilter(
                 new DirectoryOrIncludeFileExtensionBooleanFileVisitor(includeExtensionBasicArrayList));
         
-        final AbFile[] files = FileWrapperUtil.wrapFiles(AbFile.createAbFileFromRawPath(gdToolStrings.ROOT_PATH).listFilesFileFilter(visitorFileFilter));
+        final AbFile[] files = FileWrapperUtil.wrapFiles(AbFile.createAbFileFromRawPath(this.gdToolStrings.ROOT_PATH).listFilesFileFilter(visitorFileFilter));
         //final int size = files.size();
         final int size = files.length;
-        String jsonFileName = gdToolStrings.GAME_JSON_PATH;
+        String jsonFileName = this.gdToolStrings.GAME_JSON_PATH;
         AbFile abFile;
 
         final String GIT = ".git";
@@ -71,7 +71,7 @@ public class GDTestLoadAll
             abFile = ((AbFile) files[index]);
             jsonFileName = abFile.getAbsolutePath();
             if(!abFile.isDirectory() && jsonFileName.indexOf(GIT) < 0) {
-                logUtil.putF(this.gdToolStrings.FILENAME + jsonFileName, this, commonStrings.PROCESS);
+                this.logUtil.putF(this.gdToolStrings.FILENAME + jsonFileName, this, commonStrings.PROCESS);
 
                 final FileInputStream inputStream = new FileInputStream(jsonFileName);
                 sharedBytes.outputStream.reset();
@@ -89,7 +89,7 @@ public class GDTestLoadAll
                 fixQuotes = replace2.all(fixQuotes);
                 
                 if(gameAsConfigurationJSONObject.has(GDProjectStrings.getInstance().TYPE) && gameAsConfigurationJSONObject.getString(GDProjectStrings.getInstance().TYPE).compareTo("map") == 0) {
-                    logUtil.put("Was a map and not a game", this, commonStrings.PROCESS, new Exception());
+                    this.logUtil.put("Was a map and not a game", this, commonStrings.PROCESS, new Exception());
                     break;
                 }
 

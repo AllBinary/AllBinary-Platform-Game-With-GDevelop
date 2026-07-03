@@ -25,7 +25,7 @@ public class TempMovementBehaviorFactory {
      * @return the instance
      */
     public static TempMovementBehaviorFactory getInstance() {
-        return instance;
+        return TempMovementBehaviorFactory.instance;
     }
 
     public TempMovementBehavior movementBehavior = null;

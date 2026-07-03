@@ -14,7 +14,7 @@ public class GDParameterFactory
      */
     public static GDParameterFactory getInstance()
     {
-        return instance;
+        return GDParameterFactory.instance;
     }
 
     public final String OBJECT = "object";
@@ -137,28 +137,28 @@ public class GDParameterFactory
 
     public boolean isBehavior(final String parameterType)
     {
-        return parameterType == BEHAVIOR;
+        return parameterType == this.BEHAVIOR;
     }
 
     public boolean isExpression(final String type, final String parameterType)
     {
-        if (type == NUMBER)
+        if (type == this.NUMBER)
         {
-            return parameterType == EXPRESSION || parameterType == CAMERA
-                    || parameterType == FORCE_MULTIPLIER;
+            return parameterType == this.EXPRESSION || parameterType == this.CAMERA
+                    || parameterType == this.FORCE_MULTIPLIER;
         } else if (type == "string")
         {
-            return parameterType == STRING || parameterType == LAYER
-                    || parameterType == COLOR || parameterType == FILE
-                    || parameterType == JOY_AXIS
-                    || parameterType == STRING_WITH_SELECTOR
-                    || parameterType == SCENE_NAME
-                    || parameterType == OBJECT_POINT_NAME
-                    || parameterType == OBJECT_ANIMATION_NAME;
-        } else if (type == VARIABLE)
+            return parameterType == this.STRING || parameterType == this.LAYER
+                    || parameterType == this.COLOR || parameterType == this.FILE
+                    || parameterType == this.JOY_AXIS
+                    || parameterType == this.STRING_WITH_SELECTOR
+                    || parameterType == this.SCENE_NAME
+                    || parameterType == this.OBJECT_POINT_NAME
+                    || parameterType == this.OBJECT_ANIMATION_NAME;
+        } else if (type == this.VARIABLE)
         {
-            return parameterType == OBJECT_VAR || parameterType == GLOBAL_VAR
-                    || parameterType == SCENE_VAR;
+            return parameterType == this.OBJECT_VAR || parameterType == this.GLOBAL_VAR
+                    || parameterType == this.SCENE_VAR;
         }
         return false;
     }

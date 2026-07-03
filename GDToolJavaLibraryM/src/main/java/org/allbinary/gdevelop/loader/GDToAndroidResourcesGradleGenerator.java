@@ -52,8 +52,8 @@ public class GDToAndroidResourcesGradleGenerator
     private boolean isBlank;
 
     public GDToAndroidResourcesGradleGenerator() {
-        resourceStringMaker.append(GD_KEY);
-        resourceStringMaker.append(this.commonSeps.NEW_LINE);
+        this.resourceStringMaker.append(this.GD_KEY);
+        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
     }
     
     public void process(final GDProject gdProject) {
@@ -67,25 +67,25 @@ public class GDToAndroidResourcesGradleGenerator
     public void processResource(final String fileAsString, final String resourceString) {
         final String resource = resourceString.substring(0, resourceString.length() - 4).toLowerCase();
         
-        if(resource.indexOf(BLANK) >= 0) {
-            isBlank = true;
+        if(resource.indexOf(this.BLANK) >= 0) {
+            this.isBlank = true;
         }
         
         final boolean hasRotationImages = this.gdResourceSelection.hasRotationImages();
         
-        this.gdResourceSelection.appendCommentIfNeeded2(resource.toUpperCase(), resource, resourceStringMaker, hasRotationImages);
+        this.gdResourceSelection.appendCommentIfNeeded2(resource.toUpperCase(), resource, this.resourceStringMaker, hasRotationImages);
         
-        resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
-        resourceStringMaker.append(resource);
-        resourceStringMaker.append(this.VALUE_RESOURCE_START);
-        resourceStringMaker.append(resource);
-        resourceStringMaker.append(this.VALUE_RESOURCE_END);
+        this.resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
+        this.resourceStringMaker.append(resource);
+        this.resourceStringMaker.append(this.VALUE_RESOURCE_START);
+        this.resourceStringMaker.append(resource);
+        this.resourceStringMaker.append(this.VALUE_RESOURCE_END);
     }
     
     public void process() throws Exception {
 
-        final String RESOURCE_ORIGINAL = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.original";
-        final String RESOURCE = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java";
+        final String RESOURCE_ORIGINAL = this.gdToolStrings.ROOT_PATH + "platform\\android\\GDGameAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.original";
+        final String RESOURCE = this.gdToolStrings.ROOT_PATH + "platform\\android\\GDGameAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java";
         
         final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
         final StringMaker stringMaker = new StringMaker();        
@@ -96,7 +96,7 @@ public class GDToAndroidResourcesGradleGenerator
         final FileInputStream fileInputStream = new FileInputStream(RESOURCE_ORIGINAL);        
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
-        final Replace replace2 = new Replace(GD_KEY_NAME, camelCaseUtil.getAsCamelCase(this.packageName, stringMaker).toLowerCase());
+        final Replace replace2 = new Replace(this.GD_KEY_NAME, camelCaseUtil.getAsCamelCase(this.packageName, stringMaker).toLowerCase());
         final String newFileAsString2 = replace2.all(androidRFileAsString);
 
         final int size = this.gdResources.playSoundAndroidResourceNameList.size();
@@ -105,24 +105,24 @@ public class GDToAndroidResourcesGradleGenerator
             
             resource = (String) this.gdResources.playSoundAndroidResourceNameList.get(index);
             
-            resourceStringMaker.append(this.commonSeps.NEW_LINE);
-            resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
-            resourceStringMaker.append(resource);
-            resourceStringMaker.append(this.VALUE_RESOURCE_START);
-            resourceStringMaker.append(resource);
-            resourceStringMaker.append(this.VALUE_RESOURCE_END);
+            this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
+            this.resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
+            this.resourceStringMaker.append(resource);
+            this.resourceStringMaker.append(this.VALUE_RESOURCE_START);
+            this.resourceStringMaker.append(resource);
+            this.resourceStringMaker.append(this.VALUE_RESOURCE_END);
         }
 
-        if(!isBlank) {
+        if(!this.isBlank) {
             this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
-            this.resourceStringMaker.append(BLANK_LINE);
+            this.resourceStringMaker.append(this.BLANK_LINE);
         }
         
-        final Replace replace = new Replace(GD_KEY, this.resourceStringMaker.toString());
+        final Replace replace = new Replace(this.GD_KEY, this.resourceStringMaker.toString());
         final String newFileAsString = replace.all(newFileAsString2);
 
         stringMaker.delete(0, stringMaker.length());
-        logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(RESOURCE).toString(), this, commonStrings.PROCESS);
+        this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(RESOURCE).toString(), this, this.commonStrings.PROCESS);
         
         this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);        
     }

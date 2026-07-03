@@ -17,6 +17,7 @@ public class GDGameThreedBaseAndroidStaticInitializer extends GDGameStaticInitia
         super(resourceInitializationArray, portion);
     }
 
+    @Override
     public void initKey(int portion) throws Exception
     {
         super.initKey(portion);
@@ -25,6 +26,7 @@ public class GDGameThreedBaseAndroidStaticInitializer extends GDGameStaticInitia
         ProgressCanvasFactory.getInstance().addNormalPortion(50, "Game Keys");
     }
 
+    @Override
     public void init(final AbeClientInformationInterface abeClientInformation, final CommandListener commandListener, final int level) throws Exception
     {
         super.init(abeClientInformation, commandListener, level);
@@ -49,6 +51,6 @@ public class GDGameThreedBaseAndroidStaticInitializer extends GDGameStaticInitia
 
     protected boolean isAndroidGameInitialized()
     {
-        return androidGameInitialized;
+        return this.androidGameInitialized;
     }
 }

@@ -33,7 +33,7 @@ public class GDResourceSelection {
      * @return the instance
      */
     public static GDResourceSelection getInstance() {
-        return instance;
+        return GDResourceSelection.instance;
     }
 
     private final CommonSeps commonSeps = CommonSeps.getInstance();
@@ -48,19 +48,19 @@ public class GDResourceSelection {
                 
         boolean used = true;
         
-        if (resource.toUpperCase().indexOf(gdToolStrings._BLANK_) >= 0) {
+        if (resource.toUpperCase().indexOf(this.gdToolStrings._BLANK_) >= 0) {
             used = false;
             resourceStringMaker.append(this.commonSeps.COMMENT);
         }
 
-        if (name.endsWith(gdToolStrings.UNDERSCORE_0) && name.indexOf(gdToolStrings._TOUCH_) < 0) {
+        if (name.endsWith(this.gdToolStrings.UNDERSCORE_0) && name.indexOf(this.gdToolStrings._TOUCH_) < 0) {
             used = false;
             resourceStringMaker.append(this.commonSeps.COMMENT);
         }
 
         if (!hasRotationImages) {
-            for (int index2 = 2; index2 < SIZE; index2++) {
-                if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(gdToolStrings._TOUCH_) < 0) {
+            for (int index2 = 2; index2 < this.SIZE; index2++) {
+                if (name.endsWith(this.commonSeps.UNDERSCORE + index2) && name.indexOf(this.gdToolStrings._TOUCH_) < 0) {
                     used = false;
                     resourceStringMaker.append(this.commonSeps.COMMENT);
                 }
@@ -73,24 +73,24 @@ public class GDResourceSelection {
     public boolean appendCommentIfNeeded(final String name, final String resource, final StringMaker resourceStringMaker, final boolean hasRotationImages) {
                 
         boolean used = true;
-        if (resource.indexOf(gdToolStrings._JSON) >= 0 || resource.indexOf(gdToolStrings._T) >= 0) {
+        if (resource.indexOf(this.gdToolStrings._JSON) >= 0 || resource.indexOf(this.gdToolStrings._T) >= 0) {
             used = false;
             resourceStringMaker.append(this.commonSeps.COMMENT);
         }
 
-        if (resource.toUpperCase().indexOf(gdToolStrings._BLANK_) >= 0) {
+        if (resource.toUpperCase().indexOf(this.gdToolStrings._BLANK_) >= 0) {
             used = false;
             resourceStringMaker.append(this.commonSeps.COMMENT);
         }
 
-        if (name.endsWith(gdToolStrings.UNDERSCORE_0) && name.indexOf(gdToolStrings._TOUCH_) < 0) {
+        if (name.endsWith(this.gdToolStrings.UNDERSCORE_0) && name.indexOf(this.gdToolStrings._TOUCH_) < 0) {
             used = false;
             resourceStringMaker.append(this.commonSeps.COMMENT);
         }
 
         if (!hasRotationImages) {
-            for (int index2 = 2; index2 < SIZE; index2++) {
-                if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(gdToolStrings._TOUCH_) < 0) {
+            for (int index2 = 2; index2 < this.SIZE; index2++) {
+                if (name.endsWith(this.commonSeps.UNDERSCORE + index2) && name.indexOf(this.gdToolStrings._TOUCH_) < 0) {
                     used = false;
                     resourceStringMaker.append(this.commonSeps.COMMENT);
                 }
@@ -103,19 +103,19 @@ public class GDResourceSelection {
     public boolean appendCommentIfNeeded2(final String name, final String resource, final StringMaker resourceStringMaker, final boolean hasRotationImages) {
                 
         boolean used = true;
-        if (resource.indexOf(gdToolStrings._JSON) >= 0 || resource.indexOf(gdToolStrings._T) >= 0) {
+        if (resource.indexOf(this.gdToolStrings._JSON) >= 0 || resource.indexOf(this.gdToolStrings._T) >= 0) {
             used = false;
             resourceStringMaker.append(this.commonSeps.COMMENT);
         }
 
-        if (name.endsWith(gdToolStrings.UNDERSCORE_0) && name.indexOf(gdToolStrings._TOUCH_) < 0) {
+        if (name.endsWith(this.gdToolStrings.UNDERSCORE_0) && name.indexOf(this.gdToolStrings._TOUCH_) < 0) {
             used = false;
             resourceStringMaker.append(this.commonSeps.COMMENT);
         }
 
         if (!hasRotationImages) {
-            for (int index2 = 2; index2 < SIZE; index2++) {
-                if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(gdToolStrings._TOUCH_) < 0) {
+            for (int index2 = 2; index2 < this.SIZE; index2++) {
+                if (name.endsWith(this.commonSeps.UNDERSCORE + index2) && name.indexOf(this.gdToolStrings._TOUCH_) < 0) {
                     used = false;
                     resourceStringMaker.append(this.commonSeps.COMMENT);
                 }
@@ -129,23 +129,23 @@ public class GDResourceSelection {
     private boolean hasRotationImages;
     public boolean hasRotationImages() {
         
-        if(!hasRead) {
-            hasRead = true;
+        if(!this.hasRead) {
+            this.hasRead = true;
             final FileUtil fileUtil = FileUtil.getInstance();
-            final String fileAsString = fileUtil.readAsString(gdToolStrings.ROTATION_ANIMATION_FILE_PATH);
-            if (fileAsString.indexOf(FOUND) >= 0) {
+            final String fileAsString = fileUtil.readAsString(this.gdToolStrings.ROTATION_ANIMATION_FILE_PATH);
+            if (fileAsString.indexOf(this.FOUND) >= 0) {
 
-                hasRotationImages = true;
+                this.hasRotationImages = true;
             } else {
-                hasRotationImages = false;
+                this.hasRotationImages = false;
             }
 
             final StringMaker stringMaker = new StringMaker();
             final CommonStrings commonStrings = CommonStrings.getInstance();
-            logUtil.putF(stringMaker.append("hasRotationImages: ").appendboolean(hasRotationImages).toString(), this, commonStrings.PROCESS);
+            this.logUtil.putF(stringMaker.append("hasRotationImages: ").appendboolean(this.hasRotationImages).toString(), this, commonStrings.PROCESS);
         }
 
-        return hasRotationImages;
+        return this.hasRotationImages;
     }
     
 }

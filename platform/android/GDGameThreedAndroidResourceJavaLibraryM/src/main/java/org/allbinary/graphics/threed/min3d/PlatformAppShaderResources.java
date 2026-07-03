@@ -29,7 +29,7 @@ public class PlatformAppShaderResources {
      * @return the instance
      */
     public static PlatformAppShaderResources getInstance() {
-        return instance;
+        return PlatformAppShaderResources.instance;
     }
 
     public void add() {

@@ -485,6 +485,7 @@ public class GDGameLayer
         if(clearing == 1) {
             if(this.processor == this.moveProcessor) {
                 this.processor = new Processor() {
+                    @Override
                     public void processt(final long timeDelta) throws Exception {
                         move();
                         updateGDObject(timeDelta);

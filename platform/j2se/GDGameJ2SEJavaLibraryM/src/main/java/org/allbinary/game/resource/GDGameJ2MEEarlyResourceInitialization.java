@@ -26,6 +26,7 @@ import org.allbinary.game.resource.ResourceInitialization;
 public class GDGameJ2MEEarlyResourceInitialization
 extends ResourceInitialization
 {
+    @Override
     public void init()
         throws Exception
     {

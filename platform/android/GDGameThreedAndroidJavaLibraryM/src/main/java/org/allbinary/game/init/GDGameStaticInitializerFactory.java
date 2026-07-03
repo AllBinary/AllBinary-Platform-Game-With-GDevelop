@@ -19,8 +19,9 @@ public class GDGameStaticInitializerFactory
                 },                
                 15);
 
+    @Override
     public GameInitializationInterface getInstance()
     {
-        return STATIC;
+        return GDGameStaticInitializerFactory.STATIC;
     }
 }

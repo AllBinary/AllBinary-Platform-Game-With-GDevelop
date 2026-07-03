@@ -48,10 +48,10 @@ public class StartRunnable implements Runnable
     {
         try
         {
-            logUtil.putF(
+            this.logUtil.putF(
                     CommonLabels.getInstance().START_LABEL +
                     "GameCanvasRunnableInterface",
-                    this, commonStrings.RUN);
+                    this, this.commonStrings.RUN);
 
             this.demoGameMidlet.commandAction(
                     MyCommandsFactory.getInstance().SET_DISPLAYABLE,
@@ -78,11 +78,11 @@ public class StartRunnable implements Runnable
             
             this.demoGameMidlet.postDemoSetup();
 
-            logUtil.putF(commonStrings.END_RUNNABLE, this, commonStrings.RUN);
+            this.logUtil.putF(this.commonStrings.END_RUNNABLE, this, this.commonStrings.RUN);
         }
         catch (Exception e)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.RUN, e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.RUN, e);
         }
 
     }

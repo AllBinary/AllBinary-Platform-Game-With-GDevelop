@@ -124,7 +124,7 @@ public class GDLayout
                 this.eventList.add(event);
             } else {
                 final CommonStrings commonStrings = CommonStrings.getInstance();
-                logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, new Exception());
+                this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, new Exception());
             }
         }        
         

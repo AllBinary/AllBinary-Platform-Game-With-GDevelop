@@ -48,22 +48,22 @@ public class GDTiledLayerFactory implements AllBinaryTiledLayerFactoryInterface 
     public AllBinaryTiledLayer getInstance(final RaceTrackInfo raceTrackInfo, final RaceTrackData raceTrackData)
         throws Exception {
 
-        useAsMiniAllBinaryTiledLayer = new PlacementAllBinaryJ2METiledLayer(
+        this.useAsMiniAllBinaryTiledLayer = new PlacementAllBinaryJ2METiledLayer(
             SmallIntegerSingletonFactory.getInstance().getAt(-1),
             new TiledLayer(
-                map.getWidth(),
-                map.getHeight(),
-                tileSetImage,
-                (int) (map.getTileWidth()),
-                (int) (map.getTileHeight())),
-            tileLayer.getMapArray(),
-            debugColor.intValue());
+                this.map.getWidth(),
+                this.map.getHeight(),
+                this.tileSetImage,
+                (int) (this.map.getTileWidth()),
+                (int) (this.map.getTileHeight())),
+            this.tileLayer.getMapArray(),
+            this.debugColor.intValue());
 
-        return useAsMiniAllBinaryTiledLayer;
+        return this.useAsMiniAllBinaryTiledLayer;
     }
 
     public AllBinaryTiledLayer getMiniInstance(final RaceTrackData raceTrackData) throws Exception {
-        return useAsMiniAllBinaryTiledLayer;
+        return this.useAsMiniAllBinaryTiledLayer;
     }
 
 }

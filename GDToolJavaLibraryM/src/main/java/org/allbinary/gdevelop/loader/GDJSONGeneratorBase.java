@@ -37,7 +37,7 @@ public class GDJSONGeneratorBase {
     
     public void process(final JSONObject gameAsConfigurationJSONObject) throws Exception {
         
-        final JSONArray jsonArray = gameAsConfigurationJSONObject.getJSONArray(gdProjectStrings.LAYOUTS);
+        final JSONArray jsonArray = gameAsConfigurationJSONObject.getJSONArray(this.gdProjectStrings.LAYOUTS);
         
         final int size = jsonArray.length();
         JSONObject jsonObject;
@@ -45,7 +45,7 @@ public class GDJSONGeneratorBase {
         for(int index = 0; index < size; index++) {
             jsonObject = jsonArray.getJSONObject(index);
             value = jsonObject.getString(this.gdProjectStrings.NAME);
-            System.out.println(LAYOUT + value);
+            System.out.println(this.LAYOUT + value);
             this.processLayout(jsonObject);
         }
         

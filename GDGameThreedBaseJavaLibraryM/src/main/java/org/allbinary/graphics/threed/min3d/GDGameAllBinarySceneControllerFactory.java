@@ -24,7 +24,7 @@ public class GDGameAllBinarySceneControllerFactory {
 
     public static final AllBinarySceneController getInstance()
     {
-        return instance;
+        return GDGameAllBinarySceneControllerFactory.instance;
     }
     
 }

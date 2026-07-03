@@ -14,6 +14,6 @@ public class GDGameAndroidView extends AllBinaryMidletView
 	public GDGameAndroidView(Context context, AttributeSet attrs) {
 		super(context, attrs);
                 
-                PreLogUtil.put(commonStrings.START, TAG, commonStrings.CONSTRUCTOR);
+                PreLogUtil.put(this.commonStrings.START, this.TAG, this.commonStrings.CONSTRUCTOR);
 	}
 }

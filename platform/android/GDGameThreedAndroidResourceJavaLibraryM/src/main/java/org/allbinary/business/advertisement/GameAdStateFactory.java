@@ -11,7 +11,7 @@ public class GameAdStateFactory implements GameAdStateFactoryInterface
 
     public static GameAdStateFactory getInstance()
     {
-        return instance;
+        return GameAdStateFactory.instance;
     }
 
     private final GameAdState[] gameAdStateArray = {
@@ -31,9 +31,9 @@ public class GameAdStateFactory implements GameAdStateFactoryInterface
     {
         if(softwareInformation == GDGameSoftwareInfo.getInstance())
         {
-            this.gameAdState = gameAdStateArray[0];
+            this.gameAdState = this.gameAdStateArray[0];
             
-            return gameAdStateArray[0];
+            return this.gameAdStateArray[0];
         }
         else
         {

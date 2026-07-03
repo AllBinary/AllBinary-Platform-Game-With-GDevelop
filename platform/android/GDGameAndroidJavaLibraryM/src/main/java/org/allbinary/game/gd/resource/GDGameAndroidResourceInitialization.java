@@ -14,6 +14,7 @@ import org.allbinary.game.init.GDGameResourceInitialization;
 public class GDGameAndroidResourceInitialization 
 extends GDGameResourceInitialization
 {
+    @Override
     public void init() 
     throws Exception
     {

@@ -71,22 +71,22 @@ public class RendererActivity extends Activity //implements ISceneController
             //_glSurfaceView = new AllBinaryMidletMin3dSurfaceView2(this);
             this.setContentView(this.androidResources.layout.gd_min3d_layout);
             //_glSurfaceView = (GLSurfaceView) this.findViewById(R.id.gd_gl);
-            _glSurfaceView = (OptimizedGLSurfaceView) this.findViewById(this.androidResources.id.gd_gl);
+            this._glSurfaceView = (OptimizedGLSurfaceView) this.findViewById(this.androidResources.id.gd_gl);
 
             //TWB
             DisplayInfoSingleton displayInfo = DisplayInfoSingleton.getInstance();
-            displayInfo.setLastSize(_glSurfaceView.getWidth(), _glSurfaceView.getHeight(), CommonStateStrings.getInstance().CREATE);
+            displayInfo.setLastSize(this._glSurfaceView.getWidth(), this._glSurfaceView.getHeight(), CommonStateStrings.getInstance().CREATE);
             //End - TWB
 
             //glSurfaceViewConfig();
             //_glSurfaceView.setRenderer(r);
             //_glSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
 
-            setContentView(_glSurfaceView);
+            this.setContentView(this._glSurfaceView);
 
         } catch (Exception e)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, CommonStateStrings.getInstance().CREATE, e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, CommonStateStrings.getInstance().CREATE, e);
         }
     }
 	
@@ -94,14 +94,14 @@ public class RendererActivity extends Activity //implements ISceneController
 	protected void onResume() 
 	{
 		super.onResume();
-		_glSurfaceView.onResume();
+		this._glSurfaceView.onResume();
 	}
 	
 	@Override
 	protected void onPause() 
 	{
 		super.onPause();
-		_glSurfaceView.onPause();
+		this._glSurfaceView.onPause();
 	}
     
     /**
@@ -110,12 +110,12 @@ public class RendererActivity extends Activity //implements ISceneController
      */
     public void renderContinuously(boolean $b)
     {
-    	_renderContinuously = $b;
-    	if (_renderContinuously)
-    		_glSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
+    	this._renderContinuously = $b;
+    	if (this._renderContinuously)
+    		this._glSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
     	
     	else
-    		_glSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+    		this._glSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     }
     
 }

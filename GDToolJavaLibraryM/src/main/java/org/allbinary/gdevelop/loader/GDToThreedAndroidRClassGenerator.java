@@ -53,7 +53,7 @@ public class GDToThreedAndroidRClassGenerator
     public void processResource(final String fileAsString) {
         
         if(fileAsString.compareTo(this.gdToolStrings.BLANK) == 0) {
-            logUtil.putF(SKIPPING + fileAsString, this, commonStrings.PROCESS);
+            this.logUtil.putF(this.SKIPPING + fileAsString, this, this.commonStrings.PROCESS);
             return;
         }
         
@@ -61,7 +61,7 @@ public class GDToThreedAndroidRClassGenerator
     }
 
     public void processExpressionParam(final String param) {
-        if(param.compareTo(SELECT) != 0) {
+        if(param.compareTo(this.SELECT) != 0) {
             this.paramList.add(param);
         }
     }
@@ -72,26 +72,26 @@ public class GDToThreedAndroidRClassGenerator
         String fileAsString;
         for(int index = 0; index < size; index++) {
 
-            fileAsString = (String ) fileAsStringList.get(index);
+            fileAsString = (String ) this.fileAsStringList.get(index);
             
             final String extension = this.gdToolStrings.getExtension(threedFileList, fileAsString);
             
-            stringMaker.append(RESOURCE);
+            stringMaker.append(this.RESOURCE);
             
             if(extension == StringUtil.getInstance().NULL_STRING) {
                 stringMaker.append(this.commonSeps.COMMENT);
             }            
             
-            stringMaker.append(PUBLIC_STATIC_FINAL_INT);
+            stringMaker.append(this.PUBLIC_STATIC_FINAL_INT);
             stringMaker.append(fileAsString);
-            stringMaker.append(VALUE);
+            stringMaker.append(this.VALUE);
             stringMaker.append(this.commonSeps.NEW_LINE);
             
             if(!(extension == StringUtil.getInstance().EMPTY_STRING || extension == StringUtil.getInstance().NULL_STRING)) {
-                stringMaker.append(PUBLIC_STATIC_FINAL_INT);
+                stringMaker.append(this.PUBLIC_STATIC_FINAL_INT);
                 stringMaker.append(fileAsString);
                 stringMaker.append(extension);
-                stringMaker.append(VALUE);
+                stringMaker.append(this.VALUE);
             }
 
         }
@@ -102,10 +102,10 @@ public class GDToThreedAndroidRClassGenerator
         String param;
         for(int index = 0; index < size; index++) {
             param = (String) this.paramList.get(index);
-            stringMaker.append(EXPRESSION_PARAM);
-            stringMaker.append(PUBLIC_STATIC_FINAL_INT);
+            stringMaker.append(this.EXPRESSION_PARAM);
+            stringMaker.append(this.PUBLIC_STATIC_FINAL_INT);
             stringMaker.append(param);
-            stringMaker.append(VALUE);
+            stringMaker.append(this.VALUE);
         }
     }
 
@@ -113,15 +113,15 @@ public class GDToThreedAndroidRClassGenerator
         
         final StringMaker stringMaker = new StringMaker();
 
-        stringMaker.append(GD_KEY);
+        stringMaker.append(this.GD_KEY);
         stringMaker.append(this.commonSeps.NEW_LINE);
 
         this.processResource(threedFileList, stringMaker);
         
         this.processExpressionParam(threedFileList, stringMaker);
 
-        final String R_ORIGINAL = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.original";
-        final String R = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.java";
+        final String R_ORIGINAL = this.gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.original";
+        final String R = this.gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.java";
         
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final SharedBytes sharedBytes = SharedBytes.getInstance();
@@ -129,10 +129,10 @@ public class GDToThreedAndroidRClassGenerator
 
         final FileInputStream fileInputStream = new FileInputStream(R_ORIGINAL);        
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
-        final Replace replace = new Replace(GD_KEY, stringMaker.toString());
+        final Replace replace = new Replace(this.GD_KEY, stringMaker.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
-        logUtil.putF(this.gdToolStrings.FILENAME + R, this, commonStrings.PROCESS);
+        this.logUtil.putF(this.gdToolStrings.FILENAME + R, this, this.commonStrings.PROCESS);
         
         this.bufferedWriterUtil.overwrite(R, newFileAsString);        
     }

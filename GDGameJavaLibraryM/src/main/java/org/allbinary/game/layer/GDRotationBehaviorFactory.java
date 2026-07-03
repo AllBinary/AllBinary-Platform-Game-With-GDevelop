@@ -25,7 +25,7 @@ public class GDRotationBehaviorFactory extends GDAnimationBehaviorBaseFactory {
      * @return the instance
      */
     public static GDAnimationBehaviorBaseFactory getInstance() {
-        return instance;
+        return GDRotationBehaviorFactory.instance;
     }
 
     @Override

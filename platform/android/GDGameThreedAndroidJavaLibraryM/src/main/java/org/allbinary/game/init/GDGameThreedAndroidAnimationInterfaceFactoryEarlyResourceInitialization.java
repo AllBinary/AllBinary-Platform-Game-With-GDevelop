@@ -12,6 +12,7 @@ extends ResourceInitialization
     {
     }
 
+    @Override
     public void init()
     throws Exception
     {

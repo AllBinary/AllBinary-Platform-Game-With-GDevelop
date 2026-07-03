@@ -45,7 +45,7 @@ public class AppRendererShaderUpdaterFactory extends ShaderUpdater {
      * @return the instance
      */
     public static AppRendererShaderUpdaterFactory getInstance() {
-        return instance;
+        return AppRendererShaderUpdaterFactory.instance;
     }
 
     private final RendererStrings renderStrings = RendererStrings.getInstance();
@@ -153,10 +153,10 @@ public class AppRendererShaderUpdaterFactory extends ShaderUpdater {
 //        null),
 
         new PlatformShaderComposite(
-            openGLCapabilities.VERSION_3_0, 
+            this.openGLCapabilities.VERSION_3_0, 
         new Shader[]{ new Shader(), new Shader()},
 
-        new SimpleCompositeShaderUpdater(StringUtil.getInstance().getArrayInstance(), new String[]{"lightPos", "lightColor", "cameraPos", "myTexture"}, new String[] { semanticStrings.POSITION, semanticStrings.COLOR, semanticStrings.NORMAL, semanticStrings.TEXCOORD}, new int[4]),
+        new SimpleCompositeShaderUpdater(StringUtil.getInstance().getArrayInstance(), new String[]{"lightPos", "lightColor", "cameraPos", "myTexture"}, new String[] { this.semanticStrings.POSITION, this.semanticStrings.COLOR, this.semanticStrings.NORMAL, this.semanticStrings.TEXCOORD}, new int[4]),
         SimpleShaderInitializer.getInstance(),
         ModelViewProjection.getInstance(),
         null,
@@ -164,6 +164,7 @@ public class AppRendererShaderUpdaterFactory extends ShaderUpdater {
         
         };
 
+    @Override
     public void onSurfaceCreated(final GL10 gl, final EGLConfig eglConfig) {
         
         PlatformAppShaderResources.getInstance().add();
@@ -171,7 +172,7 @@ public class AppRendererShaderUpdaterFactory extends ShaderUpdater {
         final int max = 1024 * 32;
         final byte[] byteArray1 = new byte[max];
         
-        final int size = shaderCompositeArray.length;
+        final int size = this.shaderCompositeArray.length;
         
         //logUtil.put("Load Shaders: " + size, this, renderStrings.ON_SURFACE_CREATED);
 
@@ -186,7 +187,7 @@ public class AppRendererShaderUpdaterFactory extends ShaderUpdater {
 //        shaderCompositeArray[2].colorDisableVertexAttribArrayOpenGLProcessor = NullOpenGLProcessorFactory.getInstance();
 //        shaderCompositeArray[2].uniformTextureUnitOpenGLProcessor = new UniformShaderOpenGLProcessor(shaderCompositeArray[2]);
 
-        ShaderComposite shaderComposite = shaderCompositeArray[0];
+        ShaderComposite shaderComposite = this.shaderCompositeArray[0];
         //shaderComposite.colorEnableVertexAttribArrayOpenGLProcessor = NullOpenGLProcessorFactory.getInstance();
         //shaderComposite.colorDisableVertexAttribArrayOpenGLProcessor = NullOpenGLProcessorFactory.getInstance();
         //shaderComposite.uniformTextureUnitOpenGLProcessor = new UniformShaderOpenGLProcessor(shaderComposite, 0);
@@ -198,48 +199,48 @@ public class AppRendererShaderUpdaterFactory extends ShaderUpdater {
         shaderComposite.uniformCameraPositionOpenGLProcessor = new UniformCameraPositionOpenGLProcessor(shaderComposite, 2);
         shaderComposite.uniformTextureUnitOpenGLProcessor = new UniformTextureOpenGLProcessor(shaderComposite, 3);
 
-        if (shaderManager == ShaderManager.getInstance()) {
-            logUtil.putF("Shaders already loaded", this, renderStrings.ON_SURFACE_CREATED);
+        if (this.shaderManager == ShaderManager.getInstance()) {
+            this.logUtil.putF("Shaders already loaded", this, this.renderStrings.ON_SURFACE_CREATED);
         } else {
 
             final OpenGLVersionValidator openGLVersionValidator = OpenGLVersionValidator.getInstance();
             for (int index = 0; index < size; index++) {
-                shaderComposite = shaderCompositeArray[index];
+                shaderComposite = this.shaderCompositeArray[index];
 
                 if (openGLVersionValidator.isAvailable(shaderComposite.requiresOpenGLVersion)) {
                     Shader shader = shaderComposite.shaderArray[0];
-                    shader.shaderName = appShaderResources.getVertexShader(index);
-                    this.loadShader(gl, shader, shaderManager.GL_VERTEX_SHADER, max, byteArray1);
+                    shader.shaderName = this.appShaderResources.getVertexShader(index);
+                    this.loadShader(gl, shader, this.shaderManager.GL_VERTEX_SHADER, max, byteArray1);
                     shader = shaderComposite.shaderArray[1];
-                    shader.shaderName = appShaderResources.getFragmentShader(index);
-                    this.loadShader(gl, shader, shaderManager.GL_FRAGMENT_SHADER, max, byteArray1);
+                    shader.shaderName = this.appShaderResources.getFragmentShader(index);
+                    this.loadShader(gl, shader, this.shaderManager.GL_FRAGMENT_SHADER, max, byteArray1);
                     shaderComposite.init(gl);
-                    logUtil.putF("shader programHandle: " + shaderComposite.programHandle, this, this.rendererStrings.ON_SURFACE_CREATED);
+                    this.logUtil.putF("shader programHandle: " + shaderComposite.programHandle, this, this.rendererStrings.ON_SURFACE_CREATED);
 
                     shaderComposite.compositeShaderUpdater.onSurfaceCreated(gl, eglConfig, shaderComposite.programHandle);
                 } else {
-                    logUtil.putF("shader is not available: " + index, this, this.rendererStrings.ON_SURFACE_CREATED);
+                    this.logUtil.putF("shader is not available: " + index, this, this.rendererStrings.ON_SURFACE_CREATED);
                 }
             }
         }
         
-        shaderManager = ShaderManager.getInstance();
+        this.shaderManager = ShaderManager.getInstance();
     }
 
     private void loadShader(final GL10 gl, final Shader shader, final int shaderType, final int max, final byte[] byteArray1) {
                     
         String resource = shader.shaderName;
         try {
-            logUtil.putF(resource, this, this.rendererStrings.ON_SURFACE_CREATED);
-            final InputStream inputStream = resourceUtil.getResourceAsStream(resource);
-            final BasicArrayList stringList = shader.shaderStringList = simpleFileUtil.loadFileAsListReturnLine(inputStream, max, byteArray1, 1);
+            this.logUtil.putF(resource, this, this.rendererStrings.ON_SURFACE_CREATED);
+            final InputStream inputStream = this.resourceUtil.getResourceAsStream(resource);
+            final BasicArrayList stringList = shader.shaderStringList = this.simpleFileUtil.loadFileAsListReturnLine(inputStream, max, byteArray1, 1);
             String[] shaderAsStringArray = (String[]) stringList.toArrayType(new String[stringList.size()]);
             shader.shaderAsString = this.simpleFileUtil.createStringFromArrayOfStrings(shaderAsStringArray);
             //logUtil.put("shaderAsString: " + shader.shaderAsString, this, this.rendererStrings.ON_SURFACE_CREATED);
-            shader.shaderHandle = shaderManager.loadShader(gl, resource, shader.shaderStringList, shaderType);
-            logUtil.putF("shaderHandle: " + shader.shaderHandle, this, this.rendererStrings.ON_SURFACE_CREATED);
+            shader.shaderHandle = this.shaderManager.loadShader(gl, resource, shader.shaderStringList, shaderType);
+            this.logUtil.putF("shaderHandle: " + shader.shaderHandle, this, this.rendererStrings.ON_SURFACE_CREATED);
         } catch (Exception e) {
-            logUtil.put(commonStrings.EXCEPTION + resource, this, this.rendererStrings.ON_SURFACE_CREATED, e);
+            this.logUtil.put(this.commonStrings.EXCEPTION + resource, this, this.rendererStrings.ON_SURFACE_CREATED, e);
         }
     }
     

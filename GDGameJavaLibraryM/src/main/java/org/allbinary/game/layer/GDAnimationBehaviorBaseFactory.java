@@ -25,7 +25,7 @@ public class GDAnimationBehaviorBaseFactory {
      * @return the instance
      */
     public static GDAnimationBehaviorBaseFactory getInstance() {
-        return instance;
+        return GDAnimationBehaviorBaseFactory.instance;
     }
 
     public GDAnimationBehaviorBase create() {

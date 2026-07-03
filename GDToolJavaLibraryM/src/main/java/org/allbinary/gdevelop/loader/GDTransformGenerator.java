@@ -40,14 +40,14 @@ public class GDTransformGenerator extends GDNameGenerator {
     
     public void process(final String updatedXslDocumentStr, final String outputFile, final SharedBytes sharedBytes) throws Exception {
 
-        final FileInputStream gameInputStream = new FileInputStream(gdToolStrings.GAME_XML_PATH);
+        final FileInputStream gameInputStream = new FileInputStream(this.gdToolStrings.GAME_XML_PATH);
         sharedBytes.outputStream.reset();
-        final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
+        final String xmlDocumentStr = new String(this.streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
         String result = this.process(updatedXslDocumentStr, xmlDocumentStr);
         result = this.format(result);
 
-        logUtil.putF(this.gdToolStrings.FILENAME + outputFile, this, commonStrings.PROCESS);
+        this.logUtil.putF(this.gdToolStrings.FILENAME + outputFile, this, this.commonStrings.PROCESS);
         
         this.bufferedWriterUtil.overwrite(outputFile, result);
         

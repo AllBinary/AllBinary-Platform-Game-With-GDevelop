@@ -26,7 +26,7 @@ public class GDThreedEarlyResourceInitializationFactory {
      * @return the instance
      */
     public static GDThreedEarlyResourceInitializationFactory getInstance() {
-        return instance;
+        return GDThreedEarlyResourceInitializationFactory.instance;
     }
     
     private static final GDThreedEarlyResourceInitializationFactory instance = new GDThreedEarlyResourceInitializationFactory();

@@ -137,7 +137,7 @@ public class GDObject
     }
 
     public int ForceAngle() {
-        return forceAngle;
+        return this.forceAngle;
     }
 
     public String getAnimationFromIndex(final int index) {
@@ -154,12 +154,12 @@ public class GDObject
 
     public int Width(final Graphics graphics) {
         //return canvasWidth;
-        return width;
+        return this.width;
     }
     
     public int Height(final Graphics graphics) {
         //return canvasHeight;
-        return height;
+        return this.height;
     }
    
     public void setX(final double x) {
@@ -222,7 +222,7 @@ public class GDObject
     //private final StringMaker stringBuilder = new StringMaker();
     public int PointX(final GPoint point) {
         
-        int adjustedAngle = angle;
+        int adjustedAngle = this.angle;
         while (adjustedAngle > 359) {
             adjustedAngle -= 360;
         }
@@ -230,7 +230,7 @@ public class GDObject
             adjustedAngle += 360;
         }
 
-        final int x = (int) (noDecimalTrigTable.cos((short) adjustedAngle) * (point.getX() - this.halfWidth - (this.halfWidth / 2))) / noDecimalTrigTable.SCALE;
+        final int x = (int) (this.noDecimalTrigTable.cos((short) adjustedAngle) * (point.getX() - this.halfWidth - (this.halfWidth / 2))) / this.noDecimalTrigTable.SCALE;
 
         //F <x>32</x>, <y>16</y>
         //E <x>0</x>, <y>16</y>        
@@ -244,13 +244,13 @@ public class GDObject
         //logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append('g').append(objectStrings.ANGLE).append(adjustedAngle).append(commonSeps.COLON).append(this.x).append(commonSeps.COLON).append(x).append(commonSeps.COLON).append(halfWidth).toString());
 
         // + this.width
-        return (int) (this.x + (x * offsetX) + this.offsetBehavior.PointX(this.halfWidth));
+        return (int) (this.x + (x * this.offsetX) + this.offsetBehavior.PointX(this.halfWidth));
         //return this.x;
     }
 
     public int PointY(final GPoint point) {
         
-        int adjustedAngle = angle;
+        int adjustedAngle = this.angle;
         while (adjustedAngle > 359) {
             adjustedAngle -= 360;
         }
@@ -259,11 +259,11 @@ public class GDObject
         }
 
         if(point.getX() > this.halfWidth) {
-            final int y = (int) (noDecimalTrigTable.sin((short) adjustedAngle) * (point.getY() - (this.halfHeight / 2))) / noDecimalTrigTable.SCALE;
-            return (int) (this.y + (y * offsetY) + this.offsetBehavior.PointY(this.halfHeight));
+            final int y = (int) (this.noDecimalTrigTable.sin((short) adjustedAngle) * (point.getY() - (this.halfHeight / 2))) / this.noDecimalTrigTable.SCALE;
+            return (int) (this.y + (y * this.offsetY) + this.offsetBehavior.PointY(this.halfHeight));
         } else {
-            final int y = (int) (noDecimalTrigTable.sin((short) adjustedAngle) * -(point.getY() - (this.halfHeight / 2))) / noDecimalTrigTable.SCALE;
-            return (int) (this.y + (y * offsetY) + this.offsetBehavior.PointY(this.halfHeight));
+            final int y = (int) (this.noDecimalTrigTable.sin((short) adjustedAngle) * -(point.getY() - (this.halfHeight / 2))) / this.noDecimalTrigTable.SCALE;
+            return (int) (this.y + (y * this.offsetY) + this.offsetBehavior.PointY(this.halfHeight));
         }
 
         //return this.y;

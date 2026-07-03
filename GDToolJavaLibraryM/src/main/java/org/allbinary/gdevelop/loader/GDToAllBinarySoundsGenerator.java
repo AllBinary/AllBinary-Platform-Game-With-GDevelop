@@ -44,8 +44,8 @@ public class GDToAllBinarySoundsGenerator
     private final String GD_FILE_NAME = "<GD_FILE_NAME>";
     private final String GD_DURATION = "<GD_DURATION>";
     
-    private final String SOUND_ORIGINAL = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDSound.origin";
-    private final String SOUND_PATH = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\";
+    private final String SOUND_ORIGINAL = this.gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDSound.origin";
+    private final String SOUND_PATH = this.gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\";
     
     private final String GD = "GD";
     private final String SOUND = "Sound";
@@ -56,7 +56,7 @@ public class GDToAllBinarySoundsGenerator
     private final String ERROR = "error";
     
     public void processExpressionParam(final String param, final String resourceString) {
-        logUtil.putF(SOUND + param, this, commonStrings.PROCESS);
+        this.logUtil.putF(this.SOUND + param, this, this.commonStrings.PROCESS);
         
         int startIndex = param.lastIndexOf('/');
         if (startIndex < 0) {
@@ -72,17 +72,17 @@ public class GDToAllBinarySoundsGenerator
         //int endIndex = param.lastIndexOf('.');
         final String fileAsString = param.substring(startIndex);
         
-        if(fileAsString.compareTo(SELECT) == 0) {
-            logUtil.putF(SKIPPING_SOUND + fileAsString, this, commonStrings.PROCESS);
+        if(fileAsString.compareTo(this.SELECT) == 0) {
+            this.logUtil.putF(this.SKIPPING_SOUND + fileAsString, this, this.commonStrings.PROCESS);
             return;
         }
 
-        if(fileAsString.compareTo(ERROR) == 0) {
-            logUtil.putF(SKIPPING_SOUND + fileAsString, this, commonStrings.PROCESS);
+        if(fileAsString.compareTo(this.ERROR) == 0) {
+            this.logUtil.putF(this.SKIPPING_SOUND + fileAsString, this, this.commonStrings.PROCESS);
             return;
         }
 
-        logUtil.putF(SOUND + fileAsString, this, commonStrings.PROCESS);
+        this.logUtil.putF(this.SOUND + fileAsString, this, this.commonStrings.PROCESS);
         
         this.gdResources.playSoundAndroidResourceNameList.add(fileAsString);
         this.gdResources.playSoundResourcePathList.add(resourceString);
@@ -103,47 +103,47 @@ public class GDToAllBinarySoundsGenerator
 
         final StringMaker stringMaker = new StringMaker();
         
-        final FileInputStream fileInputStream = new FileInputStream(SOUND_ORIGINAL);
+        final FileInputStream fileInputStream = new FileInputStream(this.SOUND_ORIGINAL);
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
         
         final int size = this.gdResources.playSoundAndroidResourceNameList.size();
         
         stringMaker.delete(0, stringMaker.length());
-        logUtil.putF(stringMaker.append("Sound Total: ").appendint(size).toString(), this, commonStrings.PROCESS);
+        this.logUtil.putF(stringMaker.append("Sound Total: ").appendint(size).toString(), this, this.commonStrings.PROCESS);
         
         String resource;
         for(int index = 0; index < size; index++) {
             resource = (String) this.gdResources.playSoundAndroidResourceNameList.get(index);
             
-            logUtil.putF(resource, this, commonStrings.PROCESS);
+            this.logUtil.putF(resource, this, this.commonStrings.PROCESS);
             
             //final Player player = AllBinaryMediaManager.createPlayer(resource);
             final PCClipWavPlayer player = (PCClipWavPlayer) AllBinaryMediaManager.createPlayer(resource);
             final long duration = player.getDuration();
             
             final String name = this.camelCaseUtil.getAsCamelCase(resource, stringMaker);
-            final Replace replace = new Replace(GD_NAME, name);
+            final Replace replace = new Replace(this.GD_NAME, name);
             String newFileAsString = replace.all(androidRFileAsString);
-            final Replace replace2 = new Replace(GD_FILE_NAME, resource);
+            final Replace replace2 = new Replace(this.GD_FILE_NAME, resource);
             newFileAsString = replace2.all(newFileAsString);
-            final Replace replace3 = new Replace(GD_DURATION, Long.toString(duration));
+            final Replace replace3 = new Replace(this.GD_DURATION, Long.toString(duration));
             newFileAsString = replace3.all(newFileAsString);
             
             stringMaker.delete(0, stringMaker.length());
-            stringMaker.append(GD).append(name).append(SOUND);
+            stringMaker.append(this.GD).append(name).append(this.SOUND);
             
-            playSoundResourceClassNameList.add(stringMaker.toString());
+            this.playSoundResourceClassNameList.add(stringMaker.toString());
             
-            stringMaker.append(_JAVA);
+            stringMaker.append(this._JAVA);
             
             final String fileName = stringMaker.toString();
             //logUtil.put(this.gdToolStrings.FILENAME + fileName, this, commonStrings.PROCESS);
             
             stringMaker.delete(0, stringMaker.length());
             
-            final String fileName2 = stringMaker.append(SOUND_PATH).append(fileName).toString();
+            final String fileName2 = stringMaker.append(this.SOUND_PATH).append(fileName).toString();
                         
-            logUtil.putF(this.gdToolStrings.FILENAME + fileName2, this, commonStrings.PROCESS);
+            this.logUtil.putF(this.gdToolStrings.FILENAME + fileName2, this, this.commonStrings.PROCESS);
             
             this.bufferedWriterUtil.overwrite(fileName2, newFileAsString);
         }

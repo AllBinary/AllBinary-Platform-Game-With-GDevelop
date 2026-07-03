@@ -14,6 +14,7 @@ import org.allbinary.game.init.GDGameResourceInitialization;
 public class GDGameJ2SEWithSWTJOGLResourceInitialization 
 extends GDGameResourceInitialization
 {
+    @Override
     public void init() 
     throws Exception
     {

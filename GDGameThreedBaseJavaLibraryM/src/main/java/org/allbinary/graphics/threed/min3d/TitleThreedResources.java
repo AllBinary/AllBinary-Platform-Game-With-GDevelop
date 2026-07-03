@@ -19,7 +19,7 @@ public class TitleThreedResources
 
     public static TitleThreedResources getInstance()
     {
-        return instance;
+        return TitleThreedResources.instance;
     }
     
     public final String RESOURCE_TITLE_ONE = "title_one";

@@ -19,7 +19,7 @@ public class GDEventTypeFactory
      */
     public static GDEventTypeFactory getInstance()
     {
-        return instance;
+        return GDEventTypeFactory.instance;
     }
     
     public final String COMMENT = "BuiltinCommonInstructions::Comment";

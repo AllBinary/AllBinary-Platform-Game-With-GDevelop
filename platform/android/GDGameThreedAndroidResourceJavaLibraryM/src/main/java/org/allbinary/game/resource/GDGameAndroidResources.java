@@ -11,9 +11,10 @@ public class GDGameAndroidResources extends GDGameBaseAndroidResources
 
     public static GDGameAndroidResources getInstance()
     {
-        return STATIC;
+        return GDGameAndroidResources.STATIC;
     }
 
+    @Override
     protected void initImages(String[] RESOURCES) throws Exception
     {
         if (Features.getInstance().isFeature(

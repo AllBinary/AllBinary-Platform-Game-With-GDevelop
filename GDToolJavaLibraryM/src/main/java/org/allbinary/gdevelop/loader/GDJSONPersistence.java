@@ -39,7 +39,7 @@ public class GDJSONPersistence {
      * @return the instance
      */
     public static GDJSONPersistence getInstance() {
-        return instance;
+        return GDJSONPersistence.instance;
     }
     
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
@@ -50,7 +50,7 @@ public class GDJSONPersistence {
         final SharedBytes sharedBytes = SharedBytes.getInstance();
         sharedBytes.outputStream.reset();
         
-        final FileInputStream inputStream = new FileInputStream(gdToolStrings.GAME_JSON_PATH);
+        final FileInputStream inputStream = new FileInputStream(this.gdToolStrings.GAME_JSON_PATH);
         final String gameAsConfiguration = new String(streamUtil.getByteArray(inputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
         final JSONTokener jsonTokener = new JSONTokener(gameAsConfiguration);

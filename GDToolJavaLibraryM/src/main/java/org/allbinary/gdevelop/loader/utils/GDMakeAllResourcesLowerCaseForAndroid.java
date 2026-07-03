@@ -35,6 +35,7 @@ public class GDMakeAllResourcesLowerCaseForAndroid extends GDJSONGeneratorBase {
     private final String TEXTURE = "Texture: ";
     private final String IMAGE = "Image: ";
     
+    @Override
     public void process(final JSONObject gameAsConfigurationJSONObject) throws Exception {
         final JSONObject jsonObject = gameAsConfigurationJSONObject.getJSONObject(this.gdProjectStrings.RESOURCES);
         final JSONArray jsonArray = jsonObject.getJSONArray(this.gdProjectStrings.RESOURCES);
@@ -51,9 +52,9 @@ public class GDMakeAllResourcesLowerCaseForAndroid extends GDJSONGeneratorBase {
         for(int index = 0; index < jsonArray.length(); index++) {
             jsonObject = jsonArray.getJSONObject(index);
             value = jsonObject.getString(this.gdProjectStrings.FILE);
-            jsonObject.put(this.gdProjectStrings.FILE, fileUnamedUtil.process(value));
+            jsonObject.put(this.gdProjectStrings.FILE, this.fileUnamedUtil.process(value));
             value = jsonObject.getString(this.gdProjectStrings.NAME);
-            jsonObject.put(this.gdProjectStrings.NAME, fileUnamedUtil.process(value));
+            jsonObject.put(this.gdProjectStrings.NAME, this.fileUnamedUtil.process(value));
         }
 
     }
@@ -76,7 +77,7 @@ public class GDMakeAllResourcesLowerCaseForAndroid extends GDJSONGeneratorBase {
     public void processObject(final JSONObject jsonObject) throws Exception {
         if (jsonObject.has(this.gdProjectStrings.TEXTURE)) {
             String texture = jsonObject.getString(this.gdProjectStrings.TEXTURE);
-            texture = fileUnamedUtil.process(texture);
+            texture = this.fileUnamedUtil.process(texture);
             System.out.println(this.TEXTURE + texture);
             jsonObject.put(this.gdProjectStrings.TEXTURE, texture);
         }
@@ -122,11 +123,12 @@ public class GDMakeAllResourcesLowerCaseForAndroid extends GDJSONGeneratorBase {
     public void makeResourcesLowercaseForLayout(final JSONObject jsonObject) {
         
         String image = jsonObject.getString(this.gdProjectStrings.IMAGE);
-        image = fileUnamedUtil.process(image);
-        System.out.println(IMAGE + image);
+        image = this.fileUnamedUtil.process(image);
+        System.out.println(this.IMAGE + image);
         jsonObject.put(this.gdProjectStrings.IMAGE, image);
     }
 
+    @Override
     public void processLayout(final JSONObject jsonObject) throws Exception {
         this.processObjects(jsonObject);
     }

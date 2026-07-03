@@ -18,6 +18,7 @@ public class GDGameGameResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterf
 
     private int index = 1;
     
+    @Override
     public void init(int level) 
     throws Exception
     {
@@ -29,11 +30,11 @@ public class GDGameGameResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterf
         final int portion = 120;
         final String loadingString = this.toString() + " Loading: ";
         
-        index = 1;
+        this.index = 1;
 
         final ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
 
-        progressCanvas.addPortion(portion, loadingString, index++);
+        progressCanvas.addPortion(portion, loadingString, this.index++);
 
         //this.addRectangles();
 
@@ -68,6 +69,7 @@ public class GDGameGameResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterf
         super.init(level);
     }
     
+    @Override
     public boolean isFeature()
     {
         Features features = Features.getInstance();

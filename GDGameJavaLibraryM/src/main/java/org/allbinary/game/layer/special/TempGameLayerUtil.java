@@ -27,7 +27,7 @@ public class TempGameLayerUtil {
      * @return the instance
      */
     public static TempGameLayerUtil getInstance() {
-        return instance;
+        return TempGameLayerUtil.instance;
     }
     
     public final CollidableCompositeLayer[] gameLayerArray = new CollidableCompositeLayer[5];
@@ -35,7 +35,7 @@ public class TempGameLayerUtil {
     public void clear() {
 
         for (int index = 0; index < 5; index++) {
-            gameLayerArray[index] = null;
+            this.gameLayerArray[index] = null;
         }
 
     }

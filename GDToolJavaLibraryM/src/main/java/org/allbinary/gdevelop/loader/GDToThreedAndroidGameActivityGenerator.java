@@ -38,9 +38,9 @@ public class GDToThreedAndroidGameActivityGenerator extends GDNameGenerator
         final StringMaker stringMaker = new StringMaker();
         final String name = camelCaseUtil.getAsCamelCase(this.packageName, stringMaker).toLowerCase();
         
-        final String R_ORIGINAL = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\GDGameAndroidActivity.original";
+        final String R_ORIGINAL = this.gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\GDGameAndroidActivity.original";
         stringMaker.delete(0, stringMaker.length());
-        stringMaker.append(gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\").append(name).append("\\threed");
+        stringMaker.append(this.gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\").append(name).append("\\threed");
         final File directoryFile = new File(stringMaker.toString());
         directoryFile.mkdirs();
         final String R = stringMaker.append("\\GDGameAndroidActivity.java").toString();
@@ -51,10 +51,10 @@ public class GDToThreedAndroidGameActivityGenerator extends GDNameGenerator
 
         final FileInputStream fileInputStream = new FileInputStream(R_ORIGINAL);        
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
-        final Replace replace = new Replace(GD_KEY, name);
+        final Replace replace = new Replace(this.GD_KEY, name);
         final String newFileAsString = replace.all(androidRFileAsString);
 
-        logUtil.putF(this.gdToolStrings.FILENAME + R, this, commonStrings.PROCESS);
+        this.logUtil.putF(this.gdToolStrings.FILENAME + R, this, this.commonStrings.PROCESS);
         
         this.bufferedWriterUtil.overwrite(R, newFileAsString);        
     }

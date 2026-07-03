@@ -43,7 +43,7 @@ Pointer.Listener
         GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance();
 
         final BasicMotionGesturesHandler motionGesturesHandler =
-            motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();
+            this.motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();
 
         motionGesturesHandler.addListenerInterface(new GameMotionGestureListener(
             MotionGestureReceiveInterfaceFactory.getInstance()));    
@@ -64,7 +64,7 @@ Pointer.Listener
     {
         try
         {
-            logUtil.putF(CommonStrings.getInstance().START, this, CommonStrings.getInstance().INIT);
+            this.logUtil.putF(CommonStrings.getInstance().START, this, CommonStrings.getInstance().INIT);
 
             final Features features = Features.getInstance();
 
@@ -121,7 +121,7 @@ Pointer.Listener
         }
         catch (Exception e)
         {
-            logUtil.put(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e);
+            this.logUtil.put(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e);
         }
     }
 
@@ -135,7 +135,7 @@ Pointer.Listener
         }
         catch (Exception e)
         {
-            logUtil.put(CommonStrings.getInstance().EXCEPTION, this, "stopAll", e);
+            this.logUtil.put(CommonStrings.getInstance().EXCEPTION, this, "stopAll", e);
         }
     }
     
@@ -154,9 +154,9 @@ Pointer.Listener
         //logUtil.put(CommonLabels.getInstance().START_LABEL + event.key(), this, "onKeyDown");
     
         try {
-            rawKeyEventHandler.fireEvent(event.keyCode(), DEVICE_ID, true);
+            this.rawKeyEventHandler.fireEvent(event.keyCode(), this.DEVICE_ID, true);
         } catch(Exception e) {
-            logUtil.put(CommonLabels.getInstance().START_LABEL + event.key(), this, "onKeyDown", e);
+            this.logUtil.put(CommonLabels.getInstance().START_LABEL + event.key(), this, "onKeyDown", e);
         }
         
         final Key key = event.key();        
@@ -191,7 +191,7 @@ Pointer.Listener
         }
         catch (Exception e)
         {
-            logUtil.put(CommonStrings.getInstance().EXCEPTION, this, "onPointerStart", e);
+            this.logUtil.put(CommonStrings.getInstance().EXCEPTION, this, "onPointerStart", e);
         }
     }
 
@@ -206,7 +206,7 @@ Pointer.Listener
         }
         catch (Exception e)
         {
-            logUtil.put(CommonStrings.getInstance().EXCEPTION, this, "onPointerEnd", e);
+            this.logUtil.put(CommonStrings.getInstance().EXCEPTION, this, "onPointerEnd", e);
         }
     }
 
@@ -222,7 +222,7 @@ Pointer.Listener
         }
         catch (Exception e)
         {
-            logUtil.put(CommonStrings.getInstance().EXCEPTION, this, "onPointerDrag", e);
+            this.logUtil.put(CommonStrings.getInstance().EXCEPTION, this, "onPointerDrag", e);
         }
     }
 
@@ -268,7 +268,7 @@ Pointer.Listener
         }
         catch (Exception e)
         {
-            logUtil.put(CommonStrings.getInstance().EXCEPTION, this, "onMouseMove", e);
+            this.logUtil.put(CommonStrings.getInstance().EXCEPTION, this, "onMouseMove", e);
         }
     }
 

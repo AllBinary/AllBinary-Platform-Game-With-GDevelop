@@ -25,7 +25,7 @@ public class GDIndividualAnimationBehaviorFactory extends GDAnimationBehaviorBas
      * @return the instance
      */
     public static GDAnimationBehaviorBaseFactory getInstance() {
-        return instance;
+        return GDIndividualAnimationBehaviorFactory.instance;
     }
 
     @Override

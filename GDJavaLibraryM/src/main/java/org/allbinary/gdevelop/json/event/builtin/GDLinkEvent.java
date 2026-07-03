@@ -54,7 +54,7 @@ public class GDLinkEvent extends GDEvent
         {
             this.eventsGroupName = null;
             final CommonStrings commonStrings = CommonStrings.getInstance();
-            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, new Exception());
+            this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, new Exception());
         }
 
         this.includeStart = 0;

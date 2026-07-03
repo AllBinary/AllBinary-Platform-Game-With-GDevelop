@@ -62,7 +62,7 @@ public class GDGameProcessor
                 resourceStringArray = gdResources.resourceStringArray;
             }
             
-            list.add(new GameHtmlLoadResourcesProcessor(list, resourceStringArray));
+            this.list.add(new GameHtmlLoadResourcesProcessor(this.list, resourceStringArray));
 
 //        OnDemandResources[] onDemandResourcesArray =
 //                MiniSpaceWarImageOnDemandResourcesFactory.getInstance().getOnDemandResourcesArray();
@@ -76,13 +76,13 @@ public class GDGameProcessor
 //        }
             
             final Processor gameHtmlHasLoadedResourcesProcessor
-                    = new GameHtmlHasLoadedResourcesProcessor(list, resourceStringArray);
+                    = new GameHtmlHasLoadedResourcesProcessor(this.list, resourceStringArray);
 
-            list.add(gameHtmlHasLoadedResourcesProcessor);
+            this.list.add(gameHtmlHasLoadedResourcesProcessor);
             
         }
 
-        list.add(new MidletStartupProcessor(list));
+        this.list.add(new MidletStartupProcessor(this.list));
 
         ProgressCanvasFactory.getInstance().addNormalPortion(10, "Loading");
     }

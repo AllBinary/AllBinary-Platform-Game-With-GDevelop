@@ -31,6 +31,7 @@ public class GDMakeGroupNames {
         
         final GLBVisitor glbVisitor = new GLBVisitor() {
 
+            @Override
             public void append(final String fileNameAsString, final String name, final StringMaker stringMaker) {
                 stringMaker.append(RESOURCE_0);
                 stringMaker.append(name);

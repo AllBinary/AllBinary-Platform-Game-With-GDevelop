@@ -25,7 +25,7 @@ public class GDSoftJoystickAnimationBehaviorBaseFactory extends GDAnimationBehav
      * @return the instance
      */
     public static GDAnimationBehaviorBaseFactory getInstance() {
-        return instance;
+        return GDSoftJoystickAnimationBehaviorBaseFactory.instance;
     }
 
     @Override

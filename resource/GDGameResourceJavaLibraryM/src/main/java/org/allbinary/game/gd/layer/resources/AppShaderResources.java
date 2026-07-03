@@ -25,7 +25,7 @@ public class AppShaderResources {
      * @return the instance
      */
     public static AppShaderResources getInstance() {
-        return instance;
+        return AppShaderResources.instance;
     }
 
     //public final String SIMPLE_VERTEX_SHADER = "simple_vertex_shader_mvp_glsl";
@@ -97,7 +97,7 @@ public class AppShaderResources {
 //        //SIMPLE_VERTEX_SHADER_3,
 //        SIMPLE_VERTEX_SHADER_5,
         //SIMPLE_VERTEX_SHADER_GSN
-        LIKE2_FIXED_PIPLINE_LIGHTING_VERTEX_SHADER
+        this.LIKE2_FIXED_PIPLINE_LIGHTING_VERTEX_SHADER
     };
     
     private final String[] FRAGMENT_ARRAY = {
@@ -107,7 +107,7 @@ public class AppShaderResources {
 //        //SIMPLE_TEXTURE_FRAGMENT_SHADER_4,
 //        SIMPLE_TEXTURE_FRAGMENT_SHADER_4,
         //SIMPLE_TEXTURE_FRAGMENT_SHADER_GSN
-        LIKE2_FIXED_PIPLINE_LIGHTING_FRAGMENT_SHADER
+        this.LIKE2_FIXED_PIPLINE_LIGHTING_FRAGMENT_SHADER
     };
     
     public String getVertexShader(final int shaderIndex) {

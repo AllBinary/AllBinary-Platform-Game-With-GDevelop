@@ -23,7 +23,7 @@ public class OffsetBehavior extends BaseOffsetBehavior {
      * @return the instance
      */
     public static OffsetBehavior getInstance() {
-        return instance;
+        return OffsetBehavior.instance;
     }
     
     private static final OffsetBehavior instance = new OffsetBehavior();

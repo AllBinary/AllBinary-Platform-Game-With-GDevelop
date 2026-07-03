@@ -19,7 +19,7 @@ public class GDTypeFactory
      */
     public static GDTypeFactory getInstance()
     {
-        return instance;
+        return GDTypeFactory.instance;
     }
 
     public final String STRING = "String";
@@ -31,16 +31,16 @@ public class GDTypeFactory
 
     public String get(final String type) {
         
-        if(STRING.compareTo(type) == 0) {
-            return STRING;
-        } else if(NUMBER.compareTo(type) == 0) {
-            return NUMBER;
-        } else if(BOOLEAN.compareTo(type) == 0) {
-            return BOOLEAN;
-        } else if(STRUCTURE.compareTo(type) == 0) {
-            return STRUCTURE;
-        } else if(ARRAY.compareTo(type) == 0) {
-            return ARRAY;
+        if(this.STRING.compareTo(type) == 0) {
+            return this.STRING;
+        } else if(this.NUMBER.compareTo(type) == 0) {
+            return this.NUMBER;
+        } else if(this.BOOLEAN.compareTo(type) == 0) {
+            return this.BOOLEAN;
+        } else if(this.STRUCTURE.compareTo(type) == 0) {
+            return this.STRUCTURE;
+        } else if(this.ARRAY.compareTo(type) == 0) {
+            return this.ARRAY;
         }
         
         return null;

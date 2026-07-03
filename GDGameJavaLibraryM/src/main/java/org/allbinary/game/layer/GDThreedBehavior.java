@@ -51,16 +51,16 @@ public class GDThreedBehavior extends GDTwodBehavior {
         final float newPortion = (gdObject.rotationZP * timeDelta / 1000f);
         //stringBuilder.delete(0, stringBuilder.length());
         //logUtil.put(stringBuilder.append("newPortion : ").append(newPortion).toString(), this, "updateRotation");
-        rotationRemainderZ = rotationRemainderZ + newPortion;
+        this.rotationRemainderZ = this.rotationRemainderZ + newPortion;
         //stringBuilder.delete(0, stringBuilder.length());
         //logUtil.put(stringBuilder.append("rotationRemainder: ").append(rotationRemainder).toString(), this, "updateRotation");
-        final short angleAdjustment = (short) (rotationRemainderZ);
+        final short angleAdjustment = (short) (this.rotationRemainderZ);
         if(angleAdjustment != 0) {
             //stringBuilder.delete(0, stringBuilder.length());
             //logUtil.put(stringBuilder.append("angleAdjustment: ").append(angleAdjustment).toString(), this, "updateRotation");
             gdObject.angle += angleAdjustment;
             this.setRotationZ(gdObject, angleAdjustment);
-            rotationRemainderZ -= angleAdjustment;
+            this.rotationRemainderZ -= angleAdjustment;
             //logUtil.put("reset", this, "updateRotation");
         } else {
             //logUtil.put("skip", this, "updateRotation");
@@ -69,7 +69,7 @@ public class GDThreedBehavior extends GDTwodBehavior {
     
     public void setRotationZ(final GDObject gdObject, final short angleAdjustment) {
                 
-        final RotationAnimation rotationAnimation = rotationAnimationInterfaceArray[gdObject.animation];
+        final RotationAnimation rotationAnimation = this.rotationAnimationInterfaceArray[gdObject.animation];
 
         if (angleAdjustment > 0) {
             short value = angleAdjustment;

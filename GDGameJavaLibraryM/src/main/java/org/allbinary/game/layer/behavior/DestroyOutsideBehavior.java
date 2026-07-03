@@ -27,6 +27,7 @@ public class DestroyOutsideBehavior extends GDBehavior {
 
     private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
 
+    @Override
     public boolean process(final BasicArrayList gameLayerList, final int index, final Graphics graphics) {
 
         final GDGameLayer gameLayer = (GDGameLayer) gameLayerList.get(index);
@@ -36,11 +37,11 @@ public class DestroyOutsideBehavior extends GDBehavior {
             return false;
         }
 
-        if(gdObject.x > SceneWindowWidth() + gdObject.Width(graphics)) {
+        if(gdObject.x > this.SceneWindowWidth() + gdObject.Width(graphics)) {
             return true;
         }
 
-        if(gdObject.y > SceneWindowHeight() + gdObject.Width(graphics)) {
+        if(gdObject.y > this.SceneWindowHeight() + gdObject.Width(graphics)) {
             return true;
         }
 

@@ -25,7 +25,7 @@ public class TempMapMovementBehavior extends TempMovementBehavior {
      * @return the instance
      */
     public static TempMapMovementBehavior getInstance() {
-        return instance;
+        return TempMapMovementBehavior.instance;
     }
     
 }

@@ -23,7 +23,7 @@ public class GDObjectFactory
      */
     public static GDObjectFactory getInstance()
     {
-        return instance;
+        return GDObjectFactory.instance;
     }
     
     private final String SPRITE = "Sprite";
@@ -36,12 +36,12 @@ public class GDObjectFactory
         
         final String type = jsonObject.getString(gdProjectStrings.TYPE);
         
-        if(type.compareTo(SPRITE) == 0) {
-            return new GDSpriteObject(SPRITE, jsonObject);
-        } else if(type.compareTo(PARTICLE_SYSTEM_PARTICLE_EMITTER) == 0) {
-            return new GDParticleSystemParticleEmitterObject(PARTICLE_SYSTEM_PARTICLE_EMITTER, jsonObject);
-        } else if(type.compareTo(TILE_MAP) == 0) {
-            return new GDTileMapObject(TILE_MAP, jsonObject);
+        if(type.compareTo(this.SPRITE) == 0) {
+            return new GDSpriteObject(this.SPRITE, jsonObject);
+        } else if(type.compareTo(this.PARTICLE_SYSTEM_PARTICLE_EMITTER) == 0) {
+            return new GDParticleSystemParticleEmitterObject(this.PARTICLE_SYSTEM_PARTICLE_EMITTER, jsonObject);
+        } else if(type.compareTo(this.TILE_MAP) == 0) {
+            return new GDTileMapObject(this.TILE_MAP, jsonObject);
         } else {
             return new GDObject(type, jsonObject);
         }

@@ -43,39 +43,39 @@ public class GDToAndroidRClassGenerator
     private final String SKIPPING = "Skipping: ";
     
     public GDToAndroidRClassGenerator() {
-        androidRFileStringMaker.append(GD_KEY);
-        androidRFileStringMaker.append(this.commonSeps.NEW_LINE);
+        this.androidRFileStringMaker.append(this.GD_KEY);
+        this.androidRFileStringMaker.append(this.commonSeps.NEW_LINE);
     }
     
     public void processResource(final String fileAsString) {
         
-        if(fileAsString.compareTo(BLANK) == 0) {
-            logUtil.putF(SKIPPING + fileAsString, this, commonStrings.PROCESS);
+        if(fileAsString.compareTo(this.BLANK) == 0) {
+            this.logUtil.putF(this.SKIPPING + fileAsString, this, this.commonStrings.PROCESS);
             return;
         }
         
-        androidRFileStringMaker.append(RESOURCE);
-        androidRFileStringMaker.append(PUBLIC_STATIC_FINAL_INT);
-        androidRFileStringMaker.append(fileAsString);
-        androidRFileStringMaker.append(VALUE);
-        androidRFileStringMaker.append(this.commonSeps.NEW_LINE);
+        this.androidRFileStringMaker.append(this.RESOURCE);
+        this.androidRFileStringMaker.append(this.PUBLIC_STATIC_FINAL_INT);
+        this.androidRFileStringMaker.append(fileAsString);
+        this.androidRFileStringMaker.append(this.VALUE);
+        this.androidRFileStringMaker.append(this.commonSeps.NEW_LINE);
     }
     
     private final String SELECT = "select";
     
     public void processExpressionParam(final String param) {
-        if(param.compareTo(SELECT) != 0) {
-        androidRFileStringMaker.append(EXPRESSION_PARAM);
-        androidRFileStringMaker.append(PUBLIC_STATIC_FINAL_INT);
-        androidRFileStringMaker.append(param);
-        androidRFileStringMaker.append(VALUE);
+        if(param.compareTo(this.SELECT) != 0) {
+        this.androidRFileStringMaker.append(this.EXPRESSION_PARAM);
+        this.androidRFileStringMaker.append(this.PUBLIC_STATIC_FINAL_INT);
+        this.androidRFileStringMaker.append(param);
+        this.androidRFileStringMaker.append(this.VALUE);
         }
     }
 
     public void process() throws Exception {
         
-        final String R_ORIGINAL = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.original";
-        final String R = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.java";
+        final String R_ORIGINAL = this.gdToolStrings.ROOT_PATH + "platform\\android\\GDGameAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.original";
+        final String R = this.gdToolStrings.ROOT_PATH + "platform\\android\\GDGameAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.java";
         
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final SharedBytes sharedBytes = SharedBytes.getInstance();
@@ -83,10 +83,10 @@ public class GDToAndroidRClassGenerator
 
         final FileInputStream fileInputStream = new FileInputStream(R_ORIGINAL);        
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
-        final Replace replace = new Replace(GD_KEY, androidRFileStringMaker.toString());
+        final Replace replace = new Replace(this.GD_KEY, this.androidRFileStringMaker.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
-        logUtil.putF(this.gdToolStrings.FILENAME + R, this, commonStrings.PROCESS);
+        this.logUtil.putF(this.gdToolStrings.FILENAME + R, this, this.commonStrings.PROCESS);
         
         this.bufferedWriterUtil.overwrite(R, newFileAsString);        
     }

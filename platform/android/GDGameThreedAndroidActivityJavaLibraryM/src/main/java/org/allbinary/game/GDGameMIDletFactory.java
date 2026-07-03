@@ -10,11 +10,12 @@ public class GDGameMIDletFactory extends MidletFactoryInterface {
 
     private static MIDlet SINGLETON = null;
 
+    @Override
     public MIDlet getInstance() {
-        if (SINGLETON == null) {
-            SINGLETON = new GDGameMIDlet(GDGameClientInformationInterfaceFactory.getFactoryInstance());
+        if (GDGameMIDletFactory.SINGLETON == null) {
+            GDGameMIDletFactory.SINGLETON = new GDGameMIDlet(GDGameClientInformationInterfaceFactory.getFactoryInstance());
             GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance();
         }
-        return SINGLETON;
+        return GDGameMIDletFactory.SINGLETON;
     }
 }

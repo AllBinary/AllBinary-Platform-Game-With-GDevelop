@@ -79,10 +79,10 @@ public class GDBehaviorMetadata
             final String smallicon)
     {
 
-        final String nameWithNamespace = extensionNamespace.isEmpty() ? name : extensionNamespace + name;
+        final String nameWithNamespace = this.extensionNamespace.isEmpty() ? name : this.extensionNamespace + name;
 
         final GDInstructionMetadata instructionMetadata = new GDInstructionMetadata(
-                extensionNamespace,
+                this.extensionNamespace,
                 nameWithNamespace,
                 fullname,
                 description,
@@ -107,10 +107,10 @@ public class GDBehaviorMetadata
             final String icon,
             final String smallicon)
     {
-        final String nameWithNamespace = extensionNamespace.isEmpty() ? name : extensionNamespace + name;
+        final String nameWithNamespace = this.extensionNamespace.isEmpty() ? name : this.extensionNamespace + name;
 
         final GDInstructionMetadata instructionMetadata = new GDInstructionMetadata(
-                extensionNamespace,
+                this.extensionNamespace,
                 nameWithNamespace,
                 fullname,
                 description,
@@ -138,7 +138,7 @@ public class GDBehaviorMetadata
 
         final String nameWithNamespace = new StringBuilder().append(this.getName()).append(GDPlatformExtension.getInstance().NAMESPACE_SEP).append(name).toString();
         final GDInstructionMetadata instructionMetadata = new GDInstructionMetadata(
-                extensionNamespace,
+                this.extensionNamespace,
                 nameWithNamespace,
                 fullname,
                 description,
@@ -167,7 +167,7 @@ public class GDBehaviorMetadata
         final String nameWithNamespace = new StringBuilder().append(this.getName()).append(GDPlatformExtension.getInstance().NAMESPACE_SEP).append(name).toString();
 
         final GDInstructionMetadata instructionMetadata = new GDInstructionMetadata(
-                extensionNamespace,
+                this.extensionNamespace,
                 nameWithNamespace,
                 fullname,
                 description,
@@ -193,7 +193,7 @@ public class GDBehaviorMetadata
 
         final GDExpressionMetadata expressionMetadata = new GDExpressionMetadata(
                 this.parameterFactory.NUMBER,
-                extensionNamespace,
+                this.extensionNamespace,
                 name,
                 fullname,
                 description,
@@ -215,7 +215,7 @@ public class GDBehaviorMetadata
     {
         final GDExpressionMetadata expressionMetadata = new GDExpressionMetadata(
                 this.parameterFactory.STRING,
-                extensionNamespace,
+                this.extensionNamespace,
                 name,
                 fullname,
                 description,
@@ -238,21 +238,21 @@ public class GDBehaviorMetadata
             final String icon)
     {
         final GDExpressionMetadata expression = (type == this.parameterFactory.NUMBER)
-                ? addExpression(name,
+                ? this.addExpression(name,
                         fullname,
-                        new StringBuilder().append(RETURN_).append(descriptionSubject).append(commonSeps.PERIOD).toString(),
+                        new StringBuilder().append(GDBehaviorMetadata.RETURN_).append(descriptionSubject).append(this.commonSeps.PERIOD).toString(),
                         group,
                         icon)
-                : addStrExpression(name,
+                : this.addStrExpression(name,
                         fullname,
-                        new StringBuilder().append(RETURN_).append(descriptionSubject).append(commonSeps.PERIOD).toString(),
+                        new StringBuilder().append(GDBehaviorMetadata.RETURN_).append(descriptionSubject).append(this.commonSeps.PERIOD).toString(),
                         group,
                         icon);
 
         final GDInstructionMetadata conditionInstructionMetadata = this.addScopedCondition(
                 name,
                 fullname,
-                new StringBuilder().append(this.COMPARE_).append(descriptionSubject).append(commonSeps.PERIOD).toString(),
+                new StringBuilder().append(GDBehaviorMetadata.COMPARE_).append(descriptionSubject).append(this.commonSeps.PERIOD).toString(),
                 sentenceName,
                 group,
                 icon,
@@ -261,7 +261,7 @@ public class GDBehaviorMetadata
         final GDInstructionMetadata actionInstructionMetadata = this.addScopedAction(
                 "Set" + name,
                 fullname,
-                new StringBuilder().append(this.COMPARE_).append(descriptionSubject).append(commonSeps.PERIOD).toString(),
+                new StringBuilder().append(GDBehaviorMetadata.COMPARE_).append(descriptionSubject).append(this.commonSeps.PERIOD).toString(),
                 sentenceName,
                 group,
                 icon,

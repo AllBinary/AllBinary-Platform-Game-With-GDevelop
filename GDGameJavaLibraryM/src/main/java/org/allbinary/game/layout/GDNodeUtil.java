@@ -28,17 +28,17 @@ public class GDNodeUtil {
      * @return the instance
      */
     public static GDNodeUtil getInstance() {
-        return instance;
+        return GDNodeUtil.instance;
     }
 
     public final BasicArrayList gdNodesList = new BasicArrayListD();    
     
     public GDNodes getInstance(final int index) {
-        while(index > gdNodesList.size() - 1) {
-            gdNodesList.add(new GDNodes());
+        while(index > this.gdNodesList.size() - 1) {
+            this.gdNodesList.add(new GDNodes());
         }
         
-        return (GDNodes) gdNodesList.get(index);
+        return (GDNodes) this.gdNodesList.get(index);
     }
     
 }

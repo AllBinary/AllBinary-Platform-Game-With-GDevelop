@@ -25,7 +25,7 @@ public class GDStrings {
      * @return the instance
      */
     public static GDStrings getInstance() {
-        return instance;
+        return GDStrings.instance;
     }
 
     public final String CANVAS_NEW = "Canvas is to new to process this action: ";

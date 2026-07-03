@@ -30,7 +30,7 @@ public class GDGameInputMappingHelpPaintable
     
     public static HelpPaintable getInstance()
     {
-        return SINGLETON;
+        return GDGameInputMappingHelpPaintable.SINGLETON;
     }
     
     private GDGameInputMappingHelpPaintable()

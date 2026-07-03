@@ -33,6 +33,7 @@ extends BaseResourceAnimationInterfaceFactoryInterfaceFactory
 
     private boolean[] isInitialized = new boolean[11];
     
+    @Override
     public void init(int level) 
     throws Exception
     {
@@ -40,10 +41,11 @@ extends BaseResourceAnimationInterfaceFactoryInterfaceFactory
         
         final String loadingString = this.toString() + " Loading: ";
 
-        index = 1;
+        this.index = 1;
         
     }
     
+    @Override
     public boolean isFeature()
     {
         final Features features = Features.getInstance();

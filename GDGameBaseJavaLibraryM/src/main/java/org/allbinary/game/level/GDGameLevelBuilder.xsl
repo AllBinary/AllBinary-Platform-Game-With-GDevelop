@@ -467,7 +467,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             </xsl:if>
 
             stringMaker.delete(0, stringMaker.length());
-            logUtil.put(stringMaker.append(MAX_TILE_ID).append(maxTileId).toString(), this, commonStrings.PROCESS);
+            this.logUtil.putF(stringMaker.append(MAX_TILE_ID).appendint(maxTileId).toString(), this, commonStrings.PROCESS);
             final int[] cellTypeMapping = new int[maxTileId];
             for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> maxTileId; index++) {
                 cellTypeMapping[index] = index;
@@ -535,7 +535,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         PathGenerator.getInstance().init(geographicMap, 2);
             
-        PathFindingInfoFactory.init(32768); //This should be the max map height x width for all maps in a game and/or max vertices in a path
+        PathFindingInfoFactory.initMax(32768); //This should be the max map height x width for all maps in a game and/or max vertices in a path
         </xsl:if>
                 
         <xsl:if test="contains($hasPathFindingBehaviorInOtherLayouts, 'found')" >
@@ -588,7 +588,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                 final int adjacentIndexX = indexX + ADJACENT[index][1];
                 final int adjacentIndexY = indexY + ADJACENT[index][0];
 
-                if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[adjacentIndexY][adjacentIndexX]) <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> 
+                if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[adjacentIndexY][adjacentIndexX]) <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> 
                     propsMapArray[adjacentIndexY][adjacentIndexX] != 49) {
                     if (recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                         this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, propsMapArray, adjacentIndexX, adjacentIndexY, recursionIndex - 1);
@@ -688,17 +688,17 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                 
                     type = mapArray[indexY][indexX];
 
-//                    if (basicTopViewGeographicMapCellTypeFactory.BLOCK_CELL_TYPE.isType(type) || basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(type)) {
+//                    if (basicTopViewGeographicMapCellTypeFactory.BLOCK_CELL_TYPE.hasType(type) || basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(type)) {
 //                    } else {
 //                        stringMaker.delete(0, stringMaker.length());
-//                        logUtil.put(stringMaker.append("type: ").append(type).toString(), this, commonStrings.PROCESS);
+//                        logUtil.putF(stringMaker.append("type: ").appendint(type).toString(), this, commonStrings.PROCESS);
 //                    }
 
                     //stringMaker.delete(0, stringMaker.length());
-                    //logUtil.put(stringMaker.append(F).append(indexY).append(CommonSeps.getInstance().SPACE).append(indexX).toString(), this, commonStrings.PROCESS);
-                    //logUtil.put(basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.toString(), this, commonStrings.PROCESS);
+                    //logUtil.putF(stringMaker.append(F).append(indexY).append(CommonSeps.getInstance().SPACE).append(indexX).toString(), this, commonStrings.PROCESS);
+                    //logUtil.putF(basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.toString(), this, commonStrings.PROCESS);
 
-                    if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(type)) {
+                    if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(type)) {
                         //Exclude placement next to something that is not a floor tile
                         placed = false;
                         
@@ -708,7 +708,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                         isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, propsMapArray, indexX, indexY,  3);
                         if(result) {
                             //stringMaker.delete(0, stringMaker.length());
-                            //logUtil.put(stringMaker.append("3placement: ").append(indexX).append(CommonSeps.getInstance().SPACE).append(indexY).append(" index: ").append(placementTotal).toString(), this, commonStrings.PROCESS);
+                            //logUtil.putF(stringMaker.append("3placement: ").append(indexX).append(CommonSeps.getInstance().SPACE).append(indexY).append(" index: ").append(placementTotal).toString(), this, commonStrings.PROCESS);
 
                             placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2);
                             placementYIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
@@ -726,7 +726,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                             isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, propsMapArray, indexX, indexY,  1);
                             if(result) {
                                 //stringMaker.delete(0, stringMaker.length());
-                                //logUtil.put(stringMaker.append("2placement: ").append(indexX).append(CommonSeps.getInstance().SPACE).append(indexY).append(" index: ").append(placementTotal).toString(), this, commonStrings.PROCESS);
+                                //logUtil.putF(stringMaker.append("2placement: ").append(indexX).append(CommonSeps.getInstance().SPACE).append(indexY).append(" index: ").append(placementTotal).toString(), this, commonStrings.PROCESS);
 
                                 placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2);
                                 placementYIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
@@ -751,46 +751,46 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                         }-->
                         }
 
-                    } else if (basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.isType(type)) {
+                    } else if (basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.hasType(type)) {
                     
 <!--
                         if(indexY > 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX > 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexY < mapArray.length <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX < mapArray[0].length) {
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY + 1][indexX])) {
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY + 1][indexX])) {
                                 placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2);
                                 placementYIntArray[placementTotal] = ((indexY + 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY + 1][indexX + 1])) {
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY + 1][indexX + 1])) {
                                 placementXIntArray[placementTotal] = ((indexX + 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
                                 placementYIntArray[placementTotal] = ((indexY + 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY][indexX + 1])) {
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY][indexX + 1])) {
                                 placementXIntArray[placementTotal] = ((indexX + 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
                                 placementYIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY - 1][indexX])) {
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY - 1][indexX])) {
                                 placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2);
                                 placementYIntArray[placementTotal] = ((indexY - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY][indexX - 1])) {
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY][indexX - 1])) {
                                 placementXIntArray[placementTotal] = ((indexX - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
                                 placementYIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY - 1][indexX - 1])) {
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY - 1][indexX - 1])) {
                                 placementXIntArray[placementTotal] = ((indexX - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
                                 placementYIntArray[placementTotal] = ((indexY - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY - 1][indexX + 1])) {
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY - 1][indexX + 1])) {
                                 placementXIntArray[placementTotal] = ((indexX - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
                                 placementYIntArray[placementTotal] = ((indexY - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY + 1][indexX - 1])) {
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY + 1][indexX - 1])) {
                                 placementXIntArray[placementTotal] = ((indexX - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
                                 placementYIntArray[placementTotal] = ((indexY - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
@@ -799,9 +799,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 -->
 
                         stringMaker.delete(0, stringMaker.length());
-                        logUtil.put(stringMaker.append("Planned Start Position c: ").append(allBinaryTiledLayer.getColumns()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexX * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexX).append(" r: ").append(allBinaryTiledLayer.getRows()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexY * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexY).toString(), this, commonStrings.PROCESS);
+                        logUtil.putF(stringMaker.append("Planned Start Position c: ").appendint(allBinaryTiledLayer.getColumns()).append(CommonSeps.getInstance().FORWARD_SLASH).appendint(indexX * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).appendint(indexX).append(" r: ").appendint(allBinaryTiledLayer.getRows()).append(CommonSeps.getInstance().FORWARD_SLASH).appendint(indexY * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).appendint(indexY).toString(), this, commonStrings.PROCESS);
                                                 
-                        geographicMapCellPosition = geographicMapCellPositionFactory.getInstance(indexX, indexY);
+                        geographicMapCellPosition = geographicMapCellPositionFactory.getAt(indexX, indexY);
                         //(SceneWindowWidth() / 2) - (Player.Width() / 2)
                         this.setStartPosition(geographicMapInterfaceArray, geographicMapCellPosition, layerIndex, stringMaker);
 
@@ -815,12 +815,12 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 //                            logUtil.put("Display not ready to set start position", this, commonStrings.PROCESS);
 //                        }
 
-                    } else if (basicTopViewGeographicMapCellTypeFactory.STAIRS_DOWN_CELL_TYPE.isType(type)) {
+                    } else if (basicTopViewGeographicMapCellTypeFactory.STAIRS_DOWN_CELL_TYPE.hasType(type)) {
                     
                         stringMaker.delete(0, stringMaker.length());
-                        logUtil.put(stringMaker.append("Planned End Position c: ").append(allBinaryTiledLayer.getColumns()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexX * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexX).append(" r: ").append(allBinaryTiledLayer.getRows()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexY * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexY).toString(), this, commonStrings.PROCESS);
+                        logUtil.putF(stringMaker.append("Planned End Position c: ").appendint(allBinaryTiledLayer.getColumns()).append(CommonSeps.getInstance().FORWARD_SLASH).appendint(indexX * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).appendint(indexX).append(" r: ").appendint(allBinaryTiledLayer.getRows()).append(CommonSeps.getInstance().FORWARD_SLASH).appendint(indexY * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).appendint(indexY).toString(), this, commonStrings.PROCESS);
                                                 
-                        geographicMapCellPosition = geographicMapCellPositionFactory.getInstance(indexX, indexY);
+                        geographicMapCellPosition = geographicMapCellPositionFactory.getAt(indexX, indexY);
                         this.setEndPosition(geographicMapInterfaceArray, geographicMapCellPosition, layerIndex, stringMaker);
 
                     }
@@ -834,9 +834,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final ArrayUtil arrayUtil = ArrayUtil.getInstance();
         final MyRandomFactory randomFactory = MyRandomFactory.getInstance();
 
-        platformerMap.placementXIntArray = arrayUtil.copyOf(placementXIntArray, placementTotal);
-        platformerMap.placementYIntArray = arrayUtil.copyOf(placementYIntArray, placementTotal);
-        platformerMap.placementSizeIntArray = arrayUtil.copyOf(placementSizeIntArray, placementTotal);
+        platformerMap.placementXIntArray = arrayUtil.copyOfint(placementXIntArray, placementTotal);
+        platformerMap.placementYIntArray = arrayUtil.copyOfint(placementYIntArray, placementTotal);
+        platformerMap.placementSizeIntArray = arrayUtil.copyOfint(placementSizeIntArray, placementTotal);
         platformerMap.placementIntArray = new int[placementTotal];
         final int size = platformerMap.placementIntArray.length;
         for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -845,10 +845,10 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         randomFactory.shuffle(platformerMap.placementIntArray);
                 
-        logUtil.put("placementTotal3: " + placementTotal3, this, commonStrings.PROCESS);
-        logUtil.put("placementTotal2: " + placementTotal2, this, commonStrings.PROCESS);
-        logUtil.put("placementTotal1: " + placementTotal1, this, commonStrings.PROCESS);
-        logUtil.put("placementTotal: " + placementTotal, this, commonStrings.PROCESS);
+        logUtil.putF("placementTotal3: " + placementTotal3, this, commonStrings.PROCESS);
+        logUtil.putF("placementTotal2: " + placementTotal2, this, commonStrings.PROCESS);
+        logUtil.putF("placementTotal1: " + placementTotal1, this, commonStrings.PROCESS);
+        logUtil.putF("placementTotal: " + placementTotal, this, commonStrings.PROCESS);
         globals.placementMax = placementTotal - 2;
     }
 
@@ -858,7 +858,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 //    public void udpatePositionFromWindowSize(final int lastWidth, final int lastHeight, final StringMaker stringMaker, final Object reason) {
 //    
 //        stringMaker.delete(0, stringMaker.length());
-//        logUtil.put(stringMaker.append("lastWidth:  ").append(lastWidth).append(CommonSeps.getInstance().COMMA).append(lastHeight).toString(), reason, commonStrings.PROCESS);
+//        logUtil.putF(stringMaker.append("lastWidth:  ").append(lastWidth).append(CommonSeps.getInstance().COMMA).append(lastHeight).toString(), reason, commonStrings.PROCESS);
 //        
 //        final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
 //
@@ -870,7 +870,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 //        
 //        if(dx != 0 || dy != 0) {
 //            stringMaker.delete(0, stringMaker.length());
-//            logUtil.put(stringMaker.append("lastWidth:  dx/dy: ").append(dx).append(CommonSeps.getInstance().FORWARD_SLASH).append(dy).toString(), reason, commonStrings.PROCESS);
+//            logUtil.putF(stringMaker.append("lastWidth:  dx/dy: ").append(dx).append(CommonSeps.getInstance().FORWARD_SLASH).append(dy).toString(), reason, commonStrings.PROCESS);
 //
 //            platformerMap.setX(platformerMap.x + dx);
 //            platformerMap.setY(platformerMap.y + dy);
@@ -949,15 +949,15 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final TileLayer tileLayer = ((TileLayer) map.getLayer(layerIndex));
         final int[][] mapArray = tileLayer.getMapArray();
         
-        if(!basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[geographicMapCellPosition.getRow()][geographicMapCellPosition.getColumn() + 1])) {
+        if(!basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[geographicMapCellPosition.getRow()][geographicMapCellPosition.getColumn() + 1])) {
             platformerMap.startX = platformerMap.startX + 18;
         }
-        if(!basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[geographicMapCellPosition.getRow()][geographicMapCellPosition.getColumn() - 1])) {
+        if(!basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[geographicMapCellPosition.getRow()][geographicMapCellPosition.getColumn() - 1])) {
             platformerMap.startX = platformerMap.startX - 18;
         }
         
         stringMaker.delete(0, stringMaker.length());
-        logUtil.put(stringMaker.append("<xsl:value-of select="name" />: ").append(platformerMap.startX).append(CommonSeps.getInstance().SPACE).append(platformerMap.startY).toString(), this, commonStrings.PROCESS);
+        logUtil.putF(stringMaker.append("<xsl:value-of select="name" />: ").appendint(platformerMap.startX).append(CommonSeps.getInstance().SPACE).appendint(platformerMap.startY).toString(), this, commonStrings.PROCESS);
 
         platformerMap.setX(platformerMap.Variable((int) platformerMap.startX));
         platformerMap.setY(platformerMap.Variable((int) platformerMap.startY));
@@ -989,7 +989,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         platformerMap.cellHeight = allBinaryTiledLayer.getCellHeight();
         
         stringMaker.delete(0, stringMaker.length());
-        logUtil.put(stringMaker.append("PlatformerMap end: ").append(platformerMap.endX).append(CommonSeps.getInstance().SPACE).append(platformerMap.endY).toString(), this, commonStrings.PROCESS);
+        logUtil.putF(stringMaker.append("PlatformerMap end: ").appendint(platformerMap.endX).append(CommonSeps.getInstance().SPACE).appendint(platformerMap.endY).toString(), this, commonStrings.PROCESS);
     }
                 
     public void setPosition(final GeographicMapCompositeInterface geographicMapCompositeInterface)

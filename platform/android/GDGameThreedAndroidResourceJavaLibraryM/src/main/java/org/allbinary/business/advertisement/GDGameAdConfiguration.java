@@ -21,11 +21,13 @@ public class GDGameAdConfiguration extends AdConfiguration
         );        
     }
     
+    @Override
     public Direction[] getValidAdSpots()
     {
         return directionArray;
     }
 
+    @Override
     public void processDemo(int state)
     {
     }

@@ -17,6 +17,7 @@ extends GDGameStaticInitializer
         super(resourceInitializationArray, portion);
     }
     
+    @Override
     public void initKey(int portion) throws Exception
     {
         super.initKey(portion);
@@ -24,6 +25,7 @@ extends GDGameStaticInitializer
         //ProgressCanvasFactory.getInstance().addPortion(50, "Game Keys");        
     }
 
+    @Override
     public void init(final AbeClientInformationInterface abeClientInformation, final CommandListener commandListener, final int level) throws Exception
     {
         super.init(abeClientInformation, commandListener, level);
@@ -48,6 +50,6 @@ extends GDGameStaticInitializer
 
     protected boolean isPlatformGameInitialized()
     {
-        return platformGameInitialized;
+        return this.platformGameInitialized;
     }
 }

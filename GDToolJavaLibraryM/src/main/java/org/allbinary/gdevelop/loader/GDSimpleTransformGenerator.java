@@ -40,17 +40,18 @@ public class GDSimpleTransformGenerator extends GDTransformGenerator {
         sharedBytes.outputStream.reset();
         
         final FileInputStream fileInputStream = new FileInputStream(this.xslFile);
-        final String xslFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
+        final String xslFileAsString = new String(this.streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
         this.process(xslFileAsString, this.outputFile, sharedBytes);
         
     }
     
+    @Override
     public String format(String result) throws Exception {
         try {
             return XmlDocumentHelper.getInstance().format(result);
         } catch(Exception e) {
-            logUtil.put("Unable to format XML", this, commonStrings.PROCESS, e);
+            this.logUtil.put("Unable to format XML", this, this.commonStrings.PROCESS, e);
             throw e;
             //return result;
         }

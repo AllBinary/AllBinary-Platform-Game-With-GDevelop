@@ -22,6 +22,7 @@ import org.allbinary.util.BasicArrayList;
 public class GDGameThreedJ2SEWithSWTJOGLEarlyResourceInitialization 
 extends ResourceInitialization
 {
+    @Override
     public void init() 
     throws Exception
     {

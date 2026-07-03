@@ -63,17 +63,17 @@ public class GDToThreedAndroidResourcesGradleGenerator
     }
     
     public void processResource(final String fileAsString, final String resourceString) {
-        resourceList.add(resourceString);
+        this.resourceList.add(resourceString);
     }
 
     public void processResource(final BasicArrayList threedFileList, final StringMaker stringMaker) {
         
         final StringUtil stringUtil = StringUtil.getInstance();
         
-        final int size = resourceList.size();
+        final int size = this.resourceList.size();
         String resourceString;
         for(int index = 0; index < size; index++) {
-            resourceString = (String) resourceList.get(index);
+            resourceString = (String) this.resourceList.get(index);
             final int beginIndex = Character.isAlphabetic(resourceString.charAt(0)) ? 0 : 1;
             //logUtil.put("resourceString: " + resourceString, this, commonStrings.PROCESS);
             final String resource = resourceString.substring(beginIndex, resourceString.length() - 4).toLowerCase();
@@ -93,7 +93,7 @@ public class GDToThreedAndroidResourcesGradleGenerator
 //            }
 
             if (resource.indexOf(this.gdToolStrings.BLANK) >= 0) {
-                isBlank = true;
+                this.isBlank = true;
             }
 
             stringMaker.append(this.PUBLIC_FINAL_STRING);
@@ -114,13 +114,13 @@ public class GDToThreedAndroidResourcesGradleGenerator
 
         final StringMaker resourceStringMaker = new StringMaker();
 
-        resourceStringMaker.append(GD_KEY);
+        resourceStringMaker.append(this.GD_KEY);
         resourceStringMaker.append(this.commonSeps.NEW_LINE);
         
         this.processResource(threedFileList, resourceStringMaker);
 
-        final String RESOURCE_ORIGINAL = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.original";
-        final String RESOURCE = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java";
+        final String RESOURCE_ORIGINAL = this.gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.original";
+        final String RESOURCE = this.gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java";
         
         final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
         final StringMaker stringMaker = new StringMaker();        
@@ -131,7 +131,7 @@ public class GDToThreedAndroidResourcesGradleGenerator
         final FileInputStream fileInputStream = new FileInputStream(RESOURCE_ORIGINAL);        
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
-        final Replace replace2 = new Replace(GD_KEY_NAME, camelCaseUtil.getAsCamelCase(this.packageName, stringMaker).toLowerCase());
+        final Replace replace2 = new Replace(this.GD_KEY_NAME, camelCaseUtil.getAsCamelCase(this.packageName, stringMaker).toLowerCase());
         final String newFileAsString2 = replace2.all(androidRFileAsString);
 
         final int size = this.gdResources.playSoundAndroidResourceNameList.size();
@@ -148,15 +148,15 @@ public class GDToThreedAndroidResourcesGradleGenerator
             resourceStringMaker.append(this.VALUE_RESOURCE_END);
         }
 
-        if(!isBlank) {
+        if(!this.isBlank) {
             resourceStringMaker.append(this.commonSeps.NEW_LINE);
-            resourceStringMaker.append(BLANK_LINE);
+            resourceStringMaker.append(this.BLANK_LINE);
         }
 
-        final Replace replace = new Replace(GD_KEY, resourceStringMaker.toString());
+        final Replace replace = new Replace(this.GD_KEY, resourceStringMaker.toString());
         final String newFileAsString = replace.all(newFileAsString2);
 
-        logUtil.putF(this.gdToolStrings.FILENAME + RESOURCE, this, commonStrings.PROCESS);
+        this.logUtil.putF(this.gdToolStrings.FILENAME + RESOURCE, this, this.commonStrings.PROCESS);
         
         this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);        
     }

@@ -23,7 +23,7 @@ public class GDToolStrings {
      * @return the instance
      */
     public static GDToolStrings getInstance() {
-        return instance;
+        return GDToolStrings.instance;
     }
 
     //protected final LogUtil logUtil = LogUtil.getInstance();

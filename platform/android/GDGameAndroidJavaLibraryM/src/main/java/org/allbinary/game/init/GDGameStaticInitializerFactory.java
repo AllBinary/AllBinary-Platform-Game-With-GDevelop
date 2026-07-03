@@ -28,8 +28,9 @@ public class GDGameStaticInitializerFactory extends BasicBuildGameInitializerFac
                         new GDGameAndroidAnimationInterfaceFactoryResourceInitialization(),
                         }, 15);
 
+    @Override
     public GameInitializationInterface getInstance()
     {
-        return STATIC;
+        return GDGameStaticInitializerFactory.STATIC;
     }
 }

@@ -40,61 +40,61 @@ public class GDGameMotionGestureListener implements MotionGestureEventListener
 
     public GDGameMotionGestureListener()
     {
-        logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+        this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR);
     }
 
     @Override
     public void onEvent(AllBinaryEventObject eventObject)
     {
-        ForcedLogUtil.log(commonStrings.NOT_IMPLEMENTED, this);
+        ForcedLogUtil.log(this.commonStrings.NOT_IMPLEMENTED, this);
     }
 
     @Override
     public void onUpMotionGestureEvent(MotionGestureEvent ev)
     {
-        onMotionGestureEvent(ev);
+        this.onMotionGestureEvent(ev);
     }
 
     @Override
     public void onDownMotionGestureEvent(MotionGestureEvent ev)
     {
-        onMotionGestureEvent(ev);
+        this.onMotionGestureEvent(ev);
     }
 
     @Override
     public void onLeftMotionGestureEvent(MotionGestureEvent ev)
     {
-        onMotionGestureEvent(ev);
+        this.onMotionGestureEvent(ev);
     }
 
     @Override
     public void onRightMotionGestureEvent(MotionGestureEvent ev)
     {
-        onMotionGestureEvent(ev);
+        this.onMotionGestureEvent(ev);
     }
 
     @Override
     public void onDiagonalDownRightMotionGestureEvent(MotionGestureEvent ev)
     {
-        onMotionGestureEvent(ev);
+        this.onMotionGestureEvent(ev);
     }
 
     @Override
     public void onDiagonalDownLeftMotionGestureEvent(MotionGestureEvent ev)
     {
-        onMotionGestureEvent(ev);
+        this.onMotionGestureEvent(ev);
     }
 
     @Override
     public void onDiagonalUpRightMotionGestureEvent(MotionGestureEvent ev)
     {
-        onMotionGestureEvent(ev);
+        this.onMotionGestureEvent(ev);
     }
 
     @Override
     public void onDiagonalUpLeftMotionGestureEvent(MotionGestureEvent ev)
     {
-        onMotionGestureEvent(ev);
+        this.onMotionGestureEvent(ev);
     }
 
     @Override
@@ -117,14 +117,14 @@ public class GDGameMotionGestureListener implements MotionGestureEventListener
         for(int index = 0; index < size; index++) {
             draggableGameLayer = (CollidableDestroyableDamageableLayer) allBinaryGameLayerManager.getLayerAt(index);
             
-            if(gameLayerDraggedList.size() == 0) {
+            if(this.gameLayerDraggedList.size() == 0) {
                 if (draggableGameLayer.isDraggable) {
                     //logUtil.put(draggableGameLayer.toString(), this, "press");
 
-                    if (rectangleCollisionUtil.isInside(draggableGameLayer.getXP(), draggableGameLayer.getYP(), draggableGameLayer.getX2(), draggableGameLayer.getY2(), point.getX(), point.getY())) {
+                    if (this.rectangleCollisionUtil.isInside(draggableGameLayer.getXP(), draggableGameLayer.getYP(), draggableGameLayer.getX2(), draggableGameLayer.getY2(), point.getX(), point.getY())) {
                         //logUtil.put(draggableGameLayer.toString(), this, "press");
                         draggableGameLayer.isDragged = true;
-                        gameLayerDraggedList.add(draggableGameLayer);
+                        this.gameLayerDraggedList.add(draggableGameLayer);
                     }
                 }
             }
@@ -140,23 +140,23 @@ public class GDGameMotionGestureListener implements MotionGestureEventListener
         {
             //logUtil.putF(commonStrings.START, this, "release");
 
-            final int size = gameLayerDraggedList.size();
+            final int size = this.gameLayerDraggedList.size();
             
             CollidableDestroyableDamageableLayer draggableGameLayer;
             for(int index = 0; index < size; index++) {
-                draggableGameLayer = (CollidableDestroyableDamageableLayer) gameLayerDraggedList.get(index);
+                draggableGameLayer = (CollidableDestroyableDamageableLayer) this.gameLayerDraggedList.get(index);
                 draggableGameLayer.isDragged = false;
             }
-            gameLayerDraggedList.clear();
+            this.gameLayerDraggedList.clear();
         }
         catch (Exception e)
         {
            final StringMaker stringBuffer = new StringMaker();
 
-           stringBuffer.append(commonStrings.EXCEPTION_LABEL);
+           stringBuffer.append(this.commonStrings.EXCEPTION_LABEL);
            stringBuffer.append(StringUtil.getInstance().toString(ev.getMotionGesture()));
 
-           logUtil.put(stringBuffer.toString(), this, "release", e);
+           this.logUtil.put(stringBuffer.toString(), this, "release", e);
         }
     }
 
@@ -179,10 +179,10 @@ public class GDGameMotionGestureListener implements MotionGestureEventListener
         {
             final StringMaker stringBuffer = new StringMaker();
 
-            stringBuffer.append(commonStrings.EXCEPTION_LABEL);
+            stringBuffer.append(this.commonStrings.EXCEPTION_LABEL);
             stringBuffer.append(StringUtil.getInstance().toString(ev.getMotionGesture()));
 
-            logUtil.put(stringBuffer.toString(), this, "onMotionGestureEvent", e);
+            this.logUtil.put(stringBuffer.toString(), this, "onMotionGestureEvent", e);
         }
     }
 }

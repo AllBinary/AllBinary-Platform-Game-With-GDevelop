@@ -33,7 +33,7 @@ public class GDSingleAnimationBehavior extends GDAnimationBehaviorBase {
      * @return the instance
      */
     public static GDSingleAnimationBehavior getInstance() {
-        return instance;
+        return GDSingleAnimationBehavior.instance;
     }
     
     private long elapsedTime = 0;
@@ -41,16 +41,16 @@ public class GDSingleAnimationBehavior extends GDAnimationBehaviorBase {
     @Override
     public void animate(final GDObject gdObject, final IndexedAnimation[] initIndexedAnimationInterfaceArray, final long timeDelta) {
         try {
-            elapsedTime += timeDelta;
+            this.elapsedTime += timeDelta;
             //animations/directions/timeBetweenFrames
-            if (elapsedTime > 200) {
-                elapsedTime = elapsedTime - 200;
+            if (this.elapsedTime > 200) {
+                this.elapsedTime = this.elapsedTime - 200;
                 initIndexedAnimationInterfaceArray[gdObject.animation].nextFrame();
             }
         } catch (Exception e) {
             final CommonStrings commonStrings = CommonStrings.getInstance();
             //logUtil.put(new StringMaker().append(this.getName()).append(" GDObject name: ").append(this.gdObject.name).toString(), this, "animate");
-            logUtil.put(commonStrings.EXCEPTION, this, "animate", e);
+            this.logUtil.put(commonStrings.EXCEPTION, this, "animate", e);
         }
     }
 }

@@ -53,10 +53,10 @@ public class GDTwodBehavior {
         final float newPortion = (gdObject.rotationP * timeDelta / 1000f);
         //stringBuilder.delete(0, stringBuilder.length());
         //logUtil.put(stringBuilder.append("newPortion : ").append(newPortion).toString(), this, UPDATE_ROTATION);
-        rotationRemainder = rotationRemainder + newPortion;
+        this.rotationRemainder = this.rotationRemainder + newPortion;
         //stringBuilder.delete(0, stringBuilder.length());
         //logUtil.put(stringBuilder.append("rotationRemainder: ").append(rotationRemainder).toString(), this, UPDATE_ROTATION);
-        final short angleAdjustment = (short) (rotationRemainder);
+        final short angleAdjustment = (short) (this.rotationRemainder);
         if(angleAdjustment != 0) {
             //stringBuilder.delete(0, stringBuilder.length());
             //logUtil.put(stringBuilder.append("angleAdjustment: ").append(angleAdjustment).toString(), this, UPDATE_ROTATION);
@@ -75,7 +75,7 @@ public class GDTwodBehavior {
             gdObject.angle = (short) adjustedAngle2;
             //gdObject.angle += angleAdjustment;
             this.getAnimationBehavior().setRotation(gameLayer, angleAdjustment);
-            rotationRemainder -= angleAdjustment;
+            this.rotationRemainder -= angleAdjustment;
             //logUtil.put("reset", this, UPDATE_ROTATION);
         } else {
             //logUtil.put("skip", this, UPDATE_ROTATION);
@@ -86,7 +86,7 @@ public class GDTwodBehavior {
      * @return the animationBehavior
      */
     public GDAnimationBehaviorBase getAnimationBehavior() {
-        return animationBehavior;
+        return this.animationBehavior;
     }
     
 }

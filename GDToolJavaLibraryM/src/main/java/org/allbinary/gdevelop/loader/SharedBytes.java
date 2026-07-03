@@ -27,7 +27,7 @@ public class SharedBytes {
      * @return the instance
      */
     public static SharedBytes getInstance() {
-        return instance;
+        return SharedBytes.instance;
     }
     
     public final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(256000);

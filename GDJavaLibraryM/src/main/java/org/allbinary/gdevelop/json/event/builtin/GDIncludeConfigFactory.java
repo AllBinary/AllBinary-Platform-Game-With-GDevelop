@@ -19,7 +19,7 @@ public class GDIncludeConfigFactory
      */
     public static GDIncludeConfigFactory getInstance()
     {
-        return instance;
+        return GDIncludeConfigFactory.instance;
     }
 
     public final int INCLUDE_ALL = 0;

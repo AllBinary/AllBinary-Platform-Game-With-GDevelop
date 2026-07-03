@@ -33,6 +33,6 @@ public class GDFlagResources extends FlagGameResources
 
     public static FlagGameResources getInstance()
     {
-        return SINGLETON;
+        return GDFlagResources.SINGLETON;
     }
 }

@@ -22,6 +22,7 @@ public class GDGameResourceInitialization
     {
     }
 
+    @Override
     public void init()
     throws Exception
     {

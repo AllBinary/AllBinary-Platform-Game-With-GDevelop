@@ -39,19 +39,20 @@ public class GDCustomCollisionMaskRemoval extends GDJSONGeneratorBase {
         gdJSONPersistence.save(gdToolStrings.ROOT_PATH + "game_updated.json", gameAsConfigurationJSONObject);
     }
 
+    @Override
     public void processLayout(final JSONObject jsonObject) throws Exception {
         final String value = jsonObject.getString(this.gdProjectStrings.NAME);
-        if(value.indexOf(LEVEL) >= 0) {
-            System.out.println(PROCESSING_LAYOUT + value);
+        if(value.indexOf(this.LEVEL) >= 0) {
+            System.out.println(this.PROCESSING_LAYOUT + value);
             this.processObjects(jsonObject);
         }
     }
     
     public boolean processObjects(final String name) {
         
-        final int size = inclusionExclusionArray.length;
+        final int size = this.inclusionExclusionArray.length;
         for(int index = 0; index < size; index++) {
-            if(inclusionExclusionArray[index].compareTo(name) == 0) {
+            if(this.inclusionExclusionArray[index].compareTo(name) == 0) {
                 return true;
             }
         }
@@ -75,7 +76,7 @@ public class GDCustomCollisionMaskRemoval extends GDJSONGeneratorBase {
             if(type.compareTo(this.gdProjectStrings.SPRITE) == 0) {
                 name = jsonObject.getString(this.gdProjectStrings.NAME);
                 if(this.processObjects(name)) {
-                    System.out.println(UPDATE_SPRITE + name);
+                    System.out.println(this.UPDATE_SPRITE + name);
                     this.processSprite(jsonObject);
                 }
             } 

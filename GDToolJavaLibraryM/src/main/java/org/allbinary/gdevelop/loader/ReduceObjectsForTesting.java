@@ -42,9 +42,9 @@ public class ReduceObjectsForTesting extends GDJSONGeneratorBase {
     private final String REMOVING_FROM_VARIABLE_ARRAY = "Removing from Variable Array: ";
 
     public ReduceObjectsForTesting() {
-        list.add("AdultRedDragon");
-        list.add("Bat");
-        list.add("SkeletonWarriorEnemy");
+        this.list.add("AdultRedDragon");
+        this.list.add("Bat");
+        this.list.add("SkeletonWarriorEnemy");
     }
 
     private boolean contains(final String value) {
@@ -71,7 +71,7 @@ public class ReduceObjectsForTesting extends GDJSONGeneratorBase {
             if(this.contains(value)) {
                 
             } else if(value.indexOf(inclusion) >= 0) {
-                System.out.println(REMOVING_FROM_OBJECT_GROUP + value);
+                System.out.println(this.REMOVING_FROM_OBJECT_GROUP + value);
                 jsonArray.remove(index);
                 index--;
             }
@@ -91,10 +91,10 @@ public class ReduceObjectsForTesting extends GDJSONGeneratorBase {
         JSONObject jsonObject;
         for(int index = 0; index < size; index++) {
             jsonObject = jsonArray.getJSONObject(index);
-            if(jsonObject.getString(gdProjectStrings.NAME).compareTo(ENEMIES) == 0) {
-                this.reduceObjectsInObjectGroups(jsonObject.getJSONArray(this.gdProjectStrings.OBJECTS), ENEMY);
-            } else if(jsonObject.getString(gdProjectStrings.NAME).compareTo(PROJECTILES) == 0) {
-                this.reduceObjectsInObjectGroups(jsonObject.getJSONArray(this.gdProjectStrings.OBJECTS), ATTACK);
+            if(jsonObject.getString(this.gdProjectStrings.NAME).compareTo(this.ENEMIES) == 0) {
+                this.reduceObjectsInObjectGroups(jsonObject.getJSONArray(this.gdProjectStrings.OBJECTS), this.ENEMY);
+            } else if(jsonObject.getString(this.gdProjectStrings.NAME).compareTo(this.PROJECTILES) == 0) {
+                this.reduceObjectsInObjectGroups(jsonObject.getJSONArray(this.gdProjectStrings.OBJECTS), this.ATTACK);
             }
         }
     }
@@ -110,7 +110,7 @@ public class ReduceObjectsForTesting extends GDJSONGeneratorBase {
             if(this.contains(value)) {
 
             } else {
-                System.out.println(REMOVING_FROM_VARIABLE_ARRAY + value);
+                System.out.println(this.REMOVING_FROM_VARIABLE_ARRAY + value);
                 jsonArray.remove(index);
                 index--;
             }
@@ -137,8 +137,8 @@ public class ReduceObjectsForTesting extends GDJSONGeneratorBase {
             value = jsonObject.getString(this.gdProjectStrings.NAME);
             if(this.contains(value)) {
                 
-            } else if(value.indexOf(ENEMY) >= 0 || value.indexOf(ATTACK) >= 0) {
-                System.out.println(REMOVING_FROM_OBJECTS + value);
+            } else if(value.indexOf(this.ENEMY) >= 0 || value.indexOf(this.ATTACK) >= 0) {
+                System.out.println(this.REMOVING_FROM_OBJECTS + value);
                 jsonArray.remove(index);
                 index--;
             }
@@ -158,20 +158,21 @@ public class ReduceObjectsForTesting extends GDJSONGeneratorBase {
         JSONObject jsonObject;
         for(int index = 0; index < size; index++) {
             jsonObject = jsonArray.getJSONObject(index);
-            if(jsonObject.getString(gdProjectStrings.NAME).compareTo(this.ENEMY_ARRAY) == 0) {
+            if(jsonObject.getString(this.gdProjectStrings.NAME).compareTo(this.ENEMY_ARRAY) == 0) {
                 this.reduceVariableArray(jsonObject.getJSONArray(this.gdProjectStrings.CHILDREN));
-            } else if(jsonObject.getString(gdProjectStrings.NAME).compareTo(this.ENEMY_SIZE2_ARRAY) == 0) {
+            } else if(jsonObject.getString(this.gdProjectStrings.NAME).compareTo(this.ENEMY_SIZE2_ARRAY) == 0) {
                 this.reduceVariableArray(jsonObject.getJSONArray(this.gdProjectStrings.CHILDREN));
-            } else if(jsonObject.getString(gdProjectStrings.NAME).compareTo(this.ENEMY_SIZE3_ARRAY) == 0) {
+            } else if(jsonObject.getString(this.gdProjectStrings.NAME).compareTo(this.ENEMY_SIZE3_ARRAY) == 0) {
                 this.reduceVariableArray(jsonObject.getJSONArray(this.gdProjectStrings.CHILDREN));
             }
         }
     }
 
+    @Override
     public void processLayout(final JSONObject jsonObject) {
         final String value = jsonObject.getString(this.gdProjectStrings.NAME);
-        if(value.indexOf(LEVEL) >= 0) {
-            System.out.println(PROCESSING_LAYOUT + value);
+        if(value.indexOf(this.LEVEL) >= 0) {
+            System.out.println(this.PROCESSING_LAYOUT + value);
             this.reduceObjectGroups(jsonObject);
             this.reduceObjects(jsonObject);
             this.reduceVariables(jsonObject);

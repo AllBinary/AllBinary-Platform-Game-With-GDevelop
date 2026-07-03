@@ -28,7 +28,7 @@ public class GDResourceFactory
      */
     public static GDResourceFactory getInstance()
     {
-        return instance;
+        return GDResourceFactory.instance;
     }
 
     public final String KIND = "kind";
@@ -68,7 +68,7 @@ public class GDResourceFactory
             return this.BITMAP_FONT;
         } else {
             final CommonStrings commonStrings = CommonStrings.getInstance();
-            logUtil.putF(kind, this, commonStrings.CONSTRUCTOR);
+            this.logUtil.putF(kind, this, commonStrings.CONSTRUCTOR);
             throw new RuntimeException(kind);
         }        
     }

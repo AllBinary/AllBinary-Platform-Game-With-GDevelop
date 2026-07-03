@@ -30,7 +30,7 @@ public class GDNodeStatsFactory extends BaseGDNodeStats {
      * @return the instance
      */
     public static BaseGDNodeStats getInstance() {
-        return instance;
+        return GDNodeStatsFactory.instance;
     }
     
     private final CallCountGDNodeStats callCountGDNodeStats = new CallCountGDNodeStats();

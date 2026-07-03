@@ -47,18 +47,18 @@ public class GDTiledLayerFactory implements AllBinaryTiledLayerFactoryInterface 
         final int width = columns * raceTrackData.getCellWidth();
         final int height = rows * raceTrackData.getCellHeight();
 
-        useAsMiniAllBinaryTiledLayer = new AllBinaryThreedVisibleTiledLayer(
+        this.useAsMiniAllBinaryTiledLayer = new AllBinaryThreedVisibleTiledLayer(
             raceTrackData.getId(), raceTrackData.getMapArray(),
             animationInterfaceArray, columns, rows, width, height,
             raceTrackData.getCellWidth(), raceTrackData.getCellHeight(),
             9);
 
-        return useAsMiniAllBinaryTiledLayer;
+        return this.useAsMiniAllBinaryTiledLayer;
     }
 
     //Needs a mini3d tile layer
     public AllBinaryTiledLayer getMiniInstance(final RaceTrackData raceTrackData) throws Exception {
-        return useAsMiniAllBinaryTiledLayer;
+        return this.useAsMiniAllBinaryTiledLayer;
     }
 
 }

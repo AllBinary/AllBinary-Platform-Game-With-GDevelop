@@ -44,8 +44,8 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
     {
         final String GD_KEY = "//GD";
         
-        final String RESOURCE_INITIALIZATION_ORIGINAL = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.origin";
-        final String RESOURCE_INITIALIZATION = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.java";
+        final String RESOURCE_INITIALIZATION_ORIGINAL = this.gdToolStrings.ROOT_PATH + "platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.origin";
+        final String RESOURCE_INITIALIZATION = this.gdToolStrings.ROOT_PATH + "platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.java";
         
         final StringMaker stringMaker = new StringMaker();
 
@@ -63,7 +63,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
         final Replace replace = new Replace(GD_KEY, stringMaker.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
-        logUtil.putF(this.gdToolStrings.FILENAME + RESOURCE_INITIALIZATION, this, commonStrings.PROCESS);
+        this.logUtil.putF(this.gdToolStrings.FILENAME + RESOURCE_INITIALIZATION, this, this.commonStrings.PROCESS);
 
         this.bufferedWriterUtil.overwrite(RESOURCE_INITIALIZATION, newFileAsString);
 
@@ -77,12 +77,12 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
         
         int size = playSoundResourceClassNameList.size();
         for(int index = 0; index < size; index++) {
-            stringMaker.append(gdToolStrings.RESOURCE_0);
+            stringMaker.append(this.gdToolStrings.RESOURCE_0);
             stringMaker.append(stringUtil.toString(playSoundResourceClassNameList.get(index)));
-            stringMaker.append(gdToolStrings.SOUND_RESOURCE);
-            stringMaker.append(gdToolStrings.RESOURCE_1);
+            stringMaker.append(this.gdToolStrings.SOUND_RESOURCE);
+            stringMaker.append(this.gdToolStrings.RESOURCE_1);
             stringMaker.append(stringUtil.toString(playSoundAndroidResourceNameList.get(index)));
-            stringMaker.append(gdToolStrings.RESOURCE_2);
+            stringMaker.append(this.gdToolStrings.RESOURCE_2);
             stringMaker.append(this.commonSeps.NEW_LINE);
         }        
     }
@@ -105,27 +105,27 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
 
             stringMaker.append(this.commonSeps.NEW_LINE);
             
-            if (resource.endsWith(gdToolStrings.UNDERSCORE_0) && resource.indexOf(gdToolStrings._TOUCH_) < 0) {
+            if (resource.endsWith(this.gdToolStrings.UNDERSCORE_0) && resource.indexOf(this.gdToolStrings._TOUCH_) < 0) {
                 stringMaker.append(this.commonSeps.COMMENT);
             }
             
             //hasRotationImages?
             if (!hasRotationImages) {
                 for (int index2 = 2; index2 < size2; index2++) {
-                    if (resource.endsWith(commonSeps.UNDERSCORE + index2) && resource.indexOf(gdToolStrings._TOUCH_) < 0) {
+                    if (resource.endsWith(commonSeps.UNDERSCORE + index2) && resource.indexOf(this.gdToolStrings._TOUCH_) < 0) {
                         stringMaker.append(this.commonSeps.COMMENT);
                     }
                 }
             }
                         
-            stringMaker.append(gdToolStrings.RESOURCE_0);
+            stringMaker.append(this.gdToolStrings.RESOURCE_0);
             
-            stringMaker.append(gdToolStrings.GD_RESOURCE);
+            stringMaker.append(this.gdToolStrings.GD_RESOURCE);
             stringMaker.append(resource);
-            stringMaker.append(gdToolStrings._RESOURCE);
-            stringMaker.append(gdToolStrings.RESOURCE_1);
+            stringMaker.append(this.gdToolStrings._RESOURCE);
+            stringMaker.append(this.gdToolStrings.RESOURCE_1);
             stringMaker.append(stringUtil.toString(androidResourceList.get(index)));
-            stringMaker.append(gdToolStrings.RESOURCE_2);
+            stringMaker.append(this.gdToolStrings.RESOURCE_2);
             stringMaker.append(this.commonSeps.NEW_LINE);
         }        
     }

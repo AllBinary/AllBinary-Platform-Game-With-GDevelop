@@ -42,7 +42,7 @@ public class GDGameInputProcessor {
     private final BasicArrayList removalGameKeyEventList = new BasicArrayListD();
     private final BasicArrayList keyEventList = new BasicArrayListD();
     private final BasicArrayList removalKeyEventList = new BasicArrayListD();
-    private final PlayerGameInput playerGameInput = new PlayerInput(keyEventList, removalKeyEventList, gameKeyEventList, removalGameKeyEventList, 0);
+    private final PlayerGameInput playerGameInput = new PlayerInput(this.keyEventList, this.removalKeyEventList, this.gameKeyEventList, this.removalGameKeyEventList, 0);
 
     public void process(final AllBinaryLayerManager allbinaryLayerManager, final Animation specialAnimation) throws Exception {
 
@@ -70,41 +70,41 @@ public class GDGameInputProcessor {
         
         GameKeyEvent gameKeyEvent;
         
-        final int size = gameKeyEventList.size();
+        final int size = this.gameKeyEventList.size();
         //logUtil.put("size: " + size, this, gameInputStrings.PROCESS_INPUT);
         for(int index = 0; index < size; index++) {
-            gameKeyEvent = (GameKeyEvent) gameKeyEventList.get(index);
+            gameKeyEvent = (GameKeyEvent) this.gameKeyEventList.get(index);
             //logUtil.put("press key: " + gameKeyEvent.getKey(), this, gameInputStrings.PROCESS_INPUT);
             globals.inputProcessorArray[gameKeyEvent.getKey()].processEvent(allbinaryLayerManager, gameKeyEvent);
         }
 
-        final int size2 = removalGameKeyEventList.size();
+        final int size2 = this.removalGameKeyEventList.size();
         //logUtil.put("size: " + size, this, gameInputStrings.PROCESS_INPUT);
         for(int index = 0; index < size2; index++) {
-            gameKeyEvent = (GameKeyEvent) removalGameKeyEventList.get(index);
+            gameKeyEvent = (GameKeyEvent) this.removalGameKeyEventList.get(index);
             //logUtil.put("release key: " + gameKeyEvent.getKey(), this, gameInputStrings.PROCESS_INPUT);
             globals.inputProcessorArray[gameKeyEvent.getKey()].processReleasedEvent(allbinaryLayerManager, gameKeyEvent);
         }
 
         Integer keyAsInteger;
-        final int size3 = keyEventList.size();
+        final int size3 = this.keyEventList.size();
         
         if(size3 > 0) {
-            keyAsInteger = (Integer) keyEventList.get(0);
+            keyAsInteger = (Integer) this.keyEventList.get(0);
             globals.anyKeyProcessorArray[0].process(allbinaryLayerManager, keyAsInteger);
         }
 
         //logUtil.put("size: " + size, this, gameInputStrings.PROCESS_INPUT);
         for(int index = 0; index < size3; index++) {
-            keyAsInteger = (Integer) keyEventList.get(index);
+            keyAsInteger = (Integer) this.keyEventList.get(index);
             //logUtil.put("press key: " + gameKeyEvent.getKey(), this, gameInputStrings.PROCESS_INPUT);
             globals.unmappedInputProcessorArray[keyAsInteger.intValue()].process(allbinaryLayerManager, keyAsInteger);
         }
 
-        final int size4 = removalKeyEventList.size();
+        final int size4 = this.removalKeyEventList.size();
         //logUtil.put("size: " + size, this, gameInputStrings.PROCESS_INPUT);
         for(int index = 0; index < size4; index++) {
-            keyAsInteger = (Integer) removalKeyEventList.get(index);
+            keyAsInteger = (Integer) this.removalKeyEventList.get(index);
             //logUtil.put("release key: " + gameKeyEvent.getKey(), this, gameInputStrings.PROCESS_INPUT);
             globals.unmappedInputProcessorArray[keyAsInteger.intValue()].processReleased(allbinaryLayerManager, keyAsInteger);
         }
@@ -135,7 +135,7 @@ public class GDGameInputProcessor {
         catch (Exception e)
         {
             final CommonStrings commonStrings = CommonStrings.getInstance();
-            logUtil.putF(commonStrings.EXCEPTION, this, gameInputStrings.PROCESS_INPUT);
+            this.logUtil.putF(commonStrings.EXCEPTION, this, this.gameInputStrings.PROCESS_INPUT);
         }
     }
 
@@ -143,12 +143,12 @@ public class GDGameInputProcessor {
      * @return the playerGameInput
      */
     public PlayerGameInput getPlayerGameInput() {
-        return playerGameInput;
+        return this.playerGameInput;
     }
 
     public BasicArrayList getGameKeyEventList()
     {
-        return gameKeyEventList;
+        return this.gameKeyEventList;
     }
     
 }

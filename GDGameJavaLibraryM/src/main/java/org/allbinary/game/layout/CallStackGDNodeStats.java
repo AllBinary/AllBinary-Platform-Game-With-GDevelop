@@ -28,21 +28,21 @@ public class CallStackGDNodeStats {
 
     
     private final int SIZE = 16;
-    private final int[][] callStack = new int[SIZE][6000];
+    private final int[][] callStack = new int[this.SIZE][6000];
     private int total = 0;
     
     public void reset() {
-        for(int index2 = 0; index2 < SIZE; index2++) {
-            for (int index = 0; index < total; index++) {
-                callStack[index2][index] = 0;
+        for(int index2 = 0; index2 < this.SIZE; index2++) {
+            for (int index = 0; index < this.total; index++) {
+                this.callStack[index2][index] = 0;
             }
         }
 
-        total = 0;
+        this.total = 0;
     }
 
     public void push(int index, int name) {
-        this.callStack[index][total++] = name;
+        this.callStack[index][this.total++] = name;
     }
 
     public void log(final StringMaker stringBuilder, final Object object) {
@@ -55,18 +55,18 @@ public class CallStackGDNodeStats {
         //stringBuilder.append(this.getClass().getName());
         //stringBuilder.append(commonSeps.COLON);
 
-        for(int index2 = 0; index2 < total; index2++) {
-            for(int index = 0; index < SIZE; index++) {
-                if(callStack[index][index2] != 0) {
+        for(int index2 = 0; index2 < this.total; index2++) {
+            for(int index = 0; index < this.SIZE; index++) {
+                if(this.callStack[index][index2] != 0) {
                     stringBuilder.appendint(index2);
                     stringBuilder.append(commonSeps.COLON);
                     stringBuilder.appendint(index);
                     stringBuilder.append(commonSeps.COLON);
-                    stringBuilder.appendint(callStack[index][index2]);
+                    stringBuilder.appendint(this.callStack[index][index2]);
                     stringBuilder.append(commonSeps.SEMICOLON);
                     if(stringBuilder.length() > 256) {
                         
-                        logUtil.putF(stringBuilder.toString(), object, commonStrings.PROCESS);
+                        this.logUtil.putF(stringBuilder.toString(), object, commonStrings.PROCESS);
                         stringBuilder.delete(0, stringBuilder.length());
                     }
                 }
@@ -74,7 +74,7 @@ public class CallStackGDNodeStats {
         }
 
         if(stringBuilder.length() > 0) {
-            logUtil.putF(stringBuilder.toString(), object, commonStrings.PROCESS);
+            this.logUtil.putF(stringBuilder.toString(), object, commonStrings.PROCESS);
         }
         
     }

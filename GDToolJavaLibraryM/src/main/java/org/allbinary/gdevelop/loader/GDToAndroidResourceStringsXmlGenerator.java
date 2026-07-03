@@ -30,9 +30,10 @@ public class GDToAndroidResourceStringsXmlGenerator extends GDNameFileGenerator
 
     public GDToAndroidResourceStringsXmlGenerator() {
         super(GDToolStrings.getInstance().ROOT_PATH + "platformx\\android\\GDGameAndroidApplicationM\\strings.xml.original",
-                OUTPUT_PATH + "strings.xml");
+                GDToAndroidResourceStringsXmlGenerator.OUTPUT_PATH + "strings.xml");
     }
 
+    @Override
     public void process(final GDProject gdProject) {
         this.name = gdProject.name;
     }    
@@ -46,12 +47,12 @@ public class GDToAndroidResourceStringsXmlGenerator extends GDNameFileGenerator
 
         final FileInputStream fileInputStream = new FileInputStream(this.originalFilePath);
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
-        final Replace replace = new Replace(GD_KEY, this.name);
+        final Replace replace = new Replace(this.GD_KEY, this.name);
         final String newFileAsString = replace.all(androidRFileAsString);
         
-        logUtil.putF(this.gdToolStrings.FILENAME + this.newFilePath, this, commonStrings.PROCESS);
+        this.logUtil.putF(this.gdToolStrings.FILENAME + this.newFilePath, this, this.commonStrings.PROCESS);
 
-        final File directoryFile = new File(OUTPUT_PATH);
+        final File directoryFile = new File(GDToAndroidResourceStringsXmlGenerator.OUTPUT_PATH);
         directoryFile.mkdirs();
         
         this.bufferedWriterUtil.overwrite(this.newFilePath, newFileAsString);

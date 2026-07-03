@@ -55,7 +55,7 @@ public class JSONPersistance extends BasicPersitance
         final RecordEnumeration recordEnum = 
             recordStore.enumerateRecords(null, null,true);
         
-        logUtil.putF(new StringMaker().append(this.persistanceStrings.NUMBER_OF_RECORDS).appendint(recordEnum.numRecords()).toString(), this, this.persistanceStrings.LOAD_ALL);
+        this.logUtil.putF(new StringMaker().append(this.persistanceStrings.NUMBER_OF_RECORDS).appendint(recordEnum.numRecords()).toString(), this, this.persistanceStrings.LOAD_ALL);
         
         final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
         final StringMaker stringBuffer = new StringMaker();
@@ -69,7 +69,7 @@ public class JSONPersistance extends BasicPersitance
             id = recordEnum.nextRecordId();
 
             stringBuffer.delete(0, stringBuffer.length());
-            logUtil.putF(stringBuffer.append(JSON_).append(this.persistanceStrings.LOADING_ID).appendint(id).toString(), this, this.persistanceStrings.LOAD_ALL);
+            this.logUtil.putF(stringBuffer.append(JSONPersistance.JSON_).append(this.persistanceStrings.LOADING_ID).appendint(id).toString(), this, this.persistanceStrings.LOAD_ALL);
             
             byteArrayInputStream = 
                 new ByteArrayInputStream(this.tsUtil.getRecord(recordStore, id));
@@ -78,8 +78,8 @@ public class JSONPersistance extends BasicPersitance
             for (int index = 0; index < size; index++)
             {
                 value = inputStream.readUTF();
-                logUtil.putF(value, this, this.persistanceStrings.LOAD_ALL);
-                valueList.add(value);
+                this.logUtil.putF(value, this, this.persistanceStrings.LOAD_ALL);
+                this.valueList.add(value);
             }
 
             this.idList.add(smallIntegerSingletonFactory.getAt(id));
@@ -90,7 +90,7 @@ public class JSONPersistance extends BasicPersitance
     
     public void save(final AbeClientInformationInterface abeClientInformation, final String stringAsJSON) throws Exception
     {
-        logUtil.putF(new StringMaker().append(JSON_).append(this.persistanceStrings.SAVING).append(stringAsJSON).toString(), this, this.commonStrings.SAVE);
+        this.logUtil.putF(new StringMaker().append(JSONPersistance.JSON_).append(this.persistanceStrings.SAVING).append(stringAsJSON).toString(), this, this.commonStrings.SAVE);
         
         final RecordStore recordStore = RecordStore.openRecordStore(
                 this.getRecordId(abeClientInformation), true);
@@ -111,7 +111,7 @@ public class JSONPersistance extends BasicPersitance
 
     public String getJSONAsString() {
         if(this.valueList.size() > 0) {
-            return (String) valueList.get(0);
+            return (String) this.valueList.get(0);
         }
         return StringUtil.getInstance().EMPTY_STRING;
     }

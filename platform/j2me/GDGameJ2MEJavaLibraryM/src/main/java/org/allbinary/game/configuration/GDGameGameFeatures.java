@@ -73,7 +73,7 @@ public class GDGameGameFeatures implements InitInterface
         // graphicsOptionsBasicArrayList.add(GameFeature.);
 
         GameFeatureChoiceGroups.getMultipleInstance().add(
-                GRAPHICS_OPTIONS, multipleList);
+                this.GRAPHICS_OPTIONS, multipleList);
 
         //GameFeatureChoiceGroups.getExclusiveInstance().add(
           //      AllBinarySensorManager.getInstance().ORIENTATION_SENSOR_INPUT, 

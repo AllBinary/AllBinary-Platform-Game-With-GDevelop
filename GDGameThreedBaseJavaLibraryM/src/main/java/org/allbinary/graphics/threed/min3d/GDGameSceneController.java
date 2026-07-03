@@ -44,6 +44,7 @@ extends AllBinaryGameSceneController
 
     private final GDCameraInputProcessor cameraInputProcessor = new GDCameraInputProcessor() 
     {
+        @Override
         public void process(GDGameCameraSetup gdGameCameraSetup) {
 //            if (gdGameCameraSetup.type == GDGameCameraSetup.FOLLOW) {
 //                CheatGameInputProcessor.inputProcessor = new CameraLayerCompositeInputProcessor(cameraLayer);
@@ -68,7 +69,7 @@ extends AllBinaryGameSceneController
             new OffsetTargetXCameraFactory(),
             new AllBinarySceneFactory(), true, true);
         
-        PreLogUtil.put(commonStrings.START, TAG, commonStrings.CONSTRUCTOR);
+        PreLogUtil.put(this.commonStrings.START, this.TAG, this.commonStrings.CONSTRUCTOR);
     }
 
     private boolean initialized;
@@ -85,15 +86,15 @@ extends AllBinaryGameSceneController
     {
         try
         {
-            PreLogUtil.put(commonStrings.START, this, this.sceneStrings.INIT_SCENE);
+            PreLogUtil.put(this.commonStrings.START, this, this.sceneStrings.INIT_SCENE);
             
-            index = 1;
+            this.index = 1;
 
-            final String glInstanceVersion = openGLCapabilities.glInstanceVersion;
+            final String glInstanceVersion = this.openGLCapabilities.glInstanceVersion;
             
             final ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
             
-            progressCanvas.addEarlyPortion(portion, loadingString, index++);
+            progressCanvas.addEarlyPortion(this.portion, this.loadingString, this.index++);
             
             //When I can get resources fixed for opengl then I reload without loading models again.
             //Lights and resources don't need to be added again
@@ -102,11 +103,11 @@ extends AllBinaryGameSceneController
                 final ResourceInitialization resourceInitialization = ((ResourceInitialization) GDThreedEarlyResourceInitializationFactory.getInstance().list.get(0));
                 resourceInitialization.init();
                               
-                progressCanvas.addEarlyPortion(portion, loadingString, index++);
+                progressCanvas.addEarlyPortion(this.portion, this.loadingString, this.index++);
                 
                 this.processLighting();
 
-            final Camera camera = scene.getCamera();
+            final Camera camera = this.scene.getCamera();
             //Default values if not set by configuration
             camera.frustum.horizontalCenter(0.5f);
             camera.frustum.verticalCenter(0.5f);
@@ -120,44 +121,45 @@ extends AllBinaryGameSceneController
                 TextureManager.getInstance().reset(gl);
             }
 
-            progressCanvas.addEarlyPortion(portion, loadingString, index++);
+            progressCanvas.addEarlyPortion(this.portion, this.loadingString, this.index++);
             
             GDGameThreedLevelBuilder gdGameThreedLevelBuilder;
-            final int size = gameThreedLevelBuilderFactory.list.size();
+            final int size = this.gameThreedLevelBuilderFactory.list.size();
             for(int index = 0; index < size; index++) {
-                gdGameThreedLevelBuilder = ((GDGameThreedLevelBuilder) gameThreedLevelBuilderFactory.list.get(index));
+                gdGameThreedLevelBuilder = ((GDGameThreedLevelBuilder) this.gameThreedLevelBuilderFactory.list.get(index));
                 gdGameThreedLevelBuilder.build(gl, glInstanceVersion);
             }
 
-            progressCanvas.addEarlyPortion(portion, loadingString, index++);
+            progressCanvas.addEarlyPortion(this.portion, this.loadingString, this.index++);
 
-            PreLogUtil.put(commonStrings.END, this, this.sceneStrings.INIT_SCENE);                
+            PreLogUtil.put(this.commonStrings.END, this, this.sceneStrings.INIT_SCENE);                
         }
         catch (Exception e)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, this.sceneStrings.INIT_SCENE, e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.sceneStrings.INIT_SCENE, e);
         }
     }
 
     private CameraLayer cameraLayer;
+    @Override
     public void buildScene(final AllBinaryGameLayerManager layerManager) throws Exception
     {
         try
         {
-            PreLogUtil.put(commonStrings.START, this, this.sceneStrings.BUILD_SCENE);
+            PreLogUtil.put(this.commonStrings.START, this, this.sceneStrings.BUILD_SCENE);
 
             final GDGameLayerManager gdLayerManager = (GDGameLayerManager) layerManager;
-            final GDGameCameraSetup gdGameCameraSetup = ((GDGameCameraSetup) gameThreedLevelBuilderFactory.cameraList.get(gdLayerManager.layout));
+            final GDGameCameraSetup gdGameCameraSetup = ((GDGameCameraSetup) this.gameThreedLevelBuilderFactory.cameraList.get(gdLayerManager.layout));
                 
             //camera.position
-            final Camera camera = scene.getCamera();
+            final Camera camera = this.scene.getCamera();
             
             if (gdGameCameraSetup.type == GDGameCameraSetup.FOLLOW) {
                 
                 //Reset the scene
-                scene.reset();
+                this.scene.reset();
 
-                final OffsetTargetXCamera vehicleCamera = (OffsetTargetXCamera) scene.getCamera();
+                final OffsetTargetXCamera vehicleCamera = (OffsetTargetXCamera) this.scene.getCamera();
 
                 //final int distanceX = 5;
                 //final int distanceY = 5;
@@ -168,7 +170,7 @@ extends AllBinaryGameSceneController
                     OperatingSystemFactory.getInstance().getOperatingSystemInstance();
                 final int distance = operatingSystem.isOverScan() ? (AndroidUtil.isAndroid() ? 550 : 650) : (AndroidUtil.isAndroid() ? 200 : 300);
 
-                cameraLayer =
+                this.cameraLayer =
                     //new CameraLayer(
                     //new CompleteViewOfTargetCameraLayer(scene.getCamera(), rectangle, viewPosition, distanceX, distanceY, distanceZ);
                     new SimpleUserFollowCameraLayer(
@@ -191,7 +193,7 @@ extends AllBinaryGameSceneController
                 //GDPlatformUtil.getInstance().updateCamera(cameraLayer);
 
                 //cameraLayer.setRotationY((short) 90);
-                cameraLayer.updateCamera();
+                this.cameraLayer.updateCamera();
                 
 //                if (cameraLayer == null) {
 //
@@ -225,7 +227,7 @@ extends AllBinaryGameSceneController
 
             final StringMaker stringMaker = new StringMaker();
 
-            gdGameCameraSetup.processTarget(cameraLayer, camera);
+            gdGameCameraSetup.processTarget(this.cameraLayer, camera);
 
             gdGameCameraSetup.process(camera, stringMaker);
             
@@ -234,14 +236,14 @@ extends AllBinaryGameSceneController
             camera.updateFrustrum();
 
             if (gdGameCameraSetup.type == GDGameCameraSetup.FOLLOW) {
-                cameraLayer.processTick(layerManager);
-                layerManager.append(cameraLayer);
+                this.cameraLayer.processTick(layerManager);
+                layerManager.append(this.cameraLayer);
             }
             
             //Test grid for OpenGL to help with camera setting
 //            layerManager.append(GLSampleGrid.create());
             
-            cameraInputProcessor.process(gdGameCameraSetup);
+            this.cameraInputProcessor.process(gdGameCameraSetup);
             
             camera.position.append(stringMaker);
             stringMaker.append(CommonSeps.getInstance().DASH).append(MathData.getInstance().GREATER_THAN);
@@ -264,7 +266,7 @@ extends AllBinaryGameSceneController
         }
         catch (Exception e)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, this.sceneStrings.BUILD_SCENE, e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.sceneStrings.BUILD_SCENE, e);
         }
     }
 
@@ -274,11 +276,11 @@ extends AllBinaryGameSceneController
 
         //light.ambient.setAll(128, 128, 128, 128);
         //light.ambient.commitToFloatBuffer();
-        if (scene.getLights().size() > 0) {
-            scene.getLights().reset();
+        if (this.scene.getLights().size() > 0) {
+            this.scene.getLights().reset();
         }
 
-        scene.getLights().add(light);
+        this.scene.getLights().add(light);
         
 //        final OpenGLVersionValidator openGLVersionValidator = OpenGLVersionValidator.getInstance();
 //        if (openGLVersionValidator.isGL31OrHigher()) {
@@ -299,6 +301,6 @@ extends AllBinaryGameSceneController
 
     public String toString()
     {
-        return NAME;
+        return this.NAME;
     }
 }

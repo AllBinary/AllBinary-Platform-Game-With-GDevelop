@@ -69,6 +69,7 @@ public class GDGameAndroidActivityBase extends GameMidletActivity
 //        openGLConfiguration.write();        
 //    }
     
+    @Override
     protected void init()
     {
         super.init();
@@ -76,6 +77,7 @@ public class GDGameAndroidActivityBase extends GameMidletActivity
         AllBinaryAndroidGameInitializationUtil.init();
     }
 
+    @Override
     protected void initViewIds() 
     throws Exception
     {
@@ -145,6 +147,7 @@ public class GDGameAndroidActivityBase extends GameMidletActivity
         }
     }
 
+    @Override
     public void onStart()
     {
         try

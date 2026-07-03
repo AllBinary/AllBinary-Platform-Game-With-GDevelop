@@ -28,7 +28,7 @@ public class GDResources {
      * @return the instance
      */
     public static GDResources getInstance() {
-        return instance;
+        return GDResources.instance;
     }
     
     public final BasicArrayList androidResourceList = new BasicArrayListD();

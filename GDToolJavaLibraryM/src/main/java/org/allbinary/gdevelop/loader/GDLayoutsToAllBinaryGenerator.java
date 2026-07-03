@@ -61,8 +61,8 @@ public class GDLayoutsToAllBinaryGenerator
     
     
     public void loadLayout(final GDLayout layout, final int index, final int size) throws Exception {
-        final String name = this.camelCaseUtil.getAsCamelCase(layout.name, stringMaker);
-        stringMaker.delete(0, stringMaker.length());
+        final String name = this.camelCaseUtil.getAsCamelCase(layout.name, this.stringMaker);
+        this.stringMaker.delete(0, this.stringMaker.length());
                 
         this.nameList.add(name);
     }
@@ -71,7 +71,7 @@ public class GDLayoutsToAllBinaryGenerator
     {
         try
         {
-            timeDelayHelper.setStartTimeTNT();
+            this.timeDelayHelper.setStartTimeTNT();
             
             final String RESULT = "result: ";
 
@@ -84,7 +84,7 @@ public class GDLayoutsToAllBinaryGenerator
             sharedBytes.outputStream.reset();
 
             final String xslPath = gdToolStrings.ROOT_PATH + this.xslPath;
-            logUtil.putF(xslPath, this, commonStrings.PROCESS);
+            this.logUtil.putF(xslPath, this, this.commonStrings.PROCESS);
             
             final InputStream inputStream = new FileInputStream(xslPath);
             final String xslDocumentStr = new String(streamUtil.getByteArray(inputStream, sharedBytes.outputStream, sharedBytes.byteArray));
@@ -99,8 +99,8 @@ public class GDLayoutsToAllBinaryGenerator
             //final Replace replace3 = new Replace(".Height()", ".Height(graphics)");
             //xmlDocumentStr = replace3.all(xmlDocumentStr);
 
-            final String START = gdToolStrings.ROOT_PATH + start;
-            final String END = end;
+            final String START = gdToolStrings.ROOT_PATH + this.start;
+            final String END = this.end;
             
             final int size = this.nameList.size();
             for (int index = 0; index < size; index++)
@@ -117,21 +117,21 @@ public class GDLayoutsToAllBinaryGenerator
                 stringMaker.delete(0, stringMaker.length());
                 final String fileName = stringMaker.append(START).append(stringUtil.toString(this.nameList.get(index))).append(END).toString();
 
-                logUtil.putF(this.gdToolStrings.FILENAME + fileName, this, commonStrings.PROCESS);
+                this.logUtil.putF(this.gdToolStrings.FILENAME + fileName, this, this.commonStrings.PROCESS);
 
                 this.bufferedWriterUtil.overwrite(fileName, result);
 
-                logUtil.putF(RESULT + result, this, commonStrings.PROCESS);
+                this.logUtil.putF(RESULT + result, this, this.commonStrings.PROCESS);
             }
 
         } catch (Exception e)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.PROCESS, e);
             throw e;
         }
 
-        stringMaker.delete(0, stringMaker.length());
-        logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, commonStrings.PROCESS);
+        this.stringMaker.delete(0, this.stringMaker.length());
+        this.logUtil.putF(this.stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, this.commonStrings.PROCESS);
     }
 
 //    public static void main(String[] args) throws Exception

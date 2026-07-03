@@ -61,7 +61,7 @@ public class GDExpressionMetadata
         final String supplementaryInformation
                 = (this.parameterFactory.isObject(type)
                 || this.parameterFactory.isBehavior(type))
-                ? (optionalObjectType.isEmpty() ? this.stringUtil.EMPTY_STRING : extensionNamespace + optionalObjectType)
+                ? (optionalObjectType.isEmpty() ? this.stringUtil.EMPTY_STRING : this.extensionNamespace + optionalObjectType)
                 : optionalObjectType;
 
         final GDParameterMetadata parameterMetadata = new GDParameterMetadata(

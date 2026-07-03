@@ -28,9 +28,9 @@ public class GDNodes {
     public void process() {
 
         GDNode gdNode;
-        final int size2 = runnableList.size();
+        final int size2 = this.runnableList.size();
         for (int index = 0; index < size2; index++) {
-            gdNode = (GDNode) runnableList.get(index);
+            gdNode = (GDNode) this.runnableList.get(index);
             gdNode.currentRunnable.run();
         }
 
@@ -39,9 +39,9 @@ public class GDNodes {
     public void clear() {
 
         GDNode gdNode;
-        final int size2 = runnableList.size();
+        final int size2 = this.runnableList.size();
         for (int index = 0; index < size2; index++) {
-            gdNode = (GDNode) runnableList.get(index);
+            gdNode = (GDNode) this.runnableList.get(index);
             gdNode.currentRunnable = NullRunnable.getInstance();
         }
 

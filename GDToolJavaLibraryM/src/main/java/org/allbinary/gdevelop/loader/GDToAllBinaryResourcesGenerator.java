@@ -58,8 +58,8 @@ public class GDToAllBinaryResourcesGenerator
     private final String WINDOWS_ICON = "windowsplashscreenanimatedicon";
     
     public GDToAllBinaryResourcesGenerator() {
-        resourceStringMaker.append(GD_KEY);
-        resourceStringMaker.append(this.commonSeps.NEW_LINE);
+        this.resourceStringMaker.append(this.GD_KEY);
+        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
     }
         
     public void processResource(final String nameAsString, final String resourceString) {
@@ -72,15 +72,15 @@ public class GDToAllBinaryResourcesGenerator
 
     public void appendResource(final boolean hasRotationImages, final String name, final String resource) {
         
-        this.gdResourceSelection.appendCommentIfNeeded0(name, resource, resourceStringMaker, hasRotationImages);
+        this.gdResourceSelection.appendCommentIfNeeded0(name, resource, this.resourceStringMaker, hasRotationImages);
         
-        if(resource.indexOf(DASH_ICON_DASH) >= 0 || resource.indexOf(WINDOWS_ICON) >= 0) {
+        if(resource.indexOf(this.DASH_ICON_DASH) >= 0 || resource.indexOf(this.WINDOWS_ICON) >= 0) {
         } else {
-            resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
-            resourceStringMaker.append(name);
-            resourceStringMaker.append(this.VALUE_RESOURCE_START);
-            resourceStringMaker.append(resource);
-            resourceStringMaker.append(this.VALUE_RESOURCE_END);
+            this.resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
+            this.resourceStringMaker.append(name);
+            this.resourceStringMaker.append(this.VALUE_RESOURCE_START);
+            this.resourceStringMaker.append(resource);
+            this.resourceStringMaker.append(this.VALUE_RESOURCE_END);
         }
         
     }
@@ -95,8 +95,8 @@ public class GDToAllBinaryResourcesGenerator
     }
 
     private void appendResourceStringArray(final boolean hasRotationImages, final BasicArrayList usedList) {
-        resourceStringMaker.append(this.commonSeps.NEW_LINE);
-        resourceStringMaker.append("    public final String[] resourceStringArray = {\nBLANK,\n");
+        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
+        this.resourceStringMaker.append("    public final String[] resourceStringArray = {\nBLANK,\n");
         final int size = this.gdResources.resourceNameList.size();
         String name;
         String resource;
@@ -106,21 +106,21 @@ public class GDToAllBinaryResourcesGenerator
             name = (String) this.gdResources.resourceNameList.get(index);
             resource = (String) this.gdResources.resourceList.get(index);
             
-            if(resource.indexOf(DASH_ICON_DASH) >= 0 || resource.indexOf(WINDOWS_ICON) >= 0) {    
+            if(resource.indexOf(this.DASH_ICON_DASH) >= 0 || resource.indexOf(this.WINDOWS_ICON) >= 0) {    
             } else {
-                resourceStringMaker.append(INDENT);
+                this.resourceStringMaker.append(this.INDENT);
 
-                used = this.gdResourceSelection.appendCommentIfNeeded(name, resource, resourceStringMaker, hasRotationImages);
+                used = this.gdResourceSelection.appendCommentIfNeeded(name, resource, this.resourceStringMaker, hasRotationImages);
 
-                resourceStringMaker.append(name);
-                resourceStringMaker.append(this.commonSeps.COMMA);
+                this.resourceStringMaker.append(name);
+                this.resourceStringMaker.append(this.commonSeps.COMMA);
 
-                resourceStringMaker.append(this.commonSeps.SPACE);
-                resourceStringMaker.append(this.commonSeps.COMMENT);
+                this.resourceStringMaker.append(this.commonSeps.SPACE);
+                this.resourceStringMaker.append(this.commonSeps.COMMENT);
 
-                resourceStringMaker.appendint(arrayIndex);
+                this.resourceStringMaker.appendint(arrayIndex);
 
-                resourceStringMaker.append(this.commonSeps.NEW_LINE);
+                this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
                 if (used) {
                     usedList.add(name);
                     arrayIndex++;
@@ -128,15 +128,15 @@ public class GDToAllBinaryResourcesGenerator
             }
         }
         
-        resourceStringMaker.append(SPACING);
-        resourceStringMaker.append(this.commonSeps.BRACE_CLOSE);
-        resourceStringMaker.append(this.commonSeps.SEMICOLON);
-        resourceStringMaker.append(this.commonSeps.NEW_LINE);
-        resourceStringMaker.append(this.commonSeps.NEW_LINE);
+        this.resourceStringMaker.append(this.SPACING);
+        this.resourceStringMaker.append(this.commonSeps.BRACE_CLOSE);
+        this.resourceStringMaker.append(this.commonSeps.SEMICOLON);
+        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
+        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
     }
 
     private void appendResourceWidthArray(final BasicArrayList gdResourceList, final BasicArrayList usedList) {
-        resourceStringMaker.append("    public final int[] imageResourceWidthArray = {\n32,\n");
+        this.resourceStringMaker.append("    public final int[] imageResourceWidthArray = {\n32,\n");
         
         final int size = usedList.size();
         String name;
@@ -149,15 +149,15 @@ public class GDToAllBinaryResourcesGenerator
             gdResource = this.getGDResourceForName(name, gdResourceList);
             
             if(gdResource != null) {
-                resourceStringMaker.append(this.INDENT);
-                resourceStringMaker.appendint(gdResource.width);
-                resourceStringMaker.append(this.commonSeps.COMMA);
-                resourceStringMaker.append(this.commonSeps.SPACE);
-                resourceStringMaker.append(this.commonSeps.COMMENT);
-                resourceStringMaker.append(name);                
-                resourceStringMaker.append(this.commonSeps.SPACE);
-                resourceStringMaker.appendint(arrayIndex);
-                resourceStringMaker.append(this.commonSeps.NEW_LINE);
+                this.resourceStringMaker.append(this.INDENT);
+                this.resourceStringMaker.appendint(gdResource.width);
+                this.resourceStringMaker.append(this.commonSeps.COMMA);
+                this.resourceStringMaker.append(this.commonSeps.SPACE);
+                this.resourceStringMaker.append(this.commonSeps.COMMENT);
+                this.resourceStringMaker.append(name);                
+                this.resourceStringMaker.append(this.commonSeps.SPACE);
+                this.resourceStringMaker.appendint(arrayIndex);
+                this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
             } else {
                 throw new RuntimeException(name);
 //                resourceStringMaker.append(-1);
@@ -169,16 +169,16 @@ public class GDToAllBinaryResourcesGenerator
             
         }
         
-        resourceStringMaker.append(this.SPACING);
-        resourceStringMaker.append(this.commonSeps.BRACE_CLOSE);
-        resourceStringMaker.append(this.commonSeps.SEMICOLON);
-        resourceStringMaker.append(this.commonSeps.NEW_LINE);
-        resourceStringMaker.append(this.commonSeps.NEW_LINE);
+        this.resourceStringMaker.append(this.SPACING);
+        this.resourceStringMaker.append(this.commonSeps.BRACE_CLOSE);
+        this.resourceStringMaker.append(this.commonSeps.SEMICOLON);
+        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
+        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
         arrayIndex++;
     }
 
     private void appendResourceHeightArray(final BasicArrayList gdResourceList, final BasicArrayList usedList) {
-        resourceStringMaker.append("    public final int[] imageResourceHeightArray = {\n32,\n");
+        this.resourceStringMaker.append("    public final int[] imageResourceHeightArray = {\n32,\n");
         
         final int size = usedList.size();
         String name;
@@ -191,15 +191,15 @@ public class GDToAllBinaryResourcesGenerator
             gdResource = this.getGDResourceForName(name, gdResourceList);
             
             if(gdResource != null) {
-                resourceStringMaker.append(this.INDENT);
-                resourceStringMaker.appendint(gdResource.height);
-                resourceStringMaker.append(this.commonSeps.COMMA);
-                resourceStringMaker.append(this.commonSeps.SPACE);
-                resourceStringMaker.append(this.commonSeps.COMMENT);
-                resourceStringMaker.append(name);                
-                resourceStringMaker.append(this.commonSeps.SPACE);
-                resourceStringMaker.appendint(arrayIndex);
-                resourceStringMaker.append(this.commonSeps.NEW_LINE);
+                this.resourceStringMaker.append(this.INDENT);
+                this.resourceStringMaker.appendint(gdResource.height);
+                this.resourceStringMaker.append(this.commonSeps.COMMA);
+                this.resourceStringMaker.append(this.commonSeps.SPACE);
+                this.resourceStringMaker.append(this.commonSeps.COMMENT);
+                this.resourceStringMaker.append(name);                
+                this.resourceStringMaker.append(this.commonSeps.SPACE);
+                this.resourceStringMaker.appendint(arrayIndex);
+                this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
             } else {
                 throw new RuntimeException(name);
 //                resourceStringMaker.append(-1);
@@ -212,11 +212,11 @@ public class GDToAllBinaryResourcesGenerator
             arrayIndex++;
         }
         
-        resourceStringMaker.append(this.SPACING);
-        resourceStringMaker.append(this.commonSeps.BRACE_CLOSE);
-        resourceStringMaker.append(this.commonSeps.SEMICOLON);
-        resourceStringMaker.append(this.commonSeps.NEW_LINE);
-        resourceStringMaker.append(this.commonSeps.NEW_LINE);
+        this.resourceStringMaker.append(this.SPACING);
+        this.resourceStringMaker.append(this.commonSeps.BRACE_CLOSE);
+        this.resourceStringMaker.append(this.commonSeps.SEMICOLON);
+        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
+        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
     }
     
     private GDResource getGDResourceForName(final String name, final BasicArrayList gdResourceList) {
@@ -248,7 +248,7 @@ public class GDToAllBinaryResourcesGenerator
             resource = (String) this.gdResources.resourceList.get(index);
             if(resource.endsWith(this.TSJ)) {
                 
-                this.logUtil.putF(new StringMaker().append(this.gdToolStrings.FILENAME).append(resource).toString(), this, commonStrings.PROCESS);
+                this.logUtil.putF(new StringMaker().append(this.gdToolStrings.FILENAME).append(resource).toString(), this, this.commonStrings.PROCESS);
                 this.appendImmediatelyLoadedImages(resource);
                 
             //PanelSpriteSlider::PanelSpriteSlider -> texture must not lazy load textures                
@@ -256,9 +256,9 @@ public class GDToAllBinaryResourcesGenerator
                 this.appendImmediatelyLoadedImage(resource);
             } else if(resource.indexOf(this.SLIDER) >= 0) {
                 this.appendImmediatelyLoadedImage(resource);
-            } else if(resource.indexOf(this.BATTERY) >= 0 && resource.contains(_1)) {
+            } else if(resource.indexOf(this.BATTERY) >= 0 && resource.contains(this._1)) {
                 this.appendImmediatelyLoadedImage(resource);
-            } else if(resource.indexOf(this.HEART) >= 0 && resource.contains(_1)) {
+            } else if(resource.indexOf(this.HEART) >= 0 && resource.contains(this._1)) {
                 this.appendImmediatelyLoadedImage(resource);
             }
         }
@@ -278,9 +278,9 @@ public class GDToAllBinaryResourcesGenerator
 
         final JSONTokener jsonTokener = new JSONTokener(gameAsConfiguration);
         final JSONObject jsonObject = (JSONObject) jsonTokener.nextValue();
-        final String imagePath = jsonObject.getString(IMAGE);
+        final String imagePath = jsonObject.getString(this.IMAGE);
         
-        this.logUtil.putF(new StringMaker().append(this.gdToolStrings.FILENAME).append(imagePath).toString(), this, commonStrings.PROCESS);
+        this.logUtil.putF(new StringMaker().append(this.gdToolStrings.FILENAME).append(imagePath).toString(), this, this.commonStrings.PROCESS);
         
         this.appendImmediatelyLoadedImage(imagePath);
         
@@ -332,16 +332,16 @@ public class GDToAllBinaryResourcesGenerator
         final BasicArrayList usedList = new BasicArrayListD();
         this.appendResourceStringArray(hasRotationImages, usedList);
         
-        final Replace replace = new Replace(GD_KEY, this.resourceStringMaker.toString());
+        final Replace replace = new Replace(this.GD_KEY, this.resourceStringMaker.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
         stringMaker.delete(0, stringMaker.length());
-        logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(RESOURCE).toString(), this, commonStrings.PROCESS);
+        this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(RESOURCE).toString(), this, this.commonStrings.PROCESS);
         
         this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);        
         
         stringMaker.delete(0, stringMaker.length());
-        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, commonStrings.PROCESS);
+        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, this.commonStrings.PROCESS);
         
         return usedList;
     }
@@ -379,12 +379,12 @@ public class GDToAllBinaryResourcesGenerator
         final String newFileAsString = replace.all(androidRFileAsString);
 
         stringMaker.delete(0, stringMaker.length());
-        this.logUtil.putF(this.gdToolStrings.FILENAME + LAZY_RESOURCE, this, commonStrings.PROCESS);
+        this.logUtil.putF(this.gdToolStrings.FILENAME + LAZY_RESOURCE, this, this.commonStrings.PROCESS);
         
         this.bufferedWriterUtil.overwrite(LAZY_RESOURCE, newFileAsString);        
         
         stringMaker.delete(0, stringMaker.length());
-        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, commonStrings.PROCESS);
+        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, this.commonStrings.PROCESS);
         
     }
     

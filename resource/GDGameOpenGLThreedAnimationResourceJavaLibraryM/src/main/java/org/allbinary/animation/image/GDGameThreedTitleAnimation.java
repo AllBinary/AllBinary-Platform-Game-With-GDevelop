@@ -51,7 +51,7 @@ implements ColorChangeListener
     {
         super(animationInterfaceArray, basicColorArray, dxArray, dyArray, y, width, new IndexedAnimationBehavior(1, 250));
         
-        logUtil.putF("Constructor", this, this.getClass().getName());
+        this.logUtil.putF("Constructor", this, this.getClass().getName());
         
         //testGameDemoSceneController = (GDGameSceneController) 
             //GDGameAllBinarySceneControllerFactory.getInstance();
@@ -64,9 +64,10 @@ implements ColorChangeListener
         this.color = basicColor.intValue();
     }
     
+    @Override
     public void paintXY(Graphics graphics, int ax, int ay)
     {
-        graphics.setColor(color);
+        graphics.setColor(this.color);
         
         int x = 0;
         
@@ -78,12 +79,12 @@ implements ColorChangeListener
         int deltaX;
         int deltaY;
 
-        for (int index = 0; index < sizeP - 1; index++)
+        for (int index = 0; index < this.sizeP - 1; index++)
         {
             deltaX = this.dxArray[index] + x;
-            deltaY = this.dyArray[index] + y;
+            deltaY = this.dyArray[index] + this.y;
             
-            if (this.basicColorArray[index] != CLEAR_COLOR)
+            if (this.basicColorArray[index] != this.CLEAR_COLOR)
             {
                 this.basicSetColorUtil.setBasicColorP(graphics, this.basicColorArray[index]);
             }
@@ -108,7 +109,7 @@ implements ColorChangeListener
         //int deltaX;
         int deltaY;
 
-        int index = sizeP - 1;
+        int index = this.sizeP - 1;
 
         //CameraLayer cameraLayer = testGameDemoSceneController.getCameraLayer();
         
@@ -148,8 +149,8 @@ implements ColorChangeListener
             //halfHeight / 2
 
             this.animationInterfaceArray[index].paintThreedXYZ(graphics, 
-                    viewPosition.getX(), 
-                    viewPosition.getY(),
+                    this.viewPosition.getX(), 
+                    this.viewPosition.getY(),
                     //ay,
                     az);
         //}

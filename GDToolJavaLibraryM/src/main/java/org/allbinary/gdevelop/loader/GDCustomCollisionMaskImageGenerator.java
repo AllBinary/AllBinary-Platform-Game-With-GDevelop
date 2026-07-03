@@ -48,23 +48,25 @@ public class GDCustomCollisionMaskImageGenerator extends GDCustomCollisionMaskRe
     private final String ADJUSTING_HEIGHT = "Adjusting Height from Sprite: ";
     private final String SKIPPING_IMAGE = "Skipping Image: ";
 
+    @Override
     public boolean processObjects(final String name) {
         
-        final int size = inclusionExclusionArray.length;
+        final int size = this.inclusionExclusionArray.length;
         for(int index = 0; index < size; index++) {
-            if(inclusionExclusionArray[index].compareTo(name) == 0) {
+            if(this.inclusionExclusionArray[index].compareTo(name) == 0) {
                 return false;
             }
         }
-        final int size2 = exclusionArray.length;
+        final int size2 = this.exclusionArray.length;
         for(int index = 0; index < size2; index++) {
-            if(exclusionArray[index].compareTo(name) == 0) {
+            if(this.exclusionArray[index].compareTo(name) == 0) {
                 return false;
             }
         }
         return true;
     }
     
+    @Override
     public void updateSprite(final JSONObject jsonObject) throws Exception {
         this.addOrReplaceCollisionMask(jsonObject);
     }
@@ -121,7 +123,7 @@ public class GDCustomCollisionMaskImageGenerator extends GDCustomCollisionMaskRe
         final String imagePath = assetPath.substring(this.gdToolStrings.ASSET_PREFIX.length(), assetPath.length());
         final AbFile abFile = AbFile.createAbFileFromRawPath(this.gdToolStrings.ASSETS_PATH + imagePath);
         if(abFile.isFile()) {
-            System.out.println(LOAD_IMAGE + imagePath);
+            System.out.println(this.LOAD_IMAGE + imagePath);
             final BufferedImage bufferedImage = ImageIO.read(AbFileNativeUtil.get(abFile));
 
             //Hack for make sprites shorter than original asset.
@@ -130,7 +132,7 @@ public class GDCustomCollisionMaskImageGenerator extends GDCustomCollisionMaskRe
             String imagePath2 = null;
             if (underScoreIndex >= 0) {
                 final int periodIndex = imagePath.lastIndexOf('.');
-                imagePath2 = new StringMaker().append(imagePath.substring(0, underScoreIndex + 1)).append(ONE).append(imagePath.substring(periodIndex)).toString();
+                imagePath2 = new StringMaker().append(imagePath.substring(0, underScoreIndex + 1)).append(this.ONE).append(imagePath.substring(periodIndex)).toString();
                 final AbFile abFile2 = AbFile.createAbFileFromRawPath(this.gdToolStrings.TWOD_RESOURCES_PATH + imagePath2);
                 if (abFile2.isFile()) {
                     //System.out.println(LOAD_SPRITE + imagePath2);
@@ -145,14 +147,14 @@ public class GDCustomCollisionMaskImageGenerator extends GDCustomCollisionMaskRe
             final Rectangle rectangle = this.getRectangle(bufferedImage);
             final int height = adjustMaxY - rectangle.getPoint().getY();
             if(rectangle.getHeight() > height) {
-                System.out.println(ADJUSTING_HEIGHT + imagePath2);
+                System.out.println(this.ADJUSTING_HEIGHT + imagePath2);
                 rectangle.setHeight(height);
             }
             
             final JSONArray customCollisionMaskJSONArray = this.getCustomCollisionMask(rectangle);
             jsonObject.put(this.gdProjectStrings.CUSTOM_COLLISION_MASK, customCollisionMaskJSONArray);
         } else {
-            System.out.println(SKIPPING_IMAGE + imagePath);
+            System.out.println(this.SKIPPING_IMAGE + imagePath);
         }
         
     }
@@ -167,17 +169,17 @@ public class GDCustomCollisionMaskImageGenerator extends GDCustomCollisionMaskRe
         final JSONObject bottomLeftJSONObject = new JSONObject();
         final JSONObject bottomRightJSONObject = new JSONObject();
         
-        topLeftJSONObject.put(positionStrings.X, rectangle.getPoint().getX());
-        topLeftJSONObject.put(positionStrings.Y, rectangle.getPoint().getY());
+        topLeftJSONObject.put(this.positionStrings.X, rectangle.getPoint().getX());
+        topLeftJSONObject.put(this.positionStrings.Y, rectangle.getPoint().getY());
         
-        topRightJSONObject.put(positionStrings.X, rectangle.getMaxX());
-        topRightJSONObject.put(positionStrings.Y, rectangle.getPoint().getY());
+        topRightJSONObject.put(this.positionStrings.X, rectangle.getMaxX());
+        topRightJSONObject.put(this.positionStrings.Y, rectangle.getPoint().getY());
 
-        bottomLeftJSONObject.put(positionStrings.X, rectangle.getPoint().getX());
-        bottomLeftJSONObject.put(positionStrings.Y, rectangle.getMaxY());
+        bottomLeftJSONObject.put(this.positionStrings.X, rectangle.getPoint().getX());
+        bottomLeftJSONObject.put(this.positionStrings.Y, rectangle.getMaxY());
         
-        bottomRightJSONObject.put(positionStrings.X, rectangle.getMaxX());
-        bottomRightJSONObject.put(positionStrings.Y, rectangle.getMaxY());
+        bottomRightJSONObject.put(this.positionStrings.X, rectangle.getMaxX());
+        bottomRightJSONObject.put(this.positionStrings.Y, rectangle.getMaxY());
         
         firstCustomCollisionMaskJSONArray.put(topLeftJSONObject);
         firstCustomCollisionMaskJSONArray.put(topRightJSONObject);

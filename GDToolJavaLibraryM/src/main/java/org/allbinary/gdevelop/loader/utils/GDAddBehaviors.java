@@ -54,7 +54,7 @@ public class GDAddBehaviors extends GDJSONGeneratorBase {
 "              \"name\": \"Material3D\",\n" +
 "              \"type\": \"Material3D::Material3D\"\n" +
 "            }\n";
-    private final JSONObject behavior3JSONObject = new JSONObject(BEHAVIOR3);
+    private final JSONObject behavior3JSONObject = new JSONObject(this.BEHAVIOR3);
 
     private final String BEHAVIOR4 = "{\n" +
 "              \"name\": \"Pathfinding\",\n" +
@@ -72,7 +72,7 @@ public class GDAddBehaviors extends GDJSONGeneratorBase {
 "              \"gridOffsetX\": 0,\n" +
 "              \"smoothingMaxCellGap\": 1\n" +
 "            }";
-    private final JSONObject behavior4JSONObject = new JSONObject(BEHAVIOR4);
+    private final JSONObject behavior4JSONObject = new JSONObject(this.BEHAVIOR4);
     
     private final String BEHAVIOR5 = "{\n" +
 "              \"name\": \"PhysicsCharacter3D\",\n" +
@@ -93,7 +93,7 @@ public class GDAddBehaviors extends GDJSONGeneratorBase {
 "              \"jumpSustainTime\": 0.2,\n" +
 "              \"stairHeightMax\": 20\n" +
 "            }";
-    private final JSONObject behavior5JSONObject = new JSONObject(BEHAVIOR5);
+    private final JSONObject behavior5JSONObject = new JSONObject(this.BEHAVIOR5);
             
     private final String BEHAVIOR = "{\n" +
 "              \"name\": \"Physics3D\",\n" +
@@ -124,11 +124,12 @@ public class GDAddBehaviors extends GDJSONGeneratorBase {
 "              \"layers\": 17,\n" +
 "              \"masks\": 17\n" +
 "            }";
-    private final JSONObject behaviorJSONObject = new JSONObject(BEHAVIOR);
+    private final JSONObject behaviorJSONObject = new JSONObject(this.BEHAVIOR);
 
     public GDAddBehaviors() {
     }
     
+    @Override
     public void process(final JSONObject gameAsConfigurationJSONObject) throws Exception {
         final JSONObject jsonObject = gameAsConfigurationJSONObject.getJSONObject(this.gdProjectStrings.RESOURCES);
         super.process(gameAsConfigurationJSONObject);
@@ -146,7 +147,7 @@ public class GDAddBehaviors extends GDJSONGeneratorBase {
             jsonObject = jsonArray.getJSONObject(index);
             //System.out.println(jsonObject.get(this.gdProjectStrings.NAME));
             final GDObject gdObject = GDObjectFactory.getInstance().create(jsonObject);
-            if(gdObject.name.startsWith(RESOURCE_START)) {
+            if(gdObject.name.startsWith(this.RESOURCE_START)) {
             //if(gdObject.name.indexOf(RESOURCE_START) >= 0) {
                 this.process(gdObject);
             }
@@ -155,7 +156,7 @@ public class GDAddBehaviors extends GDJSONGeneratorBase {
 
     private void process(final GDObject gdObject) {
         
-        final JSONArray behaviorsJSONArray = gdObject.jsonObject.getJSONArray(gdProjectStrings.BEHAVIORS);
+        final JSONArray behaviorsJSONArray = gdObject.jsonObject.getJSONArray(this.gdProjectStrings.BEHAVIORS);
         final BasicArrayList behaviorList = gdObject.behaviorContentList;
         final int size = behaviorList.size();
         System.out.println("Behavior Total: " + size);
@@ -164,19 +165,19 @@ public class GDAddBehaviors extends GDJSONGeneratorBase {
         for(int index = 0; index < size; index++) {
             GDBehavior gdBehaviorContent = (GDBehavior) behaviorList.get(index);
             //System.out.println("Behavior: " + gdBehaviorContent.jsonObject);
-            if(gdBehaviorContent.type.compareTo(FIND_BEHAVIOR) == 0) {
+            if(gdBehaviorContent.type.compareTo(this.FIND_BEHAVIOR) == 0) {
                 found[0] = true;
             }
 //            if(gdBehaviorContent.type.compareTo(FIND_BEHAVIOR2) == 0) {
 //                found[1] = true;
 //            }
-            if(gdBehaviorContent.type.compareTo(FIND_BEHAVIOR3) == 0) {
+            if(gdBehaviorContent.type.compareTo(this.FIND_BEHAVIOR3) == 0) {
                 found[2] = true;
             }
-            if(gdBehaviorContent.type.compareTo(FIND_BEHAVIOR4) == 0) {
+            if(gdBehaviorContent.type.compareTo(this.FIND_BEHAVIOR4) == 0) {
                 found[3] = true;
             }
-            if(gdBehaviorContent.type.compareTo(FIND_BEHAVIOR5) == 0) {
+            if(gdBehaviorContent.type.compareTo(this.FIND_BEHAVIOR5) == 0) {
                 found[4] = true;
             }
         }
@@ -185,13 +186,14 @@ public class GDAddBehaviors extends GDJSONGeneratorBase {
             //System.out.println("GDObject - Already had the needed Behaviors: " + gdObject.name);
         } else {
             System.out.println("GDObject -Adding Behaviors: " + gdObject.name);
-            behaviorsJSONArray.put(behavior3JSONObject);
-            behaviorsJSONArray.put(behavior4JSONObject);
-            behaviorsJSONArray.put(behaviorJSONObject);
-            behaviorsJSONArray.put(behavior5JSONObject);
+            behaviorsJSONArray.put(this.behavior3JSONObject);
+            behaviorsJSONArray.put(this.behavior4JSONObject);
+            behaviorsJSONArray.put(this.behaviorJSONObject);
+            behaviorsJSONArray.put(this.behavior5JSONObject);
         }
     }
 
+    @Override
     public void processLayout(final JSONObject jsonObject) throws Exception {
         this.processObjects(jsonObject);
     }

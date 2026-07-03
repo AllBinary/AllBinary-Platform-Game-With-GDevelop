@@ -25,7 +25,7 @@ public class GDGame0 {
      * @return the instance
      */
     public static GDGame0 getInstance() {
-        return instance;
+        return GDGame0.instance;
     }
     
     public final String PATH = 

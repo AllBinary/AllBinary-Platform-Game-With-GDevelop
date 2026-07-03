@@ -33,19 +33,19 @@ public class GDMultipleInstructionMetadata
             final boolean parameterIsOptional)
     {
 
-        if (expression != null)
+        if (this.expression != null)
         {
-            expression.addParameter(
+            this.expression.addParameter(
                     type, label, optionalObjectType, parameterIsOptional);
         }
-        if (conditionInstructionMetadata != null)
+        if (this.conditionInstructionMetadata != null)
         {
-            conditionInstructionMetadata.addParameter(
+            this.conditionInstructionMetadata.addParameter(
                     type, label, optionalObjectType, parameterIsOptional);
         }
-        if (actionInstructionMetadata != null)
+        if (this.actionInstructionMetadata != null)
         {
-            actionInstructionMetadata.addParameter(
+            this.actionInstructionMetadata.addParameter(
                     type, label, optionalObjectType, parameterIsOptional);
         }
         return this;
@@ -53,12 +53,12 @@ public class GDMultipleInstructionMetadata
     
     public GDMultipleInstructionMetadata useStandardParameters(final String type) {
 
-        if (conditionInstructionMetadata != null) {
-            conditionInstructionMetadata.useStandardRelationalOperatorParameters(type);
+        if (this.conditionInstructionMetadata != null) {
+            this.conditionInstructionMetadata.useStandardRelationalOperatorParameters(type);
         }
     
-        if (actionInstructionMetadata != null) {
-            actionInstructionMetadata.useStandardOperatorParameters(type);
+        if (this.actionInstructionMetadata != null) {
+            this.actionInstructionMetadata.useStandardOperatorParameters(type);
         }
 
         return this;

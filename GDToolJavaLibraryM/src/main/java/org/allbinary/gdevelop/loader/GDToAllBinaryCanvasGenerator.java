@@ -38,12 +38,12 @@ public class GDToAllBinaryCanvasGenerator extends GDTransformGenerator
     public void loadLayout(final GDLayout layout, final int index, final int size) throws Exception
     {
         this.index = index;
-        name = this.camelCaseUtil.getAsCamelCase(layout.name, stringMaker);
-        stringMaker.delete(0, stringMaker.length());
+        this.name = this.camelCaseUtil.getAsCamelCase(layout.name, this.stringMaker);
+        this.stringMaker.delete(0, this.stringMaker.length());
 //        if (index == 1 || size == 1)
 //        {
-            className = stringMaker.append("GDGame").append(name).append("Canvas").toString();
-            this.orig = gdToolStrings.ROOT_PATH + this.xslPath;
+            this.className = this.stringMaker.append("GDGame").append(this.name).append("Canvas").toString();
+            this.orig = this.gdToolStrings.ROOT_PATH + this.xslPath;
 //        } else
 //        {
 //            className = stringMaker.append("GDGameStart").append(name).append("Canvas").toString();
@@ -55,14 +55,14 @@ public class GDToAllBinaryCanvasGenerator extends GDTransformGenerator
     public void process() throws Exception
     {
         
-        stringMaker.delete(0, stringMaker.length());
-        final String canvasJavaFile = stringMaker.append(gdToolStrings.ROOT_PATH + this.path).append(this.className).append(".java").toString();
+        this.stringMaker.delete(0, this.stringMaker.length());
+        final String canvasJavaFile = this.stringMaker.append(this.gdToolStrings.ROOT_PATH + this.path).append(this.className).append(".java").toString();
 
         final SharedBytes sharedBytes = SharedBytes.getInstance();
         sharedBytes.outputStream.reset();
         
         final FileInputStream fileInputStream = new FileInputStream(this.orig);        
-        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
+        final String androidRFileAsString = new String(this.streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
         
         final Replace replace = new Replace(this.gdToolStrings.GD_LAYOUT, this.name);
         final Replace replace2 = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, Integer.toString(this.index));

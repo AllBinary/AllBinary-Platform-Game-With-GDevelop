@@ -42,7 +42,7 @@ public class GameAreaBoxUtil {
      * @return the instance
      */
     public static GameAreaBoxUtil getInstance() {
-        return instance;
+        return GameAreaBoxUtil.instance;
     }
 
     //Add at end of 
@@ -82,7 +82,7 @@ public class GameAreaBoxUtil {
         final BasicArrayList gameLayerDestroyedList = new BasicArrayListD();
         final BasicArrayList behaviorList = new BasicArrayListD();
                 
-        final Group btn_rotate_leftGroupInterface = GroupFactory.getInstance().getNextGroupByName(BOX);
+        final Group btn_rotate_leftGroupInterface = GroupFactory.getInstance().getNextGroupByName(this.BOX);
         
         final AnimationInterfaceFactoryInterface[] boxAnimationInterfaceFactoryInterfaceArray = (AnimationInterfaceFactoryInterface[]) ((AnimationInterfaceFactoryInterfaceComposite) animationInterfaceFactoryInterfaceFactory.getBasicAnimationInterfaceFactoryInstance(this.BOX_ANIMATION_NAME)).getAnimationInterfaceFactoryInterfaceArray();
         final ProceduralAnimationInterfaceFactoryInterface[] boxProceduralAnimationInterfaceFactoryInterfaceArray = (ProceduralAnimationInterfaceFactoryInterface[]) ((BaseAnimationInterfaceFactoryInterfaceComposite) animationInterfaceFactoryInterfaceFactory.getBasicAnimationInterfaceFactoryInstance(this.BOX_PROCEDURAL_ANIMATION_NAME)).getBasicAnimationInterfaceFactoryInterfaceArray();
@@ -139,7 +139,7 @@ public class GameAreaBoxUtil {
     public void addAnimations(final BaseResourceAnimationInterfaceFactoryInterfaceFactory baseResourceAnimationInterfaceFactoryInterfaceFactory) throws Exception {
 
         final BasicArrayList boxList = new BasicArrayListD();
-        final Object3d[] boxObject3dArray = min3dSceneResourcesFactory.get(this.BOX_ANIMATION_NAME);
+        final Object3d[] boxObject3dArray = this.min3dSceneResourcesFactory.get(this.BOX_ANIMATION_NAME);
         final int boxSize = boxObject3dArray.length;
         for (int index = 0; index < boxSize; index++) {
             boxList.add(new ThreedAnimationSingletonFactory(boxObject3dArray[index]));

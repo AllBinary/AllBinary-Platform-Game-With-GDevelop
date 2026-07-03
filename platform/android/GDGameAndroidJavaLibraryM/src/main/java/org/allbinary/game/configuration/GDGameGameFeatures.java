@@ -18,6 +18,7 @@ public class GDGameGameFeatures extends Init
         
     }
     
+    @Override
     public void init() throws Exception
     {
         final String GRAPHICS_OPTIONS = "Graphics Options";

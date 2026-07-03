@@ -37,7 +37,7 @@ public class GDPrimitiveDrawing extends Animation {
         new BasicArrayListD(), new BasicArrayListD(), new BasicArrayListD(), 
     };
 
-    private final CircularIndexUtil circularIndexUtil = CircularIndexUtil.createInstance(animationListArray.length);
+    private final CircularIndexUtil circularIndexUtil = CircularIndexUtil.createInstance(this.animationListArray.length);
 
     public final BasicArrayList colorAnimationInUseList = new BasicArrayListD();
     public final BasicArrayList colorAnimationCacheList = new BasicArrayListD();
@@ -45,7 +45,7 @@ public class GDPrimitiveDrawing extends Animation {
     public final BasicArrayList aRetangleFilledAnimationInUseList = new BasicArrayListD();
     public final BasicArrayList aRetangleFilledAnimationCacheList = new BasicArrayListD();
 
-    public BasicArrayList animationList = animationListArray[animationListArray.length - 1];
+    public BasicArrayList animationList = this.animationListArray[this.animationListArray.length - 1];
     
     @Override
     public void nextFrame() {
@@ -70,7 +70,7 @@ public class GDPrimitiveDrawing extends Animation {
             this.animationListArray[this.circularIndexUtil.getIndex()].add(colorAnimation);
             this.colorAnimationInUseList.add(colorAnimation);
         } else {
-            final Animation colorAnimation = (Animation) colorAnimationCacheList.removeAt(colorAnimationCacheList.size() - 1);
+            final Animation colorAnimation = (Animation) this.colorAnimationCacheList.removeAt(this.colorAnimationCacheList.size() - 1);
             colorAnimation.setBasicColorP(basicColor);
             this.animationListArray[this.circularIndexUtil.getIndex()].add(colorAnimation);
             this.colorAnimationInUseList.add(colorAnimation);
@@ -89,7 +89,7 @@ public class GDPrimitiveDrawing extends Animation {
             this.animationListArray[this.circularIndexUtil.getIndex()].add(rectangleFilledAnimation);
             this.aRetangleFilledAnimationInUseList.add(rectangleFilledAnimation);
         } else {
-            final ARectangleFilledAnimation rectangleFilledAnimation = (ARectangleFilledAnimation) aRetangleFilledAnimationCacheList.removeAt(aRetangleFilledAnimationCacheList.size() - 1);
+            final ARectangleFilledAnimation rectangleFilledAnimation = (ARectangleFilledAnimation) this.aRetangleFilledAnimationCacheList.removeAt(this.aRetangleFilledAnimationCacheList.size() - 1);
             rectangleFilledAnimation.x = x;
             rectangleFilledAnimation.y = y;
             rectangleFilledAnimation.width = x2 - x;

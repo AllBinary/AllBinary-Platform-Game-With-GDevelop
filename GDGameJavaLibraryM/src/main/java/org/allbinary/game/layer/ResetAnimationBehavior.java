@@ -28,7 +28,7 @@ public class ResetAnimationBehavior {
      * @return the instance
      */
     public static ResetAnimationBehavior getInstance() {
-        return instance;
+        return ResetAnimationBehavior.instance;
     }
     
     private final FrameUtil frameUtil = FrameUtil.getInstance();

@@ -34,8 +34,9 @@ extends BasicBuildGameInitializerFactory
                         new GDGameJ2MEAnimationInterfaceFactoryResourceInitialization(),
                         }, 15);
 
+    @Override
     public GameInitializationInterface getInstance()
     {
-        return STATIC;
+        return GDGameStaticInitializerFactory.STATIC;
     }
 }

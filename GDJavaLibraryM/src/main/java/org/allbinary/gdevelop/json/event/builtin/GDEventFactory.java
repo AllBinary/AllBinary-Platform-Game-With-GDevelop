@@ -23,7 +23,7 @@ public class GDEventFactory
      */
     public static GDEventFactory getInstance()
     {
-        return instance;
+        return GDEventFactory.instance;
     }
     
     public GDEvent create(final JSONObject jsonObject) {

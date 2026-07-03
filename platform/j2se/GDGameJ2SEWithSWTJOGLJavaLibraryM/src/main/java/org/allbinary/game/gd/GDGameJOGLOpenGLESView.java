@@ -15,7 +15,7 @@ extends AllBinaryMidletOpenGLSurfaceView
     
 	public GDGameJOGLOpenGLESView() {
                 
-            PreLogUtil.put(commonStrings.START, TAG, commonStrings.CONSTRUCTOR);
+            PreLogUtil.put(this.commonStrings.START, this.TAG, this.commonStrings.CONSTRUCTOR);
                 
             this.setRenderMode(OptimizedGLSurfaceView.RENDERMODE_CONTINUOUSLY);
 

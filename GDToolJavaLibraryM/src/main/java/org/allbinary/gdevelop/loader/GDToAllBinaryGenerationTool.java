@@ -136,7 +136,7 @@ public class GDToAllBinaryGenerationTool
 
     public void process() throws Exception
     {
-        timeDelayHelper.setStartTimeTNT();
+        this.timeDelayHelper.setStartTimeTNT();
 
         final GDJSONPersistence gdJSONPersistence = GDJSONPersistence.getInstance();
         final JSONObject gameAsConfigurationJSONObject = gdJSONPersistence.load();
@@ -174,19 +174,19 @@ public class GDToAllBinaryGenerationTool
         fixQuotes = replace5.all(fixQuotes);
         fixQuotes = replace6.all(fixQuotes);
 
-        final String fileName = gdToolStrings.GAME_XML_PATH;
-        logUtil.putF(this.gdToolStrings.FILENAME + fileName, this, commonStrings.PROCESS);
+        final String fileName = this.gdToolStrings.GAME_XML_PATH;
+        this.logUtil.putF(this.gdToolStrings.FILENAME + fileName, this, this.commonStrings.PROCESS);
 
         this.bufferedWriterUtil.overwrite(fileName, fixQuotes);
         //this.bufferedWriterUtil.overwrite(fileName, xml);
         
-        allBinaryRotationGenerator.process();
+        this.allBinaryRotationGenerator.process();
 
         this.load(gdProject);
 
-        final int size2 = gdNameFileGeneratorArray.length;
+        final int size2 = this.gdNameFileGeneratorArray.length;
         for(int index = 0; index < size2; index++) {
-            gdNameFileGeneratorArray[index].process();
+            this.gdNameFileGeneratorArray[index].process();
         }
 
         final FileListFetcher fileListFetcher = FileListFetcher.getInstance();
@@ -198,8 +198,8 @@ public class GDToAllBinaryGenerationTool
         this.allBinaryAndroidResourcesGenerator.process();
         this.allBinaryThreedAndroidResourcesGenerator.process(threedDFileList);
         this.soundsGenerator.process();
-        this.earlyResourceInitializationGenerator.process(soundsGenerator);
-        this.threedEarlyResourceInitializationGenerator.process(soundsGenerator);
+        this.earlyResourceInitializationGenerator.process(this.soundsGenerator);
+        this.threedEarlyResourceInitializationGenerator.process(this.soundsGenerator);
         this.threedSceneEarlyResourceInitializationGenerator.process(threedDFileList);
         this.midletGenerator.process();
         this.allBinaryResourcesGenerator.process(twoDFileList);
@@ -217,52 +217,52 @@ public class GDToAllBinaryGenerationTool
         //"GDGameAndroidEarlyResourceInitialization"
         
         stringMaker.delete(0, stringMaker.length());
-        logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, commonStrings.PROCESS);
+        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, this.commonStrings.PROCESS);
     }
 
     public void xmlConversionHack(JSONObject gameAsConfigurationJSONObject) {
         
-        final JSONObject properties = gameAsConfigurationJSONObject.getJSONObject(gdProjectStrings.PROPERTIES);
-        if(!properties.has(SCALE)) {
+        final JSONObject properties = gameAsConfigurationJSONObject.getJSONObject(this.gdProjectStrings.PROPERTIES);
+        if(!properties.has(this.SCALE)) {
             final JSONObject scaleJSONObject = new JSONObject();
-            scaleJSONObject.put(ANDROID, ONEX);
-            scaleJSONObject.put(HTML, ONEX);
-            scaleJSONObject.put(J2SE, ONEX);
-            properties.put(SCALE, scaleJSONObject);
+            scaleJSONObject.put(this.ANDROID, this.ONEX);
+            scaleJSONObject.put(this.HTML, this.ONEX);
+            scaleJSONObject.put(this.J2SE, this.ONEX);
+            properties.put(this.SCALE, scaleJSONObject);
         }
-        if(!properties.has(SCALE1)) {
+        if(!properties.has(this.SCALE1)) {
             final JSONObject scaleJSONObject = new JSONObject();
-            scaleJSONObject.put(ANDROID, ONEX);
-            scaleJSONObject.put(HTML, ONEX);
-            scaleJSONObject.put(J2SE, ONEX);
-            properties.put(SCALE1, scaleJSONObject);
+            scaleJSONObject.put(this.ANDROID, this.ONEX);
+            scaleJSONObject.put(this.HTML, this.ONEX);
+            scaleJSONObject.put(this.J2SE, this.ONEX);
+            properties.put(this.SCALE1, scaleJSONObject);
         }
-        if(!properties.has(SCALE_TOUCH)) {
+        if(!properties.has(this.SCALE_TOUCH)) {
             final JSONObject scaleJSONObject = new JSONObject();
-            scaleJSONObject.put(ANDROID, HALFX);
-            scaleJSONObject.put(HTML, HALFX);
-            scaleJSONObject.put(J2SE, HALFX);
-            properties.put(SCALE_TOUCH, scaleJSONObject);
+            scaleJSONObject.put(this.ANDROID, this.HALFX);
+            scaleJSONObject.put(this.HTML, this.HALFX);
+            scaleJSONObject.put(this.J2SE, this.HALFX);
+            properties.put(this.SCALE_TOUCH, scaleJSONObject);
         }
         
         
 
-        final JSONArray layoutJSONArray = gameAsConfigurationJSONObject.getJSONArray(gdProjectStrings.LAYOUTS);
+        final JSONArray layoutJSONArray = gameAsConfigurationJSONObject.getJSONArray(this.gdProjectStrings.LAYOUTS);
         final int size4 = layoutJSONArray.length();
-        logUtil.putF(LAYOUT_TOTAL + size4, this, commonStrings.PROCESS);
+        this.logUtil.putF(this.LAYOUT_TOTAL + size4, this, this.commonStrings.PROCESS);
         for(int index2 = 0; index2 < size4; index2++) {
 
             final JSONObject layoutJSONObject = layoutJSONArray.getJSONObject(index2);
-            final JSONArray jsonArray = layoutJSONObject.getJSONArray(gdProjectStrings.OBJECTS);
+            final JSONArray jsonArray = layoutJSONObject.getJSONArray(this.gdProjectStrings.OBJECTS);
             final int size3 = jsonArray.length();
-            logUtil.putF(OBJECTS + size3, this, commonStrings.PROCESS);
+            this.logUtil.putF(this.OBJECTS + size3, this, this.commonStrings.PROCESS);
             for (int index = 0; index < size3; index++) {
 
                 JSONObject jsonObject = jsonArray.getJSONObject(index);
                 if(jsonObject.has(this.gdProjectStrings.CONTENT)) {
-                    logUtil.putF(CONTENT_REMOVE + index, this, commonStrings.PROCESS);
-                    Object object = jsonObject.remove(gdProjectStrings.CONTENT);
-                    jsonObject.put(gdProjectStrings.CONTENT + X, object);
+                    this.logUtil.putF(this.CONTENT_REMOVE + index, this, this.commonStrings.PROCESS);
+                    Object object = jsonObject.remove(this.gdProjectStrings.CONTENT);
+                    jsonObject.put(this.gdProjectStrings.CONTENT + this.X, object);
                 }
             }
         }
@@ -270,9 +270,9 @@ public class GDToAllBinaryGenerationTool
     
     private void load(final GDProject gdProject) throws Exception
     {
-        final int size2 = gdNameFileGeneratorArray.length;
+        final int size2 = this.gdNameFileGeneratorArray.length;
         for(int index = 0; index < size2; index++) {
-            gdNameFileGeneratorArray[index].process(gdProject);
+            this.gdNameFileGeneratorArray[index].process(gdProject);
         }
         
         this.allBinaryAndroidResourcesGenerator.process(gdProject);
@@ -319,9 +319,9 @@ public class GDToAllBinaryGenerationTool
             fileAsString = fileAsString.substring(startIndex, endIndex);
             fileAsString = fileAsString.toLowerCase();
 
-            if (!duplicateCheckList.contains(fileAsString))
+            if (!this.duplicateCheckList.contains(fileAsString))
             {
-                duplicateCheckList.add(fileAsString);
+                this.duplicateCheckList.add(fileAsString);
 
                 this.androidRClassGenerator.processResource(fileAsString);
                 this.threedAndroidRClassGenerator.processResource(fileAsString);
@@ -361,7 +361,7 @@ public class GDToAllBinaryGenerationTool
     private void loadEvents(final BasicArrayList eventList)
     {
 
-        logUtil.putF(StringUtil.getInstance().EMPTY_STRING, this, "loadEvents");
+        this.logUtil.putF(StringUtil.getInstance().EMPTY_STRING, this, "loadEvents");
 
         final GDEventTypeFactory eventTypeFactory = GDEventTypeFactory.getInstance();
         final int size = eventList.size();
@@ -386,7 +386,7 @@ public class GDToAllBinaryGenerationTool
 
     private void loadStandardEvent(final GDStandardEvent standardEvent)
     {
-        logUtil.putF(StringUtil.getInstance().EMPTY_STRING, this, LOAD_STANDARD_EVENT);
+        this.logUtil.putF(StringUtil.getInstance().EMPTY_STRING, this, this.LOAD_STANDARD_EVENT);
         this.loadEvents(standardEvent.eventList);
         this.loadActions(standardEvent.actionList);
     }
@@ -395,14 +395,14 @@ public class GDToAllBinaryGenerationTool
     {
         final int size = actionList.size();
         
-        logUtil.putF(ACTION_LIST_SIZE + size, this, LOAD_ACTIONS);
+        this.logUtil.putF(this.ACTION_LIST_SIZE + size, this, this.LOAD_ACTIONS);
         
         GDInstruction instruction;
         for (int index = 0; index < size; index++)
         {
             instruction = (GDInstruction) actionList.get(index);
 
-            logUtil.putF(INSTRUCTION_TYPE_VALUE + instruction.typeValue, this, LOAD_ACTIONS);
+            this.logUtil.putF(this.INSTRUCTION_TYPE_VALUE + instruction.typeValue, this, this.LOAD_ACTIONS);
 
             if (instruction.typeValue.indexOf(this.PRELOAD_SOUND) >= 0)
             {
@@ -422,7 +422,7 @@ public class GDToAllBinaryGenerationTool
     {
         final int size = parametersExpressionList.size();
         
-        logUtil.putF(PARAMETERS_EXPRESSION_LIST + size, this, LOAD_EXPRESSION);
+        this.logUtil.putF(this.PARAMETERS_EXPRESSION_LIST + size, this, this.LOAD_EXPRESSION);
         
         GDExpression expression;
         String param;
@@ -432,7 +432,7 @@ public class GDToAllBinaryGenerationTool
         {
             expression = (GDExpression) parametersExpressionList.get(1);
 
-            logUtil.putF(PARAMETERS_EXPRESSION + expression, this, LOAD_EXPRESSION);
+            this.logUtil.putF(this.PARAMETERS_EXPRESSION + expression, this, this.LOAD_EXPRESSION);
             
             param = expression.plainString;
             
@@ -451,9 +451,9 @@ public class GDToAllBinaryGenerationTool
             param = param.substring(startIndex, endIndex);
             param = param.toLowerCase();
 
-            if (!duplicateCheckList.contains(param))
+            if (!this.duplicateCheckList.contains(param))
             {
-                duplicateCheckList.add(param);
+                this.duplicateCheckList.add(param);
 
                 this.androidRClassGenerator.processExpressionParam(param);
                 this.threedAndroidRClassGenerator.processExpressionParam(param);

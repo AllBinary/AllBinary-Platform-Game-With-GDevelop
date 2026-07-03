@@ -39,12 +39,14 @@ public class GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory
         super(name, new Hashtable(), new Hashtable(), new Hashtable());
     }
     
+    @Override
     public void init(int level)
     throws Exception
     {
         this.initImageCache(ImageCacheFactory.getInstance(), level);
     }
 
+    @Override
     protected void initImageCache(ImageCache imageCache, int level)
     throws Exception
     {
@@ -90,6 +92,7 @@ public class GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory
         super.init(level);
     }
     
+    @Override
     public boolean isLoadingLevel(int level)
     {
         if(level > 0  && level < Integer.MAX_VALUE - 100)
@@ -102,6 +105,7 @@ public class GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory
         }
     }
     
+    @Override
     public boolean isFeature()
     {
         Features features = Features.getInstance();

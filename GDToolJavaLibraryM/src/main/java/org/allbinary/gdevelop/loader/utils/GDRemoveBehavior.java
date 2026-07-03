@@ -39,6 +39,7 @@ public class GDRemoveBehavior extends GDJSONGeneratorBase {
     public GDRemoveBehavior() {
     }
     
+    @Override
     public void process(final JSONObject gameAsConfigurationJSONObject) throws Exception {
         final JSONObject jsonObject = gameAsConfigurationJSONObject.getJSONObject(this.gdProjectStrings.RESOURCES);
         super.process(gameAsConfigurationJSONObject);
@@ -64,7 +65,7 @@ public class GDRemoveBehavior extends GDJSONGeneratorBase {
 
     private void process(final GDObject gdObject) {
         
-        final JSONArray behaviorsJSONArray = gdObject.jsonObject.getJSONArray(gdProjectStrings.BEHAVIORS);
+        final JSONArray behaviorsJSONArray = gdObject.jsonObject.getJSONArray(this.gdProjectStrings.BEHAVIORS);
         final BasicArrayList behaviorList = gdObject.behaviorContentList;
         final int size = behaviorList.size();
         System.out.println("Behavior Total: " + size);
@@ -72,7 +73,7 @@ public class GDRemoveBehavior extends GDJSONGeneratorBase {
         for(int index = 0; index < size; index++) {
             GDBehavior gdBehaviorContent = (GDBehavior) behaviorList.get(index);
             //System.out.println("Behavior: " + gdBehaviorContent.jsonObject);
-            if(gdBehaviorContent.type.compareTo(FIND_BEHAVIOR) == 0) {
+            if(gdBehaviorContent.type.compareTo(this.FIND_BEHAVIOR) == 0) {
                 found = true;
                 behaviorsJSONArray.remove(index);
                 break;
@@ -86,6 +87,7 @@ public class GDRemoveBehavior extends GDJSONGeneratorBase {
         }
     }
 
+    @Override
     public void processLayout(final JSONObject jsonObject) throws Exception {
         this.processObjects(jsonObject);
     }

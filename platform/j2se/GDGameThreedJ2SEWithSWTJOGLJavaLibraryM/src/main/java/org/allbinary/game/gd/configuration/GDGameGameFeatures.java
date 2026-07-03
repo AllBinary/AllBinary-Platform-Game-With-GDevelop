@@ -69,7 +69,7 @@ public class GDGameGameFeatures implements InitInterface
 
         GameFeatureChoiceGroups.getExclusiveInstance().get().clear();
         
-        GameFeatureChoiceGroups.getMultipleInstance().add(GRAPHICS_OPTIONS,
+        GameFeatureChoiceGroups.getMultipleInstance().add(GDGameGameFeatures.GRAPHICS_OPTIONS,
                 multipleBasicArrayList);
 
         GameFeatureChoiceGroups.getExclusiveInstance().add(

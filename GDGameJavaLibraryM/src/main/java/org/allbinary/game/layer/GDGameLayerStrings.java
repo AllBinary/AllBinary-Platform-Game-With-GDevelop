@@ -26,7 +26,7 @@ public class GDGameLayerStrings
      */
     public static GDGameLayerStrings getInstance()
     {
-        return instance;
+        return GDGameLayerStrings.instance;
     }
     
     public final String ADD_FORCE_AL = "AddForceUsingPolarCoordinates";

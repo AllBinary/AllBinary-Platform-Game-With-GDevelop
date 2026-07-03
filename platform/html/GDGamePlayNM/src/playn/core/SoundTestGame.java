@@ -50,33 +50,33 @@ public class SoundTestGame implements Game, Keyboard.Listener
     public void init()
     {
 
-        Graphics graphics = graphics();
+        Graphics graphics = PlayN.graphics();
 
         graphics.setSize(800, 600);
 
-        gameLayer = graphics.createSurfaceLayer(graphics.width(), graphics.height());
-        graphics.rootLayer().add(gameLayer);
+        this.gameLayer = graphics.createSurfaceLayer(graphics.width(), graphics.height());
+        graphics.rootLayer().add(this.gameLayer);
 
-        keyboard().setListener(this);
+        PlayN.keyboard().setListener(this);
 
-        pointer().setListener(new Pointer.Listener()
+        PlayN.pointer().setListener(new Pointer.Listener()
         {
             @Override
             public void onPointerEnd(Pointer.Event event)
             {
-                touchVectorX = touchVectorY = 0;
+                this.touchVectorX = this.touchVectorY = 0;
             }
 
             @Override
             public void onPointerDrag(Pointer.Event event)
             {
-                touchMove(event.x(), event.y());
+                this.touchMove(event.x(), event.y());
             }
 
             @Override
             public void onPointerStart(Pointer.Event event)
             {
-                touchMove(event.x(), event.y());
+                this.touchMove(event.x(), event.y());
             }
         });
 
@@ -116,16 +116,16 @@ public class SoundTestGame implements Game, Keyboard.Listener
         PlayN.log().debug("key up");
         try
         {
-            if(sound == null) {
-                sound = PlayN.assetManager().getSound("/wav/select");
+            if(this.sound == null) {
+                this.sound = PlayN.assetManager().getSound("/wav/select");
             }
         }catch(Exception e)
         {
             PlayN.log().error(CommonStrings.getInstance().EXCEPTION, e);
         }
-        if(!sound.isPlaying()) {
+        if(!this.sound.isPlaying()) {
             PlayN.log().debug("play sound");
-            sound.play();
+            this.sound.play();
         }
     }
 
@@ -146,29 +146,29 @@ public class SoundTestGame implements Game, Keyboard.Listener
         }catch(Exception e)
         {
             this.isCrashed = true;
-            logUtil.put(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().UPDATE, e);
+            this.logUtil.put(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().UPDATE, e);
         }
     }
 
     @Override
     public void paint(float alpha)
     {
-        Surface surface = gameLayer.surface();
+        Surface surface = this.gameLayer.surface();
         surface.clear();
     }
 
     private void touchMove(float x, float y)
     {
-        float cx = graphics().screenWidth() / 2;
-        float cy = graphics().screenHeight() / 2;
+        float cx = PlayN.graphics().screenWidth() / 2;
+        float cy = PlayN.graphics().screenHeight() / 2;
 
-        touchVectorX = (x - cx) * 1.0f / cx;
-        touchVectorY = (y - cy) * 1.0f / cy;
+        this.touchVectorX = (x - cx) * 1.0f / cx;
+        this.touchVectorY = (y - cy) * 1.0f / cy;
     }
 
     private void post(String payload)
     {
-        net().post("/rpc", payload, new Callback<String>()
+        PlayN.net().post("/rpc", payload, new Callback<String>()
         {
             @Override
             public void onSuccess(String response)

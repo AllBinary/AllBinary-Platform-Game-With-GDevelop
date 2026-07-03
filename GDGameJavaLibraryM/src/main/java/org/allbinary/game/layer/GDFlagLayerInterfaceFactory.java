@@ -35,7 +35,7 @@ public class GDFlagLayerInterfaceFactory
 
     public static GDFlagLayerInterfaceFactory getInstance()
     {
-        return instance;
+        return GDFlagLayerInterfaceFactory.instance;
     }
     
     private int index = 0;
@@ -91,10 +91,10 @@ public class GDFlagLayerInterfaceFactory
             layerInfo,
             rectangleArrayOfArrays, false);
         
-        final GDObject gdObject = new GDObject(0, 0, NAME, null);
+        final GDObject gdObject = new GDObject(0, 0, GDFlagLayerInterfaceFactory.NAME, null);
         gdObject.set(null, x, y, z);
         
-        final GDGameLayer layer = gameLayerFactory.create(-1, NAME, gdObject, 0, 0, new GDConditionWithGroupActions());
+        final GDGameLayer layer = gameLayerFactory.create(-1, GDFlagLayerInterfaceFactory.NAME, gdObject, 0, 0, new GDConditionWithGroupActions());
         
         layer.setAllBinaryGameLayerManager((AllBinaryGameLayerManager) hashtable.get(AllBinaryGameLayerManager.ID));
 

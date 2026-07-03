@@ -50,11 +50,12 @@ public class GDGameStartCanvas extends DemoCanvas
                 NullPaintable.getInstance(), NullInitUpdatePaintable.getInstance(),
                 new GDGameStaticInitializerFactory(), false);
 
-        this.setWait(WAIT);
+        this.setWait(this.WAIT);
         
         GD0SpecialAnimation.getInstance(this, null);
     }
 
+    @Override
     public void initPostPaint() throws Exception
     {
         this.setBasicGameDemoPaintable(
@@ -68,6 +69,7 @@ public class GDGameStartCanvas extends DemoCanvas
                 ColorFillPaintableFactory.getInstance().getInstance(BasicColorFactory.getInstance().RED, false));
     }
 
+    @Override
     protected int getNextRandom()
     {
     	PreLogUtil.put("******************Demo Next Random Is Always 1", this, "getNextRandom");
@@ -75,6 +77,7 @@ public class GDGameStartCanvas extends DemoCanvas
         return 1;
     }
 
+    @Override
     protected AllBinaryGameLayerManager createGameLayerManager(int randomValue) throws Exception
     {
         GameInfo gameInfo = new GameInfo(GameTypeFactory.getInstance().BOT, GameMode.SERVER, PlayerTypesFactory
@@ -83,6 +86,7 @@ public class GDGameStartCanvas extends DemoCanvas
         return new GDGameLayerManager(null, null, gameInfo);
     }
 
+    @Override
     public GameCanvasRunnableInterface createRunnable(int randomValue) throws Exception
     {
         return new GDGameGameCanvas(this.abeClientInformation, this.createGameLayerManager(this.getNextRandom()));

@@ -59,10 +59,10 @@ public class SliderAnimation
         final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.animationInterfaceArray[4]);
         if(SWTUtil.isSWT) {
             //customTextAnimation.setDy(-customTextAnimation.getSize());
-            final int h = dxhack();
+            final int h = this.dxhack();
             customTextAnimation.setDy(-h / 3 * 2);
         } else {
-            final int h = dxhack();
+            final int h = this.dxhack();
             customTextAnimation.setDy(-h + (h / 10));
         }
     }
@@ -156,7 +156,7 @@ public class SliderAnimation
      */
     public IndexedAnimation[] getAnimationInterfaceArray()
     {
-        return animationInterfaceArray;
+        return this.animationInterfaceArray;
     }
 
     /**
@@ -171,7 +171,7 @@ public class SliderAnimation
         if(value >= 0 && value < 101) {
             this.value = value;
             //logUtil.put("new value: " + this.value, this, "onMotionGestureEvent");
-            final int newDx = dx + (value * width / 100);
+            final int newDx = this.dx + (value * this.width / 100);
             this.animationInterfaceArray[3].setDx(newDx);
             
             final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.animationInterfaceArray[4]);
@@ -184,8 +184,8 @@ public class SliderAnimation
         //logUtil.put("old thumbX: " + this.animationInterfaceArray[3].getDx(), this, "onMotionGestureEvent");
         //logUtil.put("thumbX: " + thumbX, this, "onMotionGestureEvent");
         int usedThumbX = thumbX;
-        final int maxX = width;
-        if(thumbX >= dx && thumbX < dx + width) {
+        final int maxX = this.width;
+        if(thumbX >= this.dx && thumbX < this.dx + this.width) {
         } else if(thumbX < 0) {
             usedThumbX = 0;
             //logUtil.put("min thumbX: " + usedThumbX, this, "onMotionGestureEvent");
@@ -194,7 +194,7 @@ public class SliderAnimation
             //logUtil.put("max thumbX: " + usedThumbX, this, "onMotionGestureEvent");
         }
         //logUtil.put("old value: " + this.value, this, "onMotionGestureEvent");
-        int value = (100 * usedThumbX / width);
+        int value = (100 * usedThumbX / this.width);
         if(value > 100) {
             value = 100;
         }
@@ -212,7 +212,7 @@ public class SliderAnimation
     }
     
     public int getValue() {
-        return value;
+        return this.value;
     }
 
     public void setFocus(final boolean hasFocus) {

@@ -69,6 +69,7 @@ public class GDGame
         new DefaultGameInitializationListener();
     }
 
+    @Override
     protected void init()
     {
         try
@@ -178,6 +179,7 @@ public class GDGame
         openGLConfiguration.write();        
     }
     
+    @Override
     public void initView() {
         ((EmulatorViewInterface) this.glSurfaceView).setMidlet(this);
     }

@@ -98,7 +98,7 @@ public class GDProject
             this.objectList.add(objectFactory.create(objectJSONObject));
         }
         
-        logUtil.putF(OBJECTS + this.objectList.size(), this, LOAD);
+        this.logUtil.putF(this.OBJECTS + this.objectList.size(), this, this.LOAD);
         
         final JSONArray variableJSONArray = gameAsConfiguration.getJSONArray(gdProjectStrings.VARIABLES);
         size = variableJSONArray.length();
@@ -106,7 +106,7 @@ public class GDProject
             this.variableList.add(new GDVariable(variableJSONArray.getJSONObject(index)));
         }
         
-        logUtil.putF(VARIABLES + this.variableList.size(), this, LOAD);
+        this.logUtil.putF(this.VARIABLES + this.variableList.size(), this, this.LOAD);
         
         final JSONArray layoutsJSONArray = gameAsConfiguration.getJSONArray(gdProjectStrings.LAYOUTS);
         size = layoutsJSONArray.length();
@@ -115,7 +115,7 @@ public class GDProject
             this.layoutList.add(new GDLayout(objectJSONObject));
         }
 
-        logUtil.putF(LAYOUTS + this.layoutList.size(), this, LOAD);
+        this.logUtil.putF(this.LAYOUTS + this.layoutList.size(), this, this.LOAD);
         
         final JSONArray externalLayoutsJSONArray = gameAsConfiguration.getJSONArray(gdProjectStrings.EXTERNAL_LAYOUTS);
         size = externalLayoutsJSONArray.length();
@@ -124,7 +124,7 @@ public class GDProject
             this.externalLayoutList.add(new GDExternalLayout(objectJSONObject));
         }
         
-        logUtil.putF(EXTERNAL_LAYOUT + this.externalLayoutList.size(), this, LOAD);        
+        this.logUtil.putF(this.EXTERNAL_LAYOUT + this.externalLayoutList.size(), this, this.LOAD);        
     }
         
 }

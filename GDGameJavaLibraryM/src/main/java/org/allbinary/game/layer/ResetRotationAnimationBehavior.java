@@ -28,13 +28,13 @@ public class ResetRotationAnimationBehavior extends ResetAnimationBehavior {
      * @return the instance
      */
     public static ResetRotationAnimationBehavior getInstance() {
-        return instance;
+        return ResetRotationAnimationBehavior.instance;
     }
     
     private final FrameUtil frameUtil = FrameUtil.getInstance();
 
     @Override
     public void resetAnimation(final IndexedAnimation[] indexedAnimationInterfaceArray, final int animationIndex) {
-        indexedAnimationInterfaceArray[animationIndex].setFrame(frameUtil.getFrameForAngle((short) 90, 1));
+        indexedAnimationInterfaceArray[animationIndex].setFrame(this.frameUtil.getFrameForAngle((short) 90, 1));
     }
 }

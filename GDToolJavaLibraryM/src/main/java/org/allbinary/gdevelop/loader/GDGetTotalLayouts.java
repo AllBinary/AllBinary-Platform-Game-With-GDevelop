@@ -43,11 +43,11 @@ public class GDGetTotalLayouts
 
             final StringMaker stringMaker = new StringMaker();
             
-            final FileInputStream gameInputStream = new FileInputStream(gdToolStrings.GAME_XML_PATH);
+            final FileInputStream gameInputStream = new FileInputStream(this.gdToolStrings.GAME_XML_PATH);
             final String gameXmlAsString = new String(streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
-            final String xslPath = gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutCount.xsl";
-            logUtil.putF(xslPath, this, commonStrings.PROCESS);
+            final String xslPath = this.gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutCount.xsl";
+            this.logUtil.putF(xslPath, this, this.commonStrings.PROCESS);
             final FileInputStream fileInputStream = new FileInputStream(xslPath);
             sharedBytes.outputStream.reset();
             final String xslAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
@@ -58,13 +58,13 @@ public class GDGetTotalLayouts
 
             
             stringMaker.delete(0, stringMaker.length());
-            logUtil.putF(stringMaker.append("result: ").append(result).toString(), this, commonStrings.PROCESS);
+            this.logUtil.putF(stringMaker.append("result: ").append(result).toString(), this, this.commonStrings.PROCESS);
             
             return Integer.parseInt(result);
 
         } catch (Exception e)
         {
-            logUtil.put("Is the game xml formatted when it is not we get an error from: gglobals.dVersion", this, commonStrings.PROCESS, e);
+            this.logUtil.put("Is the game xml formatted when it is not we get an error from: gglobals.dVersion", this, this.commonStrings.PROCESS, e);
         }
 
         throw new RuntimeException();

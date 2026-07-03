@@ -32,7 +32,7 @@ public class GLBProcessing {
     public void process(GLBVisitor glbVisitor) {
         //final String _GLB = ".glb";
 
-        final BasicArrayList fileList = fileListFetcher.getFiles(
+        final BasicArrayList fileList = this.fileListFetcher.getFiles(
             GDGame0.getInstance().PATH,
             new String[] {"glb"});
 
@@ -60,11 +60,11 @@ public class GLBProcessing {
                     final String name = path.substring(lastIndex, endIndex);
                     
 
-                    glbVisitor.append(fileNameAsString, name, stringMaker);
+                    glbVisitor.append(fileNameAsString, name, this.stringMaker);
                 }
             }
         }
         
-        System.out.println(stringMaker.toString());        
+        System.out.println(this.stringMaker.toString());        
     }
 }

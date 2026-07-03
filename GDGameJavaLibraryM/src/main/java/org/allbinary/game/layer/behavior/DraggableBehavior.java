@@ -28,13 +28,14 @@ public class DraggableBehavior extends GDBehavior {
      * @return the instance
      */
     public static DraggableBehavior getInstance() {
-        return instance;
+        return DraggableBehavior.instance;
     }
     
     private DraggableBehavior() {
         
     }
     
+    @Override
     public boolean process(final BasicArrayList gameLayerList, final int index, final Graphics graphics) {
         return false;
     }

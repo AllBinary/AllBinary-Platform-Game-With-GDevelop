@@ -19,7 +19,7 @@ public class GDProjectStrings
      */
     public static GDProjectStrings getInstance()
     {
-        return instance;
+        return GDProjectStrings.instance;
     }
 
     public final String GAME = "game";

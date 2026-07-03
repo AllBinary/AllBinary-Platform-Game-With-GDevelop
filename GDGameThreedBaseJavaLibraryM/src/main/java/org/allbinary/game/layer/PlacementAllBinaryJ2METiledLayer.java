@@ -28,11 +28,13 @@ public class PlacementAllBinaryJ2METiledLayer extends AllBinaryJ2METiledLayer {
         super(dataId, tiledLayer, i_Map2DArray, debugColor);
     }
     
+    @Override
     public void setPosition(final int x, final int y, final int z)
     {
         super.setPosition(x, y, z);
     }
     
+    @Override
     public void paint(final Graphics graphics)
     {
         super.paint(graphics);

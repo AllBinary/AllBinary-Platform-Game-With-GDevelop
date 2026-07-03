@@ -22,7 +22,7 @@ public class GDGameHelpPaintable extends HelpPaintable
     
     public static HelpPaintable getInstance()
     {
-        return SINGLETON;
+        return GDGameHelpPaintable.SINGLETON;
     }
     
     private GDGameHelpPaintable()

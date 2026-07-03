@@ -34,20 +34,20 @@ public class GDVariable
 
         this.type = typeFactory.get(jsonObject.getString(gdProjectStrings.TYPE));
         
-        if (typeFactory.isPrimitive(type))
+        if (typeFactory.isPrimitive(this.type))
         {
-            if (type == typeFactory.STRING)
+            if (this.type == typeFactory.STRING)
             {
                 this.string = jsonObject.getString(gdProjectStrings.VALUE);
                 this.value = 0;
                 this.boolValue = false;
-            } else if (type == typeFactory.NUMBER)
+            } else if (this.type == typeFactory.NUMBER)
             {
                 this.string = null;
                 this.value = jsonObject.getDouble(gdProjectStrings.VALUE);
                 this.boolValue = false;
 
-            } else if (type == typeFactory.BOOLEAN)
+            } else if (this.type == typeFactory.BOOLEAN)
             {
                 this.string = null;
                 this.value = 0;
@@ -69,9 +69,9 @@ public class GDVariable
                 JSONObject childJSONObject;
                 for (int index = 0; index < size; index++) {
                     childJSONObject = variableJSONArray.getJSONObject(index);
-                    if (type == typeFactory.STRUCTURE) {
+                    if (this.type == typeFactory.STRUCTURE) {
                         this.childVariableMap.put(childJSONObject.getString(gdProjectStrings.NAME), new GDVariable(childJSONObject));
-                    } else if (type == typeFactory.ARRAY) {
+                    } else if (this.type == typeFactory.ARRAY) {
                         this.childVariableList.add(new GDVariable(childJSONObject));
                     }
                 }

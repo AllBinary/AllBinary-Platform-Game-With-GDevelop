@@ -11,7 +11,7 @@ public class GDGameThreedTitleAnimationFactory
     
     public static GDGameThreedTitleAnimationFactory getIntance()
     {
-        return instance;
+        return GDGameThreedTitleAnimationFactory.instance;
     }
     
     public final TitleAnimation getInstance(

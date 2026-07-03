@@ -30,11 +30,11 @@ public class CallCountGDNodeStats {
     private final String TOTAL_CALLS = "total calls: ";
 
     private final int SIZE = 16;
-    private final long[][] totalCalls = new long[SIZE][15000];
+    private final long[][] totalCalls = new long[this.SIZE][15000];
     
     public void reset() {
 
-        for(int index2 = 0; index2 < SIZE; index2++) {
+        for(int index2 = 0; index2 < this.SIZE; index2++) {
             for (int index = 0; index < 15000; index++) {
                 this.totalCalls[index2][index] = 0;
             }
@@ -53,24 +53,24 @@ public class CallCountGDNodeStats {
         
         stringBuilder.delete(0, stringBuilder.length());
         
-        stringBuilder.append(TOTAL_CALLS);
+        stringBuilder.append(this.TOTAL_CALLS);
         
-        for(int index = 0; index < SIZE; index++) {
+        for(int index = 0; index < this.SIZE; index++) {
             for(int index2 = 0; index2 < 15000; index2++) {
-                if(totalCalls[index][index2] > 20) {
+                if(this.totalCalls[index][index2] > 20) {
                     stringBuilder.appendint(index);
                     stringBuilder.append(commonSeps.COLON);
                     stringBuilder.appendint(index2);
                     stringBuilder.append(commonSeps.COLON);
-                    stringBuilder.appendlong(totalCalls[index][index2]);
+                    stringBuilder.appendlong(this.totalCalls[index][index2]);
                 }
             }
         }
 
         stringBuilder.append(commonSeps.NEW_LINE);
         
-        if(stringBuilder.length() > TOTAL_CALLS.length() + 1) {
-            logUtil.putF(stringBuilder.toString(), this, commonStrings.PROCESS);
+        if(stringBuilder.length() > this.TOTAL_CALLS.length() + 1) {
+            this.logUtil.putF(stringBuilder.toString(), this, commonStrings.PROCESS);
         }
         
     }

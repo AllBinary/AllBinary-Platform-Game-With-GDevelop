@@ -50,33 +50,33 @@ public class GraphicsTestGame implements Game, Keyboard.Listener
     public void init()
     {
 
-        Graphics graphics = graphics();
+        Graphics graphics = PlayN.graphics();
 
         graphics.setSize(800, 600);
 
-        gameLayer = graphics.createSurfaceLayer(graphics.width(), graphics.height());
-        graphics.rootLayer().add(gameLayer);
+        this.gameLayer = graphics.createSurfaceLayer(graphics.width(), graphics.height());
+        graphics.rootLayer().add(this.gameLayer);
 
-        keyboard().setListener(this);
+        PlayN.keyboard().setListener(this);
 
-        pointer().setListener(new Pointer.Listener()
+        PlayN.pointer().setListener(new Pointer.Listener()
         {
             @Override
             public void onPointerEnd(Pointer.Event event)
             {
-                touchVectorX = touchVectorY = 0;
+                touchVectorX = this.touchVectorY = 0;
             }
 
             @Override
             public void onPointerDrag(Pointer.Event event)
             {
-                touchMove(event.x(), event.y());
+                this.touchMove(event.x(), event.y());
             }
 
             @Override
             public void onPointerStart(Pointer.Event event)
             {
-                touchMove(event.x(), event.y());
+                this.touchMove(event.x(), event.y());
             }
         });
 
@@ -146,7 +146,7 @@ public class GraphicsTestGame implements Game, Keyboard.Listener
     @Override
     public void paint(float alpha)
     {
-        Surface surface = gameLayer.surface();
+        Surface surface = this.gameLayer.surface();
         surface.clear();
 
         //TWB - Graphics test code
@@ -162,16 +162,16 @@ public class GraphicsTestGame implements Game, Keyboard.Listener
         //this.graphics.drawString(string, 100, 10, 0);
         this.graphics.drawImage(this.imageArray[0], 20, 50, 0);
         
-        if(falling) {
+        if(this.falling) {
             alpha -= .01;
         } else {
             alpha += .01;
         }
         
         if(alpha <= 0) {
-            falling = false;
+            this.falling = false;
         } else if(alpha >= 1) {
-            falling = true;
+            this.falling = true;
         }
         
         ImageModifierUtil.getInstanceOrCreate().setAlpha(this.originalImage, this.imageArray[0], 0, (int) (alpha * 255));
@@ -179,16 +179,16 @@ public class GraphicsTestGame implements Game, Keyboard.Listener
 
     private void touchMove(float x, float y)
     {
-        float cx = graphics().screenWidth() / 2;
-        float cy = graphics().screenHeight() / 2;
+        float cx = PlayN.graphics().screenWidth() / 2;
+        float cy = PlayN.graphics().screenHeight() / 2;
 
         touchVectorX = (x - cx) * 1.0f / cx;
-        touchVectorY = (y - cy) * 1.0f / cy;
+        this.touchVectorY = (y - cy) * 1.0f / cy;
     }
 
     private void post(String payload)
     {
-        net().post("/rpc", payload, new Callback<String>()
+        PlayN.net().post("/rpc", payload, new Callback<String>()
         {
             @Override
             public void onSuccess(String response)

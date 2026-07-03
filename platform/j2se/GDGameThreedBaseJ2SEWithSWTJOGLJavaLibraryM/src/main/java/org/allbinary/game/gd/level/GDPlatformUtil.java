@@ -29,7 +29,7 @@ public class GDPlatformUtil {
      * @return the instance
      */
     public static GDPlatformUtil getInstance() {
-        return instance;
+        return GDPlatformUtil.instance;
     }
     
     public int getRange() {

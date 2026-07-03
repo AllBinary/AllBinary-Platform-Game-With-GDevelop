@@ -22,7 +22,7 @@ public class GDGameGameInputMappingFactory
     
     public static GDGameGameInputMappingFactory getInstance()
     {
-        return SINGLETON;
+        return GDGameGameInputMappingFactory.SINGLETON;
     }
     
     private GameInputMapping[] gameInputMappingArray = new GameInputMapping[7];
@@ -32,23 +32,23 @@ public class GDGameGameInputMappingFactory
         final GameKeyFactory gameKeyFactory = GameKeyFactory.getInstance();
         
         //Enter, 1, or Y",
-        gameInputMappingArray[0] = new GameInputMapping("Fire", gameKeyFactory.KEY_NUM1);
+        this.gameInputMappingArray[0] = new GameInputMapping("Fire", gameKeyFactory.KEY_NUM1);
         
         //Forward= Up, 2, or U
-        gameInputMappingArray[1] = new GameInputMapping("Up", gameKeyFactory.UP);
+        this.gameInputMappingArray[1] = new GameInputMapping("Up", gameKeyFactory.UP);
         
         //Turn= Left, 4, or H
-        gameInputMappingArray[2] = new GameInputMapping("Left", gameKeyFactory.LEFT);
+        this.gameInputMappingArray[2] = new GameInputMapping("Left", gameKeyFactory.LEFT);
         
         //Turn= Right, 6, or K
-        gameInputMappingArray[3] = new GameInputMapping("Right", gameKeyFactory.RIGHT);
+        this.gameInputMappingArray[3] = new GameInputMapping("Right", gameKeyFactory.RIGHT);
 
         //Reverse= Down, 8, or M
-        gameInputMappingArray[4] = new GameInputMapping("Down", gameKeyFactory.DOWN);
+        this.gameInputMappingArray[4] = new GameInputMapping("Down", gameKeyFactory.DOWN);
         
         //Test game
-        gameInputMappingArray[5] = new GameInputMapping("Zoom Out", gameKeyFactory.KEY_NUM3);
-        gameInputMappingArray[6] = new GameInputMapping("Zoom In", gameKeyFactory.KEY_NUM0);
+        this.gameInputMappingArray[5] = new GameInputMapping("Zoom Out", gameKeyFactory.KEY_NUM3);
+        this.gameInputMappingArray[6] = new GameInputMapping("Zoom In", gameKeyFactory.KEY_NUM0);
 
         /*        
         //Forward= Up, 2, or U

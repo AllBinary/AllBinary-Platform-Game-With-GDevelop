@@ -34,7 +34,7 @@ public class GDIndividualAnimationBehavior extends GDAnimationBehaviorBase {
      * @return the instance
      */
     public static GDIndividualAnimationBehavior getInstance() {
-        return instance;
+        return GDIndividualAnimationBehavior.instance;
     }
     
     @Override
@@ -60,7 +60,7 @@ public class GDIndividualAnimationBehavior extends GDAnimationBehaviorBase {
         } catch (Exception e) {
             final CommonStrings commonStrings = CommonStrings.getInstance();
             //logUtil.put(new StringMaker().append(this.getName()).append(" GDObject name: ").append(this.gdObject.name).toString(), this, "animate");
-            logUtil.put(commonStrings.EXCEPTION, this, "animate", e);
+            this.logUtil.put(commonStrings.EXCEPTION, this, "animate", e);
         }
     }
 }

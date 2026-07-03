@@ -22,7 +22,7 @@ public class GDPlatformExtension extends GDBehaviorMetadata
      */
     public static GDPlatformExtension getInstance()
     {
-        return instance;
+        return GDPlatformExtension.instance;
     }
 
     public final String NAMESPACE_SEP = "::";
