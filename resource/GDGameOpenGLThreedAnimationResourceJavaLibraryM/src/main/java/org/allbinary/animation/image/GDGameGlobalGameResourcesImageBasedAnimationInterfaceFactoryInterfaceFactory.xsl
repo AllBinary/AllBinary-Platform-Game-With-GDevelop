@@ -148,8 +148,8 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
         </xsl:call-template>
 
         <xsl:if test="/game/properties/threedAnimationAdjustment" >
-    private final Number3d positionNumber3d = new Number3d();
-    private final Number3d rotationNumber3d = new Number3d();
+    private final Number3d positionNumber3d = new Number3d(0.0f, 0.0f, 0.0f);
+    private final Number3d rotationNumber3d = new Number3d(0.0f, 0.0f, 0.0f);
         </xsl:if>
 
         <xsl:variable name="hasSprite" ><xsl:for-each select="objects" ><xsl:if test="type = 'Sprite'" >found</xsl:if></xsl:for-each></xsl:variable>

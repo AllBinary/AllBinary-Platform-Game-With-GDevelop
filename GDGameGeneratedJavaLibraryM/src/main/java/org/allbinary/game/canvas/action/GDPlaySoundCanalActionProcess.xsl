@@ -44,7 +44,7 @@ Created By: Travis Berthelot
 
                             int leftVolume = 100;
                             int rightVolume = 100;
-                            <xsl:if test="string-length($volume) > 0 and number($volume) = $volume" >
+                            <xsl:if test="string-length($volume) > 0 and (number($volume) = $volume or contains($volume, 'Variable'))" >
                             final int volume = <xsl:value-of select="$volume" />;
                             //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + volume, this, commonStrings.PROCESS);
                             leftVolume = volume;

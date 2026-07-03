@@ -42,6 +42,8 @@ public class GDIndividualAnimationBehavior extends GDAnimationBehaviorBase {
         try {
             final IndexedAnimation indexedAnimation = initIndexedAnimationInterfaceArray[gdObject.animation];
 
+            //this.logUtil.putF(indexedAnimation.toString(), gdObject, "animate");
+
             final IndexedAnimationBehavior indexedAnimationBehavior = (IndexedAnimationBehavior) indexedAnimation.getAnimationBehavior();
 
             //animations/directions/loop
