@@ -662,7 +662,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     <xsl:for-each select="Thumb" >
                     //Thumb
-                    new AllBinaryHTMLImageRotationAnimationFactory(
+                    AllBinaryHTMLImageRotationAnimationFactory.createFactoryADXY(
                         <xsl:value-of select="$name" />ImageArray[4],
                         <xsl:value-of select="$name" />ImageArray[4].getWidth(),
                         <xsl:value-of select="$name" />ImageArray[4].getHeight(),

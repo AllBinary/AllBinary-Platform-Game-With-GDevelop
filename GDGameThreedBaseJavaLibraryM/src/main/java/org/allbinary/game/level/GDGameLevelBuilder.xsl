@@ -800,7 +800,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                     } else if (basicTopViewGeographicMapCellTypeFactory.STAIRS_DOWN_CELL_TYPE.hasType(type)) {
                     
                         stringMaker.delete(0, stringMaker.length());
-                        logUtil.put(stringMaker.append("Planned End Position c: ").appendint(allBinaryTiledLayer.getColumns()).append(CommonSeps.getInstance().FORWARD_SLASH).appendint(indexX * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).appendint(indexX).append(" r: ").append(allBinaryTiledLayer.getRows()).append(CommonSeps.getInstance().FORWARD_SLASH).appendint(indexY * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).appendint(indexY).toString(), this, commonStrings.PROCESS);
+                        logUtil.putF(stringMaker.append("Planned End Position c: ").appendint(allBinaryTiledLayer.getColumns()).append(CommonSeps.getInstance().FORWARD_SLASH).appendint(indexX * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).appendint(indexX).append(" r: ").appendint(allBinaryTiledLayer.getRows()).append(CommonSeps.getInstance().FORWARD_SLASH).appendint(indexY * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).appendint(indexY).toString(), this, commonStrings.PROCESS);
                                                 
                         geographicMapCellPosition = geographicMapCellPositionFactory.getAt(indexX, indexY);
                         this.setEndPosition(geographicMapInterfaceArray, geographicMapCellPosition, layerIndex, stringMaker);

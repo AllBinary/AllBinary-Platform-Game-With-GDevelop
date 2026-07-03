@@ -579,8 +579,15 @@ Created By: Travis Berthelot
                 final ThreedTiledLayerResourcesFactory threedTiledLayerResourcesFactory = ThreedTiledLayerResourcesFactory.getInstance();
 
                 <xsl:if test="not(type = 'TiledSpriteObject::TiledSprite')" >
+                    <xsl:if test="not(/game/properties/tileMap/columns)" >
+                if(true) throw new RuntimeException();
+                final int columns = -1;
+                final int rows = -1;
+                    </xsl:if>
+                    <xsl:if test="/game/properties/tileMap/columns" >
                 final int columns = <xsl:value-of select="/game/properties/tileMap/columns" />;
                 final int rows = <xsl:value-of select="/game/properties/tileMap/rows" />;
+                    </xsl:if>
                 final int total = columns * rows;
 
                 final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[total];

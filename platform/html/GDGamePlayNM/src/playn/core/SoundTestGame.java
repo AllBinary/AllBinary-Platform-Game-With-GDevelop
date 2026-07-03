@@ -64,19 +64,19 @@ public class SoundTestGame implements Game, Keyboard.Listener
             @Override
             public void onPointerEnd(Pointer.Event event)
             {
-                this.touchVectorX = this.touchVectorY = 0;
+                touchVectorX = touchVectorY = 0;
             }
 
             @Override
             public void onPointerDrag(Pointer.Event event)
             {
-                this.touchMove(event.x(), event.y());
+                touchMove(event.x(), event.y());
             }
 
             @Override
             public void onPointerStart(Pointer.Event event)
             {
-                this.touchMove(event.x(), event.y());
+                touchMove(event.x(), event.y());
             }
         });
 
