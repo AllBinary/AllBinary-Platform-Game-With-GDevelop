@@ -27,12 +27,11 @@ public class GDToolStrings {
     }
 
     //protected final LogUtil logUtil = LogUtil.getInstance();
-
-    private final CommonStrings commonStrings = CommonStrings.getInstance();
+    //private final CommonStrings commonStrings = CommonStrings.getInstance();
+    
+    public String ROOT_PATH = "..\\";
     
     public final String FILENAME = "fileName: ";
-    
-    public final String ROOT_PATH = "..\\";
 
     public final String ROTATION_ANIMATION_FILE_PATH = this.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\animation\\GDRotationAnimation.txt";
     

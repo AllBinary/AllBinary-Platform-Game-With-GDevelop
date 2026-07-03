@@ -19,10 +19,7 @@ package org.allbinary.gdevelop.loader;
  */
 public class GDGenerator {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) throws Exception {
+    public void process() throws Exception {
         //System.setProperty("jdk.xml.xpathExprGrpLimit", "0");
         //System.setProperty("jdk.xml.xpathExprOpLimit", "0");
         System.setProperty("jdk.xml.xpathTotalOpLimit", "0");
@@ -30,6 +27,13 @@ public class GDGenerator {
         new GDCopy().copy();
         new GDToAllBinaryGenerationTool().process();
         new GDLayoutsToAllBinaryLayoutGenerator().process(0, new GDGetTotalLayouts().process());
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) throws Exception {
+        new GDGenerator().process();
     }
     
 }
