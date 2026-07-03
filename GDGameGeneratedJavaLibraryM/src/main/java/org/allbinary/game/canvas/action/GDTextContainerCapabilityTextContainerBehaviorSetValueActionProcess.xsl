@@ -124,10 +124,10 @@ Created By: Travis Berthelot
                             final int size = <xsl:if test="$gameLayerName != text()" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:value-of select="text()" />GDGameLayerList.size();
                             GDGameLayer gameLayer;
                             <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="text()" /></xsl:variable>
-                            <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="text()" />;
+                            //<xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="text()" />;
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                 gameLayer = (GDGameLayer) <xsl:if test="$gameLayerName != text()" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:value-of select="text()" />GDGameLayerList.get(index);
-                                <xsl:value-of select="text()" /> = (<xsl:value-of select="$gdObjectFactory" />) gameLayer.gdObject;
+                                //<xsl:value-of select="text()" /> = (<xsl:value-of select="$gdObjectFactory" />) gameLayer.gdObject;
 
                                 </xsl:if>
                                 <xsl:if test="position() = 3" >
