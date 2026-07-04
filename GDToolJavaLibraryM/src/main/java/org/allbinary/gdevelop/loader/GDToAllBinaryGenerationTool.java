@@ -46,6 +46,7 @@ public class GDToAllBinaryGenerationTool
 
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
+    private final GDPaths gdPaths = GDPaths.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDProjectStrings gdProjectStrings = GDProjectStrings.getInstance();
 
@@ -174,7 +175,7 @@ public class GDToAllBinaryGenerationTool
         fixQuotes = replace5.all(fixQuotes);
         fixQuotes = replace6.all(fixQuotes);
 
-        final String fileName = this.gdToolStrings.GAME_XML_PATH;
+        final String fileName = this.gdPaths.GAME_XML_PATH;
         this.logUtil.putF(this.gdToolStrings.FILENAME + fileName, this, this.commonStrings.PROCESS);
 
         this.bufferedWriterUtil.overwrite(fileName, fixQuotes);
@@ -190,8 +191,8 @@ public class GDToAllBinaryGenerationTool
         }
 
         final FileListFetcher fileListFetcher = FileListFetcher.getInstance();
-        final BasicArrayList twoDFileList = fileListFetcher.getFiles(this.gdToolStrings.TWOD_RESOURCES_PATH);    
-        final BasicArrayList threedDFileList = fileListFetcher.getFiles(this.gdToolStrings.THREED_RESOURCES_PATH);
+        final BasicArrayList twoDFileList = fileListFetcher.getFiles(this.gdPaths.TWOD_RESOURCES_PATH);    
+        final BasicArrayList threedDFileList = fileListFetcher.getFiles(this.gdPaths.THREED_RESOURCES_PATH);
         
         this.androidRClassGenerator.process();
         this.threedAndroidRClassGenerator.process(threedDFileList);

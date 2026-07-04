@@ -13,8 +13,8 @@ package org.allbinary.gdevelop.loader;
 public class GDToThreedAndroidBuildGradleGenerator extends GDNameFileGenerator
 {
     public GDToThreedAndroidBuildGradleGenerator() {
-        super(GDToolStrings.getInstance().ROOT_PATH + "platformx\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\app\\build.gradle.original",
-                GDToolStrings.getInstance().ROOT_PATH + "platformx\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\app\\build.gradle");
+        super(GDPaths.getInstance().ROOT_PATH + "platformx\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\app\\build.gradle.original",
+                GDPaths.getInstance().ROOT_PATH + "platformx\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\app\\build.gradle");
     }
 
 }

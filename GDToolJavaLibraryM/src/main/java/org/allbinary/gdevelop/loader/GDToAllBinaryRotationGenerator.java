@@ -5,12 +5,12 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import org.allbinary.data.CamelCaseUtil;
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.StringBufferInputStream;
 import javax.xml.transform.stream.StreamSource;
+
+import org.allbinary.data.CamelCaseUtil;
 import org.allbinary.data.tree.dom.BasicUriResolver;
 import org.allbinary.data.tree.dom.XslHelper;
 import org.allbinary.gdevelop.json.GDLayout;
@@ -19,7 +19,6 @@ import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonLabels;
 import org.allbinary.time.TimeDelayHelper;
@@ -38,6 +37,7 @@ public class GDToAllBinaryRotationGenerator
     private final XslHelper xslHelper = XslHelper.getInstance();
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
+    private final GDPaths gdPaths = GDPaths.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
     private final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(Integer.MAX_VALUE);
@@ -73,22 +73,22 @@ public class GDToAllBinaryRotationGenerator
         
         this.timeDelayHelper.setStartTimeTNT();
         
-        //final String MIDLET_REPLACED = gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet_replaced.xsl";
-        //final String MIDLET_XML = gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.xml";
+        //final String MIDLET_REPLACED = gdPaths.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet_replaced.xsl";
+        //final String MIDLET_XML = gdPaths.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.xml";
         
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final SharedBytes sharedBytes = SharedBytes.getInstance();
         sharedBytes.outputStream.reset();
 
-        final FileInputStream gameInputStream = new FileInputStream(this.gdToolStrings.GAME_XML_PATH);
+        final FileInputStream gameInputStream = new FileInputStream(this.gdPaths.GAME_XML_PATH);
         final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
         
         final String[] xslPathInputArray = {
-            this.gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\animation\\GDRotationAnimation.xsl",
+            this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\animation\\GDRotationAnimation.xsl",
         };
 
         final String[] outputArray = {
-            this.gdToolStrings.ROTATION_ANIMATION_FILE_PATH,
+            this.gdPaths.ROTATION_ANIMATION_FILE_PATH,
         };
         
         final int size2 = xslPathInputArray.length;

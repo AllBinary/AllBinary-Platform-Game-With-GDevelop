@@ -31,14 +31,15 @@ public class GDCopy {
     public void copy() throws Exception {
         
         try {
+            final GDPaths gdPaths = GDPaths.getInstance();
             final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
             final FileUtil fileUtil = FileUtil.getInstance();
             
             final BasicArrayList files = FileListFetcher.getInstance().getFiles(
-                    gdToolStrings.TWOD_RESOURCES_PATH, gdToolStrings.JSON);
+                    gdPaths.TWOD_RESOURCES_PATH, gdToolStrings.JSON);
 
             final StringMaker stringMaker = new StringMaker();
-            final String PATH = stringMaker.append(gdToolStrings.ROOT_PATH).append("platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\").toString();
+            final String PATH = stringMaker.append(gdPaths.ROOT_PATH).append("platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\").toString();
 
             final int size = files.size();
             stringMaker.delete(0, stringMaker.length());

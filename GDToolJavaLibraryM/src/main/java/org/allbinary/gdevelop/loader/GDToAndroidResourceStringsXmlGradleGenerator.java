@@ -6,14 +6,13 @@
 
 package org.allbinary.gdevelop.loader;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+
 import org.allbinary.gdevelop.json.GDProject;
 import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.regex.replace.Replace;
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 
 /**
@@ -26,10 +25,10 @@ public class GDToAndroidResourceStringsXmlGradleGenerator extends GDNameFileGene
 
     private String name;
     
-    private static final String OUTPUT_PATH = GDToolStrings.getInstance().ROOT_PATH + "platformx\\android\\GDGameAndroidApplicationNoLicensingGradle\\app\\src\\main\\res\\values\\";
+    private static final String OUTPUT_PATH = GDPaths.getInstance().ROOT_PATH + "platformx\\android\\GDGameAndroidApplicationNoLicensingGradle\\app\\src\\main\\res\\values\\";
         
     public GDToAndroidResourceStringsXmlGradleGenerator() {
-        super(GDToolStrings.getInstance().ROOT_PATH + "platformx\\android\\GDGameAndroidApplicationNoLicensingGradle\\strings.xml.original",
+        super(GDPaths.getInstance().ROOT_PATH + "platformx\\android\\GDGameAndroidApplicationNoLicensingGradle\\strings.xml.original",
                 GDToAndroidResourceStringsXmlGradleGenerator.OUTPUT_PATH + "strings.xml");
     }
 

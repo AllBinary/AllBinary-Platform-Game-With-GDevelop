@@ -33,6 +33,7 @@ public class GDToThreedAndroidResourcesGradleGenerator
     private final CommonSeps commonSeps = CommonSeps.getInstance();
     
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
+    private final GDPaths gdPaths = GDPaths.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
     
@@ -119,8 +120,8 @@ public class GDToThreedAndroidResourcesGradleGenerator
         
         this.processResource(threedFileList, resourceStringMaker);
 
-        final String RESOURCE_ORIGINAL = this.gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.original";
-        final String RESOURCE = this.gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java";
+        final String RESOURCE_ORIGINAL = this.gdPaths.ROOT_PATH + "platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.original";
+        final String RESOURCE = this.gdPaths.ROOT_PATH + "platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java";
         
         final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
         final StringMaker stringMaker = new StringMaker();        

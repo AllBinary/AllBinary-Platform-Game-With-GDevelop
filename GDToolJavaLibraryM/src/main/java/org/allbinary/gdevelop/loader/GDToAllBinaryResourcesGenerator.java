@@ -34,6 +34,7 @@ public class GDToAllBinaryResourcesGenerator
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final CommonSeps commonSeps = CommonSeps.getInstance();
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
+    private final GDPaths gdPaths = GDPaths.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
 
@@ -272,7 +273,7 @@ public class GDToAllBinaryResourcesGenerator
         final SharedBytes sharedBytes = SharedBytes.getInstance();
         sharedBytes.outputStream.reset();
         
-        final FileInputStream inputStream = new FileInputStream(this.gdToolStrings.TWOD_RESOURCES_PATH + path);
+        final FileInputStream inputStream = new FileInputStream(this.gdPaths.TWOD_RESOURCES_PATH + path);
         sharedBytes.outputStream.reset();
         final String gameAsConfiguration = new String(streamUtil.getByteArray(inputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
@@ -319,8 +320,8 @@ public class GDToAllBinaryResourcesGenerator
         
         this.timeDelayHelper.setStartTimeTNT();
         
-        final String RESOURCE_ORIGINAL = this.gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.origin";
-        final String RESOURCE = this.gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.java";
+        final String RESOURCE_ORIGINAL = this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.origin";
+        final String RESOURCE = this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.java";
         
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final SharedBytes sharedBytes = SharedBytes.getInstance();
@@ -360,8 +361,8 @@ public class GDToAllBinaryResourcesGenerator
         
         this.timeDelayHelper.setStartTimeTNT();
         
-        final String LAZY_RESOURCE_ORIGINAL = this.gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.origin";
-        final String LAZY_RESOURCE = this.gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.java";
+        final String LAZY_RESOURCE_ORIGINAL = this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.origin";
+        final String LAZY_RESOURCE = this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.java";
         
         final StringMaker stringMaker = new StringMaker();
         final StreamUtil streamUtil = StreamUtil.getInstance();

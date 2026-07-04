@@ -5,12 +5,12 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import org.allbinary.data.CamelCaseUtil;
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.StringBufferInputStream;
 import javax.xml.transform.stream.StreamSource;
+
+import org.allbinary.data.CamelCaseUtil;
 import org.allbinary.data.tree.dom.BasicUriResolver;
 import org.allbinary.data.tree.dom.XslHelper;
 import org.allbinary.gdevelop.json.GDLayout;
@@ -19,7 +19,6 @@ import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonLabels;
 import org.allbinary.logic.string.StringUtil;
@@ -75,21 +74,21 @@ public class GDLayoutsToAllBinaryGenerator
             
             final String RESULT = "result: ";
 
-            final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
-            final StringMaker stringMaker = new StringMaker();
+            final GDPaths gdPaths = GDPaths.getInstance();
+            //final StringMaker stringMaker = new StringMaker();
             final StringUtil stringUtil = StringUtil.getInstance();
             
             final StreamUtil streamUtil = StreamUtil.getInstance();
             final SharedBytes sharedBytes = SharedBytes.getInstance();
             sharedBytes.outputStream.reset();
 
-            final String xslPath = gdToolStrings.ROOT_PATH + this.xslPath;
+            final String xslPath = gdPaths.ROOT_PATH + this.xslPath;
             this.logUtil.putF(xslPath, this, this.commonStrings.PROCESS);
             
             final InputStream inputStream = new FileInputStream(xslPath);
             final String xslDocumentStr = new String(streamUtil.getByteArray(inputStream, sharedBytes.outputStream, sharedBytes.byteArray));
             
-            final FileInputStream gameInputStream = new FileInputStream(gdToolStrings.GAME_XML_PATH);
+            final FileInputStream gameInputStream = new FileInputStream(gdPaths.GAME_XML_PATH);
             
             sharedBytes.outputStream.reset();
             final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
@@ -99,7 +98,7 @@ public class GDLayoutsToAllBinaryGenerator
             //final Replace replace3 = new Replace(".Height()", ".Height(graphics)");
             //xmlDocumentStr = replace3.all(xmlDocumentStr);
 
-            final String START = gdToolStrings.ROOT_PATH + this.start;
+            final String START = gdPaths.ROOT_PATH + this.start;
             final String END = this.end;
             
             final int size = this.nameList.size();

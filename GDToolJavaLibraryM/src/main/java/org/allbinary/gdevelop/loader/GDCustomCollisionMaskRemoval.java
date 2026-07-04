@@ -35,8 +35,8 @@ public class GDCustomCollisionMaskRemoval extends GDJSONGeneratorBase {
         this.process(gameAsConfigurationJSONObject);
         
         final GDJSONPersistence gdJSONPersistence = GDJSONPersistence.getInstance();
-        final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
-        gdJSONPersistence.save(gdToolStrings.ROOT_PATH + "game_updated.json", gameAsConfigurationJSONObject);
+        final GDPaths gdPaths = GDPaths.getInstance();
+        gdJSONPersistence.save(gdPaths.ROOT_PATH + "game_updated.json", gameAsConfigurationJSONObject);
     }
 
     @Override

@@ -35,6 +35,7 @@ public class GDToAllBinarySoundsGenerator
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
+    private final GDPaths gdPaths = GDPaths.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
     
@@ -44,8 +45,8 @@ public class GDToAllBinarySoundsGenerator
     private final String GD_FILE_NAME = "<GD_FILE_NAME>";
     private final String GD_DURATION = "<GD_DURATION>";
     
-    private final String SOUND_ORIGINAL = this.gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDSound.origin";
-    private final String SOUND_PATH = this.gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\";
+    private final String SOUND_ORIGINAL = this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDSound.origin";
+    private final String SOUND_PATH = this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\";
     
     private final String GD = "GD";
     private final String SOUND = "Sound";

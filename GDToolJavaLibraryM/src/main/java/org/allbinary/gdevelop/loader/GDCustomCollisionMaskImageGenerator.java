@@ -41,6 +41,7 @@ public class GDCustomCollisionMaskImageGenerator extends GDCustomCollisionMaskRe
     
     //private final CommonSeps commonSeps = CommonSeps.getInstance();
     private final PositionStrings positionStrings = PositionStrings.getInstance();
+    private final GDPaths gdPaths = GDPaths.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     
     private final String LOAD_IMAGE = "Load Image: ";
@@ -121,7 +122,7 @@ public class GDCustomCollisionMaskImageGenerator extends GDCustomCollisionMaskRe
     public void addOrReplaceCollisionMask(final JSONObject jsonObject) throws Exception {
         final String assetPath = jsonObject.getString(this.gdProjectStrings.IMAGE);
         final String imagePath = assetPath.substring(this.gdToolStrings.ASSET_PREFIX.length(), assetPath.length());
-        final AbFile abFile = AbFile.createAbFileFromRawPath(this.gdToolStrings.ASSETS_PATH + imagePath);
+        final AbFile abFile = AbFile.createAbFileFromRawPath(this.gdPaths.ASSETS_PATH + imagePath);
         if(abFile.isFile()) {
             System.out.println(this.LOAD_IMAGE + imagePath);
             final BufferedImage bufferedImage = ImageIO.read(AbFileNativeUtil.get(abFile));
@@ -133,7 +134,7 @@ public class GDCustomCollisionMaskImageGenerator extends GDCustomCollisionMaskRe
             if (underScoreIndex >= 0) {
                 final int periodIndex = imagePath.lastIndexOf('.');
                 imagePath2 = new StringMaker().append(imagePath.substring(0, underScoreIndex + 1)).append(this.ONE).append(imagePath.substring(periodIndex)).toString();
-                final AbFile abFile2 = AbFile.createAbFileFromRawPath(this.gdToolStrings.TWOD_RESOURCES_PATH + imagePath2);
+                final AbFile abFile2 = AbFile.createAbFileFromRawPath(this.gdPaths.TWOD_RESOURCES_PATH + imagePath2);
                 if (abFile2.isFile()) {
                     //System.out.println(LOAD_SPRITE + imagePath2);
                     final BufferedImage bufferedImage2 = ImageIO.read(AbFileNativeUtil.get(abFile2));

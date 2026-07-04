@@ -112,7 +112,7 @@ public class GDListObjectsWithoutBehavior extends GDJSONGeneratorBase {
         
         new GDListObjectsWithoutBehavior().process(gameAsConfigurationJSONObject);
         //final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
-        //gdJSONPersistence.save(gdToolStrings.ROOT_PATH + "game_updated.json", gameAsConfigurationJSONObject);
+        //gdJSONPersistence.save(gdPaths.ROOT_PATH + "game_updated.json", gameAsConfigurationJSONObject);
     }
     
 }

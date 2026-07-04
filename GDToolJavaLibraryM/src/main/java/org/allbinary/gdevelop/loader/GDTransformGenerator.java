@@ -34,13 +34,14 @@ public class GDTransformGenerator extends GDNameGenerator {
     protected final CommonStrings commonStrings = CommonStrings.getInstance();
     protected final StreamUtil streamUtil = StreamUtil.getInstance();
     protected final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
+    protected final GDPaths gdPaths = GDPaths.getInstance();
     protected final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     
     private final XslHelper xslHelper = XslHelper.getInstance();
     
     public void process(final String updatedXslDocumentStr, final String outputFile, final SharedBytes sharedBytes) throws Exception {
 
-        final FileInputStream gameInputStream = new FileInputStream(this.gdToolStrings.GAME_XML_PATH);
+        final FileInputStream gameInputStream = new FileInputStream(this.gdPaths.GAME_XML_PATH);
         sharedBytes.outputStream.reset();
         final String xmlDocumentStr = new String(this.streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 

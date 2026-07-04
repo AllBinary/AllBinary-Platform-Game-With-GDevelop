@@ -5,8 +5,9 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import org.allbinary.data.CamelCaseUtil;
 import java.io.FileInputStream;
+
+import org.allbinary.data.CamelCaseUtil;
 import org.allbinary.gdevelop.json.GDLayout;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
@@ -43,11 +44,11 @@ public class GDToAllBinaryCanvasGenerator extends GDTransformGenerator
 //        if (index == 1 || size == 1)
 //        {
             this.className = this.stringMaker.append("GDGame").append(this.name).append("Canvas").toString();
-            this.orig = this.gdToolStrings.ROOT_PATH + this.xslPath;
+            this.orig = this.gdPaths.ROOT_PATH + this.xslPath;
 //        } else
 //        {
 //            className = stringMaker.append("GDGameStart").append(name).append("Canvas").toString();
-//            this.orig = gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameStartGDLayoutCanvas.xsl";
+//            this.orig = gdPaths.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameStartGDLayoutCanvas.xsl";
 //        }
     }
 
@@ -56,7 +57,7 @@ public class GDToAllBinaryCanvasGenerator extends GDTransformGenerator
     {
         
         this.stringMaker.delete(0, this.stringMaker.length());
-        final String canvasJavaFile = this.stringMaker.append(this.gdToolStrings.ROOT_PATH + this.path).append(this.className).append(".java").toString();
+        final String canvasJavaFile = this.stringMaker.append(this.gdPaths.ROOT_PATH + this.path).append(this.className).append(".java").toString();
 
         final SharedBytes sharedBytes = SharedBytes.getInstance();
         sharedBytes.outputStream.reset();

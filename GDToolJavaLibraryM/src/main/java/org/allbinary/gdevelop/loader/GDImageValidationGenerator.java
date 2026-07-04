@@ -34,11 +34,12 @@ import org.allbinary.util.BasicArrayListD;
 public class GDImageValidationGenerator {
 
     private final CommonSeps commonSeps = CommonSeps.getInstance();
+    private final GDPaths gdPaths = GDPaths.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     
     public BasicArrayList process() throws IOException {
         final FileListFetcher fileListFetcher = FileListFetcher.getInstance();
-        final BasicArrayList files = fileListFetcher.getFiles(this.gdToolStrings.TWOD_RESOURCES_PATH);
+        final BasicArrayList files = fileListFetcher.getFiles(this.gdPaths.TWOD_RESOURCES_PATH);
         return this.process(files);
     }
 

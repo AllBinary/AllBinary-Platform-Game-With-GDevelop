@@ -15,6 +15,7 @@ package org.allbinary.gdevelop.loader.utils;
 
 import org.allbinary.gdevelop.loader.GDJSONGeneratorBase;
 import org.allbinary.gdevelop.loader.GDJSONPersistence;
+import org.allbinary.gdevelop.loader.GDPaths;
 import org.allbinary.gdevelop.loader.GDToolStrings;
 import org.allbinary.logic.io.file.FileUnamedUtil;
 
@@ -139,8 +140,8 @@ public class GDMakeAllResourcesLowerCaseForAndroid extends GDJSONGeneratorBase {
         final JSONObject gameAsConfigurationJSONObject = gdJSONPersistence.load();
         
         new GDMakeAllResourcesLowerCaseForAndroid().process(gameAsConfigurationJSONObject);
-        final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
-        gdJSONPersistence.save(gdToolStrings.ROOT_PATH + "game_updated.json", gameAsConfigurationJSONObject);
+        final GDPaths gdPaths = GDPaths.getInstance();
+        gdJSONPersistence.save(gdPaths.ROOT_PATH + "game_updated.json", gameAsConfigurationJSONObject);
     }
     
 }

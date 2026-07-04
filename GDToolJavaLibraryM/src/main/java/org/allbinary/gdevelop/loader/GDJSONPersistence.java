@@ -15,15 +15,9 @@ package org.allbinary.gdevelop.loader;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.nio.charset.CharacterCodingException;
-import java.nio.charset.Charset;
-import java.nio.charset.CharsetDecoder;
-import java.nio.charset.CodingErrorAction;
+
 import org.allbinary.logic.io.StreamUtil;
-import org.allbinary.logic.java.characters.CharacterSetData;
-import org.allbinary.logic.string.StringUtil;
+
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -41,7 +35,8 @@ public class GDJSONPersistence {
     public static GDJSONPersistence getInstance() {
         return GDJSONPersistence.instance;
     }
-    
+
+    private final GDPaths gdPaths = GDPaths.getInstance();    
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     
     public JSONObject load() throws Exception {
@@ -50,7 +45,7 @@ public class GDJSONPersistence {
         final SharedBytes sharedBytes = SharedBytes.getInstance();
         sharedBytes.outputStream.reset();
         
-        final FileInputStream inputStream = new FileInputStream(this.gdToolStrings.GAME_JSON_PATH);
+        final FileInputStream inputStream = new FileInputStream(this.gdPaths.GAME_JSON_PATH);
         final String gameAsConfiguration = new String(streamUtil.getByteArray(inputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
         final JSONTokener jsonTokener = new JSONTokener(gameAsConfiguration);

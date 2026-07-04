@@ -6,16 +6,15 @@
 
 package org.allbinary.gdevelop.loader;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+
 import org.allbinary.data.CamelCaseUtil;
 import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 
 /**
@@ -26,8 +25,8 @@ public class GDToAndroidGameActivityGenerator extends GDNameGenerator
 {
     protected final LogUtil logUtil = LogUtil.getInstance();
 
-    
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
+    private final GDPaths gdPaths = GDPaths.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     
     public GDToAndroidGameActivityGenerator() {
@@ -40,9 +39,9 @@ public class GDToAndroidGameActivityGenerator extends GDNameGenerator
         final StringMaker stringMaker = new StringMaker();
         final String name = camelCaseUtil.getAsCamelCase(this.packageName, stringMaker).toLowerCase();
         
-        final String R_ORIGINAL = this.gdToolStrings.ROOT_PATH + "platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\GDGameAndroidActivity.original";
+        final String R_ORIGINAL = this.gdPaths.ROOT_PATH + "platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\GDGameAndroidActivity.original";
         stringMaker.delete(0, stringMaker.length());
-        stringMaker.append(this.gdToolStrings.ROOT_PATH + "platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\").append(name);
+        stringMaker.append(this.gdPaths.ROOT_PATH + "platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\").append(name);
         final File directoryFile = new File(stringMaker.toString());
         directoryFile.mkdirs();
         final String R = stringMaker.append("\\GDGameAndroidActivity.java").toString();

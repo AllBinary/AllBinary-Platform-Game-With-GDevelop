@@ -38,6 +38,7 @@ public class GDResourceSelection {
 
     private final CommonSeps commonSeps = CommonSeps.getInstance();
 
+    private final GDPaths gdPaths = GDPaths.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
     private final String FOUND = "found";
@@ -132,7 +133,7 @@ public class GDResourceSelection {
         if(!this.hasRead) {
             this.hasRead = true;
             final AbFileSystem fileUtil = AbFileSystem.getInstance();
-            final String fileAsString = fileUtil.readAsString(this.gdToolStrings.ROTATION_ANIMATION_FILE_PATH);
+            final String fileAsString = fileUtil.readAsString(this.gdPaths.ROTATION_ANIMATION_FILE_PATH);
             if (fileAsString.indexOf(this.FOUND) >= 0) {
 
                 this.hasRotationImages = true;

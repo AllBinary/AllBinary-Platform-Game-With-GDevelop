@@ -28,19 +28,7 @@ public class GDToolStrings {
 
     //protected final LogUtil logUtil = LogUtil.getInstance();
     //private final CommonStrings commonStrings = CommonStrings.getInstance();
-    
-    public String ROOT_PATH = "..\\";
-    
-    public final String GAME_XML_PATH = this.ROOT_PATH + "game.xml";
-    
-    public final String GAME_JSON_PATH = this.ROOT_PATH + "game.json";
-    
-    public final String TWOD_RESOURCES_PATH = this.ROOT_PATH + "Resources\\2d\\res\\raw\\";
-    public final String THREED_RESOURCES_PATH = this.ROOT_PATH + "Resources\\3d\\res\\raw\\";
-    public final String ASSETS_PATH = this.ROOT_PATH + "Resources\\assets\\";
 
-    public final String ROTATION_ANIMATION_FILE_PATH = this.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\animation\\GDRotationAnimation.txt";
-    
     public final String FILENAME = "fileName: ";
     
     public final String ASSET_PREFIX = "assets\\";

@@ -17,7 +17,6 @@ import org.allbinary.logic.io.file.directory.DirectoryOrIncludeFileExtensionBool
 import org.allbinary.logic.io.file.filter.VisitorFileFilter;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.regex.replace.Replace;
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.StringUtil;
@@ -36,6 +35,7 @@ public class GDTestLoadAll
 {
     protected final LogUtil logUtil = LogUtil.getInstance();
 
+    private final GDPaths gdPaths = GDPaths.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
     public GDTestLoadAll()
@@ -51,17 +51,17 @@ public class GDTestLoadAll
 
         final StringMaker stringMaker = new StringMaker();
         
-        //final BasicArrayList files = FileListFetcher.getInstance().getFiles(gdToolStrings.ROOT_PATH, "json");
+        //final BasicArrayList files = FileListFetcher.getInstance().getFiles(gdPaths.ROOT_PATH, "json");
         final String includeExtension = "json";
         final BasicArrayList includeExtensionBasicArrayList = new BasicArrayListD();
         includeExtensionBasicArrayList.add(includeExtension);
         final VisitorFileFilter visitorFileFilter = new VisitorFileFilter(
                 new DirectoryOrIncludeFileExtensionBooleanFileVisitor(includeExtensionBasicArrayList));
         
-        final AbFile[] files = FileWrapperUtil.wrapFiles(AbFile.createAbFileFromRawPath(this.gdToolStrings.ROOT_PATH).listFilesFileFilter(visitorFileFilter));
+        final AbFile[] files = FileWrapperUtil.wrapFiles(AbFile.createAbFileFromRawPath(this.gdPaths.ROOT_PATH).listFilesFileFilter(visitorFileFilter));
         //final int size = files.size();
         final int size = files.length;
-        String jsonFileName = this.gdToolStrings.GAME_JSON_PATH;
+        String jsonFileName = this.gdPaths.GAME_JSON_PATH;
         AbFile abFile;
 
         final String GIT = ".git";
