@@ -140,6 +140,7 @@ public class GDCustomCollisionMaskRemoval extends GDJSONGeneratorBase {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
+        GDPaths.init();
         final GDCustomCollisionMaskRemoval gdCustomCollisionMaskRemoval = new GDCustomCollisionMaskRemoval();
         
         gdCustomCollisionMaskRemoval.process();

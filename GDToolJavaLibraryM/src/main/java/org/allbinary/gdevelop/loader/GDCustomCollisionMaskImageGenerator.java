@@ -194,6 +194,7 @@ public class GDCustomCollisionMaskImageGenerator extends GDCustomCollisionMaskRe
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
+        GDPaths.init();
         final GDCustomCollisionMaskImageGenerator gdImageMaskGenerator = new GDCustomCollisionMaskImageGenerator();
         
         gdImageMaskGenerator.process();

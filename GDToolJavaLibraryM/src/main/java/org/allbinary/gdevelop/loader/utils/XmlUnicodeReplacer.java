@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import org.allbinary.gdevelop.loader.GDPaths;
 
 /**
  * Detects and replaces U+0015 in XML files.
@@ -47,6 +48,7 @@ public class XmlUnicodeReplacer {
     }
 
     public static void main(String[] args) throws IOException {
+        GDPaths.init();
         if (args.length < 1 || args.length > 3) {
             XmlUnicodeReplacer.printUsageAndExit();
             return;

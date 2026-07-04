@@ -13,31 +13,62 @@
  */
 package org.allbinary.gdevelop.loader;
 
+import org.allbinary.logic.NullUtil;
+
 /**
  *
  * @author User
  */
 public class GDPaths {
+
+    public static final String DEFAULT_PATH = "..\\";
     
-    private static final GDPaths instance = new GDPaths();
+    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
 
     /**
      * @return the instance
      */
     public static GDPaths getInstance() {
-        return instance;
+        return (GDPaths) GDPaths.instance;
+    }
+
+    public static void init() {
+        GDPaths.instance = new GDPaths(GDPaths.DEFAULT_PATH, GDPaths.DEFAULT_PATH, GDPaths.DEFAULT_PATH);
     }
     
-    public String ROOT_PATH = "..\\";
-    
-    public final String GAME_XML_PATH = this.ROOT_PATH + "game.xml";
-    
-    public final String GAME_JSON_PATH = this.ROOT_PATH + "game.json";
-    
-    public final String TWOD_RESOURCES_PATH = this.ROOT_PATH + "Resources\\2d\\res\\raw\\";
-    public final String THREED_RESOURCES_PATH = this.ROOT_PATH + "Resources\\3d\\res\\raw\\";
-    public final String ASSETS_PATH = this.ROOT_PATH + "Resources\\assets\\";
+    public static void init(final String xslPath, final String genPath, final String projectPath) {
+        GDPaths.instance = new GDPaths(xslPath, genPath, projectPath);
+    }
 
-    public final String ROTATION_ANIMATION_FILE_PATH = this.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\animation\\GDRotationAnimation.txt";
-    
+    public String ROOT_PATH;
+    public String GEN_PATH;
+    public String PROJECT_PATH;
+
+    public final String GAME_XML_PATH;
+
+    public final String GAME_JSON_PATH;
+
+    public final String TWOD_RESOURCES_PATH;
+    public final String THREED_RESOURCES_PATH;
+    public final String ASSETS_PATH;
+
+    public final String ROTATION_ANIMATION_FILE_PATH;
+
+    public GDPaths(final String xslPath, final String genPath, final String projectPath) {
+
+        this.ROOT_PATH = xslPath;
+        this.GEN_PATH = genPath;
+        this.PROJECT_PATH = projectPath;
+
+        this.GAME_XML_PATH = this.ROOT_PATH + "game.xml";
+
+        this.GAME_JSON_PATH = this.ROOT_PATH + "game.json";
+
+        this.TWOD_RESOURCES_PATH = this.PROJECT_PATH + "Resources\\2d\\res\\raw\\";
+        this.THREED_RESOURCES_PATH = this.PROJECT_PATH + "Resources\\3d\\res\\raw\\";
+        this.ASSETS_PATH = this.PROJECT_PATH + "Resources\\assets\\";
+
+        this.ROTATION_ANIMATION_FILE_PATH = this.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\animation\\GDRotationAnimation.txt";
+    }
+
 }

@@ -105,6 +105,7 @@ public class GDTestLoadAll
 
     public static void main(String[] args) throws Exception
     {
+        GDPaths.init();
         new GDTestLoadAll().process();
     }
 

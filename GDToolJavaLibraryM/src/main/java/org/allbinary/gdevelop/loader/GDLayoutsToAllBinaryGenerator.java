@@ -135,6 +135,7 @@ public class GDLayoutsToAllBinaryGenerator
 
 //    public static void main(String[] args) throws Exception
 //    {
+//        GDPaths.init();
 //        new GDLayoutsToAllBinaryRunnableGenerator().process(3);
 //    }
 

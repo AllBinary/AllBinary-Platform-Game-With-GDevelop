@@ -78,6 +78,7 @@ public class GDImageSizeGenerator {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
+        GDPaths.init();
         final GDImageSizeGenerator gdImageSizeGenerator = new GDImageSizeGenerator();
         
         gdImageSizeGenerator.process();

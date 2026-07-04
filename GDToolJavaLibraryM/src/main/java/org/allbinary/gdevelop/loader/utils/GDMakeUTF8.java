@@ -16,7 +16,6 @@ package org.allbinary.gdevelop.loader.utils;
 import org.allbinary.gdevelop.loader.GDJSONGeneratorBase;
 import org.allbinary.gdevelop.loader.GDJSONPersistence;
 import org.allbinary.gdevelop.loader.GDPaths;
-import org.allbinary.gdevelop.loader.GDToolStrings;
 import org.json.JSONObject;
 
 /**
@@ -27,6 +26,7 @@ public class GDMakeUTF8 extends GDJSONGeneratorBase {
     
     public static void main(String[] args) throws Exception
     {
+        GDPaths.init();
         final GDJSONPersistence gdJSONPersistence = GDJSONPersistence.getInstance();
         final JSONObject gameAsConfigurationJSONObject = gdJSONPersistence.load();
         

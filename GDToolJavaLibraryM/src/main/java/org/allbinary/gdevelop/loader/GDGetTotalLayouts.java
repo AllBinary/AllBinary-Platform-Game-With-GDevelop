@@ -71,6 +71,7 @@ public class GDGetTotalLayouts
 
     public static void main(String[] args) throws Exception
     {
+        GDPaths.init();
         //System.setProperty("jdk.xml.xpathExprGrpLimit", "0");
         //System.setProperty("jdk.xml.xpathExprOpLimit", "0");
         //System.setProperty("jdk.xml.xpathTotalOpLimit", "0");

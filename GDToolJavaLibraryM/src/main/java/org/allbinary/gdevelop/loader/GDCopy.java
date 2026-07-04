@@ -65,6 +65,7 @@ public class GDCopy {
     }
     
     public static void main(final String[] args) throws Exception {
+        GDPaths.init();
         new GDCopy().copy();
     }
     

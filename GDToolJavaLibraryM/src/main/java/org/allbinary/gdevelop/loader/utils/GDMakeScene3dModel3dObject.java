@@ -13,6 +13,7 @@
  */
 package org.allbinary.gdevelop.loader.utils;
 
+import org.allbinary.gdevelop.loader.GDPaths;
 import org.allbinary.logic.string.StringMaker;
 
 /**
@@ -23,6 +24,7 @@ public class GDMakeScene3dModel3dObject {
         
     public static void main(String[] args) throws Exception {
 
+        GDPaths.init();
         final String RESOURCE_0 = ",\n" +
 "        {\n" +
 "          \"assetStoreId\": \"\",\n" +

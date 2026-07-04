@@ -79,6 +79,7 @@ public class GDImageValidationGenerator {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
+        GDPaths.init();
         final GDImageValidationGenerator gdImageSizeGenerator = new GDImageValidationGenerator();
         
         gdImageSizeGenerator.process();

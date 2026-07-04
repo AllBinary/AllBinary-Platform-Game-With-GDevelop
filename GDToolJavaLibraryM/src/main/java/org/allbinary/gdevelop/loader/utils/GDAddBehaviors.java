@@ -19,7 +19,6 @@ import org.allbinary.gdevelop.json.GDObjectFactory;
 import org.allbinary.gdevelop.loader.GDJSONGeneratorBase;
 import org.allbinary.gdevelop.loader.GDJSONPersistence;
 import org.allbinary.gdevelop.loader.GDPaths;
-import org.allbinary.gdevelop.loader.GDToolStrings;
 import org.allbinary.logic.io.file.FileUnamedUtil;
 import org.allbinary.util.BasicArrayList;
 
@@ -201,6 +200,7 @@ public class GDAddBehaviors extends GDJSONGeneratorBase {
     
     public static void main(String[] args) throws Exception
     {
+        GDPaths.init();
         final GDJSONPersistence gdJSONPersistence = GDJSONPersistence.getInstance();
         final JSONObject gameAsConfigurationJSONObject = gdJSONPersistence.load();
         

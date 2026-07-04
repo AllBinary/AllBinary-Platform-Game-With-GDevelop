@@ -181,6 +181,7 @@ public class ReduceObjectsForTesting extends GDJSONGeneratorBase {
 
     public static void main(String[] args) throws Exception
     {
+        GDPaths.init();
         final GDJSONPersistence gdJSONPersistence = GDJSONPersistence.getInstance();
         final JSONObject gameAsConfigurationJSONObject = gdJSONPersistence.load();
         

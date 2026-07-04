@@ -13,6 +13,7 @@
  */
 package org.allbinary.gdevelop.loader.utils;
 
+import org.allbinary.gdevelop.loader.GDPaths;
 import org.allbinary.logic.string.StringMaker;
 
 /**
@@ -20,19 +21,20 @@ import org.allbinary.logic.string.StringMaker;
  * @author User
  */
 public class GDMakeResources {
-        
+
     public static void main(String[] args) throws Exception {
-    
-        final String RESOURCE_0 = ",\n" +
-"      {\n" +
-"        \"file\": \"assets/";
-        final String RESOURCE_2 = "\",\n" +
-"        \"kind\": \"model3D\",\n" +
-"        \"metadata\": \"\",\n" +
-"        \"name\": \"";
-        final String RESOURCE_4 = "\",\n" +
-"        \"userAdded\": false\n" +
-"      }";
+
+        GDPaths.init();
+        final String RESOURCE_0 = ",\n"
+            + "      {\n"
+            + "        \"file\": \"assets/";
+        final String RESOURCE_2 = "\",\n"
+            + "        \"kind\": \"model3D\",\n"
+            + "        \"metadata\": \"\",\n"
+            + "        \"name\": \"";
+        final String RESOURCE_4 = "\",\n"
+            + "        \"userAdded\": false\n"
+            + "      }";
 
         final GLBVisitor glbVisitor = new GLBVisitor() {
 
@@ -46,9 +48,8 @@ public class GDMakeResources {
             }
 
         };
-        
+
         new GLBProcessing().process(glbVisitor);
     }
-    
-    
+
 }
