@@ -33,14 +33,11 @@ public class GDCopy {
         try {
             final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
             final FileUtil fileUtil = FileUtil.getInstance();
+            
+            final BasicArrayList files = FileListFetcher.getInstance().getFiles(
+                    gdToolStrings.TWOD_RESOURCES_PATH, gdToolStrings.JSON);
 
             final StringMaker stringMaker = new StringMaker();
-            
-            stringMaker.delete(0, stringMaker.length());
-            final BasicArrayList files = FileListFetcher.getInstance().getFiles(
-                    stringMaker.append(gdToolStrings.ROOT_PATH).append("Resources\\2d\\images\\raw").toString(), gdToolStrings.JSON);
-
-            stringMaker.delete(0, stringMaker.length());
             final String PATH = stringMaker.append(gdToolStrings.ROOT_PATH).append("platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\").toString();
 
             final int size = files.size();
