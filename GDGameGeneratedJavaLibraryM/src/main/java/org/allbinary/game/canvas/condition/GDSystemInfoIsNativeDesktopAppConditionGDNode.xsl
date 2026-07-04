@@ -37,11 +37,10 @@ Created By: Travis Berthelot
                             
                             <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
                             
-                            //TWB - This is not implemented the same as GDevelop.  Currently it is just inverse Android.
                             <xsl:if test="$inverted = 'true'" >
                                 //Inverted
                             </xsl:if>                            
-                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>AndroidUtil.isAndroid()) {
+                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>!(J2MEUtil.isHTML() || AndroidUtil.isAndroid())) {
                                 return false;
                             }
                             return true;

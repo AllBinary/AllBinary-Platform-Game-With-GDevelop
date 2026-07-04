@@ -17,25 +17,36 @@ Created By: Travis Berthelot
 
     <xsl:output method="html" indent="yes" />
 
-    <xsl:template name="systemInfoIsMobileConditionGDNode" >
+    <xsl:template name="systemInfoIsNativeMobileAppConditionGDNode" >
         <xsl:param name="forExtension" />
         <xsl:param name="parametersAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
-                    //systemInfoIsMobileConditionGDNode - //Condition - //SystemInfo::IsMobile - GDNode
+                    //systemInfoIsNativeMobileAppConditionGDNode - //Condition - //SystemInfo::IsNativeMobileApp - GDNode
                     <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>final GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                     
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
                                         
-                        //SystemInfo::IsMobile - condition - //forExtension=<xsl:value-of select="$forExtension" />
+                        //SystemInfo::IsNativeMobileApp was //SystemInfo::IsMobile - condition - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
-                            logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + commonStrings.NOT_IMPLEMENTED, this, commonStrings.PROCESS);
                             
+                            logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                            
+                            <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
+                            
+                            //TWB - Add isIOS when applicable
+                            <xsl:if test="$inverted = 'true'" >
+                                //Inverted
+                            </xsl:if>                            
+                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>AndroidUtil.isAndroid()) {
+                                return false;
+                            }
                             return true;
+
                         }
                         </xsl:if>
 

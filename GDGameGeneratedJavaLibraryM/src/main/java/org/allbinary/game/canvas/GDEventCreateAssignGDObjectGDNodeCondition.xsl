@@ -38,7 +38,6 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDIsTouchConditionGDNode.xsl" />
     <xsl:import href="./condition/GDIsMultitouchConditionGDNode.xsl" />
     <xsl:import href="./condition/GDCanAutoHideConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDSystemInfoIsMobileConditionGDNode.xsl" />
     <xsl:import href="./condition/GDTimerConditionGDNode.xsl" />
     <xsl:import href="./condition/GDObjectTimerConditionGDNode.xsl" />
     <xsl:import href="./condition/GDPosXConditionGDNode.xsl" />
@@ -69,6 +68,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDCompareNumbersConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSpriteMultitouchJoystickIsPressedConditionProcess.xsl" />
     <xsl:import href="./condition/GDPanelSpriteSliderPanelSpriteSliderValueConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDSystemInfoIsNativeMobileAppConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSystemInfoIsNativeDesktopAppConditionGDNode.xsl" />
     <xsl:import href="./condition/GDStringVariableConditionGDNode.xsl" />
     <xsl:import href="./condition/GDCompareStringsConditionGDNode.xsl" />
@@ -170,9 +170,9 @@ Created By: Travis Berthelot
 
                 </xsl:when>
 
-                <xsl:when test="$typeValue = 'SystemInfo::IsMobile'" >
+                <xsl:when test="$typeValue = 'SystemInfo::IsNativeMobileApp' or $typeValue = 'SystemInfo::IsMobile'" >
                     
-                    <xsl:call-template name="systemInfoIsMobileConditionGDNode" >
+                    <xsl:call-template name="systemInfoIsNativeMobileAppConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
