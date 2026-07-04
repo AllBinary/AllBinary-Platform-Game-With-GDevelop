@@ -44,7 +44,7 @@ Created By: Travis Berthelot
                             //TWB - Add isIOS when applicable
                             <xsl:if test="$inverted = 'true'" >
                                 //Inverted
-                            </xsl:if>                         
+                            </xsl:if>
                             if(<xsl:if test="$inverted = 'true'" >!</xsl:if>FileSystem.PathExists(<xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$param" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>)) {
                                 return true;
                             }
