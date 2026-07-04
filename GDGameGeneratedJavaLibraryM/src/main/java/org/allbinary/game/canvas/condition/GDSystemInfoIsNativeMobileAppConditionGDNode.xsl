@@ -43,9 +43,9 @@ Created By: Travis Berthelot
                                 //Inverted
                             </xsl:if>                            
                             if(<xsl:if test="$inverted = 'true'" >!</xsl:if>AndroidUtil.isAndroid()) {
-                                return false;
+                                return true;
                             }
-                            return true;
+                            return false;
 
                         }
                         </xsl:if>

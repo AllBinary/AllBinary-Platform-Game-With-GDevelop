@@ -73,11 +73,10 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDStringVariableConditionGDNode.xsl" />
     <xsl:import href="./condition/GDCompareStringsConditionGDNode.xsl" />
     <xsl:import href="./condition/GDIsStoppedVelocityConditionGDNode.xsl" />
-
     <xsl:import href="./condition/GDDraggableBehaviorDraggedConditionGDNode.xsl" />
-
     <xsl:import href="./condition/GDAnimationHasAnimationEndedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAnimationElapsedTimeConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDFileSystemPathExistsConditionGDNode.xsl" />
     
     <xsl:template name="eventsCreateAssignGDObjectGDNodesCondition2" >
         <xsl:param name="caller" />
@@ -1368,19 +1367,29 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:when>
 
-                <xsl:when test="$typeValue = 'IsNativeMobileApp'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:when>
-                <xsl:when test="$typeValue = 'IsNativeDesktopApp'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:when>
                 <xsl:when test="$typeValue = 'IsWebGLSupported'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'FileExists'" >
+                    //I think this is for Steam cloud
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:when>                                                                                             
+                </xsl:when>                                                                   
+                
+                <xsl:when test="$typeValue = 'FileSystem.PathExists'" >
+                    <xsl:call-template name="fileSystemPathExistsConditionGDNode" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
+                        <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                        <xsl:with-param name="actionAsStringsStrings" ><xsl:value-of select="$actionAsStringsStrings" /></xsl:with-param>
+                    </xsl:call-template>
+                </xsl:when>                                                                   
 
                 //Was VarObjet
                 <xsl:when test="$typeValue = 'NumberObjectVariable' or $typeValue = 'VarObjet'" >

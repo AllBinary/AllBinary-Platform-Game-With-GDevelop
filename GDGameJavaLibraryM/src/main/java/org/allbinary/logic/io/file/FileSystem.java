@@ -26,6 +26,10 @@ import org.allbinary.string.CommonStrings;
  */
 public class FileSystem {
     
+    public static boolean PathExists(final String path) {
+        return AbFileSystem.getInstance().isDirectory(path);
+    }
+
     public static String LoadStringFromFileSync(final String path) {
         return AbFileSystem.getInstance().readAsString(path);
     }

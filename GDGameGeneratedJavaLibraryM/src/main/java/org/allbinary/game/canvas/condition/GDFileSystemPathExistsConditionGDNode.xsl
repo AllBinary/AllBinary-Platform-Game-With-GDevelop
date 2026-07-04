@@ -17,33 +17,39 @@ Created By: Travis Berthelot
 
     <xsl:output method="html" indent="yes" />
 
-    <xsl:template name="systemInfoIsNativeDesktopAppConditionGDNode" >
+    <xsl:template name="fileSystemPathExistsConditionGDNode" >
+        <xsl:param name="layoutIndex" />
         <xsl:param name="forExtension" />
         <xsl:param name="parametersAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
-                    //systemInfoIsNativeDesktopAppConditionGDNode - //Condition - //SystemInfo::IsNativeDesktopApp - GDNode
+                    //fileSystemPathExistsConditionGDNode - //Condition - //FileSystem.PathExists - GDNode
                     <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>final GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                     
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
                                         
-                        //SystemInfo::IsNativeDesktopApp - condition - //forExtension=<xsl:value-of select="$forExtension" />
+                        //FileSystem.PathExists - condition - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
-                            logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                            
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+
+                            <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             
                             <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
                             
+                            //TWB - Add isIOS when applicable
                             <xsl:if test="$inverted = 'true'" >
                                 //Inverted
-                            </xsl:if>                            
-                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>!(J2MEUtil.isHTML() || AndroidUtil.isAndroid())) {
-                                return truel
+                            </xsl:if>                         
+                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>FileSystem.PathExists(<xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$param" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>)) {
+                                return true;
                             }
                             return false;
+
                         }
                         </xsl:if>
 
@@ -53,7 +59,9 @@ Created By: Travis Berthelot
                             
                             //Map from object array with action params
                             final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
-                            return this.process(gameLayer, intArray[3], intArray[5]);
+                            this.process(gameLayer, intArray[3], intArray[5]);
+
+                            return true;
                         }
                         </xsl:if>
 
