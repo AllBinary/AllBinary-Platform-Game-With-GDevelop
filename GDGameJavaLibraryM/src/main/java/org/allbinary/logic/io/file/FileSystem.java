@@ -39,15 +39,20 @@ public class FileSystem {
     }
     
     public static String[] ReadDirectory(final String currentDirPath, String[] fileList) {
+        final int PAGE_SIZE = 15; //This should be app specific.
         final LogUtil logUtil = LogUtil.getInstance();
         final CommonStrings commonStrings = CommonStrings.getInstance();
         
         final StringUtil stringUtil = StringUtil.getInstance();
         final String[] realFilePathAsStringArray = AbFileSystem.getInstance().getFilesAsStringArrayForPath(currentDirPath);
-        final int totalPages = (realFilePathAsStringArray.length / 15) + 1;
+        if(realFilePathAsStringArray == null) {
+            return new String[PAGE_SIZE];
+        }
+        
+        final int totalPages = (realFilePathAsStringArray.length / PAGE_SIZE) + 1;
 //        logUtil.putF(new StringMaker().append("FileSystem::ReadDirectory totalPages: ").appendint(totalPages).toString(), currentDirPath, commonStrings.PROCESS);
 
-        fileList = new String[totalPages * 15];
+        fileList = new String[totalPages * PAGE_SIZE];
         
         final int size = realFilePathAsStringArray.length;
         
@@ -79,6 +84,14 @@ public class FileSystem {
     }
     
     public static String ExtensionName(final String fullPath) {
-        return AbPathData.getInstance().getExtension(fullPath);
+//        final LogUtil logUtil = LogUtil.getInstance();
+//        final CommonStrings commonStrings = CommonStrings.getInstance();
+        final String name = FileSystem.DirectoryName(fullPath);
+        if(name.startsWith(AbPathData.getInstance().EXTENSION_SEP)) {
+//            logUtil.putF(new StringMaker().append(fullPath).append(" directory?").toString(), commonStrings, commonStrings.PROCESS);
+            return StringUtil.getInstance().EMPTY_STRING;
+        } else {
+            return AbPathData.getInstance().getExtension(name);
+        }
     }
 }
