@@ -91,7 +91,7 @@ public class GDToAllBinarySoundsGenerator
 
     public void process() throws Exception {
 
-        File file = new File("../");
+        final File file = new File(this.gdPaths.ROOT_PATH);
         ResourceUtil.getInstance().setLoadingPaths(
             file.getAbsolutePath() + "\\Resources\\sounds\\release\\wav\\",
             //"G:\\mnt\\bc\\mydev\\GDGamesP\\Resources\\sounds\\release\\wav\\", 
