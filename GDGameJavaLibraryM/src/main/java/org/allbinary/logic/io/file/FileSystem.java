@@ -26,6 +26,10 @@ import org.allbinary.string.CommonStrings;
  */
 public class FileSystem {
     
+    public static String LoadStringFromFileSync(final String path) {
+        return AbFileSystem.getInstance().readAsString(path);
+    }
+    
     public static String DirectoryName(final String currentDirPath) {
 //        final LogUtil logUtil = LogUtil.getInstance();
 //        final CommonStrings commonStrings = CommonStrings.getInstance();
@@ -39,7 +43,7 @@ public class FileSystem {
         final CommonStrings commonStrings = CommonStrings.getInstance();
         
         final StringUtil stringUtil = StringUtil.getInstance();
-        final String[] realFilePathAsStringArray = AbFileSystem.getFilesAsStringArrayForPath(currentDirPath);
+        final String[] realFilePathAsStringArray = AbFileSystem.getInstance().getFilesAsStringArrayForPath(currentDirPath);
         final int totalPages = (realFilePathAsStringArray.length / 15) + 1;
 //        logUtil.putF(new StringMaker().append("FileSystem::ReadDirectory totalPages: ").appendint(totalPages).toString(), currentDirPath, commonStrings.PROCESS);
 

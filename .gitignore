@@ -177,6 +177,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/j2se/GDGameJ2SEWithSWTGraalJSFastBuildApplicationM/src/**/*.ogg
 /platformx/j2se/GDGameJ2SEWithSWTGraalJSFastBuildApplicationM/src/**/*.wav
 /platformx/j2se/GDGameJ2SEWithSWTGraalJSFastBuildApplicationM/**/*.xsl
+/platformx/j2se/GDGameJ2SEWithSWTGraalJSFastBuildApplicationM/node_modules/**
 /platformx/j2se/GDGameJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.svg
 /platformx/j2se/GDGameJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.png
 /platformx/j2se/GDGameJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.xsl
@@ -202,6 +203,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/j2se/GDGameJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/src/**/*.ogg
 /platformx/j2se/GDGameJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/src/**/*.wav
 /platformx/j2se/GDGameJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/**/*.xsl
+/platformx/j2se/GDGameJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/node_modules/**
 /platformx/j2me/GDGameJ2MEApplicationM/src/**/*.java
 /platformx/j2me/GDGameJ2MEApplicationM/src/**/*.svg
 /platformx/j2me/GDGameJ2MEApplicationM/src/**/*.png

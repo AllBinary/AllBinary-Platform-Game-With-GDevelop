@@ -14,7 +14,7 @@
 package org.allbinary.gdevelop.loader;
 
 import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.logic.io.file.FileUtil;
+import org.allbinary.logic.io.file.AbFileSystem;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.string.CommonStrings;
@@ -131,7 +131,7 @@ public class GDResourceSelection {
         
         if(!this.hasRead) {
             this.hasRead = true;
-            final FileUtil fileUtil = FileUtil.getInstance();
+            final AbFileSystem fileUtil = AbFileSystem.getInstance();
             final String fileAsString = fileUtil.readAsString(this.gdToolStrings.ROTATION_ANIMATION_FILE_PATH);
             if (fileAsString.indexOf(this.FOUND) >= 0) {
 
