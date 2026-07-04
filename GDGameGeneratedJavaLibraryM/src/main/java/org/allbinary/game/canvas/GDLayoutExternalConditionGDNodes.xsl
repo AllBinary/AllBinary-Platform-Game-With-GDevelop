@@ -69,6 +69,8 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Graphics;
                 
+                import org.allbinary.AndroidUtil;
+                import org.allbinary.J2MEUtil;
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.configuration.feature.Features;
