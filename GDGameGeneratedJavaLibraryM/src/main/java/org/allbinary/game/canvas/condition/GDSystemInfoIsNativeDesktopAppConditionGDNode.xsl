@@ -53,7 +53,9 @@ Created By: Travis Berthelot
                             
                             //Map from object array with action params
                             final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
-                            return this.process(gameLayer, intArray[3], intArray[5]);
+                            this.process(gameLayer, intArray[3], intArray[5]);
+                            
+                            return true;
                         }
                         </xsl:if>
 
