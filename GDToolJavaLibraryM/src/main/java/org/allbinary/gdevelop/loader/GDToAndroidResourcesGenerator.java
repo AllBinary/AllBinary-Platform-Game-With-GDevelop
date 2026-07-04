@@ -14,7 +14,7 @@ public class GDToAndroidResourcesGenerator extends GDNameFileGenerator
 {
     public GDToAndroidResourcesGenerator() {
         super(GDPaths.getInstance().ROOT_PATH + "platform\\android\\GDGameAndroidM\\src\\main\\other\\org\\allbinary\\AndroidResources.original",
-                GDPaths.getInstance().ROOT_PATH + "platform\\android\\GDGameAndroidM\\src\\main\\other\\org\\allbinary\\AndroidResources.java");
+                GDPaths.getInstance().GEN_PATH + "platform\\android\\GDGameAndroidM\\src\\main\\other\\org\\allbinary\\AndroidResources.java");
     }
 
 }

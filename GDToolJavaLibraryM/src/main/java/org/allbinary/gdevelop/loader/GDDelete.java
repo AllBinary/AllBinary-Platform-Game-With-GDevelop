@@ -67,14 +67,14 @@ public class GDDelete {
         final BasicArrayList exclusionList0 = new BasicArrayListD();
 
         final BasicArrayList files0 = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java", this.gdToolStrings.XML);
+              gdPaths.GEN_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java", this.gdToolStrings.XML);
         
         this.process(files0, exclusionList0);
 
         final BasicArrayList exclusionList0b = new BasicArrayListD();
 
         final BasicArrayList files0b = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\", this.gdToolStrings.JSON);
+              gdPaths.GEN_PATH + "GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\", this.gdToolStrings.JSON);
         
         this.process(files0b, exclusionList0b);
         
@@ -92,7 +92,7 @@ public class GDDelete {
         exclusionList.add("TempMovementBehavior.java");
 
         final BasicArrayList files = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java", this.gdToolStrings.JAVA);
 
         this.process(files, exclusionList);
 
@@ -106,7 +106,7 @@ public class GDDelete {
         exclusionList2.add("GDTiledMapProperties");
         
         final BasicArrayList files2 = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java", this.gdToolStrings.JAVA);
         
         this.process(files2, exclusionList2);
 
@@ -131,7 +131,7 @@ public class GDDelete {
         exclusionList3.add("TitleVectorData.java");
         
         final BasicArrayList files3 = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java", this.gdToolStrings.JAVA);
         
         this.process(files3, exclusionList3);
 
@@ -140,7 +140,7 @@ public class GDDelete {
         exclusionList3b.add("PlatformAssetManager.java");
         
         final BasicArrayList files3b = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java", this.gdToolStrings.JAVA);
         
         this.process(files3b, exclusionList3b);
         
@@ -150,7 +150,7 @@ public class GDDelete {
         exclusionList4.add("AppRendererShaderUpdaterFactory.java");
         
         final BasicArrayList files4 = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java", this.gdToolStrings.JAVA);
 
         this.process(files4, exclusionList4);
 
@@ -159,7 +159,7 @@ public class GDDelete {
         //exclusionList3.add("GDGameAllBinarySceneControllerFactory.java");
         
         final BasicArrayList files5 = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "GDGamePreBaseJavaLibraryM\\src\\main\\java", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "GDGamePreBaseJavaLibraryM\\src\\main\\java", this.gdToolStrings.JAVA);
         
         this.process(files5, exclusionList5);
 
@@ -168,7 +168,7 @@ public class GDDelete {
         //exclusionList20.add("GDResources.java");
         
         final BasicArrayList files20 = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource", this.gdToolStrings.JAVA);
         
         this.process(files20, exclusionList20);
 
@@ -178,7 +178,7 @@ public class GDDelete {
         //exclusionList21.add("GameSoundsFactory.java");
         
         final BasicArrayList files21 = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "\\GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "\\GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio", this.gdToolStrings.JAVA);
         
         this.process(files21, exclusionList21);
                 
@@ -188,12 +188,12 @@ public class GDDelete {
         exclusionList6.add("GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
         
         final BasicArrayList files6 = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "resource\\GDGameOpenGLTwoDAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "resource\\GDGameOpenGLTwoDAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
         
         this.process(files6, exclusionList6);
 
         final BasicArrayList files6b = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
         
         this.process(files6b, exclusionList6);
         
@@ -203,12 +203,12 @@ public class GDDelete {
         exclusionList7.add("GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
         
         final BasicArrayList files7 = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "resource\\GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "resource\\GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
         
         this.process(files7, exclusionList7);
 
         final BasicArrayList files17 = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "resource\\GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "resource\\GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
         
         this.process(files17, exclusionList7);
         
@@ -218,7 +218,7 @@ public class GDDelete {
         exclusionList8.add("GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
         
         final BasicArrayList files8 = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
         
         this.process(files8, exclusionList8);
 
@@ -228,27 +228,27 @@ public class GDDelete {
         exclusionList9.add("GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
         
         final BasicArrayList files9 = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "resource\\GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "resource\\GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
         
         this.process(files9, exclusionList9);
         
         final BasicArrayList files19 = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "resource\\GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "resource\\GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
 
         this.process(files19, exclusionList9);
 
         final BasicArrayList files19b = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "resource\\GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "resource\\GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
 
         this.process(files19b, exclusionList9);
 
         final BasicArrayList files19c = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "resource\\GDGameOpenGLTwoDJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "resource\\GDGameOpenGLTwoDJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
 
         this.process(files19c, exclusionList9);
         
         final BasicArrayList files29 = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "resource\\GDGameLazyImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "resource\\GDGameLazyImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
         
         this.process(files29, exclusionList9);
         
@@ -261,7 +261,7 @@ public class GDDelete {
         exclusionList10.add("GDGameThreedTitleAnimationFactory.java");
         
         final BasicArrayList files10 = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
         
         this.process(files10, exclusionList10);
         
@@ -273,7 +273,7 @@ public class GDDelete {
         exclusionList11.add("GDGameAndroidResourceInitialization.java");
         
         final BasicArrayList files11 = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\", this.gdToolStrings.JAVA);
 
         this.process(files11, exclusionList11);
         
@@ -283,7 +283,7 @@ public class GDDelete {
         exclusionList12.add("GDGameAndroidActivityBase.java");
         
         final BasicArrayList files12 = fileListFetcher.getFiles(
-              gdPaths.ROOT_PATH + "platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\", this.gdToolStrings.JAVA);
+              gdPaths.GEN_PATH + "platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\", this.gdToolStrings.JAVA);
 
         this.process(files12, exclusionList12);
 

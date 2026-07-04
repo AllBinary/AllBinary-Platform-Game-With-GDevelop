@@ -98,7 +98,7 @@ public class GDLayoutsToAllBinaryGenerator
             //final Replace replace3 = new Replace(".Height()", ".Height(graphics)");
             //xmlDocumentStr = replace3.all(xmlDocumentStr);
 
-            final String START = gdPaths.ROOT_PATH + this.start;
+            final String START = gdPaths.GEN_PATH + this.start;
             final String END = this.end;
             
             final int size = this.nameList.size();

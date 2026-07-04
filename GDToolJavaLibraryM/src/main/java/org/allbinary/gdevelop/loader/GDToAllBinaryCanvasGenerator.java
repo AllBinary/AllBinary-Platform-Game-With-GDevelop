@@ -57,7 +57,7 @@ public class GDToAllBinaryCanvasGenerator extends GDTransformGenerator
     {
         
         this.stringMaker.delete(0, this.stringMaker.length());
-        final String canvasJavaFile = this.stringMaker.append(this.gdPaths.ROOT_PATH + this.path).append(this.className).append(".java").toString();
+        final String canvasJavaFile = this.stringMaker.append(this.gdPaths.GEN_PATH).append(this.path).append(this.className).append(".java").toString();
 
         final SharedBytes sharedBytes = SharedBytes.getInstance();
         sharedBytes.outputStream.reset();

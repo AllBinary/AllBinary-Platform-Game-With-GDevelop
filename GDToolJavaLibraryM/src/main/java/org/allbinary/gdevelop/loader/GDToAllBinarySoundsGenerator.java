@@ -46,7 +46,7 @@ public class GDToAllBinarySoundsGenerator
     private final String GD_DURATION = "<GD_DURATION>";
     
     private final String SOUND_ORIGINAL = this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDSound.origin";
-    private final String SOUND_PATH = this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\";
+    private final String SOUND_PATH = this.gdPaths.GEN_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\";
     
     private final String GD = "GD";
     private final String SOUND = "Sound";

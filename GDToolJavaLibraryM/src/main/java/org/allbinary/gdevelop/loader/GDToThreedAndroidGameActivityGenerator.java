@@ -40,7 +40,7 @@ public class GDToThreedAndroidGameActivityGenerator extends GDNameGenerator
         
         final String R_ORIGINAL = this.gdPaths.ROOT_PATH + "platform\\android\\GDGameThreedAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\GDGameAndroidActivity.original";
         stringMaker.delete(0, stringMaker.length());
-        stringMaker.append(this.gdPaths.ROOT_PATH + "platform\\android\\GDGameThreedAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\").append(name).append("\\threed");
+        stringMaker.append(this.gdPaths.GEN_PATH + "platform\\android\\GDGameThreedAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\").append(name).append("\\threed");
         final File directoryFile = new File(stringMaker.toString());
         directoryFile.mkdirs();
         final String R = stringMaker.append("\\GDGameAndroidActivity.java").toString();
