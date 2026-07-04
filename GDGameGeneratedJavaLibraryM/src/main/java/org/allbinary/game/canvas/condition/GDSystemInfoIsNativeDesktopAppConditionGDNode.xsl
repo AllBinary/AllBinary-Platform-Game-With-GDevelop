@@ -41,7 +41,7 @@ Created By: Travis Berthelot
                                 //Inverted
                             </xsl:if>                            
                             if(<xsl:if test="$inverted = 'true'" >!</xsl:if>!(J2MEUtil.isHTML() || AndroidUtil.isAndroid())) {
-                                return truel
+                                return true;
                             }
                             return false;
                         }
