@@ -375,7 +375,11 @@ Created By: Travis Berthelot
                         return Math.round(value);
                     }
                     
-                    public long abs(final long value) {
+                    public int abs(final int value) {
+                        return Math.abs(value);
+                    }
+                    
+                    public float abs(final float value) {
                         return Math.abs(value);
                     }
 
@@ -445,8 +449,11 @@ Created By: Travis Berthelot
                     }
 
                     public String ToString(final int value) {
-                        //return Integer.toString(value);
-                        return smallIntegerSingletonFactory.getString(value);
+                        if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
+                            return Integer.toString(value);
+                        } else {
+                            return smallIntegerSingletonFactory.getString(value);
+                        }
                     }
 
                     public String ToString(final long value) {

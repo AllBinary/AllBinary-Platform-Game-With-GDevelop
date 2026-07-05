@@ -375,8 +375,11 @@ Created By: Travis Berthelot
                     }
 
                     public String ToString(final int value) {
-                        //return Integer.toString(value);
-                        return smallIntegerSingletonFactory.getString(value);
+                        if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
+                            return Integer.toString(value);
+                        } else {
+                            return smallIntegerSingletonFactory.getString(value);
+                        }
                     }
 
                 }
