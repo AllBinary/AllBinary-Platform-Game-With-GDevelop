@@ -51,7 +51,7 @@ Created By: Travis Berthelot
                         final StringUtil stringUtil = StringUtil.getInstance();
                         final int size = <xsl:value-of select="$param1" />.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                            <xsl:value-of select="$param1" />[size] = stringUtil.EMPTY_STRING;
+                            <xsl:value-of select="$param1" />[index] = stringUtil.EMPTY_STRING;
                         }
                         <xsl:value-of select="$param1" />Index = 0;
 
