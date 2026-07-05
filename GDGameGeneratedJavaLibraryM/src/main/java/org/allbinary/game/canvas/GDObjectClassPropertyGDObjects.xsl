@@ -82,6 +82,7 @@ Created By: Travis Berthelot
                         };
                             </xsl:if>
                             <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'LongArray') or contains(name, 'BoolArray'))" >
+                    public int <xsl:value-of select="name" />Index = 0;
                     public String[] <xsl:value-of select="name" /> = {
                             <xsl:for-each select="children" >
                         "<xsl:value-of select="value" />",

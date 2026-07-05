@@ -318,6 +318,7 @@
                             </xsl:if>
                             <xsl:if test="contains(name, 'highScoresNameArray')" >
 
+                        public int <xsl:value-of select="name" />Index = 0;
                         public String[] <xsl:value-of select="name" /> = {
 <!--                                        <xsl:for-each select="children" >
                                         <xsl:value-of select="value" />,
@@ -336,15 +337,16 @@
                                 <xsl:for-each select="children" >
                                     <xsl:if test="not(preceding::variables/children/value = value)" >
                                         <xsl:if test="string-length(value) > 0" >
-                        public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="value" />";
+                        public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(value, ':', '_')" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="value" />";
                                         </xsl:if>
                                     </xsl:if>
                                 </xsl:for-each>
                                 </xsl:if>
-                        
+
+                        public int <xsl:value-of select="name" />Index = 0;
                         public String[] <xsl:value-of select="name" /> = {
                                         <xsl:for-each select="children" >
-                                            <xsl:if test="string-length(value) > 0" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template>,</xsl:if>
+                                            <xsl:if test="string-length(value) > 0" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(value, ':', '_'), '\', '_')" /></xsl:with-param></xsl:call-template>,</xsl:if>
                                             <xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING,</xsl:if>
                                         <xsl:text>&#10;</xsl:text>
                                         </xsl:for-each>                                        

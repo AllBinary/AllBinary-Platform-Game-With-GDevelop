@@ -102,6 +102,8 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDTextInputVirtualKeyboardTextInputVirtualKeyboardCloseKeyboardActionProcess.xsl" />
     <xsl:import href="./action/GDFileSystemReadDirectoryActionProcess.xsl" />
     <xsl:import href="./action/GDFileSystemLoadStringFromFileSyncActionProcess.xsl" />
+    <xsl:import href="./action/GDClearVariableChildrenActionProcess.xsl" />
+    <xsl:import href="./action/GDPushStringActionProcess.xsl" />
     
     <xsl:import href="./action/GDExtensionActionProcess.xsl" />
     
@@ -1606,7 +1608,42 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ObjectVariableClearChildren'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:when>
-                                
+
+                <xsl:when test="$typeValue = 'ClearVariableChildren'" >
+                    
+                    <xsl:call-template name="clearVariableChildrenActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>                    
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PushString'" >
+                    
+                    <xsl:call-template name="pushStringActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>                    
+                </xsl:when>
+
                 <xsl:when test="$typeValue = 'PauseObjectTimer'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:when>
