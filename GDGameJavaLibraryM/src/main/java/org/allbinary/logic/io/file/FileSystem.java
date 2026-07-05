@@ -18,6 +18,7 @@ import org.allbinary.logic.io.path.AbPathData;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.logic.system.os.SystemProperties;
+import org.allbinary.string.CommonSeps;
 import org.allbinary.string.CommonStrings;
 
 /**
@@ -27,7 +28,7 @@ import org.allbinary.string.CommonStrings;
 public class FileSystem {
     
     public static boolean PathExists(final String path) {
-        return AbFileSystem.getInstance().isDirectory(path);
+        return AbFileSystem.getInstance().isDirectoryOrFile(path);
     }
 
     public static String LoadStringFromFileSync(final String path) {
@@ -37,7 +38,7 @@ public class FileSystem {
     public static String DirectoryName(final String currentDirPath) {
 //        final LogUtil logUtil = LogUtil.getInstance();
 //        final CommonStrings commonStrings = CommonStrings.getInstance();
-        final String name = AbPathData.getInstance().removeNameFromPath(currentDirPath, FilePathData.getInstance().SEPARATORCHAR);
+        final String name = AbPathData.getInstance().removeNameFromPath(currentDirPath);
 //        logUtil.putF(new StringMaker().append(currentDirPath).append(" FileSystem::DirectoryName: ").append(name).toString(), currentDirPath, commonStrings.PROCESS);
         return name;
     }
@@ -48,7 +49,8 @@ public class FileSystem {
         final CommonStrings commonStrings = CommonStrings.getInstance();
         
         final StringUtil stringUtil = StringUtil.getInstance();
-        final String[] realFilePathAsStringArray = AbFileSystem.getInstance().getFilesAsStringArrayForPath(currentDirPath);
+        final String path = FixPath(currentDirPath);
+        final String[] realFilePathAsStringArray = AbFileSystem.getInstance().getFilesAsStringArrayForPath(path);
         if(realFilePathAsStringArray == null) {
             return new String[PAGE_SIZE];
         }
@@ -75,6 +77,13 @@ public class FileSystem {
         return fileList;
     }
     
+    private static String FixPath(String path) {
+        if(path.endsWith(CommonSeps.getInstance().COLON)) {
+            return path + FilePathData.getInstance().SEPARATORCHAR;
+        }
+        return path;
+    }
+
     public static String UserHomePath() {
         return SystemProperties.getInstance().getUserHomePath();
     }
@@ -90,12 +99,15 @@ public class FileSystem {
     public static String ExtensionName(final String fullPath) {
 //        final LogUtil logUtil = LogUtil.getInstance();
 //        final CommonStrings commonStrings = CommonStrings.getInstance();
-        final String name = FileSystem.DirectoryName(fullPath);
-        if(name.startsWith(AbPathData.getInstance().EXTENSION_SEP)) {
+        final AbPathData pathData = AbPathData.getInstance();
+        final String name = pathData.getNameFromPath(fullPath);
+//        logUtil.putF(new StringMaker().append(fullPath).append(" directory?").append(name).toString(), commonStrings, commonStrings.PROCESS);        
+        if(name.startsWith(pathData.EXTENSION_SEP)) {
 //            logUtil.putF(new StringMaker().append(fullPath).append(" directory?").toString(), commonStrings, commonStrings.PROCESS);
             return StringUtil.getInstance().EMPTY_STRING;
         } else {
-            return AbPathData.getInstance().getExtension(name);
+//            logUtil.putF(pathData.getExtension(name), commonStrings, commonStrings.PROCESS);            
+            return pathData.getExtensionWithDot(name);
         }
     }
 }
