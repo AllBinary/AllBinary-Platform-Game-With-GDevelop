@@ -160,7 +160,7 @@ public class GDToAllBinaryResourcesGenerator
                 this.resourceStringMaker.appendint(arrayIndex);
                 this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
             } else {
-                throw new RuntimeException(name);
+                throw new RuntimeException(name + " not in " + this.listGDResources(gdResourceList));
 //                resourceStringMaker.append(-1);
 //                resourceStringMaker.append(',');
 //                resourceStringMaker.append(this.commonSeps.COMMENT);
@@ -234,6 +234,20 @@ public class GDToAllBinaryResourcesGenerator
         return null;
     }
 
+    private String listGDResources(final BasicArrayList gdResourceList) {
+        final StringMaker stringMaker = new StringMaker();
+        final int size = gdResourceList.size();
+        stringMaker.appendint(size).append(this.commonSeps.COLON);
+        GDResource gdResource;
+        for(int index = 0; index < size; index++) {
+            gdResource = (GDResource) gdResourceList.get(index);
+            
+            stringMaker.append(gdResource.name).append(this.commonSeps.COMMA);
+        }
+        
+        return stringMaker.toString();
+    }
+    
     private final String SLIDER = "_slider_";
     private final String BATTERY = "battery_";
     private final String HEART = "heart_";
@@ -349,6 +363,9 @@ public class GDToAllBinaryResourcesGenerator
 
     public void process2(final BasicArrayList files, final BasicArrayList usedList) throws Exception {
     
+        final StringMaker stringMaker = new StringMaker();
+        //this.logUtil.putF(stringMaker.append(this.gdPaths.TWOD_RESOURCES_PATH).appendint(files.size()).toString(), this, this.commonStrings.PROCESS);
+        
         this.resourceStringMaker.delete(0, this.resourceStringMaker.length());
         this.resourceStringMaker.append(this.GD_KEY);
         this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
@@ -364,7 +381,7 @@ public class GDToAllBinaryResourcesGenerator
         final String LAZY_RESOURCE_ORIGINAL = this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.origin";
         final String LAZY_RESOURCE = this.gdPaths.GEN_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.java";
         
-        final StringMaker stringMaker = new StringMaker();
+        stringMaker.delete(0, stringMaker.length());
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final SharedBytes sharedBytes = SharedBytes.getInstance();
         sharedBytes.outputStream.reset();
