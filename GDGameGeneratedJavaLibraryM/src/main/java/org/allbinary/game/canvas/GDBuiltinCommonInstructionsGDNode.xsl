@@ -129,12 +129,35 @@ Created By: Travis Berthelot
                     
                     //hasJsonObjects=<xsl:value-of select="$hasJsonObjects" />
                     <xsl:if test="contains($hasJsonObjects, 'found')" >
-                        //JSON
-                    final JSONArray array = <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="iterableVariableName/text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject.names();
-                    final int size = <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="iterableVariableName/text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject.length();
-                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                    //JSON
+                    final JSONObject jsonObject = (JSONObject) <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="iterableVariableName/text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject;
+                    final JSONArray array = jsonObject.names();
+                    final int size = jsonObject.length();
                     
-                        <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="valueIteratorVariableName/text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject = (JSONObject) array.get(index);
+                    logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + size, this, commonStrings.PROCESS);
+                    
+                    String name;
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+
+                        name = (String) array.get(index);
+                        <xsl:variable name="valueIteratorVariableName" select="valueIteratorVariableName/text()" />
+                        <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject = jsonObject.get(name);
+
+                        <xsl:for-each select="//variables" >
+                            <xsl:if test="name = $valueIteratorVariableName" >
+                                <xsl:for-each select="children" >
+                                    <xsl:choose>
+                                        <xsl:when test="type = 'string'" >
+                        final JSONObject jsonObject2 = ((JSONObject) globals.<xsl:value-of select="$valueIteratorVariableName" />JSONObject);
+                        globals.<xsl:value-of select="$valueIteratorVariableName" />.<xsl:value-of select="name" /> = jsonObject2.getString("<xsl:value-of select="name" />");
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            //Otherwise - <xsl:value-of select="type" />
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:for-each>
+                            </xsl:if>
+                        </xsl:for-each>
 
                     <xsl:for-each select="conditions" >
                         <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -164,7 +187,7 @@ Created By: Travis Berthelot
 
                     </xsl:if>
                     <xsl:if test="not(contains($hasJsonObjects, 'found'))" >
-                        //Array
+                    //Array
                     final int size = <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="iterableVariableName/text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.length;
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                     

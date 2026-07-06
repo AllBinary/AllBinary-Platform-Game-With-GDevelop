@@ -162,7 +162,18 @@ Created By: Travis Berthelot
                         //This layout should not be the highscore layout
                         public boolean highscoreSubmissionComplete = false;
                         </xsl:if>
-                                                                                    
+
+                    //variablesStructuresChildrenNames - START
+                    <xsl:call-template name="variablesStructuresChildrenNames" >
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>                       
+                        <xsl:with-param name="layoutName" >
+                            <xsl:value-of select="$layoutName" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    //variablesStructuresChildrenNames - END
+                                                                                                                                                                        
                     //variablesStructures - START
                     <xsl:call-template name="variablesStructures" >
                         <xsl:with-param name="totalRecursions" >
@@ -275,12 +286,12 @@ Created By: Travis Berthelot
                     <xsl:text>&#10;</xsl:text>
             private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
             
-            //uniqueValues - START 
+            //uniqueValues - Layout - START 
             <xsl:key name="uniqueValues" match="type" use="." />
             <xsl:for-each select="objects/type[count(. | key('uniqueValues', .)[1]) = 1]" >
                 public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template> = gameGlobals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template>;
             </xsl:for-each>
-            //uniqueValues - END
+            //uniqueValues - Layout - END
 
                     <xsl:text>&#10;</xsl:text>
                     //more objects class properties - END

@@ -237,12 +237,12 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
                     
-                    //uniqueValues - START 
+                    //uniqueValues - Globals - START 
                     <xsl:key name="uniqueValues" match="type" use="." />
                     <xsl:for-each select="//objects/type[count(. | key('uniqueValues', .)[1]) = 1]" >
                         public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="text()" />";
                     </xsl:for-each>
-                    //uniqueValues - END
+                    //uniqueValues - Globals - END
                     
                     <xsl:text>&#10;</xsl:text>
                     //more objects class properties - END

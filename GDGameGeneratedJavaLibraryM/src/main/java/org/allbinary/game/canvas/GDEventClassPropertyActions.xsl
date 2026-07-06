@@ -56,7 +56,7 @@ Created By: Travis Berthelot
             </xsl:if>
             <xsl:if test="type = 'string'" >
             <xsl:if test="not(number(value) = value)" >
-            public String <xsl:value-of select="name" /> = "<xsl:value-of select="value" />";
+            public String <xsl:value-of select="name" /> = <xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING</xsl:if><xsl:if test="string-length(value) > 0" >"<xsl:value-of select="value" />"</xsl:if>;
             </xsl:if>
             <xsl:if test="number(value) = value" >
             public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
@@ -64,6 +64,18 @@ Created By: Travis Berthelot
             </xsl:if>
 
         </xsl:for-each>
+
+    </xsl:template>
+
+    <xsl:template name="variablesStructuresChildrenNames" >
+        <xsl:param name="totalRecursions" />
+        
+            <xsl:key name="uniqueValues" match="name" use="." />
+            <xsl:for-each select="//variables/children/name[count(. | key('uniqueValues', .)[1]) = 1]" >
+                <xsl:if test="string-length(text()) > 0" >
+            public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="text()" />";
+                </xsl:if>
+            </xsl:for-each>
 
     </xsl:template>
 
@@ -127,7 +139,8 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                 <xsl:if test="type/value = 'JSONToVariableStructure'" >
         //type/value=<xsl:value-of select="type/value" />
         <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-        public JSONObject <xsl:value-of select="$param" />JSONObject = null;
+        //JSONObject or the like
+        public Object <xsl:value-of select="$param" />JSONObject = null;
         
                 <xsl:call-template name="connectedJsonObjects">
                     <xsl:with-param name="param" select="$param" />
@@ -138,7 +151,8 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                 <xsl:if test="type/value = 'JSONToVariableStructure2'" >
         //type/value=<xsl:value-of select="type/value" />
         <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-        public JSONObject <xsl:value-of select="$param" />JSONObject = null;
+        //JSONObject or the like
+        public Object <xsl:value-of select="$param" />JSONObject = null;
         
                 <xsl:call-template name="connectedJsonObjects">
                     <xsl:with-param name="param" select="$param" />
@@ -147,9 +161,10 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
 
                 </xsl:if>
                 <xsl:if test="type/value = 'JSONToGlobalVariableStructure'" >
-        //type/value=<xsl:value-of select="type/value" />
+<!--        //type/value=<xsl:value-of select="type/value" />-->
         <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-        //public JSONObject <xsl:value-of select="$param" />JSONObject = null;        
+        //JSONObject or the like
+        //public Object <xsl:value-of select="$param" />JSONObject = null;        
         
                 <xsl:call-template name="connectedJsonObjects">
                     <xsl:with-param name="param" select="$param" />
@@ -183,7 +198,8 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                 </xsl:call-template>
 
         //Chained Usage
-        public JSONObject <xsl:value-of select="valueIteratorVariableName" />JSONObject = null;
+        //JSONObject or the like
+        public Object <xsl:value-of select="valueIteratorVariableName" />JSONObject = null;
                 
                 </xsl:if>
             </xsl:if>
