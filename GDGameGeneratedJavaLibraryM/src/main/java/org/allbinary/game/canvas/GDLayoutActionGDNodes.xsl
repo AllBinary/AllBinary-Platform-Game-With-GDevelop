@@ -70,6 +70,7 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Graphics;
                 import javax.microedition.lcdui.Image;
 
+                import org.json.me.JSONArray;
                 import org.json.me.JSONObject;
                 import org.json.me.JSONTokener;
 

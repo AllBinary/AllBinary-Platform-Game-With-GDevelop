@@ -16,13 +16,13 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:template name="jsonToVariableStructureActionProcess" >
+    <xsl:template name="jsonToVariableStructure2ActionProcess" >
         <xsl:param name="forExtension" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
 
-                    //JSONToVariableStructure - takes a raw string (not variable) and parses it to a JSONObject/Structure - //forExtension=<xsl:value-of select="$forExtension" />
+                    //JSONToVariableStructure2 - takes a string variable and parses it to a JSONObject/Structure - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                     @Override
                     public boolean process() throws Exception {

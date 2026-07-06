@@ -71,6 +71,9 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Graphics;
 
+                import org.json.me.JSONArray;
+                import org.json.me.JSONObject;
+                        
                 import org.allbinary.game.input.event.RawKeyEventHandler;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
@@ -96,7 +99,6 @@ Created By: Travis Berthelot
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.input.motion.gesture.observer.MovedMotionGesturesHandler;
                 import org.allbinary.input.motion.gesture.observer.ScrolledMotionGesturesHandler;
-                
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.math.RectangleCollisionUtil;
                 import org.allbinary.string.CommonStrings;

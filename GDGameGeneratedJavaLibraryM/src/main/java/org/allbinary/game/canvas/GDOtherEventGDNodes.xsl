@@ -56,6 +56,9 @@ package org.allbinary.game.canvas.node.builtin;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
+import org.json.me.JSONArray;
+import org.json.me.JSONObject;        
+
 <!--import org.allbinary.animation.AnimationBehavior;
 import org.allbinary.animation.special.SpecialAnimation;-->
 import org.allbinary.game.canvas.GDGameGlobals;

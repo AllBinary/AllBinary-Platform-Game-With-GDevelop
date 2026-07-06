@@ -63,6 +63,7 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Font;
                 import javax.microedition.lcdui.Graphics;
 
+                import org.json.me.JSONArray;
                 import org.json.me.JSONObject;
                 import org.json.me.JSONTokener;
 

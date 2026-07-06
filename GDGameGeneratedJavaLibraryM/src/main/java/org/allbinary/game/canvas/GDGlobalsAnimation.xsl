@@ -62,6 +62,9 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Graphics;
 
+                import org.json.me.JSONArray;
+                import org.json.me.JSONObject;
+        
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.color.BasicColorFactory;

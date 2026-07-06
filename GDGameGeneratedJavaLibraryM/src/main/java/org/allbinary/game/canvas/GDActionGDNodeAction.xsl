@@ -83,6 +83,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDSetSceneVariableAsBooleanActionProcess.xsl" />
     <xsl:import href="./action/GDSetStringVariableActionProcess.xsl" />
     <xsl:import href="./action/GDJSONToVariableStructureActionProcess.xsl" />
+    <xsl:import href="./action/GDJSONToVariableStructure2ActionProcess.xsl" />
     <xsl:import href="./action/GDRotateActionProcess.xsl" />
     <xsl:import href="./action/GDRotateTowardPositionActionProcess.xsl" />
     <xsl:import href="./action/GDChangeScaleActionProcess.xsl" />
@@ -1419,6 +1420,25 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'JSONToVariableStructure'" >
 
                     <xsl:call-template name="jsonToVariableStructureActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
+
+                <xsl:when test="$typeValue = 'JSONToVariableStructure2'" >
+
+                    <xsl:call-template name="jsonToVariableStructure2ActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>

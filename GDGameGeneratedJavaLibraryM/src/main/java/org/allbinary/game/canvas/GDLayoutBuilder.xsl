@@ -79,6 +79,9 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Graphics;
                 
+                import org.json.me.JSONArray;
+                import org.json.me.JSONObject;
+                        
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.J2MEUtil;
                 import org.allbinary.animation.AnimationBehavior;
@@ -93,7 +96,6 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.displayable.event.DisplayChangeEvent;
                 import org.allbinary.graphics.displayable.event.DisplayChangeEventHandler;
                 import org.allbinary.graphics.displayable.event.DisplayChangeEventListener;
-
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.GDGameLayer;
@@ -113,7 +115,6 @@ Created By: Travis Berthelot
                 import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
                 import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
-                
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.string.CommonStrings;
                 import org.allbinary.string.CommonSeps;

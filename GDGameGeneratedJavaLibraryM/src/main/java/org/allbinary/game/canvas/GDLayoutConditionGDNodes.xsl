@@ -69,6 +69,9 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Canvas;
                 import javax.microedition.lcdui.Graphics;
                 
+                import org.json.me.JSONArray;
+                import org.json.me.JSONObject;
+        
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.J2MEUtil;
                 import org.allbinary.canvas.GameGlobalsFactory;

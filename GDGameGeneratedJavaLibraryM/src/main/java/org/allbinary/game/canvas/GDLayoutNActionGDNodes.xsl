@@ -72,6 +72,7 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Graphics;
                 import javax.microedition.lcdui.Image;
 
+                import org.json.me.JSONArray;
                 import org.json.me.JSONObject;
                 import org.json.me.JSONTokener;
 
@@ -138,7 +139,6 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.string.StringMaker;
                 import org.allbinary.string.CommonSeps;
                 import org.allbinary.logic.string.StringUtil;
-                
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
                 import org.allbinary.media.audio.Sound;
@@ -487,6 +487,10 @@ Created By: Travis Berthelot
 
                     public int StrLength(final String string) {
                         return string.length();
+                    }
+
+                    public String StrReplaceAll(final String string, final String find, final String replace) {
+                        return string.replace(find, replace);
                     }
 
                     public String SubStr(final String string, final int startIndex, final int endIndex) {

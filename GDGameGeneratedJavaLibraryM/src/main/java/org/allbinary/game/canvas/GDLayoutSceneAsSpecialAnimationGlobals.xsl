@@ -72,6 +72,7 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Font;
                 import javax.microedition.lcdui.Graphics;
 
+                import org.json.me.JSONArray;
                 import org.json.me.JSONObject;
                 import org.json.me.JSONTokener;
 
@@ -107,7 +108,6 @@ Created By: Travis Berthelot
                 import org.allbinary.string.CommonStrings;
                 import org.allbinary.logic.string.StringMaker;
                 import org.allbinary.logic.util.event.EventListenerInterface;
-                
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.media.audio.Sound;
                 import org.allbinary.time.GameTickTimeDelayHelper;
@@ -167,6 +167,9 @@ Created By: Travis Berthelot
                     <xsl:call-template name="variablesStructures" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
+                        </xsl:with-param>                       
+                        <xsl:with-param name="layoutName" >
+                            <xsl:value-of select="$layoutName" />
                         </xsl:with-param>
                     </xsl:call-template>
                     //variablesStructures - END

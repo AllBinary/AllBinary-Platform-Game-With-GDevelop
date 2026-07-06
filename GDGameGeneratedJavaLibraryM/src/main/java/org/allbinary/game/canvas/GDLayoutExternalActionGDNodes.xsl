@@ -69,6 +69,7 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Graphics;
                 
+                import org.json.me.JSONArray;
                 import org.json.me.JSONObject;
                 import org.json.me.JSONTokener;
 
@@ -86,7 +87,6 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.behavior.PathFindingBehavior;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
-                
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.string.CommonStrings;
                 import org.allbinary.string.CommonSeps;

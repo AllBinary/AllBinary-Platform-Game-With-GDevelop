@@ -75,6 +75,7 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Graphics;
                 import javax.microedition.lcdui.Image;
                 
+                import org.json.me.JSONArray;
                 import org.json.me.JSONObject;
                 import org.json.me.JSONTokener;
 
@@ -438,6 +439,10 @@ Created By: Travis Berthelot
 
                     public int StrLength(final String string) {
                         return string.length();
+                    }
+                    
+                    public String StrReplaceAll(final String string, final String find, final String replace) {
+                        return string.replace(find, replace);
                     }
 
                     public String SubStr(final String string, final int startIndex, final int endIndex) {
