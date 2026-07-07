@@ -102,9 +102,9 @@ Created By: Travis Berthelot
 
                 <xsl:variable name="object" ><xsl:value-of select="object" /></xsl:variable>
 
-            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> iterableVariableName=<xsl:value-of select="iterableVariableName" /> valueIteratorVariableName=<xsl:value-of select="valueIteratorVariableName" />
+            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> iterableVariableName=<xsl:value-of select="iterableVariableName" /> valueIteratorVariableName=<xsl:value-of select="valueIteratorVariableName" /> keyIteratorVariableName=<xsl:value-of select="keyIteratorVariableName" />
 
-                private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" /> iterableVariableName=<xsl:value-of select="iterableVariableName" /> valueIteratorVariableName=<xsl:value-of select="valueIteratorVariableName" />";
+                private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" /> iterableVariableName=<xsl:value-of select="iterableVariableName" /> valueIteratorVariableName=<xsl:value-of select="valueIteratorVariableName" /> keyIteratorVariableName=<xsl:value-of select="keyIteratorVariableName" />";
                 <xsl:text>&#10;</xsl:text>
 
                 <xsl:if test="contains(disabled, 'true')" >
@@ -130,26 +130,28 @@ Created By: Travis Berthelot
                     //hasJsonObjects=<xsl:value-of select="$hasJsonObjects" />
                     <xsl:if test="contains($hasJsonObjects, 'found')" >
                     //JSON
-                    final JSONObject jsonObject = (JSONObject) <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="iterableVariableName/text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject;
-                    final JSONArray array = jsonObject.names();
-                    final int size = jsonObject.length();
+                    <xsl:variable name="valueIteratorVariableName" select="valueIteratorVariableName/text()" />
+                    //JSONArray
+                    if(<xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="iterableVariableName/text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONArray != nullUtil.NULL_OBJECT) {
+                    final JSONArray jsonArray = (JSONArray) <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="iterableVariableName/text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONArray;
+                    final int size = jsonArray.length();
                     
                     logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + size, this, commonStrings.PROCESS);
                     
-                    String name;
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
 
-                        name = (String) array.get(index);
-                        <xsl:variable name="valueIteratorVariableName" select="valueIteratorVariableName/text()" />
-                        <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject = jsonObject.get(name);
-
+                        <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="keyIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template> = VariableString(index);
+                        
+                        <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject = jsonArray.optJSONObjectAsObject(index);
+                        <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONArray = jsonArray.optJSONArrayAsObject(index);
+                        
                         <xsl:for-each select="//variables" >
                             <xsl:if test="name = $valueIteratorVariableName" >
                                 <xsl:for-each select="children" >
                                     <xsl:choose>
                                         <xsl:when test="type = 'string'" >
-                        final JSONObject jsonObject2 = ((JSONObject) globals.<xsl:value-of select="$valueIteratorVariableName" />JSONObject);
-                        globals.<xsl:value-of select="$valueIteratorVariableName" />.<xsl:value-of select="name" /> = jsonObject2.getString("<xsl:value-of select="name" />");
+                        final JSONObject jsonObject2 = ((JSONObject) <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject);
+                        <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" /> = jsonObject2.getString(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
                                         </xsl:when>
                                         <xsl:otherwise>
                                             //Otherwise - <xsl:value-of select="type" />
@@ -183,6 +185,68 @@ Created By: Travis Berthelot
                     <xsl:for-each select="conditions" >
                         }
                     </xsl:for-each>
+                    }
+                    } else
+                    //JSONObject
+                    if(<xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="iterableVariableName/text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject != nullUtil.NULL_OBJECT) {
+                    final JSONObject jsonObject = (JSONObject) <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="iterableVariableName/text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject;
+                    final JSONArray array = jsonObject.names();
+                    final int size = jsonObject.length();
+
+                    logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + size, this, commonStrings.PROCESS);
+                    
+                    String name;
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+
+                        name = (String) array.get(index);
+                        <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="keyIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template> = name;
+                        
+                        <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject = jsonObject.optJSONObjectAsObject(name);
+                        <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONArray = jsonObject.optJSONArrayAsObject(name);
+                        
+                        <xsl:for-each select="//variables" >
+                            <xsl:if test="name = $valueIteratorVariableName" >
+                                <xsl:for-each select="children" >
+                                    <xsl:choose>
+                                        <xsl:when test="type = 'string'" >
+                        final JSONObject jsonObject2 = ((JSONObject) <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject);
+                        <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" /> = jsonObject2.getString(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            //Otherwise - <xsl:value-of select="type" />
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:for-each>
+                            </xsl:if>
+                        </xsl:for-each>
+
+                    <xsl:for-each select="conditions" >
+                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
+                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                    </xsl:for-each>
+                        <xsl:for-each select="actions" >
+                            <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                            <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                        //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" /> totalRecursions=<xsl:value-of select="$totalRecursions" />
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                        </xsl:for-each>
+                        <xsl:for-each select="events" >
+                            <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                            <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                            <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                        //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> totalRecursions=<xsl:value-of select="$totalRecursions" />
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            </xsl:if>
+                        </xsl:for-each>
+                    
+                    <xsl:for-each select="conditions" >
+                        }
+                    </xsl:for-each>
+                    }
+                    } else {
+                        logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception());
                     }
 
                     </xsl:if>

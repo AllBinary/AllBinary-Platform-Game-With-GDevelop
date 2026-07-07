@@ -139,8 +139,8 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                 <xsl:if test="type/value = 'JSONToVariableStructure'" >
         //type/value=<xsl:value-of select="type/value" />
         <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-        //JSONObject or the like
-        public Object <xsl:value-of select="$param" />JSONObject = null;
+        public Object <xsl:value-of select="$param" />JSONObject = this.nullUtil.NULL_OBJECT;
+        public Object <xsl:value-of select="$param" />JSONArray = this.nullUtil.NULL_OBJECT;
         
                 <xsl:call-template name="connectedJsonObjects">
                     <xsl:with-param name="param" select="$param" />
@@ -151,8 +151,8 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                 <xsl:if test="type/value = 'JSONToVariableStructure2'" >
         //type/value=<xsl:value-of select="type/value" />
         <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-        //JSONObject or the like
-        public Object <xsl:value-of select="$param" />JSONObject = null;
+        public Object <xsl:value-of select="$param" />JSONObject = this.nullUtil.NULL_OBJECT;
+        public Object <xsl:value-of select="$param" />JSONArray = this.nullUtil.NULL_OBJECT;
         
                 <xsl:call-template name="connectedJsonObjects">
                     <xsl:with-param name="param" select="$param" />
@@ -163,8 +163,8 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                 <xsl:if test="type/value = 'JSONToGlobalVariableStructure'" >
 <!--        //type/value=<xsl:value-of select="type/value" />-->
         <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-        //JSONObject or the like
-        //public Object <xsl:value-of select="$param" />JSONObject = null;        
+        //public Object <xsl:value-of select="$param" />JSONObject = this.nullUtil.NULL_OBJECT;
+        //public Object <xsl:value-of select="$param" />JSONArray = this.nullUtil.NULL_OBJECT;   
         
                 <xsl:call-template name="connectedJsonObjects">
                     <xsl:with-param name="param" select="$param" />
@@ -198,8 +198,8 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                 </xsl:call-template>
 
         //Chained Usage
-        //JSONObject or the like
-        public Object <xsl:value-of select="valueIteratorVariableName" />JSONObject = null;
+        public Object <xsl:value-of select="valueIteratorVariableName" />JSONObject = this.nullUtil.NULL_OBJECT;
+        public Object <xsl:value-of select="valueIteratorVariableName" />JSONArray = this.nullUtil.NULL_OBJECT;
                 
                 </xsl:if>
             </xsl:if>
