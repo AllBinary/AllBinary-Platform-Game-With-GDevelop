@@ -213,7 +213,8 @@ Created By: Travis Berthelot
                         <xsl:for-each select="objects" >
                             <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
                             <xsl:variable name="isTextObject" ><xsl:for-each select="//objects" ><xsl:if test="name = $name" ><xsl:if test="type = 'TextObject::Text'" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
-                            <xsl:if test="not(contains(name, 'btn_') or contains($isTextObject, 'found'))" >
+                            <xsl:variable name="isTextInput" ><xsl:for-each select="//objects" ><xsl:if test="name = $name" ><xsl:if test="type = 'TextInput::TextInputObject'" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
+                            <xsl:if test="not(contains(name, 'btn_') or contains($isTextObject, 'found') or contains($isTextInput, 'found'))" >
                                 <xsl:value-of select="$objectGroupName" />ImageArrayList.add(<xsl:value-of select="name" />ImageArray);
                             </xsl:if>
                         </xsl:for-each>
