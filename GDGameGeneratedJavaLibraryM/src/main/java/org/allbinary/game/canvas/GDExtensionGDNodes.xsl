@@ -79,6 +79,8 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.NullUtil;
                 import org.allbinary.util.ArrayUtil;
 
+                //Search for "//extensionNames"
+                //Current exclusion list (Used by RPG) - TextInputVirtualKeyboard, TouchScreen, PanelSpriteSlider, MirrorFillBarExtension, SpriteMultitouchJoystick'
                 public class GDExtensionGDNodes extends SpecialAnimation
                 {
 
