@@ -73,7 +73,8 @@ Created By: Travis Berthelot
             </xsl:when>
 
             <xsl:otherwise>
-                <xsl:text>&#10;</xsl:text><xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                <xsl:text>&#10;</xsl:text>
+                //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
             </xsl:otherwise>
 
             </xsl:choose>
@@ -893,7 +894,8 @@ Created By: Travis Berthelot
             </xsl:when>
 
             <xsl:otherwise>
-                <xsl:text>&#10;</xsl:text><xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                <xsl:text>&#10;</xsl:text>
+                //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
             </xsl:otherwise>
 
             </xsl:choose>
