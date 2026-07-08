@@ -41,7 +41,6 @@ Created By: Travis Berthelot
         import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
         import org.allbinary.direction.Direction;
         import org.allbinary.direction.DirectionFactory;
-        import org.allbinary.game.canvas.GDExtensionGDNodes;
         import org.allbinary.game.canvas.GDGameGlobals;
         import org.allbinary.game.GameTypeFactory;
 //        import org.allbinary.game.behavior.platformer.GeographicMapPlatformGameLayerBehavior;
@@ -163,7 +162,6 @@ Created By: Travis Berthelot
                     
                     private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-                    private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
                     private final GroupCommonFactory groupCommonFactory = GroupCommonFactory.getInstance();
 
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
