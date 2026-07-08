@@ -75,7 +75,6 @@ Created By: Travis Berthelot
                             gameLayer = (GDGameLayer) <xsl:value-of select="$name" />GDGameLayerList.get(index);
                             //<xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gameLayer.gdObject;
 
-                            //extensionMapping
                             <xsl:call-template name="extensionMapping" >
                                 <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
                             </xsl:call-template>
@@ -100,8 +99,6 @@ Created By: Travis Berthelot
                         <xsl:if test="position() = 1" >final GDGameLayer gameLayer = (((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index)))</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
                         </xsl:for-each>
                         
-                        <xsl:text>&#10;</xsl:text>
-                        //extensionMapping
                         <xsl:call-template name="extensionMapping" >
                             <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
                         </xsl:call-template>
@@ -189,7 +186,6 @@ Created By: Travis Berthelot
 
                         //final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = ((<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$name" />GDGameLayer.gdObject);<xsl:text>&#10;</xsl:text>
 
-                        //extensionMapping
                         <xsl:call-template name="extensionMapping" >
                             <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
                             <xsl:with-param name="objectOverride" ><xsl:value-of select="$gameLayer" /></xsl:with-param>
@@ -225,7 +221,6 @@ Created By: Travis Berthelot
                             gameLayer = (GDGameLayer) <xsl:value-of select="$name" />GDGameLayerList.get(index2);
                             //<xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gameLayer.gdObject;
 
-                            //extensionMapping
                             <xsl:call-template name="extensionMapping" >
                                 <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
                             </xsl:call-template>
@@ -244,9 +239,6 @@ Created By: Travis Berthelot
                         <xsl:if test="position() = 1" >final GDGameLayer gameLayer = (((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index)))</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
                         </xsl:for-each>
                         
-                        <xsl:text>&#10;</xsl:text>
-
-                        //extensionMapping
                         <xsl:call-template name="extensionMapping" >
                             <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
                         </xsl:call-template>
@@ -264,6 +256,8 @@ Created By: Travis Berthelot
         <xsl:param name="extensionNameAndExtensionFunction" />
         <xsl:param name="objectOverride" />
 
+                            <xsl:text>&#10;</xsl:text>
+                            //extensionMapping
         <xsl:choose>
                             <xsl:when test="$extensionNameAndExtensionFunction = 'SnapToGrid::SnapObjectToVirtualGrid'" >
                                 <xsl:if test="string-length($objectOverride) > 0" >
