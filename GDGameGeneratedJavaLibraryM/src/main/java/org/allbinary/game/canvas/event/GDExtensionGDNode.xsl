@@ -146,15 +146,19 @@ Created By: Travis Berthelot
                         </xsl:choose>
                 </xsl:for-each>
 
-                        //conditions
                     <xsl:for-each select="conditions" >
+                        
+                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                        //Condition (Displayed 2 times) nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                         
                 <xsl:for-each select="parameters" >
                     <xsl:variable name="param" ><xsl:value-of select="text()" /></xsl:variable>
                     <xsl:variable name="type" ><xsl:for-each select="../../../parameters" ><xsl:if test="contains($param, name)" ><xsl:value-of select="type" /></xsl:if></xsl:for-each></xsl:variable>
+                        //conditions - //parameters - //type=<xsl:value-of select="$type" />
                         <xsl:choose>
                             <xsl:when test="../type/value = 'BuiltinCommonInstructions::CompareNumbers'" >
-                        mappedIntArray[<xsl:value-of select="position()" />] = <xsl:if test="position() = 2" ><xsl:if test="$param = '&lt;'" >-1</xsl:if><xsl:if test="$param = '='" >0</xsl:if><xsl:if test="$param = '&gt;'" >1</xsl:if></xsl:if><xsl:if test="position() != 2" ><xsl:value-of select="$param" /></xsl:if>;
+                        mappedIntArray[<xsl:value-of select="position()" />] = <xsl:if test="position() = 2" ><xsl:if test="$param = '!='" >-2</xsl:if><xsl:if test="$param = '&lt;'" >-1</xsl:if><xsl:if test="$param = '='" >0</xsl:if><xsl:if test="$param = '&gt;'" >1</xsl:if></xsl:if><xsl:if test="position() != 2" ><xsl:value-of select="$param" /></xsl:if>;
                             </xsl:when>
                             <xsl:when test="$type = 'objectList'" >
                         mappedObjectArray[<xsl:value-of select="position()" />] = <xsl:value-of select="$param" />GameLayer;
@@ -168,8 +172,6 @@ Created By: Travis Berthelot
                         </xsl:choose>
                 </xsl:for-each>
                         
-                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                         //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                         if(NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(mappedObjectArray, mappedIntArray, mappedLongArray, mappedFloatArray)) {
                     </xsl:for-each>

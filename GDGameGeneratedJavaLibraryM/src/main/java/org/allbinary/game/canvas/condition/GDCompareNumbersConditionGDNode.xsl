@@ -273,7 +273,7 @@ Created By: Travis Berthelot
                             
                             //Map from object array with action params
                             
-                            if(intArray[2] <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0) {
+                            if(intArray[2] == -1) {
                                 if(intArray[1] <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> intArray[3]) {
                                     return true;
                                 } else {
@@ -285,8 +285,14 @@ Created By: Travis Berthelot
                                 } else {
                                     return false;
                                 }
-                            } else if(intArray[2] <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                            } else if(intArray[2] == 1) {
                                 if(intArray[1] <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> intArray[3]) {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            } else if(intArray[2] == -2) {
+                                if(intArray[1] != intArray[3]) {
                                     return true;
                                 } else {
                                     return false;
