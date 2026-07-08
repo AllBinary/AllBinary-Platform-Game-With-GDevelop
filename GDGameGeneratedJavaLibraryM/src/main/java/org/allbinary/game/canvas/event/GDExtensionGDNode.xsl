@@ -140,7 +140,7 @@ Created By: Travis Berthelot
                         final int <xsl:value-of select="name" /> = intArray[<xsl:value-of select="position()" />];
                             </xsl:when>
                             <xsl:otherwise>
-                        //Otherwise - //type=<xsl:value-of select="type" />
+                        //Otherwise - events - parameters - //type=<xsl:value-of select="type" />
                             </xsl:otherwise>
                         </xsl:choose>
                 </xsl:for-each>
@@ -158,7 +158,7 @@ Created By: Travis Berthelot
                         mappedIntArray[<xsl:value-of select="position()" />] = <xsl:value-of select="$param" />;
                             </xsl:when>
                             <xsl:otherwise>
-                        //Otherwise - //type=<xsl:value-of select="$type" />
+                        //Otherwise - conditions - parameters - //type=<xsl:value-of select="$type" />
                             </xsl:otherwise>
                         </xsl:choose>
                 </xsl:for-each>
@@ -182,7 +182,7 @@ Created By: Travis Berthelot
                             mappedIntArray[<xsl:value-of select="position()" />] = <xsl:value-of select="$param" />;
                             </xsl:when>
                             <xsl:otherwise>
-                            //Otherwise - //type=<xsl:value-of select="$type" />
+                            //Otherwise - actions - parameters - //type=<xsl:value-of select="$type" />
                             </xsl:otherwise>
                         </xsl:choose>
                 </xsl:for-each>
@@ -206,7 +206,7 @@ Created By: Travis Berthelot
                             mappedIntArray[<xsl:value-of select="position()" />] = <xsl:value-of select="$param" />;
                             </xsl:when>
                             <xsl:otherwise>
-                            //Otherwise - //type=<xsl:value-of select="$type" />
+                            //Otherwise - childevents - parameters - //type=<xsl:value-of select="$type" />
                             </xsl:otherwise>
                         </xsl:choose>
                 </xsl:for-each>
