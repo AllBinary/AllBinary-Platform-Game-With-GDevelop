@@ -179,6 +179,9 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                 </xsl:for-each>
             </xsl:variable>
+            <xsl:if test="string-length($extensionNames) > 0" >
+            //extensionNamesWithAction=<xsl:value-of select="$extensionNames" />
+            </xsl:if>
 
             <!-- actions - START -->
             <xsl:for-each select="actions" >
