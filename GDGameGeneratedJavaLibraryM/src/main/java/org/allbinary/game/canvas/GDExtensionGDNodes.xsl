@@ -147,7 +147,7 @@ Created By: Travis Berthelot
 
                             <xsl:for-each select="eventsFunctionsExtensions" >
                                 <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>
-                            //eventsFunctionsExtensions - //extensionNames - <xsl:value-of select="extensionName" /> <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >- excluded</xsl:if>
+                            //eventsFunctionsExtensions - //extensionNames - <xsl:value-of select="$extensionName" /> <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >- excluded</xsl:if>
                                 <xsl:if test="not($extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick')" >
                             <xsl:call-template name="extensionGDNode" />
                                 </xsl:if>
