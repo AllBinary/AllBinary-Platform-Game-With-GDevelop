@@ -95,7 +95,7 @@ Created By: Travis Berthelot
 
         <xsl:variable name="quote" >"</xsl:variable>
 
-                                <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
+                            <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
                             //name=<xsl:value-of select="name" /> - //eventsFunctions
                             //fullName=<xsl:value-of select="fullName" />
                             //functionType=<xsl:value-of select="functionType" />
@@ -116,6 +116,7 @@ Created By: Travis Berthelot
                                 private final long[] mappedLongArray = new long[<xsl:value-of select="count(../parameters) + 1" />];
                                 private final float[] mappedFloatArray = new float[<xsl:value-of select="count(../parameters) + 1" />];
 
+                                //eventsFunctionsGDNode - event - <xsl:value-of select="position()" /> - //extension
                                 @Override
                                 public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
                                                         
@@ -239,6 +240,7 @@ Created By: Travis Berthelot
                         </xsl:for-each>
 
                             <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                                //eventsFunctionsGDNode - //extension
                                 @Override
                                 public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
                             
