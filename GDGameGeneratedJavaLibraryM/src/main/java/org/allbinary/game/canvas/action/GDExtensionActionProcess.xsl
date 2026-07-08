@@ -257,7 +257,7 @@ Created By: Travis Berthelot
         <xsl:param name="objectOverride" />
 
                             <xsl:text>&#10;</xsl:text>
-                            //extensionMapping
+                            //extensionMapping - <xsl:value-of select="$extensionNameAndExtensionFunction" />
         <xsl:choose>
                             <xsl:when test="$extensionNameAndExtensionFunction = 'SnapToGrid::SnapObjectToVirtualGrid'" >
                                 <xsl:if test="string-length($objectOverride) > 0" >
