@@ -68,6 +68,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.image.GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.animation.text.CustomTextAnimationFactory;
+                import org.allbinary.game.canvas.GDExtensionGDNodes;
                 import org.allbinary.game.identification.Group;
                 import org.allbinary.game.layer.GDGameLayerFactory;
                 import org.allbinary.game.layer.GDCustomGameLayerFactory;
@@ -86,7 +87,6 @@ Created By: Travis Berthelot
                 import org.allbinary.string.CommonStrings;
                 import org.allbinary.string.CommonSeps;
                 import org.allbinary.logic.string.StringUtil;
-                
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
@@ -118,6 +118,7 @@ Created By: Travis Berthelot
                         private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
 
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                        private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
        
                         private final GDGlobalSpecialAnimationResources specialAnimationResources = GDGlobalSpecialAnimationResources.getInstance();
                         private final GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();

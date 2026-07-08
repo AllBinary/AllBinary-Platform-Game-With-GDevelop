@@ -67,6 +67,7 @@ import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" /
 import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationImageResources;
 
+import org.allbinary.game.canvas.GDExtensionGDNodes;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layout.GDNode;
@@ -125,6 +126,7 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
 -->
     
     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+    private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
     
     private final GD<xsl:value-of select="$selectedLayoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$selectedLayoutIndex" />GDObjectsFactory.getInstance();
     private final GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals.getInstance();

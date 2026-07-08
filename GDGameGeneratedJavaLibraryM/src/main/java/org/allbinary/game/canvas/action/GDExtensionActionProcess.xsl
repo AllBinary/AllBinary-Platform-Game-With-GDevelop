@@ -17,6 +17,7 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="extensionActionProcess" >
+        <xsl:param name="forExtension" />
         <xsl:param name="extensionNameAndExtensionFunction" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="objectsGroupsAsString" />
@@ -41,11 +42,11 @@ Created By: Travis Berthelot
         </xsl:variable>
         
         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
-                    //extension=<xsl:value-of select="$extensionNameAndExtensionFunction" />
-                    
+
                     private final Object[] objectArray = new Object[<xsl:value-of select="count(parameters) + 1" />];
                     private final int[] intArray = new int[<xsl:value-of select="count(parameters) + 1" />];
 
+                    //extension=<xsl:value-of select="$extensionNameAndExtensionFunction" />
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();
@@ -79,7 +80,7 @@ Created By: Travis Berthelot
                                 <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
                             </xsl:call-template>
                             
-                            gdExtensionGDNodes.<xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null);
+                            <xsl:if test="not(contains($forExtension, 'found'))" >gdExtensionGDNodes.</xsl:if><xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null);
                         
                             }
                         }
@@ -105,7 +106,7 @@ Created By: Travis Berthelot
                             <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
                         </xsl:call-template>
                             
-                            gdExtensionGDNodes.<xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null);
+                            <xsl:if test="not(contains($forExtension, 'found'))" >gdExtensionGDNodes.</xsl:if><xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null);
 
                         </xsl:if>
                                                     
@@ -194,7 +195,7 @@ Created By: Travis Berthelot
                             <xsl:with-param name="objectOverride" ><xsl:value-of select="$gameLayer" /></xsl:with-param>
                         </xsl:call-template>
                             
-                        gdExtensionGDNodes.<xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null);
+                        <xsl:if test="not(contains($forExtension, 'found'))" >gdExtensionGDNodes.</xsl:if><xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null);
 
                         return true;
                     }
@@ -229,7 +230,7 @@ Created By: Travis Berthelot
                                 <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
                             </xsl:call-template>
                             
-                            gdExtensionGDNodes.<xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null);
+                            <xsl:if test="not(contains($forExtension, 'found'))" >gdExtensionGDNodes.</xsl:if><xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null);
 
 
                         }
@@ -250,7 +251,7 @@ Created By: Travis Berthelot
                             <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
                         </xsl:call-template>
                             
-                        gdExtensionGDNodes.<xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null);
+                        <xsl:if test="not(contains($forExtension, 'found'))" >gdExtensionGDNodes.</xsl:if><xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null);
 
                         </xsl:if>
                         

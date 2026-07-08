@@ -59,6 +59,7 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Graphics;
 
                 import org.allbinary.AndroidUtil;
+                import org.allbinary.game.canvas.GDExtensionGDNodes;
                 import org.allbinary.game.layer.SWTUtil;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.behavior.GDBehaviorUtil;
@@ -93,6 +94,7 @@ Created By: Travis Berthelot
                     private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
 
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                    private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
                     
                     <xsl:call-template name="objectsClassPropertyGDObjects" >
                     </xsl:call-template>

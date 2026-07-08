@@ -80,6 +80,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.configuration.persistance.JSONPersistance;
+                import org.allbinary.game.canvas.GDExtensionGDNodes;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.GDGameLayerFactory;
                 import org.allbinary.game.layout.GDNode;
@@ -127,6 +128,8 @@ Created By: Travis Berthelot
 
                         private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                        private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
+                        
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();

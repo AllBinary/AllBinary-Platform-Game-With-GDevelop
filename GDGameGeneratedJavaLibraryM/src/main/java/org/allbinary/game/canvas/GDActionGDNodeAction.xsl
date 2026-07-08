@@ -2457,6 +2457,7 @@ Created By: Travis Berthelot
                 <xsl:when test="contains($extensionNames, $typeValue)" >
 
                     <xsl:call-template name="extensionActionProcess" >
+                        <xsl:with-param name="forExtension" ><xsl:value-of select="$forExtension" /></xsl:with-param>
                         <xsl:with-param name="extensionNameAndExtensionFunction" >
                             <xsl:value-of select="$typeValue" />
                         </xsl:with-param>

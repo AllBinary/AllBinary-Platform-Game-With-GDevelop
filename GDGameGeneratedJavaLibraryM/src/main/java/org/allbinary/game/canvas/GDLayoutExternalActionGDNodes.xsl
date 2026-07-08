@@ -77,6 +77,7 @@ Created By: Travis Berthelot
                 import org.allbinary.J2MEUtil;                
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.game.canvas.GDExtensionGDNodes;
                 import org.allbinary.game.configuration.persistance.JSONPersistance;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDNode;
@@ -118,7 +119,8 @@ Created By: Travis Berthelot
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
 
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-                        
+                        private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
+
                         //private final GD<xsl:value-of select="$layoutIndex" />ExternalActionGDNodes gd<xsl:value-of select="$layoutIndex" />ExternalActionGDNodes = GD<xsl:value-of select="$layoutIndex" />ExternalActionGDNodes.getInstance();
 
                         private final AbeClientInformationInterface abeClientInformation = GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION;

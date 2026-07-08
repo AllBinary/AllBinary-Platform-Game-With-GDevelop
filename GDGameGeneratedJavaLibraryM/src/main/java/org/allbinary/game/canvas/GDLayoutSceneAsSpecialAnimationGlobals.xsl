@@ -78,21 +78,22 @@ Created By: Travis Berthelot
 
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.animation.text.CustomTextAnimation;
+                import org.allbinary.game.canvas.GDExtensionGDNodes;
                 import org.allbinary.game.identification.Group;
                 import org.allbinary.game.identification.GroupFactory;
-                import org.allbinary.game.layer.SWTUtil;
                 import org.allbinary.game.input.GameInputProcessor;
                 import org.allbinary.game.input.InputFactory;
+                import org.allbinary.game.layer.behavior.DestroyOutsideBehavior;
+                import org.allbinary.game.layer.behavior.GDBehavior;
+                import org.allbinary.game.layer.SWTUtil;
                 import org.allbinary.game.layer.GDGameLayerStrings;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
+                import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.layout.GDNodes;
                 import org.allbinary.game.layout.GDNodeUtil;
-                import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.game.layout.GDObject;
-                import org.allbinary.game.layer.behavior.DestroyOutsideBehavior;
-                import org.allbinary.game.layer.behavior.GDBehavior;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
@@ -285,6 +286,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
             private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+            private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
             
             //uniqueValues - Layout - START 
             <xsl:key name="uniqueValues" match="type" use="." />

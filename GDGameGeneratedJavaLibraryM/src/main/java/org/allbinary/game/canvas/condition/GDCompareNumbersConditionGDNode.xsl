@@ -272,10 +272,33 @@ Created By: Travis Berthelot
                         public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
                             
                             //Map from object array with action params
+                            
+                            if(intArray[2] <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0) {
+                                if(intArray[1] <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> intArray[3]) {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            } else if(intArray[2] == 0) {
+                                if(intArray[1] == intArray[3]) {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            } else if(intArray[2] <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                                if(intArray[1] <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> intArray[3]) {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            }
+
+<!--  
                             final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
                             this.process(gameLayer, intArray[3], intArray[5]);
 
                             return true;
+-->
                         }
                         </xsl:if>
 

@@ -80,6 +80,7 @@ Created By: Travis Berthelot
                 import org.allbinary.J2MEUtil;
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.game.canvas.GDExtensionGDNodes;
                 import org.allbinary.game.configuration.persistance.JSONPersistance;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
@@ -114,6 +115,7 @@ Created By: Travis Berthelot
                     private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                     
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                    private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
 
                     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
 

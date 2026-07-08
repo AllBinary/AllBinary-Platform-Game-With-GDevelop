@@ -66,16 +66,14 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Graphics;
 
                 import org.allbinary.AndroidUtil;
+                import org.allbinary.game.canvas.GDExtensionGDNodes;
                 import org.allbinary.game.layer.SoftJoystickInterface;
                 import org.allbinary.game.layer.SWTUtil;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.layout.GDObjectFactory;
                 import org.allbinary.graphics.color.BasicColorUtil;
-                
                 import org.allbinary.logic.string.StringMaker;
-                
-                
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.string.CommonStrings;
                 import org.allbinary.logic.string.StringUtil;
@@ -110,6 +108,8 @@ Created By: Travis Berthelot
                     
                     private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                    private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
+
                     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                     
                     <xsl:call-template name="objectsClassPropertyGDObjects" >

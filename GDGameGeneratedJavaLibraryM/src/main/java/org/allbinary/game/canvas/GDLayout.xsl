@@ -73,9 +73,10 @@ Created By: Travis Berthelot
 
                 import org.json.me.JSONArray;
                 import org.json.me.JSONObject;
-                        
-                import org.allbinary.game.input.event.RawKeyEventHandler;
+
                 import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.game.canvas.GDExtensionGDNodes;
+                import org.allbinary.game.input.event.RawKeyEventHandler;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.form.GDFormInputProcessor;
@@ -153,6 +154,8 @@ Created By: Travis Berthelot
                         private final GDNodes gdNodes = GDNodeUtil.getInstance().getInstance(<xsl:value-of select="$layoutIndex" />);
                                                 
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                        private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
+                        
                         private final GDGlobalsSpecialAnimation gdGlobalsSpecialAnimation = GDGlobalsSpecialAnimation.getInstance();
 
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals;

@@ -87,6 +87,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.canvas.GameGlobalsFactory;
+                import org.allbinary.game.canvas.GDExtensionGDNodes;
                 import org.allbinary.game.input.GameInputProcessorUtil;
                 import org.allbinary.game.input.GameInputProcessor;
                 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
@@ -145,6 +146,8 @@ Created By: Travis Berthelot
 
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                        private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
+
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                         private final GDGlobalsGDObjectsFactory gdGlobalsObjectsFactory = GDGlobalsGDObjectsFactory.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();

@@ -64,7 +64,8 @@ Created By: Travis Berthelot
 
                 import org.json.me.JSONArray;
                 import org.json.me.JSONObject;
-        
+
+                import org.allbinary.game.canvas.GDExtensionGDNodes;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.color.BasicColorFactory;
@@ -104,6 +105,7 @@ Created By: Travis Berthelot
                         private final PointFactory pointFactory = PointFactory.getInstance();
                         
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                        private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
                 
                         //layers=<xsl:for-each select="layers" ><xsl:value-of select="name" />,</xsl:for-each>
                         <xsl:text>&#10;</xsl:text>

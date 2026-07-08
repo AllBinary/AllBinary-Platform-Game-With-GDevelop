@@ -145,12 +145,16 @@ Created By: Travis Berthelot
                         </xsl:choose>
                 </xsl:for-each>
 
+                        //conditions
                     <xsl:for-each select="conditions" >
                         
                 <xsl:for-each select="parameters" >
                     <xsl:variable name="param" ><xsl:value-of select="text()" /></xsl:variable>
                     <xsl:variable name="type" ><xsl:for-each select="../../../parameters" ><xsl:if test="contains($param, name)" ><xsl:value-of select="type" /></xsl:if></xsl:for-each></xsl:variable>
                         <xsl:choose>
+                            <xsl:when test="../type/value = 'BuiltinCommonInstructions::CompareNumbers'" >
+                        mappedIntArray[<xsl:value-of select="position()" />] = <xsl:if test="position() = 2" ><xsl:if test="$param = '&lt;'" >-1</xsl:if><xsl:if test="$param = '='" >0</xsl:if><xsl:if test="$param = '&gt;'" >1</xsl:if></xsl:if><xsl:if test="position() != 2" ><xsl:value-of select="$param" /></xsl:if>;
+                            </xsl:when>
                             <xsl:when test="$type = 'objectList'" >
                         mappedObjectArray[<xsl:value-of select="position()" />] = <xsl:value-of select="$param" />GameLayer;
                             </xsl:when>
@@ -169,6 +173,7 @@ Created By: Travis Berthelot
                         if(NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(mappedObjectArray, mappedIntArray, mappedLongArray, mappedFloatArray)) {
                     </xsl:for-each>
 
+                        //actions
                         <xsl:for-each select="actions" >
                             
                 <xsl:for-each select="parameters" >
@@ -193,8 +198,10 @@ Created By: Travis Berthelot
                             //logUtil.put(new StringMaker().append(mappedIntArray[3]).append(CommonSeps.getInstance().COMMA).append(mappedIntArray[5]).toString(), this, commonStrings.PROCESS);
                             NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(mappedObjectArray, mappedIntArray, mappedLongArray, mappedFloatArray);
                         </xsl:for-each>
+                        
+                        //events
                         <xsl:for-each select="events" >
-                            
+
                 <xsl:for-each select="parameters" >
                     <xsl:variable name="param" ><xsl:value-of select="text()" /></xsl:variable>
                     <xsl:variable name="type" ><xsl:for-each select="../../../parameters" ><xsl:if test="contains($param, name)" ><xsl:value-of select="type" /></xsl:if></xsl:for-each></xsl:variable>
