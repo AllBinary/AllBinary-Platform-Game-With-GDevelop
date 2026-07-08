@@ -173,9 +173,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="actions" >
                     <xsl:variable name="typeValue" select="type/value" />
                     <xsl:for-each select="//eventsFunctionsExtensions" >
-                        <xsl:if test="contains($typeValue, name)" >
-                            <xsl:value-of select="$typeValue" />,
-                        </xsl:if>
+                        <xsl:if test="contains($typeValue, name)" ><xsl:value-of select="$typeValue" />,</xsl:if>
                     </xsl:for-each>
                 </xsl:for-each>
             </xsl:variable>

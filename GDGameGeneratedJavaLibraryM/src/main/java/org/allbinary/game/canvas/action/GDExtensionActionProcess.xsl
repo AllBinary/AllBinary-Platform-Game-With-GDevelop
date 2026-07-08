@@ -189,7 +189,7 @@ Created By: Travis Berthelot
 
                         //final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = ((<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$name" />GDGameLayer.gdObject);<xsl:text>&#10;</xsl:text>
 
-                            //extensionMapping
+                        //extensionMapping
                         <xsl:call-template name="extensionMapping" >
                             <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
                             <xsl:with-param name="objectOverride" ><xsl:value-of select="$gameLayer" /></xsl:with-param>
