@@ -215,8 +215,10 @@ Created By: Travis Berthelot
                                 <xsl:for-each select="children" >
                                     <xsl:choose>
                                         <xsl:when test="type = 'string'" >
-                        final JSONObject jsonObject2 = ((JSONObject) <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject);
-                        <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" /> = jsonObject2.getString(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                        //if(<xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject != nullUtil.NULL_OBJECT) {
+                            final JSONObject jsonObject2 = ((JSONObject) <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject);
+                            <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" /> = jsonObject2.getString(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                        //}
                                         </xsl:when>
                                         <xsl:otherwise>
                                             //Otherwise - <xsl:value-of select="type" />
