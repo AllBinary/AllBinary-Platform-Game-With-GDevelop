@@ -97,6 +97,22 @@ Created By: Travis Berthelot
         <xsl:if test="contains($isInObjectGroup, 'found') and $objectGroup = $collisionProcessGDParamOne" ><xsl:value-of select="$objectGroup" /></xsl:if><xsl:if test="not(contains($isInObjectGroup, 'found') and $objectGroup = $collisionProcessGDParamOne)" ><xsl:value-of select="$firstParam" /></xsl:if>
     </xsl:template>
 
+    <xsl:template name="hasChildNode" >
+        <xsl:param name="childNodeId" />
+        
+        <xsl:for-each select="*" >
+            <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+           
+            <xsl:if test="$childNodeId = $nodeId" >found</xsl:if>
+
+            <xsl:call-template name="hasChildNode" >
+                <xsl:with-param name="childNodeId" ><xsl:value-of select="$childNodeId" /></xsl:with-param>
+            </xsl:call-template>
+            
+        </xsl:for-each>
+
+    </xsl:template>
+
     <xsl:template name="parentObjectsGroupsOrObjectOrCreateSibling" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="nodeId" />
@@ -192,22 +208,6 @@ Created By: Travis Berthelot
             
         </xsl:for-each>
                 
-    </xsl:template>
-
-    <xsl:template name="hasChildNode" >
-        <xsl:param name="childNodeId" />
-        
-        <xsl:for-each select="*" >
-            <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-           
-            <xsl:if test="$childNodeId = $nodeId" >found</xsl:if>
-
-            <xsl:call-template name="hasChildNode" >
-                <xsl:with-param name="childNodeId" ><xsl:value-of select="$childNodeId" /></xsl:with-param>
-            </xsl:call-template>
-            
-        </xsl:for-each>
-
     </xsl:template>
 
     <xsl:template name="hasChildActionThatSetsSecondParam" >
