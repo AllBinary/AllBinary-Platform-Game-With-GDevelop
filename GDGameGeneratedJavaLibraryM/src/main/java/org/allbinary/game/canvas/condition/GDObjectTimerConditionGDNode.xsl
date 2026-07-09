@@ -99,7 +99,7 @@ Created By: Travis Berthelot
                                             <xsl:variable name="conditionPosition" ><xsl:value-of select="position()" /></xsl:variable>
                                             <xsl:for-each select=".." >
 
-                                            //eventsCreateAssignGDObject - hackProcessing - START
+                                            //eventsCreateAssignGDObject - //hackProcessing - START
                                             <xsl:call-template name="hackProcessing" >
                                                 <xsl:with-param name="indexInUse" >index</xsl:with-param>
                                                 <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObject</xsl:with-param>
@@ -128,7 +128,7 @@ Created By: Travis Berthelot
                                                     <xsl:value-of select="$logString" />
                                                 </xsl:with-param>
                                             </xsl:call-template>
-                                            //eventsCreateAssignGDObject - hackProcessing - END
+                                            //eventsCreateAssignGDObject - //hackProcessing - END
                                         
                                             </xsl:for-each>
                                         

@@ -58,7 +58,7 @@ Created By: Travis Berthelot
                 
                 <xsl:variable name="thisNodeArray" >this</xsl:variable>
 
-                //caller=<xsl:value-of select="$caller" /> - //hackProcessing2 - hackProcessing - START
+                //caller=<xsl:value-of select="$caller" /> - //hackProcessing2 - //hackProcessing - START
                 <xsl:call-template name="hackProcessing" >
                     <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //hackProcessing2</xsl:with-param>
                     <xsl:with-param name="thisNodeIndex" >
@@ -83,7 +83,7 @@ Created By: Travis Berthelot
                         <xsl:value-of select="$logString" />
                     </xsl:with-param>
                 </xsl:call-template>
-                //caller=<xsl:value-of select="$caller" /> - //hackProcessing2 - hackProcessing - END
+                //caller=<xsl:value-of select="$caller" /> - //hackProcessing2 - //hackProcessing - END
 
             </xsl:if>
             
