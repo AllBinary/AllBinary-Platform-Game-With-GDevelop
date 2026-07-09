@@ -1364,7 +1364,7 @@ Created By: Travis Berthelot
                                             ((GDGameLayer) gameLayerList.get(index2)).updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
                                         }
                                     } else {
-                                        logUtil.putF("updateGDObject failed: <xsl:for-each select="actions" ><xsl:if test="type/value = 'MettreX' or type/value = 'SetX' or type/value = 'MettreY' or type/value = 'SetY' or type/value = 'MettreXY' or type/value = 'SetXY' or type/value = 'SetAngle' or type/value = 'SetZOrder' or type/value = 'ChangePlan' or type/value = 'ChangeAnimation' or type/value = 'SetNumberObjectVariable'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />GDGameLayer </xsl:if></xsl:for-each></xsl:if></xsl:for-each>was null", this, commonStrings.PROCESS, new Exception());
+                                        logUtil.put("updateGDObject failed: <xsl:for-each select="actions" ><xsl:if test="type/value = 'MettreX' or type/value = 'SetX' or type/value = 'MettreY' or type/value = 'SetY' or type/value = 'MettreXY' or type/value = 'SetXY' or type/value = 'SetAngle' or type/value = 'SetZOrder' or type/value = 'ChangePlan' or type/value = 'ChangeAnimation' or type/value = 'SetNumberObjectVariable'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />GDGameLayer </xsl:if></xsl:for-each></xsl:if></xsl:for-each>was null", this, commonStrings.PROCESS, new Exception());
                                     }
 
                                 }
@@ -1381,12 +1381,34 @@ Created By: Travis Berthelot
                         <xsl:if test="position() = 1" >
                         actionWithUpdate = true;
 
-                        if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
-                            final GDGameLayer gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index);
+                        <xsl:variable name="gameLayerName" select="text()" />
+                        <xsl:variable name="hasObjectGroup" >
+                            <xsl:for-each select="//objectsGroups" >
+                                <xsl:if test="name = $gameLayerName" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+
+                        <xsl:if test="contains($hasObjectGroup, 'found')" >
+                    if(true) {
+                        final int groupSize = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerListOfList.size();
+                        for(int groupIndex = 0; groupIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> groupSize; groupIndex++) {
+                            final BasicArrayList <xsl:value-of select="$gameLayerName" />GDGameLayerList = (BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerListOfList.get(groupIndex);
+                        </xsl:if>
+                        <xsl:if test="not(contains($hasObjectGroup, 'found'))" >
+                           final BasicArrayList <xsl:value-of select="$gameLayerName" />GDGameLayerList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList;
+                        </xsl:if>
+
+                        if(<xsl:value-of select="$gameLayerName" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
+                            final GDGameLayer gameLayer = (GDGameLayer) <xsl:value-of select="$gameLayerName" />GDGameLayerList.get(index);
                             if(!gameLayerList.contains(gameLayer)) {
                                 gameLayerList.add(gameLayer);
                             }
                         }
+                            
+                    <xsl:if test="contains($hasObjectGroup, 'found')" >
+                        }
+                    }</xsl:if>
+
                         </xsl:if>
                     </xsl:for-each>
 
