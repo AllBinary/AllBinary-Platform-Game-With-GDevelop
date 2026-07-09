@@ -1047,7 +1047,7 @@ Created By: Travis Berthelot
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
                 </xsl:if>
 
-                <xsl:if test="$typeValue = 'ChangePlan'" >
+                <xsl:if test="$typeValue = 'SetZOrder' or $typeValue = 'ChangePlan'" >
                             //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //ChangePlan - call
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
                             <xsl:text>&#10;</xsl:text>
@@ -1112,7 +1112,7 @@ Created By: Travis Berthelot
             <xsl:variable name="firstAction" >
                 <xsl:for-each select="actions" >
                     <xsl:variable name="typeValue" select="type/value" />
-                    <xsl:if test="$typeValue = 'SetAngle' or $typeValue = 'ChangePlan' or $typeValue = 'ChangeAnimation' or $typeValue = 'SetNumberObjectVariable'" >
+                    <xsl:if test="$typeValue = 'SetAngle' or $typeValue = 'SetZOrder' or $typeValue = 'ChangePlan' or $typeValue = 'ChangeAnimation' or $typeValue = 'SetNumberObjectVariable'" >
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 1" >
                                 <xsl:value-of select="text()" />,</xsl:if>

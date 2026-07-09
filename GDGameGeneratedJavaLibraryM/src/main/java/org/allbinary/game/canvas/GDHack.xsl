@@ -117,7 +117,7 @@ Created By: Travis Berthelot
             <xsl:variable name="hasUsedOnceCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'BuiltinCommonInstructions::Once'" ><xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" ><xsl:if test="preceding-sibling::conditions[number(substring(generate-id(), 2) - 65536) != $thisNodeIndex]" >found</xsl:if></xsl:if></xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="hasUsedSoundPlayingCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'SoundPlaying'" ><xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" ><xsl:if test="preceding-sibling::conditions[number(substring(generate-id(), 2) - 65536) != $thisNodeIndex]" >found</xsl:if></xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
-            <xsl:variable name="hasNoConditionsButDoesHaveUsedAction" ><xsl:if test="not(contains($hasCondition, 'found'))" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'SetAngle' or type/value = 'ChangePlan' or type/value = 'AddForceAL' or type/value = 'ChangeAnimation' or type/value = 'SetNumberObjectVariable'" >found</xsl:if></xsl:for-each></xsl:if></xsl:variable>
+            <xsl:variable name="hasNoConditionsButDoesHaveUsedAction" ><xsl:if test="not(contains($hasCondition, 'found'))" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'SetAngle' or type/value = 'SetZOrder' or type/value = 'ChangePlan' or type/value = 'AddForceAL' or type/value = 'ChangeAnimation' or type/value = 'SetNumberObjectVariable'" >found</xsl:if></xsl:for-each></xsl:if></xsl:variable>
             <xsl:variable name="hasCreate" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="hasCollisionCondition" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = '(Used when using the AllBinary Collision Processing) CollisionNP'" >found</xsl:if></xsl:for-each></xsl:variable>
 
@@ -929,7 +929,7 @@ Created By: Travis Berthelot
                 <xsl:if test="$caller = 'externalEventsCreateAssignGDObject - //eventsCreateAssignXGDObjectGDNodesOtherEvent - //hackProcessing2'" ><xsl:if test="$typeValue = 'ModVarScene'" >found</xsl:if></xsl:if>
                 <xsl:if test="$typeValue = 'MettreX' or $typeValue = 'SetX'" >found</xsl:if><xsl:if test="$typeValue = 'MettreY' or $typeValue = 'SetY'" >found</xsl:if><xsl:if test="$typeValue = 'MettreXY' or $typeValue = 'SetXY'" >found</xsl:if><xsl:if test="$typeValue = 'MettreAutourPos' or $typeValue = 'PutAroundPosition'" >found</xsl:if>
                 <xsl:if test="$typeValue = 'SetAngle'" >found</xsl:if>
-                <xsl:if test="$typeValue = 'ChangePlan'" >found</xsl:if>
+                <xsl:if test="$typeValue = 'SetZOrder' or $typeValue = 'ChangePlan'" >found</xsl:if>
                 <xsl:if test="$typeValue = 'ChangeColor'" >found</xsl:if>
                 <xsl:if test="$typeValue = 'AddForceAL'" >found</xsl:if>
                 <xsl:if test="$typeValue = 'ChangeAnimation'" >found</xsl:if>
@@ -1276,7 +1276,7 @@ Created By: Travis Berthelot
                     }
                 </xsl:if>
 
-                <xsl:if test="$typeValue = 'ChangePlan'" >
+                <xsl:if test="$typeValue = 'SetZOrder' or $typeValue = 'ChangePlan'" >
                     //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                     //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Action - //ChangePlan - call
                     //index=<xsl:value-of select="$index" />
@@ -1364,7 +1364,7 @@ Created By: Travis Berthelot
                                             ((GDGameLayer) gameLayerList.get(index2)).updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
                                         }
                                     } else {
-                                        logUtil.putF("updateGDObject failed: <xsl:for-each select="actions" ><xsl:if test="type/value = 'MettreX' or type/value = 'SetX' or type/value = 'MettreY' or type/value = 'SetY' or type/value = 'MettreXY' or type/value = 'SetXY' or type/value = 'SetAngle' or type/value = 'ChangePlan' or type/value = 'ChangeAnimation' or type/value = 'SetNumberObjectVariable'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />GDGameLayer </xsl:if></xsl:for-each></xsl:if></xsl:for-each>was null", this, commonStrings.PROCESS, new Exception());
+                                        logUtil.putF("updateGDObject failed: <xsl:for-each select="actions" ><xsl:if test="type/value = 'MettreX' or type/value = 'SetX' or type/value = 'MettreY' or type/value = 'SetY' or type/value = 'MettreXY' or type/value = 'SetXY' or type/value = 'SetAngle' or type/value = 'SetZOrder' or type/value = 'ChangePlan' or type/value = 'ChangeAnimation' or type/value = 'SetNumberObjectVariable'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />GDGameLayer </xsl:if></xsl:for-each></xsl:if></xsl:for-each>was null", this, commonStrings.PROCESS, new Exception());
                                     }
 
                                 }

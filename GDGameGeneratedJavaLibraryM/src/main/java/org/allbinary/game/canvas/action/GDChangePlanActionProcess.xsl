@@ -16,7 +16,7 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:template name="changePlanActionProcess" >
+    <xsl:template name="setZOrderActionProcess" >
         <xsl:param name="forExtension" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="objectsGroupsAsString" />
@@ -116,7 +116,7 @@ Created By: Travis Berthelot
                     </xsl:variable>
         
                         //paramOneNameObjectsGroups=<xsl:value-of select="$paramOneNameObjectsGroups" />
-                        //ChangePlan - action - Probably means ChangePlane which is change zOrder - Change the z-order of - //forExtension=<xsl:value-of select="$forExtension" />
+                        //SetZOrder - was //ChangePlan - action - Probably means ChangePlane which is change zOrder - Change the z-order of - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
                         public boolean process() throws Exception {
@@ -132,7 +132,7 @@ Created By: Travis Berthelot
 
                         <xsl:variable name="text" ><xsl:value-of select="$paramOneNameObjectsGroups" /></xsl:variable>
                         <xsl:variable name="id" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
-                        //ChangePlan - <xsl:value-of select="$text" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
+                        //SetZOrder - <xsl:value-of select="$text" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
                         GDGameLayer <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />];
                         if(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer == null) {
                             <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer = gameGlobals.tempGameLayerArray[0];
@@ -205,7 +205,7 @@ Created By: Travis Berthelot
                             return true;
                         }
         
-                    //ChangePlan - index
+                    //SetZOrder - index
                     @Override
                     public boolean process(final int index) throws Exception {
                         super.processStats(index);
