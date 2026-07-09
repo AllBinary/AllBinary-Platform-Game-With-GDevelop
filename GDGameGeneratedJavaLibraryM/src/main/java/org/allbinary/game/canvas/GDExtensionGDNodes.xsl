@@ -228,7 +228,7 @@ Created By: Travis Berthelot
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
 
                     <xsl:for-each select="events" >
-                    //extension - childevents - START
+<!--                    //extension - childevents - START-->
                     <xsl:call-template name="builtinCommonInstructionsExtensionGDNode" >
                         <xsl:with-param name="caller" >eventLayout</xsl:with-param>
                         <xsl:with-param name="selectedNodeIds" >All</xsl:with-param>
@@ -254,7 +254,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
 
                     </xsl:call-template>
-                    //extension - childevents - END
+<!--                    //extension - childevents - END-->
                     </xsl:for-each>
 
                     //extension - conditions - START
