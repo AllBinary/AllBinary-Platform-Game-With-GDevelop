@@ -30,14 +30,15 @@ Created By: Travis Berthelot
         <xsl:param name="conditionEventPosition" />
          
         <xsl:variable name="quote" >"</xsl:variable>
-        
+
         <xsl:for-each select="events" >
+
             <xsl:variable name="eventPosition" select="position()" />
             
             <xsl:variable name="selectedNodeId" select="number(substring(generate-id(), 2) - 65536)" />
             <xsl:variable name="selectedNodeIdWithSep" >,<xsl:value-of select="$selectedNodeId" />,</xsl:variable>
             
-            <xsl:if test="contains($selectedNodeIds, $selectedNodeIdWithSep)" >
+            <xsl:if test="contains($selectedNodeIds, $selectedNodeIdWithSep) or $selectedNodeIds = 'All'" >
 
         //nodeId=<xsl:value-of select="$selectedNodeId" />
         public class GD<xsl:value-of select="$selectedNodeId" />GDNode extends GDNode

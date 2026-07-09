@@ -74,6 +74,10 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDCompareStringsConditionGDNode.xsl" />
     <xsl:import href="./condition/GDIsStoppedVelocityConditionGDNode.xsl" />
     <xsl:import href="./condition/GDDraggableBehaviorDraggedConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDDraggableBehaviorDroppedConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDScrollbarScrollbarIsScrollingRequiredConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDScrollbarScrollbarIsThumbDraggedConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDResizableCapabilityResizableBehaviorHeightConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAnimationHasAnimationEndedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAnimationElapsedTimeConditionGDNode.xsl" />
     <xsl:import href="./condition/GDFileSystemPathExistsConditionGDNode.xsl" />
@@ -1530,6 +1534,57 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'DraggableBehavior::Dragged'" >
                     
                     <xsl:call-template name="draggableBehaviorDraggedConditionGDNode" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
+                
+                <xsl:when test="$typeValue = 'DraggableBehavior::Dropped'" >
+                    
+                    <xsl:call-template name="draggableBehaviorDroppedConditionGDNode" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
+                
+                <xsl:when test="$typeValue = 'ResizableCapability::ResizableBehavior::Height'" >
+                    
+                    <xsl:call-template name="resizableCapabilityResizableBehaviorHeightConditionGDNode" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
+
+                <xsl:when test="$typeValue = 'Scrollbar::Scrollbar::IsScrollingRequired'" >
+                    
+                    <xsl:call-template name="scrollbarScrollbarIsScrollingRequiredConditionGDNode" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
+                <xsl:when test="$typeValue = 'Scrollbar::Scrollbar::IsThumbDragged'" >
+
+                    <xsl:call-template name="scrollbarScrollbarIsThumbDraggedConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>

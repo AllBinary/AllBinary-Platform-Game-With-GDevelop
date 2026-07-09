@@ -44,6 +44,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDBuiltinCommonInstructionsGDNode.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionGDNodeAction.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/event/GDExtensionGDNode.xsl" />
 
@@ -72,6 +73,8 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.GDNodeStatsFactory;
                 import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.game.rand.MyRandomFactory;
+                import org.allbinary.input.motion.gesture.MotionGestureInput;
+                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.string.CommonStrings;
                 import org.allbinary.string.CommonSeps;
                 import org.allbinary.logic.string.StringUtil;
@@ -191,6 +194,10 @@ Created By: Travis Berthelot
             </xsl:if>
         </xsl:for-each>
 
+                    public int mod(final int value, final int mod) {
+                        return value % mod;
+                    }
+                    
                     public int round(final int value) {
                         return value;
                     }
@@ -220,8 +227,37 @@ Created By: Travis Berthelot
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
 
-                <xsl:variable name="selectedNodeIds" ></xsl:variable>
+                    //extension - events - START
+<!--      
+                    <xsl:call-template name="builtinCommonInstructionsGDNode" >
+                        <xsl:with-param name="caller" >eventLayout</xsl:with-param>
+                        <xsl:with-param name="selectedNodeIds" >All</xsl:with-param>
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >Extension</xsl:with-param>
+                        <xsl:with-param name="layoutName" >Extension</xsl:with-param>
+                        <xsl:with-param name="thisNodeIndex" >
+                            <xsl:value-of select="-4" />
+                        </xsl:with-param>
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsAsString" >
+                            <xsl:value-of select="$objectsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
 
+                    </xsl:call-template>
+-->
+                    //extension - events - END
+
+                    //extension - conditions - START
                     <xsl:call-template name="eventsCreateAssignGDObjectGDNodesCondition" >
                         <xsl:with-param name="caller" >conditionLayout</xsl:with-param>
                         <xsl:with-param name="totalRecursions" >
@@ -246,7 +282,11 @@ Created By: Travis Berthelot
                         </xsl:with-param>
 
                     </xsl:call-template>
+                    //extension - conditions - END
 
+                    <xsl:variable name="selectedNodeIds" ></xsl:variable>
+    
+                    //extension - actions - START
                     <xsl:call-template name="actionGDNodes" >
                         <xsl:with-param name="caller" >actionLayout</xsl:with-param>
                         <xsl:with-param name="totalRecursions" >
@@ -274,6 +314,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
 
                     </xsl:call-template>
+                    //extension - actions - END
+
     </xsl:template>
     
 </xsl:stylesheet>
