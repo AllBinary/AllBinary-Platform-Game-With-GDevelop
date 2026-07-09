@@ -248,7 +248,8 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
-
+                
+                //Generic GDObject
                 public final class <xsl:value-of select="name" /> extends <xsl:call-template name="gdObject" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template> 
                 <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" > implements SoftJoystickInterface </xsl:if>{
 
@@ -527,7 +528,16 @@ Created By: Travis Berthelot
                         return deadZoneRadius;
                     }
                     </xsl:if>
-                                        
+                    <xsl:if test="type != 'Scrollbar::Scrollbar'" >
+                    private int scrollPositionValue;
+                    public int setScrollPosition(final int scrollPositionValue) {
+                        this.scrollPositionValue = scrollPositionValue;
+                    }
+                    public int ScrollPosition() {
+                        return this.scrollPositionValue;
+                    }
+                    </xsl:if>
+
                 };
 
                 public final GDObjectFactory <xsl:value-of select="name" />GDObjectFactory = new GDObjectFactory() {
@@ -537,7 +547,7 @@ Created By: Travis Berthelot
                     }
 
                 };    
-                        
+                
             </xsl:if>
             <xsl:if test="type = 'ParticleSystem::ParticleEmitter'" >
                 <xsl:variable name="stringValue" select="string" />
