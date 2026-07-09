@@ -528,7 +528,7 @@ Created By: Travis Berthelot
                         return deadZoneRadius;
                     }
                     </xsl:if>
-                    <xsl:if test="type != 'Scrollbar::Scrollbar'" >
+                    <xsl:if test="type = 'Scrollbar::Scrollbar'" >
                     private int scrollPositionValue;
                     public int setScrollPosition(final int scrollPositionValue) {
                         this.scrollPositionValue = scrollPositionValue;
