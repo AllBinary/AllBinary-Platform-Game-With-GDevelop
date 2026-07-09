@@ -612,7 +612,7 @@ Created By: Travis Berthelot
                 //Was not being called before - START
                 </xsl:if>
 
-                //caller=<xsl:value-of select="$caller" /> - //No used conditions so calling actions from event directly.
+                //caller=<xsl:value-of select="$caller" /> - //No used conditions so calling actions from event directly. - //hackProcessing - START
                 <xsl:call-template name="hackProcessing" >
                     <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignXGDObjectGDNodesOtherEvent</xsl:with-param>
                     <xsl:with-param name="layoutIndex" >
@@ -632,6 +632,7 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                     <xsl:with-param name="repeat" ><xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >found</xsl:if></xsl:with-param>
                 </xsl:call-template>
+                //caller=<xsl:value-of select="$caller" /> - //No used conditions so calling actions from event directly. - //hackProcessing - END
 
                 <xsl:if test="actions" >
                 //Was not being called before - END
@@ -799,7 +800,7 @@ Created By: Travis Berthelot
                 //Was not being called before - START2
                 </xsl:if>
 
-                //caller=<xsl:value-of select="$caller" /> - //No used conditions so calling actions from event directly.2
+                //caller=<xsl:value-of select="$caller" /> - //No used conditions so calling actions from event directly.2 - //hackProcessing - START
                 <xsl:call-template name="hackProcessing" >
                     <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignXGDObjectGDNodesOtherEvent</xsl:with-param>
                     <xsl:with-param name="layoutIndex" >
@@ -820,6 +821,7 @@ Created By: Travis Berthelot
                     <xsl:with-param name="index" >index3</xsl:with-param>
                     <xsl:with-param name="repeat" ><xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >found</xsl:if></xsl:with-param>
                 </xsl:call-template>
+                //caller=<xsl:value-of select="$caller" /> - //No used conditions so calling actions from event directly.2 - //hackProcessing - END
 
                 <xsl:if test="actions" >
                 //Was not being called before - END
