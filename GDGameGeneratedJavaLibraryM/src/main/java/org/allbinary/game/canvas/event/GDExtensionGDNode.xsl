@@ -106,7 +106,7 @@ Created By: Travis Berthelot
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             <xsl:text>&#10;</xsl:text><xsl:text>
-                            </xsl:text>final GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />GDNode = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                            </xsl:text>final GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />_GDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                             
                                 //private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=-1 type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />";
                                 <xsl:text>&#10;</xsl:text>
@@ -250,7 +250,7 @@ Created By: Travis Berthelot
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             <xsl:text>&#10;</xsl:text><xsl:text>
-                            </xsl:text><xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />GDNode.process(objectArray, intArray, longArray, floatArray);
+                            </xsl:text><xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />_GDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(objectArray, intArray, longArray, floatArray);
                             </xsl:if>
                         </xsl:for-each>
                                   
