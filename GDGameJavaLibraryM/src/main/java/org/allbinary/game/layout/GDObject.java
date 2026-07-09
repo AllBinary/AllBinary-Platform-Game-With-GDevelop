@@ -80,6 +80,9 @@ public class GDObject
 
 //    public int canvasWidth;
 //    public int canvasHeight;
+
+    public int widthAtInitialScale;
+    public int heightAtInitialScale;
     
     public int width;
     public int height;
