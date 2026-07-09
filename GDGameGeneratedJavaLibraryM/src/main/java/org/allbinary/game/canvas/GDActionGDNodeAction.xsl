@@ -1100,7 +1100,7 @@ Created By: Travis Berthelot
 
                 <xsl:when test="$typeValue = 'SetZOrder' or $typeValue = 'ChangePlan'" >
                     
-                    <xsl:call-template name="setZOrderActionProcess"" >
+                    <xsl:call-template name="setZOrderActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
