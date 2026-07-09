@@ -530,7 +530,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                     <xsl:if test="type = 'Scrollbar::Scrollbar'" >
                     private int scrollPositionValue;
-                    public int setScrollPosition(final int scrollPositionValue) {
+                    public void setScrollPosition(final int scrollPositionValue) {
                         this.scrollPositionValue = scrollPositionValue;
                     }
                     public int ScrollPosition() {

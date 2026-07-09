@@ -99,6 +99,7 @@ Created By: Travis Berthelot
                         //private final DisplayPointScalar displayPointScalar = DisplayPointScalar.getInstance();
 
                         //IsCursorOnObject - runnable
+                        <xsl:if test="not(contains($forExtension, 'found'))" >
                         private final Runnable runnable = new Runnable() {
                         
                             public void run() {
@@ -164,6 +165,7 @@ Created By: Travis Berthelot
                                 }
                             }
                         };
+                        </xsl:if>
 
                         //IsCursorOnObject - was //SourisSurObjet - condition - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >

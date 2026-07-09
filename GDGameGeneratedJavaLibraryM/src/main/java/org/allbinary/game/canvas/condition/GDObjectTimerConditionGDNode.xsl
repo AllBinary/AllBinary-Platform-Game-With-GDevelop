@@ -77,6 +77,7 @@ Created By: Travis Berthelot
                 </xsl:for-each>
 
                         //ObjectTimer - runnable
+                        <xsl:if test="not(contains($forExtension, 'found'))" >
                         private final Runnable runnable = new Runnable() {
                         
                             public void run() {
@@ -142,6 +143,7 @@ Created By: Travis Berthelot
                                 }
                             }
                         };
+                        </xsl:if>
                         
                         //ObjectTimer - condition - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >

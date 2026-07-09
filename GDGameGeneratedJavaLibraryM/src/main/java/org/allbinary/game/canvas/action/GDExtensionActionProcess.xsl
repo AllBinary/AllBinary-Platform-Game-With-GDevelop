@@ -46,7 +46,8 @@ Created By: Travis Berthelot
                     private final Object[] objectArray = new Object[<xsl:value-of select="count(parameters) + 1" />];
                     private final int[] intArray = new int[<xsl:value-of select="count(parameters) + 1" />];
 
-                    //extension=<xsl:value-of select="$extensionNameAndExtensionFunction" />
+                    <xsl:if test="not(contains($forExtension, 'found'))" >
+                    //extension=<xsl:value-of select="$extensionNameAndExtensionFunction" /> - //Called from outside of Extension
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();
@@ -249,6 +250,21 @@ Created By: Travis Berthelot
                         
                         return true;
                     }
+                    </xsl:if>
+                    <xsl:if test="contains($forExtension, 'found')" >
+                    //extension=<xsl:value-of select="$extensionNameAndExtensionFunction" /> - //Called from inside of Extension
+                    @Override
+                    public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
+                          
+                        //Map from object array with action params
+                        <xsl:call-template name="extensionMapping" >
+                            <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
+                        </xsl:call-template>
+
+                        return <xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null);                    
+
+                    }
+                    </xsl:if>
 
     </xsl:template>
 

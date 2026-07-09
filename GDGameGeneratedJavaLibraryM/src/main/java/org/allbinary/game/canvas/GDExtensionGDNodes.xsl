@@ -44,6 +44,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDBuiltinCommonInstructionsExtensionGDNode.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionGDNodeAction.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/event/GDExtensionGDNode.xsl" />
 
@@ -225,6 +226,36 @@ Created By: Travis Berthelot
                 //instancesAsString=<xsl:value-of select="$instancesAsString" />
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
+
+                    <xsl:for-each select="events" >
+                    //extension - childevents - START
+                    <xsl:call-template name="builtinCommonInstructionsExtensionGDNode" >
+                        <xsl:with-param name="caller" >eventLayout</xsl:with-param>
+                        <xsl:with-param name="selectedNodeIds" >All</xsl:with-param>
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >Extension</xsl:with-param>
+                        <xsl:with-param name="layoutName" >Extension</xsl:with-param>
+                        <xsl:with-param name="thisNodeIndex" >
+                            <xsl:value-of select="-4" />
+                        </xsl:with-param>
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsAsString" >
+                            <xsl:value-of select="$objectsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+
+                    </xsl:call-template>
+                    //extension - childevents - END
+                    </xsl:for-each>
 
                     //extension - conditions - START
                     <xsl:call-template name="eventsCreateAssignGDObjectGDNodesCondition" >

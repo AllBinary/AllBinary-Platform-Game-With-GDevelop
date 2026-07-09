@@ -298,13 +298,9 @@ Created By: Travis Berthelot
                                     return false;
                                 }
                             }
+                            
+                            return false;
 
-<!--  
-                            final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
-                            this.process(gameLayer, intArray[3], intArray[5]);
-
-                            return true;
--->
                         }
                         </xsl:if>
 
