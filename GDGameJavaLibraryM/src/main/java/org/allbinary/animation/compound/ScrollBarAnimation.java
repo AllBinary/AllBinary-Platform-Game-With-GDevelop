@@ -18,8 +18,6 @@ import javax.microedition.lcdui.Graphics;
 import org.allbinary.J2MEUtil;
 import org.allbinary.animation.AnimationBehavior;
 import org.allbinary.animation.IndexedAnimation;
-import org.allbinary.animation.text.CustomTextAnimation;
-import org.allbinary.game.layer.SWTUtil;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.PrimitiveIntUtil;
 
@@ -28,8 +26,8 @@ import org.allbinary.logic.math.PrimitiveIntUtil;
  * @author Berthelot, Travis
  * @version 1.0
  */
-//Similar to ScollBar
-public class SliderAnimation 
+//Similar to Slider
+public class ScrollBarAnimation 
     extends IndexedAnimation
     //implements IndexedAnimationInterface
 {
@@ -40,32 +38,23 @@ public class SliderAnimation
     private final int width;
     private final int height;
     
-    private int dx;
+    private int dy;
 
     private int value;
 
     protected boolean hasFocus;
 
-    public SliderAnimation(final IndexedAnimation[] animationInterfaceArray, final int width, final int height, final AnimationBehavior animationBehavior)
+    public ScrollBarAnimation(final IndexedAnimation[] animationInterfaceArray, final int width, final int height, final AnimationBehavior animationBehavior)
     {
         super(animationBehavior);
         
         this.animationInterfaceArray = animationInterfaceArray;
         
-        this.dx = this.animationInterfaceArray[3].getDx();
+        this.dy = this.animationInterfaceArray[3].getDy();
         
         this.width = width;
         this.height = height;
-        
-        final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.animationInterfaceArray[4]);
-        if(SWTUtil.isSWT) {
-            //customTextAnimation.setDy(-customTextAnimation.getSize());
-            final int h = this.dxhack();
-            customTextAnimation.setDy(-h / 3 * 2);
-        } else {
-            final int h = this.dxhack();
-            customTextAnimation.setDy(-h + (h / 10));
-        }
+
     }
     
     private int dxhack() {
@@ -172,30 +161,27 @@ public class SliderAnimation
         if(value >= 0 && value < 101) {
             this.value = value;
             //logUtil.put("new value: " + this.value, this, "onMotionGestureEvent");
-            final int newDx = this.dx + (value * this.width / 100);
-            this.animationInterfaceArray[3].setDx(newDx);
-            
-            final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.animationInterfaceArray[4]);
-            customTextAnimation.setText(Integer.toString(this.value));
-            customTextAnimation.setDx(newDx + (this.getThumbWidth() / 2) - (customTextAnimation.getWidth() / 2));
+            final int newDy = this.dy + (value * this.height / 100);
+            this.animationInterfaceArray[3].setDy(newDy);
+
         }
     }
 
-    public void setValue2(final int thumbX) {
-        //logUtil.put("old thumbX: " + this.animationInterfaceArray[3].getDx(), this, "onMotionGestureEvent");
+    public void setValue2(final int thumbY) {
+        //logUtil.put("old thumbX: " + this.animationInterfaceArray[3].getDy(), this, "onMotionGestureEvent");
         //logUtil.put("thumbX: " + thumbX, this, "onMotionGestureEvent");
-        int usedThumbX = thumbX;
-        final int maxX = this.width;
-        if(thumbX >= this.dx && thumbX < this.dx + this.width) {
-        } else if(thumbX < 0) {
+        int usedThumbX = thumbY;
+        final int maxY = this.height;
+        if(thumbY >= this.dy && thumbY < this.dy + this.height) {
+        } else if(thumbY < 0) {
             usedThumbX = 0;
             //logUtil.put("min thumbX: " + usedThumbX, this, "onMotionGestureEvent");
-        } else if(thumbX > maxX) {
-            usedThumbX = maxX;
+        } else if(thumbY > maxY) {
+            usedThumbX = maxY;
             //logUtil.put("max thumbX: " + usedThumbX, this, "onMotionGestureEvent");
         }
         //logUtil.put("old value: " + this.value, this, "onMotionGestureEvent");
-        int value = (100 * usedThumbX / this.width);
+        int value = (100 * usedThumbX / this.height);
         if(value > 100) {
             value = 100;
         }
@@ -203,13 +189,13 @@ public class SliderAnimation
         this.setValue(value);
     }
     
-    public int getThumbDx() {
-        return this.animationInterfaceArray[3].getDx();
+    public int getThumbDy() {
+        return this.animationInterfaceArray[3].getDy();
     }
     
-    public int getThumbWidth() {
+    public int getThumbHeight() {
         //TWB - ImageBaseRotationAnimation only
-        return this.animationInterfaceArray[3].getWidth();
+        return this.animationInterfaceArray[3].getHeight();
     }
     
     public int getValue() {

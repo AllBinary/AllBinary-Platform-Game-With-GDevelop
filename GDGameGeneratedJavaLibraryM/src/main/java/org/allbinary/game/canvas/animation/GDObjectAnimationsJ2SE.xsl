@@ -46,6 +46,10 @@ Created By: Travis Berthelot
                 this.add<xsl:value-of select="name" />PanelSpriteSliderAnimations(imageCache);
             </xsl:when>
 
+            <xsl:when test="$typeValue = 'Scrollbar::Scrollbar'" >
+                this.add<xsl:value-of select="name" />ScrollbarScrollbarAnimations(imageCache);
+            </xsl:when>
+
             <xsl:when test="$typeValue = 'TextObject::Text'" >
                 this.add<xsl:value-of select="name" />TextObjectAnimations(imageCache);
             </xsl:when>
@@ -900,6 +904,179 @@ Created By: Travis Berthelot
 
                 //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
 
+            }
+            </xsl:when>
+
+            <xsl:when test="$typeValue = 'Scrollbar::Scrollbar'" >
+                <xsl:text>&#10;</xsl:text>
+            private void add<xsl:value-of select="name" />ScrollbarScrollbarAnimations(final ImageCache imageCache) throws Exception {
+
+            //This impl is not done            
+            if(true) throw new RuntimeException();
+
+                final Image[] <xsl:value-of select="$name" />ImageArray = (Image[]) imageCache.getHashtableP().get(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_IMAGE_ARRAY_NAME);
+
+                if(<xsl:value-of select="$name" />ImageArray == null) {
+                    throw new Exception("<xsl:value-of select="$name" />ImageArray was null (This happens 1 time during the initial loading)");
+                } else {
+                    logUtil.putF("<xsl:value-of select="$name" />ImageArray found", this, commonStrings.INIT);
+                }
+
+                <xsl:for-each select="content" >
+                //ThumbLengthMin=<xsl:value-of select="ThumbLengthMin" />
+                </xsl:for-each>
+                    
+<!--                <xsl:for-each select="childrenContent" >
+                    <xsl:for-each select="Label" >
+                final int <xsl:value-of select="$name" />TextAnimationSize = (<xsl:value-of select="characterSize" />);
+                    </xsl:for-each>
+                </xsl:for-each>
+
+                <xsl:variable name="hasMirrorFillBarBehavior" >
+                <xsl:for-each select="behaviors" ><xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >found</xsl:if></xsl:for-each>
+                </xsl:variable>-->
+
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray0 = {
+                <xsl:for-each select="childrenContent" >
+                    <xsl:for-each select="Background" >
+                    //Background
+                    new AllBinaryJ2SEImageRotationAnimationFactory(
+                        <xsl:value-of select="$name" />ImageArray[0],
+                        <xsl:value-of select="$name" />ImageArray[0].getWidth(),
+                        <xsl:value-of select="$name" />ImageArray[0].getHeight(),
+                        angleIncrement,
+                        AnimationBehaviorFactory.getInstance()
+                        //new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
+                    , true)
+                    ,
+                    </xsl:for-each>
+                    <xsl:for-each select="FillBar" >
+                    //FillBar
+                    new TopToBottomImageAnimationFactory(
+                        <xsl:value-of select="$name" />ImageArray[1], 
+                        sequenceArray,
+                        (<xsl:value-of select="$name" />ImageArray[0].getWidth() - <xsl:value-of select="$name" />ImageArray[1].getWidth()) / 2,
+                        (<xsl:value-of select="$name" />ImageArray[0].getHeight() - <xsl:value-of select="$name" />ImageArray[1].getHeight()) / 2,
+                        AnimationBehaviorFactory.getInstance()
+                    )
+                    ,
+<!--                        <xsl:if test="not(contains($hasMirrorFillBarBehavior, 'found'))" >
+                    new NullRotationAnimationFactory(),
+                        </xsl:if>
+                        <xsl:for-each select="../../behaviors" >
+                            <xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >
+                    new BottomToTopImageAnimationFactory(
+                        <xsl:value-of select="$name" />ImageArray[2],
+                        (<xsl:value-of select="$name" />ImageArray[0].getWidth() - <xsl:value-of select="$name" />ImageArray[2].getWidth()) / 2,
+                        (<xsl:value-of select="$name" />ImageArray[0].getHeight() - <xsl:value-of select="$name" />ImageArray[2].getHeight()) / 2,
+                        AnimationBehaviorFactory.getInstance()
+                    )
+                    ,
+                            </xsl:if>
+                        </xsl:for-each>
+-->
+                    </xsl:for-each>
+                    <xsl:for-each select="Thumb" >
+                    //Thumb
+                    AllBinaryJ2SEImageRotationAnimationFactory.createDXY(
+                        <xsl:value-of select="$name" />ImageArray[4],
+                        <xsl:value-of select="$name" />ImageArray[4].getWidth(),
+                        <xsl:value-of select="$name" />ImageArray[4].getHeight(),
+                        (<xsl:value-of select="$name" />ImageArray[0].getWidth() - <xsl:value-of select="$name" />ImageArray[2].getWidth()) / 2,
+                        (<xsl:value-of select="$name" />ImageArray[0].getHeight() - <xsl:value-of select="$name" />ImageArray[4].getHeight()) / 2,
+                        angleIncrement,
+                        AnimationBehaviorFactory.getInstance()
+                        //new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
+                    , true)
+                    ,
+                    </xsl:for-each>
+<!--                    <xsl:for-each select="Label" >
+                    //Label
+                    new CustomTextAnimationFactory(stringUtil.EMPTY_STRING, <xsl:value-of select="$name" />TextAnimationSize, AnimationBehaviorFactory.getInstance()) {
+                    
+                        public void setInitialScale(final ScaleProperties scaleProperties) {
+                            //super.setInitialScale(scaleProperties);
+                            this.dx = 0;
+                            this.dy = -1;
+                            this.scaleProperties = scaleProperties;
+                            //logUtil.put(new StringMaker().append("setInitialScale - font: ").append(scaleProperties.scaleHeight).toString(), this, commonStrings.PROCESS);
+                            //this.scaleWidth = scaleProperties.scalwWidth;
+                            final int fontSize = scaleProperties.scaleHeight;
+                            scaleProperties.scaleHeight = (int) fontSize - (fontSize / 2);
+                            this.font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, scaleProperties.scaleHeight);
+                            logUtil.putF(new StringMaker().append("setInitialScale - font: ").appendint(font.getSize()).toString(), this, commonStrings.PROCESS);
+                        }
+
+                    },
+                    </xsl:for-each>-->
+                </xsl:for-each>
+                };
+
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray = {
+                    new ScrollBarAnimationInterfaceFactory(
+                        <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray0,
+                        <xsl:value-of select="$name" />ImageArray[1].getWidth(),
+                        <xsl:value-of select="$name" />ImageArray[1].getHeight()
+                    ) {
+                        public void setInitialScale(final ScaleProperties scaleProperties) {
+                            final ScaleProperties scaleProperties1 = new ScaleProperties();
+                            scaleProperties1.shouldScale = scaleProperties.shouldScale;
+                            scaleProperties1.scaleX = scaleProperties.scaleX;
+                            scaleProperties1.scaleY = scaleProperties.scaleY;
+                            scaleProperties1.scaleWidth = (scaleProperties.scaleWidth * 253 / 265) - (scaleProperties.scaleWidth * 22 / 265);
+                            scaleProperties1.scaleHeight = scaleProperties.scaleHeight;
+                            super.setInitialScale(scaleProperties1);
+
+                            this.basicAnimationInterfaceFactoryInterfaceArrayP[0].setInitialScale(scaleProperties);
+                        
+                            final ScaleProperties scaleProperties2 = new ScaleProperties();
+                            scaleProperties2.shouldScale = scaleProperties.shouldScale;
+                            scaleProperties2.scaleX = scaleProperties.scaleX;
+                            scaleProperties2.scaleY = scaleProperties.scaleY;
+                            scaleProperties2.scaleWidth = scaleProperties.scaleWidth * 253 / 265;
+                            scaleProperties2.scaleHeight = scaleProperties.scaleHeight * 16 / 34;
+                        
+                            this.basicAnimationInterfaceFactoryInterfaceArrayP[1].setInitialScale(scaleProperties2);
+                            this.basicAnimationInterfaceFactoryInterfaceArrayP[2].setInitialScale(scaleProperties2);
+
+                            final ScaleProperties scaleProperties3 = new ScaleProperties();
+                            scaleProperties3.shouldScale = scaleProperties.shouldScale;
+                            scaleProperties3.scaleX = scaleProperties.scaleX;
+                            scaleProperties3.scaleY = scaleProperties.scaleY;
+                            scaleProperties3.scaleWidth = scaleProperties.scaleWidth * 22 / 265;
+                            scaleProperties3.scaleHeight = scaleProperties.scaleHeight * 22 / 34;
+                                                
+                            this.basicAnimationInterfaceFactoryInterfaceArrayP[3].setInitialScale(scaleProperties3);
+
+                            final ScaleProperties scaleProperties4 = new ScaleProperties();
+                            scaleProperties4.shouldScale = scaleProperties.shouldScale;
+                            scaleProperties4.scaleX = scaleProperties.scaleX;
+                            scaleProperties4.scaleY = scaleProperties.scaleY;
+                            scaleProperties4.scaleWidth = scaleProperties.scaleWidth;
+                            scaleProperties4.scaleHeight = scaleProperties.scaleHeight;
+                        
+                            this.basicAnimationInterfaceFactoryInterfaceArrayP[4].setInitialScale(scaleProperties4);
+                        }                        
+                    }
+                };
+                
+                final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="$name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
+
+                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="$name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+
+                final Rectangle <xsl:value-of select="$name" />LayerInfo = new Rectangle(
+                                pointFactory.createXY(0, 0),
+                <xsl:for-each select="childrenContent" >
+                    <xsl:for-each select="Background" >
+                        <xsl:value-of select="width" />, <xsl:value-of select="height" />
+                    </xsl:for-each>
+               </xsl:for-each>
+                                );
+
+                this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="$name" />LayerInfo);
+
+                //final GDConditionWithGroupActions <xsl:value-of select="$name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
             }
             </xsl:when>
 
