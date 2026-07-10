@@ -17,15 +17,6 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <!-- TWB - Hack - Replace the templates in this file with correct logic -->
-    <xsl:template name="hackProcessing2" >
-        <xsl:param name="caller" />
-        <xsl:param name="layoutIndex" />
-        <xsl:param name="parametersAsString" />
-        <xsl:param name="createdObjectsAsString" />
-        <xsl:param name="objectsGroupsAsString" />
-        <xsl:param name="objectsAsString" />
-        <xsl:param name="thisNodeIndex" />
-                    
         <!--
             <xsl:for-each select="actions" >
                 <xsl:if test="type/value = 'Create'" >
@@ -37,7 +28,16 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:for-each>
         -->
-
+<!--    
+    <xsl:template name="hackProcessing2" >
+        <xsl:param name="caller" />
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="parametersAsString" />
+        <xsl:param name="createdObjectsAsString" />
+        <xsl:param name="objectsGroupsAsString" />
+        <xsl:param name="objectsAsString" />
+        <xsl:param name="thisNodeIndex" />
+                    
             <xsl:variable name="logString" >EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
                     //caller=<xsl:value-of select="$caller" /> - //hackProcessing2
@@ -88,6 +88,7 @@ Created By: Travis Berthelot
             </xsl:if>
             
     </xsl:template>
+-->
 
     <xsl:template name="hackProcessing" >
         <xsl:param name="indexInUse" />
