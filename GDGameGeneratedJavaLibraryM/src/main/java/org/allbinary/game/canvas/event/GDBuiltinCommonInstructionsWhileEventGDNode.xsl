@@ -41,7 +41,7 @@ Created By: Travis Berthelot
                 /*
                 </xsl:if>
                 
-                //<xsl:value-of select="type" /> - //name=<xsl:value-of select="name" /> - event
+                //<xsl:value-of select="type" /> - //whileConditionsTotal=<xsl:value-of select="count(whileConditions)" /> - event
                 @Override
                 public boolean process() throws Exception {
                     super.processStats();
