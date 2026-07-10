@@ -68,7 +68,6 @@ Created By: Travis Berthelot
                 //private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
                 </xsl:for-each>
 
-                <xsl:if test="not(whileConditions)" >
                 <xsl:if test="not(contains($foundOtherCondition, 'found'))" >
                 <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
                 <xsl:for-each select="actions" >
@@ -86,7 +85,6 @@ Created By: Travis Berthelot
                         </xsl:if>
                     <xsl:text>&#10;</xsl:text>
                 </xsl:for-each>
-                </xsl:if>
                 </xsl:if>
                 </xsl:if>
 
@@ -114,7 +112,6 @@ Created By: Travis Berthelot
 
                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
                 <xsl:if test="$caller = 'externalEventsCreateAssignGDObject'" >
-                <xsl:if test="not(whileConditions)" >
                 <xsl:if test="not(contains($foundOtherCondition, 'found'))" >
                 <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
                     <xsl:variable name="hasSiblingConditionVarGlobal" >
@@ -159,12 +156,10 @@ Created By: Travis Berthelot
                 </xsl:if>
                 </xsl:if>
                 </xsl:if>
-                </xsl:if>
                     
                 <xsl:if test="contains($foundOtherCondition, 'found') or contains($foundTimerCondition, 'found') or contains($foundVarSceneCondition, 'found')" >
                     //Has one of the special conditions.
                     <xsl:if test="contains($foundOtherCondition, 'found') or contains($foundTimerCondition, 'found') or (contains($foundVarSceneCondition, 'found') and contains($foundLinkEvent, 'found'))" >
-                    <xsl:if test="not(whileConditions)" >
                     //Found conditions that need processing.
 
                     <xsl:for-each select="conditions" >
@@ -181,25 +176,6 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     
                     </xsl:if>
-                    </xsl:if>
-                    
-                </xsl:if>
-
-                <xsl:if test="whileConditions" >
-                //whileConditions
-                    
-                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-                    <xsl:for-each select="whileConditions" >
-                    //whileConditions - //<xsl:value-of select="type/value" /> - call
-                    while(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
-                    <xsl:for-each select="../conditions" >
-                    <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                    <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
-                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                    </xsl:for-each>
-                    }
-                    </xsl:for-each>
                     
                 </xsl:if>
 
@@ -243,7 +219,6 @@ Created By: Travis Berthelot
                 </xsl:if>
                 </xsl:if>
 
-                <xsl:if test="not(whileConditions)" >
                 <xsl:if test="not(contains($foundOtherCondition, 'found'))" >
                 <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
 
@@ -279,7 +254,6 @@ Created By: Travis Berthelot
                                 
                 </xsl:if>
                 </xsl:if>
-                </xsl:if>
                 
                 <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
                     }
@@ -302,7 +276,6 @@ Created By: Travis Berthelot
                        
                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
                 <xsl:if test="$caller = 'externalEventsCreateAssignGDObject'" >
-                <xsl:if test="not(whileConditions)" >
                 <xsl:if test="not(contains($foundOtherCondition, 'found'))" >
                 <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
                     <xsl:variable name="hasSiblingConditionVarGlobal" >
@@ -347,12 +320,10 @@ Created By: Travis Berthelot
                 </xsl:if>
                 </xsl:if>
                 </xsl:if>
-                </xsl:if>
                     
                 <xsl:if test="contains($foundOtherCondition, 'found') or contains($foundTimerCondition, 'found') or contains($foundVarSceneCondition, 'found')" >
                     //Has one of the special conditions.
                     <xsl:if test="contains($foundOtherCondition, 'found') or contains($foundTimerCondition, 'found') or (contains($foundVarSceneCondition, 'found') and contains($foundLinkEvent, 'found'))" >
-                    <xsl:if test="not(whileConditions)" >
                     //Found conditions that need processing.
 
                     <xsl:for-each select="conditions" >
@@ -369,25 +340,6 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     
                     </xsl:if>
-                    </xsl:if>
-                    
-                </xsl:if>
-
-                <xsl:if test="whileConditions" >
-                //whileConditions
-                    
-                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-                    <xsl:for-each select="whileConditions" >
-                    //whileConditions - //<xsl:value-of select="type/value" /> - call
-                    while(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index3)) {
-                    <xsl:for-each select="../conditions" >
-                    <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                    <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
-                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index3);
-                    </xsl:for-each>
-                    }
-                    </xsl:for-each>
                     
                 </xsl:if>
 
@@ -431,7 +383,6 @@ Created By: Travis Berthelot
                 </xsl:if>
                 </xsl:if>
 
-                <xsl:if test="not(whileConditions)" >
                 <xsl:if test="not(contains($foundOtherCondition, 'found'))" >
                 <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
 
@@ -468,7 +419,6 @@ Created By: Travis Berthelot
                                 
                 </xsl:if>
                 </xsl:if>
-                </xsl:if>
 
                 <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
                     }
@@ -493,14 +443,8 @@ Created By: Travis Berthelot
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                     </xsl:for-each>
-                    <xsl:for-each select="whileConditions" >
-                    <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                    <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                    //whileConditions - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
-                    </xsl:for-each>
 
                 <xsl:if test="contains($foundOtherCondition, 'found') or contains($foundTimerCondition, 'found') or (contains($foundVarSceneCondition, 'found') and contains($foundLinkEvent, 'found'))" >
-                    <xsl:if test="not(whileConditions)" >
                 //Found conditions that need processing.
 
                     <xsl:for-each select="conditions" >
@@ -511,25 +455,6 @@ Created By: Travis Berthelot
                         <xsl:if test="position() = 2" >
                     //eventsCreateAssignGDObjectGDNodes - //Condition - call - more ifs
                         </xsl:if>
-                    </xsl:for-each>
-                    
-                    </xsl:if>
-                </xsl:if>
-
-                <xsl:if test="whileConditions" >
-                //whileConditions
-                    
-                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-                    <xsl:for-each select="whileConditions" >
-                    //whileConditions - //<xsl:value-of select="type/value" /> - call
-                    while(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput)) {
-                    <xsl:for-each select="../conditions" >
-                    <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                    <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
-                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
-                    </xsl:for-each>
-                    }
                     </xsl:for-each>
                     
                 </xsl:if>
@@ -574,7 +499,6 @@ Created By: Travis Berthelot
                 </xsl:if>
                 </xsl:if>
 
-                <xsl:if test="not(whileConditions)" >
                 <xsl:if test="not(contains($foundOtherCondition, 'found'))" >
                 <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
 
@@ -583,7 +507,6 @@ Created By: Travis Berthelot
 
                 </xsl:if>
                 
-                </xsl:if>
                 </xsl:if>
                 </xsl:if>
 
@@ -727,7 +650,6 @@ Created By: Travis Berthelot
                     return true;                
                 }
 
-                <xsl:if test="not(whileConditions)" >
                 <xsl:if test="not(contains($foundOtherCondition, 'found'))" >
                 <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
 
@@ -758,8 +680,6 @@ Created By: Travis Berthelot
                 </xsl:if>
                 
                 </xsl:if>
-                
-                </xsl:if>
                 </xsl:if>
 
                 @Override
@@ -773,11 +693,9 @@ Created By: Travis Berthelot
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> eSize; index++) {
                     </xsl:if>
 
-                <xsl:if test="not(whileConditions)" >
                 <xsl:if test="not(contains($foundOtherCondition, 'found'))" >
                 <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
                 //processReleased - before
-                </xsl:if>
                 </xsl:if>
                 </xsl:if>
                     
@@ -799,7 +717,6 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 <xsl:if test="contains($foundOtherCondition, 'found') and not(contains($foundTimerCondition, 'found')) or (contains($foundVarSceneCondition, 'found') and contains($foundLinkEvent, 'found'))" >
-                    <xsl:if test="not(whileConditions)" >
                 //processReleased - now other
                      //Found conditions that need processing.
                     
@@ -817,7 +734,6 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
-                    </xsl:if>
                 </xsl:if>
 
                     }
