@@ -62,7 +62,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                     <xsl:if test="not(../conditions)" >
-                    //Events only - no conditions
+                    //Actions and Events only - no conditions
 
                         <xsl:for-each select="../actions" >
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -119,7 +119,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                     <xsl:if test="not(../conditions)" >
-                    //Events only - no conditions
+                    //Actions and Events only - no conditions
 
                         <xsl:for-each select="../actions" >
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -176,7 +176,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                     <xsl:if test="not(../conditions)" >
-                    //Events only - no conditions
+                    //Actions and Events only - no conditions
 
                         <xsl:for-each select="../actions" >
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -232,7 +232,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                     <xsl:if test="not(../conditions)" >
-                    //Events only - no conditions
+                    //Actions and Events only - no conditions
 
                         <xsl:for-each select="../actions" >
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
