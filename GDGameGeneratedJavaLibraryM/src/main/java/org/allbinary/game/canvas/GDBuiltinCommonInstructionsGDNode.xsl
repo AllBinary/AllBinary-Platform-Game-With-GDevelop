@@ -18,6 +18,7 @@ Created By: Travis Berthelot
 
     <xsl:import href="./event/GDBuiltinCommonInstructionsForEachChildVariableEventGDNode.xsl" />
     <xsl:import href="./event/GDBuiltinCommonInstructionsForEachEventGDNode.xsl" />
+    <xsl:import href="./event/GDBuiltinCommonInstructionsGroupEventGDNode.xsl" />
     <xsl:import href="./event/GDBuiltinCommonInstructionsHackEventGDNode.xsl" />
     
     <xsl:template name="builtinCommonInstructionsGDNode" >
@@ -159,7 +160,7 @@ Created By: Travis Berthelot
             </xsl:when>
             <xsl:when test="type = 'BuiltinCommonInstructions::Group'" >
     
-                <xsl:call-template name="builtinCommonInstructionsHackEventGDNode" >
+                <xsl:call-template name="builtinCommonInstructionsGroupEventGDNode" >
                     <xsl:with-param name="caller" >
                         <xsl:value-of select="$caller" />
                     </xsl:with-param>
