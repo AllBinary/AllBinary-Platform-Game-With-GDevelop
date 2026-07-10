@@ -49,7 +49,7 @@ Created By: Travis Berthelot
                 /*
                 </xsl:if>
                 
-                //<xsl:value-of select="type" /> - //name=<xsl:value-of select="name" />
+                //<xsl:value-of select="type" /> - //name=<xsl:value-of select="name" /> - event
                 @Override
                 public boolean process() throws Exception {
                     super.processStats();
