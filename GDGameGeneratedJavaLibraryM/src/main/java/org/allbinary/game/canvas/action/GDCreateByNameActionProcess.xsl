@@ -112,6 +112,48 @@ Created By: Travis Berthelot
                         return true;
                         </xsl:if>
                     }
+                    
+                    private int createIndex;
+
+                    @Override
+                    public boolean processCreate() throws Exception {
+                        super.processStats();
+
+                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                        
+                        //createByNameActionProcess - //CreateByName - process - START
+                    
+                        <xsl:if test="contains($hasObject, 'found') or contains($hasObjectGroup, 'found')" >
+                            throw new RuntimeException();
+                        </xsl:if>
+                        <xsl:if test="not(contains($hasObject, 'found') or contains($hasObjectGroup, 'found'))" >
+                            
+                        final String createString = gdObjectsFactory.get<xsl:value-of select="$name" />Name(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
+                        this.createIndex = gdObjectsFactory.get<xsl:value-of select="$name" />Index(createString);
+                        
+                    <xsl:call-template name="createByNameGDObject" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsAsString" >
+                            <xsl:value-of select="$objectsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="nodeAsString" >
+                            <xsl:value-of select="$nodeAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                        //createByNameActionProcess - //CreateByName - process - END
+                        //createByNameActionProcess - //CreateByName - call
+                        this.processCreate(<xsl:value-of select="$name" />, createString, createIndex);
+                        
+                        return true;
+                        </xsl:if>
+                    }
+                    
                     //createByNameActionProcess - //CreateByName - GDObject - END
                         </xsl:if>
 
@@ -269,13 +311,11 @@ Created By: Travis Berthelot
                             //logUtil.put(<xsl:value-of select="$actionAsString" /> + gameGlobals.tempGameLayerArray[0], this, commonStrings.PROCESS);
                             //name=<xsl:value-of select="$name" />
                             <xsl:if test="not($name = 'Items' or $name = 'InventoryIcons')" >
-                            gameGlobals.tempGameLayerArray[0] = <xsl:value-of select="text()" />GDGameLayer;
+                            //TWB - Temp hack for less than (3 or more params)
+                            //gameGlobals.tempGameLayerArray[0] = <xsl:value-of select="text()" />GDGameLayer;
                             </xsl:if>
-                            <xsl:if test="$name = 'Items' or $name = 'InventoryIcons'" >
-                            //TWB - Temp hack for 3 or more params
                             //CreateByName - //Using param that is not from the first 2 GameLayers - set
                             gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = <xsl:value-of select="text()" />GDGameLayer;
-                            </xsl:if>
                             //if(gameGlobals.tempGameLayerArray[0] != null) logUtil.put(gameGlobals.tempGameLayerArray[0].toString(), this, commonStrings.PROCESS);
                             <xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer);
                         </xsl:if>
@@ -314,14 +354,37 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="nodeIdAsString" />
 
+        <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+
+                        <xsl:variable name="beforeThirdParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="substring-before(text(), '.')" /></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="hasObject" >
+                            <xsl:for-each select="//objects" >
+                                <xsl:if test="name = $beforeThirdParam" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+                        <xsl:variable name="hasObjectGroup" >
+                            <xsl:for-each select="//objectsGroups" >
+                                <xsl:if test="name = $beforeThirdParam" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+
                     //CreateByName End
+                    @Override
+                    public void processEnd() throws Exception {
+                        <xsl:if test="not(contains($hasObject, 'found') or contains($hasObjectGroup, 'found'))" >
+                        
+                        super.processEndStats(this.createIndex);
+
+                        this.processEnd(((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(createIndex)).size() - 1, createIndex);
+                        </xsl:if>
+                    }
+
                     @Override
                     public void processEnd(final int index, final int createIndex) throws Exception {
                         super.processEndStats(createIndex);
 
                         //logUtil.putF(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.END);
                         
-                            <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             final BasicArrayList <xsl:value-of select="$name" />GDGameLayerList = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(createIndex));
                         
                     <xsl:for-each select="parameters" >

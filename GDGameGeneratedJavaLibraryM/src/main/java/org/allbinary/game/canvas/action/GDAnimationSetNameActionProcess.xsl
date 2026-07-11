@@ -63,7 +63,6 @@ Created By: Travis Berthelot
 
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             
-                        <xsl:variable name="fourthParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             //.ObjectName()
                             //fourthParam=<xsl:value-of select="$fourthParam" />
                             
@@ -104,8 +103,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                         
                         <xsl:if test="not(contains($hasObjectVariable, 'found') or contains($hasObjectGroup2, 'found'))" >
-                            
-                        <xsl:variable name="fourthParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+
                         //fourthParam=<xsl:value-of select="$fourthParam" />
                         <xsl:if test="contains($fourthParam, 'Variable')" >
                         <xsl:for-each select="parameters" >
@@ -265,7 +263,15 @@ Created By: Travis Berthelot
                     </xsl:variable>
                     
                     /*hasForEachProcessGD=<xsl:value-of select="$hasForEachProcessGD" /> hasCollisionProcessGD=<xsl:value-of select="$hasCollisionProcessGD" /> hasDistanceProcessGD=<xsl:value-of select="$hasDistanceProcessGD" /> hasLinkedObjectsPickObjectsLinkedToProcessGD=<xsl:value-of select="$hasLinkedObjectsPickObjectsLinkedToProcessGD" />*/
-    
+
+                        <xsl:variable name="hasSiblingActionWithObjectsGroupsOrObject" >
+                            <xsl:for-each select=".." >
+                                <xsl:for-each select="actions" >
+                                    <xsl:if test="type/value = 'Create' and type/value != 'CreateByName'" >found</xsl:if>
+                                </xsl:for-each>
+                            </xsl:for-each>
+                        </xsl:variable>                        
+                        
                     <xsl:call-template name="parentSelectionNodeProcessGD" >
                         <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                         <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
@@ -295,14 +301,6 @@ Created By: Travis Berthelot
                     </xsl:if>
                     <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
 
-                        <xsl:variable name="hasSiblingActionWithObjectsGroupsOrObject" >
-                            <xsl:for-each select=".." >
-                                <xsl:for-each select="actions" >
-                                    <xsl:if test="type/value = 'Create' and type/value != 'CreateByName'" >found</xsl:if>
-                                </xsl:for-each>
-                            </xsl:for-each>
-                        </xsl:variable>                        
-
                         <xsl:if test="contains($hasSiblingActionWithObjectsGroupsOrObject, 'found')" >
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
@@ -330,6 +328,8 @@ Created By: Travis Berthelot
 
                         //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
+                        <xsl:variable name="fourthParamBeforePeriod" ><xsl:value-of select="substring-before($fourthParam, '.')" /></xsl:variable>
+                        
                         <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
                         <xsl:if test="$name != $firstOrBeforeFourthParam" >
                         //firstOrBeforeFourthParam was not the same as name so we will get the first and hopefully only GameLayer
@@ -342,12 +342,11 @@ Created By: Travis Berthelot
                         final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = ((<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$name" />GDGameLayer.gdObject);<xsl:text>&#10;</xsl:text>
                         <xsl:if test="$name != $firstOrBeforeFourthParam" >
                         <xsl:variable name="gdObjectFactory1" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$firstOrBeforeFourthParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$firstOrBeforeFourthParam" /></xsl:variable>
-                        final <xsl:value-of select="$gdObjectFactory1" /><xsl:text> </xsl:text><xsl:value-of select="$firstOrBeforeFourthParam" /> = ((<xsl:value-of select="$gdObjectFactory1" />) <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject);<xsl:text>&#10;</xsl:text>
+                        <xsl:if test="not(contains($hasObjectGroup2, 'found'))" >//</xsl:if>final <xsl:value-of select="$gdObjectFactory1" /><xsl:text> </xsl:text><xsl:value-of select="$firstOrBeforeFourthParam" /> = ((<xsl:value-of select="$gdObjectFactory1" />) <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject);<xsl:text>&#10;</xsl:text>
                         </xsl:if>
 
                         <xsl:if test="contains($hasObjectGroup2, 'found')" >
                             
-                        <xsl:variable name="fourthParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             //.ObjectName()
                             //fourthParam=<xsl:value-of select="$fourthParam" />
                             <xsl:variable name="fourthParam2" ><xsl:value-of select="$name" />.<xsl:value-of select="substring-after($fourthParam, '.')" /></xsl:variable>
@@ -364,7 +363,6 @@ Created By: Travis Berthelot
                         </xsl:if>
                         
                         <xsl:if test="not(contains($hasObjectVariable, 'found') or contains($hasObjectGroup2, 'found'))" >
-                        <xsl:variable name="fourthParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         //fourthParam=<xsl:value-of select="$fourthParam" />
                         <xsl:if test="contains($fourthParam, 'Variable') or contains(text(), '.')" >
                         <xsl:for-each select="parameters" >
@@ -390,8 +388,17 @@ Created By: Travis Berthelot
                                     ))) <xsl:value-of select="$name" />GDGameLayer.resetAnimation();
                             </xsl:if>
                         </xsl:for-each>
-                        </xsl:if>
+                        </xsl:if>                                                
                         <xsl:if test="not(contains($fourthParam, 'Variable'))" >
+
+                        <xsl:if test="string-length($fourthParamBeforePeriod) > 0" >
+                            //fourthParamBeforePeriod=<xsl:value-of select="$fourthParamBeforePeriod" /> - We will get the first and hopefully only GameLayer
+                            <xsl:variable name="gameLayerName" ><xsl:value-of select="$fourthParamBeforePeriod" /></xsl:variable>
+                            <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gameLayerName" /></xsl:variable>
+                            <xsl:if test="$firstOrBeforeFourthParam = $fourthParamBeforePeriod and contains($hasSiblingActionWithObjectsGroupsOrObject, 'found')" >//</xsl:if>final GDGameLayer <xsl:value-of select="$gameLayerName" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(0);
+                            final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$gameLayerName" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject;
+                        </xsl:if>
+                            
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 1" >
                                 //3
@@ -448,7 +455,6 @@ Created By: Travis Berthelot
 
                         for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index2++) {
                                                         
-                        <xsl:variable name="fourthParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             //.ObjectName()
                             //fourthParam=<xsl:value-of select="$fourthParam" />
                             
@@ -482,7 +488,6 @@ Created By: Travis Berthelot
                         </xsl:if>
                         <xsl:if test="not(contains($hasObjectVariable, 'found') or contains($hasObjectGroup2, 'found'))" >
 
-                        <xsl:variable name="fourthParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         //fourthParam=<xsl:value-of select="$fourthParam" />
                         <xsl:if test="contains($fourthParam, 'Variable')" >
                         <xsl:for-each select="parameters" >

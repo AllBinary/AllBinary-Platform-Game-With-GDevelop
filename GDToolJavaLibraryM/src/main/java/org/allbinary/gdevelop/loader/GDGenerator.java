@@ -13,6 +13,8 @@
  */
 package org.allbinary.gdevelop.loader;
 
+import org.allbinary.time.TimeDelayHelper;
+
 /**
  *
  * @author User
@@ -23,10 +25,21 @@ public class GDGenerator {
         //System.setProperty("jdk.xml.xpathExprGrpLimit", "0");
         //System.setProperty("jdk.xml.xpathExprOpLimit", "0");
         System.setProperty("jdk.xml.xpathTotalOpLimit", "0");
+        final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(0);
         new GDDelete().process();
+//        System.out.println("Delete ElapsedTime: " + timeDelayHelper.getElapsedTNT());
+//        timeDelayHelper.setStartTimeTNT();
         new GDCopy().copy();
+//        System.out.println("Copy ElapsedTime: " + timeDelayHelper.getElapsedTNT());
+//        timeDelayHelper.setStartTimeTNT();
         new GDToAllBinaryGenerationTool().process();
+//        System.out.println("GDToAllBinaryGenerationTool ElapsedTime: " + timeDelayHelper.getElapsedTNT());
+//        timeDelayHelper.setStartTimeTNT();
         new GDLayoutsToAllBinaryLayoutGenerator().process(0, new GDGetTotalLayouts().process());
+//        System.out.println("GDLayoutsToAllBinaryLayoutGenerator Started ElapsedTime: " + timeDelayHelper.getElapsedTNT());
+//        timeDelayHelper.setStartTimeTNT();
+        System.out.println("Delete, Copy, GDToAllBinaryGenerationTool, GDLayoutsToAllBinaryLayoutGenerator ElapsedTime: " + timeDelayHelper.getElapsedTNT());
+        timeDelayHelper.setStartTimeTNT();
     }
 
     /**

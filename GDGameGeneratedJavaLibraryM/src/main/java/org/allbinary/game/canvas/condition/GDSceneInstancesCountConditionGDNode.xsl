@@ -118,7 +118,7 @@ Created By: Travis Berthelot
                                 <xsl:for-each select=".." >
                                     <xsl:for-each select="actions" >
                                         <xsl:if test="type/value = 'Create'" >
-                                            //Create - nested
+                                            //Create - .processCreate - nested
                                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                                         </xsl:if>
                                     </xsl:for-each>

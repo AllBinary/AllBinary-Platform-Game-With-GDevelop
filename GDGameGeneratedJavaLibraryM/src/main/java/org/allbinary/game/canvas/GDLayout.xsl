@@ -352,9 +352,8 @@ Created By: Travis Berthelot
                     <!--
                     <xsl:for-each select="../externalEvents" >
                         //externalEvents - START
-                        <xsl:call-template name="actionIds" >
-                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                            <xsl:with-param name="caller" >externalEvents</xsl:with-param>
+                        <xsl:call-template name="actionsProcessing" >
+                            <xsl:with-param name="methodCall" >process()</xsl:with-param>
                         </xsl:call-template>
                         //externalEvents - END
                     </xsl:for-each>

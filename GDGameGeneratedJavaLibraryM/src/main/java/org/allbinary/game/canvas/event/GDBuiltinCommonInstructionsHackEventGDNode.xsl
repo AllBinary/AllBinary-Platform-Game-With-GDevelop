@@ -204,13 +204,9 @@ Created By: Travis Berthelot
                 </xsl:for-each>
 
                 <xsl:if test="actions" >
-                <xsl:for-each select="actions" >
-                    //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                </xsl:for-each>
 
-                <xsl:call-template name="actionIds" >
-                    <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                    <xsl:with-param name="caller" >eventsCreateAssignGDObject</xsl:with-param>
+                <xsl:call-template name="actionsProcessing" >
+                    <xsl:with-param name="methodCall" >process()</xsl:with-param>
                 </xsl:call-template>
 
                 </xsl:if>
@@ -372,9 +368,8 @@ Created By: Travis Berthelot
                     //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:for-each>
 
-                <xsl:call-template name="actionIds" >
-                    <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                    <xsl:with-param name="caller" >eventsCreateAssignGDObject</xsl:with-param>
+                <xsl:call-template name="actionsProcessing" >
+                    <xsl:with-param name="methodCall" >process()</xsl:with-param>
                 </xsl:call-template>
 
                 </xsl:if>
@@ -488,9 +483,8 @@ Created By: Travis Berthelot
                     //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
                 </xsl:for-each>
 
-                <xsl:call-template name="actionIds" >
-                    <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                    <xsl:with-param name="caller" >eventsCreateAssignGDObject</xsl:with-param>
+                <xsl:call-template name="actionsProcessing" >
+                     <xsl:with-param name="methodCall" >process()</xsl:with-param>
                 </xsl:call-template>
 
                 </xsl:if>
@@ -543,9 +537,8 @@ Created By: Travis Berthelot
                     //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
                 </xsl:for-each>
 
-                <xsl:call-template name="actionIds" >
-                    <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                    <xsl:with-param name="caller" >eventsCreateAssignGDObject</xsl:with-param>
+                <xsl:call-template name="actionsProcessing" >
+                    <xsl:with-param name="methodCall" >process()</xsl:with-param>
                 </xsl:call-template>
 
                 </xsl:if>

@@ -66,6 +66,37 @@ Created By: Travis Berthelot
                         
                     }
 
+                    @Override
+                    public boolean processCreate() throws Exception {
+                        super.processStats();
+                            
+                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+
+                        //createGDObject - process - START
+                    <xsl:call-template name="createGDObject" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsAsString" >
+                            <xsl:value-of select="$objectsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="nodeAsString" >
+                            <xsl:value-of select="$nodeAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="caller" >createActionProcess</xsl:with-param>
+                    </xsl:call-template>
+
+                        //createGDObject - process - END
+                        //createGDObject - //Create
+                        this.processCreate(<xsl:value-of select="$name" />);
+                        
+                        return true;
+                        
+                    }
+
                     //Create
                     @Override
                     public boolean processCreate(final GDObject gdObject) throws Exception {
@@ -309,7 +340,18 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="nodeIdAsString" />
 
+        <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+
                     //Create End
+                    @Override
+                    public void processEnd() throws Exception {
+                        final int index = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() - 1;
+                        super.processEndStats(index);
+
+                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.END);
+                        this.processEnd(index);
+                     }
+
                     @Override
                     public void processEnd(final int index) throws Exception {
                         super.processEndStats(index);

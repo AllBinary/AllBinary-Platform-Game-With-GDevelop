@@ -87,7 +87,7 @@ Created By: Travis Berthelot
                 /*
                 </xsl:if>
                 
-                //BuiltinCommonInstructions::ForEachChildVariable - event
+                //BuiltinCommonInstructions::ForEachChildVariable - event - //extension
                 @Override
                 public boolean process() throws Exception {
                     super.processStats();
@@ -126,7 +126,7 @@ Created By: Travis Berthelot
                 
                 
 <!--                <xsl:if test="not(contains(disabled, 'true'))" >-->
-                //BuiltinCommonInstructions::ForEach - condition
+                //BuiltinCommonInstructions::ForEach - condition - //extension
                 @Override
                 public boolean process() throws Exception {
                     super.processStats();

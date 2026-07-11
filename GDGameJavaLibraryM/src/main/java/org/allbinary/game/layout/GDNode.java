@@ -117,6 +117,9 @@ public class GDNode
     protected void processStats(final int index) throws Exception {
         this.nodeStatsFactory.push(6, this.name);
     }
+
+    public void processEnd() throws Exception {
+    }
     
     public void processEnd(final int index) throws Exception {
     }
@@ -128,15 +131,19 @@ public class GDNode
     protected void processEndStats(final int index) throws Exception {
         this.nodeStatsFactory.push(7, this.name);
     }
-    
-    public boolean processCreate(final GDObject gdObject, final String createString, final int createIndex) throws Exception {
+
+    public boolean processCreate() throws Exception {
         return true;
     }
-    
+
     public boolean processCreate(final GDObject gdObject) throws Exception {
         return true;
     }
 
+    public boolean processCreate(final GDObject gdObject, final String createString, final int createIndex) throws Exception {
+        return true;
+    }
+        
     protected void processCreateStats(final GDObject gdObject) {
         this.nodeStatsFactory.push(10, this.name);
     }
