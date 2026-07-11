@@ -736,12 +736,8 @@ Created By: Travis Berthelot
                             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                             //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                             <xsl:text>&#10;</xsl:text>
-                            <xsl:choose>
-                            <xsl:otherwise>
                             //Action - //<xsl:value-of select="type/value" /> - call
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].<xsl:value-of select="$methodCall" />;
-                            </xsl:otherwise>
-                            </xsl:choose>                            
                         </xsl:for-each>
                         </xsl:if>
 
