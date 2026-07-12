@@ -37,14 +37,6 @@ Created By: Travis Berthelot
                             if(true) {
                                 //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                                 
-<!--                                <xsl:if test="../actions" >
-                                //MusicPlaying - actions - START
-                             <xsl:for-each select=".." >
-                                <xsl:call-template name="actionsProcessing" >
-                                    <xsl:with-param name="methodCall" >process()</xsl:with-param>
-                                </xsl:call-template>
-                             </xsl:for-each>
-                                </xsl:if>-->
                                 return true;                                
                             }
                             

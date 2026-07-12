@@ -349,16 +349,6 @@ Created By: Travis Berthelot
 
                         gdGlobalsSpecialAnimation.process(globals.globalsGameTickTimeDelayHelper.timeDelta);
 
-                    <!--
-                    <xsl:for-each select="../externalEvents" >
-                        //externalEvents - START
-                        <xsl:call-template name="actionsProcessing" >
-                            <xsl:with-param name="methodCall" >process()</xsl:with-param>
-                        </xsl:call-template>
-                        //externalEvents - END
-                    </xsl:for-each>
-                    -->
-
                     //eventsProcess - START
                     <xsl:call-template name="eventsProcess" >
                         <xsl:with-param name="totalRecursions" >

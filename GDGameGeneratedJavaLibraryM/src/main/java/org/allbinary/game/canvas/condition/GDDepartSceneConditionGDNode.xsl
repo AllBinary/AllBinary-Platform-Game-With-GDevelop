@@ -37,19 +37,6 @@ Created By: Travis Berthelot
 
                               logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
-<!--                            <xsl:for-each select=".." >
-                                <xsl:call-template name="actionsProcessing" >
-                                    <xsl:with-param name="methodCall" >process()</xsl:with-param>
-                                </xsl:call-template>
-                                
-                                <xsl:for-each select="events" >
-                                <xsl:call-template name="eventIdsLessRecursion" >
-                                    <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                                    <xsl:with-param name="caller" >DepartScene</xsl:with-param>
-                                </xsl:call-template>
-                                </xsl:for-each>
-                                
-                            </xsl:for-each>-->
                               return true;
                             }
                             

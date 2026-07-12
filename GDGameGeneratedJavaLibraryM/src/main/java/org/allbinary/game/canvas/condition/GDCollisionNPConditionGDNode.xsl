@@ -17,45 +17,6 @@ Created By: Travis Berthelot
 
     <xsl:output method="html" indent="yes" />
 
-    <xsl:template name="collisionNPConditionGDNodeUsingAllBinary" >
-        <xsl:param name="nodeList" />
-
-<!--                  
-                        //CollisionNP - //collisionNPConditionGDNodeUsingAllBinary
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$nodeList" />] != null) {
-                            throw new RuntimeException("<xsl:value-of select="$nodeList" />");
-                        }
-                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$nodeList" />] = new GDNode(<xsl:value-of select="$nodeList" />) {
-                        
-                            private final String NODE_AT = "Process GDNode <xsl:value-of select="$nodeList" /> at index: ";
-
-                            //Possibly more than 2 GameLayers.  So not all actions on group list are collisions but some are.
-                            @Override
-                            public void processM(final CollidableCompositeLayer[] gameLayerArray) { //construction
-                                super.processMStats(gameLayerArray);
-
-                                final int size = nodeList<xsl:value-of select="$nodeList" />.size();
-                                GDNode node;
-                                final int size2 = gameLayerArray.length;
-                                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                    //logUtil.put(NODE_AT + index, this, commonStrings.PROCESS);
-                                    node = ((GDNode) nodeList<xsl:value-of select="$nodeList" />.get(index));
-                                    //logUtil.put(objectStrings.CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS);
-                                    node.clear();
-                                    for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
-                                        node.gameLayerArray[index2] = gameLayerArray[index2];
-                                    }
-                                    node.processM(node.gameLayerArray);
-                                    node.clear2();
-                                }
-                                
-                                super.processMStatsE(gameLayerArray);
-                            }
-                        };
--->
-
-    </xsl:template>
-
     <xsl:template name="collisionNPConditionGDNode" >
         <xsl:param name="forExtension" />
         <xsl:param name="nodeList" />
