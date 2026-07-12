@@ -27,8 +27,6 @@ Created By: Travis Berthelot
         <xsl:param name="objectsAsString" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="createdObjectsAsString" />
-        <xsl:param name="thisNodeArray" />
-        <xsl:param name="conditionPosition" />
         <xsl:param name="logString" />
                 
         <xsl:variable name="quote" >"</xsl:variable>

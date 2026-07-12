@@ -33,35 +33,6 @@ Created By: Travis Berthelot
                             
                             //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
-        <xsl:if test="../conditions" >
-            //Sibling Conditions
-            boolean siblingConditions = true;
-            <xsl:for-each select="../conditions" >
-                <xsl:variable name="typeValue" select="type/value" />
-                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
-                <xsl:if test="$typeValue = 'Timer'" >
-                    //Condition - //Timer - call
-                    if(!gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
-                        siblingConditions = false;
-                    }
-                </xsl:if>
-                <xsl:if test="$typeValue = 'NbObjet'" >
-                    //Condition - //NbObjet - call
-                    if(!gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
-                        siblingConditions = false;
-                    }
-                </xsl:if>
-                <xsl:if test="$typeValue = 'VarScene'" >
-                    //Condition - //VarScene - call
-                    if(!gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
-                        siblingConditions = false;
-                    }
-                </xsl:if>
-            </xsl:for-each>
-        </xsl:if>
-
                         //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList != null) {
                         if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.objectArray != nullUtil.NULL_OBJECT_ARRAY) {
                             GDGameLayer gameLayer;
@@ -69,45 +40,8 @@ Created By: Travis Berthelot
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                 gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index);
 
-        <xsl:if test="../conditions" >
-            <xsl:for-each select="../conditions" >
-                <xsl:variable name="typeValue" select="type/value" />
-                <xsl:if test="$typeValue = 'PosX'" >
-                    //PosX - call
-                    if(!gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, 
-                        <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList</xsl:if></xsl:for-each>,
-                        index,
-                        globals.graphics)) {
-                        siblingConditions = false;
-                    }
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PosY'" >
-                    //PosY - call
-                    if(!gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, 
-                        <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList</xsl:if></xsl:for-each>,
-                        index,
-                        globals.graphics)) {
-                        siblingConditions = false;
-                    }
-                </xsl:if>
-                <xsl:if test="$typeValue = 'NumberObjectVariable'" >
-                    //NumberObjectVariable - call
-                    if(!gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, 
-                        <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList</xsl:if></xsl:for-each>,
-                        index,
-                        globals.graphics)) {
-                        siblingConditions = false;
-                    }
-                </xsl:if>
-            </xsl:for-each>
-                if(siblingConditions) {
-                    this.processGD(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)), null, globals.graphics);
-                }
-        </xsl:if>
-
-        <xsl:if test="not(../conditions)" >
                                 this.processGD(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)), null, globals.graphics);
-        </xsl:if>
+  
                                 //updateGDObject - 5
                                 gameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
                                 }
@@ -123,35 +57,6 @@ Created By: Travis Berthelot
                             super.processReleasedStats();
                             //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE);
 
-        <xsl:if test="../conditions" >
-            //Sibling Conditions
-            boolean siblingConditions = true;
-            <xsl:for-each select="../conditions" >
-                <xsl:variable name="typeValue" select="type/value" />
-                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
-                <xsl:if test="$typeValue = 'Timer'" >
-                    //Condition - //Timer - call
-                    if(!gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
-                        siblingConditions = false;
-                    }
-                </xsl:if>
-                <xsl:if test="$typeValue = 'NbObjet'" >
-                    //Condition - //NbObjet - call
-                    if(!gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
-                        siblingConditions = false;
-                    }
-                </xsl:if>
-                <xsl:if test="$typeValue = 'VarScene'" >
-                    //Condition - //VarScene - call
-                    if(!gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
-                        siblingConditions = false;
-                    }
-                </xsl:if>
-            </xsl:for-each>
-        </xsl:if>
-
                         //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList != null) {
                         if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.objectArray != nullUtil.NULL_OBJECT_ARRAY) {
                             GDGameLayer gameLayer;
@@ -159,45 +64,8 @@ Created By: Travis Berthelot
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                 gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index);
 
-        <xsl:if test="../conditions" >
-            <xsl:for-each select="../conditions" >
-                <xsl:variable name="typeValue" select="type/value" />
-                <xsl:if test="$typeValue = 'PosX'" >
-                    //Condition - //PosX - call
-                    if(!gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, 
-                        <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList</xsl:if></xsl:for-each>,
-                        index,
-                        globals.graphics)) {
-                        siblingConditions = false;
-                    }
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PosY'" >
-                    //Condition - //PosY - call
-                    if(!gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, 
-                        <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList</xsl:if></xsl:for-each>, 
-                        index,
-                        globals.graphics)) {
-                        siblingConditions = false;
-                    }
-                </xsl:if>
-                <xsl:if test="$typeValue = 'NumberObjectVariable'" >
-                    //Condition - //NumberObjectVariable - call
-                    if(!gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, 
-                        <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList</xsl:if></xsl:for-each>,
-                        index,
-                        globals.graphics)) {
-                        siblingConditions = false;
-                    }
-                </xsl:if>
-            </xsl:for-each>
-                if(siblingConditions) {
-                    this.processReleased(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)).gdObject);
-                }
-        </xsl:if>
-
-        <xsl:if test="not(../conditions)" >
                                 this.processReleased(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)).gdObject);
-        </xsl:if>
+
                                 //updateGDObject - 6
                                 gameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
                                 }

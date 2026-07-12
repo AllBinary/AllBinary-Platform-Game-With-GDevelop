@@ -413,48 +413,6 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
 
             <xsl:variable name="hasParentButtonSibling" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'SourisSurObjet'" >found</xsl:if></xsl:for-each></xsl:variable>
-                        
-            <xsl:choose>
-                <xsl:when test ="preceding::events/actions[parameters[1]/text() = current()/actions/parameters/text()]">
-                    //eventsClassPropertyActions - No Preceding text=<xsl:value-of select="parameters[1]/text()" />
-                    <xsl:text>&#10;</xsl:text>
-
-                    <xsl:for-each select="conditions" >
-                        <xsl:variable name="typeValue" select="type/value" />
-                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
-                        <xsl:if test="$typeValue = 'Timer'" >
-                            <xsl:for-each select="../actions" >
-                                <xsl:variable name="typeValue" select="type/value" />
-                                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
-                                <xsl:text>&#10;</xsl:text>
-                                <xsl:if test="$typeValue = 'ModVarScene'" >
-                                    //eventsClassPropertyActions - //ModVarScene - 1
-                                </xsl:if>
-                            </xsl:for-each>
-                        </xsl:if>
-                    </xsl:for-each>
-
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:for-each select="conditions" >
-                        <xsl:variable name="typeValue" select="type/value" />
-                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                        //eventsClassPropertyActions - Had preceding text Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
-                        <xsl:if test="$typeValue = 'Timer'" >
-                            <xsl:for-each select="../actions" >
-                                <xsl:variable name="typeValue" select="type/value" />
-                                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
-                                <xsl:text>&#10;</xsl:text>
-                            </xsl:for-each>
-                        </xsl:if>
-                    </xsl:for-each>
-                </xsl:otherwise>
-            </xsl:choose>
 
             <xsl:choose>
                 <xsl:when test ="$hasParentDepartSceneCondition = 'true' or conditions/type/value = 'DepartScene' or conditions/type/value = 'SceneJustBegins'">

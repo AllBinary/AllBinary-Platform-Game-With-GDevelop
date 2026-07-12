@@ -76,9 +76,10 @@ Created By: Travis Berthelot
                                 <xsl:when test="type/value = 'IsMouseWheelScrollingDown' or type/value = 'IsMouseWheelScrollingUp'" >
                                     found
                                 </xsl:when>
+<!--                                //Unremark if using a runnable
                                 <xsl:when test="type/value = 'Timer' or type/value = 'ObjectTimer'" >
                                     found
-                                </xsl:when>
+                                </xsl:when>-->
                                 <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
                                     found
                                 </xsl:when>
@@ -107,9 +108,10 @@ Created By: Travis Berthelot
                             <xsl:when test="type/value = 'IsMouseWheelScrollingDown' or type/value = 'IsMouseWheelScrollingUp'" >
                         //Skip - IsMouseWheelScrollingDown for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
                             </xsl:when>
+<!--                            //Unremark if using a runnable
                             <xsl:when test="type/value = 'Timer' or type/value = 'ObjectTimer'" >
                         //Skip - Timer, ObjectTimer for process() as it can only be called from Runnable
-                            </xsl:when>
+                            </xsl:when>-->
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                             </xsl:when>
@@ -161,8 +163,9 @@ Created By: Travis Berthelot
                             </xsl:when>
                             <xsl:when test="type/value = 'IsMouseWheelScrollingDown' or type/value = 'IsMouseWheelScrollingUp'" >
                             </xsl:when>
+<!--                            //Unremark if using a runnable
                             <xsl:when test="type/value = 'Timer' or type/value = 'ObjectTimer'" >
-                            </xsl:when>
+                            </xsl:when>-->
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
                             </xsl:when>
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
@@ -202,9 +205,10 @@ Created By: Travis Berthelot
                             <xsl:when test="type/value = 'IsMouseWheelScrollingDown' or type/value = 'IsMouseWheelScrollingUp'" >
                         //Skip - IsMouseWheelScrollingDown for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
                             </xsl:when>
+<!--                            //Unremark if using a runnable
                             <xsl:when test="type/value = 'Timer' or type/value = 'ObjectTimer'" >
                         //Skip - Timer, ObjectTimer for process() as it can only be called from Runnable
-                            </xsl:when>
+                            </xsl:when>-->
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index3);
                             </xsl:when>
@@ -256,8 +260,9 @@ Created By: Travis Berthelot
                             </xsl:when>
                             <xsl:when test="type/value = 'IsMouseWheelScrollingDown' or type/value = 'IsMouseWheelScrollingUp'" >
                             </xsl:when>
+<!--                            //Unremark if using a runnable
                             <xsl:when test="type/value = 'Timer' or type/value = 'ObjectTimer'" >
-                            </xsl:when>
+                            </xsl:when>-->
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
                             </xsl:when>
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >

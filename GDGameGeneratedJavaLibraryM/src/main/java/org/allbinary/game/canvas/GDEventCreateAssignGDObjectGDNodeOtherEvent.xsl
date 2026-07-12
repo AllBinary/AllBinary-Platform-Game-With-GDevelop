@@ -38,10 +38,6 @@ Created By: Travis Berthelot
             <xsl:variable name="actionParametersAsString" ><xsl:value-of select="translate(translate($actionParametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
 -->
 
-            <xsl:variable name="thisNodeArray" >
-                <xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:if></xsl:for-each>
-            </xsl:variable>
-
             <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
             <xsl:variable name="foundOtherCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'BuiltinCommonInstructions::Always' or type/value = 'DepartScene' or type/value = 'SceneJustBegins' or type/value = 'ObjectVariableChildCount' or type/value = 'NumberObjectVariable' or type/value = 'VarScene' or type/value = 'NbObjet' or type/value = 'BooleanObjectVariable' or type/value = 'SourisSurObjet' or type/value = 'IsCursorOnObject' or type/value = 'BooleanVariable'" >found</xsl:if></xsl:for-each></xsl:variable>

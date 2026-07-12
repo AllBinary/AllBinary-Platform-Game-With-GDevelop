@@ -95,7 +95,6 @@ Created By: Travis Berthelot
         <xsl:param name="conditionEventPosition" />
         <xsl:param name="hasParentOnceCondition" />
         <xsl:param name="alreadyUsedCondition" />
-        <xsl:param name="thisNodeArray" />
         <xsl:param name="eventAsString" />
         <xsl:param name="actionAsStringsStrings" />
         <xsl:param name="logString" />
@@ -244,6 +243,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
                     </xsl:call-template>
 
                 </xsl:when>
@@ -254,6 +254,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
                     </xsl:call-template>
                     
                 </xsl:when>
@@ -264,6 +265,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
                     </xsl:call-template>
                     
                 </xsl:when>                        
@@ -1180,7 +1182,6 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
                         <xsl:with-param name="thisNodeIndex" ><xsl:value-of select="$thisNodeIndex" /></xsl:with-param>
-                        <xsl:with-param name="thisNodeArray" ><xsl:value-of select="$thisNodeArray" /></xsl:with-param>
                         <xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param>
                         <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
                         <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
@@ -1201,7 +1202,6 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
                         <xsl:with-param name="thisNodeIndex" ><xsl:value-of select="$thisNodeIndex" /></xsl:with-param>
-                        <xsl:with-param name="thisNodeArray" ><xsl:value-of select="$thisNodeArray" /></xsl:with-param>
                         <xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param>
                         <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
                         <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
@@ -1255,8 +1255,6 @@ Created By: Travis Berthelot
                         <xsl:with-param name="thisNodeIndex" ><xsl:value-of select="$thisNodeIndex" /></xsl:with-param>
                         <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
                                                 
-                        <xsl:with-param name="thisNodeArray" >this</xsl:with-param>                    
-                        <xsl:with-param name="conditionPosition" ><xsl:value-of select="position()" /></xsl:with-param>
                         <xsl:with-param name="logString" >CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:with-param>
 
                     </xsl:call-template>
@@ -1277,9 +1275,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
                         <xsl:with-param name="thisNodeIndex" ><xsl:value-of select="$thisNodeIndex" /></xsl:with-param>
                         <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
-                                                
-                        <xsl:with-param name="thisNodeArray" >this</xsl:with-param>                    
-                        <xsl:with-param name="conditionPosition" ><xsl:value-of select="position()" /></xsl:with-param>
+
                         <xsl:with-param name="logString" >CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:with-param>
 
                     </xsl:call-template>
@@ -1630,7 +1626,6 @@ Created By: Travis Berthelot
 
             <xsl:variable name="logString" >EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
-            <xsl:variable name="hasAssociatedSiblingCondition" select="conditions/type/value = 'MouseButtonReleased' or conditions/type/value = 'MouseButtonFromTextReleased' or conditions/type/value = 'SourisBouton' or conditions/type/value = 'MouseButtonPressed' or conditions/type/value = 'MouseButtonFromTextPressed' or conditions/type/value = 'VarScene' or conditions/type/value = 'Timer'" />
             <xsl:variable name="actionTypesAsString" ><xsl:for-each select="actions" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="type/value" />,</xsl:for-each></xsl:variable>
             <xsl:variable name="actionParametersAsString0" ><xsl:for-each select="actions" ><xsl:for-each select="parameters" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="text()" />,</xsl:for-each></xsl:for-each></xsl:variable>
             <xsl:variable name="actionParametersAsString" ><xsl:value-of select="translate(translate($actionParametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
@@ -1651,10 +1646,6 @@ Created By: Travis Berthelot
                         </xsl:if>
                 <xsl:text>&#10;</xsl:text>
             </xsl:for-each>
-            </xsl:variable>
-
-            <xsl:variable name="thisNodeArray" >
-                <xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:if></xsl:for-each>
             </xsl:variable>
 
             <xsl:variable name="eventsCreateProcessUsed" >
@@ -1721,9 +1712,6 @@ Created By: Travis Berthelot
                 </xsl:with-param>
                 <xsl:with-param name="alreadyUsedCondition" >
                     <xsl:value-of select="$alreadyUsedCondition" />
-                </xsl:with-param>
-                <xsl:with-param name="thisNodeArray" >
-                    <xsl:value-of select="$thisNodeArray" />
                 </xsl:with-param>
                 <xsl:with-param name="eventAsString" >
                     <xsl:value-of select="$eventAsString" />
@@ -1796,9 +1784,6 @@ Created By: Travis Berthelot
                 <xsl:with-param name="alreadyUsedCondition" >
                     <xsl:value-of select="$alreadyUsedCondition" />
                 </xsl:with-param>
-                <xsl:with-param name="thisNodeArray" >
-                    <xsl:value-of select="$thisNodeArray" />
-                </xsl:with-param>
                 <xsl:with-param name="eventAsString" >
                     <xsl:value-of select="$eventAsString" />
                 </xsl:with-param>
@@ -1861,9 +1846,6 @@ Created By: Travis Berthelot
                 <xsl:with-param name="alreadyUsedCondition" >
                     <xsl:value-of select="$alreadyUsedCondition" />
                 </xsl:with-param>
-                <xsl:with-param name="thisNodeArray" >
-                    <xsl:value-of select="$thisNodeArray" />
-                </xsl:with-param>
                 <xsl:with-param name="eventAsString" >
                     <xsl:value-of select="$eventAsString" />
                 </xsl:with-param>
@@ -1924,9 +1906,6 @@ Created By: Travis Berthelot
                 </xsl:with-param>
                 <xsl:with-param name="alreadyUsedCondition" >
                     <xsl:value-of select="$alreadyUsedCondition" />
-                </xsl:with-param>
-                <xsl:with-param name="thisNodeArray" >
-                    <xsl:value-of select="$thisNodeArray" />
                 </xsl:with-param>
                 <xsl:with-param name="eventAsString" >
                     <xsl:value-of select="$eventAsString" />

@@ -147,7 +147,6 @@ Created By: Travis Berthelot
                 </xsl:for-each>
             </xsl:variable>
 
-            <xsl:variable name="hasAssociatedSiblingCondition" select="conditions/type/value = 'MouseButtonReleased' or conditions/type/value = 'MouseButtonFromTextReleased' or conditions/type/value = 'SourisBouton' or conditions/type/value = 'MouseButtonPressed' or conditions/type/value = 'MouseButtonFromTextPressed' or conditions/type/value = 'VarScene' or conditions/type/value = 'Timer'" />
 <!--            <xsl:variable name="actionTypesAsString" ><xsl:for-each select="actions" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="type/value" />,</xsl:for-each></xsl:variable>-->
 
 <!--  
@@ -167,10 +166,6 @@ Created By: Travis Berthelot
             </xsl:for-each>
             </xsl:variable>
 -->
-
-            <xsl:variable name="thisNodeArray" >
-                <xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:if></xsl:for-each>
-            </xsl:variable>
 
             <xsl:variable name="extensionNames" >
                 <xsl:for-each select="actions" >
@@ -206,7 +201,7 @@ Created By: Travis Berthelot
                 //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                 <xsl:text>&#10;</xsl:text>
 
-                    //Action - GDNode - for Condition totalRecursions=<xsl:value-of select="$totalRecursions" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" /> hasAssociatedSiblingCondition=<xsl:value-of select="$hasAssociatedSiblingCondition" />
+                    //Action - GDNode - for Condition totalRecursions=<xsl:value-of select="$totalRecursions" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" /> 
                     public class GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode extends GDNode {
                     
                     public GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode() {
@@ -433,10 +428,8 @@ Created By: Travis Berthelot
                     super.processGDStats(gameLayer);
 
                     //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-
-                    this.process();
                     
-                    return true;
+                    return this.process();
                 }
 
                 </xsl:when>

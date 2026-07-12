@@ -24,7 +24,6 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="caller" />
         <xsl:param name="thisNodeIndex" />
-        <xsl:param name="thisNodeArray" />
         <xsl:param name="createdObjectsAsString" />
         <xsl:param name="objectsAsString" />
         <xsl:param name="parametersAsString" />
@@ -70,7 +69,7 @@ Created By: Travis Berthelot
 
                         //Timer - runnable
                         <xsl:if test="not(contains($forExtension, 'found'))" >
-                        private final Runnable runnable = new Runnable() {
+<!--                        private final Runnable runnable = new Runnable() {
                         
                             public void run() {
                                 try {
@@ -81,7 +80,6 @@ Created By: Travis Berthelot
                                     if(<xsl:if test="$inverted = 'true'" >!</xsl:if>globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper.isTime(gameTickTimeDelayHelper.startTime)) {
                                         //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                                         
-                                        <xsl:variable name="conditionPosition" ><xsl:value-of select="position()" /></xsl:variable>
                                         <xsl:for-each select=".." >
 
                         <xsl:call-template name="actionsProcessing" >
@@ -103,36 +101,6 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
-<!--                                        //eventsCreateAssignGDObject - //hackProcessing - START
-                                        <xsl:call-template name="hackProcessing" >
-                                            <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObject</xsl:with-param>
-                                            <xsl:with-param name="thisNodeIndex" >
-                                                <xsl:value-of select="$thisNodeIndex" />
-                                            </xsl:with-param>
-                                            <xsl:with-param name="thisNodeArray" >
-                                                <xsl:value-of select="$thisNodeArray" />
-                                            </xsl:with-param>                    
-                                            <xsl:with-param name="conditionPosition" >
-                                                <xsl:value-of select="$conditionPosition" />
-                                            </xsl:with-param>                    
-                                            <xsl:with-param name="layoutIndex" >
-                                                <xsl:value-of select="$layoutIndex" />
-                                            </xsl:with-param>
-                                            <xsl:with-param name="parametersAsString" >
-                                                <xsl:value-of select="$parametersAsString" />
-                                            </xsl:with-param>
-                                            <xsl:with-param name="objectsAsString" >
-                                                <xsl:value-of select="$objectsAsString" />
-                                            </xsl:with-param>
-                                            <xsl:with-param name="createdObjectsAsString" >
-                                                <xsl:value-of select="$createdObjectsAsString" />
-                                            </xsl:with-param>
-                                            <xsl:with-param name="logString" >
-                                                <xsl:value-of select="$logString" />
-                                            </xsl:with-param>
-                                        </xsl:call-template>
-                                        //eventsCreateAssignGDObject - //hackProcessing - END-->
-
                                         </xsl:for-each>
                                         
                                     }
@@ -143,7 +111,7 @@ Created By: Travis Berthelot
                                     logUtil.put(commonStrings.EXCEPTION_LABEL + "Runnable", this, commonStrings.RUN, e);
                                 }
                             }
-                        };
+                        };-->
                         </xsl:if>
                         
                         //Timer - condition - //forExtension=<xsl:value-of select="$forExtension" />
@@ -153,24 +121,34 @@ Created By: Travis Berthelot
                             super.processStats();
 
                             //if(this.currentRunnable != this.runnable) {
-                                this.currentRunnable = this.runnable;
+<!--                            //Unremark if using a runnable-->
+<!--                                this.currentRunnable = this.runnable;-->
                             //} else {
                                 //Best to not remark out when parent conditions include: SourisBouton, SourisSurObjet, or KeyFromTextPressed
                                 //logUtil.putF(commonStrings.EXCEPTION_LABEL + "Runnable already set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception());
                             //}
 
-                            return true;
+                            globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper.delay = (int) (1000 * <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
+                            //logUtil.put(new StringMaker().append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper.getElapsed(globals.globalsGameTickTimeDelayHelper.lastStartTime)).append('/').append(globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper.delay).toString(), this, commonStrings.PROCESS);
+                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper.isTime(gameTickTimeDelayHelper.startTime)) {
+                                //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);                                
+                                return true;
+                            } else {
+                                return false;
+                            }
                         }
 
                         @Override
                         public void processReleased() throws Exception { //Timer
                             super.processReleasedStats();
-
+<!--                            //Unremark if using a runnable-->
+<!--
                             if(this.currentRunnable != NullRunnable.getInstance()) {
                                 this.currentRunnable = NullRunnable.getInstance();
                             } else {
                                 logUtil.putF(commonStrings.EXCEPTION_LABEL + "Runnable was not set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE);
                             }
+-->
                         }
 
                         <xsl:value-of select="$eventsCreateProcessUsed" disable-output-escaping="yes" />

@@ -1307,13 +1307,6 @@ Created By: Travis Berthelot
             </xsl:if>
             </xsl:if>
 
-            <!--
-            <xsl:if test="contains($timerActions, 'Timer,')" >
-                            //Hackish stop repeat action
-                            gdNodeList.clear();
-            </xsl:if>
-            -->
-
             <xsl:if test="$listSize != ''" >
                             //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Event - //<xsl:value-of select="type" /> - call
             <xsl:if test="contains($caller, 'otherEventLayout')" >
