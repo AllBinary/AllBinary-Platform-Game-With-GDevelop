@@ -227,7 +227,8 @@ Created By: Travis Berthelot
                         </xsl:if>
                         
                         }
-                                            
+
+                        //lastPointGDNode
                         @Override
                         public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                             super.processStats(motionGestureEvent);
@@ -290,15 +291,8 @@ Created By: Travis Berthelot
 
                                         //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "press", this, commonStrings.PROCESS);
                                         
-                                        this.process();
-                                        
-                                    <xsl:if test="$inverted != 'true'" >
-                                    <xsl:if test="contains($foundSubInstructions, 'found')" >
-                                        //Calculator
                                         return true;
-                                    </xsl:if>
-                                    </xsl:if>
-
+                                        
                                     } else if(lastMotionGestureInput == touchMotionGestureFactory.RELEASED) {
                                     
                                         //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "release", this, commonStrings.PROCESS);
@@ -310,12 +304,15 @@ Created By: Travis Berthelot
                                     //release
                                     //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
                                     if (lastMotionGestureInput == touchMotionGestureFactory.PRESSED) {
-
+                                        return true;
                                     } else if(lastMotionGestureInput == touchMotionGestureFactory.RELEASED) {
 
                                         runnable.run();
 
                                     }
+                                    </xsl:if>
+                                    <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
+                                        return true;
                                     </xsl:if>
 
                                 } else {

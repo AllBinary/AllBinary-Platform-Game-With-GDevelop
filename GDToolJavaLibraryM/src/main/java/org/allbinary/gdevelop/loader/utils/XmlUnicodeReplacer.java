@@ -111,7 +111,7 @@ public class XmlUnicodeReplacer {
             replacedBuilder.append(XmlUnicodeReplacer.REPLACED_PREFIX);
             replacedBuilder.append(XmlUnicodeReplacer.REPLACEMENT);
             System.out.println(replacedBuilder.toString());
-            throw new RuntimeException();
+            //throw new RuntimeException();
         } else {
             System.out.println(XmlUnicodeReplacer.NO_NON_ASCII);
         }

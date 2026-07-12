@@ -93,7 +93,27 @@ Created By: Travis Berthelot
                                             <xsl:variable name="conditionPosition" ><xsl:value-of select="position()" /></xsl:variable>
                                             <xsl:for-each select=".." >
 
-                                            //eventsCreateAssignGDObject - //hackProcessing - START
+
+                        <xsl:call-template name="actionsProcessing" >
+                            <xsl:with-param name="methodCall" >process()</xsl:with-param>
+                        </xsl:call-template>
+
+                    <xsl:for-each select="events" >
+                        <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
+                            //Events only - //Event - //<xsl:value-of select="type" /> - call
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                        </xsl:if>
+                        <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
+                            <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> 
+                            <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            //Event - //BuiltinCommonInstructions::Link - call
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process();
+                        </xsl:if>
+                    </xsl:for-each>
+                                                
+<!--                                            //eventsCreateAssignGDObject - //hackProcessing - START
                                             <xsl:call-template name="hackProcessing" >
                                                 <xsl:with-param name="indexInUse" >index</xsl:with-param>
                                                 <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObject</xsl:with-param>
@@ -122,7 +142,7 @@ Created By: Travis Berthelot
                                                     <xsl:value-of select="$logString" />
                                                 </xsl:with-param>
                                             </xsl:call-template>
-                                            //eventsCreateAssignGDObject - //hackProcessing - END
+                                            //eventsCreateAssignGDObject - //hackProcessing - END-->
                                         
                                             </xsl:for-each>
                                         

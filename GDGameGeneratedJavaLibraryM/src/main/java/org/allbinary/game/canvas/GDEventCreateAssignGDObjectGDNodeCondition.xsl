@@ -741,7 +741,7 @@ Created By: Travis Berthelot
                     </xsl:when>
                     <xsl:when test="$typeValue = 'BuiltinCommonInstructions::Once'" >
                     
-                        <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
+<!--                        <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >-->
 
                         <xsl:call-template name="onceConditionGDNode" >
                             <xsl:with-param name="forExtension" >
@@ -767,7 +767,7 @@ Created By: Travis Berthelot
                             </xsl:call-template>
                         </xsl:for-each>
 
-                        </xsl:if>
+<!--                        </xsl:if>-->
 
                     </xsl:when>
 

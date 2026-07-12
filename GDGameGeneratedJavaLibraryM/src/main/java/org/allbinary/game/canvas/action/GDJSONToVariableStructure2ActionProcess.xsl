@@ -50,6 +50,16 @@ Created By: Travis Berthelot
 
                             return true;
                         }
+                            
+                    @Override
+                    public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+                        super.processStats(motionGestureEvent);
+                        
+                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                        
+                        return this.process();
+                    }
+                            
                         </xsl:if>
 
                         public void process(final GDGameLayer gameLayer, final int x, final int y) {

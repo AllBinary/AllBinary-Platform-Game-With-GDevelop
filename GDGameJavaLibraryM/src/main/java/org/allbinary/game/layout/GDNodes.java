@@ -13,6 +13,9 @@
  */
 package org.allbinary.game.layout;
 
+import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.StringMaker;
+import org.allbinary.string.CommonStrings;
 import org.allbinary.thread.NullRunnable;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
@@ -27,10 +30,13 @@ public class GDNodes {
     
     public void process() {
 
+        //final LogUtil logUtil = LogUtil.getInstance();
+        //final CommonStrings commonStrings = CommonStrings.getInstance();
         GDNode gdNode;
         final int size2 = this.runnableList.size();
         for (int index = 0; index < size2; index++) {
             gdNode = (GDNode) this.runnableList.get(index);
+            //logUtil.putF(new StringMaker().appendlong(gdNode.getName()).toString(), this, commonStrings.PROCESS);
             gdNode.currentRunnable.run();
         }
 

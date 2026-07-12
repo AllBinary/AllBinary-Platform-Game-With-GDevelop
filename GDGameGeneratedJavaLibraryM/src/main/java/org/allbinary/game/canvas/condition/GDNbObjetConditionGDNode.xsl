@@ -135,7 +135,7 @@ Created By: Travis Berthelot
                                 //stringBuilder.delete(0, stringBuilder.length());
                                 //logUtil.put(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>").toString(), this, commonStrings.PROCESS);
 
-                                <xsl:if test="not(contains($hasOtherConditions, 'found'))" >
+<!--                                <xsl:if test="not(contains($hasOtherConditions, 'found'))" >
 
                                 <xsl:for-each select=".." >
                                 <xsl:call-template name="actionsProcessing" >
@@ -162,7 +162,7 @@ Created By: Travis Berthelot
                                 //Event - //BuiltinCommonInstructions::Link - call - //NbObjet
                                 <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process();
                                     </xsl:if>
-                                </xsl:for-each>
+                                </xsl:for-each>-->
                             
                                 <!--
                                 //Condition - //NbObjet - //Action - 
@@ -174,6 +174,7 @@ Created By: Travis Berthelot
                                 
                                 -->
 
+                                <!--
                                 <xsl:for-each select="../conditions" >
                                     <xsl:if test="position() = $position + 1" >
                                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -182,7 +183,7 @@ Created By: Travis Berthelot
                                 //Condition - //NbObjet - //Condition - //<xsl:value-of select="type/value" /> - call - <xsl:value-of select="$conditionNodeIndex" />
                                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                                     </xsl:if>
-                                </xsl:for-each>
+                                </xsl:for-each>-->
                                 
                                 return true;                                
                             } else {

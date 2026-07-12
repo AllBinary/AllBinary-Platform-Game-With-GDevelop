@@ -72,7 +72,17 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
                         //logUtil.putF(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + ((<xsl:value-of select="$gdObjectFactory" />) (((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$firstParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$firstParam" />GDGameLayerList.get(index))).gdObject).<xsl:value-of select="$secondParam" />, this, commonStrings.PROCESS);
                         return true;
-                    }        
+                    }
+                        
+                    @Override
+                    public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+                        super.processStats(motionGestureEvent);
+                        
+                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                        
+                        return this.process();
+                    }
+
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >

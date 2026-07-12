@@ -58,7 +58,7 @@ Created By: Travis Berthelot
                                 //stringBuilder.delete(0, stringBuilder.length());
                                 //logUtil.put(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).toString(), this, commonStrings.PROCESS);
                                 
-                                <xsl:variable name="hasOtherConditions" ><xsl:for-each select="preceding-sibling::conditions" >found</xsl:for-each></xsl:variable>
+<!--                                <xsl:variable name="hasOtherConditions" ><xsl:for-each select="preceding-sibling::conditions" >found</xsl:for-each></xsl:variable>
 
                                 <xsl:if test="not(contains($hasOtherConditions, 'found'))" >
 
@@ -102,7 +102,7 @@ Created By: Travis Berthelot
                                 //Condition - //ObjectVariableChildCount - //Condition - //<xsl:value-of select="type/value" /> - call - <xsl:value-of select="$conditionNodeIndex" />
                                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                                     </xsl:if>
-                                </xsl:for-each>
+                                </xsl:for-each>-->
                                 
                                 result = true;
                             } else {

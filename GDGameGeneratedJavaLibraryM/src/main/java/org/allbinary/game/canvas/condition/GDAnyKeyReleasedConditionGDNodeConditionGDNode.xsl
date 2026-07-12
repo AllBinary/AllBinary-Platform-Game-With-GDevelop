@@ -71,6 +71,8 @@ Created By: Travis Berthelot
                                     <xsl:value-of select="text()" />,</xsl:for-each>
                                     //Condition - //<xsl:value-of select="type/value" /> - call
                                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                                    //TWB - I don't think conditions occur here remove after more testing
+                                    throw new RuntmeException();
                             </xsl:for-each>
 
                             <xsl:for-each select=".." >
@@ -78,6 +80,7 @@ Created By: Travis Berthelot
                                     <xsl:with-param name="methodCall" >processReleased()</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
+
                                     }
                                 }
                             };

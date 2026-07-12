@@ -136,7 +136,7 @@ Created By: Travis Berthelot
 
                             //logUtil.put(new StringMaker().append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append("<xsl:if test="$inverted = 'true'" >!</xsl:if>").append(" d: ").append(this.layerDistanceUtil.getDistance(gameLayer, gameLayer2)).append(" lt ").append(<xsl:value-of select="$param3" />).toString(), this, commonStrings.PROCESS);
 
-                        <xsl:for-each select=".." >
+<!--                        <xsl:for-each select=".." >
                         <xsl:for-each select="conditions" >
                             <xsl:if test="$nodeId != number(substring(generate-id(), 2) - 65536)" >
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -169,8 +169,9 @@ Created By: Travis Berthelot
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:if>
-                        </xsl:for-each>
+                        </xsl:for-each>-->
 
+                                return true;
                             }
 
                             if(initialSize2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> gdGameLayerList2.size()) {
@@ -191,7 +192,7 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($hasObjectGroup, 'found')" >
                             }
                         </xsl:if>
-                            return true;
+                            return false;
 
                         }
                         

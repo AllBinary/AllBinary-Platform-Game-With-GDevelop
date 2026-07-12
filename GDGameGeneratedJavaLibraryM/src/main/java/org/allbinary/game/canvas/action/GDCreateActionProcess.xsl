@@ -66,6 +66,8 @@ Created By: Travis Berthelot
                         
                     }
 
+                    private GDGameLayer createdGameLayer;
+
                     @Override
                     public boolean processCreate() throws Exception {
                         super.processStats();
@@ -157,6 +159,7 @@ Created By: Travis Berthelot
                             gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = <xsl:value-of select="text()" />GDGameLayer;
                             <xsl:value-of select="text()" />GDGameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
                             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer);
+                            this.createdGameLayer = <xsl:value-of select="text()" />GDGameLayer;
                         </xsl:if>
                     </xsl:for-each>
                     
@@ -164,6 +167,15 @@ Created By: Travis Berthelot
                     
                         return false;
                         
+                    }
+
+                    @Override
+                    public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+                        super.processStats(motionGestureEvent);
+                        
+                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                        
+                        return this.process();
                     }
 
 <!--                        <xsl:variable name="param" >
@@ -345,13 +357,12 @@ Created By: Travis Berthelot
                     //Create End
                     @Override
                     public void processEnd() throws Exception {
-                        final int index = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() - 1;
-                        super.processEndStats(index);
+                        super.processEndStats(-1);
 
                         //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.END);
-                        this.processEnd(index);
+                        this.processEnd(-1);
                      }
-
+               
                     @Override
                     public void processEnd(final int index) throws Exception {
                         super.processEndStats(index);
@@ -363,7 +374,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="layerName" ><xsl:value-of select="text()" /></xsl:variable>
                             <xsl:variable name="gameLayer" ><xsl:value-of select="text()" />GDGameLayer</xsl:variable>
 
-                            final GDGameLayer <xsl:value-of select="$gameLayer" /> = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$layerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayer" />List.get(index);
+                            final GDGameLayer <xsl:value-of select="$gameLayer" /> = this.createdGameLayer;
                             
                             if(<xsl:value-of select="$gameLayer" /> != null) {
                                 //updateGDObject - 3

@@ -15,7 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
-
+    
     <xsl:template name="resetTimerActionProcess" >
         <xsl:param name="forExtension" />
         <xsl:param name="layoutIndex" />
@@ -34,6 +34,17 @@ Created By: Travis Berthelot
                             <xsl:if test="position() = 2" >globals.<xsl:value-of select="translate(text(), '&quot;', '')" />TimeDelayHelper.setStartTime(globals.globalsGameTickTimeDelayHelper.lastStartTime);</xsl:if>
                         </xsl:for-each>
 
+                    //initTimerConditions - START                    
+                    <xsl:call-template name="initTimerConditions" >
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    //initTimerConditions - END                        
+
                         return true;
                     }
 
@@ -41,6 +52,15 @@ Created By: Travis Berthelot
                     public boolean process(final int index) throws Exception {
                         //this.processStats();
                             
+                        return this.process();
+                    }
+
+                    @Override
+                    public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+                        super.processStats(motionGestureEvent);
+                        
+                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                        
                         return this.process();
                     }
 

@@ -134,6 +134,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
                 import org.allbinary.input.event.VirtualKeyboardEventHandler;
+                import org.allbinary.input.motion.gesture.MotionGestureInput;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.layer.AllBinaryLayerManager;
                 import org.allbinary.string.CommonStrings;

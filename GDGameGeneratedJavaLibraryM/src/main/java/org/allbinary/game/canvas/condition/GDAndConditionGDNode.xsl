@@ -127,10 +127,9 @@ Created By: Travis Berthelot
                             </xsl:if>
 
                             <xsl:if test="not(contains($hasSiblingWithDuplicateProcessing, 'found'))" >
-                              //This should already be called
-//                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>result) {
-//                                this.processSub(gameLayer, gameLayer2, graphics);
-//                            }
+                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>result) {
+                                this.processSub(gameLayer, gameLayer2, graphics);
+                            }
                             </xsl:if>
 
 
@@ -163,7 +162,6 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                         }
 
-<!--
                         public void processSub(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                             <xsl:for-each select=".." >
 
@@ -187,7 +185,7 @@ Created By: Travis Berthelot
                                 
                             </xsl:for-each>
                         }
--->
+
 
                         </xsl:if>
                         

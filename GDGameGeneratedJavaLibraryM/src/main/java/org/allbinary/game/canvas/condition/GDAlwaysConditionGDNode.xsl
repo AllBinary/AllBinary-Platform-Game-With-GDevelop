@@ -42,9 +42,11 @@ Created By: Travis Berthelot
 
                             <xsl:if test="$inverted = 'true'" >
                                 //Inverted Always does not call anything.
+                                return false;
                             </xsl:if>
-                            
+    
                             <xsl:if test="$inverted != 'true'" >
+<!--                        
                             <xsl:for-each select="preceding-sibling::conditions" >
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
@@ -53,9 +55,9 @@ Created By: Travis Berthelot
                             if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                                 return true;
                             }
-                            </xsl:for-each>
+                            </xsl:for-each>-->
 
-                            <xsl:if test="not(contains($hasOtherConditions, 'found'))" >
+<!--                            <xsl:if test="not(contains($hasOtherConditions, 'found'))" >
                                 <xsl:for-each select=".." >
 
                                 <xsl:call-template name="actionsProcessing" >
@@ -77,9 +79,11 @@ Created By: Travis Berthelot
 
                                 </xsl:for-each>
                             </xsl:if>
+-->
+
+                            return true;
                             </xsl:if>
 
-                            return false;
                         }
                         
                         @Override
@@ -96,7 +100,7 @@ Created By: Travis Berthelot
                             <xsl:if test="$inverted != 'true'" >
 
 
-                            <xsl:for-each select="preceding-sibling::conditions" >
+<!--                            <xsl:for-each select="preceding-sibling::conditions" >
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                             //Preceding-Sibling - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
@@ -104,9 +108,9 @@ Created By: Travis Berthelot
                             if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayer, gameLayer2, graphics)) {
                                 return true;
                             }
-                            </xsl:for-each>
+                            </xsl:for-each>-->
 
-                            <xsl:if test="not(contains($hasOtherConditions, 'found'))" >
+<!--                            <xsl:if test="not(contains($hasOtherConditions, 'found'))" >
                             
                                 //parentEventType=<xsl:value-of select="$parentEventType" />
                                 <xsl:if test="$parentEventType != 'BuiltinCommonInstructions::Standard'" >
@@ -133,7 +137,7 @@ Created By: Travis Berthelot
                                 </xsl:for-each>
                                 
                             </xsl:if>
-                            </xsl:if>
+                            </xsl:if>-->
 
                             return true;
                             </xsl:if>
