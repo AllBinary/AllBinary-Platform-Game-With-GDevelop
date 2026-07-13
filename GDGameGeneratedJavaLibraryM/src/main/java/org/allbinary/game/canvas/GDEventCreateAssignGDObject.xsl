@@ -683,6 +683,8 @@ Created By: Travis Berthelot
 
     <xsl:template name="actionsProcessing" >
         <xsl:param name="methodCall" />
+        <xsl:param name="parentParam" />
+        <xsl:param name="parentParam2" />
 
                         <xsl:variable name="hasCreateOrCreateByName" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" >found</xsl:if></xsl:for-each></xsl:variable>
                         <xsl:variable name="nodeId" ><xsl:for-each select="actions[type/value = 'Create' or type/value = 'CreateByName'][1]" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:for-each></xsl:variable>
@@ -707,7 +709,7 @@ Created By: Travis Berthelot
                             <xsl:text>&#10;</xsl:text>
                             <xsl:choose>
                             <xsl:when test="type/value = 'Create' or type/value = 'CreateByName'" >
-                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreate();
+                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreate<xsl:if test="string-length($parentParam) > 0" >GD(<xsl:value-of select="$parentParam" />, <xsl:value-of select="$parentParam2" />, null</xsl:if><xsl:if test="string-length($parentParam) = 0" >(</xsl:if>);
                                 <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                                 <xsl:variable name="id" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $param2" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $param2" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
                                 <xsl:value-of select="$param2" />GameLayer<xsl:value-of select="position()" /> = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />];
@@ -814,7 +816,7 @@ Created By: Travis Berthelot
                             //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="typs/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                             //caller=<xsl:value-of select="$caller" /> - //actionProcess - //hackProcessing - //Action - //Create - call
                             //TWB is this still needed2
-                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreate(<xsl:value-of select="$name" />);
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreateWithGDObject(<xsl:value-of select="$name" />);
                             final int index = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() - 1;
                                     </xsl:if>
                                 </xsl:for-each>
@@ -886,7 +888,7 @@ Created By: Travis Berthelot
                     //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="typs/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                     //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Action - //Create - call
                                 //TWB is this still needed
-                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreate(<xsl:value-of select="$name" />);
+                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreateWithGDObject(<xsl:value-of select="$name" />);
                                 final int index = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() - 1;
                                     </xsl:if>
                                     
@@ -1246,7 +1248,7 @@ Created By: Travis Berthelot
                                 //createGDObject - Assign - END                                                                                
                                 //createGDObject - //Create - call
                                 //TWB is this still needed4
-                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreate(<xsl:value-of select="$name" />);
+                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreateWithGDObject(<xsl:value-of select="$name" />);
                 </xsl:if>
 
                 <xsl:variable name="gameLayerName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>

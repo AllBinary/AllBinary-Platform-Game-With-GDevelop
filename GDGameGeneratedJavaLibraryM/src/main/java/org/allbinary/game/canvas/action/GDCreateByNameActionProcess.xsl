@@ -104,7 +104,7 @@ Created By: Travis Berthelot
 
                         //createByNameActionProcess - //CreateByName - process - END
                         //createByNameActionProcess - //CreateByName - call
-                        this.processCreate(<xsl:value-of select="$name" />, createString, createIndex);
+                        this.processCreateWithGDObject(<xsl:value-of select="$name" />, createString, createIndex);
                         
                         this.processEnd(((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(createIndex)).size() - 1, createIndex);
                         //this.processEnd(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() - 1);
@@ -148,7 +148,7 @@ Created By: Travis Berthelot
 
                         //createByNameActionProcess - //CreateByName - process - END
                         //createByNameActionProcess - //CreateByName - call
-                        this.processCreate(<xsl:value-of select="$name" />, createString, createIndex);
+                        this.processCreateWithGDObject(<xsl:value-of select="$name" />, createString, createIndex);
                         
                         return true;
                         </xsl:if>
@@ -230,7 +230,7 @@ Created By: Travis Berthelot
 
                         //createByNameActionProcess - //CreateByName - process - END
                         //createByNameActionProcess - //CreateByName - call
-                        this.processCreate(<xsl:value-of select="$name" />, createString, createIndex);
+                        this.processCreateWithGDObject(<xsl:value-of select="$name" />, createString, createIndex);
                         
                         this.processEnd(((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(createIndex)).size() - 1, createIndex);
                         //this.processEnd(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() - 1);
@@ -257,7 +257,7 @@ Created By: Travis Berthelot
                                             
                     //createByNameActionProcess - //CreateByName
                     @Override
-                    public boolean processCreate(final GDObject gdObject, final String createString, final int createIndex) throws Exception {
+                    public boolean processCreateByName(final GDObject gdObject, final String createString, final int createIndex) throws Exception {
                         super.processCreateStats(gdObject);
 
                         //logUtil.putF(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if></xsl:for-each>, this, commonStrings.PROCESS);

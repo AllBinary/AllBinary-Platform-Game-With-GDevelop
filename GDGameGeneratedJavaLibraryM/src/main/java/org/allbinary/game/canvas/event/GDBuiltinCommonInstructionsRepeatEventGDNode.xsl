@@ -381,6 +381,8 @@ Created By: Travis Berthelot
                         
                         <xsl:call-template name="actionsProcessing" >
                             <xsl:with-param name="methodCall" >processGD(gameLayer, gameGlobals.tempGameLayerArray[0], graphics)</xsl:with-param>
+                            <xsl:with-param name="parentParam" >gameLayer</xsl:with-param>
+                            <xsl:with-param name="parentParam2" >gameGlobals.tempGameLayerArray[0]</xsl:with-param>
                         </xsl:call-template>
 
                     <xsl:for-each select="events" >

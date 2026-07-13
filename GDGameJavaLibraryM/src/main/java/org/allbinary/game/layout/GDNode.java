@@ -133,14 +133,22 @@ public class GDNode
     }
 
     public boolean processCreate() throws Exception {
+        if(true) throw new RuntimeException();
         return true;
     }
 
-    public boolean processCreate(final GDObject gdObject) throws Exception {
+    public boolean processCreateWithGDObject(final GDObject gdObject) throws Exception {
+        if(true) throw new RuntimeException();
         return true;
     }
 
-    public boolean processCreate(final GDObject gdObject, final String createString, final int createIndex) throws Exception {
+    public boolean processCreateByName(final GDObject gdObject, final String createString, final int createIndex) throws Exception {
+        if(true) throw new RuntimeException();
+        return true;
+    }
+    
+    public boolean processCreateGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+        if(true) throw new RuntimeException();
         return true;
     }
         

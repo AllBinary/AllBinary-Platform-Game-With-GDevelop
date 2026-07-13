@@ -39,6 +39,7 @@ Created By: Travis Berthelot
                             {
                                 gameLayer = (GDGameLayer) allBinaryGameLayerManager.getLayerAt(index);
                                 gameLayer.setPosition(gameLayer.getXP() -<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each> (int) (<xsl:for-each select="parameters" ><xsl:if test="position() > 2" ><xsl:value-of select="translate(text(), $quote, '')" /></xsl:if> </xsl:for-each>), gameLayer.getYP(), gameLayer.getZP());
+                                gameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
                             }
 
                             return true;

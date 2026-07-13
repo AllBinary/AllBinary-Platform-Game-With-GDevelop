@@ -123,6 +123,8 @@ Created By: Travis Berthelot
 
                                 <xsl:call-template name="actionsProcessing" >
                                     <xsl:with-param name="methodCall" >processGD(gameLayer, gameLayer2, graphics)</xsl:with-param>
+                                    <xsl:with-param name="parentParam" >gameLayer</xsl:with-param>
+                                    <xsl:with-param name="parentParam2" >gameLayer2</xsl:with-param>
                                 </xsl:call-template>
                                 
                                 <xsl:for-each select="events" >

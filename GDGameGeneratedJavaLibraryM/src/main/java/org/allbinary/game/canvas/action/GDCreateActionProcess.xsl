@@ -58,7 +58,7 @@ Created By: Travis Berthelot
 
                         //createGDObject - process - END
                         //createGDObject - //Create
-                        this.processCreate(<xsl:value-of select="$name" />);
+                        this.processCreateWithGDObject(<xsl:value-of select="$name" />);
                         
                         this.processEnd(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() - 1);
 
@@ -93,7 +93,7 @@ Created By: Travis Berthelot
 
                         //createGDObject - process - END
                         //createGDObject - //Create
-                        this.processCreate(<xsl:value-of select="$name" />);
+                        this.processCreateWithGDObject(<xsl:value-of select="$name" />);
                         
                         return true;
                         
@@ -101,7 +101,7 @@ Created By: Travis Berthelot
 
                     //Create
                     @Override
-                    public boolean processCreate(final GDObject gdObject) throws Exception {
+                    public boolean processCreateWithGDObject(final GDObject gdObject) throws Exception {
                         super.processCreateStats(gdObject);
 
                         //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if></xsl:for-each>, this, commonStrings.PROCESS);
@@ -317,12 +317,54 @@ Created By: Travis Berthelot
 
                         //createGDObject - process - END
                         //createGDObject - //Create
-                        this.processCreate(<xsl:value-of select="$name" />);
+                        this.processCreateWithGDObject(<xsl:value-of select="$name" />);
                         
                         this.processEnd(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() - 1);
 
                         return false;
                     }
+
+                    <xsl:call-template name="parentSelectionNodeProcessGD" >
+                        <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                        <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                        <xsl:with-param name="secondGameLayer" ><xsl:value-of select="$firstOrBeforeFourthParam" /></xsl:with-param>
+                        <xsl:with-param name="secondGameLayer2" ><xsl:value-of select="$name" /></xsl:with-param>
+                        <xsl:with-param name="callEnding" >Create</xsl:with-param>
+                    </xsl:call-template>
+                    <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
+                    public boolean processCreateGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+
+                        super.processGDStats(gameLayer);
+<!--                        </xsl:if>-->
+                    </xsl:if>
+
+                        //createGDObject - processGD - START
+                    <xsl:call-template name="createGDObject" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsAsString" >
+                            <xsl:value-of select="$objectsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="nodeAsString" >
+                            <xsl:value-of select="$nodeAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="gameLayer" >
+                            <xsl:value-of select="$gameLayer" />
+                        </xsl:with-param>
+                        <xsl:with-param name="caller" >createActionProcess</xsl:with-param>
+                    </xsl:call-template>
+
+                        //createGDObject - process - END
+                        //createGDObject - //Create
+                        this.processCreateWithGDObject(<xsl:value-of select="$name" />);
+
+                        return false;
+                    }
+
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >
