@@ -696,7 +696,7 @@ Created By: Travis Berthelot
                                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                                 <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                                 <xsl:text>&#10;</xsl:text>
-                                GDGameLayer <xsl:value-of select="$param2" />GameLayer;
+                                GDGameLayer <xsl:value-of select="$param2" />GameLayer<xsl:value-of select="position()" />;
                             </xsl:if>
                         </xsl:for-each>
                         
@@ -710,7 +710,7 @@ Created By: Travis Berthelot
                                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreate();
                                 <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                                 <xsl:variable name="id" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $param2" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $param2" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
-                                <xsl:value-of select="$param2" />GameLayer = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />];
+                                <xsl:value-of select="$param2" />GameLayer<xsl:value-of select="position()" /> = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />];
                             </xsl:when>
                             <xsl:when test="$nodeId > number(substring(generate-id(), 2) - 65536)" >
                                 //This is called before Create/CreateByName
@@ -740,7 +740,7 @@ Created By: Travis Berthelot
                                     <xsl:for-each select="../actions" >
                                         <xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" >
                                             <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                                            <xsl:if test="contains($parametersAsString0, $param2)" ><xsl:value-of select="$param2" />GameLayer,</xsl:if>
+                                            <xsl:if test="contains($parametersAsString0, $param2)" ><xsl:value-of select="$param2" />GameLayer<xsl:value-of select="position()" />,</xsl:if>
                                         </xsl:if>
                                     </xsl:for-each>
                                 </xsl:variable>
