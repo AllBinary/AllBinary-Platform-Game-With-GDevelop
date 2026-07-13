@@ -228,7 +228,7 @@ Created By: Travis Berthelot
                     }
 
                     @Override
-                    public boolean processGD(final GDGameLayer gdGameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                    public boolean processGD(final GDGameLayer gdGameLayer, final GDGameLayer gameLayer2) throws Exception {
                     
                         //logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 

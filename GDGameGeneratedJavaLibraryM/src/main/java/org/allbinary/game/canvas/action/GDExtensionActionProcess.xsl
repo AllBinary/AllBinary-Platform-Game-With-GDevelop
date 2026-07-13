@@ -186,7 +186,7 @@ Created By: Travis Berthelot
                     </xsl:variable>
                     <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
                     //Not from parent - //extension=<xsl:value-of select="$extensionNameAndExtensionFunction" />
-                    public boolean processGD(final GDGameLayer <xsl:value-of select="$gameLayer" />, final GDGameLayer unusedGameLayer, final Graphics graphics) throws Exception {
+                    public boolean processGD(final GDGameLayer <xsl:value-of select="$gameLayer" />, final GDGameLayer unusedGameLayer) throws Exception {
 
                         super.processGDStats(<xsl:value-of select="$gameLayer" />);
                         

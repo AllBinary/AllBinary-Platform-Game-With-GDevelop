@@ -218,7 +218,7 @@ Created By: Travis Berthelot
                 <xsl:if test="contains($hasChildActionThatSetsSecondParam, 'found')" >//Using second param from child action (this should be sibling, but for now it is any child action)</xsl:if>
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />                
                 @Override
-                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="object" />GDGameLayer, final GDGameLayer <xsl:if test="contains($hasChildActionThatSetsSecondParam, 'found') and string-length($secondParam) > 0" ><xsl:value-of select="$secondParam" />GDGameLayer</xsl:if><xsl:if test="not(contains($hasChildActionThatSetsSecondParam, 'found') and string-length($secondParam) > 0)" >gdGameLayer</xsl:if>, final Graphics graphics) throws Exception {
+                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="object" />GDGameLayer, final GDGameLayer <xsl:if test="contains($hasChildActionThatSetsSecondParam, 'found') and string-length($secondParam) > 0" ><xsl:value-of select="$secondParam" />GDGameLayer</xsl:if><xsl:if test="not(contains($hasChildActionThatSetsSecondParam, 'found') and string-length($secondParam) > 0)" >gdGameLayer</xsl:if>) throws Exception {
 
                     super.processGDStats(<xsl:value-of select="object" />GDGameLayer);
                 </xsl:if>
@@ -237,10 +237,10 @@ Created By: Travis Berthelot
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
                 <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1] = conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" >
-                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" />2GDGameLayer, final Graphics graphics) throws Exception {
+                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" />2GDGameLayer) throws Exception {
                 </xsl:if>
                 <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1] != conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" >
-                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" />GDGameLayer, final Graphics graphics) throws Exception {
+                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" />GDGameLayer) throws Exception {
                 </xsl:if>
                    super.processGDStats(<xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" />GDGameLayer);
                 </xsl:if>
@@ -258,7 +258,7 @@ Created By: Travis Berthelot
                 //From parent Distance - <xsl:for-each select="conditions[type/value = 'Distance']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
-                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'Distance']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'Distance']/parameters[2]" />GDGameLayer, final Graphics graphics) throws Exception {
+                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'Distance']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'Distance']/parameters[2]" />GDGameLayer) throws Exception {
                 
                     super.processGDStats(<xsl:value-of select="conditions[type/value = 'Distance']/parameters[1]" />GDGameLayer);
                 </xsl:if>
@@ -276,7 +276,7 @@ Created By: Travis Berthelot
                 //From parent LinkedObjects::PickObjectsLinkedTo - <xsl:for-each select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
-                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[2]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[3]" />GDGameLayer, final Graphics graphics) throws Exception {
+                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[2]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[3]" />GDGameLayer) throws Exception {
 
                     super.processGDStats(<xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[2]" />GDGameLayer);
                 </xsl:if>
@@ -386,7 +386,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="name2" ><xsl:if test="contains($hasChildActionThatSetsSecondParam, 'found') and string-length($secondParam) > 0" ><xsl:value-of select="$secondParam" /></xsl:if><xsl:if test="not(contains($hasChildActionThatSetsSecondParam, 'found') and string-length($secondParam) > 0)" >gdObject</xsl:if></xsl:variable>
                 @Override
                 <xsl:if test="$name = 'gdObject' and $name2 != 'gdObject'" >
-                public boolean processGPaint(final GDObject gdObject, final GDObject gdObjects2, final Graphics graphics) {
+                public boolean processGPaint(final GDObject gdObject, final GDObject gdObjects2) {
                 
                 <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
                 //final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gdObject;
@@ -395,7 +395,7 @@ Created By: Travis Berthelot
                 </xsl:if>
                 
                 <xsl:if test="$name = 'gdObject' and $name2 = 'gdObject'" >
-                public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2, final Graphics graphics) {
+                public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2) {
                 
                 <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
                 //final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gdObject;
@@ -404,7 +404,7 @@ Created By: Travis Berthelot
                 </xsl:if>
                 
                 <xsl:if test="$name != 'gdObject' and $name2 = 'gdObject'" >
-                public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2, final Graphics graphics) {
+                public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2) {
                 
                 <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
                 final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gdObject;
@@ -413,7 +413,7 @@ Created By: Travis Berthelot
                 </xsl:if>
                 
                 <xsl:if test="$name != 'gdObject' and $name2 != 'gdObject'" >
-                public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2, final Graphics graphics) {
+                public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2) {
                 
                 <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
                 final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gdObject;
@@ -438,7 +438,7 @@ Created By: Travis Berthelot
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
                 <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1] = conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" >
-                public boolean processGPaint(final GDObject gdObject, final GDObject <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" />2, final Graphics graphics) {
+                public boolean processGPaint(final GDObject gdObject, final GDObject <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" />2) {
 
                 <xsl:variable name="name" ><xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" /></xsl:variable>
                 <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
@@ -447,7 +447,7 @@ Created By: Travis Berthelot
                 
                 </xsl:if>
                 <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1] != conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" >
-                public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2, final Graphics graphics) {
+                public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2) {
                 
                 <xsl:variable name="name" ><xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" /></xsl:variable>
                 <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
@@ -473,7 +473,7 @@ Created By: Travis Berthelot
                 //parentSelectionNodeProcessGPaint - //From parent Distance - <xsl:for-each select="conditions[type/value = 'Distance']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
-                public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2, final Graphics graphics) {
+                public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2) {
 
                 <xsl:variable name="name" ><xsl:value-of select="conditions[type/value = 'Distance']/parameters[1]" /></xsl:variable>
                 <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
@@ -497,7 +497,7 @@ Created By: Travis Berthelot
                 //parentSelectionNodeProcessGPaint - //From parent LinkedObjects::PickObjectsLinkedTo - <xsl:for-each select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
-                public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2, final Graphics graphics) {
+                public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2) {
 
                 <xsl:variable name="name" ><xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[2]" /></xsl:variable>
                 <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>

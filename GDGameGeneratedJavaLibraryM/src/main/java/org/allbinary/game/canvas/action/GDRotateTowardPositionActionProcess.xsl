@@ -36,7 +36,7 @@ Created By: Travis Berthelot
                         <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size();</xsl:if></xsl:for-each>
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >final GDGameLayer gameLayer = (((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index)));</xsl:if></xsl:for-each>
-                            this.processGD(gameLayer, null, globals.graphics);
+                            this.processGD(gameLayer, null);
                             gameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
                         }
 
@@ -53,7 +53,7 @@ Created By: Travis Berthelot
                     }
 
                     @Override
-                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
                         super.processGDStats(gameLayer);
 
                         //name=<xsl:value-of select="$name" />

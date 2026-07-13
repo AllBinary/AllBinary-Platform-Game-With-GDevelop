@@ -102,7 +102,7 @@ Created By: Travis Berthelot
                         return this.process();
                     }
                     
-                    public boolean processGD(final GDGameLayer gdGameLayer, final GDGameLayer gdGameLayer2, final Graphics graphics) throws Exception {
+                    public boolean processGD(final GDGameLayer gdGameLayer, final GDGameLayer gdGameLayer2) throws Exception {
                     
                         super.processGDStats(gdGameLayer);
 

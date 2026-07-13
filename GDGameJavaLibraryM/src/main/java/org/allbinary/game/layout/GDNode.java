@@ -13,8 +13,6 @@
  */
 package org.allbinary.game.layout;
 
-import javax.microedition.lcdui.Graphics;
-
 import org.allbinary.game.input.event.GameKeyEvent;
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layer.GDGameLayer;
@@ -147,7 +145,7 @@ public class GDNode
         return true;
     }
     
-    public boolean processCreateGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+    public boolean processCreateGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
         if(true) throw new RuntimeException();
         return true;
     }
@@ -164,15 +162,15 @@ public class GDNode
         this.nodeStatsFactory.push(11, this.name);
     }
 
-    public boolean processG(final GDObject gdObject, final BasicArrayList gdGameLayerList, final int gdObjectIndex, final Graphics graphics) throws Exception {
+    public boolean processG(final GDObject gdObject, final BasicArrayList gdGameLayerList, final int gdObjectIndex) throws Exception {
         return false;
     }
     
-    public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2, final Graphics graphics) {
+    public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2) {
         return false;
     }
     
-    protected void processGStats(final GDObject gdObject, final Graphics graphics) {
+    protected void processGStats(final GDObject gdObject) {
         this.nodeStatsFactory.push(12, this.name);
     }
 
@@ -187,7 +185,7 @@ public class GDNode
         this.nodeStatsFactory.push(14, this.name);
     }
     
-    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
         this.processGDStats(gameLayer);
         return false;
     }

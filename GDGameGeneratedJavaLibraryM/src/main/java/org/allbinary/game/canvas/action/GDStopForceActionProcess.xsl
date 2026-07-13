@@ -48,7 +48,7 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                 </xsl:call-template>
 
-                                this.processGD(<xsl:value-of select="$name" />GDGameLayer, null, globals.graphics);
+                                this.processGD(<xsl:value-of select="$name" />GDGameLayer, null);
 
             <xsl:if test="../actions" >
                                 }
@@ -83,7 +83,7 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                 </xsl:call-template>
 
-                            this.processGD(<xsl:value-of select="$name" />GDGameLayer, null, globals.graphics);
+                            this.processGD(<xsl:value-of select="$name" />GDGameLayer, null);
                             return true;
 
             <xsl:if test="../actions" >
@@ -107,7 +107,7 @@ Created By: Travis Berthelot
                     }
 
                         @Override
-                        public boolean processGD(final GDGameLayer <xsl:value-of select="$name" />GDGameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                        public boolean processGD(final GDGameLayer <xsl:value-of select="$name" />GDGameLayer, final GDGameLayer gameLayer2) throws Exception {
                             super.processGDStats(<xsl:value-of select="$name" />GDGameLayer);
 
                                 //logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);

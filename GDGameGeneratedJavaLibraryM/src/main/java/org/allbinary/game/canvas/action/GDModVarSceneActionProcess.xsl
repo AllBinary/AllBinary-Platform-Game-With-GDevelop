@@ -136,7 +136,7 @@ Created By: Travis Berthelot
                         return this.process();
                     }
 
-                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
                             super.processGDStats(gameLayer);
                             
                             try {

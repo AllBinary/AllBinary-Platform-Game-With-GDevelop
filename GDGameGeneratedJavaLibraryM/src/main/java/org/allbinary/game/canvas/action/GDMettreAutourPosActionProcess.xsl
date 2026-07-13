@@ -43,7 +43,7 @@ Created By: Travis Berthelot
                             if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
 
                             final GDObject gdObject = (GDObject) ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(0)).gdObject;
-                            final boolean result = this.processG(gdObject, 0, globals.graphics);
+                            final boolean result = this.processG(gdObject, 0);
 <!--
                             if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                 final GDGameLayer gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(0);
@@ -66,12 +66,12 @@ Created By: Travis Berthelot
                     }
                         
                         @Override
-                        public boolean processG(final GDObject gdObject, final BasicArrayList gdGameLayerList, final int gdObjectIndex, final Graphics graphics) {
+                        public boolean processG(final GDObject gdObject, final BasicArrayList gdGameLayerList, final int gdObjectIndex) {
 
                             try {
-                                super.processGStats(gdObject, graphics);
+                                super.processGStats(gdObject);
                         
-                                final boolean result = this.processGPaint(gdObject, null, graphics);
+                                final boolean result = this.processGPaint(gdObject, null);
                                 
                                 final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(gdObjectIndex);
                                 //final GDObject gdObject = gameLayer.gdObject;
@@ -87,11 +87,11 @@ Created By: Travis Berthelot
                         }
 
                         @Override
-                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
 
                                 super.processGDStats(gameLayer);
                         
-                                final boolean result = this.processGPaint(gameLayer.gdObject, null, graphics);
+                                final boolean result = this.processGPaint(gameLayer.gdObject, null);
                                 
                                 gameLayer.updatePosition();
                                 
@@ -99,7 +99,7 @@ Created By: Travis Berthelot
                         }
 
                         @Override
-                        public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2, final Graphics graphics) {
+                        public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2) {
 
                             try {
 

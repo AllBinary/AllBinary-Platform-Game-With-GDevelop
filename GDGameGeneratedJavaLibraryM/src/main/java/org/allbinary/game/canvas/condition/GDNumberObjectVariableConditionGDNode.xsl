@@ -98,7 +98,7 @@ Created By: Travis Berthelot
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             
                                 final GDGameLayer gdGameLayer = ((GDGameLayer) <xsl:if test="not(contains($hasObjectGroup, 'found'))" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index));
-                                if(this.processG(gdGameLayer.gdObject, <xsl:if test="not(contains($hasObjectGroup, 'found'))" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:value-of select="$gdObjectName" />GDGameLayerList, index, globals.graphics)) {
+                                if(this.processG(gdGameLayer.gdObject, <xsl:if test="not(contains($hasObjectGroup, 'found'))" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:value-of select="$gdObjectName" />GDGameLayerList, index)) {
                                 
                                 <xsl:if test="contains($hasSiblingWithDuplicateProcessing, 'found')" >
                                     //Skipping duplicate processing
@@ -168,12 +168,12 @@ Created By: Travis Berthelot
                         }
                         
                         @Override
-                        public boolean processG(final GDObject <xsl:value-of select="$gdObjectName" />, final BasicArrayList gdGameLayerList, final int gdObjectIndex, final Graphics graphics) {
+                        public boolean processG(final GDObject <xsl:value-of select="$gdObjectName" />, final BasicArrayList gdGameLayerList, final int gdObjectIndex) {
 
                             try {
-                                super.processGStats(<xsl:value-of select="$gdObjectName" />, graphics);
+                                super.processGStats(<xsl:value-of select="$gdObjectName" />);
                         
-                                return this.processGPaint(<xsl:value-of select="$gdObjectName" />, null, graphics);
+                                return this.processGPaint(<xsl:value-of select="$gdObjectName" />, null);
                             } catch(Exception e) {
                                 logUtil.put(commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                             }
@@ -267,12 +267,12 @@ Created By: Travis Berthelot
                     <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
                     <xsl:if test="$paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != ''" >
                     //Not from parent - //NumberObjectVariable
-                    public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                    public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2) throws Exception {
                     
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);
                     </xsl:if>
                     <xsl:if test="$paramOneNameObjectsGroups = '' and $paramTwoNameObjectsGroups = ''" >
-                    public boolean processGD(final GDGameLayer <xsl:value-of select="$gdObjectName" />GDGameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                    public boolean processGD(final GDGameLayer <xsl:value-of select="$gdObjectName" />GDGameLayer, final GDGameLayer gameLayer2) throws Exception {
 
                         super.processGDStats(<xsl:value-of select="$gdObjectName" />GDGameLayer);
                     </xsl:if>
@@ -307,7 +307,7 @@ Created By: Travis Berthelot
                                 //Defaulting to first param since no known association with prior sibling Create action or parent Condition
                                 </xsl:if>
 
-                                if(this.processGPaint(<xsl:value-of select="$gdObjectName" />GDGameLayer.gdObject, null, graphics)) {
+                                if(this.processGPaint(<xsl:value-of select="$gdObjectName" />GDGameLayer.gdObject, null)) {
                                 
                                 <xsl:if test="contains($hasSiblingWithDuplicateProcessing, 'found')" >
                                     //Skipping duplicate processing
@@ -329,7 +329,7 @@ Created By: Travis Berthelot
                                             <xsl:if test="type/value = 'Delete'" >
                                                 //NumberObjectVariable - //Has Delete Action
                                                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].addForDelete(<xsl:value-of select="$gdObjectName" />GDGameLayer);
-                                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdObjectName" />GDGameLayer, null, null);
+                                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdObjectName" />GDGameLayer, null);
                                             </xsl:if>
                                         </xsl:for-each>
                                         </xsl:if>
@@ -345,7 +345,7 @@ Created By: Travis Berthelot
                         }
                                 
                         @Override
-                        public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2, final Graphics graphics) {
+                        public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2) {
 
                             try {
 

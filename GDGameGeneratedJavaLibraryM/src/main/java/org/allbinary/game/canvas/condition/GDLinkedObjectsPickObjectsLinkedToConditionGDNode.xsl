@@ -30,7 +30,7 @@ Created By: Travis Berthelot
                         //LinkedObjects::PickObjectsLinkedTo - condition - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
-                        public boolean processGD(final GDGameLayer gameLayer2, final GDGameLayer unusedGameLayer, final Graphics graphics) throws Exception {
+                        public boolean processGD(final GDGameLayer gameLayer2, final GDGameLayer unusedGameLayer) throws Exception {
 
                             super.processGDStats(gameLayer2);
 
@@ -60,7 +60,7 @@ Created By: Travis Berthelot
                                 <xsl:for-each select=".." >
 
                                 <xsl:call-template name="actionsProcessing" >
-                                    <xsl:with-param name="methodCall" >processGD(gameLayer, gameLayer2, null)</xsl:with-param>
+                                    <xsl:with-param name="methodCall" >processGD(gameLayer, gameLayer2)</xsl:with-param>
                                     <xsl:with-param name="parentParam" >gameLayer</xsl:with-param>
                                     <xsl:with-param name="parentParam2" >gameLayer2</xsl:with-param>
                                 </xsl:call-template>
@@ -69,12 +69,12 @@ Created By: Travis Berthelot
                                     <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                                 //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" />
                                 //Event - //<xsl:value-of select="type" /> - call
-                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayer, gameLayer2, null);
+                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayer, gameLayer2);
                                     </xsl:if>
                                     <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                                 //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                                 //Event - //BuiltinCommonInstructions::Link - call - //LinkedObjects::PickObjectsLinkedTo
-                                <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode..processGD(gameLayer, gameLayer2, null);
+                                <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode..processGD(gameLayer, gameLayer2);
                                     </xsl:if>
                                 </xsl:for-each>
 

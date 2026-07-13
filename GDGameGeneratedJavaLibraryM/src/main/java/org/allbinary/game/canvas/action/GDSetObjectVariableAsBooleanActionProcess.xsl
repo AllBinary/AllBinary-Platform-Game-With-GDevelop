@@ -152,7 +152,7 @@ Created By: Travis Berthelot
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
 
                                 <xsl:value-of select="$param" />GDGameLayer = (GDGameLayer) gdGameLayerList.get(index);
-                                this.processGD2(<xsl:value-of select="$param" /><xsl:text>GDGameLayer</xsl:text>, null, null);
+                                this.processGD2(<xsl:value-of select="$param" /><xsl:text>GDGameLayer</xsl:text>, null);
                             }
 
                         <xsl:if test="contains($hasObjectGroup, 'found')" >
@@ -172,7 +172,7 @@ Created By: Travis Berthelot
                     }
 
                         @Override
-                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
                             super.processGDStats(gameLayer);
                             
                         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$param" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$param" /></xsl:variable>
@@ -197,7 +197,7 @@ Created By: Travis Berthelot
                             return true;
                         }
                         
-                        public boolean processGD2(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                        public boolean processGD2(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
                             super.processGDStats(gameLayer);
 
                             final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$param" /><xsl:text> = </xsl:text>(<xsl:value-of select="$gdObjectFactory" />) gameLayer.gdObject;

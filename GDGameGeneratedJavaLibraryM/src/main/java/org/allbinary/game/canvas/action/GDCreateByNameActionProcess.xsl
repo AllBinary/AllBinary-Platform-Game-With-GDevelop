@@ -104,7 +104,7 @@ Created By: Travis Berthelot
 
                         //createByNameActionProcess - //CreateByName - process - END
                         //createByNameActionProcess - //CreateByName - call
-                        this.processCreateWithGDObject(<xsl:value-of select="$name" />, createString, createIndex);
+                        this.processCreateByName(<xsl:value-of select="$name" />, createString, createIndex);
                         
                         this.processEnd(((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(createIndex)).size() - 1, createIndex);
                         //this.processEnd(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() - 1);
@@ -148,7 +148,7 @@ Created By: Travis Berthelot
 
                         //createByNameActionProcess - //CreateByName - process - END
                         //createByNameActionProcess - //CreateByName - call
-                        this.processCreateWithGDObject(<xsl:value-of select="$name" />, createString, createIndex);
+                        this.processCreateByName(<xsl:value-of select="$name" />, createString, createIndex);
                         
                         return true;
                         </xsl:if>
@@ -230,7 +230,7 @@ Created By: Travis Berthelot
 
                         //createByNameActionProcess - //CreateByName - process - END
                         //createByNameActionProcess - //CreateByName - call
-                        this.processCreateWithGDObject(<xsl:value-of select="$name" />, createString, createIndex);
+                        this.processCreateByName(<xsl:value-of select="$name" />, createString, createIndex);
                         
                         this.processEnd(((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(createIndex)).size() - 1, createIndex);
                         //this.processEnd(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() - 1);
@@ -239,7 +239,7 @@ Created By: Travis Berthelot
                     }
                     </xsl:if>
                     <xsl:if test="not(contains($hasObject, 'found') or contains($hasObjectGroup, 'found'))" >
-                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
                         super.processGDStats(gameLayer);
                         
                         return this.process();

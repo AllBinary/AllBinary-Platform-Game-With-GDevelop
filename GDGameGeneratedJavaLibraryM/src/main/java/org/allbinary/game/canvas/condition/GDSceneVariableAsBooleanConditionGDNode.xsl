@@ -107,7 +107,7 @@ Created By: Travis Berthelot
                         }
  
                         @Override
-                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
                             super.processGDStats(gameLayer);
                             
                             //return this.process();

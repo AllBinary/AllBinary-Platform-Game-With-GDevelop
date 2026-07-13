@@ -40,7 +40,7 @@ Created By: Travis Berthelot
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                 gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index);
 
-                                this.processGD(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)), null, globals.graphics);
+                                this.processGD(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)), null);
   
                                 //updateGDObject - 5
                                 gameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
@@ -76,12 +76,12 @@ Created By: Travis Berthelot
 
                         //Rotate
                         @Override
-                        public boolean processG(final GDObject <xsl:value-of select="$name" />, final BasicArrayList gdGameLayerList, final int gdObjectIndex, final Graphics graphics) {
+                        public boolean processG(final GDObject <xsl:value-of select="$name" />, final BasicArrayList gdGameLayerList, final int gdObjectIndex) {
 
                             try {
-                                super.processGStats(<xsl:value-of select="$name" />, graphics);
+                                super.processGStats(<xsl:value-of select="$name" />);
                         
-                                return this.processGPaint(<xsl:value-of select="$name" />, null, graphics);
+                                return this.processGPaint(<xsl:value-of select="$name" />, null);
                             } catch(Exception e) {
                                 logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                             }
@@ -99,16 +99,16 @@ Created By: Travis Berthelot
                     }
                                 
                         @Override
-                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
 
                                 super.processGDStats(gameLayer);
                         
-                                return this.processGPaint(gameLayer.gdObject, null, graphics);
+                                return this.processGPaint(gameLayer.gdObject, null);
 
                         }
 
                         @Override
-                        public boolean processGPaint(final GDObject <xsl:value-of select="$name" />, final GDObject gdObject2IsNull, final Graphics graphics) {
+                        public boolean processGPaint(final GDObject <xsl:value-of select="$name" />, final GDObject gdObject2IsNull) {
                         
                             try {
                                 //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);

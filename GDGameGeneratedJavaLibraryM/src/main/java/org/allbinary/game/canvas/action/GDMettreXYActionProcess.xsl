@@ -175,7 +175,7 @@ Created By: Travis Berthelot
                                 gdGameLayer = (GDGameLayer) gdGameLayerList.get(index2);
                                 gdObject = (GDObject) gdGameLayer.gdObject;
                                 //result = result <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> 
-                                this.processGPaintI(gdObject, globals.graphics);
+                                this.processGPaintI(gdObject);
                                 gdGameLayer.updatePosition();
                             //}
                             }
@@ -215,7 +215,7 @@ Created By: Travis Berthelot
                                 gdGameLayer = (GDGameLayer) gdGameLayerList.get(index2);
                                 gdObject = (GDObject) gdGameLayer.gdObject;
                                 //result = result <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> 
-                                this.processGPaintI(gdObject, globals.graphics);
+                                this.processGPaintI(gdObject);
                                 gdGameLayer.updatePosition();
                             //}
 
@@ -237,7 +237,7 @@ Created By: Travis Berthelot
                     }
 
                         //@Override
-                        public boolean processGPaintI(final GDObject gdObject, final Graphics graphics) {
+                        public boolean processGPaintI(final GDObject gdObject) {
 
                             try {
 
@@ -385,12 +385,12 @@ Created By: Travis Berthelot
                         }
 
                         @Override
-                        public boolean processG(final GDObject gdObject, final BasicArrayList gdGameLayerList, final int gdObjectIndex, final Graphics graphics) {
+                        public boolean processG(final GDObject gdObject, final BasicArrayList gdGameLayerList, final int gdObjectIndex) {
 
                             try {
-                                super.processGStats(gdObject, graphics);
+                                super.processGStats(gdObject);
                         
-                                final boolean result = this.processGPaint(gdObject, null, graphics);
+                                final boolean result = this.processGPaint(gdObject, null);
                                 
                                 final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(gdObjectIndex);
                                 //final GDObject gdObject = gameLayer.gdObject;
@@ -459,14 +459,14 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
                     //Not from parent - //SetXY
-                    public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                    public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2) throws Exception {
                     
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);
                     </xsl:if>
                     <xsl:if test="$paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != ''" >
                     </xsl:if>
 <!--                    <xsl:if test="$paramOneNameObjectsGroups = '' and $paramTwoNameObjectsGroups = ''" >
-                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
 
                         super.processGDStats(gameLayer);
                     </xsl:if>
@@ -482,7 +482,7 @@ Created By: Travis Berthelot
                                     //linkedObjectsPickObjectsLinkedToProcessGDParamTwo=<xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamTwo" />
                                     <xsl:text>&#10;</xsl:text>
 
-                                        <xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamOne" />GDGameLayer.gdObject, <xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamTwo" />GDGameLayer.gdObject, graphics);
+                                        <xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamOne" />GDGameLayer.gdObject, <xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamTwo" />GDGameLayer.gdObject);
                                         
                                         <xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamOne" />GDGameLayer.updatePosition();
                                     </xsl:if>
@@ -491,7 +491,7 @@ Created By: Travis Berthelot
                                     <xsl:if test="contains($hasForEachProcessGD, 'found')" >
                                     <xsl:variable name="forEachGDParamOne" ><xsl:call-template name="forEachGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
                                     //forEachGDParamOne=<xsl:value-of select="$forEachGDParamOne" /><xsl:text>&#10;</xsl:text>
-                                        <xsl:value-of select="$forEachGDParamOne" />GDGameLayer.gdObject, null, graphics);
+                                        <xsl:value-of select="$forEachGDParamOne" />GDGameLayer.gdObject, null);
                                         
                                         <xsl:value-of select="$forEachGDParamOne" />GDGameLayer.updatePosition();
                                     </xsl:if>
@@ -499,7 +499,7 @@ Created By: Travis Berthelot
                                     <xsl:variable name="collisionProcessGDParamOne" ><xsl:call-template name="collisionProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
                                     <xsl:variable name="collisionProcessGDParamTwo" ><xsl:call-template name="collisionProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
                                     //collisionProcessGDParamOne=<xsl:value-of select="$collisionProcessGDParamOne" /><xsl:text>&#10;</xsl:text>
-                                        <xsl:value-of select="$collisionProcessGDParamOne" />GDGameLayer.gdObject, <xsl:value-of select="$collisionProcessGDParamTwo" />GDGameLayer.gdObject, graphics);
+                                        <xsl:value-of select="$collisionProcessGDParamOne" />GDGameLayer.gdObject, <xsl:value-of select="$collisionProcessGDParamTwo" />GDGameLayer.gdObject);
                                         
                                         <xsl:value-of select="$collisionProcessGDParamOne" />GDGameLayer.updatePosition();
                                     </xsl:if>
@@ -517,8 +517,7 @@ Created By: Travis Berthelot
                                             </xsl:variable>
                                             <xsl:value-of select="$distanceProcessGDParamTwo" />GDGameLayer.gdObject
                                         </xsl:if>
-                                        <xsl:if test="not(contains($hasDistanceProcessGD, 'found'))" >null</xsl:if>, 
-                                        graphics);
+                                        <xsl:if test="not(contains($hasDistanceProcessGD, 'found'))" >null</xsl:if>);
                                         
                                         <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.updatePosition();
                                     </xsl:if>
@@ -532,7 +531,7 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($hasForEachProcessGD, 'found')" >
                         <xsl:variable name="forEachGDParamOne" ><xsl:call-template name="forEachGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param><xsl:with-param name="secondGameLayer" ><xsl:value-of select="$firstOrBeforeFourthParam" /></xsl:with-param></xsl:call-template></xsl:variable>
                         //forEachGDParamOne=<xsl:value-of select="$forEachGDParamOne" /><xsl:text>&#10;</xsl:text>
-                        final boolean result = this.processGPaint(<xsl:value-of select="$forEachGDParamOne" />GDGameLayer.gdObject, null, graphics);        
+                        final boolean result = this.processGPaint(<xsl:value-of select="$forEachGDParamOne" />GDGameLayer.gdObject, null);
                         <xsl:value-of select="$forEachGDParamOne" />GDGameLayer.updatePosition();
                         </xsl:if>
                         
@@ -540,13 +539,13 @@ Created By: Travis Berthelot
                                     <xsl:variable name="collisionProcessGDParamOne" ><xsl:call-template name="collisionProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
                                     <xsl:variable name="collisionProcessGDParamTwo" ><xsl:call-template name="collisionProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
                                     //collisionProcessGDParamOne=<xsl:value-of select="$collisionProcessGDParamOne" /><xsl:text>&#10;</xsl:text>
-                                        <xsl:value-of select="$collisionProcessGDParamOne" />GDGameLayer.gdObject, <xsl:value-of select="$collisionProcessGDParamTwo" />GDGameLayer.gdObject, graphics);
+                                        <xsl:value-of select="$collisionProcessGDParamOne" />GDGameLayer.gdObject, <xsl:value-of select="$collisionProcessGDParamTwo" />GDGameLayer.gdObject);
                                         
                                         <xsl:value-of select="$collisionProcessGDParamOne" />GDGameLayer.updatePosition();
                                     </xsl:if>
                                     <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found'))" >
                                     //Not from parent
-                                    final boolean result = this.processGPaint(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject, null, graphics);
+                                    final boolean result = this.processGPaint(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject, null);
                                     <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.updatePosition();
                                     </xsl:if>
                         
@@ -565,7 +564,7 @@ Created By: Travis Berthelot
                     <xsl:if test="not(contains($hasKnownParams, 'found'))" >
                         //Not from parent - //MettreX
                         @Override
-                        public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2, final Graphics graphics) {
+                        public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2) {
 
                     </xsl:if>
 

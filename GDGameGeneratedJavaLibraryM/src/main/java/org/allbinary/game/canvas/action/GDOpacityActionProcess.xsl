@@ -52,7 +52,7 @@ Created By: Travis Berthelot
                         final int size = gdGameLayerList.size();
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             final GDGameLayer gameLayer = (((GDGameLayer) gdGameLayerList.get(index)));
-                            this.processGD(gameLayer, null, globals.graphics);
+                            this.processGD(gameLayer, null);
                             gameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
                         }
 
@@ -73,7 +73,7 @@ Created By: Travis Berthelot
                     }
 
                     @Override
-                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
                         super.processGDStats(gameLayer);
 
                         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>

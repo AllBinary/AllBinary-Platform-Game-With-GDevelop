@@ -126,7 +126,7 @@ Created By: Travis Berthelot
 
                             final int size = gdGameLayerRemoveList.size();
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                this.processGD((GDGameLayer) gdGameLayerRemoveList.get(index), null, globals.graphics);
+                                this.processGD((GDGameLayer) gdGameLayerRemoveList.get(index), null);
                             }
 
                             gdGameLayerRemoveList.clear();
@@ -235,12 +235,12 @@ Created By: Travis Berthelot
                     <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
                         <xsl:if test="string-length($firstOrBeforeFourthParam) > 0" >
                     //Not from parent collision - //Delete
-                    public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer unusedGameLayer, final Graphics graphics) throws Exception {
+                    public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer unusedGameLayer) throws Exception {
                     
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);
                         </xsl:if>
                         <xsl:if test="string-length($firstOrBeforeFourthParam) = 0" >
-                    public boolean processGD(final GDGameLayer <xsl:value-of select="$firstParam" />GDGameLayer, final GDGameLayer unusedGameLayer, final Graphics graphics) throws Exception {
+                    public boolean processGD(final GDGameLayer <xsl:value-of select="$firstParam" />GDGameLayer, final GDGameLayer unusedGameLayer) throws Exception {
 
                         super.processGDStats(gameLayer);
                         </xsl:if>
