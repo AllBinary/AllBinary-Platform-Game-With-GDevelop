@@ -27,7 +27,25 @@ Created By: Travis Berthelot
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
 
-                        //LinkedObjects::PickObjectsLinkedTo - condition - //forExtension=<xsl:value-of select="$forExtension" />
+                        //LinkedObjects::PickObjectsLinkedTo - condition - //forExtension=<xsl:value-of select="$forExtension" />                        
+                        @Override
+                        public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+                            super.processStats(motionGestureEvent);
+                            
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, commonStrings.PROCESS);
+                            
+                            return this.process();
+                        }
+
+                        @Override
+                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
+                            super.processGDStats(gameLayer);
+                        
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
+                            
+                            return this.process();
+                        }
+
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
                         public boolean processGD(final GDGameLayer gameLayer2, final GDGameLayer unusedGameLayer) throws Exception {
@@ -85,6 +103,7 @@ Created By: Travis Berthelot
 
                             return false;
                         }
+
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >

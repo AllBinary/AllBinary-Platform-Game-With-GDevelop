@@ -40,7 +40,7 @@ Created By: Travis Berthelot
                         super.processStats();
                         
                             //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-                            <xsl:for-each select=".." >
+<!--                            <xsl:for-each select=".." >
                             <xsl:for-each select="events" >
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
                                 //caller=<xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodes - //Event - //BuiltinCommonInstructions::Standard - call
@@ -59,7 +59,7 @@ Created By: Travis Berthelot
                                 <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
                                 <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
                                 <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
-                            </xsl:call-template>
+                            </xsl:call-template>-->
                         
                         return true;
                     }
@@ -69,7 +69,7 @@ Created By: Travis Berthelot
                         super.processStats();
                         
                             //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-                            <xsl:for-each select=".." >
+<!--                            <xsl:for-each select=".." >
                             <xsl:for-each select="events" >
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
                                 //caller=<xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodes - //Event - //BuiltinCommonInstructions::Standard - call
@@ -88,7 +88,7 @@ Created By: Travis Berthelot
                                 <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
                                 <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
                                 <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
-                            </xsl:call-template>
+                            </xsl:call-template>-->
                         
                         return true;
                     }
@@ -98,7 +98,7 @@ Created By: Travis Berthelot
                         
                             //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, commonStrings.PROCESS);
                             
-                            <xsl:for-each select=".." >
+<!--                            <xsl:for-each select=".." >
                             <xsl:for-each select="events" >
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
                                 //caller=<xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodes - //Event - //BuiltinCommonInstructions::Standard - call
@@ -117,10 +117,19 @@ Created By: Travis Berthelot
                                 <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
                                 <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
                                 <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
-                            </xsl:call-template>
+                            </xsl:call-template>-->
 
                         return true;
                     }
+
+                        @Override
+                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
+                            super.processGDStats(gameLayer);
+                        
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
+                            
+                            return this.process();
+                        }
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >

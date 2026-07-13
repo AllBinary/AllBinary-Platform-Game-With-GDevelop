@@ -93,7 +93,7 @@ Created By: Travis Berthelot
                             
                             return this.process();
                         }
-                        
+
                         @Override
                         public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                             super.processStats(motionGestureEvent);

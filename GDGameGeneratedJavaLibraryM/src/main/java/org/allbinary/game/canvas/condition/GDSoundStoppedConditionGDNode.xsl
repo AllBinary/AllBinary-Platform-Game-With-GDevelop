@@ -34,6 +34,8 @@ Created By: Travis Berthelot
                         public boolean process() throws Exception {
                             super.processStats();
                             
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                            
 <!--                            if(true) {
                                 //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                                 //../actions                                
@@ -41,6 +43,25 @@ Created By: Travis Berthelot
                             
                             return true;
                         }
+                        
+                        @Override
+                        public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+                            super.processStats(motionGestureEvent);
+                            
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, commonStrings.PROCESS);
+                            
+                            return this.process();
+                        }
+
+                        @Override
+                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
+                            super.processGDStats(gameLayer);
+                        
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
+                            
+                            return this.process();
+                        }
+
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >

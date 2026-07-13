@@ -50,21 +50,23 @@ Created By: Travis Berthelot
                             </xsl:if>
 
                         }
-                        
+        
+                        @Override
+                        public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+                            super.processStats(motionGestureEvent);
+                            
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, commonStrings.PROCESS);
+                            
+                            return this.process();
+                        }
+
                         @Override
                         public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
+                            super.processGDStats(gameLayer);
                         
-                            this.processGDStats(gameLayer);
-
                             //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
-                            <xsl:if test="$inverted = 'true'" >
-                            //Inverted Always does not call anything.
-                            return false;
-                            </xsl:if>
-
-                            <xsl:if test="$inverted != 'true'" >
-                            return true;
-                            </xsl:if>
+                            
+                            return this.process();
                         }
                         </xsl:if>
 

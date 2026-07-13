@@ -173,22 +173,6 @@ Created By: Travis Berthelot
                             return true;
                         }
 
-                        @Override
-                        public void processReleased() throws Exception {
-                            super.processReleasedStats();
-
-                        <xsl:if test="contains($press, 'found') or contains($release, 'found')" >
-                            if(this.currentRunnable != NullRunnable.getInstance()) {
-                                this.currentRunnable = NullRunnable.getInstance();
-                            
-
-                            } else {
-                                //logUtil.putF(commonStrings.EXCEPTION_LABEL + "Runnable was not set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE);
-                            }
-                        </xsl:if>
-                        
-                        }
-
                         //lastPointGDNode
                         @Override
                         public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
@@ -305,6 +289,32 @@ Created By: Travis Berthelot
                             //Always false as the runnable does the real processing
                             return false;
                         }
+
+                        @Override
+                        public void processReleased() throws Exception {
+                            super.processReleasedStats();
+
+                        <xsl:if test="contains($press, 'found') or contains($release, 'found')" >
+                            if(this.currentRunnable != NullRunnable.getInstance()) {
+                                this.currentRunnable = NullRunnable.getInstance();
+                            
+
+                            } else {
+                                //logUtil.putF(commonStrings.EXCEPTION_LABEL + "Runnable was not set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE);
+                            }
+                        </xsl:if>
+                        
+                        }
+
+                        @Override
+                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
+                            super.processGDStats(gameLayer);
+                        
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
+                            
+                            return this.process();
+                        }                        
+                        
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >
