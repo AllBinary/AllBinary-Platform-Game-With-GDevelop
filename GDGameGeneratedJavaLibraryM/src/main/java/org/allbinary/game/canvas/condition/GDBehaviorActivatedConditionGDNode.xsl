@@ -143,15 +143,6 @@ Created By: Travis Berthelot
                             return this.process();
                         }
 
-                        @Override
-                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
-                            super.processGDStats(gameLayer);
-                        
-                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
-                            
-                            return this.process();
-                        }
-
                         <xsl:variable name="firstOrBeforeFourthParam" >
                             <xsl:if test="contains($hasObject, 'found') or contains($hasObjectGroup, 'found')" >
                                 <xsl:value-of select="$beforeSecondParam" />
