@@ -33,25 +33,14 @@ Created By: Travis Berthelot
             <xsl:variable name="eventPosition" select="position()" />
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
 
-<!--       
-            <xsl:variable name="actionParametersAsString0" ><xsl:for-each select="actions" ><xsl:for-each select="parameters" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="text()" />,</xsl:for-each></xsl:for-each></xsl:variable>
-            <xsl:variable name="actionParametersAsString" ><xsl:value-of select="translate(translate($actionParametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
--->
-
             <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
             <xsl:variable name="foundOtherCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'BuiltinCommonInstructions::Always' or type/value = 'DepartScene' or type/value = 'SceneJustBegins' or type/value = 'ObjectVariableChildCount' or type/value = 'NumberObjectVariable' or type/value = 'VarScene' or type/value = 'NbObjet' or type/value = 'BooleanObjectVariable' or type/value = 'SourisSurObjet' or type/value = 'IsCursorOnObject' or type/value = 'BooleanVariable'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="foundVarSceneCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'VarScene'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="foundLinkEvent" ><xsl:for-each select="events" ><xsl:if test="type = 'BuiltinCommonInstructions::Link'" >found</xsl:if></xsl:for-each></xsl:variable>
-            <xsl:variable name="foundTimerCondition" >
-                <xsl:for-each select="conditions" >
-                    <xsl:if test="type/value = 'Timer'" >found</xsl:if>
-                </xsl:for-each>
-            </xsl:variable>
 
             //foundOtherCondition=<xsl:value-of select="$foundOtherCondition" />
             //foundVarSceneCondition=<xsl:value-of select="$foundVarSceneCondition" />
-            //foundTimerCondition=<xsl:value-of select="$foundTimerCondition" />
             //foundLinkEvent=<xsl:value-of select="$foundLinkEvent" />
 
             <xsl:variable name="selectedNodeId" select="number(substring(generate-id(), 2) - 65536)" />

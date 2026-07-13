@@ -35,7 +35,7 @@ Created By: Travis Berthelot
         <xsl:variable name="quote" >"</xsl:variable>
         
         <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
-        
+
                     //objectTimerConditionGDNode - //Condition - //Timer - GDNode
                     <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>final GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                     
@@ -47,13 +47,6 @@ Created By: Travis Berthelot
                         //A:
                         <xsl:value-of select="$actionAsStringsStrings" disable-output-escaping="yes" />
 
-                            <!--
-                        public boolean process() throws Exception {
-                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper.isTime(gameTickTimeDelayHelper.startTime)) {
-                                //../action
-                            return true;
-                            -->
-                            
                 <xsl:for-each select="../../events" >
 
                 <xsl:for-each select="actions" >
@@ -68,77 +61,11 @@ Created By: Travis Berthelot
                 
                 </xsl:for-each>
 
-                        //ObjectTimer - runnable
-                        <xsl:if test="not(contains($forExtension, 'found'))" >
-<!--
-                        private final Runnable runnable = new Runnable() {
-                        
-                            public void run() {
-                                try {
-                                    gdNodeStatsFactory.push(0, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
-
-                                    //logUtil.put(new StringMaker().append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper.getElapsed(globals.globalsGameTickTimeDelayHelper.lastStartTime)).append('/').append(globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper.delay).toString(), this, commonStrings.PROCESS);
-                                    <xsl:variable name="list" >globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>ObjectTimeDelayHelperList</xsl:variable>
-
-                                    final long startTime = gameTickTimeDelayHelper.startTime;
-                                    TimeDelayHelper timeDelayHelper;
-
-                                    final int size = <xsl:value-of select="$list" />.size();
-                                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-
-                                        timeDelayHelper = (TimeDelayHelper) <xsl:value-of select="$list" />.get(index);
-                                        if(<xsl:if test="$inverted = 'true'" >!</xsl:if>timeDelayHelper.isTime(startTime)) {
-                                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-
-                                            <xsl:for-each select=".." >
-
-                        <xsl:call-template name="actionsProcessing" >
-                            <xsl:with-param name="methodCall" >process()</xsl:with-param>
-                        </xsl:call-template>
-
-                    <xsl:for-each select="events" >
-                        <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
-                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
-                            //Events only - //Event - //<xsl:value-of select="type" /> - call
-                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                        </xsl:if>
-                        <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
-                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
-                            <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> 
-                            <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                            //Event - //BuiltinCommonInstructions::Link - call
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process();
-                        </xsl:if>
-                    </xsl:for-each>
-                                                                                        
-                                            </xsl:for-each>
-                                        
-                                        }
-                                    
-                                    }
-                                    gdNodeStatsFactory.push(1, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
-                
-                                } catch(Exception e) {
-                                    logUtil.put(commonStrings.EXCEPTION_LABEL + "Runnable", this, commonStrings.RUN, e);
-                                }
-                            }
-                        };-->
-                        </xsl:if>
-                        
                         //ObjectTimer - condition - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
-
-                            //if(this.currentRunnable != this.runnable) {
-<!--                            //Unremark if using a runnable-->
-<!--                                this.currentRunnable = this.runnable;-->
-
-                            //} else {
-                                //Best to not remark out when parent conditions include: SourisBouton, SourisSurObjet, or KeyFromTextPressed
-                                //logUtil.putF(commonStrings.EXCEPTION_LABEL + "Runnable already set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception());
-                            //}
 
                             //TWB - I think the time delay helper should be on GDObject instead
                             //logUtil.put(new StringMaker().append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper.getElapsed(globals.globalsGameTickTimeDelayHelper.lastStartTime)).append('/').append(globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper.delay).toString(), this, commonStrings.PROCESS);
@@ -164,14 +91,6 @@ Created By: Travis Berthelot
                         public void processReleased() throws Exception { //ObjectTimer
                             super.processReleasedStats();
 
-<!--                            //Unremark if using a runnable-->
-<!--
-                            if(this.currentRunnable != NullRunnable.getInstance()) {
-                                this.currentRunnable = NullRunnable.getInstance();
-                            } else {
-                                logUtil.putF(commonStrings.EXCEPTION_LABEL + "Runnable was not set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE);
-                            }
--->
                         }
 
                         <xsl:value-of select="$eventsCreateProcessUsed" disable-output-escaping="yes" />

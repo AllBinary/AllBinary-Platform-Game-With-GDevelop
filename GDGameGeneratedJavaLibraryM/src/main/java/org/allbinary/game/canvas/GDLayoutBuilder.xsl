@@ -39,7 +39,6 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/condition/GDEventWithKeyFromTextCondition.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/condition/GDEventTimerCondition.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventPaint.xsl" />
     
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
@@ -413,17 +412,6 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     //eventsKeyFromTextConditions - END
-
-                    //initTimerConditions - START                    
-                    <xsl:call-template name="initTimerConditions" >
-                        <xsl:with-param name="totalRecursions" >
-                            <xsl:value-of select="0" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-                    //initTimerConditions - END
 
                     <xsl:variable name="hasForm" ><xsl:for-each select="objects" ><xsl:if test="type = 'TextInput::TextInputObject' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >found</xsl:if></xsl:for-each></xsl:variable>
                     <xsl:if test="contains($hasForm, 'found')" >
