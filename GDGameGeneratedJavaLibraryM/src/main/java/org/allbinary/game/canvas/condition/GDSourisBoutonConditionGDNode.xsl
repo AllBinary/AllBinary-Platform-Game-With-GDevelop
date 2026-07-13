@@ -54,7 +54,7 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                             </xsl:for-each>
                             
-                            <xsl:call-template name="actionsProcess" >
+                            <xsl:call-template name="actionsProcessHack" >
                                 <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
                                 <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
                                 <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
@@ -101,7 +101,7 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                             </xsl:for-each>
                             
-                            <xsl:call-template name="actionsProcess" >
+                            <xsl:call-template name="actionsProcessHack" >
                                 <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
                                 <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
                                 <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>

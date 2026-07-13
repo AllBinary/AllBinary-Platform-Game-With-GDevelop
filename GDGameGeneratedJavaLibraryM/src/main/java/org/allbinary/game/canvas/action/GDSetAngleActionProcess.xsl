@@ -145,17 +145,35 @@ Created By: Travis Berthelot
 <xsl:text>                        </xsl:text>
                         <xsl:text>&#10;</xsl:text>
 
-                        final short angle = (short) <xsl:for-each select="parameters" ><xsl:if test="position() = 3" >
+                        <xsl:for-each select="parameters" ><xsl:if test="position() = 3" >
+                            <xsl:if test="not(contains(text(), 'Variable('))" >
+                            <xsl:if test="substring-before(text(), '.') != ''" >
+                                Object <xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>GDGameLayer = nullUtil.NULL_OBJECT;
+                                if(globals.<xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                                    <xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>GDGameLayer = globals.<xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>GDGameLayerList.get(0);
+                                }
+                            </xsl:if>
+                            </xsl:if>
+                        </xsl:if>
+                        </xsl:for-each>
+
+                        <xsl:for-each select="parameters" ><xsl:if test="position() = 3" >
+                            <xsl:if test="not(contains(text(), 'Variable('))" >
+                            <xsl:if test="substring-before(text(), '.') != ''" >
+                                if(<xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>GDGameLayer != nullUtil.NULL_OBJECT) {
+                            </xsl:if>
+                            </xsl:if>
+                        </xsl:if>
+                        </xsl:for-each>
+
+                        final short angle = (short)                         <xsl:for-each select="parameters" ><xsl:if test="position() = 3" >
                             <xsl:if test="contains(text(), 'Variable(')" ><xsl:value-of select="substring-before(text(), 'Variable(')" />Variable(<xsl:value-of select="substring-after(text(), 'Variable(')" /></xsl:if>
                             <xsl:if test="not(contains(text(), 'Variable('))" >
                             <xsl:if test="substring-before(text(), '.') = ''" >
                                 <xsl:value-of select="text()" />
                             </xsl:if>
-                            <xsl:if test="substring-before(text(), '.') != ''" >(((GDGameLayer) globals.<xsl:call-template name="paramIndexedArray" >
-                                    <xsl:with-param name="createdObjectsAsString" >
-                                        <xsl:value-of select="$createdObjectsAsString" />
-                                    </xsl:with-param>
-                                </xsl:call-template>GDGameLayerList.get(0))).gdObject.<xsl:value-of select="substring-after(text(), '.')" />
+                            <xsl:if test="substring-before(text(), '.') != ''" >
+                                (((GDGameLayer) <xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>GDGameLayer)).gdObject.<xsl:value-of select="substring-after(text(), '.')" />
                             </xsl:if>
                             </xsl:if>
                         </xsl:if>
@@ -169,6 +187,15 @@ Created By: Travis Berthelot
                             </xsl:if>
                     </xsl:for-each>
                         <xsl:text>&#10;</xsl:text>
+                        
+                        <xsl:for-each select="parameters" ><xsl:if test="position() = 3" >
+                            <xsl:if test="not(contains(text(), 'Variable('))" >
+                            <xsl:if test="substring-before(text(), '.') != ''" >
+                                }
+                            </xsl:if>
+                            </xsl:if>
+                        </xsl:if>
+                        </xsl:for-each>                        
                         
                         } else {
                             //Needs Impl
@@ -236,17 +263,35 @@ Created By: Travis Berthelot
                         //logUtil.putF(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS);
 
                     //Hackish method 1st param or list - 2
-                        final short angle = (short) <xsl:for-each select="parameters" ><xsl:if test="position() = 3" >
+                        <xsl:for-each select="parameters" ><xsl:if test="position() = 3" >
+                            <xsl:if test="not(contains(text(), 'Variable('))" >
+                            <xsl:if test="substring-before(text(), '.') != ''" >
+                                Object <xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>GDGameLayer = nullUtil.NULL_OBJECT;
+                                if(globals.<xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                                    <xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>GDGameLayer = globals.<xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>GDGameLayerList.get(0);
+                                }
+                            </xsl:if>
+                            </xsl:if>
+                        </xsl:if>
+                        </xsl:for-each>
+
+                        <xsl:for-each select="parameters" ><xsl:if test="position() = 3" >
+                            <xsl:if test="not(contains(text(), 'Variable('))" >
+                            <xsl:if test="substring-before(text(), '.') != ''" >
+                                if(<xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>GDGameLayer != nullUtil.NULL_OBJECT) {
+                            </xsl:if>
+                            </xsl:if>
+                        </xsl:if>
+                        </xsl:for-each>
+
+                        final short angle = (short)                         <xsl:for-each select="parameters" ><xsl:if test="position() = 3" >
                             <xsl:if test="contains(text(), 'Variable(')" ><xsl:value-of select="substring-before(text(), 'Variable(')" />Variable(<xsl:value-of select="substring-after(text(), 'Variable(')" /></xsl:if>
                             <xsl:if test="not(contains(text(), 'Variable('))" >
                             <xsl:if test="substring-before(text(), '.') = ''" >
                                 <xsl:value-of select="text()" />
                             </xsl:if>
-                            <xsl:if test="substring-before(text(), '.') != ''" >(((GDGameLayer) globals.<xsl:call-template name="paramIndexedArray" >
-                                    <xsl:with-param name="createdObjectsAsString" >
-                                        <xsl:value-of select="$createdObjectsAsString" />
-                                    </xsl:with-param>
-                                </xsl:call-template>GDGameLayerList.get(0))).gdObject.<xsl:value-of select="substring-after(text(), '.')" />
+                            <xsl:if test="substring-before(text(), '.') != ''" >
+                                (((GDGameLayer) <xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>GDGameLayer)).gdObject.<xsl:value-of select="substring-after(text(), '.')" />
                             </xsl:if>
                             </xsl:if>
                         </xsl:if>
@@ -254,12 +299,26 @@ Created By: Travis Berthelot
                             <xsl:text> </xsl:text>
                         </xsl:if>
                         </xsl:for-each>;
+                        
                     <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" >final GDGameLayer gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index);<xsl:text>&#10;</xsl:text></xsl:if>
+                        <xsl:if test="position() = 1" >final GDGameLayer <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index);<xsl:text>&#10;</xsl:text></xsl:if>
+                    </xsl:for-each>                        
+                                        
+<xsl:text>                        </xsl:text><xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >.gdObject.setAngle(angle</xsl:if><xsl:if test="position() = last()" >, <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer);<xsl:text>&#10;</xsl:text>
+
+                            </xsl:if>
                     </xsl:for-each>
-                    <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" >gameLayer.gdObject.setAngle(angle, </xsl:if><xsl:if test="position() = last()" >gameLayer);</xsl:if>
-                    </xsl:for-each>
+                        <xsl:text>&#10;</xsl:text>
+                        
+                        <xsl:for-each select="parameters" ><xsl:if test="position() = 3" >
+                            <xsl:if test="not(contains(text(), 'Variable('))" >
+                            <xsl:if test="substring-before(text(), '.') != ''" >
+                                }
+                            </xsl:if>
+                            </xsl:if>
+                        </xsl:if>
+                        </xsl:for-each>
+                        
                     <xsl:text>&#10;</xsl:text>
                          return true;
                     }

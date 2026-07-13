@@ -258,7 +258,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                     //extension - conditions - START
-                    <xsl:call-template name="eventsCreateAssignGDObjectGDNodesCondition" >
+                    <xsl:call-template name="eventsCreateAssignGDObjectGDNodesConditionHack" >
                         <xsl:with-param name="caller" >conditionLayout</xsl:with-param>
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
