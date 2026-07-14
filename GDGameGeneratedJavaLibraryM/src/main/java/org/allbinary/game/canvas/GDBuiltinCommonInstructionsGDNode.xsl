@@ -22,7 +22,6 @@ Created By: Travis Berthelot
     <xsl:import href="./event/GDBuiltinCommonInstructionsWhileEventGDNode.xsl" />
     <xsl:import href="./event/GDBuiltinCommonInstructionsRepeatEventGDNode.xsl" />
     <xsl:import href="./event/GDBuiltinCommonInstructionsStandardEventGDNode.xsl" />
-    <xsl:import href="./event/GDBuiltinCommonInstructionsHackEventGDNode.xsl" />
     
     <xsl:template name="builtinCommonInstructionsGDNode" >
         <xsl:param name="caller" />
@@ -319,45 +318,6 @@ Created By: Travis Berthelot
                     </xsl:with-param>
 
                 </xsl:call-template>
-
-<!--                //Hack - START
-                <xsl:call-template name="builtinCommonInstructionsHackEventGDNode" >
-                    <xsl:with-param name="caller" >
-                        <xsl:value-of select="$caller" />
-                    </xsl:with-param>
-                    <xsl:with-param name="layoutIndex" >
-                        <xsl:value-of select="$layoutIndex" />
-                    </xsl:with-param>
-                    <xsl:with-param name="layoutName" >
-                        <xsl:value-of select="$layoutName" />
-                    </xsl:with-param>
-                    <xsl:with-param name="selectedNodeIds" >
-                        <xsl:value-of select="$selectedNodeIds" />
-                    </xsl:with-param>
-                    <xsl:with-param name="thisNodeIndex" >
-                        <xsl:value-of select="$thisNodeIndex" />
-                    </xsl:with-param>
-                    <xsl:with-param name="totalRecursions" >
-                        <xsl:value-of select="$totalRecursions" />
-                    </xsl:with-param>
-                    <xsl:with-param name="instancesAsString" >
-                        <xsl:value-of select="$instancesAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="objectsGroupsAsString" >
-                        <xsl:value-of select="$objectsGroupsAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="objectsAsString" >
-                        <xsl:value-of select="$objectsAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="createdObjectsAsString" >
-                        <xsl:value-of select="$createdObjectsAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="conditionEventPosition" >
-                        <xsl:value-of select="$eventPosition" />
-                    </xsl:with-param>
-
-                </xsl:call-template>
-                //Hack - END-->
 
             </xsl:when>
             <xsl:otherwise>
