@@ -124,8 +124,6 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                     <xsl:if test="not(contains($foundSubProcessingOrInputOrTimer, 'found'))" >
-<!--                    <xsl:if test="not(conditions)" >-->
-<!--                    //Actions and Events only - no conditions-->
                         
                         <xsl:call-template name="actionsProcessing" >
                             <xsl:with-param name="methodCall" >process()</xsl:with-param>
@@ -219,8 +217,6 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                     <xsl:if test="not(contains($foundSubProcessingOrInputOrTimer, 'found'))" >
-<!--                    <xsl:if test="not(conditions)" >-->
-<!--                    //Actions and Events only - no conditions-->
                         
                         <xsl:call-template name="actionsProcessing" >
                             <xsl:with-param name="methodCall" >process(index3)</xsl:with-param>
@@ -302,8 +298,6 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                     <xsl:if test="not(contains($foundSubProcessing, 'found'))" >
-<!--                    <xsl:if test="not(conditions)" >-->
-<!--                    //Actions and Events only - no conditions-->
                         
                         <xsl:call-template name="actionsProcessing" >
                             <xsl:with-param name="methodCall" >process(motionGestureEvent, lastMotionGestureInput)</xsl:with-param>
@@ -376,8 +370,6 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                     <xsl:if test="not(contains($foundSubProcessing, 'found'))" >
-<!--                    <xsl:if test="not(conditions)" >-->
-<!--                    //Actions and Events only - no conditions-->
                         
                         <xsl:call-template name="actionsProcessing" >
                             <xsl:with-param name="methodCall" >processGD(gameLayer, gameGlobals.tempGameLayerArray[0])</xsl:with-param>
@@ -454,8 +446,6 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                     <xsl:if test="not(contains($foundSubProcessing, 'found'))" >
-<!--                    <xsl:if test="not(conditions)" >-->
-<!--                    //Actions and Events only - no conditions-->
                         
 <!--                        <xsl:call-template name="actionsProcessing" >
                             <xsl:with-param name="methodCall" >processReleased()</xsl:with-param>
