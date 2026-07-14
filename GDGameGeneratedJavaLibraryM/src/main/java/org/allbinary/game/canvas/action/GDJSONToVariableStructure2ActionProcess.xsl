@@ -33,8 +33,26 @@ Created By: Travis Berthelot
         <xsl:variable name="firstParametersAsString" ><xsl:value-of select="translate($firstParametersAsString0, '&#10;', '')" /></xsl:variable>
                         final JSONTokener jsonTokener = new JSONTokener(<xsl:value-of select="$firstParametersAsString" />);
                         
+                        <xsl:variable name="variableName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         final JSONObject jsonObject = (JSONObject) jsonTokener.nextValue();
-                        globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>JSONObject = jsonObject;
+                        globals.<xsl:value-of select="$variableName" />JSONObject = jsonObject;
+
+                        <xsl:for-each select="//variables" >
+                            <xsl:if test="name = $variableName" >
+                                <xsl:for-each select="children" >
+                                    //Map the children
+                                    <xsl:choose>
+                                        <xsl:when test="type = 'string'" >
+                        final JSONObject jsonObject<xsl:value-of select="position()" /> = ((JSONObject) <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$variableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject);
+                        <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$variableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" /> = jsonObject<xsl:value-of select="position()" />.getString(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            //Otherwise - <xsl:value-of select="type" />
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:for-each>
+                            </xsl:if>
+                        </xsl:for-each>
 
                         return true;
                     }

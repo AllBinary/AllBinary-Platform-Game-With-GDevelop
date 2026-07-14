@@ -94,7 +94,7 @@ Created By: Travis Berthelot
                                         GDGameLayer gameLayer;
                                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                             gameLayer = (GDGameLayer) <xsl:value-of select="$param" />GDGameLayerList.get(index);
-                                            gameLayer.setBasicColor(basicColor);
+                                            gameLayer.setBackgroundBasicColor(basicColor);
                                             //<xsl:value-of select="$param" />TextAnimation.setBasicColor(smallBasicColorCacheFactory.getAndOrCreate(colorAsInt));
                                         }
 
@@ -170,7 +170,7 @@ Created By: Travis Berthelot
                                         <xsl:if test="position() = 1" >
                                             
                                         final BasicColor basicColor = smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
-                                        gameLayer.setBasicColor(basicColor);
+                                        gameLayer.setBackgroundBasicColor(basicColor);
                                         //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />TextAnimation.setBasicColor(smallBasicColorCacheFactory.getAndOrCreate(colorAsInt));
 
                                         </xsl:if>

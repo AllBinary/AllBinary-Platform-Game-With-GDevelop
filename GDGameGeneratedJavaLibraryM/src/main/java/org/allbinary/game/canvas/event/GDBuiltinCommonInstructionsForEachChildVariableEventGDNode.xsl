@@ -81,10 +81,11 @@ Created By: Travis Berthelot
                         <xsl:for-each select="//variables" >
                             <xsl:if test="name = $valueIteratorVariableName" >
                                 <xsl:for-each select="children" >
+                                    //Map the children
                                     <xsl:choose>
                                         <xsl:when test="type = 'string'" >
-                        final JSONObject jsonObject2 = ((JSONObject) <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject);
-                        <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" /> = jsonObject2.getString(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                        final JSONObject jsonObject<xsl:value-of select="position()" /> = ((JSONObject) <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject);
+                        <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$valueIteratorVariableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" /> = jsonObject<xsl:value-of select="position()" />.getString(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
                                         </xsl:when>
                                         <xsl:otherwise>
                                             //Otherwise - <xsl:value-of select="type" />
