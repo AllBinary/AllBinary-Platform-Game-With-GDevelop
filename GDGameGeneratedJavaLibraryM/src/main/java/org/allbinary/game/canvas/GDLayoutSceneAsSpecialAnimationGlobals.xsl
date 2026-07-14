@@ -79,6 +79,7 @@ Created By: Travis Berthelot
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.animation.text.CustomTextAnimation;
                 import org.allbinary.game.canvas.GDExtensionGDNodes;
+                import org.allbinary.game.configuration.persistance.GDStructure;
                 import org.allbinary.game.identification.Group;
                 import org.allbinary.game.identification.GroupFactory;
                 import org.allbinary.game.input.GameInputProcessor;

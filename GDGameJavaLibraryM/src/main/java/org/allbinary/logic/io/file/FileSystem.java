@@ -32,6 +32,9 @@ public class FileSystem {
     }
 
     public static String LoadStringFromFileSync(final String path) {
+        final LogUtil logUtil = LogUtil.getInstance();
+        final CommonStrings commonStrings = CommonStrings.getInstance();
+        logUtil.putF(path, commonStrings, commonStrings.PROCESS);
         return AbFileSystem.getInstance().readAsString(path);
     }
     

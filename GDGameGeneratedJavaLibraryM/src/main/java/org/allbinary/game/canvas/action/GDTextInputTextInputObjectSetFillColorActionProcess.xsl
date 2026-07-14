@@ -33,6 +33,7 @@ Created By: Travis Berthelot
                     </xsl:variable>
 
                     <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
                     <xsl:variable name="hasObjectGroup" >
                         <xsl:for-each select="//objectsGroups" >
@@ -54,20 +55,29 @@ Created By: Travis Berthelot
                                     if(true) throw new RuntimeException();
                                 </xsl:if>
                                 <xsl:if test="not(contains($hasBuiltinCommonInstructionsForEachToProcessGD, 'found'))" >
-                                
-                                    <xsl:for-each select="parameters" >
-                                        <xsl:if test="position() = 1" >
-                                            final int colorAsInt = basicColorUtil.get</xsl:if>
-                                        <xsl:if test="position() = 2" >
-                                            <xsl:if test="contains(text(), ';')" >
-                                                <xsl:text>ARGB(255, </xsl:text><xsl:value-of select="translate(translate(translate(text(), '+', ''), $quote, ''), ';', ',')" />
-                                            </xsl:if>
-                                            <xsl:if test="not(contains(text(), ';'))" >
-                                                <xsl:text>(255, </xsl:text><xsl:value-of select="text()" />
-                                            </xsl:if>
+
+                                    <!-- if the color is from more than 1 variable this will break -->
+                                    <xsl:variable name="variableName" ><xsl:for-each select="//variables" ><xsl:if test="contains($param2, name)" ><xsl:value-of select="name" /></xsl:if></xsl:for-each></xsl:variable>
+                                    <xsl:variable name="globalWithVariableName" >globals.<xsl:value-of select="$variableName" /></xsl:variable>
+                                    //variableName=<xsl:value-of select="$variableName" /> globalWithVariableName=<xsl:value-of select="$globalWithVariableName" />
+                                    
+                                    <xsl:variable name="param2b" >
+                                        <xsl:if test="string-length($variableName) > 0" >
+                                            <xsl:call-template name="string-replace-all" >
+                                                <xsl:with-param name="text" ><xsl:value-of select="$param2" /></xsl:with-param>
+                                                <xsl:with-param name="find" ><xsl:value-of select="$variableName" /></xsl:with-param>
+                                                <xsl:with-param name="replacementText" ><xsl:value-of select="$globalWithVariableName" /></xsl:with-param>
+                                            </xsl:call-template>
                                         </xsl:if>
-                                        <xsl:if test="position() = last()" >); //, "<xsl:value-of select="type/value" />"));</xsl:if>
-                                    </xsl:for-each>
+                                        <xsl:if test="string-length($variableName) = 0" ><xsl:value-of select="$param2" /></xsl:if>
+                                    </xsl:variable>
+                                    
+                                    <xsl:variable name="color" >
+                                        <xsl:if test="contains($param2, ';')" ><xsl:text>ARGB(255, </xsl:text><xsl:value-of select="translate(translate(translate($param2b, '+', ''), $quote, ''), ';', ',')" /></xsl:if>
+                                        <xsl:if test="not(contains($param2, ';'))" ><xsl:text>(255, </xsl:text><xsl:value-of select="text()" /></xsl:if>
+                                    </xsl:variable>                                
+                                    
+                                    final int colorAsInt = basicColorUtil.get<xsl:value-of select="$color" />);
                                     <xsl:text>&#10;</xsl:text>
 
                                     <xsl:if test="contains($hasObjectGroup, 'found')" >
@@ -133,19 +143,27 @@ Created By: Travis Berthelot
                                         (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$objectInForEach" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$objectInForEach" />) gameLayer.gdObject;
                                 </xsl:if>
 
-                                    <xsl:for-each select="parameters" >
-                                        <xsl:if test="position() = 1" >
-                                            final int colorAsInt = basicColorUtil.get</xsl:if>
-                                        <xsl:if test="position() = 2" >
-                                            <xsl:if test="contains(text(), ';')" >
-                                                <xsl:text>ARGB(255, </xsl:text><xsl:value-of select="translate(translate(translate(text(), '+', ''), $quote, ''), ';', ',')" />
-                                            </xsl:if>
-                                            <xsl:if test="not(contains(text(), ';'))" >
-                                                <xsl:text>(255, </xsl:text><xsl:value-of select="text()" />
-                                            </xsl:if>
+                                    <xsl:variable name="variableName" ><xsl:for-each select="//variables" ><xsl:if test="contains($param2, name)" ><xsl:value-of select="name" /></xsl:if></xsl:for-each></xsl:variable>
+                                    <xsl:variable name="globalWithVariableName" >globals.<xsl:value-of select="$variableName" /></xsl:variable>
+                                    //variableName=<xsl:value-of select="$variableName" /> globalWithVariableName=<xsl:value-of select="$globalWithVariableName" />
+                                    
+                                    <xsl:variable name="param2b" >
+                                        <xsl:if test="string-length($variableName) > 0" >
+                                            <xsl:call-template name="string-replace-all" >
+                                                <xsl:with-param name="text" ><xsl:value-of select="$param2" /></xsl:with-param>
+                                                <xsl:with-param name="find" ><xsl:value-of select="$variableName" /></xsl:with-param>
+                                                <xsl:with-param name="replacementText" ><xsl:value-of select="$globalWithVariableName" /></xsl:with-param>
+                                            </xsl:call-template>
                                         </xsl:if>
-                                        <xsl:if test="position() = last()" >); //, "<xsl:value-of select="type/value" />"));</xsl:if>
-                                    </xsl:for-each>
+                                        <xsl:if test="string-length($variableName) = 0" ><xsl:value-of select="$param2" /></xsl:if>
+                                    </xsl:variable>
+                                    
+                                    <xsl:variable name="color" >
+                                        <xsl:if test="contains($param2, ';')" ><xsl:text>ARGB(255, </xsl:text><xsl:value-of select="translate(translate(translate($param2b, '+', ''), $quote, ''), ';', ',')" /></xsl:if>
+                                        <xsl:if test="not(contains($param2, ';'))" ><xsl:text>(255, </xsl:text><xsl:value-of select="text()" /></xsl:if>
+                                    </xsl:variable>                                
+                                    
+                                    final int colorAsInt = basicColorUtil.get<xsl:value-of select="$color" />);
                                     <xsl:text>&#10;</xsl:text>
                                     
                                     <xsl:for-each select="parameters" >

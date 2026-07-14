@@ -24,7 +24,7 @@ Created By: Travis Berthelot
                 
         <xsl:for-each select="children" >
             <xsl:if test="type = 'structure'" >
-                //structure
+            //structure
             public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
 
             <xsl:call-template name="variablesStructuresChildren" >
@@ -62,6 +62,9 @@ Created By: Travis Berthelot
             public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
             </xsl:if>
             </xsl:if>
+            <xsl:if test="type = 'number'" >
+            public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+            </xsl:if>
 
         </xsl:for-each>
 
@@ -81,33 +84,27 @@ Created By: Travis Berthelot
 
     <xsl:template name="variablesStructures" >
         <xsl:param name="layoutName" />
-
-        <xsl:variable name="hasStructure" ><xsl:for-each select="variables" ><xsl:if test="type = 'structure'" >found</xsl:if></xsl:for-each></xsl:variable>
-
-        <xsl:if test="contains($hasStructure, 'found')" >
-public class GDStructure {
-
-    public int Size = -1;
-
-}
-        </xsl:if>
         
         <xsl:for-each select="variables" >
             //variablesStructures - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
             <xsl:if test="type = 'structure'" >
             <xsl:if test="name" >
-public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
+    public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
 
-    public GDStructure<xsl:value-of select="name" />() {
-        Size = <xsl:for-each select="children" ><xsl:if test="type = 'structure'" >1 + </xsl:if></xsl:for-each>0;
-    }
+        public GDStructure<xsl:value-of select="name" />() {
+            Size = <xsl:for-each select="children" ><xsl:if test="type = 'structure'" >1 + </xsl:if></xsl:for-each>0;
+        }
 
         <xsl:call-template name="variablesStructuresChildren" >
             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
             <xsl:with-param name="parentName" ><xsl:value-of select="name" /></xsl:with-param>
         </xsl:call-template>
-    
-}
+
+        public String toJSONAsString() {
+            return <xsl:value-of select="name" />JSONObject.toString();
+        }
+        
+    }
             </xsl:if>
             </xsl:if>
         </xsl:for-each>
@@ -129,7 +126,7 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
         //JSONTo - external - END
     </xsl:template>
 
-    <xsl:template name="jsonObjects">
+    <xsl:template name="jsonObjects" >
         <xsl:param name="iteration" />
                 
         <xsl:for-each select="events" >
@@ -189,9 +186,9 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
         //param=<xsl:value-of select="$param" />
         <xsl:for-each select="//events" >
             <xsl:if test="type = 'BuiltinCommonInstructions::ForEachChildVariable'" >
+                <xsl:if test="iterableVariableName = $param" >
         //valueIteratorVariableName=<xsl:value-of select="valueIteratorVariableName" />
         //iterableVariableName=<xsl:value-of select="iterableVariableName" />
-                <xsl:if test="iterableVariableName = $param" >
                 <xsl:call-template name="connectedJsonObjects">
                     <xsl:with-param name="param" select="valueIteratorVariableName" />
                     <xsl:with-param name="iteration" select="number($iteration) + 1" />

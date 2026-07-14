@@ -22,7 +22,6 @@ import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.RotationAnimation;
 import org.allbinary.animation.text.CustomTextAnimation;
-import org.allbinary.animation.text.GetTextInterface;
 import org.allbinary.animation.text.TextChangeListener;
 import org.allbinary.canvas.Processor;
 import org.allbinary.game.combat.CombatBaseBehavior;
@@ -49,6 +48,7 @@ import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
 import org.allbinary.view.ViewPosition;
 import org.allbinary.view.ViewPositionBase;
+import org.allbinary.animation.text.TextInterface;
 
 /**
  *
@@ -851,36 +851,35 @@ public class GDGameLayer
 //    public int r;
 
     public void setBasicColor(final BasicColor basicColor) {
-        ((CustomTextAnimation) this.initIndexedAnimationInterfaceArray[0]).setBasicColorP(basicColor);
+        this.initIndexedAnimationInterfaceArray[0].setBasicColorP(basicColor);
     }
 
     public void setText(final int value) {
         this.setText(Integer.toString(value));
     }
     
-    public void setText(String text) {
+    public void setText(final String text) {
         
-        final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.initIndexedAnimationInterfaceArray[0]);
+        final TextInterface textInterface = ((TextInterface) this.initIndexedAnimationInterfaceArray[0]);
         
         if(text == null) {
-            customTextAnimation.setTextWithOnMeasure(this.stringUtil.EMPTY_STRING, this.textChangeListener);
+            textInterface.setTextWithOnMeasure(this.stringUtil.EMPTY_STRING, this.textChangeListener);
         } else {
-            customTextAnimation.setTextWithOnMeasure(text, this.textChangeListener);
+            textInterface.setTextWithOnMeasure(text, this.textChangeListener);
         }
-        
         
     }
 
     public void onMeasure() {
-        final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.initIndexedAnimationInterfaceArray[0]);
-        this.gdObject.width = customTextAnimation.getWidth();
-        this.gdObject.height = customTextAnimation.getFontHeight();
+        final TextInterface textInterface = ((TextInterface) this.initIndexedAnimationInterfaceArray[0]);
+        this.gdObject.width = textInterface.getWidth();
+        this.gdObject.height = textInterface.getFontHeight();
         this.setWidth(this.gdObject.width);
         this.setHeight(this.gdObject.height);
     }
 
     public String Text() {
-        return ((GetTextInterface) this.initIndexedAnimationInterfaceArray[0]).getText();
+        return ((TextInterface) this.initIndexedAnimationInterfaceArray[0]).getText();
     }
 
     public GDTwodBehavior getDimensionalBehavior() {

@@ -16,6 +16,7 @@ package org.allbinary.animation.compound;
 import javax.microedition.lcdui.Graphics;
 
 import org.allbinary.J2MEUtil;
+import org.allbinary.animation.Animation;
 import org.allbinary.animation.AnimationBehavior;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.text.CustomTextAnimation;
@@ -57,14 +58,14 @@ public class SliderAnimation
         this.width = width;
         this.height = height;
         
-        final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.animationInterfaceArray[4]);
+        final Animation animation = this.animationInterfaceArray[4];
         if(SWTUtil.isSWT) {
             //customTextAnimation.setDy(-customTextAnimation.getSize());
             final int h = this.dxhack();
-            customTextAnimation.setDy(-h / 3 * 2);
+            animation.setDy(-h / 3 * 2);
         } else {
             final int h = this.dxhack();
-            customTextAnimation.setDy(-h + (h / 10));
+            animation.setDy(-h + (h / 10));
         }
     }
     

@@ -94,7 +94,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.canvas.GDGameSoftwareInfo;
                 import org.allbinary.game.canvas.GDGlobalsGDObjectsFactory;
                 import org.allbinary.game.canvas.GDGlobalsGDResources;
-                
+                import org.allbinary.game.configuration.persistance.GDStructure;
                 import org.allbinary.game.configuration.persistance.JSONPersistance;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDNode;
@@ -321,7 +321,23 @@ Created By: Travis Berthelot
                     public String GlobalVarToJSON(final long value) {
                         return Long.toString(value);
                     }
-                                        
+
+                    public String ToJSON(final GDStructure value) {
+                        return value.toJSONAsString();
+                    }
+
+                    public String ToJSON(final String value) {
+                        return value;
+                    }
+
+                    public String ToJSON(final int value) {
+                        return Integer.toString(value);
+                    }
+
+                    public String ToJSON(final long value) {
+                        return Long.toString(value);
+                    }
+
                     public int SceneInstancesCount(final int size) {
                         return size;
                     }

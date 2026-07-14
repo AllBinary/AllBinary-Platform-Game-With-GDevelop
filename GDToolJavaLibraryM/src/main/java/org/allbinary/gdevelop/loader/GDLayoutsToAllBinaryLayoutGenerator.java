@@ -861,6 +861,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
             String layoutGameXmlAsString = new String(gameXmlAsString);
             final String[] VARIABLE_ARRAY = {
+                "ToJSON(",
                 "Variable(",
                 "VariableString(",
                 "VariableChildCount("
