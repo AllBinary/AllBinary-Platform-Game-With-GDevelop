@@ -19,6 +19,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDTextContainerCapabilityTextContainerBehaviorSetValueActionProcess.xsl" />
     <xsl:import href="./action/GDTextObjectStringActionProcess.xsl" />
     <xsl:import href="./action/GDTextObjectChangeColorActionProcess.xsl" />
+    <xsl:import href="./action/GDTextInputTextInputObjectSetFillColorActionProcess.xsl" />
 
     <xsl:import href="./action/GDTextEntryObjectActionProcess.xsl" />
 
@@ -2384,6 +2385,24 @@ Created By: Travis Berthelot
 
                 </xsl:when>
 
+                <xsl:when test="$typeValue = 'TextInput::TextInputObject::SetFillColor'" >
+                    
+                    <xsl:call-template name="textInputTextInputObjectSetFillColorActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
                 <xsl:when test="$typeValue = 'TextInputVirtualKeyboard::TextInputVirtualKeyboard::closeKeyboard'" >
                     
                     <xsl:call-template name="textInputVirtualKeyboardTextInputVirtualKeyboardCloseKeyboardActionProcess" >

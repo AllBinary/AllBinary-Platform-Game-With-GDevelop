@@ -106,6 +106,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.GDObjectFactory;                
                 import org.allbinary.game.layer.behavior.PathFindingBehavior;
                 import org.allbinary.game.rand.MyRandomFactory;
+                import org.allbinary.graphics.color.BasicColor;
                 import org.allbinary.graphics.color.SmallBasicColorCacheFactory;
                 import org.allbinary.graphics.color.BasicColorUtil;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
