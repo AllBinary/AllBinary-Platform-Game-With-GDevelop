@@ -32,6 +32,8 @@ Created By: Travis Berthelot
         <xsl:variable name="quote" >"</xsl:variable>
         <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
             
+                private final GDStrings gdStrings = GDStrings.getInstance();
+            
                 //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> totalRecursions=<xsl:value-of select="$totalRecursions" />
                 private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />";
                 <xsl:text>&#10;</xsl:text>
@@ -41,19 +43,27 @@ Created By: Travis Berthelot
                 /*
                 </xsl:if>
                 
+                private long iterationTotal;
+                
                 //<xsl:value-of select="type" /> - //whileConditionsTotal=<xsl:value-of select="count(whileConditions)" /> - event
                 @Override
                 public boolean process() throws Exception {
                     super.processStats();
                     
-                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="$nodeId" />, this, commonStrings.PROCESS);
 
                 <xsl:if test="whileConditions" >
                     //whileConditions
                     
                     <xsl:for-each select="whileConditions" >
                     //whileConditions - //<xsl:value-of select="type/value" /> - call
+                    this.iterationTotal = 0;
                     while(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                    this.iterationTotal++;
+                    if(iterationTotal % 10000 == 0) {
+                        logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="$nodeId" /> + gdStrings.LONG_RUNNING_WHILE_LOOP + this.iterationTotal, this, commonStrings.PROCESS);
+                    }
                     <xsl:for-each select="../conditions" >
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>

@@ -30,5 +30,6 @@ public class GDStrings {
 
     public final String CANVAS_NEW = "Canvas is to new to process this action: ";
     public final String SCENE_NEW = "Scene is to new to process this action: ";
+    public final String LONG_RUNNING_WHILE_LOOP = " Long Running While Loop: ";
     
 }

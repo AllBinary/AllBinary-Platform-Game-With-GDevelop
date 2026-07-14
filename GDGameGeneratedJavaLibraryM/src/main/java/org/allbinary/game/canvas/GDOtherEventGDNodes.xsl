@@ -72,6 +72,7 @@ import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layout.GDNode;
 import org.allbinary.game.layout.GDObject;
+import org.allbinary.game.layout.GDStrings;
 import org.allbinary.game.layout.GDObjectStrings;
 import org.allbinary.game.rand.MyRandomFactory;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
