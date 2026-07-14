@@ -738,16 +738,31 @@ Created By: Travis Berthelot
                                 </xsl:if>
                                 <xsl:text>&#10;</xsl:text>
                                 
-                                <xsl:variable name="createParam2" >
+                                <xsl:variable name="createParams" >
                                     <xsl:for-each select="../actions" >
                                         <xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" >
                                             <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                                            <xsl:if test="contains($parametersAsString0, $param2)" ><xsl:value-of select="$param2" />GameLayer<xsl:value-of select="position()" /></xsl:if>
+                                            <xsl:if test="contains($parametersAsString0, $param2)" ><xsl:value-of select="$param2" />GameLayer<xsl:value-of select="position()" />,</xsl:if>
                                         </xsl:if>
                                     </xsl:for-each>
                                 </xsl:variable>
+                                
+                                <xsl:variable name="totalParams" >
+                                <xsl:call-template name="count" >
+                                    <xsl:with-param name="text" ><xsl:value-of select="$createParams" /></xsl:with-param>
+                                    <xsl:with-param name="char" >,</xsl:with-param>
+                                </xsl:call-template>
+                                </xsl:variable>
 
-                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$createParam2" />, <xsl:value-of select="$createParam2" />);
+                                //createParams=<xsl:value-of select="$createParams" />
+<!--                                //totalParams=<xsl:value-of select="$totalParams" /> <xsl:value-of select="number($totalParams)" /> <xsl:if test="number($totalParams) = 1" >Exactly 1 param</xsl:if><xsl:if test="number($totalParams) > 1" >More than 1 param</xsl:if>-->
+                                
+                                <xsl:variable name="params" >
+                                    <xsl:if test="number($totalParams) = 1" ><xsl:value-of select="$createParams" /> <xsl:value-of select="$createParams" /></xsl:if>
+                                    <xsl:if test="number($totalParams) > 1" ><xsl:value-of select="$createParams" /></xsl:if>
+                                </xsl:variable>
+                                //params=<xsl:value-of select="$params" />
+                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="substring($params, 0, string-length($params))" />);
                                 </xsl:if>
                                 <xsl:if test="not(contains($hasParamWithCreateObjectOrGroupInIt, 'found'))" >
                                 //This is called after Create/CreateByName but does not have the Create/CreatByName Object or Group in it

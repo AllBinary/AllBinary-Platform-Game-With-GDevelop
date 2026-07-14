@@ -26,4 +26,10 @@
         <xsl:if test="$token = substring($string, string-length($string) - string-length($token) + 1)" >found</xsl:if>
     </xsl:template>
 
+    <xsl:template name="count">
+        <xsl:param name="text" />
+        <xsl:param name="char" />
+        <xsl:value-of select="string-length($text) - string-length(translate($text, $char, ''))"/>
+    </xsl:template>
+
 </xsl:stylesheet>
