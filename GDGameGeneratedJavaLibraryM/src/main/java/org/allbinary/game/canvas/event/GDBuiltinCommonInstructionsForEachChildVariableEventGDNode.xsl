@@ -46,7 +46,6 @@ Created By: Travis Berthelot
                 /*
                 </xsl:if>
                 
-<!--                <xsl:if test="not(contains(disabled, 'true'))" >-->
                 //BuiltinCommonInstructions::ForEachChildVariable - event
                 @Override
                 public boolean process() throws Exception {
@@ -236,7 +235,6 @@ Created By: Travis Berthelot
                     return true;
 
                 }
-<!--                </xsl:if>-->
                 
                 <xsl:if test="contains(disabled, 'true')" >
                 */

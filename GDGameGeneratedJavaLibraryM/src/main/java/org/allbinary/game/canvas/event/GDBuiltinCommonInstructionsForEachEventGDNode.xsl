@@ -53,8 +53,6 @@ Created By: Travis Berthelot
                 /*
                 </xsl:if>
                 
-                
-<!--                <xsl:if test="not(contains(disabled, 'true'))" >-->
                 //BuiltinCommonInstructions::ForEach - condition - //object=<xsl:value-of select="object" />
                 @Override
                 public boolean process() throws Exception {
@@ -122,7 +120,6 @@ Created By: Travis Berthelot
                     return true;
 
                 }
-<!--                </xsl:if>-->
                 
                 <xsl:if test="contains(disabled, 'true')" >
                 */
