@@ -854,6 +854,11 @@ public class GDGameLayer
         this.initIndexedAnimationInterfaceArray[0].setBasicColorP(basicColor);
     }
 
+    public void setBackgroundBasicColor(final BasicColor basicColor)
+    {
+        this.initIndexedAnimationInterfaceArray[0].setBackgroundBasicColorP(basicColor);
+    }
+    
     public void setText(final int value) {
         this.setText(Integer.toString(value));
     }

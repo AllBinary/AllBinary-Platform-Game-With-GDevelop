@@ -37,6 +37,8 @@ Created By: Travis Berthelot
             }
             
             public final GDStructure<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:if test="number(name) = name" >n</xsl:if><xsl:value-of select="name" /> = new GDStructure<xsl:value-of select="name" />();
+            public JSONObject <xsl:value-of select="name" />JSONObject = JSONObject.NULL_OBJECT;
+            public JSONArray <xsl:value-of select="name" />JSONArray = JSONArray.NULL_ARRAY;
             
             <xsl:if test="number(name) = name" >
             public GDStructure<xsl:value-of select="name" /> get<xsl:value-of select="$parentName" />Size() {
@@ -74,7 +76,7 @@ Created By: Travis Berthelot
         <xsl:param name="totalRecursions" />
         
             <xsl:key name="uniqueValues" match="name" use="." />
-            <xsl:for-each select="//variables/children/name[count(. | key('uniqueValues', .)[1]) = 1]" >
+            <xsl:for-each select="//children/name[count(. | key('uniqueValues', .)[1]) = 1]" >
                 <xsl:if test="string-length(text()) > 0" >
             public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="text()" />";
                 </xsl:if>
@@ -249,6 +251,48 @@ Created By: Travis Berthelot
 
         </xsl:for-each>
 
+    </xsl:template>
+
+    <xsl:template name="variableJSONMapping" >
+        <xsl:param name="parentName" />
+        <xsl:param name="variableName" />
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="totalRecursions" />        
+
+                                <xsl:for-each select="children" >
+                                    <xsl:text>//parentName=</xsl:text><xsl:value-of select="$parentName" /> //variableName=<xsl:value-of select="$variableName" /> //name=<xsl:value-of select="name" /> //Map the children - <xsl:value-of select="$totalRecursions" />
+                                    <xsl:text>&#10;</xsl:text>
+                                    <xsl:variable name="name" ><xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$variableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" /></xsl:variable>
+                                    <xsl:choose>
+                                        <xsl:when test="type = 'number'" >
+                        <xsl:value-of select="$name" /><xsl:text> = </xsl:text><xsl:value-of select="$parentName" /><xsl:text>.getInt(globals.</xsl:text><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                                        </xsl:when>
+                                        <xsl:when test="type = 'string'" >
+                        <xsl:value-of select="$name" /><xsl:text> = </xsl:text><xsl:value-of select="$parentName" /><xsl:text>.getString(globals.</xsl:text><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                                        </xsl:when>
+                                        <xsl:when test="type = 'structure'" >
+                        <xsl:value-of select="$name" /><xsl:text>JSONObject = </xsl:text><xsl:value-of select="$parentName" /><xsl:text>.getJSONObject(globals.</xsl:text><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                        <xsl:call-template name="variableJSONMapping" >
+                            <xsl:with-param name="parentName" >
+                                <xsl:value-of select="$name" />JSONObject
+                            </xsl:with-param>
+                            <xsl:with-param name="variableName" >
+                                <xsl:value-of select="$variableName" />.<xsl:value-of select="name" />
+                            </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>        
+                            <xsl:with-param name="totalRecursions" >
+                                <xsl:value-of select="number($totalRecursions) + 1" />
+                            </xsl:with-param>
+                        </xsl:call-template>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            //Otherwise - <xsl:value-of select="type" />
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                    
+                                </xsl:for-each>
     </xsl:template>
 
     <xsl:template name="eventsClassPropertyArrayActions" >
