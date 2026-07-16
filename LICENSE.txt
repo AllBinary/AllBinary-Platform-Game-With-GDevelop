@@ -15,23 +15,10 @@ given that the following conditions are met:
 2.  Redistribution of the AllBinary Platform source code must include the 
     copyright notice above.
 
-3.  You must submit each release of your published products using the 
-    AllBinary Platform source code as described in the PUBLISHED.txt file 
-    in the root of the repo which AllBinary may update without notice.  
-
-4.  You will fulfill one of the 2 requirements below:
-
-    You must obtain one or more advert provider identifiers with instructions 
-    from AllBinary.  You must allow adverts to be displayed in your published 
-    product using this license.  If the product does not have a customer 
-    facing visual or AllBinary is not currently providing identifiers then 
-    you must use the next requirement.
-
-    "Or"
-
-    You must pay a yearly subscription as determined by AllBinary.  
-    The current year subscription cost is in the YEARLY_FEE.txt file in the root 
-    of the repo which AllBinary may update without notice. 
+3.  You must pay a yearly subscription as determined by AllBinary.  
+    The current year subscription cost is in the YEARLY_FEE.txt file in the 
+    root directory of the repo at: https://github.com/AllBinary/AllBinary-Platform
+    which AllBinary may update without notice.
 
 AllBinary may collect, contain, and transfer personal information for licensing, 
 registration, data analysis, and security purposes.  Any messages posted on our 
@@ -41,9 +28,10 @@ hardware information, access times, IPs, or domains.  Without this information
 we would be unable to provide appropriate alerts, upgrades, information, and 
 security.
 
-"AllBinary", "AllBinary Platform", "AllBinary Input Automation", "Freeblisket", 
-and "Weblisket" names may not be used to promote, market, or endorse a product 
-without written permission from AllBinary.
+"AllBinary", "AllBinary Platform", "AllBinary Multi-Platform Development Kit",
+"AllBinary Game Development Kit", "AllBinary Game Engine", "Freeblisket", 
+"AllBinary Input Automation", and "Weblisket" names may not be used to promote, 
+market, or endorse a product without written permission from AllBinary.
 
 Unlawful Prohibition
 
