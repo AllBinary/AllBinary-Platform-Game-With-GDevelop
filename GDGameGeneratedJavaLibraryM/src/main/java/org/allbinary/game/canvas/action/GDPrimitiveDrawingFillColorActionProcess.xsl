@@ -150,13 +150,20 @@ Created By: Travis Berthelot
                     
                     /*hasCreateProcessGD=<xsl:value-of select="$hasCreateProcessGD" /> hasForEachProcessGD=<xsl:value-of select="$hasForEachProcessGD" /> hasCollisionProcessGD=<xsl:value-of select="$hasCollisionProcessGD" /> hasDistanceProcessGD=<xsl:value-of select="$hasDistanceProcessGD" /> hasLinkedObjectsPickObjectsLinkedToProcessGD=<xsl:value-of select="$hasLinkedObjectsPickObjectsLinkedToProcessGD" />*/
 
-                    hasCreateProcessGD
                     <xsl:call-template name="parentSelectionNodeProcessGD" >
                         <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                         <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                         <xsl:with-param name="secondGameLayer" ><xsl:value-of select="$firstOrBeforeFourthParam" /></xsl:with-param>
                         <xsl:with-param name="secondGameLayer2" ><xsl:value-of select="$name" /></xsl:with-param>
                     </xsl:call-template>
+                    <xsl:if test="contains($hasCreateProcessGD, 'found')" >
+                        //From parent BuiltinCommonInstructions::Standard with Create/CreateByName
+                        //firstOrBeforeFourthParam=<xsl:value-of select="$firstOrBeforeFourthParam" />
+                        @Override
+                        public boolean processGD(final GDGameLayer <xsl:value-of select="$name" />GDGameLayer, final GDGameLayer gdGameLayer) throws Exception {
+
+                            super.processGDStats(<xsl:value-of select="$name" />GDGameLayer);
+                    </xsl:if>
                     <xsl:if test="contains($hasCollisionProcessGD, 'found')" >
                         <xsl:variable name="collisionProcessGDParamOne" ><xsl:call-template name="collisionProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
                         <xsl:variable name="collisionProcessGDParamTwo" ><xsl:call-template name="collisionProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
@@ -178,7 +185,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                         
                     </xsl:if>
-                    <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
+                    <xsl:if test="not(contains($hasCreateProcessGD, 'found') or contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
 
                         <xsl:variable name="hasSiblingActionWithObjectsGroupsOrObject" >
                             <xsl:for-each select=".." >
@@ -209,11 +216,33 @@ Created By: Travis Berthelot
                         </xsl:if>
                         
                     </xsl:if>
-                        
+
+                                    <xsl:variable name="variableName" ><xsl:for-each select="//variables" ><xsl:if test="contains($param2, name)" ><xsl:value-of select="name" /></xsl:if></xsl:for-each></xsl:variable>
+                                    <xsl:variable name="globalWithVariableName" >globals.<xsl:value-of select="$variableName" /></xsl:variable>
+                                    //variableName=<xsl:value-of select="$variableName" /> globalWithVariableName=<xsl:value-of select="$globalWithVariableName" />
+                                    
+                                    <xsl:variable name="param2b" >
+                                        <xsl:if test="string-length($variableName) > 0" >
+                                            <xsl:call-template name="string-replace-all" >
+                                                <xsl:with-param name="text" ><xsl:value-of select="$param2" /></xsl:with-param>
+                                                <xsl:with-param name="find" ><xsl:value-of select="$variableName" /></xsl:with-param>
+                                                <xsl:with-param name="replacementText" ><xsl:value-of select="$globalWithVariableName" /></xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:if>
+                                        <xsl:if test="string-length($variableName) = 0" ><xsl:value-of select="$param2" /></xsl:if>
+                                    </xsl:variable>
+
+                        <xsl:if test="contains($param2b, '.')" >
+                            BasicColor RGB_BASIC_COLOR = smallBasicColorCacheFactory.getAndOrCreate(
+                                basicColorUtil.getARGB(255, 
+                                <xsl:value-of select="translate(translate(translate($param2b, '+', ''), '\&quot;', ''), ';', ',')" />)
+                                );
+                        </xsl:if>
+                                                
                             ((GDRectOnlyPrimitiveDrawing) <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayer.primitiveDrawing).addFillColor(
                             
                         <xsl:if test="contains($param2, '.')" >
-                            //Skipping variable usage for fill color
+                            RGB_BASIC_COLOR
                         </xsl:if>
                         <xsl:if test="not(contains($param2, '.'))" >
                             this.RGB_<xsl:value-of select="translate(translate($param2, '\&quot;', ''), ';', '_')" />_BASIC_COLOR

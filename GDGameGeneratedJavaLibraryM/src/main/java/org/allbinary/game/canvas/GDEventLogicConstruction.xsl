@@ -201,6 +201,34 @@ Created By: Travis Berthelot
         
         <xsl:for-each select=".." >
             <xsl:for-each select="events" >
+                
+<!--            <xsl:if test="events[type = 'BuiltinCommonInstructions::Standard']" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                <xsl:for-each select="actions" >
+                    <xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" >
+                <xsl:if test="contains($hasChildNode, 'found')" >
+                <xsl:variable name="secondParam" ><xsl:if test="object != $secondGameLayer" ><xsl:value-of select="$secondGameLayer" /></xsl:if><xsl:if test="object = $secondGameLayer and object != $secondGameLayer2" ><xsl:value-of select="$secondGameLayer2" /></xsl:if></xsl:variable>
+                <xsl:variable name="hasChildActionThatSetsSecondParam" ><xsl:call-template name="hasChildActionThatSetsSecondParam" ><xsl:with-param name="secondParam" ><xsl:value-of select="$secondParam" /></xsl:with-param></xsl:call-template></xsl:variable>
+
+                //secondGameLayer=<xsl:value-of select="$secondGameLayer" />, //secondGameLayer2=<xsl:value-of select="$secondGameLayer2" />
+                //hasChildActionThatSetsSecondParam=<xsl:value-of select="$hasChildActionThatSetsSecondParam" />
+                
+                //From parent BuiltinCommonInstructions::Standard with Create/CreateByName - <xsl:text>&#10;</xsl:text>
+                <xsl:if test="contains($hasChildActionThatSetsSecondParam, 'found')" >//Using second param from child action (this should be sibling, but for now it is any child action)</xsl:if>
+                //totalRecursions=<xsl:value-of select="$totalRecursions" />                
+                @Override
+                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="object" />GDGameLayer, final GDGameLayer <xsl:if test="contains($hasChildActionThatSetsSecondParam, 'found') and string-length($secondParam) > 0" ><xsl:value-of select="$secondParam" />GDGameLayer</xsl:if><xsl:if test="not(contains($hasChildActionThatSetsSecondParam, 'found') and string-length($secondParam) > 0)" >gdGameLayer</xsl:if>) throws Exception {
+
+                    super.processGDStats(<xsl:value-of select="object" />GDGameLayer);
+                </xsl:if>
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:if>-->
+                
             <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
             <xsl:variable name="hasChildNode" >
                 <xsl:call-template name="hasChildNode" >
@@ -214,7 +242,7 @@ Created By: Travis Berthelot
                 //secondGameLayer=<xsl:value-of select="$secondGameLayer" />, //secondGameLayer2=<xsl:value-of select="$secondGameLayer2" />
                 //hasChildActionThatSetsSecondParam=<xsl:value-of select="$hasChildActionThatSetsSecondParam" />
                 
-                //From parent BuiltinCommonInstructions::ForEach - <xsl:for-each select="text()" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each><xsl:text>&#10;</xsl:text>
+                //From parent BuiltinCommonInstructions::ForEach - <xsl:text>&#10;</xsl:text>
                 <xsl:if test="contains($hasChildActionThatSetsSecondParam, 'found')" >//Using second param from child action (this should be sibling, but for now it is any child action)</xsl:if>
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />                
                 @Override
@@ -305,9 +333,7 @@ Created By: Travis Berthelot
                 </xsl:call-template>
             </xsl:variable>
                 
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                    found
-                </xsl:if>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
             </xsl:variable>
 
@@ -320,9 +346,7 @@ Created By: Travis Berthelot
                 </xsl:call-template>
             </xsl:variable>
                 
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                    found
-                </xsl:if>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
             </xsl:variable>
 
@@ -335,9 +359,7 @@ Created By: Travis Berthelot
                 </xsl:call-template>
             </xsl:variable>
                 
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                    found
-                </xsl:if>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
             </xsl:variable>
 
@@ -379,7 +401,7 @@ Created By: Travis Berthelot
                 //secondGameLayer=<xsl:value-of select="$secondGameLayer" />, //secondGameLayer2=<xsl:value-of select="$secondGameLayer2" />
                 //hasChildActionThatSetsSecondParam=<xsl:value-of select="$hasChildActionThatSetsSecondParam" />
                 
-                //parentSelectionNodeProcessGPaint - //From parent BuiltinCommonInstructions::ForEach - <xsl:for-each select="text()" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each><xsl:text>&#10;</xsl:text>
+                //parentSelectionNodeProcessGPaint - //From parent BuiltinCommonInstructions::ForEach - <xsl:text>&#10;</xsl:text>
                 <xsl:if test="contains($hasChildActionThatSetsSecondParam, 'found')" >//Using second param from child action (this should be sibling, but for now it is any child action)</xsl:if>
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 <xsl:variable name="name" ><xsl:value-of select="object" /></xsl:variable>
@@ -532,9 +554,7 @@ Created By: Travis Berthelot
                 </xsl:call-template>
             </xsl:variable>
                 
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                    found
-                </xsl:if>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
             </xsl:variable>
 
@@ -547,9 +567,7 @@ Created By: Travis Berthelot
                 </xsl:call-template>
             </xsl:variable>
                 
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                    found
-                </xsl:if>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
             </xsl:variable>
 
@@ -562,9 +580,7 @@ Created By: Travis Berthelot
                 </xsl:call-template>
             </xsl:variable>
                 
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                    found
-                </xsl:if>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
             </xsl:variable>
 
@@ -820,9 +836,7 @@ Created By: Travis Berthelot
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
             </xsl:variable>
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                found
-                </xsl:if>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
             </xsl:for-each>
             
@@ -879,9 +893,7 @@ Created By: Travis Berthelot
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
             </xsl:variable>
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                found
-                </xsl:if>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
             </xsl:for-each>
             
@@ -891,9 +903,7 @@ Created By: Travis Berthelot
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
             </xsl:variable>
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                found
-                </xsl:if>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
             
             <xsl:call-template name="hasParentSelectionNodeProcessGD" >
@@ -918,9 +928,7 @@ Created By: Travis Berthelot
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
             </xsl:variable>
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                found
-                </xsl:if>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
             
             <xsl:call-template name="hasDistanceProcessGD" >
@@ -945,12 +953,39 @@ Created By: Travis Berthelot
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
             </xsl:variable>
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                    found
-                </xsl:if>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
             
             <xsl:call-template name="hasBuiltinCommonInstructionsRepeatProcessGD" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions + 1" />
+                </xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+            </xsl:call-template>
+
+        </xsl:for-each>
+                
+    </xsl:template>
+
+    <xsl:template name="hasCreateProcessGD" >
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
+        
+        <xsl:for-each select=".." >
+            <xsl:if test="events[type = 'BuiltinCommonInstructions::Standard']" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                <xsl:for-each select="actions" >
+                    <xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" >
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:if>
+            
+            <xsl:call-template name="hasCreateProcessGD" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
@@ -972,9 +1007,7 @@ Created By: Travis Berthelot
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
             </xsl:variable>
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                found
-                </xsl:if>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
             
             <xsl:call-template name="hasLinkedObjectsPickObjectsLinkedToProcessGD" >
@@ -999,9 +1032,7 @@ Created By: Travis Berthelot
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
             </xsl:variable>
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                found
-                </xsl:if>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
             
             <xsl:call-template name="hasCollisionProcessGD" >
