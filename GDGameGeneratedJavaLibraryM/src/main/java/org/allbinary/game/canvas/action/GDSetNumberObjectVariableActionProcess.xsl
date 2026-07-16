@@ -638,7 +638,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                         
                         <xsl:if test="not(contains($hasSiblingActionWithObjectsGroupsOrObject, 'found') or contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
-                    //Not from parent - //SetNumberObjectVariable
+                    //SetNumberObjectVariable - //Not from parent
                             <xsl:if test="contains($hasBuiltinCommonInstructionsRepeatProcessGD, 'found')" >//Parent has repeat so the first param could be the wrong type conditions=<xsl:for-each select=".." ><xsl:for-each select="conditions" ><xsl:value-of select="type/value" />,</xsl:for-each></xsl:for-each>*/</xsl:if>
                     public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2) throws Exception {
                     

@@ -417,6 +417,10 @@ Created By: Travis Berthelot
                         return Math.cos(angle);
                     }
 
+                    public int min(final int min, final int max) {
+                        return Math.min(min, max);
+                    }
+
                     public int max(final int min, final int max) {
                         return Math.max(min, max);
                     }

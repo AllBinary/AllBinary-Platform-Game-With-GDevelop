@@ -24,6 +24,21 @@ Created By: Travis Berthelot
 
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>        
         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+        
+                    //PrimitiveDrawing::FillColor - START
+                        <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:if test="contains($param2, '.')" >
+                            //Skipping variable usage for fill color
+                        </xsl:if>
+                        <xsl:if test="not(contains($param2, '.'))" >
+                            public BasicColor RGB_<xsl:value-of select="translate(translate($param2, '\&quot;', ''), ';', '_')" />_BASIC_COLOR = smallBasicColorCacheFactory.getAndOrCreate(
+                                basicColorUtil.getARGB(255, 
+                                <xsl:value-of select="translate(translate($param2, '\&quot;', ''), ';', ',')" />)
+                                );
+                                //"RGB_<xsl:value-of select="translate(translate($param2, '\&quot;', ''), ';', '_')" />_BASIC_COLOR"
+                        </xsl:if>
+                    //PrimitiveDrawing::FillColor - END              
+        
                     //PrimitiveDrawing::FillColor - action - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                     @Override
@@ -126,9 +141,16 @@ Created By: Travis Berthelot
                             <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                         </xsl:call-template>
                     </xsl:variable>
+                    <xsl:variable name="hasCreateProcessGD" >
+                        <xsl:call-template name="hasCreateProcessGD" >
+                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                            <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:variable>
                     
-                    /*hasForEachProcessGD=<xsl:value-of select="$hasForEachProcessGD" /> hasCollisionProcessGD=<xsl:value-of select="$hasCollisionProcessGD" /> hasDistanceProcessGD=<xsl:value-of select="$hasDistanceProcessGD" /> hasLinkedObjectsPickObjectsLinkedToProcessGD=<xsl:value-of select="$hasLinkedObjectsPickObjectsLinkedToProcessGD" />*/
+                    /*hasCreateProcessGD=<xsl:value-of select="$hasCreateProcessGD" /> hasForEachProcessGD=<xsl:value-of select="$hasForEachProcessGD" /> hasCollisionProcessGD=<xsl:value-of select="$hasCollisionProcessGD" /> hasDistanceProcessGD=<xsl:value-of select="$hasDistanceProcessGD" /> hasLinkedObjectsPickObjectsLinkedToProcessGD=<xsl:value-of select="$hasLinkedObjectsPickObjectsLinkedToProcessGD" />*/
 
+                    hasCreateProcessGD
                     <xsl:call-template name="parentSelectionNodeProcessGD" >
                         <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                         <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
@@ -170,14 +192,14 @@ Created By: Travis Berthelot
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                     //Sibling - //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
-                    //ActivateBehavior - From sibling action
+                    //PrimitiveDrawing::FillColor - From sibling action
                     public boolean processGD(final GDGameLayer <xsl:value-of select="$name" />GDGameLayer, final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer) throws Exception {
                     
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);
                         </xsl:if>
                         
                         <xsl:if test="not(contains($hasSiblingActionWithObjectsGroupsOrObject, 'found') or contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
-                    //Not from parent - //ActivateBehavior
+                    //PrimitiveDrawing::FillColor - //Not from parent
                     public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2) throws Exception {
                     
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);
@@ -189,7 +211,15 @@ Created By: Travis Berthelot
                     </xsl:if>
                         
                             ((GDRectOnlyPrimitiveDrawing) <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayer.primitiveDrawing).addFillColor(
-                                gameGlobals.<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >RGB_<xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', '_')" />_BASIC_COLOR</xsl:if></xsl:for-each>
+                            
+                        <xsl:if test="contains($param2, '.')" >
+                            //Skipping variable usage for fill color
+                        </xsl:if>
+                        <xsl:if test="not(contains($param2, '.'))" >
+                            this.RGB_<xsl:value-of select="translate(translate($param2, '\&quot;', ''), ';', '_')" />_BASIC_COLOR
+                        </xsl:if>
+                            
+                                
                                 );
 
                         return true;                   

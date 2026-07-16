@@ -86,10 +86,10 @@ Created By: Travis Berthelot
 
     <xsl:template name="variablesStructures" >
         <xsl:param name="layoutName" />
-        
+<!--        -->
         <xsl:for-each select="variables" >
-            //variablesStructures - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
             <xsl:if test="type = 'structure'" >
+            //variablesStructures - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
             <xsl:if test="name" >
     public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
 
@@ -115,22 +115,33 @@ Created By: Travis Berthelot
             </xsl:if>
             </xsl:if>
         </xsl:for-each>
-        
-        //JSONTo - START
-        <xsl:call-template name="jsonObjects">
-            <xsl:with-param name="iteration" >0</xsl:with-param>
-        </xsl:call-template>
-        //JSONTo - END
 
-        //JSONTo - external - START
-        <xsl:for-each select="//externalEvents" >
-            <xsl:if test="$layoutName = associatedLayout" >
-                <xsl:call-template name="jsonObjects">
-                    <xsl:with-param name="iteration" >0</xsl:with-param>
-                </xsl:call-template>
+        <xsl:for-each select="variables" >
+            <xsl:if test="type = 'structure'" >
+            <xsl:if test="name" >
+
+        <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+        <xsl:variable name="hasJSONUsage" ><xsl:for-each select=".." ><xsl:call-template name="hasJSONUsage" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template></xsl:for-each>//externalevents=<xsl:for-each select="//externalEvents" ><xsl:call-template name="hasJSONUsage" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template></xsl:for-each></xsl:variable>
+        //name=<xsl:value-of select="$name" /> - //hasJSONUsage=<xsl:value-of select="$hasJSONUsage" />
+        <xsl:text>&#10;</xsl:text>
+        <xsl:if test="contains($hasJSONUsage, 'found')" >
+        public Object <xsl:value-of select="$name" />JSONObject = this.nullUtil.NULL_OBJECT;
+        public Object <xsl:value-of select="$name" />JSONArray = this.nullUtil.NULL_OBJECT;
+        </xsl:if>
+
+            </xsl:if>
             </xsl:if>
         </xsl:for-each>
-        //JSONTo - external - END
+
+        <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+        <xsl:variable name="hasJSONUsage" ><xsl:call-template name="hasJSONUsage" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>//externalevents=<xsl:for-each select="//externalEvents" ><xsl:call-template name="hasJSONUsage" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template></xsl:for-each></xsl:variable>
+        //name=<xsl:value-of select="$name" /> - //hasJSONUsage=<xsl:value-of select="$hasJSONUsage" />
+        <xsl:text>&#10;</xsl:text>
+        <xsl:if test="contains($hasJSONUsage, 'found')" >
+        public Object <xsl:value-of select="$name" />JSONObject = this.nullUtil.NULL_OBJECT;
+        public Object <xsl:value-of select="$name" />JSONArray = this.nullUtil.NULL_OBJECT;
+        </xsl:if>
+        
     </xsl:template>
 
     <xsl:template name="hasJSONUsage" >
@@ -142,16 +153,39 @@ Created By: Travis Berthelot
                 <xsl:if test="type/value = 'JSONToVariableStructure'" >
                     <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:if test="contains($param, $name)" >foundJSONToVariableStructure</xsl:if>
-                    <xsl:if test="$param2 = $name" >foundJSONToVariableStructure</xsl:if>
+                    <xsl:if test="contains($param, $name)" >//foundJSONToVariableStructure</xsl:if>
+                    <xsl:if test="$param2 = $name" >//foundJSONToVariableStructure</xsl:if>
+                    
+                <xsl:call-template name="hasConnectedJsonObjects">
+                    <xsl:with-param name="param" select="$param2" />
+                </xsl:call-template>
+                    
                 </xsl:if>
                 <xsl:if test="type/value = 'JSONToVariableStructure2'" >
                     <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:if test="contains($param, $name)" >foundJSONToVariableStructure</xsl:if>
-                    <xsl:if test="$param2 = $name" >foundJSONToVariableStructure2</xsl:if>
+                    <xsl:if test="contains($param, $name)" >//foundJSONToVariableStructure</xsl:if>
+                    <xsl:if test="$param2 = $name" >//foundJSONToVariableStructure2</xsl:if>
+                    
+                <xsl:call-template name="hasConnectedJsonObjects">
+                    <xsl:with-param name="param" select="$param2" />
+                </xsl:call-template>
+                    
                 </xsl:if>
-<!--                <xsl:if test="type/value = 'JSONToGlobalVariableStructure'" >foundJSONToGlobalVariableStructure</xsl:if>-->
+                <xsl:if test="type/value = 'JSONToGlobalVariableStructure'" >
+                    <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+<!--                    
+                    <xsl:if test="contains($param, $name)" >foundJSONToGlobalVariableStructure</xsl:if>
+                    <xsl:if test="$param2 = $name" >foundJSONToGlobalVariableStructure</xsl:if>
+                                        
+                <xsl:call-template name="hasConnectedJsonObjects">
+                    <xsl:with-param name="param" select="$param2" />
+                </xsl:call-template>
+
+-->
+                    
+                </xsl:if>
             </xsl:for-each>
         
         <xsl:call-template name="hasJSONUsage">
@@ -162,82 +196,25 @@ Created By: Travis Berthelot
 
     </xsl:template>
 
-    <xsl:template name="jsonObjects" >
-        <xsl:param name="iteration" />
-                
-        <xsl:for-each select="events" >
-            
-            <xsl:for-each select="actions" >
-<!--                //type/value=<xsl:value-of select="type/value" />-->
-                <xsl:if test="type/value = 'JSONToVariableStructure'" >
-        //type/value=<xsl:value-of select="type/value" />
-        <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-        public Object <xsl:value-of select="$param" />JSONObject = this.nullUtil.NULL_OBJECT;
-        public Object <xsl:value-of select="$param" />JSONArray = this.nullUtil.NULL_OBJECT;
-        
-                <xsl:call-template name="connectedJsonObjects">
-                    <xsl:with-param name="param" select="$param" />
-                    <xsl:with-param name="iteration" select="number($iteration) + 1" />
-                </xsl:call-template>
-        
-                </xsl:if>
-                <xsl:if test="type/value = 'JSONToVariableStructure2'" >
-        //type/value=<xsl:value-of select="type/value" />
-        <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-        public Object <xsl:value-of select="$param" />JSONObject = this.nullUtil.NULL_OBJECT;
-        public Object <xsl:value-of select="$param" />JSONArray = this.nullUtil.NULL_OBJECT;
-        
-                <xsl:call-template name="connectedJsonObjects">
-                    <xsl:with-param name="param" select="$param" />
-                    <xsl:with-param name="iteration" select="number($iteration) + 1" />
-                </xsl:call-template>
-
-                </xsl:if>
-                <xsl:if test="type/value = 'JSONToGlobalVariableStructure'" >
-<!--        //type/value=<xsl:value-of select="type/value" />-->
-        <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-        
-                <xsl:call-template name="connectedJsonObjects">
-                    <xsl:with-param name="param" select="$param" />
-                    <xsl:with-param name="iteration" select="number($iteration) + 1" />
-                </xsl:call-template>
-        
-                </xsl:if>
-            </xsl:for-each>
-        
-        <xsl:call-template name="jsonObjects">
-            <xsl:with-param name="iteration" select="number($iteration) + 1" />
-        </xsl:call-template>
-
-        </xsl:for-each>
-
-    </xsl:template>
-
-    <xsl:template name="connectedJsonObjects">
+    <xsl:template name="hasConnectedJsonObjects">
         <xsl:param name="param" />
-        <xsl:param name="iteration" />
 
-        //param=<xsl:value-of select="$param" />
+<!--        //param=<xsl:value-of select="$param" />-->
         <xsl:for-each select="//events" >
             <xsl:if test="type = 'BuiltinCommonInstructions::ForEachChildVariable'" >
                 <xsl:if test="iterableVariableName = $param" >
-        //valueIteratorVariableName=<xsl:value-of select="valueIteratorVariableName" />
-        //iterableVariableName=<xsl:value-of select="iterableVariableName" />
-                <xsl:call-template name="connectedJsonObjects">
+<!--        //valueIteratorVariableName=<xsl:value-of select="valueIteratorVariableName" />
+        //iterableVariableName=<xsl:value-of select="iterableVariableName" />-->
+                <xsl:call-template name="hasConnectedJsonObjects">
                     <xsl:with-param name="param" select="valueIteratorVariableName" />
-                    <xsl:with-param name="iteration" select="number($iteration) + 1" />
                 </xsl:call-template>
-
-        //Chained Usage
-        public Object <xsl:value-of select="valueIteratorVariableName" />JSONObject = this.nullUtil.NULL_OBJECT;
-        public Object <xsl:value-of select="valueIteratorVariableName" />JSONArray = this.nullUtil.NULL_OBJECT;
-                
+        //Chained Usage - found
                 </xsl:if>
             </xsl:if>
         </xsl:for-each>
         
     </xsl:template>
-
+    
     <xsl:template name="hasJsonObjects">
         <xsl:param name="param" />
         <xsl:param name="iteration" />

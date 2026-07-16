@@ -58,8 +58,8 @@ import javax.microedition.lcdui.Image;
 import org.json.me.JSONArray;
 import org.json.me.JSONObject;        
 
-<!--import org.allbinary.animation.AnimationBehavior;
-import org.allbinary.animation.special.SpecialAnimation;-->
+<!--import org.allbinary.animation.AnimationBehavior;-->
+import org.allbinary.canvas.GameGlobalsFactory;
 import org.allbinary.game.canvas.GDGameGlobals;
 
 import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />GDObjectsFactory;
@@ -67,6 +67,7 @@ import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" /
 import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationImageResources;
 
 import org.allbinary.game.canvas.GDExtensionGDNodes;
+import org.allbinary.game.configuration.persistance.GDStructure;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layout.GDNode;
@@ -87,6 +88,7 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
 import org.allbinary.logic.NullUtil;
+import org.allbinary.time.TimeDelayHelper;
 import org.allbinary.util.ArrayUtil;
 
 <!--import org.allbinary.game.configuration.persistance.JSONPersistance;
@@ -116,7 +118,9 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final NullUtil nullUtil = NullUtil.getInstance();
     private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+    private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
     private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
+    private final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
     
 <!--
     private final StringUtil stringUtil = StringUtil.getInstance();
@@ -296,61 +300,310 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
 
         </xsl:for-each>
 
-    public int SceneWindowWidth() {
-        return gameTickDisplayInfoSingleton.getLastWidth();
-    }
+        public double TimeDelta() {
+            return globals.globalsGameTickTimeDelayHelper.timeDelta * .001;
+        }
 
-    public int SceneWindowHeight() {
-        return gameTickDisplayInfoSingleton.getLastHeight();
-    }
+        public int SceneWindowWidth() {
+            return gameTickDisplayInfoSingleton.getLastWidth();
+        }
 
-    public int Variable(final int value) {
-        return value;
-    }
+        public int SceneWindowHeight() {
+            return gameTickDisplayInfoSingleton.getLastHeight();
+        }
 
-    public float Variable(final float value) {
-        return value;
-    }
+        public int Random(final int range) {
+            return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
+        }
 
-    public double Variable(final double value) {
-        return value;
-    }
+        public float RandomFloatInRange(final double min, final double max) {
+            final double next = (max - min);
+            //logUtil.putF("NEXT: " + next, this, commonStrings.PROCESS);
+            final float nextF = (float) next * 1000;
+            //logUtil.putF("NEXTF: " + nextF, this, commonStrings.PROCESS);
+            final int nextI = Math.round(nextF);
+            //logUtil.putF("NEXTI: " + nextI, this, commonStrings.PROCESS);
+            final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
+            //logUtil.putF("RANDOM: " + random, this, commonStrings.PROCESS);
+            final float randomF = (float) random;
+            //logUtil.putF("RANDOMF: " + randomF, this, commonStrings.PROCESS);
+            final float result = (float) min + (randomF / 1000);
+            //logUtil.putF("RESULT: " + result, this, commonStrings.PROCESS);
+            return result;
+        }
+                    
+        public float RandomFloatInRange(final float min, final float max) {
+            final float nextF = (float) (max - min) * 1000;
+            //logUtil.putF("NEXTF: " + nextF, this, commonStrings.PROCESS);
+            final int nextI = Math.round(nextF);
+            //logUtil.putF("NEXTI: " + nextI, this, commonStrings.PROCESS);
+            final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
+            //logUtil.putF("RANDOM: " + random, this, commonStrings.PROCESS);
+            final float randomF = (float) random;
+            //logUtil.putF("RANDOMF: " + randomF, this, commonStrings.PROCESS);
+            final float result = (float) min + (randomF / 1000);
+            //logUtil.putF("RESULT: " + result, this, commonStrings.PROCESS);
+            return result;
+        }
 
-    public String VariableString(final String string) {
-        return string;
-    }
+        public int Variable(final int value) {
+            return value;
+        }
 
-    public String VariableString(final Object object) {
-        return object.toString();
-    }
+        public float Variable(final float value) {
+            return value;
+        }
 
-    public int VariableChildCount(final String[] array) {
-        return array.length;
-    }
+        public double Variable(final double value) {
+            return value;
+        }
 
-    public int VariableChildCount(final int[] array) {
-        return array.length;
-    }
+        public String VariableString(final String string) {
+            return string;
+        }
 
-    public String GlobalVariable(final String value) {
-        return value;
-    }
+        public String VariableString(final Object object) {
+            return object.toString();
+        }
 
-    public float GlobalVariable(final float value) {
-        return value;
-    }
+        public int VariableChildCount(final String[] array) {
+            return array.length;
+        }
 
-    public long GlobalVariable(final long value) {
-        return value;
-    }
+        public int VariableChildCount(final int[] array) {
+            return array.length;
+        }
 
-    public int GlobalVariable(final int value) {
-        return value;
-    }
+        public String GlobalVariable(final String value) {
+            return value;
+        }
 
-    public int Random(final int range) {
-        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
-    }
+        public float GlobalVariable(final float value) {
+            return value;
+        }
+
+        public long GlobalVariable(final long value) {
+            return value;
+        }
+
+        public int GlobalVariable(final int value) {
+            return value;
+        }
+
+        public String GlobalVariableString(final String value) {
+            return value;
+        }
+
+        public int GlobalVariableChildCount(final String[] array) {
+            return array.length;
+        }
+
+        public int GlobalVariableChildCount(final int[] array) {
+            return array.length;
+        }
+
+        public int GlobalVariableChildCount(final long[] array) {
+            return array.length;
+        }
+
+        public String GlobalVarToJSON(final String value) {
+            return value;
+        }
+
+        public String GlobalVarToJSON(final int value) {
+            return Integer.toString(value);
+        }
+
+        public String GlobalVarToJSON(final long value) {
+            return Long.toString(value);
+        }
+
+        public String ToJSON(final GDStructure value) {
+            return value.toJSONAsString();
+        }
+
+        public String ToJSON(final String value) {
+            return value;
+        }
+
+        public String ToJSON(final int value) {
+            return Integer.toString(value);
+        }
+
+        public String ToJSON(final long value) {
+            return Long.toString(value);
+        }
+
+        public int SceneInstancesCount(final int size) {
+            return size;
+        }
+
+        public int MouseX() {
+                        
+            return gameGlobalsFactory.point.getX();
+        }
+
+        public int MouseY() {
+                        
+            return gameGlobalsFactory.point.getY();
+        }
+
+        public int MouseX(final String string, int value) {
+                        
+            return gameGlobalsFactory.point.getX();
+        }
+
+        public int MouseY(final String string, int value) {
+                        
+            return gameGlobalsFactory.point.getY();
+        }
+                    
+        public int CameraX(final String string, int value) {
+                        
+            return 0;
+        }
+
+        public int CameraY(final String string, int value) {
+                        
+            return 0;
+        }
+
+        public int CameraWidth(final String string, int value) {
+
+            return gameTickDisplayInfoSingleton.getLastWidth();
+        }
+
+        public long TimerElapsedTime(final TimeDelayHelper timeDelayHelper) {
+            return timeDelayHelper.getElapsed(globals.globalsGameTickTimeDelayHelper.lastStartTime) / 1000;
+        }
+
+        public int floor(final int value) {
+            return value;
+        }
+
+        public float floor(final float value) {
+            return (float) Math.floor((double) value);
+        }
+
+        public long round(final long value) {
+            return value;
+        }
+                    
+        public float round(final float value) {
+            return Math.round(value);
+        }
+                    
+        public int abs(final int value) {
+            return Math.abs(value);
+        }
+                    
+        public float abs(final float value) {
+            return Math.abs(value);
+        }
+
+        public double log2(final int value) {
+            return Math.log(value);
+        }
+
+        public double sin(final double angle) {
+            return Math.sin(angle);
+        }
+
+        public double cos(final double angle) {
+            return Math.cos(angle);
+        }
+
+        public int min(final int min, final int max) {
+            return Math.min(min, max);
+        }
+
+        public int max(final int min, final int max) {
+            return Math.max(min, max);
+        }
+                    
+        public int ceil(final double value) {
+            return (int) Math.ceil(value);
+        }
+
+        public double ToRad(final double angdeg) {
+            //return Math.toRadians(angdeg);
+            return angdeg;
+        }
+                    
+        public long TimeFromStart() {
+            return globals.globalsGameTickTimeDelayHelper.getTimeFromStart() / 100;
+        }
+
+        public String NewLine() {
+            return CommonSeps.getInstance().NEW_LINE;
+        }
+
+        public int LastTouchId() {
+            return 0;
+        }
+
+        public int LastEndedTouchId() {
+            return 0;
+        }
+
+        public int TouchX(final int touchId, final String name, final int unknown) {
+            return 0;
+        }
+
+        public int TouchY(final int touchId, final String name, final int unknown) {
+            return 0;
+        }
+
+        public float ToNumber(final String string) {
+            return Float.parseFloat(string);
+        }
+
+        public int StrLength(final String string) {
+            return string.length();
+        }
+                    
+        public String StrReplaceAll(final String string, final String find, final String replace) {
+            return string.replace(find, replace);
+        }
+
+        public String SubStr(final String string, final int startIndex, final int endIndex) {
+            return string.substring(startIndex, endIndex);
+        }
+
+        public String ToString(final String value) {
+            return value;
+        }
+
+        public String ToString(final int value) {
+            if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
+                return Integer.toString(value);
+            } else {
+                return smallIntegerSingletonFactory.getString(value);
+            }
+        }
+
+        public String ToString(final long value) {
+            //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
+            return Long.toString(value);
+        }
+                    
+        public String LargeNumberToString(final long value) {
+            //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
+            return Long.toString(value);
+        }
+                    
+        public String LargeNumberToString(final float value) {
+            //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
+            return Long.toString((long) value);
+        }
+
+        public String ToString(final float value) {
+            return Float.toString(value);
+        }
+
+        public int ToNotString(final int value) {
+           return value;
+        }
 
 }
 

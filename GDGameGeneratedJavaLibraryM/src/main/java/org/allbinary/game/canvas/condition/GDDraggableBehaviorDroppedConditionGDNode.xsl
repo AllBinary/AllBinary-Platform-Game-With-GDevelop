@@ -215,7 +215,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                     </xsl:call-template>
                     <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
-                    //Not from parent - //DraggableBehavior::Dropped
+                    //DraggableBehavior::Dropped - //Not from parent
                     public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2) throws Exception {
                     
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);

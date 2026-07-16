@@ -210,7 +210,7 @@ Created By: Travis Berthelot
                     </xsl:if>
 -->
                     <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
-                        //Not from parent - //CompareNumbers
+                        //CompareNumbers - //Not from parent
                         public boolean processGD(final GDGameLayer gdGameLayer, final GDGameLayer gameLayer2) throws Exception {
                     
                             super.processGDStats(gdGameLayer);

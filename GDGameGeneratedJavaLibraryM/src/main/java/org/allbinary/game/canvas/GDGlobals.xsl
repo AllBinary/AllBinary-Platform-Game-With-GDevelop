@@ -147,23 +147,6 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:for-each>
 
-                    //PrimitiveDrawing::FillColor - START
-                        <xsl:for-each select="//actions[type/value = 'PrimitiveDrawing::FillColor']" >
-                            
-                            <xsl:variable name="params" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" /></xsl:for-each></xsl:variable>
-                            <xsl:if test="contains($params, '.')" >
-                                //Skipping variable usage for fill color
-                            </xsl:if>
-                            <xsl:if test="not(contains($params, '.'))" >
-                            public BasicColor <xsl:for-each select="parameters" ><xsl:if test="position() = 2" >RGB_<xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', '_')" />_BASIC_COLOR</xsl:if></xsl:for-each> = smallBasicColorCacheFactory.getAndOrCreate(
-                                basicColorUtil.getARGB(255, 
-                                <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:if></xsl:for-each>)
-                                );
-                                //"<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >RGB_<xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', '_')" />_BASIC_COLOR</xsl:if></xsl:for-each>"
-                            </xsl:if>
-                        </xsl:for-each>
-                    //PrimitiveDrawing::FillColor - END              
-
                     <xsl:for-each select="externalEvents" >
                         //Count - //ExternalEvents - START
                         <xsl:call-template name="generateIndexToNodeIdMapping2" >

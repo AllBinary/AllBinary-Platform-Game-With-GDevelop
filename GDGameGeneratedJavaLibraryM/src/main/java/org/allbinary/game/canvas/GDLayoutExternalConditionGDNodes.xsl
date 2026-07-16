@@ -76,6 +76,7 @@ Created By: Travis Berthelot
                 import org.allbinary.J2MEUtil;
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.canvas.GameGlobalsFactory;
                 import org.allbinary.game.canvas.GDExtensionGDNodes;
                 import org.allbinary.game.configuration.feature.Features;
                 import org.allbinary.game.configuration.persistance.JSONPersistance;
@@ -144,6 +145,8 @@ Created By: Travis Berthelot
                         private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
                         private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
+
+                        private final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
 
                         private final GDNodes gdNodes = GDNodeUtil.getInstance().getInstance(<xsl:value-of select="$layoutIndex" />);
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
@@ -280,6 +283,41 @@ Created By: Travis Berthelot
 
                     public int GlobalVariableChildCount(final long[] array) {
                         return array.length;
+                    }
+                    
+                    public int MouseX() {
+                        
+                        return gameGlobalsFactory.point.getX();
+                    }
+
+                    public int MouseY() {
+                        
+                        return gameGlobalsFactory.point.getY();
+                    }
+
+                    public int MouseX(final String string, int value) {
+                        
+                        return gameGlobalsFactory.point.getX();
+                    }
+
+                    public int MouseY(final String string, int value) {
+                        
+                        return gameGlobalsFactory.point.getY();
+                    }
+                    
+                    public int CameraX(final String string, int value) {
+                        
+                        return 0;
+                    }
+
+                    public int CameraY(final String string, int value) {
+                        
+                        return 0;
+                    }
+
+                    public int CameraWidth(final String string, int value) {
+                        
+                        return gameTickDisplayInfoSingleton.getLastWidth();
                     }
                     
                     public float ToNumber(final String string) {
