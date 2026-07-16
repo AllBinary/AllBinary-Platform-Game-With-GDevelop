@@ -16,15 +16,15 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:template name="primitiveDrawingFillColorActionProcess" >
-       <xsl:param name="forExtension" />
+    <xsl:template name="primitiveDrawingLineV2ActionProcess" >
+        <xsl:param name="forExtension" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
-
-        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>        
+        
+        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    //PrimitiveDrawing::FillColor - action - //forExtension=<xsl:value-of select="$forExtension" />
+                    //PrimitiveDrawing::LineV2 - action - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                     @Override
                     public boolean process() throws Exception {
@@ -43,7 +43,6 @@ Created By: Travis Berthelot
                         
                         return this.process();
                     }
-
 
                         <xsl:variable name="param" >
                             <xsl:for-each select="parameters" >
@@ -188,10 +187,20 @@ Created By: Travis Berthelot
                         
                     </xsl:if>
                         
-                            ((GDRectOnlyPrimitiveDrawing) <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayer.primitiveDrawing).addFillColor(
-                                gameGlobals.<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >RGB_<xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', '_')" />_BASIC_COLOR</xsl:if></xsl:for-each>
-                                );
+                        try {
 
+<!--                            <xsl:variable name="gdObjectName" ><xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>-->
+                            <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+
+                            final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gdObjectName" /><xsl:text> </xsl:text><xsl:value-of select="$gdObjectName" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gdObjectName" />) <xsl:value-of select="$gdObjectName" />GDGameLayer.gdObject;
+
+                            ((GDRectOnlyPrimitiveDrawing) <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayer.primitiveDrawing).addLineV2(
+                                <xsl:for-each select="parameters" ><xsl:if test="position() > 1" ><xsl:value-of select="text()" /><xsl:if test="position() != last()" >, </xsl:if></xsl:if></xsl:for-each>
+                                );
+                                
+                        } catch(Exception e) {
+                            logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
+                        }
                         return true;                   
                     }
                         </xsl:if>

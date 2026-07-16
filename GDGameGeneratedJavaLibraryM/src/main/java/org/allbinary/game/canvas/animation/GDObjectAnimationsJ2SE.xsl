@@ -275,16 +275,6 @@ Created By: Travis Berthelot
                                         </xsl:if>
                                     </xsl:for-each>
                                 </xsl:for-each>
-                                <!--
-                                <xsl:for-each select="/game" >
-                                    <xsl:for-each select="layouts" >
-                                <xsl:call-template name="getSetSizeForObject" >
-                                    <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
-                                    <xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param>
-                                </xsl:call-template>
-                                    </xsl:for-each>
-                                </xsl:for-each>
-                                -->
                                 );
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>

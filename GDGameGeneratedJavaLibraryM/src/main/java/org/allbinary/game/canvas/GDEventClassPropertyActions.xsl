@@ -102,9 +102,14 @@ Created By: Travis Berthelot
             <xsl:with-param name="parentName" ><xsl:value-of select="name" /></xsl:with-param>
         </xsl:call-template>
 
+        <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+        <xsl:variable name="hasJSONUsage" ><xsl:for-each select=".." ><xsl:call-template name="hasJSONUsage" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template></xsl:for-each>//externalevents=<xsl:for-each select="//externalEvents" ><xsl:call-template name="hasJSONUsage" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template></xsl:for-each></xsl:variable>
+        //name=<xsl:value-of select="$name" /> - //hasJSONUsage=<xsl:value-of select="$hasJSONUsage" />
+        <xsl:if test="contains($hasJSONUsage, 'found')" >
         public String toJSONAsString() {
-            return <xsl:value-of select="name" />JSONObject.toString();
+            return <xsl:value-of select="$name" />JSONObject.toString();
         }
+        </xsl:if>
         
     }
             </xsl:if>
@@ -126,6 +131,35 @@ Created By: Travis Berthelot
             </xsl:if>
         </xsl:for-each>
         //JSONTo - external - END
+    </xsl:template>
+
+    <xsl:template name="hasJSONUsage" >
+        <xsl:param name="name" />
+                
+        <xsl:for-each select="events" >
+            
+            <xsl:for-each select="actions" >
+                <xsl:if test="type/value = 'JSONToVariableStructure'" >
+                    <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:if test="contains($param, $name)" >foundJSONToVariableStructure</xsl:if>
+                    <xsl:if test="$param2 = $name" >foundJSONToVariableStructure</xsl:if>
+                </xsl:if>
+                <xsl:if test="type/value = 'JSONToVariableStructure2'" >
+                    <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:if test="contains($param, $name)" >foundJSONToVariableStructure</xsl:if>
+                    <xsl:if test="$param2 = $name" >foundJSONToVariableStructure2</xsl:if>
+                </xsl:if>
+<!--                <xsl:if test="type/value = 'JSONToGlobalVariableStructure'" >foundJSONToGlobalVariableStructure</xsl:if>-->
+            </xsl:for-each>
+        
+        <xsl:call-template name="hasJSONUsage">
+            <xsl:with-param name="name" select="$name" />
+        </xsl:call-template>
+
+        </xsl:for-each>
+
     </xsl:template>
 
     <xsl:template name="jsonObjects" >
@@ -162,8 +196,6 @@ Created By: Travis Berthelot
                 <xsl:if test="type/value = 'JSONToGlobalVariableStructure'" >
 <!--        //type/value=<xsl:value-of select="type/value" />-->
         <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-        //public Object <xsl:value-of select="$param" />JSONObject = this.nullUtil.NULL_OBJECT;
-        //public Object <xsl:value-of select="$param" />JSONArray = this.nullUtil.NULL_OBJECT;   
         
                 <xsl:call-template name="connectedJsonObjects">
                     <xsl:with-param name="param" select="$param" />

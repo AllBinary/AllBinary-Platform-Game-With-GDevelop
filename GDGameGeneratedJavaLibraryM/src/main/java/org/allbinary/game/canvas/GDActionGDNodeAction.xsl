@@ -19,6 +19,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDTextContainerCapabilityTextContainerBehaviorSetValueActionProcess.xsl" />
     <xsl:import href="./action/GDTextObjectStringActionProcess.xsl" />
     <xsl:import href="./action/GDTextObjectChangeColorActionProcess.xsl" />
+    <xsl:import href="./action/GDTextInputTextInputObjectSetTextColorActionProcess.xsl" />
     <xsl:import href="./action/GDTextInputTextInputObjectSetFillColorActionProcess.xsl" />
 
     <xsl:import href="./action/GDTextEntryObjectActionProcess.xsl" />
@@ -91,11 +92,13 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDScalableBehaviorSetValueActionProcess.xsl" />
     <xsl:import href="./action/GDScalableBehaviorSetXActionProcess.xsl" />
     <xsl:import href="./action/GDScalableBehaviorSetYActionProcess.xsl" />
+    <xsl:import href="./action/GDResizableCapabilityResizableBehaviorSetSizeActionProcess.xsl" />
     <xsl:import href="./action/GDResizableCapabilityResizableBehaviorSetHeightActionProcess.xsl" />
     <xsl:import href="./action/GDActivateBehaviorActionProcess.xsl" />
     <xsl:import href="./action/GDPathfindingBehaviorSetDestinationActionProcess.xsl" />
     <xsl:import href="./action/GDSceneBackgroundActionProcess.xsl" />
     <xsl:import href="./action/GDPrimitiveDrawingFillColorActionProcess.xsl" />
+    <xsl:import href="./action/GDPrimitiveDrawingLineV2ActionProcess.xsl" />
     <xsl:import href="./action/GDPrimitiveDrawingRectangleActionProcess.xsl" />
     <xsl:import href="./action/GDEcrireFichierTxtSaveJSONActionProcess.xsl" />
     <xsl:import href="./action/GDLireFichierTxtLoadJSONActionProcess.xsl" />
@@ -450,7 +453,22 @@ Created By: Travis Berthelot
                 </xsl:when>
         
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::LineV2'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+
+                    <xsl:call-template name="primitiveDrawingLineV2ActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    
                 </xsl:when>
                 
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::Ellipse'" >
@@ -1934,6 +1952,7 @@ Created By: Travis Berthelot
 -->
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ResizableCapability::ResizableBehavior::SetHeight'" >
+                    
                     <xsl:call-template name="resizableCapabilityResizableBehaviorSetHeightActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1948,10 +1967,10 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
+
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ResizableCapability::ResizableBehavior::SetSize'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED - Started work on but disabled - getSetSizeForObject
-<!-- 
+ 
                     <xsl:call-template name="resizableCapabilityResizableBehaviorSetSizeActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1966,7 +1985,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
--->
+
                 </xsl:when>
                 
                 <xsl:when test="$typeValue = 'FlippableCapability::FlippableBehavior::FlipX'" >
@@ -2385,6 +2404,24 @@ Created By: Travis Berthelot
 
                 </xsl:when>
 
+                <xsl:when test="$typeValue = 'TextInput::TextInputObject::SetTextColor'" >
+                    
+                    <xsl:call-template name="textInputTextInputObjectSetTextColorActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
                 <xsl:when test="$typeValue = 'TextInput::TextInputObject::SetFillColor'" >
                     
                     <xsl:call-template name="textInputTextInputObjectSetFillColorActionProcess" >
