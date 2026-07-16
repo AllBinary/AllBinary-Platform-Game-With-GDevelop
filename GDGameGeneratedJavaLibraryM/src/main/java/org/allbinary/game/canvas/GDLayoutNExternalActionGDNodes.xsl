@@ -97,6 +97,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.configuration.persistance.GDStructure;
                 import org.allbinary.game.configuration.persistance.JSONPersistance;
                 import org.allbinary.game.layer.GDGameLayer;
+                import org.allbinary.game.layer.GDRectOnlyPrimitiveDrawing;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.game.layout.GDObject;
