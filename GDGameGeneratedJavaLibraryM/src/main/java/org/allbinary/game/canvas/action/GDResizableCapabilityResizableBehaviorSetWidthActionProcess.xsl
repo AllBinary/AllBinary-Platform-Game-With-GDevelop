@@ -43,6 +43,8 @@ Created By: Travis Berthelot
                                 </xsl:for-each>
                             </xsl:variable>
         
+                        <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$paramOne" /></xsl:variable>
+        
                         //ResizableCapability::ResizableBehavior::SetWidth - action - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
@@ -64,10 +66,10 @@ Created By: Travis Berthelot
                                 
                                 final int size = <xsl:value-of select="$paramOne" />GDGameLayerList.size();
                                 GDGameLayer <xsl:value-of select="$paramOne" />GDGameLayer;
-                                GDObject <xsl:value-of select="$paramOne" />;
+                                <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$paramOne" />;
                                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                     <xsl:value-of select="$paramOne" />GDGameLayer = (GDGameLayer) <xsl:value-of select="$paramOne" />GDGameLayerList.get(index);
-                                    <xsl:value-of select="$paramOne" /> = <xsl:value-of select="$paramOne" />GDGameLayer.gdObject;
+                                    <xsl:value-of select="$paramOne" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$paramOne" />GDGameLayer.gdObject;
                                     if(<xsl:value-of select="$paramOne" />.scaleY == 1.0f) {
                                         <xsl:value-of select="$paramOne" />.widthAtInitialScale = <xsl:value-of select="$paramOne" />.width;
                                         <xsl:value-of select="$paramOne" />.heightAtInitialScale = <xsl:value-of select="$paramOne" />.height;
@@ -96,8 +98,16 @@ Created By: Travis Berthelot
 
                                 //logUtil.putF(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS);
 
-                                final GDGameLayer <xsl:value-of select="$paramOne" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$paramOne" />GDGameLayerList.get(index);
-                                <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$paramOne" /></xsl:variable>
+                            <xsl:if test="string-length($hasObjectGroup) > 0" >
+                            final int size4 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$paramOne" />GDGameLayerListOfList.size();
+                            for(int index4 = 0; index4 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size4; index4++) {
+                            final BasicArrayList <xsl:value-of select="$paramOne" />GDGameLayerList = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$paramOne" />GDGameLayerListOfList.get(index4));
+                            </xsl:if>
+                            <xsl:if test="string-length($hasObjectGroup) = 0" >
+                            final BasicArrayList <xsl:value-of select="$paramOne" />GDGameLayerList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$paramOne" />GDGameLayerList;
+                            </xsl:if>
+                                
+                                final GDGameLayer <xsl:value-of select="$paramOne" />GDGameLayer = (GDGameLayer) <xsl:value-of select="$paramOne" />GDGameLayerList.get(index);
                                 final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$paramOne" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$paramOne" />GDGameLayer.gdObject;
                                 if(<xsl:value-of select="$paramOne" />.scaleY == 1.0f) {
                                     <xsl:value-of select="$paramOne" />.widthAtInitialScale = <xsl:value-of select="$paramOne" />.width;
@@ -106,6 +116,10 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="$paramOne" />.scaleY = (<xsl:value-of select="$paramFour" />) / <xsl:value-of select="$paramOne" />.heightAtInitialScale;
                                 <xsl:value-of select="$paramOne" />GDGameLayer.setScalable();
                                 <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+
+                            <xsl:if test="string-length($hasObjectGroup) > 0" >
+                            }
+                            </xsl:if>
 
                             } catch(Exception e) {
                                 logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
