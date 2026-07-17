@@ -184,10 +184,67 @@ Created By: Travis Berthelot
                             <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                         </xsl:call-template>
                     </xsl:variable>
+                    
+
                     <xsl:call-template name="parentSelectionNodeProcessGD" >
                         <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                         <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                         <xsl:with-param name="secondGameLayer" ><xsl:value-of select="$beforeThirdParam" /></xsl:with-param>
+                    </xsl:call-template>
+
+                    <xsl:if test="contains($hasDistanceProcessGD, 'found')" >
+                        <xsl:variable name="distanceProcessGDParamOne" ><xsl:call-template name="distanceProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                        //distanceProcessGDParamOne=<xsl:value-of select="$distanceProcessGDParamOne" />
+                        <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$distanceProcessGDParamOne" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$distanceProcessGDParamOne" /></xsl:variable>
+                        final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$distanceProcessGDParamOne" /> = (<xsl:value-of select="$gdObjectFactory" />)<xsl:value-of select="$distanceProcessGDParamOne" />GDGameLayer.gdObject;
+                    </xsl:if>
+                                                
+                    <xsl:call-template name="createByNameGDObject2" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsAsString" >
+                            <xsl:value-of select="$objectsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="nodeAsString" >
+                            <xsl:value-of select="$nodeAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                        final String createString = gdObjectsFactory.get<xsl:value-of select="$name" />Name(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
+                        final int createIndex = gdObjectsFactory.get<xsl:value-of select="$name" />Index(createString);
+
+                    <xsl:call-template name="createByNameGDObject3" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsAsString" >
+                            <xsl:value-of select="$objectsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="nodeAsString" >
+                            <xsl:value-of select="$nodeAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                        //createByNameActionProcess - //CreateByName - process - END
+                        //createByNameActionProcess - //CreateByName - call
+                        this.processCreateByName(<xsl:value-of select="$name" />, createString, createIndex);
+                        
+                        return true;
+                    }
+
+
+                    <xsl:call-template name="parentSelectionNodeProcessGD" >
+                        <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                        <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                        <xsl:with-param name="secondGameLayer" ><xsl:value-of select="$beforeThirdParam" /></xsl:with-param>
+                        <xsl:with-param name="callEnding" >Create</xsl:with-param>
                     </xsl:call-template>
 
                     <xsl:if test="contains($hasDistanceProcessGD, 'found')" >
@@ -321,10 +378,6 @@ Created By: Travis Berthelot
                             //CreateByName - <xsl:value-of select="$text" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
                             //logUtil.put(<xsl:value-of select="$actionAsString" /> + gameGlobals.tempGameLayerArray[0], this, commonStrings.PROCESS);
                             //name=<xsl:value-of select="$name" />
-                            <xsl:if test="not($name = 'Items' or $name = 'InventoryIcons')" >
-                            //TWB - Temp hack for less than (3 or more params)
-                            //gameGlobals.tempGameLayerArray[0] = <xsl:value-of select="text()" />GDGameLayer;
-                            </xsl:if>
                             //CreateByName - //Using param that is not from the first 2 GameLayers - set
                             gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = <xsl:value-of select="text()" />GDGameLayer;
                             //if(gameGlobals.tempGameLayerArray[0] != null) logUtil.put(gameGlobals.tempGameLayerArray[0].toString(), this, commonStrings.PROCESS);

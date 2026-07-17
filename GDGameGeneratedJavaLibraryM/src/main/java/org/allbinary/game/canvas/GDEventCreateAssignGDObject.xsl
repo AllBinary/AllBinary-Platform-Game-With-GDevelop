@@ -720,10 +720,10 @@ Created By: Travis Berthelot
                                 
                                 <xsl:if test="contains($hasParamWithCreateObjectOrGroupInIt, 'found')" >
                                 <xsl:if test="contains($methodCall, 'processGD')" >
-                                //TWB - this uses the create gameLayer and not <xsl:value-of select="$methodCall" />
+                                //TWB - this uses the create gameLayer and not the same params as: <xsl:value-of select="$methodCall" />
                                 </xsl:if>
                                 <xsl:if test="not(contains($methodCall, 'processGD'))" >
-                                //This uses the create gameLayer and not <xsl:value-of select="$methodCall" />
+                                //This uses the create gameLayer and not: <xsl:value-of select="$methodCall" />
                                 </xsl:if>
                                 <xsl:text>&#10;</xsl:text>
                                 
@@ -745,9 +745,11 @@ Created By: Travis Berthelot
 
                                 //createParams=<xsl:value-of select="$createParams" />
 <!--                                //totalParams=<xsl:value-of select="$totalParams" /> <xsl:value-of select="number($totalParams)" /> <xsl:if test="number($totalParams) = 1" >Exactly 1 param</xsl:if><xsl:if test="number($totalParams) > 1" >More than 1 param</xsl:if>-->
-                                
+
+                                <xsl:if test="number($totalParams) = 1" ><xsl:if test="contains($methodCall, 'processGD')" >//Using first parent param from <xsl:value-of select="$methodCall" /></xsl:if><xsl:if test="not(contains($methodCall, 'processGD'))" >//Using create param as the first param</xsl:if></xsl:if>
+                                                                
                                 <xsl:variable name="params" >
-                                    <xsl:if test="number($totalParams) = 1" ><xsl:value-of select="$createParams" /> <xsl:value-of select="$createParams" /></xsl:if>
+                                    <xsl:if test="number($totalParams) = 1" ><xsl:if test="contains($methodCall, 'processGD')" ><xsl:value-of select="$parentParam" />, </xsl:if><xsl:if test="not(contains($methodCall, 'processGD'))" ><xsl:value-of select="$createParams" /> </xsl:if><xsl:value-of select="$createParams" /></xsl:if>
                                     <xsl:if test="number($totalParams) > 1" ><xsl:value-of select="$createParams" /></xsl:if>
                                 </xsl:variable>
                                 //params=<xsl:value-of select="$params" />

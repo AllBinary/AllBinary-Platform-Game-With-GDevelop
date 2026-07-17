@@ -144,8 +144,19 @@ Created By: Travis Berthelot
                         public boolean process() throws Exception {
                             super.processStats();
 
+                        <xsl:if test="contains($hasForEachProcessGD, 'found')" >
+                            //NOT_IMPLEMENTED - ForEach
+                        </xsl:if>
+                        <xsl:if test="contains($hasCollisionProcessGD, 'found')" >
+                            //NOT_IMPLEMENTED - CollisionNP
+                        </xsl:if>
+                        <xsl:if test="contains($hasDistanceProcessGD, 'found')" >
+                            //NOT_IMPLEMENTED - Distance
+                        </xsl:if>
+                        <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
+                            //NOT_IMPLEMENTED - LinkedObjectsPickObjectsLinkedTo
+                        </xsl:if>
                         <xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
-                            //NOT_IMPLEMENTED
                             throw new RuntimeException();
                         </xsl:if>
 

@@ -54,6 +54,9 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                         </xsl:variable>
 
+                        <xsl:variable name="id" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $param1" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $param1" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="id2" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $param2" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $param2" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
+
                         private final LayerDistanceUtil layerDistanceUtil = LayerDistanceUtil.getInstance();
 
                         //hasObject=<xsl:value-of select="$hasObject" />
@@ -135,6 +138,9 @@ Created By: Travis Berthelot
                             if(<xsl:if test="$inverted = 'true'" >!</xsl:if>(this.layerDistanceUtil.getDistance(gameLayer, gameLayer2) <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$param3" />)) {
 
                                 //logUtil.put(new StringMaker().append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append("<xsl:if test="$inverted = 'true'" >!</xsl:if>").append(" d: ").append(this.layerDistanceUtil.getDistance(gameLayer, gameLayer2)).append(" lt ").append(<xsl:value-of select="$param3" />).toString(), this, commonStrings.PROCESS);
+                                
+                                gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = gameLayer;
+                                gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id2])" />] = gameLayer2;
 
                                 return true;
                             }
@@ -184,6 +190,9 @@ Created By: Travis Berthelot
                             if(<xsl:if test="$inverted = 'true'" >!</xsl:if>(this.layerDistanceUtil.getDistance(gameLayer, gameLayer2) <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$param3" />)) {
 
                                 //logUtil.put(new StringMaker().append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append("<xsl:if test="$inverted = 'true'" >!</xsl:if>").append(" d: ").append(this.layerDistanceUtil.getDistance(gameLayer, gameLayer2)).append(" lt ").append(<xsl:value-of select="$param3" />).toString(), this, commonStrings.PROCESS);
+
+                                gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = gameLayer;
+                                gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id2])" />] = gameLayer2;
 
                                 return true;
                             }
