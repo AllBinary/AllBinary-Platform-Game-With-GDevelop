@@ -413,7 +413,7 @@ Created By: Travis Berthelot
                                 final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;                                
                                 allBinaryGameLayerManager.insert(<xsl:value-of select="$gameLayer" />);
 
-                                //objectsGroupsGDGameLayer - START
+                                //objectsGroupsGDGameLayer - add  - START
                                 <xsl:for-each select="/game">
                                     <xsl:for-each select="layouts" >
                                         <xsl:variable name="layoutIndex2" select="position() - 1" />
@@ -432,7 +432,7 @@ Created By: Travis Berthelot
                                         </xsl:if>
                                     </xsl:for-each>
                                 </xsl:for-each>
-                                //objectsGroupsGDGameLayer - END
+                                //objectsGroupsGDGameLayer - add  - END
 
                             } else {
                                 //final String message = "<xsl:value-of select="$nodeIdAsString" /> <xsl:value-of select="$gameLayer" /> warning: not initialized";

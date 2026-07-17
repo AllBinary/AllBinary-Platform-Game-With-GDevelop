@@ -36,23 +36,10 @@ Created By: Travis Berthelot
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
 
                                 <xsl:variable name="parentGroupIfAny" >
-                                <xsl:for-each select="/game">
-                                    <xsl:for-each select="layouts" >
-                                        <xsl:variable name="layoutIndex2" select="position() - 1" />
-                                        <xsl:if test="number($layoutIndex2) = $layoutIndex" >
-                                            <xsl:for-each select="objectsGroups" >
-                                                <xsl:variable name="groupName">
-                                                    <xsl:value-of select="name" />
-                                                </xsl:variable>
-                                                <xsl:for-each select="objects" >
-                                                    <xsl:if test="name = $layerName" >
-                                                        <xsl:value-of select="$groupName" />
-                                                    </xsl:if>
-                                                </xsl:for-each>
-                                            </xsl:for-each>
-                                        </xsl:if>
-                                    </xsl:for-each>
-                                </xsl:for-each>
+                                    <xsl:call-template name="getGroupsForLayer" >
+                                        <xsl:with-param name="layerName" ><xsl:value-of select="$layerName" /></xsl:with-param>
+                                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                    </xsl:call-template>
                                 </xsl:variable>
                                 
                 <xsl:variable name="groupInterfaceArray" >
@@ -60,27 +47,10 @@ Created By: Travis Berthelot
                     <xsl:if test="string-length($parentGroupIfAny) = 0" >new Group[] {<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface}</xsl:if>
                 </xsl:variable>
                 
-                //objectsGroupsGDGameLayer - START
-                <xsl:for-each select="/game">
-                    <xsl:for-each select="layouts" >
-                        <xsl:variable name="layoutIndex2" select="position() - 1" />
-                        <xsl:if test="number($layoutIndex2) = $layoutIndex" >
-                            
-                            <xsl:for-each select="objectsGroups" >
-                                <xsl:variable name="groupName">
-                                    <xsl:value-of select="name" />
-                                </xsl:variable>
-                                <xsl:for-each select="objects" >
-                                    <xsl:if test="name = $layerName" >
-                //this.<xsl:value-of select="$layerName" />GroupInterface = <xsl:value-of select="$layerName" />GroupInterface;
-                                    </xsl:if>
-                                </xsl:for-each>
-                            </xsl:for-each>
-
-                        </xsl:if>
-                    </xsl:for-each>
-                </xsl:for-each>
-                //objectsGroupsGDGameLayer - END
+                    <xsl:call-template name="objectsGroupsGDGameLayer" >
+                        <xsl:with-param name="layerName" ><xsl:value-of select="$name" /></xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                    </xsl:call-template>
                 
             </xsl:if>
 
@@ -123,23 +93,10 @@ Created By: Travis Berthelot
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
 
                                 <xsl:variable name="parentGroupIfAny" >
-                                <xsl:for-each select="/game">
-                                    <xsl:for-each select="layouts" >
-                                        <xsl:variable name="layoutIndex2" select="position() - 1" />
-                                        <xsl:if test="number($layoutIndex2) = $layoutIndex" >
-                                            <xsl:for-each select="objectsGroups" >
-                                                <xsl:variable name="groupName">
-                                                    <xsl:value-of select="name" />
-                                                </xsl:variable>
-                                                <xsl:for-each select="objects" >
-                                                    <xsl:if test="name = $layerName" >
-                                                        <xsl:value-of select="$groupName" />
-                                                    </xsl:if>
-                                                </xsl:for-each>
-                                            </xsl:for-each>
-                                        </xsl:if>
-                                    </xsl:for-each>
-                                </xsl:for-each>
+                                    <xsl:call-template name="getGroupsForLayer" >
+                                        <xsl:with-param name="layerName" ><xsl:value-of select="$layerName" /></xsl:with-param>
+                                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                    </xsl:call-template>
                                 </xsl:variable>
                                 
                 <xsl:variable name="groupInterfaceArray" >
@@ -147,27 +104,10 @@ Created By: Travis Berthelot
                     <xsl:if test="string-length($parentGroupIfAny) = 0" >new Group[] {<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface}</xsl:if>
                 </xsl:variable>
                 
-                //objectsGroupsGDGameLayer - START
-                <xsl:for-each select="/game">
-                    <xsl:for-each select="layouts" >
-                        <xsl:variable name="layoutIndex2" select="position() - 1" />
-                        <xsl:if test="number($layoutIndex2) = $layoutIndex" >
-                            
-                            <xsl:for-each select="objectsGroups" >
-                                <xsl:variable name="groupName">
-                                    <xsl:value-of select="name" />
-                                </xsl:variable>
-                                <xsl:for-each select="objects" >
-                                    <xsl:if test="name = $layerName" >
-                //this.<xsl:value-of select="$layerName" />GroupInterface = <xsl:value-of select="$layerName" />GroupInterface;
-                                    </xsl:if>
-                                </xsl:for-each>
-                            </xsl:for-each>
-
-                        </xsl:if>
-                    </xsl:for-each>
-                </xsl:for-each>
-                //objectsGroupsGDGameLayer - END
+                    <xsl:call-template name="objectsGroupsGDGameLayer" >
+                        <xsl:with-param name="layerName" ><xsl:value-of select="$name" /></xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                    </xsl:call-template>
                 
                 final BasicArrayList <xsl:value-of select="name" />BehaviorList = new BasicArrayListD();
                 
@@ -292,6 +232,14 @@ Created By: Travis Berthelot
                 this.<xsl:value-of select="name" />GDGameLayerFactory = new GDCustomGameLayerFactory(
 
                 <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+                
+                <xsl:variable name="groupsForLayer" >
+                    <xsl:call-template name="getGroupsForLayer" >
+                        <xsl:with-param name="layerName" ><xsl:value-of select="$name" /></xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                    </xsl:call-template>
+                </xsl:variable>
+                
                 <xsl:variable name="primitiveDrawingEventsUsedByObject" >
                     <xsl:for-each select="/game">
                         <xsl:for-each select="layouts" >
@@ -299,16 +247,38 @@ Created By: Travis Berthelot
                             <xsl:call-template name="primitiveDrawingEventsUsedByObject" >
                                 <xsl:with-param name="object" ><xsl:value-of select="$name" /></xsl:with-param>
                             </xsl:call-template>
+                            <xsl:call-template name="primitiveDrawingEventsUsedByObject" >
+                                <xsl:with-param name="object" ><xsl:value-of select="$groupsForLayer" /></xsl:with-param>
+                            </xsl:call-template>
                         </xsl:for-each>
                     </xsl:for-each>
+
+                    <xsl:for-each select="//externalEvents">
+                            <xsl:call-template name="primitiveDrawingEventsUsedByObject" >
+                                <xsl:with-param name="object" ><xsl:value-of select="$name" /></xsl:with-param>
+                            </xsl:call-template>
+                            <xsl:call-template name="primitiveDrawingEventsUsedByObject" >
+                                <xsl:with-param name="object" ><xsl:value-of select="$groupsForLayer" /></xsl:with-param>
+                            </xsl:call-template>
+                    </xsl:for-each>
+
                 </xsl:variable>
+
                 //primitiveDrawingEventsUsedByObject=<xsl:value-of select="$primitiveDrawingEventsUsedByObject" />
-                <xsl:if test="contains($primitiveDrawingEventsUsedByObject, 'PrimitiveDrawing::Rectangle')" >
+                <xsl:text>&#10;</xsl:text>
+                <xsl:choose>
+                <xsl:when test="contains($primitiveDrawingEventsUsedByObject, 'PrimitiveDrawing::Rectangle')" >
                     new GDRectOnlyPrimitiveDrawingAnimationFactory(),
-                </xsl:if>
-                <xsl:if test="contains($primitiveDrawingEventsUsedByObject, 'PrimitiveDrawing::LineV2')" >
+                </xsl:when>
+                <xsl:when test="contains($primitiveDrawingEventsUsedByObject, 'PrimitiveDrawing::LineV2')" >
                     new GDPrimitiveDrawingLinesOnlyAnimationFactory(),
-                </xsl:if>
+                </xsl:when>
+                <xsl:otherwise>
+                    //This is the default and means the Object is not actually used.
+                    <xsl:text>&#10;</xsl:text>
+                    new GDRectOnlyPrimitiveDrawingAnimationFactory(),
+                </xsl:otherwise>
+                </xsl:choose>
 
                     <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList,
                     <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerDestroyedList,
@@ -336,7 +306,8 @@ Created By: Travis Berthelot
         <xsl:for-each select="actions" >
             <xsl:variable name="typeValue" ><xsl:value-of select="type/value" /></xsl:variable>
             <xsl:if test="contains($typeValue, 'PrimitiveDrawing::')" >
-                <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position()" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+<!--                //object = param? <xsl:value-of select="$object" /> =? <xsl:value-of select="$param" />-->
                 <xsl:if test="$object = $param" >//<xsl:value-of select="$typeValue" />,</xsl:if>
             </xsl:if>
         </xsl:for-each>
@@ -347,6 +318,53 @@ Created By: Travis Berthelot
 
         </xsl:for-each>        
         
+    </xsl:template>
+
+    <xsl:template name="getGroupsForLayer" >
+        <xsl:param name="layerName" />
+        <xsl:param name="layoutIndex" />
+    
+        <xsl:for-each select="/game">
+            <xsl:for-each select="layouts" >
+                <xsl:variable name="layoutIndex2" select="position() - 1" />
+                <xsl:if test="number($layoutIndex2) = $layoutIndex" >
+                    <xsl:for-each select="objectsGroups" >
+                        <xsl:variable name="groupName"><xsl:value-of select="name" /></xsl:variable>
+                        <xsl:for-each select="objects" >
+                            <xsl:if test="name = $layerName" >
+                                <xsl:value-of select="$groupName" />
+                            </xsl:if>
+                        </xsl:for-each>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:for-each>
+                                
+    </xsl:template>
+
+    <xsl:template name="objectsGroupsGDGameLayer" >
+        <xsl:param name="layerName" />
+        <xsl:param name="layoutIndex" />
+
+<!--                //objectsGroupsGDGameLayer - START
+                <xsl:for-each select="/game">
+                    <xsl:for-each select="layouts" >
+                        <xsl:variable name="layoutIndex2" select="position() - 1" />
+                        <xsl:if test="number($layoutIndex2) = $layoutIndex" >
+                            
+                            <xsl:for-each select="objectsGroups" >
+                                <xsl:for-each select="objects" >
+                                    <xsl:if test="name = $layerName" >
+                //this.<xsl:value-of select="$layerName" />GroupInterface = <xsl:value-of select="$layerName" />GroupInterface;
+                                    </xsl:if>
+                                </xsl:for-each>
+                            </xsl:for-each>
+
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:for-each>
+                //objectsGroupsGDGameLayer - END-->
+
     </xsl:template>
 
 </xsl:stylesheet>

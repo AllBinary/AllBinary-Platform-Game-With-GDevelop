@@ -429,16 +429,14 @@ Created By: Travis Berthelot
                                 final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
                                 allBinaryGameLayerManager.insert(<xsl:value-of select="$gameLayer" />);
 
-                                //objectsGroupsGDGameLayer - START
+                                //objectsGroupsGDGameLayer - add - START
                                 <xsl:for-each select="/game">
                                     <xsl:for-each select="layouts" >
                                         <xsl:variable name="layoutIndex2" select="position() - 1" />
                                         <xsl:if test="number($layoutIndex2) = $layoutIndex" >
 
                                             <xsl:for-each select="objectsGroups" >
-                                                <xsl:variable name="groupName">
-                                                    <xsl:value-of select="name" />
-                                                </xsl:variable>
+                                                <xsl:variable name="groupName"><xsl:value-of select="name" /></xsl:variable>
                                                 <xsl:for-each select="objects" >
                                                     <xsl:if test="name = $layerName" >
                                                         //logUtil.putF("<xsl:value-of select="$nodeIdAsString" /> for globals.<xsl:value-of select="$groupName" />GDGameLayerList.add(<xsl:value-of select="$gameLayer" />); at: " + index, this, commonStrings.PROCESS);
@@ -451,7 +449,7 @@ Created By: Travis Berthelot
                                         </xsl:if>
                                     </xsl:for-each>
                                 </xsl:for-each>
-                                //objectsGroupsGDGameLayer - END
+                                //objectsGroupsGDGameLayer - add  - END
 
                             } else {
                                 //final String message = "<xsl:value-of select="$nodeIdAsString" /> <xsl:value-of select="$gameLayer" /> warning: not initialized";
