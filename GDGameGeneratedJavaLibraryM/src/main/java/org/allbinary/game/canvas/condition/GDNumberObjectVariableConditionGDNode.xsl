@@ -320,6 +320,11 @@ Created By: Travis Berthelot
                                 //From parent - from BuiltinCommonInstructions::ForEach
                                 if(this.processGPaint(<xsl:value-of select="$forEachGDParamOne" />GDGameLayer.gdObject, null)) {
                                     </xsl:when>
+                                    <xsl:when test="contains($hasCollisionProcessGD, 'found')" >
+                                        <xsl:variable name="collisionProcessGDParamOne" ><xsl:call-template name="collisionProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                //From parent - from CollisionNP
+                                if(this.processGPaint(<xsl:value-of select="$collisionProcessGDParamOne" />GDGameLayer.gdObject, null)) {
+                                    </xsl:when>
                                     <xsl:otherwise>
                                         //TWB - lol
                                     </xsl:otherwise>
