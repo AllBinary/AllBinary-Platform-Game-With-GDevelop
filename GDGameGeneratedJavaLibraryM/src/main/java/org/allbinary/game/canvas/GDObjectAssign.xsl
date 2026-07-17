@@ -290,7 +290,26 @@ Created By: Travis Berthelot
                 
                 //PrimitiveDrawing::Drawer - factory
                 this.<xsl:value-of select="name" />GDGameLayerFactory = new GDCustomGameLayerFactory(
+
+                <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+                <xsl:variable name="primitiveDrawingEventsUsedByObject" >
+                    <xsl:for-each select="/game">
+                        <xsl:for-each select="layouts" >
+                            <xsl:variable name="layoutIndex2" select="position() - 1" />
+                            <xsl:call-template name="primitiveDrawingEventsUsedByObject" >
+                                <xsl:with-param name="object" ><xsl:value-of select="$name" /></xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </xsl:for-each>
+                </xsl:variable>
+                //primitiveDrawingEventsUsedByObject=<xsl:value-of select="$primitiveDrawingEventsUsedByObject" />
+                <xsl:if test="contains($primitiveDrawingEventsUsedByObject, 'PrimitiveDrawing::Rectangle')" >
                     new GDRectOnlyPrimitiveDrawingAnimationFactory(),
+                </xsl:if>
+                <xsl:if test="contains($primitiveDrawingEventsUsedByObject, 'PrimitiveDrawing::LineV2')" >
+                    new GDPrimitiveDrawingLinesOnlyAnimationFactory(),
+                </xsl:if>
+
                     <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList,
                     <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerDestroyedList,
                     new Group[] {<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface},
@@ -308,6 +327,26 @@ Created By: Travis Berthelot
 
         </xsl:for-each>
         //objects - all - //objectsAssign - END
+    </xsl:template>
+
+    <xsl:template name="primitiveDrawingEventsUsedByObject" >
+        <xsl:param name="object" />
+        
+        <xsl:for-each select="events" >
+        <xsl:for-each select="actions" >
+            <xsl:variable name="typeValue" ><xsl:value-of select="type/value" /></xsl:variable>
+            <xsl:if test="contains($typeValue, 'PrimitiveDrawing::')" >
+                <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position()" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                <xsl:if test="$object = $param" >//<xsl:value-of select="$typeValue" />,</xsl:if>
+            </xsl:if>
+        </xsl:for-each>
+
+        <xsl:call-template name="primitiveDrawingEventsUsedByObject" >
+            <xsl:with-param name="object" ><xsl:value-of select="$object" /></xsl:with-param>
+        </xsl:call-template>
+
+        </xsl:for-each>        
+        
     </xsl:template>
 
 </xsl:stylesheet>
