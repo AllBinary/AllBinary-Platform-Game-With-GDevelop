@@ -273,7 +273,7 @@ Created By: Travis Berthelot
                     
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);
                     </xsl:if>
-                    <xsl:if test="$paramOneNameObjectsGroups = '' and $paramTwoNameObjectsGroups = ''" >
+                    <xsl:if test="not($paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != '')" >
                     public boolean processGD(final GDGameLayer <xsl:value-of select="$gdObjectName" />GDGameLayer, final GDGameLayer gameLayer2) throws Exception {
 
                         super.processGDStats(<xsl:value-of select="$gdObjectName" />GDGameLayer);
@@ -309,7 +309,32 @@ Created By: Travis Berthelot
                                 //Defaulting to first param since no known association with prior sibling Create action or parent Condition
                                 </xsl:if>
 
+                                <xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
+                                    <xsl:choose>
+                                    <xsl:when test="contains($hasObject, 'found') or contains($hasObjectGroup, 'found')" >
+                                //From parent, but using param?
+                                if(this.processGPaint(<xsl:value-of select="$beforeFourthParam" />GDGameLayer.gdObject, null)) {
+                                    </xsl:when>
+                                    <xsl:when test="contains($hasForEachProcessGD, 'found')" >
+                                        <xsl:variable name="forEachGDParamOne" ><xsl:call-template name="forEachGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                //From parent - from BuiltinCommonInstructions::ForEach
+                                if(this.processGPaint(<xsl:value-of select="$forEachGDParamOne" />GDGameLayer.gdObject, null)) {
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        //TWB - lol
+                                    </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:if>
+                                <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
+                                    <xsl:if test="$paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != ''" >
+                                //From param - 1 or 2
+                                if(this.processGPaint(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject, null)) {
+                                    </xsl:if>
+                                    <xsl:if test="not($paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != '')" >
+                                //From param - 1
                                 if(this.processGPaint(<xsl:value-of select="$gdObjectName" />GDGameLayer.gdObject, null)) {
+                                    </xsl:if>
+                                </xsl:if>
                                 
                                 <xsl:if test="contains($hasSiblingWithDuplicateProcessing, 'found')" >
                                     //Skipping duplicate processing

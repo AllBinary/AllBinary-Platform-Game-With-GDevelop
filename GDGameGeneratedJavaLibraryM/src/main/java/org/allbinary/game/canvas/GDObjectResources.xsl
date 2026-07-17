@@ -34,8 +34,9 @@ Created By: Travis Berthelot
 
             <xsl:variable name="isTextObject" ><xsl:for-each select="objects" ><xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable><xsl:for-each select="//objects" ><xsl:if test="name = $name" ><xsl:if test="type = 'TextObject::Text'" >found</xsl:if></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
             <xsl:variable name="isTextInput" ><xsl:for-each select="objects" ><xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable><xsl:for-each select="//objects" ><xsl:if test="name = $name" ><xsl:if test="type = 'TextInput::TextInputObject'" >found</xsl:if></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
+            <xsl:variable name="isPrimitiveDrawingDrawer" ><xsl:for-each select="objects" ><xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable><xsl:for-each select="//objects" ><xsl:if test="name = $name" ><xsl:if test="type = 'PrimitiveDrawing::Drawer'" >found</xsl:if></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
             
-            <xsl:if test="not(contains($isTextObject, 'found') or contains($isTextInput, 'found'))" >
+            <xsl:if test="not(contains($isTextObject, 'found') or contains($isTextInput, 'found') or contains($isPrimitiveDrawingDrawer, 'found'))" >
             public BasicArrayList <xsl:value-of select="name" />ImageArrayList = new BasicArrayListD();
 
             <!-- Groups are not allowed in exclusion list currently -->
@@ -61,7 +62,7 @@ Created By: Travis Berthelot
             
             </xsl:if>
             
-            <xsl:if test="contains($isTextObject, 'found') or contains($isTextInput, 'found')" >
+            <xsl:if test="contains($isTextObject, 'found') or contains($isTextInput, 'found') or contains($isPrimitiveDrawingDrawer, 'found')" >
             public int get<xsl:value-of select="name" />Width(final int createIndex) {
                 return 0;
             }

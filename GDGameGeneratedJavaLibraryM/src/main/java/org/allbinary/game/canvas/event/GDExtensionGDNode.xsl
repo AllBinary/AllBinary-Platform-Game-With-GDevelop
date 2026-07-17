@@ -172,7 +172,7 @@ Created By: Travis Berthelot
                         </xsl:choose>
                 </xsl:for-each>
                         
-                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
+                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                         if(NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(mappedObjectArray, mappedIntArray, mappedLongArray, mappedFloatArray)) {
                     </xsl:for-each>
 

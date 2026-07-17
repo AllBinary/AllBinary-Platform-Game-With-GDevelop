@@ -370,6 +370,10 @@ Created By: Travis Berthelot
                         return Long.toString(value);
                     }
 
+                    public int ToJSONType(final GDStructure value) {
+                        return value.getJSONType();
+                    }
+
                     public String ToJSON(final GDStructure value) {
                         return value.toJSONAsString();
                     }

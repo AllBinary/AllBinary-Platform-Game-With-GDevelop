@@ -131,6 +131,8 @@ Created By: Travis Berthelot
                         final String createString = gdObjectsFactory.get<xsl:value-of select="$name" />Name(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
                         this.createIndex = gdObjectsFactory.get<xsl:value-of select="$name" />Index(createString);
                         
+                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + this.createIndex, this, commonStrings.PROCESS);
+                        
                     <xsl:call-template name="createByNameGDObject" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />

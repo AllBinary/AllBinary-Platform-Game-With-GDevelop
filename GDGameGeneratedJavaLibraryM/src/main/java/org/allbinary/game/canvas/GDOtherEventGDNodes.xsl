@@ -418,6 +418,10 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
             return Long.toString(value);
         }
 
+        public int ToJSONType(final GDStructure value) {
+            return value.getJSONType();
+        }
+
         public String ToJSON(final GDStructure value) {
             return value.toJSONAsString();
         }

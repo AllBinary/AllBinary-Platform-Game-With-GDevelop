@@ -106,8 +106,26 @@ Created By: Travis Berthelot
         <xsl:variable name="hasJSONUsage" ><xsl:for-each select=".." ><xsl:call-template name="hasJSONUsage" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template></xsl:for-each>//externalevents=<xsl:for-each select="//externalEvents" ><xsl:call-template name="hasJSONUsage" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template></xsl:for-each></xsl:variable>
         //name=<xsl:value-of select="$name" /> - //hasJSONUsage=<xsl:value-of select="$hasJSONUsage" />
         <xsl:if test="contains($hasJSONUsage, 'found')" >
+        public int getJSONType() {
+            if(<xsl:value-of select="$name" />JSONArray != nullUtil.NULL_OBJECT) {
+                return 2;
+            } else if(<xsl:value-of select="$name" />JSONObject != nullUtil.NULL_OBJECT) {
+                return 1;
+            } else {
+                logUtil.putF("Not JSONArray or JSONObject", this, "getJSONType()");
+                return -1;
+            }    
+        }
+
         public String toJSONAsString() {
-            return <xsl:value-of select="$name" />JSONObject.toString();
+            if(<xsl:value-of select="$name" />JSONArray != nullUtil.NULL_OBJECT) {
+                return <xsl:value-of select="$name" />JSONArray.toString();
+            } else if(<xsl:value-of select="$name" />JSONObject != nullUtil.NULL_OBJECT) {
+                return <xsl:value-of select="$name" />JSONObject.toString();
+            } else {
+                logUtil.putF("Not JSONArray or JSONObject", this, "toJSONAsString");
+                return <xsl:value-of select="$name" />JSONObject.toString();
+            }    
         }
         </xsl:if>
         

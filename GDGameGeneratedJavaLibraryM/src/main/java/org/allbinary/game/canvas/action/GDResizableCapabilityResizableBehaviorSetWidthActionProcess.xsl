@@ -16,7 +16,7 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:template name="resizableCapabilityResizableBehaviorSetHeightActionProcess" >
+    <xsl:template name="resizableCapabilityResizableBehaviorSetWidthActionProcess" >
         <xsl:param name="forExtension" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="objectsGroupsAsString" />
@@ -25,7 +25,7 @@ Created By: Travis Berthelot
                                 <xsl:variable name="paramOne" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                                 <xsl:variable name="paramFour" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /><xsl:if test="number(text()) = text()" >f</xsl:if></xsl:if></xsl:for-each></xsl:variable>
         
-                                <xsl:variable name="hasObject" >
+                        <xsl:variable name="hasObject" >
                             <xsl:for-each select="//objects" >
                                 <xsl:if test="name = $paramOne" >found</xsl:if>
                             </xsl:for-each>
@@ -42,8 +42,8 @@ Created By: Travis Berthelot
                                     </xsl:for-each>
                                 </xsl:for-each>
                             </xsl:variable>
-
-                        //ResizableCapability::ResizableBehavior::SetHeight - action - //forExtension=<xsl:value-of select="$forExtension" />
+        
+                        //ResizableCapability::ResizableBehavior::SetWidth - action - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
                         public boolean process() throws Exception {
@@ -72,7 +72,7 @@ Created By: Travis Berthelot
                                         <xsl:value-of select="$paramOne" />.widthAtInitialScale = <xsl:value-of select="$paramOne" />.width;
                                         <xsl:value-of select="$paramOne" />.heightAtInitialScale = <xsl:value-of select="$paramOne" />.height;
                                     }
-                                    <xsl:value-of select="$paramOne" />.scaleY = (<xsl:value-of select="$paramFour" />) / <xsl:value-of select="$paramOne" />.heightAtInitialScale;
+                                    <xsl:value-of select="$paramOne" />.scaleX = (<xsl:value-of select="$paramFour" />) / <xsl:value-of select="$paramOne" />.widthAtInitialScale;
                                     <xsl:value-of select="$paramOne" />GDGameLayer.setScalable();
                                     <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
                                 }

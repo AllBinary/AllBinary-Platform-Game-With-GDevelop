@@ -19,6 +19,10 @@ package org.allbinary.game.configuration.persistance;
  */
 public class GDStructure {
     public int Size = -1;
+
+    public int getJSONType() {
+        throw new RuntimeException();
+    }
     
     public String toJSONAsString() {
         throw new RuntimeException();

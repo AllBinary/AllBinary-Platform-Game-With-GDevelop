@@ -254,6 +254,10 @@ Created By: Travis Berthelot
                     public String GlobalVarToJSON(final long value) {
                         return Long.toString(value);
                     }
+                    
+                    public int ToJSONType(final GDStructure value) {
+                        return value.getJSONType();
+                    }
 
                     public String ToJSON(final GDStructure value) {
                         return value.toJSONAsString();

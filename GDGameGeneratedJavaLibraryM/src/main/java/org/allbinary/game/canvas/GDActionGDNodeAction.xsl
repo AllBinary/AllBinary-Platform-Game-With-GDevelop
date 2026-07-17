@@ -93,6 +93,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDScalableBehaviorSetXActionProcess.xsl" />
     <xsl:import href="./action/GDScalableBehaviorSetYActionProcess.xsl" />
     <xsl:import href="./action/GDResizableCapabilityResizableBehaviorSetSizeActionProcess.xsl" />
+    <xsl:import href="./action/GDResizableCapabilityResizableBehaviorSetWidthActionProcess.xsl" />
     <xsl:import href="./action/GDResizableCapabilityResizableBehaviorSetHeightActionProcess.xsl" />
     <xsl:import href="./action/GDActivateBehaviorActionProcess.xsl" />
     <xsl:import href="./action/GDPathfindingBehaviorSetDestinationActionProcess.xsl" />
@@ -1933,8 +1934,7 @@ Created By: Travis Berthelot
                 </xsl:when>
                 
                 <xsl:when test="$typeValue = 'ResizableCapability::ResizableBehavior::SetWidth'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-<!-- 
+
                     <xsl:call-template name="resizableCapabilityResizableBehaviorSetWidthActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1949,7 +1949,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
--->
+
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ResizableCapability::ResizableBehavior::SetHeight'" >
                     

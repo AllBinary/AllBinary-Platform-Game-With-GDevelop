@@ -31,15 +31,24 @@ Created By: Travis Berthelot
                         logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
         <xsl:variable name="firstParametersAsString0" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
         <xsl:variable name="firstParametersAsString" ><xsl:value-of select="translate($firstParametersAsString0, '&#10;', '')" /></xsl:variable>
-                        final JSONTokener jsonTokener = new JSONTokener(<xsl:value-of select="$firstParametersAsString" />);
                         
+                        <xsl:variable name="withGetJSONType" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /><xsl:value-of select="$firstParametersAsString" /></xsl:with-param><xsl:with-param name="find" >ToJSON</xsl:with-param><xsl:with-param name="replacementText" >ToJSONType</xsl:with-param></xsl:call-template></xsl:variable>
+
                         <xsl:variable name="variableName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                        final JSONObject jsonObject = (JSONObject) jsonTokener.nextValue();
-                        globals.<xsl:value-of select="$variableName" />JSONObject = jsonObject;
+                        
+                        <xsl:if test="contains($withGetJSONType, 'ToJSON')" >
+                        //This probably show not occur
+                        if(<xsl:value-of select="$withGetJSONType" /> == 1) {
+                        </xsl:if>
+
+                            final JSONTokener jsonTokener = new JSONTokener(<xsl:value-of select="$firstParametersAsString" />);
+
+                            final JSONObject jsonObject = (JSONObject) jsonTokener.nextValue();
+                            globals.<xsl:value-of select="$variableName" />JSONObject = jsonObject;
 
                         <xsl:for-each select="//variables" >
                             <xsl:if test="name = $variableName" >
-                        final JSONObject jsonObject2 = ((JSONObject) <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$variableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject);
+                            final JSONObject jsonObject2 = ((JSONObject) <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$variableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject);
                         <xsl:call-template name="variableJSONMapping" >
                             <xsl:with-param name="parentName" >jsonObject2</xsl:with-param>
                             <xsl:with-param name="variableName" >
@@ -52,6 +61,18 @@ Created By: Travis Berthelot
                         </xsl:call-template>
                             </xsl:if>
                         </xsl:for-each>
+                        
+                        <xsl:if test="contains($withGetJSONType, 'ToJSON')" >
+                        } else if(<xsl:value-of select="$withGetJSONType" /> == 2) { 
+
+                            final JSONTokener jsonTokener = new JSONTokener(<xsl:value-of select="$firstParametersAsString" />);
+
+                            final JSONArray jsonArray = (JSONArray) jsonTokener.nextValue();
+                            globals.<xsl:value-of select="$variableName" />JSONArray = jsonArray;
+
+                            logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " I don't think JSONArrays should map here", this, commonStrings.PROCESS);
+                        }
+                        </xsl:if>
 
                         return true;
                     }
