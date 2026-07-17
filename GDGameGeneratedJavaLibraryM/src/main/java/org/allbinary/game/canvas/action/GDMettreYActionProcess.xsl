@@ -229,8 +229,6 @@ Created By: Travis Berthelot
                                     <xsl:if test="contains($hasForEachProcessGD, 'found')" >
                                     <xsl:variable name="forEachGDParamOne" ><xsl:call-template name="forEachGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
                                     //forEachGDParamOne=<xsl:value-of select="$forEachGDParamOne" /><xsl:text>&#10;</xsl:text>
-                                    <xsl:variable name="forEachGDParamOne" ><xsl:call-template name="forEachGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
-                                    //forEachGDParamOne=<xsl:value-of select="$forEachGDParamOne" /><xsl:text>&#10;</xsl:text>
                                         <xsl:value-of select="$forEachGDParamOne" />GDGameLayer.gdObject, null);
                                         
                                         <xsl:value-of select="$forEachGDParamOne" />GDGameLayer.updatePosition();
