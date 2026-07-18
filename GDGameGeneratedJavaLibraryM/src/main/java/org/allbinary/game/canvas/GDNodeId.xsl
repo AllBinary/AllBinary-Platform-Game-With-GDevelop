@@ -187,46 +187,6 @@
         </xsl:for-each>
     </xsl:template>
 
-    <xsl:template name="eventIds" >
-        <xsl:param name="totalRecursions" />
-        <xsl:param name="caller" />
-
-        //caller=<xsl:value-of select="$caller" /> - //eventIds
-        //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
-        <xsl:if test="type = 'BuiltinCommonInstructions::Comment'" >
-            //BuiltinCommonInstructions::Comment
-        </xsl:if>
-        <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
-            <xsl:text>&#10;</xsl:text>
-            //caller=<xsl:value-of select="$caller" /> - //eventIds
-            <xsl:if test="$caller = 'externalEventsProcess'" >
-                //Apparently the process below already calls this.
-                //tempGameLayerUtil.clear();
-                //eventIds not no longer called //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processM(tempGameLayerUtil.gameLayerArray);
-                //tempGameLayerUtil.clear2();
-            </xsl:if>
-            //eventIds - //Events - //<xsl:value-of select="type" /> - //<xsl:value-of select="name" /> - call
-            //eventIds not no longer called //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-        </xsl:if>
-        <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
-            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-            //Event - //BuiltinCommonInstructions::Link - call - //eventIds
-            //eventIds not no longer called //globals.<xsl:value-of select="target" />GDNode.process();
-        </xsl:if>
-        
-        <xsl:for-each select="events" >
-            <xsl:call-template name="eventIds" >
-                <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="number($totalRecursions) + 1" />
-                </xsl:with-param>
-                <xsl:with-param name="caller" >
-                    <xsl:value-of select="$caller" />
-                </xsl:with-param>
-            </xsl:call-template>
-        </xsl:for-each>
-
-    </xsl:template>
-
     <xsl:template name="eventIdsLessRecursion" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="caller" />
@@ -239,12 +199,6 @@
         <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
             <xsl:text>&#10;</xsl:text>
             //caller=<xsl:value-of select="$caller" /> - //eventIdsDoNotCallRecursions
-            <xsl:if test="$caller = 'externalEventsProcess'" >
-                //Apparently the process below already calls this.
-                <xsl:if test="$totalRecursions > 0" >//TWB not called anymore <xsl:value-of select="$caller" />//</xsl:if>tempGameLayerUtil.clear();
-                <xsl:if test="$totalRecursions > 0" >//TWB not called anymore <xsl:value-of select="$caller" />//</xsl:if>gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processM(gameGlobals.nodeArray[tempGameLayerUtil.gameLayerArray);
-                <xsl:if test="$totalRecursions > 0" >//TWB not called anymore <xsl:value-of select="$caller" />//</xsl:if>tempGameLayerUtil.clear2();
-            </xsl:if>
             //eventIdsDoNotCallRecursions - //Events - //<xsl:value-of select="type" /> - //<xsl:value-of select="name" /> - call
             <xsl:if test="$totalRecursions > 0" >//TWB not called anymore <xsl:value-of select="$caller" />//</xsl:if>gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
         </xsl:if>
@@ -266,19 +220,6 @@
             </xsl:call-template>
         </xsl:for-each>
         </xsl:if>
-
-     <xsl:if test="$caller = 'externalEventsProcess'" >
-        <xsl:for-each select="events" >
-            <xsl:call-template name="eventIds" >
-                <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="number($totalRecursions) + 1" />
-                </xsl:with-param>
-                <xsl:with-param name="caller" >
-                    <xsl:value-of select="$caller" />
-                </xsl:with-param>
-            </xsl:call-template>
-        </xsl:for-each>
-     </xsl:if>
 
     </xsl:template>
 

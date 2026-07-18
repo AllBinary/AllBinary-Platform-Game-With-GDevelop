@@ -105,7 +105,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 
-                //LayoutOtherEvent name=<xsl:value-of select="$layoutName" /> - GDNode processM calls in this class can load resources
+                //LayoutOtherEvent name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes extends SpecialAnimation
                 {
 

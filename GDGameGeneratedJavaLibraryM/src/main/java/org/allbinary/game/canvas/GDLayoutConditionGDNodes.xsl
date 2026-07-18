@@ -133,7 +133,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.system.os.GenericOperatingSystem;
                 import org.allbinary.logic.system.os.OperatingSystemFactory;
 
-                //LayoutCondition name=<xsl:value-of select="$layoutName" /> - GDNode processM calls in this class can load resources
+                //LayoutCondition name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes extends SpecialAnimation
                 {
 

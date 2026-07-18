@@ -520,6 +520,9 @@ Created By: Travis Berthelot
                     <xsl:when test="$typeValue = 'Collision'" >
                         //Collision - Pixel Perfect
                         <xsl:call-template name="collisionNPConditionGDNode" >
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
                             </xsl:with-param>
