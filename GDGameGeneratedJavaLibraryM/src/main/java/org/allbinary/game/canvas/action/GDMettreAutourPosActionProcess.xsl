@@ -98,6 +98,7 @@ Created By: Travis Berthelot
                                 return result;
                         }
 
+                        //TWB - //Hack - should use param specific like the other processGPaint
                         @Override
                         public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2) {
 

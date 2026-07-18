@@ -333,7 +333,7 @@
                     </xsl:if>
                     <xsl:if test="not($hasCreateOrCreateByName &lt; number(substring(generate-id(), 2) - 65536))" >
             //Using newly created layer as param2
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdGameLayer" />, gameGlobals.tempGameLayerArray[0]);
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdGameLayer" />, gameGlobals.tempGameLayerArray[1]);
                     </xsl:if>
                 </xsl:if>
                 <xsl:if test="not(string-length($hasCreateOrCreateByName) > 0)" >
@@ -386,53 +386,6 @@
                 </xsl:with-param>
                 <xsl:with-param name="gdGameLayer" >
                     <xsl:value-of select="$gdGameLayer" />
-                </xsl:with-param>
-            </xsl:call-template>
-        </xsl:for-each>
-
-    </xsl:template>
-
-    <xsl:template name="actionIdsGDObjectPos">
-        <xsl:param name="totalRecursions" />
-        <xsl:param name="gdObjectName" />
-        <xsl:param name="gdGameLayer" />
-
-        <xsl:if test="$totalRecursions != 0" ><xsl:text>&#10;</xsl:text>/* No longer skipping levels to get a desired action</xsl:if>
-        //actionIdsGDObjectPos <xsl:value-of select="$gdGameLayer" />
-        //Actions - GDNode - totalRecursions=<xsl:value-of select="$totalRecursions" />
-        <xsl:for-each select="actions" >
-            <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-            <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-            //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
-            <xsl:text>&#10;</xsl:text>
-            
-            <xsl:if test="contains($parametersAsString0, $gdObjectName)" >
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdGameLayer" />, null);
-            
-            //if(globals.<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
-                <xsl:value-of select="$gdGameLayer" />.updatePosition();
-            //} else {
-                //logUtil.putF("<xsl:value-of select="$gdGameLayer" /> was smaller than <xsl:value-of select="$gdGameLayer" /> at index: " + index, this, commonStrings.PROCESS);
-            //}
-            </xsl:if>
-            <xsl:if test="not(contains($parametersAsString0, $gdObjectName))" >
-            //Action - //<xsl:value-of select="type/value" /> - call //Not processing the on the same GDGameLayer2
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-            </xsl:if>
-            
-        </xsl:for-each>
-        <xsl:if test="$totalRecursions != 0" ><xsl:text>&#10;</xsl:text>*/</xsl:if>
-
-        <xsl:for-each select="events" >
-            <xsl:call-template name="actionIdsGDObjectPos" >
-                <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="number($totalRecursions) + 1" />
-                </xsl:with-param>
-                <xsl:with-param name="gdGameLayer" >
-                    <xsl:value-of select="$gdGameLayer" />
-                </xsl:with-param>
-                <xsl:with-param name="gdObjectName" >
-                    <xsl:value-of select="$gdObjectName" />
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>

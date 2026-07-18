@@ -42,7 +42,7 @@ Created By: Travis Berthelot
                         public boolean process() throws Exception {
                             super.processStats();
 
-                            boolean result = true;                        
+                            boolean result = true;
                         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         
                         <xsl:variable name="hasObject" >
@@ -78,31 +78,6 @@ Created By: Travis Berthelot
                                 if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:if test="position() = 3 and (string-length(text()) = 0 or text() = 'False')" >!</xsl:if></xsl:for-each><xsl:for-each select="parameters" ><xsl:if test="position() = 1" >((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="text()" />) <xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" >).<xsl:value-of select="text()" /></xsl:if></xsl:for-each>) {
                                     //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                                     
-                                    <xsl:for-each select=".." >
-                            <xsl:variable name="hasOtherEvents" ><xsl:for-each select="events" ><xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >found</xsl:if></xsl:for-each></xsl:variable>
-                            <xsl:for-each select="events" >
-                                <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
-                                    //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> 
-                                    //Event - //BuiltinCommonInstructions::Standard - call
-                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                                </xsl:if>
-                                <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
-                                    //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                                    //Event - //BuiltinCommonInstructions::Link - call - //BooleanObjectVariable
-                                    <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process();
-                                </xsl:if>
-                            </xsl:for-each>
-
-                            <xsl:if test="not(contains($hasOtherEvents, 'found'))" >
-                                        
-                                        <xsl:call-template name="actionIdsGDObjectPos" >
-                                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                                            <xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param>
-                                            <xsl:with-param name="gdGameLayer" ><xsl:value-of select="$name" />GDGameLayer</xsl:with-param>
-                                        </xsl:call-template>
-                                    
-                            </xsl:if>
-                                    </xsl:for-each>
                                 } else {
                                     //logUtil.put(ELSE_CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                                     result = false;
@@ -230,34 +205,6 @@ Created By: Travis Berthelot
                                 //logUtil.put(stringBuilder.append("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> ").appendint(index).appendint(index).append(<xsl:for-each select="parameters" ><xsl:value-of select="text()" /></xsl:for-each>).toString(), this, commonStrings.PROCESS);
                                 if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:if test="position() = 3 and (string-length(text()) = 0 or text() = 'False')" >!</xsl:if></xsl:for-each><xsl:for-each select="parameters" ><xsl:if test="position() = 1" >((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="text()" />) <xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" >).<xsl:value-of select="text()" /></xsl:if></xsl:for-each>) {
                                     //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-                                    
-                                    <xsl:for-each select=".." >
-                            <xsl:variable name="hasOtherEvents" ><xsl:for-each select="events" ><xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >found</xsl:if></xsl:for-each></xsl:variable>
-                            <xsl:for-each select="events" >
-                                <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
-                                    //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> 
-                                    //Event - //BuiltinCommonInstructions::Standard - call
-                                    //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                                </xsl:if>
-                                <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
-                                    //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                                    //Event - //BuiltinCommonInstructions::Link - call - //BooleanObjectVariable
-                                    <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>//globals.<xsl:value-of select="target" />GDNode.process();
-                                </xsl:if>
-                            </xsl:for-each>
-
-<!--
-                            <xsl:if test="not(contains($hasOtherEvents, 'found'))" >
-                                        
-                                        <xsl:call-template name="actionIdsGDObjectPos" >
-                                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                                            <xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param>
-                                            <xsl:with-param name="gdGameLayer" ><xsl:value-of select="$name" />GDGameLayer</xsl:with-param>
-                                        </xsl:call-template>
-                                    
-                            </xsl:if>
--->
-                                    </xsl:for-each>
                                     
                                     return true;
                                 } //else {

@@ -107,8 +107,9 @@ Created By: Travis Berthelot
 
                         }
 
+                        //TWB - //Hack - should use param specific like the other processGPaint
                         @Override
-                        public boolean processGPaint(final GDObject <xsl:value-of select="$name" />, final GDObject gdObject2IsNull) {
+                        public boolean processGPaint(final GDObject <xsl:value-of select="$name" />, final GDObject gdObject2) {
                         
                             try {
                                 //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);

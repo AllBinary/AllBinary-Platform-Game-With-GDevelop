@@ -171,13 +171,6 @@ Created By: Travis Berthelot
                                     <xsl:value-of select="$gdObjectName" />.setX(MouseX());
                                     <xsl:value-of select="$gdObjectName" />.setY(MouseY());
                                     
-                                    <xsl:for-each select=".." >
-                                        <xsl:call-template name="actionIdsGDObjectPos" >
-                                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                                            <xsl:with-param name="gdObjectName" ><xsl:value-of select="$gdObjectName" /></xsl:with-param>
-                                            <xsl:with-param name="gdGameLayer" ><xsl:value-of select="$gdObjectName" />GDGameLayer</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:for-each>
                                     return true;
                                 } //else {
                                     //logUtil.put(ELSE_CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
