@@ -98,7 +98,6 @@ Created By: Travis Berthelot
         <xsl:param name="eventAsString" />
         <xsl:param name="actionAsStringsStrings" />
         <xsl:param name="logString" />
-        <xsl:param name="eventsCreateProcessUsed" />
         <xsl:param name="parentEventType" />
 
                 <xsl:variable name="nodeList" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
@@ -1191,7 +1190,6 @@ Created By: Travis Berthelot
                         <xsl:with-param name="eventAsString" ><xsl:value-of select="$eventAsString" /></xsl:with-param>
                         <xsl:with-param name="actionAsStringsStrings" ><xsl:value-of select="$actionAsStringsStrings" /></xsl:with-param>
                         <xsl:with-param name="logString" ><xsl:value-of select="$logString" /></xsl:with-param>
-                        <xsl:with-param name="eventsCreateProcessUsed" ><xsl:value-of select="$eventsCreateProcessUsed" /></xsl:with-param>
                     </xsl:call-template>
                     
                 </xsl:when>
@@ -1211,7 +1209,6 @@ Created By: Travis Berthelot
                         <xsl:with-param name="eventAsString" ><xsl:value-of select="$eventAsString" /></xsl:with-param>
                         <xsl:with-param name="actionAsStringsStrings" ><xsl:value-of select="$actionAsStringsStrings" /></xsl:with-param>
                         <xsl:with-param name="logString" ><xsl:value-of select="$logString" /></xsl:with-param>
-                        <xsl:with-param name="eventsCreateProcessUsed" ><xsl:value-of select="$eventsCreateProcessUsed" /></xsl:with-param>
                     </xsl:call-template>
                     
                 </xsl:when>
@@ -1651,30 +1648,6 @@ Created By: Travis Berthelot
             </xsl:for-each>
             </xsl:variable>
 
-            <xsl:variable name="eventsCreateProcessUsed" >
-                <xsl:call-template name="eventsCreateProcessUsedHack" >
-                    <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
-                    <xsl:with-param name="thisNodeIndex" >
-                        <xsl:value-of select="$thisNodeIndex" />
-                    </xsl:with-param>
-                    <xsl:with-param name="objectsGroupsAsString" >
-                        <xsl:value-of select="$objectsGroupsAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="objectsAsString" >
-                        <xsl:value-of select="$objectsAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="layoutIndex" >
-                        <xsl:value-of select="$layoutIndex" />
-                    </xsl:with-param>
-                    <xsl:with-param name="actionParametersAsString" >
-                        <xsl:value-of select="$actionParametersAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="createdObjectsAsString" >
-                        <xsl:value-of select="$createdObjectsAsString" />
-                    </xsl:with-param>
-                </xsl:call-template>
-            </xsl:variable>
-
             <!-- conditions - START -->
             <xsl:variable name="alreadyUsedCondition" ><xsl:call-template name="alreadyUsedCondition" ></xsl:call-template></xsl:variable>
             
@@ -1724,9 +1697,6 @@ Created By: Travis Berthelot
                 </xsl:with-param>
                 <xsl:with-param name="logString" >
                     <xsl:value-of select="$logString" />
-                </xsl:with-param>
-                <xsl:with-param name="eventsCreateProcessUsed" >
-                    <xsl:value-of select="$eventsCreateProcessUsed" />
                 </xsl:with-param>
                 <xsl:with-param name="parentEventType" >
                     <xsl:value-of select="$type" />
@@ -1796,9 +1766,6 @@ Created By: Travis Berthelot
                 <xsl:with-param name="logString" >
                     <xsl:value-of select="$logString" />
                 </xsl:with-param>
-                <xsl:with-param name="eventsCreateProcessUsed" >
-                    <xsl:value-of select="$eventsCreateProcessUsed" />
-                </xsl:with-param>
                 <xsl:with-param name="parentEventType" >
                     <xsl:value-of select="$type" />
                 </xsl:with-param>
@@ -1858,9 +1825,6 @@ Created By: Travis Berthelot
                 <xsl:with-param name="logString" >
                     <xsl:value-of select="$logString" />
                 </xsl:with-param>
-                <xsl:with-param name="eventsCreateProcessUsed" >
-                    <xsl:value-of select="$eventsCreateProcessUsed" />
-                </xsl:with-param>
                 <xsl:with-param name="parentEventType" >
                     <xsl:value-of select="$type" />
                 </xsl:with-param>
@@ -1918,9 +1882,6 @@ Created By: Travis Berthelot
                 </xsl:with-param>
                 <xsl:with-param name="logString" >
                     <xsl:value-of select="$logString" />
-                </xsl:with-param>
-                <xsl:with-param name="eventsCreateProcessUsed" >
-                    <xsl:value-of select="$eventsCreateProcessUsed" />
                 </xsl:with-param>
                 <xsl:with-param name="parentEventType" >
                     <xsl:value-of select="$type" />

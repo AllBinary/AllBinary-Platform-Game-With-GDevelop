@@ -19,7 +19,6 @@ import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
-import org.allbinary.game.layer.special.GDWithAllBinaryCollidableBehavior;
 import org.allbinary.game.multiplayer.layer.RemoteInfo;
 import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.graphics.PointFactory;
@@ -115,7 +114,8 @@ public class GDGameLayerFactory
         
         //gameLayer.setInitialScale(scaleX, scaleY);
 
-        gameLayer.setCollidableInferface(new GDWithAllBinaryCollidableBehavior(collidableBehavior, true));
+        //TWB - Use this if you want to use AllBinary Collision processor when using GD
+        //gameLayer.setCollidableInferface(new GDWithAllBinaryCollidableBehavior(collidableBehavior, true));
 
         //logUtil.put(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(" w/h/d: ").append(gameLayer.getWidth()).append('/').append(gameLayer.getHeight()).append('/').append(gameLayer.getDepth()).toString(), this, "create");
         

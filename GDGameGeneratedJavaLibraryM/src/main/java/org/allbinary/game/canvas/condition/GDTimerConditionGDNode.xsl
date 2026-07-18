@@ -28,7 +28,6 @@ Created By: Travis Berthelot
         <xsl:param name="eventAsString" />
         <xsl:param name="actionAsStringsStrings" />
         <xsl:param name="logString" />
-        <xsl:param name="eventsCreateProcessUsed" />
     
         <xsl:variable name="quote" >"</xsl:variable>
         
@@ -98,7 +97,6 @@ Created By: Travis Berthelot
                                 
                         }
 
-                        <xsl:value-of select="$eventsCreateProcessUsed" disable-output-escaping="yes" />
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >

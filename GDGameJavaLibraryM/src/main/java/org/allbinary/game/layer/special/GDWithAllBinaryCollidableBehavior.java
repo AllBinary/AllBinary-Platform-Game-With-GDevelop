@@ -75,7 +75,7 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
         return false;
     }
     
-    private static final String COLLIDE = "collide";
+    //private static final String COLLIDE = "collide";
     
     // TODO TWB Special Super Efficient Collision Processing
     //public void collide(CollidableDestroyableDamageableTeamLayer collisionLayer)
@@ -116,8 +116,7 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
                     tempGameLayerUtil.clear();
                     tempGameLayerUtil.gameLayerArray[0] = ownerLayer;
                     tempGameLayerUtil.gameLayerArray[1] = collisionLayer;
-                    //node.processM(node.gameLayerArray, null, null);
-                    node.processM(tempGameLayerUtil.gameLayerArray);
+                    //node.processGD(ownerLayer, collisionLayer);
                     tempGameLayerUtil.clear2();
                 }
             }

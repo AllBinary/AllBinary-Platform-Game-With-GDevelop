@@ -174,17 +174,6 @@ public class GDNode
         this.nodeStatsFactory.push(12, this.name);
     }
 
-    public void processM(final CollidableCompositeLayer[] gameLayerArray) {
-    }
-
-    protected void processMStats(final CollidableCompositeLayer[] gameLayerArray) {
-        this.nodeStatsFactory.push(13, this.name);
-    }
-
-    protected void processMStatsE(final CollidableCompositeLayer[] gameLayerArray) {
-        this.nodeStatsFactory.push(14, this.name);
-    }
-    
     public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
         this.processGDStats(gameLayer);
         return false;

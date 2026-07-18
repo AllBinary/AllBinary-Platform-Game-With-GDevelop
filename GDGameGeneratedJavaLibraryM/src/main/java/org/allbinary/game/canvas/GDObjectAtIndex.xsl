@@ -57,7 +57,7 @@ Created By: Travis Berthelot
                                         //}
                                         
                                     } else {
-                                        //final String message = "eventsCreateProcessUsed - iteration=<xsl:value-of select="$iteration" /> - <xsl:value-of select="$name" /> warning: not initialized";
+                                        //final String message = " - iteration=<xsl:value-of select="$iteration" /> - <xsl:value-of select="$name" /> warning: not initialized";
                                         //logUtil.put(message, this, message);
                                     }
 
