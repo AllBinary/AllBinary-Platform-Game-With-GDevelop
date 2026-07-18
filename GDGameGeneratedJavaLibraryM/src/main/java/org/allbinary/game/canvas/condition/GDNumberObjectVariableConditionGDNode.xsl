@@ -407,6 +407,36 @@ Created By: Travis Berthelot
                         //TWB - Hack
 <!--                        <xsl:variable name="hasGameLayer" ><xsl:for-each select="parameters" ><xsl:if test="contains(text(), 'LastEndedTouchId') or contains(text(), 'Map')" >found</xsl:if></xsl:for-each></xsl:variable>-->
 
+                    </xsl:if>
+                    
+                    <xsl:variable name="hasParamMatchWithParentParam" >
+                        <xsl:if test="contains($hasForEachProcessGD, 'found')" >
+                            <xsl:variable name="forEachGDParamOne" ><xsl:call-template name="forEachGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                            <xsl:if test="$gdObjectName = $forEachGDParamOne" >found</xsl:if>
+                        </xsl:if>
+                        <xsl:if test="contains($hasCollisionProcessGD, 'found')" >
+                            <xsl:variable name="collisionProcessGDParamOne" ><xsl:call-template name="collisionProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                            <xsl:variable name="collisionProcessGDParamTwo" ><xsl:call-template name="collisionProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                            <xsl:if test="$gdObjectName = $collisionProcessGDParamOne" >found</xsl:if>
+                            <xsl:if test="$gdObjectName = $collisionProcessGDParamTwo" >found</xsl:if>
+                        </xsl:if>
+                        <xsl:if test="contains($hasDistanceProcessGD, 'found')" >
+                            <xsl:variable name="distanceProcessGDParamOne" ><xsl:call-template name="distanceProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                            <xsl:variable name="distanceProcessGDParamTwo" ><xsl:call-template name="distanceProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                            <xsl:if test="$gdObjectName = $distanceProcessGDParamOne" >found</xsl:if>
+                            <xsl:if test="$gdObjectName = $distanceProcessGDParamTwo" >found</xsl:if>
+                        </xsl:if>
+                        <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
+                            <xsl:variable name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" ><xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                            <xsl:variable name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" ><xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                            <xsl:if test="$gdObjectName = $linkedObjectsPickObjectsLinkedToProcessGDParamOne" >found</xsl:if>
+                            <xsl:if test="$gdObjectName = $linkedObjectsPickObjectsLinkedToProcessGDParamTwo" >found</xsl:if>
+                        </xsl:if>
+                    </xsl:variable>
+                    
+                    //hasParamMatchWithParentParam=<xsl:value-of select="$hasParamMatchWithParentParam" />
+                    <xsl:if test="not(contains($hasKnownParams, 'found') and contains($hasParamMatchWithParentParam, 'found'))" >
+
                     <xsl:variable name="hasGameLayer2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:if test="contains(text(), '.')" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
                     <xsl:variable name="gameLayerName2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>

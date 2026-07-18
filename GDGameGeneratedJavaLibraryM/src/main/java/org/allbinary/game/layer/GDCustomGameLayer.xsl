@@ -19,8 +19,6 @@ Created By: Travis Berthelot
     
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
     
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/layer/GDCustomGameLayerCollisionHack.xsl" />
-
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -202,19 +200,6 @@ Created By: Travis Berthelot
                     private GeographicMapCellPosition steeringInsideGeographicMapCellPosition;
         </xsl:if>
 
-        <xsl:for-each select="layouts" >
-            <xsl:variable name="layoutIndex" select="position() - 1" />
-            <xsl:call-template name="createCollisionList" >
-                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
-            </xsl:call-template>
-            <xsl:call-template name="createWhileCollisionList" >
-                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
-            </xsl:call-template>
-            <xsl:call-template name="createSubInstructionsCollisionList" >
-                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
-            </xsl:call-template>
-        </xsl:for-each>
-
         <xsl:variable name="hasLayoutWithTileMapAndIsTopView" >
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
@@ -383,10 +368,7 @@ Created By: Travis Berthelot
         } else {
             //logUtil.putF("do not move", this, "moveAndLand");
                     
-            //CollisionNP
-            <xsl:for-each select=".." >
-            <xsl:call-template name="mapCollisionMaskHack" />
-            </xsl:for-each>
+            //CollisionNP?
 
         }
         
@@ -412,10 +394,7 @@ Created By: Travis Berthelot
         } else {
             //logUtil.putF("do not move", this, "moveAndLand");
                     
-            //CollisionNP
-            <xsl:for-each select=".." >
-            <xsl:call-template name="mapCollisionMaskHack" />
-            </xsl:for-each>
+            //CollisionNP?
 
         }
         
@@ -432,27 +411,6 @@ Created By: Travis Berthelot
                     this.waypointLayerInterfaceFactoryInterface = org.allbinary.game.layer.GDFlagLayerInterfaceFactory.getInstance(); //waypointLayerInterfaceFactoryInterface;
                     this.geographicMapCellPositionArea = new GeographicMapCellPositionArea(this);
                 </xsl:if>
-
-<!--
-        <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
-        <xsl:for-each select="layouts" >
-            <xsl:variable name="layoutIndex" select="position() - 1" />
-            <xsl:for-each select="objects" >            
-                
-                <xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >
-                    
-                        //final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-                        //if(this.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
-                        //} else if(this.gdObject.type == gameGlobals.TILEMAP__TILEMAP) {
-                            //this.updatePosition();
-                        //}
-                    
-                </xsl:if>
-
-            </xsl:for-each>
-        </xsl:for-each>
-        </xsl:if>
--->
 
         <xsl:if test="contains($foundOtherViewPosition, 'found')" >
                         StaticTileLayerIntoPositionViewPosition.layer = this;
@@ -1085,21 +1043,6 @@ Created By: Travis Berthelot
                     //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> - END
                 </xsl:for-each>
             </xsl:for-each>
-        </xsl:for-each>
-
-    //private final String P = "processGDCollision";    
-    //private final String B = "BatEnemy";
-        <xsl:for-each select="layouts" >
-            <xsl:variable name="layoutIndex" select="position() - 1" />
-            <xsl:call-template name="processCollisionList" >
-                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
-            </xsl:call-template>
-            <xsl:call-template name="processWhileCollisionList" >
-                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
-            </xsl:call-template>
-            <xsl:call-template name="processSubInstructionsCollisionList" >
-                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
-            </xsl:call-template>
         </xsl:for-each>
 
     public void setValue(final int value) {
@@ -1865,27 +1808,6 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:for-each>
             </xsl:for-each>
-
-            <xsl:variable name="hasCollisionListForLayout" ><xsl:call-template name="hasCollisionListForLayout" ><xsl:with-param name="layoutIndex" select="$layoutIndex" /></xsl:call-template></xsl:variable>
-            <xsl:variable name="hasWhileCollisionList" ><xsl:call-template name="hasWhileCollisionList" ><xsl:with-param name="layoutIndex" select="$layoutIndex" /></xsl:call-template></xsl:variable>
-            <xsl:variable name="hasSubInstructionsCollisionList" ><xsl:call-template name="hasSubInstructionsCollisionList" ><xsl:with-param name="layoutIndex" select="$layoutIndex" /></xsl:call-template></xsl:variable>
-            //CollisionNP - processing for the specific game object - //hasCollisionListForLayout=<xsl:if test="contains($hasCollisionListForLayout, 'found')" ></xsl:if> //hasWhileCollisionList=<xsl:if test="contains($hasWhileCollisionList, 'found')" ></xsl:if> //hasSubInstructionsCollisionList=<xsl:if test="contains($hasSubInstructionsCollisionList, 'found')" ></xsl:if>
-            <xsl:if test="contains($hasCollisionListForLayout, 'found') or contains($hasWhileCollisionList, 'found')  or contains($hasSubInstructionsCollisionList, 'found')" >
-            final org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals<xsl:value-of select="$layoutIndex" /> = 
-                org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-            </xsl:if>
-            //addCollisionList
-            <xsl:call-template name="addCollisionList" >
-                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
-            </xsl:call-template>
-            //addWhileCollisionList
-            <xsl:call-template name="addWhileCollisionList" >
-                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
-            </xsl:call-template>
-            //addSubInstructionsCollisionList
-            <xsl:call-template name="addSubInstructionsCollisionList" >
-                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
-            </xsl:call-template>
             
             }            
         </xsl:for-each>
