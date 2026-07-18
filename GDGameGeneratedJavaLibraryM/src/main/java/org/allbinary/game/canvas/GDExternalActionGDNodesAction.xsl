@@ -4,7 +4,6 @@
 
     <xsl:import href="./GDEventCreateAssignGDObjectGDNodeCondition.xsl" />
     <xsl:import href="./GDActionGDNodeAction.xsl" />
-    <xsl:import href="./GDObjectGDNodes.xsl" />
     <xsl:import href="./GDEventCreateAssignGDObjectGDNodeObjectEvent.xsl" />
     <xsl:import href="./GDEventCreateAssignGDObjectGDNodeOtherEvent.xsl" />
     
