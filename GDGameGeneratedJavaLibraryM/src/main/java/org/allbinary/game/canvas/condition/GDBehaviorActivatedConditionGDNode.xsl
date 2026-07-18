@@ -212,7 +212,8 @@ Created By: Travis Berthelot
                         </xsl:if>
                         
                     </xsl:if>
-                    <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
+                    <xsl:variable name="hasKnownParamsFromParent" ><xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >found</xsl:if></xsl:variable>
+                    <xsl:if test="not($hasKnownParamsFromParent)" >
 
                         <xsl:variable name="hasSiblingActionWithObjectsGroupsOrObject" >
                             <xsl:for-each select=".." >
@@ -232,7 +233,7 @@ Created By: Travis Berthelot
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);
                         </xsl:if>
                         
-                        <xsl:if test="not(contains($hasSiblingActionWithObjectsGroupsOrObject, 'found') or contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
+                        <xsl:if test="not(contains($hasSiblingActionWithObjectsGroupsOrObject, 'found') or $hasKnownParamsFromParent)" >
                     //BehaviorActivated - //Not from parent
                     public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2) throws Exception {
                     

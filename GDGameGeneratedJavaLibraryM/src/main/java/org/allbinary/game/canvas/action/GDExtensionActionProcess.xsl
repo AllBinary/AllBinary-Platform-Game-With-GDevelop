@@ -184,7 +184,8 @@ Created By: Travis Berthelot
                             <xsl:otherwise>gameLayer</xsl:otherwise>
                         </xsl:choose>
                     </xsl:variable>
-                    <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
+                    <xsl:variable name="hasKnownParamsFromParent" ><xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >found</xsl:if></xsl:variable>
+                    <xsl:if test="not($hasKnownParamsFromParent)" >
                     //extension=<xsl:value-of select="$extensionNameAndExtensionFunction" /> - //Not from parent
                     public boolean processGD(final GDGameLayer <xsl:value-of select="$gameLayer" />, final GDGameLayer unusedGameLayer) throws Exception {
 

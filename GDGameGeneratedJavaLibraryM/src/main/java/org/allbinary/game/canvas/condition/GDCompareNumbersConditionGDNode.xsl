@@ -156,11 +156,12 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
                             //NOT_IMPLEMENTED - LinkedObjectsPickObjectsLinkedTo
                         </xsl:if>
-                        <xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
+                        <xsl:variable name="hasKnownParamsFromParent" ><xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >found</xsl:if></xsl:variable>
+                        <xsl:if test="$hasKnownParamsFromParent" >
                             throw new RuntimeException();
                         </xsl:if>
 
-                        <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
+                        <xsl:if test="not($hasKnownParamsFromParent)" >
                             <xsl:if test="contains($hasDistanceProcessGD, 'found')" >
                                 <xsl:variable name="distanceProcessGDParamOne" ><xsl:call-template name="distanceProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
                                 <xsl:variable name="distanceProcessGDParamTwo" ><xsl:call-template name="distanceProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
@@ -207,7 +208,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
 <!--
-                    <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
+                    <xsl:if test="not($hasKnownParamsFromParent)" >
                         //Not from parent - //CompareNumbers
                         public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2) throws Exception {
                     
@@ -220,7 +221,7 @@ Created By: Travis Berthelot
                             super.processGDStats(<xsl:value-of select="$gdObjectName" />GDGameLayer);
                     </xsl:if>
 -->
-                    <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
+                    <xsl:if test="not($hasKnownParamsFromParent)" >
                         //CompareNumbers - //Not from parent
                         public boolean processGD(final GDGameLayer gdGameLayer, final GDGameLayer gameLayer2) throws Exception {
                     
@@ -269,7 +270,7 @@ Created By: Travis Berthelot
                                 </xsl:if>
                             </xsl:if>
 
-                            <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
+                            <xsl:if test="not($hasKnownParamsFromParent)" >
                             <xsl:if test="contains($hasObject2, 'found') or contains($hasObjectGroup2, 'found')" >
                                 if(globals.<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayerList.size() == 0) {
                                     return false;

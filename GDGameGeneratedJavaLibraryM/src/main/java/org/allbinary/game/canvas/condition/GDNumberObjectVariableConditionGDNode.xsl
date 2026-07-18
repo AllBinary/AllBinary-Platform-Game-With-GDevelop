@@ -266,7 +266,8 @@ Created By: Travis Berthelot
                         <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                         <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                     </xsl:call-template>
-                    <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
+                    <xsl:variable name="hasKnownParamsFromParent" ><xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >found</xsl:if></xsl:variable>
+                    <xsl:if test="not($hasKnownParamsFromParent)" >
                     <xsl:if test="$paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != ''" >
                     //NumberObjectVariable - //Not from parent
                     public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2) throws Exception {
@@ -309,7 +310,7 @@ Created By: Travis Berthelot
                                 //Defaulting to first param since no known association with prior sibling Create action or parent Condition
                                 </xsl:if>
 
-                                <xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
+                                <xsl:if test="$hasKnownParamsFromParent" >
                                     <xsl:choose>
                                     <xsl:when test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
                                         <xsl:variable name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" ><xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
@@ -347,7 +348,7 @@ Created By: Travis Berthelot
                                     </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:if>
-                                <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
+                                <xsl:if test="not($hasKnownParamsFromParent)" >
                                     <xsl:if test="$paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != ''" >
                                 //From param - 1 or 2
                                 if(this.processGPaint(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject, null)) {
@@ -398,7 +399,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                         <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                     </xsl:call-template>
-                    <xsl:variable name="hasKnownParams" ><xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >found</xsl:if></xsl:variable>
+                    <xsl:variable name="hasKnownParams" ><xsl:if test="$hasKnownParamsFromParent" >found</xsl:if></xsl:variable>
                     <xsl:if test="not(contains($hasKnownParams, 'found'))" >
                         //NumberObjectVariable - //Not from parent
                         @Override

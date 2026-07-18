@@ -193,7 +193,8 @@ Created By: Travis Berthelot
                         <xsl:with-param name="secondGameLayer" ><xsl:value-of select="$beforeThirdParam" /></xsl:with-param>
                         <xsl:with-param name="callEnding" >Create</xsl:with-param>
                     </xsl:call-template>
-                    <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
+                    <xsl:variable name="hasKnownParamsFromParent" ><xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >found</xsl:if></xsl:variable>
+                    <xsl:if test="not($hasKnownParamsFromParent)" >
                     public boolean processCreateGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
 
                         super.processGDStats(gameLayer);
