@@ -309,7 +309,7 @@ Created By: Travis Berthelot
                         
                     </xsl:if>
                     <xsl:variable name="hasKnownParamsFromParent" ><xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >found</xsl:if></xsl:variable>
-                    <xsl:if test="not($hasKnownParamsFromParent)" >
+                    <xsl:if test="not(contains($hasKnownParamsFromParent, 'found'))" >
 
                         <xsl:if test="contains($hasSiblingActionWithObjectsGroupsOrObject, 'found')" >
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -321,7 +321,7 @@ Created By: Travis Berthelot
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);
                         </xsl:if>
                         
-                        <xsl:if test="not(contains($hasSiblingActionWithObjectsGroupsOrObject, 'found') or $hasKnownParamsFromParent)" >
+                        <xsl:if test="not(contains($hasSiblingActionWithObjectsGroupsOrObject, 'found') or contains($hasKnownParamsFromParent, 'found'))" >
                     //AnimatableCapability::AnimatableBehavior::SetName - //Not from parent
                     public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2) throws Exception {
                     
@@ -340,7 +340,7 @@ Created By: Travis Berthelot
 
                         <xsl:variable name="fourthParamBeforePeriod" ><xsl:value-of select="substring-before($fourthParam, '.')" /></xsl:variable>
                         
-                        <xsl:if test="not($hasKnownParamsFromParent)" >
+                        <xsl:if test="not(contains($hasKnownParamsFromParent, 'found'))" >
                         <xsl:if test="$name != $firstOrBeforeFourthParam" >
                         //firstOrBeforeFourthParam was not the same as name so we will get the first and hopefully only GameLayer
                         <xsl:variable name="gameLayerName" ><xsl:value-of select="$name" /></xsl:variable>

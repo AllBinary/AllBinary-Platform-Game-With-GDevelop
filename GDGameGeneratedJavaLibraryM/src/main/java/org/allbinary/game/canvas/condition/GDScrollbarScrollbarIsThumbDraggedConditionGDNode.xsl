@@ -143,7 +143,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="closedValueForGDObject" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '&lt;' or text() = '&lt;=' or text() = '&gt;' or text() = '&gt;='" >GDGameLayer.getXP()</xsl:if></xsl:if></xsl:for-each></xsl:variable>
                         
                         <xsl:variable name="hasKnownParamsFromParent" ><xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >found</xsl:if></xsl:variable>
-                        <xsl:if test="not($hasKnownParamsFromParent)" >
+                        <xsl:if test="not(contains($hasKnownParamsFromParent, 'found'))" >
 
 <!--                            <xsl:if test="$paramOneNameObjectsGroups = '' and $paramTwoNameObjectsGroups = ''" >-->
 
@@ -183,7 +183,7 @@ Created By: Travis Berthelot
                          
                         </xsl:if>                      
                         
-                        <xsl:if test="$hasKnownParamsFromParent" >
+                        <xsl:if test="contains($hasKnownParamsFromParent, 'found')" >
                             //Needs Impl
                             //if(true) throw new RuntimeException();
                         </xsl:if>
@@ -203,12 +203,12 @@ Created By: Travis Berthelot
                             return this.process();
                         }
 
-                    <xsl:if test="$paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != '' or $hasKnownParamsFromParent" >
+                    <xsl:if test="$paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != '' or contains($hasKnownParamsFromParent, 'found')" >
                     <xsl:call-template name="parentSelectionNodeProcessGD" >
                         <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                         <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                     </xsl:call-template>
-                    <xsl:if test="not($hasKnownParamsFromParent)" >
+                    <xsl:if test="not(contains($hasKnownParamsFromParent, 'found'))" >
                     //Scrollbar::Scrollbar::IsThumbDragged - //Not from parent
                     public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2) throws Exception {
                     
@@ -258,7 +258,7 @@ Created By: Travis Berthelot
                             return false;
                         }
                     </xsl:if>                                        
-                    <xsl:if test="not($paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != '' or $hasKnownParamsFromParent)" >
+                    <xsl:if test="not($paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != '' or contains($hasKnownParamsFromParent, 'found'))" >
                         public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
 
                             super.processGDStats(gameLayer);

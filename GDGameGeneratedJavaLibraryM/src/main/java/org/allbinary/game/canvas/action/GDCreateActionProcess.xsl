@@ -262,7 +262,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="secondGameLayer2" ><xsl:value-of select="$name" /></xsl:with-param>
                     </xsl:call-template>
                     <xsl:variable name="hasKnownParamsFromParent" ><xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >found</xsl:if></xsl:variable>
-                    <xsl:if test="not($hasKnownParamsFromParent)" >
+                    <xsl:if test="not(contains($hasKnownParamsFromParent, 'found'))" >
 <!--                        <xsl:if test="string-length($firstOrBeforeFourthParam) > 0" >
                     //Create - //Not from parent
                     public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2) throws Exception {
@@ -333,7 +333,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="secondGameLayer2" ><xsl:value-of select="$name" /></xsl:with-param>
                         <xsl:with-param name="callEnding" >Create</xsl:with-param>
                     </xsl:call-template>
-                    <xsl:if test="not($hasKnownParamsFromParent)" >
+                    <xsl:if test="not(contains($hasKnownParamsFromParent, 'found'))" >
                     public boolean processCreateGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
 
                         super.processGDStats(gameLayer);
