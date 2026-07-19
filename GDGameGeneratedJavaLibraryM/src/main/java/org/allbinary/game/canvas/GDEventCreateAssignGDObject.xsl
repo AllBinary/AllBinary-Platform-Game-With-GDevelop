@@ -747,9 +747,40 @@ Created By: Travis Berthelot
 <!--                                //totalParams=<xsl:value-of select="$totalParams" /> <xsl:value-of select="number($totalParams)" /> <xsl:if test="number($totalParams) = 1" >Exactly 1 param</xsl:if><xsl:if test="number($totalParams) > 1" >More than 1 param</xsl:if>-->
 
                                 <xsl:if test="number($totalParams) = 1" ><xsl:if test="contains($methodCall, 'processGD')" >//Using first parent param from <xsl:value-of select="$methodCall" /></xsl:if><xsl:if test="not(contains($methodCall, 'processGD'))" >//Using create param as the first param</xsl:if></xsl:if>
-                                                                
+                                
+<!--                                Hack Start-->
+                                <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                                <xsl:variable name="closestParentEventWithParams" >
+                                <xsl:call-template name="closestParentEventWithParams" >
+                                    <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                                    <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                                </xsl:call-template>
+                                </xsl:variable>
+
+                                //closestParentEventWithParams=<xsl:value-of select="$closestParentEventWithParams" />
+
+                                <xsl:if test="contains($closestParentEventWithParams, 'Distance')" >
+                                    //TWB - temp hack for param swap testing
+                                </xsl:if>                                                                
+                                <xsl:variable name="param4" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                                <xsl:variable name="selectedParentParam" >
+                                    <xsl:if test="contains($closestParentEventWithParams, 'Distance')" >
+                                    <xsl:variable name="distanceProcessGDParamOne" ><xsl:call-template name="distanceProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                    <xsl:variable name="distanceProcessGDParamTwo" ><xsl:call-template name="distanceProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                    <xsl:choose>
+                                    <xsl:when test="contains($param4, $distanceProcessGDParamOne)" ><xsl:value-of select="$parentParam" /></xsl:when>
+                                    <xsl:when test="contains($param4, $distanceProcessGDParamTwo)" ><xsl:value-of select="$parentParam2" /></xsl:when>
+                                    <xsl:otherwise><xsl:value-of select="$parentParam" /></xsl:otherwise>
+                                    </xsl:choose>
+                                    </xsl:if>
+                                    <xsl:if test="not(contains($closestParentEventWithParams, 'Distance'))" ><xsl:value-of select="$parentParam" /></xsl:if>
+                                </xsl:variable>
+
+                                //selectedParentParam=<xsl:value-of select="$selectedParentParam" />
+<!--                                Hack End-->
+
                                 <xsl:variable name="params" >
-                                    <xsl:if test="number($totalParams) = 1" ><xsl:if test="contains($methodCall, 'processGD')" ><xsl:value-of select="$parentParam" />, </xsl:if><xsl:if test="not(contains($methodCall, 'processGD'))" ><xsl:value-of select="$createParams" /> </xsl:if><xsl:value-of select="$createParams" /></xsl:if>
+                                    <xsl:if test="number($totalParams) = 1" ><xsl:if test="contains($methodCall, 'processGD')" ><xsl:value-of select="$selectedParentParam" />, </xsl:if><xsl:if test="not(contains($methodCall, 'processGD'))" ><xsl:value-of select="$createParams" /> </xsl:if><xsl:value-of select="$createParams" /></xsl:if>
                                     <xsl:if test="number($totalParams) > 1" ><xsl:value-of select="$createParams" /></xsl:if>
                                 </xsl:variable>
                                 //params=<xsl:value-of select="$params" />

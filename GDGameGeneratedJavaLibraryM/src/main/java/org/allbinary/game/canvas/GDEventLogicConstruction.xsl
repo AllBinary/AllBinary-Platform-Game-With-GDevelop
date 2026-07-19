@@ -379,6 +379,120 @@ Created By: Travis Berthelot
         </xsl:for-each>
     </xsl:template>
 
+    <xsl:template name="closestParentEventWithParams" >
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
+        
+        <xsl:for-each select=".." >
+            <xsl:for-each select="events" >
+
+            <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" >BuiltinCommonInstructions::ForEach</xsl:if>
+            </xsl:if>
+            </xsl:for-each>
+                        
+            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" >Collision</xsl:if>
+            </xsl:if>
+
+            <xsl:if test="conditions[type/value = 'Distance']" >
+                
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                
+                <xsl:if test="contains($hasChildNode, 'found')" >Distance</xsl:if>
+            </xsl:if>
+
+            <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
+                
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                
+                <xsl:if test="contains($hasChildNode, 'found')" >LinkedObjects::PickObjectsLinkedTo</xsl:if>
+            </xsl:if>
+
+            <xsl:variable name="hasForEachEvent" >
+                <xsl:for-each select="events" >
+                    <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+                        <xsl:variable name="hasChildNode" >
+                            <xsl:call-template name="hasChildNode" >
+                                <xsl:with-param name="childNodeId" >
+                                    <xsl:value-of select="$nodeId" />
+                                </xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:variable>
+
+            <xsl:variable name="hasCollisionNPCondition" >
+            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
+            </xsl:if>
+            </xsl:variable>
+
+            <xsl:variable name="hasDistanceCondition" >
+            <xsl:if test="conditions[type/value = 'Distance']" >
+                
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
+            </xsl:if>
+            </xsl:variable>
+
+            <xsl:variable name="hasLinkedObjectsPickObjectsLinkedToCondition" >
+            <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
+                
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
+            </xsl:if>
+            </xsl:variable>
+
+            <xsl:if test="not(contains($hasForEachEvent, 'found') or contains($hasCollisionNPCondition, 'found') or contains($hasDistanceCondition, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToCondition, 'found'))" >
+            <xsl:call-template name="closestParentEventWithParams" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions + 1" />
+                </xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+               
+            </xsl:call-template>
+            </xsl:if>
+            
+        </xsl:for-each>
+    </xsl:template>
+
     <xsl:template name="parentSelectionNodeProcessGPaint" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="nodeId" />
@@ -938,15 +1052,33 @@ Created By: Travis Berthelot
         <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
-            <xsl:if test="conditions[type/value = 'Distance']" >
+
+            <xsl:variable name="hasDistanceCondition" >
+            <xsl:for-each select="conditions" >
+                <xsl:if test="type/value = 'BuiltinCommonInstructions::And'" >
+                    <xsl:for-each select="subInstructions" >
+                        <xsl:if test="type/value = 'Distance'" >foundInSubInstructions</xsl:if>
+                    </xsl:for-each>
+                </xsl:if>
+                <xsl:if test="type/value = 'BuiltinCommonInstructions::Or'" >
+                    <xsl:for-each select="subInstructions" >
+                        <xsl:if test="type/value = 'Distance'" >foundInSubInstructions</xsl:if>
+                    </xsl:for-each>
+                </xsl:if>
+            <xsl:if test="type/value = 'Distance'" >found</xsl:if>
+            </xsl:for-each>
+            </xsl:variable>
+
+<!--            <xsl:if test="string-length($hasDistanceCondition) > 0" >//hasDistanceCondition=<xsl:value-of select="$hasDistanceCondition" /></xsl:if>-->
+            <xsl:if test="contains($hasDistanceCondition, 'found')" >
             <xsl:variable name="hasChildNode" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
             </xsl:variable>
-                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
+            <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
-            
+
             <xsl:call-template name="hasDistanceProcessGD" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
