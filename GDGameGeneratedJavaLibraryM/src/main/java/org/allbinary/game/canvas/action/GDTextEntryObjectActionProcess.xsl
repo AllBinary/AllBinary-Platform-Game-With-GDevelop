@@ -22,6 +22,8 @@ Created By: Travis Berthelot
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
 
+        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+        
                         private boolean[] hasReleased;
 
                         public void init() {
@@ -58,6 +60,15 @@ Created By: Travis Berthelot
                     @Override
                     public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
                         super.processGDStats(gameLayer);
+
+                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    
+                        return this.process();
+                    }
+
+                    @Override
+                    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                        super.processGDStats(gameLayerArray);
 
                         //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                     

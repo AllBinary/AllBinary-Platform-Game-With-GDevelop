@@ -115,6 +115,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                     </xsl:call-template>
                     
                 </xsl:when>
@@ -149,6 +150,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                     </xsl:call-template>
 
                 </xsl:when>
@@ -158,6 +160,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                     </xsl:call-template>
 
                 </xsl:when>
@@ -167,6 +170,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                     </xsl:call-template>
 
                 </xsl:when>
@@ -177,6 +181,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                     </xsl:call-template>
 
                 </xsl:when>
@@ -189,6 +194,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                     </xsl:call-template>
                     
                 </xsl:when>
@@ -219,6 +225,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                     </xsl:call-template>
 
                 </xsl:when>
@@ -232,6 +239,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                     </xsl:call-template>
                     
                 </xsl:when>
@@ -242,6 +250,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
                     </xsl:call-template>
 
@@ -253,6 +262,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
                     </xsl:call-template>
                     
@@ -264,6 +274,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
                     </xsl:call-template>
                     
@@ -322,6 +333,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                     </xsl:call-template>
 
                 </xsl:when>
@@ -332,6 +344,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="parametersAsString" >
                             <xsl:value-of select="$parametersAsString" />
                         </xsl:with-param>
@@ -392,6 +405,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -442,6 +456,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
@@ -451,6 +466,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
 
@@ -496,6 +512,7 @@ Created By: Travis Berthelot
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
                             </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         </xsl:call-template>
 
                     </xsl:when>
@@ -504,7 +521,7 @@ Created By: Travis Berthelot
                     </xsl:when>
                     <xsl:when test="$typeValue = '(Used when using the AllBinary Collision Processing) CollisionNP'" >
                         //CollisionNP - condition is processed by the AllBinary collision processor
-                    </xsl:when>                
+                    </xsl:when>
                     <xsl:when test="$typeValue = 'CollisionNP'" >
                         //CollisionNP - Not Pixel Perfect
                         <xsl:call-template name="collisionNPConditionGDNode" >
@@ -520,11 +537,11 @@ Created By: Travis Berthelot
                     <xsl:when test="$typeValue = 'Collision'" >
                         //Collision - Pixel Perfect
                         <xsl:call-template name="collisionNPConditionGDNode" >
-                            <xsl:with-param name="layoutIndex" >
-                                <xsl:value-of select="$layoutIndex" />
-                            </xsl:with-param>
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
+                            </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
                             <xsl:with-param name="nodeList" ><xsl:value-of select="$nodeList" /></xsl:with-param>
                         </xsl:call-template>
@@ -540,6 +557,9 @@ Created By: Travis Berthelot
                         <xsl:call-template name="distanceConditionGDNode" >
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
+                            </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
                             <xsl:with-param name="parametersAsString" >
                                 <xsl:value-of select="$parametersAsString" />
@@ -592,6 +612,9 @@ Created By: Travis Berthelot
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
                             </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
                         </xsl:call-template>
                     
                     </xsl:when>
@@ -642,6 +665,9 @@ Created By: Travis Berthelot
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
                             </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
                     </xsl:call-template>
                     
                 </xsl:when>                
@@ -666,6 +692,9 @@ Created By: Travis Berthelot
                         <xsl:call-template name="alwaysConditionGDNode" >
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
+                            </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
                             <xsl:with-param name="parametersAsString" >
                                 <xsl:value-of select="$parametersAsString" />
@@ -734,12 +763,18 @@ Created By: Travis Berthelot
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
                             </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
                         </xsl:call-template>
                     </xsl:when>
                     <xsl:when test="$typeValue = 'BuiltinCommonInstructions::And'" >
                         <xsl:call-template name="andConditionGDNode" >
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
+                            </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
                         </xsl:call-template>
                     </xsl:when>
@@ -754,6 +789,9 @@ Created By: Travis Berthelot
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
                             </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
                         </xsl:call-template>
 
                         <xsl:variable name="nodeId" >
@@ -763,7 +801,10 @@ Created By: Travis Berthelot
                             <xsl:call-template name="addGDNodeToOnceList" >
                                 <xsl:with-param name="forExtension" >
                                     <xsl:value-of select="$forExtension" />
-                                </xsl:with-param>                                
+                                </xsl:with-param>
+                                <xsl:with-param name="layoutIndex" >
+                                    <xsl:value-of select="$layoutIndex" />
+                                </xsl:with-param>
                                 <xsl:with-param name="iteration" >0</xsl:with-param>
                                 <xsl:with-param name="nodeId" >
                                     <xsl:value-of select="$nodeId" />
@@ -788,6 +829,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
                         <xsl:with-param name="parametersAsString" >
                             <xsl:value-of select="$parametersAsString" />
                         </xsl:with-param>
@@ -800,6 +844,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
                         <xsl:with-param name="parametersAsString" >
                             <xsl:value-of select="$parametersAsString" />
                         </xsl:with-param>
@@ -812,6 +859,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
                         <xsl:with-param name="parametersAsString" >
                             <xsl:value-of select="$parametersAsString" />
                         </xsl:with-param>
@@ -824,6 +874,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
                         <xsl:with-param name="parametersAsString" >
                             <xsl:value-of select="$parametersAsString" />
                         </xsl:with-param>
@@ -836,6 +889,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
                         <xsl:with-param name="parametersAsString" >
                             <xsl:value-of select="$parametersAsString" />
                         </xsl:with-param>
@@ -884,6 +940,9 @@ Created By: Travis Berthelot
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
                             </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
                             <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
                             <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
                             <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
@@ -895,6 +954,9 @@ Created By: Travis Berthelot
                         <xsl:call-template name="sourisBoutonConditionGDNode" >
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
+                            </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
                             <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
                             <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
@@ -909,6 +971,9 @@ Created By: Travis Berthelot
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
                             </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
                         </xsl:call-template>
                     
                     </xsl:when>
@@ -919,6 +984,9 @@ Created By: Travis Berthelot
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
                             </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
                         </xsl:call-template>
                     
                 </xsl:when>
@@ -927,6 +995,9 @@ Created By: Travis Berthelot
                         <xsl:call-template name="mouseWheelScrollingDownConditionGDNode" >
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
+                            </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
                         </xsl:call-template>
                     
@@ -937,6 +1008,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
                         <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
                         <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
                         <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>

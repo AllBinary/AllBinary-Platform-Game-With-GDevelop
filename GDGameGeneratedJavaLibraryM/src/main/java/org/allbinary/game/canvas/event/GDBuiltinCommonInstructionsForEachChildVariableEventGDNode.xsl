@@ -22,7 +22,6 @@ Created By: Travis Berthelot
         <xsl:param name="selectedNodeIds" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="layoutName" />
-        <xsl:param name="thisNodeIndex" />
         <xsl:param name="instancesAsString" />
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="objectsAsString" />
@@ -254,6 +253,15 @@ Created By: Travis Berthelot
                     return this.process();
                 }
                 
+                @Override
+                public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                    super.processGDStats(gameLayerArray);
+                        
+                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
+                            
+                    return this.process();
+                }
+
                 <xsl:if test="contains(disabled, 'true')" >
                 */
                 </xsl:if>

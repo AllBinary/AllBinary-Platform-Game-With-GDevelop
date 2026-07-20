@@ -14,7 +14,6 @@
 package org.allbinary.game.layout;
 
 import org.allbinary.game.input.event.GameKeyEvent;
-import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.input.motion.gesture.MotionGestureInput;
 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
@@ -178,11 +177,20 @@ public class GDNode
         this.processGDStats(gameLayer);
         return false;
     }
-    
+
     protected void processGDStats(final GDGameLayer gameLayer) {
-        this.nodeStatsFactory.push(15, this.name);
+        this.nodeStatsFactory.push(13, this.name);
     }
 
+    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+        this.processGDStats(gameLayerArray);
+        return false;
+    }
+    
+    protected void processGDStats(final GDGameLayer[] gameLayerArray) {
+        this.nodeStatsFactory.push(14, this.name);
+    }
+    
     public void addForDelete(final GDGameLayer gameLayer) {
         
     }

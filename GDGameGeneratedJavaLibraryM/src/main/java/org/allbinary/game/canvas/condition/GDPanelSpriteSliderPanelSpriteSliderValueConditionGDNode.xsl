@@ -23,12 +23,13 @@ Created By: Travis Berthelot
         <xsl:param name="parametersAsString" />
     
         <xsl:param name="caller" />
-        <xsl:param name="thisNodeIndex" />
         <xsl:param name="objectsAsString" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="createdObjectsAsString" />
                 
         <xsl:variable name="quote" >"</xsl:variable>
+        
+        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                     //panelSpriteSliderPanelSpriteSliderValueConditionGDNode - //Condition - //PanelSpriteSlider::PanelSpriteSlider::Value - GDNode
                     <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>final GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                     
@@ -82,7 +83,17 @@ Created By: Travis Berthelot
                             //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
                             
                             return this.process();
-                        }                        
+                        }
+
+                    @Override      
+                    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                            super.processGDStats(gameLayerArray);
+                        
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
+                            
+                            return this.process();
+                    }
+
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >

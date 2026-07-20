@@ -698,7 +698,7 @@ Created By: Travis Berthelot
                             <xsl:text>&#10;</xsl:text>
                             <xsl:choose>
                             <xsl:when test="type/value = 'Create' or type/value = 'CreateByName'" >
-                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreate<xsl:if test="string-length($parentParam) > 0" >GD(<xsl:value-of select="$parentParam" />, <xsl:value-of select="$parentParam2" /></xsl:if><xsl:if test="string-length($parentParam) = 0" >(</xsl:if>);
+                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process<xsl:if test="not(contains($parentParam, 'gameLayerArray'))" >Create</xsl:if><xsl:if test="string-length($parentParam) > 0" >GD(<xsl:value-of select="$parentParam" /><xsl:if test="string-length($parentParam2) > 0" >, <xsl:value-of select="$parentParam2" /></xsl:if></xsl:if><xsl:if test="string-length($parentParam) = 0" >(</xsl:if>);
                                 <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                                 <xsl:variable name="id" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $param2" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $param2" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
                                 <xsl:value-of select="$param2" />GameLayer<xsl:value-of select="position()" /> = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />];
@@ -756,7 +756,6 @@ Created By: Travis Berthelot
                                     <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                                 </xsl:call-template>
                                 </xsl:variable>
-
                                 //closestParentEventWithParams=<xsl:value-of select="$closestParentEventWithParams" />
 
                                 <xsl:if test="contains($closestParentEventWithParams, 'Distance')" >
@@ -769,7 +768,7 @@ Created By: Travis Berthelot
                                     <xsl:variable name="distanceProcessGDParamTwo" ><xsl:call-template name="distanceProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
                                     <xsl:choose>
                                     <xsl:when test="contains($param4, $distanceProcessGDParamOne)" ><xsl:value-of select="$parentParam" /></xsl:when>
-                                    <xsl:when test="contains($param4, $distanceProcessGDParamTwo)" ><xsl:value-of select="$parentParam2" /></xsl:when>
+                                    <xsl:when test="contains($param4, $distanceProcessGDParamTwo) and string-length($parentParam2) > 0" ><xsl:value-of select="$parentParam2" /></xsl:when>
                                     <xsl:otherwise><xsl:value-of select="$parentParam" /></xsl:otherwise>
                                     </xsl:choose>
                                     </xsl:if>
@@ -784,7 +783,12 @@ Created By: Travis Berthelot
                                     <xsl:if test="number($totalParams) > 1" ><xsl:value-of select="$createParams" /></xsl:if>
                                 </xsl:variable>
                                 //params=<xsl:value-of select="$params" />
+                                <xsl:if test="not(contains($parentParam, 'gameLayerArray'))" >
                                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="substring($params, 0, string-length($params))" />);
+                                </xsl:if>
+                                <xsl:if test="contains($parentParam, 'gameLayerArray')" >
+                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray);
+                                </xsl:if>
                                 </xsl:if>
                                 <xsl:if test="not(contains($hasParamWithCreateObjectOrGroupInIt, 'found'))" >
                                 //This is called after Create/CreateByName but does not have the Create/CreatByName Object or Group in it

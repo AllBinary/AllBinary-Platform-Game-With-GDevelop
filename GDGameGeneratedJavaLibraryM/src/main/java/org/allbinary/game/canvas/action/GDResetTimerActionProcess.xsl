@@ -22,6 +22,8 @@ Created By: Travis Berthelot
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
 
+        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+
                     //ResetTimer - action - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                     @Override
@@ -30,9 +32,7 @@ Created By: Travis Berthelot
                     
                         //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
-                        <xsl:for-each select="parameters" >
-                            <xsl:if test="position() = 2" >globals.<xsl:value-of select="translate(text(), '&quot;', '')" />TimeDelayHelper.setStartTime(globals.globalsGameTickTimeDelayHelper.lastStartTime);</xsl:if>
-                        </xsl:for-each>
+                        <xsl:for-each select="parameters" ><xsl:if test="position() = 2" >globals.<xsl:value-of select="translate(text(), '&quot;', '')" />TimeDelayHelper.setStartTime(globals.globalsGameTickTimeDelayHelper.lastStartTime);</xsl:if></xsl:for-each>
 
                         return true;
                     }
@@ -55,10 +55,22 @@ Created By: Travis Berthelot
 
                     @Override
                     public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
-                        this.processGDStats(gameLayer);
-                            
+                        super.processGDStats(gameLayer);
+
+                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    
                         return this.process();
                     }
+
+                    @Override
+                    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                        super.processGDStats(gameLayerArray);
+
+                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    
+                        return this.process();
+                    }
+
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >

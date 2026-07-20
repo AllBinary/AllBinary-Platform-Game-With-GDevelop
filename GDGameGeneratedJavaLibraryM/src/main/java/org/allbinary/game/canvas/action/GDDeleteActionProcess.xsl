@@ -18,6 +18,7 @@ Created By: Travis Berthelot
 
     <xsl:template name="deleteActionProcess" >
         <xsl:param name="forExtension" />
+        <xsl:param name="layoutIndex" />
         <xsl:param name="objectsGroupsAsString" />
 
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
@@ -249,7 +250,7 @@ Created By: Travis Berthelot
                                             
                             try {
 
-                                //logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if></xsl:for-each>, this, commonStrings.PROCESS);
+                                //logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                                     //Parameters - 5
                                     
@@ -280,6 +281,21 @@ Created By: Travis Berthelot
 
                             return true;
                         }
+
+                        @Override      
+                        public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                            try {
+                     
+                           <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
+                           <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
+       
+                            } catch(Exception e) {
+                                logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
+                            }
+
+                            return true;
+                        }
+
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >

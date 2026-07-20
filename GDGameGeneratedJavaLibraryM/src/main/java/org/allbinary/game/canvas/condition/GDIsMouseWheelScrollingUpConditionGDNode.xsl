@@ -19,10 +19,11 @@ Created By: Travis Berthelot
 
     <xsl:template name="mouseWheelScrollingUpConditionGDNode" >
         <xsl:param name="forExtension" />
+        <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
         <xsl:variable name="quote" >"</xsl:variable>
         
-        <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
                     //mouseWheelScrollingUpConditionGDNode - //Condition - //IsMouseWheelScrollingUp - GDNode
                     <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>final GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
@@ -65,6 +66,15 @@ Created By: Travis Berthelot
                             
                             return this.process();
                         }
+                        
+                    @Override
+                    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                            super.processGDStats(gameLayerArray);
+                        
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
+                            
+                            return this.process();
+                    }
 
                         @Override
                         public boolean processScrolling(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
@@ -82,7 +92,7 @@ Created By: Travis Berthelot
                                 </xsl:if>
                             </xsl:for-each>
                             
-                            <xsl:variable name="hasAnotherCondition" ><xsl:for-each select="conditions" ><xsl:if test="preceding-sibling::conditions[number(substring(generate-id(), 2) - 65536) != $thisNodeIndex]" >found</xsl:if></xsl:for-each></xsl:variable>
+                            <xsl:variable name="hasAnotherCondition" ><xsl:for-each select="conditions" ><xsl:if test="preceding-sibling::conditions[number(substring(generate-id(), 2) - 65536) != $nodeId]" >found</xsl:if></xsl:for-each></xsl:variable>
                             <xsl:if test="not(contains($hasAnotherCondition, 'found'))" >
                                 
                                 <xsl:call-template name="actionsProcessing" >
@@ -106,6 +116,7 @@ Created By: Travis Berthelot
                             
                             return true;
                         }
+   
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >

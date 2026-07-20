@@ -22,6 +22,7 @@ Created By: Travis Berthelot
 
         <xsl:variable name="quote" >"</xsl:variable>
 
+        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
                         //CameraX - action - //forExtension=<xsl:value-of select="$forExtension" />
@@ -64,9 +65,21 @@ Created By: Travis Berthelot
                     @Override
                     public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
                         this.processGDStats(gameLayer);
-                            
+                        
+                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
+
                         return this.process();
                     }
+                        
+
+                    @Override      
+                    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+
+                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
+
+                        return this.process();
+                    }
+                        
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >

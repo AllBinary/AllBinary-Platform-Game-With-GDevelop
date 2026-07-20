@@ -20,10 +20,13 @@ Created By: Travis Berthelot
     <xsl:template name="popEndedTouchConditionGDNode" >
         <xsl:param name="caller" />
         <xsl:param name="forExtension" />
+        <xsl:param name="layoutIndex" />
         <xsl:param name="objectsAsString" />
         <xsl:param name="actionParametersAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
+        
+        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                     //popEndedTouchConditionGDNode - //Condition - //PopStartedTouch- GDNode
                     <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>final GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                     
@@ -68,7 +71,16 @@ Created By: Travis Berthelot
                             
                             return this.process();
                         }
+
+                    @Override
+                    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                            super.processGDStats(gameLayerArray);
+                        
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
                             
+                            return this.process();
+                    }
+
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >

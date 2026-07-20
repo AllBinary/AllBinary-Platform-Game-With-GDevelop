@@ -22,7 +22,6 @@ Created By: Travis Berthelot
         <xsl:param name="selectedNodeIds" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="layoutName" />
-        <xsl:param name="thisNodeIndex" />
         <xsl:param name="instancesAsString" />
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="objectsAsString" />
@@ -397,6 +396,73 @@ Created By: Travis Berthelot
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
                             <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processGD(gameLayer, gameGlobals.tempGameLayerArray[1]);
+                        </xsl:if>
+                    </xsl:for-each>
+
+                    </xsl:if>
+
+                    <xsl:for-each select="conditions" >
+                        <xsl:choose>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                            </xsl:when>
+                            <xsl:otherwise>
+                        }
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each>
+                        
+                    return true;                
+                }
+
+                @Override
+                public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                    super.processGDStats(gameLayerArray);
+                        
+                    //logUtil.putF(EVENT_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    
+                    <xsl:for-each select="conditions" >
+                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
+                        <xsl:choose>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray);
+                            </xsl:when>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray);
+                            </xsl:when>
+                            <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray);
+                            </xsl:when>
+                            <xsl:otherwise>
+                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray)) {
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each>
+
+                    <xsl:if test="not(contains($foundSubProcessing, 'found'))" >
+                        
+                        <xsl:call-template name="actionsProcessing" >
+                            <xsl:with-param name="methodCall" >processGD(gameLayerArray)</xsl:with-param>
+                            <xsl:with-param name="parentParam" >gameLayerArray</xsl:with-param>
+                        </xsl:call-template>
+
+                    <xsl:for-each select="events" >
+                        <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
+                            //Events only - //Event - //<xsl:value-of select="type" /> - call
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray);
+                        </xsl:if>
+                        <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
+                            <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> 
+                            <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            //Event - //BuiltinCommonInstructions::Link - call
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processGD(gameLayerArray);
                         </xsl:if>
                     </xsl:for-each>
 
