@@ -379,6 +379,45 @@ Created By: Travis Berthelot
         </xsl:for-each>
     </xsl:template>
 
+    <xsl:template name="printLineageWithObjectsAndObjectsGroupsUsage" >
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
+        
+        <xsl:for-each select=".." >
+            <xsl:for-each select="events" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" ><xsl:if test="type != 'BuiltinCommonInstructions::Standard'" > - //<xsl:value-of select="type" /> r=<xsl:value-of select="$totalRecursions" /> </xsl:if><xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" ><xsl:value-of select="object" />, </xsl:if>
+            <xsl:for-each select="conditions" >
+                <xsl:if test="type/value = 'Distance' or type/value = 'LinkedObjects::PickObjectsLinkedTo' or type/value = 'CollisionNP' or type/value = 'Collision'" ><xsl:text>//c=</xsl:text><xsl:value-of select="type/value" /> - </xsl:if><xsl:if test="type/value = 'Distance'" >(<xsl:value-of select="parameters[1]" />, <xsl:value-of select="parameters[2]" />)</xsl:if><xsl:if test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >(<xsl:value-of select="parameters[2]" />, <xsl:value-of select="parameters[3]" />)</xsl:if><xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >(<xsl:value-of select="parameters[1]" />, <xsl:value-of select="parameters[2]" />)</xsl:if>
+                <xsl:if test="type/value = 'BuiltinCommonInstructions::And'" >
+                    <xsl:for-each select="subInstructions" >
+                        <xsl:if test="type/value = 'Distance' or type/value = 'LinkedObjects::PickObjectsLinkedTo' or type/value = 'CollisionNP' or type/value = 'Collision'" ><xsl:text>//sc=</xsl:text><xsl:value-of select="type/value" /> - </xsl:if><xsl:if test="type/value = 'Distance'" >(<xsl:value-of select="parameters[1]" />, <xsl:value-of select="parameters[2]" />)</xsl:if><xsl:if test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >(<xsl:value-of select="parameters[2]" />, <xsl:value-of select="parameters[3]" />)</xsl:if><xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >(<xsl:value-of select="parameters[1]" />, <xsl:value-of select="parameters[2]" />)</xsl:if>
+                    </xsl:for-each>
+                </xsl:if>
+                <xsl:if test="type/value = 'BuiltinCommonInstructions::Or'" >
+                    <xsl:for-each select="subInstructions" >
+                        <xsl:if test="type/value = 'Distance' or type/value = 'LinkedObjects::PickObjectsLinkedTo' or type/value = 'CollisionNP' or type/value = 'Collision'" ><xsl:text>//sc=</xsl:text><xsl:value-of select="type/value" /> - </xsl:if><xsl:if test="type/value = 'Distance'" >(<xsl:value-of select="parameters[1]" />, <xsl:value-of select="parameters[2]" />)</xsl:if><xsl:if test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >(<xsl:value-of select="parameters[2]" />, <xsl:value-of select="parameters[3]" />)</xsl:if><xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >(<xsl:value-of select="parameters[1]" />, <xsl:value-of select="parameters[2]" />)</xsl:if>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:for-each>
+                </xsl:if>            
+            
+            </xsl:for-each>
+
+            <xsl:call-template name="printLineageWithObjectsAndObjectsGroupsUsage" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions + 1" />
+                </xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+            </xsl:call-template>
+            
+        </xsl:for-each>
+    </xsl:template>
+
     <xsl:template name="declarationOfGDGameLayer" >
         <xsl:param name="layoutIndex" />
         <xsl:param name="name" />
@@ -550,6 +589,10 @@ Created By: Travis Berthelot
         <xsl:param name="nodeId" />
         
                     //params=<xsl:value-of select="$params" />
+                    <xsl:text>&#10;</xsl:text>
+                    <xsl:variable name="printLineageWithObjectsAndObjectsGroupsUsage" ><xsl:call-template name="printLineageWithObjectsAndObjectsGroupsUsage" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:if test="string-length($printLineageWithObjectsAndObjectsGroupsUsage) > 0" >//Lineage=<xsl:value-of select="$printLineageWithObjectsAndObjectsGroupsUsage" /></xsl:if>
+                    <xsl:text>&#10;</xsl:text>
 
         <xsl:variable name="closestParentEventWithParams" >
             <xsl:call-template name="closestParentEventWithParams" >
