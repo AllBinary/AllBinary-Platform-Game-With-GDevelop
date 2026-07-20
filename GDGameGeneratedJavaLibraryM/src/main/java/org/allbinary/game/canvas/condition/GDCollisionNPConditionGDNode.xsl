@@ -375,10 +375,10 @@ Created By: Travis Berthelot
                                return result;
                             }
                             //CollisionNP - <xsl:value-of select="$text" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
-<!--
-                            gameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[numbr(substring(generate-id(), 2) - 65536) &lt; $id])" />] = <xsl:value-of select="name2" />GDGameLayer;
-                            gameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id]) + (count(//objectsGroups) + count(//objects))" />" />] = <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="count(//objectsGroups) + count(//objects)" />;
--->
+                            
+                            gameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = <xsl:value-of select="$name2" />GDGameLayer;
+                            gameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id]) + (count(//objectsGroups) + count(//objects))" />" />] = <xsl:value-of select="$name" />GDGameLayer<xsl:value-of select="count(//objectsGroups) + count(//objects)" />;
+
                             result = true;
          
                         }
