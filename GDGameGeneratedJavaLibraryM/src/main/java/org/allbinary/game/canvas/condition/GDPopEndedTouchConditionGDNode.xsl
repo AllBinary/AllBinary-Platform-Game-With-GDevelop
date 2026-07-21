@@ -27,7 +27,7 @@ Created By: Travis Berthelot
         <xsl:variable name="quote" >"</xsl:variable>
         
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                    //popEndedTouchConditionGDNode - //Condition - //PopStartedTouch- GDNode
+                    //popEndedTouchConditionGDNode - //Condition - //PopEndedTouch - GDNode
                     <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>final GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                     
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$actionParametersAsString" /></xsl:variable>
