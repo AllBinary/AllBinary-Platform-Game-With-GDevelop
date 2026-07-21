@@ -246,7 +246,7 @@ Created By: Travis Berthelot
                         <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
                             <xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 3" ><xsl:if test="text() = '='" ><xsl:value-of select="text()" />GDGameLayer.setText(</xsl:if><xsl:if test="text() = '+'" ><xsl:value-of select="text()" />GDGameLayer.setText(gameLayer.Text() + </xsl:if></xsl:if>
+                                <xsl:if test="position() = 3" ><xsl:if test="text() = '='" ><xsl:value-of select="$param" />GDGameLayer.setText(</xsl:if><xsl:if test="text() = '+'" ><xsl:value-of select="$param" />GDGameLayer.setText(gameLayer.Text() + </xsl:if></xsl:if>
                                 <xsl:if test="position() = 4" >
                                     <xsl:if test="text() = '&quot;&quot;'" >stringUtil.EMPTY_STRING</xsl:if>
                                     <xsl:if test="text() != '&quot;&quot;'" >

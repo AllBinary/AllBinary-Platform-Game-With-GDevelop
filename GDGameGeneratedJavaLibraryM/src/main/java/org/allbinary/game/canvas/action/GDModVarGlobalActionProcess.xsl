@@ -255,19 +255,6 @@ Created By: Travis Berthelot
 
                         //objectInParam=<xsl:value-of select="$objectInParam" />
                         <xsl:text>&#10;</xsl:text>
-
-                        <xsl:if test="not($name = 'gameTickTimeDelayHelper' or $name = number($name))" >
-                        <xsl:if test="string-length($objectInParam) > 0" >
-                            //Found object in param 3
-                            <xsl:variable name="name" ><xsl:value-of select="$objectInParam" /></xsl:variable>
-                                                        
-                            <xsl:text>&#10;</xsl:text>
-                            final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$objectInParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = 
-                                (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$objectInParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) 
-                                <xsl:value-of select="$name" />GDGameLayer.gdObject;
-                            <xsl:text>&#10;</xsl:text>
-                        </xsl:if>
-                        </xsl:if>                        
                                                 
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" /></xsl:if>
