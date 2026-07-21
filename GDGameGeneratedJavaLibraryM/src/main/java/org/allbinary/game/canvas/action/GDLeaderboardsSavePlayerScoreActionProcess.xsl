@@ -97,7 +97,7 @@ Created By: Travis Berthelot
                                 <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeFourthParam" /></xsl:variable>
 
                                 <xsl:if test="$beforeFourthParam != ''" >
-                                final GDGameLayer <xsl:value-of select="$beforeFourthParam" /> = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$beforeFourthParam" />GDGameLayerList.get(0);
+                                final GDGameLayer <xsl:value-of select="$beforeFourthParam" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$beforeFourthParam" />GDGameLayerList.get(0);
                                 //final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$beforeFourthParam" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$beforeFourthParam" />GDGameLayer.gdObject;
                                 final String name = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
                                 </xsl:if>
@@ -285,7 +285,7 @@ Created By: Travis Berthelot
                                 //final <xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="$beforeSecondParam" /> = (<xsl:value-of select="$gdObjectFactory2" />) <xsl:value-of select="$beforeSecondParam" />GDGameLayer.gdObject;
                                 
                                 <xsl:if test="$beforeFourthParam != ''" >
-                                final GDGameLayer <xsl:value-of select="$beforeFourthParam" /> = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$beforeFourthParam" />GDGameLayerList.get(0);
+                                final GDGameLayer <xsl:value-of select="$beforeFourthParam" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$beforeFourthParam" />GDGameLayerList.get(0);
                                 //final <xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="$beforeFourthParam" /> = (<xsl:value-of select="$gdObjectFactory2" />) <xsl:value-of select="$beforeFourthParam" />GDGameLayer.gdObject;
                                 final String name = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
                                 </xsl:if>
@@ -378,7 +378,79 @@ Created By: Travis Berthelot
 
                             <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
                             <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
-       
+
+                                final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
+                                final AllBinaryGameCanvas abCanvas = (AllBinaryGameCanvas) abToGBUtil.abCanvas;
+                                
+                                logUtil.putF(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(name).toString(), this, commonStrings.PROCESS);
+                                
+                                class SaveHighScoreRunnable implements Runnable {
+
+                                    public void run() {
+                                        try {
+
+                                final GameInfo gameInfo = abCanvas.getLayerManager().getGameInfo();
+                                
+                                if(name != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> name.length() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                                    final long score = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                                    logUtil.putF(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Submitting and Fetching leaderboard(s): ").appendlong(score).toString(), this, commonStrings.RUN);
+
+                                    HighScoreNamePersistanceSingleton.getInstance().save(abeClientInformation, gameInfo, name);
+                                    
+                                    final BasicHighScoresFactory basicHighScoresFactory = new BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance());
+                                    final HighScoresResultsListener highScoresResultsListener = new HighScoresResultsListener() {
+                                        public void setHighScoresArray(final HighScores[] highScoresArray) {
+                                            try {
+                                            final HighScoresHelperBase highScoresHelperBase = new HighScoresHelperBase();
+                                            gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
+                                            final HighScore highScore = abCanvas.createHighScore(score);
+                                            final HighScoreUtil highScoreUtil = new HighScoreUtil(basicHighScoresFactory, highScoresHelperBase, abeClientInformation, gameInfo, abCanvas.getCustomCommandListener(), name, highScore);
+                                            highScoreUtil.update(name);
+                                            highScoreUtil.saveHighScore();
+                                            highScoreUtil.submit(abCanvas);
+                                            //logUtil.putF("saved highscores", this, commonStrings.PROCESS);
+                                            globals.highscoreSubmissionComplete = true;
+                                            } catch(Exception e) {
+                                                logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
+                                            }
+                                        }
+                                    };
+                                    
+                                    basicHighScoresFactory.fetchHighScores(gameInfo, highScoresResultsListener);
+
+                                } else {
+                                    logUtil.putF(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Fetching leaderboard(s): ").appendlong(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>).toString(), this, commonStrings.RUN);
+                                    
+                                    final BasicHighScoresFactory basicHighScoresFactory = new BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance());
+                                    
+                                    final HighScoresResultsListener highScoresResultsListener = new HighScoresResultsListener() {
+                                        public void setHighScoresArray(final HighScores[] highScoresArray) {
+                                            try {
+                                                final HighScoresHelperBase highScoresHelperBase = new HighScoresHelperBase();
+                                                gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
+                                                final HighScore highScore = abCanvas.createHighScore(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
+                                                final HighScoreUtil highScoreUtil = new HighScoreUtil(basicHighScoresFactory, highScoresHelperBase, abeClientInformation, gameInfo, abCanvas.getCustomCommandListener(), name, highScore);
+                                                //logUtil.putF("set highscores", this, commonStrings.PROCESS);
+                                                globals.highscoreSubmissionComplete = true;
+                                            } catch(Exception e) {
+                                                logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
+                                            }
+                                        }
+                                    };
+                                                                        
+                                    basicHighScoresFactory.fetchHighScores(gameInfo, highScoresResultsListener);                                    
+
+                                }
+                               
+    
+                                        } catch (Exception e) {
+                                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.RUN, e);
+                                        }
+                                    }
+                                }
+
+                                SecondaryThreadPool.getInstance().runTask(new SaveHighScoreRunnable());
+              
                             } catch(Exception e) {
                                 logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                             }

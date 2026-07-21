@@ -29,7 +29,8 @@ Created By: Travis Berthelot
                     <xsl:variable name="thirdParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="fourthParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
-                    <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$firstParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$firstParam" /></xsl:variable>
+                        <xsl:variable name="gdObject" ><xsl:value-of select="$firstParam" /></xsl:variable>
+                        <xsl:variable name="paramTwoName" ><xsl:if test="substring-before($fourthParam, '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template></xsl:if></xsl:variable>
 
                     //ObjectVariablePushNumber - //<xsl:value-of select="$secondParam" /> - this is slow and creates a new array each time. - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
@@ -50,13 +51,13 @@ Created By: Travis Berthelot
 
                         //logUtil.putF(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS);
                         
+                        <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$firstParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$firstParam" /></xsl:variable>
                         final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$firstParam" /> = (<xsl:value-of select="$gdObjectFactory" />) ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$firstParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$firstParam" />GDGameLayerList.get(index)).gdObject;
-                        <xsl:variable name="gdObject" ><xsl:value-of select="$firstParam" /></xsl:variable>
                         <xsl:text>&#10;</xsl:text>
                         
                         final GDGameLayer paramOneGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$firstParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$firstParam" />GDGameLayerList.get(index));
                         <xsl:text>&#10;</xsl:text>
-                        <xsl:variable name="paramTwoName" ><xsl:if test="substring-before($fourthParam, '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template></xsl:if></xsl:variable>
+
 <xsl:text>                        </xsl:text>
                         //<xsl:if test="$paramTwoName != ''" >final GDGameLayer paramTwoGameLayer = ((GDGameLayer) globals.<xsl:value-of select="$paramTwoName" />GDGameLayerList.get(index));</xsl:if>
                         <xsl:text>&#10;</xsl:text>
@@ -100,7 +101,17 @@ Created By: Travis Berthelot
                      
                         <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
                         <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
-       
+                        
+<xsl:text>                        </xsl:text>final int oldSize = <xsl:value-of select="$paramTwoName" />.<xsl:value-of select="$secondParam" />.length;
+<xsl:text>                        </xsl:text><xsl:value-of select="$paramTwoName" />.<xsl:value-of select="$secondParam" /> = 
+                                      arrayUtil.copyOfint(<xsl:value-of select="$paramTwoName" />.gdObject.<xsl:value-of select="$secondParam" />, 
+                                      <xsl:value-of select="$paramTwoName" />.<xsl:value-of select="$secondParam" />.length + 1);
+
+<xsl:text>                        </xsl:text>
+                        <xsl:if test="$paramTwoName != ''" >final GDGameLayer paramTwoGameLayer = ((GDGameLayer) globals.<xsl:value-of select="$paramTwoName" />GDGameLayerList.get(index));</xsl:if>
+                        <xsl:text>&#10;</xsl:text>
+<xsl:text>                        </xsl:text><xsl:value-of select="$paramTwoName" />.<xsl:value-of select="$secondParam" />[oldSize] = <xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$thirdParam" /></xsl:with-param><xsl:with-param name="find" >.VariableChildCount(</xsl:with-param><xsl:with-param name="replacementText" >.VariableChildCount(<xsl:value-of select="$gdObject" />.</xsl:with-param></xsl:call-template><xsl:if test="$thirdParam = '+'" >=</xsl:if><xsl:if test="$thirdParam = '-'" >=</xsl:if><xsl:if test="$paramTwoName != ''" ><xsl:if test="substring-before($fourthParam, '.') = ''" ><xsl:value-of select="$fourthParam" /></xsl:if><xsl:if test="substring-before($fourthParam, '.') != ''" ><xsl:value-of select="$paramTwoName" />.<xsl:value-of select="substring-after($fourthParam, '.')" /></xsl:if></xsl:if><xsl:if test="$paramTwoName = ''" ><xsl:value-of select="$fourthParam" /></xsl:if>;
+              
                         } catch(Exception e) {
                             logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                         }

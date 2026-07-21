@@ -280,11 +280,48 @@ Created By: Travis Berthelot
 
                     @Override      
                     public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                        super.processGDStats(gameLayerArray);
                         try {
                      
                         <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
                         <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
-       
+
+                        <xsl:if test="$paramOneNameObjectsGroups != ''" >
+
+                        <xsl:variable name="text" ><xsl:value-of select="$paramOneNameObjectsGroups" /></xsl:variable>
+                        
+                        if(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer != null) {
+
+<xsl:text>                        </xsl:text>
+                        <xsl:text>&#10;</xsl:text>
+                                                  
+<xsl:text>                        </xsl:text>final int animationIndex<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
+                            <xsl:text>&#10;</xsl:text>
+                            
+                        if(animationIndex <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.getIndexedAnimationInterfaceArray().length) {
+                            logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.toString()).append(" invalid animation index: ").appendint(animationIndex).toString(), this, commonStrings.PROCESS, new Exception());
+                        }
+                            
+<xsl:text>                        </xsl:text><xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.gdObject.animation = animationIndex;
+                        <xsl:text>&#10;</xsl:text>
+                        
+                        } else {
+                            //Needs Impl
+                            if(true) throw new RuntimeException();
+                        }
+                    
+                        </xsl:if>
+                        
+                        <xsl:if test="$paramOneNameObjectsGroups = ''" >
+                        final int animationIndex<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
+                        
+                        //if(animationIndex <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.getIndexedAnimationInterfaceArray().length) {
+                            //logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.toString()).append(" invalid animation index: ").appendint(animationIndex).toString(), this, commonStrings.PROCESS, new Exception());
+                        //}
+
+                        <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.gdObject.animation = animationIndex;
+                        </xsl:if>
+              
                         } catch(Exception e) {
                             logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                         }

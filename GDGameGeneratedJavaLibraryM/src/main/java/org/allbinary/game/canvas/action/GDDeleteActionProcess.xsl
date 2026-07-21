@@ -148,8 +148,6 @@ Created By: Travis Berthelot
                         return this.process();
                     }
 
-                        <xsl:variable name="firstParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-
                         <xsl:variable name="param" >
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 4" >
@@ -242,7 +240,7 @@ Created By: Travis Berthelot
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);
                         </xsl:if>
                         <xsl:if test="string-length($firstOrBeforeFourthParam) = 0" >
-                    public boolean processGD(final GDGameLayer <xsl:value-of select="$firstParam" />GDGameLayer, final GDGameLayer unusedGameLayer) throws Exception {
+                    public boolean processGD(final GDGameLayer <xsl:value-of select="$name" />GDGameLayer, final GDGameLayer unusedGameLayer) throws Exception {
 
                         super.processGDStats(gameLayer);
                         </xsl:if>
@@ -254,10 +252,10 @@ Created By: Travis Berthelot
 
                                     //Parameters - 5
                                     
-                                                //<xsl:value-of select="$firstParam" /><xsl:text>&#10;</xsl:text>
+                                                //<xsl:value-of select="$name" /><xsl:text>&#10;</xsl:text>
 
                                                 <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
-                                                    <xsl:if test="$firstParam = 'OffScreenLocationIndicator'" >
+                                                    <xsl:if test="$name = 'OffScreenLocationIndicator'" >
                                                 //TWB - temp hack for LinkedObjects::PickObjectsLinkedTo for //Delete
                                                 final int index = EnemiesGDGameLayer.linkedGDGameLayerList.indexOf(HealthBarGDGameLayer);
                                                 final GDGameLayer OffScreenLocationIndicatorGDGameLayer = (GDGameLayer) EnemiesGDGameLayer.linkedGDGameLayerList.get(index + 1);
@@ -266,12 +264,12 @@ Created By: Travis Berthelot
 
 <!--                                            //final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                                             //final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
-                                            //if(allBinaryGameLayerManager.getLayerManager().contains(<xsl:value-of select="$firstParam" />GDGameLayer)) {
-                                                //allBinaryGameLayerManager.remove(<xsl:value-of select="$firstParam" />GDGameLayer);-->
-                                                //logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + <xsl:value-of select="$firstParam" />GDGameLayer, this, commonStrings.PROCESS);
-                                                <xsl:value-of select="$firstParam" />GDGameLayer.setDestroyed(true);
+                                            //if(allBinaryGameLayerManager.getLayerManager().contains(<xsl:value-of select="$name" />GDGameLayer)) {
+                                                //allBinaryGameLayerManager.remove(<xsl:value-of select="$name" />GDGameLayer);-->
+                                                //logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + <xsl:value-of select="$name" />GDGameLayer, this, commonStrings.PROCESS);
+                                                <xsl:value-of select="$name" />GDGameLayer.setDestroyed(true);
 <!--                                            //} else {
-                                                //logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + " LayerManager does not have (probably already removed/destroyed): " + <xsl:value-of select="$firstParam" />GDGameLayer, this, commonStrings.PROCESS);
+                                                //logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + " LayerManager does not have (probably already removed/destroyed): " + <xsl:value-of select="$name" />GDGameLayer, this, commonStrings.PROCESS);
                                             //}-->
                                     <xsl:text>&#10;</xsl:text>
 
@@ -284,11 +282,19 @@ Created By: Travis Berthelot
 
                         @Override      
                         public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                            super.processGDStats(gameLayerArray);
                             try {
+
+                                //logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + <xsl:value-of select="$name" />GDGameLayer, this, commonStrings.PROCESS);
                      
-                           <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
-                           <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
-       
+                                <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
+                                <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
+
+                                //<xsl:value-of select="$name" />
+                                <xsl:text>&#10;</xsl:text>
+                                <xsl:value-of select="$name" />GDGameLayer.setDestroyed(true);
+                                <xsl:text>&#10;</xsl:text>
+              
                             } catch(Exception e) {
                                 logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                             }

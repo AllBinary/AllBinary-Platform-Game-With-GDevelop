@@ -23,7 +23,10 @@ Created By: Travis Berthelot
         <xsl:param name="createdObjectsAsString" />
 
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+        <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+        
+        <xsl:variable name="hasPermanentVelocity" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="text() = 1" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
+        
                     //AddForceXY - action - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                     @Override
@@ -166,11 +169,49 @@ Created By: Travis Berthelot
                         
                         @Override      
                         public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                            super.processGDStats(gameLayerArray);
                             try {
                      
                             <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
                             <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
-       
+
+                                    //name=<xsl:value-of select="$name" />
+                                    <xsl:text>&#10;</xsl:text>
+
+                                    <xsl:if test="contains($hasPermanentVelocity, 'found')" >
+
+                                    //Parameters - 6
+                                    
+                                        <xsl:for-each select="parameters" >
+                                            <xsl:if test="position() = 1" >
+                                                <xsl:value-of select="text()" />GDGameLayer.velocityBehavior = NoDragVelocityBehavior.instance;</xsl:if>
+                                        </xsl:for-each>
+
+                                    <xsl:for-each select="parameters" >
+                                        <xsl:if test="position() = 1" >
+                                            <xsl:value-of select="text()" />GDGameLayer.AddForce(</xsl:if>
+                                        <xsl:if test="position() != 1 and position() != last()" >
+                                            <xsl:value-of select="text()" /><xsl:if test="position() = 2" >, (int)</xsl:if>
+                                        </xsl:if>
+                                        <xsl:if test="position() = last()" >
+                                            );
+                                        </xsl:if>
+                                    </xsl:for-each>                                    
+                                    
+                                    <xsl:text>&#10;</xsl:text>
+                                    //updateGDObject - 4
+                                    <xsl:value-of select="$name" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+                                    <xsl:text>&#10;</xsl:text>
+                                
+                                    </xsl:if>
+
+                                    <xsl:if test="not(contains($hasPermanentVelocity, 'found'))" >
+                                    <xsl:value-of select="$name" />GDGameLayer.setPosition(<xsl:value-of select="$name" />GDGameLayer.getXP() + (int) (<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each> * TimeDelta()),
+                                        <xsl:value-of select="$name" />GDGameLayer.getYP() + (int) (<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each> * TimeDelta()), 
+                                        <xsl:value-of select="$name" />GDGameLayer.getZP());
+
+                                    </xsl:if>
+              
                             } catch(Exception e) {
                                 logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                             }

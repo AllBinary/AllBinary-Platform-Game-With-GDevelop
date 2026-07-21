@@ -25,17 +25,8 @@ Created By: Travis Berthelot
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
         
                     <xsl:variable name="secondParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    //ModVarObjetTxt - //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each> - //forExtension=<xsl:value-of select="$forExtension" />
-                        <xsl:if test="not(contains($forExtension, 'found'))" >
-                    @Override
-                    public boolean process() throws Exception {
-                        super.processStats();
-
-                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> this, commonStrings.PROCESS);
-                        
-                            <xsl:variable name="thirdParam0" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                        
-                            <!-- TWBTWB - temp hack - replace hardcoded TextEntry -->
+                    <xsl:variable name="thirdParam0" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    
                             <xsl:variable name="thirdParam" >
                                 <xsl:if test="contains($thirdParam0, 'TextEntry.')" >
                             <xsl:call-template name="string-replace-all" >
@@ -48,6 +39,14 @@ Created By: Travis Berthelot
                                 </xsl:if>
                                 <xsl:if test="not(contains($thirdParam0, 'TextEntry.'))" ><xsl:value-of select="$thirdParam0" /></xsl:if>
                             </xsl:variable>
+                    
+                    //ModVarObjetTxt - //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each> - //forExtension=<xsl:value-of select="$forExtension" />
+                        <xsl:if test="not(contains($forExtension, 'found'))" >
+                    @Override
+                    public boolean process() throws Exception {
+                        super.processStats();
+
+                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> this, commonStrings.PROCESS);
 
                         <xsl:variable name="firstParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         <xsl:if test="string-length($firstParam) > 0" >

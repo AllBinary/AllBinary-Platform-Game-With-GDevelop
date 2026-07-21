@@ -393,7 +393,103 @@ Created By: Travis Berthelot
 
                             return false;
                         }
+
+                    @Override
+                    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                        super.processGDStats(gameLayerArray);
+                        try {
+                     
+                        <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
+                        <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
+
+                                <xsl:if test="contains($hasKnownParamsFromParent, 'found')" >
+                                    <xsl:choose>
+                                    <xsl:when test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
+                                        <xsl:variable name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" ><xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                        <xsl:variable name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" ><xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                        <xsl:variable name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo2" ><xsl:if test="string-length($linkedObjectsPickObjectsLinkedToProcessGDParamTwo) > 0" ><xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamTwo" />GDGameLayer</xsl:if><xsl:if test="string-length($linkedObjectsPickObjectsLinkedToProcessGDParamTwo) = 0" >gdGameLayer</xsl:if></xsl:variable>
+                                //From parent - from LinkedObjects::PickObjectsLinkedTo
+                                if(this.processGPaint(<xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamOne" />GDGameLayer.gdObject, <xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamTwo2" />.gdObject)) {
+                                    </xsl:when>
+                                    <xsl:when test="contains($hasForEachProcessGD, 'found')" >
+                                        <xsl:variable name="forEachGDParamOne" ><xsl:call-template name="forEachGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                        <xsl:variable name="forEachGDParamTwo" ><xsl:call-template name="forEachGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                        <xsl:variable name="forEachGDParamTwo2" ><xsl:if test="string-length($forEachGDParamTwo) > 0" ><xsl:value-of select="$forEachGDParamTwo" />GDGameLayer</xsl:if><xsl:if test="string-length($forEachGDParamTwo) = 0" >gdGameLayer</xsl:if></xsl:variable>
+                                        //<xsl:value-of select="$forEachGDParamTwo2" />.gdObject
+                                //From parent - from BuiltinCommonInstructions::ForEach
+                                if(this.processGPaint(<xsl:value-of select="$forEachGDParamOne" />GDGameLayer.gdObject, null)) {
+                                    </xsl:when>
+                                    <xsl:when test="contains($hasCollisionProcessGD, 'found')" >
+                                        <xsl:variable name="collisionProcessGDParamOne" ><xsl:call-template name="collisionProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                        <xsl:variable name="collisionProcessGDParamTwo" ><xsl:call-template name="collisionProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                //From parent - from CollisionNP
+                                if(this.processGPaint(<xsl:value-of select="$collisionProcessGDParamOne" />GDGameLayer.gdObject, <xsl:value-of select="$collisionProcessGDParamTwo" />GDGameLayer.gdObject)) {
+                                    </xsl:when>
+                                    <xsl:when test="contains($hasDistanceProcessGD, 'found')" >
+                                        <xsl:variable name="distanceProcessGDParamOne" ><xsl:call-template name="distanceProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                        <xsl:variable name="distanceProcessGDParamTwo" ><xsl:call-template name="distanceProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                //From parent - from Distance
+                                if(this.processGPaint(<xsl:value-of select="$distanceProcessGDParamOne" />GDGameLayer.gdObject, <xsl:value-of select="$distanceProcessGDParamTwo" />GDGameLayer.gdObject)) {
+                                    </xsl:when>
+                                    <xsl:when test="contains($hasObject, 'found') or contains($hasObjectGroup, 'found')" >
+                                //From parent, but using param?
+                                if(this.processGPaint(<xsl:value-of select="$beforeFourthParam" />GDGameLayer.gdObject, null)) {
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        //TWB - lol
+                                    </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:if>
+                                <xsl:if test="not(contains($hasKnownParamsFromParent, 'found'))" >
+                                    <xsl:if test="$paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != ''" >
+                                //From param - 1 or 2
+                                if(this.processGPaint(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject, null)) {
+                                    </xsl:if>
+                                    <xsl:if test="not($paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != '')" >
+                                //From param - 1
+                                if(this.processGPaint(<xsl:value-of select="$gdObjectName" />GDGameLayer.gdObject, null)) {
+                                    </xsl:if>
+                                </xsl:if>
                                 
+                                <xsl:if test="contains($hasSiblingWithDuplicateProcessing, 'found')" >
+                                    //Skipping duplicate processing
+                                </xsl:if>
+                                <xsl:if test="not(contains($hasSiblingWithDuplicateProcessing, 'found'))" >
+                                    //If condition is true then process the following
+
+                                <xsl:for-each select=".." >
+                             
+                                    <xsl:if test="not(contains($hasCondition, 'found'))" >
+                                    
+                                        <xsl:if test="count(actions) = 1" >
+                                        <xsl:for-each select="actions" >
+                                            <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                                            <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                                            //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
+                                            <xsl:text>&#10;</xsl:text>
+                                            //actionIdsGDObject - //<xsl:value-of select="type/value" />
+                                            <xsl:if test="type/value = 'Delete'" >
+                                                //NumberObjectVariable - //Has Delete Action
+                                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].addForDelete(<xsl:value-of select="$gdObjectName" />GDGameLayer);
+                                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdObjectName" />GDGameLayer, null);
+                                            </xsl:if>
+                                        </xsl:for-each>
+                                        </xsl:if>
+
+                                    </xsl:if>
+
+                                </xsl:for-each>
+                                </xsl:if>
+                                    return true;
+                                }
+              
+                        } catch(Exception e) {
+                            logUtil.put(commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
+                        }
+
+                        return false;
+                    }
+
                     <xsl:call-template name="parentSelectionNodeProcessGPaint" >
                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="totalRecursions" >0</xsl:with-param>
@@ -509,20 +605,6 @@ Created By: Travis Berthelot
                             }
                             return false;
                         }
-
-                    @Override
-                    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
-                        try {
-                     
-                        <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
-                        <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
-       
-                        } catch(Exception e) {
-                            logUtil.put(commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
-                        }
-
-                        return true;
-                    }
 
                         </xsl:if>
 

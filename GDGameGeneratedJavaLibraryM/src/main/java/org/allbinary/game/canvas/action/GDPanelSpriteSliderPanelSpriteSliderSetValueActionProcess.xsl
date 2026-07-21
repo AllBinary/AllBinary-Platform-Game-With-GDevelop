@@ -107,7 +107,7 @@ Created By: Travis Berthelot
                         super.processGDStats(gameLayer);
 
                         //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-                    
+
                         return this.process();
                     }
 
@@ -116,7 +116,15 @@ Created By: Travis Berthelot
                         super.processGDStats(gameLayerArray);
 
                         //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-                    
+
+                        <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
+                        <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
+
+                            <xsl:for-each select="parameters" >
+                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />GDGameLayer</xsl:if>
+                                <xsl:if test="position() = 2" >.setValue(</xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="$thirdParam" /></xsl:if><xsl:if test="position() = last()" >);</xsl:if>
+                            </xsl:for-each>
+
                         return this.process();
                     }
 

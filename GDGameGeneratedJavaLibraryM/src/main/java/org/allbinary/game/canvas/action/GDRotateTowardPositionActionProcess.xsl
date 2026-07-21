@@ -29,6 +29,8 @@ Created By: Travis Berthelot
         private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
         
         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+        
+        <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
                     //RotateTowardPosition - action - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                     @Override
@@ -40,71 +42,6 @@ Created By: Travis Berthelot
                             <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >final GDGameLayer gameLayer = (((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index)));</xsl:if></xsl:for-each>
                             this.processGD(gameLayer, null);
                             gameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
-                        }
-
-                        return true;
-                    }
-
-                    @Override
-                    public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
-                        super.processStats(motionGestureEvent);
-                        
-                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-                        
-                        return this.process();
-                    }
-
-                    @Override
-                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
-                        super.processGDStats(gameLayer);
-
-                        //name=<xsl:value-of select="$name" />
-                            <xsl:call-template name="layoutInstances" >
-                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
-                                <xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param>
-                            </xsl:call-template>
-
-                        <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
-                        final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$name" />GDGameLayer.gdObject;
-                        <xsl:text>&#10;</xsl:text>
-<xsl:text>                        </xsl:text>final int dx = <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.x - </xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
-                        <xsl:text>&#10;</xsl:text>
-<xsl:text>                        </xsl:text>final int dy = <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.y - </xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
-
-                            final int angleOfTarget = noDecimalTrigTable.antiTan(dx, dy);
-                            short angle = (short) (270 - angleOfTarget - <xsl:value-of select="$name" />.angle);
-                            while (angle <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 359) {
-                                angle -= 360;
-                            }
-                            while (angle <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0) {
-                                angle += 360;
-                            }
-                            
-                            <xsl:value-of select="$name" />.rotationP = angle;
-                            if(<xsl:value-of select="$name" />.rotationP != 0) {
-                                logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(<xsl:value-of select="$name" />.rotationP).append("<xsl:text>&lt;</xsl:text>").append(<xsl:value-of select="$name" />.angle).toString(), this, commonStrings.PROCESS);
-                            }
-                            gameLayer.updateRotation(1000);
-                            if(<xsl:value-of select="$name" />.rotationP != 0) {
-                                logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(<xsl:value-of select="$name" />.rotationP).append("<xsl:text>&gt;</xsl:text>").append(<xsl:value-of select="$name" />.angle).toString(), this, commonStrings.PROCESS);
-                            }
-                            <xsl:value-of select="$name" />.rotationP = 0;
-
-                        <xsl:text>&#10;</xsl:text>
-                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-                        
-                        return true;
-                    }
-
-                    @Override      
-                    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
-                        try {
-                     
-                        <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
-                        <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
-       
-                        } catch(Exception e) {
-                            logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                         }
 
                         return true;
@@ -172,6 +109,90 @@ Created By: Travis Berthelot
                             return true;
                         }
                         </xsl:if>
+
+                    @Override
+                    public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+                        super.processStats(motionGestureEvent);
+                        
+                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                        
+                        return this.process();
+                    }
+
+                    @Override
+                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
+                        super.processGDStats(gameLayer);
+
+                        //name=<xsl:value-of select="$name" />
+                            <xsl:call-template name="layoutInstances" >
+                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                <xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param>
+                            </xsl:call-template>
+
+                        final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$name" />GDGameLayer.gdObject;
+                        <xsl:text>&#10;</xsl:text>
+<xsl:text>                        </xsl:text>final int dx = <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.x - </xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
+                        <xsl:text>&#10;</xsl:text>
+<xsl:text>                        </xsl:text>final int dy = <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.y - </xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
+
+                            final int angleOfTarget = noDecimalTrigTable.antiTan(dx, dy);
+                            short angle = (short) (270 - angleOfTarget - <xsl:value-of select="$name" />.angle);
+                            while (angle <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 359) {
+                                angle -= 360;
+                            }
+                            while (angle <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0) {
+                                angle += 360;
+                            }
+                            
+                            <xsl:value-of select="$name" />.rotationP = angle;
+                            if(<xsl:value-of select="$name" />.rotationP != 0) {
+                                logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(<xsl:value-of select="$name" />.rotationP).append("<xsl:text>&lt;</xsl:text>").append(<xsl:value-of select="$name" />.angle).toString(), this, commonStrings.PROCESS);
+                            }
+                            gameLayer.updateRotation(1000);
+                            if(<xsl:value-of select="$name" />.rotationP != 0) {
+                                logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(<xsl:value-of select="$name" />.rotationP).append("<xsl:text>&gt;</xsl:text>").append(<xsl:value-of select="$name" />.angle).toString(), this, commonStrings.PROCESS);
+                            }
+                            <xsl:value-of select="$name" />.rotationP = 0;
+
+                        <xsl:text>&#10;</xsl:text>
+                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                        
+                        return true;
+                    }
+
+                    @Override      
+                    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                        super.processGDStats(gameLayerArray);
+                        try {
+                     
+                        <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
+                        <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
+       
+                            final int angleOfTarget = noDecimalTrigTable.antiTan(dx, dy);
+                            short angle = (short) (270 - angleOfTarget - <xsl:value-of select="$name" />.angle);
+                            while (angle <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 359) {
+                                angle -= 360;
+                            }
+                            while (angle <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0) {
+                                angle += 360;
+                            }
+                            
+                            <xsl:value-of select="$name" />.rotationP = angle;
+                            if(<xsl:value-of select="$name" />.rotationP != 0) {
+                                logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(<xsl:value-of select="$name" />.rotationP).append("<xsl:text>&lt;</xsl:text>").append(<xsl:value-of select="$name" />.angle).toString(), this, commonStrings.PROCESS);
+                            }
+                            gameLayer.updateRotation(1000);
+                            if(<xsl:value-of select="$name" />.rotationP != 0) {
+                                logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(<xsl:value-of select="$name" />.rotationP).append("<xsl:text>&gt;</xsl:text>").append(<xsl:value-of select="$name" />.angle).toString(), this, commonStrings.PROCESS);
+                            }
+                            <xsl:value-of select="$name" />.rotationP = 0;
+       
+                        } catch(Exception e) {
+                            logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
+                        }
+
+                        return true;
+                    }
 
                         public void process(final GDGameLayer gameLayer, final int x, final int y) {
                             final GDObject gdObject = gameLayer.gdObject;

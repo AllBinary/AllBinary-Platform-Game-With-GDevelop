@@ -41,26 +41,11 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                     </xsl:variable>
 
-                        //TextInput::TextInputObject::SetTextColor - action - //forExtension=<xsl:value-of select="$forExtension" />
-                        <xsl:if test="not(contains($forExtension, 'found'))" >
-                        @Override
-                        public boolean process() throws Exception {
-                            super.processStats();
-
-                            try {
-
-                                //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-
-                                <xsl:if test="contains($hasBuiltinCommonInstructionsForEachToProcessGD, 'found')" >
-                                    if(true) throw new RuntimeException();
-                                </xsl:if>
-                                <xsl:if test="not(contains($hasBuiltinCommonInstructionsForEachToProcessGD, 'found'))" >
-
-                                    <!-- if the color is from more than 1 variable this will break -->
                                     <xsl:variable name="variableName" ><xsl:for-each select="//variables" ><xsl:if test="contains($param2, name)" ><xsl:value-of select="name" /></xsl:if></xsl:for-each></xsl:variable>
                                     <xsl:variable name="globalWithVariableName" >globals.<xsl:value-of select="$variableName" /></xsl:variable>
                                     //variableName=<xsl:value-of select="$variableName" /> globalWithVariableName=<xsl:value-of select="$globalWithVariableName" />
-                                    
+
+                                    <!-- if the color is from more than 1 variable this will break -->
                                     <xsl:variable name="param2b" >
                                         <xsl:if test="string-length($variableName) > 0" >
                                             <xsl:call-template name="string-replace-all" >
@@ -76,7 +61,22 @@ Created By: Travis Berthelot
                                         <xsl:if test="contains($param2, ';')" ><xsl:text>ARGB(255, </xsl:text><xsl:value-of select="translate(translate(translate($param2b, '+', ''), $quote, ''), ';', ',')" /></xsl:if>
                                         <xsl:if test="not(contains($param2, ';'))" ><xsl:text>(255, </xsl:text><xsl:value-of select="text()" /></xsl:if>
                                     </xsl:variable>                                
-                                    
+
+                        //TextInput::TextInputObject::SetTextColor - action - //forExtension=<xsl:value-of select="$forExtension" />
+                        <xsl:if test="not(contains($forExtension, 'found'))" >
+                        @Override
+                        public boolean process() throws Exception {
+                            super.processStats();
+
+                            try {
+
+                                //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+
+                                <xsl:if test="contains($hasBuiltinCommonInstructionsForEachToProcessGD, 'found')" >
+                                    if(true) throw new RuntimeException();
+                                </xsl:if>
+                                <xsl:if test="not(contains($hasBuiltinCommonInstructionsForEachToProcessGD, 'found'))" >
+
                                     final int colorAsInt = basicColorUtil.get<xsl:value-of select="$color" />);
                                     <xsl:text>&#10;</xsl:text>
 
@@ -142,26 +142,6 @@ Created By: Travis Berthelot
                                     GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$objectInForEach" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$objectInForEach" /><xsl:text> </xsl:text><xsl:value-of select="$objectInForEach" /> = 
                                         (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$objectInForEach" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$objectInForEach" />) gameLayer.gdObject;
                                 </xsl:if>
-
-                                    <xsl:variable name="variableName" ><xsl:for-each select="//variables" ><xsl:if test="contains($param2, name)" ><xsl:value-of select="name" /></xsl:if></xsl:for-each></xsl:variable>
-                                    <xsl:variable name="globalWithVariableName" >globals.<xsl:value-of select="$variableName" /></xsl:variable>
-                                    //variableName=<xsl:value-of select="$variableName" /> globalWithVariableName=<xsl:value-of select="$globalWithVariableName" />
-                                    
-                                    <xsl:variable name="param2b" >
-                                        <xsl:if test="string-length($variableName) > 0" >
-                                            <xsl:call-template name="string-replace-all" >
-                                                <xsl:with-param name="text" ><xsl:value-of select="$param2" /></xsl:with-param>
-                                                <xsl:with-param name="find" ><xsl:value-of select="$variableName" /></xsl:with-param>
-                                                <xsl:with-param name="replacementText" ><xsl:value-of select="$globalWithVariableName" /></xsl:with-param>
-                                            </xsl:call-template>
-                                        </xsl:if>
-                                        <xsl:if test="string-length($variableName) = 0" ><xsl:value-of select="$param2" /></xsl:if>
-                                    </xsl:variable>
-                                    
-                                    <xsl:variable name="color" >
-                                        <xsl:if test="contains($param2, ';')" ><xsl:text>ARGB(255, </xsl:text><xsl:value-of select="translate(translate(translate($param2b, '+', ''), $quote, ''), ';', ',')" /></xsl:if>
-                                        <xsl:if test="not(contains($param2, ';'))" ><xsl:text>(255, </xsl:text><xsl:value-of select="text()" /></xsl:if>
-                                    </xsl:variable>                                
                                     
                                     final int colorAsInt = basicColorUtil.get<xsl:value-of select="$color" />);
                                     <xsl:text>&#10;</xsl:text>
@@ -186,11 +166,17 @@ Created By: Travis Berthelot
 
                     @Override      
                     public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                        super.processGDStats(gameLayerArray);
                         try {
                      
                         <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
                         <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
-       
+
+                            final int colorAsInt = basicColorUtil.get<xsl:value-of select="$color" />);
+                            <xsl:text>&#10;</xsl:text>
+                            final BasicColor basicColor = smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
+                            <xsl:value-of select="$param" />GDGameLayer.setBasicColor(basicColor);
+              
                         } catch(Exception e) {
                             logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                         }

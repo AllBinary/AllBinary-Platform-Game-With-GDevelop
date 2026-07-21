@@ -23,7 +23,9 @@ Created By: Travis Berthelot
         <xsl:param name="createdObjectsAsString" />
 
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-        
+
+        <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+
                     <xsl:variable name="hasBuiltinCommonInstructionsForEachToProcessGD" >
                         <xsl:call-template name="hasBuiltinCommonInstructionsForEachToProcessGD" >
                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
@@ -61,18 +63,14 @@ Created By: Travis Berthelot
                                     </xsl:for-each>
                                     <xsl:text>&#10;</xsl:text>
                                     
-                                    <xsl:for-each select="parameters" >
-                                        <xsl:if test="position() = 1" >
                                         final BasicColor basicColor = smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
-                                        final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size();
+                                        final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$param1" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$param1" />GDGameLayerList.size();
                                         GDGameLayer gameLayer;
                                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                            gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index);
+                                            gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$param1" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$param1" />GDGameLayerList.get(index);
                                             gameLayer.setBasicColor(basicColor);
-                                            //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />TextAnimation.setBasicColor(smallBasicColorCacheFactory.getAndOrCreate(colorAsInt));
+                                            //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$param1" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$param1" />TextAnimation.setBasicColor(smallBasicColorCacheFactory.getAndOrCreate(colorAsInt));
                                         }
-                                        </xsl:if>
-                                    </xsl:for-each>
                                     <xsl:text>&#10;</xsl:text>
 
                                 </xsl:if>
@@ -95,8 +93,8 @@ Created By: Travis Berthelot
                     }
 
                         @Override
-                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
-                            this.processGDStats(gameLayer);
+                        public boolean processGD(final GDGameLayer <xsl:value-of select="$param1" />GDGameLayer, final GDGameLayer gameLayer2) throws Exception {
+                            this.processGDStats(<xsl:value-of select="$param1" />GDGameLayer);
 
                             try {
 
@@ -128,16 +126,10 @@ Created By: Travis Berthelot
                                         <xsl:if test="position() = last()" >); //, "<xsl:value-of select="type/value" />"));</xsl:if>
                                     </xsl:for-each>
                                     <xsl:text>&#10;</xsl:text>
-                                    
-                                    <xsl:for-each select="parameters" >
-                                        <xsl:if test="position() = 1" >
-                                            
-                                        final BasicColor basicColor = smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
-                                        gameLayer.setBasicColor(basicColor);
-                                        //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />TextAnimation.setBasicColor(smallBasicColorCacheFactory.getAndOrCreate(colorAsInt));
 
-                                        </xsl:if>
-                                    </xsl:for-each>
+                                        final BasicColor basicColor = smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
+                                        <xsl:value-of select="$param1" />GDGameLayer.setBasicColor(basicColor);
+
                                     <xsl:text>&#10;</xsl:text>
 
                             } catch(Exception e) {
@@ -153,7 +145,25 @@ Created By: Travis Berthelot
                      
                         <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
                         <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
-       
+
+                                    <xsl:for-each select="parameters" >
+                                        <xsl:if test="position() = 1" >
+                            final int colorAsInt = basicColorUtil.get</xsl:if>
+                                        <xsl:if test="position() = 2" >
+                                            <xsl:if test="contains(text(), ';')" >
+                                                <xsl:text>ARGB(255, </xsl:text><xsl:value-of select="translate(substring(text(), 2, string-length(text()) - 2), ';', ',')" />
+                                            </xsl:if>
+                                            <xsl:if test="not(contains(text(), ';'))" >
+                                                <xsl:text>(255, </xsl:text><xsl:value-of select="text()" />
+                                            </xsl:if>
+                                        </xsl:if>
+                                        <xsl:if test="position() = last()" >); //, "<xsl:value-of select="type/value" />"));</xsl:if>
+                                    </xsl:for-each>
+                                    <xsl:text>&#10;</xsl:text>
+
+                            final BasicColor basicColor = smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
+                            <xsl:value-of select="$param1" />GDGameLayer.setBasicColor(basicColor);
+
                         } catch(Exception e) {
                             logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                         }

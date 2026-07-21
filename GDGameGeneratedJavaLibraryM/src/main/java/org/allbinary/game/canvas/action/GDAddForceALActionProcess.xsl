@@ -24,8 +24,11 @@ Created By: Travis Berthelot
 
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
-                                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                                    <xsl:variable name="forceType" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+        <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+        <xsl:variable name="forceType" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+
+        <xsl:variable name="hasPermanentVelocity" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="text() = 1" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
+                                    
                     //AddForceAL - action forceType=<xsl:value-of select="$forceType" /> (0=instant,1=permanent) - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                     @Override
@@ -121,14 +124,6 @@ Created By: Travis Berthelot
                                     final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$name" />GDGameLayer.gdObject;
                                     <xsl:text>&#10;</xsl:text>
 
-                                    <xsl:variable name="hasPermanentVelocity" >
-                                        <xsl:for-each select="parameters" >
-                                            <xsl:if test="position() = 4" >
-                                                <xsl:if test="text() = 1" >found</xsl:if>
-                                            </xsl:if>
-                                        </xsl:for-each>
-                                    </xsl:variable>
-                                    
                                     <xsl:if test="contains($hasPermanentVelocity, 'found')" >
                                         <xsl:for-each select="parameters" >
                                             <xsl:if test="position() = 1" >
@@ -228,11 +223,104 @@ Created By: Travis Berthelot
 
                     @Override      
                     public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                        super.processGDStats(gameLayerArray);
                         try {
                      
                         <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
                         <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
-       
+                                    
+                                    <xsl:if test="contains($hasPermanentVelocity, 'found')" >
+                                        <xsl:for-each select="parameters" >
+                                            <xsl:if test="position() = 1" >
+                                                <xsl:value-of select="text()" />GDGameLayer.velocityBehavior = NoDragVelocityBehavior.instance;</xsl:if>
+                                        </xsl:for-each>
+                                    </xsl:if>
+
+                                    <!--
+                                    <xsl:variable name="length" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="substring-before(substring-after(text(), 'Variable('), ')')" /></xsl:if></xsl:for-each></xsl:variable>
+                                    <xsl:if test="string-length($length) > 0" >
+                                    if(<xsl:value-of select="$length" />_updated) {
+                                        <xsl:value-of select="$length" />_updated = false;
+                                    </xsl:if>
+                                    -->
+                                    //Parameters - 6
+                                    
+                                    <xsl:for-each select="parameters" >
+                                        <xsl:if test="position() = 1" >
+                                            <xsl:value-of select="text()" />GDGameLayer.AddForceUsingPolarCoordinates(</xsl:if>
+                                        <xsl:if test="position() != 1 and position() != last()" >
+                                            <xsl:variable name="paramText" select="text()" />
+
+                                            <xsl:variable name="key" >
+                                                <xsl:for-each select="/game/variables/value" >
+                                                    <xsl:variable name="variable" >Variable(<xsl:value-of select="text()" />)</xsl:variable>
+                                                    <xsl:if test="contains($paramText, $variable)" >
+                                                        <xsl:value-of select="text()" />
+                                                    </xsl:if>
+                                                </xsl:for-each>
+                                            </xsl:variable>
+
+                                            <xsl:if test="string-length($key) > 0" >
+                                                //Text - 2
+                                                <xsl:call-template name="string-replace-all" >
+                                                    <xsl:with-param name="text" >
+                                                        <xsl:value-of select="$paramText" />
+                                                    </xsl:with-param>
+                                                    <xsl:with-param name="find" >Variable(<xsl:value-of select="$key" />)</xsl:with-param>
+                                                    <xsl:with-param name="replacementText" >Variable(<xsl:value-of select="$name" />.<xsl:value-of select="$key" />)</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:if>
+                                            <xsl:if test="string-length($key) = 0" >
+                                                //Text - 3
+                                                <xsl:value-of select="$paramText" />
+                                            </xsl:if>,<xsl:text> </xsl:text>
+                                        </xsl:if>
+                                        <xsl:if test="position() = last()" >
+                                            //Text - 4
+                                            <xsl:value-of select="text()" />);
+                                        </xsl:if>
+                                    </xsl:for-each>
+
+                                    <!--
+                                    <xsl:if test="string-length($length) > 0" >
+                                    }
+                                    </xsl:if>
+                                    -->
+                                
+                                    <!--
+                                    <xsl:for-each select="parameters" >
+                                        <xsl:if test="position() = 3" >
+
+                                            <xsl:if test="contains(text(), 'Variable(')" >
+                                                <xsl:variable name="end" >
+                                                    <xsl:call-template name="string-replace-all" >
+                                                        <xsl:with-param name="text" >
+                                                            <xsl:value-of select="text()" />
+                                                        </xsl:with-param>
+                                                        <xsl:with-param name="find" >Variable(</xsl:with-param>
+                                                        <xsl:with-param name="replacementText" >
+                                                        </xsl:with-param>
+                                                    </xsl:call-template>
+                                                </xsl:variable>
+                                            
+                                                <xsl:call-template name="string-replace-all" >
+                                                    <xsl:with-param name="text" >
+                                                        //<xsl:value-of select="$end" /> = 0;
+                                                    </xsl:with-param>
+                                                    <xsl:with-param name="find" >)</xsl:with-param>
+                                                    <xsl:with-param name="replacementText" ></xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:if>
+
+                                        </xsl:if>
+                                    </xsl:for-each>
+                                    -->
+                                    
+                                    <xsl:text>&#10;</xsl:text>
+                                    //updateGDObject - 4
+                                    <xsl:value-of select="$name" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+                                    <xsl:text>&#10;</xsl:text>
+              
                         } catch(Exception e) {
                             logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                         }

@@ -375,7 +375,14 @@ Created By: Travis Berthelot
                      
                             <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
                             <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
-       
+
+                    //LinkedObjects::LinkObjects - Add
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 2" ><xsl:value-of select="text()" />GDGameLayer.linkedGDGameLayerList.add(</xsl:if>
+                        <xsl:if test="position() = 3" ><xsl:value-of select="text()" />GDGameLayer</xsl:if>
+                        <xsl:if test="position() = last()" >);</xsl:if>
+                    </xsl:for-each>
+              
                             } catch(Exception e) {
                                 logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                             }
