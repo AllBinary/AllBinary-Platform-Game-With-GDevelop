@@ -87,7 +87,7 @@ Created By: Travis Berthelot
                     </xsl:variable>
 
                     <xsl:variable name="hasDistance" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'Distance'" >found</xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:variable name="hasCollisionNP" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'CollisionNP'" >found</xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="hasCollisionNP" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >found</xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="process" ><xsl:choose><xsl:when test="contains($hasDistance, 'found')" >processGD(gameLayer, gameLayer2)</xsl:when><xsl:when test="contains($hasCollisionNP, 'found')" >processGD(gameLayer, gameLayer2)</xsl:when><xsl:otherwise>process()</xsl:otherwise></xsl:choose></xsl:variable>
 
                     <xsl:for-each select="conditions" >
@@ -128,7 +128,7 @@ Created By: Travis Berthelot
                             final GDGameLayer gameLayer = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />];
                             final GDGameLayer gameLayer2 = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id2])" />];
                             </xsl:when>
-                            <xsl:when test="type/value = 'CollisionNP'" >
+                            <xsl:when test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                         //CollisionNP - include params
                         if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                             <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
