@@ -230,7 +230,9 @@ Created By: Travis Berthelot
 
                         <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
                         <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
-                                
+                    
+                                <xsl:text>&#10;</xsl:text>
+            
                     <xsl:for-each select="parameters" >
                         <xsl:variable name="textTurnArrayToGet" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" >[</xsl:with-param><xsl:with-param name="replacementText" >.get(</xsl:with-param></xsl:call-template></xsl:variable>
                         <xsl:variable name="textTurnArrayToGet2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$textTurnArrayToGet" /></xsl:with-param><xsl:with-param name="find" >]</xsl:with-param><xsl:with-param name="replacementText" >)</xsl:with-param></xsl:call-template></xsl:variable>

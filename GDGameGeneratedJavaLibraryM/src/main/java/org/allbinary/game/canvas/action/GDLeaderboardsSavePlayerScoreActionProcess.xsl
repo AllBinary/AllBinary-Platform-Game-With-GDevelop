@@ -381,9 +381,16 @@ Created By: Travis Berthelot
 
                                 final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                                 final AllBinaryGameCanvas abCanvas = (AllBinaryGameCanvas) abToGBUtil.abCanvas;
-                                
+
+                                <xsl:if test="$beforeFourthParam != ''" >
+                                final String name = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                                </xsl:if>
+                                <xsl:if test="$beforeFourthParam = ''" >
+                                final String name = null;
+                                </xsl:if>
+                                                                
                                 logUtil.putF(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(name).toString(), this, commonStrings.PROCESS);
-                                
+                                                                
                                 class SaveHighScoreRunnable implements Runnable {
 
                                     public void run() {

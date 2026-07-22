@@ -109,7 +109,7 @@ Created By: Travis Berthelot
                                     </xsl:variable>
                                     //ForEach as parent with object=<xsl:value-of select="$objectInForEach" />
                                     GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$objectInForEach" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$objectInForEach" /><xsl:text> </xsl:text><xsl:value-of select="$objectInForEach" /> = 
-                                        (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$objectInForEach" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$objectInForEach" />) gameLayer.gdObject;
+                                        (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$objectInForEach" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$objectInForEach" />) <xsl:value-of select="$param1" />GDGameLayer.gdObject;
                                 </xsl:if>
 
                                     <xsl:for-each select="parameters" >
