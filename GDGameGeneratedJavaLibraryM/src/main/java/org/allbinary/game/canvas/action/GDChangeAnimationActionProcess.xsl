@@ -128,9 +128,8 @@ Created By: Travis Berthelot
                     
                         <xsl:if test="$paramOneNameObjectsGroups != ''" >
 
-                        <xsl:variable name="text" ><xsl:value-of select="$paramOneNameObjectsGroups" /></xsl:variable>
-                        <xsl:variable name="id" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
-                        //ChangeAnimation - <xsl:value-of select="$text" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
+                        <xsl:variable name="id" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
+                        //ChangeAnimation - <xsl:value-of select="$name" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
                         GDGameLayer <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />];
                         if(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer == null) {
                             <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer = gameGlobals.tempGameLayerArray[1];
@@ -234,15 +233,14 @@ Created By: Travis Berthelot
 
                         <xsl:if test="$paramOneNameObjectsGroups != ''" >
 
-                        <xsl:variable name="text" ><xsl:value-of select="$paramOneNameObjectsGroups" /></xsl:variable>
-                        <xsl:variable name="id" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
-                        //ChangeAnimation - <xsl:value-of select="$text" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
-                        GDGameLayer <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />];
-                        if(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer == null) {
-                            <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer = gameGlobals.tempGameLayerArray[1];
+                        <xsl:variable name="id" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
+                        //ChangeAnimation - <xsl:value-of select="$name" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
+                        GDGameLayer <xsl:value-of select="$name" />GDGameLayer = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />];
+                        if(<xsl:value-of select="$name" />GDGameLayer == null) {
+                            <xsl:value-of select="$name" />GDGameLayer = gameGlobals.tempGameLayerArray[1];
                         }
                         
-                        if(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer != null) {
+                        if(<xsl:value-of select="$name" />GDGameLayer != null) {
 
 <xsl:text>                        </xsl:text>
                         <xsl:text>&#10;</xsl:text>
@@ -250,11 +248,11 @@ Created By: Travis Berthelot
 <xsl:text>                        </xsl:text>final int animationIndex<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
                             <xsl:text>&#10;</xsl:text>
                             
-                        if(animationIndex <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.getIndexedAnimationInterfaceArray().length) {
+                        if(animationIndex <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> <xsl:value-of select="$name" />GDGameLayer.getIndexedAnimationInterfaceArray().length) {
                             logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(gdGameLayer.toString()).append(" invalid animation index: ").appendint(animationIndex).toString(), this, commonStrings.PROCESS, new Exception());
                         }
                             
-<xsl:text>                        </xsl:text><xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.gdObject.animation = animationIndex;
+<xsl:text>                        </xsl:text><xsl:value-of select="$name" />GDGameLayer.gdObject.animation = animationIndex;
                         <xsl:text>&#10;</xsl:text>
                         
                         } else {
@@ -287,10 +285,8 @@ Created By: Travis Berthelot
                         <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
                         <xsl:if test="$paramOneNameObjectsGroups != ''" >
-
-                        <xsl:variable name="text" ><xsl:value-of select="$paramOneNameObjectsGroups" /></xsl:variable>
                         
-                        if(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer != null) {
+                        if(<xsl:value-of select="$name" />GDGameLayer != null) {
 
 <xsl:text>                        </xsl:text>
                         <xsl:text>&#10;</xsl:text>
@@ -298,11 +294,11 @@ Created By: Travis Berthelot
 <xsl:text>                        </xsl:text>final int animationIndex<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
                             <xsl:text>&#10;</xsl:text>
                             
-                        if(animationIndex <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.getIndexedAnimationInterfaceArray().length) {
-                            logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.toString()).append(" invalid animation index: ").appendint(animationIndex).toString(), this, commonStrings.PROCESS, new Exception());
+                        if(animationIndex <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> <xsl:value-of select="$name" />GDGameLayer.getIndexedAnimationInterfaceArray().length) {
+                            logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(<xsl:value-of select="$name" />GDGameLayer.toString()).append(" invalid animation index: ").appendint(animationIndex).toString(), this, commonStrings.PROCESS, new Exception());
                         }
                             
-<xsl:text>                        </xsl:text><xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.gdObject.animation = animationIndex;
+<xsl:text>                        </xsl:text><xsl:value-of select="$name" />GDGameLayer.gdObject.animation = animationIndex;
                         <xsl:text>&#10;</xsl:text>
                         
                         } else {
@@ -315,11 +311,11 @@ Created By: Travis Berthelot
                         <xsl:if test="$paramOneNameObjectsGroups = ''" >
                         final int animationIndex<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
                         
-                        //if(animationIndex <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.getIndexedAnimationInterfaceArray().length) {
-                            //logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.toString()).append(" invalid animation index: ").appendint(animationIndex).toString(), this, commonStrings.PROCESS, new Exception());
+                        //if(animationIndex <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> <xsl:value-of select="$name" />GDGameLayer.getIndexedAnimationInterfaceArray().length) {
+                            //logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(<xsl:value-of select="$name" />GDGameLayer.toString()).append(" invalid animation index: ").appendint(animationIndex).toString(), this, commonStrings.PROCESS, new Exception());
                         //}
 
-                        <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.gdObject.animation = animationIndex;
+                        <xsl:value-of select="$name" />GDGameLayer.gdObject.animation = animationIndex;
                         </xsl:if>
               
                         } catch(Exception e) {
