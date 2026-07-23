@@ -72,6 +72,7 @@ Created By: Travis Berthelot
                                                 
                         <xsl:variable name="beforeFourthParam" ><xsl:value-of select="substring-before($param2, '.')" /></xsl:variable>
 
+                        <xsl:variable name="param4" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
                         <xsl:variable name="hasObject" >
                             <xsl:for-each select="//objects" >
@@ -99,7 +100,8 @@ Created By: Travis Berthelot
                                 <xsl:if test="$beforeFourthParam != ''" >
                                 final GDGameLayer <xsl:value-of select="$beforeFourthParam" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$beforeFourthParam" />GDGameLayerList.get(0);
                                 //final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$beforeFourthParam" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$beforeFourthParam" />GDGameLayer.gdObject;
-                                final String name = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" />GDGameLayer</xsl:if></xsl:for-each>;
+                                final String name = <xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$param4" /></xsl:with-param><xsl:with-param name="find" >.Text()</xsl:with-param><xsl:with-param name="replacementText" >GDGameLayer.Text()</xsl:with-param></xsl:call-template>;
+                                
                                 </xsl:if>
                                 <xsl:if test="$beforeFourthParam = ''" >
                                 final String name = null;
@@ -287,7 +289,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="$beforeFourthParam != ''" >
                                 final GDGameLayer <xsl:value-of select="$beforeFourthParam" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$beforeFourthParam" />GDGameLayerList.get(0);
                                 //final <xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="$beforeFourthParam" /> = (<xsl:value-of select="$gdObjectFactory2" />) <xsl:value-of select="$beforeFourthParam" />GDGameLayer.gdObject;
-                                final String name = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                                final String name = <xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$param4" /></xsl:with-param><xsl:with-param name="find" >.Text()</xsl:with-param><xsl:with-param name="replacementText" >GDGameLayer.Text()</xsl:with-param></xsl:call-template>;
                                 </xsl:if>
                                 <xsl:if test="$beforeFourthParam = ''" >
                                 final String name = null;
@@ -383,7 +385,7 @@ Created By: Travis Berthelot
                                 final AllBinaryGameCanvas abCanvas = (AllBinaryGameCanvas) abToGBUtil.abCanvas;
 
                                 <xsl:if test="$beforeFourthParam != ''" >
-                                final String name = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                                final String name = <xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$param4" /></xsl:with-param><xsl:with-param name="find" >.Text()</xsl:with-param><xsl:with-param name="replacementText" >GDGameLayer.Text()</xsl:with-param></xsl:call-template>;
                                 </xsl:if>
                                 <xsl:if test="$beforeFourthParam = ''" >
                                 final String name = null;

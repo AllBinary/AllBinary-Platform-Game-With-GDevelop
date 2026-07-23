@@ -511,7 +511,76 @@ Created By: Travis Berthelot
                      
                         <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
                         <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
-       
+
+                        <xsl:if test="contains($hasObjectGroup2, 'found')" >
+
+                        <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 1" >
+                        //1
+                        final VelocityProperties velocityProperties = <xsl:value-of select="$name" />GDGameLayer.getVelocityProperties();
+                        if(velocityProperties.getVelocityXBasicDecimalP().getUnscaled() == 0L <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
+                            velocityProperties.getVelocityYBasicDecimalP().getUnscaled() == 0L <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
+                            velocityProperties.getVelocityZBasicDecimalP().getUnscaled() == 0L) {
+                            
+                            return true;
+                        }
+                            </xsl:if>
+                        </xsl:for-each>
+                        }
+                        </xsl:if>
+                        
+                        <xsl:if test="not(contains($hasObjectGroup2, 'found'))" >
+                        
+                        <xsl:text>&#10;</xsl:text>
+                            
+                        </xsl:if>
+                        <xsl:if test="not(contains($hasObjectVariable, 'found') or contains($hasObjectGroup2, 'found'))" >
+
+                        <xsl:variable name="fourthParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:if test="contains($fourthParam, 'Variable')" >
+                        <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 1" >
+                        //2
+                        final VelocityProperties velocityProperties = <xsl:value-of select="$name" />GDGameLayer.getVelocityProperties();
+                        if(velocityProperties.getVelocityXBasicDecimalP().getUnscaled() == 0L <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
+                            velocityProperties.getVelocityYBasicDecimalP().getUnscaled() == 0L <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
+                            velocityProperties.getVelocityZBasicDecimalP().getUnscaled() == 0L) {
+                            
+                            return true;
+                        }
+                            </xsl:if>
+                        </xsl:for-each>
+                        </xsl:if>
+                        <xsl:if test="not(contains($fourthParam, 'Variable'))" >
+                        <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 1" >
+                        //3
+                        final VelocityProperties velocityProperties = <xsl:value-of select="$name" />GDGameLayer.getVelocityProperties();
+                        if(velocityProperties.getVelocityXBasicDecimalP().getUnscaled() == 0L <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
+                            velocityProperties.getVelocityYBasicDecimalP().getUnscaled() == 0L <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
+                            velocityProperties.getVelocityZBasicDecimalP().getUnscaled() == 0L) {
+                            
+                            return true;
+                        }
+                            </xsl:if>
+                        </xsl:for-each>
+                        </xsl:if>
+
+                        </xsl:if>
+                        
+                        <xsl:if test="contains($hasObjectVariable, 'found')" >
+
+                        //4
+                        final VelocityProperties velocityProperties = <xsl:value-of select="$name" />GDGameLayer.getVelocityProperties();
+                        if(velocityProperties.getVelocityXBasicDecimalP().getUnscaled() == 0L <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
+                            velocityProperties.getVelocityYBasicDecimalP().getUnscaled() == 0L <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
+                            velocityProperties.getVelocityZBasicDecimalP().getUnscaled() == 0L) {
+
+                            return true;
+                        }
+
+                        </xsl:if>
+              
                         } catch(Exception e) {
                             logUtil.put(commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                         }

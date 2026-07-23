@@ -38,11 +38,11 @@ Created By: Travis Berthelot
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
-                        
-                            boolean result = true;
 
                             //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                             //logUtil.putF(commonStrings.START, this, "<xsl:for-each select="parameters" ><xsl:if test="position() > 2" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 2" >groupLayerManagerListener.getGroupSize(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>");
+
+                            boolean result = true;
 
                             <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="hasGameLayer2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="contains(text(), '.')" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
@@ -222,12 +222,6 @@ Created By: Travis Berthelot
                     </xsl:if>
                     </xsl:if>
 
-<!--                        <xsl:if test="not(contains($hasGameLayer, 'found'))" >
-                                //No GameLayer
-                                if(<xsl:for-each select="parameters" ><xsl:if test="text() = 'rotation'" >.</xsl:if><xsl:if test="position() > 2 and  text() != 'rotation'" ><xsl:text> </xsl:text></xsl:if><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="text() = '='" >=</xsl:if></xsl:for-each>) {
-                        </xsl:if>-->
-
-<!--                        <xsl:if test="contains($hasGameLayer, 'found')" >-->
                                 //Has GameLayer
                                 if(<xsl:for-each select="parameters" >
                                     <xsl:if test="position() = 2" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size() - <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RemoveList.size()</xsl:if>
@@ -276,16 +270,59 @@ Created By: Travis Berthelot
                         
                     @Override
                     public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                        boolean result = true;
                         try {
-                     
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
+
                         <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
                         <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
-       
+
+                                //Has GameLayer
+                                if(<xsl:for-each select="parameters" >
+                                    <xsl:if test="position() = 2" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size() - <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RemoveList.size()</xsl:if>
+                                    <xsl:if test="position() = 3" >
+                                        <xsl:call-template name="replace-escaped-conditionals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>
+                                    </xsl:if>
+                                    <xsl:if test="position() = 4" >
+                                        <xsl:variable name="before" >
+                                            <xsl:value-of select="substring-before(text(), '.')" />
+                                        </xsl:variable>
+                                        <xsl:variable name="hasObject" >
+                                            <xsl:for-each select="//objects" >
+                                                <xsl:if test="name = $before" >found</xsl:if>
+                                            </xsl:for-each>
+                                        </xsl:variable>
+
+                                        <xsl:if test="$before != ''" >
+                                            //<xsl:value-of select="$before" /> - <xsl:value-of select="$hasObject" />
+                                            <xsl:text>&#10;</xsl:text>
+                                            <xsl:if test="contains($hasObject, 'found')" >
+                                                ((GD<xsl:call-template name="objectFactory" >
+                                                    <xsl:with-param name="name" >
+                                                        <xsl:value-of select="$before" />
+                                                    </xsl:with-param>
+                                                    <xsl:with-param name="layoutIndex" >
+                                                        <xsl:value-of select="$layoutIndex" />
+                                                    </xsl:with-param>
+                                                </xsl:call-template>GDObjectsFactory.<xsl:value-of select="$before" />) <xsl:value-of select="$before" />).<xsl:value-of select="substring-after(text(), '.')" />
+                                            </xsl:if>
+                                        </xsl:if>
+                                        <xsl:if test="not(contains($hasObject, 'found'))" >
+                                            <xsl:value-of select="text()" />
+                                        </xsl:if>
+ 
+                                    </xsl:if>
+                                </xsl:for-each>) {
+
+                                } else {
+                                    result = false;
+                                }
+              
                         } catch(Exception e) {
                             logUtil.put(commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                         }
 
-                        return true;
+                        return result;
                     }
 
                         </xsl:if>

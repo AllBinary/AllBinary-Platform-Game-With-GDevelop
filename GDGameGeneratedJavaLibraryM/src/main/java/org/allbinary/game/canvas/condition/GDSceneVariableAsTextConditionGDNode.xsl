@@ -125,13 +125,27 @@ Created By: Travis Berthelot
                             return false;
                         }
 
-                    @Override      
+                    @Override
                     public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
-                            super.processGDStats(gameLayerArray);
-                        
+                        super.processGDStats(gameLayerArray);
+                        try {
+                     
                             //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
-                            
-                            return this.process();
+
+                        <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
+                        <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
+
+                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '!='" >!</xsl:if></xsl:if></xsl:for-each><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" /></xsl:if><xsl:if test="position() != last()" ></xsl:if></xsl:for-each><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '=' or text() = '!='" >.equals(</xsl:if><xsl:if test="text() = 'startsWith'" >.startsWith(</xsl:if><xsl:if test="text() = 'endsWith'" >.endsWith(</xsl:if><xsl:if test="text() = 'contains'" >.indexOf(</xsl:if></xsl:if></xsl:for-each><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each><xsl:for-each select="parameters" ><xsl:if test="position() = 2" >)<xsl:if test="text() = 'contains'" > <xsl:text disable-output-escaping="yes" > &gt;</xsl:text>= 0</xsl:if></xsl:if></xsl:for-each>) {
+                                return true;
+                            } else {
+                                //logUtil.putF(commonStrings.START, this, "Else: <xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>");
+                            }
+                                          
+                        } catch(Exception e) {
+                            logUtil.put(commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
+                        }
+
+                        return false;
                     }
 
                         </xsl:if>
