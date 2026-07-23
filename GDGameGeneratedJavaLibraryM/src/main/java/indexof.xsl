@@ -32,4 +32,23 @@
         <xsl:value-of select="string-length($text) - string-length(translate($text, $char, ''))"/>
     </xsl:template>
 
+    <xsl:template name="count-string">
+        <xsl:param name="text"/>
+        <xsl:param name="substring"/>
+        <xsl:param name="count" select="0"/>
+    
+        <xsl:choose>
+            <xsl:when test="contains($text, $substring)">
+                <xsl:call-template name="count-string">
+                    <xsl:with-param name="text" select="substring-after($text, $substring)"/>
+                    <xsl:with-param name="substring" select="$substring"/>
+                    <xsl:with-param name="count" select="$count + 1"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$count"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
 </xsl:stylesheet>

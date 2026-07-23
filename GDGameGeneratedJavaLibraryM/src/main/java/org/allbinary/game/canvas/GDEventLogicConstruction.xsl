@@ -87,6 +87,8 @@ Created By: Travis Berthelot
         
         <xsl:for-each select=".." >
             <xsl:for-each select="conditions" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                <xsl:if test="$parentNodeId != $nodeId" >
 <!--                 and type/value != 'GlobalVariableAsBoolean'-->
                 <xsl:if test="type/value != 'DepartScene' and type/value != 'SceneJustBegins' and type/value != 'AnyKeyPressed' and type/value != 'KeyPressed' and type/value != 'KeyReleased' and type/value != 'MusicStopped' and type/value != 'BuiltinCommonInstructions::Always'" >
                 <xsl:if test="count(parameters) > 0" >
@@ -109,10 +111,13 @@ Created By: Travis Berthelot
                     //Sibling - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                     </xsl:if>
                     <xsl:if test="$totalRecursions > 0" >
+                        <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                </xsl:if>
             </xsl:variable>
                                 
                     <xsl:if test="contains($hasChildNode, 'found')" >                                    
@@ -120,6 +125,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:if>
                 
+                </xsl:if>
                 </xsl:if>
                 </xsl:if>
                 </xsl:if>
@@ -134,10 +140,13 @@ Created By: Travis Berthelot
                 //Sibling - //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                 </xsl:if>
                 <xsl:if test="$totalRecursions > 0" >
+                    <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                </xsl:if>
             </xsl:variable>
                                 
                 <xsl:if test="contains($hasChildNode, 'found')" >
@@ -154,10 +163,13 @@ Created By: Travis Berthelot
                 //Sibling - //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                 </xsl:if>
                 <xsl:if test="$totalRecursions > 0" >
+                    <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                </xsl:if>
             </xsl:variable>
                                 
                 <xsl:if test="contains($hasChildNode, 'found')" >                
@@ -204,9 +216,11 @@ Created By: Travis Berthelot
                 
 <!--            <xsl:if test="events[type = 'BuiltinCommonInstructions::Standard']" >
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                </xsl:if>
             </xsl:variable>
                 <xsl:for-each select="actions" >
                     <xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" >
@@ -230,10 +244,13 @@ Created By: Travis Berthelot
             </xsl:if>-->
                 
             <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                </xsl:if>
             </xsl:variable>
                 <xsl:if test="contains($hasChildNode, 'found')" >
                 <xsl:variable name="secondParam" ><xsl:if test="object != $secondGameLayer" ><xsl:value-of select="$secondGameLayer" /></xsl:if><xsl:if test="object = $secondGameLayer and object != $secondGameLayer2" ><xsl:value-of select="$secondGameLayer2" /></xsl:if></xsl:variable>
@@ -252,73 +269,89 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:if>
             </xsl:for-each>
-                        
-            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" >
+
+            <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >
-                //From parent CollisionNP - <xsl:for-each select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
+                //From parent CollisionNP - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
-                <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1] = conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" >
-                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" />2GDGameLayer) throws Exception {
+                <xsl:if test="parameters[1] = parameters[2]" >
+                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="parameters[2]" />2GDGameLayer) throws Exception {
                 </xsl:if>
-                <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1] != conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" >
-                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" />GDGameLayer) throws Exception {
+                <xsl:if test="parameters[1] != parameters[2]" >
+                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="parameters[2]" />GDGameLayer) throws Exception {
                 </xsl:if>
-                   super.processGDStats(<xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" />GDGameLayer);
+                   super.processGDStats(<xsl:value-of select="parameters[1]" />GDGameLayer);
                 </xsl:if>
             </xsl:if>
 
-            <xsl:if test="conditions[type/value = 'Distance']" >
-                
+            <xsl:if test="type/value = 'Distance'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >
-                //From parent Distance - <xsl:for-each select="conditions[type/value = 'Distance']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
+                //From parent Distance - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
-                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'Distance']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'Distance']/parameters[2]" />GDGameLayer) throws Exception {
+                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="parameters[2]" />GDGameLayer) throws Exception {
                 
-                    super.processGDStats(<xsl:value-of select="conditions[type/value = 'Distance']/parameters[1]" />GDGameLayer);
+                    super.processGDStats(<xsl:value-of select="parameters[1]" />GDGameLayer);
                 </xsl:if>
             </xsl:if>
 
-            <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
-                
+            <xsl:if test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >
-                //From parent LinkedObjects::PickObjectsLinkedTo - <xsl:for-each select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
+                //From parent LinkedObjects::PickObjectsLinkedTo - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
-                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[2]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[3]" />GDGameLayer) throws Exception {
+                public boolean process<xsl:value-of select="$callEnding" />GD(final GDGameLayer <xsl:value-of select="parameters[2]" />GDGameLayer, final GDGameLayer <xsl:value-of select="parameters[3]" />GDGameLayer) throws Exception {
 
-                    super.processGDStats(<xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[2]" />GDGameLayer);
+                    super.processGDStats(<xsl:value-of select="parameters[2]" />GDGameLayer);
                 </xsl:if>
             </xsl:if>
+            </xsl:for-each>
 
             <xsl:variable name="hasForEachEvent" >
                 <xsl:for-each select="events" >
-                    <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >            
+                    <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+                        <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                         <xsl:variable name="hasChildNode" >
+                            <xsl:if test="$parentNodeId != $nodeId" >
                             <xsl:call-template name="hasChildNode" >
-                                <xsl:with-param name="childNodeId" >
-                                    <xsl:value-of select="$nodeId" />
-                                </xsl:with-param>
+                                <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                             </xsl:call-template>
+                            </xsl:if>
                         </xsl:variable>
                         <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
                     </xsl:if>
@@ -326,41 +359,61 @@ Created By: Travis Berthelot
             </xsl:variable>
 
             <xsl:variable name="hasCollisionNPCondition" >
-            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" >
+                <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
+                
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
+                 </xsl:for-each>
             </xsl:variable>
 
             <xsl:variable name="hasDistanceCondition" >
-            <xsl:if test="conditions[type/value = 'Distance']" >
-                
+                <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'Distance'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
+                </xsl:for-each>
             </xsl:variable>
 
             <xsl:variable name="hasLinkedObjectsPickObjectsLinkedToCondition" >
-            <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
-                
+                <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
+                </xsl:for-each>
             </xsl:variable>
 
             <xsl:if test="not(contains($hasForEachEvent, 'found') or contains($hasCollisionNPCondition, 'found') or contains($hasDistanceCondition, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToCondition, 'found'))" >
@@ -385,13 +438,18 @@ Created By: Travis Berthelot
         
         <xsl:for-each select=".." >
             <xsl:for-each select="events" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                </xsl:if>
             </xsl:variable>
                 <xsl:if test="contains($hasChildNode, 'found')" ><xsl:if test="type != 'BuiltinCommonInstructions::Standard'" > - //<xsl:value-of select="type" /> r=<xsl:value-of select="$totalRecursions" /> </xsl:if><xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" ><xsl:value-of select="object" />, </xsl:if>
             <xsl:for-each select="conditions" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                <xsl:if test="$parentNodeId != $nodeId" >
                 <xsl:if test="type/value = 'Distance' or type/value = 'LinkedObjects::PickObjectsLinkedTo' or type/value = 'CollisionNP' or type/value = 'Collision'" ><xsl:text>//c=</xsl:text><xsl:value-of select="type/value" /> - </xsl:if><xsl:if test="type/value = 'Distance'" >(<xsl:value-of select="parameters[1]" />, <xsl:value-of select="parameters[2]" />)</xsl:if><xsl:if test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >(<xsl:value-of select="parameters[2]" />, <xsl:value-of select="parameters[3]" />)</xsl:if><xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >(<xsl:value-of select="parameters[1]" />, <xsl:value-of select="parameters[2]" />)</xsl:if>
                 <xsl:if test="type/value = 'BuiltinCommonInstructions::And'" >
                     <xsl:for-each select="subInstructions" >
@@ -402,6 +460,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="subInstructions" >
                         <xsl:if test="type/value = 'Distance' or type/value = 'LinkedObjects::PickObjectsLinkedTo' or type/value = 'CollisionNP' or type/value = 'Collision'" ><xsl:text>//sc=</xsl:text><xsl:value-of select="type/value" /> - </xsl:if><xsl:if test="type/value = 'Distance'" >(<xsl:value-of select="parameters[1]" />, <xsl:value-of select="parameters[2]" />)</xsl:if><xsl:if test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >(<xsl:value-of select="parameters[2]" />, <xsl:value-of select="parameters[3]" />)</xsl:if><xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >(<xsl:value-of select="parameters[1]" />, <xsl:value-of select="parameters[2]" />)</xsl:if>
                     </xsl:for-each>
+                </xsl:if>
                 </xsl:if>
             </xsl:for-each>
                 </xsl:if>            
@@ -427,7 +486,8 @@ Created By: Travis Berthelot
                             <xsl:for-each select="/game/layouts" >
                             <xsl:if test="$layoutIndex = position() - 1" >
                             <xsl:for-each select="objects" >
-                                <xsl:if test="contains($params, name) and $name = name" >
+<!--                                contains($params, name) and -->
+                                <xsl:if test="$name = name" >
                                     //Parent - Object - found
                                     <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                                     final GDGameLayer <xsl:value-of select="name" />GDGameLayer<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = gameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id]) + $offset" />];
@@ -437,7 +497,8 @@ Created By: Travis Berthelot
                                 </xsl:if>
                             </xsl:for-each>
                             <xsl:for-each select="objectsGroups" >
-                                <xsl:if test="contains($params, name) and $name = name" >
+<!--                                contains($params, name) and -->
+                                <xsl:if test="$name = name" >
                                     //Parent - ObjectGroup - found
                                     <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                                     final GDGameLayer <xsl:value-of select="name" />GDGameLayer<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = gameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id]) + $offset" />];
@@ -450,7 +511,8 @@ Created By: Travis Berthelot
 
                             <xsl:for-each select="/game" >
                             <xsl:for-each select="objects" >
-                                <xsl:if test="contains($params, name) and $name = name" >
+<!--                                contains($params, name) and -->
+                                <xsl:if test="$name = name" >
                                     //Parent - Globals - Object - found
                                     <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                                     final GDGameLayer <xsl:value-of select="name" />GDGameLayer<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = gameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id]) + $offset" />];
@@ -460,7 +522,8 @@ Created By: Travis Berthelot
                                 </xsl:if>
                             </xsl:for-each>
                             <xsl:for-each select="objectsGroups" >
-                                <xsl:if test="contains($params, name) and $name = name" >
+<!--                                contains($params, name) and -->
+                                <xsl:if test="$name = name" >
                                     //Parent - Globals - ObjectGroup - found
                                     <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                                     final GDGameLayer <xsl:value-of select="name" />GDGameLayer<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = gameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id]) + $offset" />];
@@ -581,7 +644,114 @@ Created By: Travis Berthelot
                             </xsl:for-each>
 
     </xsl:template>
+    
+    <xsl:template name="paramsMappedFromParents" >
+        <xsl:param name="closestParentEventWithParams" />
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="params" />
+        <xsl:param name="nodeId" />
 
+                        <xsl:choose>
+                        <xsl:when test="contains($closestParentEventWithParams, 'BuiltinCommonInstructions::ForEach')" >
+                            <xsl:variable name="forEachGDParamOne" ><xsl:call-template name="forEachGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+
+                            <xsl:call-template name="mappedParamsParents" >
+                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                <xsl:with-param name="name" >
+                                    <xsl:value-of select="$forEachGDParamOne" />
+                                </xsl:with-param>
+                                <xsl:with-param name="params" >
+                                    <xsl:value-of select="$params" />
+                                </xsl:with-param>
+                            </xsl:call-template>
+
+                        </xsl:when>
+                        <xsl:when test="contains($closestParentEventWithParams, 'Collision')" >
+                            <xsl:variable name="collisionProcessGDParamOne" ><xsl:call-template name="collisionProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                            
+                            <xsl:call-template name="mappedParamsParents" >
+                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                <xsl:with-param name="name" >
+                                    <xsl:value-of select="$collisionProcessGDParamOne" />
+                                </xsl:with-param>
+                                <xsl:with-param name="params" >
+                                    <xsl:value-of select="$params" />
+                                </xsl:with-param>
+                            </xsl:call-template>
+                            
+                            <xsl:variable name="collisionProcessGDParamTwo" ><xsl:call-template name="collisionProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                            
+                            <xsl:call-template name="mappedParamsParents" >
+                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                <xsl:with-param name="name" >
+                                    <xsl:value-of select="$collisionProcessGDParamTwo" />
+                                </xsl:with-param>
+                                <xsl:with-param name="params" >
+                                    <xsl:value-of select="$params" />
+                                </xsl:with-param>                                
+                            </xsl:call-template>
+
+                        </xsl:when>
+                        <xsl:when test="contains($closestParentEventWithParams, 'Distance')" >
+                            <xsl:variable name="distanceProcessGDParamOne" ><xsl:call-template name="distanceProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                            
+                            <xsl:call-template name="mappedParamsParents" >
+                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                <xsl:with-param name="name" >
+                                    <xsl:value-of select="$distanceProcessGDParamOne" />
+                                </xsl:with-param>
+                                <xsl:with-param name="params" >
+                                    <xsl:value-of select="$params" />
+                                </xsl:with-param>
+                            </xsl:call-template>
+                            
+                            <xsl:variable name="distanceProcessGDParamTwo" ><xsl:call-template name="distanceProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+
+                            <xsl:call-template name="mappedParamsParents" >
+                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                <xsl:with-param name="name" >
+                                    <xsl:value-of select="$distanceProcessGDParamTwo" />
+                                </xsl:with-param>
+                                <xsl:with-param name="params" >
+                                    <xsl:value-of select="$params" />
+                                </xsl:with-param>
+                            </xsl:call-template>
+
+                        </xsl:when>
+                        <xsl:when test="contains($closestParentEventWithParams, 'LinkedObjects::PickObjectsLinkedTo')" >
+
+                            <xsl:variable name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" ><xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                            
+                            <xsl:call-template name="mappedParamsParents" >
+                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                <xsl:with-param name="name" >
+                                    <xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamOne" />
+                                </xsl:with-param>
+                                <xsl:with-param name="params" >
+                                    <xsl:value-of select="$params" />
+                                </xsl:with-param>
+                            </xsl:call-template>
+                            
+                            <xsl:variable name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" ><xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                            
+                            <xsl:call-template name="mappedParamsParents" >
+                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                <xsl:with-param name="name" >
+                                    <xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamTwo" />
+                                </xsl:with-param>
+                                <xsl:with-param name="params" >
+                                    <xsl:value-of select="$params" />
+                                </xsl:with-param>
+                            </xsl:call-template>
+                            
+                        </xsl:when>
+                        <xsl:otherwise>
+                        </xsl:otherwise>
+
+                        </xsl:choose>
+                
+    </xsl:template>
+    
     <xsl:template name="siblingOrParentOrList" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="layoutIndex" />
@@ -771,104 +941,12 @@ Created By: Travis Berthelot
 
 <!--                        //Same as above, but as variable-->
                         <xsl:variable name="paramsMappedFromParents" >
-                        <xsl:choose>
-                        <xsl:when test="contains($closestParentEventWithParams, 'BuiltinCommonInstructions::ForEach')" >
-                            <xsl:variable name="forEachGDParamOne" ><xsl:call-template name="forEachGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
-
-                            <xsl:call-template name="mappedParamsParents" >
+                            <xsl:call-template name="paramsMappedFromParents" >
+                                <xsl:with-param name="closestParentEventWithParams" ><xsl:value-of select="$closestParentEventWithParams" /></xsl:with-param>
                                 <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
-                                <xsl:with-param name="name" >
-                                    <xsl:value-of select="$forEachGDParamOne" />
-                                </xsl:with-param>
-                                <xsl:with-param name="params" >
-                                    <xsl:value-of select="$params" />
-                                </xsl:with-param>
+                                <xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param>
+                                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                             </xsl:call-template>
-
-                        </xsl:when>
-                        <xsl:when test="contains($closestParentEventWithParams, 'Collision')" >
-                            <xsl:variable name="collisionProcessGDParamOne" ><xsl:call-template name="collisionProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
-                            
-                            <xsl:call-template name="mappedParamsParents" >
-                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
-                                <xsl:with-param name="name" >
-                                    <xsl:value-of select="$collisionProcessGDParamOne" />
-                                </xsl:with-param>
-                                <xsl:with-param name="params" >
-                                    <xsl:value-of select="$params" />
-                                </xsl:with-param>
-                            </xsl:call-template>
-                            
-                            <xsl:variable name="collisionProcessGDParamTwo" ><xsl:call-template name="collisionProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
-                            
-                            <xsl:call-template name="mappedParamsParents" >
-                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
-                                <xsl:with-param name="name" >
-                                    <xsl:value-of select="$collisionProcessGDParamTwo" />
-                                </xsl:with-param>
-                                <xsl:with-param name="params" >
-                                    <xsl:value-of select="$params" />
-                                </xsl:with-param>                                
-                            </xsl:call-template>
-
-                        </xsl:when>
-                        <xsl:when test="contains($closestParentEventWithParams, 'Distance')" >
-                            <xsl:variable name="distanceProcessGDParamOne" ><xsl:call-template name="distanceProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
-                            
-                            <xsl:call-template name="mappedParamsParents" >
-                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
-                                <xsl:with-param name="name" >
-                                    <xsl:value-of select="$distanceProcessGDParamOne" />
-                                </xsl:with-param>
-                                <xsl:with-param name="params" >
-                                    <xsl:value-of select="$params" />
-                                </xsl:with-param>
-                            </xsl:call-template>
-                            
-                            <xsl:variable name="distanceProcessGDParamTwo" ><xsl:call-template name="distanceProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
-
-                            <xsl:call-template name="mappedParamsParents" >
-                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
-                                <xsl:with-param name="name" >
-                                    <xsl:value-of select="$distanceProcessGDParamTwo" />
-                                </xsl:with-param>
-                                <xsl:with-param name="params" >
-                                    <xsl:value-of select="$params" />
-                                </xsl:with-param>
-                            </xsl:call-template>
-
-                        </xsl:when>
-                        <xsl:when test="contains($closestParentEventWithParams, 'LinkedObjects::PickObjectsLinkedTo')" >
-
-                            <xsl:variable name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" ><xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
-                            
-                            <xsl:call-template name="mappedParamsParents" >
-                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
-                                <xsl:with-param name="name" >
-                                    <xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamOne" />
-                                </xsl:with-param>
-                                <xsl:with-param name="params" >
-                                    <xsl:value-of select="$params" />
-                                </xsl:with-param>
-                            </xsl:call-template>
-                            
-                            <xsl:variable name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" ><xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
-                            
-                            <xsl:call-template name="mappedParamsParents" >
-                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
-                                <xsl:with-param name="name" >
-                                    <xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamTwo" />
-                                </xsl:with-param>
-                                <xsl:with-param name="params" >
-                                    <xsl:value-of select="$params" />
-                                </xsl:with-param>
-                            </xsl:call-template>
-                            
-                        </xsl:when>
-                        <xsl:otherwise>
-                        </xsl:otherwise>
-
-                        </xsl:choose>
                         </xsl:variable>
 
                         //paramsMappedFromSiblings=<xsl:value-of select="$paramsMappedFromSiblings" />
@@ -890,9 +968,9 @@ Created By: Travis Berthelot
                             <xsl:for-each select="objectsGroups" >
                                 <xsl:if test="contains($params, name) and not(contains($paramsMappedFromSiblings, name) or contains($paramsMappedFromParents, name))" >
                                     //List - //ObjectGroup - found
-                                    final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = (BasicArrayList) globals.<xsl:value-of select="name" />GDGameLayerListOfList.get(0);
                                     <xsl:variable name="offset" ><xsl:if test="contains($offsetRequestForOtherParam, 'found') and contains($offsetRequestForOtherParam, name)" ><xsl:value-of select="count(//objectsGroups) + count(//objects)" /></xsl:if></xsl:variable>
-                                    final GDGameLayer <xsl:value-of select="name" />GDGameLayer<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (GDGameLayer) <xsl:value-of select="name" />GDGameLayerList.get(0);
+                                    final BasicArrayList <xsl:value-of select="name" />GDGameLayerList<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (BasicArrayList) globals.<xsl:value-of select="name" />GDGameLayerListOfList.get(0);
+                                    final GDGameLayer <xsl:value-of select="name" />GDGameLayer<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (GDGameLayer) <xsl:value-of select="name" />GDGameLayerList<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if>.get(0);
                                     <xsl:variable name="name" select="name" />
                                     <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
                                     final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /><xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$name" />GDGameLayer<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if>.gdObject;
@@ -906,7 +984,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="contains($params, name) and not(contains($paramsMappedFromSiblings, name) or contains($paramsMappedFromParents, name))" >
                                     //Globals - //List - //Object - found
                                     <xsl:variable name="offset" ><xsl:if test="contains($offsetRequestForOtherParam, 'found') and contains($offsetRequestForOtherParam, name)" ><xsl:value-of select="count(//objectsGroups) + count(//objects)" /></xsl:if></xsl:variable>
-                                    final GDGameLayer <xsl:value-of select="name" />GDGameLayer<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(0);
+                                    final GDGameLayer <xsl:value-of select="name" />GDGameLayer<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (GDGameLayer) gameGlobals.<xsl:value-of select="name" />GDGameLayerList.get(0);
                                     <xsl:variable name="name" select="name" />
                                     <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
                                     final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /><xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$name" />GDGameLayer<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if>.gdObject;
@@ -915,12 +993,95 @@ Created By: Travis Berthelot
                             <xsl:for-each select="objectsGroups" >
                                 <xsl:if test="contains($params, name) and not(contains($paramsMappedFromSiblings, name) or contains($paramsMappedFromParents, name))" >
                                     //Globals - //List - //ObjectGroup - found
-                                    final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = (BasicArrayList) globals.<xsl:value-of select="name" />GDGameLayerListOfList.get(0);
                                     <xsl:variable name="offset" ><xsl:if test="contains($offsetRequestForOtherParam, 'found') and contains($offsetRequestForOtherParam, name)" ><xsl:value-of select="count(//objectsGroups) + count(//objects)" /></xsl:if></xsl:variable>
-                                    final GDGameLayer <xsl:value-of select="name" />GDGameLayer<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (GDGameLayer) <xsl:value-of select="name" />GDGameLayerList.get(0);
+                                    final BasicArrayList <xsl:value-of select="name" />GDGameLayerList<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (BasicArrayList) gameGlobals.<xsl:value-of select="name" />GDGameLayerListOfList.get(0);
+                                    final GDGameLayer <xsl:value-of select="name" />GDGameLayer<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (GDGameLayer) <xsl:value-of select="name" />GDGameLayerList<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if>.get(0);
                                     <xsl:variable name="name" select="name" />
                                     <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
                                     final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /><xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$name" />GDGameLayer<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if>.gdObject;
+                                </xsl:if>
+                            </xsl:for-each>
+                            </xsl:for-each>
+                
+    </xsl:template>
+
+    <xsl:template name="listEndings" >
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="params" />
+        <xsl:param name="nodeId" />
+        <xsl:param name="offset" />
+        <xsl:param name="offsetRequestForOtherParam" />
+
+        <xsl:variable name="closestParentEventWithParams" >
+            <xsl:call-template name="closestParentEventWithParams" >
+                <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+            </xsl:call-template>
+        </xsl:variable>
+        
+                    <xsl:variable name="hasSiblingCreateOrCreateByName" ><xsl:for-each select="../actions" ><xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" >found</xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="siblingCreateOrCreateByNameObjectOrObjectGroup" ><xsl:for-each select="../actions" ><xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" />,</xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="isNeededParamSiblingCreateOrCreateByName" ><xsl:for-each select="../actions" ><xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="contains($params, text())" >found</xsl:if></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
+
+                        <xsl:variable name="paramsMappedFromSiblings" >
+                        <xsl:if test="contains($isNeededParamSiblingCreateOrCreateByName, 'found')" >
+
+                            <xsl:call-template name="mappedParamsSiblings" >
+                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                <xsl:with-param name="params" >
+                                    <xsl:value-of select="$siblingCreateOrCreateByNameObjectOrObjectGroup" />
+                                </xsl:with-param>
+                            </xsl:call-template>
+                        
+                        </xsl:if>
+                        </xsl:variable>
+        
+                        <xsl:variable name="paramsMappedFromParents" >
+                            <xsl:call-template name="paramsMappedFromParents" >
+                                <xsl:with-param name="closestParentEventWithParams" ><xsl:value-of select="$closestParentEventWithParams" /></xsl:with-param>
+                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                <xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param>
+                                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:variable>
+                        
+                            <xsl:for-each select="/game/layouts" >
+                            <xsl:if test="$layoutIndex = position() - 1" >
+                            <xsl:for-each select="objects" >
+                                <xsl:if test="contains($params, name) and not(contains($paramsMappedFromSiblings, name) or contains($paramsMappedFromParents, name))" >
+                                    <xsl:variable name="offset" ><xsl:if test="contains($offsetRequestForOtherParam, 'found') and contains($offsetRequestForOtherParam, name)" ><xsl:value-of select="count(//objectsGroups) + count(//objects)" /></xsl:if></xsl:variable>
+                                    <xsl:if test="$offset > 0" >
+                                        }
+                                    </xsl:if>
+                                </xsl:if>
+                            </xsl:for-each>
+                            <xsl:for-each select="objectsGroups" >
+                                <xsl:if test="contains($params, name) and not(contains($paramsMappedFromSiblings, name) or contains($paramsMappedFromParents, name))" >
+                                    <xsl:variable name="offset" ><xsl:if test="contains($offsetRequestForOtherParam, 'found') and contains($offsetRequestForOtherParam, name)" ><xsl:value-of select="count(//objectsGroups) + count(//objects)" /></xsl:if></xsl:variable>
+                                    <xsl:if test="$offset > 0" >
+                                        }
+                                    </xsl:if>
+                                </xsl:if>
+                            </xsl:for-each>
+                            </xsl:if>
+                            </xsl:for-each>
+                            
+                            <xsl:for-each select="/game" >
+                            <xsl:for-each select="objects" >
+                                <xsl:if test="contains($params, name) and not(contains($paramsMappedFromSiblings, name) or contains($paramsMappedFromParents, name))" >
+                                    <xsl:variable name="offset" ><xsl:if test="contains($offsetRequestForOtherParam, 'found') and contains($offsetRequestForOtherParam, name)" ><xsl:value-of select="count(//objectsGroups) + count(//objects)" /></xsl:if></xsl:variable>
+                                    <xsl:if test="$offset > 0" >
+                                        }
+                                    </xsl:if>
+                                </xsl:if>
+                            </xsl:for-each>
+                            <xsl:for-each select="objectsGroups" >
+                                <xsl:if test="contains($params, name) and not(contains($paramsMappedFromSiblings, name) or contains($paramsMappedFromParents, name))" >
+                                    <xsl:variable name="offset" ><xsl:if test="contains($offsetRequestForOtherParam, 'found') and contains($offsetRequestForOtherParam, name)" ><xsl:value-of select="count(//objectsGroups) + count(//objects)" /></xsl:if></xsl:variable>
+                                    <xsl:if test="$offset > 0" >
+                                        }
+                                    </xsl:if>
                                 </xsl:if>
                             </xsl:for-each>
                             </xsl:for-each>
@@ -933,57 +1094,75 @@ Created By: Travis Berthelot
         
         <xsl:for-each select=".." >
             <xsl:for-each select="events" >
-
             <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                </xsl:if>
             </xsl:variable>
                 <xsl:if test="contains($hasChildNode, 'found')" >BuiltinCommonInstructions::ForEach</xsl:if>
             </xsl:if>
             </xsl:for-each>
-                        
-            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" >
+
+            <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 <xsl:if test="contains($hasChildNode, 'found')" >Collision</xsl:if>
             </xsl:if>
 
-            <xsl:if test="conditions[type/value = 'Distance']" >
-                
+            <xsl:if test="type/value = 'Distance'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >Distance</xsl:if>
             </xsl:if>
 
-            <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
-                
+            <xsl:if test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >LinkedObjects::PickObjectsLinkedTo</xsl:if>
             </xsl:if>
+            </xsl:for-each>
 
             <xsl:variable name="hasForEachEvent" >
                 <xsl:for-each select="events" >
                     <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+                        <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                         <xsl:variable name="hasChildNode" >
+                            <xsl:if test="$parentNodeId != $nodeId" >
                             <xsl:call-template name="hasChildNode" >
-                                <xsl:with-param name="childNodeId" >
-                                    <xsl:value-of select="$nodeId" />
-                                </xsl:with-param>
+                                <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                             </xsl:call-template>
+                            </xsl:if>
                         </xsl:variable>
                         <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
                     </xsl:if>
@@ -991,41 +1170,60 @@ Created By: Travis Berthelot
             </xsl:variable>
 
             <xsl:variable name="hasCollisionNPCondition" >
-            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" >
+                <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
+                </xsl:for-each>
             </xsl:variable>
 
             <xsl:variable name="hasDistanceCondition" >
-            <xsl:if test="conditions[type/value = 'Distance']" >
-                
+                <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'Distance'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
+                </xsl:for-each>
             </xsl:variable>
 
             <xsl:variable name="hasLinkedObjectsPickObjectsLinkedToCondition" >
-            <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
-                
+                <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
+                </xsl:for-each>
             </xsl:variable>
 
             <xsl:if test="not(contains($hasForEachEvent, 'found') or contains($hasCollisionNPCondition, 'found') or contains($hasDistanceCondition, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToCondition, 'found'))" >
@@ -1051,10 +1249,13 @@ Created By: Travis Berthelot
         <xsl:for-each select=".." >
             <xsl:for-each select="events" >
             <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                </xsl:if>
             </xsl:variable>
                 <xsl:if test="contains($hasChildNode, 'found')" >
                 <xsl:variable name="secondParam" ><xsl:if test="object != $secondGameLayer" ><xsl:value-of select="$secondGameLayer" /></xsl:if><xsl:if test="object = $secondGameLayer and object != $secondGameLayer2" ><xsl:value-of select="$secondGameLayer2" /></xsl:if></xsl:variable>
@@ -1109,34 +1310,40 @@ Created By: Travis Berthelot
                                 
             </xsl:if>
             </xsl:for-each>
-                        
-            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" >
+
+            <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >
-                //parentSelectionNodeProcessGPaint - //From parent CollisionNP - <xsl:for-each select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
+                //parentSelectionNodeProcessGPaint - //From parent CollisionNP - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
-                <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1] = conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" >
-                public boolean processGPaint(final GDObject gdObject, final GDObject <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" />2) {
+                <xsl:if test="parameters[1] = parameters[2]" >
+                public boolean processGPaint(final GDObject gdObject, final GDObject <xsl:value-of select="parameters[2]" />2) {
 
-                <xsl:variable name="name" ><xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" /></xsl:variable>
+                <xsl:variable name="name" ><xsl:value-of select="parameters[1]" /></xsl:variable>
                 <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
                 final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gdObject;
                 
                 
                 </xsl:if>
-                <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1] != conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" >
+                <xsl:if test="parameters[1] != parameters[2]" >
                 public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2) {
                 
-                <xsl:variable name="name" ><xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" /></xsl:variable>
+                <xsl:variable name="name" ><xsl:value-of select="parameters[1]" /></xsl:variable>
                 <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
                 final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gdObject;
-                <xsl:variable name="name2" ><xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" /></xsl:variable>
+                <xsl:variable name="name2" ><xsl:value-of select="parameters[2]" /></xsl:variable>
                 <xsl:variable name="gdObjectFactory2" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name2" /></xsl:variable>
                 final <xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="$name2" /> = (<xsl:value-of select="$gdObjectFactory2" />) gdObject2;
                 
@@ -1145,63 +1352,73 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:if>
 
-            <xsl:if test="conditions[type/value = 'Distance']" >
-                
+            <xsl:if test="type/value = 'Distance'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >
-                //parentSelectionNodeProcessGPaint - //From parent Distance - <xsl:for-each select="conditions[type/value = 'Distance']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
+                //parentSelectionNodeProcessGPaint - //From parent Distance - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
                 public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2) {
 
-                <xsl:variable name="name" ><xsl:value-of select="conditions[type/value = 'Distance']/parameters[1]" /></xsl:variable>
+                <xsl:variable name="name" ><xsl:value-of select="parameters[1]" /></xsl:variable>
                 <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
                 final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gdObject;
-                <xsl:variable name="name2" ><xsl:value-of select="conditions[type/value = 'Distance']/parameters[2]" /></xsl:variable>
+                <xsl:variable name="name2" ><xsl:value-of select="parameters[2]" /></xsl:variable>
                 <xsl:variable name="gdObjectFactory2" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name2" /></xsl:variable>
                 final <xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="$name2" /> = (<xsl:value-of select="$gdObjectFactory2" />) gdObject2;
 
                 </xsl:if>
             </xsl:if>
 
-            <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
-                
+            <xsl:if test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >
-                //parentSelectionNodeProcessGPaint - //From parent LinkedObjects::PickObjectsLinkedTo - <xsl:for-each select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
+                //parentSelectionNodeProcessGPaint - //From parent LinkedObjects::PickObjectsLinkedTo - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
                 public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2) {
 
-                <xsl:variable name="name" ><xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[2]" /></xsl:variable>
+                <xsl:variable name="name" ><xsl:value-of select="parameters[2]" /></xsl:variable>
                 <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
                 final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gdObject;
-                <xsl:variable name="name2" ><xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[3]" /></xsl:variable>
+                <xsl:variable name="name2" ><xsl:value-of select="parameters[3]" /></xsl:variable>
                 <xsl:variable name="gdObjectFactory2" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name2" /></xsl:variable>
                 final <xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="$name2" /> = (<xsl:value-of select="$gdObjectFactory2" />) gdObject2;
 
                 </xsl:if>
             </xsl:if>
+            </xsl:for-each>
 
             <xsl:variable name="hasForEachEvent" >
                 <xsl:for-each select="events" >
-                    <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >            
+                    <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" > 
+                        <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                         <xsl:variable name="hasChildNode" >
+                            <xsl:if test="$parentNodeId != $nodeId" >
                             <xsl:call-template name="hasChildNode" >
-                                <xsl:with-param name="childNodeId" >
-                                    <xsl:value-of select="$nodeId" />
-                                </xsl:with-param>
+                                <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                             </xsl:call-template>
+                            </xsl:if>
                         </xsl:variable>
                         <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
                     </xsl:if>
@@ -1209,41 +1426,60 @@ Created By: Travis Berthelot
             </xsl:variable>
 
             <xsl:variable name="hasCollisionNPCondition" >
-            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" >
+                <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
+                </xsl:for-each>
             </xsl:variable>
 
             <xsl:variable name="hasDistanceCondition" >
-            <xsl:if test="conditions[type/value = 'Distance']" >
-                
+                <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'Distance'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
+            </xsl:for-each>
             </xsl:variable>
 
             <xsl:variable name="hasLinkedObjectsPickObjectsLinkedToCondition" >
-            <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
-                
+                <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
+                </xsl:for-each>
             </xsl:variable>
 
             <xsl:if test="not(contains($hasForEachEvent, 'found') or contains($hasCollisionNPCondition, 'found') or contains($hasDistanceCondition, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToCondition, 'found'))" >
@@ -1268,10 +1504,13 @@ Created By: Travis Berthelot
         <xsl:for-each select=".." >
             <xsl:for-each select="events" >
             <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                </xsl:if>
             </xsl:variable>
                 <xsl:if test="contains($hasChildNode, 'found')" ><xsl:value-of select="object" /></xsl:if>
             </xsl:if>
@@ -1281,10 +1520,13 @@ Created By: Travis Berthelot
             <xsl:variable name="hasForEachAlready" >
             <xsl:for-each select="events" >
             <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                </xsl:if>
             </xsl:variable>
                 <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
@@ -1312,17 +1554,39 @@ Created By: Travis Berthelot
         <xsl:for-each select=".." >
             <xsl:for-each select="events" >
             <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                </xsl:if>
             </xsl:variable>
             <xsl:variable name="secondParam" ><xsl:if test="object != $secondGameLayer" ><xsl:value-of select="$secondGameLayer" /></xsl:if><xsl:if test="object = $secondGameLayer and object != $secondGameLayer2" ><xsl:value-of select="$secondGameLayer2" /></xsl:if></xsl:variable>
             <xsl:variable name="hasChildActionThatSetsSecondParam" ><xsl:call-template name="hasChildActionThatSetsSecondParam" ><xsl:with-param name="secondParam" ><xsl:value-of select="$secondParam" /></xsl:with-param></xsl:call-template></xsl:variable>
                 <xsl:if test="contains($hasChildActionThatSetsSecondParam, 'found')" ><xsl:if test="contains($hasChildNode, 'found')" ><xsl:value-of select="$secondParam" /></xsl:if></xsl:if>
             </xsl:if>
             </xsl:for-each>
-            
+
+            <xsl:variable name="hasParam" >
+            <xsl:for-each select="events" >
+            <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+            <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+                </xsl:if>
+            </xsl:variable>
+            <xsl:variable name="secondParam" ><xsl:if test="object != $secondGameLayer" ><xsl:value-of select="$secondGameLayer" /></xsl:if><xsl:if test="object = $secondGameLayer and object != $secondGameLayer2" ><xsl:value-of select="$secondGameLayer2" /></xsl:if></xsl:variable>
+            <xsl:variable name="hasChildActionThatSetsSecondParam" ><xsl:call-template name="hasChildActionThatSetsSecondParam" ><xsl:with-param name="secondParam" ><xsl:value-of select="$secondParam" /></xsl:with-param></xsl:call-template></xsl:variable>
+                <xsl:if test="contains($hasChildActionThatSetsSecondParam, 'found')" ><xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if></xsl:if>
+            </xsl:if>
+            </xsl:for-each>
+            </xsl:variable>
+
+            <xsl:if test="not(contains($hasParam, 'found'))" >
             <xsl:call-template name="forEachGDParamTwo" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
@@ -1331,6 +1595,7 @@ Created By: Travis Berthelot
                 <xsl:with-param name="secondGameLayer" ><xsl:value-of select="$secondGameLayer" /></xsl:with-param>
                 <xsl:with-param name="secondGameLayer2" ><xsl:value-of select="$secondGameLayer2" /></xsl:with-param>
             </xsl:call-template>
+            </xsl:if>
             
         </xsl:for-each>
     </xsl:template>
@@ -1340,19 +1605,41 @@ Created By: Travis Berthelot
         <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
-            <xsl:if test="conditions[type/value = 'Distance']" >
+            <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'Distance'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
-            </xsl:variable>
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                <xsl:value-of select="conditions[type/value = 'Distance']/parameters[1]" />
+                    </xsl:for-each>
                 </xsl:if>
-            </xsl:if>
-            
-            
-            <xsl:if test="not(conditions[type/value = 'Distance'])" >
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" ><xsl:value-of select="parameters[1]" /></xsl:if>
+            </xsl:if>            
+            </xsl:for-each>
+
+            <xsl:variable name="hasParam" >
+            <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'Distance'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+            <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
+            </xsl:if>            
+            </xsl:for-each>
+            </xsl:variable>
+
+            <xsl:if test="not(contains($hasParam, 'found'))" >
             <xsl:call-template name="distanceProcessGDParamOne" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
@@ -1360,7 +1647,7 @@ Created By: Travis Berthelot
                 <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
             </xsl:if>
-            
+
         </xsl:for-each>
                 
     </xsl:template>
@@ -1370,18 +1657,41 @@ Created By: Travis Berthelot
         <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
-            <xsl:if test="conditions[type/value = 'Distance']" >
+            <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'Distance'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
-            </xsl:variable>
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                <xsl:value-of select="conditions[type/value = 'Distance']/parameters[2]" />
+                    </xsl:for-each>
                 </xsl:if>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" ><xsl:value-of select="parameters[2]" /></xsl:if>
             </xsl:if>
-            
-            <xsl:if test="not(conditions[type/value = 'Distance'])" >
+            </xsl:for-each>
+
+            <xsl:variable name="hasParam" >
+            <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'Distance'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+            <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
+            </xsl:if>
+            </xsl:for-each>
+            </xsl:variable>
+                        
+            <xsl:if test="not(contains($hasParam, 'found'))" >
             <xsl:call-template name="distanceProcessGDParamTwo" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
@@ -1399,24 +1709,49 @@ Created By: Travis Berthelot
         <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
-            <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
+            <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
-            </xsl:variable>
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[2]" />
+                    </xsl:for-each>
                 </xsl:if>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" ><xsl:value-of select="parameters[2]" /></xsl:if>
             </xsl:if>
-            
+            </xsl:for-each>
+
+            <xsl:variable name="hasParam" >
+            <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+            <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
+            </xsl:if>
+            </xsl:for-each>
+            </xsl:variable>
+
+            <xsl:if test="not(contains($hasParam, 'found'))" >
             <xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
                 <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
-            
+            </xsl:if>
+
         </xsl:for-each>
                 
     </xsl:template>
@@ -1426,23 +1761,48 @@ Created By: Travis Berthelot
         <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
-            <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
+            <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
-            </xsl:variable>
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[3]" />
+                    </xsl:for-each>
                 </xsl:if>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" ><xsl:value-of select="parameters[3]" /></xsl:if>
             </xsl:if>
-            
+            </xsl:for-each>
+
+            <xsl:variable name="hasParam" >
+            <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+            <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
+            </xsl:if>
+            </xsl:for-each>
+            </xsl:variable>
+
+            <xsl:if test="not(contains($hasParam, 'found'))" >
             <xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
                 <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
+            </xsl:if>
             
         </xsl:for-each>
                 
@@ -1453,23 +1813,48 @@ Created By: Travis Berthelot
         <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
-            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" >
+            <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
-            </xsl:variable>
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" />
+                    </xsl:for-each>
                 </xsl:if>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" ><xsl:value-of select="parameters[1]" /></xsl:if>
             </xsl:if>
-            
+            </xsl:for-each>
+
+            <xsl:variable name="hasParam" >
+            <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+            <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
+            </xsl:if>
+            </xsl:for-each>
+            </xsl:variable>
+
+            <xsl:if test="not(contains($hasParam, 'found'))" >
             <xsl:call-template name="collisionProcessGDParamOne" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
                 <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
+            </xsl:if>
             
         </xsl:for-each>
                 
@@ -1480,24 +1865,49 @@ Created By: Travis Berthelot
         <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
-            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" >
+            <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
-            </xsl:variable>
-                <xsl:if test="contains($hasChildNode, 'found')" >
-                <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" />
+                    </xsl:for-each>
                 </xsl:if>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" ><xsl:value-of select="parameters[2]" /></xsl:if>
             </xsl:if>
-            
+            </xsl:for-each>
+
+            <xsl:variable name="hasParam" >
+            <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+            <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
+            </xsl:if>
+            </xsl:for-each>
+            </xsl:variable>
+
+            <xsl:if test="not(contains($hasParam, 'found'))" >
             <xsl:call-template name="collisionProcessGDParamTwo" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
                 <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
-            
+            </xsl:if>
+
         </xsl:for-each>
                 
     </xsl:template>
@@ -1509,10 +1919,13 @@ Created By: Travis Berthelot
         <xsl:for-each select=".." >
             <xsl:for-each select="events" >
             <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                </xsl:if>
             </xsl:variable>
                 <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
@@ -1536,10 +1949,13 @@ Created By: Travis Berthelot
         <xsl:for-each select=".." >
             <xsl:for-each select="events" >
             <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                </xsl:if>
             </xsl:variable>
                 <xsl:if test="contains($hasChildNode, 'found')" >
                 <xsl:value-of select="object" />
@@ -1566,23 +1982,33 @@ Created By: Travis Berthelot
             
             <xsl:for-each select="events" >
             <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                </xsl:if>
             </xsl:variable>
                 <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
             </xsl:for-each>
             
-            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision'] or conditions[type/value = 'Distance'] or conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
+            <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision' or type/value = 'Distance' or type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
+            </xsl:for-each>
             
             <xsl:call-template name="hasParentSelectionNodeProcessGD" >
                 <xsl:with-param name="totalRecursions" >
@@ -1601,31 +2027,60 @@ Created By: Travis Berthelot
         
         <xsl:for-each select=".." >
 
-            <xsl:variable name="hasDistanceCondition" >
             <xsl:for-each select="conditions" >
                 <xsl:if test="type/value = 'BuiltinCommonInstructions::And'" >
                     <xsl:for-each select="subInstructions" >
-                        <xsl:if test="type/value = 'Distance'" >foundInSubInstructions</xsl:if>
+                        <xsl:if test="type/value = 'Distance'" >
+                            
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+            <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:variable>
+                            
+                            <xsl:if test="contains($hasChildNode, 'found')" >foundInSubInstructions</xsl:if>
+                        </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
                 <xsl:if test="type/value = 'BuiltinCommonInstructions::Or'" >
                     <xsl:for-each select="subInstructions" >
-                        <xsl:if test="type/value = 'Distance'" >foundInSubInstructions</xsl:if>
-                    </xsl:for-each>
-                </xsl:if>
-            <xsl:if test="type/value = 'Distance'" >found</xsl:if>
-            </xsl:for-each>
-            </xsl:variable>
-
-<!--            <xsl:if test="string-length($hasDistanceCondition) > 0" >//hasDistanceCondition=<xsl:value-of select="$hasDistanceCondition" /></xsl:if>-->
-            <xsl:if test="contains($hasDistanceCondition, 'found')" >
+                        <xsl:if test="type/value = 'Distance'" >
+                            
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
+                            
+                            <xsl:if test="contains($hasChildNode, 'found')" >foundInSubInstructions</xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:if>
+            <xsl:if test="type/value = 'Distance'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+            <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:variable>
+
             <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
+            </xsl:for-each>
 
             <xsl:call-template name="hasDistanceProcessGD" >
                 <xsl:with-param name="totalRecursions" >
@@ -1644,10 +2099,13 @@ Created By: Travis Berthelot
         
         <xsl:for-each select=".." >
             <xsl:if test="events[type = 'BuiltinCommonInstructions::Repeat']" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                </xsl:if>
             </xsl:variable>
                 <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
@@ -1669,10 +2127,13 @@ Created By: Travis Berthelot
         
         <xsl:for-each select=".." >
             <xsl:if test="events[type = 'BuiltinCommonInstructions::Standard']" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                </xsl:if>
             </xsl:variable>
                 <xsl:for-each select="actions" >
                     <xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" >
@@ -1697,14 +2158,21 @@ Created By: Travis Berthelot
         <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
-            <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
+            <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
             </xsl:variable>
                 <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
+            </xsl:for-each>
             
             <xsl:call-template name="hasLinkedObjectsPickObjectsLinkedToProcessGD" >
                 <xsl:with-param name="totalRecursions" >
@@ -1722,15 +2190,22 @@ Created By: Travis Berthelot
         <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
-            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" >
-            <xsl:variable name="hasChildNode" >
+            <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                    <xsl:for-each select=".." >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
-            </xsl:variable>
+                    </xsl:for-each>
+                </xsl:if>
+                </xsl:variable>
                 <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
             </xsl:if>
-            
+            </xsl:for-each>
+
             <xsl:call-template name="hasCollisionProcessGD" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />

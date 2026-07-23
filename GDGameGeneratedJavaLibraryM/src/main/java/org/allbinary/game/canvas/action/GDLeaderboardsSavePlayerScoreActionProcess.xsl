@@ -99,7 +99,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="$beforeFourthParam != ''" >
                                 final GDGameLayer <xsl:value-of select="$beforeFourthParam" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$beforeFourthParam" />GDGameLayerList.get(0);
                                 //final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$beforeFourthParam" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$beforeFourthParam" />GDGameLayer.gdObject;
-                                final String name = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                                final String name = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" />GDGameLayer</xsl:if></xsl:for-each>;
                                 </xsl:if>
                                 <xsl:if test="$beforeFourthParam = ''" >
                                 final String name = null;

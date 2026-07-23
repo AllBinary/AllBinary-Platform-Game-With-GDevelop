@@ -495,8 +495,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                         <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                     </xsl:call-template>
-                    <xsl:variable name="hasKnownParams" ><xsl:if test="contains($hasKnownParamsFromParent, 'found')" >found</xsl:if></xsl:variable>
-                    <xsl:if test="not(contains($hasKnownParams, 'found'))" >
+                    <xsl:if test="not(contains($hasKnownParamsFromParent, 'found'))" >
                         //NumberObjectVariable - //Not from parent
                         @Override
                         public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2) {
@@ -532,7 +531,7 @@ Created By: Travis Berthelot
                     </xsl:variable>
                     
                     //hasParamMatchWithParentParam=<xsl:value-of select="$hasParamMatchWithParentParam" />
-                    <xsl:if test="not(contains($hasKnownParams, 'found') and contains($hasParamMatchWithParentParam, 'found'))" >
+                    <xsl:if test="not(contains($hasKnownParamsFromParent, 'found') and contains($hasParamMatchWithParentParam, 'found'))" >
 
                     <xsl:variable name="hasGameLayer2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:if test="contains(text(), '.')" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
 

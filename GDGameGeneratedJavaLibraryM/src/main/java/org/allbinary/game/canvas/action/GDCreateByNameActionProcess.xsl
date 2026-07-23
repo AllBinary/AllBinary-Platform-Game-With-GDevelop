@@ -412,8 +412,9 @@ Created By: Travis Berthelot
                      
                             //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
-                            <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
-                            <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
+<!--                            <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>-->
+                            <xsl:variable name="afterFirstParam" ><xsl:for-each select="parameters" ><xsl:if test="position() > 2" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:if></xsl:for-each></xsl:variable>
+                            <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$afterFirstParam" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
                         //createByNameActionProcess - //CreateByName - process - START
                     
@@ -440,6 +441,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="nodeAsString" >
                             <xsl:value-of select="$nodeAsString" />
                         </xsl:with-param>
+                        <xsl:with-param name="shouldSkipParams" >found</xsl:with-param>
                     </xsl:call-template>
 
                         //createByNameActionProcess - //CreateByName - process - END

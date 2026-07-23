@@ -327,6 +327,7 @@ Created By: Travis Berthelot
         <xsl:param name="objectsAsString" />
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="nodeAsString" />
+        <xsl:param name="shouldSkipParams" />
 
         <xsl:variable name="quote" >"</xsl:variable>
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
@@ -356,6 +357,7 @@ Created By: Travis Berthelot
                                                 
                         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gameLayerName" /></xsl:variable>
 
+                   <xsl:if test="not(contains($shouldSkipParams, 'found'))" >
                 //hasObjectGroup=<xsl:value-of select="$hasObjectGroup" />
                 <xsl:if test="contains($hasObjectGroup, 'found')" >
                     //This code should probably never be used - it is here to compile with at least some possible logic 2
@@ -372,6 +374,8 @@ Created By: Travis Berthelot
                 </xsl:if>
                         
                     final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$gameLayerName" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject;
+                    </xsl:if>
+
                     </xsl:if>
                         
                         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
