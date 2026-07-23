@@ -350,7 +350,23 @@ Created By: Travis Berthelot
                         <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
                         <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
-                        <xsl:text>                        </xsl:text><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="$paramOneNameObjectsGroups" />.setAngle(angle</xsl:if><xsl:if test="position() = last()" >, <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer);<xsl:text>&#10;</xsl:text></xsl:if></xsl:for-each>
+                        final short angle = (short) <xsl:for-each select="parameters" ><xsl:if test="position() = 3" >
+                            <xsl:if test="contains(text(), 'Variable(')" ><xsl:value-of select="substring-before(text(), 'Variable(')" />Variable(<xsl:value-of select="substring-after(text(), 'Variable(')" /></xsl:if>
+                            <xsl:if test="not(contains(text(), 'Variable('))" >
+                            <xsl:if test="substring-before(text(), '.') = ''" >
+                                <xsl:value-of select="text()" />
+                            </xsl:if>
+                            <xsl:if test="substring-before(text(), '.') != ''" >
+                                (((GDGameLayer) <xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>GDGameLayer)).gdObject.<xsl:value-of select="substring-after(text(), '.')" />
+                            </xsl:if>
+                            </xsl:if>
+                        </xsl:if>
+                        <xsl:if test="position() != last()" >
+                            <xsl:text> </xsl:text>
+                        </xsl:if>
+                        </xsl:for-each>;
+
+                        <xsl:value-of select="$name" />.setAngle(angle, <xsl:value-of select="$name" />GDGameLayer);<xsl:text>&#10;</xsl:text>
 
                         return true;
                     }
