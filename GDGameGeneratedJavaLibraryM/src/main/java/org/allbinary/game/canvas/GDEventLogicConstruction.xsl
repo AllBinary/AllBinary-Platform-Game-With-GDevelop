@@ -1034,12 +1034,13 @@ Created By: Travis Berthelot
 <!--                                    //params=<xsl:value-of select="$params" /> name_dot=<xsl:value-of select="$name_dot" /> name_sep=<xsl:value-of select="$name_sep" /> <xsl:value-of select="contains($params, $name_dot)" /> <xsl:value-of select="contains($params, $name_sep)" />-->
                                     //List - //ObjectGroup - found - //id=<xsl:value-of select="$id" /> for <xsl:value-of select="$name" /> 
                                     <xsl:variable name="offset" ><xsl:if test="contains($offsetRequestForOtherParam, 'found') and contains($offsetRequestForOtherParam, name)" ><xsl:value-of select="count(//objectsGroups) + count(//objects)" /></xsl:if></xsl:variable>
-                                    if(globals.<xsl:value-of select="name" />GDGameLayerList.size() == 0) {
+                                    final BasicArrayList <xsl:value-of select="name" />GDGameLayerList<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (BasicArrayList) globals.<xsl:value-of select="name" />GDGameLayerListOfList.get(0);
+                                    
+                                    if(<xsl:value-of select="name" />GDGameLayerList.size() == 0) {
                                         logUtil.putF("<xsl:value-of select="name" /> List was 0 so returning", this, commonStrings.PROCESS);
                                         return false;
                                     }
-
-                                    final BasicArrayList <xsl:value-of select="name" />GDGameLayerList<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (BasicArrayList) globals.<xsl:value-of select="name" />GDGameLayerListOfList.get(0);
+                                    
                                     final GDGameLayer <xsl:value-of select="name" />GDGameLayer<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (GDGameLayer) <xsl:value-of select="name" />GDGameLayerList<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if>.get(0);
                                     <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
                                     final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /><xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$name" />GDGameLayer<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if>.gdObject;
@@ -1077,12 +1078,13 @@ Created By: Travis Berthelot
                                     <xsl:variable name="id" ><xsl:for-each select="../objectsGroups" ><xsl:if test="name = $name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
                                     //Globals - //List - //ObjectGroup - found - //id=<xsl:value-of select="$id" /> for <xsl:value-of select="$name" />
                                     <xsl:variable name="offset" ><xsl:if test="contains($offsetRequestForOtherParam, 'found') and contains($offsetRequestForOtherParam, name)" ><xsl:value-of select="count(//objectsGroups) + count(//objects)" /></xsl:if></xsl:variable>                                    
-                                    if(globals.<xsl:value-of select="name" />GDGameLayerList.size() == 0) {
+                                    final BasicArrayList <xsl:value-of select="name" />GDGameLayerList<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (BasicArrayList) gameGlobals.<xsl:value-of select="name" />GDGameLayerListOfList.get(0);
+
+                                    if(<xsl:value-of select="name" />GDGameLayerList.size() == 0) {
                                         logUtil.putF("<xsl:value-of select="name" /> List was 0 so returning", this, commonStrings.PROCESS);
                                         return false;
                                     }
 
-                                    final BasicArrayList <xsl:value-of select="name" />GDGameLayerList<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (BasicArrayList) gameGlobals.<xsl:value-of select="name" />GDGameLayerListOfList.get(0);
                                     final GDGameLayer <xsl:value-of select="name" />GDGameLayer<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (GDGameLayer) <xsl:value-of select="name" />GDGameLayerList<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if>.get(0);
                                     <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
                                     final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /><xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$name" />GDGameLayer<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if>.gdObject;
