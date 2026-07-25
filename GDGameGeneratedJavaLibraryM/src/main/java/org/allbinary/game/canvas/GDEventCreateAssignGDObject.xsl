@@ -391,37 +391,6 @@ Created By: Travis Berthelot
 
     </xsl:template>
 
-    <xsl:template name="createByNameGDObject2" >
-        <xsl:param name="layoutIndex" />
-        <xsl:param name="objectsAsString" />
-        <xsl:param name="objectsGroupsAsString" />
-        <xsl:param name="nodeAsString" />
-
-        <xsl:variable name="quote" >"</xsl:variable>
-                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:variable name="spriteName" >,Sprite:<xsl:value-of select="$name" />,</xsl:variable>
-                    <xsl:variable name="textInputName" >,TextInput::TextInputObject:<xsl:value-of select="$name" />,</xsl:variable>
-
-                    //createByNameGDObject2 - <xsl:value-of select="$name" />
-                        
-                    <xsl:variable name="hasGameLayer2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="contains(text(), '.')" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
-
-                    <xsl:variable name="gameLayerName3" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="substring-before(text(), '.')" /></xsl:if></xsl:for-each></xsl:variable>
-                    //gameLayerName3=<xsl:value-of select="$gameLayerName3" />
-                    <xsl:variable name="gameLayerName4" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4 and contains(text(), '-')" ><xsl:value-of select="substring-after($gameLayerName3, '-')" /></xsl:if><xsl:if test="position() = 4 and not(contains($gameLayerName3, '-'))" ><xsl:value-of select="$gameLayerName3" /></xsl:if></xsl:for-each></xsl:variable>
-                    //gameLayerName4=<xsl:value-of select="$gameLayerName4" />
-                    <xsl:variable name="gameLayerName5" ><xsl:call-template name="after-lastIndexOf" ><xsl:with-param name="string" ><xsl:value-of select="$gameLayerName4" /></xsl:with-param><xsl:with-param name="char" select="' '" /></xsl:call-template></xsl:variable>
-                    //gameLayerName5=<xsl:value-of select="$gameLayerName5" />
-                    <xsl:variable name="gameLayerName" ><xsl:call-template name="after-lastIndexOf" ><xsl:with-param name="string" ><xsl:value-of select="$gameLayerName5" /></xsl:with-param><xsl:with-param name="char" select="'('" /></xsl:call-template></xsl:variable>
-                    //gameLayerName=<xsl:value-of select="$gameLayerName" />
-
-                    <xsl:if test="contains($hasGameLayer2, 'found')" >
-                    <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gameLayerName" /></xsl:variable>
-                    final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$gameLayerName" /> = (<xsl:value-of select="$gdObjectFactory" />)<xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject;
-                    </xsl:if>
-
-    </xsl:template>
-
     <xsl:template name="createByNameGDObject3" >
         <xsl:param name="layoutIndex" />
         <xsl:param name="objectsAsString" />
@@ -775,63 +744,6 @@ Created By: Travis Berthelot
                             </xsl:for-each>
 
      </xsl:template>
-
-    <xsl:template name="createGDObjectActions" >
-        <xsl:param name="caller" />
-        <xsl:param name="layoutIndex" />
-        <xsl:param name="objectsGroupsAsString" />
-        <xsl:param name="objectsAsString" />
-
-                    <xsl:variable name="createNodeId" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:variable name="hasCreate" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" >found</xsl:if></xsl:for-each></xsl:variable>
-                    //hasCreate=<xsl:value-of select="$hasCreate" />
-
-                                <xsl:for-each select="actions" >
-
-                    <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                    <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-
-                                    <xsl:if test="type/value = 'Create'" >
-                                        
-                                        <xsl:variable name="nodeIdAsString" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
-                    //createGDObject - START
-                    <xsl:call-template name="createGDObject" >
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="objectsGroupsAsString" >
-                            <xsl:value-of select="$objectsGroupsAsString" />
-                        </xsl:with-param>
-                        <xsl:with-param name="objectsAsString" >
-                            <xsl:value-of select="$objectsAsString" />
-                        </xsl:with-param>
-                        <xsl:with-param name="nodeAsString" >
-                            <xsl:value-of select="$nodeIdAsString" />
-                        </xsl:with-param>
-                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
-                    </xsl:call-template>
-                    //createGDObject - END
-
-                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="typs/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
-                    //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Action - //Create - call
-                                //TWB is this still needed
-                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreateWithGDObject(<xsl:value-of select="$name" />);
-                                final int index = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() - 1;
-                                    </xsl:if>
-                                    
-                                    <xsl:if test="not(type/value = 'Create' or type/value = 'SetBooleanVariable')" >
-                                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
-                                        <xsl:if test="type/value != 'Delete'" >
-                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:if test="contains($hasCreate, 'found')" ><xsl:if test="$createNodeId &lt; number(substring(generate-id(), 2) - 65536)" >index</xsl:if></xsl:if>);
-                                        </xsl:if>
-                                        <xsl:if test="type/value = 'Delete'" >
-                                        //Delete2
-                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].delete();
-                                        </xsl:if>
-                                    </xsl:if>
-                                </xsl:for-each>
-    </xsl:template>
 
     <xsl:template name="paramIndexedArray" >
         <xsl:param name="createdObjectsAsString" />

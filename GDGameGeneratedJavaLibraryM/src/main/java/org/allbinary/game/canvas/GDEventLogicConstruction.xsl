@@ -232,9 +232,9 @@ Created By: Travis Berthelot
                 
                 //From parent BuiltinCommonInstructions::ForEach - <xsl:text>&#10;</xsl:text>
                 <xsl:if test="contains($hasChildActionThatSetsSecondParam, 'found')" >//Using second param from child action (this should be sibling, but for now it is any child action)</xsl:if>
-                //totalRecursions=<xsl:value-of select="$totalRecursions" />                
+                //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 <xsl:if test="string-length($callEnding) != 0" >@Override</xsl:if>
-                //public boolean process<xsl:value-of select="$callEnding" />GD<xsl:if test="string-length($callEnding) = 0" >2</xsl:if>(final GDGameLayer <xsl:value-of select="object" />GDGameLayer, final GDGameLayer <xsl:if test="contains($hasChildActionThatSetsSecondParam, 'found') and string-length($secondParam) > 0" ><xsl:value-of select="$secondParam" />GDGameLayer</xsl:if><xsl:if test="not(contains($hasChildActionThatSetsSecondParam, 'found') and string-length($secondParam) > 0)" >gdGameLayer</xsl:if>) throws Exception {
+                //(final GDGameLayer <xsl:value-of select="object" />GDGameLayer, final GDGameLayer <xsl:if test="contains($hasChildActionThatSetsSecondParam, 'found') and string-length($secondParam) > 0" ><xsl:value-of select="$secondParam" />GDGameLayer</xsl:if><xsl:if test="not(contains($hasChildActionThatSetsSecondParam, 'found') and string-length($secondParam) > 0)" >gdGameLayer</xsl:if>)
                 public boolean process<xsl:value-of select="$callEnding" />GD<xsl:if test="string-length($callEnding) = 0" >2</xsl:if>(final GDGameLayer[] gameLayerArray) throws Exception {
 
                     //super.processGDStats(<xsl:value-of select="object" />GDGameLayer);
@@ -260,11 +260,11 @@ Created By: Travis Berthelot
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 <xsl:if test="string-length($callEnding) != 0" >@Override</xsl:if>
                 <xsl:if test="parameters[1] = parameters[2]" >
-                //public boolean process<xsl:value-of select="$callEnding" />GD<xsl:if test="string-length($callEnding) = 0" >2</xsl:if>(final GDGameLayer <xsl:value-of select="parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="parameters[2]" />2GDGameLayer) throws Exception {
+                //(final GDGameLayer <xsl:value-of select="parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="parameters[2]" />2GDGameLayer)
                 public boolean process<xsl:value-of select="$callEnding" />GD<xsl:if test="string-length($callEnding) = 0" >2</xsl:if>(final GDGameLayer[] gameLayerArray) throws Exception {
                 </xsl:if>
                 <xsl:if test="parameters[1] != parameters[2]" >
-                //public boolean process<xsl:value-of select="$callEnding" />GD<xsl:if test="string-length($callEnding) = 0" >2</xsl:if>(final GDGameLayer <xsl:value-of select="parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="parameters[2]" />GDGameLayer) throws Exception {
+                //(final GDGameLayer <xsl:value-of select="parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="parameters[2]" />GDGameLayer)
                 public boolean process<xsl:value-of select="$callEnding" />GD<xsl:if test="string-length($callEnding) = 0" >2</xsl:if>(final GDGameLayer[] gameLayerArray) throws Exception {
                 </xsl:if>
                    //super.processGDStats(<xsl:value-of select="parameters[1]" />GDGameLayer);
@@ -287,7 +287,7 @@ Created By: Travis Berthelot
                 //From parent Distance - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 <xsl:if test="string-length($callEnding) != 0" >@Override</xsl:if>
-                //public boolean process<xsl:value-of select="$callEnding" />GD<xsl:if test="string-length($callEnding) = 0" >2</xsl:if>(final GDGameLayer <xsl:value-of select="parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="parameters[2]" />GDGameLayer) throws Exception {
+                //(final GDGameLayer <xsl:value-of select="parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="parameters[2]" />GDGameLayer)
                 public boolean process<xsl:value-of select="$callEnding" />GD<xsl:if test="string-length($callEnding) = 0" >2</xsl:if>(final GDGameLayer[] gameLayerArray) throws Exception {
                 
                     //super.processGDStats(<xsl:value-of select="parameters[1]" />GDGameLayer);
@@ -310,7 +310,7 @@ Created By: Travis Berthelot
                 //From parent LinkedObjects::PickObjectsLinkedTo - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 <xsl:if test="string-length($callEnding) != 0" >@Override</xsl:if>
-                //public boolean process<xsl:value-of select="$callEnding" />GD<xsl:if test="string-length($callEnding) = 0" >2</xsl:if>(final GDGameLayer <xsl:value-of select="parameters[2]" />GDGameLayer, final GDGameLayer <xsl:value-of select="parameters[3]" />GDGameLayer) throws Exception {
+                //(final GDGameLayer <xsl:value-of select="parameters[2]" />GDGameLayer, final GDGameLayer <xsl:value-of select="parameters[3]" />GDGameLayer)
                 public boolean process<xsl:value-of select="$callEnding" />GD<xsl:if test="string-length($callEnding) = 0" >2</xsl:if>(final GDGameLayer[] gameLayerArray) throws Exception {
 
                     //super.processGDStats(<xsl:value-of select="parameters[2]" />GDGameLayer);

@@ -435,14 +435,6 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                         </xsl:if>                                                
                         <xsl:if test="not(contains($fourthParam, 'Variable'))" >
-
-                        <xsl:if test="string-length($fourthParamBeforePeriod) > 0" >
-                            //fourthParamBeforePeriod=<xsl:value-of select="$fourthParamBeforePeriod" /> - We will get the first and hopefully only GameLayer
-                            <xsl:variable name="gameLayerName" ><xsl:value-of select="$fourthParamBeforePeriod" /></xsl:variable>
-                            <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gameLayerName" /></xsl:variable>
-                            <xsl:if test="$firstOrBeforeFourthParam = $fourthParamBeforePeriod and contains($hasSiblingActionWithObjectsGroupsOrObject, 'found')" >//</xsl:if>final GDGameLayer <xsl:value-of select="$gameLayerName" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(0);
-                            final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$gameLayerName" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject;
-                        </xsl:if>
                             
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 1" >

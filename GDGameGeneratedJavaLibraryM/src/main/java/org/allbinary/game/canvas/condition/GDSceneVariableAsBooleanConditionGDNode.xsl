@@ -50,34 +50,6 @@ Created By: Travis Berthelot
 
                             if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" /></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() != 'True' or string-length(text()) = 0" >== false</xsl:if></xsl:if></xsl:for-each>) {
 
-                            <xsl:for-each select=".." >
-
-                                <xsl:call-template name="createGDObjectActions" >
-                                    <xsl:with-param name="layoutIndex" >
-                                        <xsl:value-of select="$layoutIndex" />
-                                    </xsl:with-param>
-                                    <xsl:with-param name="objectsGroupsAsString" >
-                                        <xsl:value-of select="$objectsGroupsAsString" />
-                                    </xsl:with-param>
-                                    <xsl:with-param name="objectsAsString" >
-                                        <xsl:value-of select="$objectsAsString" />
-                                    </xsl:with-param>
-                                    <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //sceneVariableConditionGDNode</xsl:with-param>
-                                </xsl:call-template>
-                                        
-                        <xsl:for-each select="events" >
-                            <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
-                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                            </xsl:if>
-                            <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
-                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                            //Event - //BuiltinCommonInstructions::Link - call - //SceneVariableAsBoolean
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process();
-                            </xsl:if>
-                        </xsl:for-each>
-
-                        </xsl:for-each>
                                 return true;
                             } else {
                                 //logUtil.putF(commonStrings.START, this, "Else: <xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>");

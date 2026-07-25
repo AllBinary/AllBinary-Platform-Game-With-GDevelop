@@ -276,7 +276,6 @@ Created By: Travis Berthelot
                         <xsl:with-param name="callEnding" >Create</xsl:with-param>
                     </xsl:call-template>
                     <xsl:if test="not(contains($hasKnownParamsFromParent, 'found'))" >
-                    //public boolean processCreateGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
                       public boolean processCreateGD(final GDGameLayer[] gameLayerArray) throws Exception {
 
                     </xsl:if>
