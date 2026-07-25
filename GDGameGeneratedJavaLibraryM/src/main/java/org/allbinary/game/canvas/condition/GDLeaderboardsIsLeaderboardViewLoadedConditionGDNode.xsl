@@ -104,7 +104,7 @@ Created By: Travis Berthelot
                             } catch(Exception e) {
                                 logUtil.put(commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                             }
-                            return false                   
+                            return false;
                         }
 
                         </xsl:if>
