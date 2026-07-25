@@ -1036,7 +1036,7 @@ Created By: Travis Berthelot
                                     <xsl:variable name="offset" ><xsl:if test="contains($offsetRequestForOtherParam, 'found') and contains($offsetRequestForOtherParam, name)" ><xsl:value-of select="count(//objectsGroups) + count(//objects)" /></xsl:if></xsl:variable>
                                     final BasicArrayList <xsl:value-of select="name" />GDGameLayerList<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (BasicArrayList) globals.<xsl:value-of select="name" />GDGameLayerListOfList.get(0);
                                     
-                                    if(<xsl:value-of select="name" />GDGameLayerList.size() == 0) {
+                                    if(<xsl:value-of select="name" />GDGameLayerList<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if>.size() == 0) {
                                         logUtil.putF("<xsl:value-of select="name" /> List was 0 so returning", this, commonStrings.PROCESS);
                                         return false;
                                     }
@@ -1080,7 +1080,7 @@ Created By: Travis Berthelot
                                     <xsl:variable name="offset" ><xsl:if test="contains($offsetRequestForOtherParam, 'found') and contains($offsetRequestForOtherParam, name)" ><xsl:value-of select="count(//objectsGroups) + count(//objects)" /></xsl:if></xsl:variable>                                    
                                     final BasicArrayList <xsl:value-of select="name" />GDGameLayerList<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if> = (BasicArrayList) gameGlobals.<xsl:value-of select="name" />GDGameLayerListOfList.get(0);
 
-                                    if(<xsl:value-of select="name" />GDGameLayerList.size() == 0) {
+                                    if(<xsl:value-of select="name" />GDGameLayerList<xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if>.size() == 0) {
                                         logUtil.putF("<xsl:value-of select="name" /> List was 0 so returning", this, commonStrings.PROCESS);
                                         return false;
                                     }
