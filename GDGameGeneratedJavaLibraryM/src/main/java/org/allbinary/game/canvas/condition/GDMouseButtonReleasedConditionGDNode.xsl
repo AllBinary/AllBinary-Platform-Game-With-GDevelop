@@ -68,6 +68,7 @@ Created By: Travis Berthelot
                             <xsl:if test="not(contains($hasAnotherCondition, 'found'))" >
                                 
                                 <xsl:call-template name="actionsProcessing" >
+                                    <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                                     <xsl:with-param name="methodCall" >process()</xsl:with-param>
                                 </xsl:call-template>
 
@@ -87,15 +88,6 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                             
                             return true;
-                        }
-
-                        @Override
-                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
-                            super.processGDStats(gameLayer);
-                        
-                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
-                            
-                            return this.process();
                         }
 
                     @Override      

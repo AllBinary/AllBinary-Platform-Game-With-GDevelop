@@ -28,8 +28,8 @@ Created By: Travis Berthelot
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
 
-                    <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                    <xsl:variable name="hasPriorUndefinedVariable" ><xsl:if test="//actions[type/value/text() = 'ModVarScene' and number(substring(generate-id(), 2) - 65536) &lt; $id]/parameters[1]/text() = parameters[1]/text()">found</xsl:if></xsl:variable>
+                    <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                    <xsl:variable name="hasPriorUndefinedVariable" ><xsl:if test="//actions[type/value/text() = 'ModVarScene' and number(substring(generate-id(), 2) - 65536) &lt; $nodeId]/parameters[1]/text() = parameters[1]/text()">found</xsl:if></xsl:variable>
 <!--                    //hasPriorUndefinedVariable=<xsl:value-of select="$hasPriorUndefinedVariable" />-->
                     <xsl:if test="not(contains($hasPriorUndefinedVariable, 'found'))" >
                     //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" /> totalRecursions=<xsl:value-of select="$totalRecursions" />
@@ -70,8 +70,8 @@ Created By: Travis Berthelot
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
 
-                    <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                    <xsl:variable name="hasPriorUndefinedVariable" ><xsl:if test="//actions[type/value/text() = 'SetNumberVariable' and number(substring(generate-id(), 2) - 65536) &lt; $id]/parameters[1]/text() = parameters[1]/text()">found</xsl:if></xsl:variable>
+                    <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                    <xsl:variable name="hasPriorUndefinedVariable" ><xsl:if test="//actions[type/value/text() = 'SetNumberVariable' and number(substring(generate-id(), 2) - 65536) &lt; $nodeId]/parameters[1]/text() = parameters[1]/text()">found</xsl:if></xsl:variable>
 <!--                    //hasPriorUndefinedVariable=<xsl:value-of select="$hasPriorUndefinedVariable" />-->
                     <xsl:if test="not(contains($hasPriorUndefinedVariable, 'found'))" >
                     //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" /> totalRecursions=<xsl:value-of select="$totalRecursions" />

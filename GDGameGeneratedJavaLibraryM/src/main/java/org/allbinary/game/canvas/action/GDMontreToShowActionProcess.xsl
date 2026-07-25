@@ -112,19 +112,6 @@ Created By: Travis Berthelot
                     }
 
                     @Override
-                    public boolean processGD(final GDGameLayer gdGameLayer, final GDGameLayer gameLayer2) throws Exception {
-                    
-                        super.processGDStats(gdGameLayer);
-                    
-                        //logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-                        
-                        gdGameLayer.setVisible(true);
-                        
-                        return true;
-    
-                    }
-
-                    @Override
                     public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
                         super.processGDStats(gameLayerArray);
                         try {

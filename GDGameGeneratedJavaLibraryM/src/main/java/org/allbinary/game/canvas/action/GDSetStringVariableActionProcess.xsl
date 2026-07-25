@@ -83,29 +83,20 @@ Created By: Travis Berthelot
                     }
 
                     @Override
-                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
-                        super.processGDStats(gameLayer);
+                    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                        super.processGDStats(gameLayerArray);
 
                         try {
                             //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
-                            this.process();
+                        <xsl:if test="$param2 = '='" ><xsl:value-of select="$param1" /> = <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$param3" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>;</xsl:if>
+                        <xsl:if test="$param2 = '+'" ><xsl:value-of select="$param1" /> = new StringMaker().append(<xsl:value-of select="$param1" />).append(<xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$param3" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>).toString();</xsl:if>
+
                         } catch(Exception e) {
                             logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                         }
                         return true;                   
-                    }
-
-                    @Override
-                    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
-                        super.processGDStats(gameLayerArray);
-
-                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-
-                        <xsl:if test="$param2 = '='" ><xsl:value-of select="$param1" /> = <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$param3" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>;</xsl:if>
-                        <xsl:if test="$param2 = '+'" ><xsl:value-of select="$param1" /> = new StringMaker().append(<xsl:value-of select="$param1" />).append(<xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$param3" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>).toString();</xsl:if>
-                                            
-                        return true;
+                        
                     }
 
                         </xsl:if>

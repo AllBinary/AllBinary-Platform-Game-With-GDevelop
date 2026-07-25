@@ -7,17 +7,17 @@
         <xsl:param name="totalRecursion" />
 
             <xsl:variable name="eventIndex" ><xsl:value-of select="position()" /></xsl:variable>
-            <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-            <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-            <xsl:variable name="externalLayoutCountBefore" ><xsl:value-of select="count(//externalLayouts[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-            <xsl:variable name="eventCountBefore" ><xsl:value-of select="count(//events[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-            <xsl:variable name="conditionsCountBefore" ><xsl:value-of select="count(//conditions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-            <xsl:variable name="subInstructionsCountBefore" ><xsl:value-of select="count(//subInstructions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-            <xsl:variable name="whileConditionsCountBefore" ><xsl:value-of select="count(//whileConditions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-            <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-            <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
+            <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+            <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+            <xsl:variable name="externalLayoutCountBefore" ><xsl:value-of select="count(//externalLayouts[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+            <xsl:variable name="eventCountBefore" ><xsl:value-of select="count(//events[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+            <xsl:variable name="conditionsCountBefore" ><xsl:value-of select="count(//conditions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+            <xsl:variable name="subInstructionsCountBefore" ><xsl:value-of select="count(//subInstructions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+            <xsl:variable name="whileConditionsCountBefore" ><xsl:value-of select="count(//whileConditions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+            <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+            <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
             //Count - //Parent of Event - //externalEventCountBefore - <xsl:value-of select="$externalEventCountBefore" /> //externalLayouts - <xsl:value-of select="$externalLayoutCountBefore" /> //events - <xsl:value-of select="$eventCountBefore" /> //conditions = <xsl:value-of select="$conditionsCountBefore" /> //actions = <xsl:value-of select="$actionsCountBefore" /> //actionParameters = <xsl:value-of select="$actionParametersCountBefore" />
-            public final int NODE_<xsl:value-of select="$id" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
+            public final int NODE_<xsl:value-of select="$nodeId" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
 
             <xsl:call-template name="generateIndexToNodeIdMapping" >
                 <xsl:with-param name="totalRecursion" >
@@ -32,96 +32,96 @@
                 
         <xsl:for-each select="events" >
         
-            <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-            <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-            <xsl:variable name="externalLayoutCountBefore" ><xsl:value-of select="count(//externalLayouts[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-            <xsl:variable name="eventCountBefore" ><xsl:value-of select="count(//events[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-            <xsl:variable name="conditionsCountBefore" ><xsl:value-of select="count(//conditions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-            <xsl:variable name="subInstructionsCountBefore" ><xsl:value-of select="count(//subInstructions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-            <xsl:variable name="whileConditionsCountBefore" ><xsl:value-of select="count(//whileConditions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-            <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-            <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
+            <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+            <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+            <xsl:variable name="externalLayoutCountBefore" ><xsl:value-of select="count(//externalLayouts[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+            <xsl:variable name="eventCountBefore" ><xsl:value-of select="count(//events[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+            <xsl:variable name="conditionsCountBefore" ><xsl:value-of select="count(//conditions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+            <xsl:variable name="subInstructionsCountBefore" ><xsl:value-of select="count(//subInstructions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+            <xsl:variable name="whileConditionsCountBefore" ><xsl:value-of select="count(//whileConditions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+            <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+            <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
             //Count - //Event - //Parents of Event - //externalEventCountBefore - <xsl:value-of select="$externalEventCountBefore" /> //externalLayouts - <xsl:value-of select="$externalLayoutCountBefore" /> //events - <xsl:value-of select="$eventCountBefore" /> //conditions = <xsl:value-of select="$conditionsCountBefore" /> //actions = <xsl:value-of select="$actionsCountBefore" /> //actionParameters = <xsl:value-of select="$actionParametersCountBefore" />
-            public final int NODE_<xsl:value-of select="$id" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
+            public final int NODE_<xsl:value-of select="$nodeId" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
 
             <xsl:for-each select="whileConditions" >
-                <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="externalLayoutCountBefore" ><xsl:value-of select="count(//externalLayouts[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="eventCountBefore" ><xsl:value-of select="count(//events[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="conditionsCountBefore" ><xsl:value-of select="count(//conditions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="subInstructionsCountBefore" ><xsl:value-of select="count(//subInstructions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="whileConditionsCountBefore" ><xsl:value-of select="count(//whileConditions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
+                <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="externalLayoutCountBefore" ><xsl:value-of select="count(//externalLayouts[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="eventCountBefore" ><xsl:value-of select="count(//events[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="conditionsCountBefore" ><xsl:value-of select="count(//conditions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="subInstructionsCountBefore" ><xsl:value-of select="count(//subInstructions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="whileConditionsCountBefore" ><xsl:value-of select="count(//whileConditions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
                 //Count - //whileConditions - //Condition - //Parents of Event - //externalEventCountBefore - <xsl:value-of select="$externalEventCountBefore" /> //externalLayouts - <xsl:value-of select="$externalLayoutCountBefore" /> //events = <xsl:value-of select="$eventCountBefore" /> //conditions = <xsl:value-of select="$conditionsCountBefore" /> //actions = <xsl:value-of select="$actionsCountBefore" /> //actionParameters = <xsl:value-of select="$actionParametersCountBefore" />
-                public final int NODE_<xsl:value-of select="$id" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
+                public final int NODE_<xsl:value-of select="$nodeId" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
                 <xsl:for-each select="subInstructions" >
-                    <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                    <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                    <xsl:variable name="externalLayoutCountBefore" ><xsl:value-of select="count(//externalLayouts[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                    <xsl:variable name="eventCountBefore" ><xsl:value-of select="count(//events[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                    <xsl:variable name="conditionsCountBefore" ><xsl:value-of select="count(//conditions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                    <xsl:variable name="subInstructionsCountBefore" ><xsl:value-of select="count(//subInstructions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                    <xsl:variable name="whileConditionsCountBefore" ><xsl:value-of select="count(//whileConditions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                    <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                    <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
+                    <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                    <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                    <xsl:variable name="externalLayoutCountBefore" ><xsl:value-of select="count(//externalLayouts[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                    <xsl:variable name="eventCountBefore" ><xsl:value-of select="count(//events[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                    <xsl:variable name="conditionsCountBefore" ><xsl:value-of select="count(//conditions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                    <xsl:variable name="subInstructionsCountBefore" ><xsl:value-of select="count(//subInstructions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                    <xsl:variable name="whileConditionsCountBefore" ><xsl:value-of select="count(//whileConditions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                    <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                    <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
                     //Count - //subInstructions - //Condition - //Parents of Event - //externalEventCountBefore - <xsl:value-of select="$externalEventCountBefore" /> //externalLayouts - <xsl:value-of select="$externalLayoutCountBefore" /> //events = <xsl:value-of select="$eventCountBefore" /> //conditions = <xsl:value-of select="$conditionsCountBefore" /> //actions = <xsl:value-of select="$actionsCountBefore" /> //actionParameters = <xsl:value-of select="$actionParametersCountBefore" />
-                    public final int NODE_<xsl:value-of select="$id" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
+                    public final int NODE_<xsl:value-of select="$nodeId" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
                 </xsl:for-each>
             </xsl:for-each>
                         
             <xsl:for-each select="conditions" >
-                <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="externalLayoutCountBefore" ><xsl:value-of select="count(//externalLayouts[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="eventCountBefore" ><xsl:value-of select="count(//events[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="conditionsCountBefore" ><xsl:value-of select="count(//conditions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="subInstructionsCountBefore" ><xsl:value-of select="count(//subInstructions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="whileConditionsCountBefore" ><xsl:value-of select="count(//whileConditions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
+                <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="externalLayoutCountBefore" ><xsl:value-of select="count(//externalLayouts[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="eventCountBefore" ><xsl:value-of select="count(//events[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="conditionsCountBefore" ><xsl:value-of select="count(//conditions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="subInstructionsCountBefore" ><xsl:value-of select="count(//subInstructions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="whileConditionsCountBefore" ><xsl:value-of select="count(//whileConditions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
                 //Count - //Condition - //Parents of Event - //externalEventCountBefore - <xsl:value-of select="$externalEventCountBefore" /> //externalLayouts - <xsl:value-of select="$externalLayoutCountBefore" /> //events = <xsl:value-of select="$eventCountBefore" /> //conditions = <xsl:value-of select="$conditionsCountBefore" /> //actions = <xsl:value-of select="$actionsCountBefore" /> //actionParameters = <xsl:value-of select="$actionParametersCountBefore" />
-                public final int NODE_<xsl:value-of select="$id" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
+                public final int NODE_<xsl:value-of select="$nodeId" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
                 <xsl:for-each select="subInstructions" >
-                    <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                    <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                    <xsl:variable name="externalLayoutCountBefore" ><xsl:value-of select="count(//externalLayouts[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                    <xsl:variable name="eventCountBefore" ><xsl:value-of select="count(//events[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                    <xsl:variable name="conditionsCountBefore" ><xsl:value-of select="count(//conditions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                    <xsl:variable name="subInstructionsCountBefore" ><xsl:value-of select="count(//subInstructions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                    <xsl:variable name="whileConditionsCountBefore" ><xsl:value-of select="count(//whileConditions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                    <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                    <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
+                    <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                    <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                    <xsl:variable name="externalLayoutCountBefore" ><xsl:value-of select="count(//externalLayouts[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                    <xsl:variable name="eventCountBefore" ><xsl:value-of select="count(//events[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                    <xsl:variable name="conditionsCountBefore" ><xsl:value-of select="count(//conditions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                    <xsl:variable name="subInstructionsCountBefore" ><xsl:value-of select="count(//subInstructions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                    <xsl:variable name="whileConditionsCountBefore" ><xsl:value-of select="count(//whileConditions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                    <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                    <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
                     //Count - //subInstructions - //Condition - //Parents of Event - //externalEventCountBefore - <xsl:value-of select="$externalEventCountBefore" /> //externalLayouts - <xsl:value-of select="$externalLayoutCountBefore" /> //events = <xsl:value-of select="$eventCountBefore" /> //conditions = <xsl:value-of select="$conditionsCountBefore" /> //actions = <xsl:value-of select="$actionsCountBefore" /> //actionParameters = <xsl:value-of select="$actionParametersCountBefore" />
-                    public final int NODE_<xsl:value-of select="$id" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
+                    public final int NODE_<xsl:value-of select="$nodeId" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
                 </xsl:for-each>
             </xsl:for-each>
 
             <xsl:for-each select="actions" >
-                <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="externalLayoutCountBefore" ><xsl:value-of select="count(//externalLayouts[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="eventCountBefore" ><xsl:value-of select="count(//events[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="conditionsCountBefore" ><xsl:value-of select="count(//conditions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="subInstructionsCountBefore" ><xsl:value-of select="count(//subInstructions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="whileConditionsCountBefore" ><xsl:value-of select="count(//whileConditions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
+                <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="externalLayoutCountBefore" ><xsl:value-of select="count(//externalLayouts[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="eventCountBefore" ><xsl:value-of select="count(//events[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="conditionsCountBefore" ><xsl:value-of select="count(//conditions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="subInstructionsCountBefore" ><xsl:value-of select="count(//subInstructions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="whileConditionsCountBefore" ><xsl:value-of select="count(//whileConditions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
                 //Count - //Action - //Parents of Event - //externalEventCountBefore - <xsl:value-of select="$externalEventCountBefore" /> //externalLayouts - <xsl:value-of select="$externalLayoutCountBefore" /> //events = <xsl:value-of select="$eventCountBefore" /> //conditions = <xsl:value-of select="$conditionsCountBefore" /> //actions = <xsl:value-of select="$actionsCountBefore" /> //actionParameters = <xsl:value-of select="$actionParametersCountBefore" />
-                public final int NODE_<xsl:value-of select="$id" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
+                public final int NODE_<xsl:value-of select="$nodeId" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
                 <xsl:for-each select="parameters" >
-                <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="externalLayoutCountBefore" ><xsl:value-of select="count(//externalLayouts[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="eventCountBefore" ><xsl:value-of select="count(//events[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="conditionsCountBefore" ><xsl:value-of select="count(//conditions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="subInstructionsCountBefore" ><xsl:value-of select="count(//subInstructions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="whileConditionsCountBefore" ><xsl:value-of select="count(//whileConditions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
-                <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
+                <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="externalLayoutCountBefore" ><xsl:value-of select="count(//externalLayouts[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="eventCountBefore" ><xsl:value-of select="count(//events[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="conditionsCountBefore" ><xsl:value-of select="count(//conditions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="subInstructionsCountBefore" ><xsl:value-of select="count(//subInstructions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="whileConditionsCountBefore" ><xsl:value-of select="count(//whileConditions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
+                <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
                 //Count - //Action Parameter - //Parents of Event - //externalEventCountBefore - <xsl:value-of select="$externalEventCountBefore" /> //externalLayouts - <xsl:value-of select="$externalLayoutCountBefore" /> //events = <xsl:value-of select="$eventCountBefore" /> //conditions = <xsl:value-of select="$conditionsCountBefore" /> //actions = <xsl:value-of select="$actionsCountBefore" /> //actionParameters = <xsl:value-of select="$actionParametersCountBefore" />
-                final int PARAM_NODE_<xsl:value-of select="$id" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
+                final int PARAM_NODE_<xsl:value-of select="$nodeId" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
                 </xsl:for-each>
             </xsl:for-each>
 
@@ -225,6 +225,7 @@
 
     <xsl:template name="actionIdsGDObject" >
         <xsl:param name="totalRecursions" />
+        <xsl:param name="layoutIndex" />
         <xsl:param name="gdObjectName" />
         <xsl:param name="gdGameLayer" />
 
@@ -249,7 +250,7 @@
         <xsl:for-each select="actions" >
 
             <xsl:variable name="text" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-            <xsl:variable name="id" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="id" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$text = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$text = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$text = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$text = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
 
             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
@@ -270,16 +271,16 @@
                     <xsl:if test="$hasCreateOrCreateByName &lt; number(substring(generate-id(), 2) - 65536)" >
             //Using specific param2 - <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
             //Using param that is not from the first 2 GameLayers - get
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdGameLayer" />, gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />]);
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameGlobals.tempGameLayerArray);
                     </xsl:if>
                     <xsl:if test="not($hasCreateOrCreateByName &lt; number(substring(generate-id(), 2) - 65536))" >
             //Using newly created layer as param2
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdGameLayer" />, gameGlobals.tempGameLayerArray[1]);
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameGlobals.tempGameLayerArray);
                     </xsl:if>
                 </xsl:if>
                 <xsl:if test="not(string-length($hasCreateOrCreateByName) > 0)" >
             //Using null param
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdGameLayer" />, null);
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameGlobals.tempGameLayerArray);
                 </xsl:if>
             <!-- 
             if(globals.<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) { 
@@ -307,6 +308,7 @@
 
     <xsl:template name="delete">
         <xsl:param name="totalRecursions" />
+        <xsl:param name="layoutIndex" />
         <xsl:param name="gdGameLayer" />
 
         //actionIdsGDObject <xsl:value-of select="$gdGameLayer" />
@@ -322,12 +324,9 @@
 
         <xsl:for-each select="events" >
             <xsl:call-template name="actionIdsGDObject" >
-                <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="number($totalRecursions) + 1" />
-                </xsl:with-param>
-                <xsl:with-param name="gdGameLayer" >
-                    <xsl:value-of select="$gdGameLayer" />
-                </xsl:with-param>
+                <xsl:with-param name="totalRecursions" ><xsl:value-of select="number($totalRecursions) + 1" /></xsl:with-param>
+                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                <xsl:with-param name="gdGameLayer" ><xsl:value-of select="$gdGameLayer" /></xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
 

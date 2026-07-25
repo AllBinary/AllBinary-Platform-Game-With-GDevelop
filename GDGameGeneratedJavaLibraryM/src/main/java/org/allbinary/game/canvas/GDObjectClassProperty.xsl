@@ -31,8 +31,8 @@ Created By: Travis Berthelot
                 <xsl:if test="$layoutName = name" >
                     <xsl:for-each select="instances" >
                         <xsl:if test="name = $name" >
-                        <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                        <xsl:variable name="hasPriorInstanceWithSameName" ><xsl:if test="../instances[name = $name and number(substring(generate-id(), 2) - 65536) &lt; $id]" >found</xsl:if></xsl:variable>
+                        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                        <xsl:variable name="hasPriorInstanceWithSameName" ><xsl:if test="../instances[name = $name and number(substring(generate-id(), 2) - 65536) &lt; $nodeId]" >found</xsl:if></xsl:variable>
                             <xsl:if test="not(contains($hasPriorInstanceWithSameName, 'found'))" >
             //Global reinit instance
             size = globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.size();
@@ -84,8 +84,8 @@ Created By: Travis Berthelot
                 <xsl:if test="$layoutName = name" >
                     <xsl:for-each select="instances" >
                         <xsl:if test="name = $name" >
-                        <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                        <xsl:variable name="hasPriorInstanceWithSameName" ><xsl:if test="../instances[name = $name and number(substring(generate-id(), 2) - 65536) &lt; $id]" >found</xsl:if></xsl:variable>
+                        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                        <xsl:variable name="hasPriorInstanceWithSameName" ><xsl:if test="../instances[name = $name and number(substring(generate-id(), 2) - 65536) &lt; $nodeId]" >found</xsl:if></xsl:variable>
                             <xsl:if test="not(contains($hasPriorInstanceWithSameName, 'found'))" >
             //Global specific objects
             public final BasicArrayList <xsl:value-of select="name" />GDInstanceGDGameLayerList = new BasicArrayList(this.nullUtil.NULL_OBJECT_ARRAY);

@@ -91,18 +91,22 @@ Created By: Travis Berthelot
                         }
 
                         @Override
-                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
-                            super.processGDStats(gameLayer);
+                        public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                            super.processGDStats(gameLayerArray);
 
-                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
+                            try {
+                                //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
 
-                            if(globals.highscoreSubmissionComplete) {
+                                if(globals.highscoreSubmissionComplete) {
+                                    return true;
+                                }
 
-                            return true;
-                           }
-                                                        
-                           return false;
+                            } catch(Exception e) {
+                                logUtil.put(commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
+                            }
+                            return false                   
                         }
+
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >

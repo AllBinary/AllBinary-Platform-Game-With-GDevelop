@@ -103,28 +103,6 @@ Created By: Travis Berthelot
                         
                         return this.process();
                     }
-                    
-                    public boolean processGD(final GDGameLayer gdGameLayer, final GDGameLayer gdGameLayer2) throws Exception {
-                    
-                        super.processGDStats(gdGameLayer);
-
-                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);                        
-
-                        <xsl:if test="string-length($fourthParamBeforePeriod) > 0" >
-                            //fourthParamBeforePeriod=<xsl:value-of select="$fourthParamBeforePeriod" /> - We will get the first and hopefully only GameLayer
-                            <xsl:variable name="gameLayerName" ><xsl:value-of select="$fourthParamBeforePeriod" /></xsl:variable>
-                            <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gameLayerName" /></xsl:variable>
-                            final GDGameLayer <xsl:value-of select="$gameLayerName" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(0);
-                            final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$gameLayerName" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject;
-                        </xsl:if>
-                                                
-                            ((PathFindingBehavior) gdGameLayer.gdObject.getBehavior(gdBehaviorUtil.PATHFINDING_BEHAVIOR_INDEX)).setTarget(gdGameLayer, 
-                                <xsl:if test="string-length($fourthParamBeforePeriod) > 0" ><xsl:variable name="gameLayerName" ><xsl:value-of select="$fourthParamBeforePeriod" /></xsl:variable><xsl:value-of select="$gameLayerName" />GDGameLayer</xsl:if>,
-                                <xsl:value-of select="$param4" />, <xsl:value-of select="$param5" />);
-                            
-                        return true;
-
-                    }
 
                     @Override      
                     public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {

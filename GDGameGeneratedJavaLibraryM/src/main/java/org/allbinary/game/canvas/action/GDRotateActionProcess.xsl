@@ -42,7 +42,7 @@ Created By: Travis Berthelot
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                 gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index);
 
-                                this.processGD(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)), null);
+                                this.processGPaint(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)).gdObject, null);
   
                                 //updateGDObject - 5
                                 gameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
@@ -77,7 +77,6 @@ Created By: Travis Berthelot
                         }
 
                         //Rotate
-                        @Override
                         public boolean processG(final GDObject <xsl:value-of select="$name" />, final BasicArrayList gdGameLayerList, final int gdObjectIndex) {
 
                             try {
@@ -100,15 +99,6 @@ Created By: Travis Berthelot
                         return this.process();
                     }
                                 
-                        @Override
-                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
-
-                                super.processGDStats(gameLayer);
-                        
-                                return this.processGPaint(gameLayer.gdObject, null);
-
-                        }
-
                     @Override      
                     public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
                         super.processGDStats(gameLayerArray);

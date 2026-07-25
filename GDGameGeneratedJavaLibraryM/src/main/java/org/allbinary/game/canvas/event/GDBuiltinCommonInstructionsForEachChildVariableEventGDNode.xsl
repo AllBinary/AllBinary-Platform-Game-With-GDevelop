@@ -101,6 +101,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     
                         <xsl:call-template name="actionsProcessing" >
+                            <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                             <xsl:with-param name="methodCall" >process()</xsl:with-param>
                         </xsl:call-template>                                        
                         
@@ -167,6 +168,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     
                         <xsl:call-template name="actionsProcessing" >
+                            <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                             <xsl:with-param name="methodCall" >process()</xsl:with-param>
                         </xsl:call-template>
                         <xsl:for-each select="events" >
@@ -208,6 +210,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     
                         <xsl:call-template name="actionsProcessing" >
+                            <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                             <xsl:with-param name="methodCall" >process()</xsl:with-param>
                         </xsl:call-template>
                         <xsl:for-each select="events" >
@@ -245,21 +248,17 @@ Created By: Travis Berthelot
                 }
 
                 @Override
-                public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
-                    super.processGDStats(gameLayer);
-                        
-                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
-                            
-                    return this.process();
-                }
-                
-                @Override
                 public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
                     super.processGDStats(gameLayerArray);
-                        
-                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
-                            
-                    return this.process();
+
+                    try {
+                        //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
+
+                        return this.process();
+                    } catch(Exception e) {
+                        logUtil.put(commonStrings.EXCEPTION_LABEL + EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
+                    }
+                    return true;                   
                 }
 
                 <xsl:if test="contains(disabled, 'true')" >

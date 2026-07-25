@@ -66,7 +66,6 @@ Created By: Travis Berthelot
                         return this.process();
                     }
                         
-                        @Override
                         public boolean processG(final GDObject gdObject, final BasicArrayList gdGameLayerList, final int gdObjectIndex) {
 
                             try {
@@ -85,18 +84,6 @@ Created By: Travis Berthelot
                             }
 
                             return true;
-                        }
-
-                        @Override
-                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
-
-                                super.processGDStats(gameLayer);
-                        
-                                final boolean result = this.processGPaint(gameLayer.gdObject, null);
-                                
-                                gameLayer.updatePosition();
-                                
-                                return result;
                         }
 
                         @Override

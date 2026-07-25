@@ -19,7 +19,6 @@ import org.allbinary.input.motion.gesture.MotionGestureInput;
 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.thread.NullRunnable;
-import org.allbinary.util.BasicArrayList;
 
 /**
  *
@@ -103,10 +102,6 @@ public class GDNode
         this.nodeStatsFactory.push(5, this.name);
     }
 
-    public boolean processU(final int index) throws Exception {
-        return false;
-    }
-
     public boolean process(final int index) throws Exception {
         return false;
     }
@@ -144,7 +139,7 @@ public class GDNode
         return true;
     }
     
-    public boolean processCreateGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
+    public boolean processCreateGD(final GDGameLayer[] gameLayerArray) throws Exception {
         if(true) throw new RuntimeException();
         return true;
     }
@@ -161,25 +156,12 @@ public class GDNode
         this.nodeStatsFactory.push(11, this.name);
     }
 
-    public boolean processG(final GDObject gdObject, final BasicArrayList gdGameLayerList, final int gdObjectIndex) throws Exception {
-        return false;
-    }
-    
     public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2) {
         return false;
     }
     
     protected void processGStats(final GDObject gdObject) {
         this.nodeStatsFactory.push(12, this.name);
-    }
-
-    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
-        this.processGDStats(gameLayer);
-        return false;
-    }
-
-    protected void processGDStats(final GDGameLayer gameLayer) {
-        this.nodeStatsFactory.push(13, this.name);
     }
 
     public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {

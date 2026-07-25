@@ -57,8 +57,8 @@ Created By: Travis Berthelot
                                 </xsl:for-each>
                             </xsl:variable>
 
-                            <xsl:variable name="id" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $name2" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $name2" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
-                            <xsl:variable name="id2" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
+                            <xsl:variable name="id" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$name2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$name2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$name2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$name2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
+                            <xsl:variable name="id2" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$name = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$name = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$name = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$name = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
 
                         //CollisionNP - //collisionNPConditionGDNode
                     <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>final GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(<xsl:value-of select="$nodeList" />) {
@@ -143,6 +143,11 @@ Created By: Travis Berthelot
                             //CollisionNP - <xsl:value-of select="$name" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
                             gameGlobals.tempGameLayerArray[0] = gameLayer2;
                             gameGlobals.tempGameLayerArray[1] = gameLayer;
+                            //id=<xsl:value-of select="$id" /> for <xsl:value-of select="$name2" />
+                            //id2=<xsl:value-of select="$id2" /> for <xsl:value-of select="$name" />
+                            gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = gameLayer2; //<xsl:value-of select="$name2" />GDGameLayer;
+                            gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + (count(//objectsGroups) + count(//objects))" />] = gameLayer; //<xsl:value-of select="$name" />GDGameLayer<xsl:value-of select="count(//objectsGroups) + count(//objects)" />;
+
                             //if(gameGlobals.tempGameLayerArray[1] != null) logUtil.put(gameGlobals.tempGameLayerArray[1].toString(), this, commonStrings.PROCESS);
 
                             //name=<xsl:value-of select="name()" />
@@ -247,6 +252,11 @@ Created By: Travis Berthelot
                             //CollisionNP - <xsl:value-of select="$name" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
                             gameGlobals.tempGameLayerArray[0] = gameLayer2;
                             gameGlobals.tempGameLayerArray[1] = gameLayer;
+                            //id=<xsl:value-of select="$id" /> for <xsl:value-of select="$name2" />
+                            //id2=<xsl:value-of select="$id2" /> for <xsl:value-of select="$name" />
+                            gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = gameLayer2; //<xsl:value-of select="$name2" />GDGameLayer;
+                            gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + (count(//objectsGroups) + count(//objects))" />] = gameLayer; //<xsl:value-of select="$name" />GDGameLayer<xsl:value-of select="count(//objectsGroups) + count(//objects)" />;
+
                             //if(gameGlobals.tempGameLayerArray[1] != null) logUtil.put(gameGlobals.tempGameLayerArray[1].toString(), this, commonStrings.PROCESS);
 
                             //name=<xsl:value-of select="name()" />
@@ -282,87 +292,13 @@ Created By: Travis Berthelot
                                 return this.process();
                             }
                             
-                            @Override
-                            public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2Unused) throws Exception {
-                    
-                                super.processGDStats(gameLayer);
-
-                                boolean result = false;
-                                //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
-                                
-                                //Validate types
-                                <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name2" /></xsl:variable>
-                                final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name2" /> = (<xsl:value-of select="$gdObjectFactory" />) gameLayer.gdObject;
-                                
-                                //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
-
-                            <xsl:if test="string-length($hasObjectGroup2) > 0" >
-                            //CollisionNP - objectsGroups - //<xsl:value-of select="$name2" />
-                            final int <xsl:value-of select="$name2" />Size2 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDGameLayerListOfList.size();
-                            for(int <xsl:value-of select="$name2" />Index2 = 0; <xsl:value-of select="$name2" />Index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$name2" />Size2; <xsl:value-of select="$name2" />Index2++) {
-                            //final BasicArrayList gdObjectList2 = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDObjectListOfList.get(<xsl:value-of select="$name2" />Index2));
-                            final BasicArrayList gdGameLayerList2 = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDGameLayerListOfList.get(<xsl:value-of select="$name2" />Index2));
-                            </xsl:if>
-                            <xsl:if test="string-length($hasObjectGroup2) = 0" >
-                            //CollisionNP - //<xsl:value-of select="$name2" />
-                            //final BasicArrayList gdObjectList2 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDObjectList;
-                            final BasicArrayList gdGameLayerList2 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDGameLayerList;
-                            </xsl:if>
-                                                            
-                    <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" >
-                    //final int <xsl:value-of select="text()" />Size = gdGameLayerList2.size();
-                        </xsl:if>
-                    </xsl:for-each>
-
-                    //for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />Size</xsl:if></xsl:for-each>; index2++) {
-                    for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList2.size(); index2++) {
-                    final int initialSize2 = gdGameLayerList2.size();
-                    <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" >
-                        final GDGameLayer gameLayer2 = (GDGameLayer) gdGameLayerList2.get(index2);
-                        </xsl:if>
-                    </xsl:for-each>
-
-                        if(<xsl:if test="$inverted = 'true'" >!</xsl:if>gameLayer2.getCollidableInferface().isCollision(gameLayer2, gameLayer)) {
-
-                            if(gameLayer2.isDestroyed()) {
-                               logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " GD Collision not allowed is already destroyed", this, commonStrings.PROCESS);
-                               return result;
-                            }
-                                        
-                            //CollisionNP - <xsl:value-of select="$name" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
-                            gameGlobals.tempGameLayerArray[0] = gameLayer;
-                            gameGlobals.tempGameLayerArray[1] = gameLayer2;
-                            //if(gameGlobals.tempGameLayerArray[1] != null) logUtil.put(gameGlobals.tempGameLayerArray[1].toString(), this, commonStrings.PROCESS);
-
-                            //name=<xsl:value-of select="name()" />
-        
-                            result = true;
-         
-                        }
-
-                        if(initialSize2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> gdGameLayerList2.size()) {
-                            index2--;
-                        }
-
-                    }
-
-                    <xsl:if test="string-length($hasObjectGroup2) > 0" >
-                    }
-                    </xsl:if>
-
-                                super.processStatsE();
-                        
-                                return result;
-
-                            }
-
                     @Override      
                     public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
-                        try {
 
                         boolean result = false;
+
+                        try {
+
                         //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
 
                         //Using Offset as Object/Group could be the same as the first param.
@@ -397,7 +333,7 @@ Created By: Travis Berthelot
                             logUtil.put(commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                         }
 
-                        return true;
+                        return result;
                     }
 
                         </xsl:if>

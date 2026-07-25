@@ -407,9 +407,9 @@ Created By: Travis Berthelot
                     return true;
                 }
 
-                @Override
-                public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2) throws Exception {
-                    super.processGDStats(gameLayer);
+                @Override      
+                public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                    super.processGDStats(gameLayerArray);
 
                     //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                     
