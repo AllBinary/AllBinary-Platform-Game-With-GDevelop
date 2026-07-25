@@ -348,7 +348,7 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="text()" />
                             </xsl:if>
                             <xsl:if test="substring-before(text(), '.') != ''" >
-                                (((GDGameLayer) <xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>GDGameLayer)).gdObject.<xsl:value-of select="substring-after(text(), '.')" />
+                                <xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="substring-after(text(), '.')" />
                             </xsl:if>
                             </xsl:if>
                         </xsl:if>
