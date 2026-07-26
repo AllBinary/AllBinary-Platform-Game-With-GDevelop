@@ -156,14 +156,6 @@ public class GDNode
         this.nodeStatsFactory.push(11, this.name);
     }
 
-    public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2) {
-        return false;
-    }
-    
-    protected void processGStats(final GDObject gdObject) {
-        this.nodeStatsFactory.push(12, this.name);
-    }
-
     public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
         this.processGDStats(gameLayerArray);
         return false;

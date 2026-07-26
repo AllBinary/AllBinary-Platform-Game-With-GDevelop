@@ -33,7 +33,6 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventPaint.xsl" />
         
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventOpen.xsl" />
@@ -207,19 +206,6 @@ Created By: Travis Berthelot
                         </xsl:with-param>
 
                     </xsl:call-template>
-
-                    //eventsPaint - START
-                    <!--
-                    <xsl:call-template name="eventsPaint" >
-                        <xsl:with-param name="totalRecursions" >
-                            <xsl:value-of select="0" />
-                        </xsl:with-param>
-                        <xsl:with-param name="instancesAsString" >
-                            <xsl:value-of select="$instancesAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-                    -->
-                    //eventsPaint - END
 
                     //instances - START
                     <xsl:for-each select="instances" >

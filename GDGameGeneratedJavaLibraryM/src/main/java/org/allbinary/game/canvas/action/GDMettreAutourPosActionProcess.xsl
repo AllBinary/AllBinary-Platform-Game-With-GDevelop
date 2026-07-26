@@ -26,6 +26,14 @@ Created By: Travis Berthelot
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
+        <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
+        <xsl:variable name="siblingOrParentOrList" ><xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+        <xsl:variable name="siblingOrParentOrList0" ><xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param><xsl:with-param name="includeList" >found</xsl:with-param></xsl:call-template></xsl:variable>
+        <xsl:variable name="siblingOrParentOrList2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$siblingOrParentOrList0" /></xsl:with-param><xsl:with-param name="find" ><xsl:text>final GDGameLayer </xsl:text><xsl:value-of select="$name" /><xsl:text>GDGameLayer = </xsl:text></xsl:with-param><xsl:with-param name="replacementText" >//final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = </xsl:with-param></xsl:call-template></xsl:variable>
+        <xsl:variable name="siblingOrParentOrList3" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$siblingOrParentOrList2" /></xsl:with-param><xsl:with-param name="find" ><xsl:text>if(</xsl:text><xsl:value-of select="$name" /><xsl:text>GDGameLayerList</xsl:text></xsl:with-param><xsl:with-param name="replacementText" >//if(<xsl:value-of select="$name" />GDGameLayerList</xsl:with-param></xsl:call-template></xsl:variable>
+        <xsl:variable name="siblingOrParentOrList4" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$siblingOrParentOrList3" /></xsl:with-param><xsl:with-param name="find" ><xsl:text>final GD</xsl:text>GlobalsGDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /><xsl:text> = (GDGlobalsGDObjectsFactory.</xsl:text><xsl:value-of select="$name" /><xsl:text></xsl:text>) <xsl:value-of select="$name" /><xsl:text></xsl:text>GDGameLayer.gdObject;</xsl:with-param><xsl:with-param name="replacementText" >//final GDGlobalsGDObjectsFactory.<xsl:value-of select="$name" /> <xsl:value-of select="$name" /> = (GDGlobalsGDObjectsFactory.<xsl:value-of select="$name" />) <xsl:value-of select="$name" />GDGameLayer.gdObject;</xsl:with-param></xsl:call-template></xsl:variable>
+        <xsl:variable name="siblingOrParentOrListOnlyListForTheMainParam" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$siblingOrParentOrList4" /></xsl:with-param><xsl:with-param name="find" ><xsl:text>final GD</xsl:text><xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /><xsl:text> = (GD</xsl:text><xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text></xsl:text>) <xsl:value-of select="$name" /><xsl:text></xsl:text>GDGameLayer.gdObject;</xsl:with-param><xsl:with-param name="replacementText" >//final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$name" /> <xsl:value-of select="$name" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$name" />) <xsl:value-of select="$name" />GDGameLayer.gdObject;</xsl:with-param></xsl:call-template></xsl:variable>
+
                             <xsl:variable name="hasObjectGroup" >
                                 <xsl:for-each select="/game">
                                     <xsl:for-each select="layouts" >
@@ -41,115 +49,57 @@ Created By: Travis Berthelot
                         //PutAroundPosition - was //MettreAutourPos - x, y, distance, angle - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         public boolean process() {
-                            if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
 
-                            final GDObject gdObject = (GDObject) ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(0)).gdObject;
-                            final boolean result = this.processG(gdObject, 0);
-<!--
-                            if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                                final GDGameLayer gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(0);
-                                //final GDObject gdObject = gameLayer.gdObject;
-                                gameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+                            boolean result = true;
+                            try {
+                                //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+
+                                final GDGameLayer[] gameLayerArray = gameGlobals.tempGameLayerArray;      
+                                <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParam" />                
+
+                                //final boolean result = this.processG(gdObject, 0);
+                                <xsl:call-template name="mettreAutourPosActionProcessGDObject" >
+                                </xsl:call-template>                                
+                                
+                                <xsl:value-of select="$name" />GDGameLayer.updatePosition();
+                                
+                            } catch(Exception e) {
+                                logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                             }
--->
-                            return result;
-                            }
-                            return false;
+                                
+                                return result;
                         }
                         
                     @Override
                     public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                         super.processStats(motionGestureEvent);
                         
-                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, commonStrings.PROCESS);
                         
                         return this.process();
                     }
-                        
-                        public boolean processG(final GDObject gdObject, final BasicArrayList gdGameLayerList, final int gdObjectIndex) {
-
-                            try {
-                                super.processGStats(gdObject);
-                        
-                                final boolean result = this.processGPaint(gdObject, null);
-                                
-                                final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(gdObjectIndex);
-                                //final GDObject gdObject = gameLayer.gdObject;
-                                gameLayer.updatePosition();
-                                
-                                return result;
-
-                            } catch(Exception e) {
-                                logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
-                            }
-
-                            return true;
-                        }
 
                         @Override
                         public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
-                            try {
-                     
-                            <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
-                            <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
-                                final boolean result = this.processGPaint(<xsl:value-of select="$name" />GDGameLayer.gdObject, null);
+                            boolean result = true;
+
+                            try {
+                        
+                                //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
+                     
+                                <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
+
+                                <xsl:call-template name="mettreAutourPosActionProcessGDObject" >
+                                </xsl:call-template>                                
                                 
                                 <xsl:value-of select="$name" />GDGameLayer.updatePosition();
               
                             } catch(Exception e) {
                                 logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                             }
-
-                            return true;
-                        }
-
-                        @Override
-                        public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2) {
-
-                            try {
-
-                                //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                                 
-                                //if(gdObject == null) {
-                                //    logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "gdObject was null", this, commonStrings.PROCESS);
-                                //    return;
-                                //}
-
-                            <xsl:if test="not(contains($hasObjectGroup, 'found'))" >   
-                                final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) gdObject;
-                            </xsl:if>
-                            
-                            <xsl:if test="contains($hasObjectGroup, 'found')" >
-                                <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
-                                final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gdObject;
-                            </xsl:if>
-
-                                //logUtil.put(<xsl:value-of select="$name" />.toString(), this, commonStrings.PROCESS);
-
-                                <xsl:variable name="existingValue" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.x</xsl:if></xsl:for-each></xsl:variable>
-
-                                <xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setX(</xsl:if>
-                                <xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if>
-                                <xsl:if test="position() = 4" >+ (<xsl:value-of select="text()" /></xsl:if>
-                                <xsl:if test="position() = 5" > * cos(<xsl:value-of select="text()" />))</xsl:if>
-                                </xsl:for-each>);
-
-                                <xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setY(</xsl:if>
-                                <xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if>
-                                <xsl:if test="position() = 4" >+ (<xsl:value-of select="text()" /></xsl:if>
-                                <xsl:if test="position() = 5" > * sin(<xsl:value-of select="text()" />))</xsl:if>
-                                </xsl:for-each>);
-
-                                //<xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.x</xsl:if></xsl:for-each>;
-
-                            } catch(Exception e) {
-                                logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
-                            }
-
-                            return true;
+                            return result;
                         }
 
                         </xsl:if>
@@ -174,6 +124,38 @@ Created By: Travis Berthelot
                         public void process(final GDObject gdObject, final int x, final int y) {
                             throw new RuntimeException();
                         }
+    </xsl:template>
+
+    <xsl:template name="mettreAutourPosActionProcessGDObject" >
+
+        <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+
+                            try {
+
+                                //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:value-of select="$name" />.toString(), this, commonStrings.PROCESS);
+
+                                <xsl:variable name="existingValue" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.x</xsl:if></xsl:for-each></xsl:variable>
+
+                                <xsl:for-each select="parameters" >
+                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setX(</xsl:if>
+                                <xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if>
+                                <xsl:if test="position() = 4" >+ (<xsl:value-of select="text()" /></xsl:if>
+                                <xsl:if test="position() = 5" > * cos(<xsl:value-of select="text()" />))</xsl:if>
+                                </xsl:for-each>);
+
+                                <xsl:for-each select="parameters" >
+                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setY(</xsl:if>
+                                <xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if>
+                                <xsl:if test="position() = 4" >+ (<xsl:value-of select="text()" /></xsl:if>
+                                <xsl:if test="position() = 5" > * sin(<xsl:value-of select="text()" />))</xsl:if>
+                                </xsl:for-each>);
+
+                                //<xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.x</xsl:if></xsl:for-each>;
+
+                            } catch(Exception e) {
+                                logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
+                            }
+
     </xsl:template>
 
 </xsl:stylesheet>
