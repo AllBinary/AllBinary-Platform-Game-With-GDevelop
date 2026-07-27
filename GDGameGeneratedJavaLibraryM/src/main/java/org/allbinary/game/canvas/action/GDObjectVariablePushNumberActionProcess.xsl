@@ -103,6 +103,8 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
 <xsl:text>                        </xsl:text><xsl:value-of select="$firstParam" />.<xsl:value-of select="$secondParam" />[oldSize] = <xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$thirdParam" /></xsl:with-param><xsl:with-param name="find" >.VariableChildCount(</xsl:with-param><xsl:with-param name="replacementText" >.VariableChildCount(<xsl:value-of select="$gdObject" />.</xsl:with-param></xsl:call-template><xsl:if test="$thirdParam = '+'" >=</xsl:if><xsl:if test="$thirdParam = '-'" >=</xsl:if><xsl:if test="$paramTwoName != ''" ><xsl:if test="substring-before($fourthParam, '.') = ''" ><xsl:value-of select="$fourthParam" /></xsl:if><xsl:if test="substring-before($fourthParam, '.') != ''" ><xsl:value-of select="$paramTwoName" />.<xsl:value-of select="substring-after($fourthParam, '.')" /></xsl:if></xsl:if><xsl:if test="$paramTwoName = ''" ><xsl:value-of select="$fourthParam" /></xsl:if>;
               
+                        <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
+
                         } catch(Exception e) {
                             logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                         }

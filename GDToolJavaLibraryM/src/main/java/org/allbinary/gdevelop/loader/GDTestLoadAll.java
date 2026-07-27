@@ -19,7 +19,7 @@ import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
-import org.allbinary.logic.string.StringUtil;
+import org.allbinary.string.CommonSeps;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
 
@@ -64,6 +64,7 @@ public class GDTestLoadAll
         String jsonFileName = this.gdPaths.GAME_JSON_PATH;
         AbFile abFile;
 
+        final String SINGLE_QUOTE_END = "'";
         final String GIT = ".git";
 
         for(int index = 0; index < size; index++) {
@@ -83,8 +84,8 @@ public class GDTestLoadAll
                 stringMaker.delete(0, stringMaker.length());
                 final String xml = stringMaker.append("<game>").append(XML.toString(gameAsConfigurationJSONObject)).append("<variables><value>movement_angle</value><value>angle</value></variables></game>\n").toString();
                 final String formattedXml = XmlDocumentHelper.getInstance().format(xml);
-                final Replace replace = new Replace("\"", "&quot;");
-                final Replace replace2 = new Replace("'", "&apos;");
+                final Replace replace = new Replace(CommonSeps.getInstance().QUOTE, "&quot;");
+                final Replace replace2 = new Replace(SINGLE_QUOTE_END, "&apos;");
                 String fixQuotes = replace.all(formattedXml);
                 fixQuotes = replace2.all(fixQuotes);
                 

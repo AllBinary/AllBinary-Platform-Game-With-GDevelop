@@ -327,6 +327,13 @@ Created By: Travis Berthelot
          
                         }
                             
+                    <xsl:if test="string-length($hasObjectGroup) > 0" >
+                    }
+                    </xsl:if>
+                    <xsl:if test="string-length($hasObjectGroup2) > 0" >
+                    }
+                    </xsl:if>
+
 <!--                        <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param><xsl:with-param name="offsetRequestForOtherParam" >found<xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>-->
 
                         } catch(Exception e) {

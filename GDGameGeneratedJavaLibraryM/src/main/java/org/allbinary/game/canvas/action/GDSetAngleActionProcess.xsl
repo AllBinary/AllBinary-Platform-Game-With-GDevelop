@@ -359,6 +359,8 @@ Created By: Travis Berthelot
 
                         <xsl:value-of select="$name" />.setAngle(angle, <xsl:value-of select="$name" />GDGameLayer);<xsl:text>&#10;</xsl:text>
 
+                        <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
+
                         return true;
                     }
 

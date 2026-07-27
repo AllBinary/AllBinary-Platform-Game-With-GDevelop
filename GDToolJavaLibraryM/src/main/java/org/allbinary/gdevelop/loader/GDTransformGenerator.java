@@ -21,6 +21,7 @@ import org.allbinary.data.tree.dom.XslHelper;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.logic.io.StreamUtil;
+import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.string.CommonStrings;
 
 /**
@@ -46,6 +47,8 @@ public class GDTransformGenerator extends GDNameGenerator {
         final String xmlDocumentStr = new String(this.streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
         String result = this.process(updatedXslDocumentStr, xmlDocumentStr);
+        final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
+        result = replaceLT.all(result);
         result = this.format(result);
 
         this.logUtil.putF(this.gdToolStrings.FILENAME + outputFile, this, this.commonStrings.PROCESS);

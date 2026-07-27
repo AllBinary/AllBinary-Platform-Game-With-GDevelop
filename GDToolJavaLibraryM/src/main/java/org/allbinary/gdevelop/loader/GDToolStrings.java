@@ -72,7 +72,10 @@ public class GDToolStrings {
     public final String GD_NODE_IDS = "<GD_NODE_IDS>";
 
     public final String NOT_USED_FOR_THREED_GAMES = "Not Used For Threed Games ";
-    
+
+    public final String LESS_THAN_ESCAPE_CODE = "&lt;";
+    public final String LESS_THAN = "<";
+
     private final StringUtil stringUtil = StringUtil.getInstance();
     
     public String getExtension(final BasicArrayList threedFileList, final String resource) {

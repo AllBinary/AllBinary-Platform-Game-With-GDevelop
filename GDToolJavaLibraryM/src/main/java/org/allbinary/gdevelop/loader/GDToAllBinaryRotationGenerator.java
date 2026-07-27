@@ -107,9 +107,12 @@ public class GDToAllBinaryRotationGenerator
 
             //logUtil.put(xmlDocumentStr, this, commonStrings.PROCESS);
             //this.bufferedWriterUtil.overwrite(MIDLET_XML, xmlDocumentStr);
-            final String result = this.xslHelper.translate(new BasicUriResolver(),
+            String result = this.xslHelper.translate(new BasicUriResolver(),
                     new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
                     new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
+
+            final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
+            result = replaceLT.all(result);
 
             this.stringMaker.delete(0, this.stringMaker.length());
             this.logUtil.putF(this.stringMaker.append(this.gdToolStrings.FILENAME).append(outputArray[index2]).toString(), this, this.commonStrings.PROCESS);

@@ -109,10 +109,13 @@ public class GDLayoutsToAllBinaryGenerator
                 final String updatedXslDocumentStr2 = replace.all(xslDocumentStr);
                 final String updatedXslDocumentStr = replace2.all(updatedXslDocumentStr2);
 
-                final String result = this.xslHelper.translate(new BasicUriResolver(),
+                String result = this.xslHelper.translate(new BasicUriResolver(),
                         new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
                         new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
 
+                final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
+                result = replaceLT.all(result);
+                
                 stringMaker.delete(0, stringMaker.length());
                 final String fileName = stringMaker.append(START).append(stringUtil.toString(this.nameList.get(index))).append(END).toString();
 

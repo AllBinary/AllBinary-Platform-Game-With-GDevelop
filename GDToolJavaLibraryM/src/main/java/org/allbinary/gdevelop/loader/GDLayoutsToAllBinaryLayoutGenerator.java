@@ -146,11 +146,10 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
         final String updatedXslDocumentAsString = xslDocumentAsString0[index2];
 
-        final String result = this.xslHelper.translate(new BasicUriResolver(),
+        String result = this.xslHelper.translate(new BasicUriResolver(),
             new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
             new StreamSource(new StringBufferInputStream(xmlStringArray0[index2])));
-        //final String result = this.translateSafely(updatedXslDocumentAsString, xmlStringArray0[index2]);
-
+        
         stringMaker.delete(0, stringMaker.length());
         String fileName = fileName = stringMaker.append(START0[index2]).append(END0[index2]).toString();
 
@@ -161,9 +160,13 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         if (index2 == 0) {
             this.logUtil.putF(this.RESULT + result, this, this.commonStrings.PROCESS);
             stringMaker.delete(0, stringMaker.length());
-            final String formattedXml = XmlDocumentHelper.getInstance().format(stringMaker.append(this.GAME_START).append(result).append(this.GAME_END).toString());
+            String formattedXml = XmlDocumentHelper.getInstance().format(stringMaker.append(this.GAME_START).append(result).append(this.GAME_END).toString());
+            final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
+            formattedXml = replaceLT.all(formattedXml);
             this.bufferedWriterUtil.overwrite(fileName, formattedXml);
         } else {
+            final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
+            result = replaceLT.all(result);
             this.bufferedWriterUtil.overwrite(fileName, result);
         }
 
@@ -282,10 +285,10 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
                 final String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
 
-                final String result = this.xslHelper.translate(new BasicUriResolver(),
+                String result = this.xslHelper.translate(new BasicUriResolver(),
                     new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
                     new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
-
+                 
                 stringMaker.delete(0, stringMaker.length());
                 final String fileName = stringMaker.append(START[index2]).append(indexAsString).append(END[index2]).toString();
                 this.directory.create(new AbFilePath(fileName));
@@ -298,9 +301,13 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     stringMaker.delete(0, stringMaker.length());
                     this.logUtil.putF(stringMaker.append(this.RESULT).append(result).toString(), this, this.commonStrings.PROCESS);
                     stringMaker.delete(0, stringMaker.length());
-                    final String formattedXml = XmlDocumentHelper.getInstance().format(stringMaker.append(this.GAME_START).append(result).append(this.GAME_END).toString());
+                    String formattedXml = XmlDocumentHelper.getInstance().format(stringMaker.append(this.GAME_START).append(result).append(this.GAME_END).toString());
+                    final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
+                    formattedXml = replaceLT.all(formattedXml);
                     this.bufferedWriterUtil.overwrite(fileName, formattedXml);
                 } else {
+                    final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
+                    result = replaceLT.all(result);
                     this.bufferedWriterUtil.overwrite(fileName, result);
                 }
 
@@ -376,11 +383,13 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             updatedXslDocumentAsString = replace.all(xslDocumentAsString[index]);
         }
 
-        final String result = this.xslHelper.translate(new BasicUriResolver(),
+        String result = this.xslHelper.translate(new BasicUriResolver(),
             new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
             new StreamSource(new StringBufferInputStream(xmlStringArray[0])));
-        //final String result = this.translateSafely(updatedXslDocumentAsString, xmlStringArray[0]);
 
+        final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
+        result = replaceLT.all(result);
+        
         return result;
 
     }
@@ -455,10 +464,12 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     updatedXslDocumentAsString = replace2.all(updatedXslDocumentAsString);
 
                     //logUtil.put("updated xsl: " + updatedXslDocumentAsString, this, commonStrings.PROCESS);
-                    final String result = this.xslHelper.translate(new BasicUriResolver(),
+                    String result = this.xslHelper.translate(new BasicUriResolver(),
                         new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
                         new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
-                    //final String result = this.translateSafely(updatedXslDocumentAsString, xmlStringArray[index2]);
+
+                    final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
+                    result = replaceLT.all(result);
 
                     stringMaker.delete(0, stringMaker.length());
                     //String fileName = stringMaker.append(START[index2]).append(layoutIndex).append(MIDDLE[index2]).append(indexAsString.substring(indexAsString.length() - 2, indexAsString.length() - 1)).append(END[index2]).toString();
@@ -513,9 +524,12 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             updatedXslDocumentAsString = replace.all(xslDocumentAsString[index]);
         }
 
-        final String result = this.xslHelper.translate(new BasicUriResolver(),
+        String result = this.xslHelper.translate(new BasicUriResolver(),
             new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
             new StreamSource(new StringBufferInputStream(xmlStringArray[0])));
+
+        final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
+        result = replaceLT.all(result);
 
         return result;
 
@@ -600,9 +614,12 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     updatedXslDocumentAsString = replace2.all(updatedXslDocumentAsString);
 
                     //logUtil.put("updated xsl: " + updatedXslDocumentAsString, this, commonStrings.PROCESS);
-                    final String result = this.xslHelper.translate(new BasicUriResolver(),
+                    String result = this.xslHelper.translate(new BasicUriResolver(),
                         new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
                         new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
+
+                    final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
+                    result = replaceLT.all(result);
 
                     stringMaker.delete(0, stringMaker.length());
                     String fileName = stringMaker.append(START[index2]).appendint(layoutIndex).append(MIDDLE[index2]).appendint(fileIndex).append(END[index2]).toString();
@@ -801,10 +818,12 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                 //logUtil.put("xsl2 index: " + index2, this, commonStrings.PROCESS);
                 final String updatedXslDocumentStr = replace.all(xslDocumentAsString2[index2]);
 
-                final String result = this.xslHelper.translate(new BasicUriResolver(),
+                String result = this.xslHelper.translate(new BasicUriResolver(),
                     new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
                     new StreamSource(new StringBufferInputStream(gameXmlAsString)));
-                //final String result = this.translateSafely(updatedXslDocumentStr, gameXmlAsString);
+
+                final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
+                result = replaceLT.all(result);
 
                 stringMaker.delete(0, stringMaker.length());
                 String outputFilePath = stringMaker.append(OUTPUT_FILE_PATHS[index2]).appendint(index).append(OUTPUT_FILE_PATH_END_ARRAY[index2]).toString();
