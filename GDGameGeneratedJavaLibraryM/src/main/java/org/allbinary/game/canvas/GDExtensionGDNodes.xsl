@@ -122,7 +122,49 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="name" /> - //version=<xsl:value-of select="version" /> - //sceneVariables
             </xsl:for-each>
         </xsl:for-each>
-                 
+
+        <xsl:for-each select="eventsFunctionsExtensions" >
+            <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>
+            //Map calls to extensions
+            public class <xsl:value-of select="$extensionName" /> {
+            <xsl:for-each select="eventsFunctions" >
+                <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
+                <xsl:if test="not(functionType = 'Action' or functionType = 'Condition')" >
+                //functionType=<xsl:value-of select="functionType" />
+                <xsl:if test="functionType = 'StringExpression'" >
+                //<xsl:for-each select="parameters" >type=<xsl:value-of select="type" /></xsl:for-each>
+                public String <xsl:value-of select="$eventsFunctionsName" />(<xsl:for-each select="parameters" ><xsl:if test="type = 'scenevar'" >String</xsl:if><xsl:text> </xsl:text><xsl:value-of select="type" /></xsl:for-each>) {
+                    return stringUtil.EMPTY_STRING;
+                }
+                </xsl:if>
+                </xsl:if>
+            </xsl:for-each>
+            <xsl:for-each select="eventsBasedObjects" >
+                <xsl:variable name="eventsBasedObjectsName" ><xsl:value-of select="name" /></xsl:variable>
+                public class <xsl:value-of select="$eventsBasedObjectsName" /> {
+                <xsl:for-each select="eventsFunctions" >
+                    <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
+                    <xsl:if test="not(functionType = 'Action' or functionType = 'Condition')" >
+                    //functionType=<xsl:value-of select="functionType" />
+                    <xsl:if test="functionType = 'StringExpression'" >
+                        //<xsl:for-each select="parameters" >type=<xsl:value-of select="type" /></xsl:for-each>
+                        public <xsl:value-of select="expressionType" /><xsl:text> </xsl:text><xsl:value-of select="$eventsFunctionsName" />(<xsl:for-each select="parameters" ><xsl:if test="type = 'scenevar'" >String</xsl:if><xsl:text> </xsl:text><xsl:value-of select="type" /></xsl:for-each>) {
+                        return stringUtil.EMPTY_STRING;
+                    }
+                    </xsl:if>
+                    </xsl:if>
+                </xsl:for-each>
+                }
+                
+                public final <xsl:value-of select="$eventsBasedObjectsName" /><xsl:text> </xsl:text><xsl:value-of select="$eventsBasedObjectsName" /> = new <xsl:value-of select="$eventsBasedObjectsName" />();
+            </xsl:for-each>
+
+            };
+            
+            public final <xsl:value-of select="$extensionName" /><xsl:text> </xsl:text><xsl:value-of select="$extensionName" /> = new <xsl:value-of select="$extensionName" />();
+
+        </xsl:for-each>
+                                  
                     private GDExtensionGDNodes() {
 
                         super(AnimationBehavior.getInstance());

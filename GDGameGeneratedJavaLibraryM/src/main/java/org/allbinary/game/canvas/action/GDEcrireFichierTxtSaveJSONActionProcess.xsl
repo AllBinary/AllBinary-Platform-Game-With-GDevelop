@@ -28,7 +28,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             <xsl:variable name="param3" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
-                        private final String RECORD_ID = <xsl:value-of select="$param1" />;
+                        private final String RECORD_ID = <xsl:call-template name="addGlobals" ><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="text" ><xsl:value-of select="$param1" /></xsl:with-param></xsl:call-template>;
                         private final String SECOND_PARAM = <xsl:value-of select="$param2" />;
                         
                         //EcrireFichierTxt - //Save - action - START - //forExtension=<xsl:value-of select="$forExtension" />
@@ -51,7 +51,7 @@ Created By: Travis Berthelot
                                 jsonObject = new JSONObject();
                             }
                             
-                            jsonObject.put(SECOND_PARAM, <xsl:value-of select="$param3" />);
+                            jsonObject.put(SECOND_PARAM,  <xsl:call-template name="addGlobals" ><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="text" ><xsl:value-of select="$param3" /></xsl:with-param></xsl:call-template>);
                             final String jsonAsString2 = jsonObject.toString(4);
                             jsonPersistance.deleteAll(abeClientInformation);
                             jsonPersistance.save(abeClientInformation, jsonAsString2);

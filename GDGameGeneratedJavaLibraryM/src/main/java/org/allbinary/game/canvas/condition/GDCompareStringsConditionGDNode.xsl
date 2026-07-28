@@ -79,7 +79,10 @@ Created By: Travis Berthelot
                                             <xsl:with-param name="text" >
                                     <xsl:call-template name="string-replace-all" >
                                         <xsl:with-param name="text" >
-                                            <xsl:value-of select="text()" />
+                                            <xsl:call-template name="addGlobals" >
+                                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                                <xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param>
+                                            </xsl:call-template>
                                         </xsl:with-param>                                
                                         <xsl:with-param name="find" >&quot;&quot;</xsl:with-param>
                                         <xsl:with-param name="replacementText" >stringUtil.EMPTY_STRING</xsl:with-param>
@@ -96,30 +99,19 @@ Created By: Travis Berthelot
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
+                            
                             //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
-<!--   
-                    <xsl:if test="contains($hasObjectGroup, 'found')" >
-                    final int size3 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$objectGroupName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$objectGroupName" />GDGameLayerListOfList.size();
-                    for(int index3 = 0; index3 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; index3++) {
-                    final BasicArrayList gdGameLayerList = (BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$objectGroupName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$objectGroupName" />GDGameLayerListOfList.get(index3);
-                    final GDGameLayer <xsl:value-of select="$objectGroupName" />GDGameLayer = gdGameLayerList.get(0);
-                    final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$objectGroupName" /> <xsl:value-of select="$objectGroupName" /> = <xsl:value-of select="$objectGroupName" />GDGameLayer.gdObject;
-                    </xsl:if>
--->
-                    <xsl:if test="contains($hasObject, 'found')" >
-                    final BasicArrayList gdGameLayerList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$objectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$objectName" />GDGameLayerList;
-                    final GDGameLayer <xsl:value-of select="$objectName" /> = (GDGameLayer) gdGameLayerList.get(0);
-<!-- 
-                    GDGameLayer
-                    final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$objectName" /><xsl:text> </xsl:text><xsl:value-of select="$objectName" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$objectName" />) <xsl:value-of select="$objectName" />GDGameLayer.gdObject;
--->
-                    </xsl:if>
+                            <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
+                            <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
                                                         
                             if(<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template></xsl:if><xsl:if test="position() = 2" >.compareTo(<xsl:value-of select="$param3AsFinalString" />) <xsl:if test="text() = '='" >== 0</xsl:if><xsl:if test="text() = '!='" >!= 0</xsl:if></xsl:if></xsl:for-each>)) {
                                 //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" ><xsl:call-template name="replace-escaped-conditionals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if><xsl:text> </xsl:text></xsl:for-each>", this, commonStrings.PROCESS);
                                 return true;
                             }
+                            
+                            <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
+
                             return false;
                         }
                         

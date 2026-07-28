@@ -54,7 +54,11 @@ Created By: Travis Berthelot
             
             //type=<xsl:value-of select="type" />
             <xsl:if test="type = 'array'" >
+            public int <xsl:value-of select="name" />Index = 0;
             public String[] <xsl:value-of select="name" /> = new String[0];
+            </xsl:if>
+            <xsl:if test="type = 'boolean'" >
+            public boolean <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
             </xsl:if>
             <xsl:if test="type = 'string'" >
             <xsl:if test="not(number(value) = value)" >
@@ -167,6 +171,10 @@ Created By: Travis Berthelot
                 
         <xsl:for-each select="events" >
             
+            <xsl:if test="type = 'BuiltinCommonInstructions::ForEachChildVariable'" >
+                <xsl:if test="valueIteratorVariableName = $name" >//foundBuiltinCommonInstructions::ForEachChildVariable</xsl:if>
+            </xsl:if>
+            
             <xsl:for-each select="actions" >
                 <xsl:if test="type/value = 'JSONToVariableStructure'" >
                     <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
@@ -204,6 +212,7 @@ Created By: Travis Berthelot
 -->
                     
                 </xsl:if>
+                
             </xsl:for-each>
         
         <xsl:call-template name="hasJSONUsage">
@@ -226,7 +235,7 @@ Created By: Travis Berthelot
                 <xsl:call-template name="hasConnectedJsonObjects">
                     <xsl:with-param name="param" select="valueIteratorVariableName" />
                 </xsl:call-template>
-        //Chained Usage - found
+<!--        //Chained Usage - found-->
                 </xsl:if>
             </xsl:if>
         </xsl:for-each>

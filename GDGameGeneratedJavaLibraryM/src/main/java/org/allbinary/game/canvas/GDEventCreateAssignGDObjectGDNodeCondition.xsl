@@ -17,6 +17,8 @@ Created By: Travis Berthelot
 
     <xsl:import href="./condition/GDLeaderboardsIsLeaderboardViewLoadedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDTextContainerCapabilityTextContainerBehaviorValueConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDTextInputTextInputObjectIsInputSubmittedConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDJSONGroupExistsConditionGDNode.xsl" />
     <xsl:import href="./condition/GDOnceConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAlwaysConditionGDNode.xsl" />
     <xsl:import href="./condition/GDLinkedObjectsPickObjectsLinkedToConditionGDNode.xsl" />
@@ -127,10 +129,33 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TextInput::TextInputObject::IsInputSubmitted'" >
+
+                    <xsl:call-template name="textInputTextInputObjectIsInputSubmittedConditionGDNode" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
                     </xsl:call-template>
 
                 </xsl:when>
+
+                <xsl:when test="$typeValue = 'GroupExists'" >
+
+                    <xsl:call-template name="groupExistsConditionGDNode" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
+
                 <xsl:when test="$typeValue = 'Inventory::Count'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:when>

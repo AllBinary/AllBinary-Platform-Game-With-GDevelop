@@ -877,6 +877,10 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             gameXmlAsString = replace1.all(gameXmlAsString);
             final Replace replaceRevert = new Replace("FileSystem.ReadDirectory", "FileSystem::ReadDirectory");
             gameXmlAsString = replaceRevert.all(gameXmlAsString);
+            final Replace replaceHTTP = new Replace("AdvancedHTTP::ResponseStatusText", "AdvancedHTTP.ResponseStatusText");
+            gameXmlAsString = replaceHTTP.all(gameXmlAsString);
+            final Replace replaceText = new Replace(".Text()", "GDGameLayer.Text()");
+            gameXmlAsString = replaceText.all(gameXmlAsString);
 
             String layoutGameXmlAsString = new String(gameXmlAsString);
             final String[] VARIABLE_ARRAY = {

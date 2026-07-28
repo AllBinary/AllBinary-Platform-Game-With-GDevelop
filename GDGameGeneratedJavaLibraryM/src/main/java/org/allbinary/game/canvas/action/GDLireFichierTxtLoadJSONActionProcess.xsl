@@ -29,7 +29,7 @@ Created By: Travis Berthelot
 <!--                            <xsl:variable name="param3" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>-->
                             <xsl:variable name="param4" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                 
-                        private final String RECORD_ID = <xsl:value-of select="$param1" />;
+                        private final String RECORD_ID = <xsl:call-template name="addGlobals" ><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="text" ><xsl:value-of select="$param1" /></xsl:with-param></xsl:call-template>;
                         private final String SECOND_PARAM = <xsl:value-of select="$param2" />;
 
                         //ReadStringFromStorage - was //LireFichierTxt - //Load - action - START - //forExtension=<xsl:value-of select="$forExtension" />

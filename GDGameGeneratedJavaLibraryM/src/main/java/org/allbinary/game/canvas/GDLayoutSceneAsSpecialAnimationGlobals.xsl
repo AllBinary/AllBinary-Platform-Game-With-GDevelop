@@ -239,7 +239,7 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                         <xsl:for-each select="animations" >
-                            <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
+                            <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(name, ' ', '_'), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
                             <xsl:if test="string-length($animationName)" >
                                 <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                                 <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
