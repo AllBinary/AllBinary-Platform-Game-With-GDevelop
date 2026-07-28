@@ -19,15 +19,17 @@ android {
 
     buildTypes {
         release {
-            //shrinkResources true
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            //proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro', 'G:/mnt/bc/mydev/work/j2me/games/All_Android.pro'
+            optimization {
+                enable = true
+            }
+            shrinkResources true
+            //minifyEnabled true (used before 9.3.0 for R8)
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'G:/mnt/bc/mydev/work/j2me/games/All_Android.pro'
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
     }
     namespace 'org.allbinary.game.gd.threed.<name>'
 }
