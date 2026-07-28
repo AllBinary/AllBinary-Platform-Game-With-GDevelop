@@ -156,7 +156,7 @@ Created By: Travis Berthelot
                 </xsl:for-each>
                 }
                 
-                public final <xsl:value-of select="$eventsBasedObjectsName" /><xsl:text> </xsl:text><xsl:value-of select="$eventsBasedObjectsName" /> = new <xsl:value-of select="$eventsBasedObjectsName" />();
+                public final <xsl:value-of select="$eventsBasedObjectsName" />EventBasedObject<xsl:text> </xsl:text><xsl:value-of select="$eventsBasedObjectsName" />EventBasedObject = new <xsl:value-of select="$eventsBasedObjectsName" />EventBasedObject();
             </xsl:for-each>
 
             };
