@@ -141,7 +141,7 @@ Created By: Travis Berthelot
             </xsl:for-each>
             <xsl:for-each select="eventsBasedObjects" >
                 <xsl:variable name="eventsBasedObjectsName" ><xsl:value-of select="name" /></xsl:variable>
-                public class <xsl:value-of select="$eventsBasedObjectsName" /> {
+                public class <xsl:value-of select="$eventsBasedObjectsName" />EventBasedObject {
                 <xsl:for-each select="eventsFunctions" >
                     <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:if test="not(functionType = 'Action' or functionType = 'Condition')" >

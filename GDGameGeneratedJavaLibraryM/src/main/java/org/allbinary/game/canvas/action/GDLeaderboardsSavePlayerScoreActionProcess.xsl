@@ -24,6 +24,9 @@ Created By: Travis Berthelot
                         
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
         
+        <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
+        <xsl:variable name="siblingOrParentOrList" ><xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+        
                         <xsl:variable name="param" >
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 3" >
@@ -94,14 +97,11 @@ Created By: Travis Berthelot
                             try {
 
                                 //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-                                
-                                <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeFourthParam" /></xsl:variable>
+                                                      
+                                <xsl:value-of select="$siblingOrParentOrList" />
 
                                 <xsl:if test="$beforeFourthParam != ''" >
-                                final GDGameLayer <xsl:value-of select="$beforeFourthParam" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$beforeFourthParam" />GDGameLayerList.get(0);
-                                //final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$beforeFourthParam" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$beforeFourthParam" />GDGameLayer.gdObject;
-                                final String name = <xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$param4" /></xsl:with-param><xsl:with-param name="find" >.Text()</xsl:with-param><xsl:with-param name="replacementText" >GDGameLayer.Text()</xsl:with-param></xsl:call-template>;
-                                
+                                final String name = <xsl:value-of select="$param4" />;
                                 </xsl:if>
                                 <xsl:if test="$beforeFourthParam = ''" >
                                 final String name = null;
@@ -176,6 +176,8 @@ Created By: Travis Berthelot
 
                                 SecondaryThreadPool.getInstance().runTask(new SaveHighScoreRunnable());
 
+                                <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
+
                             } catch(Exception e) {
                                 logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                             }
@@ -222,14 +224,13 @@ Created By: Travis Berthelot
                         public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
                             try {
 
-                            <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
-                            <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
+                                <xsl:value-of select="$siblingOrParentOrList" />
 
                                 final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                                 final AllBinaryGameCanvas abCanvas = (AllBinaryGameCanvas) abToGBUtil.abCanvas;
 
                                 <xsl:if test="$beforeFourthParam != ''" >
-                                final String name = <xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$param4" /></xsl:with-param><xsl:with-param name="find" >.Text()</xsl:with-param><xsl:with-param name="replacementText" >GDGameLayer.Text()</xsl:with-param></xsl:call-template>;
+                                final String name = <xsl:value-of select="$param4" />;
                                 </xsl:if>
                                 <xsl:if test="$beforeFourthParam = ''" >
                                 final String name = null;
