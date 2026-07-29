@@ -354,7 +354,7 @@ Created By: Travis Berthelot
                                     <xsl:if test="$position = 1" >
                                     <xsl:if test="$name != 'Player'" >
                                         //non Player
-                                        final float hackScale = scale;
+                                        final float hackScale = scale * 0.67f;
                                     </xsl:if>
                                     <xsl:if test="$name = 'Player'" >
                                         //Player
@@ -362,10 +362,11 @@ Created By: Travis Berthelot
                                     </xsl:if>
                 //logUtil.putF("<xsl:value-of select="$name" /> hackScale: " + hackScale, this, commonStrings.INIT);
 
+                final float widthF = ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * hackScale);
+                final float heightF = ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * hackScale);
                 final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
-                                pointFactory.createXY((int) (<xsl:value-of select="array[1]/x" /> * hackScale), (int) (<xsl:value-of select="array[1]/y" /> * hackScale)),
-                                    (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * hackScale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * hackScale)
-                                );
+                                pointFactory.createXY((int) (<xsl:value-of select="array[1]/x" /> + widthF / 4), (int) (<xsl:value-of select="array[1]/y" /> + heightF / 4)), 
+                                (int) widthF, (int) heightF);
 
 //                logUtil.putF("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
 
