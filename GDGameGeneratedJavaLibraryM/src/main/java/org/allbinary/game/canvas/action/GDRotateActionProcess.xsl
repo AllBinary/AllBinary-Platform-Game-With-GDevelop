@@ -72,7 +72,7 @@ Created By: Travis Berthelot
                         }
 
                         @Override
-                        public void processReleased() throws Exception { //Rotate
+                        public boolean processReleased() throws Exception {  //Rotate
                             super.processReleasedStats();
                             //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE);
 
@@ -90,6 +90,8 @@ Created By: Travis Berthelot
                             } else {
                                 //logUtil.putF("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> <xsl:value-of select="$name" />GDGameLayerList was null", this, commonStrings.PROCESS);
                             }
+
+                            return true;
                         }
 
                     @Override
@@ -123,7 +125,6 @@ Created By: Travis Berthelot
                         return true;
                     }
 
-                        @Override
                         public boolean processReleased(final GDObject <xsl:value-of select="$name" />) {
                             //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 

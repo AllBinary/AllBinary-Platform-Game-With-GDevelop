@@ -23,11 +23,14 @@ Created By: Travis Berthelot
         <xsl:param name="caller" />
         <xsl:param name="createdObjectsAsString" />
         <xsl:param name="objectsAsString" />
-        <xsl:param name="parametersAsString" />
+        
         <xsl:param name="eventAsString" />
         <xsl:param name="actionAsStringsStrings" />
         <xsl:param name="logString" />
     
+        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+        
         <xsl:variable name="quote" >"</xsl:variable>
         
         <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
@@ -97,12 +100,6 @@ Created By: Travis Berthelot
                             return true;                   
                         }
 
-                        @Override
-                        public void processReleased() throws Exception { //Timer
-                            super.processReleasedStats();
-                                
-                        }
-
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >
@@ -135,7 +132,7 @@ Created By: Travis Berthelot
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
                     </xsl:if>
 
-                    gdNodes.runnableList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                    //gdNodes.runnableList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
     </xsl:template>
 
 </xsl:stylesheet>

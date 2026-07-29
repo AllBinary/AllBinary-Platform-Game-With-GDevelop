@@ -2466,6 +2466,11 @@ Created By: Travis Berthelot
                         return gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
 
                     }
+                        
+                    public boolean processReleased() throws Exception {
+                        return gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                    }
+
                 };
 
                 </xsl:if>

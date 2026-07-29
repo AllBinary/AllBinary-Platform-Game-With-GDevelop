@@ -20,13 +20,15 @@ Created By: Travis Berthelot
     <xsl:template name="resizableCapabilityResizableBehaviorHeightConditionGDNode" >
         <xsl:param name="conditionNodeIndex" />
         <xsl:param name="forExtension" />
-        <xsl:param name="parametersAsString" />
-    
+        
         <xsl:param name="caller" />
         <xsl:param name="objectsAsString" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="createdObjectsAsString" />
-                
+
+        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+
         <xsl:variable name="quote" >"</xsl:variable>
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                     //resizableCapabilityResizableBehaviorHeightConditionGDNode - //Condition - //ResizableCapability::ResizableBehavior::Height - GDNode

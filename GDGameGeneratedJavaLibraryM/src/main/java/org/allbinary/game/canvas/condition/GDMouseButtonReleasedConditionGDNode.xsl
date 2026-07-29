@@ -20,7 +20,11 @@ Created By: Travis Berthelot
     <xsl:template name="mouseButtonReleasedConditionGDNode" >
         <xsl:param name="forExtension" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="parametersAsString" />
+        
+        
+        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+        
         <xsl:variable name="quote" >"</xsl:variable>
         
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
@@ -38,54 +42,39 @@ Created By: Travis Berthelot
                             super.processStats();
                             
                             //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-
-                            <xsl:variable name="hasSourisSurObjet" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'SourisSurObjet' or type/value = 'IsCursorOnObject'" >found</xsl:if></xsl:for-each></xsl:variable>
-
-                            <xsl:if test="not(contains($hasSourisSurObjet, 'found'))" >
-<!--                                //../actions-->
-                            </xsl:if>
                             
-                            //return true;
-                            return false;
+                            //This is already checked for all //MouseButtonReleased
+                            //if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
+                                return true;
+                            //}
+                            //return false;
                         }
                         
                         public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                         
                             //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, commonStrings.PROCESS);
-
-                            <xsl:for-each select=".." >
-
-                            <xsl:for-each select="conditions" >
-                                <xsl:if test="type/value = 'SourisSurObjet' or type/value = 'IsCursorOnObject'" >
-                                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                                //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
-                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
-                                </xsl:if>
-                            </xsl:for-each>
                             
-                            <xsl:variable name="hasAnotherCondition" ><xsl:for-each select="conditions" ><xsl:if test="preceding-sibling::conditions[number(substring(generate-id(), 2) - 65536) != $nodeId]" >found</xsl:if></xsl:for-each></xsl:variable>
-                            <xsl:if test="not(contains($hasAnotherCondition, 'found'))" >
-                                
+                            <xsl:for-each select=".." >
                                 <xsl:call-template name="actionsProcessing" >
                                     <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
-                                    <xsl:with-param name="methodCall" >process()</xsl:with-param>
+                                    <xsl:with-param name="methodCall" >process(motionGestureEvent, lastMotionGestureInput)</xsl:with-param>
                                 </xsl:call-template>
-
+                                
                                 <xsl:for-each select="events" >
                                     <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
-                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
+                            <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
                                     </xsl:if>
                                     <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
-                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                            //Event - //BuiltinCommonInstructions::Link - call - //MouseButtonReleased
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process();
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
+                            <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            //Event - //BuiltinCommonInstructions::Link - call
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process(motionGestureEvent, lastMotionGestureInput);
                                     </xsl:if>
                                 </xsl:for-each>
-                            </xsl:if>
-                            
-                            </xsl:for-each>
+
+                            </xsl:for-each>                            
                             
                             return true;
                         }
@@ -106,6 +95,10 @@ Created By: Travis Berthelot
                         return true;
                     }
 
+                    public boolean processReleased() throws Exception {
+                        this.processReleasedStats();
+                        return this.process();
+                    }
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >

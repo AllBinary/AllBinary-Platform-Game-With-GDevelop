@@ -22,8 +22,11 @@ Created By: Travis Berthelot
     <xsl:template name="anyKeyReleasedConditionGDNode" >
         <xsl:param name="forExtension" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="parametersAsString" />
+        
 
+        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+        
         <xsl:variable name="quote" >"</xsl:variable>
         
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
@@ -56,34 +59,26 @@ Created By: Travis Berthelot
                                     if(hasPressed) {
                                         hasPressed = false;
 
-                            <xsl:for-each select="../events" >
-                                <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
-                                    //...Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> 
-                                    //Event - //BuiltinCommonInstructions::Standard - call
-                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
-                                </xsl:if>
-                                <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
-                                    //Event - //BuiltinCommonInstructions::ForEach
-                                </xsl:if>
-                            </xsl:for-each>
-
-                            <xsl:for-each select="conditions" >
-                                <xsl:variable name="typeValue" select="type/value" />
-                                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
-                                    <xsl:value-of select="text()" />,</xsl:for-each>
-                                    //Condition - //<xsl:value-of select="type/value" /> - call
-                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
-                                    //TWB - I don't think conditions occur here remove after more testing
-                                    throw new RuntmeException();
-                            </xsl:for-each>
-
                             <xsl:for-each select=".." >
                                 <xsl:call-template name="actionsProcessing" >
                                     <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                                     <xsl:with-param name="methodCall" >processReleased()</xsl:with-param>
                                 </xsl:call-template>
+                                
+                                <xsl:for-each select="events" >
+                                    <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
+                            <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                                    </xsl:if>
+                                    <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
+                            <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            //Event - //BuiltinCommonInstructions::Link - call
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processReleased();
+                                    </xsl:if>
+                                </xsl:for-each>
+
                             </xsl:for-each>
 
                                     }
@@ -116,6 +111,11 @@ Created By: Travis Berthelot
                                 logUtil.put(commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                             }
                             return true;                   
+                        }
+
+                        public boolean processReleased() throws Exception {
+                            this.processReleasedStats();
+                            return this.process();
                         }
 
                         </xsl:if>

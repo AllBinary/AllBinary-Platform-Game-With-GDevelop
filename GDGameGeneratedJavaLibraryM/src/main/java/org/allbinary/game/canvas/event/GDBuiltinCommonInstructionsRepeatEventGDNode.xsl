@@ -40,7 +40,7 @@ Created By: Travis Berthelot
                 /*
                 </xsl:if>
                 
-                //<xsl:value-of select="type" /> - //repeatExpression=<xsl:value-of select="repeatExpression" /> - event
+                //BuiltinCommonInstructions::Repeat - //repeatExpression=<xsl:value-of select="repeatExpression" /> - event
                 @Override
                 public boolean process() throws Exception {
                     super.processStats();
@@ -415,7 +415,7 @@ Created By: Travis Berthelot
                 }
 
                 @Override
-                public void processReleased() throws Exception { 
+                public boolean processReleased() throws Exception {
                     super.processReleasedStats();
 
                     //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "release, this, globals.PROCESS_RELEASE);
@@ -486,6 +486,7 @@ Created By: Travis Berthelot
                                         
                     }
 
+                    return true;
                 }
 
                 <xsl:if test="contains(disabled, 'true')" >

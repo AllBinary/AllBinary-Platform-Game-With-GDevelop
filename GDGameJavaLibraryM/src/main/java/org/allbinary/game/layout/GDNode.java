@@ -68,9 +68,9 @@ public class GDNode
         this.nodeStatsFactory.push(3, this.name);
     }
     
-    public void processReleased() throws Exception {
+    public boolean processReleased() throws Exception {
         this.processReleasedStats();
-        this.process();
+        return true;
     }
 
     protected void processReleasedStats() {
@@ -146,10 +146,6 @@ public class GDNode
         
     protected void processCreateStats(final GDObject gdObject) {
         this.nodeStatsFactory.push(10, this.name);
-    }
-
-    public boolean processReleased(final GDObject gdObject) {
-        return true;
     }
 
     protected void processReleasedStats(final GDObject gdObject) {

@@ -20,8 +20,10 @@ Created By: Travis Berthelot
     <xsl:template name="sourisSurObjetConditionGDNode" >
         <xsl:param name="forExtension" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="parametersAsString" />
 
+        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+        
         <xsl:variable name="quote" >"</xsl:variable>
         
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
@@ -105,7 +107,7 @@ Created By: Travis Berthelot
                         
                             public void run() {
                                 try {
-                                    //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                    //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "run", this, commonStrings.PROCESS);
 
                                     gdNodeStatsFactory.push(0, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
 
@@ -156,12 +158,14 @@ Created By: Travis Berthelot
                             }
                         };
                         </xsl:if>
-
+                        
                         //IsCursorOnObject - was //SourisSurObjet - condition - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
+
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                         <xsl:if test="contains($press, 'found') or contains($release, 'found')" >
                             //if(this.currentRunnable != this.runnable) {
@@ -171,7 +175,7 @@ Created By: Travis Berthelot
                                 //logUtil.putF(commonStrings.EXCEPTION_LABEL + "Runnable already set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception());
                             //}
                         </xsl:if>
-
+                            
                             return true;
                         }
 
@@ -238,7 +242,7 @@ Created By: Travis Berthelot
 
                                         //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "press", this, commonStrings.PROCESS);
                                         
-                                        return true;
+                                        return this.process();
                                         
                                     } else if(lastMotionGestureInput == touchMotionGestureFactory.RELEASED) {
                                     
@@ -293,22 +297,49 @@ Created By: Travis Berthelot
                         }
 
                         @Override
-                        public void processReleased() throws Exception {
+                        public boolean processReleased() throws Exception {
                             super.processReleasedStats();
 
                         <xsl:if test="contains($press, 'found') or contains($release, 'found')" >
                             if(this.currentRunnable != NullRunnable.getInstance()) {
+                                //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "released", this, commonStrings.PROCESS);
+
                                 this.currentRunnable = NullRunnable.getInstance();
-                            
+
+                                        <xsl:for-each select=".." >
+
+                        <xsl:call-template name="actionsProcessing" >
+                            <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                            <xsl:with-param name="methodCall" >processReleased()</xsl:with-param>
+                        </xsl:call-template>
+
+                    <xsl:for-each select="events" >
+                        <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
+                            //Events only - //Event - //<xsl:value-of select="type" /> - call
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                        </xsl:if>
+                        <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
+                            <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> 
+                            <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            //Event - //BuiltinCommonInstructions::Link - call
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processReleased();
+                        </xsl:if>
+                    </xsl:for-each>
+
+                                        </xsl:for-each>                                                            
 
                             } else {
                                 //logUtil.putF(commonStrings.EXCEPTION_LABEL + "Runnable was not set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE);
                             }
                         </xsl:if>
-                        
+
+                            return true;
+
                         }
 
-
+                                                
                         @Override
                         public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
                             super.processGDStats(gameLayerArray);

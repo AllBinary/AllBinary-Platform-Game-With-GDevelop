@@ -159,7 +159,7 @@ Created By: Travis Berthelot
                 </xsl:if>
                 
 <!--                <xsl:if test="not(contains(disabled, 'true'))" >-->
-                //<xsl:value-of select="type" /> - event
+                //BuiltinCommonInstructions::ForEachChildVariable - event
                 @Override
                 public boolean process() throws Exception {
                     super.processStats();
@@ -196,14 +196,6 @@ Created By: Travis Berthelot
                     //logUtil.putF(EVENT_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                     return true;                
-                }
-
-                @Override
-                public void processReleased() throws Exception { 
-                    super.processReleasedStats();
-
-                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "release, this, globals.PROCESS_RELEASE);
-
                 }
 
                 <xsl:if test="contains(disabled, 'true')" >

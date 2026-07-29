@@ -40,7 +40,7 @@ Created By: Travis Berthelot
                 /*
                 </xsl:if>
                 
-                //<xsl:value-of select="type" /> - event
+                //BuiltinCommonInstructions::Standard - event
                 @Override
                 public boolean process() throws Exception {
                     super.processStats();
@@ -421,7 +421,7 @@ Created By: Travis Berthelot
                 }
 
                 @Override
-                public void processReleased() throws Exception { 
+                public boolean processReleased() throws Exception {
                     super.processReleasedStats();
 
                     //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "release, this, globals.PROCESS_RELEASE);
@@ -442,8 +442,8 @@ Created By: Travis Berthelot
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                             </xsl:when>
                             <xsl:otherwise>
-                        //if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased()) {
-                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased()) {
+                        //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                         //throw new RuntimeException();
                             </xsl:otherwise>
                         </xsl:choose>
@@ -451,10 +451,10 @@ Created By: Travis Berthelot
 
                     <xsl:if test="not(contains($foundSubProcessing, 'found'))" >
                         
-<!--                    <xsl:call-template name="actionsProcessing" >
+                    <xsl:call-template name="actionsProcessing" >
                             <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                             <xsl:with-param name="methodCall" >processReleased()</xsl:with-param>
-                        </xsl:call-template>-->
+                    </xsl:call-template>
 
                     <xsl:for-each select="events" >
                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
@@ -482,11 +482,13 @@ Created By: Travis Berthelot
                             <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
                             </xsl:when>
                             <xsl:otherwise>
-                        //}
+                            return true;
+                        }
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
 
+                    return false;
                 }
 
                 <xsl:if test="contains(disabled, 'true')" >

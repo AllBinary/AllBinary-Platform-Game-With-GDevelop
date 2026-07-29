@@ -112,7 +112,7 @@ Created By: Travis Berthelot
                                 }
 
                                 @Override
-                                public void processReleased() throws Exception { 
+                                public boolean processReleased() throws Exception { 
                                     super.processReleasedStats();
 
                                     //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
@@ -146,6 +146,7 @@ Created By: Travis Berthelot
                                         
                                     </xsl:for-each>
 
+                                    return true;
                                 }
 
                             };
@@ -184,14 +185,6 @@ Created By: Travis Berthelot
                                     </xsl:call-template>
                                     
                                     return true;
-                                }
-
-                                @Override
-                                public void processReleased() throws Exception { 
-                                    super.processReleasedStats();
-
-                                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-
                                 }
 
                             };
