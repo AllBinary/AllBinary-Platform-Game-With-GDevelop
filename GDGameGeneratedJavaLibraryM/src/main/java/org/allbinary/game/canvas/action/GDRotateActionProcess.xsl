@@ -167,13 +167,13 @@ Created By: Travis Berthelot
                                 //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                                 //Parameters - 3
                                 
-                                <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotationP = <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > / 6;</xsl:if></xsl:for-each>
+                                <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotationP = <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > / 2;</xsl:if></xsl:for-each>
                                 //<xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.angle += <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
                                 <xsl:text>&#10;</xsl:text>
 
                                 //Haskish - it is hard to tell if this is a feature or a hack.
                                 <xsl:if test="/game/properties/force2dCollision/text() = 'true'" >
-                                <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotationZP = <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > / 6;</xsl:if></xsl:for-each>
+                                <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotationZP = <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > / 2;</xsl:if></xsl:for-each>
                                 <!-- new line -->
                                 <xsl:text>&#10;</xsl:text>
                                 </xsl:if>
