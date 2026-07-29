@@ -87,39 +87,46 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
 
             resource = (String) resourceList.get(index);
 
-            final String extension = this.gdToolStrings.getExtension(threedFileList, resource);
-            
-            stringMaker.append(this.commonSeps.NEW_LINE);
-            
-            if(extension == stringUtil.NULL_STRING) {
-                stringMaker.append(this.commonSeps.COMMENT);
-                stringMaker.append(this.gdToolStrings.NOT_USED_FOR_THREED_GAMES);
-            }
+            final BasicArrayList extensionList = this.gdToolStrings.getExtensions(threedFileList, resource.toLowerCase());
+            final int size3 = extensionList.size();
+            String extension;
+            for(int index3 = 0; index3 < size3; index3++) {
+                extension = (String) extensionList.get(index3);
+                //logUtil.putF(resource + " TWB ext: " + extension, this, commonStrings.PROCESS);
 
-            if (resource.endsWith(this.gdToolStrings.UNDERSCORE_0) && 
-                    (resource.indexOf(this.gdToolStrings._TOUCH_) < 0 || resource.indexOf(this.gdToolStrings._BLANK_) < 0)) {
-                stringMaker.append(this.commonSeps.COMMENT);
-            }
-            
-            //hasRotationImages?
-            if (!hasRotationImages) {
-                for (int index2 = 2; index2 < size2; index2++) {
-                    if (resource.endsWith(this.commonSeps.UNDERSCORE + index2)
-                        && (resource.indexOf(this.gdToolStrings._TOUCH_) < 0 || resource.indexOf(this.gdToolStrings._BLANK_) < 0)) {
-                        stringMaker.append(this.commonSeps.COMMENT);
+                stringMaker.append(this.commonSeps.NEW_LINE);
+
+                if (extension == stringUtil.NULL_STRING) {
+                    stringMaker.append(this.commonSeps.COMMENT);
+                    stringMaker.append(this.gdToolStrings.NOT_USED_FOR_THREED_GAMES);
+                }
+
+                if (resource.endsWith(this.gdToolStrings.UNDERSCORE_0) && 
+                    (resource.indexOf(this.gdToolStrings._TOUCH_) < 0 || 
+                    resource.indexOf(this.gdToolStrings._BLANK_) < 0)) {
+                    stringMaker.append(this.commonSeps.COMMENT);
+                }
+
+                //hasRotationImages?
+                if (!hasRotationImages) {
+                    for (int index2 = 2; index2 < size2; index2++) {
+                        if (resource.endsWith(this.commonSeps.UNDERSCORE + index2)
+                            && (resource.indexOf(this.gdToolStrings._TOUCH_) < 0 || resource.indexOf(this.gdToolStrings._BLANK_) < 0)) {
+                            stringMaker.append(this.commonSeps.COMMENT);
+                        }
                     }
                 }
+
+                stringMaker.append(this.gdToolStrings.RESOURCE_0);
+                stringMaker.append(this.gdToolStrings.GD_RESOURCE);
+                stringMaker.append(resource);
+                stringMaker.append(this.gdToolStrings._RESOURCE);
+                stringMaker.append(this.gdToolStrings.RESOURCE_1);
+                final String androidResource = ((String) androidResourceList.get(index));
+                stringMaker.append(androidResource);
+                stringMaker.append(extension);
+                stringMaker.append(this.gdToolStrings.RESOURCE_2);
             }
-            
-            stringMaker.append(this.gdToolStrings.RESOURCE_0);
-            stringMaker.append(this.gdToolStrings.GD_RESOURCE);
-            stringMaker.append(resource);
-            stringMaker.append(this.gdToolStrings._RESOURCE);
-            stringMaker.append(this.gdToolStrings.RESOURCE_1);
-            final String androidResource = ((String) androidResourceList.get(index));
-            stringMaker.append(androidResource);
-            stringMaker.append(extension);
-            stringMaker.append(this.gdToolStrings.RESOURCE_2);
         }        
     }
     

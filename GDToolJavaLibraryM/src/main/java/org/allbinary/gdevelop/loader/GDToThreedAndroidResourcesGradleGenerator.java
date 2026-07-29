@@ -80,11 +80,16 @@ public class GDToThreedAndroidResourcesGradleGenerator
             final String resource = resourceString.substring(beginIndex, resourceString.length() - 4).toLowerCase();
 
             //Hack - the generation needs to break 3d objects from images.
-            final String extension = this.gdToolStrings.getExtension(threedFileList, resource);
-            if(extension == stringUtil.NULL_STRING) {
-                stringMaker.append(this.commonSeps.COMMENT);
-                stringMaker.append(this.gdToolStrings.NOT_USED_FOR_THREED_GAMES);
-            }
+            final BasicArrayList extensionList = this.gdToolStrings.getExtensions(threedFileList, resource);
+            final int size3 = extensionList.size();
+            String extension;
+            for(int index3 = 0; index3 < size3; index3++) {
+                extension = (String) extensionList.get(index3);
+
+                if (extension == stringUtil.NULL_STRING) {
+                    stringMaker.append(this.commonSeps.COMMENT);
+                    stringMaker.append(this.gdToolStrings.NOT_USED_FOR_THREED_GAMES);
+                }
             
 //            if (resource.indexOf(this.gdToolStrings.BUTTON) >= 0 || resource.indexOf(this.gdToolStrings.BLANK) >= 0) {
 //                extension = this.stringUtil.EMPTY_STRING;
@@ -93,21 +98,22 @@ public class GDToThreedAndroidResourcesGradleGenerator
 //                
 //            }
 
-            if (resource.indexOf(this.gdToolStrings.BLANK) >= 0) {
-                this.isBlank = true;
+                if (resource.indexOf(this.gdToolStrings.BLANK) >= 0) {
+                    this.isBlank = true;
+                }
+
+                stringMaker.append(this.PUBLIC_FINAL_STRING);
+                stringMaker.append(resource);
+
+                stringMaker.append(extension);
+
+                stringMaker.append(this.VALUE_RESOURCE_START);
+                stringMaker.append(resource);
+
+                stringMaker.append(extension);
+
+                stringMaker.append(this.VALUE_RESOURCE_END);
             }
-
-            stringMaker.append(this.PUBLIC_FINAL_STRING);
-            stringMaker.append(resource);
-
-            stringMaker.append(extension);
-
-            stringMaker.append(this.VALUE_RESOURCE_START);
-            stringMaker.append(resource);
-
-            stringMaker.append(extension);
-
-            stringMaker.append(this.VALUE_RESOURCE_END);
         }
     }
     

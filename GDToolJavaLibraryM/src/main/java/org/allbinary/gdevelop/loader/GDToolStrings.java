@@ -10,6 +10,7 @@ import org.allbinary.logic.string.StringUtil;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListD;
 
 /**
  *
@@ -26,8 +27,8 @@ public class GDToolStrings {
         return GDToolStrings.instance;
     }
 
-    //protected final LogUtil logUtil = LogUtil.getInstance();
-    //private final CommonStrings commonStrings = CommonStrings.getInstance();
+    protected final LogUtil logUtil = LogUtil.getInstance();
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
 
     public final String FILENAME = "fileName: ";
     
@@ -40,7 +41,7 @@ public class GDToolStrings {
     public final String OGG = "ogg";
     public final String TXT = "txt";
     public final String HTML = "html";
-    public final String GLSL = "glsl";
+    public final String _GLSL = "_glsl";
     
     public final String XML = "xml";
     public final String _JSON = ".json";
@@ -52,6 +53,7 @@ public class GDToolStrings {
     public final String BUTTON = "button";
     
     public final String _OBJ = "_obj";
+    public final String _MTL = "_mtl";
     public final String _MD2 = "_md2";
     public final String BLANK = "blank";
     
@@ -78,7 +80,8 @@ public class GDToolStrings {
 
     private final StringUtil stringUtil = StringUtil.getInstance();
     
-    public String getExtension(final BasicArrayList threedFileList, final String resource) {
+    public BasicArrayList getExtensions(final BasicArrayList threedFileList, final String resource) {
+        final BasicArrayList stringList = new BasicArrayListD();
         final int size = threedFileList.size();
         AbFile file;
         int startIndex;
@@ -87,31 +90,35 @@ public class GDToolStrings {
             file = (AbFile) threedFileList.get(index);
             path = file.getPath();
             startIndex = path.indexOf(resource);
+            //logUtil.putF(resource + "TWB: " + path, this, commonStrings.PROCESS);
             if(startIndex >= 0) {
-                //logUtil.put(path, this, commonStrings.PROCESS);
                 if(path.indexOf(this._OBJ) >= 0) {
-                    return this._OBJ;
+                    stringList.add(_OBJ);
+                } else if(path.indexOf(this._MTL) >= 0) {
+                    stringList.add(_MTL);
                 } else if(path.indexOf(this._MD2) >= 0) {
-                    return this._MD2;
+                    stringList.add(this._MD2);
+                } else if(path.endsWith(this._GLSL)) {
+                    stringList.add(this._GLSL);
                 } else if(path.endsWith(this.PNG)) {
-                    return this.stringUtil.EMPTY_STRING;
+                    stringList.add(this.stringUtil.EMPTY_STRING);
                 } else if(resource.indexOf(this._T) >= 0) {
-                    return this.stringUtil.EMPTY_STRING;
+                    stringList.add(this.stringUtil.NULL_STRING);
                 } else if(path.endsWith(this.DAT)) {
-                    return this.stringUtil.EMPTY_STRING;
+                    stringList.add(this.stringUtil.NULL_STRING);
                 } else if(path.endsWith(this.OGG)) {
-                    return this.stringUtil.EMPTY_STRING;
+                    stringList.add(this.stringUtil.NULL_STRING);
                 } else if(path.endsWith(this.TXT)) {
-                    return this.stringUtil.EMPTY_STRING;
+                    stringList.add(this.stringUtil.NULL_STRING);
                 } else if(path.endsWith(this.HTML)) {
-                    return this.stringUtil.EMPTY_STRING;
-                } else if(path.endsWith(this.GLSL)) {
-                    return this.stringUtil.EMPTY_STRING;
+                    stringList.add(this.stringUtil.NULL_STRING);
+                } else {
+                    stringList.add(this.stringUtil.NULL_STRING);
                 }
             }
         }
 
-        return this.stringUtil.NULL_STRING;
+        return stringList;
     }
     
 }
