@@ -476,10 +476,19 @@ Created By: Travis Berthelot
                             
                             <xsl:for-each select="customCollisionMask" >
                 //logUtil.putF("<xsl:value-of select="$name" /> scale: " + scale, this, commonStrings.INIT);
+                
+                final float widthF = ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * hackScale);
+                final float heightF = ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * hackScale);
+                final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
+                                pointFactory.createXY((int) (<xsl:value-of select="array[1]/x" /> + widthF / 4), (int) (<xsl:value-of select="array[1]/y" /> + heightF / 4)), 
+                                (int) widthF, (int) heightF);
+                
+<!--  
                 final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
                                 pointFactory.createXY((int) (<xsl:value-of select="array[1]/x" /> * scale), (int) (<xsl:value-of select="array[1]/y" /> * scale)),
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * scale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * scale)
                                 );
+-->
 
 //              logUtil.putF("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
 
