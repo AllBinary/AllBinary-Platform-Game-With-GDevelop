@@ -31,6 +31,8 @@ import org.allbinary.game.canvas.GDGameGlobals;
 import org.allbinary.game.layer.CameraLayer;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+import org.allbinary.graphics.threed.OpenGLRatioProcessor;
+import org.allbinary.graphics.threed.OpenGLPortraitRatioProcessor;
 import org.allbinary.graphics.threed.SWTJOGLProcessor;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.communication.log.PreLogUtil;
@@ -63,10 +65,12 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
             <xsl:for-each select="cameras" >
             
                     <xsl:if test="ratioProcessor = 'both'" >
-            SWTJOGLProcessor.getInstance().setRatioProcessor();
+            //Consumed by the AllBinaryToMin3dRenderer using the DisplayInfo custom dimension
+            SWTJOGLProcessor.getInstance().setRatioProcessor(OpenGLRatioProcessor.getInstance());
                     </xsl:if>
                     <xsl:if test="ratioProcessor != 'both'" >
-            //Using default ratio processor
+            //Consumed by the AllBinaryToMin3dRenderer using the DisplayInfo custom dimension
+            SWTJOGLProcessor.getInstance().setRatioProcessor(OpenGLPortraitRatioProcessor.getInstance());
                     </xsl:if>
             </xsl:for-each>
         </xsl:for-each>    
