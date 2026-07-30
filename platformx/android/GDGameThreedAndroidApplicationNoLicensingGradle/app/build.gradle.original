@@ -18,11 +18,19 @@ android {
     }
 
     buildTypes {
+        debug {
+//            optimization {
+//                enable = true
+//            }
+//            shrinkResources true
+            //minifyEnabled true (used before 9.3.0 for R8)
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'G:/mnt/bc/mydev/work/j2me/games/All_Android.pro'
+        }
         release {
-            optimization {
-                enable = true
-            }
-            shrinkResources true
+//            optimization {
+//                enable = true
+//            }
+//            shrinkResources true
             //minifyEnabled true (used before 9.3.0 for R8)
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'G:/mnt/bc/mydev/work/j2me/games/All_Android.pro'
         }
