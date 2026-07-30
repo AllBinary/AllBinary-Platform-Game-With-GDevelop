@@ -33,6 +33,7 @@ game.xml
 game.json
 R.java
 GD*GDNodes.java
+GD*LayoutUtil.java
 PlatformAssetManager.java
 GDGameSoftwareInfo.java
 GD*GamePlaynResources.java
