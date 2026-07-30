@@ -196,6 +196,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             layoutGameXmlAsString,
             layoutGameXmlAsString,
             layoutGameXmlAsString,
+            layoutGameXmlAsString,
             gameXmlAsString,
             layoutGameXmlAsString,
             gameXmlAsString,};
@@ -203,6 +204,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         final String[] xslPathInputArray = {
             this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutAsXml.xsl",
             this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayout.xsl",
+            this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutUtil.xsl",
             this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutBuilder.xsl",
             this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalEventGDNodes.xsl",
             this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalLayoutGDNodes.xsl",
@@ -244,11 +246,13 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             this.GENERATED_START_WITH_PATH,
             this.GENERATED_START_WITH_PATH,
             this.GENERATED_START_WITH_PATH,
+            this.GENERATED_START_WITH_PATH,
             this.gdPaths.GEN_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\GD",};
 
         final String[] END = {
             "SpecialAnimation.xml",
             "SpecialAnimation.java",
+            "LayoutUtil.java",
             "SpecialAnimationBuilder.java",
             "SpecialAnimationExternalEventGDNodes.java",
             "SpecialAnimationExternalLayoutGDNodes.java",
