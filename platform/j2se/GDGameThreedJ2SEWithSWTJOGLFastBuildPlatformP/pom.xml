@@ -2,13 +2,13 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.allbinary.game.gd</groupId>
-  <artifactId>GDGameThreedJ2SEWithSWTJOGLPlatformP</artifactId>
+  <artifactId>GDGameThreedJ2SEWithSWTJOGLFastBuildPlatformP</artifactId>
   <packaging>pom</packaging>
   <!-- AllBinary Platform Version Start -->
   <version>1.0.0-SNAPSHOT</version>
   <!-- AllBinary Platform Version End -->
 
-  <name>GDGameThreedJ2SEWithSWTJOGLPlatformP</name>
+  <name>GDGameThreedJ2SEWithSWTJOGLFastBuildPlatformP</name>
   <url>http://www.allbinary.com/</url>
     <distributionManagement>
         <snapshotRepository>
@@ -34,9 +34,6 @@
         <module>../GDGameThreedJ2SEWithSWTJOGLBaseJavaLibraryM</module>
 
         <module>../../GDGameJOGLResourcesJavaLibraryM</module>
-        
-        <module>../GDGameThreedJ2SEWithSWTJOGLM</module>
-        <module>../../../platformx/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM</module>
 
     </modules>
 
