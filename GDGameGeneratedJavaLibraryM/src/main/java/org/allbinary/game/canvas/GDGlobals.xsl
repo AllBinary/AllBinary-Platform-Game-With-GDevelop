@@ -310,14 +310,12 @@ Created By: Travis Berthelot
                             channelSoundArray[index] = new BasicArrayListD();
                         }
 
+<!--
                             <xsl:call-template name="scale" >
-                                <xsl:with-param name="layoutIndex" >
-                                    Global
-                                </xsl:with-param>
-                                <xsl:with-param name="layoutName" >
-                                    Global
-                                </xsl:with-param>
+                                <xsl:with-param name="layoutIndex" >Global</xsl:with-param>
+                                <xsl:with-param name="layoutName" >Global</xsl:with-param>
                             </xsl:call-template>
+-->
                                         
                         <xsl:for-each select="variables" >
                             <xsl:if test="type = 'boolean'" >

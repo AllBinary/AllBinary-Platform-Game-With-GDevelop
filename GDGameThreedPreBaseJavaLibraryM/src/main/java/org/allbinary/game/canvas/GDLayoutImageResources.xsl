@@ -70,6 +70,7 @@ Created By: Travis Berthelot
 <!--                import org.allbinary.animation.image.GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;-->
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.animation.AnimationBehavior;
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.gd.resource.GDResources;
                 import org.allbinary.graphics.PointFactory;

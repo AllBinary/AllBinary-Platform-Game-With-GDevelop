@@ -196,7 +196,6 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             layoutGameXmlAsString,
             layoutGameXmlAsString,
             layoutGameXmlAsString,
-            layoutGameXmlAsString,
             gameXmlAsString,
             layoutGameXmlAsString,
             gameXmlAsString,};
@@ -204,7 +203,6 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         final String[] xslPathInputArray = {
             this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutAsXml.xsl",
             this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayout.xsl",
-            this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutUtil.xsl",
             this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutBuilder.xsl",
             this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalEventGDNodes.xsl",
             this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalLayoutGDNodes.xsl",
@@ -246,13 +244,11 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             this.GENERATED_START_WITH_PATH,
             this.GENERATED_START_WITH_PATH,
             this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
             this.gdPaths.GEN_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\GD",};
 
         final String[] END = {
             "SpecialAnimation.xml",
             "SpecialAnimation.java",
-            "LayoutUtil.java",
             "SpecialAnimationBuilder.java",
             "SpecialAnimationExternalEventGDNodes.java",
             "SpecialAnimationExternalLayoutGDNodes.java",
@@ -706,7 +702,9 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             this.gdPaths.ROOT_PATH + "GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutTouchImageResources.xsl",
             this.gdPaths.ROOT_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutTouchImageResources.xsl",
             this.gdPaths.ROOT_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGameThreedLevelLoader.xsl",
-            this.gdPaths.ROOT_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\graphics\\threed\\min3d\\GDGameCameraSetup.xsl",};
+            this.gdPaths.ROOT_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\graphics\\threed\\min3d\\GDGameCameraSetup.xsl",
+            this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutUtil.xsl",
+        };
 
         final String[] OUTPUT_FILE_PATHS = {
             this.gdPaths.GEN_PATH + "resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
@@ -752,7 +750,9 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             this.gdPaths.GEN_PATH + "GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
             this.gdPaths.GEN_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
             this.gdPaths.GEN_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
-            this.gdPaths.GEN_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\graphics\\threed\\min3d\\GD",};
+            this.gdPaths.GEN_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\graphics\\threed\\min3d\\GD",
+            this.gdPaths.GEN_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
+        };
 
         final String[] OUTPUT_FILE_PATH_END_ARRAY = {
             "GameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
@@ -798,7 +798,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             "SpecialAnimationTouchImageResources.java",
             "SpecialAnimationTouchImageResources.java",
             "GameThreedLevelBuilder.java",
-            "GameCameraSetup.java"
+            "GameCameraSetup.java",
+            "LayoutUtil.java",
         };
 
         final int xslTotal2 = OUTPUT_FILE_PATHS.length;

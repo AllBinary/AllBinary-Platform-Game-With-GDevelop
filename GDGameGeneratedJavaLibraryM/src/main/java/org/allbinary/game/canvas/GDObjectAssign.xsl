@@ -146,7 +146,7 @@ Created By: Travis Berthelot
                 //TextObject::Text - set the layer size from the initial text
                 final CustomTextAnimationFactory <xsl:value-of select="name" />CustomTextAnimationFactory = (CustomTextAnimationFactory) <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray[0];
                 <xsl:value-of select="name" />CustomTextAnimationFactory.basicColor = basicColor;
-                <xsl:value-of select="name" />LayerInfo.setWidth((int) (<xsl:value-of select="name" />CustomTextAnimationFactory.getWidth()));
+                <xsl:value-of select="name" />LayerInfo.setWidth((int) (<xsl:value-of select="name" />CustomTextAnimationFactory.getWidth() / scale));
                 <xsl:value-of select="name" />LayerInfo.setHeight((int) (<xsl:value-of select="name" />CustomTextAnimationFactory.getHeight()));
                 </xsl:if>
 
@@ -197,7 +197,7 @@ Created By: Travis Berthelot
                             //logUtil.putF("CustomTextAnimation", this, "init");
                             final CustomTextAnimationFactory customTextAnimationFactory = (CustomTextAnimationFactory) animationInterfaceFactoryInterfaceArray[0];
 
-                            gdObject.width = (int) (customTextAnimationFactory.getWidth());
+                            gdObject.width = (int) (<xsl:value-of select="name" />CustomTextAnimationFactory.getWidth() / scale);
                             gdObject.height = (int) (customTextAnimationFactory.getHeight());
 
                             final Rectangle rectangle = new Rectangle(

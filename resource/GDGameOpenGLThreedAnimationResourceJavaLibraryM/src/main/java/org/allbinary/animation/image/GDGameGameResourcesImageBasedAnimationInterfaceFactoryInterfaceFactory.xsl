@@ -110,6 +110,7 @@ import org.allbinary.animation.threed.morphing.ThreedMorphingAnimationSingletonF
 import org.allbinary.animation.threed.morphing.processing.FirstFrameMorphingProcessor;
 import org.allbinary.animation.threed.morphing.processing.MorphingProcessor;
 import org.allbinary.animation.threed.morphing.processing.PlayMorphingProcessor;
+import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;

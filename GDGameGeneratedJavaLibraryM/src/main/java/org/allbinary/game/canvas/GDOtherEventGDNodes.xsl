@@ -61,6 +61,7 @@ import org.json.me.JSONObject;
 import org.allbinary.canvas.GameGlobalsFactory;
 import org.allbinary.game.canvas.GDGameGlobals;
 
+import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />LayoutUtil;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />GDObjectsFactory;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationImageResources;

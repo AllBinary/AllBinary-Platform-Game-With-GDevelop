@@ -876,11 +876,7 @@ public class GDGameLayer
     }
 
     public void onMeasure() {
-        final TextInterface textInterface = ((TextInterface) this.initIndexedAnimationInterfaceArray[0]);
-        this.gdObject.width = textInterface.getWidth();
-        this.gdObject.height = textInterface.getFontHeight();
-        this.setWidth(this.gdObject.width);
-        this.setHeight(this.gdObject.height);
+        throw new RuntimeException();
     }
 
     public String Text() {

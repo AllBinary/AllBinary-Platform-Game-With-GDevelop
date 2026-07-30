@@ -92,6 +92,7 @@ import org.allbinary.animation.image.AllBinaryPlatformImageRotationAnimationFact
 import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory;
 import org.allbinary.animation.compound.SimultaneousCompoundIndexedAnimationInterfaceFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
+import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.game.configuration.feature.Features;

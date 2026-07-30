@@ -186,6 +186,7 @@ Created By: Travis Berthelot
                     if(features.isFeature(openGLFeatureFactory.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory.OPENGL_3D)) {
                         isThreed = true;
                     }
+                    final float scale = (AndroidUtil.isAndroid() <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>  isThreed) ? GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale : 1.0f;
 
                     animationInterfaceFactoryInterfaceFactory.init(<xsl:value-of select="$layoutIndex" />);
                                         

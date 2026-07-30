@@ -84,6 +84,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.canvas.GameGlobalsFactory;
                 import org.allbinary.game.canvas.ABToGBUtil;
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil;
                 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory;
                 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources;
                 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals;

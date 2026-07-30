@@ -113,7 +113,8 @@ import org.allbinary.media.audio.AllBinaryMediaManager;
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
             <xsl:if test="number($layoutIndex) = <GD_CURRENT_INDEX>" >
-import org.allbinary.media.audio.GD<xsl:value-of select="position() - 1" />GameMusicFactory;
+import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil;
+import org.allbinary.media.audio.GD<xsl:value-of select="$layoutIndex" />GameMusicFactory;
             </xsl:if>
         </xsl:for-each>
 import org.allbinary.media.audio.PlayerQueue;

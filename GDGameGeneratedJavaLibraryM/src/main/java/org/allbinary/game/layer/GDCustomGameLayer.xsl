@@ -34,10 +34,12 @@ Created By: Travis Berthelot
         import javax.microedition.lcdui.Graphics;
         import javax.microedition.lcdui.game.TiledLayer;
 
+        import org.allbinary.AndroidUtil;
         import org.allbinary.animation.Animation;
         import org.allbinary.animation.AnimationInterfaceFactoryInterface;
         import org.allbinary.animation.IndexedAnimationInterface;
         import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
+        import org.allbinary.animation.text.TextInterface;
         import org.allbinary.direction.Direction;
         import org.allbinary.direction.DirectionFactory;
         import org.allbinary.game.canvas.GDGameGlobals;
@@ -79,6 +81,7 @@ Created By: Travis Berthelot
         import org.allbinary.graphics.GPoint;
         import org.allbinary.graphics.Rectangle;
         import org.allbinary.graphics.color.BasicColorFactory;
+        import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
         import org.allbinary.layer.AllBinaryLayer;
         import org.allbinary.layer.AllBinaryLayerManager;
         import org.allbinary.string.CommonSeps;
@@ -98,6 +101,11 @@ Created By: Travis Berthelot
         import org.allbinary.util.BasicArrayListD;
         import org.allbinary.view.ViewPosition;
         import org.allbinary.view.ViewPositionBase;
+
+        <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+        import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil;
+        </xsl:for-each>
 
     <xsl:variable name="foundPathFindingBehavior" >
         <xsl:for-each select="//behaviorsSharedData" >
@@ -163,6 +171,8 @@ Created By: Travis Berthelot
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                     private final GroupCommonFactory groupCommonFactory = GroupCommonFactory.getInstance();
 
+                    private float scale;
+
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
                     private final BasicColorFactory basicColorFactory = BasicColorFactory.getInstance();
                     private final AngleFactory angleFactory = AngleFactory.getInstance();
@@ -177,7 +187,7 @@ Created By: Travis Berthelot
                             //NullAnimationFactory.getFactoryInstance().getInstance(0),
                             //-23, -25, 6, 0);    
                     private Animation captionAnimation  = NullAnimationFactory.getFactoryInstance().getInstance(0);
-                        
+                    
                     private boolean selected = false;
 
                     private WaypointBehaviorBase waypointBehaviorBase = new WaypointBehaviorBase();
@@ -458,11 +468,20 @@ Created By: Travis Berthelot
 //                        );
         </xsl:if>
 
+            final Features features = Features.getInstance();
+            final OpenGLFeatureFactory openGLFeatureFactory = OpenGLFeatureFactory.getInstance();
+
+            boolean isThreed = false;
+            if(features.isFeature(openGLFeatureFactory.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory.OPENGL_3D)) {
+                isThreed = true;
+            }
+
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
             
             if(layoutIndex == <xsl:value-of select="$layoutIndex" />) {
                 this.handleLayout<xsl:value-of select="$layoutIndex" />();
+                this.scale = (AndroidUtil.isAndroid() <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>  isThreed) ? GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale : 1.0f;
             }
         </xsl:for-each>
 
@@ -473,6 +492,16 @@ Created By: Travis Berthelot
         </xsl:if>
 
         }
+
+    @Override
+    public void onMeasure() {
+        final TextInterface textInterface = ((TextInterface) this.initIndexedAnimationInterfaceArray[0]);
+        this.gdObject.width = (int) (textInterface.getWidth() / this.scale);
+        this.gdObject.height = textInterface.getFontHeight();
+        
+        this.setWidth(this.gdObject.width);
+        this.setHeight(this.gdObject.height);
+    }
 
         <xsl:if test="not(contains($hasLayoutWithTileMapAndIsTopView, 'found') or contains($foundOtherViewPosition, 'found'))" >
     public void upp()

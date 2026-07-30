@@ -39,6 +39,7 @@ import org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterfaceFact
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
             <xsl:if test="number($layoutIndex) = <GD_CURRENT_INDEX>" >
+import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals;
