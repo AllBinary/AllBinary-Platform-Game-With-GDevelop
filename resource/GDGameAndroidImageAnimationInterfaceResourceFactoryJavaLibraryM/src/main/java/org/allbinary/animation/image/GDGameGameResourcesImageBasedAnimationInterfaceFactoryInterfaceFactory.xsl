@@ -96,6 +96,7 @@ import java.util.Hashtable;
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.Font;
 
+import org.allbinary.AndroidUtil;
 import org.allbinary.animation.AnimationBehaviorFactory;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;

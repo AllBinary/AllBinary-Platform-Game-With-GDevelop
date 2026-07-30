@@ -32,7 +32,6 @@
 <!--        <module>../resource/GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM</module>-->
         <!--
         <module>../resource/GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
-        <module>../resource/GDGameOpenGLThreedAnimationResourceJavaLibraryM</module>
         -->
         
         <module>../GDGameBaseJavaLibraryM</module>
