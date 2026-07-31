@@ -38,8 +38,10 @@ public class GDToThreedAndroidRClassGenerator
     private final String PUBLIC_STATIC_FINAL_INT = "        public static final int ";
     private final String VALUE = " = 0x7f060007;\n";
     
-    private final String RESOURCE = "        //Resource\n";
+    private final String RESOURCE = "        //Resource - ";
     private final String EXPRESSION_PARAM = "        //Expression Param\n";
+    
+    private final String FILE = "        //File - ";
     
     private final String SKIPPING = "Skipping: ";
     
@@ -74,9 +76,14 @@ public class GDToThreedAndroidRClassGenerator
         for(int index = 0; index < size; index++) {
 
             fileAsString = (String ) this.fileAsStringList.get(index);
+            stringMaker.append(this.FILE);
+            stringMaker.append(this.commonSeps.QUOTE);
+            stringMaker.append(fileAsString);
+            stringMaker.append(this.commonSeps.QUOTE);
+            stringMaker.append(this.commonSeps.NEW_LINE);
             
             final BasicArrayList extensionList = this.gdToolStrings.getExtensions(threedFileList, fileAsString);
-            
+
             final int size3 = extensionList.size();
             String extension;
             
@@ -85,18 +92,28 @@ public class GDToThreedAndroidRClassGenerator
 //            stringMaker.append(this.VALUE);
 //            stringMaker.append(this.commonSeps.NEW_LINE);
             
+            final BasicArrayList list = new BasicArrayListD();
             for(int index3 = 0; index3 < size3; index3++) {
                 extension = (String) extensionList.get(index3);
-                stringMaker.append(this.RESOURCE);
+                
+                if(!list.contains(extension)) {
+                    list.add(extension);
 
-                if (extension == StringUtil.getInstance().NULL_STRING) {
-                    stringMaker.append(this.commonSeps.COMMENT);
+                    stringMaker.append(this.RESOURCE);
+                    stringMaker.append(this.commonSeps.QUOTE);
+                    stringMaker.append(extension);
+                    stringMaker.append(this.commonSeps.QUOTE);
+                    stringMaker.append(this.commonSeps.NEW_LINE);
+
+                    if (extension == StringUtil.getInstance().NULL_STRING) {
+                        stringMaker.append(this.commonSeps.COMMENT);
+                    }
+
+                    stringMaker.append(this.PUBLIC_STATIC_FINAL_INT);
+                    stringMaker.append(fileAsString);
+                    stringMaker.append(extension);
+                    stringMaker.append(this.VALUE);
                 }
-
-                stringMaker.append(this.PUBLIC_STATIC_FINAL_INT);
-                stringMaker.append(fileAsString);
-                stringMaker.append(extension);
-                stringMaker.append(this.VALUE);
             }
 
         }
