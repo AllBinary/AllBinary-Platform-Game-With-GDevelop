@@ -321,17 +321,60 @@ Created By: Travis Berthelot
                                         //Player
                                         final float hackScale = 0.125f * scale;
                                     </xsl:if>
-                final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
+
+                Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask;
+
+                if(AndroidUtil.isAndroid()) {
+
+                    final float widthF = ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) / hackScale);
+                    final float heightF = ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) / hackScale);
+                    <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
+                                pointFactory.createXY((int) (<xsl:value-of select="array[1]/x" /> - widthF * 3 / 4), (int) (<xsl:value-of select="array[1]/y" /> - heightF * 3 / 4)), 
+                                (int) widthF * 13 / 10, (int) heightF * 13 / 10);
+
+                } else {
+                    <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
                                 pointFactory.createXY((int) (<xsl:value-of select="array[1]/x" /> * hackScale), (int) (<xsl:value-of select="array[1]/y" /> * hackScale)),
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * hackScale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * hackScale)
                                 );
+                }
 
 //                logUtil.putF("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
 
-                                    </xsl:if>
-                
+                                    </xsl:if>                
                             </xsl:for-each>
                             </xsl:if>
+
+                            <xsl:if test="not(hasCustomCollisionMask = 'true')" >
+                                <xsl:if test="../../directions/sprites/originPoint/x != 0" >
+                Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask;
+                if(AndroidUtil.isAndroid()) {
+
+                    <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
+                                pointFactory.createXY(
+                        <xsl:for-each select=".." >
+                            <xsl:for-each select=".." >
+                    <xsl:if test="directions/sprites/originPoint/x != 0" >(int) (-<xsl:value-of select="directions/sprites/originPoint/x" /> <xsl:for-each select="/game/properties/custom" ><xsl:if test="name = $name and scale3d" > * <xsl:value-of select="scale3d" /></xsl:if></xsl:for-each>), </xsl:if>
+                    <xsl:if test="directions/sprites/originPoint/y != 0" >(int) (-<xsl:value-of select="directions/sprites/originPoint/y" /> <xsl:for-each select="/game/properties/custom" ><xsl:if test="name = $name and scale3d" > * <xsl:value-of select="scale3d" /></xsl:if></xsl:for-each>)), </xsl:if>
+                    <xsl:if test="directions/sprites/originPoint/x != 0" >(int) (<xsl:value-of select="directions/sprites/originPoint/x" /> * 2 <xsl:for-each select="/game/properties/custom" ><xsl:if test="name = $name and scale3d" > * <xsl:value-of select="scale3d" /></xsl:if></xsl:for-each>), </xsl:if>
+                    <xsl:if test="directions/sprites/originPoint/y != 0" >(int) (<xsl:value-of select="directions/sprites/originPoint/y" /> * 2 <xsl:for-each select="/game/properties/custom" ><xsl:if test="name = $name and scale3d" > * <xsl:value-of select="scale3d" /></xsl:if></xsl:for-each>)); </xsl:if>
+                            </xsl:for-each>
+                        </xsl:for-each>
+
+                    final Rectangle[][] rectangleArrayOfArrays = new Rectangle[<xsl:value-of select="$animationTotal" />][360];
+                    rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][<xsl:value-of select="$position - 1" />] = <xsl:value-of select="$animationName1" />CollisionMask;
+                    for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$animationTotal" />; index2++) {
+                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 360; index++) {
+                            rectangleArrayOfArrays[index2][index] = <xsl:value-of select="$animationName1" />CollisionMask;
+                        }
+                    }
+
+                    this.addRectangleArrayOfArrays(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, rectangleArrayOfArrays);
+
+                } 
+                                </xsl:if>
+                            </xsl:if>
+                                                        
                         </xsl:for-each>
                     </xsl:for-each>
 
@@ -339,11 +382,11 @@ Created By: Travis Berthelot
 
                     <xsl:for-each select="directions" >
                         <xsl:for-each select="sprites" >
-                            <xsl:if test="hasCustomCollisionMask = 'true'" >
-
                             <xsl:variable name="image" ><xsl:value-of select="image" /></xsl:variable>
                             <xsl:variable name="position" ><xsl:value-of select="position()" /></xsl:variable>
                             <xsl:variable name="last" ><xsl:value-of select="last()" /></xsl:variable>
+
+                            <xsl:if test="hasCustomCollisionMask = 'true'" >
                                 
 <!--                            <xsl:if test="position() = 1" >
                 rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />] = new Rectangle[<xsl:value-of select="last()" />];
@@ -355,14 +398,14 @@ Created By: Travis Berthelot
                 rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][<xsl:value-of select="$position - 1" />] = <xsl:value-of select="$animationName1" />CollisionMask;
                                 </xsl:if>
                                 <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >                                
-               for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$animationTotal" />; index2++) {
+                for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$animationTotal" />; index2++) {
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 360; index++) {
                         rectangleArrayOfArrays[index2][index] = <xsl:value-of select="$animationName1" />CollisionMask;
                     }
                 }
                                 </xsl:if>
                             </xsl:for-each>
-                            </xsl:if>
+                            </xsl:if>                            
                         </xsl:for-each>
                     </xsl:for-each>
 
@@ -412,10 +455,23 @@ Created By: Travis Berthelot
                             
                             <xsl:for-each select="customCollisionMask" >
 
-                final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
+                Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask;
+                if(AndroidUtil.isAndroid()) {
+
+                    final float widthF = ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) / hackScale);
+                    final float heightF = ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) / hackScale);
+                    <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
+                                pointFactory.createXY((int) (<xsl:value-of select="array[1]/x" /> - widthF * 3 / 4), (int) (<xsl:value-of select="array[1]/y" /> - heightF * 3 / 4)), 
+                                (int) widthF * 13 / 10, (int) heightF * 13 / 10);
+
+                } else {
+
+                    <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
                                 pointFactory.createXY((int) (<xsl:value-of select="array[1]/x" /> * scale), (int) (<xsl:value-of select="array[1]/y" /> * scale)),
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * scale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * scale)
                                 );
+
+                }
 
 //              logUtil.putF("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
 
@@ -877,7 +933,7 @@ Created By: Travis Berthelot
                                 0
                                 </xsl:if>
                                 ),
-                                <xsl:if test="animations/directions/sprites/originPoint/x = 0" >//</xsl:if>(int) (<xsl:value-of select="animations/directions/sprites/originPoint/x" /> * animationScale), (int) (<xsl:value-of select="animations/directions/sprites/originPoint/y" /> * animationScale)
+                                <xsl:if test="animations/directions/sprites/originPoint/x = 0" >//</xsl:if>(int) (<xsl:value-of select="animations/directions/sprites/originPoint/x" /> / scale), (int) (<xsl:value-of select="animations/directions/sprites/originPoint/y" /> / scale)
                                 <xsl:if test="animations/directions/sprites/originPoint/x = 0" ><xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()</xsl:if>
                                 );
 
