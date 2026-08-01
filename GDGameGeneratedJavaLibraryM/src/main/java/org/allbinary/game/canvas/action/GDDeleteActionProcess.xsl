@@ -83,13 +83,13 @@ Created By: Travis Berthelot
                                 final BasicArrayList gdGameLayerList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList;
                         </xsl:if>
 
-                            GDGameLayer gdGameLayer;
+                            GDGameLayer <xsl:value-of select="$name" />GDGameLayer;
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList.size(); index++) {
                         
-                                gdGameLayer = (GDGameLayer) gdGameLayerList.get(index);
+                                <xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) gdGameLayerList.get(index);
                                 //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + gdGameLayer, this, commonStrings.PROCESS);
                                 //This removes itself from the list
-                                gdGameLayer.setDestroyed(true);
+                                <xsl:value-of select="$name" />GDGameLayer.setDestroyed(true);
                                 //gdGameLayerRemoveList.add(gdGameLayer);
                             
                             }
@@ -203,10 +203,10 @@ Created By: Travis Berthelot
                         public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
                             super.processGDStats(gameLayerArray);
                             try {
-
-                                //logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + <xsl:value-of select="$name" />GDGameLayer, this, commonStrings.PROCESS);
                      
                                 <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
+
+                                //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="$nodeId" /> + "GD" + <xsl:value-of select="$name" />GDGameLayer, this, commonStrings.PROCESS);
 
                                 //<xsl:value-of select="$name" />
                                 <xsl:text>&#10;</xsl:text>
@@ -256,14 +256,14 @@ Created By: Travis Berthelot
                             <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
                                     //Parameters - 5
-                                    
+
                                                 //<xsl:value-of select="$name" /><xsl:text>&#10;</xsl:text>
 
 <!--                                            //final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                                             //final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
                                             //if(allBinaryGameLayerManager.getLayerManager().contains(<xsl:value-of select="$name" />GDGameLayer)) {
                                                 //allBinaryGameLayerManager.remove(<xsl:value-of select="$name" />GDGameLayer);-->
-                                                //logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + <xsl:value-of select="$name" />GDGameLayer, this, commonStrings.PROCESS);
+                                                //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="$nodeId" /> + "GD2" + <xsl:value-of select="$name" />GDGameLayer, this, commonStrings.PROCESS);
                                                 <xsl:value-of select="$name" />GDGameLayer.setDestroyed(true);
 <!--                                            //} else {
                                                 //logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + " LayerManager does not have (probably already removed/destroyed): " + <xsl:value-of select="$name" />GDGameLayer, this, commonStrings.PROCESS);
