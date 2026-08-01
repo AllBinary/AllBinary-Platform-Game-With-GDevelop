@@ -54,6 +54,12 @@ Created By: Travis Berthelot
                         
                             //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, commonStrings.PROCESS);
                             
+                            if (motionGestureEvent.getMotionGesture() != touchMotionGestureFactory.RELEASED) {
+                                return false;
+                            }
+                            
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "released", this, commonStrings.PROCESS);
+
                             <xsl:for-each select=".." >
                                 <xsl:call-template name="actionsProcessing" >
                                     <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>

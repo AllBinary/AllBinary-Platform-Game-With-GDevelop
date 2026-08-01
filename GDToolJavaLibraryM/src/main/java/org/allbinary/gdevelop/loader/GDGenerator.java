@@ -26,6 +26,7 @@ public class GDGenerator {
         //System.setProperty("jdk.xml.xpathExprOpLimit", "0");
         System.setProperty("jdk.xml.xpathTotalOpLimit", "0");
         final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(0);
+        new GDResourceProcessing().process();
         new GDDelete().process();
 //        System.out.println("Delete ElapsedTime: " + timeDelayHelper.getElapsedTNT());
 //        timeDelayHelper.setStartTimeTNT();

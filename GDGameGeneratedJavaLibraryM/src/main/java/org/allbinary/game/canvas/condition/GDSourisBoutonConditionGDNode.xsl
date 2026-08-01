@@ -69,27 +69,30 @@ Created By: Travis Berthelot
                             return true;
                         }
 
-                        //private boolean released = true;
+                        private boolean released = true;
 
                         public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                             super.processStats(motionGestureEvent);
 
                             //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+
+                            if (motionGestureEvent.getMotionGesture() == touchMotionGestureFactory.RELEASED) {
+                                //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "released", this, commonStrings.PROCESS);
+                                this.released = true;
+                                return false;
+                            }
+
+                            if (motionGestureEvent.getMotionGesture() == touchMotionGestureFactory.PRESSED) {
+                                //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "pressed", this, commonStrings.PROCESS);
+                                this.released = false;
+                            }
                             
-//                            if(lastMotionGestureInput == touchMotionGestureFactory.RELEASED) {
-//                                this.released = true;
-//                            }
+                            if(this.released) {
+                                return false;
+                            }
 
-//                            if (lastMotionGestureInput != touchMotionGestureFactory.PRESSED) {
-//                                return false;
-//                            }
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "continued", this, commonStrings.PROCESS);
 
-//                            if(!this.released) {
-//                                return false;
-//                            }
-
-//                            this.released = false;
-                            
                             <xsl:for-each select=".." >
                                 
                                 <xsl:call-template name="actionsProcessing" >

@@ -44,7 +44,9 @@ public class GDToolStrings {
     public final String _GLSL = "_glsl";
     
     public final String XML = "xml";
+    public final String _XML = ".xml";
     public final String _JSON = ".json";
+    public final String _SVG = ".svg";
     public final String _T = ".t";
     
     public final String _BLANK_ = "BLANK";

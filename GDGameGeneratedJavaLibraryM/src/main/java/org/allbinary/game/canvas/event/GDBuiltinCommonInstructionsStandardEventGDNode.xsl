@@ -66,7 +66,7 @@ Created By: Travis Berthelot
                                 <xsl:when test="type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased' or type/value = 'AnyKeyPressed' or type/value = 'AnyKeyReleased'" >
                                     found
                                 </xsl:when>
-                                <xsl:when test="type/value = 'MouseButton' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextPressed'" >
+                                <xsl:when test="type/value = 'MouseButton' or type/value = 'MouseButtonFromTextPressed' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >
                                     found
                                 </xsl:when>
                                 <xsl:when test="type/value = 'IsCursorOnObject' or type/value = 'SourisSurObjet'" >
@@ -98,7 +98,7 @@ Created By: Travis Berthelot
                             <xsl:when test="type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased' or type/value = 'AnyKeyPressed' or type/value = 'AnyKeyReleased'" >
                         //Skip - Key Input condition for process() as it can only be called from GDGameInputProcessor, but probably should not be
                             </xsl:when>
-                            <xsl:when test="type/value = 'MouseButton' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextPressed'" >
+                            <xsl:when test="type/value = 'MouseButton' or type/value = 'MouseButtonFromTextPressed' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >
                         //Skip - MouseButton/SourisBouton, MouseButtonReleased, MouseButtonFromTextPressed for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
                             </xsl:when>
                             <xsl:when test="type/value = 'IsCursorOnObject' or type/value = 'SourisSurObjet'" >
@@ -173,7 +173,7 @@ Created By: Travis Berthelot
                         <xsl:choose>
                             <xsl:when test="type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased' or type/value = 'AnyKeyPressed' or type/value = 'AnyKeyReleased'" >
                             </xsl:when>
-                            <xsl:when test="type/value = 'MouseButton' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextPressed'" >
+                            <xsl:when test="type/value = 'MouseButton' or type/value = 'MouseButtonFromTextPressed' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >
                             </xsl:when>
                             <xsl:when test="type/value = 'IsCursorOnObject' or type/value = 'SourisSurObjet'" >
                             </xsl:when>
@@ -209,7 +209,7 @@ Created By: Travis Berthelot
                             <xsl:when test="type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased' or type/value = 'AnyKeyPressed' or type/value = 'AnyKeyReleased'" >
                         //Skip - Key Input condition for process() as it can only be called from GDGameInputProcessor, but probably should not be
                             </xsl:when>
-                            <xsl:when test="type/value = 'MouseButton' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased'" >
+                            <xsl:when test="type/value = 'MouseButton' or type/value = 'MouseButtonFromTextPressed' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >
                         //Skip - MouseButton/SourisBouton, MouseButtonReleased for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
                             </xsl:when>
                             <xsl:when test="type/value = 'IsCursorOnObject' or type/value = 'SourisSurObjet'" >
@@ -262,7 +262,7 @@ Created By: Travis Berthelot
                         <xsl:choose>
                             <xsl:when test="type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased' or type/value = 'AnyKeyPressed' or type/value = 'AnyKeyReleased'" >
                             </xsl:when>
-                            <xsl:when test="type/value = 'MouseButton' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased'" >
+                            <xsl:when test="type/value = 'MouseButton' or type/value = 'MouseButtonFromTextPressed' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >
                             </xsl:when>
                             <xsl:when test="type/value = 'IsCursorOnObject' or type/value = 'SourisSurObjet'" >
                             </xsl:when>
