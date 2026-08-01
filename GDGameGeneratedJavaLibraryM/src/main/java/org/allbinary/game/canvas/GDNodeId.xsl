@@ -514,35 +514,34 @@
                 <xsl:if test="type/value = 'MouseButtonReleased'" >
                             //MouseButtonReleased - eventListener
                             if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
-                                globals.mouseButtonReleasedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
+                                globals.mouseButtonReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
                             }
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonFromTextReleased'" >
                             //MouseButtonReleased - eventListener
                             if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
-                                globals.mouseButtonFromTextReleasedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
+                                globals.mouseButtonFromTextReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
                             }
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonPressed'" >
                             //MouseButtonPressed - eventListener
-                            globals.mouseButtonPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
+                            globals.mouseButtonPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonFromTextPressed'" >
                             //MouseButtonFromTextPressed - //MouseButtonPressed - eventListener
-                            globals.mouseButtonFromTextPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
+                            globals.mouseButtonFromTextPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
                 </xsl:if>
                 <xsl:if test="type/value = 'SourisBouton'" >
                             //MouseButton - //SourisBouton - eventListener
-                            //if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
-                                //globals.mouseButtonGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processReleased();
-                            //} else {
-                                globals.mouseButtonGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
-                            //}
+                            globals.mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
+                            if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
+                                globals.mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processReleased();
+                            }
                 </xsl:if>
 
                 <xsl:if test="type/value = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
                             //SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed - eventListener
-                            globals.spriteMultitouchJoystickGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
+                            globals.spriteMultitouchJoystickGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
                 </xsl:if>
                                 
             </xsl:for-each>
@@ -568,11 +567,11 @@
 <!--                //Conditions - <xsl:value-of select="$totalRecursions" />-->
                 <xsl:if test="type/value = 'IsMouseWheelScrollingUp'" >
                             //IsMouseWheelScrollingUp - eventListener
-                            globals.mouseWheelScrollingUpGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processScrolling(motionGestureEvent, globals.lastScrollingMotionGestureInput);
+                            globals.mouseWheelScrollingUpGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processScrolling(motionGestureEvent, globals.lastScrollingMotionGestureInput);
                 </xsl:if>
                 <xsl:if test="type/value = 'IsMouseWheelScrollingDown'" >
                             //IsMouseWheelScrollingDown - eventListener
-                            globals.mouseWheelScrollingDownGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processScrolling(motionGestureEvent, globals.lastScrollingMotionGestureInput);
+                            globals.mouseWheelScrollingDownGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processScrolling(motionGestureEvent, globals.lastScrollingMotionGestureInput);
                 </xsl:if>
                                 
             </xsl:for-each>

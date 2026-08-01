@@ -2347,23 +2347,23 @@ Created By: Travis Berthelot
                 
                 <xsl:if test="type/value = 'MouseButtonReleased'" >
                     ////MouseButtonReleased - eventListener
-                    //globals.mouseButtonReleasedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
+                    //globals.mouseButtonReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonFromTextReleased'" >
                     ////MouseButtonFromTextReleased - //MouseButtonReleased - eventListener
-                    //globals.mouseButtonFromTextReleasedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
+                    //globals.mouseButtonFromTextReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonPressed'" >
                     ////MouseButtonPressed - eventListener
-                    //globals.mouseButtonPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
+                    //globals.mouseButtonPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonFromTextPressed'" >
                     ////MouseButtonFromTextPressed - //MouseButtonPressed - eventListener
-                    //globals.mouseButtonFromTextPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
+                    //globals.mouseButtonFromTextPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
                 </xsl:if>
                 <xsl:if test="type/value = 'SourisBouton'" >
                     ////MouseButton - //SourisBouton - eventListener
-                    //globals.mouseButtonGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
+                    //globals.mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
                 </xsl:if>
                 
             </xsl:for-each>
@@ -2438,27 +2438,27 @@ Created By: Travis Berthelot
                     
                 <xsl:if test="type/value = 'MouseButtonReleased'" >
                     //GDNode - //MouseButtonReleased - eventListener
-                    globals.mouseButtonReleasedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    globals.mouseButtonReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonFromTextReleased'" >
                     //GDNode - //MouseButtonFromTextReleased - //MouseButtonReleased - eventListener
-                    globals.mouseButtonFromTextReleasedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    globals.mouseButtonFromTextReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonPressed'" >
                     //GDNode - //MouseButtonPressed - eventListener
-                    globals.mouseButtonPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    globals.mouseButtonPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonFromTextPressed'" >
                     //GDNode - //MouseButtonFromTextPressed - //MouseButtonPressed - eventListener
-                    globals.mouseButtonFromTextPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    globals.mouseButtonFromTextPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
                 <xsl:if test="type/value = 'SourisBouton'" >
                     //GDNode - //MouseButton - //SourisBouton - eventListener
-                    globals.mouseButtonGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    globals.mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
                 <xsl:if test="type/value = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
                     //SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed - eventListener
-                    globals.spriteMultitouchJoystickGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    globals.spriteMultitouchJoystickGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
 
                     public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
@@ -2480,11 +2480,11 @@ Created By: Travis Berthelot
                                         
                 <xsl:if test="type/value = 'IsMouseWheelScrollingUp'" >
                     //GDNode - //IsMouseWheelScrollingUp - eventListener
-                    globals.mouseWheelScrollingUpGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    globals.mouseWheelScrollingUpGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
                 <xsl:if test="type/value = 'IsMouseWheelScrollingDown'" >
                     //GDNode - //IsMouseWheelScrollingDown - eventListener
-                    globals.mouseWheelScrollingDownGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    globals.mouseWheelScrollingDownGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
 
                     public boolean processScrolling(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
