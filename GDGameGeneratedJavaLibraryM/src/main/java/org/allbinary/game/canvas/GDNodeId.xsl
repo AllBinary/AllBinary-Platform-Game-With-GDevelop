@@ -258,7 +258,9 @@
             <xsl:text>&#10;</xsl:text>
             //actionIdsGDObject - //<xsl:value-of select="type/value" />
             <xsl:if test="type/value = 'Delete'" >
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].addForDelete(<xsl:value-of select="$gdGameLayer" />);
+            //TWB - if this is not used them remove - if removed remove the method as well
+            throw new RuntimeException();
+            //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].addForDelete(<xsl:value-of select="$gdGameLayer" />);
             </xsl:if>
             <xsl:if test="type/value != 'Delete'" >
                 <xsl:if test="(contains($parametersHasGDObjectName, 'found') and contains($hasCreate, 'found')) or contains($parametersAsString0, $gdObjectName)" >

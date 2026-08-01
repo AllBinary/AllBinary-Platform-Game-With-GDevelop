@@ -38,7 +38,7 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:variable>
 
-                        @Override
+<!--                        @Override
                         public void addForDelete(final GDGameLayer gdGameLayer) {
                         
                         <xsl:if test="contains($hasObjectGroup2, 'found')" >
@@ -64,9 +64,9 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($hasObjectGroup2, 'found')" >
                             }
                         </xsl:if>
-                        }
+                        }-->
 
-                        @Override
+<!--                        @Override
                         public void delete() {
                         
                             try {
@@ -100,7 +100,7 @@ Created By: Travis Berthelot
                             } catch(Exception e) {
                                 logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                             }
-                        }
+                        }-->
 
                         //Delete - action - <xsl:value-of select="$name" /> - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >

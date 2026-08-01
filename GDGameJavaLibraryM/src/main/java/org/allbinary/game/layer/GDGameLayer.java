@@ -378,6 +378,7 @@ public class GDGameLayer
         //super.setDestroyed(destroyed);
         this.gameLayerList.remove(this);
         this.gameLayerDestroyedList.add(this);
+        //logUtil.putF(this.toString(), this, "setDestroyed");
         this.combatBaseBehavior.getDestroyableBaseBehavior().setDestroyed(destroyed);
     }
         
