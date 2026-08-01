@@ -30,13 +30,15 @@ public class GDNodes {
     
     public void process() {
 
-        //final LogUtil logUtil = LogUtil.getInstance();
-        //final CommonStrings commonStrings = CommonStrings.getInstance();
+//        final LogUtil logUtil = LogUtil.getInstance();
+//        final CommonStrings commonStrings = CommonStrings.getInstance();
         GDNode gdNode;
         final int size2 = this.runnableList.size();
         for (int index = 0; index < size2; index++) {
             gdNode = (GDNode) this.runnableList.get(index);
-            //logUtil.putF(new StringMaker().appendlong(gdNode.getName()).toString(), this, commonStrings.PROCESS);
+//            if(gdNode.currentRunnable != NullRunnable.getInstance()) {
+//                logUtil.putF(new StringMaker().appendlong(gdNode.getName()).toString(), this, commonStrings.PROCESS);
+//            }
             gdNode.currentRunnable.run();
         }
 
