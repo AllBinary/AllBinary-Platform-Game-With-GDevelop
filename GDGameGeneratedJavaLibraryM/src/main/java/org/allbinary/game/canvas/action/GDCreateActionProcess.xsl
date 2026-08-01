@@ -40,8 +40,7 @@ Created By: Travis Berthelot
                     //param1=<xsl:value-of select="$param" />
 
                     <!-- Temp solution until I can remove duplicates -->
-                    //This should replace the hack cases with - //TWB is this still needed
-                    //createActionProcess - //Create - GDObject - START - //forExtension=<xsl:value-of select="$forExtension" />
+                    //createActionProcess - //Create - <xsl:value-of select="$name" /> - GDObject - START - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                     @Override
                     public boolean process() throws Exception {
@@ -68,9 +67,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                         <xsl:with-param name="caller" >createActionProcess</xsl:with-param>
                     </xsl:call-template>
-
                         //createGDObject - process - END
-                        //createGDObject - //Create
+
+                        //createGDObject - //Create - <xsl:value-of select="$name" />
                         this.processCreateWithGDObject(<xsl:value-of select="$name" />);
                         
                         this.processEnd(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() - 1);
@@ -119,7 +118,6 @@ Created By: Travis Berthelot
                         
                     }
 
-                    //Create
                     @Override
                     public boolean processCreateWithGDObject(final GDObject gdObject) throws Exception {
                         super.processCreateStats(gdObject);
@@ -482,18 +480,9 @@ Created By: Travis Berthelot
 
         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
-                    //Create End
                     @Override
                     public void processEnd() throws Exception {
-                        super.processEndStats(-1);
-
-                        //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.END);
-                        this.processEnd(-1);
-                     }
-               
-                    @Override
-                    public void processEnd(final int index) throws Exception {
-                        super.processEndStats(index);
+                        super.processEndStats();
 
                         //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.END);
 

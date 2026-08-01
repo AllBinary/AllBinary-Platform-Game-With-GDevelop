@@ -466,7 +466,7 @@ Created By: Travis Berthelot
                     public void processEnd() throws Exception {
                         <xsl:if test="not(contains($hasObject, 'found') or contains($hasObjectGroup, 'found'))" >
                         
-                        super.processEndStats(this.createIndex);
+                        super.processEndStats();
 
                         this.processEnd(((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(createIndex)).size() - 1, createIndex);
                         </xsl:if>
@@ -474,7 +474,7 @@ Created By: Travis Berthelot
 
                     @Override
                     public void processEnd(final int index, final int createIndex) throws Exception {
-                        super.processEndStats(createIndex);
+                        super.processEndStats();
 
                         //logUtil.putF(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.END);
                         

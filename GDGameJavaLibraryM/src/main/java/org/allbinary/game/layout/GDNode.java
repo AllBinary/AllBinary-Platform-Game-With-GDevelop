@@ -113,14 +113,11 @@ public class GDNode
     public void processEnd() throws Exception {
     }
     
-    public void processEnd(final int index) throws Exception {
-    }
-
     public void processEnd(final int index, final int createIndex) throws Exception {
         
     }
 
-    protected void processEndStats(final int index) throws Exception {
+    protected void processEndStats() throws Exception {
         this.nodeStatsFactory.push(7, this.name);
     }
 
