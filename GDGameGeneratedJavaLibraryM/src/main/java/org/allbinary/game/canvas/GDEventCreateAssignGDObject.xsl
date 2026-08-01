@@ -675,7 +675,12 @@ Created By: Travis Berthelot
                             <xsl:text>&#10;</xsl:text>
                             <xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" >
                             //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
+                            <xsl:if test="$methodCall != 'processReleased()'" >
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processEnd();
+                            </xsl:if>
+                            <xsl:if test="$methodCall = 'processReleased()'" >
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].<xsl:value-of select="$methodCall" />;
+                            </xsl:if>
                             </xsl:if>
                         </xsl:for-each>
                         </xsl:if>
