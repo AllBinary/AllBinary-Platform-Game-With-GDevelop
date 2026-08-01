@@ -100,7 +100,6 @@ Created By: Travis Berthelot
                         this.processCreateByName(<xsl:value-of select="$name" />, createString, createIndex);
                         
                         this.processEnd(((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(createIndex)).size() - 1, createIndex);
-                        //this.processEnd(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() - 1);
 
                         return true;
                         </xsl:if>
@@ -217,7 +216,6 @@ Created By: Travis Berthelot
                         this.processCreateByName(<xsl:value-of select="$name" />, createString, createIndex);
                         
                         this.processEnd(((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(createIndex)).size() - 1, createIndex);
-                        //this.processEnd(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() - 1);
 
                         <xsl:if test="contains($hasObjectGroup, 'found')" >
                             }
