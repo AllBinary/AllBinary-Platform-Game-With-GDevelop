@@ -18,6 +18,16 @@ package org.allbinary.game.configuration.persistance;
  * @author User
  */
 public class GDStructure {
+    
+    private static final GDStructure instance = new GDStructure();
+
+    /**
+     * @return the instance
+     */
+    public static GDStructure getInstance() {
+        return instance;
+    }
+    
     public int Size = -1;
 
     public int getJSONType() {

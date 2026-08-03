@@ -16,7 +16,7 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:template name="clearVariableChildrenActionProcess" >
+    <xsl:template name="globalVariableClearChildrenActionProcess" >
         <xsl:param name="forExtension" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="objectsGroupsAsString" />
@@ -24,7 +24,7 @@ Created By: Travis Berthelot
 
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    //ClearVariableChildren - action - //forExtension=<xsl:value-of select="$forExtension" />
+                    //GlobalVariableClearChildren - action - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                     @Override
                     public boolean process() throws Exception {
@@ -72,7 +72,6 @@ Created By: Travis Berthelot
                         final int size = <xsl:value-of select="$param1" />.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             <xsl:value-of select="$param1" />[index] = stringUtil.EMPTY_STRING;
-                            //<xsl:value-of select="$param1" />[index] = GDStructure.getInstance();
                         }
                         <xsl:value-of select="$param1" />Index = 0;
                         </xsl:if>

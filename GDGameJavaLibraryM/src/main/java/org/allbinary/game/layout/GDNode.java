@@ -17,6 +17,7 @@ import org.allbinary.game.input.event.GameKeyEvent;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.input.motion.gesture.MotionGestureInput;
 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
+import org.allbinary.logic.NullUtil;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.thread.NullRunnable;
 
@@ -156,6 +157,11 @@ public class GDNode
     
     protected void processGDStats(final GDGameLayer[] gameLayerArray) {
         this.nodeStatsFactory.push(14, this.name);
+    }
+    
+    //This is used by functions
+    public Object getReturnValue() {
+        return NullUtil.getInstance().NULL_OBJECT;
     }
     
     public long getName() {

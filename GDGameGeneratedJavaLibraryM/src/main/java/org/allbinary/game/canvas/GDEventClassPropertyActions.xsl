@@ -55,7 +55,7 @@ Created By: Travis Berthelot
             //type=<xsl:value-of select="type" />
             <xsl:if test="type = 'array'" >
             public int <xsl:value-of select="name" />Index = 0;
-            public String[] <xsl:value-of select="name" /> = new String[0];
+            public Object[] <xsl:value-of select="name" /> = new Object[7];
             </xsl:if>
             <xsl:if test="type = 'boolean'" >
             public boolean <xsl:value-of select="name" /> = <xsl:value-of select="value" />;

@@ -17,60 +17,38 @@ Created By: Travis Berthelot
 
     <xsl:output method="html" indent="yes" />
 
-    <xsl:template name="globalVariableAsBooleanConditionGDNode" >
+    <xsl:template name="advancedHTTPResponseStatusCodeConditionGDNode" >
         <xsl:param name="forExtension" />
-        <xsl:param name="conditionNodeIndex" />
+        <xsl:param name="layoutIndex" />
         
-    
+
         <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
         <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-        
-        <xsl:param name="caller" />
-        <xsl:param name="objectsAsString" />
-        <xsl:param name="layoutIndex" />
-        <xsl:param name="createdObjectsAsString" />
-                
+
         <xsl:variable name="quote" >"</xsl:variable>
-        
-        <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
         
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
-        <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text() " /></xsl:if></xsl:for-each></xsl:variable>
-        <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = 'False' or string-length(text()) = 0" >!</xsl:if></xsl:if></xsl:for-each></xsl:variable>
-
-                    //GlobalVariableAsBoolean - //Condition - GDNode
+                    //AdvancedHTTP::ResponseStatusCode - //Condition - GDNode
                     <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>final GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                     
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
-                    
-                        //GlobalVariableAsBoolean - condition - //forExtension=<xsl:value-of select="$forExtension" />
+                                        
+                        //AdvancedHTTP::ResponseStatusCode - condition - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
-                        
-                            boolean result = false;
-
-                            //final StringMaker stringBuilder = new StringMaker();
-                            //logUtil.put(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).toString(), this, commonStrings.PROCESS);
-
-                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:value-of select="$param2" /><xsl:value-of select="$param1" />) {
-
-                                //stringBuilder.delete(0, stringBuilder.length());
-                                //logUtil.put(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).toString(), this, commonStrings.PROCESS);
-                                                                
-                                result = true;
-                            } else {
-                                //logUtil.putF(commonStrings.START, this, "Else: <xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>");
-                            }
+                            //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + commonStrings.NOT_IMPLEMENTED, this, commonStrings.PROCESS);
                             
-                            super.processStatsE();
-                            
-                            return result;
+                            //if(responseStatusCode == 200) {
+                                return true;
+                            //}
+
+                            //return false;
                         }
-                        
+
                         @Override
                         public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                             super.processStats(motionGestureEvent);
@@ -118,7 +96,7 @@ Created By: Travis Berthelot
                         }
 
                     };
-
+                    
                     <xsl:if test="not(contains($forExtension, 'found'))" >
                     if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");

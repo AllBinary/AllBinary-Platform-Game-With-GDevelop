@@ -40,9 +40,25 @@ Created By: Travis Berthelot
                         <xsl:variable name="param3Updated" ><xsl:value-of select="translate(translate(translate(translate(translate($param3WithoutQuotes, '=', 'equal'), '+', 'plus'), '-', 'minus'), '*', 'multiply'), '/', 'divide')" /></xsl:variable>
                         <xsl:variable name="param3AsFinalString" >__<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate($param3Updated, ':', '_')" /></xsl:with-param></xsl:call-template></xsl:variable>
 
+                <xsl:if test="contains($param3, $quote)" >
                         //GDStringLiteral - StringVariable
-                        private final String <xsl:value-of select="$param3AsFinalString" /> = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                        
+                        private final String <xsl:value-of select="$param3AsFinalString" /> = <xsl:call-template name="string-replace-all" >
+                                            <xsl:with-param name="text" >
+                                    <xsl:call-template name="string-replace-all" >
+                                        <xsl:with-param name="text" ><xsl:value-of select="$param3" /></xsl:with-param>                                
+                                        <xsl:with-param name="find" >&quot;&quot;</xsl:with-param>
+                                        <xsl:with-param name="replacementText" >stringUtil.EMPTY_STRING</xsl:with-param>
+                                    </xsl:call-template>
+                                        </xsl:with-param>
+                                        <xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param>
+                                        <xsl:with-param name="replacementText" >"</xsl:with-param>
+                                    </xsl:call-template>;</xsl:if>
+
+                <xsl:variable name="param3Selected" >
+                    <xsl:if test="contains($param3, $quote)" ><xsl:value-of select="$param3AsFinalString" /></xsl:if>
+                    <xsl:if test="not(contains($param3, $quote))" ><xsl:call-template name="addGlobals" ><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="text" ><xsl:value-of select="$param3" /></xsl:with-param></xsl:call-template></xsl:if>
+                </xsl:variable>
+
                         //StringVariable - condition - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
@@ -50,7 +66,7 @@ Created By: Travis Berthelot
                             super.processStats();
                             //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                             
-                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template></xsl:if><xsl:if test="position() = 2" >.compareTo(<xsl:value-of select="$param3AsFinalString" />) <xsl:if test="text() = '='" >== 0</xsl:if><xsl:if test="text() = '!='" >!= 0</xsl:if></xsl:if></xsl:for-each>)) {
+                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template></xsl:if><xsl:if test="position() = 2" >.compareTo(<xsl:value-of select="$param3Selected" />) <xsl:if test="text() = '='" >== 0</xsl:if><xsl:if test="text() = '!='" >!= 0</xsl:if></xsl:if></xsl:for-each>)) {
                                 //logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" ><xsl:call-template name="replace-escaped-conditionals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if><xsl:text> </xsl:text></xsl:for-each>", this, commonStrings.PROCESS);
                                 return true;
                             }

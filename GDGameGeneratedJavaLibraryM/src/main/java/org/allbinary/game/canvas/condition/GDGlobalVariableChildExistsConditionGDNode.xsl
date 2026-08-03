@@ -17,7 +17,7 @@ Created By: Travis Berthelot
 
     <xsl:output method="html" indent="yes" />
 
-    <xsl:template name="globalVariableAsBooleanConditionGDNode" >
+    <xsl:template name="globalVariableChildExistsConditionGDNode" >
         <xsl:param name="forExtension" />
         <xsl:param name="conditionNodeIndex" />
         
@@ -39,13 +39,13 @@ Created By: Travis Berthelot
         <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text() " /></xsl:if></xsl:for-each></xsl:variable>
         <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = 'False' or string-length(text()) = 0" >!</xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
-                    //GlobalVariableAsBoolean - //Condition - GDNode
+                    //GlobalVariableChildExists - //Condition - GDNode
                     <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>final GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                     
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
                     
-                        //GlobalVariableAsBoolean - condition - //forExtension=<xsl:value-of select="$forExtension" />
+                        //GlobalVariableChildExists - condition - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
                         public boolean process() throws Exception {

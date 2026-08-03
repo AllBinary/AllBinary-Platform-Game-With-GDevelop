@@ -51,6 +51,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDNumberObjectVariableConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSceneInstancesCountConditionGDNode.xsl" />
     <xsl:import href="./condition/GDGlobalVariableAsBooleanConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDGlobalVariableChildExistsConditionGDNode.xsl" />
     <xsl:import href="./condition/GDVarSceneConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSourisSurObjetConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSourisBoutonConditionGDNode.xsl" />
@@ -83,6 +84,8 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDAnimationHasAnimationEndedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAnimationElapsedTimeConditionGDNode.xsl" />
     <xsl:import href="./condition/GDFileSystemPathExistsConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDAdvancedHTTPResponseSuccessConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDAdvancedHTTPResponseStatusCodeConditionGDNode.xsl" />
     
     <xsl:template name="eventsCreateAssignGDObjectGDNodesCondition2" >
         <xsl:param name="caller" />
@@ -156,16 +159,16 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'Inventory::Count'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Inventory::Has'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Inventory::IsFull'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Inventory::IsEquipped'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'TouchScreen::isAutoHide'" >
@@ -210,7 +213,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SystemInfo::IsNativeMobileApp'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SystemInfo::IsNativeDesktopApp'" >
                     
@@ -223,28 +226,28 @@ Created By: Travis Berthelot
                     
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SystemInfo::IsWebGLSupported'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SystemInfo::IsPreview'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SystemInfo::HasTouchScreen'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'GetArgumentAsBoolean'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'CompareArgumentAsNumber'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'CompareArgumentAsString'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'MusicPlaying'" >
 
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     <xsl:call-template name="musicPlayingConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -254,11 +257,11 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'MusicPaused'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'MusicStopped'" >
                     
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     <xsl:call-template name="soundStoppedConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -269,7 +272,7 @@ Created By: Travis Berthelot
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SoundPlaying'" >
                     
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     <xsl:call-template name="soundPlayingConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -280,7 +283,7 @@ Created By: Travis Berthelot
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SoundPaused'" >
                     
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     <xsl:call-template name="soundPausedConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -291,7 +294,7 @@ Created By: Travis Berthelot
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SoundStopped'" >
                     
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     <xsl:call-template name="soundStoppedConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -301,52 +304,52 @@ Created By: Travis Berthelot
                     
                 </xsl:when>                        
                 <xsl:when test="$typeValue = 'GlobalVolume'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SoundCanalVolume'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'MusicCanalVolume'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SoundChannelPlayingOffset'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'MusicChannelPlayingOffset'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SoundChannelPitch'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'MusicChannelPitch'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Width'" >                    
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Height'" >                    
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'AnimationName'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Sprite'" >    
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'AnimStopped'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'AnimationEnded'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'AnimationEnded2'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ScaleWidth'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ScaleHeight'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Opacity'" >
                     
@@ -371,50 +374,50 @@ Created By: Travis Berthelot
                 </xsl:when>        
 
                 <xsl:when test="$typeValue = 'FlippedX'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'FlippedY'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::ClearBetweenFrames'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::OutlineSize'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::FillOpacity'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::OutlineOpacity'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::AreCoordinatesRelative'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                         
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::ScaleX'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
         
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::ScaleY'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::FlippedX'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                     
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::FlippedY'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::CheckAntialiasing'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'PosX'" >
@@ -449,23 +452,20 @@ Created By: Travis Berthelot
 
                 </xsl:when>
 
-                <xsl:when test="$typeValue = 'ObjectVariableChildExists'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:when>
                 <xsl:when test="$typeValue = 'Angle'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Plan'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Layer'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Visible'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Invisible'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 
                 <xsl:when test="$typeValue = 'Arret'" >
@@ -488,7 +488,7 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'AngleOfDisplacement'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                     
                     <xsl:when test="$typeValue = 'NbObjet'" >
@@ -531,7 +531,7 @@ Created By: Travis Berthelot
 
                     </xsl:when>
                     <xsl:when test="$typeValue = 'PickedInstancesCount'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = '(Used when using the AllBinary Collision Processing) CollisionNP'" >
                         //CollisionNP - condition is processed by the AllBinary collision processor
@@ -561,10 +561,10 @@ Created By: Travis Berthelot
                         </xsl:call-template>
                     </xsl:when>                
                     <xsl:when test="$typeValue = 'Raycast'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'RaycastToPosition'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'Distance'" >
                         
@@ -579,14 +579,14 @@ Created By: Travis Berthelot
                         
                     </xsl:when>
                     <xsl:when test="$typeValue = 'SeDirige'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'EstTourne'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                         
                 <xsl:when test="$typeValue = 'VarObjetTxt'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'BooleanObjectVariable'" >
@@ -601,7 +601,7 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'VarObjetDef'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'BehaviorActivated'" >
                         <xsl:call-template name="behaviorActivatedConditionGDNode" >
@@ -614,7 +614,7 @@ Created By: Travis Berthelot
                         </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$typeValue = 'CollisionPoint'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                         
                     <xsl:when test="$typeValue = 'SourisSurObjet' or $typeValue = 'IsCursorOnObject'" >
@@ -631,44 +631,44 @@ Created By: Travis Berthelot
                     </xsl:when>
                 
                     <xsl:when test="$typeValue = 'AjoutObjConcern'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'AjoutHasard'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'PickNearest'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
 
                     <xsl:when test="$typeValue = 'CameraX'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'CameraY'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'CameraCenterX'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'CameraCenterY'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'CameraWidth'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'CameraHeight'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'CameraBorderLeft'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'CameraBorderRight'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'CameraBorderTop'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'CameraBorderBottom'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>                        
                 <xsl:when test="$typeValue = 'LayerVisible'" >
                     
@@ -683,20 +683,20 @@ Created By: Travis Berthelot
                     
                 </xsl:when>                
                     <xsl:when test="$typeValue = 'CameraAngle'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'LayerEffectEnabled'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'LayerTimeScale'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'LayerDefaultZOrder'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
 
                     <xsl:when test="$typeValue = 'Toujours'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
 
                     <xsl:when test="$typeValue = 'BuiltinCommonInstructions::Always'" >
@@ -778,7 +778,7 @@ Created By: Travis Berthelot
                         </xsl:call-template>
                     </xsl:when>
                     <xsl:when test="$typeValue = 'BuiltinCommonInstructions::Not'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'BuiltinCommonInstructions::Once'" >
                     
@@ -819,7 +819,7 @@ Created By: Travis Berthelot
                     </xsl:when>
 
                 <xsl:when test="$typeValue = 'GroupExists'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'KeyPressed'" >
@@ -884,38 +884,38 @@ Created By: Travis Berthelot
                     </xsl:when>
                     <xsl:when test="$typeValue = 'AnyKeyReleased'" >
 
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
 <!--                        <xsl:call-template name="anyKeyReleasedConditionGDNode" />-->
 
                     </xsl:when>
 
                     <xsl:when test="$typeValue = 'CursorX'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'CursorY'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'MouseOnlyOnlyCursorX'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'MouseOnlyCursorY'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'MouseX'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'MouseY'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     
                     <xsl:when test="$typeValue = 'IsMouseInsideCanvas'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'SourisX'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'SourisY'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
 
                     <xsl:when test="$typeValue = 'MouseButtonPressed' or $typeValue = 'MouseButtonFromTextPressed'" >
@@ -1000,216 +1000,216 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'PopEndedTouch'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'TouchX'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'TouchY'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'HasAnyTouchStarted'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'HasAnyTouchOrMouseStarted'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'HasTouchEnded'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Dragged'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Dropped'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'PickObjectsLinkedTo'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'EmitterAngle'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'EmitterAngleA'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'EmitterAngleB'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ConeSprayAngle'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ZoneRadius'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ParticleGravityAngle'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ParticleGravityLength'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'ParticleRed1'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ParticleRed2'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ParticleBlue1'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ParticleBlue2'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ParticleGreen1'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ParticleGreen2'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ParticleSize1'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ParticleSize2'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ParticleAlpha1'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ParticleAlpha2'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'NoMoreParticles'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'RendererParam1'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'RendererParam2'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Tank'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Flow'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Texture'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
   
                 <xsl:when test="$typeValue = 'PathFound'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'DestinationReached'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'CellWidth'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'CellHeight'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'AngleOffset'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ExtraBorder'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'DiagonalsAllowed'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ObjectRotated'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Cost'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'IsImpassable'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'IsDynamic'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'IsFixedRotation'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'IsBullet'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'LinearVelocity'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'AngularVelocity'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'LinearDamping'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'CollisionWith'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'AngularDamping'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
     
                 <xsl:when test="$typeValue = 'IsMoving'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'IsOnFloor'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'IsOnLadder'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'IsJumping'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'IsGrabbingPlatform'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Gravity'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'MaxFallingSpeed'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'LadderClimbingSpeed'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'JumpSpeed'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'CanJump'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'CanGrabPlatforms'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'CurrentFallSpeed'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'CurrentJumpSpeed'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'IsObjectOnGivenFloor'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'OutlineSize'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'FillOpacity'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'OutlineOpacity'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'CheckAntialiasing'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'DepartScene' or $typeValue = 'SceneJustBegins'" >
@@ -1224,13 +1224,13 @@ Created By: Travis Berthelot
                 </xsl:when>                
 
                 <xsl:when test="$typeValue = 'SceneJustResumed'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'HasGameJustResumed'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'DoesSceneExist'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'Timer'" >
@@ -1270,13 +1270,13 @@ Created By: Travis Berthelot
                 </xsl:when>
                 
                 <xsl:when test="$typeValue = 'CompareTimer'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'TimerPaused'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'TimeScale'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'VarScene'" >
@@ -1314,7 +1314,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
 
-                <xsl:when test="$typeValue = 'BooleanVariable'" >
+                <xsl:when test="$typeValue = 'SceneVariableAsBoolean' or $typeValue = 'BooleanVariable'" >
                     
                     <xsl:call-template name="sceneVariableAsBooleanConditionGDNode" >
                         <xsl:with-param name="forExtension" >
@@ -1362,7 +1362,7 @@ Created By: Travis Berthelot
                 </xsl:when>
                 
                 <xsl:when test="$typeValue = 'VarGlobalTxt'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'GlobalVariableAsBoolean'" >
@@ -1379,10 +1379,13 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$typeValue = 'VarSceneDef'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'VarGlobalDef'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ObjectVariableChildExists'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ObjectVariableChildCount'" >
                     <xsl:call-template name="objectVariableChildCountConditionGDNode" >
@@ -1398,29 +1401,39 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SceneVariableChildCount'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'GlobalVariableChildCount'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'VariableChildExists'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'GlobalVariableChildExists'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    <xsl:call-template name="globalVariableChildExistsConditionGDNode" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
+                        <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="actionAsStringsStrings" ><xsl:value-of select="$actionAsStringsStrings" /></xsl:with-param>
+                    </xsl:call-template>
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'IsFullScreen'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'IsWebGLSupported'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'FileExists'" >
                     //I think this is for Steam cloud
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>                                                                   
                 
                 <xsl:when test="$typeValue = 'FileSystem.PathExists'" >
@@ -1457,69 +1470,69 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'ObjectTimerPaused'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'IsEffectEnabled'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'Activated'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'String'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ScaleX'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ScaleY'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Smoothed'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'IsBold'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'IsItalic'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'IsUnderlined'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Padding'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'TextAlignment'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'IsWrapping'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'WrappingWidth'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Acceleration'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Deceleration'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'MaxSpeed'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Speed'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'AngularMaxSpeed'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'XVelocity'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'YVelocity'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
 
                 <!-- Extension Actions below here -->
@@ -1623,6 +1636,31 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'Scrollbar::Scrollbar::IsThumbDragged'" >
 
                     <xsl:call-template name="scrollbarScrollbarIsThumbDraggedConditionGDNode" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
+
+                <xsl:when test="$typeValue = 'AdvancedHTTP::ResponseSuccess'" >
+
+                    <xsl:call-template name="advancedHTTPResponseSuccessConditionGDNode" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
+                <xsl:when test="$typeValue = 'AdvancedHTTP::ResponseStatusCode'" >
+
+                    <xsl:call-template name="advancedHTTPResponseStatusCodeConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>

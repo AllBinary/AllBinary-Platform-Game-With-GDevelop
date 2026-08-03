@@ -516,6 +516,10 @@ Created By: Travis Berthelot
                 hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
                 this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, 0, 0);
             </xsl:if>
+            
+            <xsl:if test="type = 'PrimitiveDrawing::Drawer'" >
+                this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, 0, 0);
+            </xsl:if>
 
             <xsl:if test="type = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />

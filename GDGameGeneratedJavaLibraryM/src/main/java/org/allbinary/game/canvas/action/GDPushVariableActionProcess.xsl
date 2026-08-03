@@ -16,15 +16,16 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:template name="clearVariableChildrenActionProcess" >
+    <xsl:template name="pushVariableActionProcess" >
         <xsl:param name="forExtension" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
 
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+
         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    //ClearVariableChildren - action - //forExtension=<xsl:value-of select="$forExtension" />
+                    //PushVariable - action - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                     @Override
                     public boolean process() throws Exception {
@@ -32,50 +33,32 @@ Created By: Travis Berthelot
 
                         //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                         
-                        <xsl:variable name="param1g" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                        <xsl:variable name="param2g" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-
-                        <xsl:variable name="hasVariable" >
-                            <xsl:for-each select="//variables" >
-                                <xsl:if test="name = $param1g" >found</xsl:if>
-                            </xsl:for-each>
-                        </xsl:variable>
-                        <xsl:variable name="variableType" >
-                            <xsl:for-each select="//variables" >
-                                <xsl:if test="name = $param1g" ><xsl:value-of select="type" /></xsl:if>
-                            </xsl:for-each>
-                        </xsl:variable>
-                                                
+                        <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        
                         <xsl:variable name="hasObject" >
                             <xsl:for-each select="//objects" >
-                                <xsl:if test="name = $param1g" >found</xsl:if>
+                                <xsl:if test="name = $param1" >found</xsl:if>
                             </xsl:for-each>
                         </xsl:variable>
                         <xsl:variable name="hasObjectGroup" >
                             <xsl:for-each select="//objectsGroups" >
-                                <xsl:if test="name = $param1g" >found</xsl:if>
+                                <xsl:if test="name = $param1" >found</xsl:if>
                             </xsl:for-each>
                         </xsl:variable>
-
-                        <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                        <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                                                
-                        //param1=<xsl:value-of select="$param1" /> hasVariable=<xsl:value-of select="$hasVariable" /> variableType=<xsl:value-of select="$variableType" /> hasObject=<xsl:value-of select="$hasObject" /> hasObjectGroup=<xsl:value-of select="$hasObjectGroup" />
+                        
+                        //param1=<xsl:value-of select="$param1" /> hasObject=<xsl:value-of select="$hasObject" /> hasObjectGroup=<xsl:value-of select="$hasObjectGroup" />
                         <xsl:text>&#10;</xsl:text>
-                        
-                        final StringUtil stringUtil = StringUtil.getInstance();
-                        
-                        <xsl:if test="contains($variableType, 'structure')" >
-                        logUtil.putF("NOT_IMPLEMENTED for structure", this, commonStrings.PROCESS);
-                        </xsl:if>
-                        <xsl:if test="not(contains($variableType, 'structure'))" >
-                        final int size = <xsl:value-of select="$param1" />.length;
-                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                            <xsl:value-of select="$param1" />[index] = stringUtil.EMPTY_STRING;
-                            //<xsl:value-of select="$param1" />[index] = GDStructure.getInstance();
+
+                        if(globals.chatRequestBody.messagesIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> <xsl:value-of select="$param1" />.length - 1) {
+                            final Object[] sourceArray = <xsl:value-of select="$param1" />;
+                            final Object[] newDestinationArray = new Object[sourceArray.length * 2];
+                            System.arraycopy(sourceArray, 0, newDestinationArray, 0, 0);
+                            <xsl:value-of select="$param1" /> = newDestinationArray;
                         }
-                        <xsl:value-of select="$param1" />Index = 0;
-                        </xsl:if>
+
+                        <xsl:value-of select="$param1" />[<xsl:value-of select="$param1" />Index] = <xsl:value-of select="$param2" />;
+                        <xsl:value-of select="$param1" />Index++;
 
                         return true;
                     }
@@ -109,8 +92,7 @@ Created By: Travis Berthelot
                         } catch(Exception e) {
                             logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                         }
-                    
-                        return true;
+                        return true;    
                     }
 
                         </xsl:if>
