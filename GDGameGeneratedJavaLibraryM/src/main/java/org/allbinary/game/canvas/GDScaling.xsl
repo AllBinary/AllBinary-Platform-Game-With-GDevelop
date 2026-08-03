@@ -14,9 +14,10 @@
     <xsl:template name="scale" >
         <xsl:param name="layoutIndex" />
         <xsl:param name="layoutName" />
-        
         <xsl:if test="contains($layoutIndex, 'Global')" >
             //Can Globals have scaling?
+            //$layoutIndex != 1
+            final float scale = org.allbinary.AndroidUtil.isAndroid() ? <xsl:value-of select="/game/properties/scale/android" /> : org.allbinary.J2MEUtil.isHTML() ? <xsl:value-of select="/game/properties/scale/html" /> : <xsl:value-of select="/game/properties/scale/j2se" />;
         </xsl:if>
         <xsl:if test="not(contains($layoutIndex, 'Global'))" >
                             //<xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
@@ -52,6 +53,8 @@
         //scaleProperty
         <xsl:if test="contains($layoutIndex, 'Global')" >
             //Can Globals have scaling?
+            //$layoutIndex != 1
+            public final float scale = org.allbinary.AndroidUtil.isAndroid() ? <xsl:value-of select="/game/properties/scale/android" /> : org.allbinary.J2MEUtil.isHTML() ? <xsl:value-of select="/game/properties/scale/html" /> : <xsl:value-of select="/game/properties/scale/j2se" />;
         </xsl:if>
         <xsl:if test="not(contains($layoutIndex, 'Global'))" >
                             private final float scale = GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale;

@@ -27,51 +27,11 @@ Created By: Travis Berthelot
         <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
         <xsl:variable name="siblingOrParentOrList" ><xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
         
-                        <xsl:variable name="param" >
-                            <xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 3" >
-                                    <xsl:if test="not(contains(text(), 'SceneInstancesCount('))" >
-                                        <xsl:value-of select="text()" />
-                                    </xsl:if>
-                                    <xsl:if test="contains(text(), 'SceneInstancesCount(')" >
-                                        <xsl:variable name="objectName" >
-                                            <xsl:value-of select="substring-before(substring-after(text(), 'SceneInstancesCount('), ')')" />
-                                        </xsl:variable>
-                                        <xsl:call-template name="string-replace-all" >
-                                            <xsl:with-param name="text" >
-                                                <xsl:value-of select="text()" />
-                                            </xsl:with-param>
-                                            <xsl:with-param name="find" >SceneInstancesCount(<xsl:value-of select="$objectName" /></xsl:with-param>
-                                            <xsl:with-param name="replacementText" >SceneInstancesCount(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$objectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$objectName" />GDGameLayerList.size()</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:if>
-                                </xsl:if>
-                            </xsl:for-each>
-                        </xsl:variable>
+                        <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:call-template name="addGlobalsForVariables" ><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if></xsl:for-each></xsl:variable>
                                                 
                         <xsl:variable name="beforeSecondParam" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
 
-                        <xsl:variable name="param2" >
-                            <xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 4" >
-                                    <xsl:if test="not(contains(text(), 'SceneInstancesCount('))" >
-                                        <xsl:value-of select="text()" />
-                                    </xsl:if>
-                                    <xsl:if test="contains(text(), 'SceneInstancesCount(')" >
-                                        <xsl:variable name="objectName" >
-                                            <xsl:value-of select="substring-before(substring-after(text(), 'SceneInstancesCount('), ')')" />
-                                        </xsl:variable>
-                                        <xsl:call-template name="string-replace-all" >
-                                            <xsl:with-param name="text" >
-                                                <xsl:value-of select="text()" />
-                                            </xsl:with-param>
-                                            <xsl:with-param name="find" >SceneInstancesCount(<xsl:value-of select="$objectName" /></xsl:with-param>
-                                            <xsl:with-param name="replacementText" >SceneInstancesCount(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$objectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$objectName" />GDGameLayerList.size()</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:if>
-                                </xsl:if>
-                            </xsl:for-each>
-                        </xsl:variable>
+                        <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:call-template name="addGlobalsForVariables" ><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if></xsl:for-each></xsl:variable>
                                                 
                         <xsl:variable name="beforeFourthParam" ><xsl:value-of select="substring-before($param2, '.')" /></xsl:variable>
 

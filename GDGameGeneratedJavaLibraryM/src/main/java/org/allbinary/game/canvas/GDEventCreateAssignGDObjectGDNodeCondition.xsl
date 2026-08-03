@@ -1215,7 +1215,7 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'DepartScene' or $typeValue = 'SceneJustBegins'" >
                     
                     <xsl:if test="$hasParentOnceCondition = 'true'" >
-                    //SceneJustBegins - condition - eventsOnceConditionProcessActions    
+                    //SceneJustBegins - condition - startConditionProcessActions    
                     </xsl:if>
                     <xsl:if test="$hasParentOnceCondition != 'true'" >
                         <xsl:call-template name="departSceneConditionGDNode" />

@@ -51,8 +51,75 @@
                     <xsl:with-param name="text" ><xsl:value-of select="$result3" /></xsl:with-param>
                 </xsl:call-template>
                 </xsl:variable>
+
+                <xsl:if test="not(contains($result4, 'SceneInstancesCount(')) or contains($result4, 'SceneInstancesCount(globals.') or contains($result4, 'SceneInstancesCount(gameGlobals.')" >
+                    <xsl:value-of select="$result4" />
+                </xsl:if>
+                <xsl:if test="contains($result4, 'SceneInstancesCount(') and not(contains($result4, 'SceneInstancesCount(globals.') or contains($result4, 'SceneInstancesCount(gameGlobals.'))" >
+                    <xsl:variable name="objectName" >
+                        <xsl:value-of select="substring-before(substring-after($result4, 'SceneInstancesCount('), ')')" />
+                    </xsl:variable>
+                    <xsl:call-template name="string-replace-all" >
+                        <xsl:with-param name="text" ><xsl:value-of select="$result4" /></xsl:with-param>
+                        <xsl:with-param name="find" >SceneInstancesCount(<xsl:value-of select="$objectName" /></xsl:with-param>
+                        <xsl:with-param name="replacementText" >SceneInstancesCount(<xsl:call-template name="globals" >
+                                <xsl:with-param name="name" >
+                                    <xsl:value-of select="$objectName" />
+                                </xsl:with-param>
+                            </xsl:call-template>.<xsl:value-of select="$objectName" />GDGameLayerList.size()</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:if>
+
+            </xsl:otherwise>
+        </xsl:choose>
                 
-                <xsl:value-of select="$result4" />
+    </xsl:template>
+
+    <xsl:template name="addGlobalsForVariables">
+        <xsl:param name="text" />
+        <xsl:param name="layoutIndex" />
+
+        <xsl:choose>
+            <xsl:when test="$text = ''" >
+            </xsl:when>
+            <xsl:otherwise>
+
+                <xsl:variable name="external" >
+                <xsl:call-template name="addExtensions" >
+                    <xsl:with-param name="text" ><xsl:value-of select="$text" /></xsl:with-param>
+                </xsl:call-template>
+                </xsl:variable>
+                
+                <xsl:variable name="result" >
+                <xsl:call-template name="addGlobalsToGlobalVariables" >
+                    <xsl:with-param name="text" ><xsl:value-of select="$external" /></xsl:with-param>
+                </xsl:call-template>
+                </xsl:variable>
+
+                <xsl:variable name="result4" >
+                <xsl:call-template name="addGlobalsToLayoutVariables" >
+                    <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                    <xsl:with-param name="text" ><xsl:value-of select="$result" /></xsl:with-param>
+                </xsl:call-template>
+                </xsl:variable>
+
+                <xsl:if test="not(contains($result4, 'SceneInstancesCount(')) or contains($result4, 'SceneInstancesCount(globals.') or contains($result4, 'SceneInstancesCount(gameGlobals.')" >
+                    <xsl:value-of select="$result4" />
+                </xsl:if>
+                <xsl:if test="contains($result4, 'SceneInstancesCount(') and not(contains($result4, 'SceneInstancesCount(globals.') or contains($result4, 'SceneInstancesCount(gameGlobals.'))" >
+                    <xsl:variable name="objectName" >
+                        <xsl:value-of select="substring-before(substring-after($result4, 'SceneInstancesCount('), ')')" />
+                    </xsl:variable>
+                    <xsl:call-template name="string-replace-all" >
+                        <xsl:with-param name="text" ><xsl:value-of select="$result4" /></xsl:with-param>
+                        <xsl:with-param name="find" >SceneInstancesCount(<xsl:value-of select="$objectName" /></xsl:with-param>
+                        <xsl:with-param name="replacementText" >SceneInstancesCount(<xsl:call-template name="globals" >
+                                <xsl:with-param name="name" >
+                                    <xsl:value-of select="$objectName" />
+                                </xsl:with-param>
+                            </xsl:call-template>.<xsl:value-of select="$objectName" />GDGameLayerList.size()</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:if>
 
             </xsl:otherwise>
         </xsl:choose>
@@ -238,9 +305,20 @@
                     <xsl:for-each select="/game/layouts" >
                         <xsl:if test="$layoutIndex = position() - 1" >
                             <xsl:for-each select="variables" >
-                                <xsl:variable name="gameGlobalsName" >gameGlobals.<xsl:value-of select="name" /></xsl:variable>
-                                <xsl:variable name="globalsName" >globals.<xsl:value-of select="name" /></xsl:variable>
-                                <xsl:if test="contains($text, name) and string-length(name) > 0 and not(contains($text, $gameGlobalsName) or contains($text, $globalsName))"><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />found</xsl:if>
+                                <xsl:variable name="alreadyHasDotOperator" >.<xsl:value-of select="name" /></xsl:variable>
+<!--                                //Replace  or contains($text, $hasDotOperatorButStillCouldBeStructure) with something that checks for '('-->
+                                <xsl:variable name="hasDotOperatorButStillCouldBeStructure" ><xsl:value-of select="name" />.</xsl:variable>
+                                <xsl:variable name="asMethodParam0" >(<xsl:value-of select="name" />,</xsl:variable>
+                                <xsl:variable name="asMethodParam" >(<xsl:value-of select="name" />)</xsl:variable>
+                                <xsl:variable name="asMethodParam2" ><xsl:value-of select="name" />)</xsl:variable>
+                                <xsl:variable name="whole-word" >
+                                    <xsl:call-template name="whole-word" >
+                                        <xsl:with-param name="text" ><xsl:value-of select="$text" /></xsl:with-param>
+                                        <xsl:with-param name="word" ><xsl:value-of select="name" /></xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:variable>
+<!--                                <xsl:if test="contains($text, name) and string-length(name) > 0 and not(contains($text, $alreadyHasDotOperator) or contains($text, $hasDotOperatorButStillCouldBeStructure))" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />found</xsl:if>-->
+                                <xsl:if test="(contains($whole-word, 'found') or contains($text, $asMethodParam0) or contains($text, $asMethodParam) or contains($text, $asMethodParam2)) and string-length(name) > 0 and not(contains($text, $alreadyHasDotOperator) or contains($text, $hasDotOperatorButStillCouldBeStructure))" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />found</xsl:if>
                             </xsl:for-each>
                         </xsl:if>
                     </xsl:for-each>
@@ -291,9 +369,20 @@
                 <xsl:variable name="idsFound" >
                     <xsl:for-each select="/game" >
                             <xsl:for-each select="variables" >
-                                <xsl:variable name="gameGlobalsName" >gameGlobals.<xsl:value-of select="name" /></xsl:variable>
-                                <xsl:variable name="globalsName" >globals.<xsl:value-of select="name" /></xsl:variable>
-                                <xsl:if test="contains($text, name) and string-length(name) > 0 and not(contains($text, $gameGlobalsName) or contains($text, $globalsName))">//<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />,found</xsl:if>
+                                <xsl:variable name="alreadyHasDotOperator" >.<xsl:value-of select="name" /></xsl:variable>
+<!--                                //Replace  or contains($text, $hasDotOperatorButStillCouldBeStructure) with something that checks for '('-->
+                                <xsl:variable name="hasDotOperatorButStillCouldBeStructure" ><xsl:value-of select="name" />.</xsl:variable>
+                                <xsl:variable name="asMethodParam0" >(<xsl:value-of select="name" />,</xsl:variable>
+                                <xsl:variable name="asMethodParam" >(<xsl:value-of select="name" />)</xsl:variable>
+                                <xsl:variable name="asMethodParam2" ><xsl:value-of select="name" />)</xsl:variable>
+                                <xsl:variable name="whole-word" >
+                                    <xsl:call-template name="whole-word" >
+                                        <xsl:with-param name="text" ><xsl:value-of select="$text" /></xsl:with-param>
+                                        <xsl:with-param name="word" ><xsl:value-of select="name" /></xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:variable>
+<!--                                <xsl:if test="contains($text, name) and string-length(name) > 0 and not(contains($text, $alreadyHasDotOperator) or contains($text, $hasDotOperatorButStillCouldBeStructure))" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />found</xsl:if>-->
+                                <xsl:if test="(contains($whole-word, 'found') or contains($text, $asMethodParam0) or contains($text, $asMethodParam) or contains($text, $asMethodParam2)) and string-length(name) > 0 and not(contains($text, $alreadyHasDotOperator) or contains($text, $hasDotOperatorButStillCouldBeStructure))" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />found</xsl:if>
                             </xsl:for-each>
                     </xsl:for-each>
                 </xsl:variable>
@@ -666,5 +755,12 @@
         }
     </xsl:template>
 
+    <xsl:template name="whole-word">
+        <xsl:param name="text"/>
+        <xsl:param name="word"/>
+        <xsl:variable name="normalized-text" select="concat(' ', normalize-space($text), ' ')"/>
+        <xsl:variable name="padded-word" select="concat(' ', $word, ' ')"/>
+        <xsl:if test="contains($normalized-text, $padded-word)" >found</xsl:if>
+    </xsl:template>
 
 </xsl:stylesheet>

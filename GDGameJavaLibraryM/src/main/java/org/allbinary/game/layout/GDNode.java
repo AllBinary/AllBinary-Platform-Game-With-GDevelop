@@ -158,14 +158,6 @@ public class GDNode
         this.nodeStatsFactory.push(14, this.name);
     }
     
-//    public void addForDelete(final GDGameLayer gameLayer) {
-//        
-//    }
-//
-//    public void delete() {
-//        
-//    }
-    
     public long getName() {
         return this.name;
     }    

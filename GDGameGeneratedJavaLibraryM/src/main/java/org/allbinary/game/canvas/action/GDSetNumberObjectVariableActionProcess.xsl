@@ -44,7 +44,7 @@ Created By: Travis Berthelot
                 
         <xsl:variable name="param4" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:call-template name="addGlobals" ><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if></xsl:for-each></xsl:variable>
 
-                    //SetNumberObjectVariable - action - was //ModVarObjet - //<xsl:value-of select="$param2" /> - //forExtension=<xsl:value-of select="$forExtension" />
+                    //SetNumberObjectVariable - //<xsl:value-of select="$param2" /> - action - was //ModVarObjet - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                     @Override
                     public boolean process() throws Exception {
@@ -61,12 +61,13 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$name" />.<xsl:value-of select="$param2" /><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="text() = '*'" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if></xsl:if><xsl:if test="position() = 4" ><xsl:value-of select="$param4" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
                             <xsl:text>&#10;</xsl:text>
 
-                            <xsl:if test="contains($hasObjectGroup, 'found')" >
+<!--                            <xsl:if test="contains($hasObjectGroup, 'found')" >
                             }
                             </xsl:if>                        
                             <xsl:if test="not(contains($hasObjectGroup, 'found'))" >
+                            
+                            </xsl:if>-->
                             <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
-                            </xsl:if>
                         } catch(Exception e) {
                             logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                         }
@@ -93,6 +94,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$name" />.<xsl:value-of select="$param2" /><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="text() = '*'" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if></xsl:if><xsl:if test="position() = 4" ><xsl:value-of select="$param4" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
                             <xsl:text>&#10;</xsl:text>
 
+                            <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param><xsl:with-param name="includeList" >found</xsl:with-param></xsl:call-template>
 <!--                        <xsl:if test="contains($hasObjectGroup, 'found')" >
                         }
                         </xsl:if>                        

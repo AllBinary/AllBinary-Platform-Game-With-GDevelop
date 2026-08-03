@@ -60,6 +60,7 @@ Created By: Travis Berthelot
 
                                 //this.processG(gdObject, gdGameLayerList, index2);
                                 <xsl:call-template name="mettreXActionProcessGDObject" >
+                                    <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                                 </xsl:call-template>
                                 
                                 <xsl:value-of select="$name" />GDGameLayer.updatePosition();
@@ -93,6 +94,7 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="$siblingOrParentOrList" />
 
                                 <xsl:call-template name="mettreXActionProcessGDObject" >
+                                    <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                                 </xsl:call-template>
 
                                 <xsl:value-of select="$name" />GDGameLayer.updatePosition();
@@ -133,31 +135,12 @@ Created By: Travis Berthelot
     </xsl:template>
 
     <xsl:template name="mettreXActionProcessGDObject" >
+        <xsl:param name="layoutIndex" />
 
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
-                        <xsl:variable name="param" >
-                            <xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 3" >
-                                    <xsl:if test="not(contains(text(), 'SceneInstancesCount('))" >
-                                        <xsl:value-of select="text()" />
-                                    </xsl:if>
-                                    <xsl:if test="contains(text(), 'SceneInstancesCount(')" >
-                                        <xsl:variable name="objectName" >
-                                            <xsl:value-of select="substring-before(substring-after(text(), 'SceneInstancesCount('), ')')" />
-                                        </xsl:variable>
-                                        <xsl:call-template name="string-replace-all" >
-                                            <xsl:with-param name="text" >
-                                                <xsl:value-of select="text()" />
-                                            </xsl:with-param>
-                                            <xsl:with-param name="find" >SceneInstancesCount(<xsl:value-of select="$objectName" /></xsl:with-param>
-                                            <xsl:with-param name="replacementText" >SceneInstancesCount(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$objectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$objectName" />GDGameLayerList.size()</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:if>
-                                </xsl:if>
-                            </xsl:for-each>
-                        </xsl:variable>
+                        <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:call-template name="addGlobalsForVariables" ><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if></xsl:for-each></xsl:variable>
 
                                 //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:value-of select="$name" />.toString(), this, commonStrings.PROCESS);
 

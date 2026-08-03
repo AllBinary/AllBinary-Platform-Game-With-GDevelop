@@ -160,27 +160,7 @@ Created By: Travis Berthelot
                         return this.process();
                     }
 
-                        <xsl:variable name="param" >
-                            <xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 4" >
-                                    <xsl:if test="not(contains(text(), 'SceneInstancesCount('))" >
-                                        <xsl:value-of select="text()" />
-                                    </xsl:if>
-                                    <xsl:if test="contains(text(), 'SceneInstancesCount(')" >
-                                        <xsl:variable name="objectName" >
-                                            <xsl:value-of select="substring-before(substring-after(text(), 'SceneInstancesCount('), ')')" />
-                                        </xsl:variable>
-                                        <xsl:call-template name="string-replace-all" >
-                                            <xsl:with-param name="text" >
-                                                <xsl:value-of select="text()" />
-                                            </xsl:with-param>
-                                            <xsl:with-param name="find" >SceneInstancesCount(<xsl:value-of select="$objectName" /></xsl:with-param>
-                                            <xsl:with-param name="replacementText" >SceneInstancesCount(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$objectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$objectName" />GDGameLayerList.size()</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:if>
-                                </xsl:if>
-                            </xsl:for-each>
-                        </xsl:variable>
+                        <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:call-template name="addGlobalsForVariables" ><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if></xsl:for-each></xsl:variable>
                                                 
                         <xsl:variable name="beforeSecondParam" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
 

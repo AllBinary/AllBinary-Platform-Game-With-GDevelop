@@ -79,6 +79,7 @@ import min3d.animation.AnimationObject3d;
 import min3d.core.Object3d;
 import min3d.vos.Number3d;
 
+import org.allbinary.AndroidUtil;
 import org.allbinary.animation.AnimationBehaviorFactory;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;

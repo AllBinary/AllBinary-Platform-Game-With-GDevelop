@@ -57,7 +57,7 @@ Created By: Travis Berthelot
 
                             this.firstTime = false;
 
-                            return false;
+                            return true;
                         }                        
                         
                         @Override

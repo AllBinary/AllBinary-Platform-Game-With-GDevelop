@@ -339,13 +339,13 @@ Created By: Travis Berthelot
                     </xsl:if>
                     </xsl:for-each>
 
-                    //eventsOnceConditionProcessActions - START
-                    <xsl:call-template name="eventsOnceConditionProcessActions" >
+                    //startConditionProcessActions - START
+                    <xsl:call-template name="startConditionProcessActions" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    //eventsOnceConditionProcessActions - END
+                    //startConditionProcessActions - END
 
                     //objects - all - //builder
                     <xsl:for-each select="objects" >

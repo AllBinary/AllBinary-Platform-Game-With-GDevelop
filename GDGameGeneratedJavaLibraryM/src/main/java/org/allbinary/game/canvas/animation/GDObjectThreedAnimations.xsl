@@ -456,7 +456,16 @@ Created By: Travis Berthelot
                             <xsl:for-each select="customCollisionMask" >
 
                 Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask;
+
                 if(AndroidUtil.isAndroid()) {
+                                    <xsl:if test="$name != 'Player'" >
+                                        //non Player
+                                        final float hackScale = scale;
+                                    </xsl:if>
+                                    <xsl:if test="$name = 'Player'" >
+                                        //Player
+                                        final float hackScale = 0.125f * scale;
+                                    </xsl:if>
 
                     final float widthF = ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) / hackScale);
                     final float heightF = ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) / hackScale);
@@ -808,11 +817,12 @@ Created By: Travis Berthelot
             <xsl:when test="$typeValue = 'TextInput::TextInputObject'" >
             private void add<xsl:value-of select="name" />TextInputObjectAnimations(final ImageCache imageCache, final int level) throws Exception {
             
+                final int maxLength = <xsl:if test="content/maxLength" >(<xsl:value-of select="content/maxLength" /> == 0) ? 8 : <xsl:value-of select="content/maxLength" />;</xsl:if><xsl:if test="not(content/maxLength)" >8;</xsl:if>
                 final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" />;
                 //final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> / 2;
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
-                    new CustomTextBoxIndexedAnimationFactory(<xsl:value-of select="name" />TextInputAnimationSize)
+                    new CustomTextBoxIndexedAnimationFactory(<xsl:value-of select="name" />TextInputAnimationSize, maxLength)
                 };
 
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];

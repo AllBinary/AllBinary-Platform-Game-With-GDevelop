@@ -42,4 +42,4 @@ The platform can create builds for Android, J2ME, HTML5, and J2SE.
 
 Future Impl:
 
-Cleaner code generation.  Better GDevelop support.  Extensions specific to the AllBinary Platform.
+Better GDevelop support.  Extensions specific to the AllBinary Platform.

@@ -258,9 +258,7 @@
             <xsl:text>&#10;</xsl:text>
             //actionIdsGDObject - //<xsl:value-of select="type/value" />
             <xsl:if test="type/value = 'Delete'" >
-            //TWB - if this is not used them remove - if removed remove the method as well
-            throw new RuntimeException();
-            //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].addForDelete(<xsl:value-of select="$gdGameLayer" />);
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameGlobals.tempGameLayerArray);
             </xsl:if>
             <xsl:if test="type/value != 'Delete'" >
                 <xsl:if test="(contains($parametersHasGDObjectName, 'found') and contains($hasCreate, 'found')) or contains($parametersAsString0, $gdObjectName)" >
@@ -304,32 +302,6 @@
             }
             -->
             
-        </xsl:for-each>
-
-    </xsl:template>
-
-    <xsl:template name="delete">
-        <xsl:param name="totalRecursions" />
-        <xsl:param name="layoutIndex" />
-        <xsl:param name="gdGameLayer" />
-
-        //actionIdsGDObject <xsl:value-of select="$gdGameLayer" />
-        //Actions - GDNode - totalRecursions=<xsl:value-of select="$totalRecursions" />
-        <xsl:for-each select="actions" >
-            <xsl:text>&#10;</xsl:text>
-            <xsl:if test="type/value = 'Delete'" >
-            //Action - //RemoveList - //<xsl:value-of select="type/value" /> - call
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-            </xsl:if>
-
-        </xsl:for-each>
-
-        <xsl:for-each select="events" >
-            <xsl:call-template name="actionIdsGDObject" >
-                <xsl:with-param name="totalRecursions" ><xsl:value-of select="number($totalRecursions) + 1" /></xsl:with-param>
-                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
-                <xsl:with-param name="gdGameLayer" ><xsl:value-of select="$gdGameLayer" /></xsl:with-param>
-            </xsl:call-template>
         </xsl:for-each>
 
     </xsl:template>
