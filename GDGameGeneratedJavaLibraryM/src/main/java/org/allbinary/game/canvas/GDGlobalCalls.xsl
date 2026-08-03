@@ -52,7 +52,7 @@
                 </xsl:call-template>
                 </xsl:variable>
 
-                <xsl:if test="not(contains($result4, 'SceneInstancesCount(')) or contains($result4, 'SceneInstancesCount(globals.') or contains($result4, 'SceneInstancesCount(gameGlobals.')" >
+                <xsl:if test="not(contains($result4, 'SceneInstancesCount(') and not(contains($result4, 'SceneInstancesCount(globals.') or contains($result4, 'SceneInstancesCount(gameGlobals.')))" >
                     <xsl:value-of select="$result4" />
                 </xsl:if>
                 <xsl:if test="contains($result4, 'SceneInstancesCount(') and not(contains($result4, 'SceneInstancesCount(globals.') or contains($result4, 'SceneInstancesCount(gameGlobals.'))" >
@@ -103,7 +103,7 @@
                 </xsl:call-template>
                 </xsl:variable>
 
-                <xsl:if test="not(contains($result4, 'SceneInstancesCount(')) or contains($result4, 'SceneInstancesCount(globals.') or contains($result4, 'SceneInstancesCount(gameGlobals.')" >
+                <xsl:if test="not(contains($result4, 'SceneInstancesCount(') and not(contains($result4, 'SceneInstancesCount(globals.') or contains($result4, 'SceneInstancesCount(gameGlobals.')))" >
                     <xsl:value-of select="$result4" />
                 </xsl:if>
                 <xsl:if test="contains($result4, 'SceneInstancesCount(') and not(contains($result4, 'SceneInstancesCount(globals.') or contains($result4, 'SceneInstancesCount(gameGlobals.'))" >
