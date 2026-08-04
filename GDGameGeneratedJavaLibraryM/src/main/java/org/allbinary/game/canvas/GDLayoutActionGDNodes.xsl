@@ -399,6 +399,10 @@ Created By: Travis Berthelot
                         return (float) Math.floor((double) value);
                     }
 
+                    public int mod(final int value, final int mod) {
+                        return value % mod;
+                    }
+
                     public int round(final int value) {
                         return value;
                     }

@@ -24,14 +24,17 @@ Created By: Travis Berthelot
 
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>        
         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-        
+
+                        <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
+                        <xsl:variable name="siblingOrParentOrList" ><xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                
                     //PrimitiveDrawing::FillColor - START
                         <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         <xsl:if test="contains($param2, '.')" >
                             //Skipping variable usage for fill color
                         </xsl:if>
                         <xsl:if test="not(contains($param2, '.'))" >
-                            public BasicColor RGB_<xsl:value-of select="translate(translate($param2, '\&quot;', ''), ';', '_')" />_BASIC_COLOR = smallBasicColorCacheFactory.getAndOrCreate(
+                            public final BasicColor RGB_<xsl:value-of select="translate(translate($param2, '\&quot;', ''), ';', '_')" />_BASIC_COLOR = smallBasicColorCacheFactory.getAndOrCreate(
                                 basicColorUtil.getARGB(255, 
                                 <xsl:value-of select="translate(translate($param2, '\&quot;', ''), ';', ',')" />)
                                 );
@@ -62,6 +65,29 @@ Created By: Travis Berthelot
 
                         //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
+                        final GDGameLayer[] gameLayerArray = gameGlobals.tempGameLayerArray;
+                        <xsl:value-of select="$siblingOrParentOrList" />
+
+                        <xsl:if test="contains($param2b, '.')" >
+                            final BasicColor RGB_BASIC_COLOR = smallBasicColorCacheFactory.getAndOrCreate(
+                                basicColorUtil.getARGB(255, 
+                                <xsl:value-of select="translate(translate(translate($param2b, '+', ''), '\&quot;', ''), ';', ',')" />)
+                                );
+                        </xsl:if>
+                                                
+                            ((GDRectOnlyPrimitiveDrawing) <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayer.primitiveDrawing).addFillColor(
+                            
+                        <xsl:if test="contains($param2, '.')" >
+                            RGB_BASIC_COLOR
+                        </xsl:if>
+                        <xsl:if test="not(contains($param2, '.'))" >
+                            this.RGB_<xsl:value-of select="translate(translate($param2, '\&quot;', ''), ';', '_')" />_BASIC_COLOR
+                        </xsl:if>
+
+                                );
+
+                        <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
+                        
                         return true;
                     }
 
@@ -117,11 +143,10 @@ Created By: Travis Berthelot
                         super.processGDStats(gameLayerArray);
                         try {
                      
-                        <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
-                        <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
+                        <xsl:value-of select="$siblingOrParentOrList" />
 
                         <xsl:if test="contains($param2b, '.')" >
-                            BasicColor RGB_BASIC_COLOR = smallBasicColorCacheFactory.getAndOrCreate(
+                            final BasicColor RGB_BASIC_COLOR = smallBasicColorCacheFactory.getAndOrCreate(
                                 basicColorUtil.getARGB(255, 
                                 <xsl:value-of select="translate(translate(translate($param2b, '+', ''), '\&quot;', ''), ';', ',')" />)
                                 );

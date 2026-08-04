@@ -28,7 +28,7 @@ public class GDRectOnlyPrimitiveDrawing extends Animation {
     protected final LogUtil logUtil = LogUtil.getInstance();
 
     
-    private final Animation colorAnimation = new Animation() {};
+    //private final Animation colorAnimation = new Animation() {};
     private final ARectangleFilledAnimation rectangleFilledAnimation = new ARectangleFilledAnimation();
     
     public int x;
@@ -41,7 +41,8 @@ public class GDRectOnlyPrimitiveDrawing extends Animation {
 
     public void addFillColor(final BasicColor basicColor) {
                 
-        this.colorAnimation.setBasicColorP(basicColor);
+        //this.colorAnimation.setBasicColorP(basicColor);
+        this.rectangleFilledAnimation.setBasicColorP(basicColor);
     }
 
     public void addFillRectangle(final int x, final int y, final int x2, final int y2) {
@@ -59,7 +60,7 @@ public class GDRectOnlyPrimitiveDrawing extends Animation {
     public void paintXY(final Graphics graphics, final int x, final int y)
     {
         //Primitive are not tied to the Game Object location.
-        this.colorAnimation.paintXY(graphics, this.x, this.y);
+        //this.colorAnimation.paintXY(graphics, this.x, this.y);
         this.rectangleFilledAnimation.paintXY(graphics, this.x, this.y);
     }
 
