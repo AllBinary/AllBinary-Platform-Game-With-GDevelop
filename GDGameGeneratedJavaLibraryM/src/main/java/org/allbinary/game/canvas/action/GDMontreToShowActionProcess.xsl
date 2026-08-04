@@ -82,8 +82,8 @@ Created By: Travis Berthelot
                     }
 
                     @Override
-                    public boolean process(final int index) throws Exception {
-                        super.processStats(index);
+                    public boolean process(final int index3) throws Exception {
+                        super.processStats(index3);
 
                             <xsl:if test="string-length($hasObjectGroup) > 0" >
                             final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.size();
@@ -96,9 +96,13 @@ Created By: Travis Berthelot
                             final BasicArrayList gdGameLayerList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList;
                             </xsl:if>
 
-                        final GDGameLayer gdGameLayer = (GDGameLayer) gdGameLayerList.get(index);
+                        final GDGameLayer gdGameLayer = (GDGameLayer) gdGameLayerList.get(index3);
                         gdGameLayer.setVisible(true);
-                        
+
+                            <xsl:if test="string-length($hasObjectGroup) > 0" >
+                            }
+                            </xsl:if>
+
                         return true;
                     }
    
