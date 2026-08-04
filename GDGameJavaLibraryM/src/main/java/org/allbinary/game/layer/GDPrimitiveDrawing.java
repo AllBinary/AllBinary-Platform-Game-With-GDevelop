@@ -14,10 +14,11 @@
 package org.allbinary.game.layer;
 
 import javax.microedition.lcdui.Graphics;
+
 import org.allbinary.animation.Animation;
 import org.allbinary.animation.vector.ARectangleFilledAnimation;
 import org.allbinary.graphics.color.BasicColor;
-
+import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
@@ -84,16 +85,16 @@ public class GDPrimitiveDrawing extends Animation {
             final ARectangleFilledAnimation rectangleFilledAnimation = new ARectangleFilledAnimation();
             rectangleFilledAnimation.x = x;
             rectangleFilledAnimation.y = y;
-            rectangleFilledAnimation.width = x2 - x;
-            rectangleFilledAnimation.height = y2 - y;
+            rectangleFilledAnimation.setWidth(x2 - x);
+            rectangleFilledAnimation.setHeight(y2 - y);
             this.animationListArray[this.circularIndexUtil.getIndex()].add(rectangleFilledAnimation);
             this.aRetangleFilledAnimationInUseList.add(rectangleFilledAnimation);
         } else {
             final ARectangleFilledAnimation rectangleFilledAnimation = (ARectangleFilledAnimation) this.aRetangleFilledAnimationCacheList.removeAt(this.aRetangleFilledAnimationCacheList.size() - 1);
             rectangleFilledAnimation.x = x;
             rectangleFilledAnimation.y = y;
-            rectangleFilledAnimation.width = x2 - x;
-            rectangleFilledAnimation.height = y2 - y;
+            rectangleFilledAnimation.setWidth(x2 - x);
+            rectangleFilledAnimation.setHeight(y2 - y);
             this.animationListArray[this.circularIndexUtil.getIndex()].add(rectangleFilledAnimation);
             this.aRetangleFilledAnimationInUseList.add(rectangleFilledAnimation);
         }

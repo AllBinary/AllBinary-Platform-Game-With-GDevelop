@@ -14,11 +14,10 @@
 package org.allbinary.game.layer;
 
 import javax.microedition.lcdui.Graphics;
-import org.allbinary.animation.Animation;
-import org.allbinary.animation.vector.RectangleFilledAnimation;
-import org.allbinary.graphics.color.BasicColor;
-import org.allbinary.graphics.color.BasicColorFactory;
 
+import org.allbinary.animation.Animation;
+import org.allbinary.animation.vector.ARectangleFilledAnimation;
+import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.logic.communication.log.LogUtil;
 
 /**
@@ -30,7 +29,7 @@ public class GDRectOnlyPrimitiveDrawing extends Animation {
 
     
     private final Animation colorAnimation = new Animation() {};
-    private final RectangleFilledAnimation rectangleFilledAnimation = new RectangleFilledAnimation(0, 0, BasicColorFactory.getInstance().BLACK);
+    private final ARectangleFilledAnimation rectangleFilledAnimation = new ARectangleFilledAnimation();
     
     public int x;
     public int y;
@@ -47,8 +46,8 @@ public class GDRectOnlyPrimitiveDrawing extends Animation {
 
     public void addFillRectangle(final int x, final int y, final int x2, final int y2) {
         
-        this.x = x;
-        this.y = y;
+        this.rectangleFilledAnimation.x = x;
+        this.rectangleFilledAnimation.y = y;
         this.rectangleFilledAnimation.setWidth(x2 - x);
         this.rectangleFilledAnimation.setHeight(y2 - y);
         
