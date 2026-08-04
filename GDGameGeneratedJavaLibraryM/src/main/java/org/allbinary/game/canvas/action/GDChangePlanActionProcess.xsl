@@ -99,8 +99,11 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
                     
                     <xsl:text>                        </xsl:text><xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >.gdObject.zOrder</xsl:if><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
-                                                                                
+
                         <xsl:text>&#10;</xsl:text>
+                            final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
+                            final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
+                            allBinaryGameLayerManager.update(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer);
                         
                         } else {
                             //Needs Impl
@@ -180,9 +183,15 @@ Created By: Travis Berthelot
                             final BasicArrayList <xsl:value-of select="$name" />GDGameLayerList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList;
                         </xsl:if>
                     
-                        (((GDGameLayer) <xsl:value-of select="$name" />GDGameLayerList.get(index))).gdObject.zOrder<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
-                    <xsl:text>&#10;</xsl:text>
-                        
+                        final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = (((GDGameLayer) <xsl:value-of select="$name" />GDGameLayerList.get(index)));
+                        <xsl:value-of select="$name" />GDGameLayer.gdObject.zOrder<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
+                        <xsl:text>&#10;</xsl:text>
+
+                        final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
+                        final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
+                        allBinaryGameLayerManager.update(<xsl:value-of select="$name" />GDGameLayer);
+                        <xsl:text>&#10;</xsl:text>
+
                     <xsl:if test="contains($hasObjectGroup, 'found')" >
                         }
                     </xsl:if>
@@ -208,6 +217,12 @@ Created By: Travis Berthelot
                         <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
                         <xsl:value-of select="$name" />GDGameLayer.gdObject.zOrder<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
+
+                        <xsl:text>&#10;</xsl:text>
+                        final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
+                        final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
+                        allBinaryGameLayerManager.update(<xsl:value-of select="$name" />GDGameLayer);
+                        <xsl:text>&#10;</xsl:text>
 
                         <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
