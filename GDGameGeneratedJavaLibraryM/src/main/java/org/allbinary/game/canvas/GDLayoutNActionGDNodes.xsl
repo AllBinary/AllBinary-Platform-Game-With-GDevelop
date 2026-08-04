@@ -441,6 +441,10 @@ Created By: Travis Berthelot
                         return (float) Math.floor((double) value);
                     }
 
+                    public int round(final int value) {
+                        return value;
+                    }
+
                     public long round(final long value) {
                         return value;
                     }

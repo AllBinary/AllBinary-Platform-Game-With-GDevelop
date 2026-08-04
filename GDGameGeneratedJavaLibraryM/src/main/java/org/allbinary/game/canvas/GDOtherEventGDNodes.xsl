@@ -489,6 +489,10 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
             return (float) Math.floor((double) value);
         }
 
+        public int round(final int value) {
+            return value;
+        }
+
         public long round(final long value) {
             return value;
         }
