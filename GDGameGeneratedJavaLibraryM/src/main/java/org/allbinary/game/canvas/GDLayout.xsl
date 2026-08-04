@@ -44,7 +44,22 @@ Created By: Travis Berthelot
     
     <xsl:output method="html" indent="yes" />
 
-    <xsl:template match="/game">
+    <xsl:template name="resetRectForPrimitiveDrawingDrawer" >
+        <xsl:param name="layoutIndex" />
+        
+        <xsl:for-each select="objects" >
+            <xsl:variable name="typeValue" select="type" />        
+            <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer'" >
+                <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /></xsl:variable>
+                //clearBetweenFrames=<xsl:value-of select="clearBetweenFrames" />
+                <xsl:if test="clearBetweenFrames = 'true'" >
+                </xsl:if>
+            </xsl:if>
+        </xsl:for-each>
+
+    </xsl:template>
+
+    <xsl:template match="/game" >
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
@@ -341,6 +356,14 @@ Created By: Travis Berthelot
                             globals.processingScrollingMotionEventListIndex = 0;
                             globals.inUseScrollingMotionEventListIndex = 1;
                         }
+
+                    //PrimitiveDrawing::Drawer - clearBetweenFrames - START
+                    <xsl:call-template name="resetRectForPrimitiveDrawingDrawer" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    //PrimitiveDrawing::Drawer - clearBetweenFrames - END
 
                         this.processMotionEvents();
 

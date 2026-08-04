@@ -534,6 +534,11 @@ public class GDGameLayer
         this.setPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
     }
 
+    public void updateSize() {
+        this.setWidth(this.gdObject.width);
+        this.setHeight(this.gdObject.height);
+    }
+    
     public void process(final long timeDelta) throws Exception {
         this.processor.processt(timeDelta);
     }

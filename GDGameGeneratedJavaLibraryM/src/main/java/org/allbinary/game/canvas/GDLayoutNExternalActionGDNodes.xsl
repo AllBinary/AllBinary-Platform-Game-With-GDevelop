@@ -108,9 +108,11 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.GDObjectFactory;                
                 import org.allbinary.game.layer.behavior.PathFindingBehavior;
                 import org.allbinary.game.rand.MyRandomFactory;
+                import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.color.BasicColor;
                 import org.allbinary.graphics.color.SmallBasicColorCacheFactory;
                 import org.allbinary.graphics.color.BasicColorUtil;
+                import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.input.motion.gesture.MotionGestureInput;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
@@ -156,6 +158,7 @@ Created By: Travis Berthelot
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
                         private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
+                        private final PointFactory pointFactory = PointFactory.getInstance();
                         private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
                         private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();

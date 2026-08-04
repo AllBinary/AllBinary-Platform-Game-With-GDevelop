@@ -119,10 +119,10 @@ public class GDGameMotionGestureListener implements MotionGestureEventListener
             
             if(this.gameLayerDraggedList.size() == 0) {
                 if (draggableGameLayer.isDraggable) {
-                    //logUtil.put(draggableGameLayer.toString(), this, "press");
+                    //logUtil.putF(draggableGameLayer.toString(), this, "draggable");
 
                     if (this.rectangleCollisionUtil.isInside(draggableGameLayer.getXP(), draggableGameLayer.getYP(), draggableGameLayer.getX2(), draggableGameLayer.getY2(), point.getX(), point.getY())) {
-                        //logUtil.put(draggableGameLayer.toString(), this, "press");
+                        //logUtil.putF(draggableGameLayer.toString(), this, "press");
                         draggableGameLayer.isDragged = true;
                         this.gameLayerDraggedList.add(draggableGameLayer);
                     }
