@@ -930,9 +930,9 @@ Created By: Travis Berthelot
         </xsl:variable>
                     //closestParentEventWithParams=<xsl:value-of select="$closestParentEventWithParams" />
         
-                    <xsl:variable name="hasSiblingCreateOrCreateByName" ><xsl:for-each select="../actions" ><xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" >found</xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:variable name="siblingCreateOrCreateByNameObjectOrObjectGroup" ><xsl:for-each select="../actions" ><xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" ><xsl:if test="$nodeId > number(substring(generate-id(), 2) - 65536)" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" >//<xsl:value-of select="text()" />,</xsl:if></xsl:for-each></xsl:if></xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:variable name="isNeededParamSiblingCreateOrCreateByName" ><xsl:for-each select="../actions" ><xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="contains($params, text())" >found</xsl:if></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="hasSiblingCreateOrCreateByName" ><xsl:call-template name="hasCreateProcessGD" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:variable name="siblingCreateOrCreateByNameObjectOrObjectGroup" ><xsl:call-template name="createNodeId" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:variable name="isNeededParamSiblingCreateOrCreateByName" ><xsl:call-template name="createWithParam" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param></xsl:call-template></xsl:variable>
                     //hasSiblingCreateOrCreateByName=<xsl:value-of select="$hasSiblingCreateOrCreateByName" />
                     //siblingCreateOrCreateByNameObjectOrObjectGroup=<xsl:value-of select="$siblingCreateOrCreateByNameObjectOrObjectGroup" />
                     //isNeededParamSiblingCreateOrCreateByName=<xsl:value-of select="$isNeededParamSiblingCreateOrCreateByName" />
@@ -942,10 +942,7 @@ Created By: Travis Berthelot
                             //Sibling
                             <xsl:call-template name="declarationOfGDGameLayerSiblings" >
                                 <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
-                                <xsl:with-param name="params" >
-<!--                                    <xsl:value-of select="$params" />-->
-                                    <xsl:value-of select="$siblingCreateOrCreateByNameObjectOrObjectGroup" />
-                                </xsl:with-param>
+                                <xsl:with-param name="params" ><xsl:value-of select="$siblingCreateOrCreateByNameObjectOrObjectGroup" /></xsl:with-param>
                                 <xsl:with-param name="offset" ><xsl:if test="$offset > 0" ><xsl:value-of select="$offset" /></xsl:if><xsl:if test="string-length($offset) = 0" >0</xsl:if></xsl:with-param>
                                 <xsl:with-param name="includeList" ><xsl:value-of select="$includeList" /></xsl:with-param>
                             </xsl:call-template>
@@ -1237,9 +1234,9 @@ Created By: Travis Berthelot
             </xsl:call-template>
         </xsl:variable>
         
-                    <xsl:variable name="hasSiblingCreateOrCreateByName" ><xsl:for-each select="../actions" ><xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" >found</xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:variable name="siblingCreateOrCreateByNameObjectOrObjectGroup" ><xsl:for-each select="../actions" ><xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" ><xsl:if test="$nodeId > number(substring(generate-id(), 2) - 65536)" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" >//<xsl:value-of select="text()" />,</xsl:if></xsl:for-each></xsl:if></xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:variable name="isNeededParamSiblingCreateOrCreateByName" ><xsl:for-each select="../actions" ><xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="contains($params, text())" >found</xsl:if></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="hasSiblingCreateOrCreateByName" ><xsl:call-template name="hasCreateProcessGD" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:variable name="siblingCreateOrCreateByNameObjectOrObjectGroup" ><xsl:call-template name="createNodeId" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:variable name="isNeededParamSiblingCreateOrCreateByName" ><xsl:call-template name="createWithParam" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param></xsl:call-template></xsl:variable>
                     //hasSiblingCreateOrCreateByName=<xsl:value-of select="$hasSiblingCreateOrCreateByName" />
                     //siblingCreateOrCreateByNameObjectOrObjectGroup=<xsl:value-of select="$siblingCreateOrCreateByNameObjectOrObjectGroup" />
                     //isNeededParamSiblingCreateOrCreateByName=<xsl:value-of select="$isNeededParamSiblingCreateOrCreateByName" />
@@ -2284,7 +2281,7 @@ Created By: Travis Berthelot
         <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
-            <xsl:if test="events[type = 'BuiltinCommonInstructions::Standard']" >
+<!--            <xsl:if test="events[type = 'BuiltinCommonInstructions::Standard']" >-->
                 <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="hasChildNode" >
                 <xsl:if test="$parentNodeId != $nodeId" >
@@ -2298,13 +2295,73 @@ Created By: Travis Berthelot
                 <xsl:if test="contains($hasChildNode, 'found')" >found</xsl:if>
                     </xsl:if>
                 </xsl:for-each>
-            </xsl:if>
+<!--            </xsl:if>-->
             
             <xsl:call-template name="hasCreateProcessGD" >
-                <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="$totalRecursions + 1" />
-                </xsl:with-param>
+                <xsl:with-param name="totalRecursions" ><xsl:value-of select="$totalRecursions + 1" /></xsl:with-param>
                 <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+            </xsl:call-template>
+
+        </xsl:for-each>
+                
+    </xsl:template>
+
+    <xsl:template name="createNodeId" >
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
+        
+        <xsl:for-each select=".." >
+<!--            <xsl:if test="events[type = 'BuiltinCommonInstructions::Standard']" >-->
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+            <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+                </xsl:if>
+            </xsl:variable>
+                <xsl:for-each select="actions" >
+                    <xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" >
+                <xsl:if test="contains($hasChildNode, 'found')" ><xsl:if test="$nodeId > number(substring(generate-id(), 2) - 65536)" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" >//<xsl:value-of select="text()" />,</xsl:if></xsl:for-each></xsl:if></xsl:if>
+                    </xsl:if>
+                </xsl:for-each>
+<!--            </xsl:if>-->
+            
+            <xsl:call-template name="createNodeId" >
+                <xsl:with-param name="totalRecursions" ><xsl:value-of select="$totalRecursions + 1" /></xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+            </xsl:call-template>
+
+        </xsl:for-each>
+                
+    </xsl:template>
+
+    <xsl:template name="createWithParam" >
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
+        <xsl:param name="params" />
+        
+        <xsl:for-each select=".." >
+<!--            <xsl:if test="events[type = 'BuiltinCommonInstructions::Standard']" >-->
+                <xsl:variable name="parentNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+            <xsl:variable name="hasChildNode" >
+                <xsl:if test="$parentNodeId != $nodeId" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+                </xsl:if>
+            </xsl:variable>
+                <xsl:for-each select="actions" >
+                    <xsl:if test="type/value = 'Create' or type/value = 'CreateByName'" >
+                <xsl:if test="contains($hasChildNode, 'found')" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="contains($params, text())" >found</xsl:if></xsl:if></xsl:for-each></xsl:if>
+                    </xsl:if>
+                </xsl:for-each>
+<!--            </xsl:if>-->
+            
+            <xsl:call-template name="createWithParam" >
+                <xsl:with-param name="totalRecursions" ><xsl:value-of select="$totalRecursions + 1" /></xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                <xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param>
             </xsl:call-template>
 
         </xsl:for-each>
