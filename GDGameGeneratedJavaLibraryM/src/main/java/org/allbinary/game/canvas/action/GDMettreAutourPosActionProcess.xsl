@@ -55,7 +55,7 @@ Created By: Travis Berthelot
                                 //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                                 final GDGameLayer[] gameLayerArray = gameGlobals.tempGameLayerArray;      
-                                <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParamIncludeList" />                
+                                <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParamIncludeList" />
 
                                 //final boolean result = this.processG(gdObject, 0);
                                 <xsl:call-template name="mettreAutourPosActionProcessGDObject" >
@@ -89,8 +89,8 @@ Created By: Travis Berthelot
                             try {
                         
                                 //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
-                     
-                                <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
+
+                                <xsl:value-of select="$siblingOrParentOrList" />
 
                                 <xsl:call-template name="mettreAutourPosActionProcessGDObject" >
                                 </xsl:call-template>                                
