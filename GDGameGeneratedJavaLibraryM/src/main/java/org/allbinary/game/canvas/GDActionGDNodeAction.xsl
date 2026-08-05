@@ -30,6 +30,8 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDAnimationSetSpeedScaleActionProcess.xsl" />
     <xsl:import href="./action/GDAnimationSetFrameActionProcess.xsl" />
     <xsl:import href="./action/GDSetNumberObjectVariableActionProcess.xsl" />
+    <xsl:import href="./action/GDSetObjectVariableAsBooleanActionProcess.xsl" />
+    <xsl:import href="./action/GDSetStringObjectVariableActionProcess.xsl" />
     <xsl:import href="./action/GDModVarObjetTxtActionProcess.xsl" />
     <xsl:import href="./action/GDModVarSceneTxtActionProcess.xsl" />
     
@@ -82,7 +84,6 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDQuitActionProcess.xsl" />
     <xsl:import href="./action/GDSetGlobalVariableAsBooleanActionProcess.xsl" />
     <xsl:import href="./action/SetFullScreenActionProcess.xsl" />
-    <xsl:import href="./action/GDSetObjectVariableAsBooleanActionProcess.xsl" />
     <xsl:import href="./action/GDSetSceneVariableAsBooleanActionProcess.xsl" />
     <xsl:import href="./action/GDSetStringVariableActionProcess.xsl" />
     <xsl:import href="./action/GDCopyArgumentToVariableActionProcess.xsl" />
@@ -324,6 +325,43 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
+                <xsl:when test="$typeValue = 'SetStringObjectVariable'" >
+                    
+                    <xsl:call-template name="setStringObjectVariableActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
+                <xsl:when test="$typeValue = 'SetBooleanObjectVariable'" >
+                    
+                    <xsl:call-template name="setObjectVariableAsBooleanActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
+                
                 <xsl:when test="$typeValue = 'ModVarSceneTxt'" >
 
                     <xsl:call-template name="modVarSceneTxtActionProcess" >
@@ -649,25 +687,6 @@ Created By: Travis Berthelot
 
                 <xsl:when test="$typeValue = 'AjoutHasard'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
-                </xsl:when>
-
-                <xsl:when test="$typeValue = 'SetBooleanObjectVariable'" >
-                    
-                    <xsl:call-template name="setObjectVariableAsBooleanActionProcess" >
-                        <xsl:with-param name="forExtension" >
-                            <xsl:value-of select="$forExtension" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="objectsGroupsAsString" >
-                            <xsl:value-of select="$objectsGroupsAsString" />
-                        </xsl:with-param>
-                        <xsl:with-param name="createdObjectsAsString" >
-                            <xsl:value-of select="$createdObjectsAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'ToggleObjectVariableAsBoolean'" >
