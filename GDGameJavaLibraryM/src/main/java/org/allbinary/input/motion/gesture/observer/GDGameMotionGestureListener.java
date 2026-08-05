@@ -123,6 +123,7 @@ public class GDGameMotionGestureListener implements MotionGestureEventListener
 
                     if (this.rectangleCollisionUtil.isInside(draggableGameLayer.getXP(), draggableGameLayer.getYP(), draggableGameLayer.getX2(), draggableGameLayer.getY2(), point.getX(), point.getY())) {
                         //logUtil.putF(draggableGameLayer.toString(), this, "press");
+                        draggableGameLayer.isDropped = false;
                         draggableGameLayer.isDragged = true;
                         this.gameLayerDraggedList.add(draggableGameLayer);
                     }
@@ -146,6 +147,7 @@ public class GDGameMotionGestureListener implements MotionGestureEventListener
             for(int index = 0; index < size; index++) {
                 draggableGameLayer = (CollidableDestroyableDamageableLayer) this.gameLayerDraggedList.get(index);
                 draggableGameLayer.isDragged = false;
+                draggableGameLayer.isDropped = true;
             }
             this.gameLayerDraggedList.clear();
         }
