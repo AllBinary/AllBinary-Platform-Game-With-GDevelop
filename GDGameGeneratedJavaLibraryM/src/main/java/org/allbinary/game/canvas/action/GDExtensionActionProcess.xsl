@@ -82,8 +82,19 @@ Created By: Travis Berthelot
                     public boolean process() throws Exception {
                         super.processStats();
 
+                        try {
+
                         //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-                        
+
+                        <xsl:if test="type/value = 'AllBinaryGenerate::GenerateAsJavaScript'" >
+                        //TWB - Hack as GDevelop does not have this
+                        //"G:\\mnt\\bc\\mydev\\GDGamesP\\platformx\\j2se\\GDGameJ2SEWithSWTJOGLGraalJSFastBuildApplicationM\\..\\";
+                        final String xslPath = "..\\";
+                        final String genPath = "C:\\1json\\gen\\";
+                        final String projectPath = "C:\\1json\\";
+                        new GetJsAtRuntime().getAllJs(projectPath, genPath, xslPath);
+                        </xsl:if>
+
                         <xsl:if test="contains($hasObject, 'found') or contains($hasObjectGroup2, 'found')" >
                         <xsl:if test="contains($hasObjectGroup2, 'found')" >
                         final BasicArrayList <xsl:value-of select="$name" />GDGameLayerListOfList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList;
@@ -120,6 +131,10 @@ Created By: Travis Berthelot
                         </xsl:if>
                         </xsl:if>
 
+                        } catch(Exception e) {
+                            logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
+                        }
+
                         return true;
                     }
 
@@ -138,6 +153,15 @@ Created By: Travis Berthelot
 
                         //logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS);
                         
+                        <xsl:if test="type/value = 'AllBinaryGenerate::GenerateAsJavaScript'" >
+                        //TWB - Hack as GDevelop does not have this
+                        //"G:\\mnt\\bc\\mydev\\GDGamesP\\platformx\\j2se\\GDGameJ2SEWithSWTJOGLGraalJSFastBuildApplicationM\\..\\";
+                        final String xslPath = "..\\";
+                        final String genPath = "C:\\1json\\gen\\";
+                        final String projectPath = "C:\\1json\\";
+                        new GetJsAtRuntime().getAllJs(projectPath, genPath, xslPath);
+                        </xsl:if>
+
                         <xsl:if test="contains($hasObject, 'found') or contains($hasObjectGroup2, 'found')" >
 
                         <xsl:if test="contains($hasObjectGroup2, 'found')" >

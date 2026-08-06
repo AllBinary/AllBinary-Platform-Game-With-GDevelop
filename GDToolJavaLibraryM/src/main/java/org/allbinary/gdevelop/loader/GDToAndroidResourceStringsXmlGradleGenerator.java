@@ -51,9 +51,6 @@ public class GDToAndroidResourceStringsXmlGradleGenerator extends GDNameFileGene
 
         this.logUtil.putF(this.gdToolStrings.FILENAME + this.newFilePath, this, this.commonStrings.PROCESS);
 
-        final File directoryFile = new File(GDToAndroidResourceStringsXmlGradleGenerator.OUTPUT_PATH);
-        directoryFile.mkdirs();
-        
         this.bufferedWriterUtil.overwrite(this.newFilePath, newFileAsString);
     }
     

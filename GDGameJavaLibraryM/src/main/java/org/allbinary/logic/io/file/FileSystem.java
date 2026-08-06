@@ -113,4 +113,7 @@ public class FileSystem {
             return pathData.getExtensionWithDot(name);
         }
     }
+    
+    public static void main(String[] args) {
+    }
 }

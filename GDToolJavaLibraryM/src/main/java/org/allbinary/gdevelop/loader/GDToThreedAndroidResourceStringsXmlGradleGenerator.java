@@ -50,9 +50,6 @@ public class GDToThreedAndroidResourceStringsXmlGradleGenerator extends GDNameFi
         final String newFileAsString = replace.all(androidRFileAsString);
 
         this.logUtil.putF(this.gdToolStrings.FILENAME + this.newFilePath, this, this.commonStrings.PROCESS);
-
-        final File directoryFile = new File(GDToThreedAndroidResourceStringsXmlGradleGenerator.OUTPUT_PATH);
-        directoryFile.mkdirs();
         
         this.bufferedWriterUtil.overwrite(this.newFilePath, newFileAsString);
     }

@@ -134,6 +134,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.io.file.FileSystem;
                 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
                 import org.allbinary.string.CommonPhoneStrings;
+                import org.allbinary.runtime.GetJsAtRuntime;
                 import org.allbinary.time.TimeDelayHelper;
 
                 <xsl:variable name="selectedNodeIdSet" select="substring(substring($selectedNodeIds, string-length($selectedNodeIds) - 1), 1, 1)" />

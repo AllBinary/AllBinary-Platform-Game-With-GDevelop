@@ -43,7 +43,7 @@ public class GDCopy {
 
             final int size = files.size();
             stringMaker.delete(0, stringMaker.length());
-            this.logUtil.putF(stringMaker.append("Total Files for Copying: ").appendint(size).toString(), this, this.commonStrings.PROCESS);
+            this.logUtil.putF(stringMaker.append("Total JSON Files for Copying: ").appendint(size).toString(), this, this.commonStrings.PROCESS);
             AbFile file;
             AbPath toAbPath;
             AbPath fromAbPath;

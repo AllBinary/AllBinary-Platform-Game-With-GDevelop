@@ -14,6 +14,7 @@
 package org.allbinary.gdevelop.loader;
 
 import org.allbinary.logic.NullUtil;
+import org.allbinary.logic.string.StringUtil;
 
 /**
  *
@@ -33,11 +34,11 @@ public class GDPaths {
     }
 
     public static void init() {
-        GDPaths.instance = new GDPaths(GDPaths.DEFAULT_PATH, GDPaths.DEFAULT_PATH, GDPaths.DEFAULT_PATH);
+        GDPaths.instance = new GDPaths(GDPaths.DEFAULT_PATH, GDPaths.DEFAULT_PATH, GDPaths.DEFAULT_PATH, "Resources\\", "Resources\\", "2d\\res\\raw\\", "3d\\res\\raw\\");
     }
     
     public static void init(final String xslPath, final String genPath, final String projectPath) {
-        GDPaths.instance = new GDPaths(xslPath, genPath, projectPath);
+        GDPaths.instance = new GDPaths(xslPath, genPath, projectPath, "sounds\\", StringUtil.getInstance().EMPTY_STRING, "2d\\Resources\\2d\\res\\raw\\", "3d\\Resources\\3d\\res\\raw\\");
     }
 
     public String ROOT_PATH;
@@ -54,19 +55,22 @@ public class GDPaths {
 
     public final String ROTATION_ANIMATION_FILE_PATH;
 
-    public GDPaths(final String xslPath, final String genPath, final String projectPath) {
+    public final String SOUND_RESOURCES_ROOT_PATH;
+    
+    public GDPaths(final String xslPath, final String genPath, final String projectPath, final String soundResourcesDirectory, final String assetsDirectory, final String twodPath, final String threedPath) {
 
         this.ROOT_PATH = xslPath;
         this.GEN_PATH = genPath;
         this.PROJECT_PATH = projectPath;
 
-        this.GAME_XML_PATH = this.ROOT_PATH + "game.xml";
+        this.GAME_XML_PATH = this.PROJECT_PATH + "game.xml";
 
-        this.GAME_JSON_PATH = this.ROOT_PATH + "game.json";
+        this.GAME_JSON_PATH = this.PROJECT_PATH + "game.json";
 
-        this.TWOD_RESOURCES_PATH = this.PROJECT_PATH + "Resources\\2d\\res\\raw\\";
-        this.THREED_RESOURCES_PATH = this.PROJECT_PATH + "Resources\\3d\\res\\raw\\";
-        this.ASSETS_PATH = this.PROJECT_PATH + "Resources\\assets\\";
+        this.SOUND_RESOURCES_ROOT_PATH = this.PROJECT_PATH + soundResourcesDirectory;
+        this.TWOD_RESOURCES_PATH = this.PROJECT_PATH + assetsDirectory + twodPath;
+        this.THREED_RESOURCES_PATH = this.PROJECT_PATH + assetsDirectory + threedPath;
+        this.ASSETS_PATH = this.PROJECT_PATH + assetsDirectory + "assets\\";
 
         this.ROTATION_ANIMATION_FILE_PATH = this.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\animation\\GDRotationAnimation.txt";
     }

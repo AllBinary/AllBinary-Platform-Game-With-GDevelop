@@ -192,7 +192,12 @@ public class GDToAllBinaryGenerationTool
 
         final FileListFetcher fileListFetcher = FileListFetcher.getInstance();
         final BasicArrayList twoDFileList = fileListFetcher.getFiles(this.gdPaths.TWOD_RESOURCES_PATH);
+        stringMaker.delete(0, stringMaker.length());
+        this.logUtil.putF(stringMaker.append(this.gdPaths.TWOD_RESOURCES_PATH).append(" Total 2d Resource Files: ").appendint(twoDFileList.size()).toString(), this, this.commonStrings.PROCESS);
+
         final BasicArrayList threedDFileList = fileListFetcher.getFiles(this.gdPaths.THREED_RESOURCES_PATH);
+        stringMaker.delete(0, stringMaker.length());
+        this.logUtil.putF(stringMaker.append(this.gdPaths.THREED_RESOURCES_PATH).append("Total 3d Resource Files: ").appendint(threedDFileList.size()).toString(), this, this.commonStrings.PROCESS);
         
         this.androidRClassGenerator.process();
         this.threedAndroidRClassGenerator.process(threedDFileList);

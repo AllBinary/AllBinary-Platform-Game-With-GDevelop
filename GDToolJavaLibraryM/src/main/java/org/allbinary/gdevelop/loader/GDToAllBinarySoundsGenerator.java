@@ -93,7 +93,7 @@ public class GDToAllBinarySoundsGenerator
 
         final File file = new File(this.gdPaths.ROOT_PATH);
         ResourceUtil.getInstance().setLoadingPaths(
-            file.getAbsolutePath() + "\\Resources\\sounds\\release\\wav\\",
+            file.getAbsolutePath() + this.gdPaths.SOUND_RESOURCES_ROOT_PATH + "sounds\\release\\wav\\",
             //"G:\\mnt\\bc\\mydev\\GDGamesP\\Resources\\sounds\\release\\wav\\", 
             ".wav");
         Features.getInstance().add(GameFeatureFactory.getInstance().SOUND);
