@@ -21,7 +21,7 @@ import org.allbinary.time.TimeDelayHelper;
  */
 public class GDGenerator {
 
-    public void process() throws Exception {
+    public void process(final boolean[] finished) throws Exception {
         //System.setProperty("jdk.xml.xpathExprGrpLimit", "0");
         //System.setProperty("jdk.xml.xpathExprOpLimit", "0");
         System.setProperty("jdk.xml.xpathTotalOpLimit", "0");
@@ -36,7 +36,7 @@ public class GDGenerator {
         new GDToAllBinaryGenerationTool().process();
 //        System.out.println("GDToAllBinaryGenerationTool ElapsedTime: " + timeDelayHelper.getElapsedTNT());
 //        timeDelayHelper.setStartTimeTNT();
-        new GDLayoutsToAllBinaryLayoutGenerator().process(0, new GDGetTotalLayouts().process());
+        new GDLayoutsToAllBinaryLayoutGenerator().process(0, new GDGetTotalLayouts().process(), finished);
 //        System.out.println("GDLayoutsToAllBinaryLayoutGenerator Started ElapsedTime: " + timeDelayHelper.getElapsedTNT());
 //        timeDelayHelper.setStartTimeTNT();
         System.out.println("Delete, Copy, GDToAllBinaryGenerationTool, GDLayoutsToAllBinaryLayoutGenerator ElapsedTime: " + timeDelayHelper.getElapsedTNT());
@@ -48,7 +48,8 @@ public class GDGenerator {
      */
     public static void main(String[] args) throws Exception {
         GDPaths.init();
-        new GDGenerator().process();
+        final boolean[] finished = new boolean[6];
+        new GDGenerator().process(finished);
     }
     
 }

@@ -850,7 +850,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         }
     }
 
-    public void process(final int startIndex, final int layoutTotal) {
+    public void process(final int startIndex, final int layoutTotal, final boolean[] finished) {
         try {
             //final SharedBytes sharedBytes = SharedBytes.getInstance();
             final SharedBytes sharedBytes = new SharedBytes();
@@ -945,7 +945,6 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             final Replace replace18 = new Replace("\"value\": \"V \"", "\"value\": \"&#8595; \"");
             layoutGameXmlAsString = replace18.all(layoutGameXmlAsString);
 
-            final boolean[] finished = new boolean[6];
             final String gameXmlAsString2 = gameXmlAsString;
             final String layoutGameXmlAsString2 = layoutGameXmlAsString;
 
@@ -1046,7 +1045,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         System.setProperty("jdk.xml.xpathTotalOpLimit", "0");
 
         //Generate Layout 1
-        new GDLayoutsToAllBinaryLayoutGenerator().process(1, new GDGetTotalLayouts().process());
+        final boolean[] finished = new boolean[6];
+        new GDLayoutsToAllBinaryLayoutGenerator().process(1, new GDGetTotalLayouts().process(), finished);
 
         //new GDLayoutsToAllBinaryLayoutGenerator().process(0, new GDGetTotalLayouts().process());
     }
