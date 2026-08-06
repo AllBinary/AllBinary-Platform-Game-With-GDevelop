@@ -68,7 +68,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         this.smallIntegerSingletonFactory.init();
     }
 
-    private void generateXMLAndGlobals(final String gameXmlAsString) throws Exception {
+    private void generateXMLAndGlobals(final String gameXmlAsString, final boolean[] finished) throws Exception {
 
         //final SharedBytes sharedBytes = SharedBytes.getInstance();
         final SharedBytes sharedBytes = new SharedBytes();
@@ -125,6 +125,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                 public void run() {
                     try {
                         generateXMLAndGlobalsAt(xmlStringArray0, xslPathInputArray0, START0, END0, xslDocumentAsString0, currentIndex, new StringMaker());
+                        finished[0] = true;
                     } catch (Exception e) {
                         logUtil.put(commonStrings.EXCEPTION, this, commonStrings.RUN, e);
                         System.exit(1);
@@ -944,7 +945,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             final Replace replace18 = new Replace("\"value\": \"V \"", "\"value\": \"&#8595; \"");
             layoutGameXmlAsString = replace18.all(layoutGameXmlAsString);
 
-            final boolean[] finished = new boolean[5];
+            final boolean[] finished = new boolean[6];
             final String gameXmlAsString2 = gameXmlAsString;
             final String layoutGameXmlAsString2 = layoutGameXmlAsString;
 
@@ -952,9 +953,9 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                 public void run() {
                     try {
                         final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(0);
-                        generateXMLAndGlobals(gameXmlAsString2);
+                        generateXMLAndGlobals(gameXmlAsString2, finished);
                         System.out.println("generateXMLAndGlobals (Takes a long time and has little output) ElapsedTime: " + timeDelayHelper.getElapsedTNT());
-                        finished[0] = true;
+                        finished[1] = true;
                     } catch (Exception e) {
                         logUtil.put(commonStrings.EXCEPTION, this, commonStrings.RUN, e);
                         System.exit(1);
@@ -970,7 +971,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                         final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(0);
                         generateLayouts(startIndex, layoutTotal, gameXmlAsString2, layoutGameXmlAsString2, new StringMaker());
                         System.out.println("generateLayouts ElapsedTime: " + timeDelayHelper.getElapsedTNT());
-                        finished[1] = true;
+                        finished[2] = true;
                         System.out.println("Current State ElapsedTime: " + BooleanUtil.getInstance().toStringFromBooleanArray(finished));
                     } catch (Exception e) {
                         logUtil.put(commonStrings.EXCEPTION, this, commonStrings.RUN, e);
@@ -987,7 +988,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                         final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(0);
                         generateActionGDNodes(gameXmlAsString2, layoutGameXmlAsString2, layoutTotal, new StringMaker());
                         System.out.println("generateActionGDNodes ElapsedTime: " + timeDelayHelper.getElapsedTNT());
-                        finished[2] = true;
+                        finished[3] = true;
                         System.out.println("Current State ElapsedTime: " + BooleanUtil.getInstance().toStringFromBooleanArray(finished));
                     } catch (Exception e) {
                         logUtil.put(commonStrings.EXCEPTION, this, commonStrings.RUN, e);
@@ -1004,7 +1005,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                         final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(0);
                         generateBuiltInGDNodes(gameXmlAsString2, layoutGameXmlAsString2, layoutTotal, new StringMaker());
                         System.out.println("generateBuiltInGDNodes ElapsedTime: " + timeDelayHelper.getElapsedTNT());
-                        finished[3] = true;
+                        finished[4] = true;
                         System.out.println("Current State ElapsedTime: " + BooleanUtil.getInstance().toStringFromBooleanArray(finished));
                     } catch (Exception e) {
                         logUtil.put(commonStrings.EXCEPTION, this, commonStrings.RUN, e);
@@ -1021,7 +1022,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                         final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(0);
                         generateResourcesLoadersSetup(startIndex, layoutTotal, gameXmlAsString2, new StringMaker());
                         System.out.println("generateResourcesLoadersSetup ElapsedTime: " + timeDelayHelper.getElapsedTNT());
-                        finished[4] = true;
+                        finished[5] = true;
                         System.out.println("Current State ElapsedTime: " + BooleanUtil.getInstance().toStringFromBooleanArray(finished));
                     } catch (Exception e) {
                         logUtil.put(commonStrings.EXCEPTION, this, commonStrings.RUN, e);
