@@ -73,9 +73,6 @@ public class GDToAllBinaryRotationGenerator
         
         this.timeDelayHelper.setStartTimeTNT();
         
-        //final String MIDLET_REPLACED = gdPaths.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet_replaced.xsl";
-        //final String MIDLET_XML = gdPaths.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.xml";
-        
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final SharedBytes sharedBytes = SharedBytes.getInstance();
         sharedBytes.outputStream.reset();

@@ -24,12 +24,10 @@ public class GDToThreedAndroidResourceStringsXmlGradleGenerator extends GDNameFi
     protected final LogUtil logUtil = LogUtil.getInstance();
 
     private String name;
-    
-    private static final String OUTPUT_PATH = GDPaths.getInstance().ROOT_PATH + "platformx\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\app\\src\\main\\res\\values\\";
 
     public GDToThreedAndroidResourceStringsXmlGradleGenerator() {
         super(GDPaths.getInstance().ROOT_PATH + "platformx\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\strings.xml.original",
-                GDToThreedAndroidResourceStringsXmlGradleGenerator.OUTPUT_PATH + "strings.xml");
+                GDPaths.getInstance().GEN_PATH + "platformx\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\app\\src\\main\\res\\values\\" + "strings.xml");
     }
 
     @Override

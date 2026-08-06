@@ -15,7 +15,7 @@ public class GDToAndroidManifestGenerator extends GDSimpleTransformGenerator
     public GDToAndroidManifestGenerator() {
         
         super(GDPaths.getInstance().ROOT_PATH + "platformx\\android\\GDGameAndroidApplicationM\\src\\main\\AndroidManifest.xsl",
-                GDPaths.getInstance().ROOT_PATH + "platformx\\android\\GDGameAndroidApplicationM\\src\\main\\AndroidManifest.xml");
+                GDPaths.getInstance().GEN_PATH + "platformx\\android\\GDGameAndroidApplicationM\\src\\main\\AndroidManifest.xml");
 
     }
 

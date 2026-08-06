@@ -14,7 +14,7 @@ public class GDToThreedAndroidBuildGradleGenerator extends GDNameFileGenerator
 {
     public GDToThreedAndroidBuildGradleGenerator() {
         super(GDPaths.getInstance().ROOT_PATH + "platformx\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\app\\build.gradle.original",
-                GDPaths.getInstance().ROOT_PATH + "platformx\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\app\\build.gradle");
+                GDPaths.getInstance().GEN_PATH + "platformx\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\app\\build.gradle");
     }
 
 }
