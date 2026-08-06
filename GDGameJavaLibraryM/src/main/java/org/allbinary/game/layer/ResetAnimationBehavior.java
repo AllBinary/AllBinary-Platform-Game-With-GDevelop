@@ -14,7 +14,10 @@
 package org.allbinary.game.layer;
 
 import org.allbinary.animation.IndexedAnimation;
+import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.StringMaker;
 import org.allbinary.math.FrameUtil;
+import org.allbinary.string.CommonStrings;
 
 /**
  *
@@ -31,9 +34,13 @@ public class ResetAnimationBehavior {
         return ResetAnimationBehavior.instance;
     }
     
-    private final FrameUtil frameUtil = FrameUtil.getInstance();
+    //protected final LogUtil logUtil = LogUtil.getInstance();
+    //protected final CommonStrings commonStrings = CommonStrings.getInstance();
+
+    //private final FrameUtil frameUtil = FrameUtil.getInstance();
 
     public void resetAnimation(final IndexedAnimation[] indexedAnimationInterfaceArray, final int animationIndex) {
+        //logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
         indexedAnimationInterfaceArray[animationIndex].setFrame(0);
     }
 }

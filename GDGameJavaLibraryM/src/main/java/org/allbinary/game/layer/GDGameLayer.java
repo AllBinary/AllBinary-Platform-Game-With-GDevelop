@@ -61,6 +61,7 @@ public class GDGameLayer
         //ArtificialIntelligenceCompositeInterface, GameInputInterface,
         //VelocityInterfaceCompositeInterface 
         {
+
     protected final LogUtil logUtil = LogUtil.getInstance();
 
     protected final StringUtil stringUtil = StringUtil.getInstance();
@@ -228,6 +229,7 @@ public class GDGameLayer
         this.initIndexedAnimationInterfaceArray = animationBehavior.init(this.gdObject, animationInterfaceFactoryInterfaceArray);
         this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray);
         
+        //logUtil.putF(new StringMaker().append(this.gdObject.name).append(" s: ").appendint(this.initIndexedAnimationInterfaceArray[0].getSize()).append(" rotationAdjustment: ").appendboolean(rotationAdjustment).toString(), this, commonStrings.CONSTRUCTOR);
         if(this.initIndexedAnimationInterfaceArray[0].getSize() >= 90 && rotationAdjustment) {
             this.resetAnimationBehavior = ResetRotationAnimationBehavior.getInstance();
         } else {

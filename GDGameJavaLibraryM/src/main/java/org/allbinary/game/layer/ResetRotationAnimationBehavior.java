@@ -35,6 +35,8 @@ public class ResetRotationAnimationBehavior extends ResetAnimationBehavior {
 
     @Override
     public void resetAnimation(final IndexedAnimation[] indexedAnimationInterfaceArray, final int animationIndex) {
-        indexedAnimationInterfaceArray[animationIndex].setFrame(this.frameUtil.getFrameForAngle((short) 90, 1));
+        //logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
+        //indexedAnimationInterfaceArray[animationIndex].setFrame(this.frameUtil.getFrameForAngle((short) 90, 1));
+        indexedAnimationInterfaceArray[animationIndex].setFrame(this.frameUtil.getFrameForAngle((short) 0, 1));
     }
 }
