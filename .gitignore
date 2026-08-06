@@ -80,7 +80,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/avian/GDGameAvianApplicationM/src/**/*.svg
 /platformx/avian/GDGameAvianApplicationM/src/**/*.png
 /platformx/avian/GDGameAvianApplicationM/src/**/*.xsl
-/platformx/avian/GDGameAvianApplicationM/src/**/*.xml
+/platformx/avian/GDGameAvianApplicationM/src/main/java/META-INF/**/*.xml
 /platformx/avian/GDGameAvianApplicationM/src/**/*.dat
 /platformx/avian/GDGameAvianApplicationM/src/**/*.properties
 /platformx/avian/GDGameAvianApplicationM/src/**/*.MF
@@ -92,7 +92,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/avian/GDGameAvianJOGLApplicationM/src/**/*.svg
 /platformx/avian/GDGameAvianJOGLApplicationM/src/**/*.png
 /platformx/avian/GDGameAvianJOGLApplicationM/src/**/*.xsl
-/platformx/avian/GDGameAvianJOGLApplicationM/src/**/*.xml
+/platformx/avian/GDGameAvianJOGLApplicationM/src/main/java/META-INF/**/*.xml
 /platformx/avian/GDGameAvianJOGLApplicationM/src/**/*.dat
 /platformx/avian/GDGameAvianJOGLApplicationM/src/**/*.properties
 /platformx/avian/GDGameAvianJOGLApplicationM/src/**/*.MF
@@ -104,7 +104,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/j2se/GDGameJ2SEApplicationM/src/**/*.svg
 /platformx/j2se/GDGameJ2SEApplicationM/src/**/*.png
 /platformx/j2se/GDGameJ2SEApplicationM/src/**/*.xsl
-/platformx/j2se/GDGameJ2SEApplicationM/src/**/*.xml
+/platformx/j2se/GDGameJ2SEApplicationM/src/main/java/META-INF/**/*.xml
 /platformx/j2se/GDGameJ2SEApplicationM/src/**/*.dat
 /platformx/j2se/GDGameJ2SEApplicationM/src/**/*.properties
 /platformx/j2se/GDGameJ2SEApplicationM/src/**/*.MF
@@ -117,7 +117,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.svg
 /platformx/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.png
 /platformx/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.xsl
-/platformx/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.xml
+/platformx/j2se/GDGameJ2SEWithSWTApplicationM/src/main/java/META-INF/**/*.xml
 /platformx/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.dat
 /platformx/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.properties
 /platformx/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.MF
@@ -130,7 +130,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.svg
 /platformx/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.png
 /platformx/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.xsl
-/platformx/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.xml
+/platformx/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/main/java/META-INF/**/*.xml
 /platformx/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.dat
 /platformx/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.properties
 /platformx/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.MF
@@ -144,7 +144,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/j2se/GDGameJ2SEWithSWTJOGLApplicationM/src/**/*.svg
 /platformx/j2se/GDGameJ2SEWithSWTJOGLApplicationM/src/**/*.png
 /platformx/j2se/GDGameJ2SEWithSWTJOGLApplicationM/src/**/*.xsl
-/platformx/j2se/GDGameJ2SEWithSWTJOGLApplicationM/src/**/*.xml
+/platformx/j2se/GDGameJ2SEWithSWTJOGLApplicationM/src/main/java/META-INF/**/*.xml
 /platformx/j2se/GDGameJ2SEWithSWTJOGLApplicationM/src/**/*.dat
 /platformx/j2se/GDGameJ2SEWithSWTJOGLApplicationM/src/**/*.properties
 /platformx/j2se/GDGameJ2SEWithSWTJOGLApplicationM/src/**/*.MF
@@ -156,7 +156,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/j2se/GDGameJ2SEWithSWTFastBuildApplicationM/src/**/*.svg
 /platformx/j2se/GDGameJ2SEWithSWTFastBuildApplicationM/src/**/*.png
 /platformx/j2se/GDGameJ2SEWithSWTFastBuildApplicationM/src/**/*.xsl
-/platformx/j2se/GDGameJ2SEWithSWTFastBuildApplicationM/src/**/*.xml
+/platformx/j2se/GDGameJ2SEWithSWTFastBuildApplicationM/src/main/java/META-INF/**/*.xml
 /platformx/j2se/GDGameJ2SEWithSWTFastBuildApplicationM/src/**/*.dat
 /platformx/j2se/GDGameJ2SEWithSWTFastBuildApplicationM/src/**/*.properties
 /platformx/j2se/GDGameJ2SEWithSWTFastBuildApplicationM/src/**/*.MF
@@ -168,7 +168,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/j2se/GDGameJ2SEWithSWTGraalJSFastBuildApplicationM/src/**/*.svg
 /platformx/j2se/GDGameJ2SEWithSWTGraalJSFastBuildApplicationM/src/**/*.png
 /platformx/j2se/GDGameJ2SEWithSWTGraalJSFastBuildApplicationM/src/**/*.xsl
-/platformx/j2se/GDGameJ2SEWithSWTGraalJSFastBuildApplicationM/src/**/*.xml
+/platformx/j2se/GDGameJ2SEWithSWTGraalJSFastBuildApplicationM/src/main/java/META-INF/**/*.xml
 /platformx/j2se/GDGameJ2SEWithSWTGraalJSFastBuildApplicationM/src/**/*.dat
 /platformx/j2se/GDGameJ2SEWithSWTGraalJSFastBuildApplicationM/src/**/*.properties
 /platformx/j2se/GDGameJ2SEWithSWTGraalJSFastBuildApplicationM/src/**/*.MF
@@ -182,7 +182,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/j2se/GDGameJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.svg
 /platformx/j2se/GDGameJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.png
 /platformx/j2se/GDGameJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.xsl
-/platformx/j2se/GDGameJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.xml
+/platformx/j2se/GDGameJ2SEWithSWTJOGLFastBuildApplicationM/src/main/java/META-INF/**/*.xml
 /platformx/j2se/GDGameJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.dat
 /platformx/j2se/GDGameJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.properties
 /platformx/j2se/GDGameJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.MF
@@ -194,7 +194,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/j2se/GDGameJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/src/**/*.svg
 /platformx/j2se/GDGameJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/src/**/*.png
 /platformx/j2se/GDGameJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/src/**/*.xsl
-/platformx/j2se/GDGameJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/src/**/*.xml
+/platformx/j2se/GDGameJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/src/main/java/META-INF/**/*.xml
 /platformx/j2se/GDGameJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/src/**/*.dat
 /platformx/j2se/GDGameJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/src/**/*.properties
 /platformx/j2se/GDGameJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/src/**/*.MF
@@ -209,7 +209,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/j2me/GDGameJ2MEApplicationM/src/**/*.svg
 /platformx/j2me/GDGameJ2MEApplicationM/src/**/*.png
 /platformx/j2me/GDGameJ2MEApplicationM/src/**/*.xsl
-/platformx/j2me/GDGameJ2MEApplicationM/src/**/*.xml
+/platformx/j2me/GDGameJ2MEApplicationM/src/main/java/META-INF/**/*.xml
 /platformx/j2me/GDGameJ2MEApplicationM/src/**/*.dat
 /platformx/j2me/GDGameJ2MEApplicationM/src/**/*.properties
 /platformx/j2me/GDGameJ2MEApplicationM/src/**/*.MF
@@ -219,7 +219,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/j2me/GDGameJ2MEApplicationM/src/**/*.ogg
 /platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.java
 /platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.xsl
-/platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.xml
+/platformx/android/GDGameAndroidApplicationM/src/main/java/META-INF/**/*.xml
 /platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.MF
 /platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.origin
 /platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.original
@@ -233,7 +233,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platform/html/GDGamePlayNWarM/war/gd/res
 /platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.java
 /platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.xsl
-/platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.xml
+/platformx/android/GDGameAndroidApplicationM/src/main/java/META-INF/**/*.xml
 /platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.MF
 /platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.origin
 /platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.original
@@ -243,10 +243,10 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.ogg
 /platformx/android/GDGameAndroidApplicationM/src/main/res/drawable/
 /platformx/android/GDGameAndroidApplicationM/src/main/res/raw/
-/platformx/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/**/*.xml
 /platformx/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.java
 /platformx/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.xsl
-/platformx/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.xml
+/platformx/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/java/META-INF/**/*.xml
+/platformx/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/res/**/*.xml
 /platformx/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.MF
 /platformx/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.origin
 /platformx/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.original
@@ -258,7 +258,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/res/raw/
 /platformx/android/GDGameThreedAndroidApplicationM/src/main/java/**/*.java
 /platformx/android/GDGameThreedAndroidApplicationM/src/main/java/**/*.xsl
-/platformx/android/GDGameThreedAndroidApplicationM/src/main/java/**/*.xml
+/platformx/android/GDGameThreedAndroidApplicationM/src/main/java/META-INF/**/*.xml
 /platformx/android/GDGameThreedAndroidApplicationM/src/main/java/**/*.MF
 /platformx/android/GDGameThreedAndroidApplicationM/src/main/java/**/*.origin
 /platformx/android/GDGameThreedAndroidApplicationM/src/main/java/**/*.original
@@ -268,10 +268,10 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/android/GDGameThreedAndroidApplicationM/src/main/java/**/*.ogg
 /platformx/android/GDGameThreedAndroidApplicationM/src/main/res/drawable/
 /platformx/android/GDGameThreedAndroidApplicationM/src/main/res/raw/
-/platformx/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/**/*.xml
 /platformx/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.java
 /platformx/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.xsl
-/platformx/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.xml
+/platformx/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/java/META-INF/**/*.xml
+/platformx/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/res/**/*.xml
 /platformx/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.MF
 /platformx/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.origin
 /platformx/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.original
@@ -288,7 +288,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 
 /platformx/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.java
 /platformx/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.xsl
-/platformx/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.xml
+/platformx/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/META-INF/**/*.xml
 /platformx/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.MF
 /platformx/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.origin
 /platformx/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.original
@@ -313,7 +313,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.png
 /platformx/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.jpg
 /platformx/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.xsl
-/platformx/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.xml
+/platformx/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/main/java/META-INF/**/*.xml
 /platformx/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.dat
 /platformx/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.properties
 /platformx/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.MF
@@ -325,7 +325,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/j2se/GDGameThreedJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/src/**/*.svg
 /platformx/j2se/GDGameThreedJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/src/**/*.png
 /platformx/j2se/GDGameThreedJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/src/**/*.xsl
-/platformx/j2se/GDGameThreedJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/src/**/*.xml
+/platformx/j2se/GDGameThreedJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/src/main/java/META-INF/**/*.xml
 /platformx/j2se/GDGameThreedJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/src/**/*.dat
 /platformx/j2se/GDGameThreedJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/src/**/*.properties
 /platformx/j2se/GDGameThreedJ2SEWithSWTJOGLGraalJSFastBuildApplicationM/src/**/*.MF
