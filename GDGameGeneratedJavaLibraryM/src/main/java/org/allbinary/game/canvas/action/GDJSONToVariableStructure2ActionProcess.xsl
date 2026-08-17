@@ -39,7 +39,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="variableName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         
                         <xsl:if test="contains($withGetJSONType, 'ToJSON')" >
-                        //This probably show not occur
+                        //This probably should not occur
                         if(<xsl:value-of select="$withGetJSONType" /> == 1) {
                         </xsl:if>
 
