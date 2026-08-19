@@ -25,7 +25,7 @@
         <gwt.module>playn.GDGame</gwt.module>
         <gwt.name>gd</gwt.name>
         <!-- OBF (OBFUSCATED), PRETTY, DETAILED -->
-        <gwt.outputstyle>OBF</gwt.outputstyle>
+        <gwt.outputstyle>DETAILED</gwt.outputstyle>
 
         <buildLabel>${version}</buildLabel>
         <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>

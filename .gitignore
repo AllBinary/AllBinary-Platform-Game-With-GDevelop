@@ -228,9 +228,11 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.png
 /platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.ogg
 /platformx/html/GDGameHTMLTempM/src/**
+/platformx/html/GDGame2HTMLTempM/src/**
 ./platformx/html/GDGamePlayNM/src/playn/core/GraphicsTestGame.java
 ./platform/html/GDGamePlayNM/src/playn/core/SoundTestGame.java
 /platform/html/GDGamePlayNWarM/war/gd/res
+/platform/html/GDGame2PlayNWarM/war/gd/res
 /platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.java
 /platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.xsl
 /platformx/android/GDGameAndroidApplicationM/src/main/java/META-INF/**/*.xml

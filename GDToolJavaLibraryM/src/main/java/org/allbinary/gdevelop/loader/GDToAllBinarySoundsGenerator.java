@@ -8,6 +8,7 @@ package org.allbinary.gdevelop.loader;
 
 import java.io.File;
 import java.io.FileInputStream;
+import javax.microedition.media.Player;
 
 import org.allbinary.data.CamelCaseUtil;
 import org.allbinary.data.resource.ResourceUtil;
@@ -20,7 +21,6 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.media.audio.AllBinaryMediaManager;
-import org.allbinary.media.audio.PCClipWavPlayer;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
 
@@ -119,7 +119,7 @@ public class GDToAllBinarySoundsGenerator
             this.logUtil.putF(resource, this, this.commonStrings.PROCESS);
             
             //final Player player = AllBinaryMediaManager.createPlayer(resource);
-            final PCClipWavPlayer player = (PCClipWavPlayer) AllBinaryMediaManager.createPlayer(resource);
+            final Player player = AllBinaryMediaManager.createPlayer(resource);
             final long duration = player.getDuration();
             
             final String name = this.camelCaseUtil.getAsCamelCase(resource, stringMaker);
