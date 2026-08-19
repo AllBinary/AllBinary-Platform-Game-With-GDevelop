@@ -28,7 +28,7 @@
         <!--
         <module>../GDGameTouchHTMLM</module>
         -->
-        <module>../GDGame2HTMLResourcesJavaLibraryM</module>
+        <module>../GDGameHTMLResourcesJavaLibraryM</module>
         <module>../GDGame2HTMLM</module>
         <module>../GDGameHTMLJavaLibraryM</module>
         <module>../../../platformx/html/GDGame2HTMLTempM</module>

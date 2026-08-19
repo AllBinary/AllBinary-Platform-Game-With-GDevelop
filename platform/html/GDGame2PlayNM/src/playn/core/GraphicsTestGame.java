@@ -20,7 +20,7 @@ import java.io.InputStream;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.data.resource.ResourceUtil;
 import org.allbinary.graphics.color.BasicColorFactory;
-import org.allbinary.media.image.ImageModifierUtil;
+//import org.allbinary.media.image.ImageModifierUtil;
 
 import org.microemu.device.Device;
 import org.microemu.device.DeviceFactory;

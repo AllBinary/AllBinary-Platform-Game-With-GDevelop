@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 -->
-<module rename-to="minispacewarvector" >
+<module rename-to="gd" >
   
   <inherits name="playn.Core" />
   <inherits name="playn.Scene" />
