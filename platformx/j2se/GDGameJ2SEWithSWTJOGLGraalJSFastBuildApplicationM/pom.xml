@@ -24,15 +24,6 @@
     <dependencies>
         
         <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>ABAtRuntimeJavaToTsToJsLibrary</artifactId>
-<!--
-            <artifactId>ABAtRuntimeJavaToTsToJsLibrary</artifactId>
-            <artifactId>ABAtRuntimeJsLibrary</artifactId>
--->
-            <version>${allbinary.platform.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.allbinary.logging</groupId>
             <artifactId>LogConfigTypeThickClientJavaLibrary</artifactId>
             <version>${allbinary.platform.version}</version>
