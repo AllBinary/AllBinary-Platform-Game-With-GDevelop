@@ -134,7 +134,15 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.io.file.FileSystem;
                 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
                 import org.allbinary.string.CommonPhoneStrings;
+                <xsl:variable name="hasAllBinaryGenerateGenerateAsJavaScript" >
+                    <xsl:for-each select="//actions" >
+                        <xsl:if test="type/value = 'AllBinaryGenerate::GenerateAsJavaScript'" >
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:if test="contains($hasAllBinaryGenerateGenerateAsJavaScript, 'found')" >
                 import org.allbinary.runtime.GetJsAtRuntime;
+                </xsl:if>
                 import org.allbinary.time.TimeDelayHelper;
 
                 <xsl:variable name="selectedNodeIdSet" select="substring(substring($selectedNodeIds, string-length($selectedNodeIds) - 1), 1, 1)" />
