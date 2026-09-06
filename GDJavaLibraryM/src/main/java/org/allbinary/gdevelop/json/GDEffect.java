@@ -19,9 +19,9 @@ public class GDEffect
     
     public final String effectType;
     
-    public final HashMap<String, Double> doubleParameterMap = new HashMap();
-    public final HashMap<String, String> stringParameterMap = new HashMap();
-    public final HashMap<String, Boolean> booleanParameterMap = new HashMap();
+    public final HashMap<String, Double> doubleParameterMap = StdUtil.getInstance().createHashMap();
+    public final HashMap<String, String> stringParameterMap = StdUtil.getInstance().createHashMap();
+    public final HashMap<String, Boolean> booleanParameterMap = StdUtil.getInstance().createHashMap();
     
     public GDEffect(final JSONObject jsonObject) {
         

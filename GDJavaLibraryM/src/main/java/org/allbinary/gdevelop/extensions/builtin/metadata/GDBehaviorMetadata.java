@@ -39,11 +39,11 @@ public class GDBehaviorMetadata
     public final BasicArrayList conditionInstructionMetadataList = new BasicArrayListD();
     public final BasicArrayList actionInstructionMetadataList = new BasicArrayListD();
 
-    private final HashMap<String, GDInstructionMetadata> nameToConditionInstructionMetadataMap = new HashMap();
-    private final HashMap<String, GDInstructionMetadata> nameToActionInstructionMetadataMap = new HashMap();
+    private final HashMap<String, GDInstructionMetadata> nameToConditionInstructionMetadataMap = StdUtil.getInstance().createHashMap();
+    private final HashMap<String, GDInstructionMetadata> nameToActionInstructionMetadataMap = StdUtil.getInstance().createHashMap();
 
-    private final HashMap<String, GDExpressionMetadata> nameToExpressionMetadataMap = new HashMap();
-    private final HashMap<String, GDExpressionMetadata> nameToStrExpressionMetadataMap = new HashMap();
+    private final HashMap<String, GDExpressionMetadata> nameToExpressionMetadataMap = StdUtil.getInstance().createHashMap();
+    private final HashMap<String, GDExpressionMetadata> nameToStrExpressionMetadataMap = StdUtil.getInstance().createHashMap();
 
     public GDBehaviorMetadata(
             final String extensionNamespace,

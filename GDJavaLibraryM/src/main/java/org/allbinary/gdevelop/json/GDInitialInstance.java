@@ -19,8 +19,8 @@ import org.json.JSONObject;
 public class GDInitialInstance
 {
 
-    public final HashMap<String, Double> numberPropertiesMap = new HashMap();
-    public final HashMap<String, String> stringPropertiesMap = new HashMap();
+    public final HashMap<String, Double> numberPropertiesMap = StdUtil.getInstance().createHashMap();
+    public final HashMap<String, String> stringPropertiesMap = StdUtil.getInstance().createHashMap();
 
     public final String name;
     public final double x;

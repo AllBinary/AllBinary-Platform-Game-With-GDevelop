@@ -23,7 +23,7 @@ public class GDVariable
     public final double value;
     public final boolean boolValue;
     
-    public final HashMap<String, GDVariable> childVariableMap = new HashMap();
+    public final HashMap<String, GDVariable> childVariableMap = StdUtil.getInstance().createHashMap();
     public final BasicArrayList childVariableList = new BasicArrayListD();
     
     public GDVariable(final JSONObject jsonObject) {
