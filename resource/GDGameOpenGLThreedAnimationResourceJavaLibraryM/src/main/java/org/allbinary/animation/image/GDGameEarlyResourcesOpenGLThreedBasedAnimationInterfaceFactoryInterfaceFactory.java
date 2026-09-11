@@ -1,11 +1,11 @@
 package org.allbinary.animation.image;
 
-import java.util.Hashtable;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
+import org.allbinary.logic.StdUtil;
 import org.allbinary.logic.communication.log.LogUtil;
 
 public class GDGameEarlyResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory
@@ -17,7 +17,7 @@ BaseResourceAnimationInterfaceFactoryInterfaceFactory
 
     public GDGameEarlyResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory()
     {
-        super("Early OpenGL Animations", new Hashtable(), new Hashtable(), new Hashtable());
+        super("Early OpenGL Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
 
     @Override

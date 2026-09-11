@@ -1,6 +1,5 @@
 package org.allbinary.game;
 
-import java.util.Hashtable;
 
 import javax.microedition.lcdui.Image;
 
@@ -18,7 +17,6 @@ import org.allbinary.android.activity.progress.ProgressHelper;
 import org.allbinary.business.advertisement.GameAdStateBase;
 import org.allbinary.business.advertisement.GameAdStateFactory;
 import org.allbinary.configuration.ApplicationConfiguration;
-
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.game.configuration.GameConfigurationCentral;
 import org.allbinary.game.configuration.feature.Features;
@@ -36,6 +34,8 @@ import org.allbinary.graphics.opengles.OpenGLConfiguration;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.game.gd.resource.GDGameThreedAndroidEarlyResourceInitialization;
 import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
+import org.allbinary.util.ABHashtable;
+
 import org.microemu.opengles.device.PlatformOpenGLESGraphicsFactory;
 
 public class GDGameBaseAndroidActivity extends GameMidletActivity
@@ -309,7 +309,7 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
             
             Bitmap bitmap =((BitmapDrawable)drawable).getBitmap();
 
-            Hashtable hashtable = ImageCacheFactory.getInstance().getHashtableP();
+            ABHashtable hashtable = ImageCacheFactory.getInstance().getHashtableP();
             
             hashtable.put(AndroidBasicTitleProgressBar.RESOURCE, Image.createImageBitmap(bitmap));
             

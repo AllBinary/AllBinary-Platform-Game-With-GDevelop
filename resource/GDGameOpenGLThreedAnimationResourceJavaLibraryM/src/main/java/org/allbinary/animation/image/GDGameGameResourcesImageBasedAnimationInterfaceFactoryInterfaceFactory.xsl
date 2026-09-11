@@ -79,8 +79,6 @@ Created By: Travis Berthelot
 */
 package org.allbinary.animation.image;
 
-import java.util.Hashtable;
-
 import javax.microedition.lcdui.Image;
 
 import min3d.animation.AnimationObject3d;
@@ -141,6 +139,8 @@ import org.allbinary.logic.string.StringUtil;
 import org.allbinary.game.canvas.GDGameThreedAnimationResources;
 import org.allbinary.media.graphics.geography.map.racetrack.threed.RaceTrackThreedData;
 import org.allbinary.media.graphics.geography.map.racetrack.threed.ThreedTiledLayerResourcesFactory;
+import org.allbinary.logic.StdUtil;
+import org.allbinary.util.ABHashtable;
 
 public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
@@ -179,7 +179,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
 
     public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
-        super("GDGame OpenGL ImageArray Animations", new Hashtable(), new Hashtable(), new Hashtable());
+        super("GDGame OpenGL ImageArray Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     
         <xsl:for-each select="/game/properties/threedAnimationAdjustment" >
             <xsl:if test="position" >
@@ -198,7 +198,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
 
     public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
-        super(name, new Hashtable(), new Hashtable(), new Hashtable());
+        super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
     
     public void loadDayTrack(final String loadingString) throws Exception

@@ -5,11 +5,11 @@
  */
 package org.allbinary.gdevelop.extensions.builtin.metadata;
 
-import java.util.HashMap;
 import org.allbinary.gdevelop.extensions.GDPlatformExtension;
 import org.allbinary.gdevelop.project.GDBehavior;
 import org.allbinary.gdevelop.project.GDBehaviorsSharedData;
 import org.allbinary.string.CommonSeps;
+import org.allbinary.util.ABHashMap;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
 
@@ -39,11 +39,11 @@ public class GDBehaviorMetadata
     public final BasicArrayList conditionInstructionMetadataList = new BasicArrayListD();
     public final BasicArrayList actionInstructionMetadataList = new BasicArrayListD();
 
-    private final HashMap<String, GDInstructionMetadata> nameToConditionInstructionMetadataMap = StdUtil.getInstance().createHashMap();
-    private final HashMap<String, GDInstructionMetadata> nameToActionInstructionMetadataMap = StdUtil.getInstance().createHashMap();
+    private final ABHashMap<String, GDInstructionMetadata> nameToConditionInstructionMetadataMap = new ABHashMap<String, GDInstructionMetadata>();
+    private final ABHashMap<String, GDInstructionMetadata> nameToActionInstructionMetadataMap = new ABHashMap<String, GDInstructionMetadata>();
 
-    private final HashMap<String, GDExpressionMetadata> nameToExpressionMetadataMap = StdUtil.getInstance().createHashMap();
-    private final HashMap<String, GDExpressionMetadata> nameToStrExpressionMetadataMap = StdUtil.getInstance().createHashMap();
+    private final ABHashMap<String, GDExpressionMetadata> nameToExpressionMetadataMap = new ABHashMap<String, GDExpressionMetadata>();
+    private final ABHashMap<String, GDExpressionMetadata> nameToStrExpressionMetadataMap = new ABHashMap<String, GDExpressionMetadata>();
 
     public GDBehaviorMetadata(
             final String extensionNamespace,

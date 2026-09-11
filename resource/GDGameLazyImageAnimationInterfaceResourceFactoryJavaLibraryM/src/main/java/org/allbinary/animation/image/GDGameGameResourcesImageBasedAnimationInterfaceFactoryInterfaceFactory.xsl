@@ -91,8 +91,6 @@ Created By: Travis Berthelot
 */
 package org.allbinary.animation.image;
 
-import java.util.Hashtable;
-
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.Font;
 
@@ -131,6 +129,8 @@ import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.media.ScaleProperties;
+import org.allbinary.logic.StdUtil;
+import org.allbinary.util.ABHashtable;
 
 public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
@@ -157,12 +157,12 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
     
     public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
-        super("Game Image Animations", new Hashtable(), new Hashtable(), new Hashtable());
+        super("Game Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
 
     public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
-        super(name, new Hashtable(), new Hashtable(), new Hashtable());
+        super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
     
     public void init(int level)

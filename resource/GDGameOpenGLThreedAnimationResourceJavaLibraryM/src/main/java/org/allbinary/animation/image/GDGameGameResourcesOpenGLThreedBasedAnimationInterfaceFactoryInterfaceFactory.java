@@ -1,19 +1,19 @@
 package org.allbinary.animation.image;
 
-import java.util.Hashtable;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
+import org.allbinary.logic.StdUtil;
 
 public class GDGameGameResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory
         extends BaseResourceAnimationInterfaceFactoryInterfaceFactory
 {
     public GDGameGameResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory()
     {
-        super("OpenGL Image Animations", new Hashtable(), new Hashtable(), new Hashtable());
+        super("OpenGL Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
 
     private int index = 1;

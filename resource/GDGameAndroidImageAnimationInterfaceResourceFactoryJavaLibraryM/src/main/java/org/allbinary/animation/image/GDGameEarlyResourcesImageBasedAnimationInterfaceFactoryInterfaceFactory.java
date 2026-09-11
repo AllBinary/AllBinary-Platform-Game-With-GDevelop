@@ -13,27 +13,26 @@
 */
 package org.allbinary.animation.image;
 
-import java.util.Hashtable;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
-
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
 import org.allbinary.image.ImageCache;
 import org.allbinary.image.ImageCacheFactory;
+import org.allbinary.logic.StdUtil;
 
 public class GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
         extends BaseResourceAnimationInterfaceFactoryInterfaceFactory
 {
     public GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
-        super("Early Image Animations", new Hashtable(), new Hashtable(), new Hashtable());
+        super("Early Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
 
     public GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
-        super(name, new Hashtable(), new Hashtable(), new Hashtable());
+        super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
     
     public void init(int level)

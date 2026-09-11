@@ -6,7 +6,8 @@
 
 package org.allbinary.gdevelop.json;
 
-import java.util.HashMap;
+import org.allbinary.util.ABHashMap;
+
 import org.json.JSONObject;
 
 /**
@@ -19,9 +20,9 @@ public class GDEffect
     
     public final String effectType;
     
-    public final HashMap<String, Double> doubleParameterMap = StdUtil.getInstance().createHashMap();
-    public final HashMap<String, String> stringParameterMap = StdUtil.getInstance().createHashMap();
-    public final HashMap<String, Boolean> booleanParameterMap = StdUtil.getInstance().createHashMap();
+    public final ABHashMap<String, Double> doubleParameterMap = new ABHashMap<String, Double>();
+    public final ABHashMap<String, String> stringParameterMap = new ABHashMap<String, String>();
+    public final ABHashMap<String, Boolean> booleanParameterMap = new ABHashMap<String, Boolean>();
     
     public GDEffect(final JSONObject jsonObject) {
         

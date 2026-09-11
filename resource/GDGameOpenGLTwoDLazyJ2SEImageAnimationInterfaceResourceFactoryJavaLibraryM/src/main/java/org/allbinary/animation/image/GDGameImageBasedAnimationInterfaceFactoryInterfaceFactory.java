@@ -13,10 +13,7 @@
 */
 package org.allbinary.animation.image;
 
-import java.util.Hashtable;
-
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
-
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
@@ -24,6 +21,7 @@ import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.image.ImageCache;
 import org.allbinary.image.ImageCacheFactory;
+import org.allbinary.logic.StdUtil;
 
 public class GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory
         extends BaseResourceAnimationInterfaceFactoryInterfaceFactory
@@ -31,12 +29,12 @@ public class GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory
 
     public GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
-        super("Image Animations", new Hashtable(), new Hashtable(), new Hashtable());
+        super("Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
 
     public GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
-        super(name, new Hashtable(), new Hashtable(), new Hashtable());
+        super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
     
     @Override

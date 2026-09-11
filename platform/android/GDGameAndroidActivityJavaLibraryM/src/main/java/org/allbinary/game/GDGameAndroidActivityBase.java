@@ -1,7 +1,5 @@
 package org.allbinary.game;
 
-import java.util.Hashtable;
-
 import javax.microedition.lcdui.Image;
 
 import android.graphics.Bitmap;
@@ -31,6 +29,7 @@ import org.allbinary.graphics.canvas.transition.progress.AndroidBasicTitleProgre
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.image.ImageCacheFactory;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+import org.allbinary.util.ABHashtable;
 
 public class GDGameAndroidActivityBase extends GameMidletActivity
 {
@@ -294,7 +293,7 @@ public class GDGameAndroidActivityBase extends GameMidletActivity
 
             Bitmap bitmap =((BitmapDrawable)drawable).getBitmap();
 
-            Hashtable hashtable = ImageCacheFactory.getInstance().getHashtableP();
+            ABHashtable hashtable = ImageCacheFactory.getInstance().getHashtableP();
 
             hashtable.put(AndroidBasicTitleProgressBar.RESOURCE, Image.createImageBitmap(bitmap));
             

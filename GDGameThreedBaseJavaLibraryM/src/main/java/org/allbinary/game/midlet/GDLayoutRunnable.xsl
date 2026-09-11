@@ -39,8 +39,6 @@ Created By: Travis Berthelot
 */
 package org.allbinary.game.midlet;
 
-import java.util.Hashtable;
-
 import org.allbinary.game.GDGameMIDlet;
 
 import org.allbinary.string.CommonStrings;
@@ -48,6 +46,7 @@ import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
+import org.allbinary.util.ABHashtable;
 
 public class GDGame<GDLayout>CanvasRunnable implements Runnable
 {
@@ -56,11 +55,11 @@ public class GDGame<GDLayout>CanvasRunnable implements Runnable
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     
     private final GDGameMIDlet demoGameMidlet;
-    private final Hashtable hashtable;
+    private final ABHashtable hashtable;
     
     private final DemoGameMidletEvent startGameMidletEvent;
     
-    public GDGame<GDLayout>CanvasRunnable(DemoGameMidlet demoGameMidlet, Hashtable hashtable)
+    public GDGame<GDLayout>CanvasRunnable(DemoGameMidlet demoGameMidlet, ABHashtable hashtable)
     {
         this.demoGameMidlet = (GDGameMIDlet) demoGameMidlet;
         this.hashtable = hashtable;

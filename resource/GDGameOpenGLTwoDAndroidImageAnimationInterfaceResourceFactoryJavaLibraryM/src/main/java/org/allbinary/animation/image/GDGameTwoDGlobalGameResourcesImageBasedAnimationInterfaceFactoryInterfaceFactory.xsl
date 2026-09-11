@@ -84,8 +84,6 @@ Created By: Travis Berthelot
 */
 package org.allbinary.animation.image;
 
-import java.util.Hashtable;
-
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.Font;
 
@@ -120,6 +118,8 @@ import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.media.ScaleProperties;
+import org.allbinary.logic.StdUtil;
+import org.allbinary.util.ABHashtable;
 
 public class GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
@@ -143,19 +143,19 @@ public class GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInt
     private final int animationScale = 1;
         </xsl:if>
 
-    public GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(final Hashtable hashtable, final Hashtable rectangleHashtable, final Hashtable rectangleArrayHashtable)
+    public GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(final ABHashtable hashtable, final ABHashtable rectangleHashtable, final ABHashtable rectangleArrayHashtable)
     {
         super("Game Image Animations", hashtable, rectangleHashtable, rectangleArrayHashtable);
     }
 
     public GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
-        super("Game Image Animations", new Hashtable(), new Hashtable(), new Hashtable());
+        super("Game Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
 
     public GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
-        super(name, new Hashtable(), new Hashtable(), new Hashtable());
+        super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
     
     public void init(int level)

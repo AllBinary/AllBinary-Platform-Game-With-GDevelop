@@ -30,7 +30,6 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 import java.util.Arrays;
-import java.util.Hashtable;
 
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.TiledLayer;
@@ -99,6 +98,7 @@ import org.mapeditor.core.TileSet;
 import org.mapeditor.core.TiledMap;
 import org.mapeditor.io.GDJSONMapReader;
 import org.mapeditor.io.TiledJSONUtil;
+import org.allbinary.util.ABHashtable;
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
@@ -443,7 +443,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final int size3 = map.getLayers().size();
         for(int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
             final TileSet tileSet = (TileSet) map.getTileSets().get(0);
-            final Hashtable tileTypeToTileIdsMap = TileSetToGeographicMapUtil.getInstance().convert(tileSet);
+            final ABHashtable tileTypeToTileIdsMap = TileSetToGeographicMapUtil.getInstance().convert(tileSet);
             
             final int maxTileId = tileSet.getMaxTileId() + 1;
             
@@ -1020,7 +1020,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         </xsl:for-each>
 
     //private BasicGameResources[] playerResourceArray = new BasicGameResources[1];
-    //private Hashtable hashtable = new Hashtable();
+    //private ABHashtable hashtable = new ABHashtable();
     //private ArtificialIntelligenceInterfaceFactoryInterface artificialIntelligenceInterfaceFactoryInterface =
       //  new BoundBounceAIFactory();
 

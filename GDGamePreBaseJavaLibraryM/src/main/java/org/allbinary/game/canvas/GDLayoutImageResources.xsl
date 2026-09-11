@@ -62,8 +62,6 @@ Created By: Travis Berthelot
                 
                 package org.allbinary.game.canvas;
 
-                import java.util.Hashtable;
-
                 import javax.microedition.lcdui.Image;
 
                 import org.allbinary.AndroidUtil;
@@ -87,6 +85,7 @@ Created By: Travis Berthelot
                 import org.allbinary.media.image.ImageScaleUtil;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
+                import org.allbinary.util.ABHashtable;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources extends SpecialAnimation
@@ -143,7 +142,7 @@ Created By: Travis Berthelot
                     
                             final PointFactory pointFactory = PointFactory.getInstance();
 
-                            final Hashtable hashTable = imageCache.getHashtableP();
+                            final ABHashtable hashTable = imageCache.getHashtableP();
 
                     <xsl:call-template name="imageCache" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >

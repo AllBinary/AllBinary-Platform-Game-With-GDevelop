@@ -23,7 +23,6 @@
 */
 package org.allbinary.game;
 
-import java.util.Hashtable;
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.Displayable;
 
@@ -85,6 +84,7 @@ import org.allbinary.midlet.MidletStrings;
 import org.allbinary.thread.PrimaryThreadPool;
 import org.allbinary.time.GameTickTimeDelayHelper;
 import org.allbinary.time.GameTickTimeDelayHelperFactory;
+import org.allbinary.util.ABHashtable;
 
 /**
  * @author user
@@ -204,7 +204,7 @@ public class GDGameMIDlet extends
         ////TWB - Loading Feature Change - Can remove remark after testing
         ProgressCanvasFactory.getInstance().start();
 
-        final Hashtable hashtable = this.getStartStateHashtable();
+        final ABHashtable hashtable = this.getStartStateHashtable();
         this.setStartStateHashtable(null);
         
         PrimaryThreadPool.getInstance().runTask(new <xsl:value-of select="$name" />Runnable(this, hashtable));

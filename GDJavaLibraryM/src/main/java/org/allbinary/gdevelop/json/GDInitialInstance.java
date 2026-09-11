@@ -6,9 +6,10 @@
 
 package org.allbinary.gdevelop.json;
 
-import java.util.HashMap;
+import org.allbinary.util.ABHashMap;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -19,8 +20,8 @@ import org.json.JSONObject;
 public class GDInitialInstance
 {
 
-    public final HashMap<String, Double> numberPropertiesMap = StdUtil.getInstance().createHashMap();
-    public final HashMap<String, String> stringPropertiesMap = StdUtil.getInstance().createHashMap();
+    public final ABHashMap<String, Double> numberPropertiesMap = new ABHashMap<String, Double>();
+    public final ABHashMap<String, String> stringPropertiesMap = new ABHashMap<String, String>();
 
     public final String name;
     public final double x;

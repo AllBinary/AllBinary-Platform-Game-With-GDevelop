@@ -84,8 +84,6 @@ Created By: Travis Berthelot
 */
 package org.allbinary.animation.image;
 
-import java.util.Hashtable;
-
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.Font;
 
@@ -120,6 +118,8 @@ import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.media.ScaleProperties;
+import org.allbinary.logic.StdUtil;
+import org.allbinary.util.ABHashtable;
 
 public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
@@ -145,12 +145,12 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
         
     public GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
-        super("Game Image Animations", new Hashtable(), new Hashtable(), new Hashtable());
+        super("Game Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
 
     public GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
-        super(name, new Hashtable(), new Hashtable(), new Hashtable());
+        super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
     
     public void init(int level)

@@ -102,7 +102,7 @@ public class GraphicsTestGame implements Game, Keyboard.Listener
         try
         {
             final InputStream inputStream = ResourceUtil.getInstance().getResourceAsStream("/locked_demo_game_feature_64_by_64.png");
-            final javax.microedition.lcdui.Image image = javax.microedition.lcdui.Image.createImageFromInputStream(inputStream);
+            final javax.microedition.lcdui.Image image = javax.microedition.lcdui.Image.createImage(inputStream);
             this.originalImage = this.imageArray[0] = image;
 
             ImageModifierUtil.getInstanceOrCreate().handleImage(this.imageArray, 0, image);

@@ -71,8 +71,6 @@ Created By: Travis Berthelot
 */
 package org.allbinary.animation.image;
 
-import java.util.Hashtable;
-
 import javax.microedition.lcdui.Image;
 
 import min3d.animation.AnimationObject3d;
@@ -124,6 +122,8 @@ import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.game.canvas.GDGameThreedAnimationResources;
+import org.allbinary.logic.StdUtil;
+import org.allbinary.util.ABHashtable;
 
 public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
@@ -161,7 +161,7 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
 
     public GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
-        super("GDGame OpenGL ImageArray Animations", new Hashtable(), new Hashtable(), new Hashtable());
+        super("GDGame OpenGL ImageArray Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
         
         <xsl:for-each select="/game/properties/threedAnimationAdjustment" >
             <xsl:if test="position" >
@@ -180,7 +180,7 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
 
     public GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
-        super(name, new Hashtable(), new Hashtable(), new Hashtable());
+        super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
     
     public void loadDayTrack(final String loadingString) throws Exception

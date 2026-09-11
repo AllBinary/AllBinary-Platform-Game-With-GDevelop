@@ -5,7 +5,6 @@
 package org.allbinary.game.layer;
 
 
-import java.util.Hashtable;
 
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -18,6 +17,7 @@ import org.allbinary.graphics.Rectangle;
 import org.allbinary.graphics.RectangleFactory;
 import org.allbinary.layer.AllBinaryLayer;
 import org.allbinary.layer.LayerInterfaceFactoryInterface;
+import org.allbinary.util.ABHashtable;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
 
@@ -47,7 +47,7 @@ public class GDFlagLayerInterfaceFactory
     private static final String NAME = "GDFlagLayerInterfaceFactory";
     
     @Override
-    public AllBinaryLayer getNextInstance(final Hashtable hashtable, final int x, final int y, final int z)
+    public AllBinaryLayer getNextInstance(final ABHashtable hashtable, final int x, final int y, final int z)
         throws Exception
     {
         //logUtil.put(LayerUtil.toString(hashtable, x, y, z), this, commonStrings.GET_INSTANCE);

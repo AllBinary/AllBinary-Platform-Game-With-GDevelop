@@ -26,9 +26,7 @@ Created By: Travis Berthelot
 
         <xsl:variable name="foundOtherViewPosition" ><xsl:for-each select="layouts" ><xsl:for-each select="objects" ><xsl:for-each select="behaviors" ><xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:for-each></xsl:variable>
         
-                package org.allbinary.game.layer;
-
-        import java.util.Hashtable;
+        package org.allbinary.game.layer;
 
         import javax.microedition.lcdui.Canvas;
         import javax.microedition.lcdui.Graphics;
@@ -101,6 +99,7 @@ Created By: Travis Berthelot
         import org.allbinary.util.BasicArrayListD;
         import org.allbinary.view.ViewPosition;
         import org.allbinary.view.ViewPositionBase;
+        import org.allbinary.util.ABHashtable;
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
@@ -1173,7 +1172,7 @@ Created By: Travis Berthelot
             
     public void updateWaypointBehavior(final BasicGeographicMap geographicMapInterface) throws Exception {
 
-        final Hashtable hashtable = new Hashtable();
+        final ABHashtable hashtable = new ABHashtable();
         hashtable.put(groupCommonFactory.ID, this.getGroupInterface());
         hashtable.put(Layer.ID, this);
         hashtable.put(AllBinaryGameLayerManager.ID, allBinaryGameLayerManagerP);
