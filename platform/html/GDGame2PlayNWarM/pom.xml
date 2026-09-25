@@ -20,13 +20,14 @@
     <packaging>war</packaging>
 
     <properties>
+<!--        <gwt.version>2.8.1</gwt.version>-->
         <gwt.module>playn.GDGame</gwt.module>
         <gwt.name>gd</gwt.name>
         <!-- OBF (OBFUSCATED), PRETTY, DETAILED -->
         <gwt.outputstyle>DETAILED</gwt.outputstyle>
 
-        <buildLabel>${version}</buildLabel>
-        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+<!--        <buildLabel>${version}</buildLabel>
+        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>-->
         <gd.version>1.0.0-SNAPSHOT</gd.version>
         <allbinary.platform.version>1.0.0-SNAPSHOT</allbinary.platform.version>
 
@@ -258,14 +259,13 @@
                 <version>3.4.0</version>
                 <configuration>
                     <packagingExcludes>
-                        WEB-INF/lib/GDGameHTMLTemp-1.0-SNAPSHOT.jar,
+                        WEB-INF/lib/GDGameHTMLTemp-1.0.0-SNAPSHOT.jar,
                         WEB-INF/lib/ABDKPlaynJavaLibrary-2.0.jar,
                         WEB-INF/lib/microemu-playn-2.0.jar,
-                        WEB-INF/lib/asm-3.1.jar,
-                        WEB-INF/lib/guava-r09.jar,
-                        WEB-INF/lib/gwt-log-3.1.4.jar,
-                        WEB-INF/lib/gwt-user-2.6.1.jar,
-                        WEB-INF/lib/gwt-voices-2.1.2.jar,
+                        WEB-INF/lib/asm-5.0.3.jar,
+                        WEB-INF/lib/gwt-log-3.1.8.jar,
+                        WEB-INF/lib/gwt-user-2.8.1.jar,
+                        WEB-INF/lib/gwt-voices-3.3.2.jar,
                         WEB-INF/lib/jlayer-1.0.1.jar,
                         WEB-INF/lib/playn-core-2.0.jar,
                         WEB-INF/lib/playn-html-2.0.jar,
