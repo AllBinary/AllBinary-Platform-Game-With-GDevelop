@@ -30,6 +30,8 @@
         <gd.version>1.0.0-SNAPSHOT</gd.version>
         <allbinary.platform.version>1.0.0-SNAPSHOT</allbinary.platform.version>
 
+        <seamonkey.executable>C:/Program Files/SeaMonkey/seamonkey.exe</seamonkey.executable>
+        <game.url>http://localhost:8080/</game.url>
     </properties>
 
     <dependencies>
@@ -210,7 +212,6 @@
                 </configuration>
             </plugin>
             
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
@@ -258,19 +259,19 @@
                 <configuration>
                     <packagingExcludes>
                         WEB-INF/lib/GDGameHTMLTemp-1.0-SNAPSHOT.jar,
-                        WEB-INF/lib/ABDKPlaynJavaLibrary-1.0-SNAPSHOT.jar,
-                        WEB-INF/lib/microemu-playn-1.jar,
+                        WEB-INF/lib/ABDKPlaynJavaLibrary-2.0.jar,
+                        WEB-INF/lib/microemu-playn-2.0.jar,
                         WEB-INF/lib/asm-3.1.jar,
                         WEB-INF/lib/guava-r09.jar,
                         WEB-INF/lib/gwt-log-3.1.4.jar,
                         WEB-INF/lib/gwt-user-2.6.1.jar,
                         WEB-INF/lib/gwt-voices-2.1.2.jar,
                         WEB-INF/lib/jlayer-1.0.1.jar,
-                        WEB-INF/lib/playn-core-1.0-SNAPSHOT.jar,
-                        WEB-INF/lib/playn-html-1.0-SNAPSHOT.jar,
-                        WEB-INF/lib/playn-java-1.0-SNAPSHOT.jar,
-                        WEB-INF/lib/playn-webgl-1.0-SNAPSHOT.jar,
-                        WEB-INF/lib/pythagoras-1.1.jar
+                        WEB-INF/lib/playn-core-2.0.jar,
+                        WEB-INF/lib/playn-html-2.0.jar,
+                        WEB-INF/lib/playn-java-2.0.jar,
+                        WEB-INF/lib/playn-webgl-2.0.jar,
+                        WEB-INF/lib/pythagoras-1.4.3.jar
                     </packagingExcludes>
                     <warSourceDirectory>war</warSourceDirectory>
                 </configuration>
@@ -305,14 +306,18 @@
                 </configuration>
             </plugin>
 
-<!--            <plugin>
+            <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>8.0.0.v20110901</version>
                 <configuration>
+                    <daemon>true</daemon>
                     <webApp>
                         ${project.basedir}/target/${project.artifactId}-${project.version}
                     </webApp>
+                    <webAppConfig>
+                        <contextPath>/${project.artifactId}-${project.version}-${build.number}</contextPath>
+                    </webAppConfig>
                 </configuration>
                 <executions>
                     <execution>
@@ -323,7 +328,31 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <id>launch-seamonkey-with-new-window</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${seamonkey.executable}</executable>
+                            <arguments>
+                                <argument>-new-window</argument>
+<!--                                <argument>-new-tab</argument>-->
+                                <argument>-jsconsole</argument>
+                                <argument>${game.url}${project.artifactId}-${project.version}-${build.number}/</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
       
         </plugins>
     </build>

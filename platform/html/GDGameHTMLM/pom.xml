@@ -80,6 +80,12 @@
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>ImageCacheBaseJ2MEJavaLibrary</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

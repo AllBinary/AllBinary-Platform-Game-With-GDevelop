@@ -53,7 +53,7 @@ public class GDGameGameHtml implements EntryPoint {
     list.add(new GDGameProcessor(list));
 
     final AllBinaryPlayNGameRunnable gameRunnable = new AllBinaryPlayNGameRunnable(list);
-    new AllBinaryPlayNGame(platform, new GDGameMidletFactory(), gameRunnable);
+    new AllBinaryPlayNGame(platform, new GDGameMidletFactory(), gameRunnable, false);
     platform.start();
   }
 

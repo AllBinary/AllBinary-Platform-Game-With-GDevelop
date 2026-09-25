@@ -11,9 +11,11 @@ import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.image.ImageCache;
 import org.allbinary.image.ImageCacheFactory;
 import org.allbinary.input.motion.button.TouchScreenFactory;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.playn.processors.GameHtmlHasLoadedResourcesProcessor;
 import org.allbinary.playn.processors.GameHtmlLoadResourcesProcessor;
 import org.allbinary.playn.processors.MidletStartupProcessor;
+import org.allbinary.playn.processors.StringArrayFactory;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -51,18 +53,32 @@ public class GDGameProcessor
 //                TouchButtonStrafeRightResource.getInstance().RESOURCE,
 //            };
 //
-
-            final ImageCache imageCache = ImageCacheFactory.getInstance();
-
-            final GDResources gdResources = GDResources.getInstance();
-            final GDLazyResources gdLazyResources = GDLazyResources.getInstance();
-            String[] resourceStringArray = gdLazyResources.requiredResourcesBeforeLoadingArray;
-            if(imageCache.isLazy()) {
-            } else {
-                resourceStringArray = gdResources.resourceStringArray;
-            }
             
-            this.list.add(new GameHtmlLoadResourcesProcessor(this.list, resourceStringArray));
+            class GDGameStringArrayFactory extends StringArrayFactory {
+                
+                public String[] getOrCreate() {
+
+                    if (this.resourceStringArray == StringUtil.getInstance().ONE_EMPTY_STRING_ARRAY) {
+
+                        final ImageCache imageCache = ImageCacheFactory.getInstance();
+                        final GDResources gdResources = GDResources.getInstance();
+                        final GDLazyResources gdLazyResources = GDLazyResources.getInstance();
+                        String[] gdGameResourceStringArray = gdLazyResources.requiredResourcesBeforeLoadingArray;
+                        if (imageCache.isLazy()) {
+                        } else {
+                            gdGameResourceStringArray = gdResources.resourceStringArray;
+                        }
+                        
+                        this.resourceStringArray = gdGameResourceStringArray;
+                    }
+
+                    return this.resourceStringArray;
+                }
+
+            };
+            
+            final GDGameStringArrayFactory gdGameStringArrayFactory = new GDGameStringArrayFactory();
+            this.list.add(new GameHtmlLoadResourcesProcessor(this.list, gdGameStringArrayFactory));
 
 //        OnDemandResources[] onDemandResourcesArray =
 //                MiniSpaceWarImageOnDemandResourcesFactory.getInstance().getOnDemandResourcesArray();
@@ -75,8 +91,8 @@ public class GDGameProcessor
 //            list.add(htmlLoadResourcesProcessor);
 //        }
             
-            final Processor gameHtmlHasLoadedResourcesProcessor
-                    = new GameHtmlHasLoadedResourcesProcessor(this.list, resourceStringArray);
+            final Processor gameHtmlHasLoadedResourcesProcessor = 
+                new GameHtmlHasLoadedResourcesProcessor(this.list, gdGameStringArrayFactory);
 
             this.list.add(gameHtmlHasLoadedResourcesProcessor);
             

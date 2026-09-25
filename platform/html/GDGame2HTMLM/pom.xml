@@ -38,6 +38,13 @@
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>LogPlayN2JavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
 
         <dependency>
             <groupId>org.allbinary</groupId>
@@ -61,9 +68,16 @@
         
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>ImageCacheJ2MEJavaLibrary</artifactId>
+            <artifactId>ImageCacheLazyJ2MEJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>ImageCacheBaseNonJ2MEJavaLibrary</artifactId>            
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
         
@@ -292,6 +306,13 @@
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>ABDKPlaynJavaLibrary</artifactId>
+            <version>2.0</version>
+            <optional>true</optional>
+        </dependency>
+        
     </dependencies>
 
     <build>
