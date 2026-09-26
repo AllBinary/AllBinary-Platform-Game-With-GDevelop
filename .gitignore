@@ -1,5 +1,6 @@
 gwt-tmp-dir
 gd_xsl.7z
+.github/*.md
 *.txt
 *.old
 *.bak

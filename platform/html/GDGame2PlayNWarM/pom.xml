@@ -33,6 +33,9 @@
 
         <seamonkey.executable>C:/Program Files/SeaMonkey/seamonkey.exe</seamonkey.executable>
         <game.url>http://localhost:8080/</game.url>
+        
+        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+        <build.number>${maven.build.timestamp}</build.number>
     </properties>
 
     <dependencies>
