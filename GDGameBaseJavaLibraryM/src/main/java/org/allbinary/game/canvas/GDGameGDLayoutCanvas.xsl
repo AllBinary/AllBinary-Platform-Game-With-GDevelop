@@ -103,6 +103,9 @@ import org.allbinary.layer.event.LayerManagerEventHandler;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.media.AllBinaryVibration;
 import org.allbinary.media.audio.AllBinaryMediaManager;
+import org.allbinary.game.displayable.canvas.GameProcessor;
+import org.allbinary.game.displayable.canvas.InitGameProcessor;
+
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
             <xsl:if test="number($layoutIndex) = <GD_CURRENT_INDEX>" >
@@ -252,6 +255,20 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         return BaseMenuBehavior.getInstance();
     }
     </xsl:if>
+
+    private final InitGameProcessor initGameProcessor = new InitGameProcessor(this);
+    protected void setProcessGameProcessorInit() {
+        if(ProgressCanvasFactory.getInstance().isInGame()) {
+            this.setProcessGameProcessor(new GameProcessor(this));
+            if(this.getMainStateProcessor() == initGameProcessor) {
+                if (this.getGameState() == this.gameStateFactory.PLAYING_GAME_STATE) {
+                    this.setMainStateProcessor(this.getProcessGameProcessor());
+                }
+            }
+        } else {
+            this.setProcessGameProcessor(initGameProcessor);
+        }
+    }
 
     public void setPlayingGameState()
     {
@@ -727,7 +744,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     }
 
     protected void processPlayingGame() throws Exception {
-    
+
         gdNodeStatsFactory.reset();
     
         musicManager.process();
@@ -757,6 +774,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         this.specialAnimation.process();
         
         gdNodeStatsFactory.log(stringBuilder, this);
+        
     }
 
     @Override
