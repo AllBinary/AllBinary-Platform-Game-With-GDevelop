@@ -87,15 +87,11 @@
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
-            <!--
             <artifactId>GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
-            <artifactId>GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
-            <artifactId>GDGameImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
-            -->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
         </dependency>
 
         <dependency>

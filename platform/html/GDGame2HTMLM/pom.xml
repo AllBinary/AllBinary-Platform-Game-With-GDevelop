@@ -24,7 +24,7 @@
     </properties>
 
     <dependencies>
-
+        
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>LoggingPlayN2Exception</artifactId>
@@ -61,7 +61,8 @@
         
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>ImageCacheLazyJ2MEJavaLibrary</artifactId>
+            <artifactId>ImageCacheJ2MEJavaLibrary</artifactId>
+<!--            <artifactId>ImageCacheLazyJ2MEJavaLibrary</artifactId>-->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
@@ -134,7 +135,8 @@
         </dependency>
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>ProgressLazyJ2MEJavaLibrary</artifactId>
+            <artifactId>ProgressJ2MEJavaLibrary</artifactId>
+<!--            <artifactId>ProgressLazyJ2MEJavaLibrary</artifactId>-->
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
@@ -291,6 +293,25 @@
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameBaseJavaLibrary</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
+            <!--
+            <artifactId>GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
+            <artifactId>GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
+            <artifactId>GDGameImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary.animation</groupId>
+                    <artifactId>AllBinaryHTMLImageAnimationRotationJavaLibrary</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
