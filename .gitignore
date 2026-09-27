@@ -381,6 +381,8 @@ GDGameGeneratedJavaLibraryKtM/src/main/java/**/*.txt
 **/org/allbinary/media/audio/GD*GameMusicFactory.java
 **/org/allbinary/media/audio/GD*GameSoundsFactory.java
 **/org/allbinary/media/audio/GDGameSounds.java
+GD*Sound.java
+GD*Sounds.java
 
 **/gd/res/GD*GamePlaynResources.ts
 **/org/allbinary/AndroidResources.ts
@@ -447,6 +449,8 @@ GDGameGeneratedJavaLibraryKtM/src/main/java/**/*.txt
 **/org/allbinary/media/audio/GD*GameMusicFactory.ts
 **/org/allbinary/media/audio/GD*GameSoundsFactory.ts
 **/org/allbinary/media/audio/GDGameSounds.ts
+GD*Sound.ts
+GD*Sounds.ts
 
 **/gd/res/GD*GamePlaynResources.js
 **/org/allbinary/AndroidResources.js
@@ -579,3 +583,5 @@ GDGameGeneratedJavaLibraryKtM/src/main/java/**/*.txt
 **/org/allbinary/media/audio/GD*GameMusicFactory.xml
 **/org/allbinary/media/audio/GD*GameSoundsFactory.xml
 **/org/allbinary/media/audio/GDGameSounds.xml
+GD*Sound.js
+GD*Sounds.js
