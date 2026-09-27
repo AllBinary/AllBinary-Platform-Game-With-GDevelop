@@ -1,0 +1,332 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.allbinary.game.gd</groupId>
+        <artifactId>GDGameParentTs</artifactId>
+        <!-- Game Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- Game Version End -->
+    </parent>
+
+    <artifactId>GDGameJavaLibraryTs</artifactId>
+    <packaging>jar</packaging>
+
+    <name>GDGameJavaLibraryTs</name>
+    <url>http://www.allbinary.com/</url>
+
+    <properties>
+        <buildLabel>${version}</buildLabel>
+        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+    </properties>
+
+
+    <properties>
+        <yarnVersion>v1.22.22</yarnVersion>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>LoggingJ2MEAllTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>LogJ2SEJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>AllBinaryOptionalBasePlatformJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>J2SEForJ2MEJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>NoSWTJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.multiplayer</groupId>
+            <artifactId>AllBinaryGameClientBaseNullJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GameConfigurationJ2MEJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GameLicensingBaseJavaLibraryTs</artifactId>
+            <version>${allbinary.platform.version}</version>
+        </dependency>
+<!-- AdvancedRTSGameJavaLibrary and PathFinding should not be included by default and should be tied in with GD Extensions -->
+        <dependency>
+            <groupId>org.allbinary.game.strategy.realtime</groupId>
+            <artifactId>AdvancedRTSGameJavaLibraryTs</artifactId>
+            <version>${allbinary.platform.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary.media.graphics.geography.pathfinding</groupId>
+            <artifactId>GeographicPathFinderPriorityQueueJavaLibraryTs</artifactId>
+<!--
+            <artifactId>DynamicPathFindingRaceTrackJavaLibrary_1_4_2Ts</artifactId>
+            //uses GeographicPathFinderJGraphTJavaLibrary_1_4_2
+            <artifactId>GeographicPathFinderPriorityQueueJavaLibraryTs</artifactId>
+-->
+            <version>${allbinary.platform.version}</version>
+        </dependency>
+        
+
+<!--
+        <dependency>
+            <groupId>com.sun</groupId>
+            <artifactId>GDLWUITJavaLibraryTs</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+-->
+
+<!--
+        <dependency>
+            <groupId>org.allbinary.game.behavior.platformer</groupId>
+            <artifactId>PlatformerGameBehaviorJavaLibraryTs</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.media.graphics.geography.map</groupId>
+            <artifactId>BasicPlatformGeographicMapJavaLibraryTs</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+-->
+
+<!--
+-->
+        <dependency>
+            <groupId>org.allbinary.media.graphics.geography.map</groupId>
+            <artifactId>BasicTopViewGeographicMapJavaLibraryTs</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.game.behavior.topview</groupId>
+            <artifactId>TopViewGameBehaviorJavaLibraryTs</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mapeditor</groupId>
+            <artifactId>TiledJSONJavaLibraryTs</artifactId>
+            <version>1.4.2-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>CombatGameJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.media.graphics.geography.map</groupId>
+            <artifactId>GeographicMapLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>CommonHeadsUpDisplayLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>CommonHeadsUpDisplayCombatGameLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>PickupLayerJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>PartsJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <!--
+        <dependency>
+            <groupId>org.allbinary.game.ai</groupId>
+            <artifactId>AIBasicGameLibraryTs</artifactId>
+        </dependency>
+        -->
+
+        <!--
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>WeaponLayerJavaLibraryTs</artifactId>
+        </dependency>
+        -->
+
+        <!--
+        <dependency>
+            <groupId>org.allbinary.game.parts.weapon</groupId>
+            <artifactId>BasicWeaponPartsJavaLibraryTs</artifactId>
+        </dependency>
+        -->
+
+        <!--
+                <dependency>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>WeaponMineJavaLibraryTs</artifactId>
+                </dependency>
+        -->
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameResourceJavaLibraryTs</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameAIJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameWavSoundsJavaLibraryTs</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLNoneJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLNoneOtherJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>VectorAnimationJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-midpTs</artifactId>
+            <version>2.0.4</version>
+            <optional>true</optional>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-pluginTs</artifactId>
+                <version>3.8.1</version>
+                <!--
+                <version>2.5.1</version>
+                <version>2.3.2</version>
+                -->
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+    </build>
+
+</project>
+
+
