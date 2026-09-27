@@ -1,0 +1,721 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="json" type="Name">
+            <qualifier identifier="gdevelop" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content="  * GDevelop to AllBinary Core  * Copyright 2021 Travis Berthelot (travisberthelot@allbinary.com). All rights  * reserved. This project is released under the MIT License.  " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicColor" type="Name">
+                <qualifier identifier="color" type="Name">
+                    <qualifier identifier="graphics" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicColorFactory" type="Name">
+                <qualifier identifier="color" type="Name">
+                    <qualifier identifier="graphics" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicColorUtil" type="Name">
+                <qualifier identifier="color" type="Name">
+                    <qualifier identifier="graphics" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicArrayList" type="Name">
+                <qualifier identifier="util" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicArrayListD" type="Name">
+                <qualifier identifier="util" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="JSONArray" type="Name">
+                <qualifier identifier="json" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="JSONObject" type="Name">
+                <qualifier identifier="json" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDLayer" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="name" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="isVisible" type="SimpleName"/>
+                            <type type="BOOLEAN" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="isLightingLayer" type="SimpleName"/>
+                            <type type="BOOLEAN" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="followBaseLayerCamera" type="SimpleName"/>
+                            <type type="BOOLEAN" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="ambientLightBasicColor" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="BasicColor" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="ObjectCreationExpr">
+                                <type type="ClassOrInterfaceType">
+                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                </type>
+                            </initializer>
+                            <name identifier="cameraList" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="BasicArrayList" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="ObjectCreationExpr">
+                                <type type="ClassOrInterfaceType">
+                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                </type>
+                            </initializer>
+                            <name identifier="effectsList" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="BasicArrayList" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="ConstructorDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="GDProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="gdProjectStrings" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GDProjectStrings" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition type="MethodCallExpr">
+                                    <name identifier="has" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="jsonObject" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="NAME" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="gdProjectStrings" type="SimpleName"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </condition>
+                                <elseStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="FieldAccessExpr">
+                                                    <name identifier="name" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </target>
+                                                <value type="MethodCallExpr">
+                                                    <name identifier="toHexString" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="Integer" type="SimpleName"/>
+                                                    </scope>
+                                                    <arguments>
+                                                        <argument type="MethodCallExpr">
+                                                            <name identifier="hashCode" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </argument>
+                                                    </arguments>
+                                                </value>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="FieldAccessExpr">
+                                                    <name identifier="name" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </target>
+                                                <value type="MethodCallExpr">
+                                                    <name identifier="getString" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="jsonObject" type="SimpleName"/>
+                                                    </scope>
+                                                    <arguments>
+                                                        <argument type="FieldAccessExpr">
+                                                            <name identifier="NAME" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                            </scope>
+                                                        </argument>
+                                                    </arguments>
+                                                </value>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition type="MethodCallExpr">
+                                    <name identifier="has" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="jsonObject" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="VISIBILITY" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="gdProjectStrings" type="SimpleName"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </condition>
+                                <elseStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="FieldAccessExpr">
+                                                    <name identifier="isVisible" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </target>
+                                                <value type="BooleanLiteralExpr" value="false"/>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="FieldAccessExpr">
+                                                    <name identifier="isVisible" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </target>
+                                                <value type="MethodCallExpr">
+                                                    <name identifier="getBoolean" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="jsonObject" type="SimpleName"/>
+                                                    </scope>
+                                                    <arguments>
+                                                        <argument type="FieldAccessExpr">
+                                                            <name identifier="VISIBILITY" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                            </scope>
+                                                        </argument>
+                                                    </arguments>
+                                                </value>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition type="MethodCallExpr">
+                                    <name identifier="has" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="jsonObject" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="VISIBILITY" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="gdProjectStrings" type="SimpleName"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </condition>
+                                <elseStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="FieldAccessExpr">
+                                                    <name identifier="isLightingLayer" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </target>
+                                                <value type="BooleanLiteralExpr" value="false"/>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="FieldAccessExpr">
+                                                    <name identifier="isLightingLayer" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </target>
+                                                <value type="MethodCallExpr">
+                                                    <name identifier="getBoolean" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="jsonObject" type="SimpleName"/>
+                                                    </scope>
+                                                    <arguments>
+                                                        <argument type="FieldAccessExpr">
+                                                            <name identifier="IS_LIGHTING_LAYER" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                            </scope>
+                                                        </argument>
+                                                    </arguments>
+                                                </value>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition type="MethodCallExpr">
+                                    <name identifier="has" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="jsonObject" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="FOLLOW_BASE_LAYER_CAMERA" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="gdProjectStrings" type="SimpleName"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </condition>
+                                <elseStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="FieldAccessExpr">
+                                                    <name identifier="followBaseLayerCamera" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </target>
+                                                <value type="BooleanLiteralExpr" value="false"/>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="FieldAccessExpr">
+                                                    <name identifier="followBaseLayerCamera" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </target>
+                                                <value type="MethodCallExpr">
+                                                    <name identifier="getBoolean" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="jsonObject" type="SimpleName"/>
+                                                    </scope>
+                                                    <arguments>
+                                                        <argument type="FieldAccessExpr">
+                                                            <name identifier="FOLLOW_BASE_LAYER_CAMERA" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                            </scope>
+                                                        </argument>
+                                                    </arguments>
+                                                </value>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition type="MethodCallExpr">
+                                    <name identifier="has" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="jsonObject" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="AMBIENT_LIGHT_COLOR_R" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="gdProjectStrings" type="SimpleName"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </condition>
+                                <elseStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="FieldAccessExpr">
+                                                    <name identifier="ambientLightBasicColor" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </target>
+                                                <value type="NullLiteralExpr"/>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="FieldAccessExpr">
+                                                    <name identifier="ambientLightBasicColor" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </target>
+                                                <value type="MethodCallExpr">
+                                                    <name identifier="createInstanceARGB" type="SimpleName"/>
+                                                    <scope type="MethodCallExpr">
+                                                        <name identifier="getInstance" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="BasicColorFactory" type="SimpleName"/>
+                                                        </scope>
+                                                    </scope>
+                                                    <arguments>
+                                                        <argument type="FieldAccessExpr">
+                                                            <name identifier="ALPHA" type="SimpleName"/>
+                                                            <scope type="MethodCallExpr">
+                                                                <name identifier="getInstance" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="BasicColorUtil" type="SimpleName"/>
+                                                                </scope>
+                                                            </scope>
+                                                        </argument>
+                                                        <argument type="MethodCallExpr">
+                                                            <name identifier="getInt" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="jsonObject" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="AMBIENT_LIGHT_COLOR_R" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                            </arguments>
+                                                        </argument>
+                                                        <argument type="MethodCallExpr">
+                                                            <name identifier="getInt" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="jsonObject" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="AMBIENT_LIGHT_COLOR_G" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                            </arguments>
+                                                        </argument>
+                                                        <argument type="MethodCallExpr">
+                                                            <name identifier="getInt" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="jsonObject" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="AMBIENT_LIGHT_COLOR_B" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                            </arguments>
+                                                        </argument>
+                                                        <argument type="FieldAccessExpr">
+                                                            <name identifier="name" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </argument>
+                                                    </arguments>
+                                                </value>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition type="MethodCallExpr">
+                                    <name identifier="has" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="jsonObject" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="CAMERAS" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="gdProjectStrings" type="SimpleName"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </condition>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <modifiers>
+                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                </modifiers>
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="getJSONArray" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="jsonObject" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="CAMERAS" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                            </arguments>
+                                                        </initializer>
+                                                        <name identifier="camerasJSONArray" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="JSONArray" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="length" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="camerasJSONArray" type="SimpleName"/>
+                                                            </scope>
+                                                        </initializer>
+                                                        <name identifier="size" type="SimpleName"/>
+                                                        <type type="INT" typeB="PrimitiveType"/>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <name identifier="nextJSONObject" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="JSONObject" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ForStmt">
+                                            <body type="BlockStmt">
+                                                <statements>
+                                                    <statement type="ExpressionStmt">
+                                                        <expression operator="ASSIGN" type="AssignExpr">
+                                                            <target type="NameExpr">
+                                                                <name identifier="nextJSONObject" type="SimpleName"/>
+                                                            </target>
+                                                            <value type="MethodCallExpr">
+                                                                <name identifier="getJSONObject" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="camerasJSONArray" type="SimpleName"/>
+                                                                </scope>
+                                                                <arguments>
+                                                                    <argument type="NameExpr">
+                                                                        <name identifier="index" type="SimpleName"/>
+                                                                    </argument>
+                                                                </arguments>
+                                                            </value>
+                                                        </expression>
+                                                    </statement>
+                                                    <statement type="ExpressionStmt">
+                                                        <expression type="MethodCallExpr">
+                                                            <name identifier="add" type="SimpleName"/>
+                                                            <scope type="FieldAccessExpr">
+                                                                <name identifier="cameraList" type="SimpleName"/>
+                                                                <scope type="ThisExpr"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="ObjectCreationExpr">
+                                                                    <type type="ClassOrInterfaceType">
+                                                                        <name identifier="GDLayer" type="SimpleName"/>
+                                                                    </type>
+                                                                    <arguments>
+                                                                        <argument type="NameExpr">
+                                                                            <name identifier="nextJSONObject" type="SimpleName"/>
+                                                                        </argument>
+                                                                    </arguments>
+                                                                </argument>
+                                                            </arguments>
+                                                        </expression>
+                                                    </statement>
+                                                </statements>
+                                            </body>
+                                            <compare operator="LESS" type="BinaryExpr">
+                                                <left type="NameExpr">
+                                                    <name identifier="index" type="SimpleName"/>
+                                                </left>
+                                                <right type="NameExpr">
+                                                    <name identifier="size" type="SimpleName"/>
+                                                </right>
+                                            </compare>
+                                            <initialization>
+                                                <initializatio type="VariableDeclarationExpr">
+                                                    <variables>
+                                                        <variable type="VariableDeclarator">
+                                                            <initializer type="IntegerLiteralExpr" value="0"/>
+                                                            <name identifier="index" type="SimpleName"/>
+                                                            <type type="INT" typeB="PrimitiveType"/>
+                                                        </variable>
+                                                    </variables>
+                                                </initializatio>
+                                            </initialization>
+                                            <update>
+                                                <updat operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                                    <expression type="NameExpr">
+                                                        <name identifier="index" type="SimpleName"/>
+                                                    </expression>
+                                                </updat>
+                                            </update>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                        </statements>
+                    </body>
+                    <name identifier="GDLayer" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="jsonObject" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="JSONObject" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

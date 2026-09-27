@@ -1,0 +1,246 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="min3d" type="Name">
+            <qualifier identifier="threed" type="Name">
+                <qualifier identifier="graphics" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content="  * AllBinary Open License Version 1  * Copyright (c) 2025 AllBinary  *   * By agreeing to this license you and any business entity you represent are  * legally bound to the AllBinary Open License Version 1 legal agreement.  *   * You may obtain the AllBinary Open License Version 1 legal agreement from  * AllBinary or the root directory of AllBinary's AllBinary Platform repository.  *   * Created By: Travis Berthelot  *   " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AndroidResources" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="ResourceUtil" type="Name">
+                <qualifier identifier="resource" type="Name">
+                    <qualifier identifier="data" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AppShaderResources" type="Name">
+                <qualifier identifier="resources" type="Name">
+                    <qualifier identifier="layer" type="Name">
+                        <qualifier identifier="gd" type="Name">
+                            <qualifier identifier="game" type="Name">
+                                <qualifier identifier="allbinary" type="Name">
+                                    <qualifier identifier="org" type="Name"/>
+                                </qualifier>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="PlatformAppShaderResources" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="ObjectCreationExpr">
+                                <type type="ClassOrInterfaceType">
+                                    <name identifier="PlatformAppShaderResources" type="SimpleName"/>
+                                </type>
+                            </initializer>
+                            <name identifier="instance" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="PlatformAppShaderResources" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="FieldAccessExpr">
+                                    <name identifier="instance" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="PlatformAppShaderResources" type="SimpleName"/>
+                                    </scope>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="ClassOrInterfaceType">
+                        <name identifier="PlatformAppShaderResources" type="SimpleName"/>
+                    </type>
+                    <name identifier="getInstance" type="SimpleName"/>
+                    <comment content="      * @return the instance      " type="JavadocComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="ResourceUtil" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="resourceUtil" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="ResourceUtil" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="AndroidResources" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="androidResources" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="AndroidResources" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="AppShaderResources" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="appShaderResources" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="AppShaderResources" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="addResource" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="resourceUtil" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="LIKE2_FIXED_PIPLINE_LIGHTING_VERTEX_SHADER" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="appShaderResources" type="SimpleName"/>
+                                            </scope>
+                                            <comment content="Integer.valueOf(androidResources.raw.simple_vertex_shader_gsn_glsl)" type="LineComment"/>
+                                        </argument>
+                                        <argument type="MethodCallExpr">
+                                            <name identifier="valueOf" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="Integer" type="SimpleName"/>
+                                            </scope>
+                                            <arguments>
+                                                <argument type="FieldAccessExpr">
+                                                    <name identifier="like2_fixed_pipeline_lighting_vertex_shader_glsl" type="SimpleName"/>
+                                                    <scope type="FieldAccessExpr">
+                                                        <name identifier="raw" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="androidResources" type="SimpleName"/>
+                                                        </scope>
+                                                    </scope>
+                                                </argument>
+                                            </arguments>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="addResource" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="resourceUtil" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="LIKE2_FIXED_PIPLINE_LIGHTING_FRAGMENT_SHADER" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="appShaderResources" type="SimpleName"/>
+                                            </scope>
+                                            <comment content="Integer.valueOf(androidResources.raw.simple_texture_fragment_shader_gsn_glsl)" type="LineComment"/>
+                                        </argument>
+                                        <argument type="MethodCallExpr">
+                                            <name identifier="valueOf" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="Integer" type="SimpleName"/>
+                                            </scope>
+                                            <arguments>
+                                                <argument type="FieldAccessExpr">
+                                                    <name identifier="like2_fixed_pipeline_lighting_fragment_shader_glsl" type="SimpleName"/>
+                                                    <scope type="FieldAccessExpr">
+                                                        <name identifier="raw" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="androidResources" type="SimpleName"/>
+                                                        </scope>
+                                                    </scope>
+                                                </argument>
+                                            </arguments>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="add" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

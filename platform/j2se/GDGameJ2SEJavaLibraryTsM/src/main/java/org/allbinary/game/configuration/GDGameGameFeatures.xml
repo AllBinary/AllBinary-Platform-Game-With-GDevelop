@@ -1,0 +1,344 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="configuration" type="Name">
+            <qualifier identifier="game" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content=" * AllBinary Open License Version 1 * Copyright (c) 2011 AllBinary *  * By agreeing to this license you and any business entity you represent are * legally bound to the AllBinary Open License Version 1 legal agreement. *  * You may obtain the AllBinary Open License Version 1 legal agreement from * AllBinary or the root directory of AllBinary's AllBinary Platform repository. *  * Created By: Travis Berthelot *  " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicArrayList" type="Name">
+                <qualifier identifier="util" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicArrayListD" type="Name">
+                <qualifier identifier="util" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GameConfigurationCentral" type="Name">
+                <qualifier identifier="configuration" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GameConfigurationSingleton" type="Name">
+                <qualifier identifier="configuration" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GameFeatureChoiceGroups" type="Name">
+                <qualifier identifier="feature" type="Name">
+                    <qualifier identifier="configuration" type="Name">
+                        <qualifier identifier="game" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GameFeatureFactory" type="Name">
+                <qualifier identifier="feature" type="Name">
+                    <qualifier identifier="configuration" type="Name">
+                        <qualifier identifier="game" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="SensorFeatureFactory" type="Name">
+                <qualifier identifier="feature" type="Name">
+                    <qualifier identifier="configuration" type="Name">
+                        <qualifier identifier="game" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="InitInterface" type="Name">
+                <qualifier identifier="init" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDGameGameFeatures" type="SimpleName"/>
+            <implementedTypes>
+                <implementedType type="ClassOrInterfaceType">
+                    <name identifier="InitInterface" type="SimpleName"/>
+                </implementedType>
+            </implementedTypes>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="Graphics Options"/>
+                            <name identifier="GRAPHICS_OPTIONS" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="ConstructorDeclaration">
+                    <body type="BlockStmt"/>
+                    <name identifier="GDGameGameFeatures" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="SensorFeatureFactory" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="sensorFeatureFactory" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="SensorFeatureFactory" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="BasicArrayList exclusiveOrientationSensorList = new BasicArrayListD();" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="GameFeatureFactory" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="gameFeatureFactory" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GameFeatureFactory" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="GameConfigurationSingleton" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="gameConfigurationSingleton" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GameConfigurationSingleton" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="         BasicArrayList exclusiveOrientationTypeList = new BasicArrayListD();         exclusiveOrientationTypeList.add(GameFeature.YAW_AND_PITCH);         exclusiveOrientationTypeList.add(GameFeature.PITCH_AND_ROLL);         " type="BlockComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="GameConfigurationCentral" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="gameConfigurationCentral" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GameConfigurationCentral" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="gameConfigurationSingleton" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="VIBRATION" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="gameConfigurationCentral" type="SimpleName"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="gameConfigurationSingleton" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="ORIENTATION" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="gameConfigurationCentral" type="SimpleName"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="gameConfigurationSingleton" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="SPEED" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="gameConfigurationCentral" type="SimpleName"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                                <comment content=" gameConfigurationSingleton.add(gameConfigurationCentral.CONTROL_LEVEL);" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="multipleList" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="multipleList" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="SOUND" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="gameFeatureFactory" type="SimpleName"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="multipleList" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="SCREEN_SHAKE" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="gameFeatureFactory" type="SimpleName"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="MethodCallExpr">
+                                        <name identifier="getMultipleInstance" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="GameFeatureChoiceGroups" type="SimpleName"/>
+                                        </scope>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="GRAPHICS_OPTIONS" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="multipleList" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                                <comment content=" graphicsOptionsBasicArrayList.add(GameFeature.);" type="LineComment"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="init" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

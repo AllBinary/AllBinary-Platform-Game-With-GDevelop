@@ -1,0 +1,56 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="button" type="Name">
+            <qualifier identifier="motion" type="Name">
+                <qualifier identifier="input" type="Name">
+                    <qualifier identifier="android" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content=" * AllBinary Open License Version 1 * Copyright (c) 2011 AllBinary *  * By agreeing to this license you and any business entity you represent are * legally bound to the AllBinary Open License Version 1 legal agreement. *  * You may obtain the AllBinary Open License Version 1 legal agreement from * AllBinary or the root directory of AllBinary's AllBinary Platform repository. *  * Created By: Travis Berthelot *  " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Init" type="Name">
+                <qualifier identifier="init" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="TouchButtonAndroidResources" type="SimpleName"/>
+            <extendedTypes>
+                <extendedType type="ClassOrInterfaceType">
+                    <name identifier="Init" type="SimpleName"/>
+                </extendedType>
+            </extendedTypes>
+            <members>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="init" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

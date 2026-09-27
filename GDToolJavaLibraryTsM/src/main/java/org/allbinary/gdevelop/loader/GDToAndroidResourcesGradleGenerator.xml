@@ -1,0 +1,1437 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="loader" type="Name">
+            <qualifier identifier="gdevelop" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content="  * GDevelop to AllBinary Core  * Copyright 2021 Travis Berthelot (travisberthelot@allbinary.com). All rights  * reserved. This project is released under the MIT License.  " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="FileInputStream" type="Name">
+                <qualifier identifier="io" type="Name">
+                    <qualifier identifier="java" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="CamelCaseUtil" type="Name">
+                <qualifier identifier="data" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDProject" type="Name">
+                <qualifier identifier="json" type="Name">
+                    <qualifier identifier="gdevelop" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BufferedWriterUtil" type="Name">
+                <qualifier identifier="io" type="Name">
+                    <qualifier identifier="logic" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="StreamUtil" type="Name">
+                <qualifier identifier="io" type="Name">
+                    <qualifier identifier="logic" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="CommonStrings" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="StringMaker" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="logic" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Replace" type="Name">
+                <qualifier identifier="replace" type="Name">
+                    <qualifier identifier="regex" type="Name">
+                        <qualifier identifier="string" type="Name">
+                            <qualifier identifier="logic" type="Name">
+                                <qualifier identifier="allbinary" type="Name">
+                                    <qualifier identifier="org" type="Name"/>
+                                </qualifier>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="LogUtil" type="Name">
+                <qualifier identifier="log" type="Name">
+                    <qualifier identifier="communication" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="CommonSeps" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDToAndroidResourcesGradleGenerator" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="LogUtil" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="logUtil" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="LogUtil" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="CommonStrings" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="commonStrings" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="CommonStrings" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="CommonSeps" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="commonSeps" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="CommonSeps" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="BufferedWriterUtil" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="bufferedWriterUtil" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="BufferedWriterUtil" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="GDPaths" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="gdPaths" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDPaths" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="GDToolStrings" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="gdToolStrings" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDToolStrings" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="GDResources" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="gdResources" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDResources" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="GDResourceSelection" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="gdResourceSelection" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDResourceSelection" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="ObjectCreationExpr">
+                                <type type="ClassOrInterfaceType">
+                                    <name identifier="StringMaker" type="SimpleName"/>
+                                </type>
+                            </initializer>
+                            <name identifier="resourceStringMaker" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="StringMaker" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="//GD"/>
+                            <name identifier="GD_KEY" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="    public final int "/>
+                            <name identifier="PUBLIC_FINAL_STRING" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value=" = R.raw."/>
+                            <name identifier="VALUE_RESOURCE_START" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value=";\n"/>
+                            <name identifier="VALUE_RESOURCE_END" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="public final int blank = R.raw.blank;\n"/>
+                            <name identifier="BLANK_LINE" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="blank"/>
+                            <name identifier="BLANK" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="&lt;name&gt;"/>
+                            <name identifier="GD_KEY_NAME" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="packageName" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="isBlank" type="SimpleName"/>
+                            <type type="BOOLEAN" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="ConstructorDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="append" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="resourceStringMaker" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="GD_KEY" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="append" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="resourceStringMaker" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="NEW_LINE" type="SimpleName"/>
+                                            <scope type="FieldAccessExpr">
+                                                <name identifier="commonSeps" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <name identifier="GDToAndroidResourcesGradleGenerator" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="IfStmt">
+                                <condition operator="NOT_EQUALS" type="BinaryExpr">
+                                    <left type="FieldAccessExpr">
+                                        <name identifier="packageName" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="gdProject" type="SimpleName"/>
+                                        </scope>
+                                    </left>
+                                    <right type="NullLiteralExpr"/>
+                                </condition>
+                                <elseStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="FieldAccessExpr">
+                                                    <name identifier="packageName" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </target>
+                                                <value type="FieldAccessExpr">
+                                                    <name identifier="name" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="gdProject" type="SimpleName"/>
+                                                    </scope>
+                                                </value>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="FieldAccessExpr">
+                                                    <name identifier="packageName" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </target>
+                                                <value type="FieldAccessExpr">
+                                                    <name identifier="packageName" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="gdProject" type="SimpleName"/>
+                                                    </scope>
+                                                </value>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="process" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gdProject" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDProject" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="toLowerCase" type="SimpleName"/>
+                                                <scope type="MethodCallExpr">
+                                                    <name identifier="substring" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="resourceString" type="SimpleName"/>
+                                                    </scope>
+                                                    <arguments>
+                                                        <argument type="IntegerLiteralExpr" value="0"/>
+                                                        <argument operator="MINUS" type="BinaryExpr">
+                                                            <left type="MethodCallExpr">
+                                                                <name identifier="length" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="resourceString" type="SimpleName"/>
+                                                                </scope>
+                                                            </left>
+                                                            <right type="IntegerLiteralExpr" value="4"/>
+                                                        </argument>
+                                                    </arguments>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="resource" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="String" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition operator="GREATER_EQUALS" type="BinaryExpr">
+                                    <left type="MethodCallExpr">
+                                        <name identifier="indexOf" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="resource" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="BLANK" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                            </argument>
+                                        </arguments>
+                                    </left>
+                                    <right type="IntegerLiteralExpr" value="0"/>
+                                </condition>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="FieldAccessExpr">
+                                                    <name identifier="isBlank" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </target>
+                                                <value type="BooleanLiteralExpr" value="true"/>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="hasRotationImages" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="gdResourceSelection" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="hasRotationImages" type="SimpleName"/>
+                                            <type type="BOOLEAN" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="appendCommentIfNeeded2" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="gdResourceSelection" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="MethodCallExpr">
+                                            <name identifier="toUpperCase" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="resource" type="SimpleName"/>
+                                            </scope>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="resource" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="resourceStringMaker" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="hasRotationImages" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="append" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="resourceStringMaker" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="PUBLIC_FINAL_STRING" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="append" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="resourceStringMaker" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="resource" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="append" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="resourceStringMaker" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="VALUE_RESOURCE_START" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="append" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="resourceStringMaker" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="resource" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="append" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="resourceStringMaker" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="VALUE_RESOURCE_END" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="processResource" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="fileAsString" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="resourceString" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer operator="PLUS" type="BinaryExpr">
+                                                <left type="FieldAccessExpr">
+                                                    <name identifier="ROOT_PATH" type="SimpleName"/>
+                                                    <scope type="FieldAccessExpr">
+                                                        <name identifier="gdPaths" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </scope>
+                                                </left>
+                                                <right type="StringLiteralExpr" value="platform\\android\\GDGameAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.original"/>
+                                            </initializer>
+                                            <name identifier="RESOURCE_ORIGINAL" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="String" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer operator="PLUS" type="BinaryExpr">
+                                                <left type="FieldAccessExpr">
+                                                    <name identifier="GEN_PATH" type="SimpleName"/>
+                                                    <scope type="FieldAccessExpr">
+                                                        <name identifier="gdPaths" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </scope>
+                                                </left>
+                                                <right type="StringLiteralExpr" value="platform\\android\\GDGameAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java"/>
+                                            </initializer>
+                                            <name identifier="RESOURCE" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="String" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="CamelCaseUtil" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="camelCaseUtil" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="CamelCaseUtil" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="StringMaker" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="stringMaker" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="StringMaker" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="StreamUtil" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="streamUtil" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="StreamUtil" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="SharedBytes" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="sharedBytes" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="SharedBytes" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="reset" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="outputStream" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="sharedBytes" type="SimpleName"/>
+                                        </scope>
+                                    </scope>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="FileInputStream" type="SimpleName"/>
+                                                </type>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="RESOURCE_ORIGINAL" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="fileInputStream" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="FileInputStream" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="String" type="SimpleName"/>
+                                                </type>
+                                                <arguments>
+                                                    <argument type="MethodCallExpr">
+                                                        <name identifier="getByteArray" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="streamUtil" type="SimpleName"/>
+                                                        </scope>
+                                                        <arguments>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="fileInputStream" type="SimpleName"/>
+                                                            </argument>
+                                                            <argument type="FieldAccessExpr">
+                                                                <name identifier="outputStream" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="sharedBytes" type="SimpleName"/>
+                                                                </scope>
+                                                            </argument>
+                                                            <argument type="FieldAccessExpr">
+                                                                <name identifier="byteArray" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="sharedBytes" type="SimpleName"/>
+                                                                </scope>
+                                                            </argument>
+                                                        </arguments>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="androidRFileAsString" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="String" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="Replace" type="SimpleName"/>
+                                                </type>
+                                                <arguments>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="GD_KEY_NAME" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </argument>
+                                                    <argument type="MethodCallExpr">
+                                                        <name identifier="toLowerCase" type="SimpleName"/>
+                                                        <scope type="MethodCallExpr">
+                                                            <name identifier="getAsCamelCase" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="camelCaseUtil" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="packageName" type="SimpleName"/>
+                                                                    <scope type="ThisExpr"/>
+                                                                </argument>
+                                                                <argument type="NameExpr">
+                                                                    <name identifier="stringMaker" type="SimpleName"/>
+                                                                </argument>
+                                                            </arguments>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="replace2" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="Replace" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="all" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="replace2" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="androidRFileAsString" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="newFileAsString2" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="String" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="size" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="playSoundAndroidResourceNameList" type="SimpleName"/>
+                                                    <scope type="FieldAccessExpr">
+                                                        <name identifier="gdResources" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </scope>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="size" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <name identifier="resource" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="String" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ForStmt">
+                                <body type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="NameExpr">
+                                                    <name identifier="resource" type="SimpleName"/>
+                                                </target>
+                                                <value type="CastExpr">
+                                                    <expression type="MethodCallExpr">
+                                                        <name identifier="get" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="playSoundAndroidResourceNameList" type="SimpleName"/>
+                                                            <scope type="FieldAccessExpr">
+                                                                <name identifier="gdResources" type="SimpleName"/>
+                                                                <scope type="ThisExpr"/>
+                                                            </scope>
+                                                        </scope>
+                                                        <arguments>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="index" type="SimpleName"/>
+                                                            </argument>
+                                                        </arguments>
+                                                    </expression>
+                                                    <type type="ClassOrInterfaceType">
+                                                        <name identifier="String" type="SimpleName"/>
+                                                    </type>
+                                                </value>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="append" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="resourceStringMaker" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="NEW_LINE" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="commonSeps" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="append" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="resourceStringMaker" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="PUBLIC_FINAL_STRING" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="append" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="resourceStringMaker" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="resource" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="append" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="resourceStringMaker" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="VALUE_RESOURCE_START" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="append" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="resourceStringMaker" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="resource" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="append" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="resourceStringMaker" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="VALUE_RESOURCE_END" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </body>
+                                <compare operator="LESS" type="BinaryExpr">
+                                    <left type="NameExpr">
+                                        <name identifier="index" type="SimpleName"/>
+                                    </left>
+                                    <right type="NameExpr">
+                                        <name identifier="size" type="SimpleName"/>
+                                    </right>
+                                </compare>
+                                <initialization>
+                                    <initializatio type="VariableDeclarationExpr">
+                                        <variables>
+                                            <variable type="VariableDeclarator">
+                                                <initializer type="IntegerLiteralExpr" value="0"/>
+                                                <name identifier="index" type="SimpleName"/>
+                                                <type type="INT" typeB="PrimitiveType"/>
+                                            </variable>
+                                        </variables>
+                                    </initializatio>
+                                </initialization>
+                                <update>
+                                    <updat operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                        <expression type="NameExpr">
+                                            <name identifier="index" type="SimpleName"/>
+                                        </expression>
+                                    </updat>
+                                </update>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition operator="LOGICAL_COMPLEMENT" type="UnaryExpr">
+                                    <expression type="FieldAccessExpr">
+                                        <name identifier="isBlank" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </expression>
+                                </condition>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="append" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="resourceStringMaker" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="NEW_LINE" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="commonSeps" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="append" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="resourceStringMaker" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="BLANK_LINE" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="Replace" type="SimpleName"/>
+                                                </type>
+                                                <arguments>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="GD_KEY" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </argument>
+                                                    <argument type="MethodCallExpr">
+                                                        <name identifier="toString" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="resourceStringMaker" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="replace" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="Replace" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="all" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="replace" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="newFileAsString2" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="newFileAsString" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="String" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="delete" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="stringMaker" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="IntegerLiteralExpr" value="0"/>
+                                        <argument type="MethodCallExpr">
+                                            <name identifier="length" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="stringMaker" type="SimpleName"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="putF" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="logUtil" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="MethodCallExpr">
+                                            <name identifier="toString" type="SimpleName"/>
+                                            <scope type="MethodCallExpr">
+                                                <name identifier="append" type="SimpleName"/>
+                                                <scope type="MethodCallExpr">
+                                                    <name identifier="append" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="stringMaker" type="SimpleName"/>
+                                                    </scope>
+                                                    <arguments>
+                                                        <argument type="FieldAccessExpr">
+                                                            <name identifier="FILENAME" type="SimpleName"/>
+                                                            <scope type="FieldAccessExpr">
+                                                                <name identifier="gdToolStrings" type="SimpleName"/>
+                                                                <scope type="ThisExpr"/>
+                                                            </scope>
+                                                        </argument>
+                                                    </arguments>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="RESOURCE" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </scope>
+                                        </argument>
+                                        <argument type="ThisExpr"/>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="PROCESS" type="SimpleName"/>
+                                            <scope type="FieldAccessExpr">
+                                                <name identifier="commonStrings" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="overwrite" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="bufferedWriterUtil" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="RESOURCE" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="newFileAsString" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="process" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

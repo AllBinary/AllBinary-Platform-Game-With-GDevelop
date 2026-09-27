@@ -1,0 +1,385 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="behavior" type="Name">
+            <qualifier identifier="layer" type="Name">
+                <qualifier identifier="game" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content=" * AllBinary Open License Version 1 * Copyright (c) 2011 AllBinary *  * By agreeing to this license you and any business entity you represent are * legally bound to the AllBinary Open License Version 1 legal agreement. *  * You may obtain the AllBinary Open License Version 1 legal agreement from * AllBinary or the root directory of AllBinary's AllBinary Platform repository. *  * Created By: Travis Berthelot *  " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Graphics" type="Name">
+                <qualifier identifier="lcdui" type="Name">
+                    <qualifier identifier="microedition" type="Name">
+                        <qualifier identifier="javax" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDGameLayer" type="Name">
+                <qualifier identifier="layer" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDObject" type="Name">
+                <qualifier identifier="layout" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GameTickDisplayInfoSingleton" type="Name">
+                <qualifier identifier="displayable" type="Name">
+                    <qualifier identifier="graphics" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicArrayList" type="Name">
+                <qualifier identifier="util" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="DestroyOutsideBehavior" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <extendedTypes>
+                <extendedType type="ClassOrInterfaceType">
+                    <name identifier="GDBehavior" type="SimpleName"/>
+                </extendedType>
+            </extendedTypes>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="GameTickDisplayInfoSingleton" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="gameTickDisplayInfoSingleton" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GameTickDisplayInfoSingleton" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="CastExpr">
+                                                <expression type="MethodCallExpr">
+                                                    <name identifier="get" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="gameLayerList" type="SimpleName"/>
+                                                    </scope>
+                                                    <arguments>
+                                                        <argument type="NameExpr">
+                                                            <name identifier="index" type="SimpleName"/>
+                                                        </argument>
+                                                    </arguments>
+                                                </expression>
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="GDGameLayer" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="gameLayer" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GDGameLayer" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="FieldAccessExpr">
+                                                <name identifier="gdObject" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gameLayer" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="gdObject" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GDObject" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition operator="EQUALS" type="BinaryExpr">
+                                    <left type="NameExpr">
+                                        <name identifier="gdObject" type="SimpleName"/>
+                                    </left>
+                                    <right type="NullLiteralExpr"/>
+                                </condition>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ReturnStmt">
+                                            <expression type="BooleanLiteralExpr" value="false"/>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition operator="GREATER" type="BinaryExpr">
+                                    <left type="FieldAccessExpr">
+                                        <name identifier="x" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="gdObject" type="SimpleName"/>
+                                        </scope>
+                                    </left>
+                                    <right operator="PLUS" type="BinaryExpr">
+                                        <left type="MethodCallExpr">
+                                            <name identifier="SceneWindowWidth" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </left>
+                                        <right type="MethodCallExpr">
+                                            <name identifier="Width" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="gdObject" type="SimpleName"/>
+                                            </scope>
+                                            <arguments>
+                                                <argument type="NameExpr">
+                                                    <name identifier="graphics" type="SimpleName"/>
+                                                </argument>
+                                            </arguments>
+                                        </right>
+                                    </right>
+                                </condition>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ReturnStmt">
+                                            <expression type="BooleanLiteralExpr" value="true"/>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition operator="GREATER" type="BinaryExpr">
+                                    <left type="FieldAccessExpr">
+                                        <name identifier="y" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="gdObject" type="SimpleName"/>
+                                        </scope>
+                                    </left>
+                                    <right operator="PLUS" type="BinaryExpr">
+                                        <left type="MethodCallExpr">
+                                            <name identifier="SceneWindowHeight" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </left>
+                                        <right type="MethodCallExpr">
+                                            <name identifier="Width" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="gdObject" type="SimpleName"/>
+                                            </scope>
+                                            <arguments>
+                                                <argument type="NameExpr">
+                                                    <name identifier="graphics" type="SimpleName"/>
+                                                </argument>
+                                            </arguments>
+                                        </right>
+                                    </right>
+                                </condition>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ReturnStmt">
+                                            <expression type="BooleanLiteralExpr" value="true"/>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition operator="LESS" type="BinaryExpr">
+                                    <left type="FieldAccessExpr">
+                                        <name identifier="y" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="gdObject" type="SimpleName"/>
+                                        </scope>
+                                    </left>
+                                    <right operator="MINUS" type="UnaryExpr">
+                                        <expression type="MethodCallExpr">
+                                            <name identifier="Width" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="gdObject" type="SimpleName"/>
+                                            </scope>
+                                            <arguments>
+                                                <argument type="NameExpr">
+                                                    <name identifier="graphics" type="SimpleName"/>
+                                                </argument>
+                                            </arguments>
+                                        </expression>
+                                    </right>
+                                </condition>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ReturnStmt">
+                                            <expression type="BooleanLiteralExpr" value="true"/>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition operator="LESS" type="BinaryExpr">
+                                    <left type="FieldAccessExpr">
+                                        <name identifier="x" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="gdObject" type="SimpleName"/>
+                                        </scope>
+                                    </left>
+                                    <right operator="MINUS" type="UnaryExpr">
+                                        <expression type="MethodCallExpr">
+                                            <name identifier="Height" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="gdObject" type="SimpleName"/>
+                                            </scope>
+                                            <arguments>
+                                                <argument type="NameExpr">
+                                                    <name identifier="graphics" type="SimpleName"/>
+                                                </argument>
+                                            </arguments>
+                                        </expression>
+                                    </right>
+                                </condition>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ReturnStmt">
+                                            <expression type="BooleanLiteralExpr" value="true"/>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="ReturnStmt">
+                                <expression type="BooleanLiteralExpr" value="false"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="process" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gameLayerList" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="BasicArrayList" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="index" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="graphics" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="Graphics" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="getLastWidth" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="gameTickDisplayInfoSingleton" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="INT" typeB="PrimitiveType"/>
+                    <name identifier="SceneWindowWidth" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="getLastHeight" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="gameTickDisplayInfoSingleton" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="INT" typeB="PrimitiveType"/>
+                    <name identifier="SceneWindowHeight" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

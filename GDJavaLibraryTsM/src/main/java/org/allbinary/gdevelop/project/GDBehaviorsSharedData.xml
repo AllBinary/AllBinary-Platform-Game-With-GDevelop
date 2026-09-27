@@ -1,0 +1,70 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="project" type="Name">
+            <qualifier identifier="gdevelop" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content="  * GDevelop to AllBinary Core  * Copyright 2021 Travis Berthelot (travisberthelot@allbinary.com). All rights  * reserved. This project is released under the MIT License.  " type="BlockComment"/>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDBehaviorsSharedData" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="type" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="ConstructorDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="type" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="NameExpr">
+                                        <name identifier="type" type="SimpleName"/>
+                                    </value>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <name identifier="GDBehaviorsSharedData" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="type" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

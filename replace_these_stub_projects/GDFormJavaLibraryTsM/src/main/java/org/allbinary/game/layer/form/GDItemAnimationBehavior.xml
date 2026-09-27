@@ -1,0 +1,268 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="form" type="Name">
+            <qualifier identifier="layer" type="Name">
+                <qualifier identifier="game" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GameKey" type="Name">
+                <qualifier identifier="input" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GameKeyFactory" type="Name">
+                <qualifier identifier="input" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDAnimationBehaviorBase" type="Name">
+                <qualifier identifier="layer" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="MotionGestureEvent" type="Name">
+                <qualifier identifier="observer" type="Name">
+                    <qualifier identifier="gesture" type="Name">
+                        <qualifier identifier="motion" type="Name">
+                            <qualifier identifier="input" type="Name">
+                                <qualifier identifier="allbinary" type="Name">
+                                    <qualifier identifier="org" type="Name"/>
+                                </qualifier>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDItemAnimationBehavior" type="SimpleName"/>
+            <extendedTypes>
+                <extendedType type="ClassOrInterfaceType">
+                    <name identifier="GDAnimationBehaviorBase" type="SimpleName"/>
+                </extendedType>
+            </extendedTypes>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="GameKeyFactory" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="gameKeyFactory" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GameKeyFactory" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="hasFocus" type="SimpleName"/>
+                            <type type="BOOLEAN" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="IntegerLiteralExpr" value="0"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="INT" typeB="PrimitiveType"/>
+                    <name identifier="select" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gameKey" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GameKey" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="keyCode" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="onMotionGestureEvent" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="motionGestureEvent" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="MotionGestureEvent" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="keyPressed" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="keyCode" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="BooleanLiteralExpr" value="true"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="isFocusable" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="hasFocus" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="NameExpr">
+                                        <name identifier="hasFocus" type="SimpleName"/>
+                                    </value>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="setFocus" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="hasFocus" type="SimpleName"/>
+                            <type type="BOOLEAN" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="NameExpr">
+                                    <name identifier="hasFocus" type="SimpleName"/>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="hasFocus" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="IntegerLiteralExpr" value="0"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="INT" typeB="PrimitiveType"/>
+                    <name identifier="traverse" type="SimpleName"/>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gameKeyCode" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="top" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="bottom" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="action" type="SimpleName"/>
+                            <type type="BOOLEAN" typeB="PrimitiveType"/>
+                        </parameter>
+                    </parameters>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

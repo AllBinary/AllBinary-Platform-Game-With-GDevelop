@@ -1,0 +1,417 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="app" type="Name">
+            <qualifier identifier="microemu" type="Name">
+                <qualifier identifier="org" type="Name"/>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content="  * AllBinary Open License Version 1  * Copyright (c) 2022 AllBinary  *   * By agreeing to this license you and any business entity you represent are  * legally bound to the AllBinary Open License Version 1 legal agreement.  *   * You may obtain the AllBinary Open License Version 1 legal agreement from  * AllBinary or the root directory of AllBinary's AllBinary Platform repository.  *   * Created By: Travis Berthelot  *   " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="ByteOrder" type="Name">
+                <qualifier identifier="nio" type="Name">
+                    <qualifier identifier="java" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="OpenGLESGraphicsCompositeFactory" type="Name">
+                <qualifier identifier="device" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Features" type="Name">
+                <qualifier identifier="feature" type="Name">
+                    <qualifier identifier="configuration" type="Name">
+                        <qualifier identifier="game" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDGameThreedJ2SEWithSWTJOGLEarlyResourceInitialization" type="Name">
+                <qualifier identifier="resource" type="Name">
+                    <qualifier identifier="gd" type="Name">
+                        <qualifier identifier="game" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDThreedEarlyResourceInitializationFactory" type="Name">
+                <qualifier identifier="resource" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="OpenGLFeatureFactory" type="Name">
+                <qualifier identifier="opengles" type="Name">
+                    <qualifier identifier="graphics" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="LogFactory" type="Name">
+                <qualifier identifier="log" type="Name">
+                    <qualifier identifier="communication" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="LogUtil" type="Name">
+                <qualifier identifier="log" type="Name">
+                    <qualifier identifier="communication" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="CommonStrings" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="PlatformOpenGLESGraphicsFactory" type="Name">
+                <qualifier identifier="device" type="Name">
+                    <qualifier identifier="opengles" type="Name">
+                        <qualifier identifier="microemu" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="NativeBareMain" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <members>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="IfStmt">
+                                <condition operator="EQUALS" type="BinaryExpr">
+                                    <left type="MethodCallExpr">
+                                        <name identifier="nativeOrder" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="ByteOrder" type="SimpleName"/>
+                                        </scope>
+                                    </left>
+                                    <right type="FieldAccessExpr">
+                                        <name identifier="BIG_ENDIAN" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="ByteOrder" type="SimpleName"/>
+                                        </scope>
+                                    </right>
+                                </condition>
+                                <elseStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="println" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="out" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="System" type="SimpleName"/>
+                                                    </scope>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="StringLiteralExpr" value="ByteOrder:LITTLE_ENDIAN"/>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="println" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="out" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="System" type="SimpleName"/>
+                                                    </scope>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="StringLiteralExpr" value="ByteOrder:BIG_ENDIAN"/>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="Features" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="features" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="Features" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="OpenGLFeatureFactory" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="openGLFeatureFactory" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="OpenGLFeatureFactory" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="TryStmt">
+                                <tryBlock type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="addDefault" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="features" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="OPENGL_2D_AND_3D" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="openGLFeatureFactory" type="SimpleName"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                            <comment content="features.addDefault(openGLFeatureFactory.OPENGL_2D);" type="LineComment"/>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="set" type="SimpleName"/>
+                                                <scope type="MethodCallExpr">
+                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="OpenGLESGraphicsCompositeFactory" type="SimpleName"/>
+                                                    </scope>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="ObjectCreationExpr">
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="PlatformOpenGLESGraphicsFactory" type="SimpleName"/>
+                                                        </type>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                            <comment content="features.addDefault(openGLFeatureFactory.OPENGL_SIMPLE_TEXTURE_PROCESSOR);" type="LineComment"/>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="add" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="list" type="SimpleName"/>
+                                                    <scope type="MethodCallExpr">
+                                                        <name identifier="getInstance" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="GDThreedEarlyResourceInitializationFactory" type="SimpleName"/>
+                                                        </scope>
+                                                    </scope>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="ObjectCreationExpr">
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="GDGameThreedJ2SEWithSWTJOGLEarlyResourceInitialization" type="SimpleName"/>
+                                                        </type>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                            <comment content="OpenGLESGraphicsFactory.getInstance().set(new PlatformDisplayMin3dGraphicsFactory());" type="LineComment"/>
+                                        </statement>
+                                    </statements>
+                                </tryBlock>
+                                <catchClauses>
+                                    <catchClause type="CatchClause">
+                                        <body type="BlockStmt">
+                                            <statements>
+                                                <statement type="ExpressionStmt">
+                                                    <expression type="VariableDeclarationExpr">
+                                                        <modifiers>
+                                                            <modifier keyword="FINAL" type="Modifier"/>
+                                                        </modifiers>
+                                                        <variables>
+                                                            <variable type="VariableDeclarator">
+                                                                <initializer type="MethodCallExpr">
+                                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="LogUtil" type="SimpleName"/>
+                                                                    </scope>
+                                                                </initializer>
+                                                                <name identifier="logUtil" type="SimpleName"/>
+                                                                <type type="ClassOrInterfaceType">
+                                                                    <name identifier="LogUtil" type="SimpleName"/>
+                                                                </type>
+                                                            </variable>
+                                                        </variables>
+                                                    </expression>
+                                                </statement>
+                                                <statement type="ExpressionStmt">
+                                                    <expression type="VariableDeclarationExpr">
+                                                        <modifiers>
+                                                            <modifier keyword="FINAL" type="Modifier"/>
+                                                        </modifiers>
+                                                        <variables>
+                                                            <variable type="VariableDeclarator">
+                                                                <initializer type="MethodCallExpr">
+                                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="CommonStrings" type="SimpleName"/>
+                                                                    </scope>
+                                                                </initializer>
+                                                                <name identifier="commonStrings" type="SimpleName"/>
+                                                                <type type="ClassOrInterfaceType">
+                                                                    <name identifier="CommonStrings" type="SimpleName"/>
+                                                                </type>
+                                                            </variable>
+                                                        </variables>
+                                                    </expression>
+                                                </statement>
+                                                <statement type="ExpressionStmt">
+                                                    <expression type="MethodCallExpr">
+                                                        <name identifier="put" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="logUtil" type="SimpleName"/>
+                                                        </scope>
+                                                        <arguments>
+                                                            <argument type="FieldAccessExpr">
+                                                                <name identifier="EXCEPTION" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="commonStrings" type="SimpleName"/>
+                                                                </scope>
+                                                            </argument>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="features" type="SimpleName"/>
+                                                            </argument>
+                                                            <argument type="FieldAccessExpr">
+                                                                <name identifier="PROCESS" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="commonStrings" type="SimpleName"/>
+                                                                </scope>
+                                                            </argument>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="e" type="SimpleName"/>
+                                                            </argument>
+                                                        </arguments>
+                                                    </expression>
+                                                </statement>
+                                            </statements>
+                                        </body>
+                                        <parameter isVarArgs="false" type="Parameter">
+                                            <name identifier="e" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="Exception" type="SimpleName"/>
+                                            </type>
+                                        </parameter>
+                                    </catchClause>
+                                </catchClauses>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="main2" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="BareMain" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="args" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="StringLiteralExpr" value="GDGame"/>
+                                        <argument type="StringLiteralExpr" value="/gd_icon.ico"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="main" type="SimpleName"/>
+                    <comment content="protected final LogUtil logUtil = LogUtil.getInstance();" type="LineComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="args" type="SimpleName"/>
+                            <type origin="NAME" type="ArrayType">
+                                <componentType type="ClassOrInterfaceType">
+                                    <name identifier="String" type="SimpleName"/>
+                                </componentType>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

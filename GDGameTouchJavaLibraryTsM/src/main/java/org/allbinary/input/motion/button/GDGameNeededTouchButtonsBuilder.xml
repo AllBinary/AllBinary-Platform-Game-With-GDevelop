@@ -1,0 +1,139 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="button" type="Name">
+            <qualifier identifier="motion" type="Name">
+                <qualifier identifier="input" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content=" * AllBinary Open License Version 1 * Copyright (c) 2011 AllBinary *  * By agreeing to this license you and any business entity you represent are * legally bound to the AllBinary Open License Version 1 legal agreement. *  * You may obtain the AllBinary Open License Version 1 legal agreement from * AllBinary or the root directory of AllBinary's AllBinary Platform repository. *  * Created By: Travis Berthelot *  " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TouchScreenFactory" type="Name">
+                <qualifier identifier="button" type="Name">
+                    <qualifier identifier="motion" type="Name">
+                        <qualifier identifier="input" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BaseTouchInput" type="Name">
+                <qualifier identifier="button" type="Name">
+                    <qualifier identifier="motion" type="Name">
+                        <qualifier identifier="input" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="SensorGameUpdateProcessor" type="Name">
+                <qualifier identifier="gyro" type="Name">
+                    <qualifier identifier="input" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDGameNeededTouchButtonsBuilder" type="SimpleName"/>
+            <members>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="IfStmt">
+                                <condition type="MethodCallExpr">
+                                    <name identifier="isAnySensor" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="sensorGameUpdateProcessor" type="SimpleName"/>
+                                    </scope>
+                                </condition>
+                                <elseStmt type="IfStmt">
+                                    <condition type="MethodCallExpr">
+                                        <name identifier="isMultiTouch" type="SimpleName"/>
+                                        <scope type="MethodCallExpr">
+                                            <name identifier="getInstance" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="TouchScreenFactory" type="SimpleName"/>
+                                            </scope>
+                                        </scope>
+                                    </condition>
+                                    <elseStmt type="BlockStmt">
+                                        <comment content="It would be better to find out if a keyboard is available to turn off the buttons." type="LineComment"/>
+                                        <statements>
+                                            <statement type="ReturnStmt">
+                                                <expression type="ObjectCreationExpr">
+                                                    <type type="ClassOrInterfaceType">
+                                                        <name identifier="GDGameNeededMultiTouchButtonsBuilder" type="SimpleName"/>
+                                                    </type>
+                                                </expression>
+                                            </statement>
+                                        </statements>
+                                    </elseStmt>
+                                    <thenStmt type="BlockStmt">
+                                        <statements>
+                                            <statement type="ReturnStmt">
+                                                <expression type="ObjectCreationExpr">
+                                                    <type type="ClassOrInterfaceType">
+                                                        <name identifier="GDGameNeededMultiTouchButtonsBuilder" type="SimpleName"/>
+                                                    </type>
+                                                </expression>
+                                            </statement>
+                                        </statements>
+                                    </thenStmt>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ReturnStmt">
+                                            <expression type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="GDGameNeededWithSensorTouchButtonsBuilder" type="SimpleName"/>
+                                                </type>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="ClassOrInterfaceType">
+                        <name identifier="BaseTouchInput" type="SimpleName"/>
+                    </type>
+                    <name identifier="getInstance" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="sensorGameUpdateProcessor" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="SensorGameUpdateProcessor" type="SimpleName"/>
+                            </type>
+                        </parameter>
+                    </parameters>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

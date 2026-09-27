@@ -1,0 +1,114 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="game" type="Name">
+            <qualifier identifier="allbinary" type="Name">
+                <qualifier identifier="org" type="Name"/>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AllBinarySceneController" type="Name">
+                <qualifier identifier="min3d" type="Name">
+                    <qualifier identifier="threed" type="Name">
+                        <qualifier identifier="graphics" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDGameSceneController" type="Name">
+                <qualifier identifier="min3d" type="Name">
+                    <qualifier identifier="threed" type="Name">
+                        <qualifier identifier="graphics" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="CommonStrings" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="PreLogUtil" type="Name">
+                <qualifier identifier="log" type="Name">
+                    <qualifier identifier="communication" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDGameAllBinarySceneControllerFactory" type="SimpleName"/>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="ObjectCreationExpr">
+                                <type type="ClassOrInterfaceType">
+                                    <name identifier="GDGameSceneController" type="SimpleName"/>
+                                </type>
+                            </initializer>
+                            <name identifier="instance" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="AllBinarySceneController" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="FieldAccessExpr">
+                                    <name identifier="instance" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="GDGameAllBinarySceneControllerFactory" type="SimpleName"/>
+                                    </scope>
+                                </expression>
+                                <comment content="PreLogUtil.put(commonStrings.START, instance, commonStrings.CONSTRUCTOR, new Exception());" type="LineComment"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="ClassOrInterfaceType">
+                        <name identifier="AllBinarySceneController" type="SimpleName"/>
+                    </type>
+                    <name identifier="getInstance" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

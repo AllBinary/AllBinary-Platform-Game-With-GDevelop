@@ -1,0 +1,490 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="form" type="Name">
+            <qualifier identifier="layer" type="Name">
+                <qualifier identifier="game" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content="  * AllBinary Open License Version 1  * Copyright (c) 2022 AllBinary  *  * By agreeing to this license you and any business entity you represent are  * legally bound to the AllBinary Open License Version 1 legal agreement.  *  * You may obtain the AllBinary Open License Version 1 legal agreement from  * AllBinary or the root directory of AllBinary's AllBinary Platform repository.  *  * Created By: Travis Berthelot  *  " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="KeyInterface" type="Name">
+                <qualifier identifier="input" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="DownGameKeyEventListenerInterface" type="Name">
+                <qualifier identifier="event" type="Name">
+                    <qualifier identifier="input" type="Name">
+                        <qualifier identifier="game" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="DownKeyEventListenerInterface" type="Name">
+                <qualifier identifier="event" type="Name">
+                    <qualifier identifier="input" type="Name">
+                        <qualifier identifier="game" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GameKeyEvent" type="Name">
+                <qualifier identifier="event" type="Name">
+                    <qualifier identifier="input" type="Name">
+                        <qualifier identifier="game" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GameKeyEventListenerInterface" type="Name">
+                <qualifier identifier="event" type="Name">
+                    <qualifier identifier="input" type="Name">
+                        <qualifier identifier="game" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="RawKeyEventListener" type="Name">
+                <qualifier identifier="event" type="Name">
+                    <qualifier identifier="input" type="Name">
+                        <qualifier identifier="game" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="UpGameKeyEventListenerInterface" type="Name">
+                <qualifier identifier="event" type="Name">
+                    <qualifier identifier="input" type="Name">
+                        <qualifier identifier="game" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BaseMotionGestureEventListener" type="Name">
+                <qualifier identifier="observer" type="Name">
+                    <qualifier identifier="gesture" type="Name">
+                        <qualifier identifier="motion" type="Name">
+                            <qualifier identifier="input" type="Name">
+                                <qualifier identifier="allbinary" type="Name">
+                                    <qualifier identifier="org" type="Name"/>
+                                </qualifier>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="MotionGestureEvent" type="Name">
+                <qualifier identifier="observer" type="Name">
+                    <qualifier identifier="gesture" type="Name">
+                        <qualifier identifier="motion" type="Name">
+                            <qualifier identifier="input" type="Name">
+                                <qualifier identifier="allbinary" type="Name">
+                                    <qualifier identifier="org" type="Name"/>
+                                </qualifier>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AllBinaryEventObject" type="Name">
+                <qualifier identifier="event" type="Name">
+                    <qualifier identifier="util" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDFormInput" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <implementedTypes>
+                <implementedType type="ClassOrInterfaceType">
+                    <name identifier="KeyInterface" type="SimpleName"/>
+                    <comment content=", UpGameKeyEventListenerInterface, GameKeyEventListenerInterface" type="LineComment"/>
+                </implementedType>
+                <implementedType type="ClassOrInterfaceType">
+                    <name identifier="DownGameKeyEventListenerInterface" type="SimpleName"/>
+                    <comment content=", UpGameKeyEventListenerInterface, GameKeyEventListenerInterface" type="LineComment"/>
+                </implementedType>
+                <implementedType type="ClassOrInterfaceType">
+                    <name identifier="BaseMotionGestureEventListener" type="SimpleName"/>
+                    <comment content=", UpGameKeyEventListenerInterface, GameKeyEventListenerInterface" type="LineComment"/>
+                </implementedType>
+                <implementedType type="ClassOrInterfaceType">
+                    <name identifier="RawKeyEventListener" type="SimpleName"/>
+                    <comment content=", UpGameKeyEventListenerInterface, GameKeyEventListenerInterface" type="LineComment"/>
+                </implementedType>
+                <implementedType type="ClassOrInterfaceType">
+                    <name identifier="DownKeyEventListenerInterface" type="SimpleName"/>
+                    <comment content=", UpGameKeyEventListenerInterface, GameKeyEventListenerInterface" type="LineComment"/>
+                </implementedType>
+            </implementedTypes>
+            <members>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="onEventRaw" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="keyCode" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="deviceId" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="repeated" type="SimpleName"/>
+                            <type type="BOOLEAN" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="onEvent" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="eventObject" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="AllBinaryEventObject" type="SimpleName"/>
+                            </type>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="onPressGameKeyEvent" type="SimpleName"/>
+                    <comment content="@Override" type="LineComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gameKeyEvent" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GameKeyEvent" type="SimpleName"/>
+                            </type>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="onDownGameKeyEvent" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gameKeyEvent" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GameKeyEvent" type="SimpleName"/>
+                            </type>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="onDownKeyEvent" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="keyInteger" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GameKeyEvent" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="onDownKey" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="keyInteger" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="Integer" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="onUpGameKeyEvent" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gameKeyEvent" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GameKeyEvent" type="SimpleName"/>
+                            </type>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="onMotionGestureEvent" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="motionGestureEvent" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="MotionGestureEvent" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="onScrolledMotionGestureEvent" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="motionGestureEvent" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="MotionGestureEvent" type="SimpleName"/>
+                            </type>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="keyPressed" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="keyCode" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="keyReleased" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="keyCode" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="keyPressedByDevice" type="SimpleName"/>
+                    <comment content="    }" type="LineComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="keyCode" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="deviceId" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="keyReleasedByDevice" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="keyCode" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="deviceId" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="reset" type="SimpleName"/>
+                    <comment content="@Override" type="LineComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

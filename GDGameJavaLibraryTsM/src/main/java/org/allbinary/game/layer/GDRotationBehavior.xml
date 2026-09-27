@@ -1,0 +1,937 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="layer" type="Name">
+            <qualifier identifier="game" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content="  * AllBinary Open License Version 1  * Copyright (c) 2022 AllBinary  *   * By agreeing to this license you and any business entity you represent are  * legally bound to the AllBinary Open License Version 1 legal agreement.  *   * You may obtain the AllBinary Open License Version 1 legal agreement from  * AllBinary or the root directory of AllBinary's AllBinary Platform repository.  *   * Created By: Travis Berthelot  *   " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AnimationInterfaceFactoryInterface" type="Name">
+                <qualifier identifier="animation" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="IndexedAnimation" type="Name">
+                <qualifier identifier="animation" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="RotationAnimation" type="Name">
+                <qualifier identifier="animation" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDObject" type="Name">
+                <qualifier identifier="layout" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GraphicsStrings" type="Name">
+                <qualifier identifier="graphics" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="CommonStrings" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="StringMaker" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="logic" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="LogUtil" type="Name">
+                <qualifier identifier="log" type="Name">
+                    <qualifier identifier="communication" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="FrameUtil" type="Name">
+                <qualifier identifier="math" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDRotationBehavior" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <extendedTypes>
+                <extendedType type="ClassOrInterfaceType">
+                    <name identifier="GDAnimationBehaviorBase" type="SimpleName"/>
+                </extendedType>
+            </extendedTypes>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="LogUtil" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="logUtil" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="LogUtil" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="FrameUtil" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="frameUtil" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="FrameUtil" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="rotationAnimationInterfaceArray" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="ClassOrInterfaceType">
+                                    <name identifier="RotationAnimation" type="SimpleName"/>
+                                </componentType>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="FieldAccessExpr">
+                                                <name identifier="length" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="animationInterfaceFactoryInterfaceArray" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="size" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ArrayCreationExpr">
+                                                <elementType type="ClassOrInterfaceType">
+                                                    <name identifier="RotationAnimation" type="SimpleName"/>
+                                                </elementType>
+                                                <levels>
+                                                    <level type="ArrayCreationLevel">
+                                                        <dimension type="NameExpr">
+                                                            <name identifier="size" type="SimpleName"/>
+                                                        </dimension>
+                                                    </level>
+                                                </levels>
+                                            </initializer>
+                                            <name identifier="initIndexedAnimationInterfaceArray" type="SimpleName"/>
+                                            <type origin="TYPE" type="ArrayType">
+                                                <componentType type="ClassOrInterfaceType">
+                                                    <name identifier="RotationAnimation" type="SimpleName"/>
+                                                </componentType>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ForStmt">
+                                <body type="BlockStmt">
+                                    <statements>
+                                        <statement type="TryStmt">
+                                            <tryBlock type="BlockStmt">
+                                                <statements>
+                                                    <statement type="ExpressionStmt">
+                                                        <expression operator="ASSIGN" type="AssignExpr">
+                                                            <target type="ArrayAccessExpr">
+                                                                <index type="NameExpr">
+                                                                    <name identifier="index" type="SimpleName"/>
+                                                                </index>
+                                                                <name type="NameExpr">
+                                                                    <name identifier="initIndexedAnimationInterfaceArray" type="SimpleName"/>
+                                                                </name>
+                                                            </target>
+                                                            <value type="CastExpr">
+                                                                <expression type="MethodCallExpr">
+                                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                                    <scope type="ArrayAccessExpr">
+                                                                        <index type="NameExpr">
+                                                                            <name identifier="index" type="SimpleName"/>
+                                                                        </index>
+                                                                        <name type="NameExpr">
+                                                                            <name identifier="animationInterfaceFactoryInterfaceArray" type="SimpleName"/>
+                                                                        </name>
+                                                                    </scope>
+                                                                    <arguments>
+                                                                        <argument type="IntegerLiteralExpr" value="0"/>
+                                                                    </arguments>
+                                                                </expression>
+                                                                <type type="ClassOrInterfaceType">
+                                                                    <name identifier="RotationAnimation" type="SimpleName"/>
+                                                                </type>
+                                                            </value>
+                                                        </expression>
+                                                    </statement>
+                                                </statements>
+                                            </tryBlock>
+                                            <catchClauses>
+                                                <catchClause type="CatchClause">
+                                                    <body type="BlockStmt">
+                                                        <statements>
+                                                            <statement type="ExpressionStmt">
+                                                                <expression type="VariableDeclarationExpr">
+                                                                    <modifiers>
+                                                                        <modifier keyword="FINAL" type="Modifier"/>
+                                                                    </modifiers>
+                                                                    <variables>
+                                                                        <variable type="VariableDeclarator">
+                                                                            <initializer type="MethodCallExpr">
+                                                                                <name identifier="getInstance" type="SimpleName"/>
+                                                                                <scope type="NameExpr">
+                                                                                    <name identifier="CommonStrings" type="SimpleName"/>
+                                                                                </scope>
+                                                                            </initializer>
+                                                                            <name identifier="commonStrings" type="SimpleName"/>
+                                                                            <type type="ClassOrInterfaceType">
+                                                                                <name identifier="CommonStrings" type="SimpleName"/>
+                                                                            </type>
+                                                                        </variable>
+                                                                    </variables>
+                                                                </expression>
+                                                                <comment content="stringMaker.toString()" type="LineComment"/>
+                                                            </statement>
+                                                            <statement type="ExpressionStmt">
+                                                                <expression type="MethodCallExpr">
+                                                                    <name identifier="put" type="SimpleName"/>
+                                                                    <scope type="FieldAccessExpr">
+                                                                        <name identifier="logUtil" type="SimpleName"/>
+                                                                        <scope type="ThisExpr"/>
+                                                                    </scope>
+                                                                    <arguments>
+                                                                        <argument type="MethodCallExpr">
+                                                                            <name identifier="toString" type="SimpleName"/>
+                                                                            <scope type="MethodCallExpr">
+                                                                                <name identifier="appendint" type="SimpleName"/>
+                                                                                <scope type="MethodCallExpr">
+                                                                                    <name identifier="append" type="SimpleName"/>
+                                                                                    <scope type="MethodCallExpr">
+                                                                                        <name identifier="append" type="SimpleName"/>
+                                                                                        <scope type="ObjectCreationExpr">
+                                                                                            <type type="ClassOrInterfaceType">
+                                                                                                <name identifier="StringMaker" type="SimpleName"/>
+                                                                                            </type>
+                                                                                        </scope>
+                                                                                        <arguments>
+                                                                                            <argument type="MethodCallExpr">
+                                                                                                <name identifier="toString" type="SimpleName"/>
+                                                                                                <scope type="ArrayAccessExpr">
+                                                                                                    <index type="NameExpr">
+                                                                                                        <name identifier="index" type="SimpleName"/>
+                                                                                                    </index>
+                                                                                                    <name type="NameExpr">
+                                                                                                        <name identifier="animationInterfaceFactoryInterfaceArray" type="SimpleName"/>
+                                                                                                    </name>
+                                                                                                </scope>
+                                                                                            </argument>
+                                                                                        </arguments>
+                                                                                    </scope>
+                                                                                    <arguments>
+                                                                                        <argument type="StringLiteralExpr" value=" index: "/>
+                                                                                    </arguments>
+                                                                                </scope>
+                                                                                <arguments>
+                                                                                    <argument type="NameExpr">
+                                                                                        <name identifier="index" type="SimpleName"/>
+                                                                                    </argument>
+                                                                                </arguments>
+                                                                            </scope>
+                                                                        </argument>
+                                                                        <argument type="ThisExpr"/>
+                                                                        <argument type="FieldAccessExpr">
+                                                                            <name identifier="CONSTRUCTOR" type="SimpleName"/>
+                                                                            <scope type="NameExpr">
+                                                                                <name identifier="commonStrings" type="SimpleName"/>
+                                                                            </scope>
+                                                                        </argument>
+                                                                        <argument type="NameExpr">
+                                                                            <name identifier="e" type="SimpleName"/>
+                                                                        </argument>
+                                                                    </arguments>
+                                                                </expression>
+                                                            </statement>
+                                                            <statement type="ExpressionStmt">
+                                                                <expression type="MethodCallExpr">
+                                                                    <name identifier="put" type="SimpleName"/>
+                                                                    <scope type="FieldAccessExpr">
+                                                                        <name identifier="logUtil" type="SimpleName"/>
+                                                                        <scope type="ThisExpr"/>
+                                                                    </scope>
+                                                                    <arguments>
+                                                                        <argument type="MethodCallExpr">
+                                                                            <name identifier="toString" type="SimpleName"/>
+                                                                            <scope type="NameExpr">
+                                                                                <name identifier="gdObject" type="SimpleName"/>
+                                                                            </scope>
+                                                                        </argument>
+                                                                        <argument type="ThisExpr"/>
+                                                                        <argument type="FieldAccessExpr">
+                                                                            <name identifier="CONSTRUCTOR" type="SimpleName"/>
+                                                                            <scope type="NameExpr">
+                                                                                <name identifier="commonStrings" type="SimpleName"/>
+                                                                            </scope>
+                                                                        </argument>
+                                                                        <argument type="NameExpr">
+                                                                            <name identifier="e" type="SimpleName"/>
+                                                                        </argument>
+                                                                    </arguments>
+                                                                </expression>
+                                                            </statement>
+                                                        </statements>
+                                                    </body>
+                                                    <parameter isVarArgs="false" type="Parameter">
+                                                        <name identifier="e" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="Exception" type="SimpleName"/>
+                                                        </type>
+                                                    </parameter>
+                                                </catchClause>
+                                            </catchClauses>
+                                        </statement>
+                                    </statements>
+                                </body>
+                                <compare operator="LESS" type="BinaryExpr">
+                                    <left type="NameExpr">
+                                        <name identifier="index" type="SimpleName"/>
+                                    </left>
+                                    <right type="NameExpr">
+                                        <name identifier="size" type="SimpleName"/>
+                                    </right>
+                                </compare>
+                                <initialization>
+                                    <initializatio type="VariableDeclarationExpr">
+                                        <variables>
+                                            <variable type="VariableDeclarator">
+                                                <initializer type="IntegerLiteralExpr" value="0"/>
+                                                <name identifier="index" type="SimpleName"/>
+                                                <type type="INT" typeB="PrimitiveType"/>
+                                            </variable>
+                                        </variables>
+                                    </initializatio>
+                                </initialization>
+                                <update>
+                                    <updat operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                        <expression type="NameExpr">
+                                            <name identifier="index" type="SimpleName"/>
+                                        </expression>
+                                    </updat>
+                                </update>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="rotationAnimationInterfaceArray" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="NameExpr">
+                                        <name identifier="initIndexedAnimationInterfaceArray" type="SimpleName"/>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ReturnStmt">
+                                <expression type="NameExpr">
+                                    <name identifier="initIndexedAnimationInterfaceArray" type="SimpleName"/>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type origin="TYPE" type="ArrayType">
+                        <componentType type="ClassOrInterfaceType">
+                            <name identifier="IndexedAnimation" type="SimpleName"/>
+                        </componentType>
+                    </type>
+                    <name identifier="init" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gdObject" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDObject" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="animationInterfaceFactoryInterfaceArray" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="ClassOrInterfaceType">
+                                    <name identifier="AnimationInterfaceFactoryInterface" type="SimpleName"/>
+                                </componentType>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="rotationAnimationInterfaceArray" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="CastExpr">
+                                        <expression type="NameExpr">
+                                            <name identifier="rotationAnimationInterfaceArray" type="SimpleName"/>
+                                        </expression>
+                                        <type origin="TYPE" type="ArrayType">
+                                            <componentType type="ClassOrInterfaceType">
+                                                <name identifier="RotationAnimation" type="SimpleName"/>
+                                            </componentType>
+                                        </type>
+                                    </value>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="setAnimationArray" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="rotationAnimationInterfaceArray" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="ClassOrInterfaceType">
+                                    <name identifier="IndexedAnimation" type="SimpleName"/>
+                                </componentType>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="FieldAccessExpr">
+                                    <name identifier="rotationAnimationInterfaceArray" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type origin="TYPE" type="ArrayType">
+                        <componentType type="ClassOrInterfaceType">
+                            <name identifier="RotationAnimation" type="SimpleName"/>
+                        </componentType>
+                    </type>
+                    <name identifier="getRotationAnimationInterfaceArray" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="FieldAccessExpr">
+                                                <name identifier="length" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="rotationAnimationInterfaceArray" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="size" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ForStmt">
+                                <body type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="setFrame" type="SimpleName"/>
+                                                <scope type="ArrayAccessExpr">
+                                                    <index type="NameExpr">
+                                                        <name identifier="index" type="SimpleName"/>
+                                                    </index>
+                                                    <name type="FieldAccessExpr">
+                                                        <name identifier="rotationAnimationInterfaceArray" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </name>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="MethodCallExpr">
+                                                        <name identifier="getFrameForAngle" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="frameUtil" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                        <arguments>
+                                                            <argument type="CastExpr">
+                                                                <expression type="IntegerLiteralExpr" value="0"/>
+                                                                <type type="SHORT" typeB="PrimitiveType"/>
+                                                            </argument>
+                                                            <argument type="IntegerLiteralExpr" value="1"/>
+                                                        </arguments>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </body>
+                                <compare operator="LESS" type="BinaryExpr">
+                                    <left type="NameExpr">
+                                        <name identifier="index" type="SimpleName"/>
+                                    </left>
+                                    <right type="NameExpr">
+                                        <name identifier="size" type="SimpleName"/>
+                                    </right>
+                                </compare>
+                                <initialization>
+                                    <initializatio type="VariableDeclarationExpr">
+                                        <variables>
+                                            <variable type="VariableDeclarator">
+                                                <initializer type="IntegerLiteralExpr" value="0"/>
+                                                <name identifier="index" type="SimpleName"/>
+                                                <type type="INT" typeB="PrimitiveType"/>
+                                            </variable>
+                                        </variables>
+                                    </initializatio>
+                                </initialization>
+                                <update>
+                                    <updat operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                        <expression type="NameExpr">
+                                            <name identifier="index" type="SimpleName"/>
+                                        </expression>
+                                    </updat>
+                                </update>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="set" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gameLayer" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDGameLayer" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gdObject" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDObject" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="FieldAccessExpr">
+                                                <name identifier="gdObject" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gameLayer" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="gdObject" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GDObject" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <name identifier="rotationAnimation" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="RotationAnimation" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="NameExpr">
+                                        <name identifier="rotationAnimation" type="SimpleName"/>
+                                    </target>
+                                    <value type="ArrayAccessExpr">
+                                        <index type="FieldAccessExpr">
+                                            <name identifier="animation" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="gdObject" type="SimpleName"/>
+                                            </scope>
+                                        </index>
+                                        <name type="FieldAccessExpr">
+                                            <name identifier="rotationAnimationInterfaceArray" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </name>
+                                    </value>
+                                </expression>
+                                <comment content="logUtil.putF(new StringMaker().append(gameLayer.getName()).append(&quot; GDObject name: &quot;).append(gdObject.name).append(&quot; angleAdjustment: &quot;).appendshort(angleAdjustment).toString(), this, &quot;setRotation&quot;);" type="LineComment"/>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition operator="GREATER" type="BinaryExpr">
+                                    <left type="NameExpr">
+                                        <name identifier="angleAdjustment" type="SimpleName"/>
+                                    </left>
+                                    <right type="IntegerLiteralExpr" value="0"/>
+                                </condition>
+                                <elseStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="NameExpr">
+                                                            <name identifier="angleAdjustment" type="SimpleName"/>
+                                                        </initializer>
+                                                        <name identifier="value" type="SimpleName"/>
+                                                        <type type="SHORT" typeB="PrimitiveType"/>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="WhileStmt">
+                                            <body type="BlockStmt">
+                                                <statements>
+                                                    <statement type="ExpressionStmt">
+                                                        <expression type="MethodCallExpr">
+                                                            <name identifier="previousRotation" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="rotationAnimation" type="SimpleName"/>
+                                                            </scope>
+                                                        </expression>
+                                                    </statement>
+                                                    <statement type="ExpressionStmt">
+                                                        <expression operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                                            <expression type="NameExpr">
+                                                                <name identifier="value" type="SimpleName"/>
+                                                            </expression>
+                                                        </expression>
+                                                    </statement>
+                                                </statements>
+                                            </body>
+                                            <condition operator="LESS" type="BinaryExpr">
+                                                <left type="NameExpr">
+                                                    <name identifier="value" type="SimpleName"/>
+                                                </left>
+                                                <right type="IntegerLiteralExpr" value="0"/>
+                                            </condition>
+                                        </statement>
+                                    </statements>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="NameExpr">
+                                                            <name identifier="angleAdjustment" type="SimpleName"/>
+                                                        </initializer>
+                                                        <name identifier="value" type="SimpleName"/>
+                                                        <type type="SHORT" typeB="PrimitiveType"/>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="WhileStmt">
+                                            <body type="BlockStmt">
+                                                <statements>
+                                                    <statement type="ExpressionStmt">
+                                                        <expression type="MethodCallExpr">
+                                                            <name identifier="nextRotation" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="rotationAnimation" type="SimpleName"/>
+                                                            </scope>
+                                                        </expression>
+                                                    </statement>
+                                                    <statement type="ExpressionStmt">
+                                                        <expression operator="POSTFIX_DECREMENT" type="UnaryExpr">
+                                                            <expression type="NameExpr">
+                                                                <name identifier="value" type="SimpleName"/>
+                                                            </expression>
+                                                        </expression>
+                                                    </statement>
+                                                </statements>
+                                            </body>
+                                            <condition operator="GREATER" type="BinaryExpr">
+                                                <left type="NameExpr">
+                                                    <name identifier="value" type="SimpleName"/>
+                                                </left>
+                                                <right type="IntegerLiteralExpr" value="0"/>
+                                            </condition>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="setRotation" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gameLayer" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDGameLayer" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="angleAdjustment" type="SimpleName"/>
+                            <type type="SHORT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ArrayAccessExpr">
+                                                <index type="FieldAccessExpr">
+                                                    <name identifier="animation" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="gdObject" type="SimpleName"/>
+                                                    </scope>
+                                                </index>
+                                                <name type="FieldAccessExpr">
+                                                    <name identifier="rotationAnimationInterfaceArray" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </name>
+                                            </initializer>
+                                            <name identifier="rotationAnimation" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="RotationAnimation" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="appendint" type="SimpleName"/>
+                                    <scope type="MethodCallExpr">
+                                        <name identifier="append" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="stringBuffer" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="ANGLE" type="SimpleName"/>
+                                                <scope type="MethodCallExpr">
+                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="GraphicsStrings" type="SimpleName"/>
+                                                    </scope>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="MethodCallExpr">
+                                            <name identifier="getAngle" type="SimpleName"/>
+                                            <scope type="MethodCallExpr">
+                                                <name identifier="getAngleInfoP" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="rotationAnimation" type="SimpleName"/>
+                                                </scope>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="toString" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gdObject" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDObject" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="stringBuffer" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="StringMaker" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

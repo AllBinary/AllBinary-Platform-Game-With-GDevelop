@@ -1,0 +1,149 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="init" type="Name">
+            <qualifier identifier="game" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content=" * AllBinary Open License Version 1 * Copyright (c) 2011 AllBinary *  * By agreeing to this license you and any business entity you represent are * legally bound to the AllBinary Open License Version 1 legal agreement. *  * You may obtain the AllBinary Open License Version 1 legal agreement from * AllBinary or the root directory of AllBinary's AllBinary Platform repository. *  * Created By: Travis Berthelot *  " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory" type="Name">
+                <qualifier identifier="image" type="Name">
+                    <qualifier identifier="animation" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDGameEarlyResourcesOpenGLESImageBasedAnimationInterfaceFactoryInterfaceFactory" type="Name">
+                <qualifier identifier="image" type="Name">
+                    <qualifier identifier="animation" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="FeaturedAnimationInterfaceFactoryInterfaceFactory" type="Name">
+                <qualifier identifier="animation" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="ResourceInitialization" type="Name">
+                <qualifier identifier="resource" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDGameJ2MEAnimationInterfaceFactoryEarlyResourceInitialization" type="SimpleName"/>
+            <extendedTypes>
+                <extendedType type="ClassOrInterfaceType">
+                    <name identifier="ResourceInitialization" type="SimpleName"/>
+                </extendedType>
+            </extendedTypes>
+            <members>
+                <member type="ConstructorDeclaration">
+                    <body type="BlockStmt"/>
+                    <name identifier="GDGameJ2MEAnimationInterfaceFactoryEarlyResourceInitialization" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="FeaturedAnimationInterfaceFactoryInterfaceFactory" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="featuredAnimationInterfaceFactoryInterfaceFactory" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="FeaturedAnimationInterfaceFactoryInterfaceFactory" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="featuredAnimationInterfaceFactoryInterfaceFactory" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="ObjectCreationExpr">
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory" type="SimpleName"/>
+                                            </type>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                                <comment content="Early Loading Here" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="featuredAnimationInterfaceFactoryInterfaceFactory" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="ObjectCreationExpr">
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GDGameEarlyResourcesOpenGLESImageBasedAnimationInterfaceFactoryInterfaceFactory" type="SimpleName"/>
+                                            </type>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="init" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

@@ -1,0 +1,49 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="form" type="Name">
+            <qualifier identifier="layer" type="Name">
+                <qualifier identifier="game" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDGameLayer" type="Name">
+                <qualifier identifier="layer" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="true" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDGameLayerItemStateListener" type="SimpleName"/>
+            <members>
+                <member type="MethodDeclaration">
+                    <type type="VoidType"/>
+                    <name identifier="itemStateChanged" type="SimpleName"/>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gameLayerAsItem" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDGameLayer" type="SimpleName"/>
+                            </type>
+                        </parameter>
+                    </parameters>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

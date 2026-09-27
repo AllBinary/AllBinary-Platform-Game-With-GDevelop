@@ -1,0 +1,2767 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="loader" type="Name">
+            <qualifier identifier="gdevelop" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content="  * AllBinary Open License Version 1  * Copyright (c) 2022 AllBinary  *   * By agreeing to this license you and any business entity you represent are  * legally bound to the AllBinary Open License Version 1 legal agreement.  *   * You may obtain the AllBinary Open License Version 1 legal agreement from  * AllBinary or the root directory of AllBinary's AllBinary Platform repository.  *   * Created By: Travis Berthelot  *   " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AbFile" type="Name">
+                <qualifier identifier="file" type="Name">
+                    <qualifier identifier="io" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="FileListFetcher" type="Name">
+                <qualifier identifier="file" type="Name">
+                    <qualifier identifier="io" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="CommonStrings" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="LogUtil" type="Name">
+                <qualifier identifier="log" type="Name">
+                    <qualifier identifier="communication" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="StringMaker" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="logic" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicArrayList" type="Name">
+                <qualifier identifier="util" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicArrayListD" type="Name">
+                <qualifier identifier="util" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDDelete" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="LogUtil" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="logUtil" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="LogUtil" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="CommonStrings" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="commonStrings" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="CommonStrings" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="GDToolStrings" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="gdToolStrings" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDToolStrings" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="StringMaker" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="stringMaker" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="StringMaker" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="size" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileBasicArrayList" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="size" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="size" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="exclusionList" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="size2" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <name identifier="exclusion" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="String" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <name identifier="abFile" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="AbFile" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ForStmt">
+                                <body type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="NameExpr">
+                                                    <name identifier="abFile" type="SimpleName"/>
+                                                </target>
+                                                <value type="EnclosedExpr">
+                                                    <inner type="CastExpr">
+                                                        <expression type="MethodCallExpr">
+                                                            <name identifier="get" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="fileBasicArrayList" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="NameExpr">
+                                                                    <name identifier="index" type="SimpleName"/>
+                                                                </argument>
+                                                            </arguments>
+                                                        </expression>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="AbFile" type="SimpleName"/>
+                                                        </type>
+                                                    </inner>
+                                                </value>
+                                            </expression>
+                                        </statement>
+                                        <statement type="IfStmt">
+                                            <condition operator="LOGICAL_COMPLEMENT" type="UnaryExpr">
+                                                <expression type="MethodCallExpr">
+                                                    <name identifier="isDirectory" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="abFile" type="SimpleName"/>
+                                                    </scope>
+                                                </expression>
+                                            </condition>
+                                            <thenStmt type="BlockStmt">
+                                                <statements>
+                                                    <statement type="ExpressionStmt">
+                                                        <expression type="VariableDeclarationExpr">
+                                                            <variables>
+                                                                <variable type="VariableDeclarator">
+                                                                    <initializer type="BooleanLiteralExpr" value="false"/>
+                                                                    <name identifier="exclude" type="SimpleName"/>
+                                                                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                                                                </variable>
+                                                            </variables>
+                                                        </expression>
+                                                    </statement>
+                                                    <statement type="ForStmt">
+                                                        <body type="BlockStmt">
+                                                            <statements>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression operator="ASSIGN" type="AssignExpr">
+                                                                        <target type="NameExpr">
+                                                                            <name identifier="exclusion" type="SimpleName"/>
+                                                                        </target>
+                                                                        <value type="CastExpr">
+                                                                            <expression type="MethodCallExpr">
+                                                                                <name identifier="get" type="SimpleName"/>
+                                                                                <scope type="NameExpr">
+                                                                                    <name identifier="exclusionList" type="SimpleName"/>
+                                                                                </scope>
+                                                                                <arguments>
+                                                                                    <argument type="NameExpr">
+                                                                                        <name identifier="index2" type="SimpleName"/>
+                                                                                    </argument>
+                                                                                </arguments>
+                                                                            </expression>
+                                                                            <type type="ClassOrInterfaceType">
+                                                                                <name identifier="String" type="SimpleName"/>
+                                                                            </type>
+                                                                        </value>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="IfStmt">
+                                                                    <condition operator="GREATER_EQUALS" type="BinaryExpr">
+                                                                        <left type="MethodCallExpr">
+                                                                            <name identifier="indexOf" type="SimpleName"/>
+                                                                            <scope type="MethodCallExpr">
+                                                                                <name identifier="getAbsolutePath" type="SimpleName"/>
+                                                                                <scope type="NameExpr">
+                                                                                    <name identifier="abFile" type="SimpleName"/>
+                                                                                </scope>
+                                                                            </scope>
+                                                                            <arguments>
+                                                                                <argument type="NameExpr">
+                                                                                    <name identifier="exclusion" type="SimpleName"/>
+                                                                                </argument>
+                                                                            </arguments>
+                                                                        </left>
+                                                                        <right type="IntegerLiteralExpr" value="0"/>
+                                                                    </condition>
+                                                                    <thenStmt type="BlockStmt">
+                                                                        <statements>
+                                                                            <statement type="ExpressionStmt">
+                                                                                <expression operator="ASSIGN" type="AssignExpr">
+                                                                                    <target type="NameExpr">
+                                                                                        <name identifier="exclude" type="SimpleName"/>
+                                                                                    </target>
+                                                                                    <value type="BooleanLiteralExpr" value="true"/>
+                                                                                </expression>
+                                                                            </statement>
+                                                                            <statement type="BreakStmt"/>
+                                                                        </statements>
+                                                                    </thenStmt>
+                                                                </statement>
+                                                            </statements>
+                                                        </body>
+                                                        <compare operator="LESS" type="BinaryExpr">
+                                                            <left type="NameExpr">
+                                                                <name identifier="index2" type="SimpleName"/>
+                                                            </left>
+                                                            <right type="NameExpr">
+                                                                <name identifier="size2" type="SimpleName"/>
+                                                            </right>
+                                                        </compare>
+                                                        <initialization>
+                                                            <initializatio type="VariableDeclarationExpr">
+                                                                <variables>
+                                                                    <variable type="VariableDeclarator">
+                                                                        <initializer type="IntegerLiteralExpr" value="0"/>
+                                                                        <name identifier="index2" type="SimpleName"/>
+                                                                        <type type="INT" typeB="PrimitiveType"/>
+                                                                    </variable>
+                                                                </variables>
+                                                            </initializatio>
+                                                        </initialization>
+                                                        <update>
+                                                            <updat operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                                                <expression type="NameExpr">
+                                                                    <name identifier="index2" type="SimpleName"/>
+                                                                </expression>
+                                                            </updat>
+                                                        </update>
+                                                    </statement>
+                                                    <statement type="IfStmt">
+                                                        <condition operator="LOGICAL_COMPLEMENT" type="UnaryExpr">
+                                                            <expression type="NameExpr">
+                                                                <name identifier="exclude" type="SimpleName"/>
+                                                            </expression>
+                                                        </condition>
+                                                        <thenStmt type="BlockStmt">
+                                                            <statements>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="delete" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="stringMaker" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="IntegerLiteralExpr" value="0"/>
+                                                                            <argument type="MethodCallExpr">
+                                                                                <name identifier="length" type="SimpleName"/>
+                                                                                <scope type="NameExpr">
+                                                                                    <name identifier="stringMaker" type="SimpleName"/>
+                                                                                </scope>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="putF" type="SimpleName"/>
+                                                                        <scope type="FieldAccessExpr">
+                                                                            <name identifier="logUtil" type="SimpleName"/>
+                                                                            <scope type="ThisExpr"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="MethodCallExpr">
+                                                                                <name identifier="toString" type="SimpleName"/>
+                                                                                <scope type="MethodCallExpr">
+                                                                                    <name identifier="append" type="SimpleName"/>
+                                                                                    <scope type="MethodCallExpr">
+                                                                                        <name identifier="append" type="SimpleName"/>
+                                                                                        <scope type="NameExpr">
+                                                                                            <name identifier="stringMaker" type="SimpleName"/>
+                                                                                        </scope>
+                                                                                        <arguments>
+                                                                                            <argument type="StringLiteralExpr" value="Deleting: "/>
+                                                                                        </arguments>
+                                                                                    </scope>
+                                                                                    <arguments>
+                                                                                        <argument type="MethodCallExpr">
+                                                                                            <name identifier="getAbsolutePath" type="SimpleName"/>
+                                                                                            <scope type="NameExpr">
+                                                                                                <name identifier="abFile" type="SimpleName"/>
+                                                                                            </scope>
+                                                                                        </argument>
+                                                                                    </arguments>
+                                                                                </scope>
+                                                                            </argument>
+                                                                            <argument type="ThisExpr"/>
+                                                                            <argument type="FieldAccessExpr">
+                                                                                <name identifier="PROCESS" type="SimpleName"/>
+                                                                                <scope type="FieldAccessExpr">
+                                                                                    <name identifier="commonStrings" type="SimpleName"/>
+                                                                                    <scope type="ThisExpr"/>
+                                                                                </scope>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="delete" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="abFile" type="SimpleName"/>
+                                                                        </scope>
+                                                                    </expression>
+                                                                </statement>
+                                                            </statements>
+                                                        </thenStmt>
+                                                    </statement>
+                                                </statements>
+                                            </thenStmt>
+                                        </statement>
+                                    </statements>
+                                </body>
+                                <compare operator="LESS" type="BinaryExpr">
+                                    <left type="NameExpr">
+                                        <name identifier="index" type="SimpleName"/>
+                                    </left>
+                                    <right type="NameExpr">
+                                        <name identifier="size" type="SimpleName"/>
+                                    </right>
+                                </compare>
+                                <initialization>
+                                    <initializatio type="VariableDeclarationExpr">
+                                        <variables>
+                                            <variable type="VariableDeclarator">
+                                                <initializer type="IntegerLiteralExpr" value="0"/>
+                                                <name identifier="index" type="SimpleName"/>
+                                                <type type="INT" typeB="PrimitiveType"/>
+                                            </variable>
+                                        </variables>
+                                    </initializatio>
+                                </initialization>
+                                <update>
+                                    <updat operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                        <expression type="NameExpr">
+                                            <name identifier="index" type="SimpleName"/>
+                                        </expression>
+                                    </updat>
+                                </update>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="process" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="fileBasicArrayList" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="BasicArrayList" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="exclusionList" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="BasicArrayList" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="GDPaths" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="gdPaths" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GDPaths" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="FileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="fileListFetcher" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="FileListFetcher" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="exclusionList0" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="GDGameGeneratedJavaLibraryM\\src\\main\\java"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="XML" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files0" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files0" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList0" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="exclusionList0b" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JSON" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files0b" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files0b" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList0b" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="exclusionList" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="TouchButtonAndroidResources.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="StartRunnable.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GeographicMapTopViewMaskGameLayerBehavior.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameInputProcessor.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameResourceInitialization.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGlobals.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="TempMovementBehaviorFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="TempNoMapMovementBehavior.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="TempMapMovementBehavior.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="TempMovementBehavior.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="GDGameGeneratedJavaLibraryM\\src\\main\\java"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="exclusionList2" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList2" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameGameCanvas.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList2" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameStartCanvas.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList2" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameSoftwareInfo.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList2" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDTiledLayerFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList2" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="PlacementAllBinaryJ2METiledLayer.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList2" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDTiledMapProperties"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="GDGameBaseJavaLibraryM\\src\\main\\java"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files2" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files2" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList2" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="exclusionList3" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList3" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameAllBinarySceneControllerFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList3" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameSoftwareInfo.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList3" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameTitleAnimationFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList3" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameResourceInitialization.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList3" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDThreedEarlyResourceInitializationFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList3" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameAllBinarySceneControllerFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList3" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameSceneController.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList3" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDCameraInputProcessor.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList3" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="RendererActivity.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList3" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="TitleThreedResources.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList3" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="TitleBasicArrayListData.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList3" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameCameraSetup.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList3" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameLevelBuilder.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList3" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDTiledLayerFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList3" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="PlacementAllBinaryJ2METiledLayer.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList3" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDTiledMapProperties"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList3" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="TitleVectorData.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="GDGameThreedBaseJavaLibraryM\\src\\main\\java"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files3" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files3" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList3" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="exclusionList3b" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList3b" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="PlatformAssetManager.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files3b" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files3b" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList3b" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="exclusionList4" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList4" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameThreedLevelBuilder.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList4" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="AppRendererShaderUpdaterFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="GDGameThreedPreBaseJavaLibraryM\\src\\main\\java"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files4" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files4" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList4" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="exclusionList5" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="GDGamePreBaseJavaLibraryM\\src\\main\\java"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files5" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="exclusionList3.add(&quot;GDGameAllBinarySceneControllerFactory.java&quot;);" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files5" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList5" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="exclusionList20" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files20" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="exclusionList20.add(&quot;GDResources.java&quot;);" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files20" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList20" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="exclusionList21" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="\\GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files21" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="exclusionList21.add(&quot;GameSoundsFactory.java&quot;);" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files21" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList21" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="exclusionList6" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList6" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList6" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="resource\\GDGameOpenGLTwoDAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files6" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files6" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList6" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files6b" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files6b" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList6" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="exclusionList7" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList7" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList7" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="resource\\GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files7" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files7" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList7" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="resource\\GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files17" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files17" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList7" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="exclusionList8" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList8" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList8" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files8" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files8" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList8" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="exclusionList9" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList9" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList9" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="resource\\GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files9" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files9" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList9" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="resource\\GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files19" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files19" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList9" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="resource\\GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files19b" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files19b" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList9" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="resource\\GDGameOpenGLTwoDJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files19c" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files19c" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList9" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="resource\\GDGameLazyImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files29" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files29" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList9" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="exclusionList10" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList10" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameEarlyResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList10" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameGameResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList10" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList10" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameThreedTitleAnimation.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList10" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameThreedTitleAnimationFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files10" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files10" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList10" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="exclusionList11" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList11" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameAndroidResourceInitialization.java"/>
+                                    </arguments>
+                                </expression>
+                                <comment content="exclusionList11.add(&quot;GDGameAndroidView.java&quot;);" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files11" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files11" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList11" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="exclusionList12" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList12" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameMIDletFactory.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="exclusionList12" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="GDGameAndroidActivityBase.java"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="fileListFetcher" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="GEN_PATH" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdPaths" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="StringLiteralExpr" value="platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="JAVA" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="files12" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="files12" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="exclusionList12" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="process" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="init" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="GDPaths" type="SimpleName"/>
+                                    </scope>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ObjectCreationExpr">
+                                        <type type="ClassOrInterfaceType">
+                                            <name identifier="GDDelete" type="SimpleName"/>
+                                        </type>
+                                    </scope>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="main" type="SimpleName"/>
+                    <comment content="      * @param args the command line arguments      " type="JavadocComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="args" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="ClassOrInterfaceType">
+                                    <name identifier="String" type="SimpleName"/>
+                                </componentType>
+                            </type>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

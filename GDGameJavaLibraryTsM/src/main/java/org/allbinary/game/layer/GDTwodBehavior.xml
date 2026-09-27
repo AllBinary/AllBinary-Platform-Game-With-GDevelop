@@ -1,0 +1,497 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="layer" type="Name">
+            <qualifier identifier="game" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content="  * AllBinary Open License Version 1  * Copyright (c) 2022 AllBinary  *   * By agreeing to this license you and any business entity you represent are  * legally bound to the AllBinary Open License Version 1 legal agreement.  *   * You may obtain the AllBinary Open License Version 1 legal agreement from  * AllBinary or the root directory of AllBinary's AllBinary Platform repository.  *   * Created By: Travis Berthelot  *   " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="RotationAnimation" type="Name">
+                <qualifier identifier="animation" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDObject" type="Name">
+                <qualifier identifier="layout" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="LogUtil" type="Name">
+                <qualifier identifier="log" type="Name">
+                    <qualifier identifier="communication" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="StringMaker" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="logic" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDTwodBehavior" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <members>
+                <member type="FieldDeclaration">
+                    <comment content="protected final LogUtil logUtil = LogUtil.getInstance();" type="LineComment"/>
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="animationBehavior" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDAnimationBehaviorBase" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="rotationRemainder" type="SimpleName"/>
+                            <type type="FLOAT" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="ConstructorDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="animationBehavior" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="NameExpr">
+                                        <name identifier="animationBehavior" type="SimpleName"/>
+                                    </value>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <name identifier="GDTwodBehavior" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="animationBehavior" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDAnimationBehaviorBase" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="process" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gdObject" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDObject" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="rotationAnimation" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="RotationAnimation" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="rotationRemainder" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="IntegerLiteralExpr" value="0"/>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="set" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="animationBehavior" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="gameLayer" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="gdObject" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="reset" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gameLayer" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDGameLayer" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gdObject" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDObject" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="FieldAccessExpr">
+                                                <name identifier="gdObject" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gameLayer" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="gdObject" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GDObject" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="EnclosedExpr">
+                                                <inner operator="DIVIDE" type="BinaryExpr">
+                                                    <left operator="MULTIPLY" type="BinaryExpr">
+                                                        <left type="FieldAccessExpr">
+                                                            <name identifier="rotationP" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="gdObject" type="SimpleName"/>
+                                                            </scope>
+                                                        </left>
+                                                        <right type="NameExpr">
+                                                            <name identifier="timeDelta" type="SimpleName"/>
+                                                        </right>
+                                                    </left>
+                                                    <right type="DoubleLiteralExpr" value="1000f"/>
+                                                </inner>
+                                            </initializer>
+                                            <name identifier="newPortion" type="SimpleName"/>
+                                            <type type="FLOAT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="        logUtil.putF(stringBuilder.append(&quot;prior rotationRemainder: &quot;).appendfloat(rotationRemainder).toString(), this, UPDATE_ROTATION);" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="rotationRemainder" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value operator="PLUS" type="BinaryExpr">
+                                        <left type="FieldAccessExpr">
+                                            <name identifier="rotationRemainder" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </left>
+                                        <right type="NameExpr">
+                                            <name identifier="newPortion" type="SimpleName"/>
+                                        </right>
+                                    </value>
+                                </expression>
+                                <comment content="        logUtil.putF(stringBuilder.append(&quot;newPortion : &quot;).appendfloat(newPortion).toString(), this, UPDATE_ROTATION);" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="CastExpr">
+                                                <expression type="EnclosedExpr">
+                                                    <inner type="FieldAccessExpr">
+                                                        <name identifier="rotationRemainder" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </inner>
+                                                </expression>
+                                                <type type="SHORT" typeB="PrimitiveType"/>
+                                            </initializer>
+                                            <name identifier="angleAdjustment" type="SimpleName"/>
+                                            <type type="SHORT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="        logUtil.putF(stringBuilder.append(&quot;rotationRemainder: &quot;).appendfloat(rotationRemainder).toString(), this, UPDATE_ROTATION);" type="LineComment"/>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition operator="NOT_EQUALS" type="BinaryExpr">
+                                    <left type="NameExpr">
+                                        <name identifier="angleAdjustment" type="SimpleName"/>
+                                    </left>
+                                    <right type="IntegerLiteralExpr" value="0"/>
+                                </condition>
+                                <elseStmt type="BlockStmt"/>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer operator="PLUS" type="BinaryExpr">
+                                                            <left type="FieldAccessExpr">
+                                                                <name identifier="angle" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="gdObject" type="SimpleName"/>
+                                                                </scope>
+                                                            </left>
+                                                            <right type="NameExpr">
+                                                                <name identifier="angleAdjustment" type="SimpleName"/>
+                                                            </right>
+                                                        </initializer>
+                                                        <name identifier="adjustedAngle2" type="SimpleName"/>
+                                                        <type type="INT" typeB="PrimitiveType"/>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                            <comment content="            logUtil.putF(stringBuilder.append(&quot;angleAdjustment: &quot;).appendint(angleAdjustment).toString(), this, UPDATE_ROTATION);" type="LineComment"/>
+                                        </statement>
+                                        <statement type="WhileStmt">
+                                            <body type="BlockStmt">
+                                                <statements>
+                                                    <statement type="ExpressionStmt">
+                                                        <expression operator="MINUS" type="AssignExpr">
+                                                            <target type="NameExpr">
+                                                                <name identifier="adjustedAngle2" type="SimpleName"/>
+                                                            </target>
+                                                            <value type="IntegerLiteralExpr" value="360"/>
+                                                        </expression>
+                                                    </statement>
+                                                </statements>
+                                            </body>
+                                            <condition operator="GREATER" type="BinaryExpr">
+                                                <left type="NameExpr">
+                                                    <name identifier="adjustedAngle2" type="SimpleName"/>
+                                                </left>
+                                                <right type="IntegerLiteralExpr" value="359"/>
+                                            </condition>
+                                        </statement>
+                                        <statement type="WhileStmt">
+                                            <body type="BlockStmt">
+                                                <statements>
+                                                    <statement type="ExpressionStmt">
+                                                        <expression operator="PLUS" type="AssignExpr">
+                                                            <target type="NameExpr">
+                                                                <name identifier="adjustedAngle2" type="SimpleName"/>
+                                                            </target>
+                                                            <value type="IntegerLiteralExpr" value="360"/>
+                                                        </expression>
+                                                    </statement>
+                                                </statements>
+                                            </body>
+                                            <condition operator="LESS" type="BinaryExpr">
+                                                <left type="NameExpr">
+                                                    <name identifier="adjustedAngle2" type="SimpleName"/>
+                                                </left>
+                                                <right type="IntegerLiteralExpr" value="0"/>
+                                            </condition>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="setAngle" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gdObject" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="CastExpr">
+                                                        <expression type="NameExpr">
+                                                            <name identifier="adjustedAngle2" type="SimpleName"/>
+                                                        </expression>
+                                                        <type type="SHORT" typeB="PrimitiveType"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                            <comment content="            logUtil.putF(stringBuilder.append(&quot;adjustedAngle2: &quot;).appendint(adjustedAngle2).toString(), this, UPDATE_ROTATION);" type="LineComment"/>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="FieldAccessExpr">
+                                                    <name identifier="angle" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="gdObject" type="SimpleName"/>
+                                                    </scope>
+                                                </target>
+                                                <value type="CastExpr">
+                                                    <expression type="NameExpr">
+                                                        <name identifier="adjustedAngle2" type="SimpleName"/>
+                                                    </expression>
+                                                    <type type="SHORT" typeB="PrimitiveType"/>
+                                                </value>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="setRotation" type="SimpleName"/>
+                                                <scope type="MethodCallExpr">
+                                                    <name identifier="getAnimationBehavior" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="gameLayer" type="SimpleName"/>
+                                                    </argument>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="angleAdjustment" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                            <comment content="gdObject.angle += angleAdjustment;" type="LineComment"/>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="MINUS" type="AssignExpr">
+                                                <target type="FieldAccessExpr">
+                                                    <name identifier="rotationRemainder" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </target>
+                                                <value type="NameExpr">
+                                                    <name identifier="angleAdjustment" type="SimpleName"/>
+                                                </value>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="updateRotation" type="SimpleName"/>
+                    <comment content="private final String UPDATE_ROTATION = &quot;updateRotation&quot;;" type="LineComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gameLayer" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDGameLayer" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="timeDelta" type="SimpleName"/>
+                            <type type="LONG" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="FieldAccessExpr">
+                                    <name identifier="animationBehavior" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="ClassOrInterfaceType">
+                        <name identifier="GDAnimationBehaviorBase" type="SimpleName"/>
+                    </type>
+                    <name identifier="getAnimationBehavior" type="SimpleName"/>
+                    <comment content="      * @return the animationBehavior      " type="JavadocComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

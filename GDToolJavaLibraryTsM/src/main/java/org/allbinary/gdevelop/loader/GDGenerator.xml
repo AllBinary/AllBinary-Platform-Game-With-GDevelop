@@ -1,0 +1,270 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="loader" type="Name">
+            <qualifier identifier="gdevelop" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content="  * AllBinary Open License Version 1  * Copyright (c) 2022 AllBinary  *   * By agreeing to this license you and any business entity you represent are  * legally bound to the AllBinary Open License Version 1 legal agreement.  *   * You may obtain the AllBinary Open License Version 1 legal agreement from  * AllBinary or the root directory of AllBinary's AllBinary Platform repository.  *   * Created By: Travis Berthelot  *   " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TimeDelayHelper" type="Name">
+                <qualifier identifier="time" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDGenerator" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <members>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="setProperty" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="System" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="StringLiteralExpr" value="jdk.xml.xpathTotalOpLimit"/>
+                                        <argument type="StringLiteralExpr" value="0"/>
+                                    </arguments>
+                                </expression>
+                                <comment content="System.setProperty(&quot;jdk.xml.xpathExprOpLimit&quot;, &quot;0&quot;);" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="TimeDelayHelper" type="SimpleName"/>
+                                                </type>
+                                                <arguments>
+                                                    <argument type="IntegerLiteralExpr" value="0"/>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="timeDelayHelper" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="TimeDelayHelper" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ObjectCreationExpr">
+                                        <type type="ClassOrInterfaceType">
+                                            <name identifier="GDResourceProcessing" type="SimpleName"/>
+                                        </type>
+                                    </scope>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ObjectCreationExpr">
+                                        <type type="ClassOrInterfaceType">
+                                            <name identifier="GDDelete" type="SimpleName"/>
+                                        </type>
+                                    </scope>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="copy" type="SimpleName"/>
+                                    <scope type="ObjectCreationExpr">
+                                        <type type="ClassOrInterfaceType">
+                                            <name identifier="GDCopy" type="SimpleName"/>
+                                        </type>
+                                    </scope>
+                                </expression>
+                                <comment content="        timeDelayHelper.setStartTimeTNT();" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ObjectCreationExpr">
+                                        <type type="ClassOrInterfaceType">
+                                            <name identifier="GDToAllBinaryGenerationTool" type="SimpleName"/>
+                                        </type>
+                                    </scope>
+                                </expression>
+                                <comment content="        timeDelayHelper.setStartTimeTNT();" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ObjectCreationExpr">
+                                        <type type="ClassOrInterfaceType">
+                                            <name identifier="GDLayoutsToAllBinaryLayoutGenerator" type="SimpleName"/>
+                                        </type>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="IntegerLiteralExpr" value="0"/>
+                                        <argument type="MethodCallExpr">
+                                            <name identifier="process" type="SimpleName"/>
+                                            <scope type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="GDGetTotalLayouts" type="SimpleName"/>
+                                                </type>
+                                            </scope>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="finished" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                                <comment content="        timeDelayHelper.setStartTimeTNT();" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="println" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="out" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="System" type="SimpleName"/>
+                                        </scope>
+                                    </scope>
+                                    <arguments>
+                                        <argument operator="PLUS" type="BinaryExpr">
+                                            <left type="StringLiteralExpr" value="Delete, Copy, GDToAllBinaryGenerationTool, GDLayoutsToAllBinaryLayoutGenerator ElapsedTime: "/>
+                                            <right type="MethodCallExpr">
+                                                <name identifier="getElapsedTNT" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="timeDelayHelper" type="SimpleName"/>
+                                                </scope>
+                                            </right>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                                <comment content="        timeDelayHelper.setStartTimeTNT();" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="setStartTimeTNT" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="timeDelayHelper" type="SimpleName"/>
+                                    </scope>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="process" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="finished" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="BOOLEAN" typeB="PrimitiveType"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="init" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="GDPaths" type="SimpleName"/>
+                                    </scope>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ArrayCreationExpr">
+                                                <elementType type="BOOLEAN" typeB="PrimitiveType"/>
+                                                <levels>
+                                                    <level type="ArrayCreationLevel">
+                                                        <dimension type="IntegerLiteralExpr" value="6"/>
+                                                    </level>
+                                                </levels>
+                                            </initializer>
+                                            <name identifier="finished" type="SimpleName"/>
+                                            <type origin="TYPE" type="ArrayType">
+                                                <componentType type="BOOLEAN" typeB="PrimitiveType"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ObjectCreationExpr">
+                                        <type type="ClassOrInterfaceType">
+                                            <name identifier="GDGenerator" type="SimpleName"/>
+                                        </type>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="finished" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="main" type="SimpleName"/>
+                    <comment content="      * @param args the command line arguments      " type="JavadocComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="args" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="ClassOrInterfaceType">
+                                    <name identifier="String" type="SimpleName"/>
+                                </componentType>
+                            </type>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

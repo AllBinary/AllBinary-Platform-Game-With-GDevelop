@@ -1,0 +1,326 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="html" type="Name">
+            <qualifier identifier="playn" type="Name"/>
+        </name>
+    </packageDeclaration>
+    <comment content="  * Copyright 2010 The PlayN Authors  *  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  " type="JavadocComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="EntryPoint" type="Name">
+                <qualifier identifier="client" type="Name">
+                    <qualifier identifier="core" type="Name">
+                        <qualifier identifier="gwt" type="Name">
+                            <qualifier identifier="google" type="Name">
+                                <qualifier identifier="com" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GWT" type="Name">
+                <qualifier identifier="client" type="Name">
+                    <qualifier identifier="core" type="Name">
+                        <qualifier identifier="gwt" type="Name">
+                            <qualifier identifier="google" type="Name">
+                                <qualifier identifier="com" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AllBinaryPlayNGame" type="Name">
+                <qualifier identifier="playn" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AllBinaryPlayNGameRunnable" type="Name">
+                <qualifier identifier="playn" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicArrayList" type="Name">
+                <qualifier identifier="util" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicArrayListD" type="Name">
+                <qualifier identifier="util" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDGameMidletFactory" type="Name">
+                <qualifier identifier="core" type="Name">
+                    <qualifier identifier="playn" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="PlayN" type="Name">
+                <qualifier identifier="core" type="Name">
+                    <qualifier identifier="playn" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDGameProcessor" type="Name">
+                <qualifier identifier="core" type="Name">
+                    <qualifier identifier="playn" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDGameGameHtml" type="SimpleName"/>
+            <implementedTypes>
+                <implementedType type="ClassOrInterfaceType">
+                    <name identifier="EntryPoint" type="SimpleName"/>
+                </implementedType>
+            </implementedTypes>
+            <members>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="Config" type="SimpleName"/>
+                                                    <scope type="ClassOrInterfaceType">
+                                                        <name identifier="HtmlPlatform" type="SimpleName"/>
+                                                    </scope>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="config" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="Config" type="SimpleName"/>
+                                                <scope type="ClassOrInterfaceType">
+                                                    <name identifier="HtmlPlatform" type="SimpleName"/>
+                                                </scope>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="scaleFactor" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="config" type="SimpleName"/>
+                                        </scope>
+                                    </target>
+                                    <value type="DoubleLiteralExpr" value="1f"/>
+                                </expression>
+                                <comment content=" flicker between crisp and near-invisible; PlayN 1.1 had no such auto-scaling." type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="frameBufferPixelRatio" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="config" type="SimpleName"/>
+                                        </scope>
+                                    </target>
+                                    <value type="DoubleLiteralExpr" value="1f"/>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="HtmlPlatform" type="SimpleName"/>
+                                                </type>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="config" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="platform" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="HtmlPlatform" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="    } catch (Exception e) {}" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="create" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="PlayN" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="platform" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="setPathPrefix" type="SimpleName"/>
+                                    <scope type="MethodCallExpr">
+                                        <name identifier="assets" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="platform" type="SimpleName"/>
+                                        </scope>
+                                    </scope>
+                                    <arguments>
+                                        <argument operator="PLUS" type="BinaryExpr">
+                                            <left type="MethodCallExpr">
+                                                <name identifier="getModuleBaseForStaticFiles" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="GWT" type="SimpleName"/>
+                                                </scope>
+                                            </left>
+                                            <right type="StringLiteralExpr" value="res/"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="list" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="list" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="ObjectCreationExpr">
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GDGameProcessor" type="SimpleName"/>
+                                            </type>
+                                            <arguments>
+                                                <argument type="NameExpr">
+                                                    <name identifier="list" type="SimpleName"/>
+                                                </argument>
+                                            </arguments>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="AllBinaryPlayNGameRunnable" type="SimpleName"/>
+                                                </type>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="list" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="gameRunnable" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="AllBinaryPlayNGameRunnable" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="ObjectCreationExpr">
+                                    <type type="ClassOrInterfaceType">
+                                        <name identifier="AllBinaryPlayNGame" type="SimpleName"/>
+                                    </type>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="platform" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="ObjectCreationExpr">
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GDGameMidletFactory" type="SimpleName"/>
+                                            </type>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="gameRunnable" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="BooleanLiteralExpr" value="false"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="start" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="platform" type="SimpleName"/>
+                                    </scope>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="onModuleLoad" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

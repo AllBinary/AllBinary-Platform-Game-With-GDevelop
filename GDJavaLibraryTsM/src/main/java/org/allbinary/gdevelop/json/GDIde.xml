@@ -1,0 +1,740 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="json" type="Name">
+            <qualifier identifier="gdevelop" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content="  * GDevelop to AllBinary Core  * Copyright 2021 Travis Berthelot (travisberthelot@allbinary.com). All rights  * reserved. This project is released under the MIT License.  " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="JSONArray" type="Name">
+                <qualifier identifier="json" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="JSONException" type="Name">
+                <qualifier identifier="json" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="JSONObject" type="Name">
+                <qualifier identifier="json" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDIde" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="major" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="minor" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="build" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="revision" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="author" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="packageName" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="orientation" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="folderProject" type="SimpleName"/>
+                            <type type="BOOLEAN" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="latestCompilationDirectory" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="platformSpecificAssets" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="JSONObject" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="loadingScreen" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="JSONObject" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <comment content="public boolean useExternalSourceFiles;" type="LineComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="extensionProperties" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="JSONArray" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="currentPlatformName" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="platforms" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="JSONArray" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="objectsGroups" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="JSONArray" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="externalEvents" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="JSONArray" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="eventsFunctionsExtensions" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="JSONArray" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="GDProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="gdProjectStrings" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GDProjectStrings" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getJSONObject" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gameAsConfiguration" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="GD_VERSION" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="versionJSONObject" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="JSONObject" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="major" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getInt" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="versionJSONObject" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="MAJOR" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="minor" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getInt" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="versionJSONObject" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="MINOR" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="build" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getInt" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="versionJSONObject" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="BUILD" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="revision" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getInt" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="versionJSONObject" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="REVISION" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getJSONObject" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gameAsConfiguration" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="PROPERTIES" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="propertiesJSONObject" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="JSONObject" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="author" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getString" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="propertiesJSONObject" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="AUTHOR" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="packageName" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getString" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="propertiesJSONObject" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="PACKAGE_NAME" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="orientation" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getString" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="propertiesJSONObject" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="ORIENTATION" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="folderProject" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getBoolean" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="propertiesJSONObject" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="FOLDER_PROJECT" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="latestCompilationDirectory" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getString" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="propertiesJSONObject" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="LATEST_COMPILATION_DIRECTORY" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="platformSpecificAssets" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getJSONObject" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="propertiesJSONObject" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="PLATFORM_SPECIFIC_ASSETS" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="loadingScreen" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getJSONObject" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="propertiesJSONObject" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="LOADING_SCREEN" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="extensionProperties" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getJSONArray" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="propertiesJSONObject" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="EXTENSION_PROPERTIES" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                                <comment content="this.useExternalSourceFiles = propertiesJSONObject.getBoolean(gdProjectStrings.USE_EXTERNAL_SOURCE_FILES);" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="currentPlatformName" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getString" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="propertiesJSONObject" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="CURRENT_PLATFORM" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                                <comment content="adMobAppId" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="platforms" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getJSONArray" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="propertiesJSONObject" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="PLATFORMS" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="objectsGroups" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getJSONArray" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="gameAsConfiguration" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="OBJECT_GROUPS" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="externalEvents" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getJSONArray" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="gameAsConfiguration" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="EXTERNAL_EVENTS" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="eventsFunctionsExtensions" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getJSONArray" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="gameAsConfiguration" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="EVENTS_FUNCTIONS_EXTENSIONS" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                                <comment content="GetExternalEventsCount());" type="LineComment"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="load" type="SimpleName"/>
+                    <comment content="public JSONArray externalSourceFiles;" type="LineComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gameAsConfiguration" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="JSONObject" type="SimpleName"/>
+                            </type>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="JSONException" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

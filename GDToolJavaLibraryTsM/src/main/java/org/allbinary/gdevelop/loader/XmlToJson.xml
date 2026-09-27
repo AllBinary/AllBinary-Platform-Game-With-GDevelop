@@ -1,0 +1,724 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="loader" type="Name">
+            <qualifier identifier="gdevelop" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="JSONObject" type="Name">
+                <qualifier identifier="json" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="XML" type="Name">
+                <qualifier identifier="json" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Files" type="Name">
+                <qualifier identifier="file" type="Name">
+                    <qualifier identifier="nio" type="Name">
+                        <qualifier identifier="java" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Paths" type="Name">
+                <qualifier identifier="file" type="Name">
+                    <qualifier identifier="nio" type="Name">
+                        <qualifier identifier="java" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BufferedWriterUtil" type="Name">
+                <qualifier identifier="io" type="Name">
+                    <qualifier identifier="logic" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AbFile" type="Name">
+                <qualifier identifier="file" type="Name">
+                    <qualifier identifier="io" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Directory" type="Name">
+                <qualifier identifier="directory" type="Name">
+                    <qualifier identifier="file" type="Name">
+                        <qualifier identifier="io" type="Name">
+                            <qualifier identifier="logic" type="Name">
+                                <qualifier identifier="allbinary" type="Name">
+                                    <qualifier identifier="org" type="Name"/>
+                                </qualifier>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="StringMaker" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="logic" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicArrayList" type="Name">
+                <qualifier identifier="util" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="XmlToJson" type="SimpleName"/>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="ObjectCreationExpr">
+                                <type type="ClassOrInterfaceType">
+                                    <name identifier="XmlToJson" type="SimpleName"/>
+                                </type>
+                            </initializer>
+                            <name identifier="instance" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="XmlToJson" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="NameExpr">
+                                    <name identifier="instance" type="SimpleName"/>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="ClassOrInterfaceType">
+                        <name identifier="XmlToJson" type="SimpleName"/>
+                    </type>
+                    <name identifier="getInstance" type="SimpleName"/>
+                    <comment content="      * @return the instance      " type="JavadocComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="Directory" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="directory" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="Directory" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="BufferedWriterUtil" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="bufferedWriterUtil" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="BufferedWriterUtil" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="GDToolStrings" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="gdToolStrings" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDToolStrings" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="search" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="directory" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="extension" type="SimpleName"/>
+                                                    </argument>
+                                                    <argument type="MethodCallExpr">
+                                                        <name identifier="createAbFile" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="AbFile" type="SimpleName"/>
+                                                        </scope>
+                                                        <arguments>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="path" type="SimpleName"/>
+                                                            </argument>
+                                                        </arguments>
+                                                    </argument>
+                                                    <argument type="BooleanLiteralExpr" value="true"/>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="list" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicArrayList" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="size" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="list" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="size" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="println" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="out" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="System" type="SimpleName"/>
+                                        </scope>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="MethodCallExpr">
+                                            <name identifier="toString" type="SimpleName"/>
+                                            <scope type="MethodCallExpr">
+                                                <name identifier="appendint" type="SimpleName"/>
+                                                <scope type="MethodCallExpr">
+                                                    <name identifier="append" type="SimpleName"/>
+                                                    <scope type="MethodCallExpr">
+                                                        <name identifier="append" type="SimpleName"/>
+                                                        <scope type="MethodCallExpr">
+                                                            <name identifier="append" type="SimpleName"/>
+                                                            <scope type="ObjectCreationExpr">
+                                                                <type type="ClassOrInterfaceType">
+                                                                    <name identifier="StringMaker" type="SimpleName"/>
+                                                                </type>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="StringLiteralExpr" value="total "/>
+                                                            </arguments>
+                                                        </scope>
+                                                        <arguments>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="extension" type="SimpleName"/>
+                                                            </argument>
+                                                        </arguments>
+                                                    </scope>
+                                                    <arguments>
+                                                        <argument type="StringLiteralExpr" value=": "/>
+                                                    </arguments>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="size" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <name identifier="abFile" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="AbFile" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ForStmt">
+                                <body type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="NameExpr">
+                                                    <name identifier="abFile" type="SimpleName"/>
+                                                </target>
+                                                <value type="CastExpr">
+                                                    <expression type="MethodCallExpr">
+                                                        <name identifier="get" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="list" type="SimpleName"/>
+                                                        </scope>
+                                                        <arguments>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="index" type="SimpleName"/>
+                                                            </argument>
+                                                        </arguments>
+                                                    </expression>
+                                                    <type type="ClassOrInterfaceType">
+                                                        <name identifier="AbFile" type="SimpleName"/>
+                                                    </type>
+                                                </value>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="process" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                                <arguments>
+                                                    <argument type="MethodCallExpr">
+                                                        <name identifier="getAbsolutePath" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="abFile" type="SimpleName"/>
+                                                        </scope>
+                                                    </argument>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="extension" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </body>
+                                <compare operator="LESS" type="BinaryExpr">
+                                    <left type="NameExpr">
+                                        <name identifier="index" type="SimpleName"/>
+                                    </left>
+                                    <right type="NameExpr">
+                                        <name identifier="size" type="SimpleName"/>
+                                    </right>
+                                </compare>
+                                <initialization>
+                                    <initializatio type="VariableDeclarationExpr">
+                                        <variables>
+                                            <variable type="VariableDeclarator">
+                                                <initializer type="IntegerLiteralExpr" value="0"/>
+                                                <name identifier="index" type="SimpleName"/>
+                                                <type type="INT" typeB="PrimitiveType"/>
+                                            </variable>
+                                        </variables>
+                                    </initializatio>
+                                </initialization>
+                                <update>
+                                    <updat operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                        <expression type="NameExpr">
+                                            <name identifier="index" type="SimpleName"/>
+                                        </expression>
+                                    </updat>
+                                </update>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="processAll" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="path" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="extension" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="TryStmt">
+                                <tryBlock type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <modifiers>
+                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                </modifiers>
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="ObjectCreationExpr">
+                                                            <type type="ClassOrInterfaceType">
+                                                                <name identifier="String" type="SimpleName"/>
+                                                            </type>
+                                                            <arguments>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="readAllBytes" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="Files" type="SimpleName"/>
+                                                                    </scope>
+                                                                    <arguments>
+                                                                        <argument type="MethodCallExpr">
+                                                                            <name identifier="get" type="SimpleName"/>
+                                                                            <scope type="NameExpr">
+                                                                                <name identifier="Paths" type="SimpleName"/>
+                                                                            </scope>
+                                                                            <arguments>
+                                                                                <argument type="NameExpr">
+                                                                                    <name identifier="xmlFilePath" type="SimpleName"/>
+                                                                                </argument>
+                                                                            </arguments>
+                                                                        </argument>
+                                                                    </arguments>
+                                                                </argument>
+                                                            </arguments>
+                                                        </initializer>
+                                                        <name identifier="svgContent" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="String" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <modifiers>
+                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                </modifiers>
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="toJSONObject" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="XML" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="NameExpr">
+                                                                    <name identifier="svgContent" type="SimpleName"/>
+                                                                </argument>
+                                                            </arguments>
+                                                        </initializer>
+                                                        <name identifier="jsonObject" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="JSONObject" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <modifiers>
+                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                </modifiers>
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="toString" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="jsonObject" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="IntegerLiteralExpr" value="4"/>
+                                                            </arguments>
+                                                        </initializer>
+                                                        <name identifier="jsonString" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="String" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <modifiers>
+                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                </modifiers>
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="replace" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="xmlFilePath" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="NameExpr">
+                                                                    <name identifier="extension" type="SimpleName"/>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="_JSON" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="gdToolStrings" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                            </arguments>
+                                                        </initializer>
+                                                        <name identifier="jsonFilePath" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="String" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="overwrite" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="bufferedWriterUtil" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="jsonFilePath" type="SimpleName"/>
+                                                    </argument>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="jsonString" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </tryBlock>
+                                <catchClauses>
+                                    <catchClause type="CatchClause">
+                                        <body type="BlockStmt">
+                                            <statements>
+                                                <statement type="ExpressionStmt">
+                                                    <expression type="MethodCallExpr">
+                                                        <name identifier="printStackTrace" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="e" type="SimpleName"/>
+                                                        </scope>
+                                                    </expression>
+                                                </statement>
+                                            </statements>
+                                        </body>
+                                        <parameter isVarArgs="false" type="Parameter">
+                                            <name identifier="e" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="Exception" type="SimpleName"/>
+                                            </type>
+                                        </parameter>
+                                    </catchClause>
+                                </catchClauses>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="process" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="xmlFilePath" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="extension" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="StringLiteralExpr" value="G:\\mnt\\bc\\mydev\\abgdgames2\\action\\SnakeGame\\assets\\"/>
+                                            <name identifier="svgPath" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="String" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="GDToolStrings" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="gdToolStrings" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GDToolStrings" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="processAll" type="SimpleName"/>
+                                    <scope type="MethodCallExpr">
+                                        <name identifier="getInstance" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="XmlToJson" type="SimpleName"/>
+                                        </scope>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="svgPath" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="_SVG" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="gdToolStrings" type="SimpleName"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="main" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="args" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="ClassOrInterfaceType">
+                                    <name identifier="String" type="SimpleName"/>
+                                </componentType>
+                            </type>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

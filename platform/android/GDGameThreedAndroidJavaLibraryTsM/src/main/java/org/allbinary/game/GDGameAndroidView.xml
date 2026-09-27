@@ -1,0 +1,151 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="game" type="Name">
+            <qualifier identifier="allbinary" type="Name">
+                <qualifier identifier="org" type="Name"/>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AllBinaryMidletView" type="Name">
+                <qualifier identifier="view" type="Name">
+                    <qualifier identifier="android" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Context" type="Name">
+                <qualifier identifier="content" type="Name">
+                    <qualifier identifier="android" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AttributeSet" type="Name">
+                <qualifier identifier="util" type="Name">
+                    <qualifier identifier="android" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="CommonStrings" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="PreLogUtil" type="Name">
+                <qualifier identifier="log" type="Name">
+                    <qualifier identifier="communication" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDGameAndroidView" type="SimpleName"/>
+            <extendedTypes>
+                <extendedType type="ClassOrInterfaceType">
+                    <name identifier="AllBinaryMidletView" type="SimpleName"/>
+                </extendedType>
+            </extendedTypes>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="GDGameAndroidView"/>
+                            <name identifier="TAG" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="ConstructorDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement isThis="false" type="ExplicitConstructorInvocationStmt">
+                                <arguments>
+                                    <argument type="NameExpr">
+                                        <name identifier="context" type="SimpleName"/>
+                                    </argument>
+                                    <argument type="NameExpr">
+                                        <name identifier="attrs" type="SimpleName"/>
+                                    </argument>
+                                </arguments>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="put" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="PreLogUtil" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="START" type="SimpleName"/>
+                                            <scope type="FieldAccessExpr">
+                                                <name identifier="commonStrings" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                            </scope>
+                                        </argument>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="TAG" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </argument>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="CONSTRUCTOR" type="SimpleName"/>
+                                            <scope type="FieldAccessExpr">
+                                                <name identifier="commonStrings" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <name identifier="GDGameAndroidView" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="context" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="Context" type="SimpleName"/>
+                            </type>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="attrs" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="AttributeSet" type="SimpleName"/>
+                            </type>
+                        </parameter>
+                    </parameters>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

@@ -1,0 +1,767 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="level" type="Name">
+            <qualifier identifier="gd" type="Name">
+                <qualifier identifier="game" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content="  * AllBinary Open License Version 1  * Copyright (c) 2025 AllBinary  *   * By agreeing to this license you and any business entity you represent are  * legally bound to the AllBinary Open License Version 1 legal agreement.  *   * You may obtain the AllBinary Open License Version 1 legal agreement from  * AllBinary or the root directory of AllBinary's AllBinary Platform repository.  *   * Created By: Travis Berthelot  *   " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Image" type="Name">
+                <qualifier identifier="lcdui" type="Name">
+                    <qualifier identifier="microedition" type="Name">
+                        <qualifier identifier="javax" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AndroidInfoFactory" type="Name">
+                <qualifier identifier="android" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="ResourceUtil" type="Name">
+                <qualifier identifier="resource" type="Name">
+                    <qualifier identifier="data" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Features" type="Name">
+                <qualifier identifier="feature" type="Name">
+                    <qualifier identifier="configuration" type="Name">
+                        <qualifier identifier="game" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="CameraLayer" type="Name">
+                <qualifier identifier="layer" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="OpenGLCapabilities" type="Name">
+                <qualifier identifier="opengles" type="Name">
+                    <qualifier identifier="graphics" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="OpenGLFeatureFactory" type="Name">
+                <qualifier identifier="opengles" type="Name">
+                    <qualifier identifier="graphics" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="ImageCache" type="Name">
+                <qualifier identifier="image" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="OperatingSystemFactory" type="Name">
+                <qualifier identifier="os" type="Name">
+                    <qualifier identifier="system" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="OperatingSystemInterface" type="Name">
+                <qualifier identifier="os" type="Name">
+                    <qualifier identifier="system" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDPlatformUtil" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="ObjectCreationExpr">
+                                <type type="ClassOrInterfaceType">
+                                    <name identifier="GDPlatformUtil" type="SimpleName"/>
+                                </type>
+                            </initializer>
+                            <name identifier="instance" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDPlatformUtil" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="NameExpr">
+                                    <name identifier="instance" type="SimpleName"/>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="ClassOrInterfaceType">
+                        <name identifier="GDPlatformUtil" type="SimpleName"/>
+                    </type>
+                    <name identifier="getInstance" type="SimpleName"/>
+                    <comment content="      * @return the instance      " type="JavadocComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getOperatingSystemInstance" type="SimpleName"/>
+                                                <scope type="MethodCallExpr">
+                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="OperatingSystemFactory" type="SimpleName"/>
+                                                    </scope>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="operatingSystem" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="OperatingSystemInterface" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="IntegerLiteralExpr" value="3"/>
+                                            <name identifier="range" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition type="MethodCallExpr">
+                                    <name identifier="isOverScan" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="operatingSystem" type="SimpleName"/>
+                                    </scope>
+                                </condition>
+                                <elseStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="NameExpr">
+                                                    <name identifier="range" type="SimpleName"/>
+                                                </target>
+                                                <value type="IntegerLiteralExpr" value="3"/>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="NameExpr">
+                                                    <name identifier="range" type="SimpleName"/>
+                                                </target>
+                                                <value type="IntegerLiteralExpr" value="4"/>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="Features" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="features" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="Features" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="OpenGLFeatureFactory" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="openGLFeatureFactory" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="OpenGLFeatureFactory" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition operator="OR" type="BinaryExpr">
+                                    <left type="MethodCallExpr">
+                                        <name identifier="isFeature" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="features" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="OPENGL_2D_AND_3D" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="openGLFeatureFactory" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </left>
+                                    <right type="MethodCallExpr">
+                                        <name identifier="isFeature" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="features" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="OPENGL_3D" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="openGLFeatureFactory" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                        </arguments>
+                                    </right>
+                                </condition>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <modifiers>
+                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                </modifiers>
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="getVersion" type="SimpleName"/>
+                                                            <scope type="MethodCallExpr">
+                                                                <name identifier="getInstance" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="AndroidInfoFactory" type="SimpleName"/>
+                                                                </scope>
+                                                            </scope>
+                                                        </initializer>
+                                                        <name identifier="SDK_VERSION" type="SimpleName"/>
+                                                        <type type="INT" typeB="PrimitiveType"/>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="IfStmt">
+                                            <condition operator="GREATER" type="BinaryExpr">
+                                                <left type="NameExpr">
+                                                    <name identifier="SDK_VERSION" type="SimpleName"/>
+                                                </left>
+                                                <right type="IntegerLiteralExpr" value="21"/>
+                                            </condition>
+                                            <elseStmt type="IfStmt">
+                                                <condition operator="GREATER" type="BinaryExpr">
+                                                    <left type="NameExpr">
+                                                        <name identifier="SDK_VERSION" type="SimpleName"/>
+                                                    </left>
+                                                    <right type="IntegerLiteralExpr" value="7"/>
+                                                </condition>
+                                                <thenStmt type="BlockStmt">
+                                                    <statements>
+                                                        <statement type="IfStmt">
+                                                            <condition type="MethodCallExpr">
+                                                                <name identifier="isOverScan" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="operatingSystem" type="SimpleName"/>
+                                                                </scope>
+                                                            </condition>
+                                                            <elseStmt type="BlockStmt">
+                                                                <statements>
+                                                                    <statement type="ExpressionStmt">
+                                                                        <expression operator="ASSIGN" type="AssignExpr">
+                                                                            <target type="NameExpr">
+                                                                                <name identifier="range" type="SimpleName"/>
+                                                                            </target>
+                                                                            <value type="IntegerLiteralExpr" value="4"/>
+                                                                        </expression>
+                                                                    </statement>
+                                                                </statements>
+                                                            </elseStmt>
+                                                            <thenStmt type="BlockStmt">
+                                                                <statements>
+                                                                    <statement type="ExpressionStmt">
+                                                                        <expression operator="ASSIGN" type="AssignExpr">
+                                                                            <target type="NameExpr">
+                                                                                <name identifier="range" type="SimpleName"/>
+                                                                            </target>
+                                                                            <value type="IntegerLiteralExpr" value="5"/>
+                                                                        </expression>
+                                                                    </statement>
+                                                                </statements>
+                                                            </thenStmt>
+                                                        </statement>
+                                                    </statements>
+                                                </thenStmt>
+                                            </elseStmt>
+                                            <thenStmt type="BlockStmt">
+                                                <statements>
+                                                    <statement type="IfStmt">
+                                                        <condition type="MethodCallExpr">
+                                                            <name identifier="isOverScan" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="operatingSystem" type="SimpleName"/>
+                                                            </scope>
+                                                        </condition>
+                                                        <elseStmt type="BlockStmt">
+                                                            <statements>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression operator="ASSIGN" type="AssignExpr">
+                                                                        <target type="NameExpr">
+                                                                            <name identifier="range" type="SimpleName"/>
+                                                                        </target>
+                                                                        <value type="IntegerLiteralExpr" value="5"/>
+                                                                    </expression>
+                                                                </statement>
+                                                            </statements>
+                                                        </elseStmt>
+                                                        <thenStmt type="BlockStmt">
+                                                            <statements>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression operator="ASSIGN" type="AssignExpr">
+                                                                        <target type="NameExpr">
+                                                                            <name identifier="range" type="SimpleName"/>
+                                                                        </target>
+                                                                        <value type="IntegerLiteralExpr" value="6"/>
+                                                                    </expression>
+                                                                </statement>
+                                                            </statements>
+                                                        </thenStmt>
+                                                    </statement>
+                                                </statements>
+                                            </thenStmt>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                                <comment content="if(OpenGLCapabilities.getInstance().isVertexBufferObjectSupport())" type="LineComment"/>
+                            </statement>
+                            <statement type="ReturnStmt">
+                                <expression type="NameExpr">
+                                    <name identifier="range" type="SimpleName"/>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="INT" typeB="PrimitiveType"/>
+                    <name identifier="getRange" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getVersion" type="SimpleName"/>
+                                                <scope type="MethodCallExpr">
+                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="AndroidInfoFactory" type="SimpleName"/>
+                                                    </scope>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="SDK_VERSION" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition operator="GREATER" type="BinaryExpr">
+                                    <left type="NameExpr">
+                                        <name identifier="SDK_VERSION" type="SimpleName"/>
+                                    </left>
+                                    <right type="IntegerLiteralExpr" value="7"/>
+                                </condition>
+                                <elseStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="setRotationY" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="cameraLayer" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="CastExpr">
+                                                        <expression type="IntegerLiteralExpr" value="67"/>
+                                                        <type type="SHORT" typeB="PrimitiveType"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="IfStmt">
+                                            <condition type="MethodCallExpr">
+                                                <name identifier="isVertexBufferObjectSupport" type="SimpleName"/>
+                                                <scope type="MethodCallExpr">
+                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="OpenGLCapabilities" type="SimpleName"/>
+                                                    </scope>
+                                                </scope>
+                                            </condition>
+                                            <elseStmt type="BlockStmt">
+                                                <statements>
+                                                    <statement type="ExpressionStmt">
+                                                        <expression type="VariableDeclarationExpr">
+                                                            <modifiers>
+                                                                <modifier keyword="FINAL" type="Modifier"/>
+                                                            </modifiers>
+                                                            <variables>
+                                                                <variable type="VariableDeclarator">
+                                                                    <initializer type="MethodCallExpr">
+                                                                        <name identifier="getOperatingSystemInstance" type="SimpleName"/>
+                                                                        <scope type="MethodCallExpr">
+                                                                            <name identifier="getInstance" type="SimpleName"/>
+                                                                            <scope type="NameExpr">
+                                                                                <name identifier="OperatingSystemFactory" type="SimpleName"/>
+                                                                            </scope>
+                                                                        </scope>
+                                                                    </initializer>
+                                                                    <name identifier="operatingSystem" type="SimpleName"/>
+                                                                    <type type="ClassOrInterfaceType">
+                                                                        <name identifier="OperatingSystemInterface" type="SimpleName"/>
+                                                                    </type>
+                                                                </variable>
+                                                            </variables>
+                                                        </expression>
+                                                    </statement>
+                                                    <statement type="IfStmt">
+                                                        <condition type="MethodCallExpr">
+                                                            <name identifier="isOverScan" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="operatingSystem" type="SimpleName"/>
+                                                            </scope>
+                                                        </condition>
+                                                        <elseStmt type="BlockStmt">
+                                                            <statements>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="setRotationY" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="cameraLayer" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="CastExpr">
+                                                                                <expression type="IntegerLiteralExpr" value="67"/>
+                                                                                <type type="SHORT" typeB="PrimitiveType"/>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                            </statements>
+                                                        </elseStmt>
+                                                        <thenStmt type="BlockStmt">
+                                                            <statements>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="setRotationY" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="cameraLayer" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="CastExpr">
+                                                                                <expression type="IntegerLiteralExpr" value="45"/>
+                                                                                <type type="SHORT" typeB="PrimitiveType"/>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                            </statements>
+                                                        </thenStmt>
+                                                    </statement>
+                                                </statements>
+                                            </elseStmt>
+                                            <thenStmt type="BlockStmt">
+                                                <statements>
+                                                    <statement type="ExpressionStmt">
+                                                        <expression type="VariableDeclarationExpr">
+                                                            <modifiers>
+                                                                <modifier keyword="FINAL" type="Modifier"/>
+                                                            </modifiers>
+                                                            <variables>
+                                                                <variable type="VariableDeclarator">
+                                                                    <initializer type="MethodCallExpr">
+                                                                        <name identifier="getOperatingSystemInstance" type="SimpleName"/>
+                                                                        <scope type="MethodCallExpr">
+                                                                            <name identifier="getInstance" type="SimpleName"/>
+                                                                            <scope type="NameExpr">
+                                                                                <name identifier="OperatingSystemFactory" type="SimpleName"/>
+                                                                            </scope>
+                                                                        </scope>
+                                                                    </initializer>
+                                                                    <name identifier="operatingSystem" type="SimpleName"/>
+                                                                    <type type="ClassOrInterfaceType">
+                                                                        <name identifier="OperatingSystemInterface" type="SimpleName"/>
+                                                                    </type>
+                                                                </variable>
+                                                            </variables>
+                                                        </expression>
+                                                    </statement>
+                                                    <statement type="IfStmt">
+                                                        <condition type="MethodCallExpr">
+                                                            <name identifier="isOverScan" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="operatingSystem" type="SimpleName"/>
+                                                            </scope>
+                                                        </condition>
+                                                        <elseStmt type="BlockStmt">
+                                                            <statements>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="setRotationY" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="cameraLayer" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="CastExpr">
+                                                                                <expression type="IntegerLiteralExpr" value="45"/>
+                                                                                <type type="SHORT" typeB="PrimitiveType"/>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                            </statements>
+                                                        </elseStmt>
+                                                        <thenStmt type="BlockStmt">
+                                                            <statements>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="setRotationY" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="cameraLayer" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="CastExpr">
+                                                                                <expression type="IntegerLiteralExpr" value="33"/>
+                                                                                <type type="SHORT" typeB="PrimitiveType"/>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                            </statements>
+                                                        </thenStmt>
+                                                    </statement>
+                                                </statements>
+                                            </thenStmt>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="updateCamera" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="cameraLayer" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="CameraLayer" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getResourceId" type="SimpleName"/>
+                                                <scope type="MethodCallExpr">
+                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="ResourceUtil" type="SimpleName"/>
+                                                    </scope>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="resource" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="resourceId" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="Integer" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="put" type="SimpleName"/>
+                                    <scope type="MethodCallExpr">
+                                        <name identifier="getHashtableP" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="imageCache" type="SimpleName"/>
+                                        </scope>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="resourceId" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="image" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="updateResource" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="imageCache" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="ImageCache" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="image" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="Image" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="resource" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

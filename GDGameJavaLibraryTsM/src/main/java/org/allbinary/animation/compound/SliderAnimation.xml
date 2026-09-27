@@ -1,0 +1,1553 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="compound" type="Name">
+            <qualifier identifier="animation" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content=" * AllBinary Open License Version 1 * Copyright (c) 2011 AllBinary *  * By agreeing to this license you and any business entity you represent are * legally bound to the AllBinary Open License Version 1 legal agreement. *  * You may obtain the AllBinary Open License Version 1 legal agreement from * AllBinary or the root directory of AllBinary's AllBinary Platform repository. *  * Created By: Travis Berthelot *  " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Graphics" type="Name">
+                <qualifier identifier="lcdui" type="Name">
+                    <qualifier identifier="microedition" type="Name">
+                        <qualifier identifier="javax" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="J2MEUtil" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Animation" type="Name">
+                <qualifier identifier="animation" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AnimationBehavior" type="Name">
+                <qualifier identifier="animation" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="IndexedAnimation" type="Name">
+                <qualifier identifier="animation" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="CustomTextAnimation" type="Name">
+                <qualifier identifier="text" type="Name">
+                    <qualifier identifier="animation" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="SWTUtil" type="Name">
+                <qualifier identifier="layer" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="LogUtil" type="Name">
+                <qualifier identifier="log" type="Name">
+                    <qualifier identifier="communication" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="PrimitiveIntUtil" type="Name">
+                <qualifier identifier="math" type="Name">
+                    <qualifier identifier="logic" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="SliderAnimation" type="SimpleName"/>
+            <comment content="Similar to ScollBar" type="LineComment"/>
+            <extendedTypes>
+                <extendedType type="ClassOrInterfaceType">
+                    <name identifier="IndexedAnimation" type="SimpleName"/>
+                </extendedType>
+            </extendedTypes>
+            <members>
+                <member type="FieldDeclaration">
+                    <comment content="implements IndexedAnimationInterface" type="LineComment"/>
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="LogUtil" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="logUtil" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="LogUtil" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="animationInterfaceArray" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="ClassOrInterfaceType">
+                                    <name identifier="IndexedAnimation" type="SimpleName"/>
+                                </componentType>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="width" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="height" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="dx" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="value" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="hasFocus" type="SimpleName"/>
+                            <type type="BOOLEAN" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="ConstructorDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement isThis="false" type="ExplicitConstructorInvocationStmt">
+                                <arguments>
+                                    <argument type="NameExpr">
+                                        <name identifier="animationBehavior" type="SimpleName"/>
+                                    </argument>
+                                </arguments>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="NameExpr">
+                                        <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="dx" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getDx" type="SimpleName"/>
+                                        <scope type="ArrayAccessExpr">
+                                            <index type="IntegerLiteralExpr" value="3"/>
+                                            <name type="FieldAccessExpr">
+                                                <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                            </name>
+                                        </scope>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="width" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="NameExpr">
+                                        <name identifier="width" type="SimpleName"/>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="height" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="NameExpr">
+                                        <name identifier="height" type="SimpleName"/>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ArrayAccessExpr">
+                                                <index type="IntegerLiteralExpr" value="4"/>
+                                                <name type="FieldAccessExpr">
+                                                    <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </name>
+                                            </initializer>
+                                            <name identifier="animation" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="Animation" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition type="FieldAccessExpr">
+                                    <name identifier="isSWT" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="SWTUtil" type="SimpleName"/>
+                                    </scope>
+                                </condition>
+                                <elseStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <modifiers>
+                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                </modifiers>
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="dxhack" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </initializer>
+                                                        <name identifier="h" type="SimpleName"/>
+                                                        <type type="INT" typeB="PrimitiveType"/>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="setDy" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="animation" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left operator="MINUS" type="UnaryExpr">
+                                                            <expression type="NameExpr">
+                                                                <name identifier="h" type="SimpleName"/>
+                                                            </expression>
+                                                        </left>
+                                                        <right type="EnclosedExpr">
+                                                            <inner operator="DIVIDE" type="BinaryExpr">
+                                                                <left type="NameExpr">
+                                                                    <name identifier="h" type="SimpleName"/>
+                                                                </left>
+                                                                <right type="IntegerLiteralExpr" value="10"/>
+                                                            </inner>
+                                                        </right>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <modifiers>
+                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                </modifiers>
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="dxhack" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </initializer>
+                                                        <name identifier="h" type="SimpleName"/>
+                                                        <type type="INT" typeB="PrimitiveType"/>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                            <comment content="customTextAnimation.setDy(-customTextAnimation.getSize());" type="LineComment"/>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="setDy" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="animation" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="MULTIPLY" type="BinaryExpr">
+                                                        <left operator="DIVIDE" type="BinaryExpr">
+                                                            <left operator="MINUS" type="UnaryExpr">
+                                                                <expression type="NameExpr">
+                                                                    <name identifier="h" type="SimpleName"/>
+                                                                </expression>
+                                                            </left>
+                                                            <right type="IntegerLiteralExpr" value="3"/>
+                                                        </left>
+                                                        <right type="IntegerLiteralExpr" value="2"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                        </statements>
+                    </body>
+                    <name identifier="SliderAnimation" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="animationInterfaceArray" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="ClassOrInterfaceType">
+                                    <name identifier="IndexedAnimation" type="SimpleName"/>
+                                </componentType>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="width" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="height" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="animationBehavior" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="AnimationBehavior" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="IfStmt">
+                                <condition type="MethodCallExpr">
+                                    <name identifier="isHTML" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="J2MEUtil" type="SimpleName"/>
+                                    </scope>
+                                </condition>
+                                <elseStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ReturnStmt">
+                                            <expression type="FieldAccessExpr">
+                                                <name identifier="height" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ReturnStmt">
+                                            <expression operator="DIVIDE" type="BinaryExpr">
+                                                <left operator="MULTIPLY" type="BinaryExpr">
+                                                    <left type="FieldAccessExpr">
+                                                        <name identifier="height" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </left>
+                                                    <right type="IntegerLiteralExpr" value="2"/>
+                                                </left>
+                                                <right type="IntegerLiteralExpr" value="3"/>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                                <comment content="TWB - Hack for HTML5 build" type="LineComment"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="INT" typeB="PrimitiveType"/>
+                    <name identifier="dxhack" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ForStmt">
+                                <body type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="setFrame" type="SimpleName"/>
+                                                <scope type="ArrayAccessExpr">
+                                                    <index type="NameExpr">
+                                                        <name identifier="index" type="SimpleName"/>
+                                                    </index>
+                                                    <name type="FieldAccessExpr">
+                                                        <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </name>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="frameIndex" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </body>
+                                <compare operator="GREATER_EQUALS" type="BinaryExpr">
+                                    <left operator="PREFIX_DECREMENT" type="UnaryExpr">
+                                        <expression type="NameExpr">
+                                            <name identifier="index" type="SimpleName"/>
+                                        </expression>
+                                    </left>
+                                    <right type="IntegerLiteralExpr" value="0"/>
+                                </compare>
+                                <initialization>
+                                    <initializatio type="VariableDeclarationExpr">
+                                        <variables>
+                                            <variable type="VariableDeclarator">
+                                                <initializer type="FieldAccessExpr">
+                                                    <name identifier="length" type="SimpleName"/>
+                                                    <scope type="FieldAccessExpr">
+                                                        <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </scope>
+                                                </initializer>
+                                                <name identifier="index" type="SimpleName"/>
+                                                <type type="INT" typeB="PrimitiveType"/>
+                                            </variable>
+                                        </variables>
+                                    </initializatio>
+                                </initialization>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="setFrame" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="frameIndex" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="getFrame" type="SimpleName"/>
+                                    <scope type="ArrayAccessExpr">
+                                        <index type="IntegerLiteralExpr" value="0"/>
+                                        <name type="FieldAccessExpr">
+                                            <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </name>
+                                    </scope>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="INT" typeB="PrimitiveType"/>
+                    <name identifier="getFrame" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="getSize" type="SimpleName"/>
+                                    <scope type="ArrayAccessExpr">
+                                        <index type="IntegerLiteralExpr" value="0"/>
+                                        <name type="FieldAccessExpr">
+                                            <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </name>
+                                    </scope>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="INT" typeB="PrimitiveType"/>
+                    <name identifier="getSize" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ForStmt">
+                                <body type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="previousFrame" type="SimpleName"/>
+                                                <scope type="ArrayAccessExpr">
+                                                    <index type="NameExpr">
+                                                        <name identifier="index" type="SimpleName"/>
+                                                    </index>
+                                                    <name type="FieldAccessExpr">
+                                                        <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </name>
+                                                </scope>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </body>
+                                <compare operator="GREATER_EQUALS" type="BinaryExpr">
+                                    <left operator="PREFIX_DECREMENT" type="UnaryExpr">
+                                        <expression type="NameExpr">
+                                            <name identifier="index" type="SimpleName"/>
+                                        </expression>
+                                    </left>
+                                    <right type="IntegerLiteralExpr" value="0"/>
+                                </compare>
+                                <initialization>
+                                    <initializatio type="VariableDeclarationExpr">
+                                        <variables>
+                                            <variable type="VariableDeclarator">
+                                                <initializer type="FieldAccessExpr">
+                                                    <name identifier="length" type="SimpleName"/>
+                                                    <scope type="FieldAccessExpr">
+                                                        <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </scope>
+                                                </initializer>
+                                                <name identifier="index" type="SimpleName"/>
+                                                <type type="INT" typeB="PrimitiveType"/>
+                                            </variable>
+                                        </variables>
+                                    </initializatio>
+                                </initialization>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="previousFrame" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="setSequence" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="sequence" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="INT" typeB="PrimitiveType"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="getArrayInstance" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="PrimitiveIntUtil" type="SimpleName"/>
+                                    </scope>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type origin="TYPE" type="ArrayType">
+                        <componentType type="INT" typeB="PrimitiveType"/>
+                    </type>
+                    <name identifier="getSequence" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ForStmt">
+                                <body type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="nextFrame" type="SimpleName"/>
+                                                <scope type="ArrayAccessExpr">
+                                                    <index type="NameExpr">
+                                                        <name identifier="index" type="SimpleName"/>
+                                                    </index>
+                                                    <name type="FieldAccessExpr">
+                                                        <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </name>
+                                                </scope>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </body>
+                                <compare operator="GREATER_EQUALS" type="BinaryExpr">
+                                    <left operator="PREFIX_DECREMENT" type="UnaryExpr">
+                                        <expression type="NameExpr">
+                                            <name identifier="index" type="SimpleName"/>
+                                        </expression>
+                                    </left>
+                                    <right type="IntegerLiteralExpr" value="0"/>
+                                </compare>
+                                <initialization>
+                                    <initializatio type="VariableDeclarationExpr">
+                                        <variables>
+                                            <variable type="VariableDeclarator">
+                                                <initializer type="FieldAccessExpr">
+                                                    <name identifier="length" type="SimpleName"/>
+                                                    <scope type="FieldAccessExpr">
+                                                        <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </scope>
+                                                </initializer>
+                                                <name identifier="index" type="SimpleName"/>
+                                                <type type="INT" typeB="PrimitiveType"/>
+                                            </variable>
+                                        </variables>
+                                    </initializatio>
+                                </initialization>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="nextFrame" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="FieldAccessExpr">
+                                                <name identifier="length" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="size" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ForStmt">
+                                <body type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="paintXY" type="SimpleName"/>
+                                                <scope type="ArrayAccessExpr">
+                                                    <index type="NameExpr">
+                                                        <name identifier="index" type="SimpleName"/>
+                                                    </index>
+                                                    <name type="FieldAccessExpr">
+                                                        <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </name>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="graphics" type="SimpleName"/>
+                                                    </argument>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="x" type="SimpleName"/>
+                                                    </argument>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="y" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </body>
+                                <compare operator="LESS" type="BinaryExpr">
+                                    <left type="NameExpr">
+                                        <name identifier="index" type="SimpleName"/>
+                                    </left>
+                                    <right type="NameExpr">
+                                        <name identifier="size" type="SimpleName"/>
+                                    </right>
+                                </compare>
+                                <initialization>
+                                    <initializatio type="VariableDeclarationExpr">
+                                        <variables>
+                                            <variable type="VariableDeclarator">
+                                                <initializer type="IntegerLiteralExpr" value="0"/>
+                                                <name identifier="index" type="SimpleName"/>
+                                                <type type="INT" typeB="PrimitiveType"/>
+                                            </variable>
+                                        </variables>
+                                    </initializatio>
+                                </initialization>
+                                <update>
+                                    <updat operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                        <expression type="NameExpr">
+                                            <name identifier="index" type="SimpleName"/>
+                                        </expression>
+                                    </updat>
+                                </update>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="paintXY" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="graphics" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="Graphics" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="x" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="y" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="FieldAccessExpr">
+                                                <name identifier="length" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="size" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ForStmt">
+                                <body type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="paintThreedXYZ" type="SimpleName"/>
+                                                <scope type="ArrayAccessExpr">
+                                                    <index type="NameExpr">
+                                                        <name identifier="index" type="SimpleName"/>
+                                                    </index>
+                                                    <name type="FieldAccessExpr">
+                                                        <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </name>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="graphics" type="SimpleName"/>
+                                                    </argument>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="x" type="SimpleName"/>
+                                                    </argument>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="y" type="SimpleName"/>
+                                                    </argument>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="z" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </body>
+                                <compare operator="LESS" type="BinaryExpr">
+                                    <left type="NameExpr">
+                                        <name identifier="index" type="SimpleName"/>
+                                    </left>
+                                    <right type="NameExpr">
+                                        <name identifier="size" type="SimpleName"/>
+                                    </right>
+                                </compare>
+                                <initialization>
+                                    <initializatio type="VariableDeclarationExpr">
+                                        <variables>
+                                            <variable type="VariableDeclarator">
+                                                <initializer type="IntegerLiteralExpr" value="0"/>
+                                                <name identifier="index" type="SimpleName"/>
+                                                <type type="INT" typeB="PrimitiveType"/>
+                                            </variable>
+                                        </variables>
+                                    </initializatio>
+                                </initialization>
+                                <update>
+                                    <updat operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                        <expression type="NameExpr">
+                                            <name identifier="index" type="SimpleName"/>
+                                        </expression>
+                                    </updat>
+                                </update>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="paintThreedXYZ" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="graphics" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="Graphics" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="x" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="y" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="z" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="FieldAccessExpr">
+                                    <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type origin="TYPE" type="ArrayType">
+                        <componentType type="ClassOrInterfaceType">
+                            <name identifier="IndexedAnimation" type="SimpleName"/>
+                        </componentType>
+                    </type>
+                    <name identifier="getAnimationInterfaceArray" type="SimpleName"/>
+                    <comment content="      * @return the animationInterfaceArray      " type="JavadocComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="NameExpr">
+                                        <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                    </value>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="setAnimationInterfaceArray" type="SimpleName"/>
+                    <comment content="      * @param animationInterfaceArray the animationInterfaceArray to set      " type="JavadocComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="animationInterfaceArray" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="ClassOrInterfaceType">
+                                    <name identifier="IndexedAnimation" type="SimpleName"/>
+                                </componentType>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="IfStmt">
+                                <condition operator="AND" type="BinaryExpr">
+                                    <left operator="GREATER_EQUALS" type="BinaryExpr">
+                                        <left type="NameExpr">
+                                            <name identifier="value" type="SimpleName"/>
+                                        </left>
+                                        <right type="IntegerLiteralExpr" value="0"/>
+                                    </left>
+                                    <right operator="LESS" type="BinaryExpr">
+                                        <left type="NameExpr">
+                                            <name identifier="value" type="SimpleName"/>
+                                        </left>
+                                        <right type="IntegerLiteralExpr" value="101"/>
+                                    </right>
+                                </condition>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="FieldAccessExpr">
+                                                    <name identifier="value" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </target>
+                                                <value type="NameExpr">
+                                                    <name identifier="value" type="SimpleName"/>
+                                                </value>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <modifiers>
+                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                </modifiers>
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer operator="PLUS" type="BinaryExpr">
+                                                            <left type="FieldAccessExpr">
+                                                                <name identifier="dx" type="SimpleName"/>
+                                                                <scope type="ThisExpr"/>
+                                                            </left>
+                                                            <right type="EnclosedExpr">
+                                                                <inner operator="DIVIDE" type="BinaryExpr">
+                                                                    <left operator="MULTIPLY" type="BinaryExpr">
+                                                                        <left type="NameExpr">
+                                                                            <name identifier="value" type="SimpleName"/>
+                                                                        </left>
+                                                                        <right type="FieldAccessExpr">
+                                                                            <name identifier="width" type="SimpleName"/>
+                                                                            <scope type="ThisExpr"/>
+                                                                        </right>
+                                                                    </left>
+                                                                    <right type="IntegerLiteralExpr" value="100"/>
+                                                                </inner>
+                                                            </right>
+                                                        </initializer>
+                                                        <name identifier="newDx" type="SimpleName"/>
+                                                        <type type="INT" typeB="PrimitiveType"/>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                            <comment content="logUtil.put(&quot;new value: &quot; + this.value, this, &quot;onMotionGestureEvent&quot;);" type="LineComment"/>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="setDx" type="SimpleName"/>
+                                                <scope type="ArrayAccessExpr">
+                                                    <index type="IntegerLiteralExpr" value="3"/>
+                                                    <name type="FieldAccessExpr">
+                                                        <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </name>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="newDx" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <modifiers>
+                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                </modifiers>
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="EnclosedExpr">
+                                                            <inner type="CastExpr">
+                                                                <expression type="ArrayAccessExpr">
+                                                                    <index type="IntegerLiteralExpr" value="4"/>
+                                                                    <name type="FieldAccessExpr">
+                                                                        <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                                                        <scope type="ThisExpr"/>
+                                                                    </name>
+                                                                </expression>
+                                                                <type type="ClassOrInterfaceType">
+                                                                    <name identifier="CustomTextAnimation" type="SimpleName"/>
+                                                                </type>
+                                                            </inner>
+                                                        </initializer>
+                                                        <name identifier="customTextAnimation" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="CustomTextAnimation" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="setText" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="customTextAnimation" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="MethodCallExpr">
+                                                        <name identifier="toString" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="Integer" type="SimpleName"/>
+                                                        </scope>
+                                                        <arguments>
+                                                            <argument type="FieldAccessExpr">
+                                                                <name identifier="value" type="SimpleName"/>
+                                                                <scope type="ThisExpr"/>
+                                                            </argument>
+                                                        </arguments>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="setDx" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="customTextAnimation" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="MINUS" type="BinaryExpr">
+                                                        <left operator="PLUS" type="BinaryExpr">
+                                                            <left type="NameExpr">
+                                                                <name identifier="newDx" type="SimpleName"/>
+                                                            </left>
+                                                            <right type="EnclosedExpr">
+                                                                <inner operator="DIVIDE" type="BinaryExpr">
+                                                                    <left type="MethodCallExpr">
+                                                                        <name identifier="getThumbWidth" type="SimpleName"/>
+                                                                        <scope type="ThisExpr"/>
+                                                                    </left>
+                                                                    <right type="IntegerLiteralExpr" value="2"/>
+                                                                </inner>
+                                                            </right>
+                                                        </left>
+                                                        <right type="EnclosedExpr">
+                                                            <inner operator="DIVIDE" type="BinaryExpr">
+                                                                <left type="MethodCallExpr">
+                                                                    <name identifier="getWidth" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="customTextAnimation" type="SimpleName"/>
+                                                                    </scope>
+                                                                </left>
+                                                                <right type="IntegerLiteralExpr" value="2"/>
+                                                            </inner>
+                                                        </right>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="setValue" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="value" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="NameExpr">
+                                                <name identifier="thumbX" type="SimpleName"/>
+                                            </initializer>
+                                            <name identifier="usedThumbX" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="logUtil.put(&quot;thumbX: &quot; + thumbX, this, &quot;onMotionGestureEvent&quot;);" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="FieldAccessExpr">
+                                                <name identifier="width" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                            </initializer>
+                                            <name identifier="maxX" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition operator="AND" type="BinaryExpr">
+                                    <left operator="GREATER_EQUALS" type="BinaryExpr">
+                                        <left type="NameExpr">
+                                            <name identifier="thumbX" type="SimpleName"/>
+                                        </left>
+                                        <right type="FieldAccessExpr">
+                                            <name identifier="dx" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </right>
+                                    </left>
+                                    <right operator="LESS" type="BinaryExpr">
+                                        <left type="NameExpr">
+                                            <name identifier="thumbX" type="SimpleName"/>
+                                        </left>
+                                        <right operator="PLUS" type="BinaryExpr">
+                                            <left type="FieldAccessExpr">
+                                                <name identifier="dx" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                            </left>
+                                            <right type="FieldAccessExpr">
+                                                <name identifier="width" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                            </right>
+                                        </right>
+                                    </right>
+                                </condition>
+                                <elseStmt type="IfStmt">
+                                    <condition operator="LESS" type="BinaryExpr">
+                                        <left type="NameExpr">
+                                            <name identifier="thumbX" type="SimpleName"/>
+                                        </left>
+                                        <right type="IntegerLiteralExpr" value="0"/>
+                                    </condition>
+                                    <elseStmt type="IfStmt">
+                                        <condition operator="GREATER" type="BinaryExpr">
+                                            <left type="NameExpr">
+                                                <name identifier="thumbX" type="SimpleName"/>
+                                            </left>
+                                            <right type="NameExpr">
+                                                <name identifier="maxX" type="SimpleName"/>
+                                            </right>
+                                        </condition>
+                                        <thenStmt type="BlockStmt">
+                                            <statements>
+                                                <statement type="ExpressionStmt">
+                                                    <expression operator="ASSIGN" type="AssignExpr">
+                                                        <target type="NameExpr">
+                                                            <name identifier="usedThumbX" type="SimpleName"/>
+                                                        </target>
+                                                        <value type="NameExpr">
+                                                            <name identifier="maxX" type="SimpleName"/>
+                                                        </value>
+                                                    </expression>
+                                                </statement>
+                                            </statements>
+                                        </thenStmt>
+                                    </elseStmt>
+                                    <thenStmt type="BlockStmt">
+                                        <statements>
+                                            <statement type="ExpressionStmt">
+                                                <expression operator="ASSIGN" type="AssignExpr">
+                                                    <target type="NameExpr">
+                                                        <name identifier="usedThumbX" type="SimpleName"/>
+                                                    </target>
+                                                    <value type="IntegerLiteralExpr" value="0"/>
+                                                </expression>
+                                            </statement>
+                                        </statements>
+                                    </thenStmt>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="EnclosedExpr">
+                                                <inner operator="DIVIDE" type="BinaryExpr">
+                                                    <left operator="MULTIPLY" type="BinaryExpr">
+                                                        <left type="IntegerLiteralExpr" value="100"/>
+                                                        <right type="NameExpr">
+                                                            <name identifier="usedThumbX" type="SimpleName"/>
+                                                        </right>
+                                                    </left>
+                                                    <right type="FieldAccessExpr">
+                                                        <name identifier="width" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </right>
+                                                </inner>
+                                            </initializer>
+                                            <name identifier="value" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="logUtil.put(&quot;old value: &quot; + this.value, this, &quot;onMotionGestureEvent&quot;);" type="LineComment"/>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition operator="GREATER" type="BinaryExpr">
+                                    <left type="NameExpr">
+                                        <name identifier="value" type="SimpleName"/>
+                                    </left>
+                                    <right type="IntegerLiteralExpr" value="100"/>
+                                </condition>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="NameExpr">
+                                                    <name identifier="value" type="SimpleName"/>
+                                                </target>
+                                                <value type="IntegerLiteralExpr" value="100"/>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="setValue" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="value" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="setValue2" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="thumbX" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="getDx" type="SimpleName"/>
+                                    <scope type="ArrayAccessExpr">
+                                        <index type="IntegerLiteralExpr" value="3"/>
+                                        <name type="FieldAccessExpr">
+                                            <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </name>
+                                    </scope>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="INT" typeB="PrimitiveType"/>
+                    <name identifier="getThumbDx" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="getWidth" type="SimpleName"/>
+                                    <scope type="ArrayAccessExpr">
+                                        <index type="IntegerLiteralExpr" value="3"/>
+                                        <name type="FieldAccessExpr">
+                                            <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </name>
+                                    </scope>
+                                </expression>
+                                <comment content="TWB - ImageBaseRotationAnimation only" type="LineComment"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="INT" typeB="PrimitiveType"/>
+                    <name identifier="getThumbWidth" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="FieldAccessExpr">
+                                    <name identifier="value" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="INT" typeB="PrimitiveType"/>
+                    <name identifier="getValue" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="hasFocus" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="NameExpr">
+                                        <name identifier="hasFocus" type="SimpleName"/>
+                                    </value>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="setFocus" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="hasFocus" type="SimpleName"/>
+                            <type type="BOOLEAN" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

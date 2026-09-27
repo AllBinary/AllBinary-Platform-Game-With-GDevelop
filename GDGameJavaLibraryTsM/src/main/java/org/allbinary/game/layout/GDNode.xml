@@ -1,0 +1,1177 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="layout" type="Name">
+            <qualifier identifier="game" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content=" * AllBinary Open License Version 1 * Copyright (c) 2011 AllBinary *  * By agreeing to this license you and any business entity you represent are * legally bound to the AllBinary Open License Version 1 legal agreement. *  * You may obtain the AllBinary Open License Version 1 legal agreement from * AllBinary or the root directory of AllBinary's AllBinary Platform repository. *  * Created By: Travis Berthelot *   " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GameKeyEvent" type="Name">
+                <qualifier identifier="event" type="Name">
+                    <qualifier identifier="input" type="Name">
+                        <qualifier identifier="game" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDGameLayer" type="Name">
+                <qualifier identifier="layer" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="MotionGestureInput" type="Name">
+                <qualifier identifier="gesture" type="Name">
+                    <qualifier identifier="motion" type="Name">
+                        <qualifier identifier="input" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="MotionGestureEvent" type="Name">
+                <qualifier identifier="observer" type="Name">
+                    <qualifier identifier="gesture" type="Name">
+                        <qualifier identifier="motion" type="Name">
+                            <qualifier identifier="input" type="Name">
+                                <qualifier identifier="allbinary" type="Name">
+                                    <qualifier identifier="org" type="Name"/>
+                                </qualifier>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="NullUtil" type="Name">
+                <qualifier identifier="logic" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="LogUtil" type="Name">
+                <qualifier identifier="log" type="Name">
+                    <qualifier identifier="communication" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="NullRunnable" type="Name">
+                <qualifier identifier="thread" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDNode" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="LogUtil" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="logUtil" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="LogUtil" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="GDNodeStatsFactory" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="nodeStatsFactory" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="BaseGDNodeStats" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="NullRunnable" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="currentRunnable" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="Runnable" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="name" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="ConstructorDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="name" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="NameExpr">
+                                        <name identifier="name" type="SimpleName"/>
+                                    </value>
+                                </expression>
+                                <comment content="logUtil.put(commonStrings.START + name, this, commonStrings.CONSTRUCTOR);" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="init" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <name identifier="GDNode" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="name" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="init" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="currentRunnable" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getInstance" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="NullRunnable" type="SimpleName"/>
+                                        </scope>
+                                    </value>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="reset" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="BooleanLiteralExpr" value="true"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="process" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="BooleanLiteralExpr" value="true"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="process" type="SimpleName"/>
+                    <comment content="This call is for mapping extension params to normal params - currently for each event/condition/action type" type="LineComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="objecArray" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="ClassOrInterfaceType">
+                                    <name identifier="Any" type="SimpleName"/>
+                                </componentType>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="intArray" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="INT" typeB="PrimitiveType"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="longArray" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="LONG" typeB="PrimitiveType"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="floatArray" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="FLOAT" typeB="PrimitiveType"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="push" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="nodeStatsFactory" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="IntegerLiteralExpr" value="2"/>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="name" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="processStats" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="push" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="nodeStatsFactory" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="IntegerLiteralExpr" value="3"/>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="name" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="processStatsE" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="processReleasedStats" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                </expression>
+                            </statement>
+                            <statement type="ReturnStmt">
+                                <expression type="BooleanLiteralExpr" value="true"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="processReleased" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="push" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="nodeStatsFactory" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="IntegerLiteralExpr" value="4"/>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="name" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="processReleasedStats" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="BooleanLiteralExpr" value="false"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="process" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gameKeyEvent" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GameKeyEvent" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="BooleanLiteralExpr" value="false"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="processReleased" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gameKeyEvent" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GameKeyEvent" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="BooleanLiteralExpr" value="false"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="process" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="keyAsInteger" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="Integer" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="BooleanLiteralExpr" value="false"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="processReleased" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="keyAsInteger" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="Integer" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="BooleanLiteralExpr" value="false"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="process" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="motionGestureEvent" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="MotionGestureEvent" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="lastMotionGestureInput" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="MotionGestureInput" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="BooleanLiteralExpr" value="false"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="processScrolling" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="motionGestureEvent" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="MotionGestureEvent" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="lastMotionGestureInput" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="MotionGestureInput" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="push" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="nodeStatsFactory" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="IntegerLiteralExpr" value="5"/>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="name" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="processStats" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="motionGestureEvent" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="MotionGestureEvent" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="BooleanLiteralExpr" value="false"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="process" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="index" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="push" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="nodeStatsFactory" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="IntegerLiteralExpr" value="6"/>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="name" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="processStats" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="index" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="processEnd" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="processEnd" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="index" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="createIndex" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="push" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="nodeStatsFactory" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="IntegerLiteralExpr" value="7"/>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="name" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="processEndStats" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                    </modifiers>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="IfStmt">
+                                <condition type="BooleanLiteralExpr" value="true"/>
+                                <thenStmt type="ThrowStmt">
+                                    <expression type="ObjectCreationExpr">
+                                        <type type="ClassOrInterfaceType">
+                                            <name identifier="RuntimeException" type="SimpleName"/>
+                                        </type>
+                                    </expression>
+                                </thenStmt>
+                            </statement>
+                            <statement type="ReturnStmt">
+                                <expression type="BooleanLiteralExpr" value="true"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="processCreate" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="IfStmt">
+                                <condition type="BooleanLiteralExpr" value="true"/>
+                                <thenStmt type="ThrowStmt">
+                                    <expression type="ObjectCreationExpr">
+                                        <type type="ClassOrInterfaceType">
+                                            <name identifier="RuntimeException" type="SimpleName"/>
+                                        </type>
+                                    </expression>
+                                </thenStmt>
+                            </statement>
+                            <statement type="ReturnStmt">
+                                <expression type="BooleanLiteralExpr" value="true"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="processCreateWithGDObject" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gdObject" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDObject" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="IfStmt">
+                                <condition type="BooleanLiteralExpr" value="true"/>
+                                <thenStmt type="ThrowStmt">
+                                    <expression type="ObjectCreationExpr">
+                                        <type type="ClassOrInterfaceType">
+                                            <name identifier="RuntimeException" type="SimpleName"/>
+                                        </type>
+                                    </expression>
+                                </thenStmt>
+                            </statement>
+                            <statement type="ReturnStmt">
+                                <expression type="BooleanLiteralExpr" value="true"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="processCreateByName" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gdObject" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDObject" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="createString" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="createIndex" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="IfStmt">
+                                <condition type="BooleanLiteralExpr" value="true"/>
+                                <thenStmt type="ThrowStmt">
+                                    <expression type="ObjectCreationExpr">
+                                        <type type="ClassOrInterfaceType">
+                                            <name identifier="RuntimeException" type="SimpleName"/>
+                                        </type>
+                                    </expression>
+                                </thenStmt>
+                            </statement>
+                            <statement type="ReturnStmt">
+                                <expression type="BooleanLiteralExpr" value="true"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="processCreateGD" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gameLayerArray" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="ClassOrInterfaceType">
+                                    <name identifier="GDGameLayer" type="SimpleName"/>
+                                </componentType>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="push" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="nodeStatsFactory" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="IntegerLiteralExpr" value="10"/>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="name" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="processCreateStats" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gdObject" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDObject" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="push" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="nodeStatsFactory" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="IntegerLiteralExpr" value="11"/>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="name" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="processReleasedStats" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gdObject" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDObject" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="processGDStats" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="gameLayerArray" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ReturnStmt">
+                                <expression type="BooleanLiteralExpr" value="false"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="processGD" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gameLayerArray" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="ClassOrInterfaceType">
+                                    <name identifier="GDGameLayer" type="SimpleName"/>
+                                </componentType>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="push" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="nodeStatsFactory" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="IntegerLiteralExpr" value="14"/>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="name" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="processGDStats" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gameLayerArray" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="ClassOrInterfaceType">
+                                    <name identifier="GDGameLayer" type="SimpleName"/>
+                                </componentType>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="FieldAccessExpr">
+                                    <name identifier="NULL_OBJECT" type="SimpleName"/>
+                                    <scope type="MethodCallExpr">
+                                        <name identifier="getInstance" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="NullUtil" type="SimpleName"/>
+                                        </scope>
+                                    </scope>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="ClassOrInterfaceType">
+                        <name identifier="Any" type="SimpleName"/>
+                    </type>
+                    <name identifier="getReturnValue" type="SimpleName"/>
+                    <comment content="This is used by functions" type="LineComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="FieldAccessExpr">
+                                    <name identifier="name" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="LONG" typeB="PrimitiveType"/>
+                    <name identifier="getName" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

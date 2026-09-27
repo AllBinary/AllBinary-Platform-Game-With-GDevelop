@@ -1,0 +1,670 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="layout" type="Name">
+            <qualifier identifier="game" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content="  * AllBinary Open License Version 1  * Copyright (c) 2022 AllBinary  *   * By agreeing to this license you and any business entity you represent are  * legally bound to the AllBinary Open License Version 1 legal agreement.  *   * You may obtain the AllBinary Open License Version 1 legal agreement from  * AllBinary or the root directory of AllBinary's AllBinary Platform repository.  *   * Created By: Travis Berthelot  *   " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="CommonStrings" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="LogUtil" type="Name">
+                <qualifier identifier="log" type="Name">
+                    <qualifier identifier="communication" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="StringMaker" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="logic" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="CommonSeps" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="CallStackGDNodeStats" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="LogUtil" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="logUtil" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="LogUtil" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="IntegerLiteralExpr" value="16"/>
+                            <name identifier="SIZE" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="ArrayCreationExpr">
+                                <elementType type="INT" typeB="PrimitiveType"/>
+                                <levels>
+                                    <level type="ArrayCreationLevel">
+                                        <dimension type="FieldAccessExpr">
+                                            <name identifier="SIZE" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </dimension>
+                                    </level>
+                                    <level type="ArrayCreationLevel">
+                                        <dimension type="IntegerLiteralExpr" value="6000"/>
+                                    </level>
+                                </levels>
+                            </initializer>
+                            <name identifier="callStack" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType origin="TYPE" type="ArrayType">
+                                    <componentType type="INT" typeB="PrimitiveType"/>
+                                </componentType>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="IntegerLiteralExpr" value="0"/>
+                            <name identifier="total" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ForStmt">
+                                <body type="BlockStmt">
+                                    <statements>
+                                        <statement type="ForStmt">
+                                            <body type="BlockStmt">
+                                                <statements>
+                                                    <statement type="ExpressionStmt">
+                                                        <expression operator="ASSIGN" type="AssignExpr">
+                                                            <target type="ArrayAccessExpr">
+                                                                <index type="NameExpr">
+                                                                    <name identifier="index" type="SimpleName"/>
+                                                                </index>
+                                                                <name type="ArrayAccessExpr">
+                                                                    <index type="NameExpr">
+                                                                        <name identifier="index2" type="SimpleName"/>
+                                                                    </index>
+                                                                    <name type="FieldAccessExpr">
+                                                                        <name identifier="callStack" type="SimpleName"/>
+                                                                        <scope type="ThisExpr"/>
+                                                                    </name>
+                                                                </name>
+                                                            </target>
+                                                            <value type="IntegerLiteralExpr" value="0"/>
+                                                        </expression>
+                                                    </statement>
+                                                </statements>
+                                            </body>
+                                            <compare operator="LESS" type="BinaryExpr">
+                                                <left type="NameExpr">
+                                                    <name identifier="index" type="SimpleName"/>
+                                                </left>
+                                                <right type="FieldAccessExpr">
+                                                    <name identifier="total" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </right>
+                                            </compare>
+                                            <initialization>
+                                                <initializatio type="VariableDeclarationExpr">
+                                                    <variables>
+                                                        <variable type="VariableDeclarator">
+                                                            <initializer type="IntegerLiteralExpr" value="0"/>
+                                                            <name identifier="index" type="SimpleName"/>
+                                                            <type type="INT" typeB="PrimitiveType"/>
+                                                        </variable>
+                                                    </variables>
+                                                </initializatio>
+                                            </initialization>
+                                            <update>
+                                                <updat operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                                    <expression type="NameExpr">
+                                                        <name identifier="index" type="SimpleName"/>
+                                                    </expression>
+                                                </updat>
+                                            </update>
+                                        </statement>
+                                    </statements>
+                                </body>
+                                <compare operator="LESS" type="BinaryExpr">
+                                    <left type="NameExpr">
+                                        <name identifier="index2" type="SimpleName"/>
+                                    </left>
+                                    <right type="FieldAccessExpr">
+                                        <name identifier="SIZE" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </right>
+                                </compare>
+                                <initialization>
+                                    <initializatio type="VariableDeclarationExpr">
+                                        <variables>
+                                            <variable type="VariableDeclarator">
+                                                <initializer type="IntegerLiteralExpr" value="0"/>
+                                                <name identifier="index2" type="SimpleName"/>
+                                                <type type="INT" typeB="PrimitiveType"/>
+                                            </variable>
+                                        </variables>
+                                    </initializatio>
+                                </initialization>
+                                <update>
+                                    <updat operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                        <expression type="NameExpr">
+                                            <name identifier="index2" type="SimpleName"/>
+                                        </expression>
+                                    </updat>
+                                </update>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="total" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="IntegerLiteralExpr" value="0"/>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="reset" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="ArrayAccessExpr">
+                                        <index operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                            <expression type="FieldAccessExpr">
+                                                <name identifier="total" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                            </expression>
+                                        </index>
+                                        <name type="ArrayAccessExpr">
+                                            <index type="NameExpr">
+                                                <name identifier="index" type="SimpleName"/>
+                                            </index>
+                                            <name type="FieldAccessExpr">
+                                                <name identifier="callStack" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                            </name>
+                                        </name>
+                                    </target>
+                                    <value type="NameExpr">
+                                        <name identifier="name" type="SimpleName"/>
+                                    </value>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="push" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="index" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="name" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="CommonStrings" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="commonStrings" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="CommonStrings" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="CommonSeps" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="commonSeps" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="CommonSeps" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="delete" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="stringBuilder" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="IntegerLiteralExpr" value="0"/>
+                                        <argument type="MethodCallExpr">
+                                            <name identifier="length" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="stringBuilder" type="SimpleName"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ForStmt">
+                                <body type="BlockStmt">
+                                    <statements>
+                                        <statement type="ForStmt">
+                                            <body type="BlockStmt">
+                                                <statements>
+                                                    <statement type="IfStmt">
+                                                        <condition operator="NOT_EQUALS" type="BinaryExpr">
+                                                            <left type="ArrayAccessExpr">
+                                                                <index type="NameExpr">
+                                                                    <name identifier="index2" type="SimpleName"/>
+                                                                </index>
+                                                                <name type="ArrayAccessExpr">
+                                                                    <index type="NameExpr">
+                                                                        <name identifier="index" type="SimpleName"/>
+                                                                    </index>
+                                                                    <name type="FieldAccessExpr">
+                                                                        <name identifier="callStack" type="SimpleName"/>
+                                                                        <scope type="ThisExpr"/>
+                                                                    </name>
+                                                                </name>
+                                                            </left>
+                                                            <right type="IntegerLiteralExpr" value="0"/>
+                                                        </condition>
+                                                        <thenStmt type="BlockStmt">
+                                                            <statements>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="appendint" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="stringBuilder" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="NameExpr">
+                                                                                <name identifier="index2" type="SimpleName"/>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="append" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="stringBuilder" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="FieldAccessExpr">
+                                                                                <name identifier="COLON" type="SimpleName"/>
+                                                                                <scope type="NameExpr">
+                                                                                    <name identifier="commonSeps" type="SimpleName"/>
+                                                                                </scope>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="appendint" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="stringBuilder" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="NameExpr">
+                                                                                <name identifier="index" type="SimpleName"/>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="append" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="stringBuilder" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="FieldAccessExpr">
+                                                                                <name identifier="COLON" type="SimpleName"/>
+                                                                                <scope type="NameExpr">
+                                                                                    <name identifier="commonSeps" type="SimpleName"/>
+                                                                                </scope>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="appendint" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="stringBuilder" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="ArrayAccessExpr">
+                                                                                <index type="NameExpr">
+                                                                                    <name identifier="index2" type="SimpleName"/>
+                                                                                </index>
+                                                                                <name type="ArrayAccessExpr">
+                                                                                    <index type="NameExpr">
+                                                                                        <name identifier="index" type="SimpleName"/>
+                                                                                    </index>
+                                                                                    <name type="FieldAccessExpr">
+                                                                                        <name identifier="callStack" type="SimpleName"/>
+                                                                                        <scope type="ThisExpr"/>
+                                                                                    </name>
+                                                                                </name>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="append" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="stringBuilder" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="FieldAccessExpr">
+                                                                                <name identifier="SEMICOLON" type="SimpleName"/>
+                                                                                <scope type="NameExpr">
+                                                                                    <name identifier="commonSeps" type="SimpleName"/>
+                                                                                </scope>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="IfStmt">
+                                                                    <condition operator="GREATER" type="BinaryExpr">
+                                                                        <left type="MethodCallExpr">
+                                                                            <name identifier="length" type="SimpleName"/>
+                                                                            <scope type="NameExpr">
+                                                                                <name identifier="stringBuilder" type="SimpleName"/>
+                                                                            </scope>
+                                                                        </left>
+                                                                        <right type="IntegerLiteralExpr" value="256"/>
+                                                                    </condition>
+                                                                    <thenStmt type="BlockStmt">
+                                                                        <statements>
+                                                                            <statement type="ExpressionStmt">
+                                                                                <expression type="MethodCallExpr">
+                                                                                    <name identifier="putF" type="SimpleName"/>
+                                                                                    <scope type="FieldAccessExpr">
+                                                                                        <name identifier="logUtil" type="SimpleName"/>
+                                                                                        <scope type="ThisExpr"/>
+                                                                                    </scope>
+                                                                                    <arguments>
+                                                                                        <argument type="MethodCallExpr">
+                                                                                            <name identifier="toString" type="SimpleName"/>
+                                                                                            <scope type="NameExpr">
+                                                                                                <name identifier="stringBuilder" type="SimpleName"/>
+                                                                                            </scope>
+                                                                                        </argument>
+                                                                                        <argument type="NameExpr">
+                                                                                            <name identifier="object" type="SimpleName"/>
+                                                                                        </argument>
+                                                                                        <argument type="FieldAccessExpr">
+                                                                                            <name identifier="PROCESS" type="SimpleName"/>
+                                                                                            <scope type="NameExpr">
+                                                                                                <name identifier="commonStrings" type="SimpleName"/>
+                                                                                            </scope>
+                                                                                        </argument>
+                                                                                    </arguments>
+                                                                                </expression>
+                                                                            </statement>
+                                                                            <statement type="ExpressionStmt">
+                                                                                <expression type="MethodCallExpr">
+                                                                                    <name identifier="delete" type="SimpleName"/>
+                                                                                    <scope type="NameExpr">
+                                                                                        <name identifier="stringBuilder" type="SimpleName"/>
+                                                                                    </scope>
+                                                                                    <arguments>
+                                                                                        <argument type="IntegerLiteralExpr" value="0"/>
+                                                                                        <argument type="MethodCallExpr">
+                                                                                            <name identifier="length" type="SimpleName"/>
+                                                                                            <scope type="NameExpr">
+                                                                                                <name identifier="stringBuilder" type="SimpleName"/>
+                                                                                            </scope>
+                                                                                        </argument>
+                                                                                    </arguments>
+                                                                                </expression>
+                                                                            </statement>
+                                                                        </statements>
+                                                                    </thenStmt>
+                                                                </statement>
+                                                            </statements>
+                                                        </thenStmt>
+                                                    </statement>
+                                                </statements>
+                                            </body>
+                                            <compare operator="LESS" type="BinaryExpr">
+                                                <left type="NameExpr">
+                                                    <name identifier="index" type="SimpleName"/>
+                                                </left>
+                                                <right type="FieldAccessExpr">
+                                                    <name identifier="SIZE" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </right>
+                                            </compare>
+                                            <initialization>
+                                                <initializatio type="VariableDeclarationExpr">
+                                                    <variables>
+                                                        <variable type="VariableDeclarator">
+                                                            <initializer type="IntegerLiteralExpr" value="0"/>
+                                                            <name identifier="index" type="SimpleName"/>
+                                                            <type type="INT" typeB="PrimitiveType"/>
+                                                        </variable>
+                                                    </variables>
+                                                </initializatio>
+                                            </initialization>
+                                            <update>
+                                                <updat operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                                    <expression type="NameExpr">
+                                                        <name identifier="index" type="SimpleName"/>
+                                                    </expression>
+                                                </updat>
+                                            </update>
+                                        </statement>
+                                    </statements>
+                                </body>
+                                <compare operator="LESS" type="BinaryExpr">
+                                    <left type="NameExpr">
+                                        <name identifier="index2" type="SimpleName"/>
+                                    </left>
+                                    <right type="FieldAccessExpr">
+                                        <name identifier="total" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </right>
+                                </compare>
+                                <comment content="stringBuilder.append(commonSeps.COLON);" type="LineComment"/>
+                                <initialization>
+                                    <initializatio type="VariableDeclarationExpr">
+                                        <variables>
+                                            <variable type="VariableDeclarator">
+                                                <initializer type="IntegerLiteralExpr" value="0"/>
+                                                <name identifier="index2" type="SimpleName"/>
+                                                <type type="INT" typeB="PrimitiveType"/>
+                                            </variable>
+                                        </variables>
+                                    </initializatio>
+                                </initialization>
+                                <update>
+                                    <updat operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                        <expression type="NameExpr">
+                                            <name identifier="index2" type="SimpleName"/>
+                                        </expression>
+                                    </updat>
+                                </update>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition operator="GREATER" type="BinaryExpr">
+                                    <left type="MethodCallExpr">
+                                        <name identifier="length" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="stringBuilder" type="SimpleName"/>
+                                        </scope>
+                                    </left>
+                                    <right type="IntegerLiteralExpr" value="0"/>
+                                </condition>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="putF" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="logUtil" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="MethodCallExpr">
+                                                        <name identifier="toString" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="stringBuilder" type="SimpleName"/>
+                                                        </scope>
+                                                    </argument>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="object" type="SimpleName"/>
+                                                    </argument>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="PROCESS" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="commonStrings" type="SimpleName"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="log" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="stringBuilder" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="StringMaker" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="object" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="Any" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

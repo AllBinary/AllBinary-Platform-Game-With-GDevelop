@@ -1,0 +1,203 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="extensions" type="Name">
+            <qualifier identifier="gdevelop" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content="  * GDevelop to AllBinary Core  * Copyright 2021 Travis Berthelot (travisberthelot@allbinary.com). All rights  * reserved. This project is released under the MIT License.  " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDBehaviorMetadata" type="Name">
+                <qualifier identifier="metadata" type="Name">
+                    <qualifier identifier="builtin" type="Name">
+                        <qualifier identifier="extensions" type="Name">
+                            <qualifier identifier="gdevelop" type="Name">
+                                <qualifier identifier="allbinary" type="Name">
+                                    <qualifier identifier="org" type="Name"/>
+                                </qualifier>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="StringUtil" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="logic" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDPlatformExtension" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <extendedTypes>
+                <extendedType type="ClassOrInterfaceType">
+                    <name identifier="GDBehaviorMetadata" type="SimpleName"/>
+                </extendedType>
+            </extendedTypes>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="ObjectCreationExpr">
+                                <type type="ClassOrInterfaceType">
+                                    <name identifier="GDPlatformExtension" type="SimpleName"/>
+                                </type>
+                            </initializer>
+                            <name identifier="instance" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDPlatformExtension" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="FieldAccessExpr">
+                                    <name identifier="instance" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="GDPlatformExtension" type="SimpleName"/>
+                                    </scope>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="ClassOrInterfaceType">
+                        <name identifier="GDPlatformExtension" type="SimpleName"/>
+                    </type>
+                    <name identifier="getInstance" type="SimpleName"/>
+                    <comment content="      * @return the instance      " type="JavadocComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="::"/>
+                            <name identifier="NAMESPACE_SEP" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="ConstructorDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement isThis="false" type="ExplicitConstructorInvocationStmt">
+                                <arguments>
+                                    <argument type="FieldAccessExpr">
+                                        <name identifier="EMPTY_STRING" type="SimpleName"/>
+                                        <scope type="MethodCallExpr">
+                                            <name identifier="getInstance" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="StringUtil" type="SimpleName"/>
+                                            </scope>
+                                        </scope>
+                                    </argument>
+                                    <argument type="FieldAccessExpr">
+                                        <name identifier="EMPTY_STRING" type="SimpleName"/>
+                                        <scope type="MethodCallExpr">
+                                            <name identifier="getInstance" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="StringUtil" type="SimpleName"/>
+                                            </scope>
+                                        </scope>
+                                    </argument>
+                                    <argument type="FieldAccessExpr">
+                                        <name identifier="EMPTY_STRING" type="SimpleName"/>
+                                        <scope type="MethodCallExpr">
+                                            <name identifier="getInstance" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="StringUtil" type="SimpleName"/>
+                                            </scope>
+                                        </scope>
+                                    </argument>
+                                    <argument type="FieldAccessExpr">
+                                        <name identifier="EMPTY_STRING" type="SimpleName"/>
+                                        <scope type="MethodCallExpr">
+                                            <name identifier="getInstance" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="StringUtil" type="SimpleName"/>
+                                            </scope>
+                                        </scope>
+                                    </argument>
+                                    <argument type="FieldAccessExpr">
+                                        <name identifier="EMPTY_STRING" type="SimpleName"/>
+                                        <scope type="MethodCallExpr">
+                                            <name identifier="getInstance" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="StringUtil" type="SimpleName"/>
+                                            </scope>
+                                        </scope>
+                                    </argument>
+                                    <argument type="FieldAccessExpr">
+                                        <name identifier="EMPTY_STRING" type="SimpleName"/>
+                                        <scope type="MethodCallExpr">
+                                            <name identifier="getInstance" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="StringUtil" type="SimpleName"/>
+                                            </scope>
+                                        </scope>
+                                    </argument>
+                                    <argument type="FieldAccessExpr">
+                                        <name identifier="EMPTY_STRING" type="SimpleName"/>
+                                        <scope type="MethodCallExpr">
+                                            <name identifier="getInstance" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="StringUtil" type="SimpleName"/>
+                                            </scope>
+                                        </scope>
+                                    </argument>
+                                    <argument type="FieldAccessExpr">
+                                        <name identifier="EMPTY_STRING" type="SimpleName"/>
+                                        <scope type="MethodCallExpr">
+                                            <name identifier="getInstance" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="StringUtil" type="SimpleName"/>
+                                            </scope>
+                                        </scope>
+                                    </argument>
+                                    <argument type="NullLiteralExpr"/>
+                                    <argument type="NullLiteralExpr"/>
+                                </arguments>
+                            </statement>
+                        </statements>
+                    </body>
+                    <name identifier="GDPlatformExtension" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                    </modifiers>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

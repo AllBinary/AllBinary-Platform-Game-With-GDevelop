@@ -1,0 +1,1644 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="shader" type="Name">
+            <qualifier identifier="opengles" type="Name">
+                <qualifier identifier="graphics" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content="  * AllBinary Open License Version 1  * Copyright (c) 2025 AllBinary  *   * By agreeing to this license you and any business entity you represent are  * legally bound to the AllBinary Open License Version 1 legal agreement.  *   * You may obtain the AllBinary Open License Version 1 legal agreement from  * AllBinary or the root directory of AllBinary's AllBinary Platform repository.  *   * Created By: Travis Berthelot  *   " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="InputStream" type="Name">
+                <qualifier identifier="io" type="Name">
+                    <qualifier identifier="java" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="EGLConfig" type="Name">
+                <qualifier identifier="egl" type="Name">
+                    <qualifier identifier="khronos" type="Name">
+                        <qualifier identifier="microedition" type="Name">
+                            <qualifier identifier="javax" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GL10" type="Name">
+                <qualifier identifier="opengles" type="Name">
+                    <qualifier identifier="khronos" type="Name">
+                        <qualifier identifier="microedition" type="Name">
+                            <qualifier identifier="javax" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Object3d" type="Name">
+                <qualifier identifier="core" type="Name">
+                    <qualifier identifier="min3d" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="SemanticStrings" type="Name">
+                <qualifier identifier="opengles" type="Name"/>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="ResourceUtil" type="Name">
+                <qualifier identifier="resource" type="Name">
+                    <qualifier identifier="data" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AppShaderResources" type="Name">
+                <qualifier identifier="resources" type="Name">
+                    <qualifier identifier="layer" type="Name">
+                        <qualifier identifier="gd" type="Name">
+                            <qualifier identifier="game" type="Name">
+                                <qualifier identifier="allbinary" type="Name">
+                                    <qualifier identifier="org" type="Name"/>
+                                </qualifier>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="NullOpenGLProcessorFactory" type="Name">
+                <qualifier identifier="opengles" type="Name">
+                    <qualifier identifier="graphics" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="OpenGLCapabilities" type="Name">
+                <qualifier identifier="opengles" type="Name">
+                    <qualifier identifier="graphics" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="OpenGLVersionValidator" type="Name">
+                <qualifier identifier="opengles" type="Name">
+                    <qualifier identifier="graphics" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="RendererStrings" type="Name">
+                <qualifier identifier="renderer" type="Name">
+                    <qualifier identifier="opengles" type="Name">
+                        <qualifier identifier="graphics" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="PlatformAppShaderResources" type="Name">
+                <qualifier identifier="min3d" type="Name">
+                    <qualifier identifier="threed" type="Name">
+                        <qualifier identifier="graphics" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="LogUtil" type="Name">
+                <qualifier identifier="log" type="Name">
+                    <qualifier identifier="communication" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="SimpleFileUtil" type="Name">
+                <qualifier identifier="file" type="Name">
+                    <qualifier identifier="io" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="StringUtil" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="logic" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicArrayList" type="Name">
+                <qualifier identifier="util" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="AppRendererShaderUpdaterFactory" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <extendedTypes>
+                <extendedType type="ClassOrInterfaceType">
+                    <name identifier="ShaderUpdater" type="SimpleName"/>
+                </extendedType>
+            </extendedTypes>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="LogUtil" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="logUtil" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="LogUtil" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="ObjectCreationExpr">
+                                <type type="ClassOrInterfaceType">
+                                    <name identifier="AppRendererShaderUpdaterFactory" type="SimpleName"/>
+                                </type>
+                            </initializer>
+                            <name identifier="instance" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="AppRendererShaderUpdaterFactory" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="FieldAccessExpr">
+                                    <name identifier="instance" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="AppRendererShaderUpdaterFactory" type="SimpleName"/>
+                                    </scope>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="ClassOrInterfaceType">
+                        <name identifier="AppRendererShaderUpdaterFactory" type="SimpleName"/>
+                    </type>
+                    <name identifier="getInstance" type="SimpleName"/>
+                    <comment content="      * @return the instance      " type="JavadocComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="RendererStrings" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="renderStrings" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="RendererStrings" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="SemanticStrings" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="semanticStrings" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="SemanticStrings" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="OpenGLCapabilities" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="openGLCapabilities" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="OpenGLCapabilities" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="create" type="SimpleName"/>
+                                <scope type="MethodCallExpr">
+                                    <name identifier="getInstance" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="ShaderManagerFactory" type="SimpleName"/>
+                                    </scope>
+                                </scope>
+                            </initializer>
+                            <name identifier="shaderManager" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="ShaderManager" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="AppShaderResources" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="appShaderResources" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="AppShaderResources" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="ResourceUtil" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="resourceUtil" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="ResourceUtil" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="SimpleFileUtil" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="simpleFileUtil" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="SimpleFileUtil" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <comment content="private IntBuffer samplerName = GLBuffers.newDirectIntBuffer(1);" type="LineComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="ArrayInitializerExpr">
+                                <values>
+                                    <value type="ObjectCreationExpr">
+                                        <type type="ClassOrInterfaceType">
+                                            <name identifier="PlatformShaderComposite" type="SimpleName"/>
+                                        </type>
+                                        <comment content="        null)," type="LineComment"/>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="VERSION_3_0" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="openGLCapabilities" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                            </argument>
+                                            <argument type="ArrayCreationExpr">
+                                                <elementType type="ClassOrInterfaceType">
+                                                    <name identifier="Shader" type="SimpleName"/>
+                                                </elementType>
+                                                <initializer type="ArrayInitializerExpr">
+                                                    <values>
+                                                        <value type="ObjectCreationExpr">
+                                                            <type type="ClassOrInterfaceType">
+                                                                <name identifier="Shader" type="SimpleName"/>
+                                                            </type>
+                                                        </value>
+                                                        <value type="ObjectCreationExpr">
+                                                            <type type="ClassOrInterfaceType">
+                                                                <name identifier="Shader" type="SimpleName"/>
+                                                            </type>
+                                                        </value>
+                                                    </values>
+                                                </initializer>
+                                                <levels>
+                                                    <level type="ArrayCreationLevel"/>
+                                                </levels>
+                                            </argument>
+                                            <argument type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="SimpleCompositeShaderUpdater" type="SimpleName"/>
+                                                </type>
+                                                <arguments>
+                                                    <argument type="MethodCallExpr">
+                                                        <name identifier="getArrayInstance" type="SimpleName"/>
+                                                        <scope type="MethodCallExpr">
+                                                            <name identifier="getInstance" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="StringUtil" type="SimpleName"/>
+                                                            </scope>
+                                                        </scope>
+                                                    </argument>
+                                                    <argument type="ArrayCreationExpr">
+                                                        <elementType type="ClassOrInterfaceType">
+                                                            <name identifier="String" type="SimpleName"/>
+                                                        </elementType>
+                                                        <initializer type="ArrayInitializerExpr">
+                                                            <values>
+                                                                <value type="StringLiteralExpr" value="lightPos"/>
+                                                                <value type="StringLiteralExpr" value="lightColor"/>
+                                                                <value type="StringLiteralExpr" value="cameraPos"/>
+                                                                <value type="StringLiteralExpr" value="myTexture"/>
+                                                            </values>
+                                                        </initializer>
+                                                        <levels>
+                                                            <level type="ArrayCreationLevel"/>
+                                                        </levels>
+                                                    </argument>
+                                                    <argument type="ArrayCreationExpr">
+                                                        <elementType type="ClassOrInterfaceType">
+                                                            <name identifier="String" type="SimpleName"/>
+                                                        </elementType>
+                                                        <initializer type="ArrayInitializerExpr">
+                                                            <values>
+                                                                <value type="FieldAccessExpr">
+                                                                    <name identifier="POSITION" type="SimpleName"/>
+                                                                    <scope type="FieldAccessExpr">
+                                                                        <name identifier="semanticStrings" type="SimpleName"/>
+                                                                        <scope type="ThisExpr"/>
+                                                                    </scope>
+                                                                </value>
+                                                                <value type="FieldAccessExpr">
+                                                                    <name identifier="COLOR" type="SimpleName"/>
+                                                                    <scope type="FieldAccessExpr">
+                                                                        <name identifier="semanticStrings" type="SimpleName"/>
+                                                                        <scope type="ThisExpr"/>
+                                                                    </scope>
+                                                                </value>
+                                                                <value type="FieldAccessExpr">
+                                                                    <name identifier="NORMAL" type="SimpleName"/>
+                                                                    <scope type="FieldAccessExpr">
+                                                                        <name identifier="semanticStrings" type="SimpleName"/>
+                                                                        <scope type="ThisExpr"/>
+                                                                    </scope>
+                                                                </value>
+                                                                <value type="FieldAccessExpr">
+                                                                    <name identifier="TEXCOORD" type="SimpleName"/>
+                                                                    <scope type="FieldAccessExpr">
+                                                                        <name identifier="semanticStrings" type="SimpleName"/>
+                                                                        <scope type="ThisExpr"/>
+                                                                    </scope>
+                                                                </value>
+                                                            </values>
+                                                        </initializer>
+                                                        <levels>
+                                                            <level type="ArrayCreationLevel"/>
+                                                        </levels>
+                                                    </argument>
+                                                    <argument type="ArrayCreationExpr">
+                                                        <elementType type="INT" typeB="PrimitiveType"/>
+                                                        <levels>
+                                                            <level type="ArrayCreationLevel">
+                                                                <dimension type="IntegerLiteralExpr" value="4"/>
+                                                            </level>
+                                                        </levels>
+                                                    </argument>
+                                                </arguments>
+                                            </argument>
+                                            <argument type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="SimpleShaderInitializer" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                            <argument type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="ModelViewProjection" type="SimpleName"/>
+                                                </scope>
+                                            </argument>
+                                            <argument type="NullLiteralExpr"/>
+                                            <argument type="NullLiteralExpr"/>
+                                        </arguments>
+                                    </value>
+                                </values>
+                            </initializer>
+                            <name identifier="shaderCompositeArray" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="ClassOrInterfaceType">
+                                    <name identifier="ShaderComposite" type="SimpleName"/>
+                                </componentType>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="add" type="SimpleName"/>
+                                    <scope type="MethodCallExpr">
+                                        <name identifier="getInstance" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="PlatformAppShaderResources" type="SimpleName"/>
+                                        </scope>
+                                    </scope>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer operator="MULTIPLY" type="BinaryExpr">
+                                                <left type="IntegerLiteralExpr" value="1024"/>
+                                                <right type="IntegerLiteralExpr" value="32"/>
+                                            </initializer>
+                                            <name identifier="max" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ArrayCreationExpr">
+                                                <elementType type="BYTE" typeB="PrimitiveType"/>
+                                                <levels>
+                                                    <level type="ArrayCreationLevel">
+                                                        <dimension type="NameExpr">
+                                                            <name identifier="max" type="SimpleName"/>
+                                                        </dimension>
+                                                    </level>
+                                                </levels>
+                                            </initializer>
+                                            <name identifier="byteArray1" type="SimpleName"/>
+                                            <type origin="TYPE" type="ArrayType">
+                                                <componentType type="BYTE" typeB="PrimitiveType"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="FieldAccessExpr">
+                                                <name identifier="length" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="shaderCompositeArray" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="size" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ArrayAccessExpr">
+                                                <index type="IntegerLiteralExpr" value="0"/>
+                                                <name type="FieldAccessExpr">
+                                                    <name identifier="shaderCompositeArray" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </name>
+                                            </initializer>
+                                            <name identifier="shaderComposite" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="ShaderComposite" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="        shaderCompositeArray[2].uniformTextureUnitOpenGLProcessor = new UniformShaderOpenGLProcessor(shaderCompositeArray[2]);" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="colorEnableVertexAttribArrayOpenGLProcessor" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="shaderComposite" type="SimpleName"/>
+                                        </scope>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getInstance" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="NullOpenGLProcessorFactory" type="SimpleName"/>
+                                        </scope>
+                                    </value>
+                                </expression>
+                                <comment content="shaderComposite.uniformTextureUnitOpenGLProcessor = new UniformShaderOpenGLProcessor(shaderComposite, 0);" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="colorDisableVertexAttribArrayOpenGLProcessor" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="shaderComposite" type="SimpleName"/>
+                                        </scope>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getInstance" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="NullOpenGLProcessorFactory" type="SimpleName"/>
+                                        </scope>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="uniformLightPositionOpenGLProcessor" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="shaderComposite" type="SimpleName"/>
+                                        </scope>
+                                    </target>
+                                    <value type="ObjectCreationExpr">
+                                        <type type="ClassOrInterfaceType">
+                                            <name identifier="UniformLightPositionOpenGLProcessor" type="SimpleName"/>
+                                        </type>
+                                        <arguments>
+                                            <argument type="NameExpr">
+                                                <name identifier="shaderComposite" type="SimpleName"/>
+                                            </argument>
+                                            <argument type="IntegerLiteralExpr" value="0"/>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="uniformLightColorOpenGLProcessor" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="shaderComposite" type="SimpleName"/>
+                                        </scope>
+                                    </target>
+                                    <value type="ObjectCreationExpr">
+                                        <type type="ClassOrInterfaceType">
+                                            <name identifier="UniformLightColorOpenGLProcessor" type="SimpleName"/>
+                                        </type>
+                                        <arguments>
+                                            <argument type="NameExpr">
+                                                <name identifier="shaderComposite" type="SimpleName"/>
+                                            </argument>
+                                            <argument type="IntegerLiteralExpr" value="1"/>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="uniformCameraPositionOpenGLProcessor" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="shaderComposite" type="SimpleName"/>
+                                        </scope>
+                                    </target>
+                                    <value type="ObjectCreationExpr">
+                                        <type type="ClassOrInterfaceType">
+                                            <name identifier="UniformCameraPositionOpenGLProcessor" type="SimpleName"/>
+                                        </type>
+                                        <arguments>
+                                            <argument type="NameExpr">
+                                                <name identifier="shaderComposite" type="SimpleName"/>
+                                            </argument>
+                                            <argument type="IntegerLiteralExpr" value="2"/>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="uniformTextureUnitOpenGLProcessor" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="shaderComposite" type="SimpleName"/>
+                                        </scope>
+                                    </target>
+                                    <value type="ObjectCreationExpr">
+                                        <type type="ClassOrInterfaceType">
+                                            <name identifier="UniformTextureOpenGLProcessor" type="SimpleName"/>
+                                        </type>
+                                        <arguments>
+                                            <argument type="NameExpr">
+                                                <name identifier="shaderComposite" type="SimpleName"/>
+                                            </argument>
+                                            <argument type="IntegerLiteralExpr" value="3"/>
+                                        </arguments>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition operator="EQUALS" type="BinaryExpr">
+                                    <left type="FieldAccessExpr">
+                                        <name identifier="shaderManager" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </left>
+                                    <right type="MethodCallExpr">
+                                        <name identifier="getInstance" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="ShaderManager" type="SimpleName"/>
+                                        </scope>
+                                    </right>
+                                </condition>
+                                <elseStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <modifiers>
+                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                </modifiers>
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="getInstance" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="OpenGLVersionValidator" type="SimpleName"/>
+                                                            </scope>
+                                                        </initializer>
+                                                        <name identifier="openGLVersionValidator" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="OpenGLVersionValidator" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ForStmt">
+                                            <body type="BlockStmt">
+                                                <statements>
+                                                    <statement type="ExpressionStmt">
+                                                        <expression operator="ASSIGN" type="AssignExpr">
+                                                            <target type="NameExpr">
+                                                                <name identifier="shaderComposite" type="SimpleName"/>
+                                                            </target>
+                                                            <value type="ArrayAccessExpr">
+                                                                <index type="NameExpr">
+                                                                    <name identifier="index" type="SimpleName"/>
+                                                                </index>
+                                                                <name type="FieldAccessExpr">
+                                                                    <name identifier="shaderCompositeArray" type="SimpleName"/>
+                                                                    <scope type="ThisExpr"/>
+                                                                </name>
+                                                            </value>
+                                                        </expression>
+                                                    </statement>
+                                                    <statement type="IfStmt">
+                                                        <condition type="MethodCallExpr">
+                                                            <name identifier="isAvailable" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="openGLVersionValidator" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="requiresOpenGLVersion" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="shaderComposite" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                            </arguments>
+                                                        </condition>
+                                                        <elseStmt type="BlockStmt">
+                                                            <statements>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="putF" type="SimpleName"/>
+                                                                        <scope type="FieldAccessExpr">
+                                                                            <name identifier="logUtil" type="SimpleName"/>
+                                                                            <scope type="ThisExpr"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument operator="PLUS" type="BinaryExpr">
+                                                                                <left type="StringLiteralExpr" value="shader is not available: "/>
+                                                                                <right type="NameExpr">
+                                                                                    <name identifier="index" type="SimpleName"/>
+                                                                                </right>
+                                                                            </argument>
+                                                                            <argument type="ThisExpr"/>
+                                                                            <argument type="FieldAccessExpr">
+                                                                                <name identifier="ON_SURFACE_CREATED" type="SimpleName"/>
+                                                                                <scope type="FieldAccessExpr">
+                                                                                    <name identifier="rendererStrings" type="SimpleName"/>
+                                                                                    <scope type="ThisExpr"/>
+                                                                                </scope>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                            </statements>
+                                                        </elseStmt>
+                                                        <thenStmt type="BlockStmt">
+                                                            <statements>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="VariableDeclarationExpr">
+                                                                        <variables>
+                                                                            <variable type="VariableDeclarator">
+                                                                                <initializer type="ArrayAccessExpr">
+                                                                                    <index type="IntegerLiteralExpr" value="0"/>
+                                                                                    <name type="FieldAccessExpr">
+                                                                                        <name identifier="shaderArray" type="SimpleName"/>
+                                                                                        <scope type="NameExpr">
+                                                                                            <name identifier="shaderComposite" type="SimpleName"/>
+                                                                                        </scope>
+                                                                                    </name>
+                                                                                </initializer>
+                                                                                <name identifier="shader" type="SimpleName"/>
+                                                                                <type type="ClassOrInterfaceType">
+                                                                                    <name identifier="Shader" type="SimpleName"/>
+                                                                                </type>
+                                                                            </variable>
+                                                                        </variables>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression operator="ASSIGN" type="AssignExpr">
+                                                                        <target type="FieldAccessExpr">
+                                                                            <name identifier="shaderName" type="SimpleName"/>
+                                                                            <scope type="NameExpr">
+                                                                                <name identifier="shader" type="SimpleName"/>
+                                                                            </scope>
+                                                                        </target>
+                                                                        <value type="MethodCallExpr">
+                                                                            <name identifier="getVertexShader" type="SimpleName"/>
+                                                                            <scope type="FieldAccessExpr">
+                                                                                <name identifier="appShaderResources" type="SimpleName"/>
+                                                                                <scope type="ThisExpr"/>
+                                                                            </scope>
+                                                                            <arguments>
+                                                                                <argument type="NameExpr">
+                                                                                    <name identifier="index" type="SimpleName"/>
+                                                                                </argument>
+                                                                            </arguments>
+                                                                        </value>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="loadShader" type="SimpleName"/>
+                                                                        <scope type="ThisExpr"/>
+                                                                        <arguments>
+                                                                            <argument type="NameExpr">
+                                                                                <name identifier="gl" type="SimpleName"/>
+                                                                            </argument>
+                                                                            <argument type="NameExpr">
+                                                                                <name identifier="shader" type="SimpleName"/>
+                                                                            </argument>
+                                                                            <argument type="FieldAccessExpr">
+                                                                                <name identifier="GL_VERTEX_SHADER" type="SimpleName"/>
+                                                                                <scope type="FieldAccessExpr">
+                                                                                    <name identifier="shaderManager" type="SimpleName"/>
+                                                                                    <scope type="ThisExpr"/>
+                                                                                </scope>
+                                                                            </argument>
+                                                                            <argument type="NameExpr">
+                                                                                <name identifier="max" type="SimpleName"/>
+                                                                            </argument>
+                                                                            <argument type="NameExpr">
+                                                                                <name identifier="byteArray1" type="SimpleName"/>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression operator="ASSIGN" type="AssignExpr">
+                                                                        <target type="NameExpr">
+                                                                            <name identifier="shader" type="SimpleName"/>
+                                                                        </target>
+                                                                        <value type="ArrayAccessExpr">
+                                                                            <index type="IntegerLiteralExpr" value="1"/>
+                                                                            <name type="FieldAccessExpr">
+                                                                                <name identifier="shaderArray" type="SimpleName"/>
+                                                                                <scope type="NameExpr">
+                                                                                    <name identifier="shaderComposite" type="SimpleName"/>
+                                                                                </scope>
+                                                                            </name>
+                                                                        </value>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression operator="ASSIGN" type="AssignExpr">
+                                                                        <target type="FieldAccessExpr">
+                                                                            <name identifier="shaderName" type="SimpleName"/>
+                                                                            <scope type="NameExpr">
+                                                                                <name identifier="shader" type="SimpleName"/>
+                                                                            </scope>
+                                                                        </target>
+                                                                        <value type="MethodCallExpr">
+                                                                            <name identifier="getFragmentShader" type="SimpleName"/>
+                                                                            <scope type="FieldAccessExpr">
+                                                                                <name identifier="appShaderResources" type="SimpleName"/>
+                                                                                <scope type="ThisExpr"/>
+                                                                            </scope>
+                                                                            <arguments>
+                                                                                <argument type="NameExpr">
+                                                                                    <name identifier="index" type="SimpleName"/>
+                                                                                </argument>
+                                                                            </arguments>
+                                                                        </value>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="loadShader" type="SimpleName"/>
+                                                                        <scope type="ThisExpr"/>
+                                                                        <arguments>
+                                                                            <argument type="NameExpr">
+                                                                                <name identifier="gl" type="SimpleName"/>
+                                                                            </argument>
+                                                                            <argument type="NameExpr">
+                                                                                <name identifier="shader" type="SimpleName"/>
+                                                                            </argument>
+                                                                            <argument type="FieldAccessExpr">
+                                                                                <name identifier="GL_FRAGMENT_SHADER" type="SimpleName"/>
+                                                                                <scope type="FieldAccessExpr">
+                                                                                    <name identifier="shaderManager" type="SimpleName"/>
+                                                                                    <scope type="ThisExpr"/>
+                                                                                </scope>
+                                                                            </argument>
+                                                                            <argument type="NameExpr">
+                                                                                <name identifier="max" type="SimpleName"/>
+                                                                            </argument>
+                                                                            <argument type="NameExpr">
+                                                                                <name identifier="byteArray1" type="SimpleName"/>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="init" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="shaderComposite" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="NameExpr">
+                                                                                <name identifier="gl" type="SimpleName"/>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="putF" type="SimpleName"/>
+                                                                        <scope type="FieldAccessExpr">
+                                                                            <name identifier="logUtil" type="SimpleName"/>
+                                                                            <scope type="ThisExpr"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument operator="PLUS" type="BinaryExpr">
+                                                                                <left type="StringLiteralExpr" value="shader programHandle: "/>
+                                                                                <right type="FieldAccessExpr">
+                                                                                    <name identifier="programHandle" type="SimpleName"/>
+                                                                                    <scope type="NameExpr">
+                                                                                        <name identifier="shaderComposite" type="SimpleName"/>
+                                                                                    </scope>
+                                                                                </right>
+                                                                            </argument>
+                                                                            <argument type="ThisExpr"/>
+                                                                            <argument type="FieldAccessExpr">
+                                                                                <name identifier="ON_SURFACE_CREATED" type="SimpleName"/>
+                                                                                <scope type="FieldAccessExpr">
+                                                                                    <name identifier="rendererStrings" type="SimpleName"/>
+                                                                                    <scope type="ThisExpr"/>
+                                                                                </scope>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="onSurfaceCreated" type="SimpleName"/>
+                                                                        <scope type="FieldAccessExpr">
+                                                                            <name identifier="compositeShaderUpdater" type="SimpleName"/>
+                                                                            <scope type="NameExpr">
+                                                                                <name identifier="shaderComposite" type="SimpleName"/>
+                                                                            </scope>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="NameExpr">
+                                                                                <name identifier="gl" type="SimpleName"/>
+                                                                            </argument>
+                                                                            <argument type="NameExpr">
+                                                                                <name identifier="eglConfig" type="SimpleName"/>
+                                                                            </argument>
+                                                                            <argument type="FieldAccessExpr">
+                                                                                <name identifier="programHandle" type="SimpleName"/>
+                                                                                <scope type="NameExpr">
+                                                                                    <name identifier="shaderComposite" type="SimpleName"/>
+                                                                                </scope>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                            </statements>
+                                                        </thenStmt>
+                                                    </statement>
+                                                </statements>
+                                            </body>
+                                            <compare operator="LESS" type="BinaryExpr">
+                                                <left type="NameExpr">
+                                                    <name identifier="index" type="SimpleName"/>
+                                                </left>
+                                                <right type="NameExpr">
+                                                    <name identifier="size" type="SimpleName"/>
+                                                </right>
+                                            </compare>
+                                            <initialization>
+                                                <initializatio type="VariableDeclarationExpr">
+                                                    <variables>
+                                                        <variable type="VariableDeclarator">
+                                                            <initializer type="IntegerLiteralExpr" value="0"/>
+                                                            <name identifier="index" type="SimpleName"/>
+                                                            <type type="INT" typeB="PrimitiveType"/>
+                                                        </variable>
+                                                    </variables>
+                                                </initializatio>
+                                            </initialization>
+                                            <update>
+                                                <updat operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                                    <expression type="NameExpr">
+                                                        <name identifier="index" type="SimpleName"/>
+                                                    </expression>
+                                                </updat>
+                                            </update>
+                                        </statement>
+                                    </statements>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="putF" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="logUtil" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="StringLiteralExpr" value="Shaders already loaded"/>
+                                                    <argument type="ThisExpr"/>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="ON_SURFACE_CREATED" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="renderStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="shaderManager" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="MethodCallExpr">
+                                        <name identifier="getInstance" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="ShaderManager" type="SimpleName"/>
+                                        </scope>
+                                    </value>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="onSurfaceCreated" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gl" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GL10" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="eglConfig" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="EGLConfig" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="FieldAccessExpr">
+                                                <name identifier="shaderName" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="shader" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="resource" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="String" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="TryStmt">
+                                <tryBlock type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="putF" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="logUtil" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="resource" type="SimpleName"/>
+                                                    </argument>
+                                                    <argument type="ThisExpr"/>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="ON_SURFACE_CREATED" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="rendererStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <modifiers>
+                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                </modifiers>
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="getResourceAsStream" type="SimpleName"/>
+                                                            <scope type="FieldAccessExpr">
+                                                                <name identifier="resourceUtil" type="SimpleName"/>
+                                                                <scope type="ThisExpr"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="NameExpr">
+                                                                    <name identifier="resource" type="SimpleName"/>
+                                                                </argument>
+                                                            </arguments>
+                                                        </initializer>
+                                                        <name identifier="inputStream" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="InputStream" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <modifiers>
+                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                </modifiers>
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer operator="ASSIGN" type="AssignExpr">
+                                                            <target type="FieldAccessExpr">
+                                                                <name identifier="shaderStringList" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="shader" type="SimpleName"/>
+                                                                </scope>
+                                                            </target>
+                                                            <value type="MethodCallExpr">
+                                                                <name identifier="loadFileAsListReturnLine" type="SimpleName"/>
+                                                                <scope type="FieldAccessExpr">
+                                                                    <name identifier="simpleFileUtil" type="SimpleName"/>
+                                                                    <scope type="ThisExpr"/>
+                                                                </scope>
+                                                                <arguments>
+                                                                    <argument type="NameExpr">
+                                                                        <name identifier="inputStream" type="SimpleName"/>
+                                                                    </argument>
+                                                                    <argument type="NameExpr">
+                                                                        <name identifier="max" type="SimpleName"/>
+                                                                    </argument>
+                                                                    <argument type="NameExpr">
+                                                                        <name identifier="byteArray1" type="SimpleName"/>
+                                                                    </argument>
+                                                                    <argument type="IntegerLiteralExpr" value="1"/>
+                                                                </arguments>
+                                                            </value>
+                                                        </initializer>
+                                                        <name identifier="stringList" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="BasicArrayList" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="CastExpr">
+                                                            <expression type="MethodCallExpr">
+                                                                <name identifier="toArrayType" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="stringList" type="SimpleName"/>
+                                                                </scope>
+                                                                <arguments>
+                                                                    <argument type="ArrayCreationExpr">
+                                                                        <elementType type="ClassOrInterfaceType">
+                                                                            <name identifier="String" type="SimpleName"/>
+                                                                        </elementType>
+                                                                        <levels>
+                                                                            <level type="ArrayCreationLevel">
+                                                                                <dimension type="MethodCallExpr">
+                                                                                    <name identifier="size" type="SimpleName"/>
+                                                                                    <scope type="NameExpr">
+                                                                                        <name identifier="stringList" type="SimpleName"/>
+                                                                                    </scope>
+                                                                                </dimension>
+                                                                            </level>
+                                                                        </levels>
+                                                                    </argument>
+                                                                </arguments>
+                                                            </expression>
+                                                            <type origin="TYPE" type="ArrayType">
+                                                                <componentType type="ClassOrInterfaceType">
+                                                                    <name identifier="String" type="SimpleName"/>
+                                                                </componentType>
+                                                            </type>
+                                                        </initializer>
+                                                        <name identifier="shaderAsStringArray" type="SimpleName"/>
+                                                        <type origin="TYPE" type="ArrayType">
+                                                            <componentType type="ClassOrInterfaceType">
+                                                                <name identifier="String" type="SimpleName"/>
+                                                            </componentType>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="FieldAccessExpr">
+                                                    <name identifier="shaderAsString" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="shader" type="SimpleName"/>
+                                                    </scope>
+                                                </target>
+                                                <value type="MethodCallExpr">
+                                                    <name identifier="createStringFromArrayOfStrings" type="SimpleName"/>
+                                                    <scope type="FieldAccessExpr">
+                                                        <name identifier="simpleFileUtil" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </scope>
+                                                    <arguments>
+                                                        <argument type="NameExpr">
+                                                            <name identifier="shaderAsStringArray" type="SimpleName"/>
+                                                        </argument>
+                                                    </arguments>
+                                                </value>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="FieldAccessExpr">
+                                                    <name identifier="shaderHandle" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="shader" type="SimpleName"/>
+                                                    </scope>
+                                                </target>
+                                                <value type="MethodCallExpr">
+                                                    <name identifier="loadShader" type="SimpleName"/>
+                                                    <scope type="FieldAccessExpr">
+                                                        <name identifier="shaderManager" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </scope>
+                                                    <arguments>
+                                                        <argument type="NameExpr">
+                                                            <name identifier="gl" type="SimpleName"/>
+                                                        </argument>
+                                                        <argument type="NameExpr">
+                                                            <name identifier="resource" type="SimpleName"/>
+                                                        </argument>
+                                                        <argument type="FieldAccessExpr">
+                                                            <name identifier="shaderStringList" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="shader" type="SimpleName"/>
+                                                            </scope>
+                                                        </argument>
+                                                        <argument type="NameExpr">
+                                                            <name identifier="shaderType" type="SimpleName"/>
+                                                        </argument>
+                                                    </arguments>
+                                                </value>
+                                            </expression>
+                                            <comment content="logUtil.put(&quot;shaderAsString: &quot; + shader.shaderAsString, this, this.rendererStrings.ON_SURFACE_CREATED);" type="LineComment"/>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="putF" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="logUtil" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument operator="PLUS" type="BinaryExpr">
+                                                        <left type="StringLiteralExpr" value="shaderHandle: "/>
+                                                        <right type="FieldAccessExpr">
+                                                            <name identifier="shaderHandle" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="shader" type="SimpleName"/>
+                                                            </scope>
+                                                        </right>
+                                                    </argument>
+                                                    <argument type="ThisExpr"/>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="ON_SURFACE_CREATED" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="rendererStrings" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </tryBlock>
+                                <catchClauses>
+                                    <catchClause type="CatchClause">
+                                        <body type="BlockStmt">
+                                            <statements>
+                                                <statement type="ExpressionStmt">
+                                                    <expression type="MethodCallExpr">
+                                                        <name identifier="put" type="SimpleName"/>
+                                                        <scope type="FieldAccessExpr">
+                                                            <name identifier="logUtil" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </scope>
+                                                        <arguments>
+                                                            <argument operator="PLUS" type="BinaryExpr">
+                                                                <left type="FieldAccessExpr">
+                                                                    <name identifier="EXCEPTION" type="SimpleName"/>
+                                                                    <scope type="FieldAccessExpr">
+                                                                        <name identifier="commonStrings" type="SimpleName"/>
+                                                                        <scope type="ThisExpr"/>
+                                                                    </scope>
+                                                                </left>
+                                                                <right type="NameExpr">
+                                                                    <name identifier="resource" type="SimpleName"/>
+                                                                </right>
+                                                            </argument>
+                                                            <argument type="ThisExpr"/>
+                                                            <argument type="FieldAccessExpr">
+                                                                <name identifier="ON_SURFACE_CREATED" type="SimpleName"/>
+                                                                <scope type="FieldAccessExpr">
+                                                                    <name identifier="rendererStrings" type="SimpleName"/>
+                                                                    <scope type="ThisExpr"/>
+                                                                </scope>
+                                                            </argument>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="e" type="SimpleName"/>
+                                                            </argument>
+                                                        </arguments>
+                                                    </expression>
+                                                </statement>
+                                            </statements>
+                                        </body>
+                                        <parameter isVarArgs="false" type="Parameter">
+                                            <name identifier="e" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="Exception" type="SimpleName"/>
+                                            </type>
+                                        </parameter>
+                                    </catchClause>
+                                </catchClauses>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="loadShader" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="gl" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GL10" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="shader" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="Shader" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="shaderType" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="max" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="byteArray1" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="BYTE" typeB="PrimitiveType"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ArrayCreationExpr">
+                                                <elementType type="ClassOrInterfaceType">
+                                                    <name identifier="ShaderOpenGLProcessor" type="SimpleName"/>
+                                                </elementType>
+                                                <initializer type="ArrayInitializerExpr"/>
+                                                <levels>
+                                                    <level type="ArrayCreationLevel"/>
+                                                </levels>
+                                            </initializer>
+                                            <name identifier="shaderOpenGLProcessorArray" type="SimpleName"/>
+                                            <type origin="TYPE" type="ArrayType">
+                                                <componentType type="ClassOrInterfaceType">
+                                                    <name identifier="ShaderOpenGLProcessor" type="SimpleName"/>
+                                                </componentType>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="final PlayerVehicleResources playerVehicleResources = PlayerVehicleResources.getInstance();" type="LineComment"/>
+                            </statement>
+                            <statement type="ReturnStmt">
+                                <expression type="NameExpr">
+                                    <name identifier="shaderOpenGLProcessorArray" type="SimpleName"/>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type origin="TYPE" type="ArrayType">
+                        <componentType type="ClassOrInterfaceType">
+                            <name identifier="ShaderOpenGLProcessor" type="SimpleName"/>
+                        </componentType>
+                    </type>
+                    <name identifier="getTestShaders" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="CastExpr">
+                                                <expression type="NameExpr">
+                                                    <name identifier="object" type="SimpleName"/>
+                                                </expression>
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="Object3d" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="object3d" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="Object3d" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="setShaderComposite" type="SimpleName"/>
+                                    <scope type="MethodCallExpr">
+                                        <name identifier="getInstance" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="OpenGLVersionValidator" type="SimpleName"/>
+                                        </scope>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="ArrayAccessExpr">
+                                            <index type="IntegerLiteralExpr" value="0"/>
+                                            <name type="FieldAccessExpr">
+                                                <name identifier="shaderCompositeArray" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                            </name>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="object3d" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="setShaderComposite" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="object" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="Any" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

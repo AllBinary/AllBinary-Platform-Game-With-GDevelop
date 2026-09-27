@@ -1,0 +1,301 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="utils" type="Name">
+            <qualifier identifier="loader" type="Name">
+                <qualifier identifier="gdevelop" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content="  * AllBinary Open License Version 1  * Copyright (c) 2025 AllBinary  *   * By agreeing to this license you and any business entity you represent are  * legally bound to the AllBinary Open License Version 1 legal agreement.  *   * You may obtain the AllBinary Open License Version 1 legal agreement from  * AllBinary or the root directory of AllBinary's AllBinary Platform repository.  *   * Created By: Travis Berthelot  *   " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDPaths" type="Name">
+                <qualifier identifier="loader" type="Name">
+                    <qualifier identifier="gdevelop" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="StringMaker" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="logic" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDMakeResources" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <members>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="init" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="GDPaths" type="SimpleName"/>
+                                    </scope>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer operator="PLUS" type="BinaryExpr">
+                                                <left operator="PLUS" type="BinaryExpr">
+                                                    <left type="StringLiteralExpr" value=",\n"/>
+                                                    <right type="StringLiteralExpr" value="      {\n"/>
+                                                </left>
+                                                <right type="StringLiteralExpr" value="        \&quot;file\&quot;: \&quot;assets/"/>
+                                            </initializer>
+                                            <name identifier="RESOURCE_0" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="String" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer operator="PLUS" type="BinaryExpr">
+                                                <left operator="PLUS" type="BinaryExpr">
+                                                    <left operator="PLUS" type="BinaryExpr">
+                                                        <left type="StringLiteralExpr" value="\&quot;,\n"/>
+                                                        <right type="StringLiteralExpr" value="        \&quot;kind\&quot;: \&quot;model3D\&quot;,\n"/>
+                                                    </left>
+                                                    <right type="StringLiteralExpr" value="        \&quot;metadata\&quot;: \&quot;\&quot;,\n"/>
+                                                </left>
+                                                <right type="StringLiteralExpr" value="        \&quot;name\&quot;: \&quot;"/>
+                                            </initializer>
+                                            <name identifier="RESOURCE_2" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="String" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer operator="PLUS" type="BinaryExpr">
+                                                <left operator="PLUS" type="BinaryExpr">
+                                                    <left type="StringLiteralExpr" value="\&quot;,\n"/>
+                                                    <right type="StringLiteralExpr" value="        \&quot;userAdded\&quot;: false\n"/>
+                                                </left>
+                                                <right type="StringLiteralExpr" value="      }"/>
+                                            </initializer>
+                                            <name identifier="RESOURCE_4" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="String" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="GLBVisitor" type="SimpleName"/>
+                                                </type>
+                                                <anonymousClassBody>
+                                                    <anonymousClassBod type="MethodDeclaration">
+                                                        <body type="BlockStmt">
+                                                            <statements>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="append" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="stringMaker" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="NameExpr">
+                                                                                <name identifier="RESOURCE_0" type="SimpleName"/>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="append" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="stringMaker" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="NameExpr">
+                                                                                <name identifier="fileNameAsString" type="SimpleName"/>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="append" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="stringMaker" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="NameExpr">
+                                                                                <name identifier="RESOURCE_2" type="SimpleName"/>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="append" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="stringMaker" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="NameExpr">
+                                                                                <name identifier="fileNameAsString" type="SimpleName"/>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                                <statement type="ExpressionStmt">
+                                                                    <expression type="MethodCallExpr">
+                                                                        <name identifier="append" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="stringMaker" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="NameExpr">
+                                                                                <name identifier="RESOURCE_4" type="SimpleName"/>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </expression>
+                                                                </statement>
+                                                            </statements>
+                                                        </body>
+                                                        <type type="VoidType"/>
+                                                        <name identifier="append" type="SimpleName"/>
+                                                        <modifiers>
+                                                            <modifier keyword="PUBLIC" type="Modifier"/>
+                                                        </modifiers>
+                                                        <parameters>
+                                                            <parameter isVarArgs="false" type="Parameter">
+                                                                <name identifier="fileNameAsString" type="SimpleName"/>
+                                                                <type type="ClassOrInterfaceType">
+                                                                    <name identifier="String" type="SimpleName"/>
+                                                                </type>
+                                                                <modifiers>
+                                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                                </modifiers>
+                                                            </parameter>
+                                                            <parameter isVarArgs="false" type="Parameter">
+                                                                <name identifier="name" type="SimpleName"/>
+                                                                <type type="ClassOrInterfaceType">
+                                                                    <name identifier="String" type="SimpleName"/>
+                                                                </type>
+                                                                <modifiers>
+                                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                                </modifiers>
+                                                            </parameter>
+                                                            <parameter isVarArgs="false" type="Parameter">
+                                                                <name identifier="stringMaker" type="SimpleName"/>
+                                                                <type type="ClassOrInterfaceType">
+                                                                    <name identifier="StringMaker" type="SimpleName"/>
+                                                                </type>
+                                                                <modifiers>
+                                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                                </modifiers>
+                                                            </parameter>
+                                                        </parameters>
+                                                        <annotations>
+                                                            <annotation type="MarkerAnnotationExpr">
+                                                                <name identifier="Override" type="Name"/>
+                                                            </annotation>
+                                                        </annotations>
+                                                    </anonymousClassBod>
+                                                </anonymousClassBody>
+                                            </initializer>
+                                            <name identifier="glbVisitor" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GLBVisitor" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="process" type="SimpleName"/>
+                                    <scope type="ObjectCreationExpr">
+                                        <type type="ClassOrInterfaceType">
+                                            <name identifier="GLBProcessing" type="SimpleName"/>
+                                        </type>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="glbVisitor" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="main" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="args" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="ClassOrInterfaceType">
+                                    <name identifier="String" type="SimpleName"/>
+                                </componentType>
+                            </type>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

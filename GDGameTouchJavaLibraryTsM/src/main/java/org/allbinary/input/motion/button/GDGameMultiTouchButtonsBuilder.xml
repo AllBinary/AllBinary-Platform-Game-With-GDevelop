@@ -1,0 +1,1291 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="button" type="Name">
+            <qualifier identifier="motion" type="Name">
+                <qualifier identifier="input" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content=" * AllBinary Open License Version 1 * Copyright (c) 2011 AllBinary *  * By agreeing to this license you and any business entity you represent are * legally bound to the AllBinary Open License Version 1 legal agreement. *  * You may obtain the AllBinary Open License Version 1 legal agreement from * AllBinary or the root directory of AllBinary's AllBinary Platform repository. *  * Created By: Travis Berthelot *  " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TouchButtonGenericActionResource" type="Name">
+                <qualifier identifier="button" type="Name">
+                    <qualifier identifier="motion" type="Name">
+                        <qualifier identifier="input" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TouchButtonTurnRightResource" type="Name">
+                <qualifier identifier="button" type="Name">
+                    <qualifier identifier="motion" type="Name">
+                        <qualifier identifier="input" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TouchButtonStrafeRightResource" type="Name">
+                <qualifier identifier="button" type="Name">
+                    <qualifier identifier="motion" type="Name">
+                        <qualifier identifier="input" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TouchButtonTurnLeftResource" type="Name">
+                <qualifier identifier="button" type="Name">
+                    <qualifier identifier="motion" type="Name">
+                        <qualifier identifier="input" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TouchButtonUpResource" type="Name">
+                <qualifier identifier="button" type="Name">
+                    <qualifier identifier="motion" type="Name">
+                        <qualifier identifier="input" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TouchButtonDownResource" type="Name">
+                <qualifier identifier="button" type="Name">
+                    <qualifier identifier="motion" type="Name">
+                        <qualifier identifier="input" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TouchButtonStrafeLeftResource" type="Name">
+                <qualifier identifier="button" type="Name">
+                    <qualifier identifier="motion" type="Name">
+                        <qualifier identifier="input" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BaseTouchInput" type="Name">
+                <qualifier identifier="button" type="Name">
+                    <qualifier identifier="motion" type="Name">
+                        <qualifier identifier="input" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicTouchButtonCellPositionFactory" type="Name">
+                <qualifier identifier="button" type="Name">
+                    <qualifier identifier="motion" type="Name">
+                        <qualifier identifier="input" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TouchButtonLocationHelper" type="Name">
+                <qualifier identifier="button" type="Name">
+                    <qualifier identifier="motion" type="Name">
+                        <qualifier identifier="input" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicTouchInputFactory" type="Name">
+                <qualifier identifier="button" type="Name">
+                    <qualifier identifier="motion" type="Name">
+                        <qualifier identifier="input" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TouchButton" type="Name">
+                <qualifier identifier="button" type="Name">
+                    <qualifier identifier="motion" type="Name">
+                        <qualifier identifier="input" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="CommonButtons" type="Name">
+                <qualifier identifier="button" type="Name">
+                    <qualifier identifier="motion" type="Name">
+                        <qualifier identifier="input" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicArrayList" type="Name">
+                <qualifier identifier="util" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicArrayListD" type="Name">
+                <qualifier identifier="util" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicArrayListUtil" type="Name">
+                <qualifier identifier="util" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="CommonStrings" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="LogFactory" type="Name">
+                <qualifier identifier="log" type="Name">
+                    <qualifier identifier="communication" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="LogUtil" type="Name">
+                <qualifier identifier="log" type="Name">
+                    <qualifier identifier="communication" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="FeaturedAnimationInterfaceFactoryInterfaceFactory" type="Name">
+                <qualifier identifier="animation" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="CellPositionFactory" type="Name">
+                <qualifier identifier="graphics" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDGameMultiTouchButtonsBuilder" type="SimpleName"/>
+            <extendedTypes>
+                <extendedType type="ClassOrInterfaceType">
+                    <name identifier="BaseTouchInput" type="SimpleName"/>
+                </extendedType>
+            </extendedTypes>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="LogUtil" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="logUtil" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="LogUtil" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="TryStmt">
+                                <tryBlock type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="putF" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="logUtil" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="START" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="commonStrings" type="SimpleName"/>
+                                                        </scope>
+                                                    </argument>
+                                                    <argument type="ThisExpr"/>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="CONSTRUCTOR" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="commonStrings" type="SimpleName"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <modifiers>
+                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                </modifiers>
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="ObjectCreationExpr">
+                                                            <type type="ClassOrInterfaceType">
+                                                                <name identifier="BasicArrayListD" type="SimpleName"/>
+                                                            </type>
+                                                        </initializer>
+                                                        <name identifier="list" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="BasicArrayList" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="ObjectCreationExpr">
+                                                            <type type="ClassOrInterfaceType">
+                                                                <name identifier="TouchButtonLocationHelper" type="SimpleName"/>
+                                                            </type>
+                                                        </initializer>
+                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="TouchButtonLocationHelper" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="ObjectCreationExpr">
+                                                            <type type="ClassOrInterfaceType">
+                                                                <name identifier="BasicTouchButtonCellPositionFactory" type="SimpleName"/>
+                                                            </type>
+                                                        </initializer>
+                                                        <name identifier="basicTouchButtonCellPositionFactory" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="BasicTouchButtonCellPositionFactory" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="getInstance" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="FeaturedAnimationInterfaceFactoryInterfaceFactory" type="SimpleName"/>
+                                                            </scope>
+                                                        </initializer>
+                                                        <name identifier="featuredAnimationInterfaceFactoryInterfaceFactory" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="FeaturedAnimationInterfaceFactoryInterfaceFactory" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="getInstance" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="CommonButtons" type="SimpleName"/>
+                                                            </scope>
+                                                        </initializer>
+                                                        <name identifier="commonButtons" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="CommonButtons" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="getInstance" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="BasicTouchInputFactory" type="SimpleName"/>
+                                                            </scope>
+                                                        </initializer>
+                                                        <name identifier="basicTouchInputFactory" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="BasicTouchInputFactory" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="createButton" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="TouchButton" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="UP" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchInputFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="TouchButtonUpResource" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="NORMAL_BUTTON" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="commonButtons" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="SECOND_FROM_BOTTOM_LEFT" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchButtonCellPositionFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getColumnsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getRowsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                            </arguments>
+                                                        </initializer>
+                                                        <name identifier="UP" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="TouchButton" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="createButton" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="TouchButton" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="DOWN" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchInputFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="TouchButtonDownResource" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="NORMAL_BUTTON" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="commonButtons" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="BOTTOM_LEFT" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchButtonCellPositionFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getColumnsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getRowsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                            </arguments>
+                                                        </initializer>
+                                                        <name identifier="DOWN" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="TouchButton" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="createButton" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="TouchButton" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="LEFT" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchInputFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="TouchButtonTurnLeftResource" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="NORMAL_BUTTON" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="commonButtons" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="BOTTOM_SECOND_FROM_RIGHT" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchButtonCellPositionFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getColumnsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getRowsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                            </arguments>
+                                                        </initializer>
+                                                        <name identifier="LEFT" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="TouchButton" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="createButton" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="TouchButton" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="RIGHT" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchInputFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="TouchButtonTurnRightResource" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="NORMAL_BUTTON" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="commonButtons" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="BOTTOM_RIGHT" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchButtonCellPositionFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getColumnsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getRowsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                            </arguments>
+                                                        </initializer>
+                                                        <name identifier="RIGHT" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="TouchButton" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="createButton" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="TouchButton" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="SPECIAL_BUTTON_FOUR" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchInputFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="TouchButtonStrafeLeftResource" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="NORMAL_BUTTON" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="commonButtons" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="SECOND_FROM_BOTTOM_SECOND_FROM_RIGHT" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchButtonCellPositionFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getColumnsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getRowsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                            </arguments>
+                                                        </initializer>
+                                                        <name identifier="LEFT_STRAFE" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="TouchButton" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="createButton" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="TouchButton" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="SPECIAL_BUTTON_THREE" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchInputFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="TouchButtonStrafeRightResource" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="NORMAL_BUTTON" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="commonButtons" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="SECOND_FROM_BOTTOM_RIGHT" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchButtonCellPositionFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getColumnsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getRowsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                            </arguments>
+                                                        </initializer>
+                                                        <name identifier="RIGHT_STRAFE" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="TouchButton" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="add" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="list" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="UP" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="add" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="list" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="DOWN" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="add" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="list" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="LEFT" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="add" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="list" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="RIGHT" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="add" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="list" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="LEFT_STRAFE" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="add" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="list" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="RIGHT_STRAFE" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="IfStmt">
+                                            <condition operator="NOT_EQUALS" type="BinaryExpr">
+                                                <left type="FieldAccessExpr">
+                                                    <name identifier="THIRD_FROM_BOTTOM_RIGHT" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="basicTouchButtonCellPositionFactory" type="SimpleName"/>
+                                                    </scope>
+                                                </left>
+                                                <right type="FieldAccessExpr">
+                                                    <name identifier="NONE" type="SimpleName"/>
+                                                    <scope type="MethodCallExpr">
+                                                        <name identifier="getInstance" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="CellPositionFactory" type="SimpleName"/>
+                                                        </scope>
+                                                    </scope>
+                                                </right>
+                                            </condition>
+                                            <thenStmt type="BlockStmt">
+                                                <statements>
+                                                    <statement type="ExpressionStmt">
+                                                        <expression type="VariableDeclarationExpr">
+                                                            <variables>
+                                                                <variable type="VariableDeclarator">
+                                                                    <initializer type="MethodCallExpr">
+                                                                        <name identifier="createButton" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="TouchButton" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="FieldAccessExpr">
+                                                                                <name identifier="SPECIAL_BUTTON_TWO" type="SimpleName"/>
+                                                                                <scope type="NameExpr">
+                                                                                    <name identifier="basicTouchInputFactory" type="SimpleName"/>
+                                                                                </scope>
+                                                                            </argument>
+                                                                            <argument type="MethodCallExpr">
+                                                                                <name identifier="getInstance" type="SimpleName"/>
+                                                                                <scope type="NameExpr">
+                                                                                    <name identifier="TouchButtonGenericActionResource" type="SimpleName"/>
+                                                                                </scope>
+                                                                            </argument>
+                                                                            <argument type="FieldAccessExpr">
+                                                                                <name identifier="NORMAL_BUTTON" type="SimpleName"/>
+                                                                                <scope type="NameExpr">
+                                                                                    <name identifier="commonButtons" type="SimpleName"/>
+                                                                                </scope>
+                                                                            </argument>
+                                                                            <argument type="FieldAccessExpr">
+                                                                                <name identifier="THIRD_FROM_BOTTOM_RIGHT" type="SimpleName"/>
+                                                                                <scope type="NameExpr">
+                                                                                    <name identifier="basicTouchButtonCellPositionFactory" type="SimpleName"/>
+                                                                                </scope>
+                                                                            </argument>
+                                                                            <argument type="MethodCallExpr">
+                                                                                <name identifier="getColumnsRemainderHalf" type="SimpleName"/>
+                                                                                <scope type="NameExpr">
+                                                                                    <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                                </scope>
+                                                                            </argument>
+                                                                            <argument type="MethodCallExpr">
+                                                                                <name identifier="getRowsRemainderHalf" type="SimpleName"/>
+                                                                                <scope type="NameExpr">
+                                                                                    <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                                </scope>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </initializer>
+                                                                    <name identifier="WEAPON" type="SimpleName"/>
+                                                                    <type type="ClassOrInterfaceType">
+                                                                        <name identifier="TouchButton" type="SimpleName"/>
+                                                                    </type>
+                                                                </variable>
+                                                            </variables>
+                                                        </expression>
+                                                    </statement>
+                                                    <statement type="ExpressionStmt">
+                                                        <expression type="MethodCallExpr">
+                                                            <name identifier="add" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="list" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="NameExpr">
+                                                                    <name identifier="WEAPON" type="SimpleName"/>
+                                                                </argument>
+                                                            </arguments>
+                                                        </expression>
+                                                    </statement>
+                                                </statements>
+                                            </thenStmt>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="createButton" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="TouchButton" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="SPECIAL_BUTTON_ONE" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchInputFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="TouchButtonGenericActionResource" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="NORMAL_BUTTON" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="commonButtons" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="TOP_RIGHT" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchButtonCellPositionFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getColumnsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getRowsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                            </arguments>
+                                                        </initializer>
+                                                        <name identifier="ZOOM_IN" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="TouchButton" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="createButton" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="TouchButton" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="SPECIAL_BUTTON_FIVE" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchInputFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="TouchButtonGenericActionResource" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="NORMAL_BUTTON" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="commonButtons" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="TOP_LEFT" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchButtonCellPositionFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getColumnsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getRowsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                            </arguments>
+                                                        </initializer>
+                                                        <name identifier="ZOOM_OUT" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="TouchButton" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="createButton" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="TouchButton" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="SPECIAL_BUTTON_SIX" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchInputFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="TouchButtonGenericActionResource" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="NORMAL_BUTTON" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="commonButtons" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="TOP_LEFT" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchButtonCellPositionFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getColumnsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getRowsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                            </arguments>
+                                                        </initializer>
+                                                        <name identifier="SPECIAL3" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="TouchButton" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="MethodCallExpr">
+                                                            <name identifier="createButton" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="TouchButton" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="SPECIAL_BUTTON_SEVEN_TESTING_ONLY" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchInputFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="TouchButtonGenericActionResource" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="NORMAL_BUTTON" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="commonButtons" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="TOP_SECOND_FROM_LEFT" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="basicTouchButtonCellPositionFactory" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getColumnsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                                <argument type="MethodCallExpr">
+                                                                    <name identifier="getRowsRemainderHalf" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="touchButtonLocationHelper" type="SimpleName"/>
+                                                                    </scope>
+                                                                </argument>
+                                                            </arguments>
+                                                        </initializer>
+                                                        <name identifier="SPECIAL4" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="TouchButton" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="add" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="list" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="ZOOM_IN" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                            <comment content="             TouchButton ROTATE_Z = TouchButton.createButton(basicTouchInputFactory.SPECIAL_BUTTON_EIGHT_TESTING_ONLY,                     animationInterface,                     commonButtons.NORMAL_BUTTON,                     basicTouchButtonCellPositionFactory.SECOND_FROM_TOP_LEFT,                     touchButtonLocationHelper.getColumnsRemainderHalf(),                      touchButtonLocationHelper.getRowsRemainderHalf()                     );             " type="BlockComment"/>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="add" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="list" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="ZOOM_OUT" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="add" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="list" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="SPECIAL3" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="add" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="list" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="SPECIAL4" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ReturnStmt">
+                                            <expression type="NameExpr">
+                                                <name identifier="list" type="SimpleName"/>
+                                            </expression>
+                                            <comment content="list.add(ROTATE_Z);" type="LineComment"/>
+                                        </statement>
+                                    </statements>
+                                </tryBlock>
+                                <catchClauses>
+                                    <catchClause type="CatchClause">
+                                        <body type="BlockStmt">
+                                            <statements>
+                                                <statement type="ExpressionStmt">
+                                                    <expression type="MethodCallExpr">
+                                                        <name identifier="put" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="logUtil" type="SimpleName"/>
+                                                        </scope>
+                                                        <arguments>
+                                                            <argument type="FieldAccessExpr">
+                                                                <name identifier="EXCEPTION" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="commonStrings" type="SimpleName"/>
+                                                                </scope>
+                                                            </argument>
+                                                            <argument type="ThisExpr"/>
+                                                            <argument type="FieldAccessExpr">
+                                                                <name identifier="GET_LIST" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="commonStrings" type="SimpleName"/>
+                                                                </scope>
+                                                            </argument>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="e" type="SimpleName"/>
+                                                            </argument>
+                                                        </arguments>
+                                                    </expression>
+                                                </statement>
+                                                <statement type="ReturnStmt">
+                                                    <expression type="MethodCallExpr">
+                                                        <name identifier="getImmutableInstance" type="SimpleName"/>
+                                                        <scope type="MethodCallExpr">
+                                                            <name identifier="getInstance" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="BasicArrayListUtil" type="SimpleName"/>
+                                                            </scope>
+                                                        </scope>
+                                                    </expression>
+                                                </statement>
+                                            </statements>
+                                        </body>
+                                        <parameter isVarArgs="false" type="Parameter">
+                                            <name identifier="e" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="Exception" type="SimpleName"/>
+                                            </type>
+                                        </parameter>
+                                    </catchClause>
+                                </catchClauses>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="ClassOrInterfaceType">
+                        <name identifier="BasicArrayList" type="SimpleName"/>
+                    </type>
+                    <name identifier="getList" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

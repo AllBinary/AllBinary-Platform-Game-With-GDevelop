@@ -1,0 +1,370 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="json" type="Name">
+            <qualifier identifier="gdevelop" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content="  * GDevelop to AllBinary Core  * Copyright 2021 Travis Berthelot (travisberthelot@allbinary.com). All rights  * reserved. This project is released under the MIT License.  " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDParticleSystemParticleEmitterObject" type="Name">
+                <qualifier identifier="sprite" type="Name">
+                    <qualifier identifier="builtin" type="Name">
+                        <qualifier identifier="extensions" type="Name">
+                            <qualifier identifier="gdevelop" type="Name">
+                                <qualifier identifier="allbinary" type="Name">
+                                    <qualifier identifier="org" type="Name"/>
+                                </qualifier>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDSpriteObject" type="Name">
+                <qualifier identifier="sprite" type="Name">
+                    <qualifier identifier="builtin" type="Name">
+                        <qualifier identifier="extensions" type="Name">
+                            <qualifier identifier="gdevelop" type="Name">
+                                <qualifier identifier="allbinary" type="Name">
+                                    <qualifier identifier="org" type="Name"/>
+                                </qualifier>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDTileMapObject" type="Name">
+                <qualifier identifier="sprite" type="Name">
+                    <qualifier identifier="builtin" type="Name">
+                        <qualifier identifier="extensions" type="Name">
+                            <qualifier identifier="gdevelop" type="Name">
+                                <qualifier identifier="allbinary" type="Name">
+                                    <qualifier identifier="org" type="Name"/>
+                                </qualifier>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="JSONObject" type="Name">
+                <qualifier identifier="json" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDObjectFactory" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="ObjectCreationExpr">
+                                <type type="ClassOrInterfaceType">
+                                    <name identifier="GDObjectFactory" type="SimpleName"/>
+                                </type>
+                            </initializer>
+                            <name identifier="instance" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDObjectFactory" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="FieldAccessExpr">
+                                    <name identifier="instance" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="GDObjectFactory" type="SimpleName"/>
+                                    </scope>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="ClassOrInterfaceType">
+                        <name identifier="GDObjectFactory" type="SimpleName"/>
+                    </type>
+                    <name identifier="getInstance" type="SimpleName"/>
+                    <comment content="      * @return the instance      " type="JavadocComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="Sprite"/>
+                            <name identifier="SPRITE" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="TileMap::TileMap"/>
+                            <name identifier="TILE_MAP" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="ParticleSystem::ParticleEmitter"/>
+                            <name identifier="PARTICLE_SYSTEM_PARTICLE_EMITTER" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="GDProjectStrings" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="gdProjectStrings" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GDProjectStrings" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getString" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="jsonObject" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="TYPE" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="gdProjectStrings" type="SimpleName"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="type" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="String" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition operator="EQUALS" type="BinaryExpr">
+                                    <left type="MethodCallExpr">
+                                        <name identifier="compareTo" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="type" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="SPRITE" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                            </argument>
+                                        </arguments>
+                                    </left>
+                                    <right type="IntegerLiteralExpr" value="0"/>
+                                </condition>
+                                <elseStmt type="IfStmt">
+                                    <condition operator="EQUALS" type="BinaryExpr">
+                                        <left type="MethodCallExpr">
+                                            <name identifier="compareTo" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="type" type="SimpleName"/>
+                                            </scope>
+                                            <arguments>
+                                                <argument type="FieldAccessExpr">
+                                                    <name identifier="PARTICLE_SYSTEM_PARTICLE_EMITTER" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </argument>
+                                            </arguments>
+                                        </left>
+                                        <right type="IntegerLiteralExpr" value="0"/>
+                                    </condition>
+                                    <elseStmt type="IfStmt">
+                                        <condition operator="EQUALS" type="BinaryExpr">
+                                            <left type="MethodCallExpr">
+                                                <name identifier="compareTo" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="type" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="TILE_MAP" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </argument>
+                                                </arguments>
+                                            </left>
+                                            <right type="IntegerLiteralExpr" value="0"/>
+                                        </condition>
+                                        <elseStmt type="BlockStmt">
+                                            <statements>
+                                                <statement type="ReturnStmt">
+                                                    <expression type="ObjectCreationExpr">
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="GDObject" type="SimpleName"/>
+                                                        </type>
+                                                        <arguments>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="type" type="SimpleName"/>
+                                                            </argument>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="jsonObject" type="SimpleName"/>
+                                                            </argument>
+                                                        </arguments>
+                                                    </expression>
+                                                </statement>
+                                            </statements>
+                                        </elseStmt>
+                                        <thenStmt type="BlockStmt">
+                                            <statements>
+                                                <statement type="ReturnStmt">
+                                                    <expression type="ObjectCreationExpr">
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="GDTileMapObject" type="SimpleName"/>
+                                                        </type>
+                                                        <arguments>
+                                                            <argument type="FieldAccessExpr">
+                                                                <name identifier="TILE_MAP" type="SimpleName"/>
+                                                                <scope type="ThisExpr"/>
+                                                            </argument>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="jsonObject" type="SimpleName"/>
+                                                            </argument>
+                                                        </arguments>
+                                                    </expression>
+                                                </statement>
+                                            </statements>
+                                        </thenStmt>
+                                    </elseStmt>
+                                    <thenStmt type="BlockStmt">
+                                        <statements>
+                                            <statement type="ReturnStmt">
+                                                <expression type="ObjectCreationExpr">
+                                                    <type type="ClassOrInterfaceType">
+                                                        <name identifier="GDParticleSystemParticleEmitterObject" type="SimpleName"/>
+                                                    </type>
+                                                    <arguments>
+                                                        <argument type="FieldAccessExpr">
+                                                            <name identifier="PARTICLE_SYSTEM_PARTICLE_EMITTER" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </argument>
+                                                        <argument type="NameExpr">
+                                                            <name identifier="jsonObject" type="SimpleName"/>
+                                                        </argument>
+                                                    </arguments>
+                                                </expression>
+                                            </statement>
+                                        </statements>
+                                    </thenStmt>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ReturnStmt">
+                                            <expression type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="GDSpriteObject" type="SimpleName"/>
+                                                </type>
+                                                <arguments>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="SPRITE" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </argument>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="jsonObject" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="ClassOrInterfaceType">
+                        <name identifier="GDObject" type="SimpleName"/>
+                    </type>
+                    <name identifier="create" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="jsonObject" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="JSONObject" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

@@ -1,0 +1,614 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="image" type="Name">
+            <qualifier identifier="animation" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content=" * AllBinary Open License Version 1 * Copyright (c) 2011 AllBinary *  * By agreeing to this license you and any business entity you represent are * legally bound to the AllBinary Open License Version 1 legal agreement. *  * You may obtain the AllBinary Open License Version 1 legal agreement from * AllBinary or the root directory of AllBinary's AllBinary Platform repository. *  * Created By: Travis Berthelot *  " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="OpenGLFeatureFactory" type="Name">
+                <qualifier identifier="opengles" type="Name">
+                    <qualifier identifier="graphics" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BaseResourceAnimationInterfaceFactoryInterfaceFactory" type="Name">
+                <qualifier identifier="resource" type="Name">
+                    <qualifier identifier="animation" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Features" type="Name">
+                <qualifier identifier="feature" type="Name">
+                    <qualifier identifier="configuration" type="Name">
+                        <qualifier identifier="game" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GraphicsFeatureFactory" type="Name">
+                <qualifier identifier="feature" type="Name">
+                    <qualifier identifier="configuration" type="Name">
+                        <qualifier identifier="game" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="ProgressCanvas" type="Name">
+                <qualifier identifier="progress" type="Name">
+                    <qualifier identifier="transition" type="Name">
+                        <qualifier identifier="canvas" type="Name">
+                            <qualifier identifier="graphics" type="Name">
+                                <qualifier identifier="allbinary" type="Name">
+                                    <qualifier identifier="org" type="Name"/>
+                                </qualifier>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="ProgressCanvasFactory" type="Name">
+                <qualifier identifier="progress" type="Name">
+                    <qualifier identifier="transition" type="Name">
+                        <qualifier identifier="canvas" type="Name">
+                            <qualifier identifier="graphics" type="Name">
+                                <qualifier identifier="allbinary" type="Name">
+                                    <qualifier identifier="org" type="Name"/>
+                                </qualifier>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="ImageCache" type="Name">
+                <qualifier identifier="image" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="ImageCacheFactory" type="Name">
+                <qualifier identifier="image" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="StdUtil" type="Name">
+                <qualifier identifier="logic" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory" type="SimpleName"/>
+            <extendedTypes>
+                <extendedType type="ClassOrInterfaceType">
+                    <name identifier="BaseResourceAnimationInterfaceFactoryInterfaceFactory" type="SimpleName"/>
+                </extendedType>
+            </extendedTypes>
+            <members>
+                <member type="ConstructorDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement isThis="false" type="ExplicitConstructorInvocationStmt">
+                                <arguments>
+                                    <argument type="StringLiteralExpr" value="Image Animations"/>
+                                    <argument type="MethodCallExpr">
+                                        <name identifier="createHashtable" type="SimpleName"/>
+                                        <scope type="MethodCallExpr">
+                                            <name identifier="getInstance" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="StdUtil" type="SimpleName"/>
+                                            </scope>
+                                        </scope>
+                                    </argument>
+                                    <argument type="MethodCallExpr">
+                                        <name identifier="createHashtable" type="SimpleName"/>
+                                        <scope type="MethodCallExpr">
+                                            <name identifier="getInstance" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="StdUtil" type="SimpleName"/>
+                                            </scope>
+                                        </scope>
+                                    </argument>
+                                    <argument type="MethodCallExpr">
+                                        <name identifier="createHashtable" type="SimpleName"/>
+                                        <scope type="MethodCallExpr">
+                                            <name identifier="getInstance" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="StdUtil" type="SimpleName"/>
+                                            </scope>
+                                        </scope>
+                                    </argument>
+                                </arguments>
+                            </statement>
+                        </statements>
+                    </body>
+                    <name identifier="GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="ConstructorDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement isThis="false" type="ExplicitConstructorInvocationStmt">
+                                <arguments>
+                                    <argument type="NameExpr">
+                                        <name identifier="name" type="SimpleName"/>
+                                    </argument>
+                                    <argument type="MethodCallExpr">
+                                        <name identifier="createHashtable" type="SimpleName"/>
+                                        <scope type="MethodCallExpr">
+                                            <name identifier="getInstance" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="StdUtil" type="SimpleName"/>
+                                            </scope>
+                                        </scope>
+                                    </argument>
+                                    <argument type="MethodCallExpr">
+                                        <name identifier="createHashtable" type="SimpleName"/>
+                                        <scope type="MethodCallExpr">
+                                            <name identifier="getInstance" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="StdUtil" type="SimpleName"/>
+                                            </scope>
+                                        </scope>
+                                    </argument>
+                                    <argument type="MethodCallExpr">
+                                        <name identifier="createHashtable" type="SimpleName"/>
+                                        <scope type="MethodCallExpr">
+                                            <name identifier="getInstance" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="StdUtil" type="SimpleName"/>
+                                            </scope>
+                                        </scope>
+                                    </argument>
+                                </arguments>
+                            </statement>
+                        </statements>
+                    </body>
+                    <name identifier="GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="name" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="initImageCache" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="MethodCallExpr">
+                                            <name identifier="getInstance" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="ImageCacheFactory" type="SimpleName"/>
+                                            </scope>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="level" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="init" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="level" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="IfStmt">
+                                <condition type="MethodCallExpr">
+                                    <name identifier="isInitialized" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                </condition>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ReturnStmt"/>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="IntegerLiteralExpr" value="120"/>
+                                            <name identifier="portion" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer operator="PLUS" type="BinaryExpr">
+                                                <left type="MethodCallExpr">
+                                                    <name identifier="toString" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </left>
+                                                <right type="StringLiteralExpr" value=" Loading: "/>
+                                            </initializer>
+                                            <name identifier="loadingString" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="String" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="IntegerLiteralExpr" value="0"/>
+                                            <name identifier="index" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="ProgressCanvasFactory" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="progressCanvas" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="ProgressCanvas" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="addNormalPortion" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="progressCanvas" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="portion" type="SimpleName"/>
+                                        </argument>
+                                        <argument operator="PLUS" type="BinaryExpr">
+                                            <left type="NameExpr">
+                                                <name identifier="loadingString" type="SimpleName"/>
+                                            </left>
+                                            <right operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                                <expression type="NameExpr">
+                                                    <name identifier="index" type="SimpleName"/>
+                                                </expression>
+                                            </right>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="addRectangles" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="addNormalPortion" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="progressCanvas" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="portion" type="SimpleName"/>
+                                        </argument>
+                                        <argument operator="PLUS" type="BinaryExpr">
+                                            <left type="NameExpr">
+                                                <name identifier="loadingString" type="SimpleName"/>
+                                            </left>
+                                            <right operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                                <expression type="NameExpr">
+                                                    <name identifier="index" type="SimpleName"/>
+                                                </expression>
+                                            </right>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="init" type="SimpleName"/>
+                                    <scope type="SuperExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="level" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                                <comment content="    imageCache.get(TouchButtonLoginResource.RESOURCE)));" type="LineComment"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="initImageCache" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="imageCache" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="ImageCache" type="SimpleName"/>
+                            </type>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="level" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="IfStmt">
+                                <condition operator="AND" type="BinaryExpr">
+                                    <left operator="GREATER" type="BinaryExpr">
+                                        <left type="NameExpr">
+                                            <name identifier="level" type="SimpleName"/>
+                                        </left>
+                                        <right type="IntegerLiteralExpr" value="0"/>
+                                    </left>
+                                    <right operator="LESS" type="BinaryExpr">
+                                        <left type="NameExpr">
+                                            <name identifier="level" type="SimpleName"/>
+                                        </left>
+                                        <right operator="MINUS" type="BinaryExpr">
+                                            <left type="FieldAccessExpr">
+                                                <name identifier="MAX_VALUE" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="Integer" type="SimpleName"/>
+                                                </scope>
+                                            </left>
+                                            <right type="IntegerLiteralExpr" value="100"/>
+                                        </right>
+                                    </right>
+                                </condition>
+                                <elseStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ReturnStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="isLoadingLevel" type="SimpleName"/>
+                                                <scope type="SuperExpr"/>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="level" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ReturnStmt">
+                                            <expression type="BooleanLiteralExpr" value="true"/>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="isLoadingLevel" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="level" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="Features" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="features" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="Features" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition operator="AND" type="BinaryExpr">
+                                    <left operator="AND" type="BinaryExpr">
+                                        <left type="MethodCallExpr">
+                                            <name identifier="isFeature" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="features" type="SimpleName"/>
+                                            </scope>
+                                            <arguments>
+                                                <argument type="FieldAccessExpr">
+                                                    <name identifier="IMAGE_GRAPHICS" type="SimpleName"/>
+                                                    <scope type="MethodCallExpr">
+                                                        <name identifier="getInstance" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="GraphicsFeatureFactory" type="SimpleName"/>
+                                                        </scope>
+                                                    </scope>
+                                                </argument>
+                                            </arguments>
+                                        </left>
+                                        <right type="MethodCallExpr">
+                                            <name identifier="isFeature" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="features" type="SimpleName"/>
+                                            </scope>
+                                            <arguments>
+                                                <argument type="FieldAccessExpr">
+                                                    <name identifier="IMAGE_TO_ARRAY_GRAPHICS" type="SimpleName"/>
+                                                    <scope type="MethodCallExpr">
+                                                        <name identifier="getInstance" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="GraphicsFeatureFactory" type="SimpleName"/>
+                                                        </scope>
+                                                    </scope>
+                                                </argument>
+                                            </arguments>
+                                        </right>
+                                    </left>
+                                    <right operator="LOGICAL_COMPLEMENT" type="UnaryExpr">
+                                        <expression type="MethodCallExpr">
+                                            <name identifier="isDefault" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="features" type="SimpleName"/>
+                                            </scope>
+                                            <arguments>
+                                                <argument type="FieldAccessExpr">
+                                                    <name identifier="OPENGL" type="SimpleName"/>
+                                                    <scope type="MethodCallExpr">
+                                                        <name identifier="getInstance" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="OpenGLFeatureFactory" type="SimpleName"/>
+                                                        </scope>
+                                                    </scope>
+                                                </argument>
+                                            </arguments>
+                                        </expression>
+                                    </right>
+                                </condition>
+                                <elseStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ReturnStmt">
+                                            <expression type="BooleanLiteralExpr" value="false"/>
+                                        </statement>
+                                    </statements>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ReturnStmt">
+                                            <expression type="BooleanLiteralExpr" value="true"/>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="isFeature" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="addRectangles" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                    </modifiers>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

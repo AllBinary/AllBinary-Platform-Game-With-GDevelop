@@ -1,0 +1,311 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="layer" type="Name">
+            <qualifier identifier="game" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content="  * AllBinary Open License Version 1  * Copyright (c) 2022 AllBinary  *   * By agreeing to this license you and any business entity you represent are  * legally bound to the AllBinary Open License Version 1 legal agreement.  *   * You may obtain the AllBinary Open License Version 1 legal agreement from  * AllBinary or the root directory of AllBinary's AllBinary Platform repository.  *   * Created By: Travis Berthelot  *   " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Graphics" type="Name">
+                <qualifier identifier="lcdui" type="Name">
+                    <qualifier identifier="microedition" type="Name">
+                        <qualifier identifier="javax" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TiledLayer" type="Name">
+                <qualifier identifier="game" type="Name">
+                    <qualifier identifier="lcdui" type="Name">
+                        <qualifier identifier="microedition" type="Name">
+                            <qualifier identifier="javax" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicColorFactory" type="Name">
+                <qualifier identifier="color" type="Name">
+                    <qualifier identifier="graphics" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="PlacementAllBinaryJ2METiledLayer" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <extendedTypes>
+                <extendedType type="ClassOrInterfaceType">
+                    <name identifier="AllBinaryJ2METiledLayer" type="SimpleName"/>
+                </extendedType>
+            </extendedTypes>
+            <members>
+                <member type="ConstructorDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement isThis="false" type="ExplicitConstructorInvocationStmt">
+                                <arguments>
+                                    <argument type="NameExpr">
+                                        <name identifier="dataId" type="SimpleName"/>
+                                    </argument>
+                                    <argument type="NameExpr">
+                                        <name identifier="tiledLayer" type="SimpleName"/>
+                                    </argument>
+                                    <argument type="NameExpr">
+                                        <name identifier="i_Map2DArray" type="SimpleName"/>
+                                    </argument>
+                                    <argument type="NameExpr">
+                                        <name identifier="debugColor" type="SimpleName"/>
+                                    </argument>
+                                </arguments>
+                            </statement>
+                        </statements>
+                    </body>
+                    <name identifier="PlacementAllBinaryJ2METiledLayer" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="dataId" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="Integer" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="tiledLayer" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="TiledLayer" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="i_Map2DArray" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType origin="TYPE" type="ArrayType">
+                                    <componentType type="INT" typeB="PrimitiveType"/>
+                                </componentType>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="debugColor" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="setPosition" type="SimpleName"/>
+                                    <scope type="SuperExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="x" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="y" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="z" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="setPosition" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="x" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="y" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="z" type="SimpleName"/>
+                            <type type="INT" typeB="PrimitiveType"/>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="paint" type="SimpleName"/>
+                                    <scope type="SuperExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="graphics" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="paint" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="graphics" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="Graphics" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="ArrayCreationExpr">
+                                <elementType type="INT" typeB="PrimitiveType"/>
+                                <initializer type="ArrayInitializerExpr">
+                                    <values>
+                                        <value type="MethodCallExpr">
+                                            <name identifier="intValue" type="SimpleName"/>
+                                            <scope type="FieldAccessExpr">
+                                                <name identifier="RED" type="SimpleName"/>
+                                                <scope type="MethodCallExpr">
+                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="BasicColorFactory" type="SimpleName"/>
+                                                    </scope>
+                                                </scope>
+                                            </scope>
+                                        </value>
+                                        <value type="MethodCallExpr">
+                                            <name identifier="intValue" type="SimpleName"/>
+                                            <scope type="FieldAccessExpr">
+                                                <name identifier="GREEN" type="SimpleName"/>
+                                                <scope type="MethodCallExpr">
+                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="BasicColorFactory" type="SimpleName"/>
+                                                    </scope>
+                                                </scope>
+                                            </scope>
+                                        </value>
+                                        <value type="MethodCallExpr">
+                                            <name identifier="intValue" type="SimpleName"/>
+                                            <scope type="FieldAccessExpr">
+                                                <name identifier="YELLOW" type="SimpleName"/>
+                                                <scope type="MethodCallExpr">
+                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="BasicColorFactory" type="SimpleName"/>
+                                                    </scope>
+                                                </scope>
+                                            </scope>
+                                        </value>
+                                        <value type="MethodCallExpr">
+                                            <name identifier="intValue" type="SimpleName"/>
+                                            <scope type="FieldAccessExpr">
+                                                <name identifier="BLUE" type="SimpleName"/>
+                                                <scope type="MethodCallExpr">
+                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="BasicColorFactory" type="SimpleName"/>
+                                                    </scope>
+                                                </scope>
+                                            </scope>
+                                        </value>
+                                    </values>
+                                </initializer>
+                                <levels>
+                                    <level type="ArrayCreationLevel"/>
+                                </levels>
+                            </initializer>
+                            <name identifier="colorArray" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="INT" typeB="PrimitiveType"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt"/>
+                    <type type="VoidType"/>
+                    <name identifier="paintPlacementDebug" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="graphics" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="Graphics" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

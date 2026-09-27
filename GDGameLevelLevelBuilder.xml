@@ -1,0 +1,1997 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="level" type="Name">
+            <qualifier identifier="game" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content=" * AllBinary Open License Version 1 * Copyright (c) 2011 AllBinary *  * By agreeing to this license you and any business entity you represent are * legally bound to the AllBinary Open License Version 1 legal agreement. *  * You may obtain the AllBinary Open License Version 1 legal agreement from * AllBinary or the root directory of AllBinary's AllBinary Platform repository. *  * Created By: Travis Berthelot *  " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="InputStream" type="Name">
+                <qualifier identifier="io" type="Name">
+                    <qualifier identifier="java" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Map" type="Name">
+                <qualifier identifier="util" type="Name">
+                    <qualifier identifier="java" type="Name"/>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Image" type="Name">
+                <qualifier identifier="lcdui" type="Name">
+                    <qualifier identifier="microedition" type="Name">
+                        <qualifier identifier="javax" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TiledLayer" type="Name">
+                <qualifier identifier="game" type="Name">
+                    <qualifier identifier="lcdui" type="Name">
+                        <qualifier identifier="microedition" type="Name">
+                            <qualifier identifier="javax" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="ArtificialIntelligenceInterfaceFactoryInterfaceFactory" type="Name">
+                <qualifier identifier="ai" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GD0SpecialAnimationResources" type="Name">
+                <qualifier identifier="canvas" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Features" type="Name">
+                <qualifier identifier="feature" type="Name">
+                    <qualifier identifier="configuration" type="Name">
+                        <qualifier identifier="game" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="HTMLFeatureFactory" type="Name">
+                <qualifier identifier="feature" type="Name">
+                    <qualifier identifier="configuration" type="Name">
+                        <qualifier identifier="game" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AllBinaryGameLayerManager" type="Name">
+                <qualifier identifier="layer" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AllBinaryJ2METiledLayer" type="Name">
+                <qualifier identifier="layer" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AllBinaryTiledLayer" type="Name">
+                <qualifier identifier="layer" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDGeographicMap" type="Name">
+                <qualifier identifier="map" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDTiledMapProperties" type="Name">
+                <qualifier identifier="map" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDResources" type="Name">
+                <qualifier identifier="resource" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="StaticTileLayerIntoPositionViewPosition" type="Name">
+                <qualifier identifier="view" type="Name">
+                    <qualifier identifier="game" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicColor" type="Name">
+                <qualifier identifier="color" type="Name">
+                    <qualifier identifier="graphics" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicColorFactory" type="Name">
+                <qualifier identifier="color" type="Name">
+                    <qualifier identifier="graphics" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GameTickDisplayInfoSingleton" type="Name">
+                <qualifier identifier="displayable" type="Name">
+                    <qualifier identifier="graphics" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="DisplayChangeEvent" type="Name">
+                <qualifier identifier="event" type="Name">
+                    <qualifier identifier="displayable" type="Name">
+                        <qualifier identifier="graphics" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="DisplayChangeEventHandler" type="Name">
+                <qualifier identifier="event" type="Name">
+                    <qualifier identifier="displayable" type="Name">
+                        <qualifier identifier="graphics" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="DisplayChangeEventListener" type="Name">
+                <qualifier identifier="event" type="Name">
+                    <qualifier identifier="displayable" type="Name">
+                        <qualifier identifier="graphics" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="ImageCache" type="Name">
+                <qualifier identifier="image" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="ImageCacheFactory" type="Name">
+                <qualifier identifier="image" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AllBinaryLayer" type="Name">
+                <qualifier identifier="layer" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="LayerInterfaceFactory" type="Name">
+                <qualifier identifier="layer" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="LayerInterfaceVisitor" type="Name">
+                <qualifier identifier="layer" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="CommonStrings" type="Name">
+                <qualifier identifier="string" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AllBinaryEventObject" type="Name">
+                <qualifier identifier="event" type="Name">
+                    <qualifier identifier="util" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="LogFactory" type="Name">
+                <qualifier identifier="log" type="Name">
+                    <qualifier identifier="communication" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="LogUtil" type="Name">
+                <qualifier identifier="log" type="Name">
+                    <qualifier identifier="communication" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="PlatformAssetManager" type="Name">
+                <qualifier identifier="system" type="Name">
+                    <qualifier identifier="logic" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicGeographicMap" type="Name">
+                <qualifier identifier="map" type="Name">
+                    <qualifier identifier="geography" type="Name">
+                        <qualifier identifier="graphics" type="Name">
+                            <qualifier identifier="media" type="Name">
+                                <qualifier identifier="allbinary" type="Name">
+                                    <qualifier identifier="org" type="Name"/>
+                                </qualifier>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GeographicMapCompositeInterface" type="Name">
+                <qualifier identifier="map" type="Name">
+                    <qualifier identifier="geography" type="Name">
+                        <qualifier identifier="graphics" type="Name">
+                            <qualifier identifier="media" type="Name">
+                                <qualifier identifier="allbinary" type="Name">
+                                    <qualifier identifier="org" type="Name"/>
+                                </qualifier>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicPlatormGeographicMapCellTypeFactory" type="Name">
+                <qualifier identifier="platform" type="Name">
+                    <qualifier identifier="map" type="Name">
+                        <qualifier identifier="geography" type="Name">
+                            <qualifier identifier="graphics" type="Name">
+                                <qualifier identifier="media" type="Name">
+                                    <qualifier identifier="allbinary" type="Name">
+                                        <qualifier identifier="org" type="Name"/>
+                                    </qualifier>
+                                </qualifier>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TileSetToGeographicMapUtil" type="Name">
+                <qualifier identifier="platform" type="Name">
+                    <qualifier identifier="map" type="Name">
+                        <qualifier identifier="geography" type="Name">
+                            <qualifier identifier="graphics" type="Name">
+                                <qualifier identifier="media" type="Name">
+                                    <qualifier identifier="allbinary" type="Name">
+                                        <qualifier identifier="org" type="Name"/>
+                                    </qualifier>
+                                </qualifier>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TiledMapLoaderFromJSONFactory" type="Name">
+                <qualifier identifier="loader" type="Name">
+                    <qualifier identifier="mapeditor" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TileLayer" type="Name">
+                <qualifier identifier="core" type="Name">
+                    <qualifier identifier="mapeditor" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TileSet" type="Name">
+                <qualifier identifier="core" type="Name">
+                    <qualifier identifier="mapeditor" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TiledMap" type="Name">
+                <qualifier identifier="core" type="Name">
+                    <qualifier identifier="mapeditor" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="GDJSONMapReader" type="Name">
+                <qualifier identifier="io" type="Name">
+                    <qualifier identifier="mapeditor" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDGameLevelLevelBuilder" type="SimpleName"/>
+            <implementedTypes>
+                <implementedType type="ClassOrInterfaceType">
+                    <name identifier="LayerInterfaceVisitor" type="SimpleName"/>
+                </implementedType>
+            </implementedTypes>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="LogUtil" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="logUtil" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="LogUtil" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <name identifier="layerManager" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="AllBinaryGameLayerManager" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="ConstructorDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="FieldAccessExpr">
+                                        <name identifier="layerManager" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </target>
+                                    <value type="NameExpr">
+                                        <name identifier="layerManager" type="SimpleName"/>
+                                    </value>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <name identifier="GDGameLevelLevelBuilder" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="layerManager" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="AllBinaryGameLayerManager" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="LayerInterfaceFactory" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="layerInterfaceFactory" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="LayerInterfaceFactory" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="init" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="layerInterfaceFactory" type="SimpleName"/>
+                                    </scope>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="ArtificialIntelligenceInterfaceFactoryInterfaceFactory" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="artificialIntelligenceInterfaceFactoryInterfaceFactory" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="ArtificialIntelligenceInterfaceFactoryInterfaceFactory" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content=" layerInterfaceFactory.add(new RussianInfantryLayerFactory());" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="clear" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="artificialIntelligenceInterfaceFactoryInterfaceFactory" type="SimpleName"/>
+                                    </scope>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="CommonStrings" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="commonStrings" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="CommonStrings" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="TileMap::TileMap - PlatformerMap" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="FieldAccessExpr">
+                                                <name identifier="BLACK" type="SimpleName"/>
+                                                <scope type="MethodCallExpr">
+                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="BasicColorFactory" type="SimpleName"/>
+                                                    </scope>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="BLACK" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicColor" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="logUtil.put(&quot;Loading Tiled Map Asset&quot;, this, commonStrings.PROCESS);" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="GDResources" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="gdResources" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GDResources" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="PlatformAssetManager" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="platformAssetManager" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="PlatformAssetManager" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getResourceAsStream" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="platformAssetManager" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="MY_PLATFORMER_MAP" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="gdResources" type="SimpleName"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="inputStream" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="InputStream" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="TileMap::TileMap:content" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="ImageCacheFactory" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="imageCache" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="ImageCache" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="logUtil.put(&quot;Loaded Tiled Map Asset&quot;, this, commonStrings.PROCESS);" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="GD0SpecialAnimationResources" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="specialAnimationResources" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GD0SpecialAnimationResources" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="CastExpr">
+                                                <expression type="MethodCallExpr">
+                                                    <name identifier="get" type="SimpleName"/>
+                                                    <scope type="MethodCallExpr">
+                                                        <name identifier="getHashtable" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="imageCache" type="SimpleName"/>
+                                                        </scope>
+                                                    </scope>
+                                                    <arguments>
+                                                        <argument type="FieldAccessExpr">
+                                                            <name identifier="PLATFORMERMAP_IMAGE_ARRAY_NAME" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="specialAnimationResources" type="SimpleName"/>
+                                                            </scope>
+                                                        </argument>
+                                                    </arguments>
+                                                </expression>
+                                                <type origin="TYPE" type="ArrayType">
+                                                    <componentType type="ClassOrInterfaceType">
+                                                        <name identifier="Image" type="SimpleName"/>
+                                                    </componentType>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="PlatformerMapImageArray" type="SimpleName"/>
+                                            <type origin="TYPE" type="ArrayType">
+                                                <componentType type="ClassOrInterfaceType">
+                                                    <name identifier="Image" type="SimpleName"/>
+                                                </componentType>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ArrayAccessExpr">
+                                                <index type="IntegerLiteralExpr" value="0"/>
+                                                <name type="NameExpr">
+                                                    <name identifier="PlatformerMapImageArray" type="SimpleName"/>
+                                                </name>
+                                            </initializer>
+                                            <name identifier="tileSetImage" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="Image" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="Features" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="features" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="Features" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="logUtil.put(&quot;Loading Tiled Map&quot;, this, commonStrings.PROCESS);" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="isDefault" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="features" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="HTML" type="SimpleName"/>
+                                                        <scope type="MethodCallExpr">
+                                                            <name identifier="getInstance" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="HTMLFeatureFactory" type="SimpleName"/>
+                                                            </scope>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="isHTML" type="SimpleName"/>
+                                            <type type="BOOLEAN" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="IntegerLiteralExpr" value="0"/>
+                                            <name identifier="size" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="IfStmt">
+                                <condition type="NameExpr">
+                                    <name identifier="isHTML" type="SimpleName"/>
+                                </condition>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="NameExpr">
+                                                    <name identifier="size" type="SimpleName"/>
+                                                </target>
+                                                <value type="MethodCallExpr">
+                                                    <name identifier="available" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="inputStream" type="SimpleName"/>
+                                                    </scope>
+                                                </value>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="process" type="SimpleName"/>
+                                                <scope type="MethodCallExpr">
+                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="TiledMapLoaderFromJSONFactory" type="SimpleName"/>
+                                                    </scope>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="ObjectCreationExpr">
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="GDJSONMapReader" type="SimpleName"/>
+                                                        </type>
+                                                    </argument>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="inputStream" type="SimpleName"/>
+                                                    </argument>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="size" type="SimpleName"/>
+                                                    </argument>
+                                                    <argument type="ArrayCreationExpr">
+                                                        <elementType type="ClassOrInterfaceType">
+                                                            <name identifier="Image" type="SimpleName"/>
+                                                        </elementType>
+                                                        <initializer type="ArrayInitializerExpr">
+                                                            <values>
+                                                                <value type="NameExpr">
+                                                                    <name identifier="tileSetImage" type="SimpleName"/>
+                                                                </value>
+                                                            </values>
+                                                        </initializer>
+                                                        <levels>
+                                                            <level type="ArrayCreationLevel"/>
+                                                        </levels>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="map" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="TiledMap" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ObjectCreationExpr">
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="GDTiledMapProperties" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="tiledMapProperties" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GDTiledMapProperties" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="logUtil.put(&quot;Loaded Tiled Map&quot;, this, commonStrings.PROCESS);" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="IntegerLiteralExpr" value="0"/>
+                                            <name identifier="layerIndex" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="get" type="SimpleName"/>
+                                                <scope type="MethodCallExpr">
+                                                    <name identifier="getTileSets" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="map" type="SimpleName"/>
+                                                    </scope>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="layerIndex" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="tileSet" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="TileSet" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="convert" type="SimpleName"/>
+                                                <scope type="MethodCallExpr">
+                                                    <name identifier="getInstance" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="TileSetToGeographicMapUtil" type="SimpleName"/>
+                                                    </scope>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="tileSet" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </initializer>
+                                            <name identifier="tileTypeToTileIdsMap" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="Map" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="init" type="SimpleName"/>
+                                    <scope type="MethodCallExpr">
+                                        <name identifier="getInstance" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="BasicPlatormGeographicMapCellTypeFactory" type="SimpleName"/>
+                                        </scope>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="tileTypeToTileIdsMap" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer operator="PLUS" type="BinaryExpr">
+                                                <left type="MethodCallExpr">
+                                                    <name identifier="getMaxTileId" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="tileSet" type="SimpleName"/>
+                                                    </scope>
+                                                </left>
+                                                <right type="IntegerLiteralExpr" value="1"/>
+                                            </initializer>
+                                            <name identifier="maxTileId" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="put" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="logUtil" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument operator="PLUS" type="BinaryExpr">
+                                            <left type="StringLiteralExpr" value="MaxTileId: "/>
+                                            <right type="NameExpr">
+                                                <name identifier="maxTileId" type="SimpleName"/>
+                                            </right>
+                                        </argument>
+                                        <argument type="ThisExpr"/>
+                                        <argument type="FieldAccessExpr">
+                                            <name identifier="PROCESS" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="commonStrings" type="SimpleName"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ArrayCreationExpr">
+                                                <elementType type="INT" typeB="PrimitiveType"/>
+                                                <levels>
+                                                    <level type="ArrayCreationLevel">
+                                                        <dimension type="NameExpr">
+                                                            <name identifier="maxTileId" type="SimpleName"/>
+                                                        </dimension>
+                                                    </level>
+                                                </levels>
+                                            </initializer>
+                                            <name identifier="cellTypeMapping" type="SimpleName"/>
+                                            <type origin="TYPE" type="ArrayType">
+                                                <componentType type="INT" typeB="PrimitiveType"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ForStmt">
+                                <body type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression operator="ASSIGN" type="AssignExpr">
+                                                <target type="ArrayAccessExpr">
+                                                    <index type="NameExpr">
+                                                        <name identifier="index" type="SimpleName"/>
+                                                    </index>
+                                                    <name type="NameExpr">
+                                                        <name identifier="cellTypeMapping" type="SimpleName"/>
+                                                    </name>
+                                                </target>
+                                                <value type="NameExpr">
+                                                    <name identifier="index" type="SimpleName"/>
+                                                </value>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </body>
+                                <compare operator="LESS" type="BinaryExpr">
+                                    <left type="NameExpr">
+                                        <name identifier="index" type="SimpleName"/>
+                                    </left>
+                                    <right type="NameExpr">
+                                        <name identifier="maxTileId" type="SimpleName"/>
+                                    </right>
+                                </compare>
+                                <initialization>
+                                    <initializatio type="VariableDeclarationExpr">
+                                        <variables>
+                                            <variable type="VariableDeclarator">
+                                                <initializer type="IntegerLiteralExpr" value="0"/>
+                                                <name identifier="index" type="SimpleName"/>
+                                                <type type="INT" typeB="PrimitiveType"/>
+                                            </variable>
+                                        </variables>
+                                    </initializatio>
+                                </initialization>
+                                <update>
+                                    <updat operator="POSTFIX_INCREMENT" type="UnaryExpr">
+                                        <expression type="NameExpr">
+                                            <name identifier="index" type="SimpleName"/>
+                                        </expression>
+                                    </updat>
+                                </update>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="CastExpr">
+                                                <expression type="FieldAccessExpr">
+                                                    <name identifier="layerManager" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </expression>
+                                                <type type="ClassOrInterfaceType">
+                                                    <name identifier="GeographicMapCompositeInterface" type="SimpleName"/>
+                                                </type>
+                                            </initializer>
+                                            <name identifier="geographicMapCompositeInterface" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="GeographicMapCompositeInterface" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="CastExpr">
+                                                <expression type="MethodCallExpr">
+                                                    <name identifier="ceil" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="Math" type="SimpleName"/>
+                                                    </scope>
+                                                    <arguments>
+                                                        <argument operator="MULTIPLY" type="BinaryExpr">
+                                                            <left type="IntegerLiteralExpr" value="4"/>
+                                                            <right type="DoubleLiteralExpr" value="1.44f"/>
+                                                        </argument>
+                                                    </arguments>
+                                                </expression>
+                                                <type type="FLOAT" typeB="PrimitiveType"/>
+                                            </initializer>
+                                            <name identifier="tileMapScale" type="SimpleName"/>
+                                            <type type="FLOAT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="ZoomCamera - TileMap" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="CastExpr">
+                                                <expression type="EnclosedExpr">
+                                                    <inner operator="DIVIDE" type="BinaryExpr">
+                                                        <left type="MethodCallExpr">
+                                                            <name identifier="SceneWindowWidth" type="SimpleName"/>
+                                                        </left>
+                                                        <right type="IntegerLiteralExpr" value="2"/>
+                                                    </inner>
+                                                </expression>
+                                                <type type="INT" typeB="PrimitiveType"/>
+                                            </initializer>
+                                            <name identifier="centerCameraX" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="CentreCamera - TileMap" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="CastExpr">
+                                                <expression type="EnclosedExpr">
+                                                    <inner operator="DIVIDE" type="BinaryExpr">
+                                                        <left type="MethodCallExpr">
+                                                            <name identifier="SceneWindowHeight" type="SimpleName"/>
+                                                        </left>
+                                                        <right type="IntegerLiteralExpr" value="2"/>
+                                                    </inner>
+                                                </expression>
+                                                <type type="INT" typeB="PrimitiveType"/>
+                                            </initializer>
+                                            <name identifier="centerCameraY" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="setGeographicMapInterface" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="geographicMapCompositeInterface" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="ArrayCreationExpr">
+                                            <elementType type="ClassOrInterfaceType">
+                                                <name identifier="BasicGeographicMap" type="SimpleName"/>
+                                            </elementType>
+                                            <initializer type="ArrayInitializerExpr">
+                                                <values>
+                                                    <value type="ObjectCreationExpr">
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="GDGeographicMap" type="SimpleName"/>
+                                                        </type>
+                                                        <arguments>
+                                                            <argument type="MethodCallExpr">
+                                                                <name identifier="getId" type="SimpleName"/>
+                                                                <scope type="EnclosedExpr">
+                                                                    <inner type="CastExpr">
+                                                                        <expression type="MethodCallExpr">
+                                                                            <name identifier="getLayer" type="SimpleName"/>
+                                                                            <scope type="NameExpr">
+                                                                                <name identifier="map" type="SimpleName"/>
+                                                                            </scope>
+                                                                            <arguments>
+                                                                                <argument type="NameExpr">
+                                                                                    <name identifier="layerIndex" type="SimpleName"/>
+                                                                                </argument>
+                                                                            </arguments>
+                                                                        </expression>
+                                                                        <type type="ClassOrInterfaceType">
+                                                                            <name identifier="TileLayer" type="SimpleName"/>
+                                                                        </type>
+                                                                    </inner>
+                                                                </scope>
+                                                            </argument>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="cellTypeMapping" type="SimpleName"/>
+                                                            </argument>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="map" type="SimpleName"/>
+                                                            </argument>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="tileSetImage" type="SimpleName"/>
+                                                            </argument>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="tiledMapProperties" type="SimpleName"/>
+                                                            </argument>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="BLACK" type="SimpleName"/>
+                                                            </argument>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="BLACK" type="SimpleName"/>
+                                                            </argument>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="tileMapScale" type="SimpleName"/>
+                                                            </argument>
+                                                        </arguments>
+                                                    </value>
+                                                </values>
+                                            </initializer>
+                                            <levels>
+                                                <level type="ArrayCreationLevel"/>
+                                            </levels>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                                <comment content="logUtil.put(string, this, commonStrings.PROCESS);" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getAllBinaryTiledLayer" type="SimpleName"/>
+                                                <scope type="ArrayAccessExpr">
+                                                    <index type="IntegerLiteralExpr" value="0"/>
+                                                    <name type="MethodCallExpr">
+                                                        <name identifier="getGeographicMapInterface" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="geographicMapCompositeInterface" type="SimpleName"/>
+                                                        </scope>
+                                                    </name>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="tiledLayer" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="AllBinaryTiledLayer" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="CentreCamera - TileMap" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="setPosition" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="tiledLayer" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument operator="MINUS" type="BinaryExpr">
+                                            <left type="NameExpr">
+                                                <name identifier="centerCameraX" type="SimpleName"/>
+                                            </left>
+                                            <right type="EnclosedExpr">
+                                                <inner operator="MINUS" type="BinaryExpr">
+                                                    <left type="MethodCallExpr">
+                                                        <name identifier="getHalfWidth" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="tiledLayer" type="SimpleName"/>
+                                                        </scope>
+                                                    </left>
+                                                    <right type="IntegerLiteralExpr" value="78"/>
+                                                </inner>
+                                            </right>
+                                        </argument>
+                                        <argument operator="MINUS" type="BinaryExpr">
+                                            <left type="NameExpr">
+                                                <name identifier="centerCameraY" type="SimpleName"/>
+                                            </left>
+                                            <right type="EnclosedExpr">
+                                                <inner operator="PLUS" type="BinaryExpr">
+                                                    <left type="MethodCallExpr">
+                                                        <name identifier="getHalfHeight" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="tiledLayer" type="SimpleName"/>
+                                                        </scope>
+                                                    </left>
+                                                    <right type="IntegerLiteralExpr" value="109"/>
+                                                </inner>
+                                            </right>
+                                        </argument>
+                                        <argument type="IntegerLiteralExpr" value="0"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="addListener" type="SimpleName"/>
+                                    <scope type="MethodCallExpr">
+                                        <name identifier="getInstance" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="DisplayChangeEventHandler" type="SimpleName"/>
+                                        </scope>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="ObjectCreationExpr">
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="DisplayChangeEventListener" type="SimpleName"/>
+                                            </type>
+                                            <anonymousClassBody>
+                                                <anonymousClassBod type="MethodDeclaration">
+                                                    <body type="BlockStmt"/>
+                                                    <type type="VoidType"/>
+                                                    <name identifier="onEvent" type="SimpleName"/>
+                                                    <modifiers>
+                                                        <modifier keyword="PUBLIC" type="Modifier"/>
+                                                    </modifiers>
+                                                    <parameters>
+                                                        <parameter isVarArgs="false" type="Parameter">
+                                                            <name identifier="eventObject" type="SimpleName"/>
+                                                            <type type="ClassOrInterfaceType">
+                                                                <name identifier="AllBinaryEventObject" type="SimpleName"/>
+                                                            </type>
+                                                            <modifiers>
+                                                                <modifier keyword="FINAL" type="Modifier"/>
+                                                            </modifiers>
+                                                        </parameter>
+                                                    </parameters>
+                                                </anonymousClassBod>
+                                                <anonymousClassBod type="MethodDeclaration">
+                                                    <body type="BlockStmt">
+                                                        <statements>
+                                                            <statement type="ExpressionStmt">
+                                                                <expression type="VariableDeclarationExpr">
+                                                                    <modifiers>
+                                                                        <modifier keyword="FINAL" type="Modifier"/>
+                                                                    </modifiers>
+                                                                    <variables>
+                                                                        <variable type="VariableDeclarator">
+                                                                            <initializer type="CastExpr">
+                                                                                <expression type="EnclosedExpr">
+                                                                                    <inner operator="DIVIDE" type="BinaryExpr">
+                                                                                        <left type="MethodCallExpr">
+                                                                                            <name identifier="SceneWindowWidth" type="SimpleName"/>
+                                                                                        </left>
+                                                                                        <right type="IntegerLiteralExpr" value="2"/>
+                                                                                    </inner>
+                                                                                </expression>
+                                                                                <type type="INT" typeB="PrimitiveType"/>
+                                                                            </initializer>
+                                                                            <name identifier="centerCameraX" type="SimpleName"/>
+                                                                            <type type="INT" typeB="PrimitiveType"/>
+                                                                        </variable>
+                                                                    </variables>
+                                                                </expression>
+                                                            </statement>
+                                                            <statement type="ExpressionStmt">
+                                                                <expression type="VariableDeclarationExpr">
+                                                                    <modifiers>
+                                                                        <modifier keyword="FINAL" type="Modifier"/>
+                                                                    </modifiers>
+                                                                    <variables>
+                                                                        <variable type="VariableDeclarator">
+                                                                            <initializer type="CastExpr">
+                                                                                <expression type="EnclosedExpr">
+                                                                                    <inner operator="DIVIDE" type="BinaryExpr">
+                                                                                        <left type="MethodCallExpr">
+                                                                                            <name identifier="SceneWindowHeight" type="SimpleName"/>
+                                                                                        </left>
+                                                                                        <right type="IntegerLiteralExpr" value="2"/>
+                                                                                    </inner>
+                                                                                </expression>
+                                                                                <type type="INT" typeB="PrimitiveType"/>
+                                                                            </initializer>
+                                                                            <name identifier="centerCameraY" type="SimpleName"/>
+                                                                            <type type="INT" typeB="PrimitiveType"/>
+                                                                        </variable>
+                                                                    </variables>
+                                                                </expression>
+                                                            </statement>
+                                                            <statement type="ExpressionStmt">
+                                                                <expression type="MethodCallExpr">
+                                                                    <name identifier="setPosition" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="tiledLayer" type="SimpleName"/>
+                                                                    </scope>
+                                                                    <arguments>
+                                                                        <argument operator="MINUS" type="BinaryExpr">
+                                                                            <left type="NameExpr">
+                                                                                <name identifier="centerCameraX" type="SimpleName"/>
+                                                                            </left>
+                                                                            <right type="EnclosedExpr">
+                                                                                <inner operator="MINUS" type="BinaryExpr">
+                                                                                    <left type="MethodCallExpr">
+                                                                                        <name identifier="getHalfWidth" type="SimpleName"/>
+                                                                                        <scope type="NameExpr">
+                                                                                            <name identifier="tiledLayer" type="SimpleName"/>
+                                                                                        </scope>
+                                                                                    </left>
+                                                                                    <right type="IntegerLiteralExpr" value="78"/>
+                                                                                </inner>
+                                                                            </right>
+                                                                        </argument>
+                                                                        <argument operator="MINUS" type="BinaryExpr">
+                                                                            <left type="NameExpr">
+                                                                                <name identifier="centerCameraY" type="SimpleName"/>
+                                                                            </left>
+                                                                            <right type="EnclosedExpr">
+                                                                                <inner operator="PLUS" type="BinaryExpr">
+                                                                                    <left type="MethodCallExpr">
+                                                                                        <name identifier="getHalfHeight" type="SimpleName"/>
+                                                                                        <scope type="NameExpr">
+                                                                                            <name identifier="tiledLayer" type="SimpleName"/>
+                                                                                        </scope>
+                                                                                    </left>
+                                                                                    <right type="IntegerLiteralExpr" value="109"/>
+                                                                                </inner>
+                                                                            </right>
+                                                                        </argument>
+                                                                        <argument type="IntegerLiteralExpr" value="0"/>
+                                                                    </arguments>
+                                                                </expression>
+                                                            </statement>
+                                                        </statements>
+                                                    </body>
+                                                    <type type="VoidType"/>
+                                                    <name identifier="onDisplayChangeEvent" type="SimpleName"/>
+                                                    <modifiers>
+                                                        <modifier keyword="PUBLIC" type="Modifier"/>
+                                                    </modifiers>
+                                                    <parameters>
+                                                        <parameter isVarArgs="false" type="Parameter">
+                                                            <name identifier="displayChangeEvent" type="SimpleName"/>
+                                                            <type type="ClassOrInterfaceType">
+                                                                <name identifier="DisplayChangeEvent" type="SimpleName"/>
+                                                            </type>
+                                                            <modifiers>
+                                                                <modifier keyword="FINAL" type="Modifier"/>
+                                                            </modifiers>
+                                                        </parameter>
+                                                    </parameters>
+                                                </anonymousClassBod>
+                                            </anonymousClassBody>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="setTiledLayer" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="StaticTileLayerIntoPositionViewPosition" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="tiledLayer" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="setPosition" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="geographicMapCompositeInterface" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="init" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="FieldAccessExpr">
+                                                <name identifier="layer" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="StaticTileLayerIntoPositionViewPosition" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="layer" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="AllBinaryLayer" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ArrayAccessExpr">
+                                                <index type="IntegerLiteralExpr" value="0"/>
+                                                <name type="MethodCallExpr">
+                                                    <name identifier="getGeographicMapInterface" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="geographicMapCompositeInterface" type="SimpleName"/>
+                                                    </scope>
+                                                </name>
+                                            </initializer>
+                                            <name identifier="geographicMapInterface" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicGeographicMap" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getTiledLayer" type="SimpleName"/>
+                                                <scope type="EnclosedExpr">
+                                                    <inner type="CastExpr">
+                                                        <expression type="MethodCallExpr">
+                                                            <name identifier="getAllBinaryTiledLayer" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="geographicMapInterface" type="SimpleName"/>
+                                                            </scope>
+                                                        </expression>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="AllBinaryJ2METiledLayer" type="SimpleName"/>
+                                                        </type>
+                                                    </inner>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="tiledLayer" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="TiledLayer" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="EnclosedExpr">
+                                                <inner operator="DIVIDE" type="BinaryExpr">
+                                                    <left type="EnclosedExpr">
+                                                        <inner operator="MULTIPLY" type="BinaryExpr">
+                                                            <left type="MethodCallExpr">
+                                                                <name identifier="getRows" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="tiledLayer" type="SimpleName"/>
+                                                                </scope>
+                                                            </left>
+                                                            <right type="MethodCallExpr">
+                                                                <name identifier="getCellHeight" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="tiledLayer" type="SimpleName"/>
+                                                                </scope>
+                                                            </right>
+                                                        </inner>
+                                                    </left>
+                                                    <right type="IntegerLiteralExpr" value="2"/>
+                                                </inner>
+                                            </initializer>
+                                            <name identifier="mapX" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="final int y2 = layer.getY() - tiledLayer.getY();" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="EnclosedExpr">
+                                                <inner operator="DIVIDE" type="BinaryExpr">
+                                                    <left type="EnclosedExpr">
+                                                        <inner operator="MULTIPLY" type="BinaryExpr">
+                                                            <left type="MethodCallExpr">
+                                                                <name identifier="getColumns" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="tiledLayer" type="SimpleName"/>
+                                                                </scope>
+                                                            </left>
+                                                            <right type="MethodCallExpr">
+                                                                <name identifier="getCellWidth" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="tiledLayer" type="SimpleName"/>
+                                                                </scope>
+                                                            </right>
+                                                        </inner>
+                                                    </left>
+                                                    <right type="IntegerLiteralExpr" value="2"/>
+                                                </inner>
+                                            </initializer>
+                                            <name identifier="mapY" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer operator="MINUS" type="BinaryExpr">
+                                                <left operator="MINUS" type="BinaryExpr">
+                                                    <left type="NameExpr">
+                                                        <name identifier="mapX" type="SimpleName"/>
+                                                    </left>
+                                                    <right type="MethodCallExpr">
+                                                        <name identifier="getHalfWidth" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="layer" type="SimpleName"/>
+                                                        </scope>
+                                                    </right>
+                                                </left>
+                                                <right type="IntegerLiteralExpr" value="78"/>
+                                            </initializer>
+                                            <name identifier="x2" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                                <comment content="final int y2 = mapY + tiledLayer.getY();" type="LineComment"/>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer operator="PLUS" type="BinaryExpr">
+                                                <left operator="PLUS" type="BinaryExpr">
+                                                    <left type="NameExpr">
+                                                        <name identifier="mapY" type="SimpleName"/>
+                                                    </left>
+                                                    <right type="MethodCallExpr">
+                                                        <name identifier="getHeight" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="layer" type="SimpleName"/>
+                                                        </scope>
+                                                    </right>
+                                                </left>
+                                                <right type="MethodCallExpr">
+                                                    <name identifier="getHalfHeight" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="layer" type="SimpleName"/>
+                                                    </scope>
+                                                </right>
+                                            </initializer>
+                                            <name identifier="y2" type="SimpleName"/>
+                                            <type type="INT" typeB="PrimitiveType"/>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="setPosition" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="layer" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="x2" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="y2" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="MethodCallExpr">
+                                            <name identifier="getZ" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="layer" type="SimpleName"/>
+                                            </scope>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                                <comment content="        logUtil.put(new StringMaker().append(&quot;2 x: &quot;).append(x2).append(&quot;y: &quot;).append(y2).toString(), this, commonStrings.PROCESS);" type="LineComment"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="setPosition" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="geographicMapCompositeInterface" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GeographicMapCompositeInterface" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="init" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="build" type="SimpleName"/>
+                    <comment content="  new BoundBounceAIFactory();" type="LineComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="setVisible" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="layerInterface" type="SimpleName"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="BooleanLiteralExpr" value="true"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="append" type="SimpleName"/>
+                                    <scope type="FieldAccessExpr">
+                                        <name identifier="layerManager" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </scope>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="layerInterface" type="SimpleName"/>
+                                        </argument>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="VoidType"/>
+                    <name identifier="visit" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="layerInterface" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="AllBinaryLayer" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="getLastWidth" type="SimpleName"/>
+                                    <scope type="MethodCallExpr">
+                                        <name identifier="getInstance" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="GameTickDisplayInfoSingleton" type="SimpleName"/>
+                                        </scope>
+                                    </scope>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="INT" typeB="PrimitiveType"/>
+                    <name identifier="SceneWindowWidth" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="MethodCallExpr">
+                                    <name identifier="getLastHeight" type="SimpleName"/>
+                                    <scope type="MethodCallExpr">
+                                        <name identifier="getInstance" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="GameTickDisplayInfoSingleton" type="SimpleName"/>
+                                        </scope>
+                                    </scope>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="INT" typeB="PrimitiveType"/>
+                    <name identifier="SceneWindowHeight" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

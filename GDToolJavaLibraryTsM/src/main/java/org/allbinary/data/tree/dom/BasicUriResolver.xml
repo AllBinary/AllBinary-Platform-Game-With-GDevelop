@@ -1,0 +1,478 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="dom" type="Name">
+            <qualifier identifier="tree" type="Name">
+                <qualifier identifier="data" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <comment content=" * AllBinary Open License Version 1 * Copyright (c) 2011 AllBinary *  * By agreeing to this license you and any business entity you represent are * legally bound to the AllBinary Open License Version 1 legal agreement. *  * You may obtain the AllBinary Open License Version 1 legal agreement from * AllBinary or the root directory of AllBinary's AllBinary Platform repository. *  * Created By: Travis Berthelot *   " type="BlockComment"/>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="Source" type="Name">
+                <qualifier identifier="transform" type="Name">
+                    <qualifier identifier="xml" type="Name">
+                        <qualifier identifier="javax" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TransformerException" type="Name">
+                <qualifier identifier="transform" type="Name">
+                    <qualifier identifier="xml" type="Name">
+                        <qualifier identifier="javax" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="URIResolver" type="Name">
+                <qualifier identifier="transform" type="Name">
+                    <qualifier identifier="xml" type="Name">
+                        <qualifier identifier="javax" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AbFilePath" type="Name">
+                <qualifier identifier="path" type="Name">
+                    <qualifier identifier="io" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="AbPath" type="Name">
+                <qualifier identifier="path" type="Name">
+                    <qualifier identifier="io" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="LogUtil" type="Name">
+                <qualifier identifier="log" type="Name">
+                    <qualifier identifier="communication" type="Name">
+                        <qualifier identifier="logic" type="Name">
+                            <qualifier identifier="allbinary" type="Name">
+                                <qualifier identifier="org" type="Name"/>
+                            </qualifier>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="BasicUriResolver" type="SimpleName"/>
+            <implementedTypes>
+                <implementedType type="ClassOrInterfaceType">
+                    <name identifier="URIResolver" type="SimpleName"/>
+                </implementedType>
+            </implementedTypes>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PROTECTED" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="MethodCallExpr">
+                                <name identifier="getInstance" type="SimpleName"/>
+                                <scope type="NameExpr">
+                                    <name identifier="LogUtil" type="SimpleName"/>
+                                </scope>
+                            </initializer>
+                            <name identifier="logUtil" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="LogUtil" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="ConstructorDeclaration">
+                    <body type="BlockStmt"/>
+                    <name identifier="BasicUriResolver" type="SimpleName"/>
+                    <comment content="TransformInfoInterface parentTransformInfoInterface," type="LineComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="TryStmt">
+                                <tryBlock type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <modifiers>
+                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                </modifiers>
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="ObjectCreationExpr">
+                                                            <type type="ClassOrInterfaceType">
+                                                                <name identifier="StringBuffer" type="SimpleName"/>
+                                                            </type>
+                                                        </initializer>
+                                                        <name identifier="stringBuffer" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="StringBuffer" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="append" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="stringBuffer" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="href" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                            <comment content="stringBuffer.append(FREEBLISKET_PATH_GLOBALS.getInstance().XSLPATH);" type="LineComment"/>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <modifiers>
+                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                </modifiers>
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="CastExpr">
+                                                            <expression type="ObjectCreationExpr">
+                                                                <type type="ClassOrInterfaceType">
+                                                                    <name identifier="AbFilePath" type="SimpleName"/>
+                                                                </type>
+                                                                <arguments>
+                                                                    <argument type="MethodCallExpr">
+                                                                        <name identifier="toString" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="stringBuffer" type="SimpleName"/>
+                                                                        </scope>
+                                                                    </argument>
+                                                                </arguments>
+                                                            </expression>
+                                                            <type type="ClassOrInterfaceType">
+                                                                <name identifier="AbPath" type="SimpleName"/>
+                                                            </type>
+                                                        </initializer>
+                                                        <name identifier="abPath" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="AbPath" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="delete" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="stringBuffer" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="IntegerLiteralExpr" value="0"/>
+                                                    <argument type="MethodCallExpr">
+                                                        <name identifier="length" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="stringBuffer" type="SimpleName"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                            <comment content="{" type="LineComment"/>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="append" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="stringBuffer" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="StringLiteralExpr" value="attempt to use xsl:import: href="/>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="append" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="stringBuffer" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="href" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="append" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="stringBuffer" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="StringLiteralExpr" value="\nBase= "/>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="append" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="stringBuffer" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="NameExpr">
+                                                        <name identifier="base" type="SimpleName"/>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="append" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="stringBuffer" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="StringLiteralExpr" value="\nNew path= "/>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="append" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="stringBuffer" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="MethodCallExpr">
+                                                        <name identifier="toString" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="abPath" type="SimpleName"/>
+                                                        </scope>
+                                                    </argument>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="append" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="stringBuffer" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="StringLiteralExpr" value=" is a urlglobal"/>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="putF" type="SimpleName"/>
+                                                <scope type="FieldAccessExpr">
+                                                    <name identifier="logUtil" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="MethodCallExpr">
+                                                        <name identifier="toString" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="stringBuffer" type="SimpleName"/>
+                                                        </scope>
+                                                    </argument>
+                                                    <argument type="ThisExpr"/>
+                                                    <argument type="StringLiteralExpr" value="resolve"/>
+                                                </arguments>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ReturnStmt">
+                                            <expression type="NullLiteralExpr"/>
+                                            <comment content="}" type="LineComment"/>
+                                        </statement>
+                                    </statements>
+                                </tryBlock>
+                                <catchClauses>
+                                    <catchClause type="CatchClause">
+                                        <body type="BlockStmt">
+                                            <statements>
+                                                <statement type="ThrowStmt">
+                                                    <expression type="NameExpr">
+                                                        <name identifier="e" type="SimpleName"/>
+                                                    </expression>
+                                                </statement>
+                                            </statements>
+                                        </body>
+                                        <parameter isVarArgs="false" type="Parameter">
+                                            <name identifier="e" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="TransformerException" type="SimpleName"/>
+                                            </type>
+                                        </parameter>
+                                    </catchClause>
+                                    <catchClause type="CatchClause">
+                                        <body type="BlockStmt">
+                                            <statements>
+                                                <statement type="ThrowStmt">
+                                                    <expression type="ObjectCreationExpr">
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="TransformerException" type="SimpleName"/>
+                                                        </type>
+                                                        <arguments>
+                                                            <argument type="NameExpr">
+                                                                <name identifier="e" type="SimpleName"/>
+                                                            </argument>
+                                                        </arguments>
+                                                    </expression>
+                                                </statement>
+                                            </statements>
+                                        </body>
+                                        <parameter isVarArgs="false" type="Parameter">
+                                            <name identifier="e" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="Exception" type="SimpleName"/>
+                                            </type>
+                                        </parameter>
+                                    </catchClause>
+                                </catchClauses>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="ClassOrInterfaceType">
+                        <name identifier="Source" type="SimpleName"/>
+                    </type>
+                    <name identifier="resolve" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="href" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="base" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="TransformerException" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="TryStmt">
+                                <tryBlock type="BlockStmt">
+                                    <statements>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="VariableDeclarationExpr">
+                                                <modifiers>
+                                                    <modifier keyword="FINAL" type="Modifier"/>
+                                                </modifiers>
+                                                <variables>
+                                                    <variable type="VariableDeclarator">
+                                                        <initializer type="ObjectCreationExpr">
+                                                            <type type="ClassOrInterfaceType">
+                                                                <name identifier="StringBuffer" type="SimpleName"/>
+                                                            </type>
+                                                        </initializer>
+                                                        <name identifier="stringBuffer" type="SimpleName"/>
+                                                        <type type="ClassOrInterfaceType">
+                                                            <name identifier="StringBuffer" type="SimpleName"/>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type="ExpressionStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="append" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="stringBuffer" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="StringLiteralExpr" value="/{import url}"/>
+                                                </arguments>
+                                            </expression>
+                                            <comment content="stringBuffer.append(FREEBLISKET_PATH_GLOBALS.getInstance().XSLPATH);" type="LineComment"/>
+                                        </statement>
+                                        <statement type="ReturnStmt">
+                                            <expression type="MethodCallExpr">
+                                                <name identifier="toString" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="stringBuffer" type="SimpleName"/>
+                                                </scope>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </tryBlock>
+                                <catchClauses>
+                                    <catchClause type="CatchClause">
+                                        <body type="BlockStmt">
+                                            <statements>
+                                                <statement type="ReturnStmt">
+                                                    <expression type="StringLiteralExpr" value="BasicUriResolver - Does not work without webapp path should be changed"/>
+                                                    <comment content="Log Error" type="LineComment"/>
+                                                </statement>
+                                            </statements>
+                                        </body>
+                                        <parameter isVarArgs="false" type="Parameter">
+                                            <name identifier="e" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="Exception" type="SimpleName"/>
+                                            </type>
+                                        </parameter>
+                                    </catchClause>
+                                </catchClauses>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="ClassOrInterfaceType">
+                        <name identifier="String" type="SimpleName"/>
+                    </type>
+                    <name identifier="toString" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

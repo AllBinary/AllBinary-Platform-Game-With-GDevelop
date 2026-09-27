@@ -1,0 +1,359 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="image" type="Name">
+            <qualifier identifier="animation" type="Name">
+                <qualifier identifier="allbinary" type="Name">
+                    <qualifier identifier="org" type="Name"/>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <imports>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="IndexedAnimation" type="Name">
+                <qualifier identifier="animation" type="Name">
+                    <qualifier identifier="allbinary" type="Name">
+                        <qualifier identifier="org" type="Name"/>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="TitleAnimation" type="Name">
+                <qualifier identifier="special" type="Name">
+                    <qualifier identifier="animation" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicColor" type="Name">
+                <qualifier identifier="color" type="Name">
+                    <qualifier identifier="graphics" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
+            <name identifier="BasicColorFactory" type="Name">
+                <qualifier identifier="color" type="Name">
+                    <qualifier identifier="graphics" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDGameThreedTitleAnimationFactory" type="SimpleName"/>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="ObjectCreationExpr">
+                                <type type="ClassOrInterfaceType">
+                                    <name identifier="GDGameThreedTitleAnimationFactory" type="SimpleName"/>
+                                </type>
+                            </initializer>
+                            <name identifier="instance" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDGameThreedTitleAnimationFactory" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="FieldAccessExpr">
+                                    <name identifier="instance" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="GDGameThreedTitleAnimationFactory" type="SimpleName"/>
+                                    </scope>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="ClassOrInterfaceType">
+                        <name identifier="GDGameThreedTitleAnimationFactory" type="SimpleName"/>
+                    </type>
+                    <name identifier="getIntance" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <modifiers>
+                                        <modifier keyword="FINAL" type="Modifier"/>
+                                    </modifiers>
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="MethodCallExpr">
+                                                <name identifier="getInstance" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="BasicColorFactory" type="SimpleName"/>
+                                                </scope>
+                                            </initializer>
+                                            <name identifier="basicColorFactory" type="SimpleName"/>
+                                            <type type="ClassOrInterfaceType">
+                                                <name identifier="BasicColorFactory" type="SimpleName"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ArrayCreationExpr">
+                                                <elementType type="ClassOrInterfaceType">
+                                                    <name identifier="BasicColor" type="SimpleName"/>
+                                                </elementType>
+                                                <levels>
+                                                    <level type="ArrayCreationLevel">
+                                                        <dimension type="IntegerLiteralExpr" value="3"/>
+                                                    </level>
+                                                </levels>
+                                            </initializer>
+                                            <name identifier="basicColorArray" type="SimpleName"/>
+                                            <type origin="TYPE" type="ArrayType">
+                                                <componentType type="ClassOrInterfaceType">
+                                                    <name identifier="BasicColor" type="SimpleName"/>
+                                                </componentType>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="ArrayAccessExpr">
+                                        <index type="IntegerLiteralExpr" value="0"/>
+                                        <name type="NameExpr">
+                                            <name identifier="basicColorArray" type="SimpleName"/>
+                                        </name>
+                                    </target>
+                                    <value type="FieldAccessExpr">
+                                        <name identifier="CLEAR_COLOR" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="basicColorFactory" type="SimpleName"/>
+                                        </scope>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="ArrayAccessExpr">
+                                        <index type="IntegerLiteralExpr" value="1"/>
+                                        <name type="NameExpr">
+                                            <name identifier="basicColorArray" type="SimpleName"/>
+                                        </name>
+                                    </target>
+                                    <value type="FieldAccessExpr">
+                                        <name identifier="CLEAR_COLOR" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="basicColorFactory" type="SimpleName"/>
+                                        </scope>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="ArrayAccessExpr">
+                                        <index type="IntegerLiteralExpr" value="2"/>
+                                        <name type="NameExpr">
+                                            <name identifier="basicColorArray" type="SimpleName"/>
+                                        </name>
+                                    </target>
+                                    <value type="FieldAccessExpr">
+                                        <name identifier="CLEAR_COLOR" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="basicColorFactory" type="SimpleName"/>
+                                        </scope>
+                                    </value>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ArrayCreationExpr">
+                                                <elementType type="INT" typeB="PrimitiveType"/>
+                                                <levels>
+                                                    <level type="ArrayCreationLevel">
+                                                        <dimension type="IntegerLiteralExpr" value="3"/>
+                                                    </level>
+                                                </levels>
+                                            </initializer>
+                                            <name identifier="deltaXArray" type="SimpleName"/>
+                                            <type origin="TYPE" type="ArrayType">
+                                                <componentType type="INT" typeB="PrimitiveType"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="ArrayAccessExpr">
+                                        <index type="IntegerLiteralExpr" value="0"/>
+                                        <name type="NameExpr">
+                                            <name identifier="deltaXArray" type="SimpleName"/>
+                                        </name>
+                                    </target>
+                                    <value type="IntegerLiteralExpr" value="0"/>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="ArrayAccessExpr">
+                                        <index type="IntegerLiteralExpr" value="1"/>
+                                        <name type="NameExpr">
+                                            <name identifier="deltaXArray" type="SimpleName"/>
+                                        </name>
+                                    </target>
+                                    <value type="IntegerLiteralExpr" value="52"/>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="ArrayAccessExpr">
+                                        <index type="IntegerLiteralExpr" value="2"/>
+                                        <name type="NameExpr">
+                                            <name identifier="deltaXArray" type="SimpleName"/>
+                                        </name>
+                                    </target>
+                                    <value type="IntegerLiteralExpr" value="0"/>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression type="VariableDeclarationExpr">
+                                    <variables>
+                                        <variable type="VariableDeclarator">
+                                            <initializer type="ArrayCreationExpr">
+                                                <elementType type="INT" typeB="PrimitiveType"/>
+                                                <levels>
+                                                    <level type="ArrayCreationLevel">
+                                                        <dimension type="IntegerLiteralExpr" value="3"/>
+                                                    </level>
+                                                </levels>
+                                            </initializer>
+                                            <name identifier="deltaYArray" type="SimpleName"/>
+                                            <type origin="TYPE" type="ArrayType">
+                                                <componentType type="INT" typeB="PrimitiveType"/>
+                                            </type>
+                                        </variable>
+                                    </variables>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="ArrayAccessExpr">
+                                        <index type="IntegerLiteralExpr" value="0"/>
+                                        <name type="NameExpr">
+                                            <name identifier="deltaYArray" type="SimpleName"/>
+                                        </name>
+                                    </target>
+                                    <value type="IntegerLiteralExpr" value="0"/>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="ArrayAccessExpr">
+                                        <index type="IntegerLiteralExpr" value="1"/>
+                                        <name type="NameExpr">
+                                            <name identifier="deltaYArray" type="SimpleName"/>
+                                        </name>
+                                    </target>
+                                    <value type="IntegerLiteralExpr" value="30"/>
+                                </expression>
+                            </statement>
+                            <statement type="ExpressionStmt">
+                                <expression operator="ASSIGN" type="AssignExpr">
+                                    <target type="ArrayAccessExpr">
+                                        <index type="IntegerLiteralExpr" value="2"/>
+                                        <name type="NameExpr">
+                                            <name identifier="deltaYArray" type="SimpleName"/>
+                                        </name>
+                                    </target>
+                                    <value type="IntegerLiteralExpr" value="37"/>
+                                </expression>
+                            </statement>
+                            <statement type="ReturnStmt">
+                                <expression type="ObjectCreationExpr">
+                                    <type type="ClassOrInterfaceType">
+                                        <name identifier="GDGameThreedTitleAnimation" type="SimpleName"/>
+                                    </type>
+                                    <arguments>
+                                        <argument type="NameExpr">
+                                            <name identifier="animationInterfaceArray" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="basicColorArray" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="deltaXArray" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="NameExpr">
+                                            <name identifier="deltaYArray" type="SimpleName"/>
+                                        </argument>
+                                        <argument type="IntegerLiteralExpr" value="15"/>
+                                        <argument type="IntegerLiteralExpr" value="120"/>
+                                    </arguments>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="ClassOrInterfaceType">
+                        <name identifier="TitleAnimation" type="SimpleName"/>
+                    </type>
+                    <name identifier="getInstance" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="animationInterfaceArray" type="SimpleName"/>
+                            <type origin="TYPE" type="ArrayType">
+                                <componentType type="ClassOrInterfaceType">
+                                    <name identifier="IndexedAnimation" type="SimpleName"/>
+                                </componentType>
+                            </type>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type="ClassOrInterfaceType">
+                            <name identifier="Exception" type="SimpleName"/>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+

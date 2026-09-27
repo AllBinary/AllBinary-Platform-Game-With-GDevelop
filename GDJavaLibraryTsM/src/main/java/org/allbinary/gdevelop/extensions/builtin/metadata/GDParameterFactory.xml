@@ -1,0 +1,1457 @@
+<root type="CompilationUnit">
+    <packageDeclaration type="PackageDeclaration">
+        <name identifier="metadata" type="Name">
+            <qualifier identifier="builtin" type="Name">
+                <qualifier identifier="extensions" type="Name">
+                    <qualifier identifier="gdevelop" type="Name">
+                        <qualifier identifier="allbinary" type="Name">
+                            <qualifier identifier="org" type="Name"/>
+                        </qualifier>
+                    </qualifier>
+                </qualifier>
+            </qualifier>
+        </name>
+    </packageDeclaration>
+    <types>
+        <type isInterface="false" type="ClassOrInterfaceDeclaration">
+            <name identifier="GDParameterFactory" type="SimpleName"/>
+            <comment content="  *  * @author User  " type="JavadocComment"/>
+            <members>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PRIVATE" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="ObjectCreationExpr">
+                                <type type="ClassOrInterfaceType">
+                                    <name identifier="GDParameterFactory" type="SimpleName"/>
+                                </type>
+                            </initializer>
+                            <name identifier="instance" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="GDParameterFactory" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression type="FieldAccessExpr">
+                                    <name identifier="instance" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="GDParameterFactory" type="SimpleName"/>
+                                    </scope>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="ClassOrInterfaceType">
+                        <name identifier="GDParameterFactory" type="SimpleName"/>
+                    </type>
+                    <name identifier="getInstance" type="SimpleName"/>
+                    <comment content="      * @return the instance      " type="JavadocComment"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="STATIC" type="Modifier"/>
+                    </modifiers>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="object"/>
+                            <name identifier="OBJECT" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="objectPtr"/>
+                            <name identifier="OBJECT_PTR" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="objectList"/>
+                            <name identifier="OBJECT_LIST" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="objectListWithoutPicking"/>
+                            <name identifier="OBJECT_LIST_WITHOUT_PICKING" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="behavior"/>
+                            <name identifier="BEHAVIOR" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="number"/>
+                            <name identifier="NUMBER" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="expression"/>
+                            <name identifier="EXPRESSION" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="camera"/>
+                            <name identifier="CAMERA" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="forceMultiplier"/>
+                            <name identifier="FORCE_MULTIPLIER" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="string"/>
+                            <name identifier="STRING" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="layer"/>
+                            <name identifier="LAYER" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="color"/>
+                            <name identifier="COLOR" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="file"/>
+                            <name identifier="FILE" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="joyaxis"/>
+                            <name identifier="JOY_AXIS" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="stringWithSelector"/>
+                            <name identifier="STRING_WITH_SELECTOR" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="sceneName"/>
+                            <name identifier="SCENE_NAME" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="objectPointName"/>
+                            <name identifier="OBJECT_POINT_NAME" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="objectAnimationName"/>
+                            <name identifier="OBJECT_ANIMATION_NAME" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="variable"/>
+                            <name identifier="VARIABLE" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="objectvar"/>
+                            <name identifier="OBJECT_VAR" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="globalvar"/>
+                            <name identifier="GLOBAL_VAR" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="scenevar"/>
+                            <name identifier="SCENE_VAR" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="relationalOperator"/>
+                            <name identifier="RELATIONAL_OPERATOR" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="operator"/>
+                            <name identifier="OPERATOR" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="trueorfale"/>
+                            <name identifier="TRUE_OR_FALSE" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="FieldDeclaration">
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <variables>
+                        <variable type="VariableDeclarator">
+                            <initializer type="StringLiteralExpr" value="yesorno"/>
+                            <name identifier="YES_OR_NO" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                        </variable>
+                    </variables>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="IfStmt">
+                                <condition operator="EQUALS" type="BinaryExpr">
+                                    <left type="MethodCallExpr">
+                                        <name identifier="compareTo" type="SimpleName"/>
+                                        <scope type="NameExpr">
+                                            <name identifier="parameterType" type="SimpleName"/>
+                                        </scope>
+                                        <arguments>
+                                            <argument type="FieldAccessExpr">
+                                                <name identifier="OBJECT" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                            </argument>
+                                        </arguments>
+                                    </left>
+                                    <right type="IntegerLiteralExpr" value="0"/>
+                                </condition>
+                                <elseStmt type="IfStmt">
+                                    <condition operator="EQUALS" type="BinaryExpr">
+                                        <left type="MethodCallExpr">
+                                            <name identifier="compareTo" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="parameterType" type="SimpleName"/>
+                                            </scope>
+                                            <arguments>
+                                                <argument type="FieldAccessExpr">
+                                                    <name identifier="OBJECT_PTR" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </argument>
+                                            </arguments>
+                                        </left>
+                                        <right type="IntegerLiteralExpr" value="0"/>
+                                    </condition>
+                                    <elseStmt type="IfStmt">
+                                        <condition operator="EQUALS" type="BinaryExpr">
+                                            <left type="MethodCallExpr">
+                                                <name identifier="compareTo" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="parameterType" type="SimpleName"/>
+                                                </scope>
+                                                <arguments>
+                                                    <argument type="FieldAccessExpr">
+                                                        <name identifier="OBJECT_LIST" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </argument>
+                                                </arguments>
+                                            </left>
+                                            <right type="IntegerLiteralExpr" value="0"/>
+                                        </condition>
+                                        <elseStmt type="IfStmt">
+                                            <condition operator="EQUALS" type="BinaryExpr">
+                                                <left type="MethodCallExpr">
+                                                    <name identifier="compareTo" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="parameterType" type="SimpleName"/>
+                                                    </scope>
+                                                    <arguments>
+                                                        <argument type="FieldAccessExpr">
+                                                            <name identifier="OBJECT_LIST_WITHOUT_PICKING" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </argument>
+                                                    </arguments>
+                                                </left>
+                                                <right type="IntegerLiteralExpr" value="0"/>
+                                            </condition>
+                                            <elseStmt type="IfStmt">
+                                                <condition operator="EQUALS" type="BinaryExpr">
+                                                    <left type="MethodCallExpr">
+                                                        <name identifier="compareTo" type="SimpleName"/>
+                                                        <scope type="NameExpr">
+                                                            <name identifier="parameterType" type="SimpleName"/>
+                                                        </scope>
+                                                        <arguments>
+                                                            <argument type="FieldAccessExpr">
+                                                                <name identifier="BEHAVIOR" type="SimpleName"/>
+                                                                <scope type="ThisExpr"/>
+                                                            </argument>
+                                                        </arguments>
+                                                    </left>
+                                                    <right type="IntegerLiteralExpr" value="0"/>
+                                                </condition>
+                                                <elseStmt type="IfStmt">
+                                                    <condition operator="EQUALS" type="BinaryExpr">
+                                                        <left type="MethodCallExpr">
+                                                            <name identifier="compareTo" type="SimpleName"/>
+                                                            <scope type="NameExpr">
+                                                                <name identifier="parameterType" type="SimpleName"/>
+                                                            </scope>
+                                                            <arguments>
+                                                                <argument type="FieldAccessExpr">
+                                                                    <name identifier="NUMBER" type="SimpleName"/>
+                                                                    <scope type="ThisExpr"/>
+                                                                </argument>
+                                                            </arguments>
+                                                        </left>
+                                                        <right type="IntegerLiteralExpr" value="0"/>
+                                                    </condition>
+                                                    <elseStmt type="IfStmt">
+                                                        <condition operator="EQUALS" type="BinaryExpr">
+                                                            <left type="MethodCallExpr">
+                                                                <name identifier="compareTo" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="parameterType" type="SimpleName"/>
+                                                                </scope>
+                                                                <arguments>
+                                                                    <argument type="FieldAccessExpr">
+                                                                        <name identifier="EXPRESSION" type="SimpleName"/>
+                                                                        <scope type="ThisExpr"/>
+                                                                    </argument>
+                                                                </arguments>
+                                                            </left>
+                                                            <right type="IntegerLiteralExpr" value="0"/>
+                                                        </condition>
+                                                        <elseStmt type="IfStmt">
+                                                            <condition operator="EQUALS" type="BinaryExpr">
+                                                                <left type="MethodCallExpr">
+                                                                    <name identifier="compareTo" type="SimpleName"/>
+                                                                    <scope type="NameExpr">
+                                                                        <name identifier="parameterType" type="SimpleName"/>
+                                                                    </scope>
+                                                                    <arguments>
+                                                                        <argument type="FieldAccessExpr">
+                                                                            <name identifier="CAMERA" type="SimpleName"/>
+                                                                            <scope type="ThisExpr"/>
+                                                                        </argument>
+                                                                    </arguments>
+                                                                </left>
+                                                                <right type="IntegerLiteralExpr" value="0"/>
+                                                            </condition>
+                                                            <elseStmt type="IfStmt">
+                                                                <condition operator="EQUALS" type="BinaryExpr">
+                                                                    <left type="MethodCallExpr">
+                                                                        <name identifier="compareTo" type="SimpleName"/>
+                                                                        <scope type="NameExpr">
+                                                                            <name identifier="parameterType" type="SimpleName"/>
+                                                                        </scope>
+                                                                        <arguments>
+                                                                            <argument type="FieldAccessExpr">
+                                                                                <name identifier="FORCE_MULTIPLIER" type="SimpleName"/>
+                                                                                <scope type="ThisExpr"/>
+                                                                            </argument>
+                                                                        </arguments>
+                                                                    </left>
+                                                                    <right type="IntegerLiteralExpr" value="0"/>
+                                                                </condition>
+                                                                <elseStmt type="IfStmt">
+                                                                    <condition operator="EQUALS" type="BinaryExpr">
+                                                                        <left type="MethodCallExpr">
+                                                                            <name identifier="compareTo" type="SimpleName"/>
+                                                                            <scope type="NameExpr">
+                                                                                <name identifier="parameterType" type="SimpleName"/>
+                                                                            </scope>
+                                                                            <arguments>
+                                                                                <argument type="FieldAccessExpr">
+                                                                                    <name identifier="STRING" type="SimpleName"/>
+                                                                                    <scope type="ThisExpr"/>
+                                                                                </argument>
+                                                                            </arguments>
+                                                                        </left>
+                                                                        <right type="IntegerLiteralExpr" value="0"/>
+                                                                    </condition>
+                                                                    <elseStmt type="IfStmt">
+                                                                        <condition operator="EQUALS" type="BinaryExpr">
+                                                                            <left type="MethodCallExpr">
+                                                                                <name identifier="compareTo" type="SimpleName"/>
+                                                                                <scope type="NameExpr">
+                                                                                    <name identifier="parameterType" type="SimpleName"/>
+                                                                                </scope>
+                                                                                <arguments>
+                                                                                    <argument type="FieldAccessExpr">
+                                                                                        <name identifier="LAYER" type="SimpleName"/>
+                                                                                        <scope type="ThisExpr"/>
+                                                                                    </argument>
+                                                                                </arguments>
+                                                                            </left>
+                                                                            <right type="IntegerLiteralExpr" value="0"/>
+                                                                        </condition>
+                                                                        <elseStmt type="IfStmt">
+                                                                            <condition operator="EQUALS" type="BinaryExpr">
+                                                                                <left type="MethodCallExpr">
+                                                                                    <name identifier="compareTo" type="SimpleName"/>
+                                                                                    <scope type="NameExpr">
+                                                                                        <name identifier="parameterType" type="SimpleName"/>
+                                                                                    </scope>
+                                                                                    <arguments>
+                                                                                        <argument type="FieldAccessExpr">
+                                                                                            <name identifier="COLOR" type="SimpleName"/>
+                                                                                            <scope type="ThisExpr"/>
+                                                                                        </argument>
+                                                                                    </arguments>
+                                                                                </left>
+                                                                                <right type="IntegerLiteralExpr" value="0"/>
+                                                                            </condition>
+                                                                            <elseStmt type="IfStmt">
+                                                                                <condition operator="EQUALS" type="BinaryExpr">
+                                                                                    <left type="MethodCallExpr">
+                                                                                        <name identifier="compareTo" type="SimpleName"/>
+                                                                                        <scope type="NameExpr">
+                                                                                            <name identifier="parameterType" type="SimpleName"/>
+                                                                                        </scope>
+                                                                                        <arguments>
+                                                                                            <argument type="FieldAccessExpr">
+                                                                                                <name identifier="FILE" type="SimpleName"/>
+                                                                                                <scope type="ThisExpr"/>
+                                                                                            </argument>
+                                                                                        </arguments>
+                                                                                    </left>
+                                                                                    <right type="IntegerLiteralExpr" value="0"/>
+                                                                                </condition>
+                                                                                <elseStmt type="IfStmt">
+                                                                                    <condition operator="EQUALS" type="BinaryExpr">
+                                                                                        <left type="MethodCallExpr">
+                                                                                            <name identifier="compareTo" type="SimpleName"/>
+                                                                                            <scope type="NameExpr">
+                                                                                                <name identifier="parameterType" type="SimpleName"/>
+                                                                                            </scope>
+                                                                                            <arguments>
+                                                                                                <argument type="FieldAccessExpr">
+                                                                                                    <name identifier="JOY_AXIS" type="SimpleName"/>
+                                                                                                    <scope type="ThisExpr"/>
+                                                                                                </argument>
+                                                                                            </arguments>
+                                                                                        </left>
+                                                                                        <right type="IntegerLiteralExpr" value="0"/>
+                                                                                    </condition>
+                                                                                    <elseStmt type="IfStmt">
+                                                                                        <condition operator="EQUALS" type="BinaryExpr">
+                                                                                            <left type="MethodCallExpr">
+                                                                                                <name identifier="compareTo" type="SimpleName"/>
+                                                                                                <scope type="NameExpr">
+                                                                                                    <name identifier="parameterType" type="SimpleName"/>
+                                                                                                </scope>
+                                                                                                <arguments>
+                                                                                                    <argument type="FieldAccessExpr">
+                                                                                                        <name identifier="STRING_WITH_SELECTOR" type="SimpleName"/>
+                                                                                                        <scope type="ThisExpr"/>
+                                                                                                    </argument>
+                                                                                                </arguments>
+                                                                                            </left>
+                                                                                            <right type="IntegerLiteralExpr" value="0"/>
+                                                                                        </condition>
+                                                                                        <elseStmt type="IfStmt">
+                                                                                            <condition operator="EQUALS" type="BinaryExpr">
+                                                                                                <left type="MethodCallExpr">
+                                                                                                    <name identifier="compareTo" type="SimpleName"/>
+                                                                                                    <scope type="NameExpr">
+                                                                                                        <name identifier="parameterType" type="SimpleName"/>
+                                                                                                    </scope>
+                                                                                                    <arguments>
+                                                                                                        <argument type="FieldAccessExpr">
+                                                                                                            <name identifier="SCENE_NAME" type="SimpleName"/>
+                                                                                                            <scope type="ThisExpr"/>
+                                                                                                        </argument>
+                                                                                                    </arguments>
+                                                                                                </left>
+                                                                                                <right type="IntegerLiteralExpr" value="0"/>
+                                                                                            </condition>
+                                                                                            <elseStmt type="IfStmt">
+                                                                                                <condition operator="EQUALS" type="BinaryExpr">
+                                                                                                    <left type="MethodCallExpr">
+                                                                                                        <name identifier="compareTo" type="SimpleName"/>
+                                                                                                        <scope type="NameExpr">
+                                                                                                            <name identifier="parameterType" type="SimpleName"/>
+                                                                                                        </scope>
+                                                                                                        <arguments>
+                                                                                                            <argument type="FieldAccessExpr">
+                                                                                                                <name identifier="OBJECT_POINT_NAME" type="SimpleName"/>
+                                                                                                                <scope type="ThisExpr"/>
+                                                                                                            </argument>
+                                                                                                        </arguments>
+                                                                                                    </left>
+                                                                                                    <right type="IntegerLiteralExpr" value="0"/>
+                                                                                                </condition>
+                                                                                                <elseStmt type="IfStmt">
+                                                                                                    <condition operator="EQUALS" type="BinaryExpr">
+                                                                                                        <left type="MethodCallExpr">
+                                                                                                            <name identifier="compareTo" type="SimpleName"/>
+                                                                                                            <scope type="NameExpr">
+                                                                                                                <name identifier="parameterType" type="SimpleName"/>
+                                                                                                            </scope>
+                                                                                                            <arguments>
+                                                                                                                <argument type="FieldAccessExpr">
+                                                                                                                    <name identifier="OBJECT_ANIMATION_NAME" type="SimpleName"/>
+                                                                                                                    <scope type="ThisExpr"/>
+                                                                                                                </argument>
+                                                                                                            </arguments>
+                                                                                                        </left>
+                                                                                                        <right type="IntegerLiteralExpr" value="0"/>
+                                                                                                    </condition>
+                                                                                                    <elseStmt type="IfStmt">
+                                                                                                        <condition operator="EQUALS" type="BinaryExpr">
+                                                                                                            <left type="MethodCallExpr">
+                                                                                                                <name identifier="compareTo" type="SimpleName"/>
+                                                                                                                <scope type="NameExpr">
+                                                                                                                    <name identifier="parameterType" type="SimpleName"/>
+                                                                                                                </scope>
+                                                                                                                <arguments>
+                                                                                                                    <argument type="FieldAccessExpr">
+                                                                                                                        <name identifier="VARIABLE" type="SimpleName"/>
+                                                                                                                        <scope type="ThisExpr"/>
+                                                                                                                    </argument>
+                                                                                                                </arguments>
+                                                                                                            </left>
+                                                                                                            <right type="IntegerLiteralExpr" value="0"/>
+                                                                                                        </condition>
+                                                                                                        <elseStmt type="IfStmt">
+                                                                                                            <condition operator="EQUALS" type="BinaryExpr">
+                                                                                                                <left type="MethodCallExpr">
+                                                                                                                    <name identifier="compareTo" type="SimpleName"/>
+                                                                                                                    <scope type="NameExpr">
+                                                                                                                        <name identifier="parameterType" type="SimpleName"/>
+                                                                                                                    </scope>
+                                                                                                                    <arguments>
+                                                                                                                        <argument type="FieldAccessExpr">
+                                                                                                                            <name identifier="OBJECT_VAR" type="SimpleName"/>
+                                                                                                                            <scope type="ThisExpr"/>
+                                                                                                                        </argument>
+                                                                                                                    </arguments>
+                                                                                                                </left>
+                                                                                                                <right type="IntegerLiteralExpr" value="0"/>
+                                                                                                            </condition>
+                                                                                                            <elseStmt type="IfStmt">
+                                                                                                                <condition operator="EQUALS" type="BinaryExpr">
+                                                                                                                    <left type="MethodCallExpr">
+                                                                                                                        <name identifier="compareTo" type="SimpleName"/>
+                                                                                                                        <scope type="NameExpr">
+                                                                                                                            <name identifier="parameterType" type="SimpleName"/>
+                                                                                                                        </scope>
+                                                                                                                        <arguments>
+                                                                                                                            <argument type="FieldAccessExpr">
+                                                                                                                                <name identifier="GLOBAL_VAR" type="SimpleName"/>
+                                                                                                                                <scope type="ThisExpr"/>
+                                                                                                                            </argument>
+                                                                                                                        </arguments>
+                                                                                                                    </left>
+                                                                                                                    <right type="IntegerLiteralExpr" value="0"/>
+                                                                                                                </condition>
+                                                                                                                <elseStmt type="IfStmt">
+                                                                                                                    <condition operator="EQUALS" type="BinaryExpr">
+                                                                                                                        <left type="MethodCallExpr">
+                                                                                                                            <name identifier="compareTo" type="SimpleName"/>
+                                                                                                                            <scope type="NameExpr">
+                                                                                                                                <name identifier="parameterType" type="SimpleName"/>
+                                                                                                                            </scope>
+                                                                                                                            <arguments>
+                                                                                                                                <argument type="FieldAccessExpr">
+                                                                                                                                    <name identifier="SCENE_VAR" type="SimpleName"/>
+                                                                                                                                    <scope type="ThisExpr"/>
+                                                                                                                                </argument>
+                                                                                                                            </arguments>
+                                                                                                                        </left>
+                                                                                                                        <right type="IntegerLiteralExpr" value="0"/>
+                                                                                                                    </condition>
+                                                                                                                    <elseStmt type="IfStmt">
+                                                                                                                        <condition operator="EQUALS" type="BinaryExpr">
+                                                                                                                            <left type="MethodCallExpr">
+                                                                                                                                <name identifier="compareTo" type="SimpleName"/>
+                                                                                                                                <scope type="NameExpr">
+                                                                                                                                    <name identifier="parameterType" type="SimpleName"/>
+                                                                                                                                </scope>
+                                                                                                                                <arguments>
+                                                                                                                                    <argument type="FieldAccessExpr">
+                                                                                                                                        <name identifier="RELATIONAL_OPERATOR" type="SimpleName"/>
+                                                                                                                                        <scope type="ThisExpr"/>
+                                                                                                                                    </argument>
+                                                                                                                                </arguments>
+                                                                                                                            </left>
+                                                                                                                            <right type="IntegerLiteralExpr" value="0"/>
+                                                                                                                        </condition>
+                                                                                                                        <elseStmt type="BlockStmt">
+                                                                                                                            <statements>
+                                                                                                                                <statement type="ThrowStmt">
+                                                                                                                                    <expression type="ObjectCreationExpr">
+                                                                                                                                        <type type="ClassOrInterfaceType">
+                                                                                                                                            <name identifier="RuntimeException" type="SimpleName"/>
+                                                                                                                                        </type>
+                                                                                                                                    </expression>
+                                                                                                                                </statement>
+                                                                                                                            </statements>
+                                                                                                                        </elseStmt>
+                                                                                                                        <thenStmt type="BlockStmt">
+                                                                                                                            <statements>
+                                                                                                                                <statement type="ReturnStmt">
+                                                                                                                                    <expression type="FieldAccessExpr">
+                                                                                                                                        <name identifier="RELATIONAL_OPERATOR" type="SimpleName"/>
+                                                                                                                                        <scope type="ThisExpr"/>
+                                                                                                                                    </expression>
+                                                                                                                                </statement>
+                                                                                                                            </statements>
+                                                                                                                        </thenStmt>
+                                                                                                                    </elseStmt>
+                                                                                                                    <thenStmt type="BlockStmt">
+                                                                                                                        <statements>
+                                                                                                                            <statement type="ReturnStmt">
+                                                                                                                                <expression type="FieldAccessExpr">
+                                                                                                                                    <name identifier="SCENE_VAR" type="SimpleName"/>
+                                                                                                                                    <scope type="ThisExpr"/>
+                                                                                                                                </expression>
+                                                                                                                            </statement>
+                                                                                                                        </statements>
+                                                                                                                    </thenStmt>
+                                                                                                                </elseStmt>
+                                                                                                                <thenStmt type="BlockStmt">
+                                                                                                                    <statements>
+                                                                                                                        <statement type="ReturnStmt">
+                                                                                                                            <expression type="FieldAccessExpr">
+                                                                                                                                <name identifier="GLOBAL_VAR" type="SimpleName"/>
+                                                                                                                                <scope type="ThisExpr"/>
+                                                                                                                            </expression>
+                                                                                                                        </statement>
+                                                                                                                    </statements>
+                                                                                                                </thenStmt>
+                                                                                                            </elseStmt>
+                                                                                                            <thenStmt type="BlockStmt">
+                                                                                                                <statements>
+                                                                                                                    <statement type="ReturnStmt">
+                                                                                                                        <expression type="FieldAccessExpr">
+                                                                                                                            <name identifier="OBJECT_VAR" type="SimpleName"/>
+                                                                                                                            <scope type="ThisExpr"/>
+                                                                                                                        </expression>
+                                                                                                                    </statement>
+                                                                                                                </statements>
+                                                                                                            </thenStmt>
+                                                                                                        </elseStmt>
+                                                                                                        <thenStmt type="BlockStmt">
+                                                                                                            <statements>
+                                                                                                                <statement type="ReturnStmt">
+                                                                                                                    <expression type="FieldAccessExpr">
+                                                                                                                        <name identifier="VARIABLE" type="SimpleName"/>
+                                                                                                                        <scope type="ThisExpr"/>
+                                                                                                                    </expression>
+                                                                                                                </statement>
+                                                                                                            </statements>
+                                                                                                        </thenStmt>
+                                                                                                    </elseStmt>
+                                                                                                    <thenStmt type="BlockStmt">
+                                                                                                        <statements>
+                                                                                                            <statement type="ReturnStmt">
+                                                                                                                <expression type="FieldAccessExpr">
+                                                                                                                    <name identifier="OBJECT_ANIMATION_NAME" type="SimpleName"/>
+                                                                                                                    <scope type="ThisExpr"/>
+                                                                                                                </expression>
+                                                                                                            </statement>
+                                                                                                        </statements>
+                                                                                                    </thenStmt>
+                                                                                                </elseStmt>
+                                                                                                <thenStmt type="BlockStmt">
+                                                                                                    <statements>
+                                                                                                        <statement type="ReturnStmt">
+                                                                                                            <expression type="FieldAccessExpr">
+                                                                                                                <name identifier="OBJECT_POINT_NAME" type="SimpleName"/>
+                                                                                                                <scope type="ThisExpr"/>
+                                                                                                            </expression>
+                                                                                                        </statement>
+                                                                                                    </statements>
+                                                                                                </thenStmt>
+                                                                                            </elseStmt>
+                                                                                            <thenStmt type="BlockStmt">
+                                                                                                <statements>
+                                                                                                    <statement type="ReturnStmt">
+                                                                                                        <expression type="FieldAccessExpr">
+                                                                                                            <name identifier="SCENE_NAME" type="SimpleName"/>
+                                                                                                            <scope type="ThisExpr"/>
+                                                                                                        </expression>
+                                                                                                    </statement>
+                                                                                                </statements>
+                                                                                            </thenStmt>
+                                                                                        </elseStmt>
+                                                                                        <thenStmt type="BlockStmt">
+                                                                                            <statements>
+                                                                                                <statement type="ReturnStmt">
+                                                                                                    <expression type="FieldAccessExpr">
+                                                                                                        <name identifier="STRING_WITH_SELECTOR" type="SimpleName"/>
+                                                                                                        <scope type="ThisExpr"/>
+                                                                                                    </expression>
+                                                                                                </statement>
+                                                                                            </statements>
+                                                                                        </thenStmt>
+                                                                                    </elseStmt>
+                                                                                    <thenStmt type="BlockStmt">
+                                                                                        <statements>
+                                                                                            <statement type="ReturnStmt">
+                                                                                                <expression type="FieldAccessExpr">
+                                                                                                    <name identifier="JOY_AXIS" type="SimpleName"/>
+                                                                                                    <scope type="ThisExpr"/>
+                                                                                                </expression>
+                                                                                            </statement>
+                                                                                        </statements>
+                                                                                    </thenStmt>
+                                                                                </elseStmt>
+                                                                                <thenStmt type="BlockStmt">
+                                                                                    <statements>
+                                                                                        <statement type="ReturnStmt">
+                                                                                            <expression type="FieldAccessExpr">
+                                                                                                <name identifier="FILE" type="SimpleName"/>
+                                                                                                <scope type="ThisExpr"/>
+                                                                                            </expression>
+                                                                                        </statement>
+                                                                                    </statements>
+                                                                                </thenStmt>
+                                                                            </elseStmt>
+                                                                            <thenStmt type="BlockStmt">
+                                                                                <statements>
+                                                                                    <statement type="ReturnStmt">
+                                                                                        <expression type="FieldAccessExpr">
+                                                                                            <name identifier="COLOR" type="SimpleName"/>
+                                                                                            <scope type="ThisExpr"/>
+                                                                                        </expression>
+                                                                                    </statement>
+                                                                                </statements>
+                                                                            </thenStmt>
+                                                                        </elseStmt>
+                                                                        <thenStmt type="BlockStmt">
+                                                                            <statements>
+                                                                                <statement type="ReturnStmt">
+                                                                                    <expression type="FieldAccessExpr">
+                                                                                        <name identifier="LAYER" type="SimpleName"/>
+                                                                                        <scope type="ThisExpr"/>
+                                                                                    </expression>
+                                                                                </statement>
+                                                                            </statements>
+                                                                        </thenStmt>
+                                                                    </elseStmt>
+                                                                    <thenStmt type="BlockStmt">
+                                                                        <statements>
+                                                                            <statement type="ReturnStmt">
+                                                                                <expression type="FieldAccessExpr">
+                                                                                    <name identifier="STRING" type="SimpleName"/>
+                                                                                    <scope type="ThisExpr"/>
+                                                                                </expression>
+                                                                            </statement>
+                                                                        </statements>
+                                                                    </thenStmt>
+                                                                </elseStmt>
+                                                                <thenStmt type="BlockStmt">
+                                                                    <statements>
+                                                                        <statement type="ReturnStmt">
+                                                                            <expression type="FieldAccessExpr">
+                                                                                <name identifier="FORCE_MULTIPLIER" type="SimpleName"/>
+                                                                                <scope type="ThisExpr"/>
+                                                                            </expression>
+                                                                        </statement>
+                                                                    </statements>
+                                                                </thenStmt>
+                                                            </elseStmt>
+                                                            <thenStmt type="BlockStmt">
+                                                                <statements>
+                                                                    <statement type="ReturnStmt">
+                                                                        <expression type="FieldAccessExpr">
+                                                                            <name identifier="CAMERA" type="SimpleName"/>
+                                                                            <scope type="ThisExpr"/>
+                                                                        </expression>
+                                                                    </statement>
+                                                                </statements>
+                                                            </thenStmt>
+                                                        </elseStmt>
+                                                        <thenStmt type="BlockStmt">
+                                                            <statements>
+                                                                <statement type="ReturnStmt">
+                                                                    <expression type="FieldAccessExpr">
+                                                                        <name identifier="EXPRESSION" type="SimpleName"/>
+                                                                        <scope type="ThisExpr"/>
+                                                                    </expression>
+                                                                </statement>
+                                                            </statements>
+                                                        </thenStmt>
+                                                    </elseStmt>
+                                                    <thenStmt type="BlockStmt">
+                                                        <statements>
+                                                            <statement type="ReturnStmt">
+                                                                <expression type="FieldAccessExpr">
+                                                                    <name identifier="NUMBER" type="SimpleName"/>
+                                                                    <scope type="ThisExpr"/>
+                                                                </expression>
+                                                            </statement>
+                                                        </statements>
+                                                    </thenStmt>
+                                                </elseStmt>
+                                                <thenStmt type="BlockStmt">
+                                                    <statements>
+                                                        <statement type="ReturnStmt">
+                                                            <expression type="FieldAccessExpr">
+                                                                <name identifier="BEHAVIOR" type="SimpleName"/>
+                                                                <scope type="ThisExpr"/>
+                                                            </expression>
+                                                        </statement>
+                                                    </statements>
+                                                </thenStmt>
+                                            </elseStmt>
+                                            <thenStmt type="BlockStmt">
+                                                <statements>
+                                                    <statement type="ReturnStmt">
+                                                        <expression type="FieldAccessExpr">
+                                                            <name identifier="OBJECT_LIST_WITHOUT_PICKING" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </expression>
+                                                    </statement>
+                                                </statements>
+                                            </thenStmt>
+                                        </elseStmt>
+                                        <thenStmt type="BlockStmt">
+                                            <statements>
+                                                <statement type="ReturnStmt">
+                                                    <expression type="FieldAccessExpr">
+                                                        <name identifier="OBJECT_LIST" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </expression>
+                                                </statement>
+                                            </statements>
+                                        </thenStmt>
+                                    </elseStmt>
+                                    <thenStmt type="BlockStmt">
+                                        <statements>
+                                            <statement type="ReturnStmt">
+                                                <expression type="FieldAccessExpr">
+                                                    <name identifier="OBJECT_PTR" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </expression>
+                                            </statement>
+                                        </statements>
+                                    </thenStmt>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ReturnStmt">
+                                            <expression type="FieldAccessExpr">
+                                                <name identifier="OBJECT" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="ClassOrInterfaceType">
+                        <name identifier="String" type="SimpleName"/>
+                    </type>
+                    <name identifier="get" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                        <modifier keyword="FINAL" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="parameterType" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression operator="OR" type="BinaryExpr">
+                                    <left operator="OR" type="BinaryExpr">
+                                        <left operator="OR" type="BinaryExpr">
+                                            <left operator="EQUALS" type="BinaryExpr">
+                                                <left type="NameExpr">
+                                                    <name identifier="parameterType" type="SimpleName"/>
+                                                </left>
+                                                <right type="FieldAccessExpr">
+                                                    <name identifier="OBJECT" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </right>
+                                            </left>
+                                            <right operator="EQUALS" type="BinaryExpr">
+                                                <left type="NameExpr">
+                                                    <name identifier="parameterType" type="SimpleName"/>
+                                                </left>
+                                                <right type="FieldAccessExpr">
+                                                    <name identifier="OBJECT_PTR" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
+                                                </right>
+                                            </right>
+                                        </left>
+                                        <right operator="EQUALS" type="BinaryExpr">
+                                            <left type="NameExpr">
+                                                <name identifier="parameterType" type="SimpleName"/>
+                                            </left>
+                                            <right type="FieldAccessExpr">
+                                                <name identifier="OBJECT_LIST" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                            </right>
+                                        </right>
+                                    </left>
+                                    <right operator="EQUALS" type="BinaryExpr">
+                                        <left type="NameExpr">
+                                            <name identifier="parameterType" type="SimpleName"/>
+                                        </left>
+                                        <right type="FieldAccessExpr">
+                                            <name identifier="OBJECT_LIST_WITHOUT_PICKING" type="SimpleName"/>
+                                            <scope type="ThisExpr"/>
+                                        </right>
+                                    </right>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="isObject" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="parameterType" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="ReturnStmt">
+                                <expression operator="EQUALS" type="BinaryExpr">
+                                    <left type="NameExpr">
+                                        <name identifier="parameterType" type="SimpleName"/>
+                                    </left>
+                                    <right type="FieldAccessExpr">
+                                        <name identifier="BEHAVIOR" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </right>
+                                </expression>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="isBehavior" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="parameterType" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type="MethodDeclaration">
+                    <body type="BlockStmt">
+                        <statements>
+                            <statement type="IfStmt">
+                                <condition operator="EQUALS" type="BinaryExpr">
+                                    <left type="NameExpr">
+                                        <name identifier="type" type="SimpleName"/>
+                                    </left>
+                                    <right type="FieldAccessExpr">
+                                        <name identifier="NUMBER" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
+                                    </right>
+                                </condition>
+                                <elseStmt type="IfStmt">
+                                    <condition operator="EQUALS" type="BinaryExpr">
+                                        <left type="NameExpr">
+                                            <name identifier="type" type="SimpleName"/>
+                                        </left>
+                                        <right type="StringLiteralExpr" value="string"/>
+                                    </condition>
+                                    <elseStmt type="IfStmt">
+                                        <condition operator="EQUALS" type="BinaryExpr">
+                                            <left type="NameExpr">
+                                                <name identifier="type" type="SimpleName"/>
+                                            </left>
+                                            <right type="FieldAccessExpr">
+                                                <name identifier="VARIABLE" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
+                                            </right>
+                                        </condition>
+                                        <thenStmt type="BlockStmt">
+                                            <statements>
+                                                <statement type="ReturnStmt">
+                                                    <expression operator="OR" type="BinaryExpr">
+                                                        <left operator="OR" type="BinaryExpr">
+                                                            <left operator="EQUALS" type="BinaryExpr">
+                                                                <left type="NameExpr">
+                                                                    <name identifier="parameterType" type="SimpleName"/>
+                                                                </left>
+                                                                <right type="FieldAccessExpr">
+                                                                    <name identifier="OBJECT_VAR" type="SimpleName"/>
+                                                                    <scope type="ThisExpr"/>
+                                                                </right>
+                                                            </left>
+                                                            <right operator="EQUALS" type="BinaryExpr">
+                                                                <left type="NameExpr">
+                                                                    <name identifier="parameterType" type="SimpleName"/>
+                                                                </left>
+                                                                <right type="FieldAccessExpr">
+                                                                    <name identifier="GLOBAL_VAR" type="SimpleName"/>
+                                                                    <scope type="ThisExpr"/>
+                                                                </right>
+                                                            </right>
+                                                        </left>
+                                                        <right operator="EQUALS" type="BinaryExpr">
+                                                            <left type="NameExpr">
+                                                                <name identifier="parameterType" type="SimpleName"/>
+                                                            </left>
+                                                            <right type="FieldAccessExpr">
+                                                                <name identifier="SCENE_VAR" type="SimpleName"/>
+                                                                <scope type="ThisExpr"/>
+                                                            </right>
+                                                        </right>
+                                                    </expression>
+                                                </statement>
+                                            </statements>
+                                        </thenStmt>
+                                    </elseStmt>
+                                    <thenStmt type="BlockStmt">
+                                        <statements>
+                                            <statement type="ReturnStmt">
+                                                <expression operator="OR" type="BinaryExpr">
+                                                    <left operator="OR" type="BinaryExpr">
+                                                        <left operator="OR" type="BinaryExpr">
+                                                            <left operator="OR" type="BinaryExpr">
+                                                                <left operator="OR" type="BinaryExpr">
+                                                                    <left operator="OR" type="BinaryExpr">
+                                                                        <left operator="OR" type="BinaryExpr">
+                                                                            <left operator="OR" type="BinaryExpr">
+                                                                                <left operator="EQUALS" type="BinaryExpr">
+                                                                                    <left type="NameExpr">
+                                                                                        <name identifier="parameterType" type="SimpleName"/>
+                                                                                    </left>
+                                                                                    <right type="FieldAccessExpr">
+                                                                                        <name identifier="STRING" type="SimpleName"/>
+                                                                                        <scope type="ThisExpr"/>
+                                                                                    </right>
+                                                                                </left>
+                                                                                <right operator="EQUALS" type="BinaryExpr">
+                                                                                    <left type="NameExpr">
+                                                                                        <name identifier="parameterType" type="SimpleName"/>
+                                                                                    </left>
+                                                                                    <right type="FieldAccessExpr">
+                                                                                        <name identifier="LAYER" type="SimpleName"/>
+                                                                                        <scope type="ThisExpr"/>
+                                                                                    </right>
+                                                                                </right>
+                                                                            </left>
+                                                                            <right operator="EQUALS" type="BinaryExpr">
+                                                                                <left type="NameExpr">
+                                                                                    <name identifier="parameterType" type="SimpleName"/>
+                                                                                </left>
+                                                                                <right type="FieldAccessExpr">
+                                                                                    <name identifier="COLOR" type="SimpleName"/>
+                                                                                    <scope type="ThisExpr"/>
+                                                                                </right>
+                                                                            </right>
+                                                                        </left>
+                                                                        <right operator="EQUALS" type="BinaryExpr">
+                                                                            <left type="NameExpr">
+                                                                                <name identifier="parameterType" type="SimpleName"/>
+                                                                            </left>
+                                                                            <right type="FieldAccessExpr">
+                                                                                <name identifier="FILE" type="SimpleName"/>
+                                                                                <scope type="ThisExpr"/>
+                                                                            </right>
+                                                                        </right>
+                                                                    </left>
+                                                                    <right operator="EQUALS" type="BinaryExpr">
+                                                                        <left type="NameExpr">
+                                                                            <name identifier="parameterType" type="SimpleName"/>
+                                                                        </left>
+                                                                        <right type="FieldAccessExpr">
+                                                                            <name identifier="JOY_AXIS" type="SimpleName"/>
+                                                                            <scope type="ThisExpr"/>
+                                                                        </right>
+                                                                    </right>
+                                                                </left>
+                                                                <right operator="EQUALS" type="BinaryExpr">
+                                                                    <left type="NameExpr">
+                                                                        <name identifier="parameterType" type="SimpleName"/>
+                                                                    </left>
+                                                                    <right type="FieldAccessExpr">
+                                                                        <name identifier="STRING_WITH_SELECTOR" type="SimpleName"/>
+                                                                        <scope type="ThisExpr"/>
+                                                                    </right>
+                                                                </right>
+                                                            </left>
+                                                            <right operator="EQUALS" type="BinaryExpr">
+                                                                <left type="NameExpr">
+                                                                    <name identifier="parameterType" type="SimpleName"/>
+                                                                </left>
+                                                                <right type="FieldAccessExpr">
+                                                                    <name identifier="SCENE_NAME" type="SimpleName"/>
+                                                                    <scope type="ThisExpr"/>
+                                                                </right>
+                                                            </right>
+                                                        </left>
+                                                        <right operator="EQUALS" type="BinaryExpr">
+                                                            <left type="NameExpr">
+                                                                <name identifier="parameterType" type="SimpleName"/>
+                                                            </left>
+                                                            <right type="FieldAccessExpr">
+                                                                <name identifier="OBJECT_POINT_NAME" type="SimpleName"/>
+                                                                <scope type="ThisExpr"/>
+                                                            </right>
+                                                        </right>
+                                                    </left>
+                                                    <right operator="EQUALS" type="BinaryExpr">
+                                                        <left type="NameExpr">
+                                                            <name identifier="parameterType" type="SimpleName"/>
+                                                        </left>
+                                                        <right type="FieldAccessExpr">
+                                                            <name identifier="OBJECT_ANIMATION_NAME" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </right>
+                                                    </right>
+                                                </expression>
+                                            </statement>
+                                        </statements>
+                                    </thenStmt>
+                                </elseStmt>
+                                <thenStmt type="BlockStmt">
+                                    <statements>
+                                        <statement type="ReturnStmt">
+                                            <expression operator="OR" type="BinaryExpr">
+                                                <left operator="OR" type="BinaryExpr">
+                                                    <left operator="EQUALS" type="BinaryExpr">
+                                                        <left type="NameExpr">
+                                                            <name identifier="parameterType" type="SimpleName"/>
+                                                        </left>
+                                                        <right type="FieldAccessExpr">
+                                                            <name identifier="EXPRESSION" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </right>
+                                                    </left>
+                                                    <right operator="EQUALS" type="BinaryExpr">
+                                                        <left type="NameExpr">
+                                                            <name identifier="parameterType" type="SimpleName"/>
+                                                        </left>
+                                                        <right type="FieldAccessExpr">
+                                                            <name identifier="CAMERA" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
+                                                        </right>
+                                                    </right>
+                                                </left>
+                                                <right operator="EQUALS" type="BinaryExpr">
+                                                    <left type="NameExpr">
+                                                        <name identifier="parameterType" type="SimpleName"/>
+                                                    </left>
+                                                    <right type="FieldAccessExpr">
+                                                        <name identifier="FORCE_MULTIPLIER" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
+                                                    </right>
+                                                </right>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </thenStmt>
+                            </statement>
+                            <statement type="ReturnStmt">
+                                <expression type="BooleanLiteralExpr" value="false"/>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type="BOOLEAN" typeB="PrimitiveType"/>
+                    <name identifier="isExpression" type="SimpleName"/>
+                    <modifiers>
+                        <modifier keyword="PUBLIC" type="Modifier"/>
+                    </modifiers>
+                    <parameters>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="type" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                        <parameter isVarArgs="false" type="Parameter">
+                            <name identifier="parameterType" type="SimpleName"/>
+                            <type type="ClassOrInterfaceType">
+                                <name identifier="String" type="SimpleName"/>
+                            </type>
+                            <modifiers>
+                                <modifier keyword="FINAL" type="Modifier"/>
+                            </modifiers>
+                        </parameter>
+                    </parameters>
+                </member>
+            </members>
+            <modifiers>
+                <modifier keyword="PUBLIC" type="Modifier"/>
+            </modifiers>
+        </type>
+    </types>
+</root>
+
