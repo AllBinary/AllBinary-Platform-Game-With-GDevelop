@@ -517,6 +517,8 @@ GD*Sounds.ts
 **/org/allbinary/media/audio/GD*GameMusicFactory.js
 **/org/allbinary/media/audio/GD*GameSoundsFactory.js
 **/org/allbinary/media/audio/GDGameSounds.js
+GD*Sound.js
+GD*Sounds.js
 
 **/gd/res/GD*GamePlaynResources.xml
 **/org/allbinary/AndroidResources.xml
@@ -583,5 +585,5 @@ GD*Sounds.ts
 **/org/allbinary/media/audio/GD*GameMusicFactory.xml
 **/org/allbinary/media/audio/GD*GameSoundsFactory.xml
 **/org/allbinary/media/audio/GDGameSounds.xml
-GD*Sound.js
-GD*Sounds.js
+GD*Sound.xml
+GD*Sounds.xml
