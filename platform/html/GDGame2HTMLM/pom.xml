@@ -45,6 +45,12 @@
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>J2MEJsInteropCompatibilityJavaLibrary</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         
         <dependency>
