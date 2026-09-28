@@ -58,7 +58,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="../externalLayouts" >
             <xsl:if test="number(position() - 1) =
                 <GD_EXTERNAL_LAYOUT_INDEX>" >
-                <xsl:variable name="externalLayoutIndex" select="number(position() - 1)" />
+                <xsl:variable name="externalLayoutIndex" select="number(position() - 2)" />
                         <xsl:if test="$layoutName = associatedLayout" >
                 <xsl:variable name="createInstanceIndex" select="<GD_CREATE_INSTANCE_INDEX>" />
 

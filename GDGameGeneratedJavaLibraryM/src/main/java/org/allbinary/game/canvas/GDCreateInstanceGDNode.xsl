@@ -51,12 +51,10 @@ Created By: Travis Berthelot
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
-
             <xsl:if test="number($layoutIndex) =
                 <GD_CURRENT_INDEX>" >
+                    //layoutIndex=<xsl:value-of select="$layoutIndex" />
                     <xsl:variable name="layoutName" select="name" />
-                        <xsl:if test="$layoutName = associatedLayout" >
-                <xsl:variable name="layoutType" select="External" />
                 <xsl:variable name="createInstanceIndex" select="<GD_CREATE_INSTANCE_INDEX>" />
 
                             //externalLayouts - externalLayoutsGDNodes
@@ -156,7 +154,6 @@ Created By: Travis Berthelot
 
                     }
                 }
-                        </xsl:if>
             </xsl:if>
         </xsl:for-each>
     </xsl:template>

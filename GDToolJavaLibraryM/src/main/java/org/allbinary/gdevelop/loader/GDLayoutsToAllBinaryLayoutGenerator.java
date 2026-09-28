@@ -297,14 +297,12 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         };
 
         final String[] MID = {
-            "Game",
+            "GameExternal",
         };
         
         final String[] END = {
             "CreateInstance.java"
         };
-
-        final String EXTERNAL = "External";
         
         String indexAsString;
         String index4AsString;
@@ -350,7 +348,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
                  
                 stringMaker.delete(0, stringMaker.length());
-                final String fileName = stringMaker.append(START[index2]).append(indexAsString).append(EXTERNAL).append(MID[index2]).appendint(index4).append(END[index2]).toString();
+                final String fileName = stringMaker.append(START[index2]).append(indexAsString).append(MID[index2]).appendint(index5).append(END[index2]).toString();
                 this.directory.create(new AbFilePath(fileName));
 
                 //logUtil.put(RESULT + result, this, commonStrings.PROCESS);
@@ -439,7 +437,9 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
                 String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
                 updatedXslDocumentAsString = replace3.all(updatedXslDocumentAsString);
-
+                
+                //this.logUtil.putF(stringMaker.append("xslt:").append(updatedXslDocumentAsString).toString(), this, commonStrings.PROCESS);
+                
                 String result = this.xslHelper.translate(new BasicUriResolver(),
                     new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
                     new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
