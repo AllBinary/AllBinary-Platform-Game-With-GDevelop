@@ -104,10 +104,8 @@ public class GDLayoutsToAllBinaryGenerator
             final int size = this.nameList.size();
             for (int index = 0; index < size; index++)
             {
-                final Replace replace2 = new Replace(this.gdToolStrings.GD_LAYOUT, (String) this.nameList.get(index));
                 final Replace replace = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, Integer.toString(index));
-                final String updatedXslDocumentStr2 = replace.all(xslDocumentStr);
-                final String updatedXslDocumentStr = replace2.all(updatedXslDocumentStr2);
+                final String updatedXslDocumentStr = replace.all(xslDocumentStr);
 
                 String result = this.xslHelper.translate(new BasicUriResolver(),
                         new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),

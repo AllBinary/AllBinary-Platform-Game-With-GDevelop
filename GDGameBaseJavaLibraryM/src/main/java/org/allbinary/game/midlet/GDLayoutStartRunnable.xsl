@@ -18,6 +18,7 @@ Created By: Travis Berthelot
 
     <xsl:template match="/game">
         <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutName" select="name" />
             <xsl:variable name="index" select="position() - 1" />
             <!--
             <xsl:if test="number($index) > 1" >
@@ -37,7 +38,7 @@ import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
 
-public class GDGameStart<GDLayout>CanvasRunnable implements Runnable
+public class GDGameStart<xsl:value-of select="$layoutName" />CanvasRunnable implements Runnable
 {
     protected final LogUtil logUtil = LogUtil.getInstance();
     private final CommonStrings commonStrings = CommonStrings.getInstance();
@@ -46,7 +47,7 @@ public class GDGameStart<GDLayout>CanvasRunnable implements Runnable
 
     private final DemoGameMidletEvent startDemoGameMidletEvent;
 
-    public GDGameStart<GDLayout>CanvasRunnable(DemoGameMidlet demoGameMidlet)
+    public GDGameStart<xsl:value-of select="$layoutName" />CanvasRunnable(DemoGameMidlet demoGameMidlet)
     {
         this.demoGameMidlet = (GDGameMIDlet) demoGameMidlet;
 
@@ -61,7 +62,7 @@ public class GDGameStart<GDLayout>CanvasRunnable implements Runnable
         {
             logUtil.put(
                     CommonLabels.getInstance().START_LABEL +
-                    "GDGameStart<GDLayout>CanvasRunnableInterface",
+                    "GDGameStart<xsl:value-of select="$layoutName" />CanvasRunnableInterface",
                     this, commonStrings.RUN);
 
             this.demoGameMidlet.commandAction(
@@ -73,7 +74,7 @@ public class GDGameStart<GDLayout>CanvasRunnable implements Runnable
             // mediaInit();
 
             this.demoGameMidlet.setGameCanvasRunnableInterface(
-                        this.demoGameMidlet.createGDGameStart<GDLayout>CanvasRunnableInterface());
+                        this.demoGameMidlet.createGDGameStart<xsl:value-of select="$layoutName" />CanvasRunnableInterface());
 
             this.demoGameMidlet.demoSetup();
 

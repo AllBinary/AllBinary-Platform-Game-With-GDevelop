@@ -159,9 +159,18 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         stringMaker.delete(0, stringMaker.length());
         this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(fileName).toString(), this, this.commonStrings.PROCESS);
 
-        final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
-        result = replaceLT.all(result);
-        this.bufferedWriterUtil.overwrite(fileName, result);
+        if (index2 == 0) {
+            this.logUtil.putF(this.RESULT + result, this, this.commonStrings.PROCESS);
+            stringMaker.delete(0, stringMaker.length());
+            String formattedXml = XmlDocumentHelper.getInstance().format(stringMaker.append(this.GAME_START).append(result).append(this.GAME_END).toString());
+            final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
+            formattedXml = replaceLT.all(formattedXml);
+            this.bufferedWriterUtil.overwrite(fileName, formattedXml);
+        } else {
+            final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
+            result = replaceLT.all(result);
+            this.bufferedWriterUtil.overwrite(fileName, result);
+        }
 
         stringMaker.delete(0, stringMaker.length());
         this.logUtil.putF(stringMaker.appendint(index2).append(this.commonSeps.SPACE).append(xslPathInputArray0[index2]).append(CommonLabels.getInstance().ELAPSED).appendlong(timeDelayHelper.getElapsedTNT()).toString(), this, this.commonStrings.PROCESS);
@@ -179,7 +188,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         };
 
         final String[] xslPathInputArray = {
-            this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalLayoutGDNodes.xsl"
+            this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDExternalLinkLayoutGDNode.xsl"
         };
 
         final int xslTotal = xslPathInputArray.length;
@@ -211,14 +220,15 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
             externalLayoutTotalForSceneLayout = gdGameInfo.getExternalLayoutTotal(index);
             indexAsString = Integer.toString(index);
+            
             final Replace replace = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, indexAsString);
 
             for (int index2 = 0; index2 < xslTotal; index2++) {
 
                 for (int index4 = 0; index4 < externalLayoutTotalForSceneLayout; index4++) {
 
-                index4AsString = Integer.toString(index);
-                final Replace replace2 = new Replace(this.gdToolStrings.GD_EXTERNAL_LAYOUT_INDEX, index4AsString);
+                index4AsString = Integer.toString(index4);
+                final Replace replace3 = new Replace(this.gdToolStrings.GD_EXTERNAL_LAYOUT_INDEX, index4AsString);
                 
                 //stringMaker.delete(0, stringMaker.length());
                 //logUtil.put(stringMaker.append("xslt:").append(index2).toString(), this, commonStrings.PROCESS);
@@ -229,7 +239,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                 this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(xslPathInputArray[index2]).toString(), this, this.commonStrings.PROCESS);
 
                 String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
-                updatedXslDocumentAsString = replace2.all(updatedXslDocumentAsString);
+                updatedXslDocumentAsString = replace3.all(updatedXslDocumentAsString);
 
                 String result = this.xslHelper.translate(new BasicUriResolver(),
                     new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
@@ -243,19 +253,9 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                 stringMaker.delete(0, stringMaker.length());
                 this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(fileName).toString(), this, this.commonStrings.PROCESS);
 
-                if (index2 == 0) {
-                    stringMaker.delete(0, stringMaker.length());
-                    this.logUtil.putF(stringMaker.append(this.RESULT).append(result).toString(), this, this.commonStrings.PROCESS);
-                    stringMaker.delete(0, stringMaker.length());
-                    String formattedXml = XmlDocumentHelper.getInstance().format(stringMaker.append(this.GAME_START).append(result).append(this.GAME_END).toString());
-                    final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
-                    formattedXml = replaceLT.all(formattedXml);
-                    this.bufferedWriterUtil.overwrite(fileName, formattedXml);
-                } else {
                     final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
                     result = replaceLT.all(result);
                     this.bufferedWriterUtil.overwrite(fileName, result);
-                }
 
                 stringMaker.delete(0, stringMaker.length());
                 this.logUtil.putF(stringMaker.appendint(index).append(this.commonSeps.COMMA).appendint(index2).append(CommonLabels.getInstance().ELAPSED).appendlong(timeDelayHelper.getElapsedTNT()).toString(), this, this.commonStrings.PROCESS);

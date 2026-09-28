@@ -57,45 +57,14 @@ Created By: Travis Berthelot
                 <!-- Android images assets need to be enlarged if they are not setup to be inside the cirle area needed -->
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
                 <xsl:variable name="layoutName" select="name" />
-                <xsl:variable name="objectsGroupsAsString" >,<xsl:for-each select="objectsGroups" ><xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
-                <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="layer" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
-                <xsl:variable name="objectsAsString" >,<xsl:for-each select="/game/objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
-                <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalLayoutsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
-                <xsl:variable name="externalLayoutActionModVarSceneAsString" >,<xsl:call-template name="externalLayoutActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalLayoutActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
-                //objectsGroupsAsString=<xsl:value-of select="$objectsGroupsAsString" />
-                //instancesAsString=<xsl:value-of select="$instancesAsString" />
-                //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
-                //objectsAsString=<xsl:value-of select="$objectsAsString" />
-                //externalLayoutActionModVarSceneAsString=<xsl:value-of select="$externalLayoutActionModVarSceneAsString" />
 
                 package org.allbinary.game.canvas;
 
-                import javax.microedition.lcdui.Graphics;
-
-                import org.json.me.JSONArray;
-                import org.json.me.JSONObject;
-        
-                import org.allbinary.AndroidUtil;
-                import org.allbinary.J2MEUtil;
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.game.canvas.GDExtensionGDNodes;
-                import org.allbinary.game.configuration.persistance.JSONPersistance;
-                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
-                import org.allbinary.game.layer.AllBinaryGameLayerManager;
-                import org.allbinary.game.layer.GDGameLayer;
-                import org.allbinary.game.layout.BaseGDNodeStats;
-                import org.allbinary.game.layout.GDNodeStatsFactory;
-                import org.allbinary.game.layout.GDNode;
-                import org.allbinary.game.layer.special.TempGameLayerUtil;
-                import org.allbinary.game.rand.MyRandomFactory;
-                import org.allbinary.string.CommonStrings;
-                import org.allbinary.string.CommonSeps;
-                import org.allbinary.logic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.logic.NullUtil;
                 import org.allbinary.logic.string.StringMaker;
-                import org.allbinary.util.ArrayUtil;
+                import org.allbinary.string.CommonStrings;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
 
@@ -114,7 +83,7 @@ Created By: Travis Berthelot
                     protected final LogUtil logUtil = LogUtil.getInstance();
 
                     private final CommonStrings commonStrings = CommonStrings.getInstance();
-                    private final StringUtil stringUtil = StringUtil.getInstance();
+<!--                    private final StringUtil stringUtil = StringUtil.getInstance();
                     private final NullUtil nullUtil = NullUtil.getInstance();
                     private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                     
@@ -124,12 +93,10 @@ Created By: Travis Berthelot
                     
                     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                     private final GDGlobalsGDObjectsFactory gdGlobalsObjectsFactory = GDGlobalsGDObjectsFactory.getInstance();
-                    private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
+                    private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();-->
                     
                     public final BasicArrayList layoutNameList = new BasicArrayListD();
                     public final BasicArrayList layoutGDNodeList = new BasicArrayListD();
-                    
-                    private final String CREATE_INSTANCES = "createInstances";
                     
                     private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources createSpecialAnimationImageResources() {
                         try {

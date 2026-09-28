@@ -54,6 +54,7 @@ Created By: Travis Berthelot
 
             <xsl:if test="number($layoutIndex) =
                 <GD_CURRENT_INDEX>" >
+                    <xsl:variable name="layoutName" select="name" />
                     <xsl:for-each select="../externalLayouts" >
             <xsl:if test="number(position() - 1) =
                 <GD_EXTERNAL_LAYOUT_INDEX>" >
@@ -110,18 +111,20 @@ Created By: Travis Berthelot
                     private final NullUtil nullUtil = NullUtil.getInstance();
                     private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                     
-                    private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
+                    //private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-                    private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
+                    //private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
                     
                     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-                    private final GDGlobalsGDObjectsFactory gdGlobalsObjectsFactory = GDGlobalsGDObjectsFactory.getInstance();
+                    //private final GDGlobalsGDObjectsFactory gdGlobalsObjectsFactory = GDGlobalsGDObjectsFactory.getInstance();
                     private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
-                            
+
+                    private final String CREATE_INSTANCES = "createInstances";
+
                     private GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode() {
                     }
 
-                    public void init() {
+                    public void init(final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources, final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources, final BasicArrayList layoutNameList, final BasicArrayList layoutGDNodeList) {
                     
                         try {
                         
@@ -135,11 +138,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$layoutName" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    
-                            final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = this.createSpecialAnimationImageResources();
-                            
-                            final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = this.createSpecialAnimationGDResources();
-                    
+                                        
                                     <xsl:call-template name="externalLinkLayoutGDNode" >
                                         <xsl:with-param name="layoutIndex" >
                                             <xsl:value-of select="$layoutIndex" />
@@ -154,6 +153,7 @@ Created By: Travis Berthelot
 
                     }
                 }
+                        </xsl:if>
                         </xsl:if>
                     </xsl:for-each>
             </xsl:if>

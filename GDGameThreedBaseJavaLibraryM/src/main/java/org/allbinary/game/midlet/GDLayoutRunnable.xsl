@@ -15,9 +15,10 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output method="html" indent="yes" />
-
+    
     <xsl:template match="/game">
         <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutName" select="name" />
             <xsl:variable name="index" select="position() - 1" />
             <!--
             <xsl:if test="number($index) > 1" >
@@ -48,7 +49,7 @@ import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
 import org.allbinary.util.ABHashtable;
 
-public class GDGame<GDLayout>CanvasRunnable implements Runnable
+public class GDGame<xsl:value-of select="$layoutName" />CanvasRunnable implements Runnable
 {
     protected final LogUtil logUtil = LogUtil.getInstance();
     
@@ -59,7 +60,7 @@ public class GDGame<GDLayout>CanvasRunnable implements Runnable
     
     private final DemoGameMidletEvent startGameMidletEvent;
     
-    public GDGame<GDLayout>CanvasRunnable(DemoGameMidlet demoGameMidlet, ABHashtable hashtable)
+    public GDGame<xsl:value-of select="$layoutName" />CanvasRunnable(DemoGameMidlet demoGameMidlet, ABHashtable hashtable)
     {
         this.demoGameMidlet = (GDGameMIDlet) demoGameMidlet;
         this.hashtable = hashtable;
@@ -85,7 +86,7 @@ public class GDGame<GDLayout>CanvasRunnable implements Runnable
             // mediaInit();
 
             this.demoGameMidlet.setGameCanvasRunnableInterface(
-                    this.demoGameMidlet.createGDGame<GDLayout>CanvasRunnableInterface());
+                    this.demoGameMidlet.createGDGame<xsl:value-of select="$layoutName" />CanvasRunnableInterface());
 
             this.demoGameMidlet.getGameCanvasRunnableInterface().setLoadStateHashtable(hashtable);
 

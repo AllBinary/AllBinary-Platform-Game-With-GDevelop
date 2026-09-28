@@ -46,6 +46,7 @@ Created By: Travis Berthelot
     <xsl:template match="/game">
 
         <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutName" select="name" />
             <xsl:variable name="layoutIndex" select="position() - 1" />
 
             <xsl:if test="number($layoutIndex) =

@@ -169,7 +169,7 @@ import org.allbinary.game.map.GDTiledLayerFactory;
 import org.allbinary.game.media.graphics.geography.map.racetrack.PathFindingInfoFactory;
     </xsl:if>
 
-public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
+public class GDGame<xsl:value-of select="$layoutName" />LevelBuilder implements LayerInterfaceVisitor
 {
     protected final LogUtil logUtil = LogUtil.getInstance();
     
@@ -196,7 +196,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         //new GeologicalGeographicMapCellPositionFactoryInitVisitor();
     </xsl:if>
         
-    public GDGame<GDLayout>LevelBuilder(final AllBinaryGameLayerManager layerManager)
+    public GDGame<xsl:value-of select="$layoutName" />LevelBuilder(final AllBinaryGameLayerManager layerManager)
     		throws Exception
     {
     	this.layerManager = layerManager;

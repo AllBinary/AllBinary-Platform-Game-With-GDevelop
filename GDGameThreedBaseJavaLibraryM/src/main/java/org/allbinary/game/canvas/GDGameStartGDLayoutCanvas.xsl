@@ -43,12 +43,13 @@ import org.allbinary.logic.string.StringUtil;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
-
+        
         <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutName" select="name" />
             <xsl:variable name="index" select="position() - 1" />
             <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
 
-public class <GDLayout> extends StartCanvas
+public class <xsl:value-of select="$layoutName" /> extends StartCanvas
 {
     private final String GD_LAYOUT_COLOR = "GDLayout<xsl:value-of select="position()" />Color";
 
@@ -60,7 +61,7 @@ public class <GDLayout> extends StartCanvas
     private final UpKeyEventHandler upKeyEventHandler = UpKeyEventHandler.getInstance();
     private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
 
-    public <GDLayout>(final AbeClientInformationInterface abeClientInformation, final CommandListener commandListener) throws Exception
+    public <xsl:value-of select="$layoutName" />(final AbeClientInformationInterface abeClientInformation, final CommandListener commandListener) throws Exception
     {
         super(abeClientInformation, commandListener, 
                 //new BasicHighScoresFactory(abeClientInformation,, GDGameSoftwareInfo.getInstance()),
