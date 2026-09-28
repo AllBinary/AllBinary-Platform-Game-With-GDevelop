@@ -382,6 +382,7 @@ GDGameGeneratedJavaLibraryKtM/src/main/java/**/*.txt
 **/org/allbinary/media/audio/GD*GameSoundsFactory.java
 **/org/allbinary/media/audio/GDGameSounds.java
 GD*Game*ExternalLinkLayoutGDNode.java
+GD*Game*CreateInstance.java
 GD*Sound.java
 GD*Sounds.java
 
@@ -450,6 +451,7 @@ GD*Sounds.java
 **/org/allbinary/media/audio/GD*GameMusicFactory.ts
 **/org/allbinary/media/audio/GD*GameSoundsFactory.ts
 **/org/allbinary/media/audio/GDGameSounds.ts
+GD*Game*CreateInstance.ts
 GD*Game*ExternalLinkLayoutGDNode.ts
 GD*Sound.ts
 GD*Sounds.ts
@@ -519,6 +521,7 @@ GD*Sounds.ts
 **/org/allbinary/media/audio/GD*GameMusicFactory.js
 **/org/allbinary/media/audio/GD*GameSoundsFactory.js
 **/org/allbinary/media/audio/GDGameSounds.js
+GD*Game*CreateInstance.js
 GD*Game*ExternalLinkLayoutGDNode.js
 GD*Sound.js
 GD*Sounds.js
@@ -589,6 +592,7 @@ GD*Sounds.js
 **/org/allbinary/media/audio/GD*GameSoundsFactory.xml
 **/org/allbinary/media/audio/GDGameSounds.xml
 GD*Game*ExternalLinkLayoutGDNode.xml
+GD*Game*CreateInstance.xml
 GD*Sound.xml
 GD*Sounds.xml
 AppShaderResources.xml

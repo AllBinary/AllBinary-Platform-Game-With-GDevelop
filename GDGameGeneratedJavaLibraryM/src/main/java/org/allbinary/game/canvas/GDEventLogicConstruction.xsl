@@ -2623,7 +2623,6 @@ Created By: Travis Berthelot
     <xsl:template name="eventsLogicConstructionCollisionNP" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="exclusionObjectsAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
     
@@ -2636,9 +2635,6 @@ Created By: Travis Berthelot
                 </xsl:with-param>
                 <xsl:with-param name="layoutIndex" >
                     <xsl:value-of select="$layoutIndex" />
-                </xsl:with-param>
-                <xsl:with-param name="exclusionObjectsAsString" >
-                    <xsl:value-of select="$exclusionObjectsAsString" />
                 </xsl:with-param>
             </xsl:call-template>
 
@@ -2696,12 +2692,6 @@ Created By: Travis Berthelot
 
                         <xsl:text>&#10;</xsl:text>
 
-                        <xsl:if test="contains($exclusionObjectsAsString, $nameComma) or contains($exclusionObjectsAsString, $name1Comma)" >
-                            //Skipping collision between <xsl:value-of select="$nameComma" /> and <xsl:value-of select="$name1Comma" />
-                        </xsl:if>
-
-                        <xsl:if test="not(contains($exclusionObjectsAsString, $nameComma) or contains($exclusionObjectsAsString, $name1Comma))" >
-
                         <xsl:if test="not(contains($objectGroupNames, $name1Comma))" >
                         //Group name is not a layer so use <xsl:value-of select="$name1" /> from <xsl:value-of select="$objectGroupNames" />
 
@@ -2739,7 +2729,6 @@ Created By: Travis Berthelot
                         
                         </xsl:if>
                         
-                        </xsl:if>
 
             <xsl:for-each select="subInstructions" >
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>

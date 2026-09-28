@@ -58,7 +58,10 @@ Created By: Travis Berthelot
                     <xsl:for-each select="../externalLayouts" >
             <xsl:if test="number(position() - 1) =
                 <GD_EXTERNAL_LAYOUT_INDEX>" >
+                <xsl:variable name="externalLayoutIndex" select="number(position() - 1)" />
                         <xsl:if test="$layoutName = associatedLayout" >
+                <xsl:variable name="createInstanceIndex" select="<GD_CREATE_INSTANCE_INDEX>" />
+
                             //externalLayouts - externalLayoutsGDNodes
 
                 package org.allbinary.game.canvas;
@@ -92,14 +95,15 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
 
-                //LayoutExternalEvent name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode
+                //CreateInstance name=<xsl:value-of select="$layoutName" />
+                             GD<xsl:value-of select="$externalLayoutIndex" />GameExternal<xsl:value-of select="$createInstanceIndex" />CreateInstance
+                public class GD<xsl:value-of select="$externalLayoutIndex" />GameExternal<xsl:value-of select="$createInstanceIndex" />CreateInstance
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode instance = 
-                       new GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode();
+                    private static final GD<xsl:value-of select="$externalLayoutIndex" />GameExternal<xsl:value-of select="$createInstanceIndex" />CreateInstance instance = 
+                       new GD<xsl:value-of select="$externalLayoutIndex" />GameExternal<xsl:value-of select="$createInstanceIndex" />CreateInstance();
 
-                    public static GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode getInstance()
+                    public static GD<xsl:value-of select="$externalLayoutIndex" />GameExternal<xsl:value-of select="$createInstanceIndex" />CreateInstance getInstance()
                     {
                         return instance;
                     }
@@ -121,7 +125,7 @@ Created By: Travis Berthelot
 
                     private final String CREATE_INSTANCES = "createInstances";
 
-                    private GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode() {
+                    private GD<xsl:value-of select="$externalLayoutIndex" />GameExternal<xsl:value-of select="$createInstanceIndex" />CreateInstance() {
                     }
 
                     public void init(final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources, final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources) {
@@ -139,11 +143,15 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                                         
-                                    <xsl:call-template name="externalLinkLayoutGDNode" >
-                                        <xsl:with-param name="layoutIndex" >
-                                            <xsl:value-of select="$layoutIndex" />
-                                        </xsl:with-param>
-                                    </xsl:call-template>
+                        <xsl:call-template name="createInstance" >
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                            <xsl:with-param name="layoutType" >External</xsl:with-param>
+                            <xsl:with-param name="createInstanceIndex" >
+                                <xsl:value-of select="$createInstanceIndex" />
+                            </xsl:with-param>
+                        </xsl:call-template>
                             
                             logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
 

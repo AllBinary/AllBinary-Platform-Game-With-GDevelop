@@ -59,19 +59,13 @@ Created By: Travis Berthelot
                 <xsl:variable name="layoutName" select="name" />
                 <xsl:variable name="objectsGroupsAsString" >,<xsl:for-each select="objectsGroups" ><xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="layer" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
-                <xsl:variable name="objectsAsString" >,<xsl:for-each select="/game/objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
-                    //$typeValue = 'TileMap::CollisionMask' or 
-                    //$typeValue = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite' or //Not excluded anymore.
-                    //exclusionObjectsAsStringNotInUse=,<xsl:for-each select="objects" ><xsl:if test="contains(type, 'Collision')" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:if></xsl:for-each>
-                <xsl:variable name="exclusionObjectsAsString" ></xsl:variable>
-                
+                <xsl:variable name="objectsAsString" >,<xsl:for-each select="/game/objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>                
                 <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
                 <xsl:variable name="externalEventActionModVarSceneAsString" >,<xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
                 //objectsGroupsAsString=<xsl:value-of select="$objectsGroupsAsString" />
                 //instancesAsString=<xsl:value-of select="$instancesAsString" />
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
-                //exclusionObjectsAsString=<xsl:value-of select="$exclusionObjectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
                 
                 package org.allbinary.game.canvas;
@@ -282,12 +276,9 @@ Created By: Travis Berthelot
 
                         try {
                 
-                        <xsl:call-template name="createInstances" >
+                        <xsl:call-template name="createInstancesCalls" >
                             <xsl:with-param name="layoutIndex" >
                                 <xsl:value-of select="$layoutIndex" />
-                            </xsl:with-param>
-                            <xsl:with-param name="exclusionObjectsAsString" >
-                                <xsl:value-of select="$exclusionObjectsAsString" />
                             </xsl:with-param>
                         </xsl:call-template>
 
@@ -389,9 +380,6 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="exclusionObjectsAsString" >
-                            <xsl:value-of select="$exclusionObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
                     //eventsLogicConstructionCollisionNP - END

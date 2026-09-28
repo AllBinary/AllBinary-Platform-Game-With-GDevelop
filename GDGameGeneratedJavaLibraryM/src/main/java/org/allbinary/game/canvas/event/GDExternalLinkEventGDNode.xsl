@@ -155,13 +155,13 @@ Created By: Travis Berthelot
     <xsl:template name="externalLinkLayoutGDNodeCall" >
         <xsl:param name="layoutIndex" />
 
-                            GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode.getInstance().init(imageResources, resources, layoutNameList, layoutGDNodeList);
+                            GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode.getInstance().init(imageResources, resources);
+                            layoutNameList.add("<xsl:value-of select="name" />");
+                            layoutGDNodeList.add(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDNode);
     </xsl:template>
 
     <xsl:template name="externalLinkLayoutGDNode" >
         <xsl:param name="layoutIndex" />
-
-        <xsl:variable name="exclusionObjectsAsString" ></xsl:variable>
 
                             //externalLinkLayoutGDNode
                             if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
@@ -181,13 +181,11 @@ Created By: Travis Berthelot
                                     logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:value-of select="name" />", this, commonStrings.PROCESS);
                                     
                                     //Create the Objects in the layout=<xsl:value-of select="name" />
-                                    <xsl:call-template name="createInstances" >
+                                    <xsl:call-template name="createInstancesCalls" >
                                         <xsl:with-param name="layoutIndex" >
                                             <xsl:value-of select="$layoutIndex" />
                                         </xsl:with-param>
-                                        <xsl:with-param name="exclusionObjectsAsString" >
-                                            <xsl:value-of select="$exclusionObjectsAsString" />
-                                        </xsl:with-param>
+                                        <xsl:with-param name="layoutType" >External</xsl:with-param>
                                     </xsl:call-template>
                                     
                                     return true;
@@ -195,8 +193,6 @@ Created By: Travis Berthelot
 
                             };
                                     
-                            layoutNameList.add("<xsl:value-of select="name" />");
-                            layoutGDNodeList.add(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDNode);
     </xsl:template>
 
 </xsl:stylesheet>

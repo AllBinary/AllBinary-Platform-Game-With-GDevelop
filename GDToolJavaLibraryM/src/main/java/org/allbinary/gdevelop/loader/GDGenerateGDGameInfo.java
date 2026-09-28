@@ -84,6 +84,16 @@ public class GDGenerateGDGameInfo
                 gdGameInfo.externalLayoutsIndexPerLayoutPositionList.add(externalLayoutIndexList);
             }
 
+            final BasicArrayList instanceTotalPerLayoutAsStringList = new Tokenizer(this.commonSeps.COMMA).getTokensFromString((String) resultPartList.get(3), new BasicArrayListD());
+            for (int index = 0; index < instanceTotalPerLayoutAsStringList.size(); index++) {
+                gdGameInfo.instanceTotalPerLayoutPositionList.add(Integer.parseInt((String) instanceTotalPerLayoutAsStringList.get(index)));
+            }
+
+            final BasicArrayList instanceTotalPerExternalLayoutAsStringList = new Tokenizer(this.commonSeps.COMMA).getTokensFromString((String) resultPartList.get(4), new BasicArrayListD());
+            for (int index = 0; index < instanceTotalPerExternalLayoutAsStringList.size(); index++) {
+                gdGameInfo.instanceTotalPerExternalLayoutPositionList.add(Integer.parseInt((String) instanceTotalPerExternalLayoutAsStringList.get(index)));
+            }
+
             stringMaker.delete(0, stringMaker.length());
             this.logUtil.putF(stringMaker.append("result: ").append(result).toString(), this, this.commonStrings.PROCESS);
 

@@ -176,7 +176,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         this.logUtil.putF(stringMaker.appendint(index2).append(this.commonSeps.SPACE).append(xslPathInputArray0[index2]).append(CommonLabels.getInstance().ELAPSED).appendlong(timeDelayHelper.getElapsedTNT()).toString(), this, this.commonStrings.PROCESS);
     }
 
-    public void generateExternalLayouts(final int startIndex, final int size, final String gameXmlAsString, final String layoutGameXmlAsString, final GDGameInfo gdGameInfo, final StringMaker stringMaker)
+    public void generateExternalLinkLayouts(final int startIndex, final int size, final String gameXmlAsString, final String layoutGameXmlAsString, final GDGameInfo gdGameInfo, final StringMaker stringMaker)
         throws Exception {
         
         //final SharedBytes sharedBytes = SharedBytes.getInstance();
@@ -229,6 +229,205 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
                 index4AsString = Integer.toString(index4);
                 final Replace replace3 = new Replace(this.gdToolStrings.GD_EXTERNAL_LAYOUT_INDEX, index4AsString);
+                
+                //stringMaker.delete(0, stringMaker.length());
+                //logUtil.put(stringMaker.append("xslt:").append(index2).toString(), this, commonStrings.PROCESS);
+                timeDelayHelper.setStartTimeTNT();
+
+                //logUtil.put("xsl index: " + index2, this, commonStrings.PROCESS);
+                stringMaker.delete(0, stringMaker.length());
+                this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(xslPathInputArray[index2]).toString(), this, this.commonStrings.PROCESS);
+
+                String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
+                updatedXslDocumentAsString = replace3.all(updatedXslDocumentAsString);
+
+                String result = this.xslHelper.translate(new BasicUriResolver(),
+                    new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
+                    new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
+                 
+                stringMaker.delete(0, stringMaker.length());
+                final String fileName = stringMaker.append(START[index2]).append(indexAsString).append(MID[index2]).appendint(index4).append(END[index2]).toString();
+                this.directory.create(new AbFilePath(fileName));
+
+                //logUtil.put(RESULT + result, this, commonStrings.PROCESS);
+                stringMaker.delete(0, stringMaker.length());
+                this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(fileName).toString(), this, this.commonStrings.PROCESS);
+
+                    final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
+                    result = replaceLT.all(result);
+                    this.bufferedWriterUtil.overwrite(fileName, result);
+
+                stringMaker.delete(0, stringMaker.length());
+                this.logUtil.putF(stringMaker.appendint(index).append(this.commonSeps.COMMA).appendint(index2).append(CommonLabels.getInstance().ELAPSED).appendlong(timeDelayHelper.getElapsedTNT()).toString(), this, this.commonStrings.PROCESS);
+                }
+            }
+
+        }
+
+        stringMaker.delete(0, stringMaker.length());
+        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).append("Finished").toString(), this, this.commonStrings.PROCESS);
+
+    }
+
+    public void generateExternalCreateInstances(final int startIndex, final int size, final String gameXmlAsString, final String layoutGameXmlAsString, final GDGameInfo gdGameInfo, final StringMaker stringMaker)
+        throws Exception {
+        
+        //final SharedBytes sharedBytes = SharedBytes.getInstance();
+        final SharedBytes sharedBytes = new SharedBytes();
+        final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(Integer.MAX_VALUE);
+
+        final String[] xmlStringArray = {
+            layoutGameXmlAsString
+        };
+
+        final String[] xslPathInputArray = {
+            this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDExternalCreateInstanceGDNode.xsl"
+        };
+
+        final int xslTotal = xslPathInputArray.length;
+        final String[] xslDocumentAsString = new String[xslTotal];
+        for (int index = 0; index < xslTotal; index++) {
+            sharedBytes.outputStream.reset();
+            this.logUtil.putF(xslPathInputArray[index], this, this.commonStrings.PROCESS);
+            xslDocumentAsString[index] = new String(this.streamUtil.getByteArray(new FileInputStream(xslPathInputArray[index]), sharedBytes.outputStream, sharedBytes.byteArray));
+        }
+
+        final String[] START = {
+            this.GENERATED_START_WITH_PATH,
+        };
+
+        final String[] MID = {
+            "Game",
+        };
+        
+        final String[] END = {
+            "CreateInstance.java"
+        };
+
+        final String EXTERNAL = "External";
+        
+        String indexAsString;
+        String index4AsString;
+        int externalCreateInstanceTotal;
+        int externalLayoutTotalForSceneLayout;
+        String createInstanceIndexAsString;
+        for (int index = startIndex; index < size; index++) {
+            //stringMaker.delete(0, stringMaker.length());
+            //logUtil.put(stringMaker.append("layout:").appendint(index).toString(), this, commonStrings.PROCESS);
+
+            externalLayoutTotalForSceneLayout = gdGameInfo.getExternalLayoutTotal(index);
+            indexAsString = Integer.toString(index);
+            
+            final Replace replace = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, indexAsString);
+
+            for (int index2 = 0; index2 < xslTotal; index2++) {
+
+                for (int index4 = 0; index4 < externalLayoutTotalForSceneLayout; index4++) {
+
+                externalCreateInstanceTotal = gdGameInfo.getExternalLayoutInstanceTotal(index4);
+                index4AsString = Integer.toString(index4);
+                final Replace replace3 = new Replace(this.gdToolStrings.GD_EXTERNAL_LAYOUT_INDEX, index4AsString);
+
+                for (int index5 = 0; index5 < externalCreateInstanceTotal; index5++) {
+
+                createInstanceIndexAsString = Integer.toString(index5);
+                final Replace replace4 = new Replace(this.gdToolStrings.GD_CREATE_INSTANCE_INDEX, createInstanceIndexAsString);
+
+                //stringMaker.delete(0, stringMaker.length());
+                //logUtil.put(stringMaker.append("xslt:").append(index2).toString(), this, commonStrings.PROCESS);
+                timeDelayHelper.setStartTimeTNT();
+
+                //logUtil.put("xsl index: " + index2, this, commonStrings.PROCESS);
+                stringMaker.delete(0, stringMaker.length());
+                this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(xslPathInputArray[index2]).toString(), this, this.commonStrings.PROCESS);
+
+                String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
+                updatedXslDocumentAsString = replace3.all(updatedXslDocumentAsString);
+                updatedXslDocumentAsString = replace4.all(updatedXslDocumentAsString);
+
+                String result = this.xslHelper.translate(new BasicUriResolver(),
+                    new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
+                    new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
+                 
+                stringMaker.delete(0, stringMaker.length());
+                final String fileName = stringMaker.append(START[index2]).append(indexAsString).append(EXTERNAL).append(MID[index2]).appendint(index4).append(END[index2]).toString();
+                this.directory.create(new AbFilePath(fileName));
+
+                //logUtil.put(RESULT + result, this, commonStrings.PROCESS);
+                stringMaker.delete(0, stringMaker.length());
+                this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(fileName).toString(), this, this.commonStrings.PROCESS);
+
+                    final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
+                    result = replaceLT.all(result);
+                    this.bufferedWriterUtil.overwrite(fileName, result);
+
+                stringMaker.delete(0, stringMaker.length());
+                this.logUtil.putF(stringMaker.appendint(index).append(this.commonSeps.COMMA).appendint(index2).append(CommonLabels.getInstance().ELAPSED).appendlong(timeDelayHelper.getElapsedTNT()).toString(), this, this.commonStrings.PROCESS);
+                }
+                }
+            }
+
+        }
+
+        stringMaker.delete(0, stringMaker.length());
+        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).append("Finished").toString(), this, this.commonStrings.PROCESS);
+
+    }
+
+    public void generateCreateInstances(final int startIndex, final int size, final String gameXmlAsString, final String layoutGameXmlAsString, final GDGameInfo gdGameInfo, final StringMaker stringMaker)
+        throws Exception {
+        
+        //final SharedBytes sharedBytes = SharedBytes.getInstance();
+        final SharedBytes sharedBytes = new SharedBytes();
+        final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(Integer.MAX_VALUE);
+
+        final String[] xmlStringArray = {
+            layoutGameXmlAsString
+        };
+
+        final String[] xslPathInputArray = {
+            this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDCreateInstanceGDNode.xsl"
+        };
+
+        final int xslTotal = xslPathInputArray.length;
+        final String[] xslDocumentAsString = new String[xslTotal];
+        for (int index = 0; index < xslTotal; index++) {
+            sharedBytes.outputStream.reset();
+            this.logUtil.putF(xslPathInputArray[index], this, this.commonStrings.PROCESS);
+            xslDocumentAsString[index] = new String(this.streamUtil.getByteArray(new FileInputStream(xslPathInputArray[index]), sharedBytes.outputStream, sharedBytes.byteArray));
+        }
+
+        final String[] START = {
+            this.GENERATED_START_WITH_PATH,
+        };
+
+        final String[] MID = {
+            "Game",
+        };
+        
+        final String[] END = {
+            "CreateInstance.java"
+        };
+        
+        String indexAsString;
+
+        int createInstanceTotal;
+        String createInstanceIndexAsString;
+        for (int index = startIndex; index < size; index++) {
+            //stringMaker.delete(0, stringMaker.length());
+            //logUtil.put(stringMaker.append("layout:").appendint(index).toString(), this, commonStrings.PROCESS);
+            
+            createInstanceTotal = gdGameInfo.getLayoutInstanceTotal(index);
+            indexAsString = Integer.toString(index);
+            
+            final Replace replace = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, indexAsString);
+
+            for (int index2 = 0; index2 < xslTotal; index2++) {
+
+                for (int index4 = 0; index4 < createInstanceTotal; index4++) {
+
+                createInstanceIndexAsString = Integer.toString(index4);
+                final Replace replace3 = new Replace(this.gdToolStrings.GD_CREATE_INSTANCE_INDEX, createInstanceIndexAsString);
                 
                 //stringMaker.delete(0, stringMaker.length());
                 //logUtil.put(stringMaker.append("xslt:").append(index2).toString(), this, commonStrings.PROCESS);
@@ -1065,7 +1264,9 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     try {
                         final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(0);
                         generateLayouts(startIndex, layoutTotal, gameXmlAsString2, layoutGameXmlAsString2, new StringMaker());
-                        generateExternalLayouts(startIndex, layoutTotal, gameXmlAsString2, layoutGameXmlAsString2, gdGameInfo, new StringMaker());
+                        generateCreateInstances(startIndex, layoutTotal, gameXmlAsString2, layoutGameXmlAsString2, gdGameInfo, new StringMaker());
+                        generateExternalLinkLayouts(startIndex, layoutTotal, gameXmlAsString2, layoutGameXmlAsString2, gdGameInfo, new StringMaker());
+                        generateExternalCreateInstances(startIndex, layoutTotal, gameXmlAsString2, layoutGameXmlAsString2, gdGameInfo, new StringMaker());
                         System.out.println("generateLayouts ElapsedTime: " + timeDelayHelper.getElapsedTNT());
                         finished[2] = true;
                         System.out.println("Current State ElapsedTime: " + BooleanUtil.getInstance().toStringFromBooleanArray(finished));

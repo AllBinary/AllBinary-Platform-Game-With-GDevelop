@@ -27,6 +27,8 @@ public class GDGameInfo {
     public int layoutTotal;
     public final BasicArrayList externalLayoutsTotalPerLayoutPositionList = new BasicArrayListD();
     public final BasicArrayList externalLayoutsIndexPerLayoutPositionList = new BasicArrayListD();
+    public final BasicArrayList instanceTotalPerLayoutPositionList = new BasicArrayListD();
+    public final BasicArrayList instanceTotalPerExternalLayoutPositionList = new BasicArrayListD();
     
     public GDGameInfo() {
         
@@ -43,23 +45,37 @@ public class GDGameInfo {
         return integer.intValue();
     }
     
+    public int getLayoutInstanceTotal(final int layoutIndex) {
+        final Integer integer = (Integer) this.instanceTotalPerLayoutPositionList.get(layoutIndex);
+        return integer.intValue();
+    }
+    
+    public int getExternalLayoutInstanceTotal(final int externalLayoutIndex) {
+        final Integer integer = (Integer) this.instanceTotalPerExternalLayoutPositionList.get(externalLayoutIndex);
+        return integer.intValue();
+    }
+    
     public String toString() {
         final String LAYOUT = "layout at: ";
         final String WITH = " with externalLayouts: ";
         final String AT_INDEX = " at index: ";
+        final String INSTANCE_TOTAL = " instanceTotal: ";
         final CommonSeps commonSeps = CommonSeps.getInstance();
         final StringMaker stringMaker = new StringMaker();
         stringMaker.append("layoutTotal: ").appendint(this.layoutTotal);
         final int size = this.externalLayoutsTotalPerLayoutPositionList.size();
         Integer externalLayoutTotal;
         BasicArrayList externalLayoutIndexList;
+        int externalLayoutIndex;
         for(int index = 0; index < size; index++) {
             externalLayoutTotal = (Integer) this.externalLayoutsTotalPerLayoutPositionList.get(index);
-            stringMaker.append(commonSeps.NEW_LINE).append(LAYOUT).appendint(index).append(WITH).append(externalLayoutTotal.toString());
+            stringMaker.append(commonSeps.NEW_LINE).append(LAYOUT).appendint(index).append(WITH).append(externalLayoutTotal.toString())
+                    .append(INSTANCE_TOTAL).appendint(this.getLayoutInstanceTotal(index));
             externalLayoutIndexList = (BasicArrayList) this.externalLayoutsIndexPerLayoutPositionList.get(index);
             final int size2 = externalLayoutIndexList.size();
             for(int indexListIndex = 0; indexListIndex < size2; indexListIndex++) {
-                stringMaker.append(AT_INDEX).append(((Integer) externalLayoutIndexList.get(indexListIndex)).toString());
+                externalLayoutIndex = ((Integer) externalLayoutIndexList.get(indexListIndex)).intValue();
+                stringMaker.append(AT_INDEX).appendint(externalLayoutIndex).append(INSTANCE_TOTAL).appendint(this.getExternalLayoutInstanceTotal(externalLayoutIndex));
             }
         }
         

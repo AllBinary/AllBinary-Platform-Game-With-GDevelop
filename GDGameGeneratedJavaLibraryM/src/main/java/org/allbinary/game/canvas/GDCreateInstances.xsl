@@ -15,10 +15,23 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
-    
-    <xsl:template name="createInstances" >
+
+    <xsl:template name="createInstancesCalls" >
         <xsl:param name="layoutIndex" />
-        <xsl:param name="exclusionObjectsAsString" />
+        <xsl:param name="layoutType" />
+
+        <xsl:for-each select="instances" >
+            <xsl:variable name="createInstanceIndex" select="number(position() - 1)" />
+                    //instances create - START
+        GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="$layoutType" /><xsl:value-of select="$createInstanceIndex" />CreateInstance.getInstance().init(imageResources, resources);
+                    //instances create - END
+        </xsl:for-each>
+
+    </xsl:template>
+        
+    <xsl:template name="createInstance" >
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="createInstanceIndex" />
 
         <xsl:call-template name="globalCentreCameraActions" >
             <xsl:with-param name="baseLayer" >true</xsl:with-param>
@@ -38,17 +51,13 @@ Created By: Travis Berthelot
                     final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
                     
                     <xsl:for-each select="instances" >
+                        <xsl:if test="$createInstanceIndex = number(position() - 1)" >
                         <xsl:variable name="nodeIdAsString" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
                         <xsl:variable name="name" select="name" />
                         <xsl:variable name="colonName" >:<xsl:value-of select="name" /></xsl:variable>
 
                         //name=<xsl:value-of select="name" /> layer=<xsl:value-of select="layer" />
                                                 
-                        <xsl:if test="contains($exclusionObjectsAsString, $colonName)" >
-                            //Skipping instance name=<xsl:value-of select="name" /> exclusionType=<xsl:value-of select="$exclusionObjectsAsString" />
-                        </xsl:if>
-                        <xsl:if test="not(contains($exclusionObjectsAsString, $colonName))" >
-
                         //Create - btn_ - START
                         <xsl:text>&#10;</xsl:text>
                         if(true) {
@@ -202,6 +211,7 @@ Created By: Travis Berthelot
                         }
                         //Create - btn_ - END
                         //Create - Instances - END
+                        
                         </xsl:if>
                     </xsl:for-each>
                     
