@@ -22,7 +22,7 @@
         <xsl:for-each select="../externalEvents" >
             <xsl:if test="$layoutName = associatedLayout" >
                 //externalEventsCreateAssignGDObjectCondition - //eventsCreateAssignGDObjectGDNodeCondition - START
-                <xsl:call-template name="eventsCreateAssignGDObjectGDNodesConditionHack" >
+                <xsl:call-template name="eventsCreateAssignGDObjectGDNodesCondition" >
                     <xsl:with-param name="caller" >externalEventsCreateAssignGDObject</xsl:with-param>
                     <xsl:with-param name="totalRecursions" >
                         <xsl:value-of select="0" />
@@ -52,7 +52,7 @@
         <xsl:for-each select="../externalLayouts" >
             <xsl:if test="$layoutName = associatedLayout" >
                 //externalLayoutsCreateAssignGDObjectCondition - //eventsCreateAssignGDObjectGDNodeCondition - START
-                <xsl:call-template name="eventsCreateAssignGDObjectGDNodesConditionHack" >
+                <xsl:call-template name="eventsCreateAssignGDObjectGDNodesCondition" >
                     <xsl:with-param name="caller" >externalEventsCreateAssignGDObject</xsl:with-param>
                     <xsl:with-param name="totalRecursions" >
                         <xsl:value-of select="0" />

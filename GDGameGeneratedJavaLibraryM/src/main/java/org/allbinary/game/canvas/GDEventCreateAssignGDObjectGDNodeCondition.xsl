@@ -1678,7 +1678,7 @@ Created By: Travis Berthelot
 
     </xsl:template>
 
-    <xsl:template name="eventsCreateAssignGDObjectGDNodesConditionHack" >
+    <xsl:template name="eventsCreateAssignGDObjectGDNodesCondition" >
         <xsl:param name="caller" />
         <xsl:param name="totalRecursions" />
         <xsl:param name="forExtension" />
@@ -1983,7 +1983,7 @@ Created By: Travis Berthelot
             </xsl:variable>
             <xsl:variable name="hasParentOnceCondition0" ><xsl:if test="contains($hasParentOnceCondition1, 'found')" >true</xsl:if></xsl:variable>
 
-            <xsl:call-template name="eventsCreateAssignGDObjectGDNodesConditionHack" >
+            <xsl:call-template name="eventsCreateAssignGDObjectGDNodesCondition" >
                 <xsl:with-param name="caller" >
                     <xsl:value-of select="$caller" />
                 </xsl:with-param>

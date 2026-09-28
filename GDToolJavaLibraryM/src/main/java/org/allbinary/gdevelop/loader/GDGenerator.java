@@ -48,7 +48,7 @@ public class GDGenerator {
      */
     public static void main(String[] args) throws Exception {
         GDPaths.init();
-        final boolean[] finished = new boolean[6];
+        final boolean[] finished = new boolean[9];
         new GDGenerator().process(finished);
     }
     

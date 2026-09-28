@@ -189,7 +189,7 @@ Created By: Travis Berthelot
                                     </xsl:call-template>
                                             
                     //conditionLayout - //eventsCreateAssignGDObject - START
-                    <xsl:call-template name="eventsCreateAssignGDObjectGDNodesConditionHack" >
+                    <xsl:call-template name="eventsCreateAssignGDObjectGDNodesCondition" >
                         <xsl:with-param name="caller" >conditionLayout</xsl:with-param>
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
