@@ -33,6 +33,7 @@ public class GDGenerateGDGameInfo
     private final CommonSeps commonSeps = CommonSeps.getInstance();
     private final XslHelper xslHelper = XslHelper.getInstance();
     private final GDPaths gdPaths = GDPaths.getInstance();
+    private final GDXsl gdXsl = GDXsl.getInstance();
     
     public GDGenerateGDGameInfo()
     {
@@ -43,7 +44,7 @@ public class GDGenerateGDGameInfo
         try
         {
             final GDGameInfo gdGameInfo = new GDGameInfo();
-            
+         
             final StreamUtil streamUtil = StreamUtil.getInstance();
             final SharedBytes sharedBytes = SharedBytes.getInstance();
             sharedBytes.outputStream.reset();
@@ -53,11 +54,7 @@ public class GDGenerateGDGameInfo
             final FileInputStream gameInputStream = new FileInputStream(this.gdPaths.GAME_XML_PATH);
             final String gameXmlAsString = new String(streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
-            final String xslPath = this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameInfo.xsl";
-            this.logUtil.putF(xslPath, this, this.commonStrings.PROCESS);
-            final FileInputStream fileInputStream = new FileInputStream(xslPath);
-            sharedBytes.outputStream.reset();
-            final String xslAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
+            final String xslAsString = this.gdXsl.getXslAsString(this.gdXsl.GD_GAME_INFO, sharedBytes);
 
             final String result = this.xslHelper.translate(new BasicUriResolver(),
                     new StreamSource(new StringBufferInputStream(xslAsString)),
