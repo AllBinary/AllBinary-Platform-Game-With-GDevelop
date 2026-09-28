@@ -6,6 +6,7 @@
 package org.allbinary.gdevelop.loader;
 
 import org.allbinary.canvas.Processor;
+import org.allbinary.data.tree.dom.document.DomDocumentHelper;
 import org.allbinary.data.tree.dom.document.XmlDocumentHelper;
 import org.allbinary.gdevelop.json.GDLayout;
 import org.allbinary.gdevelop.json.GDProject;
@@ -492,8 +493,8 @@ public class GDToAllBinaryGenerationTool
      */
     public static void main(String[] args) throws Exception
     {
+        DomDocumentHelper.init();
         GDPaths.init();
-        System.setProperty("jdk.xml.xpathTotalOpLimit", "0");
         new GDToAllBinaryGenerationTool().process();
     }
 

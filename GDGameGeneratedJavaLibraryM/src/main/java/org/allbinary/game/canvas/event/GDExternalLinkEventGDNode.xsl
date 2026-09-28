@@ -152,6 +152,12 @@ Created By: Travis Berthelot
                             };
     </xsl:template>
 
+    <xsl:template name="externalLinkLayoutGDNodeCall" >
+        <xsl:param name="layoutIndex" />
+
+                            GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode.getInstance().init(imageResources, resources, layoutNameList, layoutGDNodeList);
+    </xsl:template>
+
     <xsl:template name="externalLinkLayoutGDNode" >
         <xsl:param name="layoutIndex" />
 

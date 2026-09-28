@@ -13,6 +13,7 @@
  */
 package org.allbinary.gdevelop.loader;
 
+import org.allbinary.data.tree.dom.document.DomDocumentHelper;
 import org.allbinary.time.TimeDelayHelper;
 
 /**
@@ -22,9 +23,7 @@ import org.allbinary.time.TimeDelayHelper;
 public class GDGenerator {
 
     public void process(final boolean[] finished) throws Exception {
-        //System.setProperty("jdk.xml.xpathExprGrpLimit", "0");
-        //System.setProperty("jdk.xml.xpathExprOpLimit", "0");
-        System.setProperty("jdk.xml.xpathTotalOpLimit", "0");
+        DomDocumentHelper.init();
         final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(0);
         new GDResourceProcessing().process();
         new GDDelete().process();
@@ -36,7 +35,8 @@ public class GDGenerator {
         new GDToAllBinaryGenerationTool().process();
 //        System.out.println("GDToAllBinaryGenerationTool ElapsedTime: " + timeDelayHelper.getElapsedTNT());
 //        timeDelayHelper.setStartTimeTNT();
-        new GDLayoutsToAllBinaryLayoutGenerator().process(0, new GDGetTotalLayouts().process(), finished);
+        final GDGameInfo gdGameInfo = new GDGenerateGDGameInfo().process();
+        new GDLayoutsToAllBinaryLayoutGenerator().process(0, gdGameInfo, finished);
 //        System.out.println("GDLayoutsToAllBinaryLayoutGenerator Started ElapsedTime: " + timeDelayHelper.getElapsedTNT());
 //        timeDelayHelper.setStartTimeTNT();
         System.out.println("Delete, Copy, GDToAllBinaryGenerationTool, GDLayoutsToAllBinaryLayoutGenerator ElapsedTime: " + timeDelayHelper.getElapsedTNT());

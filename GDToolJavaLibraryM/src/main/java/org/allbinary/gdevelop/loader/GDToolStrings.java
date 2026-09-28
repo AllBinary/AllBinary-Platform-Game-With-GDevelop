@@ -73,6 +73,7 @@ public class GDToolStrings {
     
     public final String GD_LAYOUT = "<GDLayout>";
     public final String GD_CURRENT_LAYOUT_INDEX = "<GD_CURRENT_INDEX>";
+    public final String GD_EXTERNAL_LAYOUT_INDEX = "<GD_EXTERNAL_LAYOUT_INDEX>";
     public final String GD_NODE_IDS = "<GD_NODE_IDS>";
 
     public final String NOT_USED_FOR_THREED_GAMES = "Not Used For Threed Games ";

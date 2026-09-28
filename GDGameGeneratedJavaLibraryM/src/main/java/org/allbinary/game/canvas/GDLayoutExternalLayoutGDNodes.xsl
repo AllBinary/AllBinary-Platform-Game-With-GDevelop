@@ -173,7 +173,7 @@ Created By: Travis Berthelot
                             <xsl:for-each select="../externalLayouts" >
                                 <xsl:if test="$layoutName = associatedLayout" >
                                     //externalLayouts - externalLayoutsGDNodes
-                                    <xsl:call-template name="externalLinkLayoutGDNode" >
+                                    <xsl:call-template name="externalLinkLayoutGDNodeCall" >
                                         <xsl:with-param name="layoutIndex" >
                                             <xsl:value-of select="$layoutIndex" />
                                         </xsl:with-param>
