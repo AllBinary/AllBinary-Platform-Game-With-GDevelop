@@ -74,7 +74,7 @@ Created By: Travis Berthelot
 
                     public static GD<xsl:value-of select="$layoutIndex" />GameSoundsFactory getInstance()
                     {
-                        return instance;
+                        return GD<xsl:value-of select="$layoutIndex" />GameSoundsFactory.instance;
                     }
 
                     private final LogUtil logUtil = LogUtil.getInstance();

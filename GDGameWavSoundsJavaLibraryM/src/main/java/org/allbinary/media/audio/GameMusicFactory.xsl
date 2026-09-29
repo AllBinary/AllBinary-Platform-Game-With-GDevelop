@@ -74,7 +74,7 @@ Created By: Travis Berthelot
 
                     public static GD<xsl:value-of select="$layoutIndex" />GameMusicFactory getInstance()
                     {
-                        return instance;
+                        return GD<xsl:value-of select="$layoutIndex" />GameMusicFactory.instance;
                     }
 
                     private final LogUtil logUtil = LogUtil.getInstance();

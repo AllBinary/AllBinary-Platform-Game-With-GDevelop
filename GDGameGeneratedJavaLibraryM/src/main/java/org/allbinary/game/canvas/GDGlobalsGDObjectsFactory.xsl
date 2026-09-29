@@ -79,7 +79,7 @@ Created By: Travis Berthelot
 
                     public static GDGlobalsGDObjectsFactory getInstanceOrCreate()
                     {
-                        return instance;
+                        return GDGlobalsGDObjectsFactory.instance;
                     }
 
                     public static GDGlobalsGDObjectsFactory getInstance()

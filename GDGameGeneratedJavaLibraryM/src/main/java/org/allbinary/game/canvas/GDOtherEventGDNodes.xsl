@@ -111,7 +111,7 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
     private static final GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes instance = new GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes();
 
     public static final GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes getInstance() {
-        return instance;
+        return GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes.instance;
     }
 
     protected final LogUtil logUtil = LogUtil.getInstance();

@@ -87,8 +87,8 @@ Created By: Travis Berthelot
 
                     public static GDGlobalsSpecialAnimation create()
                     {
-                        instance = new GDGlobalsSpecialAnimation();
-                        return instance;
+                        GDGlobalsSpecialAnimation.instance = new GDGlobalsSpecialAnimation();
+                        return GDGlobalsSpecialAnimation.instance;
                     }
 -->
 

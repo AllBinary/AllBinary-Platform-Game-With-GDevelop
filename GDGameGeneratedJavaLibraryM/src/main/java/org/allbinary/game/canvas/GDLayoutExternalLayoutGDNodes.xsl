@@ -77,7 +77,7 @@ Created By: Travis Berthelot
 
                     public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes getInstance()
                     {
-                        return instance;
+                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes.instance;
                     }
 
                     protected final LogUtil logUtil = LogUtil.getInstance();

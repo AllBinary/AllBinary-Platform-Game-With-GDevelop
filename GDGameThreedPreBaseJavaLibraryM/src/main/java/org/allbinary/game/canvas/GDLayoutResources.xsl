@@ -73,7 +73,7 @@ Created By: Travis Berthelot
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources getInstance()
                         {
-                            return instance;
+                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.instance;
                         }
 
                     private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources() {

@@ -156,7 +156,7 @@ Created By: Travis Berthelot
 
                         public static GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$lastDigit2" />GDNodes getInstance()
                         {
-                            return instance;
+                            return GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$lastDigit2" />GDNodes.instance;
                         }
 
                         protected final LogUtil logUtil = LogUtil.getInstance();

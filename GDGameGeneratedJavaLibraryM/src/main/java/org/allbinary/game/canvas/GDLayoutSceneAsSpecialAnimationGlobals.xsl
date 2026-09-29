@@ -133,7 +133,7 @@ Created By: Travis Berthelot
 
                     public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals getInstance()
                     {
-                        return instance;
+                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance;
                     }
 
                         protected final LogUtil logUtil = LogUtil.getInstance();

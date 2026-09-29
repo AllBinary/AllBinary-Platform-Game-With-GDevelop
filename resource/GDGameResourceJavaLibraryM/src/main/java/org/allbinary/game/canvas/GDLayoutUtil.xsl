@@ -62,7 +62,7 @@ Created By: Travis Berthelot
 
                     public static GD<xsl:value-of select="$layoutIndex" />LayoutUtil getInstance()
                     {
-                        return instance;
+                        return GD<xsl:value-of select="$layoutIndex" />LayoutUtil.instance;
                     }
 
         <xsl:call-template name="scaleProperties" >

@@ -139,18 +139,18 @@ Created By: Travis Berthelot
                         abToGBUtil.abCanvas = abCanvas;
                         abToGBUtil.allBinaryGameLayerManager = allBinaryGameLayerManager;
 
-                        if(instance == null) {
-                            instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimation();
+                        if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance == null) {
+                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimation();
                         } else {
-                            instance.reinitInstances();
+                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance.reinitInstances();
                         }
-                        return instance;
+                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance;
 
                     }
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation getInstance()
                         {
-                            return instance;
+                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance;
                         }
 
                         protected final LogUtil logUtil = LogUtil.getInstance();

@@ -102,7 +102,7 @@ Created By: Travis Berthelot
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes getInstance()
                         {
-                            return instance;
+                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes.instance;
                         }
 
                         protected final LogUtil logUtil = LogUtil.getInstance();

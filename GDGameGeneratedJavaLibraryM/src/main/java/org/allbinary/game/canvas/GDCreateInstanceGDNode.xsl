@@ -99,7 +99,7 @@ Created By: Travis Berthelot
 
                     public static GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="$createInstanceIndex" />CreateInstance getInstance()
                     {
-                        return instance;
+                        return GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="$createInstanceIndex" />CreateInstance.instance;
                     }
 
                     protected final LogUtil logUtil = LogUtil.getInstance();

@@ -140,7 +140,7 @@ Created By: Travis Berthelot
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes getInstance()
                         {
-                            return instance;
+                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes.instance;
                         }
 
                         protected final LogUtil logUtil = LogUtil.getInstance();

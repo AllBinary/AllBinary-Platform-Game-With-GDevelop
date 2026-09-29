@@ -119,7 +119,7 @@ Created By: Travis Berthelot
                     public static GDGameGlobals create()
                     {
                         instance = new GDGameGlobals();
-                        return instance;
+                        return GDGameGlobals.instance;
                     }
 -->
 

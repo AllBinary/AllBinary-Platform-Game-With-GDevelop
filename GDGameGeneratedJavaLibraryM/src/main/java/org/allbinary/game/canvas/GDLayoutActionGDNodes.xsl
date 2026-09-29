@@ -156,7 +156,7 @@ Created By: Travis Berthelot
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes getInstance()
                         {
-                            return instance;
+                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes.instance;
                         }
 
                         protected final LogUtil logUtil = LogUtil.getInstance();

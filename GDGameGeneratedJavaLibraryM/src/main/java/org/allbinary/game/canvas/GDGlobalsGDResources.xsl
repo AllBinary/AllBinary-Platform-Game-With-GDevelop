@@ -100,10 +100,10 @@ Created By: Travis Berthelot
                     private static GDGlobalsGDResources instance = null;
                         
                         public static GDGlobalsGDResources getInstanceOrCreate() throws Exception {
-                            if(instance == null) {
-                                instance = new GDGlobalsGDResources();
+                            if(GDGlobalsGDResources.instance == null) {
+                                GDGlobalsGDResources.instance = new GDGlobalsGDResources();
                             }
-                            return instance;
+                            return GDGlobalsGDResources.instance;
                         }
                 
                         public static GDGlobalsGDResources getInstance()

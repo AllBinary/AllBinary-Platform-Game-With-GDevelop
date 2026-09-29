@@ -101,7 +101,7 @@ Created By: Travis Berthelot
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources getInstance()
                         {
-                            return instance;
+                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.instance;
                         }
 
                         protected final LogUtil logUtil = LogUtil.getInstance();
