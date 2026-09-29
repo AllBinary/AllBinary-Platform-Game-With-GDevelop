@@ -26,9 +26,9 @@ extends AbeClientInformation
     public GDGamePCClientInformation()
     {
         super(
-                GDGameSoftwareInfo.getInstance().getName() + PC_DESC,
+                GDGameSoftwareInfo.getInstance().getName() + GDGamePCClientInformation.PC_DESC,
                 GDGameSoftwareInfo.getInstance().getVersion(),
-                GDGameSoftwareInfo.getInstance().getName() + PC_DESC +
+                GDGameSoftwareInfo.getInstance().getName() + GDGamePCClientInformation.PC_DESC +
                 CommonSeps.getInstance().SPACE + 
                 GDGameSoftwareInfo.getInstance().getVersion(),
                 GDGameSoftwareInfo.getInstance().toShortString()

@@ -25,7 +25,7 @@ public class GDStructure {
      * @return the instance
      */
     public static GDStructure getInstance() {
-        return instance;
+        return GDStructure.instance;
     }
     
     public int Size = -1;

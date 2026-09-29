@@ -21,9 +21,10 @@ public class GDGameClientInformationInterfaceFactory extends ClientInformationFa
      * @return the instance
      */
     public static ClientInformationFactory getFactoryInstance() {
-        return instance;
+        return GDGameClientInformationInterfaceFactory.instance;
     }
     
+    @Override
     public ClientInformation getInstance()
     {
         return GDGamePCClientInformation.instance;

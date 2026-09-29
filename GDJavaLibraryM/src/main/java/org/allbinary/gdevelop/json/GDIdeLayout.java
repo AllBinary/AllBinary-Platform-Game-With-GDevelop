@@ -6,12 +6,6 @@
 
 package org.allbinary.gdevelop.json;
 
-import org.allbinary.gdevelop.json.event.GDEvent;
-import org.allbinary.gdevelop.json.event.builtin.GDEventFactory;
-import org.allbinary.string.CommonStrings;
-
-import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.util.BasicArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

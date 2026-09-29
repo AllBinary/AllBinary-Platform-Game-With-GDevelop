@@ -52,7 +52,7 @@ public class FileSystem {
         final CommonStrings commonStrings = CommonStrings.getInstance();
         
         final StringUtil stringUtil = StringUtil.getInstance();
-        final String path = FixPath(currentDirPath);
+        final String path = FileSystem.FixPath(currentDirPath);
         final String[] realFilePathAsStringArray = AbFileSystem.getInstance().getFilesAsStringArrayForPath(path);
         if(realFilePathAsStringArray == null) {
             return new String[PAGE_SIZE];

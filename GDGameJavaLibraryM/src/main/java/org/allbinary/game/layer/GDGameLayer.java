@@ -73,8 +73,8 @@ public class GDGameLayer
     private final ScaleFactorFactory scaleFactorFactory = ScaleFactorFactory.getInstance();
     //protected final int SCALE = noDecimalTrigTable.SCALE * 10; //* GameSpeed.getInstance().getSpeed();
     //protected final int SCALE_FACTOR_VALUE = (scaleFactorFactory.DEFAULT_SCALE_VALUE / scaleFactorFactory.DEFAULT_SCALE_FACTOR) * 2 / 3;
-    protected final int SCALE_FACTOR = scaleFactorFactory.DEFAULT_SCALE_FACTOR;
-    protected final int SCALE_FACTOR2 = SCALE_FACTOR * 2;
+    protected final int SCALE_FACTOR = this.scaleFactorFactory.DEFAULT_SCALE_FACTOR;
+    protected final int SCALE_FACTOR2 = this.SCALE_FACTOR * 2;
 
     protected final int quarterWidth = (this.getHalfWidth() >> 1) - 1;
     protected final int quarterHeight = (this.getHalfHeight() >> 1) - 1;
@@ -114,7 +114,7 @@ public class GDGameLayer
             move();
         }
     };
-    protected Processor processor = moveProcessor;
+    protected Processor processor = this.moveProcessor;
 
     public VelocityBehaviorBase velocityBehavior = DragVelocityBehavior.instance;
     
@@ -219,7 +219,7 @@ public class GDGameLayer
             scaleProperties.scaleY = this.gdObject.initScaleY * this.gdObject.customScale;
             scaleProperties.scaleWidth = this.gdObject.Width(null);
             scaleProperties.scaleHeight = this.gdObject.Height(null);
-            if(animationName != StringUtil.getInstance().EMPTY_STRING && animationName.indexOf(HACK_ANIMATION_NAME) >= 0) {
+            if(animationName != StringUtil.getInstance().EMPTY_STRING && animationName.indexOf(GDGameLayer.HACK_ANIMATION_NAME) >= 0) {
                 scaleProperties.shouldScale = true;
                 //logUtil.put(new StringMaker().append(this.gdObject.toShortString()).append(scaleProperties.toString()).toString(), this, commonStrings.CONSTRUCTOR);
             }
@@ -270,7 +270,7 @@ public class GDGameLayer
 
         final int size = this.initIndexedAnimationInterfaceArray.length;
         for (int index = 0; index < size; index++) {
-            this.initIndexedAnimationInterfaceArray[index].setFrame(frameUtil.getFrameForAngle((short) 0, 1));
+            this.initIndexedAnimationInterfaceArray[index].setFrame(this.frameUtil.getFrameForAngle((short) 0, 1));
         }
 
         //logUtil.put(playerGDGameLayer.getName(), this, "new");
@@ -324,7 +324,7 @@ public class GDGameLayer
     
     protected IndexedAnimation[] getInitIndexedAnimationInterfaceArray()
     {
-        return initIndexedAnimationInterfaceArray;
+        return this.initIndexedAnimationInterfaceArray;
     }
 
     protected void setIndexedAnimationInterfaceArray(
@@ -335,12 +335,12 @@ public class GDGameLayer
 
     public IndexedAnimation[] getIndexedAnimationInterfaceArray()
     {
-        return indexedAnimationInterfaceArray;
+        return this.indexedAnimationInterfaceArray;
     }
 
     public IndexedAnimation getIndexedAnimationInterface()
     {
-        return indexedAnimationInterfaceArray[this.gdObject.animation];
+        return this.indexedAnimationInterfaceArray[this.gdObject.animation];
     }
     
 //    public void setCombatBaseBehavior(CombatBaseBehavior combatBaseBehavior)
@@ -350,7 +350,7 @@ public class GDGameLayer
 
     public CombatBaseBehavior getCombatBaseBehavior()
     {
-        return combatBaseBehavior;
+        return this.combatBaseBehavior;
     }
 
     @Override
@@ -394,15 +394,15 @@ public class GDGameLayer
         //final int dy = velocityInterface.getVelocityYBasicDecimalP().getScaled();
         //super.move(dx, dy);
 
-        final long velocityX = velocityInterface.getVelocityXBasicDecimalP().getUnscaled();
-        final long velocityY = velocityInterface.getVelocityYBasicDecimalP().getUnscaled();
+        final long velocityX = this.velocityInterface.getVelocityXBasicDecimalP().getUnscaled();
+        final long velocityY = this.velocityInterface.getVelocityYBasicDecimalP().getUnscaled();
 
         //final long priorRealX = this.realX;
         //final long priorRealY = this.realY;
         this.realX = this.realX + velocityX;
         this.realY = this.realY + velocityY;
 
-        final int scaleFactorValue = scaleFactorFactory.DEFAULT_SCALE_VALUE;
+        final int scaleFactorValue = this.scaleFactorFactory.DEFAULT_SCALE_VALUE;
         final int x = (int) (this.realX / scaleFactorValue);
         final int y = (int) (this.realY / scaleFactorValue);
 
@@ -465,7 +465,7 @@ public class GDGameLayer
         //angle *= Math.PI / 180.0;
         
         this.gdObject.forceAngle = (short) adjustedAngle;
-        this.velocityInterface.setVelocityi((long) length * SCALE_FACTOR2, (short) adjustedAngle, (short) 0);
+        this.velocityInterface.setVelocityi((long) length * this.SCALE_FACTOR2, (short) adjustedAngle, (short) 0);
         //this.Force((int) (noDecimalTrigTable.cos((short) angle) * length) / SCALE, (int) (noDecimalTrigTable.sin((short) angle) * length) / SCALE, clearing);
         
         //if(this.getName().equals(PLAYER_0)) {
@@ -506,8 +506,8 @@ public class GDGameLayer
     
     public void AddForce(final int x, final int y) {
         
-        this.velocityInterface.getVelocityXBasicDecimalP().setint(x * SCALE_FACTOR2);
-        this.velocityInterface.getVelocityYBasicDecimalP().setint(y * SCALE_FACTOR2);
+        this.velocityInterface.getVelocityXBasicDecimalP().setint(x * this.SCALE_FACTOR2);
+        this.velocityInterface.getVelocityYBasicDecimalP().setint(y * this.SCALE_FACTOR2);
     }
     
     //private static final String FORCE = "force";
@@ -587,7 +587,7 @@ public class GDGameLayer
     
     public void animate(final long timeDelta) throws Exception {
         
-        velocityBehavior.reduce(this.velocityInterface, 30, 100);
+        this.velocityBehavior.reduce(this.velocityInterface, 30, 100);
 
         this.dimensionalBehavior.getAnimationBehavior().animate(this.gdObject, this.initIndexedAnimationInterfaceArray, timeDelta);
         this.primitiveDrawing.nextFrame();
@@ -668,7 +668,7 @@ public class GDGameLayer
         catch (Exception e)
         {
             //logUtil.put(new StringMaker().append(this.getName()).append(" GDObject name: ").append(this.gdObject.name).toString(), this, "paint");
-            logUtil.put(commonStrings.EXCEPTION, this, "paint", e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, "paint", e);
         }
         
     }
@@ -690,7 +690,7 @@ public class GDGameLayer
         }
         catch (Exception e)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, "paintThreed", e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, "paintThreed", e);
         }
     }
     
@@ -892,7 +892,7 @@ public class GDGameLayer
     }
 
     public GDTwodBehavior getDimensionalBehavior() {
-        return dimensionalBehavior;
+        return this.dimensionalBehavior;
     }
 
     public void setValue(final int value) {
@@ -903,6 +903,7 @@ public class GDGameLayer
         throw new RuntimeException();
     }
     
+    @Override
     public void toStringAppend(final StringMaker stringBuffer) {
 
         super.toStringAppend(stringBuffer);
