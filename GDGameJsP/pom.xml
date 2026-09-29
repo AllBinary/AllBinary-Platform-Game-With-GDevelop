@@ -64,7 +64,7 @@
         <module>../GDGameWavSoundsJavaLibraryJsM</module>
         
         <module>../replace_these_stub_projects/GDFormJavaLibraryJsM</module>
-        <module>../../AllBinary-Platform-Integration/embedded/j2me/microemulator/custom/GDFormJavaLibraryJsM</module>
+        <module>../../AllBinary-Platform-Integrationjs/embedded/j2me/microemulator/custom/GDFormJavaLibraryJsM</module>
 
 <!--        <module>../GDGameThreedP</module>-->
 

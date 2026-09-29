@@ -7,14 +7,14 @@
         <artifactId>GDGameParent</artifactId>
         <!-- Game Version Start -->
         <version>1.0.0-SNAPSHOT</version>
-        <!-- Game Version End -->
+        <!-- Game Version Start -->
     </parent>
 
-    <artifactId>GDGameBaseJavaLibraryJs</artifactId>
+    <artifactId>GDGameJ2MEJavaLibraryJs</artifactId>
     <packaging>jar</packaging>
 
-    <name>GDGameBaseJavaLibraryJs</name>
-    <url>http://www.allbinary.com/</url>
+    <name>GDGameJ2MEJavaLibraryJs</name>
+    <url>http://www.allbinary.com</url>    
 
     <properties>
         <buildLabel>${version}</buildLabel>
@@ -32,95 +32,7 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>OpenGLESNullImageJ2MEJavaLibraryJs</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
-
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>LogJ2MEJavaLibraryJs</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
-
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>ImageCacheLazyJ2MEJavaLibraryJs</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
-
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>J2SEForJ2MEJavaLibraryJs</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
-
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>OpenGLNoneOtherJavaLibraryJs</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
-
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.allbinary.game.multiplayer</groupId>
-            <artifactId>AllBinaryGameClientBaseNullJavaLibraryJs</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
-            <optional>true</optional>
-        </dependency>
-
-<!--
-        <dependency>
-            <groupId>com.sun</groupId>
-            <artifactId>GDLWUITJavaLibraryJs</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
--->
-
-        <!--
-        -->
-        <dependency>
-            <groupId>org.mapgenerator</groupId>
-            <artifactId>TileMapGeneratorJavaLibraryJs</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mapgenerator.dungeon</groupId>
-            <artifactId>DungeonGeneratorJavaLibraryJs</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-        <!--
-        -->
-
-        <dependency>
-            <groupId>org.allbinary</groupId>
             <artifactId>AllBinaryOptionalBasePlatformJavaLibraryJs</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
-            <optional>true</optional>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>GameScoresLocalJavaLibraryJs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
@@ -135,39 +47,33 @@
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
-
+                
         <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>FullScreenNoneJavaLibraryJs</artifactId>
+            <groupId>org.allbinary.input</groupId>
+            <artifactId>TouchButtonResourceAnimationJavaLibraryJs</artifactId>
+            <!--
+            -->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
-        </dependency>
+        </dependency>        
 
         <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>ResourceJ2MEJavaLibraryJs</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameGeneratedJavaLibraryJs</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
+            <groupId>org.allbinary.input</groupId>
+            <artifactId>TouchButtonResourceOpenGLESAnimationJavaLibraryJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>        
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGamePreBaseJavaLibraryJs</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameNoTouchJavaLibraryJs</artifactId>
+            <!--
             <artifactId>GDGameTouchJavaLibraryJs</artifactId>
+            <artifactId>GDGameNoTouchJavaLibraryJs</artifactId>
+            -->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
@@ -181,14 +87,21 @@
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
-        
+
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameJ2MEJavaLibraryJs</artifactId>
+            <artifactId>GDGameImageAnimationInterfaceResourceFactoryJavaLibraryJs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
-            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibraryJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
 
         <dependency>
@@ -198,37 +111,14 @@
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
-
-        <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameResourceJavaLibraryJs</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
-        </dependency>
-
-        <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>OpenGLNoneJavaLibraryJs</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
+        
+        <!-- Only to get maven to download it unless alread in repo from build -->
+<!--        <dependency>
+            <groupId>net.sf.antenna</groupId>
+            <artifactId>antennaJs</artifactId>
+            <version>1.2.1-beta-SNAPSHOT</version>
             <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.allbinary.media.graphics.geography.map</groupId>
-            <artifactId>GeographicMapLibraryJs</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
-        </dependency>
-
-        <dependency>
-            <groupId>org.mapeditor</groupId>
-            <artifactId>TiledJSONJavaLibraryJs</artifactId>
-            <version>1.4.2-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.microemu</groupId>
@@ -236,19 +126,11 @@
             <version>2.0.4</version>
             <optional>true</optional>
         </dependency>
-<!--
-        <dependency>
-            <groupId>org.microemu</groupId>
-            <artifactId>microemu-javaseJs</artifactId>
-            <version>2.0.4</version>
-            <optional>true</optional>
-        </dependency>
--->
 
     </dependencies>
 
     <build>
-
+        
         <plugins>
             
             <plugin>
@@ -300,7 +182,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.3.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -316,4 +198,5 @@
     </build>
 
 </project>
+
 
