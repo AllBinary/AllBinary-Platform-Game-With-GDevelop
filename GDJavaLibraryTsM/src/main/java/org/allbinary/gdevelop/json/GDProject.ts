@@ -18,9 +18,6 @@ import { PointFactory } from '../../../../org/allbinary/graphics/PointFactory.js
 import { Rectangle } from '../../../../org/allbinary/graphics/Rectangle.js';
 //not GWT import const Rectangle
 
-//not plain js import { CommonStrings } 
-const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
-
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 
@@ -38,12 +35,6 @@ import { JSONException } from '../../../../org/json/JSONException.js';
 
 import { JSONObject } from '../../../../org/json/JSONObject.js';
 //not GWT import const JSONObject
-
-import { JSONTokener } from '../../../../org/json/JSONTokener.js';
-//not GWT import const JSONTokener
-
-import { XML } from '../../../../org/json/XML.js';
-//not GWT import const XML
 
 
 

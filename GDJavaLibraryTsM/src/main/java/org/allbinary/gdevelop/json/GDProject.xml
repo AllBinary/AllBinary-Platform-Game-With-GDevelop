@@ -29,15 +29,6 @@
             </name>
         </import>
         <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
-            <name identifier="CommonStrings" type="Name">
-                <qualifier identifier="string" type="Name">
-                    <qualifier identifier="allbinary" type="Name">
-                        <qualifier identifier="org" type="Name"/>
-                    </qualifier>
-                </qualifier>
-            </name>
-        </import>
-        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
             <name identifier="LogUtil" type="Name">
                 <qualifier identifier="log" type="Name">
                     <qualifier identifier="communication" type="Name">
@@ -84,20 +75,6 @@
         </import>
         <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
             <name identifier="JSONObject" type="Name">
-                <qualifier identifier="json" type="Name">
-                    <qualifier identifier="org" type="Name"/>
-                </qualifier>
-            </name>
-        </import>
-        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
-            <name identifier="JSONTokener" type="Name">
-                <qualifier identifier="json" type="Name">
-                    <qualifier identifier="org" type="Name"/>
-                </qualifier>
-            </name>
-        </import>
-        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
-            <name identifier="XML" type="Name">
                 <qualifier identifier="json" type="Name">
                     <qualifier identifier="org" type="Name"/>
                 </qualifier>

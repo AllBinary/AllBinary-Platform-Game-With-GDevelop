@@ -12,21 +12,6 @@
 
             import { Object } from '../../../../java/lang/Object.js';
         
-import { GDEvent } from '../../../../org/allbinary/gdevelop/json/event/GDEvent.js';
-//not GWT import const GDEvent
-
-import { GDEventFactory } from '../../../../org/allbinary/gdevelop/json/event/builtin/GDEventFactory.js';
-//not GWT import const GDEventFactory
-
-//not plain js import { CommonStrings } 
-const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
-
-//not plain js import { LogUtil } 
-const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
-
-//not plain js import { BasicArrayList } 
-const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
-
 import { JSONArray } from '../../../../org/json/JSONArray.js';
 //not GWT import const JSONArray
 

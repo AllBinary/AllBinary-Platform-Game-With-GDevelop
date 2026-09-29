@@ -392,6 +392,9 @@
                                         <variable type="VariableDeclarator">
                                             <initializer type="MethodCallExpr">
                                                 <name identifier="FixPath" type="SimpleName"/>
+                                                <scope type="NameExpr">
+                                                    <name identifier="FileSystem" type="SimpleName"/>
+                                                </scope>
                                                 <arguments>
                                                     <argument type="NameExpr">
                                                         <name identifier="currentDirPath" type="SimpleName"/>

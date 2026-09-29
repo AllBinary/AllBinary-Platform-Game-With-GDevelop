@@ -46,8 +46,11 @@
                     <body type="BlockStmt">
                         <statements>
                             <statement type="ReturnStmt">
-                                <expression type="NameExpr">
+                                <expression type="FieldAccessExpr">
                                     <name identifier="instance" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="GDGameClientInformationInterfaceFactory" type="SimpleName"/>
+                                    </scope>
                                 </expression>
                             </statement>
                         </statements>
@@ -82,6 +85,11 @@
                     <modifiers>
                         <modifier keyword="PUBLIC" type="Modifier"/>
                     </modifiers>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
                 </member>
             </members>
             <modifiers>

@@ -95,8 +95,11 @@
                                                 </scope>
                                             </scope>
                                         </left>
-                                        <right type="NameExpr">
+                                        <right type="FieldAccessExpr">
                                             <name identifier="PC_DESC" type="SimpleName"/>
+                                            <scope type="NameExpr">
+                                                <name identifier="GDGamePCClientInformation" type="SimpleName"/>
+                                            </scope>
                                         </right>
                                     </argument>
                                     <argument type="MethodCallExpr">
@@ -120,8 +123,11 @@
                                                         </scope>
                                                     </scope>
                                                 </left>
-                                                <right type="NameExpr">
+                                                <right type="FieldAccessExpr">
                                                     <name identifier="PC_DESC" type="SimpleName"/>
+                                                    <scope type="NameExpr">
+                                                        <name identifier="GDGamePCClientInformation" type="SimpleName"/>
+                                                    </scope>
                                                 </right>
                                             </left>
                                             <right type="FieldAccessExpr">

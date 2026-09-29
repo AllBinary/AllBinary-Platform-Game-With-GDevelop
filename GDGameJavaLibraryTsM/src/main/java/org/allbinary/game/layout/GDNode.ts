@@ -46,6 +46,9 @@ const NullUtil = globalThis.org.allbinary.logic.NullUtil;
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 
+//not plain js import { CommonStrings } 
+const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+
 //not plain js import { NullRunnable } 
 const NullRunnable = globalThis.org.allbinary.thread.NullRunnable;
 
@@ -80,6 +83,8 @@ export class GDNode
         
 
     readonly logUtil: LogUtil = LogUtil.getInstance()!;
+
+    readonly commonStrings: CommonStrings = CommonStrings.getInstance()!;
 
     private readonly nodeStatsFactory: BaseGDNodeStats = GDNodeStatsFactory.getInstance()!;
 

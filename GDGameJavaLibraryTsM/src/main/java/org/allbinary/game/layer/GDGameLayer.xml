@@ -492,8 +492,9 @@
                         <variable type="VariableDeclarator">
                             <initializer type="FieldAccessExpr">
                                 <name identifier="DEFAULT_SCALE_FACTOR" type="SimpleName"/>
-                                <scope type="NameExpr">
+                                <scope type="FieldAccessExpr">
                                     <name identifier="scaleFactorFactory" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
                                 </scope>
                             </initializer>
                             <name identifier="SCALE_FACTOR" type="SimpleName"/>
@@ -509,8 +510,9 @@
                     <variables>
                         <variable type="VariableDeclarator">
                             <initializer operator="MULTIPLY" type="BinaryExpr">
-                                <left type="NameExpr">
+                                <left type="FieldAccessExpr">
                                     <name identifier="SCALE_FACTOR" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
                                 </left>
                                 <right type="IntegerLiteralExpr" value="2"/>
                             </initializer>
@@ -862,8 +864,9 @@
                     </modifiers>
                     <variables>
                         <variable type="VariableDeclarator">
-                            <initializer type="NameExpr">
+                            <initializer type="FieldAccessExpr">
                                 <name identifier="moveProcessor" type="SimpleName"/>
+                                <scope type="ThisExpr"/>
                             </initializer>
                             <name identifier="processor" type="SimpleName"/>
                             <type type="ClassOrInterfaceType">
@@ -1297,8 +1300,11 @@
                                                             <name identifier="animationName" type="SimpleName"/>
                                                         </scope>
                                                         <arguments>
-                                                            <argument type="NameExpr">
+                                                            <argument type="FieldAccessExpr">
                                                                 <name identifier="HACK_ANIMATION_NAME" type="SimpleName"/>
+                                                                <scope type="NameExpr">
+                                                                    <name identifier="GDGameLayer" type="SimpleName"/>
+                                                                </scope>
                                                             </argument>
                                                         </arguments>
                                                     </left>
@@ -1875,8 +1881,9 @@
                                                 <arguments>
                                                     <argument type="MethodCallExpr">
                                                         <name identifier="getFrameForAngle" type="SimpleName"/>
-                                                        <scope type="NameExpr">
+                                                        <scope type="FieldAccessExpr">
                                                             <name identifier="frameUtil" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
                                                         </scope>
                                                         <arguments>
                                                             <argument type="CastExpr">
@@ -2252,8 +2259,9 @@
                     <body type="BlockStmt">
                         <statements>
                             <statement type="ReturnStmt">
-                                <expression type="NameExpr">
+                                <expression type="FieldAccessExpr">
                                     <name identifier="initIndexedAnimationInterfaceArray" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
                                 </expression>
                             </statement>
                         </statements>
@@ -2307,8 +2315,9 @@
                     <body type="BlockStmt">
                         <statements>
                             <statement type="ReturnStmt">
-                                <expression type="NameExpr">
+                                <expression type="FieldAccessExpr">
                                     <name identifier="indexedAnimationInterfaceArray" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
                                 </expression>
                             </statement>
                         </statements>
@@ -2335,8 +2344,9 @@
                                             <scope type="ThisExpr"/>
                                         </scope>
                                     </index>
-                                    <name type="NameExpr">
+                                    <name type="FieldAccessExpr">
                                         <name identifier="indexedAnimationInterfaceArray" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
                                     </name>
                                 </expression>
                             </statement>
@@ -2354,8 +2364,9 @@
                     <body type="BlockStmt">
                         <statements>
                             <statement type="ReturnStmt">
-                                <expression type="NameExpr">
+                                <expression type="FieldAccessExpr">
                                     <name identifier="combatBaseBehavior" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
                                 </expression>
                             </statement>
                         </statements>
@@ -2588,8 +2599,9 @@
                                                 <name identifier="getUnscaled" type="SimpleName"/>
                                                 <scope type="MethodCallExpr">
                                                     <name identifier="getVelocityXBasicDecimalP" type="SimpleName"/>
-                                                    <scope type="NameExpr">
+                                                    <scope type="FieldAccessExpr">
                                                         <name identifier="velocityInterface" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
                                                     </scope>
                                                 </scope>
                                             </initializer>
@@ -2611,8 +2623,9 @@
                                                 <name identifier="getUnscaled" type="SimpleName"/>
                                                 <scope type="MethodCallExpr">
                                                     <name identifier="getVelocityYBasicDecimalP" type="SimpleName"/>
-                                                    <scope type="NameExpr">
+                                                    <scope type="FieldAccessExpr">
                                                         <name identifier="velocityInterface" type="SimpleName"/>
+                                                        <scope type="ThisExpr"/>
                                                     </scope>
                                                 </scope>
                                             </initializer>
@@ -2666,8 +2679,9 @@
                                         <variable type="VariableDeclarator">
                                             <initializer type="FieldAccessExpr">
                                                 <name identifier="DEFAULT_SCALE_VALUE" type="SimpleName"/>
-                                                <scope type="NameExpr">
+                                                <scope type="FieldAccessExpr">
                                                     <name identifier="scaleFactorFactory" type="SimpleName"/>
+                                                    <scope type="ThisExpr"/>
                                                 </scope>
                                             </initializer>
                                             <name identifier="scaleFactorValue" type="SimpleName"/>
@@ -3034,8 +3048,9 @@
                                                 </expression>
                                                 <type type="LONG" typeB="PrimitiveType"/>
                                             </left>
-                                            <right type="NameExpr">
+                                            <right type="FieldAccessExpr">
                                                 <name identifier="SCALE_FACTOR2" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
                                             </right>
                                         </argument>
                                         <argument type="CastExpr">
@@ -3221,8 +3236,9 @@
                                             <left type="NameExpr">
                                                 <name identifier="x" type="SimpleName"/>
                                             </left>
-                                            <right type="NameExpr">
+                                            <right type="FieldAccessExpr">
                                                 <name identifier="SCALE_FACTOR2" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
                                             </right>
                                         </argument>
                                     </arguments>
@@ -3243,8 +3259,9 @@
                                             <left type="NameExpr">
                                                 <name identifier="y" type="SimpleName"/>
                                             </left>
-                                            <right type="NameExpr">
+                                            <right type="FieldAccessExpr">
                                                 <name identifier="SCALE_FACTOR2" type="SimpleName"/>
+                                                <scope type="ThisExpr"/>
                                             </right>
                                         </argument>
                                     </arguments>
@@ -3669,8 +3686,9 @@
                             <statement type="ExpressionStmt">
                                 <expression type="MethodCallExpr">
                                     <name identifier="reduce" type="SimpleName"/>
-                                    <scope type="NameExpr">
+                                    <scope type="FieldAccessExpr">
                                         <name identifier="velocityBehavior" type="SimpleName"/>
+                                        <scope type="ThisExpr"/>
                                     </scope>
                                     <arguments>
                                         <argument type="FieldAccessExpr">
@@ -4095,14 +4113,16 @@
                                                 <statement type="ExpressionStmt">
                                                     <expression type="MethodCallExpr">
                                                         <name identifier="put" type="SimpleName"/>
-                                                        <scope type="NameExpr">
+                                                        <scope type="FieldAccessExpr">
                                                             <name identifier="logUtil" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
                                                         </scope>
                                                         <arguments>
                                                             <argument type="FieldAccessExpr">
                                                                 <name identifier="EXCEPTION" type="SimpleName"/>
-                                                                <scope type="NameExpr">
+                                                                <scope type="FieldAccessExpr">
                                                                     <name identifier="commonStrings" type="SimpleName"/>
+                                                                    <scope type="ThisExpr"/>
                                                                 </scope>
                                                             </argument>
                                                             <argument type="ThisExpr"/>
@@ -4296,14 +4316,16 @@
                                                 <statement type="ExpressionStmt">
                                                     <expression type="MethodCallExpr">
                                                         <name identifier="put" type="SimpleName"/>
-                                                        <scope type="NameExpr">
+                                                        <scope type="FieldAccessExpr">
                                                             <name identifier="logUtil" type="SimpleName"/>
+                                                            <scope type="ThisExpr"/>
                                                         </scope>
                                                         <arguments>
                                                             <argument type="FieldAccessExpr">
                                                                 <name identifier="EXCEPTION" type="SimpleName"/>
-                                                                <scope type="NameExpr">
+                                                                <scope type="FieldAccessExpr">
                                                                     <name identifier="commonStrings" type="SimpleName"/>
+                                                                    <scope type="ThisExpr"/>
                                                                 </scope>
                                                             </argument>
                                                             <argument type="ThisExpr"/>
@@ -4744,8 +4766,9 @@
                     <body type="BlockStmt">
                         <statements>
                             <statement type="ReturnStmt">
-                                <expression type="NameExpr">
+                                <expression type="FieldAccessExpr">
                                     <name identifier="dimensionalBehavior" type="SimpleName"/>
+                                    <scope type="ThisExpr"/>
                                 </expression>
                             </statement>
                         </statements>
@@ -4886,6 +4909,11 @@
                             </modifiers>
                         </parameter>
                     </parameters>
+                    <annotations>
+                        <annotation type="MarkerAnnotationExpr">
+                            <name identifier="Override" type="Name"/>
+                        </annotation>
+                    </annotations>
                 </member>
                 <member type="MethodDeclaration">
                     <body type="BlockStmt">

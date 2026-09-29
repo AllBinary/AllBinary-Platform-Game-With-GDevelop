@@ -124,7 +124,7 @@ logUtil!.putF(path, commonStrings, commonStrings!.PROCESS);
     var stringUtil: StringUtil = StringUtil.getInstance()!;;
     
 
-    var path: string = FixPath(currentDirPath)!;;
+    var path: string = FileSystem.FixPath(currentDirPath)!;;
     
 
     var realFilePathAsStringArray: string[] = AbFileSystem.getInstance()!.getFilesAsStringArrayForPath(path)!;;

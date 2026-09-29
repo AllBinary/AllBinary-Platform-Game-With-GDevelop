@@ -40,8 +40,11 @@
                     <body type="BlockStmt">
                         <statements>
                             <statement type="ReturnStmt">
-                                <expression type="NameExpr">
+                                <expression type="FieldAccessExpr">
                                     <name identifier="instance" type="SimpleName"/>
+                                    <scope type="NameExpr">
+                                        <name identifier="GDStructure" type="SimpleName"/>
+                                    </scope>
                                 </expression>
                             </statement>
                         </statements>

@@ -11,65 +11,6 @@
     <comment content="  * GDevelop to AllBinary Core  * Copyright 2021 Travis Berthelot (travisberthelot@allbinary.com). All rights  * reserved. This project is released under the MIT License.  " type="BlockComment"/>
     <imports>
         <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
-            <name identifier="GDEvent" type="Name">
-                <qualifier identifier="event" type="Name">
-                    <qualifier identifier="json" type="Name">
-                        <qualifier identifier="gdevelop" type="Name">
-                            <qualifier identifier="allbinary" type="Name">
-                                <qualifier identifier="org" type="Name"/>
-                            </qualifier>
-                        </qualifier>
-                    </qualifier>
-                </qualifier>
-            </name>
-        </import>
-        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
-            <name identifier="GDEventFactory" type="Name">
-                <qualifier identifier="builtin" type="Name">
-                    <qualifier identifier="event" type="Name">
-                        <qualifier identifier="json" type="Name">
-                            <qualifier identifier="gdevelop" type="Name">
-                                <qualifier identifier="allbinary" type="Name">
-                                    <qualifier identifier="org" type="Name"/>
-                                </qualifier>
-                            </qualifier>
-                        </qualifier>
-                    </qualifier>
-                </qualifier>
-            </name>
-        </import>
-        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
-            <name identifier="CommonStrings" type="Name">
-                <qualifier identifier="string" type="Name">
-                    <qualifier identifier="allbinary" type="Name">
-                        <qualifier identifier="org" type="Name"/>
-                    </qualifier>
-                </qualifier>
-            </name>
-        </import>
-        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
-            <name identifier="LogUtil" type="Name">
-                <qualifier identifier="log" type="Name">
-                    <qualifier identifier="communication" type="Name">
-                        <qualifier identifier="logic" type="Name">
-                            <qualifier identifier="allbinary" type="Name">
-                                <qualifier identifier="org" type="Name"/>
-                            </qualifier>
-                        </qualifier>
-                    </qualifier>
-                </qualifier>
-            </name>
-        </import>
-        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
-            <name identifier="BasicArrayList" type="Name">
-                <qualifier identifier="util" type="Name">
-                    <qualifier identifier="allbinary" type="Name">
-                        <qualifier identifier="org" type="Name"/>
-                    </qualifier>
-                </qualifier>
-            </name>
-        </import>
-        <import isAsterisk="false" isStatic="false" type="ImportDeclaration">
             <name identifier="JSONArray" type="Name">
                 <qualifier identifier="json" type="Name">
                     <qualifier identifier="org" type="Name"/>

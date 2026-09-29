@@ -174,9 +174,9 @@ export class GDGameLayer extends MultiPlayerGameLayer {
 
     private readonly scaleFactorFactory: ScaleFactorFactory = ScaleFactorFactory.getInstance()!;
 
-    readonly SCALE_FACTOR: number = scaleFactorFactory!.DEFAULT_SCALE_FACTOR;
+    readonly SCALE_FACTOR: number = this.scaleFactorFactory!.DEFAULT_SCALE_FACTOR;
 
-    readonly SCALE_FACTOR2: number = SCALE_FACTOR *2;
+    readonly SCALE_FACTOR2: number = this.SCALE_FACTOR *2;
 
     readonly quarterWidth: number = (this.getHalfWidth()>>1) -1;
 
@@ -227,7 +227,7 @@ move();
                                 }
                             ;
 
-    processor: Processor = moveProcessor;
+    processor: Processor = this.moveProcessor;
 
     public velocityBehavior: VelocityBehaviorBase = DragVelocityBehavior.instance;
 //    private float lastScaleY = 1;
@@ -308,7 +308,7 @@ scaleProperties!.scaleHeight= this.gdObject!.Height(
                             null);
     
 
-                        if(animationName != StringUtil.getInstance()!.EMPTY_STRING && animationName!.indexOf(HACK_ANIMATION_NAME) >= 0)
+                        if(animationName != StringUtil.getInstance()!.EMPTY_STRING && animationName!.indexOf(GDGameLayer.HACK_ANIMATION_NAME) >= 0)
                         
                                     {
                                     scaleProperties!.shouldScale= true;
@@ -408,7 +408,7 @@ this.rectangleArrayOfArrays= rectangleArrayOfArrays;
                         for (
     var index: number = 0;index < size; index++)
         {
-this.initIndexedAnimationInterfaceArray[index]!.setFrame(frameUtil!.getFrameForAngle(0, 1));
+this.initIndexedAnimationInterfaceArray[index]!.setFrame(this.frameUtil!.getFrameForAngle(0, 1));
     
 }
 
@@ -478,7 +478,7 @@ this.dimensionalBehavior!.getAnimationBehavior()!.setRotation(this, angleAdjustm
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return initIndexedAnimationInterfaceArray;
+                        return this.initIndexedAnimationInterfaceArray;
     
 }
 
@@ -494,7 +494,7 @@ this.indexedAnimationInterfaceArray= animationInterface;
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return indexedAnimationInterfaceArray;
+                        return this.indexedAnimationInterfaceArray;
     
 }
 
@@ -504,7 +504,7 @@ this.indexedAnimationInterfaceArray= animationInterface;
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return indexedAnimationInterfaceArray[this.gdObject!.animation]!;
+                        return this.indexedAnimationInterfaceArray[this.gdObject!.animation]!;
     
 }
 
@@ -514,7 +514,7 @@ this.indexedAnimationInterfaceArray= animationInterface;
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return combatBaseBehavior;
+                        return this.combatBaseBehavior;
     
 }
 
@@ -565,17 +565,17 @@ this.combatBaseBehavior!.getDestroyableBaseBehavior()!.setDestroyed(destroyed);
 
     public move(){
 
-    var velocityX: number = velocityInterface!.getVelocityXBasicDecimalP()!.getUnscaled()!;;
+    var velocityX: number = this.velocityInterface!.getVelocityXBasicDecimalP()!.getUnscaled()!;;
     
 
-    var velocityY: number = velocityInterface!.getVelocityYBasicDecimalP()!.getUnscaled()!;;
+    var velocityY: number = this.velocityInterface!.getVelocityYBasicDecimalP()!.getUnscaled()!;;
     
 this.realX= this.realX +velocityX;
     
 this.realY= this.realY +velocityY;
     
 
-    var scaleFactorValue: number = scaleFactorFactory!.DEFAULT_SCALE_VALUE;;
+    var scaleFactorValue: number = this.scaleFactorFactory!.DEFAULT_SCALE_VALUE;;
     
 
     var x: number = Math.round((this.realX /scaleFactorValue));;
@@ -641,7 +641,7 @@ adjustedAngle += 360;
 
 this.gdObject!.forceAngle= adjustedAngle;
     
-this.velocityInterface!.setVelocityi(length *SCALE_FACTOR2, adjustedAngle, 0);
+this.velocityInterface!.setVelocityi(length *this.SCALE_FACTOR2, adjustedAngle, 0);
     
 
                         if(clearing == 1)
@@ -682,9 +682,9 @@ this.velocityInterface!.setVelocityi(0, 0, 0);
 
 
     public AddForce(x: number, y: number){
-this.velocityInterface!.getVelocityXBasicDecimalP()!.setint(x *SCALE_FACTOR2);
+this.velocityInterface!.getVelocityXBasicDecimalP()!.setint(x *this.SCALE_FACTOR2);
     
-this.velocityInterface!.getVelocityYBasicDecimalP()!.setint(y *SCALE_FACTOR2);
+this.velocityInterface!.getVelocityYBasicDecimalP()!.setint(y *this.SCALE_FACTOR2);
     
 }
 
@@ -770,7 +770,7 @@ this.resetAnimationBehavior!.resetAnimation(this.indexedAnimationInterfaceArray,
                 //@Throws(Exception.constructor)
             
     public animate(timeDelta: number){
-velocityBehavior!.reduce(this.velocityInterface, 30, 100);
+this.velocityBehavior!.reduce(this.velocityInterface, 30, 100);
     
 this.dimensionalBehavior!.getAnimationBehavior()!.animate(this.gdObject, this.initIndexedAnimationInterfaceArray, timeDelta);
     
@@ -860,7 +860,7 @@ this.paintDebug(graphics);
                 //: 
 } catch(e) 
             {
-logUtil!.put(commonStrings!.EXCEPTION, this, "paint", e);
+this.logUtil!.put(this.commonStrings!.EXCEPTION, this, "paint", e);
     
 }
 
@@ -890,7 +890,7 @@ this.primitiveDrawing!.paintThreedXYZ(graphics, x, y, z);
                 //: 
 } catch(e) 
             {
-logUtil!.put(commonStrings!.EXCEPTION, this, "paintThreed", e);
+this.logUtil!.put(this.commonStrings!.EXCEPTION, this, "paintThreed", e);
     
 }
 
@@ -982,7 +982,7 @@ this.setText(value.toString());
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return dimensionalBehavior;
+                        return this.dimensionalBehavior;
     
 }
 

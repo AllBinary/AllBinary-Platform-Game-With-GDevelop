@@ -53,7 +53,7 @@ export class GDGamePCClientInformation extends AbeClientInformation {
     private static readonly PC_DESC: string = "PC";
 
 public constructor (){
-            super(GDGameSoftwareInfo.getInstance()!.getName() +PC_DESC, GDGameSoftwareInfo.getInstance()!.getVersion(), GDGameSoftwareInfo.getInstance()!.getName() +PC_DESC +CommonSeps.getInstance()!.SPACE +GDGameSoftwareInfo.getInstance()!.getVersion(), GDGameSoftwareInfo.getInstance()!.toShortString());
+            super(GDGameSoftwareInfo.getInstance()!.getName() +GDGamePCClientInformation.PC_DESC, GDGameSoftwareInfo.getInstance()!.getVersion(), GDGameSoftwareInfo.getInstance()!.getName() +GDGamePCClientInformation.PC_DESC +CommonSeps.getInstance()!.SPACE +GDGameSoftwareInfo.getInstance()!.getVersion(), GDGameSoftwareInfo.getInstance()!.toShortString());
                     
 
                             //For kotlin this is before the body of the constructor.
