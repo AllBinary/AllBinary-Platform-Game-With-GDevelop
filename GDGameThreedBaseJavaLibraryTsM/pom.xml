@@ -19,10 +19,6 @@
     <properties>
         <buildLabel>${version}</buildLabel>
         <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
-    </properties>
-
-
-    <properties>
         <yarnVersion>v1.22.22</yarnVersion>
     </properties>
 
@@ -201,6 +197,9 @@
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
 
         <dependency>
@@ -218,12 +217,20 @@
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameTouchJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+
             <optional>true</optional>
         </dependency>
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameJ2MEJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+
             <optional>true</optional>
         </dependency>
 
@@ -237,6 +244,10 @@
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameResourceJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+
             <optional>true</optional>
         </dependency>
                 

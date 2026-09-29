@@ -7,32 +7,25 @@
         <artifactId>GDGameParent</artifactId>
         <!-- Game Version Start -->
         <version>1.0.0-SNAPSHOT</version>
-        <!-- Game Version End -->
+        <!-- Game Version Start -->
     </parent>
 
-    <artifactId>GDGameAIJavaLibraryTs</artifactId>
+    <artifactId>GDGameJ2MEJavaLibraryTs</artifactId>
     <packaging>jar</packaging>
 
-    <name>GDGameAIJavaLibraryTs</name>
-    <url>http://www.allbinary.com/</url>
+    <name>GDGameJ2MEJavaLibraryTs</name>
+    <url>http://www.allbinary.com</url>    
 
     <properties>
         <buildLabel>${version}</buildLabel>
         <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
-        <yarnVersion>v1.22.22</yarnVersion>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>LoggingJ2MEAllTs</artifactId>
+            <artifactId>AllBinaryOptionalBasePlatformJavaLibraryTs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
@@ -41,24 +34,92 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>GameJ2MELibraryTs</artifactId>
+            <artifactId>MusicJ2MEJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+                
+        <dependency>
+            <groupId>org.allbinary.input</groupId>
+            <artifactId>TouchButtonResourceAnimationJavaLibraryTs</artifactId>
+            <!--
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>        
+
+        <dependency>
+            <groupId>org.allbinary.input</groupId>
+            <artifactId>TouchButtonResourceOpenGLESAnimationJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>        
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameNoTouchJavaLibraryTs</artifactId>
+            <!--
+            <artifactId>GDGameTouchJavaLibraryTs</artifactId>
+            <artifactId>GDGameNoTouchJavaLibraryTs</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameJavaLibraryTs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
 
-        <!--
         <dependency>
-            <groupId>org.allbinary.game.ai</groupId>
-            <artifactId>AIRotationGameLibraryTs</artifactId>
-            <version>1</version>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameImageAnimationInterfaceResourceFactoryJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
+
         <dependency>
-            <groupId>org.allbinary.game.ai</groupId>
-            <artifactId>AICombatGameJavaLibraryTs</artifactId>
-            <version>1</version>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
-        -->
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameWavSoundsJavaLibraryTs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        
+        <!-- Only to get maven to download it unless alread in repo from build -->
+<!--        <dependency>
+            <groupId>net.sf.antenna</groupId>
+            <artifactId>antennaTs</artifactId>
+            <version>1.2.1-beta-SNAPSHOT</version>
+            <optional>true</optional>
+        </dependency>-->
+
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-midpTs</artifactId>
+            <version>2.0.4</version>
+            <optional>true</optional>
+        </dependency>
 
     </dependencies>
 
@@ -103,7 +164,7 @@
     <build>
         <plugins>
 
-<!--            <plugin>
+            <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>2.0.0</version>
@@ -125,7 +186,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
                         
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -145,5 +206,4 @@
     </build>
 
 </project>
-
 

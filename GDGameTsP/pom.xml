@@ -4,7 +4,7 @@
 
     <parent>
         <groupId>org.allbinary.game.gd</groupId>
-        <artifactId>GDGameParentTs</artifactId>
+        <artifactId>GDGameParent</artifactId>
         <!-- Game Version Start -->
         <version>1.0.0-SNAPSHOT</version>
         <!-- Game Version End -->
@@ -65,9 +65,9 @@
         <module>../GDGameWavSoundsJavaLibraryTsM</module>
         
         <module>../replace_these_stub_projects/GDFormJavaLibraryTsM</module>
-        <module>../../AllBinary-Platform-Integration/embedded/j2me/microemulator/custom/GDFormJavaLibraryTsM</module>
+        <module>../../AllBinary-Platform-Integrationts/embedded/j2me/microemulator/custom/GDFormJavaLibraryTsM</module>
 
-        <module>../GDGameThreedTsP</module>
+<!--        <module>../GDGameThreedTsP</module>-->
 
     </modules>
 
