@@ -13,7 +13,6 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import java.io.FileInputStream;
 import org.allbinary.data.tree.dom.document.XmlDocumentHelper;
 
 /**
@@ -37,10 +36,8 @@ public class GDSimpleTransformGenerator extends GDTransformGenerator {
     {
 
         final SharedBytes sharedBytes = SharedBytes.getInstance();
-        sharedBytes.outputStream.reset();
         
-        final FileInputStream fileInputStream = new FileInputStream(this.xslFile);
-        final String xslFileAsString = new String(this.streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
+        final String xslFileAsString = this.gdData.getAsString(this.xslFile, sharedBytes);
 
         this.process(xslFileAsString, this.outputFile, sharedBytes);
         

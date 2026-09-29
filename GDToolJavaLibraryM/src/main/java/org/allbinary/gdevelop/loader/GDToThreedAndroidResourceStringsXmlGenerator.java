@@ -6,12 +6,10 @@
 
 package org.allbinary.gdevelop.loader;
 
-import java.io.File;
 import java.io.FileInputStream;
 
 import org.allbinary.gdevelop.json.GDProject;
 import org.allbinary.logic.io.StreamUtil;
-import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogUtil;
 

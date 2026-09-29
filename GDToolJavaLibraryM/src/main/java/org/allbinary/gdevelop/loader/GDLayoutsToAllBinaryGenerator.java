@@ -5,8 +5,6 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.io.StringBufferInputStream;
 import javax.xml.transform.stream.StreamSource;
 
@@ -15,7 +13,6 @@ import org.allbinary.data.tree.dom.BasicUriResolver;
 import org.allbinary.data.tree.dom.XslHelper;
 import org.allbinary.gdevelop.json.GDLayout;
 import org.allbinary.logic.io.BufferedWriterUtil;
-import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
@@ -38,6 +35,7 @@ public class GDLayoutsToAllBinaryGenerator
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
+    private final GDData gdData = GDData.getInstance();
 
     private final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(Integer.MAX_VALUE);
     
@@ -78,20 +76,12 @@ public class GDLayoutsToAllBinaryGenerator
             //final StringMaker stringMaker = new StringMaker();
             final StringUtil stringUtil = StringUtil.getInstance();
             
-            final StreamUtil streamUtil = StreamUtil.getInstance();
             final SharedBytes sharedBytes = SharedBytes.getInstance();
-            sharedBytes.outputStream.reset();
+            
+            final String xmlDocumentStr = this.gdData.getAsString(gdPaths.GAME_XML_PATH, sharedBytes);
 
-            final String xslPath = gdPaths.ROOT_PATH + this.xslPath;
-            this.logUtil.putF(xslPath, this, this.commonStrings.PROCESS);
-            
-            final InputStream inputStream = new FileInputStream(xslPath);
-            final String xslDocumentStr = new String(streamUtil.getByteArray(inputStream, sharedBytes.outputStream, sharedBytes.byteArray));
-            
-            final FileInputStream gameInputStream = new FileInputStream(gdPaths.GAME_XML_PATH);
-            
-            sharedBytes.outputStream.reset();
-            final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
+            final String xslPath = this.xslPath;
+            final String xslDocumentStr = this.gdData.getAsString(xslPath, sharedBytes);
 
             //final Replace replace2 = new Replace(".Width()", ".Width(graphics)");
             //xmlDocumentStr = replace2.all(xmlDocumentStr);

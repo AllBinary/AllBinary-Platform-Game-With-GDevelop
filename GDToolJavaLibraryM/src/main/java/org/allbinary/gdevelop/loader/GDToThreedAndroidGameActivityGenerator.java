@@ -6,7 +6,6 @@
 
 package org.allbinary.gdevelop.loader;
 
-import java.io.File;
 import java.io.FileInputStream;
 
 import org.allbinary.data.CamelCaseUtil;

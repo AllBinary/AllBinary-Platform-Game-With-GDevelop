@@ -5,14 +5,12 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import java.io.FileInputStream;
 import java.io.StringBufferInputStream;
 import javax.xml.transform.stream.StreamSource;
 
 import org.allbinary.data.tree.dom.BasicUriResolver;
 import org.allbinary.data.tree.dom.XslHelper;
 import org.allbinary.data.tree.dom.document.DomDocumentHelper;
-import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.logic.string.tokens.Tokenizer;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.string.CommonStrings;
@@ -33,7 +31,7 @@ public class GDGenerateGDGameInfo
     private final CommonSeps commonSeps = CommonSeps.getInstance();
     private final XslHelper xslHelper = XslHelper.getInstance();
     private final GDPaths gdPaths = GDPaths.getInstance();
-    private final GDXsl gdXsl = GDXsl.getInstance();
+    private final GDData gdData = GDData.getInstance();
     
     public GDGenerateGDGameInfo()
     {
@@ -45,16 +43,12 @@ public class GDGenerateGDGameInfo
         {
             final GDGameInfo gdGameInfo = new GDGameInfo();
          
-            final StreamUtil streamUtil = StreamUtil.getInstance();
             final SharedBytes sharedBytes = SharedBytes.getInstance();
-            sharedBytes.outputStream.reset();
-
             final StringMaker stringMaker = new StringMaker();
             
-            final FileInputStream gameInputStream = new FileInputStream(this.gdPaths.GAME_XML_PATH);
-            final String gameXmlAsString = new String(streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
+            final String gameXmlAsString = this.gdData.getAsString(this.gdPaths.GAME_XML_PATH, sharedBytes);
 
-            final String xslAsString = this.gdXsl.getXslAsString(this.gdXsl.GD_GAME_INFO, sharedBytes);
+            final String xslAsString = this.gdData.getAsString(this.gdData.GD_GAME_INFO, sharedBytes);
 
             final String result = this.xslHelper.translate(new BasicUriResolver(),
                     new StreamSource(new StringBufferInputStream(xslAsString)),

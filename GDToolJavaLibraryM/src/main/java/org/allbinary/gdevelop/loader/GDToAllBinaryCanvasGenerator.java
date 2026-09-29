@@ -5,7 +5,6 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import java.io.FileInputStream;
 
 import org.allbinary.data.CamelCaseUtil;
 import org.allbinary.gdevelop.json.GDLayout;
@@ -21,6 +20,7 @@ public class GDToAllBinaryCanvasGenerator extends GDTransformGenerator
 
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
     
+    
     private final StringMaker stringMaker = new StringMaker();
 
     private final String xslPath;
@@ -29,7 +29,7 @@ public class GDToAllBinaryCanvasGenerator extends GDTransformGenerator
     private int index;
     private String name;
     private String className;
-    private String orig;
+    private String origXslPath;
 
     public GDToAllBinaryCanvasGenerator(final String xslPath, final String path) {
         this.xslPath = xslPath;
@@ -44,11 +44,11 @@ public class GDToAllBinaryCanvasGenerator extends GDTransformGenerator
 //        if (index == 1 || size == 1)
 //        {
             this.className = this.stringMaker.append("GDGame").append(this.name).append("Canvas").toString();
-            this.orig = this.gdPaths.ROOT_PATH + this.xslPath;
+            this.origXslPath = this.xslPath;
 //        } else
 //        {
 //            className = stringMaker.append("GDGameStart").append(name).append("Canvas").toString();
-//            this.orig = gdPaths.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameStartGDLayoutCanvas.xsl";
+//            this.orig = GDXsl.getInstance().GD_GAME_START_LAYOUT_CANVAS;
 //        }
     }
 
@@ -60,10 +60,8 @@ public class GDToAllBinaryCanvasGenerator extends GDTransformGenerator
         final String canvasJavaFile = this.stringMaker.append(this.gdPaths.GEN_PATH).append(this.path).append(this.className).append(".java").toString();
 
         final SharedBytes sharedBytes = SharedBytes.getInstance();
-        sharedBytes.outputStream.reset();
         
-        final FileInputStream fileInputStream = new FileInputStream(this.orig);        
-        final String androidRFileAsString = new String(this.streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
+        final String androidRFileAsString = this.gdData.getAsString(this.origXslPath, sharedBytes);
         
         final Replace replace2 = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, Integer.toString(this.index));
 

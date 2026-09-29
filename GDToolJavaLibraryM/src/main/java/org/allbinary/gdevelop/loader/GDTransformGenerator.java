@@ -13,7 +13,6 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import java.io.FileInputStream;
 import java.io.StringBufferInputStream;
 import javax.xml.transform.stream.StreamSource;
 import org.allbinary.data.tree.dom.BasicUriResolver;
@@ -37,14 +36,13 @@ public class GDTransformGenerator extends GDNameGenerator {
     protected final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     protected final GDPaths gdPaths = GDPaths.getInstance();
     protected final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
+    protected final GDData gdData = GDData.getInstance();
     
     private final XslHelper xslHelper = XslHelper.getInstance();
     
     public void process(final String updatedXslDocumentStr, final String outputFile, final SharedBytes sharedBytes) throws Exception {
 
-        final FileInputStream gameInputStream = new FileInputStream(this.gdPaths.GAME_XML_PATH);
-        sharedBytes.outputStream.reset();
-        final String xmlDocumentStr = new String(this.streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
+        final String xmlDocumentStr = this.gdData.getAsString(this.gdPaths.GAME_XML_PATH, sharedBytes);
 
         String result = this.process(updatedXslDocumentStr, xmlDocumentStr);
         final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);

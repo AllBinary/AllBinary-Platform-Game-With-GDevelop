@@ -5,8 +5,6 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.io.StringBufferInputStream;
 import javax.xml.transform.stream.StreamSource;
 
@@ -15,7 +13,6 @@ import org.allbinary.data.tree.dom.BasicUriResolver;
 import org.allbinary.data.tree.dom.XslHelper;
 import org.allbinary.gdevelop.json.GDLayout;
 import org.allbinary.logic.io.BufferedWriterUtil;
-import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
@@ -38,6 +35,7 @@ public class GDToAllBinaryRotationGenerator
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDPaths gdPaths = GDPaths.getInstance();
+    private final GDData gdData = GDData.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
     private final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(Integer.MAX_VALUE);
@@ -73,16 +71,11 @@ public class GDToAllBinaryRotationGenerator
         
         this.timeDelayHelper.setStartTimeTNT();
         
-        final StreamUtil streamUtil = StreamUtil.getInstance();
         final SharedBytes sharedBytes = SharedBytes.getInstance();
-        sharedBytes.outputStream.reset();
 
-        final FileInputStream gameInputStream = new FileInputStream(this.gdPaths.GAME_XML_PATH);
-        final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
+        final String xmlDocumentStr = this.gdData.getAsString(this.gdPaths.GAME_XML_PATH, sharedBytes);
         
-        final String[] xslPathInputArray = {
-            this.gdPaths.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\animation\\GDRotationAnimation.xsl",
-        };
+        final String[] xslPathInputArray = {this.gdData.GD_ROTATION_ANIMATION};
 
         final String[] outputArray = {
             this.gdPaths.ROTATION_ANIMATION_FILE_PATH,
@@ -91,10 +84,7 @@ public class GDToAllBinaryRotationGenerator
         final int size2 = xslPathInputArray.length;
         for (int index2 = 0; index2 < size2; index2++)
         {
-            this.logUtil.putF(xslPathInputArray[index2], this, this.commonStrings.PROCESS);
-            final InputStream fileInputStream = new FileInputStream(xslPathInputArray[index2]);
-            sharedBytes.outputStream.reset();
-            final String xslFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
+            final String xslFileAsString = this.gdData.getAsString(xslPathInputArray[index2], sharedBytes);
 
             final String newFileAsString = xslFileAsString;
             final String updatedXslDocumentStr = newFileAsString;
