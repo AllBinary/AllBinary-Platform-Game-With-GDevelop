@@ -85,7 +85,8 @@ Created By: Travis Berthelot
                                     HighScoreNamePersistanceSingleton.getInstance().save(abeClientInformation, gameInfo, name);
                                     
                                     final BasicHighScoresFactory basicHighScoresFactory = new BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance());
-                                    final HighScoresResultsListener highScoresResultsListener = new HighScoresResultsListener() {
+                                    
+                                    class SaveHighScoresResultsListener implements HighScoresResultsListener {
                                         public void setHighScoresArray(final HighScores[] highScoresArray) {
                                             try {
                                             final HighScoresHelperBase highScoresHelperBase = new HighScoresHelperBase();
@@ -103,6 +104,8 @@ Created By: Travis Berthelot
                                         }
                                     };
                                     
+                                    final HighScoresResultsListener highScoresResultsListener = new SaveHighScoresResultsListener();
+                                    
                                     basicHighScoresFactory.fetchHighScores(gameInfo, highScoresResultsListener);
                                     
                                 } else {
@@ -110,7 +113,7 @@ Created By: Travis Berthelot
                                     
                                     final BasicHighScoresFactory basicHighScoresFactory = new BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance());
                                     
-                                    final HighScoresResultsListener highScoresResultsListener = new HighScoresResultsListener() {
+                                    class SaveHighScoresResultsListener2 implements HighScoresResultsListener {
                                         public void setHighScoresArray(final HighScores[] highScoresArray) {
                                             try {
                                                 final HighScoresHelperBase highScoresHelperBase = new HighScoresHelperBase();
@@ -124,6 +127,8 @@ Created By: Travis Berthelot
                                             }
                                         }
                                     };
+                                    
+                                    final HighScoresResultsListener highScoresResultsListener = new SaveHighScoresResultsListener2();
                                                                         
                                     basicHighScoresFactory.fetchHighScores(gameInfo, highScoresResultsListener);                                    
                                 }
@@ -212,7 +217,8 @@ Created By: Travis Berthelot
                                     HighScoreNamePersistanceSingleton.getInstance().save(abeClientInformation, gameInfo, name);
                                     
                                     final BasicHighScoresFactory basicHighScoresFactory = new BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance());
-                                    final HighScoresResultsListener highScoresResultsListener = new HighScoresResultsListener() {
+                                    
+                                    class SaveHighScoresResultsListener3 implements HighScoresResultsListener {
                                         public void setHighScoresArray(final HighScores[] highScoresArray) {
                                             try {
                                             final HighScoresHelperBase highScoresHelperBase = new HighScoresHelperBase();
@@ -229,6 +235,8 @@ Created By: Travis Berthelot
                                             }
                                         }
                                     };
+
+                                    final HighScoresResultsListener highScoresResultsListener = new SaveHighScoresResultsListener3();
                                     
                                     basicHighScoresFactory.fetchHighScores(gameInfo, highScoresResultsListener);
 
@@ -237,7 +245,7 @@ Created By: Travis Berthelot
                                     
                                     final BasicHighScoresFactory basicHighScoresFactory = new BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance());
                                     
-                                    final HighScoresResultsListener highScoresResultsListener = new HighScoresResultsListener() {
+                                    public SaveHighScoresResultsListener4 implements HighScoresResultsListener {
                                         public void setHighScoresArray(final HighScores[] highScoresArray) {
                                             try {
                                                 final HighScoresHelperBase highScoresHelperBase = new HighScoresHelperBase();
@@ -251,6 +259,8 @@ Created By: Travis Berthelot
                                             }
                                         }
                                     };
+
+                                    final HighScoresResultsListener highScoresResultsListener = new SaveHighScoresResultsListener4();
                                                                         
                                     basicHighScoresFactory.fetchHighScores(gameInfo, highScoresResultsListener);                                    
 

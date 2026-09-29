@@ -540,13 +540,15 @@ Created By: Travis Berthelot
 
                 };
 
-                public final GDObjectFactory <xsl:value-of select="name" />GDObjectFactory = new GDObjectFactory() {
+                class GDObjectClassGDObjectFactory extends GDObjectFactory {
 
                     public GDObject get(final int width, final int height, final String name) {
                         return new <xsl:value-of select="name" />(width, height, name);
                     }
 
-                };    
+                };
+
+                public final GDObjectFactory <xsl:value-of select="name" />GDObjectFactory = new GDObjectClassGDObjectFactory();
                 
             </xsl:if>
             <xsl:if test="type = 'ParticleSystem::ParticleEmitter'" >
@@ -575,13 +577,15 @@ Created By: Travis Berthelot
                     }
                 };
 
-                public final GDObjectFactory <xsl:value-of select="name" />GDObjectFactory = new GDObjectFactory() {
+                class GDObjectClass2GDObjectFactory extends GDObjectFactory {
 
                     public GDObject get(final int width, final int height, final String name) {
                         return new <xsl:value-of select="name" />(width, height, name);
                     }
 
-                };    
+                };
+
+                public final GDObjectFactory <xsl:value-of select="name" />GDObjectFactory = new GDObjectClass2GDObjectFactory();
 
             </xsl:if>
 

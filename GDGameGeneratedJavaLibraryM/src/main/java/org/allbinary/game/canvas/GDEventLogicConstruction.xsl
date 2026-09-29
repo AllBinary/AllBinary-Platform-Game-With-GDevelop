@@ -2437,8 +2437,8 @@ Created By: Travis Berthelot
 
             <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
             <xsl:if test="contains($foundMousePositionNeeded, 'found')" >        
-                    //MouseX MouseY
-                    globals.eventListenerInterfaceLastPoint = new BaseMotionGestureEventListener() {
+                //MouseX MouseY
+                class MouseBaseMotionGestureEventListener implements BaseMotionGestureEventListener {
 
                         public void onEvent(final AllBinaryEventObject eventObject)
                         {
@@ -2501,6 +2501,8 @@ Created By: Travis Berthelot
 
                     };
                 
+                globals.eventListenerInterfaceLastPoint = new MouseBaseMotionGestureEventListener();
+
                 globals.lastPointGDNode = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 
                     private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();

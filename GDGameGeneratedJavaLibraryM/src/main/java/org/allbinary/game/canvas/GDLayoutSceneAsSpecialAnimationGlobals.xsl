@@ -128,7 +128,7 @@ Created By: Travis Berthelot
 
                     public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals getInstanceOrCreate()
                     {
-                        return instance;
+                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance;
                     }
 
                     public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals getInstance()

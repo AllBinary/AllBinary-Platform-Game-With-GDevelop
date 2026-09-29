@@ -165,7 +165,7 @@ Created By: Travis Berthelot
                         //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDObjectList.add(<xsl:value-of select="name" />);
 
                             <xsl:if test="initialVariables" >
-                            <xsl:value-of select="$name" />.initialVariables = new GDInitialVariables() {
+                            class CreateInstanceGDInitialVariables extends GDInitialVariables {
                                 public void reset() {
                             <xsl:for-each select="initialVariables" >//initialVariables - //<xsl:value-of select="type" /> - //<xsl:value-of select="name" /> - //<xsl:value-of select="value" />
                             <xsl:text>&#10;</xsl:text>
@@ -174,6 +174,8 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                                 }
                             };
+
+                            <xsl:value-of select="$name" />.initialVariables = new CreateInstanceGDInitialVariables();
                             <xsl:value-of select="$name" />.initialVariables.reset();
                             </xsl:if>
 

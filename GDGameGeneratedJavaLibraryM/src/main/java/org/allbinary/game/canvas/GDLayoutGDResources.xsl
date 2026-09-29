@@ -121,10 +121,10 @@ Created By: Travis Berthelot
                     private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources instance = null;
                         
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources getInstanceOrCreate() throws Exception {
-                            if(instance == null) {
-                                instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources();
+                            if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.instance == null) {
+                                GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources();
                             }
-                            return instance;
+                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.instance;
                         }
                         
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources getInstance()

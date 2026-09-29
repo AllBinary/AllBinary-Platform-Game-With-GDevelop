@@ -98,7 +98,7 @@ Created By: Travis Berthelot
                     {
                         return GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.instance;
                     }
-                        return GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.instance;
+
                     protected final LogUtil logUtil = LogUtil.getInstance();
                     private final CommonStrings commonStrings = CommonStrings.getInstance();
                     private final StringUtil stringUtil = StringUtil.getInstance();
