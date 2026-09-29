@@ -4,7 +4,7 @@
 
     <parent>
         <groupId>org.allbinary.game.gd</groupId>
-        <artifactId>GDGameParentJs</artifactId>
+        <artifactId>GDGameParent</artifactId>
         <!-- Game Version Start -->
         <version>1.0.0-SNAPSHOT</version>
         <!-- Game Version Start -->
@@ -19,20 +19,16 @@
     <properties>
         <buildLabel>${version}</buildLabel>
         <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
-    </properties>
-
-
-    <properties>
         <yarnVersion>v1.22.22</yarnVersion>
     </properties>
 
     <dependencies>
-        <dependency>
+<!--        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>3.8.1</version>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.allbinary</groupId>
@@ -138,21 +134,6 @@
                                 <argument>npx tsc || exit 0</argument>
                             </arguments>
                         </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.1.2</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>

@@ -4,7 +4,7 @@
 
     <parent>
         <groupId>org.allbinary.game.gd</groupId>
-        <artifactId>GDGameParentJs</artifactId>
+        <artifactId>GDGameParent</artifactId>
         <!-- Game Version Start -->
         <version>1.0.0-SNAPSHOT</version>
         <!-- Game Version End -->
@@ -19,10 +19,6 @@
     <properties>
         <buildLabel>${version}</buildLabel>
         <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
-    </properties>
-
-
-    <properties>
         <yarnVersion>v1.22.22</yarnVersion>
     </properties>
 
@@ -154,6 +150,9 @@
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameTouchJavaLibraryJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
 
@@ -167,6 +166,9 @@
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameJavaLibraryJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
         
         <!--
@@ -199,11 +201,17 @@
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameWavSoundsJavaLibraryJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameResourceJavaLibraryJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
 
         <dependency>
@@ -257,12 +265,12 @@
             <optional>true</optional>
         </dependency>
 
-        <dependency>
+<!--        <dependency>
             <groupId>org.microemu</groupId>
             <artifactId>microemu-javaseJs</artifactId>
             <version>2.0.4</version>
             <optional>true</optional>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 
