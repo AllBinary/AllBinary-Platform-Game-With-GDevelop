@@ -540,7 +540,7 @@ Created By: Travis Berthelot
 
                 };
 
-                class GDObjectClassGDObjectFactory extends GDObjectFactory {
+                class <xsl:value-of select="name" />GDObjectClassGDObjectFactory extends GDObjectFactory {
 
                     public GDObject get(final int width, final int height, final String name) {
                         return new <xsl:value-of select="name" />(width, height, name);
@@ -548,7 +548,7 @@ Created By: Travis Berthelot
 
                 };
 
-                public final GDObjectFactory <xsl:value-of select="name" />GDObjectFactory = new GDObjectClassGDObjectFactory();
+                public final GDObjectFactory <xsl:value-of select="name" />GDObjectFactory = new <xsl:value-of select="name" />GDObjectClassGDObjectFactory();
                 
             </xsl:if>
             <xsl:if test="type = 'ParticleSystem::ParticleEmitter'" >
