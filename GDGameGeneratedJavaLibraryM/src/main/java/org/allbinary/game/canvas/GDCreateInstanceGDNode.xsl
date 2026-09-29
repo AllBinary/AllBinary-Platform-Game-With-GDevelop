@@ -125,8 +125,6 @@ Created By: Travis Berthelot
                     public void init(final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources, final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources) {
                     
                         try {
-                        
-                            logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
 
                     <xsl:call-template name="scale" >
                         <xsl:with-param name="layoutIndex" >
@@ -145,8 +143,6 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="$createInstanceIndex" />
                             </xsl:with-param>
                         </xsl:call-template>
-                            
-                            logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
 
                         } catch(Exception e) {
                             logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);

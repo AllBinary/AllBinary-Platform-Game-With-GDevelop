@@ -18,7 +18,9 @@
     <properties>
         <buildLabel>${version}</buildLabel>
         <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+        <yarnVersion>v1.22.22</yarnVersion>
     </properties>
+
 
     <modules>
 
@@ -65,14 +67,9 @@
         <module>../replace_these_stub_projects/GDFormJavaLibraryTsM</module>
         <module>../../AllBinary-Platform-Integration/embedded/j2me/microemulator/custom/GDFormJavaLibraryTsM</module>
 
-        <module>../GDGameThreedP</module>
+        <module>../GDGameThreedTsP</module>
 
     </modules>
-
-
-    <properties>
-        <yarnVersion>v1.22.22</yarnVersion>
-    </properties>
 
     <dependencies>
         <dependency>

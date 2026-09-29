@@ -124,14 +124,14 @@ Created By: Travis Berthelot
                         
                             logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
 
-                    <xsl:call-template name="scale" >
+<!--                    <xsl:call-template name="scale" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
                         <xsl:with-param name="layoutName" >
                             <xsl:value-of select="$layoutName" />
                         </xsl:with-param>
-                    </xsl:call-template>
+                    </xsl:call-template>-->
                     
                             final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = this.createSpecialAnimationImageResources();
                             
