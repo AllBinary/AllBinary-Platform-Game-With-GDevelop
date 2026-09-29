@@ -84,7 +84,7 @@ Created By: Travis Berthelot
 
                     public static GDGlobalsGDObjectsFactory getInstance()
                     {
-                        return instance;
+                        return GDGlobalsGDObjectsFactory.instance;
                     }
 
                     protected final LogUtil logUtil = LogUtil.getInstance();

@@ -125,7 +125,7 @@ Created By: Travis Berthelot
 
                     public static GDGameGlobals getInstance()
                     {
-                        return instance;
+                        return GDGameGlobals.instance;
                     }
 
                     protected final LogUtil logUtil = LogUtil.getInstance();

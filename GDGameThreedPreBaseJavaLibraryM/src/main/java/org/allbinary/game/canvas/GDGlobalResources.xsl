@@ -66,7 +66,7 @@ Created By: Travis Berthelot
 
                         public static GDGlobalSpecialAnimationResources getInstance()
                         {
-                            return instance;
+                            return GDGlobalSpecialAnimationResources.instance;
                         }
 
                     private GDGlobalSpecialAnimationResources() {

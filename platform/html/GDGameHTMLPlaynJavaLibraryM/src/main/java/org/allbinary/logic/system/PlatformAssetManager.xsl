@@ -50,7 +50,7 @@ public class PlatformAssetManager {
      * @return the instance
      */
     public static PlatformAssetManager getInstance() {
-        return instance;
+        return PlatformAssetManager.instance;
     }
 
     protected final LogUtil logUtil = LogUtil.getInstance();

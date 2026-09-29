@@ -92,7 +92,7 @@ Created By: Travis Berthelot
 
                         public static GDGlobalSpecialAnimationImageResources getInstance()
                         {
-                            return instance;
+                            return GDGlobalSpecialAnimationImageResources.instance;
                         }
 
                         protected final LogUtil logUtil = LogUtil.getInstance();

@@ -46,7 +46,7 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
      * @return the instance
      */
     public static GD<GD_CURRENT_INDEX>GameCameraSetup getInstance() {
-        return instance;
+        return GD<GD_CURRENT_INDEX>GameCameraSetup.instance;
     }
 
     protected final LogUtil logUtil = LogUtil.getInstance();

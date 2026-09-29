@@ -48,7 +48,7 @@ public class GDGameThreedAnimationResources {
      * @return the instance
      */
     public static GDGameThreedAnimationResources getInstance() {
-        return instance;
+        return GDGameThreedAnimationResources.instance;
     }
         
     private GDGameThreedAnimationResources() {

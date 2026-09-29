@@ -94,7 +94,7 @@ Created By: Travis Berthelot
 
                         public static GDGlobalsSpecialAnimation getInstance()
                         {
-                            return instance;
+                            return GDGlobalsSpecialAnimation.instance;
                         }
 
                         protected final LogUtil logUtil = LogUtil.getInstance();

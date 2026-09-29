@@ -108,7 +108,7 @@ Created By: Travis Berthelot
                 
                         public static GDGlobalsGDResources getInstance()
                         {
-                            return instance;
+                            return GDGlobalsGDResources.instance;
                         }
 
                         protected final LogUtil logUtil = LogUtil.getInstance();

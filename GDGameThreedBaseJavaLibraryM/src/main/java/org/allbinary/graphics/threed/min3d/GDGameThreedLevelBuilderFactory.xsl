@@ -57,7 +57,7 @@ public class GDGameThreedLevelBuilderFactory {
      * @return the instance
      */
     public static GDGameThreedLevelBuilderFactory getInstance() {
-        return instance;
+        return GDGameThreedLevelBuilderFactory.instance;
     }
     
     

@@ -35,7 +35,7 @@ public class GDGameCommandFactory {
      * @return the instance
      */
     public static GDGameCommandFactory getInstance() {
-        return instance;
+        return GDGameCommandFactory.instance;
     }
 
     <xsl:for-each select="layouts" >

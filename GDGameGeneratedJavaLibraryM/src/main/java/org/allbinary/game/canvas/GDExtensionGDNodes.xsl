@@ -90,7 +90,7 @@ Created By: Travis Berthelot
 
                     public static GDExtensionGDNodes getInstance()
                     {
-                        return instance;
+                        return GDExtensionGDNodes.instance;
                     }
 
                     protected final LogUtil logUtil = LogUtil.getInstance();
