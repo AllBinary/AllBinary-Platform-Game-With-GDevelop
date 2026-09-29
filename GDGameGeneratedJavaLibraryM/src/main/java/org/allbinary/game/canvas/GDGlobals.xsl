@@ -303,7 +303,7 @@ Created By: Travis Berthelot
                                      
                     private GDGameGlobals() {
                     
-                        logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                        this.logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
 
                         final int size = channelSoundArray.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -324,7 +324,7 @@ Created By: Travis Berthelot
 
         final CommonStrings commonStrings = CommonStrings.getInstance();
         final StringMaker stringMaker = new StringMaker();
-        this.logUtil.putF(stringMaker.append("PlatformerMap: RandomDungeon: ").appendboolean(this.RandomDungeon).toString(), this, commonStrings.PROCESS);
+        this.this.logUtil.putF(stringMaker.append("PlatformerMap: RandomDungeon: ").appendboolean(this.RandomDungeon).toString(), this, commonStrings.PROCESS);
 
                                 </xsl:if>
                             </xsl:if>
@@ -380,7 +380,7 @@ Created By: Travis Berthelot
 
                         layerManagerEventHandler.addListener(layerManagerEventListener);
                         
-                        logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                        this.logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
                     }
                     
                     public void reset() {

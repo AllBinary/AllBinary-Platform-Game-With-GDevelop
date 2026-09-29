@@ -225,13 +225,13 @@ Created By: Travis Berthelot
             /*            
             public void setX(final int x) {
                 //if(Math.abs(x) > 10000)
-                logUtil.put(new StringMaker().append(" TWBx: ").append(x).toString(), this, commonStrings.PROCESS, new Exception());
+                this.logUtil.put(new StringMaker().append(" TWBx: ").append(x).toString(), this, commonStrings.PROCESS, new Exception());
                 super.setX(x);
             }
 
             public void setY(final int y) {
                 //if(Math.abs(y) > 10000)
-                logUtil.put(new StringMaker().append(" TWBy: ").append(y).toString(), this, commonStrings.PROCESS, new Exception());
+                this.logUtil.put(new StringMaker().append(" TWBy: ").append(y).toString(), this, commonStrings.PROCESS, new Exception());
                 super.setY(y);
             }
             */
@@ -407,7 +407,7 @@ Created By: Travis Berthelot
                         final int size = ANIMATION_NAMES.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             if(this.ANIMATION_NAMES[index] == animationName) {
-                                //logUtil.put(animationName, this, "getAnimation");
+                                //this.logUtil.put(animationName, this, "getAnimation");
                                 return this.ANIMATION_NAMES[index];
                             }
                         }
@@ -415,7 +415,7 @@ Created By: Travis Berthelot
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             //TWB - This is slow please fix me.
                             if(this.ANIMATION_NAMES[index].compareTo(animationName) == 0) {
-                                //logUtil.put(animationName, this, "getAnimation");
+                                //this.logUtil.put(animationName, this, "getAnimation");
                                 return this.ANIMATION_NAMES[index];
                             }
                         }
@@ -427,7 +427,7 @@ Created By: Travis Berthelot
                         final int size = ANIMATION_NAMES.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             if(this.ANIMATION_NAMES[index] == animationName) {
-                                //logUtil.put(animationName, this, "setAnimation");
+                                //this.logUtil.put(animationName, this, "setAnimation");
                                 if(this.animation != index) {
                                     this.animation = index;
                                     return true;

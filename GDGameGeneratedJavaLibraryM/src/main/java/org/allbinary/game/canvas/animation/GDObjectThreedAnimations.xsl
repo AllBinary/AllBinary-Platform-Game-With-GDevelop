@@ -20,7 +20,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="instancesAsString" />
 
-//               logUtil.putF("scale: " + scale, this, commonStrings.PROCESS);
+//               this.logUtil.putF("scale: " + scale, this, commonStrings.PROCESS);
                 
         //objectsAssign - threedAnimationFactoryCalls - START
  
@@ -339,7 +339,7 @@ Created By: Travis Berthelot
                                 );
                 }
 
-//                logUtil.putF("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
+//                this.logUtil.putF("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
 
                                     </xsl:if>                
                             </xsl:for-each>
@@ -482,7 +482,7 @@ Created By: Travis Berthelot
 
                 }
 
-//              logUtil.putF("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
+//              this.logUtil.putF("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
 
                                 <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                 rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][<xsl:value-of select="$position - 1" />] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask;
@@ -535,7 +535,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
+                    this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
                 }
 -->
 
@@ -623,7 +623,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
+                    this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
                 }
 -->
 
@@ -904,7 +904,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
+                    this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
                 }
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
@@ -982,7 +982,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
+                    this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
                 }
 -->
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
@@ -1041,7 +1041,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
+                    this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
                 }
 -->
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
@@ -1091,7 +1091,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
+                    this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
                 }
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {

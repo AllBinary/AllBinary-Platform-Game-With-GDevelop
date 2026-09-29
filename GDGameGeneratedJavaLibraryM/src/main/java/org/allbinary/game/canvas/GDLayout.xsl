@@ -186,7 +186,7 @@ Created By: Travis Berthelot
 
                     private GD<xsl:value-of select="$layoutIndex" />SpecialAnimation() {
 
-                        logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                        this.logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
                     
                         <xsl:call-template name="scale" >
                             <xsl:with-param name="layoutIndex" >
@@ -206,7 +206,7 @@ Created By: Travis Berthelot
 <!--                        try {
 
                         } catch(Exception e) {
-                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                            this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
                         }-->
 
                         //allBinaryGameLayerManager.log();
@@ -214,7 +214,7 @@ Created By: Travis Berthelot
                         
                         gdNodeStatsFactory.log(stringBuilder, this);
                         
-                        logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                        this.logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
                     }
                     
                     private void processMotionEvents() throws Exception {
@@ -276,8 +276,8 @@ Created By: Travis Berthelot
                                     <xsl:value-of select="name" />.setPoint(point);
                                     final float portionOfX = ((float) point.getX() - gameLayer.getXP() - gameLayer.getHalfWidth()) / (float) gameLayer.getWidth() * 2;
                                     final float portionOfY = -((float) point.getY() - gameLayer.getYP() - gameLayer.getHalfHeight()) / (float) gameLayer.getHeight() * 2;
-                                    //logUtil.put(new StringMaker().append(portionOfX).append("portionOfX: ").append(point.getX()).append(" - ").append(gameLayer.getXP()).append(" / ").append(gameLayer.getWidth()).toString(), this, commonStrings.CONSTRUCTOR);
-                                    //logUtil.put(new StringMaker().append(portionOfY).append("portionOfY: ").append(point.getY()).append(" - ").append(gameLayer.getYP()).append(" / ").append(gameLayer.getHeight()).toString(), this, commonStrings.CONSTRUCTOR);
+                                    //this.logUtil.put(new StringMaker().append(portionOfX).append("portionOfX: ").append(point.getX()).append(" - ").append(gameLayer.getXP()).append(" / ").append(gameLayer.getWidth()).toString(), this, commonStrings.CONSTRUCTOR);
+                                    //this.logUtil.put(new StringMaker().append(portionOfY).append("portionOfY: ").append(point.getY()).append(" - ").append(gameLayer.getYP()).append(" / ").append(gameLayer.getHeight()).toString(), this, commonStrings.CONSTRUCTOR);
                                     <xsl:value-of select="name" />.setStickForceX(portionOfX);
                                     <xsl:value-of select="name" />.setStickForceY(portionOfY);
                                     gameLayer.getDimensionalBehavior().getAnimationBehavior().set(gameLayer, <xsl:value-of select="name" />);
@@ -395,9 +395,9 @@ Created By: Travis Berthelot
                            <xsl:for-each select="behaviors" >
                                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
                                <xsl:if test="type = 'DestroyOutsideBehavior::DestroyOutside'" >
-                               //logUtil.putF("Behavior objectName=<xsl:value-of select="$objectName" /> name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />: check", this, commonStrings.PROCESS);
+                               //this.logUtil.putF("Behavior objectName=<xsl:value-of select="$objectName" /> name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />: check", this, commonStrings.PROCESS);
                                if(globals.destroyOutsideBehavior.process(globals.<xsl:value-of select="$objectName" />GDGameLayerList, index, globals.graphics)) {
-                                   //logUtil.putF("Behavior objectName=<xsl:value-of select="$objectName" /> name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />: remove", this, commonStrings.PROCESS);
+                                   //this.logUtil.putF("Behavior objectName=<xsl:value-of select="$objectName" /> name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />: remove", this, commonStrings.PROCESS);
                                    removeList.add(globals.<xsl:value-of select="$objectName" />GDGameLayerList.get(index));
                                }
                                </xsl:if>
@@ -409,7 +409,7 @@ Created By: Travis Berthelot
                                gdGameLayer = (GDGameLayer) removeList.get(index);
                                //This removes itself from the list
                                gdGameLayer.setDestroyed(true);
-                               //logUtil.putF("Behavior objectName=<xsl:value-of select="name" /> size=<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList size: " + <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size(), this, commonStrings.PROCESS);
+                               //this.logUtil.putF("Behavior objectName=<xsl:value-of select="name" /> size=<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList size: " + <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size(), this, commonStrings.PROCESS);
                            }
 
                         </xsl:if>
@@ -431,7 +431,7 @@ Created By: Travis Berthelot
                         globals.globalsGameTickTimeDelayHelper.lastStartTime = gameTickTimeDelayHelper.startTime;
                     
                         } catch(Exception e) {
-                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e);
+                            this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e);
                         }
                         
                     }
@@ -498,7 +498,7 @@ Created By: Travis Berthelot
 
                     public void open() {
                     
-                        //logUtil.putF("scene - open", this, commonStrings.PROCESS);
+                        //this.logUtil.putF("scene - open", this, commonStrings.PROCESS);
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                     <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
@@ -520,7 +520,7 @@ Created By: Travis Berthelot
 
                     public void close() {
                     
-                        //logUtil.putF("scene - close", this, commonStrings.PROCESS);
+                        //this.logUtil.putF("scene - close", this, commonStrings.PROCESS);
 
                         GDFormInputProcessor.getInstance().close();
 
@@ -550,12 +550,12 @@ Created By: Travis Berthelot
                     public void reinitInstances() throws Exception {
                     
                         if(!clear) {
-                            //logUtil.putF("scene - reinitInstances - duplicate", this, commonStrings.PROCESS);
+                            //this.logUtil.putF("scene - reinitInstances - duplicate", this, commonStrings.PROCESS);
                             //throw new RuntimeException();
                             return;
                         }
                     
-                        //logUtil.putF("scene - reinitInstances", this, commonStrings.PROCESS);
+                        //this.logUtil.putF("scene - reinitInstances", this, commonStrings.PROCESS);
 
                     this.globals.reset();
 
@@ -575,7 +575,7 @@ Created By: Travis Berthelot
                         
                         <xsl:if test="not(contains($hasHighscoreSubmissionComplete, 'found'))" >
                         //This layout should not be the highscore layout
-                        logUtil.putF("This layout should not be the highscore layout", this, commonStrings.PROCESS);
+                        this.logUtil.putF("This layout should not be the highscore layout", this, commonStrings.PROCESS);
                         globals.highscoreSubmissionComplete = false;
                         </xsl:if>
 
@@ -584,7 +584,7 @@ Created By: Travis Berthelot
                     
                     public void reset() {
 
-                        //logUtil.putF("scene - clear", this, commonStrings.PROCESS);
+                        //this.logUtil.putF("scene - clear", this, commonStrings.PROCESS);
 
                         clear = true;
 

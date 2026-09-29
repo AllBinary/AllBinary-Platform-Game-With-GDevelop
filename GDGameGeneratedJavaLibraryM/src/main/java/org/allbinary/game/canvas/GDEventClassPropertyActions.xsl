@@ -116,7 +116,7 @@ Created By: Travis Berthelot
             } else if(<xsl:value-of select="$name" />JSONObject != nullUtil.NULL_OBJECT) {
                 return 1;
             } else {
-                logUtil.putF("Not JSONArray or JSONObject", this, "getJSONType()");
+                this.logUtil.putF("Not JSONArray or JSONObject", this, "getJSONType()");
                 return -1;
             }    
         }
@@ -127,7 +127,7 @@ Created By: Travis Berthelot
             } else if(<xsl:value-of select="$name" />JSONObject != nullUtil.NULL_OBJECT) {
                 return <xsl:value-of select="$name" />JSONObject.toString();
             } else {
-                logUtil.putF("Not JSONArray or JSONObject", this, "toJSONAsString");
+                this.logUtil.putF("Not JSONArray or JSONObject", this, "toJSONAsString");
                 return <xsl:value-of select="$name" />JSONObject.toString();
             }    
         }

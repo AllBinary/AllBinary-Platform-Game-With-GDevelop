@@ -139,7 +139,7 @@ Created By: Travis Berthelot
 
                         try {
                         
-                            logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                            this.logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
 
                         <xsl:call-template name="scale" >
                             <xsl:with-param name="layoutIndex" >
@@ -178,10 +178,10 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     //otherEventLayout - //eventsCreateAssignGDObjectGDNodesOtherEvent - END
 
-                    logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                    this.logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
 
                         } catch(Exception e) {
-                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                            this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
                         }
 
                     }

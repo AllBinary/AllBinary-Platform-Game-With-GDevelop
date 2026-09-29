@@ -88,20 +88,20 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
         
         if(!name.startsWith(gdObject.name)) {
             final StringUtil stringUtil = StringUtil.getInstance();
-            logUtil.put(new StringMaker().append(name).append(" 0GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").appendint(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(stringUtil.toString(this.animationInterfaceFactoryInterfaceArray[0])).toString(), this, "create", new Exception());
+            this.logUtil.put(new StringMaker().append(name).append(" 0GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").appendint(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(stringUtil.toString(this.animationInterfaceFactoryInterfaceArray[0])).toString(), this, "create", new Exception());
         }
 
         final int gdObjectWidth = gdObject.Width(null);
         final int gdObjectHeight = gdObject.Height(null);
-        ////logUtil.put(new StringMaker().append(name).append(" 1GDObject name: ").append(gdObject.name).append(" gdObjectWidth: ").appendint(gdObjectWidth).append("gdObjectHeight: ").appendint(gdObjectHeight).append(" this.width: ").appendint(this.width).append(" this.height: ").appendint(this.height).toString(), this, "create");
+        ////this.logUtil.put(new StringMaker().append(name).append(" 1GDObject name: ").append(gdObject.name).append(" gdObjectWidth: ").appendint(gdObjectWidth).append("gdObjectHeight: ").appendint(gdObjectHeight).append(" this.width: ").appendint(this.width).append(" this.height: ").appendint(this.height).toString(), this, "create");
         if(gdObjectWidth != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> gdObjectHeight != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> (this.width != gdObjectWidth || this.height != gdObjectHeight)) {
             this.layerInfo.setWidth(gdObjectWidth);
             this.layerInfo.setHeight(gdObjectHeight);
-            //logUtil.put(new StringMaker().append(name).append(" 2GDObject name: ").append(gdObject.name).append(commonSeps.SPACE).append(this.layerInfo.toString()).toString(), this, "create");
+            //this.logUtil.put(new StringMaker().append(name).append(" 2GDObject name: ").append(gdObject.name).append(commonSeps.SPACE).append(this.layerInfo.toString()).toString(), this, "create");
         } else {
             this.layerInfo.setWidth(this.width);
             this.layerInfo.setHeight(this.height);
-            //logUtil.put(new StringMaker().append(name).append(" 3GDObject name: ").append(gdObject.name).append(commonSeps.SPACE).append(this.layerInfo.toString()).toString(), this, "create");
+            //this.logUtil.put(new StringMaker().append(name).append(" 3GDObject name: ").append(gdObject.name).append(commonSeps.SPACE).append(this.layerInfo.toString()).toString(), this, "create");
         }
 
         final Rectangle rectangle = this.init(gdObject, scaleX, scaleY);
@@ -124,9 +124,9 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
                         if(this.gdObject.x != this.getXP() || this.gdObject.y != this.getYP()) {
                             change = true;
                         }
-                        if(change) logUtil.put(this.getXP() + " TWBB " + this.getYP(), this, commonStrings.PROCESS);
+                        if(change) this.logUtil.put(this.getXP() + " TWBB " + this.getYP(), this, commonStrings.PROCESS);
                         super.updatePosition();
-                        if(change) logUtil.put(this.getXP() + " TWBA " + this.getYP(), this, commonStrings.PROCESS);
+                        if(change) this.logUtil.put(this.getXP() + " TWBA " + this.getYP(), this, commonStrings.PROCESS);
                     }*/
                 };
 
@@ -138,7 +138,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             gameLayer.setCollidableInferface(new GDCustomCollidableBehavior(collidableBehavior, true));
         }
 
-        //logUtil.put(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(" w/h/d: ").append(gameLayer.getWidth()).append('/').append(gameLayer.getHeight()).append('/').append(gameLayer.getDepth()).toString(), this, "create");
+        //this.logUtil.put(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(" w/h/d: ").append(gameLayer.getWidth()).append('/').append(gameLayer.getHeight()).append('/').append(gameLayer.getDepth()).toString(), this, "create");
         
         return gameLayer;
     }

@@ -175,7 +175,7 @@ Created By: Travis Berthelot
 
                         try {
                         
-                            logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                            this.logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
                     
                                     <xsl:call-template name="scale" >
                                         <xsl:with-param name="layoutIndex" >
@@ -216,10 +216,10 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     //actionLayout - //eventsCreateAssignGDObjectGDNodesAction - END                    
                     
-                            logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                            this.logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
 
                         } catch(Exception e) {
-                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                            this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
                         }
 
                     }
@@ -243,31 +243,31 @@ Created By: Travis Berthelot
 
                     public float RandomFloatInRange(final double min, final double max) {
                         final double next = (max - min);
-                        //logUtil.putF("NEXT: " + next, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("NEXT: " + next, this, commonStrings.PROCESS);
                         final float nextF = (float) next * 1000;
-                        //logUtil.putF("NEXTF: " + nextF, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("NEXTF: " + nextF, this, commonStrings.PROCESS);
                         final int nextI = Math.round(nextF);
-                        //logUtil.putF("NEXTI: " + nextI, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("NEXTI: " + nextI, this, commonStrings.PROCESS);
                         final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
-                        //logUtil.putF("RANDOM: " + random, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("RANDOM: " + random, this, commonStrings.PROCESS);
                         final float randomF = (float) random;
-                        //logUtil.putF("RANDOMF: " + randomF, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("RANDOMF: " + randomF, this, commonStrings.PROCESS);
                         final float result = (float) min + (randomF / 1000);
-                        //logUtil.putF("RESULT: " + result, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("RESULT: " + result, this, commonStrings.PROCESS);
                         return result;
                     }
                     
                     public float RandomFloatInRange(final float min, final float max) {
                         final float nextF = (float) (max - min) * 1000;
-                        //logUtil.putF("NEXTF: " + nextF, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("NEXTF: " + nextF, this, commonStrings.PROCESS);
                         final int nextI = Math.round(nextF);
-                        //logUtil.putF("NEXTI: " + nextI, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("NEXTI: " + nextI, this, commonStrings.PROCESS);
                         final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
-                        //logUtil.putF("RANDOM: " + random, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("RANDOM: " + random, this, commonStrings.PROCESS);
                         final float randomF = (float) random;
-                        //logUtil.putF("RANDOMF: " + randomF, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("RANDOMF: " + randomF, this, commonStrings.PROCESS);
                         final float result = (float) min + (randomF / 1000);
-                        //logUtil.putF("RESULT: " + result, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("RESULT: " + result, this, commonStrings.PROCESS);
                         return result;
                     }
 

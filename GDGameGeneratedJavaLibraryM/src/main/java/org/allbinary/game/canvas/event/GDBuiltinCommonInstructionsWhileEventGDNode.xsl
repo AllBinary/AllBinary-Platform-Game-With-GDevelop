@@ -89,7 +89,7 @@ Created By: Travis Berthelot
                     super.processStats();
                     
                     <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="$nodeId" />, this, commonStrings.PROCESS);
+                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="$nodeId" />, this, commonStrings.PROCESS);
 
                 <xsl:if test="whileConditions" >
                     //whileConditions
@@ -101,7 +101,7 @@ Created By: Travis Berthelot
 
                     this.iterationTotal++;
                     if(iterationTotal % 10000 == 0) {
-                        logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="$nodeId" /> + gdStrings.LONG_RUNNING_WHILE_LOOP + this.iterationTotal, this, commonStrings.PROCESS);
+                        this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="$nodeId" /> + gdStrings.LONG_RUNNING_WHILE_LOOP + this.iterationTotal, this, commonStrings.PROCESS);
                     }
 
                     <xsl:for-each select=".." >
@@ -198,7 +198,7 @@ Created By: Travis Berthelot
                 public boolean process(final int index3) throws Exception {
                     super.processStats();
                     
-                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);                    
+                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);                    
 
                 <xsl:if test="whileConditions" >
                     //whileConditions
@@ -209,7 +209,7 @@ Created By: Travis Berthelot
 
                     this.iterationTotal++;
                     if(iterationTotal % 10000 == 0) {
-                        logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="$nodeId" /> + gdStrings.LONG_RUNNING_WHILE_LOOP + this.iterationTotal, this, commonStrings.PROCESS);
+                        this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="$nodeId" /> + gdStrings.LONG_RUNNING_WHILE_LOOP + this.iterationTotal, this, commonStrings.PROCESS);
                     }
 
                     <xsl:for-each select=".." >
@@ -306,7 +306,7 @@ Created By: Travis Berthelot
                 public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                     super.processStats(motionGestureEvent);
 
-                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, commonStrings.PROCESS);
+                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, commonStrings.PROCESS);
 
                 <xsl:if test="whileConditions" >
                     //whileConditions
@@ -318,7 +318,7 @@ Created By: Travis Berthelot
 
                     this.iterationTotal++;
                     if(iterationTotal % 10000 == 0) {
-                        logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="$nodeId" /> + gdStrings.LONG_RUNNING_WHILE_LOOP + this.iterationTotal, this, commonStrings.PROCESS);
+                        this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="$nodeId" /> + gdStrings.LONG_RUNNING_WHILE_LOOP + this.iterationTotal, this, commonStrings.PROCESS);
                     }
                     
                     <xsl:for-each select=".." >
@@ -394,7 +394,7 @@ Created By: Travis Berthelot
                 public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
                     super.processGDStats(gameLayerArray);
                         
-                    //logUtil.putF(EVENT_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    //this.logUtil.putF(EVENT_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                 <xsl:if test="whileConditions" >
                     //whileConditions
@@ -406,7 +406,7 @@ Created By: Travis Berthelot
                     
                     this.iterationTotal++;
                     if(iterationTotal % 10000 == 0) {
-                        logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="$nodeId" /> + gdStrings.LONG_RUNNING_WHILE_LOOP + this.iterationTotal, this, commonStrings.PROCESS);
+                        this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="$nodeId" /> + gdStrings.LONG_RUNNING_WHILE_LOOP + this.iterationTotal, this, commonStrings.PROCESS);
                     }
                     
                     <xsl:for-each select=".." >

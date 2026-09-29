@@ -367,16 +367,16 @@ Created By: Travis Berthelot
     @Override
     public void moveAndLand(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final GeographicMapCellPosition geographicMapCellPosition, final VelocityProperties velocityProperties, final AllBinaryLayer layer, final int x, final int y) throws Exception {
         
-        //logUtil.put(new StringMaker().append("x: ").append(x).append(" y: ").append(y).append(CommonSeps.getInstance().SPACE).append(layer.getViewPosition().getX()).toString(), this, "moveAndLand");
+        //this.logUtil.put(new StringMaker().append("x: ").append(x).append(" y: ").append(y).append(CommonSeps.getInstance().SPACE).append(layer.getViewPosition().getX()).toString(), this, "moveAndLand");
         
         if (geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
 
             super.moveAndLand(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPosition, velocityProperties, layer, x, y);
 
             //final String MOVE_AND_LAND = "moveAndLand";
-            //logUtil.put(new StringMaker().append("Should Land at: ").append(this.gravityActionIndex).append(" y: ").append(y).toString(), this, MOVE_AND_LAND);
+            //this.logUtil.put(new StringMaker().append("Should Land at: ").append(this.gravityActionIndex).append(" y: ").append(y).toString(), this, MOVE_AND_LAND);
         } else {
-            //logUtil.putF("do not move", this, "moveAndLand");
+            //this.logUtil.putF("do not move", this, "moveAndLand");
                     
             //CollisionNP?
 
@@ -393,16 +393,16 @@ Created By: Travis Berthelot
     @Override
     public void moveAndLand(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final GeographicMapCellPosition geographicMapCellPosition, final VelocityProperties velocityProperties, final AllBinaryLayer layer, final int x, final int y) throws Exception {
         
-        //logUtil.put(new StringMaker().append("x: ").append(x).append(" y: ").append(y).append(CommonSeps.getInstance().SPACE).append(layer.getViewPosition().getX()).toString(), this, "moveAndLand");
+        //this.logUtil.put(new StringMaker().append("x: ").append(x).append(" y: ").append(y).append(CommonSeps.getInstance().SPACE).append(layer.getViewPosition().getX()).toString(), this, "moveAndLand");
         
         if (geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
 
             super.moveAndLand(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPosition, velocityProperties, layer, x, y);
 
             //final String MOVE_AND_LAND = "moveAndLand";
-            //logUtil.put(new StringMaker().append("Should Land at: ").append(this.gravityActionIndex).append(" y: ").append(y).toString(), this, MOVE_AND_LAND);
+            //this.logUtil.put(new StringMaker().append("Should Land at: ").append(this.gravityActionIndex).append(" y: ").append(y).toString(), this, MOVE_AND_LAND);
         } else {
-            //logUtil.putF("do not move", this, "moveAndLand");
+            //this.logUtil.putF("do not move", this, "moveAndLand");
                     
             //CollisionNP?
 
@@ -457,7 +457,7 @@ Created By: Travis Berthelot
         
         <xsl:if test="contains($hasDraggableBehavior, 'found')" >
         this.isDraggable = gdObject.isBehaviorEnabledArray[gdBehaviorUtil.DRAGGABLE_BEHAVIOR_INDEX];
-        //logUtil.putF("isDraggable: " + isDraggable, this, commonStrings.CONSTRUCTOR);
+        //this.logUtil.putF("isDraggable: " + isDraggable, this, commonStrings.CONSTRUCTOR);
         </xsl:if>
                 
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
@@ -542,7 +542,7 @@ Created By: Travis Berthelot
     @Override
     public void move() {
         try {
-            //logUtil.putF("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move");
+            //this.logUtil.putF("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move");
 
 //            if(gameGlobals.PlayerGDGameLayerList.size() >= 0) {
 //                final GDGameLayer player = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
@@ -551,9 +551,9 @@ Created By: Travis Berthelot
 //                    if(lastString.compareTo(layerManagerAsString) != 0)
 //                    lastString = layerManagerAsString;
 //                    if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
-//                        logUtil.putF("1this.allBinaryGameLayerManager: " + this.allBinaryGameLayerManagerP, this, "move");
+//                        this.logUtil.putF("1this.allBinaryGameLayerManager: " + this.allBinaryGameLayerManagerP, this, "move");
 //                    } else {
-//                        logUtil.putF("0this.allBinaryGameLayerManager: " + this.allBinaryGameLayerManagerP, this, "move");
+//                        this.logUtil.putF("0this.allBinaryGameLayerManager: " + this.allBinaryGameLayerManagerP, this, "move");
 //                    }
 //                }
 //            }
@@ -563,7 +563,7 @@ Created By: Travis Berthelot
             if(this.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
                 if(this.total <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 5) {
                     this.total++;
-                    logUtil.putF(new StringMaker().append("0LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).appendint(this.gdObject.x).append(",").appendint(this.gdObject.y).append(" LayerManager: ").append(stringUtil.toString(this.allBinaryGameLayerManagerP)).toString(), this, "move");
+                    this.logUtil.putF(new StringMaker().append("0LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).appendint(this.gdObject.x).append(",").appendint(this.gdObject.y).append(" LayerManager: ").append(stringUtil.toString(this.allBinaryGameLayerManagerP)).toString(), this, "move");
                 }
                 return;
             }
@@ -586,7 +586,7 @@ Created By: Travis Berthelot
                 } else if(this.gdObject.type == gameGlobals.TILEMAP__TILEMAP) {
                     if(<xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                     final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.get(0);
-                    //logUtil.put(new StringMaker().append("Move Map: ").append(this.getName()).toString(), this, "move");
+                    //this.logUtil.put(new StringMaker().append("Move Map: ").append(this.getName()).toString(), this, "move");
                     
                     //basicGeographicMapUtil.move(geographicMapInterfaceArray, -x, -y);
                     basicGeographicMapUtil.setPosition(geographicMapInterfaceArray, x, y);
@@ -597,14 +597,14 @@ Created By: Travis Berthelot
 //                    } else {
 //                        //this.gdObject.setX(lastX);
 //                        //this.gdObject.setY(lastY);
-//                        //logUtil.put(new StringMaker().append("Move Back?: ").append(this.gdObject.x).append(CommonSeps.getInstance().COMMA).append(this.gdObject.y).toString(), this, "move");
+//                        //this.logUtil.put(new StringMaker().append("Move Back?: ").append(this.gdObject.x).append(CommonSeps.getInstance().COMMA).append(this.gdObject.y).toString(), this, "move");
 //                    }
                     }
                 } else {
                     if(<xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                     final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.get(0);
                     if(this == player) {
-                        //logUtil.put(new StringMaker().append("Player - Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move");
+                        //this.logUtil.put(new StringMaker().append("Player - Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move");
                         //this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this, this.gdObject.x, this.gdObject.y);
                     } else {
                         super.move();
@@ -613,7 +613,7 @@ Created By: Travis Berthelot
                 }
                 </xsl:if>
             } else {
-                //logUtil.put(new StringMaker().append("Map was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move");
+                //this.logUtil.put(new StringMaker().append("Map was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move");
                 GeographicMapEventHandler.getInstance().addListener(this);
             }
 
@@ -622,7 +622,7 @@ Created By: Travis Berthelot
             }
 
         } catch (Exception e) {
-            logUtil.put(commonStrings.EXCEPTION, this, "move", e);
+            this.logUtil.put(commonStrings.EXCEPTION, this, "move", e);
         }
     }
 
@@ -634,12 +634,12 @@ Created By: Travis Berthelot
     
     public void move2() {
         try {
-            //logUtil.putF("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move2");
+            //this.logUtil.putF("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move2");
 
             if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
 
             if(this.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
-                this.logUtil.putF(new StringMaker().append("1LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).appendint(this.gdObject.x).append(",").appendint(this.gdObject.y).append(" LayerManager: ").append(stringUtil.toString(this.allBinaryGameLayerManagerP)).toString(), this, "move");
+                this.this.logUtil.putF(new StringMaker().append("1LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).appendint(this.gdObject.x).append(",").appendint(this.gdObject.y).append(" LayerManager: ").append(stringUtil.toString(this.allBinaryGameLayerManagerP)).toString(), this, "move");
                 return;
             }
 
@@ -657,7 +657,7 @@ Created By: Travis Berthelot
                 } else if(this.gdObject.type == gameGlobals.TILEMAP__TILEMAP) {
                     if(<xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                     final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.get(0);
-                    //logUtil.put(new StringMaker().append("Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move2");
+                    //this.logUtil.put(new StringMaker().append("Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move2");
                     
                     //basicGeographicMapUtil.move(geographicMapInterfaceArray, -x, -y);
                     basicGeographicMapUtil.setPosition(geographicMapInterfaceArray, x, y);
@@ -668,14 +668,14 @@ Created By: Travis Berthelot
 //                    } else {
 //                        //this.gdObject.setX(lastX);
 //                        //this.gdObject.setY(lastY);
-//                        //logUtil.put(new StringMaker().append("Move Back?: ").append(this.gdObject.x).append(CommonSeps.getInstance().COMMA).append(this.gdObject.y).toString(), this, "move");
+//                        //this.logUtil.put(new StringMaker().append("Move Back?: ").append(this.gdObject.x).append(CommonSeps.getInstance().COMMA).append(this.gdObject.y).toString(), this, "move");
 //                    }
                     }
                 } else {
                     if(<xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                     final GDGameLayer Player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.get(0);
                     if(this == Player) {
-                        //logUtil.put(new StringMaker().append("Player - Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move2");
+                        //this.logUtil.put(new StringMaker().append("Player - Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move2");
                         //this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this, this.gdObject.x, this.gdObject.y);
                     } else {
                         super.move();
@@ -684,7 +684,7 @@ Created By: Travis Berthelot
                 }
                 </xsl:if>
             } else {
-                //logUtil.put(new StringMaker().append("Map was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move2");
+                //this.logUtil.put(new StringMaker().append("Map was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move2");
                 GeographicMapEventHandler.getInstance().addListener(this);
             }
 
@@ -693,7 +693,7 @@ Created By: Travis Berthelot
             }
 
         } catch (Exception e) {
-            logUtil.put(commonStrings.EXCEPTION, this, "move2", e);
+            this.logUtil.put(commonStrings.EXCEPTION, this, "move2", e);
         }
     }
 
@@ -801,7 +801,7 @@ Created By: Travis Berthelot
         final BasicArrayList list = this.getGameKeyEventList();
         final int size = list.size();
 //        if(size != lastSize) {
-//            logUtil.put(new StringMaker().append("Size: ").append(size).toString(), this, "processInput");
+//            this.logUtil.put(new StringMaker().append("Size: ").append(size).toString(), this, "processInput");
 //            lastSize = size;
 //        }
 
@@ -839,7 +839,7 @@ Created By: Travis Berthelot
     public void move() {
         try {
             if(this.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
-                logUtil.put(new StringMaker().append("2LayerManager was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move");
+                this.logUtil.put(new StringMaker().append("2LayerManager was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move");
                 return;
             }
         
@@ -852,17 +852,17 @@ Created By: Travis Berthelot
             if(geographicMapInterfaceArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
                 this.platformGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this);
             } else {
-                //logUtil.putF("Map was null, this, "move");
+                //this.logUtil.putF("Map was null, this, "move");
             }
 
         } catch (Exception e) {
-            logUtil.put(commonStrings.EXCEPTION, this, "move", e);
+            this.logUtil.put(commonStrings.EXCEPTION, this, "move", e);
         }
     }
 
     public void up()
     {
-        //logUtil.putF("Jump", this, "processInput");
+        //this.logUtil.putF("Jump", this, "processInput");
 
         this.platformGameBehavior.up((VelocityProperties) this.velocityInterface, acceleration, initialJumpBehavior, 4);
         
@@ -876,7 +876,7 @@ Created By: Travis Berthelot
     {
         try {
             if(this.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
-                logUtil.put(new StringMaker().append("3LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move");
+                this.logUtil.put(new StringMaker().append("3LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move");
                 return;
             }
         
@@ -890,7 +890,7 @@ Created By: Travis Berthelot
                 this.platformGameBehavior.right(geographicMapInterfaceArray, this.velocityInterface, this);
             }
         } catch (Exception e) {
-            logUtil.put(commonStrings.EXCEPTION, this, "right", e);
+            this.logUtil.put(commonStrings.EXCEPTION, this, "right", e);
         }
     }
     
@@ -899,7 +899,7 @@ Created By: Travis Berthelot
       this.velocityInterface.getVelocityXBasicDecimalP().add(-this.acceleration.getReverse());
       this.velocityInterface.limitXYToForwardAndReverseMaxVelocity();
 
-      //logUtil.putF("Right: dx: " + this.velocityInterface.getVelocityXBasicDecimalP().getUnscaled(), this, "processInput");
+      //this.logUtil.putF("Right: dx: " + this.velocityInterface.getVelocityXBasicDecimalP().getUnscaled(), this, "processInput");
       
       //this.getVelocityProperties().addVelocity(this.acceleration.getReverse(), 180);
 
@@ -913,7 +913,7 @@ Created By: Travis Berthelot
        this.velocityInterface.getVelocityXBasicDecimalP().add(this.acceleration.getReverse());
        this.velocityInterface.limitXYToForwardAndReverseMaxVelocity();
 
-       //logUtil.putF("Left: dx: " + this.velocityInterface.getVelocityXBasicDecimalP().getUnscaled(), this, "processInput");
+       //this.logUtil.putF("Left: dx: " + this.velocityInterface.getVelocityXBasicDecimalP().getUnscaled(), this, "processInput");
 
        //this.getVelocityProperties().addVelocity(this.acceleration.getReverse(), 0);
        //this.specialAnimationArray[this.specialIndex++] = LEFT;
@@ -927,7 +927,7 @@ Created By: Travis Berthelot
     {
         try {
             if(this.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
-                logUtil.put(new StringMaker().append("4LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move");
+                this.logUtil.put(new StringMaker().append("4LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move");
                 return;
             }
 
@@ -942,7 +942,7 @@ Created By: Travis Berthelot
             }
 
         } catch (Exception e) {
-            logUtil.put(commonStrings.EXCEPTION, this, "left", e);
+            this.logUtil.put(commonStrings.EXCEPTION, this, "left", e);
         }
     }
         
@@ -1042,8 +1042,8 @@ Created By: Travis Berthelot
         }
         catch (Exception e)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, "processInput");
-            //logUtil.putF("Danger Danger Danger ^^^%%$*($)*@)!$", this, "processInput", e);
+            this.logUtil.put(commonStrings.EXCEPTION, this, "processInput");
+            //this.logUtil.putF("Danger Danger Danger ^^^%%$*($)*@)!$", this, "processInput", e);
         }
 
     }
@@ -1120,7 +1120,7 @@ Created By: Travis Berthelot
 <!--            if(this.x != this.ox || this.y != this.oy) {
                 this.ox = this.x;
                 this.oy = this.y;
-                logUtil.put(new StringMaker().append(this.getName()).append(commonSeps.SPACE).append(this.x).append(commonSeps.SPACE).append(this.y).toString(), this, GameStrings.getInstance().PROCESS_TICK);
+                this.logUtil.put(new StringMaker().append(this.getName()).append(commonSeps.SPACE).append(this.x).append(commonSeps.SPACE).append(this.y).toString(), this, GameStrings.getInstance().PROCESS_TICK);
             }-->
             
             this.captionAnimationHelper.tick();
@@ -1290,7 +1290,7 @@ Created By: Travis Berthelot
         final BasicTopViewGeographicMapCellTypeFactory basicTopViewGeographicMapCellTypeFactory = (BasicTopViewGeographicMapCellTypeFactory) geographicMapInterface.getGeographicMapCellTypeFactory();
         if(geographicMapCellType.getTravelCost() == basicTopViewGeographicMapCellTypeFactory.BLOCK_CELL_TYPE.cost) {
             geographicMapCellPositionBasicArrayList.remove(geographicMapCellPosition);
-            //logUtil.putF(REMOVING_LAST_CELLPOSITION + geographicMapCellPosition, this, commonStrings.INIT);
+            //this.logUtil.putF(REMOVING_LAST_CELLPOSITION + geographicMapCellPosition, this, commonStrings.INIT);
         }
         
         geographicMapCellHistory.trackAll(geographicMapCellPositionBasicArrayList);
@@ -1395,7 +1395,7 @@ Created By: Travis Berthelot
 
         if(list.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0)
         {
-            //logUtil.putF("Chasing", this, "trackTo");
+            //this.logUtil.putF("Chasing", this, "trackTo");
 
             for(int index = list.size() - 1; index <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> 0; index--)
             {
@@ -1422,7 +1422,7 @@ Created By: Travis Berthelot
     protected void fireOrMove()
         throws Exception
     {
-        //logUtil.putF("Move/Attack: trackingWaypoint: " + this.trackingWaypoint + " sensorAction: " + this.sensorAction + " currentTargetDistance &gt;= longWeaponRange " + this.currentTargetDistance + "&gt;=" + this.longWeaponRange, this, "trackTo");
+        //this.logUtil.putF("Move/Attack: trackingWaypoint: " + this.trackingWaypoint + " sensorAction: " + this.sensorAction + " currentTargetDistance &gt;= longWeaponRange " + this.currentTargetDistance + "&gt;=" + this.longWeaponRange, this, "trackTo");
 
         final GameKeyEventFactory gameKeyEventFactory = GameKeyEventFactory.getInstance();
         
@@ -1447,12 +1447,12 @@ Created By: Travis Berthelot
 
             this.rtsLayer2LogHelper.steeringFireOrStop(this);
             
-            //logUtil.putF("Attacking: " + this.currentTargetLayerInterface.getName() + " anotherTargetDistance: " + anotherTargetDistance + " Range: " + this.currentTargetDistance, this, "trackTo");
+            //this.logUtil.putF("Attacking: " + this.currentTargetLayerInterface.getName() + " anotherTargetDistance: " + anotherTargetDistance + " Range: " + this.currentTargetDistance, this, "trackTo");
 
-            //logUtil.put(TrackingEventHandler.getInstance().toString(), this, "processTargeting");
+            //this.logUtil.put(TrackingEventHandler.getInstance().toString(), this, "processTargeting");
 
-            //logUtil.putF("Attacking: " + this.currentTargetLayerInterface.getName() + " X: " + this.currentTargetLayerInterface.getX() + " ? " + this.x + " Y: " + this.currentTargetLayerInterface.getY() + " ? " + this.y, this, "processTargeting");
-            //logUtil.putF("Attacking: " + this.currentTargetLayerInterface.getName() + " at Range: " + this.currentTargetDistance + "&gt;=" + this.longWeaponRange, this, "processTargeting");
+            //this.logUtil.putF("Attacking: " + this.currentTargetLayerInterface.getName() + " X: " + this.currentTargetLayerInterface.getX() + " ? " + this.x + " Y: " + this.currentTargetLayerInterface.getY() + " ? " + this.y, this, "processTargeting");
+            //this.logUtil.putF("Attacking: " + this.currentTargetLayerInterface.getName() + " at Range: " + this.currentTargetDistance + "&gt;=" + this.longWeaponRange, this, "processTargeting");
 
             this.allStop();
             //this.getGameKeyEventList().add(gameKeyEventFactory.getInstance(this, Canvas.KEY_NUM0));
@@ -1500,7 +1500,7 @@ Created By: Travis Berthelot
         final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition = this.waypointBehaviorBase.getNextUnvisitedPathGeographicMapCellPosition();
 
         if(nextUnvisitedPathGeographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
-            //logUtil.put(new StringMaker().append(this.getName()).append(" - do not turn or move until we have the first unvisited cell position").toString(), this, "turnTo");
+            //this.logUtil.put(new StringMaker().append(this.getName()).append(" - do not turn or move until we have the first unvisited cell position").toString(), this, "turnTo");
             return true;
         }
 
@@ -1727,7 +1727,7 @@ Created By: Travis Berthelot
     public void forward()
     throws Exception
     {
-        //logUtil.put(this.getName(), this, "forward");
+        //this.logUtil.put(this.getName(), this, "forward");
 
         //TWB - temp hack for path finding to work
         final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
@@ -1748,7 +1748,7 @@ Created By: Travis Berthelot
     public void right()
     throws Exception
     {
-        //logUtil.put(this.getName(), this, "right");
+        //this.logUtil.put(this.getName(), this, "right");
 
         if(this.direction == 0) {
             this.direction = 2;
@@ -1773,7 +1773,7 @@ Created By: Travis Berthelot
     public void left()
     throws Exception
     {
-        //logUtil.put(this.getName(), this, "left");
+        //this.logUtil.put(this.getName(), this, "left");
 
         if(this.direction == 0) {
             this.direction = 3;

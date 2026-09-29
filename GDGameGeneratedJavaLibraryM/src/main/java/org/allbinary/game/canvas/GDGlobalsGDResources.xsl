@@ -153,7 +153,7 @@ Created By: Travis Berthelot
 
                         //try {
                         
-                            logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                            this.logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
 
                     final Features features = Features.getInstance();
                     final OpenGLFeatureFactory openGLFeatureFactory = OpenGLFeatureFactory.getInstance();
@@ -192,10 +192,10 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     //objectsGroups - END
 
-                    logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                    this.logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
 
                         //} catch(Exception e) {
-                            //logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                            //this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
                         //}
 
                     }

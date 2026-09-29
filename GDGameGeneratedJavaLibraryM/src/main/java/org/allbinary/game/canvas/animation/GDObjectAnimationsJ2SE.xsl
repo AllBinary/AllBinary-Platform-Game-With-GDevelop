@@ -21,7 +21,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutName" />
         <xsl:param name="useExclusionList" />
 
-//               logUtil.putF("scale: " + scale, this, commonStrings.PROCESS);
+//               this.logUtil.putF("scale: " + scale, this, commonStrings.PROCESS);
                         
         //objectsAssign - j2seAnimationFactoryCalls - START
         <xsl:for-each select="objects" >
@@ -127,7 +127,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
+                    this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
                 }    
 
                 <xsl:variable name="hasMoreThanOneImage" ><xsl:for-each select="animations" ><xsl:for-each select="directions/sprites/image" ><xsl:if test="position() != 1" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
@@ -320,7 +320,7 @@ Created By: Travis Berthelot
                         <xsl:if test="not(contains($hasMoreThanOneImageOrRotationDisabled, 'found')) and not(contains($hasCustomCollisionMask, 'found'))" >
                 //Auto generated CollisionMask for RotationAnimations
                 final float autoScale = 1.0f;
-                //logUtil.putF("<xsl:value-of select="$name" /> autoScale: " + autoScale, this, commonStrings.INIT);
+                //this.logUtil.putF("<xsl:value-of select="$name" /> autoScale: " + autoScale, this, commonStrings.INIT);
                 final float newX = (<xsl:value-of select="$name" />LayerInfo.getWidth() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getWidth()) / 2;
                 final float newY = (<xsl:value-of select="$name" />LayerInfo.getHeight() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getHeight()) / 2;
                 final Rectangle <xsl:value-of select="$name" />RotationCollisionMask = new Rectangle(
@@ -360,7 +360,7 @@ Created By: Travis Berthelot
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * hackScale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * hackScale)
                                 );
                                 
-//                logUtil.putF("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
+//                this.logUtil.putF("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
 
                                     </xsl:if>
                 
@@ -440,7 +440,7 @@ Created By: Travis Berthelot
                         <xsl:if test="not(contains($hasMoreThanOneImageOrRotationDisabled, 'found')) and not(contains($hasCustomCollisionMask, 'found'))" >
                 //Auto generated CollisionMask for RotationAnimations
                 final float autoScale = 1.0f;
-                //logUtil.putF("<xsl:value-of select="$name" /> autoScale: " + autoScale, this, commonStrings.INIT);
+                //this.logUtil.putF("<xsl:value-of select="$name" /> autoScale: " + autoScale, this, commonStrings.INIT);
                 final float newX = (<xsl:value-of select="$name" />LayerInfo.getWidth() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getWidth()) / 2;
                 final float newY = (<xsl:value-of select="$name" />LayerInfo.getHeight() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getHeight()) / 2;
                 final Rectangle <xsl:value-of select="$name" />RotationCollisionMask = new Rectangle(
@@ -474,7 +474,7 @@ Created By: Travis Berthelot
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * scale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * scale)
                                 );
 
-//              logUtil.putF("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
+//              this.logUtil.putF("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
 
                                 <xsl:if test="contains($hasMoreThanOneImageOrRotationDisabled, 'found')" >
                 rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][<xsl:value-of select="$position - 1" />] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask;
@@ -527,7 +527,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
+                    this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
                 }    
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
@@ -576,7 +576,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="$name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="$name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    logUtil.putF("<xsl:value-of select="$name" />ImageArray found", this, commonStrings.INIT);
+                    this.logUtil.putF("<xsl:value-of select="$name" />ImageArray found", this, commonStrings.INIT);
                 }
                 
                 <xsl:for-each select="childrenContent" >
@@ -652,12 +652,12 @@ Created By: Travis Berthelot
                             this.dx = 0;
                             this.dy = -1;
                             this.scaleProperties = scaleProperties;
-                            //logUtil.put(new StringMaker().append("setInitialScale - font: ").append(scaleProperties.scaleHeight).toString(), this, commonStrings.PROCESS);
+                            //this.logUtil.put(new StringMaker().append("setInitialScale - font: ").append(scaleProperties.scaleHeight).toString(), this, commonStrings.PROCESS);
                             //this.scaleWidth = scaleProperties.scalwWidth;
                             final int fontSize = scaleProperties.scaleHeight;
                             scaleProperties.scaleHeight = (int) fontSize - (fontSize / 2);
                             this.font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, scaleProperties.scaleHeight);
-                            logUtil.putF(new StringMaker().append("setInitialScale - font: ").appendint(font.getSize()).toString(), this, commonStrings.PROCESS);
+                            this.logUtil.putF(new StringMaker().append("setInitialScale - font: ").appendint(font.getSize()).toString(), this, commonStrings.PROCESS);
                         }
 
                     },
@@ -825,7 +825,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="$name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="$name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    logUtil.putF("<xsl:value-of select="$name" />ImageArray found", this, commonStrings.INIT);
+                    this.logUtil.putF("<xsl:value-of select="$name" />ImageArray found", this, commonStrings.INIT);
                 }
 
                 <xsl:for-each select="content" >
@@ -905,12 +905,12 @@ Created By: Travis Berthelot
                             this.dx = 0;
                             this.dy = -1;
                             this.scaleProperties = scaleProperties;
-                            //logUtil.put(new StringMaker().append("setInitialScale - font: ").append(scaleProperties.scaleHeight).toString(), this, commonStrings.PROCESS);
+                            //this.logUtil.put(new StringMaker().append("setInitialScale - font: ").append(scaleProperties.scaleHeight).toString(), this, commonStrings.PROCESS);
                             //this.scaleWidth = scaleProperties.scalwWidth;
                             final int fontSize = scaleProperties.scaleHeight;
                             scaleProperties.scaleHeight = (int) fontSize - (fontSize / 2);
                             this.font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, scaleProperties.scaleHeight);
-                            logUtil.putF(new StringMaker().append("setInitialScale - font: ").appendint(font.getSize()).toString(), this, commonStrings.PROCESS);
+                            this.logUtil.putF(new StringMaker().append("setInitialScale - font: ").appendint(font.getSize()).toString(), this, commonStrings.PROCESS);
                         }
 
                     },

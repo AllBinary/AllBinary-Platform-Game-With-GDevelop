@@ -194,7 +194,7 @@ Created By: Travis Berthelot
                         @Override
                         public Rectangle init(final GDObject gdObject, final float scaleX, final float scaleY) {
                             //text animation sizing
-                            //logUtil.putF("CustomTextAnimation", this, "init");
+                            //this.logUtil.putF("CustomTextAnimation", this, "init");
                             final CustomTextAnimationFactory customTextAnimationFactory = (CustomTextAnimationFactory) animationInterfaceFactoryInterfaceArray[0];
 
                             gdObject.width = (int) (<xsl:value-of select="name" />CustomTextAnimationFactory.getWidth() / scale);

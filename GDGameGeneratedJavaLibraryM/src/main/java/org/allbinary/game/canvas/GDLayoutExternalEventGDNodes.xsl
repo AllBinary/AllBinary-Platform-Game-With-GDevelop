@@ -124,7 +124,7 @@ Created By: Travis Berthelot
 
                         try {
                         
-                            logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                            this.logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
 
                             <xsl:for-each select="../externalEvents" >
                                 <xsl:if test="$layoutName = associatedLayout" >
@@ -133,10 +133,10 @@ Created By: Travis Berthelot
                                 </xsl:if>
                             </xsl:for-each>
                             
-                            logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                            this.logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
 
                         } catch(Exception e) {
-                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                            this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
                         }
 
                     }

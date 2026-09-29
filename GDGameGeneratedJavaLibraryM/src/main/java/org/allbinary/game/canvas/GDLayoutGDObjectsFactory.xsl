@@ -122,7 +122,7 @@ Created By: Travis Berthelot
                     
                     private GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory() {
                     
-                        logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                        this.logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
                     
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
@@ -133,7 +133,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     //objectsGroups - END
 
-                        logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                        this.logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
                     }
                     
                     //objectsGroups - START

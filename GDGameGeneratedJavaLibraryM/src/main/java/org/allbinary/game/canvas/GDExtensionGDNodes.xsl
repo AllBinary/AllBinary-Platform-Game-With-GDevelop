@@ -187,7 +187,7 @@ Created By: Travis Berthelot
 
                         try {
                         
-                            logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                            this.logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
 
                             <xsl:for-each select="eventsFunctionsExtensions" >
                                 <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>
@@ -197,10 +197,10 @@ Created By: Travis Berthelot
                                 </xsl:if>
                             </xsl:for-each>
                             
-                            logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                            this.logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
 
                         } catch(Exception e) {
-                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                            this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
                         }
 
         <xsl:for-each select="eventsFunctionsExtensions" >

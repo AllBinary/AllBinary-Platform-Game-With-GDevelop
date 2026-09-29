@@ -120,7 +120,7 @@ Created By: Travis Berthelot
                                 @Override
                                 public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
                                                         
-                                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                 <xsl:for-each select="../objectGroups" >
                             //objectGroups
@@ -198,7 +198,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                             //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
-                            //logUtil.put(new StringMaker().append(mappedIntArray[3]).append(CommonSeps.getInstance().COMMA).append(mappedIntArray[5]).toString(), this, commonStrings.PROCESS);
+                            //this.logUtil.put(new StringMaker().append(mappedIntArray[3]).append(CommonSeps.getInstance().COMMA).append(mappedIntArray[5]).toString(), this, commonStrings.PROCESS);
                             NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(mappedObjectArray, mappedIntArray, mappedLongArray, mappedFloatArray);
                         </xsl:for-each>
                         
@@ -250,7 +250,7 @@ Created By: Travis Berthelot
                                 @Override
                                 public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
                             
-                                    //logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "mapping", this, commonStrings.PROCESS);
+                                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "mapping", this, commonStrings.PROCESS);
 
                         <xsl:for-each select="events" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
