@@ -1,0 +1,218 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.allbinary.game.gd</groupId>
+        <artifactId>GDGameParentJs</artifactId>
+        <!-- Game Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- Game Version Start -->
+    </parent>
+
+    <artifactId>GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryJs</artifactId>
+    <packaging>jar</packaging>
+
+    <name>GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryJs</name>
+    <url>http://www.allbinary.com/</url>
+
+    <properties>
+        <buildLabel>${version}</buildLabel>
+        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+    </properties>
+
+
+    <properties>
+        <yarnVersion>v1.22.22</yarnVersion>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>LogJ2SEJavaLibraryJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>AllBinaryOptionalBasePlatformJavaLibraryJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>ImageCacheLazyJ2MEJavaLibraryJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+            
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>J2SEForJ2MEJavaLibraryJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLNoneOtherJavaLibraryJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGamePreBaseJavaLibraryJs</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameJavaLibraryJs</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.animation</groupId>
+            <artifactId>AllBinaryHTMLImageAnimationRotationJavaLibraryJs</artifactId>
+            <!--
+            <artifactId>AllBinaryHTMLImageAnimationRotationJavaLibraryJs</artifactId>
+            <artifactId>AllBinary2HTMLImageAnimationRotationJavaLibraryJs</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.animation</groupId>
+            <artifactId>AllBinarySpriteAnimationJavaLibraryJs</artifactId>      
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLNoneJavaLibraryJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-midpJs</artifactId>
+            <version>2.0.4</version>
+            <optional>true</optional>
+        </dependency>
+        
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.6.3</version>
+                <executions>
+                    <execution>
+                        <id>npm-install-typescript</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>cmd</executable>
+                            <workingDirectory>${basedir}</workingDirectory>
+                            <arguments>
+                                <argument>/c</argument>
+                                <argument>npm</argument>
+                                <argument>install</argument>
+                                <argument>typescript</argument>
+                                <argument>--no-save</argument>
+                                <argument>--no-audit</argument>
+                                <argument>--no-fund</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>tsc-compile</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>cmd</executable>
+                            <workingDirectory>${basedir}</workingDirectory>
+                            <!-- Uses the path from tsconfig.json instead of -p path; ignore tsc errors so the build continues -->
+                            <arguments>
+                                <argument>/c</argument>
+                                <!--                                <argument>npx tsc</argument>-->
+                                <argument>npx tsc || exit 0</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+    </build>
+
+</project>
+
+

@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "ES2017",
+        "module": "ES2020",
+        "moduleResolution": "bundler",
+        "outDir": "./src",
+        "rootDir": "../GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryTsM/src",
+        "allowJs": false,
+        "skipLibCheck": true,
+        "strict": false,
+        "noEmitOnError": false,
+        "sourceMap": false
+    },
+    "include": [
+        "../GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryTsM/src/**/*.ts"
+    ]
+}

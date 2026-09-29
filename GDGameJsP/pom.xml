@@ -1,0 +1,85 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.allbinary.game.gd</groupId>
+        <artifactId>GDGameParent</artifactId>
+        <!-- Game Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- Game Version End -->
+    </parent>
+
+    <artifactId>GDGamePJs</artifactId>
+    <packaging>pom</packaging>
+    <name>GDGamePJs</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <buildLabel>${version}</buildLabel>
+        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+        <yarnVersion>v1.22.22</yarnVersion>
+    </properties>
+
+    <modules>
+
+        <!--
+        -->
+ 
+        <module>../GDJavaLibraryJsM</module>
+
+        <module>../resource/GDGameResourceJavaLibraryJsM</module>
+        
+        <!--
+        <module>../platform/j2me/GDGameJ2MEJavaLibraryJsM</module>
+        <module>../platform/j2se/GDGameJ2SEJavaLibraryJsM</module>
+        <module>../platform/html/GDGameHTMLJavaLibraryJsM</module>
+        <module>../platform/android/GDGameAndroidJavaLibraryJsM</module>
+        -->
+        <module>../resource/GDGameImageAnimationInterfaceResourceFactoryJavaLibraryJsM</module>
+        <module>../resource/GDGameLazyImageAnimationInterfaceResourceFactoryJavaLibraryJsM</module>
+        <module>../resource/GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryJsM</module>
+        <module>../resource/GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryJsM</module>
+        <module>../resource/GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryJsM</module>
+        <module>../resource/GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryJsM</module>
+        <module>../resource/GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryJsM</module>
+        <module>../resource/GDGameOpenGLTwoDJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryJsM</module>
+        <module>../resource/GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryJsM</module>
+        <module>../resource/GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibraryJsM</module>
+        
+        <module>../platform/GDGamePlatformResourceJavaLibraryJsM</module>
+        <module>../platform/j2se/GDGamePCClientInfoJavaLibraryJsM</module>
+        <module>../platform/j2me/GDGameJ2MEJavaLibraryJsM</module>
+        <module>../GDGameGeneratedJavaLibraryJsM</module>
+        <module>../GDGameBaseJavaLibraryJsM</module>
+        <module>../GDGameAIJavaLibraryJsM</module>
+        <module>../GDGameJavaLibraryJsM</module>
+        <module>../GDGameNoTouchJavaLibraryJsM</module>
+        <!--
+        
+        -->
+        <module>../GDGamePreBaseJavaLibraryJsM</module>
+        
+        <module>../GDGameTouchJavaLibraryJsM</module>
+        <module>../GDGameWavSoundsJavaLibraryJsM</module>
+        
+        <module>../replace_these_stub_projects/GDFormJavaLibraryJsM</module>
+        <module>../../AllBinary-Platform-Integration/embedded/j2me/microemulator/custom/GDFormJavaLibraryJsM</module>
+
+<!--        <module>../GDGameThreedP</module>-->
+
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        
+    </dependencies>
+
+</project>
+
+

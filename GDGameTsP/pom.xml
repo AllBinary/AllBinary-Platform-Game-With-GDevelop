@@ -39,11 +39,11 @@
         -->
         <module>../resource/GDGameImageAnimationInterfaceResourceFactoryJavaLibraryTsM</module>
         <module>../resource/GDGameLazyImageAnimationInterfaceResourceFactoryJavaLibraryTsM</module>
-<!--        <module>../resource/GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryTsM</module>-->
+        <module>../resource/GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryTsM</module>
         <module>../resource/GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryTsM</module>
         <module>../resource/GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryTsM</module>
-<!--        <module>../resource/GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryTsM</module>
-        <module>../resource/GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryTsM</module>-->
+        <module>../resource/GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryTsM</module>
+        <module>../resource/GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryTsM</module>
         <module>../resource/GDGameOpenGLTwoDJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryTsM</module>
         <module>../resource/GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryTsM</module>
         <module>../resource/GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibraryTsM</module>

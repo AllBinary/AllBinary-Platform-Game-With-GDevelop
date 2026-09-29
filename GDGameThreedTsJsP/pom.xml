@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.allbinary.game.gd</groupId>
+        <artifactId>GDGameParentJs</artifactId>
+        <!-- Game Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- Game Version End -->
+    </parent>
+
+    <artifactId>GDGameThreedPTsJs</artifactId>
+    <packaging>pom</packaging>
+    <name>GDGameThreedPTsJs</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <buildLabel>${version}</buildLabel>
+        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+        <yarnVersion>v1.22.22</yarnVersion>
+    </properties>
+
+    <modules>
+
+        <module>../platform/j2se/GDGameThreedJ2SEWithSWTJOGLResourceJavaLibraryTsJsM</module>
+        <module>../platform/j2se/GDGameThreedBaseJ2SEWithSWTJOGLJavaLibraryTsJsM</module>
+        <module>../GDGameThreedBaseJavaLibraryTsJsM</module>
+        <module>../GDGameThreedPreBaseJavaLibraryTsJsM</module>
+        <module>../platform/android/GDGameThreedAndroidResourcesTempJavaLibraryTsJsM</module>
+        
+        <module>../resource/GDGameOpenGLThreedAnimationResourceJavaLibraryTsJsM</module>
+ 
+    </modules>
+
+
+    <properties>
+        <yarnVersion>v1.22.22</yarnVersion>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        
+    </dependencies>
+
+</project>
+
+
+
