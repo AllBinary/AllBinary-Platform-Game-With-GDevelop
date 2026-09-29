@@ -6,7 +6,6 @@ gd_xsl.7z
 *.old
 *.bak
 *.class
-*.json
 .project
 .classpath
 .settings/
