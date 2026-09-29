@@ -134,9 +134,9 @@ Created By: Travis Berthelot
                             final float elapsed = this.timeDelta;
                             <xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] += elapsed / 1000;
                         
-                            //this.logUtil.put(new StringMaker().append("<xsl:value-of select="$paramOne" />PortionElapsedTotal: ").append(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index]).append(" max: ").append(max).toString(), this, commonStrings.PROCESS);
+                            //this.logUtil.put(new StringMaker().append("<xsl:value-of select="$paramOne" />PortionElapsedTotal: ").append(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index]).append(" max: ").append(max).toString(), this, this.commonStrings.PROCESS);
                             if(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> max) {
-                                this.logUtil.put(new StringMaker().appendint(index).append("<xsl:value-of select="$paramOne" />PortionElapsedTotal: ").append(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index]).append(" max: ").append(max).toString(), this, commonStrings.PROCESS);
+                                this.logUtil.put(new StringMaker().appendint(index).append("<xsl:value-of select="$paramOne" />PortionElapsedTotal: ").append(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index]).append(" max: ").append(max).toString(), this, this.commonStrings.PROCESS);
                                 <xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] = max;
                                 ((TimeDelayHelper) this.<xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList.get(index)).delay = Integer.MAX_VALUE;
                             }

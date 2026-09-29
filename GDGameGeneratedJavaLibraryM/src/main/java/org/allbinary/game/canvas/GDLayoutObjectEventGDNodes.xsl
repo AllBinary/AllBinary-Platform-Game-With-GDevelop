@@ -123,7 +123,7 @@ Created By: Travis Berthelot
 
                         try {
                         
-                            this.logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                            this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR);
 
                     //objectEventLayout - //eventsCreateAssignGDObjectGDNodesObjectEvent - START
                     <xsl:call-template name="eventsCreateAssignGDObjectGDNodesObjectEvent" >
@@ -150,10 +150,10 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     //objectEventLayout - //eventsCreateAssignGDObjectGDNodesObjectEvent - END
 
-                            this.logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                            this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR);
 
                         } catch(Exception e) {
-                            this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e);
                         }
 
                     }

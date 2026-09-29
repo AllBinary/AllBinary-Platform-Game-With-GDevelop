@@ -162,7 +162,7 @@ Created By: Travis Berthelot
 
                         try {
                         
-                            this.logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                            this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR);
                     
                                     <xsl:call-template name="scale" >
                                         <xsl:with-param name="layoutIndex" >
@@ -192,10 +192,10 @@ Created By: Travis Berthelot
                         
                     </xsl:call-template>
 
-                    this.logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                    this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR);
 
                         } catch(Exception e) {
-                            this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e);
                         }
 
                     }

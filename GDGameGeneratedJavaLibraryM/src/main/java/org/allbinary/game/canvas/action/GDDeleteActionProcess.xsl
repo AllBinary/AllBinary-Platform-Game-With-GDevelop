@@ -78,7 +78,7 @@ Created By: Travis Berthelot
                     public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                         super.processStats(motionGestureEvent);
                         
-                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
                         
                         return this.process();
                     }
@@ -122,7 +122,7 @@ Created By: Travis Berthelot
                      
                                 <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
-                                //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="$nodeId" /> + "GD" + <xsl:value-of select="$name" />GDGameLayer, this, commonStrings.PROCESS);
+                                //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="$nodeId" /> + "GD" + <xsl:value-of select="$name" />GDGameLayer, this, this.commonStrings.PROCESS);
 
                                 //<xsl:value-of select="$name" />
                                 <xsl:text>&#10;</xsl:text>
@@ -132,7 +132,7 @@ Created By: Travis Berthelot
                                 <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
                             } catch(Exception e) {
-                                this.logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
+                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                             }
 
                             return true;
@@ -142,7 +142,7 @@ Created By: Travis Berthelot
                                             
                             try {
 
-                                //this.logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                //this.logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
 
                             <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
@@ -154,17 +154,17 @@ Created By: Travis Berthelot
                                             //final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
                                             //if(allBinaryGameLayerManager.getLayerManager().contains(<xsl:value-of select="$name" />GDGameLayer)) {
                                                 //allBinaryGameLayerManager.remove(<xsl:value-of select="$name" />GDGameLayer);-->
-                                                //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="$nodeId" /> + "GD2" + <xsl:value-of select="$name" />GDGameLayer, this, commonStrings.PROCESS);
+                                                //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="$nodeId" /> + "GD2" + <xsl:value-of select="$name" />GDGameLayer, this, this.commonStrings.PROCESS);
                                                 <xsl:value-of select="$name" />GDGameLayer.setDestroyed(true);
 <!--                                            //} else {
-                                                //this.logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + " LayerManager does not have (probably already removed/destroyed): " + <xsl:value-of select="$name" />GDGameLayer, this, commonStrings.PROCESS);
+                                                //this.logUtil.putF(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + " LayerManager does not have (probably already removed/destroyed): " + <xsl:value-of select="$name" />GDGameLayer, this, this.commonStrings.PROCESS);
                                             //}-->
                                     <xsl:text>&#10;</xsl:text>
 
                                 <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
                             } catch(Exception e) {
-                                this.logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
+                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                             }
 
                             return true;

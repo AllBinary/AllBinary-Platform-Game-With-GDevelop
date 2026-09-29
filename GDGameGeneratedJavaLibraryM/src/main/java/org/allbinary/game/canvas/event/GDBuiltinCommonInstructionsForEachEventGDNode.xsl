@@ -57,7 +57,7 @@ Created By: Travis Berthelot
                 public boolean process() throws Exception {
                     super.processStats();
 
-                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
 
                     <xsl:if test="string-length(orderBy) > 0" >
 
@@ -112,7 +112,7 @@ Created By: Travis Berthelot
                 public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                     super.processStats(motionGestureEvent);
                     
-                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, commonStrings.PROCESS);
+                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, this.commonStrings.PROCESS);
                             
                     return this.process();
                 }
@@ -121,7 +121,7 @@ Created By: Travis Berthelot
                 public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
                     super.processGDStats(gameLayerArray);
                         
-                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
 
                     <xsl:if test="string-length(orderBy) > 0" >
 
@@ -232,7 +232,7 @@ Created By: Travis Berthelot
                         stringBuilder.appendint(<xsl:value-of select="orderBy" />).append(",");
                         
                     }
-                    this.logUtil.put(stringBuilder.toString(), this, commonStrings.PROCESS, new Exception());
+                    this.logUtil.put(stringBuilder.toString(), this, this.commonStrings.PROCESS, new Exception());
 -->
 
                     final int sortSize = gdGameLayerList.size();
@@ -266,7 +266,7 @@ Created By: Travis Berthelot
                         stringBuilder.appendint(<xsl:value-of select="orderBy" />).append(",");
                         
                     }
-                    this.logUtil.put(stringBuilder.toString(), this, commonStrings.PROCESS, new Exception());
+                    this.logUtil.put(stringBuilder.toString(), this, this.commonStrings.PROCESS, new Exception());
 -->
 
                 }

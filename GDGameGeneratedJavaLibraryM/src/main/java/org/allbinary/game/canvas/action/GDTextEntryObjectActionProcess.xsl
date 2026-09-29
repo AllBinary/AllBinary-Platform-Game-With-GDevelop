@@ -42,7 +42,7 @@ Created By: Travis Berthelot
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         @Override
                         public boolean process() throws Exception {
-                            this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                            this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
                             ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry) ((GDGameLayer) globals.TextEntryGDGameLayerList.get(0)).gdObject).stringMaker.delete(0, ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry) ((GDGameLayer) globals.TextEntrGDGameLayerList.get(0)).gdObject).stringMaker.length());
 
                             return true;
@@ -52,7 +52,7 @@ Created By: Travis Berthelot
                     public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                         super.processStats(motionGestureEvent);
                         
-                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
                         
                         return this.process();
                     }
@@ -62,11 +62,11 @@ Created By: Travis Berthelot
                         super.processGDStats(gameLayerArray);
 
                         try {
-                            //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                            //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
 
                             return this.process();
                         } catch(Exception e) {
-                            this.logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                         }
                         return true;                   
                     }
@@ -74,16 +74,16 @@ Created By: Travis Berthelot
                         @Override
                         public boolean process(final Integer keyAsInteger) throws Exception {
                             super.processStats();
-                            //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                            //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
                             //<xsl:value-of select="parameters[2]" />
                             
                             final int key = keyAsInteger.intValue();
                             if(hasReleased[key]) {
-                                //this.logUtil.putF("append: " + keyAsInteger, this, commonStrings.PROCESS);
+                                //this.logUtil.putF("append: " + keyAsInteger, this, this.commonStrings.PROCESS);
                                 hasReleased[key] = false;
                                 ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry) ((GDGameLayer) globals.TextEntryGDGameLayerList.get(0)).gdObject).stringMaker.append((char) key);
                             } else {
-                                //this.logUtil.putF("not append: " + keyAsInteger, this, commonStrings.PROCESS);
+                                //this.logUtil.putF("not append: " + keyAsInteger, this, this.commonStrings.PROCESS);
                             }
 
                             return true;
@@ -94,7 +94,7 @@ Created By: Travis Berthelot
                             super.processStats();
                             
                             final int key = keyAsInteger.intValue();
-                            //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + key, this, commonStrings.PROCESS);
+                            //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + key, this, this.commonStrings.PROCESS);
                             hasReleased[key] = true;
 
                             return true;

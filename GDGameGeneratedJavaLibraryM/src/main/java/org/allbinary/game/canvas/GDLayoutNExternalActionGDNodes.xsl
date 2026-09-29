@@ -236,31 +236,31 @@ Created By: Travis Berthelot
 
                     public float RandomFloatInRange(final double min, final double max) {
                         final double next = (max - min);
-                        //this.logUtil.putF("NEXT: " + next, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("NEXT: " + next, this, this.commonStrings.PROCESS);
                         final float nextF = (float) next * 1000;
-                        //this.logUtil.putF("NEXTF: " + nextF, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("NEXTF: " + nextF, this, this.commonStrings.PROCESS);
                         final int nextI = Math.round(nextF);
-                        //this.logUtil.putF("NEXTI: " + nextI, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("NEXTI: " + nextI, this, this.commonStrings.PROCESS);
                         final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
-                        //this.logUtil.putF("RANDOM: " + random, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("RANDOM: " + random, this, this.commonStrings.PROCESS);
                         final float randomF = (float) random;
-                        //this.logUtil.putF("RANDOMF: " + randomF, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("RANDOMF: " + randomF, this, this.commonStrings.PROCESS);
                         final float result = (float) min + (randomF / 1000);
-                        //this.logUtil.putF("RESULT: " + result, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS);
                         return result;
                     }
                     
                     public float RandomFloatInRange(final float min, final float max) {
                         final float nextF = (float) (max - min) * 1000;
-                        //this.logUtil.putF("NEXTF: " + nextF, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("NEXTF: " + nextF, this, this.commonStrings.PROCESS);
                         final int nextI = Math.round(nextF);
-                        //this.logUtil.putF("NEXTI: " + nextI, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("NEXTI: " + nextI, this, this.commonStrings.PROCESS);
                         final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
-                        //this.logUtil.putF("RANDOM: " + random, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("RANDOM: " + random, this, this.commonStrings.PROCESS);
                         final float randomF = (float) random;
-                        //this.logUtil.putF("RANDOMF: " + randomF, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("RANDOMF: " + randomF, this, this.commonStrings.PROCESS);
                         final float result = (float) min + (randomF / 1000);
-                        //this.logUtil.putF("RESULT: " + result, this, commonStrings.PROCESS);
+                        //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS);
                         return result;
                     }
 

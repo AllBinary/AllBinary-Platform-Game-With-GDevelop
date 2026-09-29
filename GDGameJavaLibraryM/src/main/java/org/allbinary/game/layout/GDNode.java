@@ -19,6 +19,7 @@ import org.allbinary.input.motion.gesture.MotionGestureInput;
 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
 import org.allbinary.logic.NullUtil;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.string.CommonStrings;
 import org.allbinary.thread.NullRunnable;
 
 /**
@@ -28,6 +29,7 @@ import org.allbinary.thread.NullRunnable;
 public class GDNode
 {
     protected final LogUtil logUtil = LogUtil.getInstance();
+    protected final CommonStrings commonStrings = CommonStrings.getInstance();
 
     private final BaseGDNodeStats nodeStatsFactory = GDNodeStatsFactory.getInstance();
     

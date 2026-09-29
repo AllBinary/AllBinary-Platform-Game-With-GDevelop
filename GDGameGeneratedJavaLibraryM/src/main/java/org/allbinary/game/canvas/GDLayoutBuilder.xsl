@@ -153,7 +153,7 @@ Created By: Travis Berthelot
                             try {
                                 return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstanceOrCreate();
                             } catch(Exception e) {
-                                this.logUtil.put(commonStrings.EXCEPTION_LABEL + "GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources", this, commonStrings.CONSTRUCTOR, e);
+                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + "GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources", this, this.commonStrings.CONSTRUCTOR, e);
                             }
                             return null;
                         }
@@ -162,7 +162,7 @@ Created By: Travis Berthelot
                             try {
                                 return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.getInstanceOrCreate();
                             } catch(Exception e) {
-                                this.logUtil.put(commonStrings.EXCEPTION_LABEL + "GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources", this, commonStrings.CONSTRUCTOR, e);
+                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + "GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources", this, this.commonStrings.CONSTRUCTOR, e);
                             }
                             return null;
                         }
@@ -171,7 +171,7 @@ Created By: Travis Berthelot
                             try {
                                 return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstanceOrCreate();
                             } catch(Exception e) {
-                                this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                                this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e);
                             }
                             return null;
                         }
@@ -180,7 +180,7 @@ Created By: Travis Berthelot
                             try {
                                 return GDGlobalSpecialAnimationImageResources.getInstanceOrCreate();
                             } catch(Exception e) {
-                                this.logUtil.put(commonStrings.EXCEPTION_LABEL + "GDGlobalSpecialAnimationImageResources", this, commonStrings.CONSTRUCTOR, e);
+                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + "GDGlobalSpecialAnimationImageResources", this, this.commonStrings.CONSTRUCTOR, e);
                             }
                             return null;
                         }
@@ -189,7 +189,7 @@ Created By: Travis Berthelot
                             try {
                                 return GDGlobalsGDResources.getInstanceOrCreate();
                             } catch(Exception e) {
-                                this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                                this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e);
                             }
                             return null;
                         }
@@ -207,7 +207,7 @@ Created By: Travis Berthelot
                                 </xsl:with-param>
                             </xsl:call-template>
                             
-                            this.logUtil.putF(new StringMaker().append(commonStrings.START).append(":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder scale: ").appendfloat(scale).toString(), this, commonStrings.CONSTRUCTOR);
+                            this.logUtil.putF(new StringMaker().append(this.commonStrings.START).append(":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder scale: ").appendfloat(scale).toString(), this, this.commonStrings.CONSTRUCTOR);
 
                     <xsl:call-template name="findMousePositionNeeded" >
                         <xsl:with-param name="totalRecursions" >
@@ -246,7 +246,7 @@ Created By: Travis Berthelot
                                 @Override
                                 public boolean process() throws Exception {
                                     super.processStats();
-                                    this.logUtil.put(Integer.toString(currentIndex), this, commonStrings.PROCESS, new Exception());
+                                    this.logUtil.put(Integer.toString(currentIndex), this, this.commonStrings.PROCESS, new Exception());
 
                                     return true;
                                 }
@@ -284,18 +284,18 @@ Created By: Travis Berthelot
 
                     
                         } catch(Exception e) {
-                            this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e);
                         }
 
                         this.build();
                         
-                        this.logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                        this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR);
                     }
 
                     public void build() {
                     
                         try {
-                            this.logUtil.putF(commonStrings.START, this, commonStrings.PROCESS);
+                            this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.PROCESS);
 
                             <xsl:call-template name="scale" >
                                 <xsl:with-param name="layoutIndex" >
@@ -415,15 +415,15 @@ Created By: Travis Berthelot
                         //allBinaryGameLayerManager.log();
                         //groupLayerManagerListener.log();
 
-                        this.logUtil.putF("DepartScene - completed newCanvas is now false", this, commonStrings.PROCESS);
+                        this.logUtil.putF("DepartScene - completed newCanvas is now false", this, this.commonStrings.PROCESS);
                         gameGlobalsFactory.newCanvas = false;
                         initialized = true;
 
                         } catch(Exception e) {
-                            this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e);
+                            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.PROCESS, e);
                         }
                     
-                        this.logUtil.putF(commonStrings.END, this, commonStrings.PROCESS);
+                        this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.PROCESS);
                     }
                     
                     public int SceneWindowWidth() {

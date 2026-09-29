@@ -124,9 +124,9 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
                         if(this.gdObject.x != this.getXP() || this.gdObject.y != this.getYP()) {
                             change = true;
                         }
-                        if(change) this.logUtil.put(this.getXP() + " TWBB " + this.getYP(), this, commonStrings.PROCESS);
+                        if(change) this.logUtil.put(this.getXP() + " TWBB " + this.getYP(), this, this.commonStrings.PROCESS);
                         super.updatePosition();
-                        if(change) this.logUtil.put(this.getXP() + " TWBA " + this.getYP(), this, commonStrings.PROCESS);
+                        if(change) this.logUtil.put(this.getXP() + " TWBA " + this.getYP(), this, this.commonStrings.PROCESS);
                     }*/
                 };
 

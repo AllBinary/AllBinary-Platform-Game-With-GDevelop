@@ -177,7 +177,7 @@ Created By: Travis Berthelot
 
                         //try {
                         
-                            this.logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                            this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR);
 
                     final Features features = Features.getInstance();
                     final OpenGLFeatureFactory openGLFeatureFactory = OpenGLFeatureFactory.getInstance();
@@ -216,10 +216,10 @@ Created By: Travis Berthelot
                     //GameAreaBoxUtil.getInstance().addGameLayerFactories(animationInterfaceFactoryInterfaceFactory);
                     </xsl:if>
 
-                    this.logUtil.putF(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+                    this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR);
 
                         //} catch(Exception e) {
-                            //this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                            //this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e);
                         //}
 
                     }

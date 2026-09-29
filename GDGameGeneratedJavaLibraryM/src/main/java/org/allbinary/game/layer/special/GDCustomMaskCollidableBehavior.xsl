@@ -93,7 +93,7 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
     
     @Override
     public void update() {
-        throw new RuntimeException(commonStrings.NOT_IMPLEMENTED);
+        throw new RuntimeException(this.commonStrings.NOT_IMPLEMENTED);
     }
     
     //private final String IS_COLLISION = "isCollision";
@@ -109,7 +109,7 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
     
 //        final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) ownerLayer);
 //        if (customGameLayer.gdObject.name.compareTo(B) == 0) {
-//            this.logUtil.putF("isCollision: " + customGameLayer.toString(), this, commonStrings.PROCESS);
+//            this.logUtil.putF("isCollision: " + customGameLayer.toString(), this, this.commonStrings.PROCESS);
 //        }
         
         final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
@@ -188,24 +188,24 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
 //                if(customGameLayer.gdObject.name.compareTo(B) == 0) {
 //                    if(lastGeographicMapCellPosition != geographicMapCellPosition) {
 //                        lastGeographicMapCellPosition = geographicMapCellPosition;
-//                       this.logUtil.putF("geographicMapCellPosition: " + geographicMapCellPosition, this, commonStrings.PROCESS);
+//                       this.logUtil.putF("geographicMapCellPosition: " + geographicMapCellPosition, this, this.commonStrings.PROCESS);
 //                    }
 //                }
 
                 if(geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
                     //final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-                    //this.logUtil.put(gameGlobals.TILEMAP__COLLISIONMASK, this, commonStrings.PROCESS);
-                    //this.logUtil.put(gdObject.toShortString(), this, commonStrings.PROCESS);
+                    //this.logUtil.put(gameGlobals.TILEMAP__COLLISIONMASK, this, this.commonStrings.PROCESS);
+                    //this.logUtil.put(gdObject.toShortString(), this, this.commonStrings.PROCESS);
                     return true;
                 }
                 
             } else {
-                this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.PROCESS, new Exception());
+                this.logUtil.put(this.this.commonStrings.EXCEPTION, this, this.this.commonStrings.PROCESS, new Exception());
                 return true;
             }
             
         } catch(Exception e) {
-            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.PROCESS, e);
+            this.logUtil.put(this.this.commonStrings.EXCEPTION, this, this.this.commonStrings.PROCESS, e);
         }
         
         return false;
@@ -227,7 +227,7 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
 //            final String string = this.toString(collisionLayer, stringBuilder);
 //            this.logUtil.put(string, this, "isCollision");
 //        } else {
-//            this.logUtil.put(commonStrings.PROCESS, this, "isCollision - with self");
+//            this.logUtil.put(this.commonStrings.PROCESS, this, "isCollision - with self");
 //        }
 
         final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) collisionLayer);
@@ -379,7 +379,7 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
             //super.paint(graphics);
 
         } catch(Exception e) {
-            this.logUtil.put(commonStrings.EXCEPTION + ownerLayer.getName(), this, commonStrings.CONSTRUCTOR, e);
+            this.logUtil.put(this.commonStrings.EXCEPTION + ownerLayer.getName(), this, this.commonStrings.CONSTRUCTOR, e);
         }
     }
     

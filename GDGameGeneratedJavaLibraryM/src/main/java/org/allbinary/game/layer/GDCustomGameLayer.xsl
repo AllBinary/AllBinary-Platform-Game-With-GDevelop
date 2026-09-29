@@ -457,7 +457,7 @@ Created By: Travis Berthelot
         
         <xsl:if test="contains($hasDraggableBehavior, 'found')" >
         this.isDraggable = gdObject.isBehaviorEnabledArray[gdBehaviorUtil.DRAGGABLE_BEHAVIOR_INDEX];
-        //this.logUtil.putF("isDraggable: " + isDraggable, this, commonStrings.CONSTRUCTOR);
+        //this.logUtil.putF("isDraggable: " + isDraggable, this, this.commonStrings.CONSTRUCTOR);
         </xsl:if>
                 
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
@@ -622,7 +622,7 @@ Created By: Travis Berthelot
             }
 
         } catch (Exception e) {
-            this.logUtil.put(commonStrings.EXCEPTION, this, "move", e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, "move", e);
         }
     }
 
@@ -693,7 +693,7 @@ Created By: Travis Berthelot
             }
 
         } catch (Exception e) {
-            this.logUtil.put(commonStrings.EXCEPTION, this, "move2", e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, "move2", e);
         }
     }
 
@@ -856,7 +856,7 @@ Created By: Travis Berthelot
             }
 
         } catch (Exception e) {
-            this.logUtil.put(commonStrings.EXCEPTION, this, "move", e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, "move", e);
         }
     }
 
@@ -890,7 +890,7 @@ Created By: Travis Berthelot
                 this.platformGameBehavior.right(geographicMapInterfaceArray, this.velocityInterface, this);
             }
         } catch (Exception e) {
-            this.logUtil.put(commonStrings.EXCEPTION, this, "right", e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, "right", e);
         }
     }
     
@@ -942,7 +942,7 @@ Created By: Travis Berthelot
             }
 
         } catch (Exception e) {
-            this.logUtil.put(commonStrings.EXCEPTION, this, "left", e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, "left", e);
         }
     }
         
@@ -1042,7 +1042,7 @@ Created By: Travis Berthelot
         }
         catch (Exception e)
         {
-            this.logUtil.put(commonStrings.EXCEPTION, this, "processInput");
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, "processInput");
             //this.logUtil.putF("Danger Danger Danger ^^^%%$*($)*@)!$", this, "processInput", e);
         }
 
@@ -1290,7 +1290,7 @@ Created By: Travis Berthelot
         final BasicTopViewGeographicMapCellTypeFactory basicTopViewGeographicMapCellTypeFactory = (BasicTopViewGeographicMapCellTypeFactory) geographicMapInterface.getGeographicMapCellTypeFactory();
         if(geographicMapCellType.getTravelCost() == basicTopViewGeographicMapCellTypeFactory.BLOCK_CELL_TYPE.cost) {
             geographicMapCellPositionBasicArrayList.remove(geographicMapCellPosition);
-            //this.logUtil.putF(REMOVING_LAST_CELLPOSITION + geographicMapCellPosition, this, commonStrings.INIT);
+            //this.logUtil.putF(REMOVING_LAST_CELLPOSITION + geographicMapCellPosition, this, this.commonStrings.INIT);
         }
         
         geographicMapCellHistory.trackAll(geographicMapCellPositionBasicArrayList);

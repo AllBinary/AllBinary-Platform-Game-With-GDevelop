@@ -42,7 +42,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
+                    this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, this.commonStrings.INIT);
                 }    
                 
 <!--                <xsl:for-each select="animations" ><xsl:for-each select="directions/sprites/image" ><xsl:if test="position() != 1" >found</xsl:if></xsl:for-each></xsl:for-each>-->
@@ -184,7 +184,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
+                    this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, this.commonStrings.INIT);
                 }    
 
                 <xsl:variable name="hasMoreThanOneImage" ><xsl:for-each select="animations" ><xsl:for-each select="directions/sprites/image" ><xsl:if test="position() != 1" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
@@ -238,7 +238,7 @@ Created By: Travis Berthelot
                             this.animationFactoryInitializationVisitor.dy = (int) (scaleProperties2.scaleHeight / (joystickScale * 3.33f));
 
                             super.setInitialScale(scaleProperties2);
-                            //this.logUtil.put(this.scaleProperties.toString(), this, commonStrings.PROCESS);
+                            //this.logUtil.put(this.scaleProperties.toString(), this, this.commonStrings.PROCESS);
 
                         }
 
@@ -399,7 +399,7 @@ Created By: Travis Berthelot
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * scale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * scale)
                                 );
 
-//                this.logUtil.putF("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
+//                this.logUtil.putF("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, this.commonStrings.PROCESS);
 
                                     </xsl:if>
                 
@@ -481,7 +481,7 @@ Created By: Travis Berthelot
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * scale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * scale)
                                 );
 
-//              this.logUtil.putF("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
+//              this.logUtil.putF("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, this.commonStrings.PROCESS);
 
                 rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][<xsl:value-of select="$position - 1" />] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask;
                             </xsl:for-each>
@@ -522,7 +522,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
+                    this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, this.commonStrings.INIT);
                 }    
                     
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {

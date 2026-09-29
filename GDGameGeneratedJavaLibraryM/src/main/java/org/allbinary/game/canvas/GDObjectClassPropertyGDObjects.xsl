@@ -225,13 +225,13 @@ Created By: Travis Berthelot
             /*            
             public void setX(final int x) {
                 //if(Math.abs(x) > 10000)
-                this.logUtil.put(new StringMaker().append(" TWBx: ").append(x).toString(), this, commonStrings.PROCESS, new Exception());
+                this.logUtil.put(new StringMaker().append(" TWBx: ").append(x).toString(), this, this.commonStrings.PROCESS, new Exception());
                 super.setX(x);
             }
 
             public void setY(final int y) {
                 //if(Math.abs(y) > 10000)
-                this.logUtil.put(new StringMaker().append(" TWBy: ").append(y).toString(), this, commonStrings.PROCESS, new Exception());
+                this.logUtil.put(new StringMaker().append(" TWBy: ").append(y).toString(), this, this.commonStrings.PROCESS, new Exception());
                 super.setY(y);
             }
             */

@@ -35,7 +35,7 @@ Created By: Travis Berthelot
                                 @Override
                                 public boolean process() throws Exception {
                             
-                                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
 
                                     <xsl:for-each select="events" >
                                         
@@ -75,7 +75,7 @@ Created By: Travis Berthelot
                             
                                     boolean result = true;
 
-                                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
 
                                     <xsl:for-each select="events" >
                                         
@@ -115,7 +115,7 @@ Created By: Travis Berthelot
                                 public boolean processReleased() throws Exception { 
                                     super.processReleasedStats();
 
-                                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
 
                                     <xsl:for-each select="events" >
                                         
@@ -178,7 +178,7 @@ Created By: Travis Berthelot
                                 @Override
                                 public boolean process() throws Exception {
                             
-                                    this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:value-of select="name" />", this, commonStrings.PROCESS);
+                                    this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:value-of select="name" />", this, this.commonStrings.PROCESS);
                                     
                                     //Create the Objects in the layout=<xsl:value-of select="name" />
                                     <xsl:call-template name="createInstancesCalls" >
