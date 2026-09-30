@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+AllBinary Open License Version 1
+Copyright (c) 2022 AllBinary
+
+By agreeing to this license you and any business entity you represent are
+legally bound to the AllBinary Open License Version 1 legal agreement.
+
+You may obtain the AllBinary Open License Version 1 legal agreement from
+AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+
+Created By: Travis Berthelot
+-->
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+
+    <xsl:output method="html" indent="yes" />
+
+    <xsl:template name="textContainerCapabilityTextContainerBehaviorValueConditionGDNode" >
+        <xsl:param name="forExtension" />
+        <xsl:param name="layoutIndex" />
+        
+
+        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+        
+        <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
+        
+        <xsl:variable name="quote" >"</xsl:variable>
+        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                    //textContainerCapabilityTextContainerBehaviorValueConditionGDNode - //Condition - //TextContainerCapability::TextContainerBehavior::Value - GDNode
+                    <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>final GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    
+                    <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
+                        private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
+
+                        <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="param4" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" >
+                                    <xsl:call-template name="string-replace-all" >
+                                        <xsl:with-param name="text" >
+                                    <xsl:call-template name="string-replace-all" >
+                                        <xsl:with-param name="text" >
+                                            <xsl:value-of select="text()" />
+                                        </xsl:with-param>                                
+                                        <xsl:with-param name="find" >&quot;&quot;</xsl:with-param>
+                                        <xsl:with-param name="replacementText" >stringUtil.EMPTY_STRING</xsl:with-param>
+                                    </xsl:call-template>
+                                        </xsl:with-param>
+                                        <xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param>
+                                        <xsl:with-param name="replacementText" ></xsl:with-param>
+                                    </xsl:call-template>
+                        </xsl:if>
+                        </xsl:for-each>
+                        </xsl:variable>
+
+                <xsl:variable name="hasObjectGroup" >
+                    <xsl:for-each select="//objectsGroups" >
+                        <xsl:if test="contains($param, name)" >found</xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:variable name="objectGroupName" >
+                    <xsl:for-each select="//objectsGroups" >
+                        <xsl:if test="contains($param, name)" ><xsl:value-of select="name" /></xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+
+                <xsl:variable name="hasObject" >
+                    <xsl:for-each select="/game/layouts" >
+                        <xsl:if test="$layoutIndex = position() - 1" >
+                            <xsl:for-each select="objects" >
+                                <xsl:if test="contains($param, name)" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:variable name="objectName" >
+                    <xsl:for-each select="/game/layouts" >
+                        <xsl:if test="$layoutIndex = position() - 1" >
+                            <xsl:for-each select="objects" >
+                                <xsl:if test="contains($param, name)" ><xsl:value-of select="name" /></xsl:if>
+                            </xsl:for-each>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                //hasObjectGroup=<xsl:value-of select="$hasObjectGroup" />
+                //objectGroupName=<xsl:value-of select="$objectGroupName" />
+                //hasObject=<xsl:value-of select="$hasObject" />
+                //objectName=<xsl:value-of select="$objectName" />
+                                            
+                        //TextContainerCapability::TextContainerBehavior::Value - condition - //forExtension=<xsl:value-of select="$forExtension" />
+                        <xsl:if test="not(contains($forExtension, 'found'))" >
+                        @Override
+                        public boolean process() throws Exception {
+                            super.processStats();
+                            //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+
+                    <xsl:if test="contains($hasObject, 'found')" >
+                    final BasicArrayList gdGameLayerList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$objectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$objectName" />GDGameLayerList;
+                    final GDGameLayer <xsl:value-of select="$objectName" /> = (GDGameLayer) gdGameLayerList.get(0);
+                    </xsl:if>
+                                                        
+                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.Text()</xsl:if><xsl:if test="position() = 3" >.compareTo(<xsl:value-of select="$param4" />) <xsl:if test="text() = '='" >== 0</xsl:if><xsl:if test="text() = '!='" >!= 0</xsl:if></xsl:if></xsl:for-each>)) {
+                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" ><xsl:call-template name="replace-escaped-conditionals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if><xsl:text> </xsl:text></xsl:for-each>", this, this.commonStrings.PROCESS);
+                                return true;
+                            }
+                            return false;
+                        }
+
+                        @Override
+                        public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+                            super.processStats(motionGestureEvent);
+                            
+                            //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, this.commonStrings.PROCESS);
+                            
+                            return this.process();
+                        }
+
+                        @Override
+                        public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                            super.processGDStats(gameLayerArray);
+
+                            try {
+                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, this.commonStrings.PROCESS);
+
+                                return this.process();
+                            } catch(Exception e) {
+                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            }
+                            return true;                   
+                        }
+
+                        </xsl:if>
+
+                        <xsl:if test="contains($forExtension, 'found')" >
+                        @Override
+                        public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
+                            
+                            //Map from object array with action params
+                            final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
+                            this.process(gameLayer, intArray[3], intArray[5]);
+
+                            return true;
+                        }
+                        </xsl:if>
+
+                        public void process(final GDGameLayer gameLayer, final int x, final int y) {
+                            final GDObject gdObject = gameLayer.gdObject;
+                            this.process(gdObject, x, y);
+                        }
+
+                        public void process(final GDObject gdObject, final int x, final int y) {
+                            throw new RuntimeException();
+                        }
+                               
+                    };
+
+                    <xsl:if test="not(contains($forExtension, 'found'))" >
+                    if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
+                        throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
+                    }
+                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
+                    </xsl:if>
+
+    </xsl:template>
+
+</xsl:stylesheet>

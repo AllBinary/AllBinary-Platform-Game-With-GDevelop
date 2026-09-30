@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+AllBinary Open License Version 1
+Copyright (c) 2022 AllBinary
+
+By agreeing to this license you and any business entity you represent are
+legally bound to the AllBinary Open License Version 1 legal agreement.
+
+You may obtain the AllBinary Open License Version 1 legal agreement from
+AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+
+Created By: Travis Berthelot
+-->
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+
+    <xsl:output method="html" indent="yes" />
+    <xsl:template name="builtinCommonInstructionsStandardEventGDNode" >
+        <xsl:param name="caller" />
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="selectedNodeIds" />
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="layoutName" />
+        <xsl:param name="instancesAsString" />
+        <xsl:param name="objectsGroupsAsString" />
+        <xsl:param name="objectsAsString" />
+        <xsl:param name="createdObjectsAsString" />
+        <xsl:param name="conditionEventPosition" />
+
+        <xsl:variable name="quote" >"</xsl:variable>
+        <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
+            
+                //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> totalRecursions=<xsl:value-of select="$totalRecursions" />
+                private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />";
+                <xsl:text>&#10;</xsl:text>
+
+                <xsl:if test="contains(disabled, 'true')" >
+                //Disabled so not call anything.
+                /*
+                </xsl:if>
+                
+                //BuiltinCommonInstructions::Standard - event
+                @Override
+                public boolean process() throws Exception {
+                    super.processStats();
+                    
+                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                    
+                    <xsl:variable name="foundSubProcessing" >
+                        <xsl:for-each select="conditions" >
+                            <xsl:choose>
+                                <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
+                                    found
+                                </xsl:when>
+                                <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
+                                    found
+                                </xsl:when>                                
+                                <xsl:otherwise></xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <xsl:variable name="foundSubProcessingOrInputOrTimer" >
+                        <xsl:for-each select="conditions" >
+                            <xsl:choose>
+                                <xsl:when test="type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased' or type/value = 'AnyKeyPressed' or type/value = 'AnyKeyReleased'" >
+                                    found
+                                </xsl:when>
+                                <xsl:when test="type/value = 'MouseButton' or type/value = 'MouseButtonFromTextPressed' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >
+                                    found
+                                </xsl:when>
+                                <xsl:when test="type/value = 'IsCursorOnObject' or type/value = 'SourisSurObjet'" >
+                                    found
+                                </xsl:when>
+                                <xsl:when test="type/value = 'IsMouseWheelScrollingDown' or type/value = 'IsMouseWheelScrollingUp'" >
+                                    found
+                                </xsl:when>
+                                <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
+                                    found
+                                </xsl:when>
+                                <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
+                                    found
+                                </xsl:when>                                
+                                <xsl:otherwise></xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:for-each>
+                    </xsl:variable>
+
+                    <xsl:variable name="hasDistance" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'Distance'" >found</xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="hasCollisionNP" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >found</xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="process" ><xsl:choose><xsl:when test="contains($hasDistance, 'found')" >processGD(gameGlobals.tempGameLayerArray)</xsl:when><xsl:when test="contains($hasCollisionNP, 'found')" >processGD(gameGlobals.tempGameLayerArray)</xsl:when><xsl:otherwise>process()</xsl:otherwise></xsl:choose></xsl:variable>
+
+                    <xsl:for-each select="conditions" >
+                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
+                        <xsl:choose>
+                            <xsl:when test="type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased' or type/value = 'AnyKeyPressed' or type/value = 'AnyKeyReleased'" >
+                        //Skip - Key Input condition for process() as it can only be called from GDGameInputProcessor, but probably should not be
+                            </xsl:when>
+                            <xsl:when test="type/value = 'MouseButton' or type/value = 'MouseButtonFromTextPressed' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >
+                        //Skip - MouseButton/SourisBouton, MouseButtonReleased, MouseButtonFromTextPressed for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
+                            </xsl:when>
+                            <xsl:when test="type/value = 'IsCursorOnObject' or type/value = 'SourisSurObjet'" >
+                        //Skip - IsCursorOnObject/SourisSurObjet for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
+                            </xsl:when>
+                            <xsl:when test="type/value = 'IsMouseWheelScrollingDown' or type/value = 'IsMouseWheelScrollingUp'" >
+                        //Skip - IsMouseWheelScrollingDown for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
+                            </xsl:when>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            </xsl:when>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            </xsl:when>
+                            <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                        //LinkedObjects::PickObjectsLinkedTo does not have process() logic
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            </xsl:when>
+                            <xsl:when test="type/value = 'Distance'" >
+                        //Distance - include params
+                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                            <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                            <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                            <xsl:variable name="id" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
+                            <xsl:variable name="id2" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
+
+                            //final GDGameLayer gameLayer = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />];
+                            //final GDGameLayer gameLayer2 = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id2])" />];
+                            </xsl:when>
+                            <xsl:when test="type/value = 'CollisionNP' or type/value = 'Collision'" >
+                        //CollisionNP - include params
+                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                            <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                            <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                            <xsl:variable name="id" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
+                            <xsl:variable name="id2" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
+
+                            //final GDGameLayer gameLayer = gameGlobals.tempGameLayerArray[0];
+                            //final GDGameLayer gameLayer2 = gameGlobals.tempGameLayerArray[1];
+                            </xsl:when>
+                            <xsl:otherwise>
+                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each>
+
+                    <xsl:if test="not(contains($foundSubProcessingOrInputOrTimer, 'found'))" >
+                        
+                        <xsl:call-template name="actionsProcessing" >
+                            <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                            <xsl:with-param name="methodCall" ><xsl:value-of select="$process" /></xsl:with-param>
+                        </xsl:call-template>
+
+                    <xsl:for-each select="events" >
+                        <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
+                            //Events only - //Event - //<xsl:value-of select="type" /> - call
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].<xsl:value-of select="$process" />;
+                        </xsl:if>
+                        <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
+                            <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> 
+                            <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            //Event - //BuiltinCommonInstructions::Link - call
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.<xsl:value-of select="$process" />;
+                        </xsl:if>
+                    </xsl:for-each>
+
+                    </xsl:if>
+
+                    <xsl:for-each select="conditions" >
+                        <xsl:choose>
+                            <xsl:when test="type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased' or type/value = 'AnyKeyPressed' or type/value = 'AnyKeyReleased'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'MouseButton' or type/value = 'MouseButtonFromTextPressed' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'IsCursorOnObject' or type/value = 'SourisSurObjet'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'IsMouseWheelScrollingDown' or type/value = 'IsMouseWheelScrollingUp'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                            </xsl:when>
+                            <xsl:otherwise>
+                        }
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each>
+
+                    return true;
+
+                }
+
+                @Override
+                public boolean process(final int index3) throws Exception {
+                    super.processStats();
+                    
+                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+
+                    <xsl:for-each select="conditions" >
+                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
+                        <xsl:choose>
+                            <xsl:when test="type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased' or type/value = 'AnyKeyPressed' or type/value = 'AnyKeyReleased'" >
+                        //Skip - Key Input condition for process() as it can only be called from GDGameInputProcessor, but probably should not be
+                            </xsl:when>
+                            <xsl:when test="type/value = 'MouseButton' or type/value = 'MouseButtonFromTextPressed' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >
+                        //Skip - MouseButton/SourisBouton, MouseButtonReleased for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
+                            </xsl:when>
+                            <xsl:when test="type/value = 'IsCursorOnObject' or type/value = 'SourisSurObjet'" >
+                        //Skip - IsCursorOnObject/SourisSurObjet for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
+                            </xsl:when>
+                            <xsl:when test="type/value = 'IsMouseWheelScrollingDown' or type/value = 'IsMouseWheelScrollingUp'" >
+                        //Skip - IsMouseWheelScrollingDown for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
+                            </xsl:when>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index3);
+                            </xsl:when>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index3);
+                            </xsl:when>
+                            <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                        //LinkedObjects::PickObjectsLinkedTo does not have process(index3) logic
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index3);
+                            </xsl:when>
+                            <xsl:otherwise>
+                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index3)) {
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each>
+
+                    <xsl:if test="not(contains($foundSubProcessingOrInputOrTimer, 'found'))" >
+                        
+                        <xsl:call-template name="actionsProcessing" >
+                            <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                            <xsl:with-param name="methodCall" >process(index3)</xsl:with-param>
+                        </xsl:call-template>
+
+                    <xsl:for-each select="events" >
+                        <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
+                            //Events only - //Event - //<xsl:value-of select="type" /> - call
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index3);
+                        </xsl:if>
+                        <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
+                            <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> 
+                            <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            //Event - //BuiltinCommonInstructions::Link - call
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process(index3);
+                        </xsl:if>
+                    </xsl:for-each>
+
+                    </xsl:if>
+
+                    <xsl:for-each select="conditions" >
+                        <xsl:choose>
+                            <xsl:when test="type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased' or type/value = 'AnyKeyPressed' or type/value = 'AnyKeyReleased'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'MouseButton' or type/value = 'MouseButtonFromTextPressed' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'IsCursorOnObject' or type/value = 'SourisSurObjet'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'IsMouseWheelScrollingDown' or type/value = 'IsMouseWheelScrollingUp'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                            </xsl:when>
+                            <xsl:otherwise>
+                        }
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each>
+
+                    return true;
+
+                }                
+
+                @Override
+                public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+                    super.processStats(motionGestureEvent);
+
+                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, this.commonStrings.PROCESS);
+
+                    <xsl:for-each select="conditions" >
+                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
+                        <xsl:choose>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
+                            </xsl:when>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
+                            </xsl:when>
+                            <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                        //LinkedObjects::PickObjectsLinkedTo does not have process(motionGestureEvent, lastMotionGestureInput) logic
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index3);
+                            </xsl:when>
+                            <xsl:otherwise>
+                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput)) {
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each>
+
+                    <xsl:if test="not(contains($foundSubProcessing, 'found'))" >
+                        
+                        <xsl:call-template name="actionsProcessing" >
+                            <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                            <xsl:with-param name="methodCall" >process(motionGestureEvent, lastMotionGestureInput)</xsl:with-param>
+                        </xsl:call-template>
+
+                    <xsl:for-each select="events" >
+                        <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
+                            //Events only - //Event - //<xsl:value-of select="type" /> - call
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
+                        </xsl:if>
+                        <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
+                            <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> 
+                            <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            //Event - //BuiltinCommonInstructions::Link - call
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process(motionGestureEvent, lastMotionGestureInput);
+                        </xsl:if>
+                    </xsl:for-each>
+
+                    </xsl:if>
+
+                    <xsl:for-each select="conditions" >
+                        <xsl:choose>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                            </xsl:when>
+                            <xsl:otherwise>
+                        }
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each>
+
+                    return true;                           
+                }
+
+                @Override
+                public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+                    super.processGDStats(gameLayerArray);
+                        
+                    //this.logUtil.putF(EVENT_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                    
+                    <xsl:for-each select="conditions" >
+                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
+                        <xsl:choose>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray);
+                            </xsl:when>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray);
+                            </xsl:when>
+                            <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray);
+                            </xsl:when>
+                            <xsl:otherwise>
+                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray)) {
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each>
+
+                    <xsl:if test="not(contains($foundSubProcessing, 'found'))" >
+                        
+                        <xsl:call-template name="actionsProcessing" >
+                            <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                            <xsl:with-param name="methodCall" >processGD(gameLayerArray)</xsl:with-param>
+                            <xsl:with-param name="parentParam" >gameLayerArray</xsl:with-param>
+                        </xsl:call-template>
+
+                    <xsl:for-each select="events" >
+                        <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
+                            //Events only - //Event - //<xsl:value-of select="type" /> - call
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray);
+                        </xsl:if>
+                        <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
+                            <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> 
+                            <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            //Event - //BuiltinCommonInstructions::Link - call
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processGD(gameLayerArray);
+                        </xsl:if>
+                    </xsl:for-each>
+
+                    </xsl:if>
+
+                    <xsl:for-each select="conditions" >
+                        <xsl:choose>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                            </xsl:when>
+                            <xsl:otherwise>
+                        }
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each>
+                        
+                    return true;                
+                }
+
+                @Override
+                public boolean processReleased() throws Exception {
+                    super.processReleasedStats();
+
+                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "release, this, globals.PROCESS_RELEASE);
+
+                    <xsl:for-each select="conditions" >
+                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
+                        <xsl:choose>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                            </xsl:when>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                            </xsl:when>
+                            <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                        //LinkedObjects::PickObjectsLinkedTo does not have processReleased() logic
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                            </xsl:when>
+                            <xsl:otherwise>
+                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased()) {
+                        //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                        //throw new RuntimeException();
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each>
+
+                    <xsl:if test="not(contains($foundSubProcessing, 'found'))" >
+                        
+                    <xsl:call-template name="actionsProcessing" >
+                            <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                            <xsl:with-param name="methodCall" >processReleased()</xsl:with-param>
+                    </xsl:call-template>
+
+                    <xsl:for-each select="events" >
+                        <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
+                            //Events only - //Event - //<xsl:value-of select="type" /> - call
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                        </xsl:if>
+                        <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
+                            <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> 
+                            <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            //Event - //BuiltinCommonInstructions::Link - call
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processReleased();
+                        </xsl:if>
+                    </xsl:for-each>
+
+                    </xsl:if>
+
+                    <xsl:for-each select="conditions" >
+                        <xsl:choose>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
+                            </xsl:when>
+                            <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
+                            </xsl:when>
+                            <xsl:otherwise>
+                            return true;
+                        }
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each>
+
+                    return false;
+                }
+
+                <xsl:if test="contains(disabled, 'true')" >
+                */
+                </xsl:if>
+
+    </xsl:template>
+
+</xsl:stylesheet>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+AllBinary Open License Version 1
+Copyright (c) 2011 AllBinary
+
+By agreeing to this license you and any business entity you represent are
+legally bound to the AllBinary Open License Version 1 legal agreement.
+
+You may obtain the AllBinary Open License Version 1 legal agreement from
+AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+
+Created By: Travis Berthelot
+-->
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    <xsl:output method="html" indent="yes" />
+
+    <xsl:template match="/game">
+        <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutName" select="name" />
+            <xsl:variable name="index" select="position() - 1" />
+            <!--
+            <xsl:if test="number($index) > 1" >
+            -->
+            <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
+                <xsl:variable name="nameValue" select="name" />
+/*
+* AllBinary Open License Version 1
+* Copyright (c) 2011 AllBinary
+* 
+* By agreeing to this license you and any business entity you represent are
+* legally bound to the AllBinary Open License Version 1 legal agreement.
+* 
+* You may obtain the AllBinary Open License Version 1 legal agreement from
+* AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+* 
+* Created By: Travis Berthelot
+* 
+*/
+package org.allbinary.game.midlet;
+
+import org.allbinary.game.GDGameMIDlet;
+import org.allbinary.string.CommonStrings;
+import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
+import org.allbinary.graphics.displayable.command.MyCommandsFactory;
+import org.allbinary.util.ABHashtable;
+                
+public class GDGame<xsl:value-of select="$layoutName" />CanvasRunnable implements Runnable
+{
+    protected final LogUtil logUtil = LogUtil.getInstance();
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
+    
+    private final GDGameMIDlet demoGameMidlet;
+    private final ABHashtable hashtable;
+    
+    private final DemoGameMidletEvent startGameMidletEvent;
+    
+    public GDGame<xsl:value-of select="$layoutName" />CanvasRunnable(DemoGameMidlet demoGameMidlet, ABHashtable hashtable)
+    {
+        this.demoGameMidlet = (GDGameMIDlet) demoGameMidlet;
+        this.hashtable = hashtable;
+        
+        this.startGameMidletEvent = new DemoGameMidletEvent(
+                this, DemoGameMidletStateFactory.getInstance().START_GAME);        
+    }
+    
+    public void run()
+    {
+        try
+        {
+            logUtil.putF(commonStrings.START_RUNNABLE, this, commonStrings.RUN);
+
+            this.demoGameMidlet.commandAction(
+                    MyCommandsFactory.getInstance().SET_DISPLAYABLE,
+                    ProgressCanvasFactory.getInstance());
+
+            //ProgressCanvasFactory.getInstance().waitUntilDisplayed();
+
+            this.demoGameMidlet.stopGameCanvasRunnableInterface();
+
+            // mediaInit();
+
+            this.demoGameMidlet.setGameCanvasRunnableInterface(
+                    this.demoGameMidlet.createGDGame<xsl:value-of select="$layoutName" />CanvasRunnableInterface());
+
+            this.demoGameMidlet.getGameCanvasRunnableInterface().setLoadStateHashtable(hashtable);
+
+            // this.setDisplay((Displayable)
+            // this.getGameCanvasRunnableInterface());
+            
+            this.demoGameMidlet.startGameCanvasRunnableInterface();
+
+            DemoGameMidletEventHandler.getInstance().fireEvent(
+                    this.startGameMidletEvent);
+            
+            logUtil.putF(commonStrings.END_RUNNABLE, this, commonStrings.RUN);
+        }
+        catch (Exception e)
+        {
+            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.RUN, e);
+        }
+    }
+}
+            </xsl:if>
+
+        </xsl:for-each>
+    </xsl:template>
+
+</xsl:stylesheet>

@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+AllBinary Open License Version 1
+Copyright (c) 2011 AllBinary
+
+By agreeing to this license you and any business entity you represent are
+legally bound to the AllBinary Open License Version 1 legal agreement.
+
+You may obtain the AllBinary Open License Version 1 legal agreement from
+AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+
+Created By: Travis Berthelot
+-->
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
+    
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
+    
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
+
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionGDNodeAction.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalActionGDNodesAction.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjects.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssign.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
+
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
+
+    <xsl:output method="html" indent="yes" />
+
+    <xsl:template match="/game">
+
+        <xsl:variable name="selectedNodeIds" ><GD_NODE_IDS></xsl:variable>
+        
+        <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+
+            <xsl:if test="number($layoutIndex) =
+                <GD_CURRENT_INDEX>" >
+                <!-- Android images assets need to be enlarged if they are not setup to be inside the cirle area needed -->
+                <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
+                <xsl:variable name="layoutName" select="name" />
+<!--                <xsl:for-each select="../externalEvents" ><xsl:if test="$layoutName = associatedLayout" ></xsl:if></xsl:for-each>-->
+<!--                <xsl:for-each select="../externalLayouts" ><xsl:if test="$layoutName = associatedLayout" ></xsl:if></xsl:for-each>-->
+
+                <xsl:variable name="objectsGroupsAsString" >,<xsl:for-each select="/game/objectsGroups" ><xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="objectsGroups" ><xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
+                <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="layer" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
+                <xsl:variable name="objectsAsString" >,<xsl:for-each select="/game/objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
+                <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
+                <xsl:variable name="externalEventActionModVarSceneAsString" >,<xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
+                //objectsGroupsAsString=<xsl:value-of select="$objectsGroupsAsString" />
+                //instancesAsString=<xsl:value-of select="$instancesAsString" />
+                //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
+                //objectsAsString=<xsl:value-of select="$objectsAsString" />
+                //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
+
+                package org.allbinary.game.canvas.node.action;
+
+                import javax.microedition.lcdui.Graphics;
+                import javax.microedition.lcdui.Image;
+                
+                import org.json.me.JSONArray;
+                import org.json.me.JSONObject;
+                import org.json.me.JSONTokener;
+
+                import org.allbinary.AndroidUtil;
+                import org.allbinary.J2MEUtil;
+                import org.allbinary.animation.AnimationBehavior;
+                import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.canvas.GameGlobalsFactory;
+                import org.allbinary.game.canvas.ABToGBUtil;
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil;
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory;
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources;
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals;
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources;
+                import org.allbinary.game.canvas.GDExtensionGDNodes;
+                import org.allbinary.game.canvas.GDGameGlobals;
+                import org.allbinary.game.canvas.GDGameSoftwareInfo;
+                import org.allbinary.game.canvas.GDGlobalsGDObjectsFactory;
+                import org.allbinary.game.canvas.GDGlobalsGDResources;
+                import org.allbinary.game.configuration.persistance.GDStructure;
+                import org.allbinary.game.configuration.persistance.JSONPersistance;
+                import org.allbinary.game.layer.GDGameLayer;
+                import org.allbinary.game.layer.GDRectOnlyPrimitiveDrawing;
+                import org.allbinary.game.layer.GDPrimitiveDrawingLinesOnly;
+                import org.allbinary.game.layout.GDNode;
+                import org.allbinary.game.layer.special.TempGameLayerUtil;
+                import org.allbinary.game.layout.GDObject;
+                import org.allbinary.game.layer.AllBinaryGameLayerManager;
+                import org.allbinary.game.layer.GDGameLayerFactory;
+                import org.allbinary.game.layer.behavior.GDBehaviorUtil;
+                import org.allbinary.game.layout.GDObjectFactory;                
+                import org.allbinary.game.layer.behavior.PathFindingBehavior;
+                import org.allbinary.game.rand.MyRandomFactory;
+                import org.allbinary.graphics.PointFactory;
+                import org.allbinary.graphics.color.BasicColor;
+                import org.allbinary.graphics.color.SmallBasicColorCacheFactory;
+                import org.allbinary.graphics.color.BasicColorUtil;
+                import org.allbinary.graphics.Rectangle;
+                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
+                import org.allbinary.input.motion.gesture.MotionGestureInput;
+                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
+                import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.string.CommonStrings;
+                import org.allbinary.string.CommonSeps;
+                import org.allbinary.logic.string.StringMaker;
+                import org.allbinary.logic.string.StringUtil;
+                import org.allbinary.time.GameTickTimeDelayHelper;
+                import org.allbinary.time.GameTickTimeDelayHelperFactory;
+                import org.allbinary.util.BasicArrayList;
+                import org.allbinary.util.BasicArrayListD;
+                import org.allbinary.logic.NullUtil;
+                import org.allbinary.util.ArrayUtil;
+                import org.allbinary.media.audio.PlayerComposite;
+                import org.allbinary.media.audio.Sound;
+                import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+                import org.allbinary.thread.PathFindingThreadPool;
+                import org.allbinary.logic.io.file.FileSystem;
+                import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
+                import org.allbinary.string.CommonPhoneStrings;
+                <xsl:variable name="hasAllBinaryGenerateGenerateAsJavaScript" >
+                    <xsl:for-each select="//actions" >
+                        <xsl:if test="type/value = 'AllBinaryGenerate::GenerateAsJavaScript'" >
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:if test="contains($hasAllBinaryGenerateGenerateAsJavaScript, 'found')" >
+                import org.allbinary.runtime.GetJsAtRuntime;
+                </xsl:if>
+                import org.allbinary.time.TimeDelayHelper;
+
+                <xsl:variable name="selectedNodeIdSet" select="substring(substring($selectedNodeIds, string-length($selectedNodeIds) - 1), 1, 1)" />
+                <xsl:variable name="lastDigit2" ><xsl:if test="4 >= $selectedNodeIdSet" >0</xsl:if><xsl:if test="$selectedNodeIdSet > 4" >1</xsl:if></xsl:variable>
+                //selectedNodeIdSet=<xsl:value-of select="$selectedNodeIdSet" />                    
+                //LayoutExternalAction name=<xsl:value-of select="$layoutName" />
+                public class GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$lastDigit2" />GDNodes
+                {
+
+                    private static final GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$lastDigit2" />GDNodes instance = new GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$lastDigit2" />GDNodes();
+
+                        public static GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$lastDigit2" />GDNodes getInstance()
+                        {
+                            return GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$lastDigit2" />GDNodes.instance;
+                        }
+
+                        protected final LogUtil logUtil = LogUtil.getInstance();
+                        private final CommonStrings commonStrings = CommonStrings.getInstance();
+                        private final StringUtil stringUtil = StringUtil.getInstance();
+                        private final String EMPTY_STRING = stringUtil.EMPTY_STRING;
+                        private final NullUtil nullUtil = NullUtil.getInstance();
+                        private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+                        private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
+                        private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
+                        private final PointFactory pointFactory = PointFactory.getInstance();
+                        private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
+                        private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
+                        private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
+                        private final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
+                        
+                        private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
+                        private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                        private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
+                        
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+                        private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
+
+                        private final AbeClientInformationInterface abeClientInformation = GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION;
+
+        <xsl:call-template name="scaleProperty" >
+            <xsl:with-param name="layoutIndex" >
+                <xsl:value-of select="$layoutIndex" />
+            </xsl:with-param>
+            <xsl:with-param name="layoutName" >
+                <xsl:value-of select="$layoutName" />
+            </xsl:with-param>
+        </xsl:call-template>
+                                                                                                          
+                    <xsl:call-template name="externalActionGDNodes" >
+                        <xsl:with-param name="layoutName" >
+                            <xsl:value-of select="$layoutName" />
+                        </xsl:with-param>
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="selectedNodeIds" >
+                            <xsl:value-of select="$selectedNodeIds" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsAsString" >
+                            <xsl:value-of select="$objectsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        
+                    </xsl:call-template>
+                    
+                    public double TimeDelta() {
+                        return globals.globalsGameTickTimeDelayHelper.timeDelta * .001;
+                    }
+
+                    public int SceneWindowWidth() {
+                        return gameTickDisplayInfoSingleton.getLastWidth();
+                    }
+
+                    public int SceneWindowHeight() {
+                        return gameTickDisplayInfoSingleton.getLastHeight();
+                    }
+
+                    public int Random(final int range) {
+                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
+                    }
+
+                    public float RandomFloatInRange(final double min, final double max) {
+                        final double next = (max - min);
+                        //this.logUtil.putF("NEXT: " + next, this, this.commonStrings.PROCESS);
+                        final float nextF = (float) next * 1000;
+                        //this.logUtil.putF("NEXTF: " + nextF, this, this.commonStrings.PROCESS);
+                        final int nextI = Math.round(nextF);
+                        //this.logUtil.putF("NEXTI: " + nextI, this, this.commonStrings.PROCESS);
+                        final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
+                        //this.logUtil.putF("RANDOM: " + random, this, this.commonStrings.PROCESS);
+                        final float randomF = (float) random;
+                        //this.logUtil.putF("RANDOMF: " + randomF, this, this.commonStrings.PROCESS);
+                        final float result = (float) min + (randomF / 1000);
+                        //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS);
+                        return result;
+                    }
+                    
+                    public float RandomFloatInRange(final float min, final float max) {
+                        final float nextF = (float) (max - min) * 1000;
+                        //this.logUtil.putF("NEXTF: " + nextF, this, this.commonStrings.PROCESS);
+                        final int nextI = Math.round(nextF);
+                        //this.logUtil.putF("NEXTI: " + nextI, this, this.commonStrings.PROCESS);
+                        final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
+                        //this.logUtil.putF("RANDOM: " + random, this, this.commonStrings.PROCESS);
+                        final float randomF = (float) random;
+                        //this.logUtil.putF("RANDOMF: " + randomF, this, this.commonStrings.PROCESS);
+                        final float result = (float) min + (randomF / 1000);
+                        //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS);
+                        return result;
+                    }
+
+                    public int Variable(final int value) {
+                        return value;
+                    }
+
+                    public float Variable(final float value) {
+                        return value;
+                    }
+
+                    public double Variable(final double value) {
+                        return value;
+                    }
+
+                    public String VariableString(final String string) {
+                        return string;
+                    }
+
+                    public String VariableString(final Object object) {
+                        return object.toString();
+                    }
+
+                    public int VariableChildCount(final String[] array) {
+                        return array.length;
+                    }
+
+                    public int VariableChildCount(final int[] array) {
+                        return array.length;
+                    }
+
+                    public String GlobalVariable(final String value) {
+                        return value;
+                    }
+
+                    public float GlobalVariable(final float value) {
+                        return value;
+                    }
+
+                    public long GlobalVariable(final long value) {
+                        return value;
+                    }
+
+                    public int GlobalVariable(final int value) {
+                        return value;
+                    }
+
+                    public String GlobalVariableString(final String value) {
+                        return value;
+                    }
+
+                    public int GlobalVariableChildCount(final String[] array) {
+                        return array.length;
+                    }
+
+                    public int GlobalVariableChildCount(final int[] array) {
+                        return array.length;
+                    }
+
+                    public int GlobalVariableChildCount(final long[] array) {
+                        return array.length;
+                    }
+
+                    public String GlobalVarToJSON(final String value) {
+                        return value;
+                    }
+
+                    public String GlobalVarToJSON(final int value) {
+                        return Integer.toString(value);
+                    }
+
+                    public String GlobalVarToJSON(final long value) {
+                        return Long.toString(value);
+                    }
+
+                    public int ToJSONType(final GDStructure value) {
+                        return value.getJSONType();
+                    }
+
+                    public String ToJSON(final GDStructure value) {
+                        return value.toJSONAsString();
+                    }
+
+                    public String ToJSON(final String value) {
+                        return value;
+                    }
+
+                    public String ToJSON(final int value) {
+                        return Integer.toString(value);
+                    }
+
+                    public String ToJSON(final long value) {
+                        return Long.toString(value);
+                    }
+
+                    public int SceneInstancesCount(final int size) {
+                        return size;
+                    }
+
+                    public int MouseX() {
+                        
+                        return gameGlobalsFactory.point.getX();
+                    }
+
+                    public int MouseY() {
+                        
+                        return gameGlobalsFactory.point.getY();
+                    }
+
+                    public int MouseX(final String string, int value) {
+                        
+                        return gameGlobalsFactory.point.getX();
+                    }
+
+                    public int MouseY(final String string, int value) {
+                        
+                        return gameGlobalsFactory.point.getY();
+                    }
+                    
+                    public int CameraX(final String string, int value) {
+                        
+                        return 0;
+                    }
+
+                    public int CameraY(final String string, int value) {
+                        
+                        return 0;
+                    }
+
+                    public int CameraWidth(final String string, int value) {
+                        
+                        return gameTickDisplayInfoSingleton.getLastWidth();
+                    }
+
+                    public long TimerElapsedTime(final TimeDelayHelper timeDelayHelper) {
+                        return timeDelayHelper.getElapsed(globals.globalsGameTickTimeDelayHelper.lastStartTime) / 1000;
+                    }
+
+                    public int floor(final int value) {
+                        return value;
+                    }
+
+                    public float floor(final float value) {
+                        return (float) Math.floor((double) value);
+                    }
+
+                    public int mod(final int value, final int mod) {
+                        return value % mod;
+                    }
+
+                    public int round(final int value) {
+                        return value;
+                    }
+
+                    public long round(final long value) {
+                        return value;
+                    }
+                    
+                    public float round(final float value) {
+                        return Math.round(value);
+                    }
+                    
+                    public int abs(final int value) {
+                        return Math.abs(value);
+                    }
+                    
+                    public float abs(final float value) {
+                        return Math.abs(value);
+                    }
+
+                    public double log2(final int value) {
+                        return Math.log(value);
+                    }
+
+                    public double sin(final double angle) {
+                        return Math.sin(angle);
+                    }
+
+                    public double cos(final double angle) {
+                        return Math.cos(angle);
+                    }
+
+                    public int min(final int min, final int max) {
+                        return Math.min(min, max);
+                    }
+
+                    public int max(final int min, final int max) {
+                        return Math.max(min, max);
+                    }
+                    
+                    public int ceil(final double value) {
+                        return (int) Math.ceil(value);
+                    }
+
+                    public double ToRad(final double angdeg) {
+                        //return Math.toRadians(angdeg);
+                        return angdeg;
+                    }
+                    
+                    public long TimeFromStart() {
+                        return globals.globalsGameTickTimeDelayHelper.getTimeFromStart() / 100;
+                    }
+
+                    public String NewLine() {
+                        return CommonSeps.getInstance().NEW_LINE;
+                    }
+
+                    public int LastTouchId() {
+                        return 0;
+                    }
+
+                    public int LastEndedTouchId() {
+                        return 0;
+                    }
+
+                    public int TouchX(final int touchId, final String name, final int unknown) {
+                        return 0;
+                    }
+
+                    public int TouchY(final int touchId, final String name, final int unknown) {
+                        return 0;
+                    }
+
+                    public float ToNumber(final String string) {
+                        return Float.parseFloat(string);
+                    }
+
+                    public int StrLength(final String string) {
+                        return string.length();
+                    }
+                    
+                    public String StrReplaceAll(final String string, final String find, final String replace) {
+                        return string.replace(find, replace);
+                    }
+
+                    public String SubStr(final String string, final int startIndex, final int endIndex) {
+                        return string.substring(startIndex, endIndex);
+                    }
+
+                    public String ToString(final String value) {
+                        return value;
+                    }
+
+                    public String ToString(final int value) {
+                        if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
+                            return Integer.toString(value);
+                        } else {
+                            return smallIntegerSingletonFactory.getString(value);
+                        }
+                    }
+
+                    public String ToString(final long value) {
+                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
+                        return Long.toString(value);
+                    }
+                    
+                    public String LargeNumberToString(final long value) {
+                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
+                        return Long.toString(value);
+                    }
+                    
+                    public String LargeNumberToString(final float value) {
+                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
+                        return Long.toString((long) value);
+                    }
+
+                    public String ToString(final float value) {
+                        return Float.toString(value);
+                    }
+
+                    public int ToNotString(final int value) {
+                        return value;
+                    }
+
+                }
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:template>
+
+</xsl:stylesheet>
