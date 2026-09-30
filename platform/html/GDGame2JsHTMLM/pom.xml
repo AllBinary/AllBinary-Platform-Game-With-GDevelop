@@ -20,29 +20,29 @@
         <buildLabel>${project.version}</buildLabel>
         <inputPath>target\dependency</inputPath>
         <inputPath2>src\main\java\</inputPath2>
-        <outputPath>..\..\..\platformx\html\GDGame2HTMLTempM\src</outputPath>
+        <outputPath>..\..\..\platformx\html\GDGame2JsHTMLTempM\src</outputPath>
     </properties>
 
     <dependencies>
 
         <dependency>
             <groupId>org.allbinary.animation</groupId>
-            <artifactId>AllBinaryHTML2ImageAnimationRotationJavaLibrary</artifactId>
+            <artifactId>AllBinaryHTML2ImageAnimationRotationJavaLibraryJs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
             <exclusions>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>BasicMathLibrary</artifactId>
+                    <artifactId>BasicMathLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEColorJavaLibrary</artifactId>
+                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -65,14 +65,14 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>AllBinaryOnHTMLPlatformJavaLibrary</artifactId>
+            <artifactId>AllBinaryOnHTMLPlatformJavaLibraryJs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
             <exclusions>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEJsInteropCompatibilityJavaLibrary</artifactId>
+                    <artifactId>J2MEJsInteropCompatibilityJavaLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
@@ -84,33 +84,33 @@
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>CommonJavaLibrary</artifactId>
+                    <artifactId>CommonJavaLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>BasicMathLibrary</artifactId>
+                    <artifactId>BasicMathLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEColorJavaLibrary</artifactId>
+                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEWindowingJavaLibrary</artifactId>
+                    <artifactId>J2MEWindowingJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
         
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>ImageCacheJ2MEJavaLibrary</artifactId>    
+            <artifactId>ImageCacheJ2MEJavaLibraryJs</artifactId>    
 <!--        
-            <artifactId>ImageCacheJ2MEJavaLibrary</artifactId>    
-            <artifactId>ImageCacheLazyJ2MEJavaLibrary</artifactId>
+            <artifactId>ImageCacheJ2MEJavaLibraryJs</artifactId>    
+            <artifactId>ImageCacheLazyJ2MEJavaLibraryJs</artifactId>
 -->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
@@ -134,21 +134,21 @@
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>CommonJavaLibrary</artifactId>
+                    <artifactId>CommonJavaLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>BasicMathLibrary</artifactId>
+                    <artifactId>BasicMathLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>ImageCacheBaseNonJ2MEJavaLibrary</artifactId>            
+            <artifactId>ImageCacheBaseNonJ2MEJavaLibraryJs</artifactId>            
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
@@ -171,14 +171,14 @@
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>FormJMEJavaLibrary</artifactId>
+            <artifactId>FormJMEJavaLibraryJs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
@@ -193,22 +193,22 @@
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>BasicMathLibrary</artifactId>
+                    <artifactId>BasicMathLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEColorJavaLibrary</artifactId>
+                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
         
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>NoSWTJavaLibrary</artifactId>
+            <artifactId>NoSWTJavaLibraryJs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
@@ -219,16 +219,16 @@
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>ProgressJ2MEJavaLibrary</artifactId>
+            <artifactId>ProgressJ2MEJavaLibraryJs</artifactId>
 <!-- 
-            <artifactId>ProgressJ2MEJavaLibrary</artifactId>
-            <artifactId>ProgressLazyJ2MEJavaLibrary</artifactId>
+            <artifactId>ProgressJ2MEJavaLibraryJs</artifactId>
+            <artifactId>ProgressLazyJ2MEJavaLibraryJs</artifactId>
 -->
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
@@ -244,17 +244,17 @@
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEColorJavaLibrary</artifactId>
+                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>OpenGLNoneOtherJavaLibrary</artifactId>
+            <artifactId>OpenGLNoneOtherJavaLibraryJs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
@@ -265,27 +265,27 @@
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEColorJavaLibrary</artifactId>
+                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>OpenGLNoneOther2JavaLibrary</artifactId>
+            <artifactId>OpenGLNoneOther2JavaLibraryJs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
             <exclusions>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEColorJavaLibrary</artifactId>
+                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>GameInputPCJavaLibrary</artifactId>
+            <artifactId>GameInputPCJavaLibraryJs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
@@ -296,39 +296,39 @@
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>BasicMathLibrary</artifactId>
+                    <artifactId>BasicMathLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>GameInputPCBaseJavaLibrary</artifactId>
+                    <artifactId>GameInputPCBaseJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
         
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>AppNoneOpenGLESJavaLibrary</artifactId>            
+            <artifactId>AppNoneOpenGLESJavaLibraryJs</artifactId>            
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
             <exclusions>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>BasicMathLibrary</artifactId>
+                    <artifactId>BasicMathLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDFormJavaLibrary</artifactId>
+            <artifactId>GDFormJavaLibraryJs</artifactId>
             <!--
-            <artifactId>GDFormJavaLibrary</artifactId>
-            <artifactId>GDYourFormJavaLibrary</artifactId>
+            <artifactId>GDFormJavaLibraryJs</artifactId>
+            <artifactId>GDYourFormJavaLibraryJs</artifactId>
             -->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
@@ -337,43 +337,43 @@
             <exclusions>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>BasicMathLibrary</artifactId>
+                    <artifactId>BasicMathLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEColorJavaLibrary</artifactId>
+                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>MusicJ2MEJavaLibrary</artifactId>
+            <artifactId>MusicJ2MEJavaLibraryJs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
             <exclusions>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>BasicMathLibrary</artifactId>
+                    <artifactId>BasicMathLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>GameScoresLocalJavaLibrary</artifactId>
+            <artifactId>GameScoresLocalJavaLibraryJs</artifactId>
 <!--
-            <artifactId>GameScoresLocalJavaLibrary</artifactId>
-            <artifactId>GameScoresRemoteAndLocalJavaLibrary</artifactId>
+            <artifactId>GameScoresLocalJavaLibraryJs</artifactId>
+            <artifactId>GameScoresRemoteAndLocalJavaLibraryJs</artifactId>
 -->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
@@ -381,37 +381,37 @@
             <exclusions>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>BasicMathLibrary</artifactId>
+                    <artifactId>BasicMathLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEColorJavaLibrary</artifactId>
+                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
 <!--
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>XmlRpcJavaLibrary</artifactId>
+            <artifactId>XmlRpcJavaLibraryJs</artifactId>
             <version>${allbinary.platform.version}</version>
         </dependency>
-            <artifactId>XmlRpcJavaLibrary</artifactId>
-            <artifactId>YourXmlRpcJavaLibrary</artifactId>
+            <artifactId>XmlRpcJavaLibraryJs</artifactId>
+            <artifactId>YourXmlRpcJavaLibraryJs</artifactId>
 -->
 <!--
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>FreeTTSJ2MEJavaLibrary</artifactId>
+            <artifactId>FreeTTSJ2MEJavaLibraryJs</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
 -->
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameHTMLPlaynJavaLibrary</artifactId>
+            <artifactId>GDGameHTMLPlaynJavaLibraryJs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
@@ -419,7 +419,7 @@
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGamePreBaseJavaLibrary</artifactId>
+            <artifactId>GDGamePreBaseJavaLibraryJs</artifactId>
             <!-- Game Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- Game Version End -->
@@ -427,12 +427,12 @@
         
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>AdvertisementClientNoneJavaLibrary</artifactId>
+            <artifactId>AdvertisementClientNoneJavaLibraryJs</artifactId>
             <!--
-            <artifactId>AndroidAdvertisementJavaLibrary</artifactId>            
-            <artifactId>AdvertisementClientNoneJavaLibrary</artifactId>           
+            <artifactId>AndroidAdvertisementJavaLibraryJs</artifactId>            
+            <artifactId>AdvertisementClientNoneJavaLibraryJs</artifactId>           
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameAndroidAdvertisementJavaLibrary</artifactId>
+            <artifactId>GDGameAndroidAdvertisementJavaLibraryJs</artifactId>
             -->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
@@ -441,33 +441,33 @@
 
         <dependency>
             <groupId>org.allbinary.game.multiplayer</groupId>
-            <artifactId>AllBinaryGameClientBaseNullJavaLibrary</artifactId>
+            <artifactId>AllBinaryGameClientBaseNullJavaLibraryJs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
             <exclusions>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>BasicMathLibrary</artifactId>
+                    <artifactId>BasicMathLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEColorJavaLibrary</artifactId>
+                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>GameLicensingOnlyDemoJavaLibrary</artifactId>
+            <artifactId>GameLicensingOnlyDemoJavaLibraryJs</artifactId>
             <!--
-                <artifactId>GameLicensingOnlyNormalJavaLibrary</artifactId>
-                <artifactId>GameLicensingOnlyDemoJavaLibrary</artifactId>
-                <artifactId>GameLicensingInAppPurchaseJavaLibrary</artifactId>
+                <artifactId>GameLicensingOnlyNormalJavaLibraryJs</artifactId>
+                <artifactId>GameLicensingOnlyDemoJavaLibraryJs</artifactId>
+                <artifactId>GameLicensingInAppPurchaseJavaLibraryJs</artifactId>
             -->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
@@ -476,11 +476,11 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>TouchButtonMappingJavaLibrary</artifactId>
+            <artifactId>TouchButtonMappingJavaLibraryJs</artifactId>
             <!--
             For HTML build it is already part of GameInputPCMotion
-            <artifactId>NoTouchButtonJavaLibrary</artifactId>
-            <artifactId>TouchButtonMappingJavaLibrary</artifactId>
+            <artifactId>NoTouchButtonJavaLibraryJs</artifactId>
+            <artifactId>TouchButtonMappingJavaLibraryJs</artifactId>
             -->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
@@ -488,21 +488,21 @@
             <exclusions>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>BasicMathLibrary</artifactId>
+                    <artifactId>BasicMathLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.allbinary.input</groupId>
-            <artifactId>NoTouchButtonResourceAnimationJavaLibrary</artifactId>
+            <artifactId>NoTouchButtonResourceAnimationJavaLibraryJs</artifactId>
             <!--
-            <artifactId>NoTouchButtonResourceAnimationJavaLibrary</artifactId>
-            <artifactId>TouchButtonResourceAnimationJavaLibrary</artifactId>
+            <artifactId>NoTouchButtonResourceAnimationJavaLibraryJs</artifactId>
+            <artifactId>TouchButtonResourceAnimationJavaLibraryJs</artifactId>
             -->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
@@ -510,21 +510,21 @@
             <exclusions>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>BasicMathLibrary</artifactId>
+                    <artifactId>BasicMathLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.allbinary.input</groupId>
-            <artifactId>TouchButtonResourceOpenGLESAnimationJavaLibrary</artifactId>
+            <artifactId>TouchButtonResourceOpenGLESAnimationJavaLibraryJs</artifactId>
             <!--
-            <artifactId>NoTouchButtonResourceAnimationJavaLibrary</artifactId>
-            <artifactId>TouchButtonResourceAnimationJavaLibrary</artifactId>
+            <artifactId>NoTouchButtonResourceAnimationJavaLibraryJs</artifactId>
+            <artifactId>TouchButtonResourceAnimationJavaLibraryJs</artifactId>
             -->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
@@ -533,14 +533,17 @@
                 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameNoTouchJavaLibrary</artifactId>
+            <artifactId>GDGameNoTouchJavaLibraryJs</artifactId>
             <!--
-            <artifactId>GDGameNoTouchJavaLibrary</artifactId>
-            <artifactId>GDGameTouchJavaLibrary</artifactId>
+            <artifactId>GDGameNoTouchJavaLibraryJs</artifactId>
+            <artifactId>GDGameTouchJavaLibraryJs</artifactId>
             -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
             <exclusions>
                 <exclusion>
-                    <artifactId>NoTouchButtonJavaLibrary</artifactId>
+                    <artifactId>NoTouchButtonJavaLibraryJs</artifactId>
                     <groupId>org.allbinary</groupId>
                 </exclusion>
             </exclusions>
@@ -548,36 +551,45 @@
         
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGamePCClientInfoJavaLibrary</artifactId>
+            <artifactId>GDGamePCClientInfoJavaLibraryJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameHTMLJavaLibrary</artifactId>
+            <artifactId>GDGameHTMLJavaLibraryJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameBaseJavaLibrary</artifactId>
+            <artifactId>GDGameBaseJavaLibraryJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
             <exclusions>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEColorJavaLibrary</artifactId>
+                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
+            <artifactId>GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryJs</artifactId>
             <!--
-            <artifactId>GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
-            <artifactId>GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
-            <artifactId>GDGameImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
+            <artifactId>GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryJs</artifactId>
+            <artifactId>GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryJs</artifactId>
+            <artifactId>GDGameImageAnimationInterfaceResourceFactoryJavaLibraryJs</artifactId>
             -->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
@@ -585,19 +597,19 @@
             <exclusions>
                 <exclusion>
                     <groupId>org.allbinary.animation</groupId>
-                    <artifactId>AllBinaryHTMLImageAnimationRotationJavaLibrary</artifactId>
+                    <artifactId>AllBinaryHTMLImageAnimationRotationJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
 
         <dependency>
             <groupId>j2me-json</groupId>
-            <artifactId>json</artifactId>
+            <artifactId>jsonJs</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -608,12 +620,8 @@
             <version>2.0</version>
             <exclusions>
                 <exclusion>
-                    <artifactId>J2MEColorJavaLibrary</artifactId>
+                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
                     <groupId>org.allbinary</groupId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.googlecode.playn</groupId>
-                    <artifactId>playn-java</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>

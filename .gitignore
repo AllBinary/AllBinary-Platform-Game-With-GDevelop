@@ -195,6 +195,7 @@ GDNonLayout.xml
 /platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.ogg
 /platformx/html/GDGameHTMLTempM/src/**
 /platformx/html/GDGame2HTMLTempM/src/**
+/platformx/html/GDGame2JsHTMLTempM/src/**
 ./platformx/html/GDGamePlayNM/src/playn/core/GraphicsTestGame.java
 ./platform/html/GDGamePlayNM/src/playn/core/SoundTestGame.java
 /platform/html/GDGamePlayNWarM/war/gd/res

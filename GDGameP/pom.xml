@@ -46,6 +46,9 @@
         <module>../resource/GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
         <module>../resource/GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
         
+        <module>../resource/GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
+        <module>../resource/GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
+        
         <module>../platform/GDGamePlatformResourceJavaLibraryM</module>
         <module>../platform/j2se/GDGamePCClientInfoJavaLibraryM</module>
         <module>../platform/j2me/GDGameJ2MEJavaLibraryM</module>

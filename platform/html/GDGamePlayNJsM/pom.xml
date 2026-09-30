@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.allbinary.gwt.forplayn</groupId>
+        <artifactId>AllBinaryPlaynGWTJs</artifactId>
+        <!-- AllBinary Platform Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- AllBinary Platform Version End -->
+    </parent>
+  
+    <groupId>org.allbinary.game.gd</groupId>
+    <artifactId>GDGamePlayNJs</artifactId>
+    <!-- Game Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- Game Version Start -->
+    <name>GDGamePlayNJs</name>
+
+    <!-- 
+    playn.java.MiniSpaceWarVectorJ2SE
+    playn.core.MiniSpaceWarVectorGame
+    -->
+    <properties>
+        <exec.mainClass>playn.java.GDGameJ2SE</exec.mainClass>
+        
+        <buildLabel>${version}</buildLabel>
+        <gd.version>1.0.0-SNAPSHOT</gd.version>
+        <allbinary.platform.version>1.0.0-SNAPSHOT</allbinary.platform.version>
+        
+    </properties>
+
+
+    <properties>
+        <yarnVersion>v1.22.22</yarnVersion>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>LogJ2SEJavaLibraryJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+
+            <optional>true</optional>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.googlecode.playn</groupId>
+            <artifactId>playn-javaJs</artifactId>
+            <version>1.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.playn</groupId>
+            <artifactId>playn-htmlJs</artifactId>
+            <version>1.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <!-- was asm for 2.6.1 of gwt but gwt 2.7.0 needs org.ow2.asm -->
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asmJs</artifactId>
+            <!-- was 3.1 and 5.0.3 for 2.6.1 of gwt -->
+            <!-- was 9.5 for 2.9.0 of gwt -->
+            <version>5.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-playnJs</artifactId>
+            <version>1.1-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
+                    <groupId>org.allbinary</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameHTMLTempJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${gd.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+    
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>ABDKPlaynJavaLibraryJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>ImageCacheJ2MEJavaLibraryJs</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+
+    </dependencies>
+        
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+
+        <plugins>
+
+            <!--
+                  <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                  </plugin>
+            -->
+            
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.6.3</version>
+                <executions>
+                    <execution>
+                        <id>npm-install-typescript</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>cmd</executable>
+                            <workingDirectory>${basedir}</workingDirectory>
+                            <arguments>
+                                <argument>/c</argument>
+                                <argument>npm</argument>
+                                <argument>install</argument>
+                                <argument>typescript</argument>
+                                <argument>--no-save</argument>
+                                <argument>--no-audit</argument>
+                                <argument>--no-fund</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>tsc-compile</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>cmd</executable>
+                            <workingDirectory>${basedir}</workingDirectory>
+                            <!-- Uses the path from tsconfig.json instead of -p path; ignore tsc errors so the build continues -->
+                            <arguments>
+                                <argument>/c</argument>
+                                <!--                                <argument>npx tsc</argument>-->
+                                <argument>npx tsc || exit 0</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+      
+             <!--
+            <plugin>
+                <groupId>com.pyx4me</groupId>
+                <artifactId>proguard-maven-pluginJs</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>proguard</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <proguardInclude>G:/mnt/bc/mydev/construct/j2me/games/HTML/All_HTML5.pro</proguardInclude>
+
+                    <exclusions>
+                        <exclusion>
+        <groupId>com.googlecode.playn</groupId>
+        <artifactId>playn-coreJs</artifactId>
+                        </exclusion>
+                        <exclusion>
+        <groupId>org.microemu</groupId>
+        <artifactId>microemu-playnJs</artifactId>
+                        </exclusion>
+                        <exclusion>
+  <groupId>org.allbinary</groupId>
+  <artifactId>ABDKPlaynJavaLibraryJs</artifactId>
+                        </exclusion>
+                    </exclusions>
+
+                     </configuration>
+                 </plugin>
+                 <plugin>
+                     <groupId>org.apache.maven.plugins</groupId>
+                     <artifactId>maven-jar-pluginJs</artifactId>
+                     <configuration>
+                         <archive>
+                             <manifest>
+                                 <mainClass>${project.build.mainClass}</mainClass>
+                             </manifest>
+                         </archive>
+                     </configuration>
+                 </plugin>
+                 <plugin>
+                     <groupId>org.codehaus.mojo</groupId>
+                     <artifactId>exec-maven-pluginJs</artifactId>
+                     <version>1.1</version>
+                     <executions>
+                         <execution>
+                             <goals>
+                                 <goal>java</goal>
+                             </goals>
+                         </execution>
+                     </executions>
+                     <configuration>
+                         <mainClass>${project.build.mainClass}</mainClass>
+                     </configuration>
+                 </plugin>
+            -->
+
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>${basedir}/src</directory>
+            </resource>
+        </resources>
+                    
+    </build>
+</project>
+

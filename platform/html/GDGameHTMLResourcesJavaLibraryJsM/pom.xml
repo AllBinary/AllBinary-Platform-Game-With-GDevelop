@@ -1,0 +1,146 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>org.allbinary.game.gd</groupId>
+        <artifactId>GDGameParentJs</artifactId>
+        <!-- Game Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- Game Version Start -->
+    </parent>
+        
+    <groupId>org.allbinary.game.gd</groupId>
+    <artifactId>GDGameHTMLResourcesJavaLibraryJs</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+
+    <name>GDGameHTMLResourcesJavaLibraryJs</name>
+    <url>http://www.allbinary.com/</url>
+
+    <properties>
+
+        <!--
+        Currently individual games copy the resources.
+        -->
+        <!--
+        <outputPath>../GDGamePlayNWarM/war/gd/</outputPath>
+        <inputPath>..\..\..\Resources\images\release\</inputPath>
+        <inputPath2>..\..\..\Resources\images\wait\</inputPath2>
+        <inputPath5>..\..\..\Resources\images\gd\</inputPath5>
+        <inputPath3>..\..\..\Resources\sounds\release\</inputPath3>
+        -->
+
+    </properties>
+
+
+    <properties>
+        <yarnVersion>v1.22.22</yarnVersion>
+    </properties>
+
+    <dependencies>         
+
+        <!--
+        <dependency>
+            <groupId>org.allbinary.game.resources</groupId>
+            <artifactId>GameSoundsWavResourcesJavaLibraryJs</artifactId>
+            <version>${allbinary.platform.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.game.resources</groupId>
+            <artifactId>GameImageLowResourcesJavaLibraryJs</artifactId>
+            <version>${allbinary.platform.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.game.resources</groupId>
+            <artifactId>GameImageMediumResourcesJavaLibraryJs</artifactId>
+            <version>${allbinary.platform.version}</version>
+        </dependency>
+        -->
+        
+    </dependencies>
+
+    <build>
+        
+        <plugins>
+
+            <!-- Delete output directory -->
+<!--
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-pluginJs</artifactId>
+                <version>2.4.1</version>
+                <configuration>
+                    <followSymLinks>false</followSymLinks>
+                    <filesets>
+                        <fileset>
+                            <directory>${outputPath}</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+      
+            <plugin>
+                <artifactId>maven-resources-pluginJs</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPath}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath2}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath3}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath5}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>              
+                        </configuration>            
+                    </execution>
+                </executions>
+            </plugin>            
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-pluginJs</artifactId>
+                <executions>
+                    <execution>
+                        <id>sources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includes>**\/*.wav, **\/*.png</includes>
+                            <outputDirectory>../GDGamePlayNWarM/war/gd/res/</outputDirectory>
+                            <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+-->
+                  
+        </plugins>
+
+    </build>
+
+</project>
+
