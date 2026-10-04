@@ -86,7 +86,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDFileSystemPathExistsConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAdvancedHTTPResponseSuccessConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAdvancedHTTPResponseStatusCodeConditionGDNode.xsl" />
-    
+
     <xsl:template name="eventsCreateAssignGDObjectGDNodesCondition2" >
         <xsl:param name="caller" />
         <xsl:param name="totalRecursions" />
@@ -109,23 +109,23 @@ Created By: Travis Berthelot
 
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:variable name="conditionNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
-        
+
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
 
                 <xsl:choose>
                 <xsl:when test="$typeValue = 'Leaderboards::IsLeaderboardViewLoaded'" >
-                    
+
                     <xsl:call-template name="leaderboardsIsLeaderboardViewLoadedConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'TextContainerCapability::TextContainerBehavior::Value'" >
 
                     <xsl:call-template name="textContainerCapabilityTextContainerBehaviorValueConditionGDNode" >
@@ -172,7 +172,7 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'TouchScreen::isAutoHide'" >
-                    
+
                     <xsl:call-template name="canAutoHideConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -182,7 +182,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'TouchScreen::isMultitouchSupported'" >
-                    
+
                     <xsl:call-template name="multitouchConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -192,7 +192,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'TouchScreen::isTouchSupported'" >
-                    
+
                     <xsl:call-template name="touchConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -203,7 +203,7 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'SystemInfo::IsNativeMobileApp' or $typeValue = 'SystemInfo::IsMobile'" >
-                    
+
                     <xsl:call-template name="systemInfoIsNativeMobileAppConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -216,14 +216,14 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SystemInfo::IsNativeDesktopApp'" >
-                    
+
                     <xsl:call-template name="systemInfoIsNativeDesktopAppConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SystemInfo::IsWebGLSupported'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
@@ -260,7 +260,7 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'MusicStopped'" >
-                    
+
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     <xsl:call-template name="soundStoppedConditionGDNode" >
                         <xsl:with-param name="forExtension" >
@@ -268,10 +268,10 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SoundPlaying'" >
-                    
+
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     <xsl:call-template name="soundPlayingConditionGDNode" >
                         <xsl:with-param name="forExtension" >
@@ -282,7 +282,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SoundPaused'" >
-                    
+
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     <xsl:call-template name="soundPausedConditionGDNode" >
                         <xsl:with-param name="forExtension" >
@@ -290,10 +290,10 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SoundStopped'" >
-                    
+
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     <xsl:call-template name="soundStoppedConditionGDNode" >
                         <xsl:with-param name="forExtension" >
@@ -301,8 +301,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                     </xsl:call-template>
-                    
-                </xsl:when>                        
+
+                </xsl:when>
                 <xsl:when test="$typeValue = 'GlobalVolume'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
@@ -324,16 +324,16 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'MusicChannelPitch'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
-                <xsl:when test="$typeValue = 'Width'" >                    
+                <xsl:when test="$typeValue = 'Width'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
-                <xsl:when test="$typeValue = 'Height'" >                    
+                <xsl:when test="$typeValue = 'Height'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'AnimationName'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
-                <xsl:when test="$typeValue = 'Sprite'" >    
+                <xsl:when test="$typeValue = 'Sprite'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'AnimStopped'" >
@@ -352,7 +352,7 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Opacity'" >
-                    
+
                     <xsl:call-template name="opacityConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -370,8 +370,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                     </xsl:call-template>
-                    
-                </xsl:when>        
+
+                </xsl:when>
 
                 <xsl:when test="$typeValue = 'FlippedX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
@@ -387,7 +387,7 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::OutlineSize'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::FillOpacity'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
@@ -399,19 +399,19 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::AreCoordinatesRelative'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
-                        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::ScaleX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::ScaleY'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::FlippedX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
-                    
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::FlippedY'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
@@ -437,7 +437,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'PosY'" >
-                    
+
                     <xsl:call-template name="posYConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -467,7 +467,7 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'Invisible'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'Arret'" >
                     <xsl:call-template name="isStoppedVelocityConditionGDNode" >
                         <xsl:with-param name="forExtension" >
@@ -490,7 +490,7 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'AngleOfDisplacement'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
-                    
+
                     <xsl:when test="$typeValue = 'NbObjet'" >
                         //NbObjet - some are processed from eventsProcess
                         <xsl:call-template name="nbObjetConditionGDNode" >
@@ -515,13 +515,13 @@ Created By: Travis Berthelot
                             <xsl:with-param name="createdObjectsAsString" >
                                 <xsl:value-of select="$createdObjectsAsString" />
                             </xsl:with-param>
-                        
+
                         </xsl:call-template>
 
                     </xsl:when>
 
                     <xsl:when test="$typeValue = 'SceneInstancesCount'" >
-                        
+
                         <xsl:call-template name="sceneInstancesCountConditionGDNode" >
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
@@ -547,7 +547,7 @@ Created By: Travis Berthelot
                             </xsl:with-param>
                             <xsl:with-param name="nodeList" ><xsl:value-of select="$nodeList" /></xsl:with-param>
                         </xsl:call-template>
-                    </xsl:when>                
+                    </xsl:when>
                     <xsl:when test="$typeValue = 'Collision'" >
                         //Collision - Pixel Perfect
                         <xsl:call-template name="collisionNPConditionGDNode" >
@@ -559,7 +559,7 @@ Created By: Travis Berthelot
                             </xsl:with-param>
                             <xsl:with-param name="nodeList" ><xsl:value-of select="$nodeList" /></xsl:with-param>
                         </xsl:call-template>
-                    </xsl:when>                
+                    </xsl:when>
                     <xsl:when test="$typeValue = 'Raycast'" >
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
@@ -567,7 +567,7 @@ Created By: Travis Berthelot
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'Distance'" >
-                        
+
                         <xsl:call-template name="distanceConditionGDNode" >
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
@@ -576,7 +576,7 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
                         </xsl:call-template>
-                        
+
                     </xsl:when>
                     <xsl:when test="$typeValue = 'SeDirige'" >
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
@@ -584,7 +584,7 @@ Created By: Travis Berthelot
                     <xsl:when test="$typeValue = 'EstTourne'" >
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
-                        
+
                 <xsl:when test="$typeValue = 'VarObjetTxt'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
@@ -616,7 +616,7 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'CollisionPoint'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
-                        
+
                     <xsl:when test="$typeValue = 'SourisSurObjet' or $typeValue = 'IsCursorOnObject'" >
                         //IsCursorOnObject - Some are Handled by AllBinary Event Listeners?
                         <xsl:call-template name="sourisSurObjetConditionGDNode" >
@@ -627,9 +627,9 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
                         </xsl:call-template>
-                    
+
                     </xsl:when>
-                
+
                     <xsl:when test="$typeValue = 'AjoutObjConcern'" >
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
@@ -669,9 +669,9 @@ Created By: Travis Berthelot
                     </xsl:when>
                     <xsl:when test="$typeValue = 'CameraBorderBottom'" >
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
-                    </xsl:when>                        
+                    </xsl:when>
                 <xsl:when test="$typeValue = 'LayerVisible'" >
-                    
+
                     <xsl:call-template name="layerVisibleConditionGDNode" >
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
@@ -680,8 +680,8 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
                     </xsl:call-template>
-                    
-                </xsl:when>                
+
+                </xsl:when>
                     <xsl:when test="$typeValue = 'CameraAngle'" >
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
@@ -714,8 +714,8 @@ Created By: Travis Berthelot
                     </xsl:when>
 
                     //xsl:when test="$typeValue = 'Egal'"
-                    //xsl:when test="$typeValue = 'StrEqual'" 
-                    
+                    //xsl:when test="$typeValue = 'StrEqual'"
+
                     <xsl:when test="$typeValue = 'BuiltinCommonInstructions::CompareNumbers'" >
 
                         <xsl:call-template name="compareNumbersConditionGDNode" >
@@ -734,7 +734,7 @@ Created By: Travis Berthelot
                         </xsl:call-template>
 
                     </xsl:when>
-  
+
                     <xsl:when test="$typeValue = 'BuiltinCommonInstructions::CompareStrings'" >
                         <xsl:call-template name="compareStringsConditionGDNode" >
                             <xsl:with-param name="forExtension" >
@@ -756,7 +756,7 @@ Created By: Travis Berthelot
                             </xsl:with-param>
                         </xsl:call-template>
                     </xsl:when>
-      
+
                     <xsl:when test="$typeValue = 'BuiltinCommonInstructions::Or'" >
                         <xsl:call-template name="orConditionGDNode" >
                             <xsl:with-param name="forExtension" >
@@ -781,7 +781,7 @@ Created By: Travis Berthelot
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
                     <xsl:when test="$typeValue = 'BuiltinCommonInstructions::Once'" >
-                    
+
 <!--                        <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >-->
 
                         <xsl:call-template name="onceConditionGDNode" >
@@ -823,7 +823,7 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'KeyPressed'" >
-                    
+
                     <xsl:call-template name="keyPressedConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -835,7 +835,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'KeyReleased'" >
-                    
+
                     <xsl:call-template name="keyFromTextReleasedConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -847,7 +847,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'KeyFromTextPressed'" >
-                    
+
                     <xsl:call-template name="keyFromTextPressedConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -859,7 +859,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'KeyFromTextReleased'" >
-                    
+
                     <xsl:call-template name="keyFromTextReleasedConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -871,7 +871,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                     <xsl:when test="$typeValue = 'AnyKeyPressed'" >
-                        
+
                     <xsl:call-template name="anykeyPressedConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -907,7 +907,7 @@ Created By: Travis Berthelot
                     <xsl:when test="$typeValue = 'MouseY'" >
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
-                    
+
                     <xsl:when test="$typeValue = 'IsMouseInsideCanvas'" >
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                     </xsl:when>
@@ -944,9 +944,9 @@ Created By: Travis Berthelot
                             <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
                             <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
                         </xsl:call-template>
-                    
+
                     </xsl:when>
-                
+
                     <xsl:when test="$typeValue = 'MouseButtonReleased' or $typeValue = 'MouseButtonFromTextReleased'" >
                         //<xsl:value-of select="$typeValue" /> - //MouseButtonReleased - Some Handled by AllBinary Event Listeners?
                         <xsl:call-template name="mouseButtonReleasedConditionGDNode" >
@@ -957,9 +957,9 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
                         </xsl:call-template>
-                    
+
                     </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'IsMouseWheelScrollingUp'" >
 
                         <xsl:call-template name="mouseWheelScrollingUpConditionGDNode" >
@@ -970,7 +970,7 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
                         </xsl:call-template>
-                    
+
                 </xsl:when>
                 <xsl:when test="$typeValue = 'IsMouseWheelScrollingDown'" >
 
@@ -982,10 +982,10 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
                         </xsl:call-template>
-                    
-                </xsl:when>                
+
+                </xsl:when>
                 <xsl:when test="$typeValue = 'PopStartedTouch'" >
-                    
+
                     <xsl:call-template name="popStartedTouchConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1099,7 +1099,7 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'Texture'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
-  
+
                 <xsl:when test="$typeValue = 'PathFound'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
@@ -1155,7 +1155,7 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'AngularDamping'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
-    
+
                 <xsl:when test="$typeValue = 'IsMoving'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
@@ -1213,15 +1213,15 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'DepartScene' or $typeValue = 'SceneJustBegins'" >
-                    
+
                     <xsl:if test="$hasParentOnceCondition = 'true'" >
-                    //SceneJustBegins - condition - startConditionProcessActions    
+                    //SceneJustBegins - condition - startConditionProcessActions
                     </xsl:if>
                     <xsl:if test="$hasParentOnceCondition != 'true'" >
                         <xsl:call-template name="departSceneConditionGDNode" />
                     </xsl:if>
 
-                </xsl:when>                
+                </xsl:when>
 
                 <xsl:when test="$typeValue = 'SceneJustResumed'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
@@ -1234,7 +1234,7 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'Timer'" >
-                    
+
                     <xsl:call-template name="timerConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1248,10 +1248,10 @@ Created By: Travis Berthelot
                         <xsl:with-param name="actionAsStringsStrings" ><xsl:value-of select="$actionAsStringsStrings" /></xsl:with-param>
                         <xsl:with-param name="logString" ><xsl:value-of select="$logString" /></xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ObjectTimer'" >
-                    
+
                     //Depricated
                     <xsl:call-template name="objectTimerConditionGDNode" >
                         <xsl:with-param name="forExtension" >
@@ -1266,9 +1266,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="actionAsStringsStrings" ><xsl:value-of select="$actionAsStringsStrings" /></xsl:with-param>
                         <xsl:with-param name="logString" ><xsl:value-of select="$logString" /></xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'CompareTimer'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
@@ -1293,10 +1293,10 @@ Created By: Travis Berthelot
                         <xsl:with-param name="actionAsStringsStrings" ><xsl:value-of select="$actionAsStringsStrings" /></xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:when>                
+                </xsl:when>
 
                 <xsl:when test="$typeValue = 'VarSceneTxt'" >
-                    
+
                     <xsl:call-template name="sceneVariableAsTextConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1307,7 +1307,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
                         <xsl:with-param name="thisNodeIndex" ><xsl:value-of select="$thisNodeIndex" /></xsl:with-param>
                         <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
-                                                
+
                         <xsl:with-param name="logString" >CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:with-param>
 
                     </xsl:call-template>
@@ -1315,7 +1315,7 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'SceneVariableAsBoolean' or $typeValue = 'BooleanVariable'" >
-                    
+
                     <xsl:call-template name="sceneVariableAsBooleanConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1330,9 +1330,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="logString" >CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:with-param>
 
                     </xsl:call-template>
-                    
+
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'NumberVariable'" >
                     <xsl:call-template name="numberVariableConditionGDNode" >
                         <xsl:with-param name="forExtension" >
@@ -1346,7 +1346,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="actionAsStringsStrings" ><xsl:value-of select="$actionAsStringsStrings" /></xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'VarGlobal'" >
                     <xsl:call-template name="varGlobalConditionGDNode" >
                         <xsl:with-param name="forExtension" >
@@ -1360,7 +1360,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="actionAsStringsStrings" ><xsl:value-of select="$actionAsStringsStrings" /></xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'VarGlobalTxt'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:when>
@@ -1434,8 +1434,8 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'FileExists'" >
                     //I think this is for Steam cloud
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
-                </xsl:when>                                                                   
-                
+                </xsl:when>
+
                 <xsl:when test="$typeValue = 'FileSystem.PathExists'" >
                     <xsl:call-template name="fileSystemPathExistsConditionGDNode" >
                         <xsl:with-param name="forExtension" >
@@ -1448,7 +1448,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
                         <xsl:with-param name="actionAsStringsStrings" ><xsl:value-of select="$actionAsStringsStrings" /></xsl:with-param>
                     </xsl:call-template>
-                </xsl:when>                                                                   
+                </xsl:when>
 
                 //Was VarObjet
                 <xsl:when test="$typeValue = 'NumberObjectVariable' or $typeValue = 'VarObjet'" >
@@ -1537,7 +1537,7 @@ Created By: Travis Berthelot
 
                 <!-- Extension Actions below here -->
                 <xsl:when test="$typeValue = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
-                    
+
                     <xsl:call-template name="spriteMultitouchJoystickIsPressedActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1546,7 +1546,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'PanelSpriteSlider::PanelSpriteSlider::Value'" >
@@ -1562,7 +1562,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
                         <xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'AnimatableCapability::AnimatableBehavior::HasAnimationEnded'" >
@@ -1581,9 +1581,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'DraggableBehavior::Dragged'" >
-                    
+
                     <xsl:call-template name="draggableBehaviorDraggedConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1594,9 +1594,9 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'DraggableBehavior::Dropped'" >
-                    
+
                     <xsl:call-template name="draggableBehaviorDroppedConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1607,9 +1607,9 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'ResizableCapability::ResizableBehavior::Height'" >
-                    
+
                     <xsl:call-template name="resizableCapabilityResizableBehaviorHeightConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1622,7 +1622,7 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'Scrollbar::Scrollbar::IsScrollingRequired'" >
-                    
+
                     <xsl:call-template name="scrollbarScrollbarIsScrollingRequiredConditionGDNode" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1690,9 +1690,9 @@ Created By: Travis Berthelot
         <xsl:param name="createdObjectsAsString" />
         <xsl:param name="conditionEventPosition" />
         <xsl:param name="hasParentOnceCondition" />
-                 
+
         <xsl:variable name="quote" >"</xsl:variable>
-        
+
         <xsl:for-each select="events" >
             <xsl:variable name="type" select="type" />
             <xsl:variable name="eventPosition" select="position()" />
@@ -1700,7 +1700,7 @@ Created By: Travis Berthelot
 
             <xsl:variable name="eventAsString" >
             //2
-            private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />";
+            private val EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />"
             <xsl:text>&#10;</xsl:text>
             </xsl:variable>
 
@@ -1715,7 +1715,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                <xsl:variable name="actionAsString" >Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
+                <xsl:variable name="actionAsString" >var nodeId: Action =<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         <xsl:if test="not($typeValue = 'PauseTimer' or $typeValue = 'PlaySoundCanal' or $typeValue = 'PlaySoundOnChannel')" >
 <!--
                 //GDNode - Strings 4
@@ -1730,10 +1730,10 @@ Created By: Travis Berthelot
 
             <!-- conditions - START -->
             <xsl:variable name="alreadyUsedCondition" ><xsl:call-template name="alreadyUsedCondition" ></xsl:call-template></xsl:variable>
-            
+
             <!-- whileConditions - conditions - START -->
             <xsl:for-each select="whileConditions" >
-                
+
             <xsl:call-template name="eventsCreateAssignGDObjectGDNodesCondition2" >
                 <xsl:with-param name="caller" >
                     <xsl:value-of select="$caller" />
@@ -1783,9 +1783,9 @@ Created By: Travis Berthelot
                 </xsl:with-param>
 
             </xsl:call-template>
-                
+
                 <xsl:if test="type/value = 'PopEndedTouch'" >
-                    
+
                     <xsl:call-template name="popEndedTouchConditionGDNode" >
                         <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
                         <xsl:with-param name="actionParametersAsString" ><xsl:value-of select="$actionParametersAsString" /></xsl:with-param>
@@ -1793,7 +1793,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:if>
-                
+
                 <!-- whileConditions - subInstructions - conditions - START -->
                 <xsl:for-each select="subInstructions" >
                     //whileConditions - //subInstructions - START
@@ -1801,7 +1801,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                     //whileConditions - //subInstructions - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
-                    
+
             <xsl:call-template name="eventsCreateAssignGDObjectGDNodesCondition2" >
                 <xsl:with-param name="caller" >
                     <xsl:value-of select="$caller" />
@@ -1855,7 +1855,7 @@ Created By: Travis Berthelot
                 //whileConditions - //subInstructions - END
                 </xsl:for-each>
                 <!-- whileConditions - subInstructions - conditions - END -->
-                
+
             </xsl:for-each>
             <!-- whileConditions - conditions - END -->
 
@@ -1918,7 +1918,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                     //subInstructions - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
-                    
+
             <xsl:call-template name="eventsCreateAssignGDObjectGDNodesCondition2" >
                 <xsl:with-param name="caller" >
                     <xsl:value-of select="$caller" />
@@ -2026,25 +2026,25 @@ Created By: Travis Berthelot
         <xsl:param name="iteration" />
         <xsl:param name="nodeId" />
         <xsl:param name="objectsAsString" />
-        
+
         <xsl:for-each select="events" >
             <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                 //TWBRemove - events that were not handled before
                 //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()
             </xsl:if>
         </xsl:for-each>
         <xsl:for-each select="actions" >
             <xsl:for-each select="parameters" >
                 <xsl:if test="position() = 1 and text() != '' and not(contains(text(), $objectsAsString))" >
                     //TWBRemove - had once for
-                    //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />OnceGDNodeList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$nodeId" />]);
+                    //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />OnceGDNodeList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$nodeId" />])
                 </xsl:if>
                 <xsl:if test="position() = 1 and text() != '' and contains(text(), $objectsAsString)" >
-        <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />OnceGDNodeList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$nodeId" />]);
+        <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />OnceGDNodeList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$nodeId" />])
                 </xsl:if>
             </xsl:for-each>
-            
+
             <!--
             <xsl:call-template name="addGDNodeToOnceList" >
                 <xsl:with-param name="iteration" ><xsl:value-of select="$iteration" /></xsl:with-param>

@@ -19,95 +19,95 @@ Created By: Travis Berthelot
     <xsl:template name="setReturnNumberActionProcess" >
         <xsl:param name="forExtension" />
         <xsl:param name="layoutIndex" />
-        
+
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
         <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
         <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
         <xsl:variable name="siblingOrParentOrList" ><xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
 
-                    private Object returnObject = NullUtil.getInstance().NULL_OBJECT;
+                    private var returnObject: Object = NullUtil.getInstance().NULL_OBJECT
 
                     //SetReturnNumber - was - action - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
-                    @Override
-                    public boolean process() throws Exception {
-                        super.processStats();
 
-                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
-                                                
+                    override fun process(): Boolean {
+                        super.processStats()
+
+                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
+
                         <xsl:value-of select="$siblingOrParentOrList" />
 
                         //param1=<xsl:value-of select="$param1" />
                         <xsl:text>&#10;</xsl:text>
-                        
-                        this.returnObject = <xsl:value-of select="$param1" />;
 
-                        return true;
+                        this.returnObject = <xsl:value-of select="$param1" />
+
+                        return true
                     }
 
-                    @Override
-                    public boolean process(final int index) throws Exception {
-                        super.processStats(index);
 
-                        //this.logUtil.putF(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, this.commonStrings.PROCESS);
-                        
-                        return this.process();
+                    override fun process(index: Int): Boolean {
+                        super.processStats(index)
+
+                        //this.logUtil.putF(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, this.commonStrings.PROCESS)
+
+                        return this.process()
                     }
 
-                    @Override
-                    public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
-                        super.processStats(motionGestureEvent);
-                        
-                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
-                        
-                        return this.process();
+
+                    override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                        super.processStats(motionGestureEvent)
+
+                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
+
+                        return this.process()
                     }
 
-                    @Override
-                    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
-                        super.processGDStats(gameLayerArray);
+
+                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                        super.processGDStats(gameLayerArray)
 
                         try {
-                            //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                            //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
                             <xsl:value-of select="$siblingOrParentOrList" />
 
-                        this.returnObject = <xsl:value-of select="$param1" />;
+                        this.returnObject = <xsl:value-of select="$param1" />
 
-                        } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                        } catch(e: Exception) {
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e)
                         }
-                        return true;                   
-                        
+                        return true
+
                     }
 
-                    @Override
-                    public Object getReturnValue() {
-                        return this.returnObject;
+
+                    override fun getReturnValue(): Object {
+                        return this.returnObject
                     }
 
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >
-                        @Override
-                        public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
-                            
-                            //Map from object array with action params
-                            final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
-                            this.process(gameLayer, intArray[3], intArray[5]);
 
-                            return true;
+                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+
+                            //Map from object array with action params
+                            val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
+                            this.process(gameLayer, intArray[3], intArray[5])
+
+                            return true
                         }
                         </xsl:if>
 
-                        public void process(final GDGameLayer gameLayer, final int x, final int y) {
-                            final GDObject gdObject = gameLayer.gdObject;
-                            this.process(gdObject, x, y);
+                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                            val gdObject: GDObject = gameLayer.gdObject
+                            this.process(gdObject, x, y)
                         }
 
-                        public void process(final GDObject gdObject, final int x, final int y) {
-                            throw new RuntimeException();
+                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                            throw RuntimeException()
                         }
     </xsl:template>
 

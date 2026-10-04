@@ -26,93 +26,93 @@ Created By: Travis Berthelot
 
                     //PlayMusicCanal - action - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
-                    @Override
-                    public boolean process() throws Exception {
-                        super.processStats();
-                    
-                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+
+                    override fun process(): Boolean {
+                        super.processStats()
+
+                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
                         <xsl:variable name="fileName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:call-template name="after-lastIndexOf"><xsl:with-param name="string" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="char" >/</xsl:with-param></xsl:call-template></xsl:if></xsl:for-each></xsl:variable>
                         <xsl:variable name="fileName2" ><xsl:value-of select="translate(substring-before($fileName, '.'), '_', ' ')" /></xsl:variable>
                         <xsl:variable name="fileName3" ><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$fileName2" /></xsl:with-param></xsl:call-template></xsl:variable>
                         <xsl:variable name="fileName4" ><xsl:value-of select="translate($fileName3, ' ', '')" /></xsl:variable>
-                        
+
                         <xsl:variable name="volume" ><xsl:for-each select="parameters" ><xsl:if test="position() = 5" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         try {
 
-                            final Sound sound = <xsl:if test="$fileName4 = 'Select' or $fileName4 = 'Error'" >org.allbinary.media.audio.</xsl:if><xsl:if test="not($fileName4 = 'Select' or $fileName4 = 'Error')" >org.allbinary.game.gd.resource.GD</xsl:if><xsl:value-of select="$fileName4" />Sound.getInstance();
-                            final PlayerComposite player = (PlayerComposite) sound.getPlayerP();
-                            
-                            int leftVolume = 100;
-                            int rightVolume = 100;
-                            <xsl:if test="string-length($volume) > 0 and (number($volume) = $volume or contains($volume, 'Variable'))" >
-                            final int volume = <xsl:value-of select="$volume" />;
-                            //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + volume, this, this.commonStrings.PROCESS);
-                            leftVolume = volume;
-                            rightVolume = volume;
-                            player.setVolume(leftVolume, rightVolume);
-                            </xsl:if>
-                            
-                            if(!gameGlobals.channelSoundArray[<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>].contains(sound)) {
-                                gameGlobals.channelSoundArray[<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>].add(sound);
-                            }
-                            
-                            //player.start();
-                            final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
-                            final MyCanvas abCanvas = (MyCanvas) abToGBUtil.abCanvas;
-                            abCanvas.nextSong(sound, leftVolume, rightVolume);
+                            val sound: Sound = <xsl:if test="$fileName4 = 'Select' or $fileName4 = 'Error'" >org.allbinary.media.audio.</xsl:if><xsl:if test="not($fileName4 = 'Select' or $fileName4 = 'Error')" >org.allbinary.game.gd.resource.GD</xsl:if><xsl:value-of select="$fileName4" />Sound.getInstance()
+                            val player: PlayerComposite = sound.getPlayerP() as PlayerComposite
 
-                        } catch(Exception e) {
-                            this.logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            var leftVolume: Int = 100
+                            var rightVolume: Int = 100
+                            <xsl:if test="string-length($volume) > 0 and (number($volume) = $volume or contains($volume, 'Variable'))" >
+                            val volume: Int = <xsl:value-of select="$volume" />
+                            //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + volume, this, this.commonStrings.PROCESS)
+                            leftVolume = volume
+                            rightVolume = volume
+                            player.setVolume(leftVolume, rightVolume)
+                            </xsl:if>
+
+                            if(!gameGlobals.channelSoundArray[<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>].contains(sound)) {
+                                gameGlobals.channelSoundArray[<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>].add(sound)
+                            }
+
+                            //player.start()
+                            val abToGBUtil: ABToGBUtil = ABToGBUtil.getInstance()
+                            val abCanvas: MyCanvas = abToGBUtil.abCanvas as MyCanvas
+                            abCanvas.nextSong(sound, leftVolume, rightVolume)
+
+                        } catch(e: Exception) {
+                            this.logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e)
                         }
 
-                        return true;
+                        return true
                     }
 
-                    @Override
-                    public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
-                        super.processStats(motionGestureEvent);
-                        
-                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
-                        
-                        return this.process();
+
+                    override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                        super.processStats(motionGestureEvent)
+
+                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
+
+                        return this.process()
                     }
 
-                    @Override      
-                    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
-                        super.processGDStats(gameLayerArray);
+
+                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                        super.processGDStats(gameLayerArray)
 
                         try {
-                            //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                            //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
-                            return this.process();
-                        } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            return this.process()
+                        } catch(e: Exception) {
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e)
                         }
-                        return true;                   
+                        return true
                     }
 
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >
-                        @Override
-                        public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
-                            
-                            //Map from object array with action params
-                            final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
-                            this.process(gameLayer, intArray[3], intArray[5]);
 
-                            return true;
+                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+
+                            //Map from object array with action params
+                            val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
+                            this.process(gameLayer, intArray[3], intArray[5])
+
+                            return true
                         }
                         </xsl:if>
 
-                        public void process(final GDGameLayer gameLayer, final int x, final int y) {
-                            final GDObject gdObject = gameLayer.gdObject;
-                            this.process(gdObject, x, y);
+                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                            val gdObject: GDObject = gameLayer.gdObject
+                            this.process(gdObject, x, y)
                         }
 
-                        public void process(final GDObject gdObject, final int x, final int y) {
-                            throw new RuntimeException();
+                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                            throw RuntimeException()
                         }
     </xsl:template>
 

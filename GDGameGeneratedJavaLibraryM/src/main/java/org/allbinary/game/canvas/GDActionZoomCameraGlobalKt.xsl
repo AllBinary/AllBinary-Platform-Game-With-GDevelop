@@ -19,7 +19,7 @@ Created By: Travis Berthelot
     <xsl:template name="globalZoomCameraActions" >
         <xsl:param name="baseLayer" />
         <xsl:param name="tileMap" />
-        
+
         <xsl:for-each select="events" >
             <xsl:for-each select="actions" >
                 <xsl:if test="type/value = 'ZoomCamera'" >
@@ -29,30 +29,30 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:for-each>
         </xsl:for-each>
-        
+
         <xsl:variable name="baseLayerScale" ><xsl:if test="$baseLayer = 'true'" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'ZoomCamera'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3 and text() = '&quot;&quot;'" ><xsl:for-each select="../parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:for-each></xsl:if></xsl:variable>
         <xsl:variable name="tileMapScale" ><xsl:if test="$tileMap = 'true'" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'ZoomCamera'" ><xsl:for-each select="parameters" ><xsl:if test="text() = '&quot;TileMap&quot;'" ><xsl:for-each select="../parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:for-each></xsl:if></xsl:variable>
 
         <xsl:if test="string-length($baseLayerScale) > 0" >
                     //ZoomCamera - Base layer
-                    //final float baseLayerScale = (float) Math.ceil(<xsl:value-of select="$baseLayerScale" /> * 1.44f);
-                    final float baseLayerScale = (float) <xsl:value-of select="$baseLayerScale" />;
+                    //final float baseLayerScale = Math.ceil(<xsl:value-of select="$baseLayerScale" /> * 1.44f).toFloat()
+                    val baseLayerScale: Float = <xsl:value-of select="$baseLayerScale" />.toFloat()
         </xsl:if>
         <xsl:if test="$baseLayer = 'true'" >
         <xsl:if test="string-length($baseLayerScale) = 0" >
-                    //final float baseLayerScale = (float) 1f * 1.44f;
-                    final float baseLayerScale = scale;
+                    //final float baseLayerScale = 1f.toFloat() * 1.44f
+                    val baseLayerScale: Float = scale
         </xsl:if>
         </xsl:if>
-        
+
         <xsl:if test="string-length($tileMapScale) > 0" >
                     //ZoomCamera - TileMap
-                    //final float tileMapScale = (float) Math.ceil(<xsl:value-of select="$tileMapScale" /> * 1.44f);
-                    final float tileMapScale = (float) <xsl:value-of select="$tileMapScale" />;
+                    //final float tileMapScale = Math.ceil(<xsl:value-of select="$tileMapScale" /> * 1.44f).toFloat()
+                    val tileMapScale: Float = <xsl:value-of select="$tileMapScale" />.toFloat()
         </xsl:if>
         <xsl:if test="$tileMap = 'true'" >
         <xsl:if test="string-length($tileMapScale) = 0" >
-                    final float tileMapScale = (float) 1f;
+                    val tileMapScale: Float = 1f.toFloat()
         </xsl:if>
         </xsl:if>
 

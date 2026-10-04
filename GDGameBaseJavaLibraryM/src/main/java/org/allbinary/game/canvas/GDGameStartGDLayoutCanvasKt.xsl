@@ -18,82 +18,77 @@
 * Created By: Travis Berthelot
 *
 */
-package org.allbinary.game.canvas;
+package org.allbinary.game.canvas
 
-import javax.microedition.lcdui.CommandListener;
+import javax.microedition.lcdui.CommandListener
 
-import org.allbinary.animation.special.SpecialAnimation;
-        
-import org.allbinary.game.init.GDGameStaticInitializerFactory;
-import org.allbinary.game.input.PlayerGameInput;
-import org.allbinary.game.input.event.DownKeyEventHandler;
-import org.allbinary.game.input.event.UpKeyEventHandler;
-import org.allbinary.game.configuration.GameSpeed;
-import org.allbinary.game.displayable.canvas.StartCanvas;
-import org.allbinary.game.identification.GroupFactory;
-import org.allbinary.game.paint.ColorFillPaintableFactory;
-import org.allbinary.game.score.BasicHighScoresFactory;
-import org.allbinary.game.score.NoHighScoresFactory;
-import org.allbinary.graphics.color.BasicColor;
-import org.allbinary.graphics.color.BasicColorFactory;
-import org.allbinary.graphics.form.FormPaintable;
-import org.allbinary.graphics.paint.NullInitUpdatePaintable;
-import org.allbinary.graphics.paint.NullPaintable;
-import org.allbinary.logic.string.StringUtil;
-import org.allbinary.logic.math.SmallIntegerSingletonFactory;
-import org.allbinary.logic.string.StringMaker;
-import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
-        
+import org.allbinary.animation.special.SpecialAnimation
+
+import org.allbinary.game.init.GDGameStaticInitializerFactory
+import org.allbinary.game.input.PlayerGameInput
+import org.allbinary.game.input.event.DownKeyEventHandler
+import org.allbinary.game.input.event.UpKeyEventHandler
+import org.allbinary.game.configuration.GameSpeed
+import org.allbinary.game.displayable.canvas.StartCanvas
+import org.allbinary.game.identification.GroupFactory
+import org.allbinary.game.paint.ColorFillPaintableFactory
+import org.allbinary.game.score.BasicHighScoresFactory
+import org.allbinary.game.score.NoHighScoresFactory
+import org.allbinary.graphics.color.BasicColor
+import org.allbinary.graphics.color.BasicColorFactory
+import org.allbinary.graphics.form.FormPaintable
+import org.allbinary.graphics.paint.NullInitUpdatePaintable
+import org.allbinary.graphics.paint.NullPaintable
+import org.allbinary.logic.string.StringUtil
+import org.allbinary.logic.math.SmallIntegerSingletonFactory
+import org.allbinary.logic.string.StringMaker
+import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
+
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutName" select="name" />
             <xsl:variable name="index" select="position() - 1" />
             <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
 
-public class <xsl:value-of select="$layoutName" /> extends StartCanvas
+open class <xsl:value-of select="$layoutName" /> : StartCanvas
 {
-    private final String GD_LAYOUT_COLOR = "GDLayout<xsl:value-of select="position()" />Color";
+    private val GD_LAYOUT_COLOR: String = "GDLayout<xsl:value-of select="position()" />Color"
 
-    private final int WAIT = ((GameSpeed.getInstance().getDelay() * 3) <xsl:text disable-output-escaping="yes" >&gt;&gt;</xsl:text> 1);
-    
-    //protected final LogUtil logUtil = LogUtil.getInstance();
-    private final GDGameInputProcessor gameInputProcessor = new GDGameInputProcessor();
+    private val WAIT: Int = ((GameSpeed.getInstance().getDelay() * 3) <xsl:text disable-output-escaping="yes" >&gt;&gt;</xsl:text> 1)
 
-    private final DownKeyEventHandler downKeyEventHandler = DownKeyEventHandler.getInstance();
-    private final UpKeyEventHandler upKeyEventHandler = UpKeyEventHandler.getInstance();
-    private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
+    //protected final LogUtil logUtil = LogUtil.getInstance()
+    private val gameInputProcessor: GDGameInputProcessor = GDGameInputProcessor()
 
-    public <xsl:value-of select="$layoutName" />(final AbeClientInformationInterface abeClientInformation, final CommandListener commandListener) throws Exception
+    private val downKeyEventHandler: DownKeyEventHandler = DownKeyEventHandler.getInstance()
+    private val upKeyEventHandler: UpKeyEventHandler = UpKeyEventHandler.getInstance()
+    private val smallIntegerSingletonFactory: SmallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
+
+    constructor(abeClientInformation: AbeClientInformationInterface, commandListener: CommandListener) : super(abeClientInformation, commandListener, //BasicHighScoresFactory(abeClientInformation,, GDGameSoftwareInfo.getInstance()), NoHighScoresFactory.getInstance(), NullPaintable.getInstance(), NullInitUpdatePaintable.getInstance(), GDGameStaticInitializerFactory(), false)
     {
-        super(abeClientInformation, commandListener, 
-                //new BasicHighScoresFactory(abeClientInformation,, GDGameSoftwareInfo.getInstance()),
-                NoHighScoresFactory.getInstance(),
-                NullPaintable.getInstance(), NullInitUpdatePaintable.getInstance(),
-                new GDGameStaticInitializerFactory(), false);
 
-        this.setWait(WAIT);
+        this.setWait(WAIT)
 
         <!--
             <xsl:variable name="layoutTotal" ><xsl:for-each select="../layouts" ><xsl:if test="position() = last()" ><xsl:value-of select="position()" /></xsl:if></xsl:for-each></xsl:variable>
             //layoutTotal=<xsl:value-of select="$layoutTotal" />
             <xsl:if test="number($layoutTotal) = 1" >
-        GroupFactory.getInstance().init((short) 10, StringUtil.getInstance().getArrayInstance());
+        GroupFactory.getInstance().init(10.toShort(), StringUtil.getInstance().getArrayInstance())
             </xsl:if>
         -->
-        
-        GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(this, null);
+
+        GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(this, null)
     }
 
-    public void initPostPaint() throws Exception
+    fun initPostPaint()
     {
-        //logUtil.put("initPostPaint", this, "initPostPaint");
+        //logUtil.put("initPostPaint", this, "initPostPaint")
 
         //this.setBasicGameDemoPaintable(
-                //new GDGameMenuPaintable(new FormPaintable(this.getMenuForm()))
-                //);
+                //GDGameMenuPaintable(FormPaintable(this.getMenuForm()))
+                //)
 
         this.setSpecialAnimationInterface(
                 GD<xsl:value-of select="$index" />SpecialAnimation.getInstance()
-                );
+                )
 
         this.setDefaultPaintableInterface(
                 //ColorFillPaintableFactory.getInstance().getInstance(BasicColorFactory.getInstance().RED)
@@ -125,81 +120,81 @@ public class <xsl:value-of select="$layoutName" /> extends StartCanvas
                         </xsl:if>
                     </xsl:if>), false)
                     //GD_LAYOUT_COLOR
-                );
-        this.setPaintableInterface(this.getDefaultPaintableInterface());
+                )
+        this.setPaintableInterface(this.getDefaultPaintableInterface())
     }
 
-    public void open()
+    fun open()
     {
-        super.open();
-        GD<xsl:value-of select="$index" />SpecialAnimation.getInstance().open();
+        super.open()
+        GD<xsl:value-of select="$index" />SpecialAnimation.getInstance().open()
     }
 
-    public void close()
+    fun close()
     {
-        super.close();
-        GD<xsl:value-of select="$index" />SpecialAnimation.getInstance().close();
+        super.close()
+        GD<xsl:value-of select="$index" />SpecialAnimation.getInstance().close()
     }
 
-    public synchronized void unPause()
+    @Synchronized fun unPause()
     {
-        super.unPause();
-        this.paintedSpecialAnimationInterface = GD<xsl:value-of select="$index" />SpecialAnimation.getInstance();
+        super.unPause()
+        this.paintedSpecialAnimationInterface = GD<xsl:value-of select="$index" />SpecialAnimation.getInstance()
     }
-    
+
     //Hack for GD
-    public void end2() {
-        this.paintedSpecialAnimationInterface = SpecialAnimation.getInstance();
+    fun end2() {
+        this.paintedSpecialAnimationInterface = SpecialAnimation.getInstance()
     }
 
-    protected void processGame() throws Exception
+    protected fun processGame()
     {
-        this.gameInputProcessor.process(null, this.paintedSpecialAnimationInterface);
-        super.processGame();
+        this.gameInputProcessor.process(null, this.paintedSpecialAnimationInterface)
+        super.processGame()
     }
 
-    public void handleRawKey(final int keyCode, final int deviceId, final boolean repeated) throws Exception {
-        final Integer keyCodeAsInteger = smallIntegerSingletonFactory.getInstance(keyCode);
-        this.upKeyEventHandler.fireEvent(keyCodeAsInteger);
-        this.upKeyEventHandler.getInstance(deviceId).fireEvent(keyCodeAsInteger);
+    fun handleRawKey(keyCode: Int, deviceId: Int, repeated: Boolean) {
+        val keyCodeAsInteger: Integer = smallIntegerSingletonFactory.getInstance(keyCode)
+        this.upKeyEventHandler.fireEvent(keyCodeAsInteger)
+        this.upKeyEventHandler.getInstance(deviceId).fireEvent(keyCodeAsInteger)
     }
 
-    public void addKeyInputListener(final PlayerGameInput playerGameInput) {
-        super.addKeyInputListener(playerGameInput);
+    fun addKeyInputListener(playerGameInput: PlayerGameInput) {
+        super.addKeyInputListener(playerGameInput)
 
-        this.downKeyEventHandler.getInstanceForPlayer(playerGameInput.getPlayerInputId()).addListenerSingleThreaded(playerGameInput);
+        this.downKeyEventHandler.getInstanceForPlayer(playerGameInput.getPlayerInputId()).addListenerSingleThreaded(playerGameInput)
     }
 
     <xsl:if test="number($layoutIndex) != 1" >
     //Do not remove on build for this layout
-    protected void removeAllGameKeyInputListenersOnBuild() {
+    protected fun removeAllGameKeyInputListenersOnBuild() {
     }
     </xsl:if>
 
-    public void removeKeyInputListener(final PlayerGameInput playerGameInput) {
-        super.removeKeyInputListener(playerGameInput);
+    fun removeKeyInputListener(playerGameInput: PlayerGameInput) {
+        super.removeKeyInputListener(playerGameInput)
 
-        this.downKeyEventHandler.removeListener(playerGameInput);
+        this.downKeyEventHandler.removeListener(playerGameInput)
     }
 
 //    protected int getNextRandom()
 //    {
-//    	PreLogUtil.put("******************Demo Next Random Is Always 1", this, "getNextRandom");
-//        // return MyRandom.getAbsoluteNextInt(Integer.MAX_VALUE / 10) + 1;
-//        return 1;
+//        PreLogUtil.put("******************Demo Next Random Is Always 1", this, "getNextRandom")
+//        // return MyRandom.getAbsoluteNextInt(Integer.MAX_VALUE / 10) + 1
+//        return 1
 //    }
 //
 //    protected AllBinaryGameLayerManager createGameLayerManager(int randomValue) throws Exception
 //    {
-//        GameInfo gameInfo = new GameInfo(GameTypeFactory.getInstance().BOT, GameMode.SERVER, PlayerTypesFactory
-//                .getInstance().PLAYER_TYPE_ONE, GDGameLayerManager.MAX_LEVEL, randomValue);
+//        GameInfo gameInfo = GameInfo(GameTypeFactory.getInstance().BOT, GameMode.SERVER, PlayerTypesFactory
+//                .getInstance().PLAYER_TYPE_ONE, GDGameLayerManager.MAX_LEVEL, randomValue)
 //
-//        return new GDGameLayerManager(gameInfo);
+//        return GDGameLayerManager(gameInfo)
 //    }
 //
 //    public GameCanvasRunnableInterface createRunnable(int randomValue) throws Exception
 //    {
-//        return new GDGameGameCanvas(this.createGameLayerManager(this.getNextRandom()));
+//        return GDGameGameCanvas(this.createGameLayerManager(this.getNextRandom()))
 //    }
 
 }

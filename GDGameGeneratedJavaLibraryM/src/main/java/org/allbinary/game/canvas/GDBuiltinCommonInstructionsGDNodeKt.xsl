@@ -22,7 +22,7 @@ Created By: Travis Berthelot
     <xsl:import href="./event/GDBuiltinCommonInstructionsWhileEventGDNode.xsl" />
     <xsl:import href="./event/GDBuiltinCommonInstructionsRepeatEventGDNode.xsl" />
     <xsl:import href="./event/GDBuiltinCommonInstructionsStandardEventGDNode.xsl" />
-    
+
     <xsl:template name="builtinCommonInstructionsGDNode" >
         <xsl:param name="caller" />
         <xsl:param name="totalRecursions" />
@@ -35,31 +35,29 @@ Created By: Travis Berthelot
         <xsl:param name="objectsAsString" />
         <xsl:param name="createdObjectsAsString" />
         <xsl:param name="conditionEventPosition" />
-         
+
         <xsl:variable name="quote" >"</xsl:variable>
 
         <xsl:for-each select="events" >
 
             <xsl:variable name="eventPosition" select="position()" />
-            
+
             <xsl:variable name="selectedNodeId" select="number(substring(generate-id(), 2) - 65536)" />
             <xsl:variable name="selectedNodeIdWithSep" >,<xsl:value-of select="$selectedNodeId" />,</xsl:variable>
-            
+
             <xsl:if test="contains($selectedNodeIds, $selectedNodeIdWithSep) or $selectedNodeIds = 'All'" >
 
         //<xsl:value-of select="type" /> - //nodeId=<xsl:value-of select="$selectedNodeId" /> - //BuiltinCommonInstructions - //Event - //repeatExpression=<xsl:value-of select="repeatExpression" />
-        public class GD<xsl:value-of select="$selectedNodeId" />GDNode extends GDNode
+        open public class GD<xsl:value-of select="$selectedNodeId" />GDNode : GDNode
         {
-            public GD<xsl:value-of select="$selectedNodeId" />GDNode() {
-
-                super(<xsl:value-of select="$selectedNodeId" />);
+            public constructor() : super(<xsl:value-of select="$selectedNodeId" />) {
 
             }
 
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-            
+
             <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
-            
+
             <xsl:choose>
             <xsl:when test="type = 'BuiltinCommonInstructions::Comment'" >
             //Do not create GDNode for comment event type
@@ -77,7 +75,7 @@ Created By: Travis Berthelot
             </xsl:when>
             <xsl:when test="type = 'BuiltinCommonInstructions::Else'" >
             //<xsl:value-of select="type" /> NOT_IMPLEMENTED
-            throw new RuntimeException();
+            throw RuntimeException()
             </xsl:when>
 
             <xsl:when test="type = 'BuiltinCommonInstructions::ForEachChildVariable'" >
@@ -118,7 +116,7 @@ Created By: Travis Berthelot
                     </xsl:with-param>
 
                 </xsl:call-template>
-                
+
             </xsl:when>
             <xsl:when test="type = 'BuiltinCommonInstructions::ForEach'" >
 
@@ -158,10 +156,10 @@ Created By: Travis Berthelot
                     </xsl:with-param>
 
                 </xsl:call-template>
-                                
+
             </xsl:when>
             <xsl:when test="type = 'BuiltinCommonInstructions::Group'" >
-    
+
                 <xsl:call-template name="builtinCommonInstructionsGroupEventGDNode" >
                     <xsl:with-param name="caller" >
                         <xsl:value-of select="$caller" />
@@ -201,7 +199,7 @@ Created By: Travis Berthelot
 
             </xsl:when>
             <xsl:when test="type = 'BuiltinCommonInstructions::While'" >
-    
+
                 <xsl:call-template name="builtinCommonInstructionsWhileEventGDNode" >
                     <xsl:with-param name="caller" >
                         <xsl:value-of select="$caller" />
@@ -241,7 +239,7 @@ Created By: Travis Berthelot
 
             </xsl:when>
             <xsl:when test="type = 'BuiltinCommonInstructions::Repeat'" >
-    
+
                 <xsl:call-template name="builtinCommonInstructionsRepeatEventGDNode" >
                     <xsl:with-param name="caller" >
                         <xsl:value-of select="$caller" />
@@ -326,8 +324,8 @@ Created By: Travis Berthelot
             </xsl:choose>
 
         }
-        
-        public GD<xsl:value-of select="$selectedNodeId" />GDNode NODE_<xsl:value-of select="$selectedNodeId" /> = new GD<xsl:value-of select="$selectedNodeId" />GDNode();
+
+        public var NODE_<xsl:value-of select="$selectedNodeId" />: GD<xsl:value-of select="$selectedNodeId" />GDNode = GD<xsl:value-of select="$selectedNodeId" />GDNode()
 
             </xsl:if>
 

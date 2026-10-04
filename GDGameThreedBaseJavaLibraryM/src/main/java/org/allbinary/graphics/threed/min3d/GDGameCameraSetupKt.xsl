@@ -1,9 +1,9 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
 
     <xsl:output method="html" indent="yes" />
-    
+
     <xsl:template match="/game">
 
 /*
@@ -20,261 +20,259 @@
 *
 */
 
-package org.allbinary.graphics.threed.min3d;
+package org.allbinary.graphics.threed.min3d
 
-import min3d.core.Object3d;
-import min3d.vos.Camera;
+import min3d.core.Object3d
+import min3d.vos.Camera
 
-import org.allbinary.AndroidUtil;
-import org.allbinary.animation.threed.ThreedAnimation;
-import org.allbinary.game.canvas.GDGameGlobals;
-import org.allbinary.game.layer.CameraLayer;
-import org.allbinary.game.layer.GDGameLayer;
-import org.allbinary.graphics.displayable.DisplayInfoSingleton;
-import org.allbinary.graphics.threed.OpenGLRatioProcessor;
-import org.allbinary.graphics.threed.OpenGLPortraitRatioProcessor;
-import org.allbinary.graphics.threed.SWTJOGLProcessor;
-import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.logic.communication.log.PreLogUtil;
-import org.allbinary.logic.string.StringMaker;
+import org.allbinary.AndroidUtil
+import org.allbinary.animation.threed.ThreedAnimation
+import org.allbinary.game.canvas.GDGameGlobals
+import org.allbinary.game.layer.CameraLayer
+import org.allbinary.game.layer.GDGameLayer
+import org.allbinary.graphics.displayable.DisplayInfoSingleton
+import org.allbinary.graphics.threed.OpenGLRatioProcessor
+import org.allbinary.graphics.threed.OpenGLPortraitRatioProcessor
+import org.allbinary.graphics.threed.SWTJOGLProcessor
+import org.allbinary.logic.communication.log.LogUtil
+import org.allbinary.logic.communication.log.PreLogUtil
+import org.allbinary.logic.string.StringMaker
 
-public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
+open class GD<GD_CURRENT_INDEX>GameCameraSetup : GDGameCameraSetup
 {
-    private static final GD<GD_CURRENT_INDEX>GameCameraSetup instance = new GD<GD_CURRENT_INDEX>GameCameraSetup();
+    private val instance: GD<GD_CURRENT_INDEX>GameCameraSetup = GD<GD_CURRENT_INDEX>GameCameraSetup()
 
     /**
      * @return the instance
      */
-    public static GD<GD_CURRENT_INDEX>GameCameraSetup getInstance() {
-        return GD<GD_CURRENT_INDEX>GameCameraSetup.instance;
+    fun getInstance(): GD<GD_CURRENT_INDEX>GameCameraSetup {
+        return GD<GD_CURRENT_INDEX>GameCameraSetup.instance
     }
 
-    protected final LogUtil logUtil = LogUtil.getInstance();
-        
-    private final SceneStrings sceneStrings = SceneStrings.getInstance();
+    protected val logUtil: LogUtil = LogUtil.getInstance()
 
-    private float initNearOffset = 0.0f;
-    private float initVerticalOffset = 0.0f;
-    private float initHorizontalOffset = 0.0f;
+    private val sceneStrings: SceneStrings = SceneStrings.getInstance()
 
-    private GD<GD_CURRENT_INDEX>GameCameraSetup()
+    private var initNearOffset: Float = 0.0f
+    private var initVerticalOffset: Float = 0.0f
+    private var initHorizontalOffset: Float = 0.0f
+
+    private constructor() : super(GDGameCameraSetup.<xsl:for-each select="properties" ><xsl:if test="not(cameras)" >NONE</xsl:if></xsl:for-each><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:for-each select="properties" ><xsl:for-each select="cameras" ><xsl:if test="position() = <GD_CURRENT_INDEX> + 1" ><xsl:value-of select="type" /></xsl:if></xsl:for-each></xsl:for-each></xsl:with-param></xsl:call-template>)
     {
-        super(GDGameCameraSetup.<xsl:for-each select="properties" ><xsl:if test="not(cameras)" >NONE</xsl:if></xsl:for-each><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:for-each select="properties" ><xsl:for-each select="cameras" ><xsl:if test="position() = <GD_CURRENT_INDEX> + 1" ><xsl:value-of select="type" /></xsl:if></xsl:for-each></xsl:for-each></xsl:with-param></xsl:call-template>);
-        
+
         <xsl:for-each select="properties" >
             <xsl:for-each select="cameras" >
-            
+
                     <xsl:if test="ratioProcessor = 'both'" >
             //Consumed by the AllBinaryToMin3dRenderer using the DisplayInfo custom dimension
-            SWTJOGLProcessor.getInstance().setRatioProcessor(OpenGLRatioProcessor.getInstance());
+            SWTJOGLProcessor.getInstance().setRatioProcessor(OpenGLRatioProcessor.getInstance())
                     </xsl:if>
                     <xsl:if test="ratioProcessor != 'both'" >
             //Consumed by the AllBinaryToMin3dRenderer using the DisplayInfo custom dimension
-            SWTJOGLProcessor.getInstance().setRatioProcessor(OpenGLPortraitRatioProcessor.getInstance());
+            SWTJOGLProcessor.getInstance().setRatioProcessor(OpenGLPortraitRatioProcessor.getInstance())
                     </xsl:if>
             </xsl:for-each>
-        </xsl:for-each>    
-        
+        </xsl:for-each>
+
     }
 
         <xsl:for-each select="properties" >
-    public void process(final Camera camera, final StringMaker stringMaker) {
-            
-            final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
-            
-            //camera.frustum.frustrumWidthOffset(NoFrustrumWidthOffset.getInstance());
-            
+    fun process(camera: Camera, stringMaker: StringMaker) {
+
+            val displayInfoSingleton: DisplayInfoSingleton = DisplayInfoSingleton.getInstance()
+
+            //camera.frustum.frustrumWidthOffset(NoFrustrumWidthOffset.getInstance())
+
             <xsl:for-each select="cameras" >
                 <xsl:if test="position() = <GD_CURRENT_INDEX> + 1 and type != 'none'" >
                 //camera position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" />
-            //x is height, y is distance from game area, z is width            
+            //x is height, y is distance from game area, z is width
             //if(CameraMotionGestureInputProcessor.getInstance().restore(scene, stringMaker)) {
 
-            //} else 
+            //} else
             if(displayInfoSingleton.isPortrait()) {
-            
-                stringMaker.append("portrait: ");
+
+                stringMaker.append("portrait: ")
 
                 //MyCanvas aLastWidth: 385 aLastHeight: 639 Display Info: fullWidth: 1440 fullHeight: 2392 lastWidth: 385 lastHeight: 639 lastHalfWidth: 192 lastHalfHeight: 319
                 //319.0, 900.0, -639.0->319.0, 0.0, -629.0
                 //319.0, 815.0, -779.0->319.0, -625.0, -629.0
-                
+
                 //MyCanvas aLastWidth: 470 aLastHeight: 640 Display Info: fullWidth: 1800 fullHeight: 2448 lastWidth: 470 lastHeight: 640 lastHalfWidth: 235 lastHalfHeight: 320
                 //195.0, 740.0, -835.0->205.0, -785.0, -765.0
 
             <xsl:for-each select="portrait" >
                 <xsl:for-each select="position" >
-                camera.position.x = <xsl:value-of select="x" />;
-                camera.position.y = <xsl:value-of select="y" />;
-                camera.position.z = <xsl:value-of select="z" />;
+                camera.position.x = <xsl:value-of select="x" />
+                camera.position.y = <xsl:value-of select="y" />
+                camera.position.z = <xsl:value-of select="z" />
                 </xsl:for-each>
 
                 <xsl:for-each select="target" >
-                camera.target.getPosition().x = <xsl:value-of select="x" />;
-                camera.target.getPosition().y = <xsl:value-of select="y" />;
-                camera.target.getPosition().z = <xsl:value-of select="z" />;
+                camera.target.getPosition().x = <xsl:value-of select="x" />
+                camera.target.getPosition().y = <xsl:value-of select="y" />
+                camera.target.getPosition().z = <xsl:value-of select="z" />
                 </xsl:for-each>
 
                 <xsl:for-each select="init" >
-                initVerticalOffset = <xsl:value-of select="verticalOffset" />;
-                initHorizontalOffset = <xsl:value-of select="horizontalOffset" />;
-                initNearOffset = <xsl:value-of select="nearOffset" />;
+                initVerticalOffset = <xsl:value-of select="verticalOffset" />
+                initHorizontalOffset = <xsl:value-of select="horizontalOffset" />
+                initNearOffset = <xsl:value-of select="nearOffset" />
                 </xsl:for-each>
 
             </xsl:for-each>
 
             } else {
-                stringMaker.append("landscape: ");
-                
+                stringMaker.append("landscape: ")
+
                 //MyCanvas aLastWidth: 640 aLastHeight: 422 Display Info: fullWidth: 2560 fullHeight: 1688 lastWidth: 640 lastHeight: 422 lastHalfWidth: 320 lastHalfHeight: 211
                 //-84.0, 640.0, -650.0->-54.0, -1980.0, 70.0
-                
+
             <xsl:for-each select="landscape" >
                 <xsl:for-each select="position" >
-                camera.position.x = <xsl:value-of select="x" />;
-                camera.position.y = <xsl:value-of select="y" />;
-                camera.position.z = <xsl:value-of select="z" />;
+                camera.position.x = <xsl:value-of select="x" />
+                camera.position.y = <xsl:value-of select="y" />
+                camera.position.z = <xsl:value-of select="z" />
                 </xsl:for-each>
 
                 <xsl:for-each select="target" >
-                camera.target.getPosition().x = <xsl:value-of select="x" />;
-                camera.target.getPosition().y = <xsl:value-of select="y" />;
-                camera.target.getPosition().z = <xsl:value-of select="z" />;
+                camera.target.getPosition().x = <xsl:value-of select="x" />
+                camera.target.getPosition().y = <xsl:value-of select="y" />
+                camera.target.getPosition().z = <xsl:value-of select="z" />
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="init" >
-                initVerticalOffset = <xsl:value-of select="verticalOffset" />;
-                initHorizontalOffset = <xsl:value-of select="horizontalOffset" />;
-                initNearOffset = <xsl:value-of select="nearOffset" />;
+                initVerticalOffset = <xsl:value-of select="verticalOffset" />
+                initHorizontalOffset = <xsl:value-of select="horizontalOffset" />
+                initNearOffset = <xsl:value-of select="nearOffset" />
                 </xsl:for-each>
-                
+
             </xsl:for-each>
 
             }
             </xsl:if>
             </xsl:for-each>
     }
-    
-    @Override
-    public void updateFrustrum(final Camera camera, final float ratio) {
-        
+
+    override fun updateFrustrum(camera: Camera, ratio: Float) {
+
             <xsl:for-each select="cameras" >
                 <xsl:if test="position() = <GD_CURRENT_INDEX> + 1 and type != 'none'" >
                 //camera position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" />
-        //logUtil.put("ratio: " + ratio, this, "updateFrustrum");
+        //logUtil.put("ratio: " + ratio, this, "updateFrustrum")
 
-        //Wider screen means horizontal center is larger.        
+        //Wider screen means horizontal center is larger.
         //If ratio is more than 0.36 it is fine
 
-            final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
+            val displayInfoSingleton: DisplayInfoSingleton = DisplayInfoSingleton.getInstance()
 
-            float horizontalOffset = 0.0f;
-            float verticalOffset = 0.0f;
-            float nearOffset = 0.0f;
+            var horizontalOffset: Float = 0.0f
+            var verticalOffset: Float = 0.0f
+            var nearOffset: Float = 0.0f
 
             if(AndroidUtil.isAndroid()) {
-                horizontalOffset = -0.08f;
-                verticalOffset = 0.07f;
-                nearOffset = 0.35f;
+                horizontalOffset = -0.08f
+                verticalOffset = 0.07f
+                nearOffset = 0.35f
             }
-                    
-            //x is height, y is distance from game area, z is width            
-            //if(CameraMotionGestureInputProcessor.getInstance().restore(scene, stringMaker)) {            
 
-            //} else 
+            //x is height, y is distance from game area, z is width
+            //if(CameraMotionGestureInputProcessor.getInstance().restore(scene, stringMaker)) {
+
+            //} else
             if(displayInfoSingleton.isPortrait()) {
-            
-                //stringMaker.append("portrait: ");
+
+                //stringMaker.append("portrait: ")
 
                 //MyCanvas aLastWidth: 385 aLastHeight: 639 Display Info: fullWidth: 1440 fullHeight: 2392 lastWidth: 385 lastHeight: 639 lastHalfWidth: 192 lastHalfHeight: 319
                 //319.0, 900.0, -639.0->319.0, 0.0, -629.0
                 //319.0, 815.0, -779.0->319.0, -625.0, -629.0
-                
+
                 //MyCanvas aLastWidth: 470 aLastHeight: 640 Display Info: fullWidth: 1800 fullHeight: 2448 lastWidth: 470 lastHeight: 640 lastHalfWidth: 235 lastHalfHeight: 320
                 //195.0, 740.0, -835.0->205.0, -785.0, -765.0
 
             <xsl:for-each select="portrait" >
                 <xsl:for-each select="frustrum" >
-                camera.frustum.horizontalCenter(<xsl:value-of select="horizontalCenter" /> + horizontalOffset + (initHorizontalOffset * ratio));
-                camera.frustum.verticalCenter(<xsl:value-of select="verticalCenter" /> + verticalOffset + (initVerticalOffset * ratio));
+                camera.frustum.horizontalCenter(<xsl:value-of select="horizontalCenter" /> + horizontalOffset + (initHorizontalOffset * ratio))
+                camera.frustum.verticalCenter(<xsl:value-of select="verticalCenter" /> + verticalOffset + (initVerticalOffset * ratio))
                 <xsl:if test="zNear" >
-                camera.frustum.zNear(<xsl:value-of select="zNear" /> + nearOffset + initNearOffset);
+                camera.frustum.zNear(<xsl:value-of select="zNear" /> + nearOffset + initNearOffset)
                 </xsl:if>
                 </xsl:for-each>
 
             </xsl:for-each>
 
             } else {
-                //stringMaker.append("landscape: ");
-                
+                //stringMaker.append("landscape: ")
+
                 //MyCanvas aLastWidth: 640 aLastHeight: 422 Display Info: fullWidth: 2560 fullHeight: 1688 lastWidth: 640 lastHeight: 422 lastHalfWidth: 320 lastHalfHeight: 211
                 //-84.0, 640.0, -650.0->-54.0, -1980.0, 70.0
-                
+
             <xsl:for-each select="landscape" >
                 <xsl:for-each select="frustrum" >
-                camera.frustum.horizontalCenter(<xsl:value-of select="horizontalCenter" /> + horizontalOffset + (initHorizontalOffset * ratio));
-                camera.frustum.verticalCenter(<xsl:value-of select="verticalCenter" /> + verticalOffset + (initVerticalOffset * ratio));
+                camera.frustum.horizontalCenter(<xsl:value-of select="horizontalCenter" /> + horizontalOffset + (initHorizontalOffset * ratio))
+                camera.frustum.verticalCenter(<xsl:value-of select="verticalCenter" /> + verticalOffset + (initVerticalOffset * ratio))
                 <xsl:if test="zNear" >
-                camera.frustum.zNear(<xsl:value-of select="zNear" /> + nearOffset + initNearOffset);
+                camera.frustum.zNear(<xsl:value-of select="zNear" /> + nearOffset + initNearOffset)
                 </xsl:if>
                 </xsl:for-each>
-                
+
             </xsl:for-each>
 
             }
             </xsl:if>
             </xsl:for-each>
-                
+
     }
-    
+
         </xsl:for-each>
-                
-    public void processTarget(final CameraLayer cameraLayer, final Camera camera) {
+
+    fun processTarget(cameraLayer: CameraLayer, camera: Camera) {
 
         <xsl:for-each select="properties" >
             <xsl:for-each select="camera" >
-                
+
         <xsl:choose>
             <xsl:when test="type='follow'" >
-                
+
                 //camera/type - follow
-                //cameraLayer.updateCamera();
-                
-                final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-                
+                //cameraLayer.updateCamera()
+
+                val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
+
                 if(gameGlobals.PlayerGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                    final GDGameLayer playerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
+                    val playerGDGameLayer: GDGameLayer = gameGlobals.PlayerGDGameLayerList.get(0) as GDGameLayer
 
-                    final ThreedAnimation threedAnimation = (ThreedAnimation) playerGDGameLayer.getIndexedAnimationInterface();
+                    val threedAnimation: ThreedAnimation = playerGDGameLayer.getIndexedAnimationInterface() as ThreedAnimation
 
-                    final Object3d object3d = threedAnimation.getObject3d();
+                    val object3d: Object3d = threedAnimation.getObject3d()
 
-                    camera.target = object3d;
-                    
-                    PreLogUtil.put("Player set as Follow Camera Target", this, this.sceneStrings.BUILD_SCENE);
+                    camera.target = object3d
+
+                    PreLogUtil.put("Player set as Follow Camera Target", this, this.sceneStrings.BUILD_SCENE)
 
                 } else {
-                    
-                    camera.target = new Object3d(0, 0);
-                    
-                    PreLogUtil.put("Default Object set as Follow Camera Target", this, this.sceneStrings.BUILD_SCENE);
+
+                    camera.target = Object3d(0, 0)
+
+                    PreLogUtil.put("Default Object set as Follow Camera Target", this, this.sceneStrings.BUILD_SCENE)
                 }
-                
+
             </xsl:when>
 
             <xsl:otherwise>
                 //camera/type - simple or not set
-                camera.target = new Object3d(0, 0);
-                
-                PreLogUtil.put("Default Object set as Simple Camera Target", this, this.sceneStrings.BUILD_SCENE);
+                camera.target = Object3d(0, 0)
+
+                PreLogUtil.put("Default Object set as Simple Camera Target", this, this.sceneStrings.BUILD_SCENE)
             </xsl:otherwise>
         </xsl:choose>
-                
+
             </xsl:for-each>
         </xsl:for-each>
 
-    }            
-        
+    }
+
 }
 
     </xsl:template>

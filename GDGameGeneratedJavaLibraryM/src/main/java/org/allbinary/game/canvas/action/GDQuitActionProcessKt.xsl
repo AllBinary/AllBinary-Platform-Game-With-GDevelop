@@ -22,64 +22,64 @@ Created By: Travis Berthelot
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
 
-        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>        
+        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //Quit - action - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
-                    @Override
-                    public boolean process() throws Exception {
-                        super.processStats();
 
-                        this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
-                        canvas.getCustomCommandListener().commandAction(GameCommandsFactory.getInstance().EXIT_COMMAND, ProgressCanvasFactory.getInstance());
-                                                
-                        return true;
-                    }
-                        
-                    @Override
-                    public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
-                        super.processStats(motionGestureEvent);
-                        
-                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
-                        
-                        return this.process();
+                    override fun process(): Boolean {
+                        super.processStats()
+
+                        this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
+                        canvas.getCustomCommandListener().commandAction(GameCommandsFactory.getInstance().EXIT_COMMAND, ProgressCanvasFactory.getInstance())
+
+                        return true
                     }
 
-                    @Override
-                    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
-                        super.processGDStats(gameLayerArray);
+
+                    override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                        super.processStats(motionGestureEvent)
+
+                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
+
+                        return this.process()
+                    }
+
+
+                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                        super.processGDStats(gameLayerArray)
 
                         try {
-                            //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                            //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
-                            return this.process();
-                        } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            return this.process()
+                        } catch(e: Exception) {
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e)
                         }
-                        return true;    
+                        return true
                     }
 
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >
-                        @Override
-                        public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
-                            
-                            //Map from object array with action params
-                            final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
-                            this.process(gameLayer, intArray[3], intArray[5]);
 
-                            return true;
+                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+
+                            //Map from object array with action params
+                            val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
+                            this.process(gameLayer, intArray[3], intArray[5])
+
+                            return true
                         }
                         </xsl:if>
 
-                        public void process(final GDGameLayer gameLayer, final int x, final int y) {
-                            final GDObject gdObject = gameLayer.gdObject;
-                            this.process(gdObject, x, y);
+                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                            val gdObject: GDObject = gameLayer.gdObject
+                            this.process(gdObject, x, y)
                         }
 
-                        public void process(final GDObject gdObject, final int x, final int y) {
-                            throw new RuntimeException();
+                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                            throw RuntimeException()
                         }
     </xsl:template>
 

@@ -23,12 +23,12 @@ Created By: Travis Berthelot
         <xsl:for-each select="instances" >
             <xsl:variable name="createInstanceIndex" select="number(position() - 1)" />
                     //instances create - START
-        GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="$layoutType" /><xsl:value-of select="$createInstanceIndex" />CreateInstance.getInstance().init(imageResources, resources);
+        GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="$layoutType" /><xsl:value-of select="$createInstanceIndex" />CreateInstance.getInstance().init(imageResources, resources)
                     //instances create - END
         </xsl:for-each>
 
     </xsl:template>
-        
+
     <xsl:template name="createInstance" >
         <xsl:param name="layoutIndex" />
         <xsl:param name="createInstanceIndex" />
@@ -36,20 +36,20 @@ Created By: Travis Berthelot
         <xsl:call-template name="globalCentreCameraActions" >
             <xsl:with-param name="baseLayer" >true</xsl:with-param>
         </xsl:call-template>
-                    
+
         <xsl:call-template name="globalZoomCameraActions" >
             <xsl:with-param name="baseLayer" >true</xsl:with-param>
         </xsl:call-template>
-                
+
         <xsl:variable name="hasCentreCamera" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera' or type/value = 'CenterCameraOnObject'" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
-        
+
                     //instances create - START
-                    this.logUtil.putF(this.commonStrings.START, this, CREATE_INSTANCES);
-                    
+                    this.logUtil.putF(this.commonStrings.START, this, CREATE_INSTANCES)
+
                     //Create - Instances - START
-                    final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
-                    final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
-                    
+                    val abToGBUtil: ABToGBUtil = ABToGBUtil.getInstance()
+                    val allBinaryGameLayerManager: AllBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager
+
                     <xsl:for-each select="instances" >
                         <xsl:if test="$createInstanceIndex = number(position() - 1)" >
                         <xsl:variable name="nodeIdAsString" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
@@ -57,77 +57,77 @@ Created By: Travis Berthelot
                         <xsl:variable name="colonName" >:<xsl:value-of select="name" /></xsl:variable>
 
                         //name=<xsl:value-of select="name" /> layer=<xsl:value-of select="layer" />
-                                                
+
                         //Create - btn_ - START
                         <xsl:text>&#10;</xsl:text>
                         if(true) {
-                            //this.logUtil.putF("<xsl:value-of select="$name" />", this, this.commonStrings.CONSTRUCTOR);
+                            //this.logUtil.putF("<xsl:value-of select="$name" />", this, this.commonStrings.CONSTRUCTOR)
                             <xsl:if test="contains(name, 'btn_')" >
                         //btn_ - found
                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
-                        //final int width = (int) (touchImageResources.<xsl:value-of select="name" />Width(0) / 1.44f);
-                        //final int height = (int) (touchImageResources.<xsl:value-of select="name" />Height(0) / 1.44f);
-                        <xsl:if test="contains(name, 'joystick_')" >final float joystickScale = (org.allbinary.AndroidUtil.isAndroid() ? 0.75f : 1.0f);</xsl:if>
-                        final int width = (int) (touchImageResources.<xsl:value-of select="name" />Width(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>);
-                        final int height = (int) (touchImageResources.<xsl:value-of select="name" />Height(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>);
+                        //final int width = (touchImageResources.<xsl:value-of select="name" />Width(0) / 1.44f).toInt()
+                        //final int height = (touchImageResources.<xsl:value-of select="name" />Height(0) / 1.44f).toInt()
+                        <xsl:if test="contains(name, 'joystick_')" >val joystickScale: Float = if ((org.allbinary.AndroidUtil.isAndroid()) 0.75f else 1.0f)</xsl:if>
+                        val width: Int = (touchImageResources.<xsl:value-of select="name" />Width(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>).toInt()
+                        val height: Int = (touchImageResources.<xsl:value-of select="name" />Height(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>).toInt()
                                 </xsl:if>
                                 <xsl:if test="height != 0 and width != 0" >
-                        //final int width = (int) (<xsl:value-of select="width" /> * 1.44f);
-                        //final int height = (int) (<xsl:value-of select="height" /> * 1.44f);
-                        final int width = (int) (<xsl:value-of select="width" /> * scaleTouchButtons);
-                        final int height = (int) (<xsl:value-of select="height" /> * scaleTouchButtons);
+                        //final int width = (<xsl:value-of select="width" /> * 1.44f).toInt()
+                        //final int height = (<xsl:value-of select="height" /> * 1.44f).toInt()
+                        val width: Int = (<xsl:value-of select="width" /> * scaleTouchButtons).toInt()
+                        val height: Int = (<xsl:value-of select="height" /> * scaleTouchButtons).toInt()
                                 </xsl:if>
-                        final float customScale = scaleTouchButtons;
-                            </xsl:if>                            
+                        val customScale: Float = scaleTouchButtons
+                            </xsl:if>
                             <xsl:if test="not(contains(name, 'btn_'))" >
                         //btn_ - not
                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
-                        //final int width = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth() / 1.44f);
-                        //final int height = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight() / 1.44f);
-                        final int width = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth());
-                        final int height = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight());
+                        //final int width = (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth() / 1.44f).toInt()
+                        //final int height = (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight() / 1.44f).toInt()
+                        val width: Int = (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth()).toInt()
+                        val height: Int = (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight()).toInt()
                                 </xsl:if>
                                 <xsl:if test="height != 0 and width != 0" >
-                        //final int width = (int) (<xsl:value-of select="width" /> * 1.44f);
-                        //final int height = (int) (<xsl:value-of select="height" /> * 1.44f);
-                        final int width = (int) (<xsl:value-of select="width" />);
-                        final int height = (int) (<xsl:value-of select="height" />);
+                        //final int width = (<xsl:value-of select="width" /> * 1.44f).toInt()
+                        //final int height = (<xsl:value-of select="height" /> * 1.44f).toInt()
+                        val width: Int = .toInt() as <xsl:value-of select="width" />
+                        val height: Int = .toInt() as <xsl:value-of select="height" />
                                 </xsl:if>
-                        final float customScale = 1.0f;
+                        val customScale: Float = 1.0f
 
                             </xsl:if>
-                            
+
                         <xsl:if test="contains($hasCentreCamera, 'found')" >
-                        final int <xsl:value-of select="name" />X = centerCameraX != 0 ? centerCameraX - width / 2 : (int) (<xsl:value-of select="x" /> * baseLayerScale);
-                        final int <xsl:value-of select="name" />Y =
+                        val <xsl:value-of select="name" />X: Int = if (centerCameraX != 0) centerCameraX - width / 2 else (<xsl:value-of select="x" /> * baseLayerScale).toInt()
+                        val <xsl:value-of select="name" />Y: Int =
                             <xsl:if test="contains(name, 'btn_')" >
                                 //btn_ - Hack - for android orientation change.
-                                 (int) <xsl:if test="y = 506" >gameTickDisplayInfoSingleton.getLastHeight() - (touchImageResources.<xsl:value-of select="name" />Height(0) + (touchImageResources.<xsl:value-of select="name" />Height(0) / 100));</xsl:if>
-                                <xsl:if test="y = 415" >gameTickDisplayInfoSingleton.getLastHeight() - (2 * (touchImageResources.<xsl:value-of select="name" />Height(0) + (touchImageResources.<xsl:value-of select="name" />Height(0) / 100)));</xsl:if>
+                                 <xsl:if test="y = 506" >gameTickDisplayInfoSingleton.getLastHeight().toInt() - (touchImageResources.<xsl:value-of select="name" />Height(0) + (touchImageResources.<xsl:value-of select="name" />Height(0) / 100))</xsl:if>
+                                <xsl:if test="y = 415" >gameTickDisplayInfoSingleton.getLastHeight() - (2 * (touchImageResources.<xsl:value-of select="name" />Height(0) + (touchImageResources.<xsl:value-of select="name" />Height(0) / 100)))</xsl:if>
                             </xsl:if>
                             <xsl:if test="not(contains(name, 'btn_'))" >
                                 //btn_ - not 2
-                                centerCameraX != 0 ? centerCameraY - height / 2 :  (int) (<xsl:value-of select="y" /> * baseLayerScale);
+                                centerCameraX != if (0) centerCameraY - height / 2 else (<xsl:value-of select="y" /> * baseLayerScale).toInt()
                             </xsl:if>
                         </xsl:if>
 
                         <xsl:if test="not(contains($hasCentreCamera, 'found'))" >
-                        final int <xsl:value-of select="name" />X = (int) (<xsl:value-of select="x" /> * baseLayerScale);
-                        final int <xsl:value-of select="name" />Y = (int) (<xsl:value-of select="y" /> * baseLayerScale);
+                        val <xsl:value-of select="name" />X: Int = (<xsl:value-of select="x" /> * baseLayerScale).toInt()
+                        val <xsl:value-of select="name" />Y: Int = (<xsl:value-of select="y" /> * baseLayerScale).toInt()
                         </xsl:if>
 
                         if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.objectArray == nullUtil.NULL_OBJECT_ARRAY) {
-                            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.ensureCapacity(1);
+                            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.ensureCapacity(1)
                         }
 
                         //LayoutBuilder
                         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
-                        final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectFactory.get(
+                        final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectFactory.get(
                         width, height,
-                        <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME);
+                        <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) as <xsl:value-of select="$gdObjectFactory" />
 
-                        <xsl:value-of select="name" />.set(null, <xsl:value-of select="name" />X, 
-                        <xsl:value-of select="name" />Y, 
+                        <xsl:value-of select="name" />.set(null, <xsl:value-of select="name" />X,
+                        <xsl:value-of select="name" />Y,
                     //Create - Instances - //zOrder - <xsl:value-of select="zOrder" />
                     //layer=<xsl:value-of select="layer" /> (Base Layer is emtpy)
                             <xsl:if test="contains(layer, 'Below')" >
@@ -153,71 +153,71 @@ Created By: Travis Berthelot
                             <xsl:if test="contains(layer, 'Top')" >
                     //Top - zOrder + 800
                     <xsl:value-of select="zOrder + 800" />
-                            </xsl:if>);
-                                                
-                        <xsl:value-of select="name" />.customScale = customScale;
+                            </xsl:if>)
 
-                        final int index = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size();
+                        <xsl:value-of select="name" />.customScale = customScale
 
-                        final StringMaker stringBuilder = new StringMaker();
-                        //stringBuilder.delete(0, stringBuilder.length());
-                                                
-                        //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDObjectList.add(<xsl:value-of select="name" />);
+                        val index: Int = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size()
+
+                        val stringBuilder: StringMaker = StringMaker()
+                        //stringBuilder.delete(0, stringBuilder.length)
+
+                        //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDObjectList.add(<xsl:value-of select="name" />)
 
                             <xsl:if test="initialVariables" >
-                            class CreateInstanceGDInitialVariables extends GDInitialVariables {
-                                public void reset() {
+                            open class CreateInstanceGDInitialVariables : GDInitialVariables {
+                                open public fun reset() {
                             <xsl:for-each select="initialVariables" >//initialVariables - //<xsl:value-of select="type" /> - //<xsl:value-of select="name" /> - //<xsl:value-of select="value" />
                             <xsl:text>&#10;</xsl:text>
-<xsl:text>                  </xsl:text><xsl:value-of select="$name" />.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+<xsl:text>                  </xsl:text><xsl:value-of select="$name" />.<xsl:value-of select="name" /> = <xsl:value-of select="value" />
                             <xsl:text>&#10;</xsl:text>
                             </xsl:for-each>
                                 }
-                            };
+                            }
 
-                            <xsl:value-of select="$name" />.initialVariables = new CreateInstanceGDInitialVariables();
-                            <xsl:value-of select="$name" />.initialVariables.reset();
+                            <xsl:value-of select="$name" />.initialVariables = CreateInstanceGDInitialVariables()
+                            <xsl:value-of select="$name" />.initialVariables.reset()
                             </xsl:if>
 
                         <xsl:if test="contains(name, 'btn_')" >
                         //btn_ - //Rectangle
                         //Touch Rectangle
-                        //final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
+                        //final Rectangle <xsl:value-of select="name" />Rectangle = Rectangle(
                         //    pointFactory.createXY(<xsl:value-of select="name" />.x, <xsl:value-of select="name" />.y),
-                        //    (int) (<xsl:value-of select="name" />.Width(globals.graphics) * scaleTouchButtons), (int) (<xsl:value-of select="name" />.Height(globals.graphics) * scaleTouchButtons));
-                        //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
+                        //    (<xsl:value-of select="name" />.Width(globals.graphics) * scaleTouchButtons).toInt(), (<xsl:value-of select="name" />.Height(globals.graphics) * scaleTouchButtons).toInt())
+                        //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle)
                         </xsl:if>
-                        
-                        final GDGameLayer <xsl:value-of select="name" />GDGameLayer = <xsl:call-template name="globalResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:value-of select="$layoutIndex" />, stringBuilder.append(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME).append(CommonSeps.getInstance().UNDERSCORE).appendint(index).toString(), <xsl:value-of select="name" />, 
-                        scale, scale,     
-                        null); //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDConditionWithGroupActions);
-                        <xsl:value-of select="name" />GDGameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
-                        //this.logUtil.putF("<xsl:value-of select="$nodeIdAsString" /> for <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0", this, this.commonStrings.PROCESS);
-                        <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
-                        globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
+
+                        val <xsl:value-of select="name" />GDGameLayer: GDGameLayer = <xsl:call-template name="globalResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:value-of select="$layoutIndex" />, stringBuilder.append(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME).append(CommonSeps.getInstance().UNDERSCORE).append(index).toString(), <xsl:value-of select="name" />,
+                        scale, scale,
+                        null) //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDConditionWithGroupActions)
+                        <xsl:value-of select="name" />GDGameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager)
+                        //this.logUtil.putF("<xsl:value-of select="$nodeIdAsString" /> for <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0", this, this.commonStrings.PROCESS)
+                        <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer)
+                        globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer)
 
                         //updateGDObject - 7
-                        <xsl:value-of select="name" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
-                        
+                        <xsl:value-of select="name" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta)
+
                         <xsl:variable name="gameLayer" ><xsl:value-of select="name" />GDGameLayer</xsl:variable>
-                        //this.logUtil.putF("<xsl:value-of select="$gameLayer" />.gdObject.zOrder" + <xsl:value-of select="$gameLayer" />.gdObject.zOrder, this, this.commonStrings.PROCESS);
-                        //this.logUtil.putF("<xsl:value-of select="$gameLayer" />.getZ()" + <xsl:value-of select="$gameLayer" />.getZ(), this, this.commonStrings.PROCESS);
-                        allBinaryGameLayerManager.insert(<xsl:value-of select="name" />GDGameLayer);
+                        //this.logUtil.putF("<xsl:value-of select="$gameLayer" />.gdObject.zOrder" + <xsl:value-of select="$gameLayer" />.gdObject.zOrder, this, this.commonStrings.PROCESS)
+                        //this.logUtil.putF("<xsl:value-of select="$gameLayer" />.getZ()" + <xsl:value-of select="$gameLayer" />.getZ(), this, this.commonStrings.PROCESS)
+                        allBinaryGameLayerManager.insert(<xsl:value-of select="name" />GDGameLayer)
 
                         <xsl:for-each select=".." >
                             <xsl:call-template name="globalUpdateCentreCameraActions" >
                                 <xsl:with-param name="baseLayer" >true</xsl:with-param>
                             </xsl:call-template>
                         </xsl:for-each>
-                        
+
                         }
                         //Create - btn_ - END
                         //Create - Instances - END
-                        
+
                         </xsl:if>
                     </xsl:for-each>
-                    
-                    this.logUtil.putF(this.commonStrings.END, this, CREATE_INSTANCES);
+
+                    this.logUtil.putF(this.commonStrings.END, this, CREATE_INSTANCES)
                     //instances create - END
     </xsl:template>
 

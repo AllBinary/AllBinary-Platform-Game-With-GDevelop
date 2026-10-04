@@ -20,9 +20,9 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/replace.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/split.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
 
@@ -31,7 +31,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
 
     <xsl:import href="../GDGameWavSoundsJavaLibraryM/src/main/java/org/allbinary/media/audio/PlaySound.xsl" />
-    
+
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -54,39 +54,39 @@ Created By: Travis Berthelot
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
-                
-                package org.allbinary.media.audio;
 
-                import org.allbinary.string.CommonStrings;
-                import org.allbinary.string.CommonSeps;
-                import org.allbinary.logic.string.StringUtil;
-                import org.allbinary.logic.communication.log.LogFactory;
-                import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.util.ArrayUtil;
-                import org.allbinary.util.BasicArrayList;
-                import org.allbinary.util.BasicArrayListD;
+                package org.allbinary.media.audio
+
+                import org.allbinary.string.CommonStrings
+                import org.allbinary.string.CommonSeps
+                import org.allbinary.logic.string.StringUtil
+                import org.allbinary.logic.communication.log.LogFactory
+                import org.allbinary.logic.communication.log.LogUtil
+                import org.allbinary.util.ArrayUtil
+                import org.allbinary.util.BasicArrayList
+                import org.allbinary.util.BasicArrayListD
 
                 //Layout name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />GameMusicFactory
+                open class GD<xsl:value-of select="$layoutIndex" />GameMusicFactory
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />GameMusicFactory instance = new GD<xsl:value-of select="$layoutIndex" />GameMusicFactory();
+                    private val instance: GD<xsl:value-of select="$layoutIndex" />GameMusicFactory = GD<xsl:value-of select="$layoutIndex" />GameMusicFactory()
 
-                    public static GD<xsl:value-of select="$layoutIndex" />GameMusicFactory getInstance()
+                    fun getInstance(): GD<xsl:value-of select="$layoutIndex" />GameMusicFactory
                     {
-                        return GD<xsl:value-of select="$layoutIndex" />GameMusicFactory.instance;
+                        return GD<xsl:value-of select="$layoutIndex" />GameMusicFactory.instance
                     }
 
-                    private final LogUtil logUtil = LogUtil.getInstance();
-                    private final CommonStrings commonStrings = CommonStrings.getInstance();
+                    private val logUtil: LogUtil = LogUtil.getInstance()
+                    private val commonStrings: CommonStrings = CommonStrings.getInstance()
 
-                    public final BasicArrayList soundList = new BasicArrayListD();
+                    val soundList: BasicArrayList = BasicArrayListD()
 
-                    public GD<xsl:value-of select="$layoutIndex" />GameMusicFactory() {
+                    constructor() {
 
                         try {
-                        
-                            logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
+
+                            logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR)
 
 <!--
                     <xsl:call-template name="playsound" >
@@ -114,8 +114,8 @@ Created By: Travis Berthelot
                         <xsl:with-param name="musicOrSound" >music</xsl:with-param>
                     </xsl:call-template>
 
-                        } catch(Exception e) {
-                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                        } catch(e: Exception) {
+                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e)
                         }
 
                     }

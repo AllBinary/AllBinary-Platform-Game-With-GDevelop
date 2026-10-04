@@ -21,7 +21,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />    
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDAction.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
@@ -30,15 +30,15 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjects.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssign.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobal.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectResources.xsl" />    
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectResources.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/animation/GDObjectAnimations.xsl" />
-    
+
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -59,25 +59,24 @@ Created By: Travis Berthelot
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
-                
-                package org.allbinary.game.canvas;
 
-                import org.allbinary.animation.AnimationBehavior;
-                import org.allbinary.animation.special.SpecialAnimation;
+                package org.allbinary.game.canvas
+
+                import org.allbinary.animation.AnimationBehavior
+                import org.allbinary.animation.special.SpecialAnimation
 
                 //Layout name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources extends SpecialAnimation
+                open class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources : SpecialAnimation
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources();
+                    private val instance: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources()
 
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources getInstance()
+                        fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources
                         {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.instance;
+                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.instance
                         }
 
-                    private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources() {
-                        super(AnimationBehavior.getInstance());
+                    private constructor() : super(AnimationBehavior.getInstance()) {
                     }
 
                     <xsl:call-template name="animationNames" >
@@ -101,16 +100,16 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                     </xsl:variable>
-                    
+
                     <xsl:if test="contains($foundTileMap, 'found')" >
-                    public final String MAP_CELL_MODEL = "/map_cell_model_obj";
-                    public final String MAP_CELL_MODEL_IMAGE = "<xsl:value-of select="/game/properties/map_cell_model_image" />";
+                    val MAP_CELL_MODEL: String = "/map_cell_model_obj"
+                    val MAP_CELL_MODEL_IMAGE: String = "<xsl:value-of select="/game/properties/map_cell_model_image" />"
                     </xsl:if>
 
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:variable name="name" select="name" />
-            
+
                         <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
                         <xsl:if test="not(contains($threedExclusionsFound, 'found'))" >
 
@@ -120,18 +119,18 @@ Created By: Travis Berthelot
                     //TileMap::TileMap:content
                     <xsl:variable name="imageWithExtension" select="content/tilemapAtlasImage" />
                     <xsl:variable name="image" select="substring-before($imageWithExtension, '.')" />
-                    public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="$image" />";
+                    val <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>: String = "<xsl:value-of select="$image" />"
                 </xsl:if>
                             </xsl:if>
 
                         </xsl:if>
-                    </xsl:for-each>                        
+                    </xsl:for-each>
 
-                    public final String[] MAP_CELL_MODEL_ARRAY = {
+                    val MAP_CELL_MODEL_ARRAY: Array&lt;String&gt; = {
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:variable name="name" select="name" />
-            
+
                         <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
                         <xsl:if test="not(contains($threedExclusionsFound, 'found'))" >
 
@@ -146,8 +145,8 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                     </xsl:for-each>
-                    };
-                
+                    }
+
                 }
             </xsl:if>
         </xsl:for-each>

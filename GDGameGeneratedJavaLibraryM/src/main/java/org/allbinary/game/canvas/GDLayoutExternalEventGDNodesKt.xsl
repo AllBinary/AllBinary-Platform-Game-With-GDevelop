@@ -20,11 +20,11 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionCentreCameraGlobal.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobal.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDCreateInstances.xsl" />
@@ -68,63 +68,60 @@ Created By: Travis Berthelot
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
 
-                package org.allbinary.game.canvas;
+                package org.allbinary.game.canvas
 
-                import javax.microedition.lcdui.Graphics;
-                
-                import org.json.me.JSONArray;
-                import org.json.me.JSONObject;
-        
-                import org.allbinary.AndroidUtil;
-                import org.allbinary.J2MEUtil;
-                import org.allbinary.animation.AnimationBehavior;
-                import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.game.canvas.GDExtensionGDNodes;
-                import org.allbinary.game.configuration.persistance.JSONPersistance;
-                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
-                import org.allbinary.game.layer.AllBinaryGameLayerManager;
-                import org.allbinary.game.layout.GDNode;
-                import org.allbinary.game.layer.special.TempGameLayerUtil;
-                import org.allbinary.game.rand.MyRandomFactory;
-                import org.allbinary.input.motion.gesture.MotionGestureInput;
-                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
-                import org.allbinary.string.CommonStrings;
-                import org.allbinary.string.CommonSeps;
-                import org.allbinary.logic.string.StringUtil;
-                import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.logic.NullUtil;
-                import org.allbinary.util.ArrayUtil;
+                import javax.microedition.lcdui.Graphics
+
+                import org.json.me.JSONArray
+                import org.json.me.JSONObject
+
+                import org.allbinary.AndroidUtil
+                import org.allbinary.J2MEUtil
+                import org.allbinary.animation.AnimationBehavior
+                import org.allbinary.animation.special.SpecialAnimation
+                import org.allbinary.game.canvas.GDExtensionGDNodes
+                import org.allbinary.game.configuration.persistance.JSONPersistance
+                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton
+                import org.allbinary.game.layer.AllBinaryGameLayerManager
+                import org.allbinary.game.layout.GDNode
+                import org.allbinary.game.layer.special.TempGameLayerUtil
+                import org.allbinary.game.rand.MyRandomFactory
+                import org.allbinary.input.motion.gesture.MotionGestureInput
+                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent
+                import org.allbinary.string.CommonStrings
+                import org.allbinary.string.CommonSeps
+                import org.allbinary.logic.string.StringUtil
+                import org.allbinary.logic.communication.log.LogUtil
+                import org.allbinary.logic.NullUtil
+                import org.allbinary.util.ArrayUtil
 
                 //LayoutExternalEvent name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes extends SpecialAnimation
+                open public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes : SpecialAnimation
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes instance = 
-                       new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes();
+                    private val instance: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes =
+                       GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes()
 
-                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes getInstance()
-                    {
-                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes.instance;
+                    open public fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes {
+                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes.instance
                     }
 
-                    protected final LogUtil logUtil = LogUtil.getInstance();
-                    private final CommonStrings commonStrings = CommonStrings.getInstance();
-                    private final StringUtil stringUtil = StringUtil.getInstance();
-                    private final NullUtil nullUtil = NullUtil.getInstance();
-                    private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
-                    
-                    private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-                    private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
+                    protected val logUtil: LogUtil = LogUtil.getInstance()
+                    private val commonStrings: CommonStrings = CommonStrings.getInstance()
+                    private val stringUtil: StringUtil = StringUtil.getInstance()
+                    private val nullUtil: NullUtil = NullUtil.getInstance()
+                    private val arrayUtil: ArrayUtil = ArrayUtil.getInstance()
 
-                    private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+                    private val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
+                    private val gdExtensionGDNodes: GDExtensionGDNodes = GDExtensionGDNodes.getInstance()
 
-                    private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes() {
+                    private val globals: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance()
 
-                        super(AnimationBehavior.getInstance());
+                    private constructor() : super(AnimationBehavior.getInstance()) {
 
                         try {
-                        
-                            this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR);
+
+                            this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR)
 
                             <xsl:for-each select="../externalEvents" >
                                 <xsl:if test="$layoutName = associatedLayout" >
@@ -132,11 +129,11 @@ Created By: Travis Berthelot
                                     <xsl:call-template name="externalLinkEventGDNode" />
                                 </xsl:if>
                             </xsl:for-each>
-                            
-                            this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR);
 
-                        } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e);
+                            this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR)
+
+                        } catch (e: Exception) {
+                            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e)
                         }
 
                     }

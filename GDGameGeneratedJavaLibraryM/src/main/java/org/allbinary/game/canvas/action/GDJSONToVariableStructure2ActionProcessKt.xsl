@@ -26,31 +26,31 @@ Created By: Travis Berthelot
 
                     //JSONToVariableStructure2 - takes a string variable and parses it to a JSONObject/Structure - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
-                    @Override
-                    public boolean process() throws Exception {
-                        super.processStats();
 
-                        this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                    override fun process(): Boolean {
+                        super.processStats()
+
+                        this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
         <xsl:variable name="firstParametersAsString0" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
         <xsl:variable name="firstParametersAsString" ><xsl:value-of select="translate($firstParametersAsString0, '&#10;', '')" /></xsl:variable>
-                        
+
                         <xsl:variable name="withGetJSONType" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /><xsl:value-of select="$firstParametersAsString" /></xsl:with-param><xsl:with-param name="find" >ToJSON</xsl:with-param><xsl:with-param name="replacementText" >ToJSONType</xsl:with-param></xsl:call-template></xsl:variable>
 
                         <xsl:variable name="variableName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                        
+
                         <xsl:if test="contains($withGetJSONType, 'ToJSON')" >
                         //This probably should not occur
                         if(<xsl:value-of select="$withGetJSONType" /> == 1) {
                         </xsl:if>
 
-                            final JSONTokener jsonTokener = new JSONTokener(<xsl:value-of select="$firstParametersAsString" />);
+                            val jsonTokener: JSONTokener = JSONTokener(<xsl:value-of select="$firstParametersAsString" />)
 
-                            final JSONObject jsonObject = (JSONObject) jsonTokener.nextValue();
-                            globals.<xsl:value-of select="$variableName" />JSONObject = jsonObject;
+                            val jsonObject: JSONObject = jsonTokener.nextValue() as JSONObject
+                            globals.<xsl:value-of select="$variableName" />JSONObject = jsonObject
 
                         <xsl:for-each select="//variables" >
                             <xsl:if test="name = $variableName" >
-                            final JSONObject jsonObject2 = ((JSONObject) <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$variableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject);
+                            val jsonObject2: JSONObject = <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$variableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject as JSONObject
                         <xsl:call-template name="variableJSONMapping" >
                             <xsl:with-param name="parentName" >jsonObject2</xsl:with-param>
                             <xsl:with-param name="variableName" >
@@ -63,64 +63,64 @@ Created By: Travis Berthelot
                         </xsl:call-template>
                             </xsl:if>
                         </xsl:for-each>
-                        
+
                         <xsl:if test="contains($withGetJSONType, 'ToJSON')" >
-                        } else if(<xsl:value-of select="$withGetJSONType" /> == 2) { 
+                        } else if(<xsl:value-of select="$withGetJSONType" /> == 2) {
 
-                            final JSONTokener jsonTokener = new JSONTokener(<xsl:value-of select="$firstParametersAsString" />);
+                            val jsonTokener: JSONTokener = JSONTokener(<xsl:value-of select="$firstParametersAsString" />)
 
-                            final JSONArray jsonArray = (JSONArray) jsonTokener.nextValue();
-                            globals.<xsl:value-of select="$variableName" />JSONArray = jsonArray;
+                            val jsonArray: JSONArray = jsonTokener.nextValue() as JSONArray
+                            globals.<xsl:value-of select="$variableName" />JSONArray = jsonArray
 
-                            this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " I don't think JSONArrays should map here", this, this.commonStrings.PROCESS);
+                            this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " I don't think JSONArrays should map here", this, this.commonStrings.PROCESS)
                         }
                         </xsl:if>
 
-                        return true;
+                        return true
                     }
 
-                    @Override
-                    public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
-                        super.processStats(motionGestureEvent);
-                        
-                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
-                        
-                        return this.process();
+
+                    override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                        super.processStats(motionGestureEvent)
+
+                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
+
+                        return this.process()
                     }
 
-                    @Override
-                    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+
+                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
                         try {
-                            return this.process();
-                        } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            return this.process()
+                        } catch(e: Exception) {
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e)
                         }
 
-                        return true;
+                        return true
                     }
 
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >
-                        @Override
-                        public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
-                            
-                            //Map from object array with action params
-                            final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
-                            this.process(gameLayer, intArray[3], intArray[5]);
 
-                            return true;
+                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+
+                            //Map from object array with action params
+                            val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
+                            this.process(gameLayer, intArray[3], intArray[5])
+
+                            return true
                         }
 
                         </xsl:if>
 
-                        public void process(final GDGameLayer gameLayer, final int x, final int y) {
-                            final GDObject gdObject = gameLayer.gdObject;
-                            this.process(gdObject, x, y);
+                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                            val gdObject: GDObject = gameLayer.gdObject
+                            this.process(gdObject, x, y)
                         }
 
-                        public void process(final GDObject gdObject, final int x, final int y) {
-                            throw new RuntimeException();
+                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                            throw RuntimeException()
                         }
     </xsl:template>
 

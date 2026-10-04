@@ -20,9 +20,9 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
-        
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
@@ -39,7 +39,7 @@ Created By: Travis Berthelot
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
-    
+
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -64,153 +64,152 @@ Created By: Travis Berthelot
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
-                
-                package org.allbinary.game.canvas.node.action;
-                
-                import javax.microedition.lcdui.Canvas;
-                import javax.microedition.lcdui.Graphics;
-                import javax.microedition.lcdui.Image;
 
-                import org.json.me.JSONArray;
-                import org.json.me.JSONObject;
-                import org.json.me.JSONTokener;
+                package org.allbinary.game.canvas.node.action
 
-                import org.allbinary.AndroidUtil;
-                import org.allbinary.J2MEUtil;
-                import org.allbinary.animation.AnimationBehavior;                
-                import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.canvas.GameGlobalsFactory;
-                import org.allbinary.game.canvas.ABToGBUtil;
-                import org.allbinary.game.canvas.GDExtensionGDNodes;
-                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil;
-                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory;
-                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources;
-                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals;
-                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources;
-                import org.allbinary.game.canvas.GDGameGlobals;
-                import org.allbinary.game.canvas.GDGameSoftwareInfo;
-                import org.allbinary.game.canvas.GDGlobalsGDObjectsFactory;
-                import org.allbinary.game.canvas.GDGlobalsGDResources;
-                
-                import org.allbinary.game.commands.GameCommandsFactory;
-                import org.allbinary.game.GDGameCommandFactory;
-                import org.allbinary.game.GameInfo;
-                import org.allbinary.game.canvas.GDExtensionGDNodes;
-                import org.allbinary.game.configuration.persistance.GDStructure;
-                import org.allbinary.game.configuration.persistance.JSONPersistance;
-                import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
-                import org.allbinary.game.input.GameInputProcessor;
-                import org.allbinary.game.input.InputFactory;
-                import org.allbinary.game.input.event.GameKeyEvent;
-                import org.allbinary.game.layer.GDGameLayer;                
-                import org.allbinary.game.layout.GDNode;
-                import org.allbinary.game.layer.special.TempGameLayerUtil;
-                import org.allbinary.game.layout.GDObject;
-                import org.allbinary.game.layer.AllBinaryGameLayerManager;
-                import org.allbinary.game.layout.GDObjectFactory;
-                import org.allbinary.game.layer.GDGameLayerFactory;
-                import org.allbinary.game.layer.identification.GroupLayerManagerListener;
-                import org.allbinary.game.layer.special.GDConditionWithGroupActions;
-                import org.allbinary.game.layer.GDPrimitiveDrawing;
-                import org.allbinary.game.layer.GDRectOnlyPrimitiveDrawing;
-                import org.allbinary.game.layer.GDPrimitiveDrawingLinesOnly;
-                import org.allbinary.game.layer.GDPrimitiveDrawingLinesOnlyAnimationFactory;
-                import org.allbinary.game.layer.GDPrimitiveDrawingAnimationFactory;
-                import org.allbinary.game.layer.GDRectOnlyPrimitiveDrawingAnimationFactory;
-                import org.allbinary.game.physics.velocity.DragVelocityBehavior;
-                import org.allbinary.game.physics.velocity.NoDragVelocityBehavior;
-                import org.allbinary.game.rand.MyRandomFactory;
-                import org.allbinary.game.score.BasicHighScoresFactory;
-                import org.allbinary.game.score.HighScore;
-                import org.allbinary.game.score.HighScoreNamePersistanceSingleton;
-                import org.allbinary.game.score.HighScores;
-                import org.allbinary.game.score.HighScoresHelperBase;
-                import org.allbinary.game.score.HighScoresResultsListener;
-                import org.allbinary.game.score.displayable.HighScoreUtil;
-                import org.allbinary.graphics.PointFactory;
-                import org.allbinary.graphics.Rectangle;
-                import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
-                import org.allbinary.graphics.color.BasicColor;
-                import org.allbinary.graphics.color.SmallBasicColorCacheFactory;
-                import org.allbinary.graphics.color.BasicColorUtil;
-                import org.allbinary.graphics.displayable.MyCanvas;
-                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
-                import org.allbinary.graphics.displayable.command.MyCommandsFactory;
-                import org.allbinary.input.event.VirtualKeyboardEventHandler;
-                import org.allbinary.input.motion.gesture.MotionGestureInput;
-                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
-                import org.allbinary.layer.AllBinaryLayerManager;
-                import org.allbinary.string.CommonStrings;
-                import org.allbinary.logic.string.StringMaker;
-                import org.allbinary.string.CommonSeps;
-                import org.allbinary.logic.string.StringUtil;
-                import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
-                import org.allbinary.media.audio.Sound;
-                import org.allbinary.math.NoDecimalTrigTable;
-                import org.allbinary.string.CommonPhoneStrings;
-                import org.allbinary.time.GameTickTimeDelayHelper;
-                import org.allbinary.time.GameTickTimeDelayHelperFactory;
-                import org.allbinary.time.TimeDelayHelper;
-                import org.allbinary.logic.NullUtil;
-                import org.allbinary.util.ArrayUtil;
-                import org.allbinary.util.BasicArrayList;
-                import org.allbinary.util.BasicArrayListD;
-                import org.allbinary.media.audio.PlayerComposite;
-                import org.allbinary.thread.SecondaryThreadPool;
-                import org.allbinary.game.layer.behavior.GDBehaviorUtil;
-                import org.allbinary.game.layer.behavior.PathFindingBehavior;
-                import org.allbinary.thread.PathFindingThreadPool;
-                import org.allbinary.logic.io.file.FileSystem;
-                import org.allbinary.logic.math.SmallIntegerSingletonFactory;
-                import org.allbinary.game.layout.GDStrings;
-                
+                import javax.microedition.lcdui.Canvas
+                import javax.microedition.lcdui.Graphics
+                import javax.microedition.lcdui.Image
+
+                import org.json.me.JSONArray
+                import org.json.me.JSONObject
+                import org.json.me.JSONTokener
+
+                import org.allbinary.AndroidUtil
+                import org.allbinary.J2MEUtil
+                import org.allbinary.animation.AnimationBehavior
+                import org.allbinary.animation.special.SpecialAnimation
+                import org.allbinary.canvas.GameGlobalsFactory
+                import org.allbinary.game.canvas.ABToGBUtil
+                import org.allbinary.game.canvas.GDExtensionGDNodes
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources
+                import org.allbinary.game.canvas.GDGameGlobals
+                import org.allbinary.game.canvas.GDGameSoftwareInfo
+                import org.allbinary.game.canvas.GDGlobalsGDObjectsFactory
+                import org.allbinary.game.canvas.GDGlobalsGDResources
+
+                import org.allbinary.game.commands.GameCommandsFactory
+                import org.allbinary.game.GDGameCommandFactory
+                import org.allbinary.game.GameInfo
+                import org.allbinary.game.canvas.GDExtensionGDNodes
+                import org.allbinary.game.configuration.persistance.GDStructure
+                import org.allbinary.game.configuration.persistance.JSONPersistance
+                import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas
+                import org.allbinary.game.input.GameInputProcessor
+                import org.allbinary.game.input.InputFactory
+                import org.allbinary.game.input.event.GameKeyEvent
+                import org.allbinary.game.layer.GDGameLayer
+                import org.allbinary.game.layout.GDNode
+                import org.allbinary.game.layer.special.TempGameLayerUtil
+                import org.allbinary.game.layout.GDObject
+                import org.allbinary.game.layer.AllBinaryGameLayerManager
+                import org.allbinary.game.layout.GDObjectFactory
+                import org.allbinary.game.layer.GDGameLayerFactory
+                import org.allbinary.game.layer.identification.GroupLayerManagerListener
+                import org.allbinary.game.layer.special.GDConditionWithGroupActions
+                import org.allbinary.game.layer.GDPrimitiveDrawing
+                import org.allbinary.game.layer.GDRectOnlyPrimitiveDrawing
+                import org.allbinary.game.layer.GDPrimitiveDrawingLinesOnly
+                import org.allbinary.game.layer.GDPrimitiveDrawingLinesOnlyAnimationFactory
+                import org.allbinary.game.layer.GDPrimitiveDrawingAnimationFactory
+                import org.allbinary.game.layer.GDRectOnlyPrimitiveDrawingAnimationFactory
+                import org.allbinary.game.physics.velocity.DragVelocityBehavior
+                import org.allbinary.game.physics.velocity.NoDragVelocityBehavior
+                import org.allbinary.game.rand.MyRandomFactory
+                import org.allbinary.game.score.BasicHighScoresFactory
+                import org.allbinary.game.score.HighScore
+                import org.allbinary.game.score.HighScoreNamePersistanceSingleton
+                import org.allbinary.game.score.HighScores
+                import org.allbinary.game.score.HighScoresHelperBase
+                import org.allbinary.game.score.HighScoresResultsListener
+                import org.allbinary.game.score.displayable.HighScoreUtil
+                import org.allbinary.graphics.PointFactory
+                import org.allbinary.graphics.Rectangle
+                import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory
+                import org.allbinary.graphics.color.BasicColor
+                import org.allbinary.graphics.color.SmallBasicColorCacheFactory
+                import org.allbinary.graphics.color.BasicColorUtil
+                import org.allbinary.graphics.displayable.MyCanvas
+                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton
+                import org.allbinary.graphics.displayable.command.MyCommandsFactory
+                import org.allbinary.input.event.VirtualKeyboardEventHandler
+                import org.allbinary.input.motion.gesture.MotionGestureInput
+                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent
+                import org.allbinary.layer.AllBinaryLayerManager
+                import org.allbinary.string.CommonStrings
+                import org.allbinary.logic.string.StringMaker
+                import org.allbinary.string.CommonSeps
+                import org.allbinary.logic.string.StringUtil
+                import org.allbinary.logic.communication.log.LogUtil
+                import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
+                import org.allbinary.media.audio.Sound
+                import org.allbinary.math.NoDecimalTrigTable
+                import org.allbinary.string.CommonPhoneStrings
+                import org.allbinary.time.GameTickTimeDelayHelper
+                import org.allbinary.time.GameTickTimeDelayHelperFactory
+                import org.allbinary.time.TimeDelayHelper
+                import org.allbinary.logic.NullUtil
+                import org.allbinary.util.ArrayUtil
+                import org.allbinary.util.BasicArrayList
+                import org.allbinary.util.BasicArrayListD
+                import org.allbinary.media.audio.PlayerComposite
+                import org.allbinary.thread.SecondaryThreadPool
+                import org.allbinary.game.layer.behavior.GDBehaviorUtil
+                import org.allbinary.game.layer.behavior.PathFindingBehavior
+                import org.allbinary.thread.PathFindingThreadPool
+                import org.allbinary.logic.io.file.FileSystem
+                import org.allbinary.logic.math.SmallIntegerSingletonFactory
+                import org.allbinary.game.layout.GDStrings
+
                 <xsl:variable name="selectedNodeIdSet" select="substring(substring($selectedNodeIds, string-length($selectedNodeIds) - 1), 1, 1)" />
                 <xsl:variable name="lastDigit2" ><xsl:if test="4 >= $selectedNodeIdSet" >0</xsl:if><xsl:if test="$selectedNodeIdSet > 4" >1</xsl:if></xsl:variable>
                 //selectedNodeIdSet=<xsl:value-of select="$selectedNodeIdSet" />
                 //LayoutAction name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes
+                open public class GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes instance = 
-                        new GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes();
+                    private val instance: GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes =
+                        GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes()
 
-                        public static GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes getInstance()
-                        {
-                            return GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes.instance;
+                        open public fun getInstance(): GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes {
+                            return GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes.instance
                         }
 
-                        protected final LogUtil logUtil = LogUtil.getInstance();
-                        private final CommonStrings commonStrings = CommonStrings.getInstance();
-                        private final NullUtil nullUtil = NullUtil.getInstance();
-                        private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
-                        private final PointFactory pointFactory = PointFactory.getInstance();
-                        private final StringUtil stringUtil = StringUtil.getInstance();
-                        private final String EMPTY_STRING = stringUtil.EMPTY_STRING;
-                        private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
-                        private final VirtualKeyboardEventHandler virtualKeyboardEventHandler = VirtualKeyboardEventHandler.getInstance();
-                        private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
-                        private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
-                        private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
-                        private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
-                        private final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
-                        private final GDStrings gdStrings = GDStrings.getInstance();
-                        
-                        private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
-                        private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-                        private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
-                        private final GDGlobalsGDResources globalResources = GDGlobalsGDResources.getInstance();
-                        
-                        private final GDGlobalsGDObjectsFactory gdGlobalsObjectsFactory = GDGlobalsGDObjectsFactory.getInstance();
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-                        private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
+                        protected val logUtil: LogUtil = LogUtil.getInstance()
+                        private val commonStrings: CommonStrings = CommonStrings.getInstance()
+                        private val nullUtil: NullUtil = NullUtil.getInstance()
+                        private val arrayUtil: ArrayUtil = ArrayUtil.getInstance()
+                        private val pointFactory: PointFactory = PointFactory.getInstance()
+                        private val stringUtil: StringUtil = StringUtil.getInstance()
+                        private val EMPTY_STRING: String = stringUtil.EMPTY_STRING
+                        private val basicColorUtil: BasicColorUtil = BasicColorUtil.getInstance()
+                        private val virtualKeyboardEventHandler: VirtualKeyboardEventHandler = VirtualKeyboardEventHandler.getInstance()
+                        private val smallBasicColorCacheFactory: SmallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance()
+                        private val gameTickTimeDelayHelper: GameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance()
+                        private val gameTickDisplayInfoSingleton: GameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance()
+                        private val smallIntegerSingletonFactory: SmallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
+                        private val gameGlobalsFactory: GameGlobalsFactory = GameGlobalsFactory.getInstance()
+                        private val gdStrings: GDStrings = GDStrings.getInstance()
 
-                        private final AbeClientInformationInterface abeClientInformation = GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION;
-                    
-                        //private final GDGlobalSpecialAnimationImageResources globalImageResources = GDGlobalSpecialAnimationImageResources.getInstanceOrCreate();
-                                                                
+                        private val gdBehaviorUtil: GDBehaviorUtil = GDBehaviorUtil.getInstance()
+                        private val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
+                        private val gdExtensionGDNodes: GDExtensionGDNodes = GDExtensionGDNodes.getInstance()
+                        private val globalResources: GDGlobalsGDResources = GDGlobalsGDResources.getInstance()
+
+                        private val gdGlobalsObjectsFactory: GDGlobalsGDObjectsFactory = GDGlobalsGDObjectsFactory.getInstance()
+                        private val globals: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance()
+                        private val gdObjectsFactory: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance()
+                        private val imageResources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance()
+                        private val resources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance()
+
+                        private val abeClientInformation: AbeClientInformationInterface = GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION
+
+                        //private final GDGlobalSpecialAnimationImageResources globalImageResources = GDGlobalSpecialAnimationImageResources.getInstanceOrCreate()
+
         <xsl:call-template name="scaleProperty" >
             <xsl:with-param name="layoutIndex" >
                 <xsl:value-of select="$layoutIndex" />
@@ -219,7 +218,7 @@ Created By: Travis Berthelot
                 <xsl:value-of select="$layoutName" />
             </xsl:with-param>
         </xsl:call-template>
-                                                
+
                     //actionLayout - //eventsCreateAssignGDObjectGDNodesAction - START
                     <xsl:call-template name="actionGDNodes" >
                         <xsl:with-param name="caller" >actionLayout</xsl:with-param>
@@ -249,324 +248,317 @@ Created By: Travis Berthelot
                         </xsl:with-param>
 
                     </xsl:call-template>
-                    //actionLayout - //eventsCreateAssignGDObjectGDNodesAction - END                    
+                    //actionLayout - //eventsCreateAssignGDObjectGDNodesAction - END
 
-                    public double TimeDelta() {
-                        return globals.globalsGameTickTimeDelayHelper.timeDelta * .001;
-                    }
-
-                    public int SceneWindowWidth() {
-                        return gameTickDisplayInfoSingleton.getLastWidth();
+                    open public fun TimeDelta(): Double {
+                        return globals.globalsGameTickTimeDelayHelper.timeDelta * .001
                     }
 
-                    public int SceneWindowHeight() {
-                        return gameTickDisplayInfoSingleton.getLastHeight();
+                    open public fun SceneWindowWidth(): Int {
+                        return gameTickDisplayInfoSingleton.getLastWidth()
+                    }
+
+                    open public fun SceneWindowHeight(): Int {
+                        return gameTickDisplayInfoSingleton.getLastHeight()
                     }
 
 
-                    public int Random(final int range) {
-                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
+                    open public fun Random(range: Int): Int {
+                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1)
                     }
 
-                    public float RandomFloatInRange(final double min, final double max) {
-                        final double next = (max - min);
-                        //this.logUtil.putF("NEXT: " + next, this, this.commonStrings.PROCESS);
-                        final float nextF = (float) next * 1000;
-                        //this.logUtil.putF("NEXTF: " + nextF, this, this.commonStrings.PROCESS);
-                        final int nextI = Math.round(nextF);
-                        //this.logUtil.putF("NEXTI: " + nextI, this, this.commonStrings.PROCESS);
-                        final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
-                        //this.logUtil.putF("RANDOM: " + random, this, this.commonStrings.PROCESS);
-                        final float randomF = (float) random;
-                        //this.logUtil.putF("RANDOMF: " + randomF, this, this.commonStrings.PROCESS);
-                        final float result = (float) min + (randomF / 1000);
-                        //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS);
-                        return result;
-                    }
-                    
-                    public float RandomFloatInRange(final float min, final float max) {
-                        final float nextF = (float) (max - min) * 1000;
-                        //this.logUtil.putF("NEXTF: " + nextF, this, this.commonStrings.PROCESS);
-                        final int nextI = Math.round(nextF);
-                        //this.logUtil.putF("NEXTI: " + nextI, this, this.commonStrings.PROCESS);
-                        final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
-                        //this.logUtil.putF("RANDOM: " + random, this, this.commonStrings.PROCESS);
-                        final float randomF = (float) random;
-                        //this.logUtil.putF("RANDOMF: " + randomF, this, this.commonStrings.PROCESS);
-                        final float result = (float) min + (randomF / 1000);
-                        //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS);
-                        return result;
+                    open public fun RandomFloatInRange(min: Double, max: Double): Float {
+                        val next: Double = (max - min)
+                        //this.logUtil.putF("NEXT: " + next, this, this.commonStrings.PROCESS)
+                        val nextF: Float = next.toFloat() * 1000
+                        //this.logUtil.putF("NEXTF: " + nextF, this, this.commonStrings.PROCESS)
+                        val nextI: Int = Math.round(nextF)
+                        //this.logUtil.putF("NEXTI: " + nextI, this, this.commonStrings.PROCESS)
+                        val random: Int = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI)
+                        //this.logUtil.putF("RANDOM: " + random, this, this.commonStrings.PROCESS)
+                        val randomF: Float = random.toFloat()
+                        //this.logUtil.putF("RANDOMF: " + randomF, this, this.commonStrings.PROCESS)
+                        val result: Float = min.toFloat() + (randomF / 1000)
+                        //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS)
+                        var result: return
                     }
 
-                    public int Variable(final int value) {
-                        return value;
+                    open public fun RandomFloatInRange(min: Float, max: Float): Float {
+                        val nextF: Float = (max - min).toFloat() * 1000
+                        //this.logUtil.putF("NEXTF: " + nextF, this, this.commonStrings.PROCESS)
+                        val nextI: Int = Math.round(nextF)
+                        //this.logUtil.putF("NEXTI: " + nextI, this, this.commonStrings.PROCESS)
+                        val random: Int = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI)
+                        //this.logUtil.putF("RANDOM: " + random, this, this.commonStrings.PROCESS)
+                        val randomF: Float = random.toFloat()
+                        //this.logUtil.putF("RANDOMF: " + randomF, this, this.commonStrings.PROCESS)
+                        val result: Float = min.toFloat() + (randomF / 1000)
+                        //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS)
+                        var result: return
                     }
 
-                    public float Variable(final float value) {
-                        return value;
+                    open public fun Variable(value: Int): Int {
+                        var value: return
                     }
 
-                    public double Variable(final double value) {
-                        return value;
+                    open public fun Variable(value: Float): Float {
+                        var value: return
                     }
 
-                    public String VariableString(final String string) {
-                        return string;
+                    open public fun Variable(value: Double): Double {
+                        var value: return
                     }
 
-                    public String VariableString(final Object object) {
-                        return object.toString();
+                    open public fun VariableString(string: String): String {
+                        var string: return
                     }
 
-                    public int VariableChildCount(final String[] array) {
-                        return array.length;
+                    open public fun VariableString(object: Object): String {
+                        return object.toString()
                     }
 
-                    public int VariableChildCount(final int[] array) {
-                        return array.length;
+                    open public fun VariableChildCount(array: Array&lt;String&gt;): Int {
+                        return array.length
                     }
 
-                    public String GlobalVariable(final String value) {
-                        return value;
+                    open public fun VariableChildCount(array: IntArray): Int {
+                        return array.length
                     }
 
-                    public float GlobalVariable(final float value) {
-                        return value;
+                    open public fun GlobalVariable(value: String): String {
+                        var value: return
                     }
 
-                    public long GlobalVariable(final long value) {
-                        return value;
+                    open public fun GlobalVariable(value: Float): Float {
+                        var value: return
                     }
 
-                    public int GlobalVariable(final int value) {
-                        return value;
+                    open public fun GlobalVariable(value: Long): Long {
+                        var value: return
                     }
 
-                    public String GlobalVariableString(final String value) {
-                        return value;
+                    open public fun GlobalVariable(value: Int): Int {
+                        var value: return
                     }
 
-                    public int GlobalVariableChildCount(final String[] array) {
-                        return array.length;
+                    open public fun GlobalVariableString(value: String): String {
+                        var value: return
                     }
 
-                    public int GlobalVariableChildCount(final int[] array) {
-                        return array.length;
+                    open public fun GlobalVariableChildCount(array: Array&lt;String&gt;): Int {
+                        return array.length
                     }
 
-                    public int GlobalVariableChildCount(final long[] array) {
-                        return array.length;
+                    open public fun GlobalVariableChildCount(array: IntArray): Int {
+                        return array.length
                     }
 
-                    public String GlobalVarToJSON(final String value) {
-                        return value;
+                    open public fun GlobalVariableChildCount(array: LongArray): Int {
+                        return array.length
                     }
 
-                    public String GlobalVarToJSON(final int value) {
-                        return Integer.toString(value);
+                    open public fun GlobalVarToJSON(value: String): String {
+                        var value: return
                     }
 
-                    public String GlobalVarToJSON(final long value) {
-                        return Long.toString(value);
+                    open public fun GlobalVarToJSON(value: Int): String {
+                        return Integer.toString(value)
                     }
 
-                    public int ToJSONType(final GDStructure value) {
-                        return value.getJSONType();
+                    open public fun GlobalVarToJSON(value: Long): String {
+                        return Long.toString(value)
                     }
 
-                    public String ToJSON(final GDStructure value) {
-                        return value.toJSONAsString();
+                    open public fun ToJSONType(value: GDStructure): Int {
+                        return value.getJSONType()
                     }
 
-                    public String ToJSON(final String value) {
-                        return value;
+                    open public fun ToJSON(value: GDStructure): String {
+                        return value.toJSONAsString()
                     }
 
-                    public String ToJSON(final int value) {
-                        return Integer.toString(value);
+                    open public fun ToJSON(value: String): String {
+                        var value: return
                     }
 
-                    public String ToJSON(final long value) {
-                        return Long.toString(value);
+                    open public fun ToJSON(value: Int): String {
+                        return Integer.toString(value)
                     }
 
-                    public int SceneInstancesCount(final int size) {
-                        return size;
+                    open public fun ToJSON(value: Long): String {
+                        return Long.toString(value)
                     }
 
-                    public int MouseX() {
-                        
-                        return gameGlobalsFactory.point.getX();
+                    open public fun SceneInstancesCount(size: Int): Int {
+                        var size: return
                     }
 
-                    public int MouseY() {
-                        
-                        return gameGlobalsFactory.point.getY();
+                    open public fun MouseX(): Int {
+                        return gameGlobalsFactory.point.getX()
                     }
 
-                    public int MouseX(final String string, int value) {
-                        
-                        return gameGlobalsFactory.point.getX();
+                    open public fun MouseY(): Int {
+                        return gameGlobalsFactory.point.getY()
                     }
 
-                    public int MouseY(final String string, int value) {
-                        
-                        return gameGlobalsFactory.point.getY();
+                    open public fun MouseX(string: String, value: Int): Int {
+                        return gameGlobalsFactory.point.getX()
                     }
 
-                    public int CameraX(final String string, int value) {
-                        
-                        return 0;
+                    open public fun MouseY(string: String, value: Int): Int {
+                        return gameGlobalsFactory.point.getY()
                     }
 
-                    public int CameraY(final String string, int value) {
-                        
-                        return 0;
+                    open public fun CameraX(string: String, value: Int): Int {
+                        var 0: return
                     }
 
-                    public int CameraWidth(final String string, int value) {
-                        
-                        return gameTickDisplayInfoSingleton.getLastWidth();
+                    open public fun CameraY(string: String, value: Int): Int {
+                        var 0: return
                     }
 
-                    public long TimerElapsedTime(final TimeDelayHelper timeDelayHelper) {
-                        return timeDelayHelper.getElapsed(globals.globalsGameTickTimeDelayHelper.lastStartTime) / 1000;
+                    open public fun CameraWidth(string: String, value: Int): Int {
+                        return gameTickDisplayInfoSingleton.getLastWidth()
                     }
 
-                    public int floor(final int value) {
-                        return value;
-                    }
-                                        
-                    public float floor(final float value) {
-                        return (float) Math.floor((double) value);
+                    open public fun TimerElapsedTime(timeDelayHelper: TimeDelayHelper): Long {
+                        return timeDelayHelper.getElapsed(globals.globalsGameTickTimeDelayHelper.lastStartTime) / 1000
                     }
 
-                    public int mod(final int value, final int mod) {
-                        return value % mod;
+                    open public fun floor(value: Int): Int {
+                        var value: return
                     }
 
-                    public int round(final int value) {
-                        return value;
+                    open public fun floor(value: Float): Float {
+                        return Math.floor(value.toDouble()).toFloat()
                     }
 
-                    public long round(final long value) {
-                        return value;
-                    }
-                    
-                    public float round(final float value) {
-                        return Math.round(value);
+                    open public fun mod(value: Int, mod: Int): Int {
+                        return value % mod
                     }
 
-                    public int abs(final int value) {
-                        return Math.abs(value);
-                    }
-                    
-                    public float abs(final float value) {
-                        return Math.abs(value);
+                    open public fun round(value: Int): Int {
+                        var value: return
                     }
 
-                    public double log2(final int value) {
-                        return Math.log(value);
+                    open public fun round(value: Long): Long {
+                        var value: return
                     }
 
-                    public double sin(final double angle) {
-                        return Math.sin(angle);
+                    open public fun round(value: Float): Float {
+                        return Math.round(value)
                     }
 
-                    public double cos(final double angle) {
-                        return Math.cos(angle);
+                    open public fun abs(value: Int): Int {
+                        return Math.abs(value)
                     }
 
-                    public int min(final int min, final int max) {
-                        return Math.min(min, max);
+                    open public fun abs(value: Float): Float {
+                        return Math.abs(value)
                     }
 
-                    public int max(final int min, final int max) {
-                        return Math.max(min, max);
-                    }
-                                        
-                    public int ceil(final double value) {
-                        return (int) Math.ceil(value);
-                    }
-                    
-                    public double ToRad(final double angdeg) {
-                        //return Math.toRadians(angdeg);
-                        return angdeg;
-                    }
-                    
-                    public long TimeFromStart() {
-                        return globals.globalsGameTickTimeDelayHelper.getTimeFromStart() / 100;
+                    open public fun log2(value: Int): Double {
+                        return Math.log(value)
                     }
 
-                    public String NewLine() {
-                        return CommonSeps.getInstance().NEW_LINE;
+                    open public fun sin(angle: Double): Double {
+                        return Math.sin(angle)
                     }
 
-                    public int LastTouchId() {
-                        return 0;
+                    open public fun cos(angle: Double): Double {
+                        return Math.cos(angle)
                     }
 
-                    public int LastEndedTouchId() {
-                        return 0;
+                    open public fun min(min: Int, max: Int): Int {
+                        return Math.min(min, max)
                     }
 
-                    public int TouchX(final int touchId, final String name, final int unknown) {
-                        return 0;
+                    open public fun max(min: Int, max: Int): Int {
+                        return Math.max(min, max)
                     }
 
-                    public int TouchY(final int touchId, final String name, final int unknown) {
-                        return 0;
-                    }
-                    
-                    public float ToNumber(final String string) {
-                        return Float.parseFloat(string);
+                    open public fun ceil(value: Double): Int {
+                        return Math.ceil(value).toInt()
                     }
 
-                    public int StrLength(final String string) {
-                        return string.length();
+                    open public fun ToRad(angdeg: Double): Double {
+                        //return Math.toRadians(angdeg)
+                        var angdeg: return
                     }
 
-                    public String StrReplaceAll(final String string, final String find, final String replace) {
-                        return string.replace(find, replace);
+                    open public fun TimeFromStart(): Long {
+                        return globals.globalsGameTickTimeDelayHelper.getTimeFromStart() / 100
                     }
 
-                    public String SubStr(final String string, final int startIndex, final int endIndex) {
-                        return string.substring(startIndex, endIndex);
-                    }
-                    
-                    public String ToString(final String value) {
-                        return value;
+                    open public fun NewLine(): String {
+                        return CommonSeps.getInstance().NEW_LINE
                     }
 
-                    public String ToString(final int value) {
+                    open public fun LastTouchId(): Int {
+                        var 0: return
+                    }
+
+                    open public fun LastEndedTouchId(): Int {
+                        var 0: return
+                    }
+
+                    open public fun TouchX(touchId: Int, name: String, unknown: Int): Int {
+                        var 0: return
+                    }
+
+                    open public fun TouchY(touchId: Int, name: String, unknown: Int): Int {
+                        var 0: return
+                    }
+
+                    open public fun ToNumber(string: String): Float {
+                        return Float.parseFloat(string)
+                    }
+
+                    open public fun StrLength(string: String): Int {
+                        return string.length
+                    }
+
+                    open public fun StrReplaceAll(string: String, find: String, replace: String): String {
+                        return string.replace(find, replace)
+                    }
+
+                    open public fun SubStr(string: String, startIndex: Int, endIndex: Int): String {
+                        return string.substring(startIndex, endIndex)
+                    }
+
+                    open public fun ToString(value: String): String {
+                        var value: return
+                    }
+
+                    open public fun ToString(value: Int): String {
                         if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
-                            return Integer.toString(value);
+                            return Integer.toString(value)
                         } else {
-                            return smallIntegerSingletonFactory.getString(value);
+                            return smallIntegerSingletonFactory.getString(value)
                         }
                     }
 
-                    public String ToString(final long value) {
-                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
-                        return Long.toString(value);
+                    open public fun ToString(value: Long): String {
+                        //this.primitiveLongUtil = PrimitiveLongUtil(max + 1)
+                        return Long.toString(value)
                     }
 
-                    public String LargeNumberToString(final long value) {
-                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
-                        return Long.toString(value);
+                    open public fun LargeNumberToString(value: Long): String {
+                        //this.primitiveLongUtil = PrimitiveLongUtil(max + 1)
+                        return Long.toString(value)
                     }
 
-                    public String LargeNumberToString(final float value) {
-                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
-                        return Long.toString((long) value);
+                    open public fun LargeNumberToString(value: Float): String {
+                        //this.primitiveLongUtil = PrimitiveLongUtil(max + 1)
+                        return Long.toString(value.toLong())
                     }
 
-                    public String ToString(final float value) {
-                        return Float.toString(value);
+                    open public fun ToString(value: Float): String {
+                        return Float.toString(value)
                     }
 
-                    public int ToNotString(final int value) {
-                        return value;
+                    open public fun ToNotString(value: Int): Int {
+                        var value: return
                     }
 
                 }

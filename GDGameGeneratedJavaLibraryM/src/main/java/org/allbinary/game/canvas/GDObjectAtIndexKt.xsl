@@ -22,13 +22,13 @@ Created By: Travis Berthelot
                                     <xsl:if test="$iteration > 1" >//iteration=<xsl:value-of select="$iteration" /> - More than 2 game layers</xsl:if>
                                     <xsl:if test="2 > $iteration" ></xsl:if>
                                     <xsl:if test="$iteration >= 1" ></xsl:if>
-                                    final int <xsl:value-of select="$name" />Size2 = gameLayerArray.length;
-                                    GDGameLayer <xsl:value-of select="$name" />GDGameLayer1 = null;
-                                    GDGameLayer <xsl:value-of select="$name" />GDGameLayer2;
-                                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt; </xsl:text> <xsl:value-of select="$name" />Size2; index++) {
-                                        <xsl:value-of select="$name" />GDGameLayer2 = ((GDGameLayer) gameLayerArray[index]);
+                                    val <xsl:value-of select="$name" />Size2: Int = gameLayerArray.length
+                                    var <xsl:value-of select="$name" />GDGameLayer1: GDGameLayer = null
+                                    var <xsl:value-of select="$name" />GDGameLayer2: GDGameLayer
+                                    for(index in 0 until <xsl:value-of select="$name" />Size2) {
+                                        <xsl:value-of select="$name" />GDGameLayer2 = (gameLayerArray[index] as GDGameLayer)
                                         if(<xsl:value-of select="$name" />GDGameLayer2 != null) {
-                                            //this.logUtil.put(new StringMaker().append(" GDGameLayer2 name: ").append(<xsl:value-of select="$name" />GDGameLayer2.getName()).append(" GD name: ").append(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>).toString(), this, "param");
+                                            //this.logUtil.put(StringMaker().append(" GDGameLayer2 name: ").append(<xsl:value-of select="$name" />GDGameLayer2.getName()).append(" GD name: ").append(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>).toString(), this, "param")
                                             <xsl:variable name="hasObject" >
                                                 <xsl:for-each select="//objects" >
                                                     <xsl:if test="$name = name" >found</xsl:if>
@@ -43,22 +43,22 @@ Created By: Travis Berthelot
                                                 <xsl:if test="contains($hasObject, 'found')" >_OBJECT_NAME</xsl:if>
                                             </xsl:variable>
                                             if(<xsl:value-of select="$name" />GDGameLayer2.getName().startsWith(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$NAME" />)) {
-                                                <xsl:value-of select="$name" />GDGameLayer1 = <xsl:value-of select="$name" />GDGameLayer2;
+                                                <xsl:value-of select="$name" />GDGameLayer1 = <xsl:value-of select="$name" />GDGameLayer2
                                             }
                                         }
                                     }
-                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = <xsl:value-of select="$name" />GDGameLayer1;
-                                    GDObject <xsl:value-of select="$name" /> = null;
+                                    val <xsl:value-of select="$name" />GDGameLayer: GDGameLayer = <xsl:value-of select="$name" />GDGameLayer1
+                                    var <xsl:value-of select="$name" />: GDObject = null
                                     if(<xsl:value-of select="$name" />GDGameLayer != null) {
-                                        <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject;
-                                        
+                                        <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject
+
                                         //if(!<xsl:value-of select="$name" />GDGameLayer2.getName().startsWith("<xsl:value-of select="$name" />")) {
-                                            //this.logUtil.put(new StringMaker().append(<xsl:value-of select="$name" />GDGameLayer.getName()).append(" GD name: ").append("<xsl:value-of select="$name" />").toString(), this, "create", new Exception());
+                                            //this.logUtil.put(StringMaker().append(<xsl:value-of select="$name" />GDGameLayer.getName()).append(" GD name: ").append("<xsl:value-of select="$name" />").toString(), this, "create", Exception())
                                         //}
-                                        
+
                                     } else {
-                                        //final String message = " - iteration=<xsl:value-of select="$iteration" /> - <xsl:value-of select="$name" /> warning: not initialized";
-                                        //this.logUtil.put(message, this, message);
+                                        //final String message = " - iteration=<xsl:value-of select="$iteration" /> - <xsl:value-of select="$name" /> warning: not initialized"
+                                        //this.logUtil.put(message, this, message)
                                     }
 
     </xsl:template>
@@ -66,7 +66,7 @@ Created By: Travis Berthelot
     <xsl:template name="gameLayerList" >
         <xsl:param name="name" />
 
-                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(index));
+                                    val <xsl:value-of select="$name" />GDGameLayer: GDGameLayer = (<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(index) as GDGameLayer)
 
     </xsl:template>
 
@@ -74,7 +74,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="actionParametersAsString" />
         <xsl:param name="caller" />
-        
+
        <xsl:variable name="hasCreate" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" >found</xsl:if></xsl:for-each></xsl:variable>
         <!--
         //objectGDObjectAtIndex - START

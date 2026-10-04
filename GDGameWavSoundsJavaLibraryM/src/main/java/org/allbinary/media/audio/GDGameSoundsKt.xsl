@@ -20,53 +20,52 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/replace.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/split.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDAction.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
-        
+
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
         //game
         <xsl:variable name="windowWidth" select="properties/windowWidth" />
-                
-package org.allbinary.media.audio;
 
-import org.allbinary.util.BasicArrayList;
-import org.allbinary.util.BasicArrayListD;
-        
-public class GDGameSounds
-extends BaseSoundsFactory
+package org.allbinary.media.audio
+
+import org.allbinary.util.BasicArrayList
+import org.allbinary.util.BasicArrayListD
+
+open class GDGameSounds : BaseSoundsFactory
 {
-    private Sound[] soundInterfaceArray = new Sound[0];
-    
-    public void init() 
+    private var soundInterfaceArray: Array&lt;Sound&gt; = arrayOfNulls&lt;Sound&gt;(0)
+
+    fun init()
     {
-        //soundInterfaceArray = new Sound[1];
-        int index = 0;
+        //soundInterfaceArray = arrayOfNulls&lt;Sound&gt;(1)
+        var index: Int = 0
 
-        final BasicArrayList list = new BasicArrayListD();
-        
-    list.add(SelectSound.getInstance());
-    list.add(ErrorSound.getInstance());
+        val list: BasicArrayList = BasicArrayListD()
 
-<xsl:for-each select="layouts" >        
-    final GD<xsl:value-of select="position() - 1" />GameMusicFactory gd<xsl:value-of select="position() - 1" />GameMusicFactory = GD<xsl:value-of select="position() - 1" />GameMusicFactory.getInstance();
-    list.addAllList(gd<xsl:value-of select="position() - 1" />GameMusicFactory.soundList);
-                
-    final GD<xsl:value-of select="position() - 1" />GameSoundsFactory gd<xsl:value-of select="position() - 1" />GameSoundsFactory = GD<xsl:value-of select="position() - 1" />GameSoundsFactory.getInstance();
-    list.addAllList(gd<xsl:value-of select="position() - 1" />GameSoundsFactory.soundList);
+    list.add(SelectSound.getInstance())
+    list.add(ErrorSound.getInstance())
+
+<xsl:for-each select="layouts" >
+    val gd<xsl:value-of select="position() - 1" />GameMusicFactory: GD<xsl:value-of select="position() - 1" />GameMusicFactory = GD<xsl:value-of select="position() - 1" />GameMusicFactory.getInstance()
+    list.addAllList(gd<xsl:value-of select="position() - 1" />GameMusicFactory.soundList)
+
+    val gd<xsl:value-of select="position() - 1" />GameSoundsFactory: GD<xsl:value-of select="position() - 1" />GameSoundsFactory = GD<xsl:value-of select="position() - 1" />GameSoundsFactory.getInstance()
+    list.addAllList(gd<xsl:value-of select="position() - 1" />GameSoundsFactory.soundList)
 </xsl:for-each>
 
-        soundInterfaceArray = (Sound[]) list.toArrayType(new Sound[list.size()]);
+        soundInterfaceArray = list.toArrayType(arrayOfNulls&lt;Sound&gt;(list.size())) as Array&lt;Sound&gt;
     }
-    
-    public Sound[] getSoundInterfaceArray() throws Exception
+
+    fun getSoundInterfaceArray(): Array&lt;Sound&gt;
     {
-        return soundInterfaceArray;
+        return soundInterfaceArray
     }
 }
     </xsl:template>

@@ -28,7 +28,7 @@
                 </xsl:call-template>
                 </xsl:variable>
 <!--                external=<xsl:value-of select="$external" />-->
-                
+
                 <xsl:variable name="result" >
                 <xsl:call-template name="addGlobalsToGlobalVariables" >
                     <xsl:with-param name="text" ><xsl:value-of select="$external" /></xsl:with-param>
@@ -78,7 +78,7 @@
 
             </xsl:otherwise>
         </xsl:choose>
-                
+
     </xsl:template>
 
     <xsl:template name="addGlobalsForVariables">
@@ -95,7 +95,7 @@
                     <xsl:with-param name="text" ><xsl:value-of select="$text" /></xsl:with-param>
                 </xsl:call-template>
                 </xsl:variable>
-                
+
                 <xsl:variable name="result" >
                 <xsl:call-template name="addGlobalsToGlobalVariables" >
                     <xsl:with-param name="text" ><xsl:value-of select="$external" /></xsl:with-param>
@@ -129,7 +129,7 @@
 
             </xsl:otherwise>
         </xsl:choose>
-                
+
     </xsl:template>
 
     <xsl:template name="addExtensions">
@@ -150,7 +150,7 @@
                         </xsl:for-each>
                     </xsl:for-each>
                 </xsl:variable>
-        
+
                     <xsl:for-each select="/game" >
                         <xsl:for-each select="eventsFunctionsExtensions" >
                             <xsl:variable name="name_dot" ><xsl:value-of select="name" />.</xsl:variable>
@@ -169,14 +169,14 @@
                                 </xsl:choose>
                         </xsl:for-each>
                     </xsl:for-each>
-        
+
                 <xsl:if test="not(contains($idsFound, 'found'))" >
                     <xsl:value-of select="$text" />
                 </xsl:if>
 
             </xsl:otherwise>
         </xsl:choose>
-                
+
     </xsl:template>
 
     <xsl:template name="addGlobalsToGlobalObjects" >
@@ -196,7 +196,7 @@
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:variable>
-                
+
                         <xsl:for-each select="/game" >
                             <xsl:if test="$layoutIndex = position() - 1" >
                             <xsl:for-each select="objects" >
@@ -254,7 +254,7 @@
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:variable>
-                
+
                         <xsl:for-each select="/game/layouts" >
                             <xsl:if test="$layoutIndex = position() - 1" >
                             <xsl:for-each select="objects" >
@@ -315,7 +315,7 @@
 <!--                                //Replace  or contains($text, $hasDotOperatorButStillCouldBeStructure) with something that checks for '('-->
                                 <xsl:variable name="hasDotOperatorButStillCouldBeStructure" ><xsl:value-of select="name" />.</xsl:variable>
                                 <xsl:variable name="asMethodParam0" >(<xsl:value-of select="name" />,</xsl:variable>
-                                <xsl:variable name="asMethodParam" >(<xsl:value-of select="name" />)</xsl:variable>
+                                <xsl:variable name="asMethodParam" ></xsl:variable> as <xsl:value-of select="name" />
                                 <xsl:variable name="asMethodParam2" ><xsl:value-of select="name" />)</xsl:variable>
                                 <xsl:variable name="asMethodParamPS" >(<xsl:value-of select="name" /><xsl:text> </xsl:text> </xsl:variable>
                                 <xsl:variable name="asMethodParamArray" ><xsl:value-of select="name" />[</xsl:variable>
@@ -330,7 +330,7 @@
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:variable>
-        
+
                     <xsl:for-each select="/game/layouts" >
                         <xsl:if test="$layoutIndex = position() - 1" >
 
@@ -350,14 +350,14 @@
                             </xsl:for-each>
                         </xsl:if>
                     </xsl:for-each>
-        
+
                 <xsl:if test="not(contains($idsFound, 'found'))" >
                     <xsl:value-of select="$text" />
                 </xsl:if>
 
             </xsl:otherwise>
         </xsl:choose>
-                
+
     </xsl:template>
 
     <xsl:template name="addGlobalsToGlobalVariables">
@@ -375,7 +375,7 @@
 <!--                                //Replace  or contains($text, $hasDotOperatorButStillCouldBeStructure) with something that checks for '('-->
                                 <xsl:variable name="hasDotOperatorButStillCouldBeStructure" ><xsl:value-of select="name" />.</xsl:variable>
                                 <xsl:variable name="asMethodParam0" >(<xsl:value-of select="name" />,</xsl:variable>
-                                <xsl:variable name="asMethodParam" >(<xsl:value-of select="name" />)</xsl:variable>
+                                <xsl:variable name="asMethodParam" ></xsl:variable> as <xsl:value-of select="name" />
                                 <xsl:variable name="asMethodParam2" ><xsl:value-of select="name" />)</xsl:variable>
                                 <xsl:variable name="asMethodParamPS" >(<xsl:value-of select="name" /><xsl:text> </xsl:text> </xsl:variable>
                                 <xsl:variable name="asMethodParamArray" ><xsl:value-of select="name" />[</xsl:variable>
@@ -389,14 +389,14 @@
                             </xsl:for-each>
                     </xsl:for-each>
                 </xsl:variable>
-        
+
                     <xsl:for-each select="/game" >
                             <xsl:for-each select="variables" >
 
                                         <xsl:variable name="id" >//<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                                         <xsl:if test="starts-with($idsFound, $id)" >
                                             <xsl:value-of select="substring-before($text, name)" />gameGlobals.<xsl:value-of select="name" />
-                                            
+
                                             <xsl:call-template name="addGlobalsToGlobalVariables">
                                                 <xsl:with-param name="text" select="substring-after($text, name)" />
                                             </xsl:call-template>
@@ -404,14 +404,14 @@
 
                             </xsl:for-each>
                     </xsl:for-each>
-        
+
                 <xsl:if test="not(contains($idsFound, 'found'))" >
                     <xsl:value-of select="$text" />
                 </xsl:if>
 
             </xsl:otherwise>
         </xsl:choose>
-                
+
     </xsl:template>
 
     <xsl:template name="globals" >
@@ -540,56 +540,56 @@
                             <xsl:variable name="name" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
                             //globals - //variables - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
                             <xsl:if test="type = 'structure'" >
-                        public final GDStructure<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = new GDStructure<xsl:value-of select="name" />();
+                        public val <xsl:value-of select="name" />: GDStructure<xsl:value-of select="name" /> = GDStructure<xsl:value-of select="name" />()
                             </xsl:if>
                             <xsl:if test="type = 'string'" >
                                 <xsl:if test="value = '' or number(value) != value or contains(name, 'String')" >
-                        public String <xsl:value-of select="name" /> = <xsl:if test="value = ''" >stringUtil.EMPTY_STRING</xsl:if><xsl:if test="value != ''" >"<xsl:value-of select="value" />"</xsl:if>;
+                        public var <xsl:value-of select="name" />: String = <xsl:if test="value = ''" >stringUtil.EMPTY_STRING</xsl:if><xsl:if test="value != ''" >"<xsl:value-of select="value" />"</xsl:if>
                                 </xsl:if>
                                 <xsl:if test="not(value = '' or number(value) != value or contains(name, 'String'))" >
-                        public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                        public var <xsl:value-of select="name" />: Int = <xsl:value-of select="value" />
                                 </xsl:if>
                             </xsl:if>
                             <xsl:if test="type = 'boolean'" >
-                        public boolean <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                        public var <xsl:value-of select="name" />: Boolean = <xsl:value-of select="value" />
                             </xsl:if>
                             <xsl:if test="type = 'number'" >
                                 <xsl:if test="contains(name, 'Float')" >
-                        public float <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                        public var <xsl:value-of select="name" />: Float = <xsl:value-of select="value" />
                                 </xsl:if>
                                 <xsl:if test="contains($name, 'speed')" >
                         //TWB - speed hack
                                     <xsl:if test="contains($name, '_speed')" >
-                        public float <xsl:value-of select="name" /> = <xsl:value-of select="value" /> * ((SWTUtil.isSWT || AndroidUtil.isAndroid()) ? 2 : 3);
+                        public var <xsl:value-of select="name" />: Float = if (<xsl:value-of select="value" /> * ((SWTUtil.isSWT || AndroidUtil.isAndroid())) 2 else 3)
                                     </xsl:if>
                                     <xsl:if test="contains($name, 'speed') and not(contains($name, '_speed'))" >
-                        public int <xsl:value-of select="name" /> = <xsl:value-of select="value" /> * ((SWTUtil.isSWT || AndroidUtil.isAndroid()) ? 2 : 3);
+                        public var <xsl:value-of select="name" />: Int = if (<xsl:value-of select="value" /> * ((SWTUtil.isSWT || AndroidUtil.isAndroid())) 2 else 3)
                                     </xsl:if>
                                 </xsl:if>
                                 <xsl:if test="not(contains(name, 'time') or contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains($name, 'speed') or contains(name, 'Long') or contains(name, 'Float'))" >
-                        public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                        public var <xsl:value-of select="name" />: Int = <xsl:value-of select="value" />
                                 </xsl:if>
                                 <xsl:if test="(contains(name, 'time') or contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'Long')) and not(contains(name, 'Float'))" >
                                     <xsl:if test="value != '9223372036854776000'" >
-                        public long <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                        public var <xsl:value-of select="name" />: Long = <xsl:value-of select="value" />
                                     </xsl:if>
                                     <xsl:if test="value = '9223372036854776000'" >
                         //Long.MAX_VALUE = 9223372036854776000 GD does not like the real value 9223372036854775807L
-                        public long <xsl:value-of select="name" /> = 9223372036854775807L;
+                        public var <xsl:value-of select="name" />: Long = 9223372036854775807L
                                     </xsl:if>
                                 </xsl:if>
                             </xsl:if>
                         //array
                         <xsl:if test="type = 'array'" >
                             <xsl:if test="contains(name, 'BoolArray')" >
-                        public boolean[] <xsl:value-of select="name" /> = {
+                        public var <xsl:value-of select="name" />: BooleanArray = {
                             <xsl:for-each select="children" >
                         <xsl:value-of select="value" />,
                             </xsl:for-each>
-                        };
+                        }
                             </xsl:if>
                             <xsl:if test="contains(name, 'IntArray')" >
-                        public int[] <xsl:value-of select="name" /> = {
+                        public var <xsl:value-of select="name" />: IntArray = {
                             <xsl:for-each select="children" >
                                 <xsl:if test="contains(value, ';')" >
                             basicColorUtil.getARGB(255, <xsl:value-of select="translate(translate(value, '\&quot;', ''), ';', ',')" />),
@@ -598,29 +598,29 @@
                             <xsl:value-of select="value" />,
                                 </xsl:if>
                             </xsl:for-each>
-                        };
+                        }
                             </xsl:if>
                             <xsl:if test="contains(name, 'LongArray')" >
-                        public long[] <xsl:value-of select="name" /> = {
+                        public var <xsl:value-of select="name" />: LongArray = {
                             <xsl:for-each select="children" >
                             <xsl:value-of select="value" />,
                             </xsl:for-each>
-                        };
+                        }
                             </xsl:if>
                             <xsl:if test="contains(name, 'highScoresNameArray')" >
 
-                        public int <xsl:value-of select="name" />Index = 0;
-                        public String[] <xsl:value-of select="name" /> = {
+                        public var <xsl:value-of select="name" />Index: Int = 0
+                        public var <xsl:value-of select="name" />: Array&lt;String&gt; = {
 <!--                                        <xsl:for-each select="children" >
                                         <xsl:value-of select="value" />,
                                         <xsl:text>&#10;</xsl:text>
                                         </xsl:for-each>                                        -->
-                        };
+                        }
 
                             </xsl:if>
 
                             <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'LongArray') or contains(name, 'BoolArray') or contains(name, 'highScoresNameArray'))" >
-                                
+
                                 <xsl:if test="contains(name, 'Size2') or contains(name, 'Size3')" >
                                     //TWB - Hack skipping strings that should be defined already.
                                 </xsl:if>
@@ -628,22 +628,22 @@
                                 <xsl:for-each select="children" >
                                     <xsl:if test="not(preceding::variables/children/value = value)" >
                                         <xsl:if test="string-length(value) > 0" >
-                        public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate(value, '.', '_'), ':', '_'), '\', '_')" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="value" />";
+                        public val <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate(value, '.', '_'), ':', '_'), '\', '_')" /></xsl:with-param></xsl:call-template>: String = "<xsl:value-of select="value" />"
                                         </xsl:if>
                                     </xsl:if>
                                 </xsl:for-each>
                                 </xsl:if>
 
-                        public int <xsl:value-of select="name" />Index = 0;
-                        public String[] <xsl:value-of select="name" /> = {
+                        public var <xsl:value-of select="name" />Index: Int = 0
+                        public var <xsl:value-of select="name" />: Array&lt;String&gt; = {
                                         <xsl:for-each select="children" >
                                             <xsl:if test="string-length(value) > 0" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate(value, '.', '_'), ':', '_'), '\', '_')" /></xsl:with-param></xsl:call-template>,</xsl:if>
                                             <xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING,</xsl:if>
                                         <xsl:text>&#10;</xsl:text>
-                                        </xsl:for-each>                                        
-                        };
+                                        </xsl:for-each>
+                        }
 
-<!--                                
+<!--
                         public String[] <xsl:value-of select="name" /> = {
                             <xsl:for-each select="children" >
                             "<xsl:value-of select="value" />",
@@ -659,24 +659,24 @@
 
     <xsl:template name="resetVariables" >
         //resetVariables
-        public void reset() {
+        open public fun reset() {
                         <xsl:for-each select="variables" >
                             <xsl:variable name="name" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
                             //resetVariables - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
 
                             <xsl:if test="type = 'structure'" >
-                        //this.<xsl:value-of select="name" /> = new GDStructure<xsl:value-of select="name" />();
+                        //this.<xsl:value-of select="name" /> = GDStructure<xsl:value-of select="name" />()
                             </xsl:if>
                             <xsl:if test="type = 'string'" >
                                 <xsl:if test="value = '' or number(value) != value or contains(name, 'String')" >
-                        this.<xsl:value-of select="name" /> = <xsl:if test="value = ''" >stringUtil.EMPTY_STRING</xsl:if><xsl:if test="value != ''" >"<xsl:value-of select="value" />"</xsl:if>;
+                        this.<xsl:value-of select="name" /> = <xsl:if test="value = ''" >stringUtil.EMPTY_STRING</xsl:if><xsl:if test="value != ''" >"<xsl:value-of select="value" />"</xsl:if>
                                 </xsl:if>
                                 <xsl:if test="not(value = '' or number(value) != value or contains(name, 'String'))" >
-                        this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                        this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />
                                 </xsl:if>
                             </xsl:if>
                             <xsl:if test="type = 'boolean'" >
-                        this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                        this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />
                             </xsl:if>
                             <xsl:if test="type = 'number'" >
                                 <xsl:if test="contains(name, 'scale')" >
@@ -685,18 +685,18 @@
                                 <xsl:if test="not(contains(name, 'scale'))" >
                                 <xsl:if test="contains($name, 'speed')" >
                         //TWB - speed hack
-                        this.<xsl:value-of select="name" /> = <xsl:value-of select="value" /> * ((SWTUtil.isSWT || AndroidUtil.isAndroid()) ? 2 : 3);
+                        this.<xsl:value-of select="name" /> = if (<xsl:value-of select="value" /> * ((SWTUtil.isSWT || AndroidUtil.isAndroid())) 2 else 3)
                                 </xsl:if>
                                 <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains($name, 'speed'))" >
-                        this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                        this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />
                                 </xsl:if>
                                 <xsl:if test="contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE')" >
                                     <xsl:if test="value != '9223372036854776000'" >
-                        this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                        this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />
                                     </xsl:if>
                                     <xsl:if test="value = '9223372036854776000'" >
                         //Long.MAX_VALUE = 9223372036854776000 GD does not like the real value 9223372036854775807L
-                        this.<xsl:value-of select="name" /> = 9223372036854775807L;
+                        this.<xsl:value-of select="name" /> = 9223372036854775807L
                                     </xsl:if>
                                 </xsl:if>
                                 </xsl:if>
@@ -704,14 +704,14 @@
                             <xsl:if test="type = 'array'" >
                         //array
                             <xsl:if test="contains(name, 'BoolArray')" >
-                        this.<xsl:value-of select="name" /> = new boolean[] {
+                        this.<xsl:value-of select="name" /> = booleanArrayOf(
                             <xsl:for-each select="children" >
                             "<xsl:value-of select="value" />",
                             </xsl:for-each>
-                        };
+                        )
                             </xsl:if>
                             <xsl:if test="contains(name, 'IntArray')" >
-                        this.<xsl:value-of select="name" /> = new int[] {
+                        this.<xsl:value-of select="name" /> = intArrayOf(
                             <xsl:for-each select="children" >
                                 <xsl:if test="contains(value, ';')" >
                             basicColorUtil.getARGB(255, <xsl:value-of select="translate(translate(value, '\&quot;', ''), ';', ',')" />),
@@ -720,27 +720,27 @@
                             <xsl:value-of select="value" />,
                                 </xsl:if>
                             </xsl:for-each>
-                        };
+                        )
                             </xsl:if>
                             <xsl:if test="contains(name, 'LongArray')" >
-                        this.<xsl:value-of select="name" /> = new long[] {
+                        this.<xsl:value-of select="name" /> = longArrayOf(
                             <xsl:for-each select="children" >
                             <xsl:value-of select="value" />,
                             </xsl:for-each>
-                        };
+                        )
                             </xsl:if>
 <!--                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'LongArray') or contains(name, 'BoolArray'))" >
                                 <xsl:for-each select="children" >
                         this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="value" />";
                                 </xsl:for-each>
-                        
+
                         this.<xsl:value-of select="name" /> = new String[] {
                                         <xsl:for-each select="children" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template>,
                                         <xsl:text>&#10;</xsl:text>
-                                        </xsl:for-each>                                        
+                                        </xsl:for-each>
                         };-->
 
-<!--            
+<!--
                         this.<xsl:value-of select="name" /> = new String[] {
                             <xsl:for-each select="children" >
                         "<xsl:value-of select="value" />",

@@ -20,11 +20,11 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDAction.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
@@ -39,7 +39,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
 
     <xsl:output method="html" indent="yes" />
-    
+
     <xsl:template match="/game">
         //game
 
@@ -57,63 +57,63 @@ Created By: Travis Berthelot
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
                 //variables=<xsl:value-of select="$variables" />
 
-                package org.allbinary.game.canvas;
+                package org.allbinary.game.canvas
 
-                import javax.microedition.lcdui.Font;
-                import javax.microedition.lcdui.Graphics;
+                import javax.microedition.lcdui.Font
+                import javax.microedition.lcdui.Graphics
 
-                import org.json.me.JSONArray;
-                import org.json.me.JSONObject;
-                import org.json.me.JSONTokener;
+                import org.json.me.JSONArray
+                import org.json.me.JSONObject
+                import org.json.me.JSONTokener
 
-                import org.allbinary.AndroidUtil;
-                import org.allbinary.game.layer.SWTUtil;
-                import org.allbinary.animation.text.CustomTextAnimation;
-                import org.allbinary.game.identification.Group;
-                import org.allbinary.game.identification.GroupFactory;
-                import org.allbinary.game.input.GameInputProcessor;
-                import org.allbinary.game.input.InputFactory;
-                import org.allbinary.game.layer.GDGameLayerStrings;
-                import org.allbinary.game.layer.GDGameLayer;
-                import org.allbinary.game.layer.special.GDConditionWithGroupActions;
-                import org.allbinary.game.layout.GDNode;
-                import org.allbinary.game.layer.special.TempGameLayerUtil;
-                import org.allbinary.game.layout.GDObject;
-                import org.allbinary.game.layer.behavior.DestroyOutsideBehavior;
-                import org.allbinary.game.layer.behavior.GDBehavior;
-                import org.allbinary.game.rand.MyRandomFactory;
-                import org.allbinary.game.score.HighScoresHelper2;
-                import org.allbinary.game.score.HighScoresHelperBase;
-                import org.allbinary.graphics.color.BasicColor;
-                import org.allbinary.graphics.color.SmallBasicColorCacheFactory;
-                import org.allbinary.graphics.color.BasicColorUtil;
-                import org.allbinary.graphics.GPoint;
-                import org.allbinary.graphics.PointFactory;
-                import org.allbinary.graphics.Rectangle;
-                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
-                import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
-                import org.allbinary.layer.AllBinaryLayer;
-                import org.allbinary.layer.event.LayerManagerEvent;
-                import org.allbinary.layer.event.LayerManagerEventHandler;
-                import org.allbinary.layer.event.LayerManagerEventListener;
-                import org.allbinary.logic.string.StringUtil;
-                import org.allbinary.string.CommonStrings;
-                import org.allbinary.logic.string.StringMaker;
-                import org.allbinary.logic.util.event.EventListenerInterface;
-                import org.allbinary.logic.io.file.FileSystem;
-                import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.media.audio.Sound;
-                import org.allbinary.time.TimeDelayHelper;
-                import org.allbinary.util.ArrayUtil;
-                import org.allbinary.util.BasicArrayList;
-                import org.allbinary.util.BasicArrayListD;
+                import org.allbinary.AndroidUtil
+                import org.allbinary.game.layer.SWTUtil
+                import org.allbinary.animation.text.CustomTextAnimation
+                import org.allbinary.game.identification.Group
+                import org.allbinary.game.identification.GroupFactory
+                import org.allbinary.game.input.GameInputProcessor
+                import org.allbinary.game.input.InputFactory
+                import org.allbinary.game.layer.GDGameLayerStrings
+                import org.allbinary.game.layer.GDGameLayer
+                import org.allbinary.game.layer.special.GDConditionWithGroupActions
+                import org.allbinary.game.layout.GDNode
+                import org.allbinary.game.layer.special.TempGameLayerUtil
+                import org.allbinary.game.layout.GDObject
+                import org.allbinary.game.layer.behavior.DestroyOutsideBehavior
+                import org.allbinary.game.layer.behavior.GDBehavior
+                import org.allbinary.game.rand.MyRandomFactory
+                import org.allbinary.game.score.HighScoresHelper2
+                import org.allbinary.game.score.HighScoresHelperBase
+                import org.allbinary.graphics.color.BasicColor
+                import org.allbinary.graphics.color.SmallBasicColorCacheFactory
+                import org.allbinary.graphics.color.BasicColorUtil
+                import org.allbinary.graphics.GPoint
+                import org.allbinary.graphics.PointFactory
+                import org.allbinary.graphics.Rectangle
+                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton
+                import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener
+                import org.allbinary.layer.AllBinaryLayer
+                import org.allbinary.layer.event.LayerManagerEvent
+                import org.allbinary.layer.event.LayerManagerEventHandler
+                import org.allbinary.layer.event.LayerManagerEventListener
+                import org.allbinary.logic.string.StringUtil
+                import org.allbinary.string.CommonStrings
+                import org.allbinary.logic.string.StringMaker
+                import org.allbinary.logic.util.event.EventListenerInterface
+                import org.allbinary.logic.io.file.FileSystem
+                import org.allbinary.logic.communication.log.LogUtil
+                import org.allbinary.media.audio.Sound
+                import org.allbinary.time.TimeDelayHelper
+                import org.allbinary.util.ArrayUtil
+                import org.allbinary.util.BasicArrayList
+                import org.allbinary.util.BasicArrayListD
 
                 //GameGlobals name=<xsl:value-of select="properties/name" />
-                public class GDGameGlobals extends GDGlobals
+                open public class GDGameGlobals : GDGlobals
                 {
 
-                    private static final GDGameGlobals instance = new GDGameGlobals();
-<!--                
+                    private val instance: GDGameGlobals = GDGameGlobals()
+<!--
                     private static GDGameGlobals instance;
 
                     public static GDGameGlobals create()
@@ -123,26 +123,25 @@ Created By: Travis Berthelot
                     }
 -->
 
-                    public static GDGameGlobals getInstance()
-                    {
-                        return GDGameGlobals.instance;
+                    open public fun getInstance(): GDGameGlobals {
+                        return GDGameGlobals.instance
                     }
 
-                    protected final LogUtil logUtil = LogUtil.getInstance();
-                    
-                    private final StringUtil stringUtil = StringUtil.getInstance();
-                    private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
-                    private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
-                                          
-                    private final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
-                           
-                    public final HighScoresHelperBase highScoresHelper = new HighScoresHelper2();
+                    protected val logUtil: LogUtil = LogUtil.getInstance()
+
+                    private val stringUtil: StringUtil = StringUtil.getInstance()
+                    private val basicColorUtil: BasicColorUtil = BasicColorUtil.getInstance()
+                    private val smallBasicColorCacheFactory: SmallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance()
+
+                    private val gameLayerStrings: GDGameLayerStrings = GDGameLayerStrings.getInstance()
+
+                    public val highScoresHelper: HighScoresHelperBase = HighScoresHelper2()
 
                         <xsl:variable name="objectsWithOnceCondition" ><xsl:call-template name="gdNodeToOnceList" ><xsl:with-param name="iteration" >0</xsl:with-param></xsl:call-template></xsl:variable>
                         //objectsWithOnceCondition=<xsl:value-of select="$objectsWithOnceCondition" />
                         <xsl:for-each select="objects" >
                             <xsl:if test="contains($objectsWithOnceCondition, name/text())" >
-                        public final BasicArrayList <xsl:value-of select="name/text()" />OnceGDNodeList = new BasicArrayListD();
+                        public val <xsl:value-of select="name/text()" />OnceGDNodeList: BasicArrayList = BasicArrayListD()
                             </xsl:if>
                         </xsl:for-each>
 
@@ -171,43 +170,43 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                     <xsl:variable name="total" ><xsl:call-template name="generateGDNodeTotal" ></xsl:call-template></xsl:variable>
-                        private final int MAX_NODES = <xsl:value-of select="$total" />;
-                        public final GDNode[] nodeArray = new GDNode[MAX_NODES];
+                        private val MAX_NODES: Int = <xsl:value-of select="$total" />
+                        public val nodeArray: Array&lt;GDNode&gt; = arrayOfNulls&lt;GDNode&gt;(MAX_NODES)
 
-                        public final BasicArrayList[] channelSoundArray = new BasicArrayList[16];
+                        public val channelSoundArray: Array&lt;BasicArrayList&gt; = arrayOfNulls&lt;BasicArrayList&gt;(16)
 
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
-                        public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME = "<xsl:value-of select="name" />";
-                        public final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroupByName(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME);
-                        //public final BasicArrayList <xsl:value-of select="name" />GDObjectListOfList = new BasicArrayListD();
-                        public final BasicArrayList <xsl:value-of select="name" />GDGameLayerListOfList = new BasicArrayListD();
-                        public final BasicArrayList <xsl:value-of select="name" />GDGameLayerRemoveListOfList = new BasicArrayListD();
-                        public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerListOfList = new BasicArrayListD();
-                        public final BasicArrayList <xsl:value-of select="name" />GDConditionWithGroupActionsList = new BasicArrayListD();
+                        public val <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME: String = "<xsl:value-of select="name" />"
+                        public val <xsl:value-of select="name" />GroupInterface: Group = this.groupFactory.getNextGroupByName(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME)
+                        //public final BasicArrayList <xsl:value-of select="name" />GDObjectListOfList = BasicArrayListD()
+                        public val <xsl:value-of select="name" />GDGameLayerListOfList: BasicArrayList = BasicArrayListD()
+                        public val <xsl:value-of select="name" />GDGameLayerRemoveListOfList: BasicArrayList = BasicArrayListD()
+                        public val <xsl:value-of select="name" />CacheGDGameLayerListOfList: BasicArrayList = BasicArrayListD()
+                        public val <xsl:value-of select="name" />GDConditionWithGroupActionsList: BasicArrayList = BasicArrayListD()
                         <xsl:for-each select="objects" >
-                        //public final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" />";
-                        //public final Group <xsl:value-of select="name" />GroupInterface;
+                        //public final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" />"
+                        //public final Group <xsl:value-of select="name" />GroupInterface
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroups - END
 
-                    //objects class properties - START                    
+                    //objects class properties - START
                     <xsl:for-each select="objects" >
                         //name=<xsl:value-of select="name" /> type=<xsl:value-of select="type" /><xsl:text>&#10;</xsl:text>
                         <xsl:variable name="initialVariablesValue" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="initialVariables/value" /></xsl:with-param><xsl:with-param name="find" >-</xsl:with-param><xsl:with-param name="replacementText" >Neg</xsl:with-param></xsl:call-template></xsl:variable>
 
-                        //public final BasicArrayList <xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayListD();
-                        public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayListD();
-                        public final BasicArrayList <xsl:value-of select="name" />RemoveList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayListD();
+                        //public final BasicArrayList <xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" /> = BasicArrayListD()
+                        public val <xsl:value-of select="name" />GDGameLayerList<xsl:value-of select="$initialVariablesValue" />: BasicArrayList = BasicArrayListD()
+                        public val <xsl:value-of select="name" />RemoveList<xsl:value-of select="$initialVariablesValue" />: BasicArrayList = BasicArrayListD()
                         <xsl:if test="type = 'TextObject::Text'" >
-                        public final BasicArrayList <xsl:value-of select="name" />RectangleList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayListD();
+                        public val <xsl:value-of select="name" />RectangleList<xsl:value-of select="$initialVariablesValue" />: BasicArrayList = BasicArrayListD()
                         </xsl:if>
-                        
+
                         <xsl:for-each select="animations" >
                             <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(name, ' ', '_'), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
                             <xsl:if test="string-length($animationName)" >
-                        public final String <xsl:value-of select="$animationName" /> = "<xsl:value-of select="name" />";
+                        public val <xsl:value-of select="$animationName" />: String = "<xsl:value-of select="name" />"
                             </xsl:if>
                         </xsl:for-each>
 
@@ -224,21 +223,21 @@ Created By: Travis Berthelot
                     <xsl:call-template name="objectsClassProperty" >
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
-                    
-                    //uniqueValues - Globals - START 
+
+                    //uniqueValues - Globals - START
                     <xsl:key name="uniqueValues" match="type" use="." />
                     <xsl:for-each select="//objects/type[count(. | key('uniqueValues', .)[1]) = 1]" >
-                        public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="text()" />";
+                        public val <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template>: String = "<xsl:value-of select="text()" />"
                     </xsl:for-each>
                     //uniqueValues - Globals - END
-                    
+
                     <xsl:text>&#10;</xsl:text>
                     //more objects class properties - END
                     <xsl:text>&#10;</xsl:text>
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                         <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
-                    public BaseMotionGestureEventListener eventListenerInterfaceLastPoint;
+                    public var eventListenerInterfaceLastPoint: BaseMotionGestureEventListener
                     </xsl:if>
 
                     //eventsClassPropertyActions - START
@@ -250,7 +249,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 -->
                     //eventsClassPropertyActions - END
-                    
+
                     <xsl:call-template name="objectsGroup" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
@@ -265,7 +264,7 @@ Created By: Travis Berthelot
                     <xsl:text>&#10;</xsl:text>
 
                     <xsl:call-template name="layerManagerEventListenerList" >
-                    </xsl:call-template>    
+                    </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
 
 
@@ -275,7 +274,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="variables" >
                             <xsl:value-of select="$variables" />
                         </xsl:with-param>
-                    </xsl:call-template>    
+                    </xsl:call-template>
                     //variables - SetNumberVariable - END
                     <xsl:text>&#10;</xsl:text>
 
@@ -296,18 +295,18 @@ Created By: Travis Berthelot
                     //variables - END
 
                     <xsl:text>&#10;</xsl:text>
-                    public final GDGameLayer[] tempGameLayerArray = new GDGameLayer[<xsl:value-of select="((count(//objectsGroups) + count(//objects)) * 2) + 1" />];
-                    public final int[] creationIndex = new int[<xsl:value-of select="count(//objectsGroups) + count(//objects) + 1" />];
+                    public val tempGameLayerArray: Array&lt;GDGameLayer&gt; = arrayOfNulls&lt;GDGameLayer&gt;(<xsl:value-of select="((count(//objectsGroups) + count(//objects)) * 2) + 1" />)
+                    public val creationIndex: IntArray = IntArray(<xsl:value-of select="count(//objectsGroups) + count(//objects) + 1" />)
 
-                    private final LayerManagerEventListener layerManagerEventListener;
-                                     
-                    private GDGameGlobals() {
-                    
-                        this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR);
+                    private val layerManagerEventListener: LayerManagerEventListener
 
-                        final int size = channelSoundArray.length;
-                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                            channelSoundArray[index] = new BasicArrayListD();
+                    private constructor() {
+
+                        this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR)
+
+                        val size: Int = channelSoundArray.length
+                        for(index in 0 until size) {
+                            channelSoundArray[index] = BasicArrayListD()
                         }
 
 <!--
@@ -316,28 +315,28 @@ Created By: Travis Berthelot
                                 <xsl:with-param name="layoutName" >Global</xsl:with-param>
                             </xsl:call-template>
 -->
-                                        
+
                         <xsl:for-each select="variables" >
                             <xsl:if test="type = 'boolean'" >
                                 <xsl:if test="name = 'RandomDungeon'" >
-        this.RandomDungeon = true;
+        this.RandomDungeon = true
 
-        final CommonStrings commonStrings = CommonStrings.getInstance();
-        final StringMaker stringMaker = new StringMaker();
-        this.this.logUtil.putF(stringMaker.append("PlatformerMap: RandomDungeon: ").appendboolean(this.RandomDungeon).toString(), this, this.commonStrings.PROCESS);
+        val commonStrings: CommonStrings = CommonStrings.getInstance()
+        val stringMaker: StringMaker = StringMaker()
+        this.this.logUtil.putF(stringMaker.append("PlatformerMap: RandomDungeon: ").append(this.RandomDungeon).toString(), this, this.commonStrings.PROCESS)
 
                                 </xsl:if>
                             </xsl:if>
                         </xsl:for-each>
-                                        
+
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
                         <xsl:for-each select="objects" >
-                            //<xsl:value-of select="$name" />GDObjectListOfList.add(<xsl:value-of select="name" />GDObjectList);
-                            <xsl:value-of select="$name" />GDGameLayerListOfList.add(<xsl:value-of select="name" />GDGameLayerList);
-                            <xsl:value-of select="$name" />CacheGDGameLayerListOfList.add(<xsl:value-of select="name" />CacheGDGameLayerList);
-                            //<xsl:value-of select="$name" />GDConditionWithGroupActionsList.add(<xsl:value-of select="name" />GDConditionWithGroupActions);
+                            //<xsl:value-of select="$name" />GDObjectListOfList.add(<xsl:value-of select="name" />GDObjectList)
+                            <xsl:value-of select="$name" />GDGameLayerListOfList.add(<xsl:value-of select="name" />GDGameLayerList)
+                            <xsl:value-of select="$name" />CacheGDGameLayerListOfList.add(<xsl:value-of select="name" />CacheGDGameLayerList)
+                            //<xsl:value-of select="$name" />GDConditionWithGroupActionsList.add(<xsl:value-of select="name" />GDConditionWithGroupActions)
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroups - END
@@ -362,50 +361,48 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     //eventsClassPropertyArrayActions - END
-                        
-                        final LayerManagerEventHandler layerManagerEventHandler = LayerManagerEventHandler.getInstance();
-                        
-                        layerManagerEventListener = new LayerManagerEventListener() {
 
-                            public void onDeleteLayerManagerEvent(final LayerManagerEvent layerManagerEvent) throws Exception
-                            {
-                                final AllBinaryLayer layerInterface = layerManagerEvent.getLayerInterface();
-                                
+                        val layerManagerEventHandler: LayerManagerEventHandler = LayerManagerEventHandler.getInstance()
+
+                        layerManagerEventListener = object : LayerManagerEventListener() {
+
+                            open public fun onDeleteLayerManagerEvent(layerManagerEvent: LayerManagerEvent) {
+                                val layerInterface: AllBinaryLayer = layerManagerEvent.getLayerInterface()
+
                     <xsl:call-template name="layerManagerEventListenerRemove" >
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
                             }
 
-                        };
+                        }
 
-                        layerManagerEventHandler.addListener(layerManagerEventListener);
-                        
-                        this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR);
+                        layerManagerEventHandler.addListener(layerManagerEventListener)
+
+                        this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR)
                     }
-                    
-                    public void reset() {
 
+                    open public fun reset() {
                         //objects - all - Sprite, TileMap::CollisionMask, TileMap::TileMap, ParticleSystem::ParticleEmitter, PrimitiveDrawing::Drawer, TextObject::Text, TextInput::TextInputObject, TextEntryObject::TextEntry, PanelSpriteSlider::PanelSpriteSlider
             <xsl:for-each select="objects" >
 
                 <xsl:variable name="initialVariablesValue" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="initialVariables/value" /></xsl:with-param><xsl:with-param name="find" >-</xsl:with-param><xsl:with-param name="replacementText" >Neg</xsl:with-param></xsl:call-template></xsl:variable>
 
                         //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
-                        //<xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" />.clear();
-                        <xsl:value-of select="name" />GDGameLayerList<xsl:value-of select="$initialVariablesValue" />.clear();
+                        //<xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" />.clear()
+                        <xsl:value-of select="name" />GDGameLayerList<xsl:value-of select="$initialVariablesValue" />.clear()
                         <xsl:if test="type = 'TextObject::Text'" >
-                        <xsl:value-of select="name" />RectangleList<xsl:value-of select="$initialVariablesValue" />.clear();
+                        <xsl:value-of select="name" />RectangleList<xsl:value-of select="$initialVariablesValue" />.clear()
                         </xsl:if>
 
-                        <xsl:value-of select="name" />CacheGDGameLayerList.clear();
-                        <xsl:value-of select="name" />GDGameLayerDestroyedList.clear();
+                        <xsl:value-of select="name" />CacheGDGameLayerList.clear()
+                        <xsl:value-of select="name" />GDGameLayerDestroyedList.clear()
 
             </xsl:for-each>
 
                     }
-                    
-                    public String VariableString(final String string) {
-                        return string;
+
+                    open public fun VariableString(string: String): String {
+                        var string: return
                     }
 
                 }

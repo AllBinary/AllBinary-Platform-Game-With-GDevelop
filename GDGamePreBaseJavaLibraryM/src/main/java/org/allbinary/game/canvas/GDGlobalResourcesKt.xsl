@@ -20,7 +20,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDAction.xsl" />
@@ -30,13 +30,13 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjects.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssign.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobal.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectResources.xsl" />    
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectResources.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/animation/GDObjectAnimations.xsl" />
 
     <xsl:output method="html" indent="yes" />
@@ -52,27 +52,26 @@ Created By: Travis Berthelot
                 //instancesAsString=<xsl:value-of select="$instancesAsString" />
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
-                
-                package org.allbinary.game.canvas;
 
-                import org.allbinary.animation.AnimationBehavior;
-                import org.allbinary.animation.special.SpecialAnimation;
+                package org.allbinary.game.canvas
+
+                import org.allbinary.animation.AnimationBehavior
+                import org.allbinary.animation.special.SpecialAnimation
 
                 //Game name=<xsl:value-of select="$gameName" />
-                public class GDGlobalSpecialAnimationResources extends SpecialAnimation
+                open class GDGlobalSpecialAnimationResources : SpecialAnimation
                 {
 
-                    private static GDGlobalSpecialAnimationResources instance = new GDGlobalSpecialAnimationResources();
+                    private var instance: GDGlobalSpecialAnimationResources = GDGlobalSpecialAnimationResources()
 
-                        public static GDGlobalSpecialAnimationResources getInstance()
+                        fun getInstance(): GDGlobalSpecialAnimationResources
                         {
-                            return GDGlobalSpecialAnimationResources.instance;
+                            return GDGlobalSpecialAnimationResources.instance
                         }
 
-                    private GDGlobalSpecialAnimationResources() {
-                        super(AnimationBehavior.getInstance());
+                    private constructor() : super(AnimationBehavior.getInstance()) {
                     }
-                
+
                     <xsl:call-template name="animationNames" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
@@ -82,7 +81,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                        
+
                 }
     </xsl:template>
 

@@ -20,7 +20,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDAction.xsl" />
@@ -30,13 +30,13 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjects.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssign.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobal.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectResources.xsl" />    
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectResources.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
-    
+
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -59,63 +59,63 @@ Created By: Travis Berthelot
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
-                
-                package org.allbinary.game.canvas;
 
-                import javax.microedition.lcdui.Image;
+                package org.allbinary.game.canvas
 
-                import org.allbinary.AndroidUtil;
-                import org.allbinary.animation.AnimationBehavior;
-                import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil;
-                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
-                import org.allbinary.game.gd.resource.GDResources;
-                import org.allbinary.graphics.PointFactory;
-                import org.allbinary.graphics.Rectangle;
-                import org.allbinary.image.ImageCache;
-                import org.allbinary.image.ImageCacheFactory;
-                import org.allbinary.string.CommonStrings;
-                import org.allbinary.string.CommonSeps;
-                import org.allbinary.logic.string.StringUtil;
-                
-                import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.logic.string.StringMaker;
-                import org.allbinary.logic.system.PlatformAssetManager;
-                import org.allbinary.media.image.ImageCopyUtil;
-                import org.allbinary.media.image.ImageScaleUtil;
-                import org.allbinary.util.BasicArrayList;
-                import org.allbinary.util.BasicArrayListD;
-                import org.allbinary.util.ABHashtable;
+                import javax.microedition.lcdui.Image
+
+                import org.allbinary.AndroidUtil
+                import org.allbinary.animation.AnimationBehavior
+                import org.allbinary.animation.special.SpecialAnimation
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources
+                import org.allbinary.game.gd.resource.GDResources
+                import org.allbinary.graphics.PointFactory
+                import org.allbinary.graphics.Rectangle
+                import org.allbinary.image.ImageCache
+                import org.allbinary.image.ImageCacheFactory
+                import org.allbinary.string.CommonStrings
+                import org.allbinary.string.CommonSeps
+                import org.allbinary.logic.string.StringUtil
+
+                import org.allbinary.logic.communication.log.LogUtil
+                import org.allbinary.logic.string.StringMaker
+                import org.allbinary.logic.system.PlatformAssetManager
+                import org.allbinary.media.image.ImageCopyUtil
+                import org.allbinary.media.image.ImageScaleUtil
+                import org.allbinary.util.BasicArrayList
+                import org.allbinary.util.BasicArrayListD
+                import org.allbinary.util.ABHashtable
 
                 //Layout name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources extends SpecialAnimation
+                open class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources : SpecialAnimation
                 {
 
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources instance = null;
+                    private var instance: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources = null
 
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources getInstanceOrCreate() throws Exception
+                        fun getInstanceOrCreate(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources
                         {
                             if(instance == null) {
-                                instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources();
+                                instance = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources()
                             }
 
-                            return instance;
+                            return instance
                         }
 
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources getInstance()
+                        fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources
                         {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.instance;
+                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.instance
                         }
 
-                        protected final LogUtil logUtil = LogUtil.getInstance();
-                        private final CommonStrings commonStrings = CommonStrings.getInstance();
-                        private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
-                        private final ImageScaleUtil imageScaleUtil = ImageScaleUtil.getInstance();
-                        private final ImageCache imageCache = ImageCacheFactory.getInstance();
-                        private final GDResources gdResources = GDResources.getInstance();
-                        private final PlatformAssetManager platformAssetManager = PlatformAssetManager.getInstance();
+                        protected val logUtil: LogUtil = LogUtil.getInstance()
+                        private val commonStrings: CommonStrings = CommonStrings.getInstance()
+                        private val imageCopyUtil: ImageCopyUtil = ImageCopyUtil.getInstance()
+                        private val imageScaleUtil: ImageScaleUtil = ImageScaleUtil.getInstance()
+                        private val imageCache: ImageCache = ImageCacheFactory.getInstance()
+                        private val gdResources: GDResources = GDResources.getInstance()
+                        private val platformAssetManager: PlatformAssetManager = PlatformAssetManager.getInstance()
 
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources animationInterfaceFactoryInterfaceFactory = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
+                        private val animationInterfaceFactoryInterfaceFactory: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance()
 
                     <xsl:call-template name="objectProperties" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
@@ -132,17 +132,16 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources() throws Exception {
+                    constructor() : super(AnimationBehavior.getInstance()) {
 
-                        super(AnimationBehavior.getInstance());
 
                         //try {
-                        
-                            logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
-                    
-                            final PointFactory pointFactory = PointFactory.getInstance();
 
-                            final ABHashtable hashTable = imageCache.getHashtableP();
+                            logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR)
+
+                            val pointFactory: PointFactory = PointFactory.getInstance()
+
+                            val hashTable: ABHashtable = imageCache.getHashtableP()
 
                     <xsl:call-template name="imageCache" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
@@ -163,7 +162,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                     <xsl:text>&#10;</xsl:text>
-                                        
+
                     //layout - objectsGroups - LayoutImageResources - START
                     <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="objectGroupName" >
@@ -175,26 +174,26 @@ Created By: Travis Berthelot
                             <xsl:variable name="isTextInput" ><xsl:for-each select="//objects" ><xsl:if test="name = $name" ><xsl:if test="type = 'TextInput::TextInputObject'" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
                             <xsl:variable name="isPrimitiveDrawingDrawer" ><xsl:for-each select="//objects" ><xsl:if test="name = $name" ><xsl:if test="type = 'PrimitiveDrawing::Drawer'" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
                             <xsl:if test="not(contains(name, 'btn_') or contains($isTextObject, 'found') or contains($isTextInput, 'found') or contains($isPrimitiveDrawingDrawer, 'found'))" >
-                                <xsl:value-of select="$objectGroupName" />ImageArrayList.add(<xsl:value-of select="name" />ImageArray);
+                                <xsl:value-of select="$objectGroupName" />ImageArrayList.add(<xsl:value-of select="name" />ImageArray)
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:for-each>
                     //layout - objectsGroups - LayoutImageResources - END
 
-                        //} catch(Exception e) {
-                            //logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                        //} catch(e: Exception) {
+                            //logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e)
                         //}
 
                     }
 
-                    public void validateSprites(final String name, final String[] resourceArray, final Image[] imageArray) {
-                        final CommonSeps commonSeps = CommonSeps.getInstance();
-                        final int size = imageArray.length;
-                        Image image;
-                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                            image = imageArray[index];
+                    fun validateSprites(name: String, resourceArray: Array&lt;String&gt;, imageArray: Array&lt;Image&gt;) {
+                        val commonSeps: CommonSeps = CommonSeps.getInstance()
+                        val size: Int = imageArray.length
+                        lateinit var image: Image
+                        for(index in 0 until size) {
+                            image = imageArray[index]
                             if (image.getWidth() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> image.getHeight() <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> image.getWidth() % image.getHeight() != 0) {
-                                logUtil.put(new StringMaker().appendint(index).append(name).appendint(image.getWidth()).append(commonSeps.COLON).appendint(image.getHeight()).toString(), this, commonStrings.PROCESS, new Exception());
+                                logUtil.put(StringMaker().appendint(index).append(name).appendint(image.getWidth()).append(commonSeps.COLON).appendint(image.getHeight()).toString(), this, commonStrings.PROCESS, Exception())
                             }
                         }
                     }

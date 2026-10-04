@@ -20,9 +20,9 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
-        
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
@@ -39,7 +39,7 @@ Created By: Travis Berthelot
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
-    
+
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -62,121 +62,118 @@ Created By: Travis Berthelot
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
-                
-                package org.allbinary.game.canvas;
-                
-                import javax.microedition.lcdui.Canvas;
-                import javax.microedition.lcdui.Graphics;
-                import javax.microedition.lcdui.Image;
 
-                import org.json.me.JSONArray;
-                import org.json.me.JSONObject;
-                import org.json.me.JSONTokener;
+                package org.allbinary.game.canvas
 
-                import org.allbinary.AndroidUtil;
-                import org.allbinary.J2MEUtil;        
-                import org.allbinary.animation.AnimationBehavior;                
-                import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.canvas.GameGlobalsFactory;
-                import org.allbinary.game.commands.GameCommandsFactory;
-                import org.allbinary.game.GDGameCommandFactory;
-                import org.allbinary.game.GameInfo;
-                import org.allbinary.game.canvas.GDExtensionGDNodes;
-                import org.allbinary.game.configuration.persistance.GDStructure;
-                import org.allbinary.game.configuration.persistance.JSONPersistance;
-                import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
-                import org.allbinary.game.input.GameInputProcessor;
-                import org.allbinary.game.input.InputFactory;
-                import org.allbinary.game.input.event.GameKeyEvent;
-                import org.allbinary.game.layer.GDGameLayer;
-                import org.allbinary.game.layout.GDNode;
-                import org.allbinary.game.layer.special.TempGameLayerUtil;
-                import org.allbinary.game.layout.GDObject;
-                import org.allbinary.game.layer.AllBinaryGameLayerManager;
-                import org.allbinary.game.layout.GDObjectFactory;
-                import org.allbinary.game.layer.GDGameLayerFactory;
-                import org.allbinary.game.layer.identification.GroupLayerManagerListener;
-                import org.allbinary.game.layer.special.GDConditionWithGroupActions;
-                import org.allbinary.game.layer.GDPrimitiveDrawing;
-                import org.allbinary.game.layer.GDRectOnlyPrimitiveDrawing;
-                import org.allbinary.game.layer.GDPrimitiveDrawingLinesOnly;
-                import org.allbinary.game.layer.GDPrimitiveDrawingLinesOnlyAnimationFactory;
-                import org.allbinary.game.layer.GDPrimitiveDrawingAnimationFactory;
-                import org.allbinary.game.layer.GDRectOnlyPrimitiveDrawingAnimationFactory;
-                import org.allbinary.game.physics.velocity.DragVelocityBehavior;
-                import org.allbinary.game.physics.velocity.NoDragVelocityBehavior;
-                import org.allbinary.game.rand.MyRandomFactory;
-                import org.allbinary.game.score.BasicHighScoresFactory;
-                import org.allbinary.game.score.HighScore;
-                import org.allbinary.game.score.HighScoreNamePersistanceSingleton;
-                import org.allbinary.game.score.HighScores;
-                import org.allbinary.game.score.HighScoresHelperBase;
-                import org.allbinary.game.score.HighScoresResultsListener;
-                import org.allbinary.game.score.displayable.HighScoreUtil;
-                import org.allbinary.graphics.PointFactory;
-                import org.allbinary.graphics.Rectangle;
-                import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
-                import org.allbinary.graphics.color.BasicColor;
-                import org.allbinary.graphics.color.SmallBasicColorCacheFactory;
-                import org.allbinary.graphics.color.BasicColorUtil;
-                import org.allbinary.graphics.displayable.MyCanvas;
-                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
-                import org.allbinary.graphics.displayable.command.MyCommandsFactory;
-                import org.allbinary.input.event.VirtualKeyboardEventHandler;
-                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
-                import org.allbinary.layer.AllBinaryLayerManager;
-                import org.allbinary.string.CommonStrings;
-                import org.allbinary.logic.string.StringMaker;
-                import org.allbinary.string.CommonSeps;
-                import org.allbinary.logic.string.StringUtil;
-                import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.logic.io.file.FileSystem;
-                import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
-                import org.allbinary.media.audio.Sound;
-                import org.allbinary.math.NoDecimalTrigTable;
-                import org.allbinary.time.GameTickTimeDelayHelper;
-                import org.allbinary.time.GameTickTimeDelayHelperFactory;
-                import org.allbinary.time.TimeDelayHelper;
-                import org.allbinary.util.ArrayUtil;
-                import org.allbinary.util.BasicArrayList;
-                import org.allbinary.util.BasicArrayListD;
-                import org.allbinary.media.audio.PlayerComposite;
-                import org.allbinary.thread.SecondaryThreadPool;
-                import org.allbinary.game.layer.behavior.GDBehaviorUtil;
-                import org.allbinary.game.layer.behavior.PathFindingBehavior;
-                import org.allbinary.thread.PathFindingThreadPool;
-                import org.allbinary.logic.math.SmallIntegerSingletonFactory;
-                
+                import javax.microedition.lcdui.Canvas
+                import javax.microedition.lcdui.Graphics
+                import javax.microedition.lcdui.Image
+
+                import org.json.me.JSONArray
+                import org.json.me.JSONObject
+                import org.json.me.JSONTokener
+
+                import org.allbinary.AndroidUtil
+                import org.allbinary.J2MEUtil
+                import org.allbinary.animation.AnimationBehavior
+                import org.allbinary.animation.special.SpecialAnimation
+                import org.allbinary.canvas.GameGlobalsFactory
+                import org.allbinary.game.commands.GameCommandsFactory
+                import org.allbinary.game.GDGameCommandFactory
+                import org.allbinary.game.GameInfo
+                import org.allbinary.game.canvas.GDExtensionGDNodes
+                import org.allbinary.game.configuration.persistance.GDStructure
+                import org.allbinary.game.configuration.persistance.JSONPersistance
+                import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas
+                import org.allbinary.game.input.GameInputProcessor
+                import org.allbinary.game.input.InputFactory
+                import org.allbinary.game.input.event.GameKeyEvent
+                import org.allbinary.game.layer.GDGameLayer
+                import org.allbinary.game.layout.GDNode
+                import org.allbinary.game.layer.special.TempGameLayerUtil
+                import org.allbinary.game.layout.GDObject
+                import org.allbinary.game.layer.AllBinaryGameLayerManager
+                import org.allbinary.game.layout.GDObjectFactory
+                import org.allbinary.game.layer.GDGameLayerFactory
+                import org.allbinary.game.layer.identification.GroupLayerManagerListener
+                import org.allbinary.game.layer.special.GDConditionWithGroupActions
+                import org.allbinary.game.layer.GDPrimitiveDrawing
+                import org.allbinary.game.layer.GDRectOnlyPrimitiveDrawing
+                import org.allbinary.game.layer.GDPrimitiveDrawingLinesOnly
+                import org.allbinary.game.layer.GDPrimitiveDrawingLinesOnlyAnimationFactory
+                import org.allbinary.game.layer.GDPrimitiveDrawingAnimationFactory
+                import org.allbinary.game.layer.GDRectOnlyPrimitiveDrawingAnimationFactory
+                import org.allbinary.game.physics.velocity.DragVelocityBehavior
+                import org.allbinary.game.physics.velocity.NoDragVelocityBehavior
+                import org.allbinary.game.rand.MyRandomFactory
+                import org.allbinary.game.score.BasicHighScoresFactory
+                import org.allbinary.game.score.HighScore
+                import org.allbinary.game.score.HighScoreNamePersistanceSingleton
+                import org.allbinary.game.score.HighScores
+                import org.allbinary.game.score.HighScoresHelperBase
+                import org.allbinary.game.score.HighScoresResultsListener
+                import org.allbinary.game.score.displayable.HighScoreUtil
+                import org.allbinary.graphics.PointFactory
+                import org.allbinary.graphics.Rectangle
+                import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory
+                import org.allbinary.graphics.color.BasicColor
+                import org.allbinary.graphics.color.SmallBasicColorCacheFactory
+                import org.allbinary.graphics.color.BasicColorUtil
+                import org.allbinary.graphics.displayable.MyCanvas
+                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton
+                import org.allbinary.graphics.displayable.command.MyCommandsFactory
+                import org.allbinary.input.event.VirtualKeyboardEventHandler
+                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent
+                import org.allbinary.layer.AllBinaryLayerManager
+                import org.allbinary.string.CommonStrings
+                import org.allbinary.logic.string.StringMaker
+                import org.allbinary.string.CommonSeps
+                import org.allbinary.logic.string.StringUtil
+                import org.allbinary.logic.communication.log.LogUtil
+                import org.allbinary.logic.io.file.FileSystem
+                import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
+                import org.allbinary.media.audio.Sound
+                import org.allbinary.math.NoDecimalTrigTable
+                import org.allbinary.time.GameTickTimeDelayHelper
+                import org.allbinary.time.GameTickTimeDelayHelperFactory
+                import org.allbinary.time.TimeDelayHelper
+                import org.allbinary.util.ArrayUtil
+                import org.allbinary.util.BasicArrayList
+                import org.allbinary.util.BasicArrayListD
+                import org.allbinary.media.audio.PlayerComposite
+                import org.allbinary.thread.SecondaryThreadPool
+                import org.allbinary.game.layer.behavior.GDBehaviorUtil
+                import org.allbinary.game.layer.behavior.PathFindingBehavior
+                import org.allbinary.thread.PathFindingThreadPool
+                import org.allbinary.logic.math.SmallIntegerSingletonFactory
+
                 //LayoutAction name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes extends SpecialAnimation
+                open public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes : SpecialAnimation
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes instance = 
-                        new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes();
+                    private val instance: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes =
+                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes()
 
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes getInstance()
-                        {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes.instance;
+                        open public fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes {
+                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes.instance
                         }
 
-                        protected final LogUtil logUtil = LogUtil.getInstance();
-                        private final CommonStrings commonStrings = CommonStrings.getInstance();                        
+                        protected val logUtil: LogUtil = LogUtil.getInstance()
+                        private val commonStrings: CommonStrings = CommonStrings.getInstance()
 
-                        private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-                        private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
+                        private val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
+                        private val gdExtensionGDNodes: GDExtensionGDNodes = GDExtensionGDNodes.getInstance()
 
-                        //private final GD<xsl:value-of select="$layoutIndex" />ActionGDNodes gd<xsl:value-of select="$layoutIndex" />ActionGDNodes = GD<xsl:value-of select="$layoutIndex" />ActionGDNodes.getInstance();
-                        
-                        private final AbeClientInformationInterface abeClientInformation = GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION;
+                        //private final GD<xsl:value-of select="$layoutIndex" />var gd<xsl:value-of select="$layoutIndex" />ActionGDNodes: ActionGDNodes = GD<xsl:value-of select="$layoutIndex" />ActionGDNodes.getInstance()
 
-                    private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes() {
+                        private val abeClientInformation: AbeClientInformationInterface = GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION
 
-                        super(AnimationBehavior.getInstance());
+                    private constructor() : super(AnimationBehavior.getInstance()) {
 
                         try {
-                        
-                            this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR);
-                    
+
+                            this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR)
+
                                     <xsl:call-template name="scale" >
                                         <xsl:with-param name="layoutIndex" >
                                             <xsl:value-of select="$layoutIndex" />
@@ -185,9 +182,9 @@ Created By: Travis Berthelot
                                             <xsl:value-of select="$layoutName" />
                                         </xsl:with-param>
                                     </xsl:call-template>
-                    
-                            final GDGlobalSpecialAnimationImageResources globalImageResources = GDGlobalSpecialAnimationImageResources.getInstanceOrCreate();
-                                                                                        
+
+                            val globalImageResources: GDGlobalSpecialAnimationImageResources = GDGlobalSpecialAnimationImageResources.getInstanceOrCreate()
+
                     //actionLayout - //eventsCreateAssignGDObjectGDNodesAction - START
                     <xsl:call-template name="eventsCreateAssignGDObjectGDNodesAction" >
                         <xsl:with-param name="caller" >actionLayout</xsl:with-param>
@@ -214,12 +211,12 @@ Created By: Travis Berthelot
                         </xsl:with-param>
 
                     </xsl:call-template>
-                    //actionLayout - //eventsCreateAssignGDObjectGDNodesAction - END                    
-                    
-                            this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR);
+                    //actionLayout - //eventsCreateAssignGDObjectGDNodesAction - END
 
-                        } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e);
+                            this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR)
+
+                        } catch (e: Exception) {
+                            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e)
                         }
 
                     }
@@ -256,7 +253,7 @@ Created By: Travis Berthelot
                         //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS);
                         return result;
                     }
-                    
+
                     public float RandomFloatInRange(final float min, final float max) {
                         final float nextF = (float) (max - min) * 1000;
                         //this.logUtil.putF("NEXTF: " + nextF, this, this.commonStrings.PROCESS);
@@ -338,11 +335,11 @@ Created By: Travis Berthelot
                     public String GlobalVarToJSON(final int value) {
                         return Integer.toString(value);
                     }
-                    
+
                     public String GlobalVarToJSON(final long value) {
                         return Long.toString(value);
                     }
-                    
+
                     public int ToJSONType(final GDStructure value) {
                         return value.getJSONType();
                     }
@@ -350,7 +347,7 @@ Created By: Travis Berthelot
                     public String ToJSON(final GDStructure value) {
                         return value.toJSONAsString();
                     }
-                    
+
                     public String ToJSON(final String value) {
                         return value;
                     }
@@ -362,31 +359,31 @@ Created By: Travis Berthelot
                     public String ToJSON(final long value) {
                         return Long.toString(value);
                     }
-                    
+
                     public int SceneInstancesCount(final int size) {
                         return size;
                     }
 
                     public int MouseX() {
-                        
+
                         return gameGlobalsFactory.point.getX();
                     }
 
                     public int MouseY() {
-                        
+
                         return gameGlobalsFactory.point.getY();
                     }
 
                     public int MouseX(final String string, int value) {
-                        
+
                         return gameGlobalsFactory.point.getX();
                     }
 
                     public int MouseY(final String string, int value) {
-                        
+
                         return gameGlobalsFactory.point.getY();
                     }
-                    
+
                     public long TimerElapsedTime(final TimeDelayHelper timeDelayHelper) {
                         return timeDelayHelper.getElapsed(globals.globalsGameTickTimeDelayHelper.lastStartTime) / 1000;
                     }
@@ -410,7 +407,7 @@ Created By: Travis Berthelot
                     public long round(final long value) {
                         return value;
                     }
-                    
+
                     public float round(final float value) {
                         return Math.round(value);
                     }
@@ -418,7 +415,7 @@ Created By: Travis Berthelot
                     public int abs(final int value) {
                         return Math.abs(value);
                     }
-                    
+
                     public float abs(final float value) {
                         return Math.abs(value);
                     }
@@ -442,16 +439,16 @@ Created By: Travis Berthelot
                     public int max(final int min, final int max) {
                         return Math.max(min, max);
                     }
-                    
+
                     public int ceil(final double value) {
                         return (int) Math.ceil(value);
                     }
-                    
+
                     public double ToRad(final double angdeg) {
                         //return Math.toRadians(angdeg);
                         return angdeg;
                     }
-                    
+
                     public long TimeFromStart() {
                         return globals.globalsGameTickTimeDelayHelper.getTimeFromStart() / 100;
                     }

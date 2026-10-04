@@ -19,127 +19,126 @@ Created By: Travis Berthelot
     <xsl:template name="leaderboardsIsLeaderboardViewLoadedConditionGDNode" >
         <xsl:param name="forExtension" />
         <xsl:param name="layoutIndex" />
-        
+
 
         <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
         <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-        
+
         <xsl:variable name="quote" >"</xsl:variable>
-        
+
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-        
+
                     //leaderboardsIsLeaderboardViewLoadedConditionGDNode - //Condition - //Leaderboards::IsLeaderboardViewLoaded - GDNode
-                    <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>final GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>val NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = object : GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                     <xsl:variable name="hasOtherConditions" ><xsl:for-each select="preceding-sibling::conditions" >found</xsl:for-each></xsl:variable>
-                        private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "highscores <xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
+                        private val CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "highscores <xsl:value-of select="translate($conditionAsString, $quote, ' ')" />"
 
                         //Leaderboards::IsLeaderboardViewLoaded - condition - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
-                        @Override
-                        public boolean process() throws Exception {
+                        @Throws(Exception::class)
+                        override fun process(): Boolean {
 
-                            super.processStats();
+                            super.processStats()
 
-                            //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                            //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
                             if(globals.highscoreSubmissionComplete) {
 
-                                final HighScores[] highScoresArray = gameGlobals.highScoresHelper.getHighScoresArray();
-                                
-                                final int leaderBoardTotal = highScoresArray.length;
-                                
-                                HighScores highScores;
-                                //final int index2 = leaderBoardTotal - 1;
-                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " TWB " + leaderBoardTotal + " s:" + gameGlobals.selectedLeaderboardIndex, this, this.commonStrings.PROCESS);
-                                final int index2 = leaderBoardTotal <xsl:text disable-output-escaping="yes" >&gt; </xsl:text> gameGlobals.selectedLeaderboardIndex ? gameGlobals.selectedLeaderboardIndex : leaderBoardTotal - 1;
-                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " TWB c: " + index2, this, this.commonStrings.PROCESS);                            
-                                //for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt; </xsl:text> leaderBoardTotal; index2++) {
+                                val highScoresArray: Array&lt;HighScores&gt; = gameGlobals.highScoresHelper.getHighScoresArray()
+
+                                val leaderBoardTotal: Int = highScoresArray.length
+
+                                HighScores highScores
+                                //val index2: Int = leaderBoardTotal - 1
+                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " TWB " + leaderBoardTotal + " s:" + gameGlobals.selectedLeaderboardIndex, this, this.commonStrings.PROCESS)
+                                val index2: Int = if(leaderBoardTotal <xsl:text disable-output-escaping="yes" >&gt; </xsl:text> gameGlobals.selectedLeaderboardIndex) gameGlobals.selectedLeaderboardIndex else leaderBoardTotal - 1
+                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " TWB c: " + index2, this, this.commonStrings.PROCESS)
+                                //for(index2 in 0 until <xsl:text disable-output-escaping="yes" ></xsl:text>leaderBoardTotal) {
                                 if(org.allbinary.game.score.BasicHighScoresFactory.loaded(index2)) {
-                                    highScores = highScoresArray[index2];
-                                                                
-                                    gameGlobals.highScoresTitle = highScores.getHeading();
-                                    //gameGlobals.highScoresColumnHeadingOne = highScores.getColumnOneHeading();
-                                    //gameGlobals.highScoresColumnHeadingOne = highScores.getColumnTwoHeading();
+                                    highScores = highScoresArray[index2]
 
-                                    final BasicArrayList highScoreList = highScores.getList();
-                                    final int size = highScoreList.size();
-                                    //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "highScoreList.size(): " + size, this, this.commonStrings.PROCESS);
-                                    gameGlobals.highScoresNameArray = new String[size];
-                                    gameGlobals.highScoresLongArray = new long[size];
-                                    HighScore highScore;
-                                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt; </xsl:text> size; index++) {
+                                    gameGlobals.highScoresTitle = highScores.getHeading()
+                                    //gameGlobals.highScoresColumnHeadingOne = highScores.getColumnOneHeading()
+                                    //gameGlobals.highScoresColumnHeadingOne = highScores.getColumnTwoHeading()
 
-                                        highScore = (HighScore) highScoreList.get(index);
-                                        gameGlobals.highScoresNameArray[index] = highScore.getName();
-                                        gameGlobals.highScoresLongArray[index] = highScore.getScore();
+                                    val highScoreList: BasicArrayList = highScores.getList()
+                                    val size: Int = highScoreList.size()
+                                    //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "highScoreList.size(): " + size, this, this.commonStrings.PROCESS)
+                                    gameGlobals.highScoresNameArray = arrayOfNulls&lt;String&gt;(size)
+                                    gameGlobals.highScoresLongArray = arrayOfNulls&lt;long&gt;(size)
+                                    HighScore highScore
+                                    for(index in 0 until <xsl:text disable-output-escaping="yes" ></xsl:text>size) {
+
+                                        highScore = highScoreList.get(index) as HighScore
+                                        gameGlobals.highScoresNameArray[index] = highScore.getName()
+                                        gameGlobals.highScoresLongArray[index] = highScore.getScore()
                                     }
                                 }
-                            
-                            return true;
-                            
+
+                            return true
+
                             }
 
-                            return false;
+                            return false
                         }
 
-                        @Override
-                        public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
-                            super.processStats(motionGestureEvent);
-                            
-                            //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, this.commonStrings.PROCESS);
-                            
-                            return this.process();
+                        @Throws(Exception::class)
+                        override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                            super.processStats(motionGestureEvent)
+
+                            //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, this.commonStrings.PROCESS)
+
+                            return this.process()
                         }
 
-                        @Override
-                        public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
-                            super.processGDStats(gameLayerArray);
+                        @Throws(Exception::class)
+                        override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                            super.processGDStats(gameLayerArray)
 
                             try {
-                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, this.commonStrings.PROCESS);
+                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, this.commonStrings.PROCESS)
 
                                 if(globals.highscoreSubmissionComplete) {
-                                    return true;
+                                    return true
                                 }
 
-                            } catch(Exception e) {
-                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            } catch(e: Exception) {
+                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e)
                             }
-                            return false;
+                            return false
                         }
 
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >
-                        @Override
-                        public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
-                            
-                            //Map from object array with action params
-                            final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
-                            this.process(gameLayer, intArray[3], intArray[5]);
+                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
-                            return true;
+                            //Map from object array with action params
+                            val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
+                            this.process(gameLayer, intArray[3], intArray[5])
+
+                            return true
                         }
                         </xsl:if>
 
-                        public void process(final GDGameLayer gameLayer, final int x, final int y) {
-                            final GDObject gdObject = gameLayer.gdObject;
-                            this.process(gdObject, x, y);
+                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                            val gdObject: GDObject = gameLayer.gdObject
+                            this.process(gdObject, x, y)
                         }
 
-                        public void process(final GDObject gdObject, final int x, final int y) {
-                            throw new RuntimeException();
+                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                            throw RuntimeException()
                         }
-                        
-                    };
+
+                    }
 
                     <xsl:if test="not(contains($forExtension, 'found'))" >
                     if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
-                        throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
+                        throw RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />")
                     }
-                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
+                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />
                     </xsl:if>
 
     </xsl:template>

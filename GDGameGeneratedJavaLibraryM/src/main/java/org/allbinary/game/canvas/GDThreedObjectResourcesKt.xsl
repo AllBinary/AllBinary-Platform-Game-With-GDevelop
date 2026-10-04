@@ -32,13 +32,13 @@ Created By: Travis Berthelot
             <xsl:otherwise>
         <xsl:for-each select="objectsGroups" >
             //<xsl:value-of select="name" />
-            public BasicArrayList <xsl:value-of select="name" />ImageArrayList = new BasicArrayListD();
+            public var <xsl:value-of select="name" />ImageArrayList: BasicArrayList = BasicArrayListD()
         </xsl:for-each>
             </xsl:otherwise>
         </xsl:choose>
         //objectsGroups - START
         </xsl:if>
-        
+
         //objects - all - touch - START
         <xsl:for-each select="objects" >
             <xsl:variable name="name" select="name" />
@@ -49,31 +49,31 @@ Created By: Travis Berthelot
 
             <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:if test="not(contains($threedExclusionsFound, 'found'))" >
-            
+
             //Animation Total: <xsl:value-of select="count(animations)" />
-            public Rectangle <xsl:value-of select="name" />Rectangle;
+            public var <xsl:value-of select="name" />Rectangle: Rectangle
             <xsl:if test="type != 'TextObject::Text'" >
-            private Rectangle[] <xsl:value-of select="name" />ImageArray;
-            public int <xsl:value-of select="name" />Width(int index) {
-                return <xsl:value-of select="name" />ImageArray[index].getWidth();
+            private var <xsl:value-of select="name" />ImageArray: Array&lt;Rectangle&gt;
+            open public fun <xsl:value-of select="name" />Width(index: Int): Int {
+                return <xsl:value-of select="name" />ImageArray[index].getWidth()
             }
 
-            public int <xsl:value-of select="name" />Height(int index) {
-                return <xsl:value-of select="name" />ImageArray[index].getHeight();
+            open public fun <xsl:value-of select="name" />Height(index: Int): Int {
+                return <xsl:value-of select="name" />ImageArray[index].getHeight()
             }
             </xsl:if>
-            
+
             <xsl:if test="type = 'Sprite'" >
-            public final String[] <xsl:value-of select="$name" />ResourceArray;
+            public val <xsl:value-of select="$name" />ResourceArray: Array&lt;String&gt;
             </xsl:if>
-            
+
                 <xsl:if test="type = 'PanelSpriteSlider::PanelSpriteSlider'" >
-            public final String[] <xsl:value-of select="$name" />ResourceArray;
+            public val <xsl:value-of select="$name" />ResourceArray: Array&lt;String&gt;
                 </xsl:if>
 
                 <xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >
-            public final String[] <xsl:value-of select="$name" />ResourceArray;
-            public final String[] <xsl:value-of select="name" />JSONResourceArray;
+            public val <xsl:value-of select="$name" />ResourceArray: Array&lt;String&gt;
+            public val <xsl:value-of select="name" />JSONResourceArray: Array&lt;String&gt;
             </xsl:if>
 
             </xsl:if>
@@ -81,7 +81,7 @@ Created By: Travis Berthelot
 
         </xsl:for-each>
         //objects - all - //touch - END
-        
+
     </xsl:template>
 
     <xsl:template name="rectangleCache" >
@@ -102,7 +102,7 @@ Created By: Travis Berthelot
             </xsl:with-param>
         </xsl:call-template>
         </xsl:if>
-        
+
 <!--
         <xsl:call-template name="globalZoomCameraActions" >
             <xsl:with-param name="baseLayer" >true</xsl:with-param>
@@ -112,7 +112,7 @@ Created By: Travis Berthelot
 
         //objects - threed object - cache - START
         <xsl:if test="$useExclusionList != 'true'" >
-        int size;
+        var size: Int
         </xsl:if>
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
@@ -125,11 +125,11 @@ Created By: Travis Berthelot
 
             <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:if test="not(contains($threedExclusionsFound, 'found'))" >
-                    
+
                 <xsl:variable name="hasMirrorFillBarBehavior" >
                 <xsl:for-each select="behaviors" ><xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >found</xsl:if></xsl:for-each>
                 </xsl:variable>
-                
+
             <xsl:if test="type = 'Sprite' or type = 'ParticleSystem::ParticleEmitter' or type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >
                 //type found
                 <xsl:variable name="stringValue" select="string" />
@@ -137,7 +137,7 @@ Created By: Travis Berthelot
                 <xsl:text>&#10;</xsl:text>
 
                 <xsl:if test="type = 'Sprite' or type = 'ParticleSystem::ParticleEmitter' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >
-                this.<xsl:value-of select="$name" />ResourceArray = new String[] {
+                this.<xsl:value-of select="$name" />ResourceArray = arrayOf&lt;String&gt;(
                 <xsl:for-each select="animations" >
                     <!--
                 this.<xsl:value-of select="$name" /><xsl:value-of select="name" />ResourceArray = new String[] {
@@ -161,7 +161,7 @@ Created By: Travis Berthelot
                 };
                     -->
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="childrenContent" >
                     //<xsl:value-of select="$typeValue" /> - childrenContent
                     <xsl:for-each select="Background" >
@@ -174,7 +174,7 @@ Created By: Travis Berthelot
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                     </xsl:if>
                     </xsl:for-each>
-                
+
                     <xsl:for-each select="FillBar" >
                     <xsl:variable name="imageWithExtension" select="texture" />
                     <xsl:variable name="image2" select="substring-before($imageWithExtension, '.')" />
@@ -198,7 +198,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                     </xsl:if>
                     </xsl:for-each>
-                    
+
                     <xsl:for-each select="Thumb" >
                     <xsl:variable name="imageWithExtension" select="texture" />
                     <xsl:variable name="image2" select="substring-before($imageWithExtension, '.')" />
@@ -210,54 +210,54 @@ Created By: Travis Berthelot
                     </xsl:if>
                     </xsl:for-each>
                 </xsl:for-each>
-                
-                };
+
+                )
                 </xsl:if>
 
                 <xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >
-                this.<xsl:value-of select="name" />ResourceArray = new String[] {
+                this.<xsl:value-of select="name" />ResourceArray = arrayOf&lt;String&gt;(
                 <xsl:if test="content" >
                     //TileMap::TileMap:content
                     <xsl:variable name="imageWithExtension" select="content/tilemapAtlasImage" />
                     <xsl:variable name="image" select="substring-before($imageWithExtension, '.')" />
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                 </xsl:if>
-                };
+                )
                 </xsl:if>
 
                 //Duplicate logic of the AnimationFactory
-                <xsl:value-of select="name" />ImageArray = this.get<xsl:value-of select="name" />RectangleArray(scale);
+                <xsl:value-of select="name" />ImageArray = this.get<xsl:value-of select="name" />RectangleArray(scale)
 
-                //animationInterfaceFactoryInterfaceFactory.addRectangle(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME, <xsl:value-of select="name" />ImageArray[0]);
-                //hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
-                this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />ImageArray[0].getWidth(), <xsl:value-of select="name" />ImageArray[0].getHeight());
+                //animationInterfaceFactoryInterfaceFactory.addRectangle(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME, <xsl:value-of select="name" />ImageArray[0])
+                //hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray)
+                this.<xsl:value-of select="$name" />Rectangle = Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />ImageArray[0].getWidth(), <xsl:value-of select="name" />ImageArray[0].getHeight())
                 </xsl:if>
 
             </xsl:if>
-            
+
             <xsl:if test="type = 'TextObject::Text'" >
-                this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, 0, 0);
+                this.<xsl:value-of select="$name" />Rectangle = Rectangle(pointFactory.ZERO_ZERO, 0, 0)
             </xsl:if>
 
-            <xsl:if test="type = 'TextInput::TextInputObject'" >                
-                final int <xsl:value-of select="name" />TextInputAnimationSize = AndroidUtil.isAndroid() ? (<xsl:value-of select="content/fontSize" />) : (<xsl:value-of select="content/fontSize" /> / 2);
-                this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />TextInputAnimationSize * (12 - 1), <xsl:value-of select="name" />TextInputAnimationSize);
+            <xsl:if test="type = 'TextInput::TextInputObject'" >
+                val <xsl:value-of select="name" />TextInputAnimationSize: Int = if (AndroidUtil.isAndroid()) else as <xsl:value-of select="content/fontSize" /> (<xsl:value-of select="content/fontSize" /> / 2)
+                this.<xsl:value-of select="$name" />Rectangle = Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />TextInputAnimationSize * (12 - 1), <xsl:value-of select="name" />TextInputAnimationSize)
             </xsl:if>
 
             <xsl:if test="type = 'TileMap::CollisionMask'" >
                 //TileMap::CollisionMask
-                <xsl:value-of select="$name" />ImageArray = new Rectangle[] {
-                };
-                //hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
-                this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, 0, 0);
+                <xsl:value-of select="$name" />ImageArray = arrayOf&lt;Rectangle&gt;(
+                )
+                //hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray)
+                this.<xsl:value-of select="$name" />Rectangle = Rectangle(pointFactory.ZERO_ZERO, 0, 0)
             </xsl:if>
-                        
+
             <xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 //TileMap::TileMap - JSON
 
-                this.<xsl:value-of select="name" />JSONResourceArray = new String[] {
+                this.<xsl:value-of select="name" />JSONResourceArray = arrayOf&lt;String&gt;(
                 <xsl:if test="content" >
                     //TileMap::TileMap:content
                     <xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" />
@@ -271,15 +271,15 @@ Created By: Travis Berthelot
 
                     <xsl:for-each select="content/tilesetJsonFiles" >
                         <xsl:variable name="tileSetJSON" select="substring-before(text(), '.')" />
-                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>,                        
+                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>,
                     </xsl:for-each>
                 </xsl:if>
-                };
+                )
 
-                size = this.<xsl:value-of select="name" />JSONResourceArray.length;
-                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                    platformAssetManager.getResourceAsStream(this.<xsl:value-of select="name" />JSONResourceArray[index]);
-                }                
+                size = this.<xsl:value-of select="name" />JSONResourceArray.length
+                for(index in 0 until size) {
+                    platformAssetManager.getResourceAsStream(this.<xsl:value-of select="name" />JSONResourceArray[index])
+                }
 
             </xsl:if>
             </xsl:if>
@@ -310,25 +310,24 @@ Created By: Travis Berthelot
                 <xsl:variable name="hasMirrorFillBarBehavior" >
                 <xsl:for-each select="behaviors" ><xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >found</xsl:if></xsl:for-each>
                 </xsl:variable>
-                                
+
                 //Duplicate logic of the AnimationFactory
-                public Rectangle[] get<xsl:value-of select="name" />RectangleArray(final float scale) {
-                
+                open public fun get<xsl:value-of select="name" />RectangleArray(scale: Float): Array&lt;Rectangle&gt; {
                 <xsl:if test="$name != 'Player'" >
                     //non Player
-                    final float hackScale = 2.0f;
+                    val hackScale: Float = 2.0f
                 </xsl:if>
                 <xsl:if test="$name = 'Player'" >
                     //Player
-                    final float hackScale = 1.0f;
+                    val hackScale: Float = 1.0f
                 </xsl:if>
-                
-                    return new Rectangle[] {
+
+                    return arrayOf&lt;Rectangle&gt;(
                 <xsl:if test="contains(type, 'TileMap::')" >
                     //TWB - temp solution for <xsl:value-of select="type" />
-                    new Rectangle(pointFactory.ZERO_ZERO, 
-                                (int) (384 * scale),
-                                (int) (384 * scale)
+                    Rectangle(pointFactory.ZERO_ZERO,
+                                (384 * scale).toInt(),
+                                (384 * scale).toInt()
                                 ),
                 </xsl:if>
                 <xsl:for-each select="animations" >
@@ -339,11 +338,11 @@ Created By: Travis Berthelot
                         //TWB - int the future add image dimensions to the game.xml.
                         <xsl:for-each select="directions" >
                             <xsl:for-each select="sprites" >
-                    new Rectangle(pointFactory.ZERO_ZERO, 
+                    Rectangle(pointFactory.ZERO_ZERO,
                                 <xsl:if test="originPoint/x = 0" >0</xsl:if>
-                                <xsl:if test="originPoint/x != 0" >(int) (<xsl:value-of select="originPoint/x" /> * hackScale)</xsl:if>, // * scale
+                                <xsl:if test="originPoint/x != 0" >(<xsl:value-of select="originPoint/x" /> * hackScale).toInt()</xsl:if>, // * scale
                                 <xsl:if test="originPoint/y = 0" >0</xsl:if>
-                                <xsl:if test="originPoint/y != 0" >(int) (<xsl:value-of select="originPoint/y" /> * hackScale)</xsl:if>  * scale
+                                <xsl:if test="originPoint/y != 0" >(<xsl:value-of select="originPoint/y" /> * hackScale).toInt()</xsl:if>  * scale
                                 ),
                             </xsl:for-each>
                         </xsl:for-each>
@@ -351,23 +350,23 @@ Created By: Travis Berthelot
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
                         <xsl:for-each select="directions" >
                             <xsl:for-each select="sprites" >
-                    //new Rectangle(pointFactory.ZERO_ZERO, (int) (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f), (int) (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f)),
-                    new Rectangle(pointFactory.ZERO_ZERO, 
+                    //Rectangle(pointFactory.ZERO_ZERO, (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f).toInt(), (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f).toInt()),
+                    Rectangle(pointFactory.ZERO_ZERO,
                                 <xsl:if test="originPoint/x = 0" >0</xsl:if>
-                                <xsl:if test="originPoint/x != 0" >(int) (<xsl:value-of select="originPoint/x" /> * hackScale)</xsl:if>,
+                                <xsl:if test="originPoint/x != 0" >(<xsl:value-of select="originPoint/x" /> * hackScale).toInt()</xsl:if>,
                                 <xsl:if test="originPoint/y = 0" >0</xsl:if>
-                                <xsl:if test="originPoint/y != 0" >(int) (<xsl:value-of select="originPoint/y" /> * hackScale)</xsl:if>
+                                <xsl:if test="originPoint/y != 0" >(<xsl:value-of select="originPoint/y" /> * hackScale).toInt()</xsl:if>
                                ),
                             </xsl:for-each>
                         </xsl:for-each>
                     </xsl:if>
                 </xsl:for-each>
-                };
+                )
 
                 }
             </xsl:if>
             </xsl:if>
-            
+
         </xsl:for-each>
         //objects - threed object - cache - END
     </xsl:template>

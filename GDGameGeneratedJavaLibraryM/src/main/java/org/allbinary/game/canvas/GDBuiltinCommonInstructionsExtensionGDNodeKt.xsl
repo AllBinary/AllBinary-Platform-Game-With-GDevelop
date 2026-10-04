@@ -15,7 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
-    
+
     <xsl:template name="builtinCommonInstructionsExtensionGDNode" >
         <xsl:param name="caller" />
         <xsl:param name="totalRecursions" />
@@ -28,31 +28,29 @@ Created By: Travis Berthelot
         <xsl:param name="objectsAsString" />
         <xsl:param name="createdObjectsAsString" />
         <xsl:param name="conditionEventPosition" />
-         
+
         <xsl:variable name="quote" >"</xsl:variable>
 
         <xsl:for-each select="events" >
 
             <xsl:variable name="eventPosition" select="position()" />
-            
+
             <xsl:variable name="selectedNodeId" select="number(substring(generate-id(), 2) - 65536)" />
             <xsl:variable name="selectedNodeIdWithSep" >,<xsl:value-of select="$selectedNodeId" />,</xsl:variable>
-            
+
             <xsl:if test="contains($selectedNodeIds, $selectedNodeIdWithSep) or $selectedNodeIds = 'All'" >
 
         //nodeId=<xsl:value-of select="$selectedNodeId" /> - //extension - childevents
-        public class GD<xsl:value-of select="$selectedNodeId" />GDNode extends GDNode
+        open public class GD<xsl:value-of select="$selectedNodeId" />GDNode : GDNode
         {
-            public GD<xsl:value-of select="$selectedNodeId" />GDNode() {
-
-                super(<xsl:value-of select="$selectedNodeId" />);
+            public constructor() : super(<xsl:value-of select="$selectedNodeId" />) {
 
             }
 
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
 
             <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
-            
+
             <xsl:choose>
             <xsl:when test="type = 'BuiltinCommonInstructions::Comment'" >
             //Do not create GDNode for comment event type
@@ -70,7 +68,7 @@ Created By: Travis Berthelot
             </xsl:when>
             <xsl:when test="type = 'BuiltinCommonInstructions::Else'" >
             //<xsl:value-of select="type" /> NOT_IMPLEMENTED
-            throw new RuntimeException();
+            throw RuntimeException()
             </xsl:when>
 
             <xsl:when test="type = 'BuiltinCommonInstructions::ForEachChildVariable'" >
@@ -79,29 +77,28 @@ Created By: Travis Berthelot
 
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> iterableVariableName=<xsl:value-of select="iterableVariableName" /> valueIteratorVariableName=<xsl:value-of select="valueIteratorVariableName" /> keyIteratorVariableName=<xsl:value-of select="keyIteratorVariableName" />
 
-                private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" /> iterableVariableName=<xsl:value-of select="iterableVariableName" /> valueIteratorVariableName=<xsl:value-of select="valueIteratorVariableName" /> keyIteratorVariableName=<xsl:value-of select="keyIteratorVariableName" />";
+                private val EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" /> iterableVariableName=<xsl:value-of select="iterableVariableName" /> valueIteratorVariableName=<xsl:value-of select="valueIteratorVariableName" /> keyIteratorVariableName=<xsl:value-of select="keyIteratorVariableName" />"
                 <xsl:text>&#10;</xsl:text>
 
                 <xsl:if test="contains(disabled, 'true')" >
                 //Disabled so not call anything.
                 /*
                 </xsl:if>
-                
-                //BuiltinCommonInstructions::ForEachChildVariable - event - //extension
-                @Override
-                public boolean process() throws Exception {
-                    super.processStats();
 
-                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
-                    
-                    return true;
+                //BuiltinCommonInstructions::ForEachChildVariable - event - //extension
+                override public fun process(): Boolean {
+                    super.processStats()
+
+                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
+
+                    var true: return
 
                 }
-                
+
                 <xsl:if test="contains(disabled, 'true')" >
                 */
                 </xsl:if>
-                
+
             </xsl:when>
             <xsl:when test="type = 'BuiltinCommonInstructions::ForEach'" >
 
@@ -109,7 +106,7 @@ Created By: Travis Berthelot
 
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> totalRecursions=<xsl:value-of select="$totalRecursions" />
 
-                private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />";
+                private val EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />"
                 <xsl:text>&#10;</xsl:text>
 
                 <xsl:variable name="hasObjectGroup" >
@@ -123,79 +120,74 @@ Created By: Travis Berthelot
                 //Disabled so not call anything.
                 /*
                 </xsl:if>
-                
-                
+
+
 <!--                <xsl:if test="not(contains(disabled, 'true'))" >-->
                 //BuiltinCommonInstructions::ForEach - //extension
-                @Override
-                public boolean process() throws Exception {
-                    super.processStats();
+                override public fun process(): Boolean {
+                    super.processStats()
 
-                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
-                    return true;
+                    var true: return
 
                 }
 <!--                </xsl:if>-->
-                
+
                 <xsl:if test="contains(disabled, 'true')" >
                 */
                 </xsl:if>
-                
+
             </xsl:when>
-            <xsl:when test="type = 'BuiltinCommonInstructions::Standard' or 
-                          type = 'BuiltinCommonInstructions::While' or 
-                          type = 'BuiltinCommonInstructions::Group' or 
+            <xsl:when test="type = 'BuiltinCommonInstructions::Standard' or
+                          type = 'BuiltinCommonInstructions::While' or
+                          type = 'BuiltinCommonInstructions::Group' or
                           type = 'BuiltinCommonInstructions::Repeat'" >
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> totalRecursions=<xsl:value-of select="$totalRecursions" />
 
                 //<xsl:value-of select="type" /> - //BuiltinCommonInstructions - //Event - //repeatExpression=<xsl:value-of select="repeatExpression" />
-                private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />";
+                private val EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />"
                 <xsl:text>&#10;</xsl:text>
 
                 <xsl:if test="contains(disabled, 'true')" >
                 //Disabled so not call anything.
                 /*
                 </xsl:if>
-                
+
 <!--                <xsl:if test="not(contains(disabled, 'true'))" >-->
                 //BuiltinCommonInstructions::ForEachChildVariable - event
-                @Override
-                public boolean process() throws Exception {
-                    super.processStats();
-                    
-                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                override public fun process(): Boolean {
+                    super.processStats()
 
-                    return true;
+                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
-                }                
+                    var true: return
 
-                @Override
-                public boolean process(final int index3) throws Exception {
-                    super.processStats();
-                    
-                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
-
-                    return true;
-
-                }                
-
-                @Override
-                public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
-                    super.processStats(motionGestureEvent);
-
-                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, this.commonStrings.PROCESS);
-
-                    return true;                           
                 }
 
-                @Override      
-                public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
-                    super.processGDStats(gameLayerArray);
+                override public fun process(index3: Int): Boolean {
+                    super.processStats()
 
-                    //this.logUtil.putF(EVENT_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
-                    return true;                
+                    var true: return
+
+                }
+
+                override public fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                    super.processStats(motionGestureEvent)
+
+                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, this.commonStrings.PROCESS)
+
+                    var true: return
+                }
+
+                override public fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                    super.processGDStats(gameLayerArray)
+
+                    //this.logUtil.putF(EVENT_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
+
+                    var true: return
                 }
 
                 <xsl:if test="contains(disabled, 'true')" >
@@ -211,8 +203,8 @@ Created By: Travis Berthelot
             <!-- other events - END -->
 
         }
-        
-        public GD<xsl:value-of select="$selectedNodeId" />GDNode NODE_<xsl:value-of select="$selectedNodeId" /> = new GD<xsl:value-of select="$selectedNodeId" />GDNode();
+
+        public var NODE_<xsl:value-of select="$selectedNodeId" />: GD<xsl:value-of select="$selectedNodeId" />GDNode = GD<xsl:value-of select="$selectedNodeId" />GDNode()
 
             </xsl:if>
 

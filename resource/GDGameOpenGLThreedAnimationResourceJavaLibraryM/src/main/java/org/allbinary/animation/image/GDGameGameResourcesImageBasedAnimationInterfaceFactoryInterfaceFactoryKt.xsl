@@ -20,7 +20,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/replace.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/split.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
@@ -41,7 +41,7 @@ Created By: Travis Berthelot
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/animation/GDObjectAnimations.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/animation/GDObjectThreedAnimations.xsl" />
-    
+
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -63,98 +63,97 @@ Created By: Travis Berthelot
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
-                
+
 /*
 * AllBinary Open License Version 1
 * Copyright (c) 2011 AllBinary
-* 
+*
 * By agreeing to this license you and any business entity you represent are
 * legally bound to the AllBinary Open License Version 1 legal agreement.
-* 
+*
 * You may obtain the AllBinary Open License Version 1 legal agreement from
 * AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-* 
+*
 * Created By: Travis Berthelot
-* 
+*
 */
-package org.allbinary.animation.image;
+package org.allbinary.animation.image
 
-import javax.microedition.lcdui.Image;
+import javax.microedition.lcdui.Image
 
-import min3d.animation.AnimationObject3d;
-import min3d.core.Object3d;
-import min3d.vos.Number3d;
+import min3d.animation.AnimationObject3d
+import min3d.core.Object3d
+import min3d.vos.Number3d
 
-import org.allbinary.AndroidUtil;
-import org.allbinary.animation.Animation;
-import org.allbinary.animation.AnimationBehaviorFactory;
-import org.allbinary.animation.AnimationInterfaceFactoryInterface;
-import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
-import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
-import org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory;
-import org.allbinary.animation.IndexedAnimationBehaviorFactory;
-import org.allbinary.animation.NullRotationAnimationFactory;
-import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
-import org.allbinary.animation.threed.ThreedAnimationSingletonFactory;
-import org.allbinary.animation.image.AllBinaryArrayImageRotationAnimationFactory;
-import org.allbinary.animation.compound.SliderAnimationInterfaceFactory;
-import org.allbinary.animation.compound.SimultaneousCompoundIndexedAnimationInterfaceFactory;
-import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
-import org.allbinary.animation.text.CustomTextAnimationFactory;
-import org.allbinary.animation.text.CustomTextBoxIndexedAnimationFactory;
-import org.allbinary.animation.threed.AnimationToTextureFactory;
-import org.allbinary.animation.threed.AdjustableThreedAnimationSingletonFactory;
-import org.allbinary.animation.threed.morphing.AdjustableThreedMorphingAnimationSingletonFactory;
-import org.allbinary.animation.threed.morphing.ThreedMorphingAnimationSingletonFactory;
-import org.allbinary.animation.threed.morphing.processing.FirstFrameMorphingProcessor;
-import org.allbinary.animation.threed.morphing.processing.MorphingProcessor;
-import org.allbinary.animation.threed.morphing.processing.PlayMorphingProcessor;
-import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil;
-import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
-import org.allbinary.game.resource.ResourceLoadingLevelFactory;
-import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
-import org.allbinary.graphics.threed.min3d.Min3dSceneResourcesFactory;
-import org.allbinary.image.opengles.OpenGLImageCacheFactory;
-import org.allbinary.game.configuration.feature.Features;
-import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
-import org.allbinary.game.layer.special.GDConditionWithGroupActions;
-import org.allbinary.graphics.PointFactory;
-import org.allbinary.graphics.Rectangle;
-import org.allbinary.image.ImageCache;
-import org.allbinary.image.ImageCacheFactory;
-import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.math.PrimitiveIntUtil;
-import org.allbinary.logic.communication.log.LogFactory;
-import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
-import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
-import org.allbinary.logic.math.PrimitiveIntUtil;
-import org.allbinary.logic.string.StringMaker;
-import org.allbinary.graphics.color.BasicColor;
-import org.allbinary.graphics.color.BasicColorFactory;
-import org.allbinary.graphics.color.BasicColorUtil;
-import org.allbinary.util.BasicArrayList;
-import org.allbinary.util.BasicArrayListD;
-import org.allbinary.logic.string.StringUtil;
-import org.allbinary.game.canvas.GDGameThreedAnimationResources;
-import org.allbinary.media.graphics.geography.map.racetrack.threed.RaceTrackThreedData;
-import org.allbinary.media.graphics.geography.map.racetrack.threed.ThreedTiledLayerResourcesFactory;
-import org.allbinary.logic.StdUtil;
-import org.allbinary.util.ABHashtable;
+import org.allbinary.AndroidUtil
+import org.allbinary.animation.Animation
+import org.allbinary.animation.AnimationBehaviorFactory
+import org.allbinary.animation.AnimationInterfaceFactoryInterface
+import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite
+import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite
+import org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory
+import org.allbinary.animation.IndexedAnimationBehaviorFactory
+import org.allbinary.animation.NullRotationAnimationFactory
+import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface
+import org.allbinary.animation.threed.ThreedAnimationSingletonFactory
+import org.allbinary.animation.image.AllBinaryArrayImageRotationAnimationFactory
+import org.allbinary.animation.compound.SliderAnimationInterfaceFactory
+import org.allbinary.animation.compound.SimultaneousCompoundIndexedAnimationInterfaceFactory
+import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory
+import org.allbinary.animation.text.CustomTextAnimationFactory
+import org.allbinary.animation.text.CustomTextBoxIndexedAnimationFactory
+import org.allbinary.animation.threed.AnimationToTextureFactory
+import org.allbinary.animation.threed.AdjustableThreedAnimationSingletonFactory
+import org.allbinary.animation.threed.morphing.AdjustableThreedMorphingAnimationSingletonFactory
+import org.allbinary.animation.threed.morphing.ThreedMorphingAnimationSingletonFactory
+import org.allbinary.animation.threed.morphing.processing.FirstFrameMorphingProcessor
+import org.allbinary.animation.threed.morphing.processing.MorphingProcessor
+import org.allbinary.animation.threed.morphing.processing.PlayMorphingProcessor
+import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil
+import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources
+import org.allbinary.game.resource.ResourceLoadingLevelFactory
+import org.allbinary.graphics.opengles.OpenGLFeatureFactory
+import org.allbinary.graphics.threed.min3d.Min3dSceneResourcesFactory
+import org.allbinary.image.opengles.OpenGLImageCacheFactory
+import org.allbinary.game.configuration.feature.Features
+import org.allbinary.game.configuration.feature.GraphicsFeatureFactory
+import org.allbinary.game.layer.special.GDConditionWithGroupActions
+import org.allbinary.graphics.PointFactory
+import org.allbinary.graphics.Rectangle
+import org.allbinary.image.ImageCache
+import org.allbinary.image.ImageCacheFactory
+import org.allbinary.string.CommonStrings
+import org.allbinary.logic.math.PrimitiveIntUtil
+import org.allbinary.logic.communication.log.LogFactory
+import org.allbinary.logic.communication.log.LogUtil
+import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas
+import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory
+import org.allbinary.logic.math.PrimitiveIntUtil
+import org.allbinary.logic.string.StringMaker
+import org.allbinary.graphics.color.BasicColor
+import org.allbinary.graphics.color.BasicColorFactory
+import org.allbinary.graphics.color.BasicColorUtil
+import org.allbinary.util.BasicArrayList
+import org.allbinary.util.BasicArrayListD
+import org.allbinary.logic.string.StringUtil
+import org.allbinary.game.canvas.GDGameThreedAnimationResources
+import org.allbinary.media.graphics.geography.map.racetrack.threed.RaceTrackThreedData
+import org.allbinary.media.graphics.geography.map.racetrack.threed.ThreedTiledLayerResourcesFactory
+import org.allbinary.logic.StdUtil
+import org.allbinary.util.ABHashtable
 
-public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
-    extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
+open class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory : BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
-    private final CommonStrings commonStrings = CommonStrings.getInstance();
-    private final StringUtil stringUtil = StringUtil.getInstance();
-    private final PointFactory pointFactory = PointFactory.getInstance();
+    private val commonStrings: CommonStrings = CommonStrings.getInstance()
+    private val stringUtil: StringUtil = StringUtil.getInstance()
+    private val pointFactory: PointFactory = PointFactory.getInstance()
 
-    private final Min3dSceneResourcesFactory min3dSceneResourcesFactory = Min3dSceneResourcesFactory.getInstance();
-    private final AnimationToTextureFactory animationToTextureFactory = AnimationToTextureFactory.getInstance();
+    private val min3dSceneResourcesFactory: Min3dSceneResourcesFactory = Min3dSceneResourcesFactory.getInstance()
+    private val animationToTextureFactory: AnimationToTextureFactory = AnimationToTextureFactory.getInstance()
 
-    private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
+    private val specialAnimationResources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance()
 
-    private final GDGameThreedAnimationResources threedAnimationResources = GDGameThreedAnimationResources.getInstance();
+    private val threedAnimationResources: GDGameThreedAnimationResources = GDGameThreedAnimationResources.getInstance()
 
         <xsl:call-template name="scaleProperty" >
             <xsl:with-param name="layoutIndex" >
@@ -164,73 +163,71 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                 <xsl:value-of select="$layoutName" />
             </xsl:with-param>
         </xsl:call-template>
-    
+
         <xsl:variable name="hasSprite" ><xsl:for-each select="objects" ><xsl:if test="type = 'Sprite'" >found</xsl:if></xsl:for-each></xsl:variable>
         <xsl:if test="contains($hasSprite, 'found')" >
-    private final int animationScale = 1;
+    private val animationScale: Int = 1
         </xsl:if>
-    
-        <xsl:if test="/game/properties/threedAnimationAdjustment" >
-    private final Number3d positionNumber3d = new Number3d(0.0f, 0.0f, 0.0f);
-    private final Number3d rotationNumber3d = new Number3d(0.0f, 0.0f, 0.0f);
-        </xsl:if>
-    
-    private final int portion = 120;
 
-    public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
+        <xsl:if test="/game/properties/threedAnimationAdjustment" >
+    private val positionNumber3d: Number3d = Number3d(0.0f, 0.0f, 0.0f)
+    private val rotationNumber3d: Number3d = Number3d(0.0f, 0.0f, 0.0f)
+        </xsl:if>
+
+    private val portion: Int = 120
+
+    constructor() : super("GDGame OpenGL ImageArray Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable())
     {
-        super("GDGame OpenGL ImageArray Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
-    
+
         <xsl:for-each select="/game/properties/threedAnimationAdjustment" >
             <xsl:if test="position" >
-        this.positionNumber3d.x = <xsl:value-of select="position/x" />;
-        this.positionNumber3d.y = <xsl:value-of select="position/y" />;
-        this.positionNumber3d.z = <xsl:value-of select="position/z" />;
+        this.positionNumber3d.x = <xsl:value-of select="position/x" />
+        this.positionNumber3d.y = <xsl:value-of select="position/y" />
+        this.positionNumber3d.z = <xsl:value-of select="position/z" />
             </xsl:if>
             <xsl:if test="rotation" >
-        this.rotationNumber3d.x = <xsl:value-of select="rotation/x" />f;
-        this.rotationNumber3d.y = <xsl:value-of select="rotation/y" />f;
-        this.rotationNumber3d.z = <xsl:value-of select="rotation/z" />f;
+        this.rotationNumber3d.x = <xsl:value-of select="rotation/x" />f
+        this.rotationNumber3d.y = <xsl:value-of select="rotation/y" />f
+        this.rotationNumber3d.z = <xsl:value-of select="rotation/z" />f
             </xsl:if>
         </xsl:for-each>
-    
+
     }
 
-    public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
+    constructor(String name) : super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable())
     {
-        super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
-    }
-    
-    public void loadDayTrack(final String loadingString) throws Exception
-    {
-        ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
     }
 
-    private boolean[] isInitialized = new boolean[11];
-    
-    public void init(final int level) 
-    throws Exception
+    fun loadDayTrack(loadingString: String)
+    {
+        var progressCanvas: ProgressCanvas = ProgressCanvasFactory.getInstance()
+    }
+
+    private var isInitialized: Array&lt;Boolean&gt; = BooleanArray(11)
+
+    fun init(level: Int)
+
     {
         if(this.isInitialized())
         {
-            return;
+            return
         }
-    
-        super.initImageCache(OpenGLImageCacheFactory.getInstance(), level);        
-    
-        final ImageCache imageCache = OpenGLImageCacheFactory.getInstance();
-        
-        final String loadingString = this.toString() + " Loading: ";
-    
-        //final int portion = 120;
-        
-        //int index = 0;
 
-        final Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
-            Min3dSceneResourcesFactory.getInstance();
-    
-        //ProgressCanvas progressCanvas = 
-          //  ProgressCanvasFactory.getInstance();
+        super.initImageCache(OpenGLImageCacheFactory.getInstance(), level)
+
+        val imageCache: ImageCache = OpenGLImageCacheFactory.getInstance()
+
+        val loadingString: String = this.toString() + " Loading: "
+
+        //final int portion = 120
+
+        //int index = 0
+
+        val min3dSceneResourcesFactory: Min3dSceneResourcesFactory =
+            Min3dSceneResourcesFactory.getInstance()
+
+        //ProgressCanvas progressCanvas =
+          //  ProgressCanvasFactory.getInstance()
 
                         try {
 
@@ -250,17 +247,17 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                     </xsl:call-template>
 
                     <xsl:text>&#10;</xsl:text>
-                    new GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(this.getHashtable(), this.getRectangleHashtable(), this.getRectangleArrayOfArraysHashtable()).init(imageCache, -1);
-                    new GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(this.getHashtable(), this.getRectangleHashtable(), this.getRectangleArrayOfArraysHashtable()).init(imageCache, -1);
-                    //GameAreaBoxUtil.getInstance().addAnimations(this);
+                    GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(this.getHashtable(), this.getRectangleHashtable(), this.getRectangleArrayOfArraysHashtable()).init(imageCache, -1)
+                    GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(this.getHashtable(), this.getRectangleHashtable(), this.getRectangleArrayOfArraysHashtable()).init(imageCache, -1)
+                    //GameAreaBoxUtil.getInstance().addAnimations(this)
 
-                        } catch(Exception e) {
-                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                        } catch(e: Exception) {
+                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e)
                         }
 
-        super.init(level);
+        super.init(level)
     }
-    
+
                     <xsl:call-template name="threedAnimationFactory" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
@@ -275,28 +272,28 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-    
-    public boolean isLoadingLevel(final int level)
+
+    fun isLoadingLevel(level: Int): Boolean
     {
         if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
         {
-            return true;
+            return true
         }
         else
         {
-            return super.isLoadingLevel(level);
+            return super.isLoadingLevel(level)
         }
     }
-    
-    public boolean isFeature()
+
+    fun isFeature(): Boolean
     {
-        final Features features = Features.getInstance();
+        val features: Features = Features.getInstance()
 
-        final GraphicsFeatureFactory graphicsFeatureFactory = 
-            GraphicsFeatureFactory.getInstance();
+        val graphicsFeatureFactory: GraphicsFeatureFactory =
+            GraphicsFeatureFactory.getInstance()
 
-        final OpenGLFeatureFactory openGLFeatureFactory = 
-            OpenGLFeatureFactory.getInstance();
+        val openGLFeatureFactory: OpenGLFeatureFactory =
+            OpenGLFeatureFactory.getInstance()
 
         if (features.isFeature(graphicsFeatureFactory.IMAGE_GRAPHICS) <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
             features.isFeature(graphicsFeatureFactory.IMAGE_TO_ARRAY_GRAPHICS) <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
@@ -304,10 +301,10 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
             (features.isFeature(openGLFeatureFactory.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory.OPENGL_3D))
             )
         {
-            return true;
+            return true
         } else
         {
-            return false;
+            return false
         }
     }
 

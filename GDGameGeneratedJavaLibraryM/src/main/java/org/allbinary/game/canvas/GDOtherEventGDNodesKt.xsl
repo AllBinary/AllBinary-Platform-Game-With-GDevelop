@@ -20,9 +20,9 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
@@ -39,57 +39,57 @@ Created By: Travis Berthelot
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/event/GDJsCodeEventGDNode.xsl" />
-    
+
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
-        
+
         <xsl:variable name="selectedLayoutIndex" ><GD_CURRENT_INDEX></xsl:variable>
         <xsl:variable name="selectedNodeIds" ><GD_NODE_IDS></xsl:variable>
 
-package org.allbinary.game.canvas.node.builtin;
+package org.allbinary.game.canvas.node.builtin
 
-import javax.microedition.lcdui.Graphics;
-import javax.microedition.lcdui.Image;
+import javax.microedition.lcdui.Graphics
+import javax.microedition.lcdui.Image
 
-import org.json.me.JSONArray;
-import org.json.me.JSONObject;        
+import org.json.me.JSONArray
+import org.json.me.JSONObject
 
 <!--import org.allbinary.animation.AnimationBehavior;-->
-import org.allbinary.canvas.GameGlobalsFactory;
-import org.allbinary.game.canvas.GDGameGlobals;
+import org.allbinary.canvas.GameGlobalsFactory
+import org.allbinary.game.canvas.GDGameGlobals
 
-import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />LayoutUtil;
-import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />GDObjectsFactory;
-import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals;
-import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationImageResources;
+import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />LayoutUtil
+import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />GDObjectsFactory
+import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals
+import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationImageResources
 
-import org.allbinary.game.canvas.GDExtensionGDNodes;
-import org.allbinary.game.configuration.persistance.GDStructure;
-import org.allbinary.game.layer.GDGameLayer;
-import org.allbinary.game.layer.CollidableCompositeLayer;
-import org.allbinary.game.layout.GDNode;
-import org.allbinary.game.layout.GDObject;
-import org.allbinary.game.layout.GDStrings;
-import org.allbinary.game.layout.GDObjectStrings;
-import org.allbinary.game.rand.MyRandomFactory;
-import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
-import org.allbinary.input.motion.gesture.MotionGestureInput;
-import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
-import org.allbinary.logic.math.SmallIntegerSingletonFactory;
-import org.allbinary.string.CommonStrings;
-import org.allbinary.string.CommonSeps;
-import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.logic.io.file.FileSystem;
-import org.allbinary.logic.string.StringUtil;
-import org.allbinary.logic.string.StringMaker;
-import org.allbinary.util.BasicArrayList;
-import org.allbinary.util.BasicArrayListD;
-import org.allbinary.logic.NullUtil;
-import org.allbinary.time.TimeDelayHelper;
-import org.allbinary.util.ArrayUtil;
+import org.allbinary.game.canvas.GDExtensionGDNodes
+import org.allbinary.game.configuration.persistance.GDStructure
+import org.allbinary.game.layer.GDGameLayer
+import org.allbinary.game.layer.CollidableCompositeLayer
+import org.allbinary.game.layout.GDNode
+import org.allbinary.game.layout.GDObject
+import org.allbinary.game.layout.GDStrings
+import org.allbinary.game.layout.GDObjectStrings
+import org.allbinary.game.rand.MyRandomFactory
+import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton
+import org.allbinary.input.motion.gesture.MotionGestureInput
+import org.allbinary.input.motion.gesture.observer.MotionGestureEvent
+import org.allbinary.logic.math.SmallIntegerSingletonFactory
+import org.allbinary.string.CommonStrings
+import org.allbinary.string.CommonSeps
+import org.allbinary.logic.communication.log.LogUtil
+import org.allbinary.logic.io.file.FileSystem
+import org.allbinary.logic.string.StringUtil
+import org.allbinary.logic.string.StringMaker
+import org.allbinary.util.BasicArrayList
+import org.allbinary.util.BasicArrayListD
+import org.allbinary.logic.NullUtil
+import org.allbinary.time.TimeDelayHelper
+import org.allbinary.util.ArrayUtil
 
 <!--import org.allbinary.game.configuration.persistance.JSONPersistance;
 import org.allbinary.game.layer.GDGameLayerFactory;
@@ -105,45 +105,45 @@ import org.allbinary.game.layer.identification.GroupLayerManagerListener;
 <xsl:variable name="selectedNodeIdSet" select="substring(substring($selectedNodeIds, string-length($selectedNodeIds) - 1), 1, 1)" />
 <xsl:variable name="lastDigit2" ><xsl:if test="4 >= $selectedNodeIdSet" >0</xsl:if><xsl:if test="$selectedNodeIdSet > 4" >1</xsl:if></xsl:variable>
 //selectedNodeIdSet=<xsl:value-of select="$selectedNodeIdSet" />
-public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes
+open public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes
 {
 
-    private static final GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes instance = new GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes();
+    private val instance: GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes = GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes()
 
-    public static final GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes getInstance() {
-        return GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes.instance;
+    public fun getInstance(): GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes {
+        return GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes.instance
     }
 
-    protected final LogUtil logUtil = LogUtil.getInstance();
-    private final CommonStrings commonStrings = CommonStrings.getInstance();
-    private final NullUtil nullUtil = NullUtil.getInstance();
-    private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
-    private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
-    private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
-    private final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
-    
+    protected val logUtil: LogUtil = LogUtil.getInstance()
+    private val commonStrings: CommonStrings = CommonStrings.getInstance()
+    private val nullUtil: NullUtil = NullUtil.getInstance()
+    private val arrayUtil: ArrayUtil = ArrayUtil.getInstance()
+    private val smallIntegerSingletonFactory: SmallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
+    private val gameTickDisplayInfoSingleton: GameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance()
+    private val gameGlobalsFactory: GameGlobalsFactory = GameGlobalsFactory.getInstance()
+
 <!--
     private final StringUtil stringUtil = StringUtil.getInstance();
     private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
 
     private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
 -->
-    
-    private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-    private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
-    
-    private final GD<xsl:value-of select="$selectedLayoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$selectedLayoutIndex" />GDObjectsFactory.getInstance();
-    private final GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals.getInstance();
-    private final GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationImageResources.getInstance();
-    
-    public GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes() {
 
-    }    
+    private val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
+    private val gdExtensionGDNodes: GDExtensionGDNodes = GDExtensionGDNodes.getInstance()
+
+    private val gdObjectsFactory: GD<xsl:value-of select="$selectedLayoutIndex" />GDObjectsFactory = GD<xsl:value-of select="$selectedLayoutIndex" />GDObjectsFactory.getInstance()
+    private val globals: GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals = GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals.getInstance()
+    private val imageResources: GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationImageResources = GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationImageResources.getInstance()
+
+    public constructor() {
+
+    }
 
         <xsl:for-each select="externalEvents" >
 
             <xsl:variable name="associatedLayout" select="associatedLayout" />
-            
+
             <xsl:variable name="layoutIndex" ><xsl:for-each select="../layouts" ><xsl:variable name="layoutIndex" select="position() - 1" /><xsl:if test="name = $associatedLayout" ><xsl:value-of select="$layoutIndex" /></xsl:if></xsl:for-each></xsl:variable>
 
             <xsl:if test="$selectedLayoutIndex = $layoutIndex" >
@@ -155,7 +155,7 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
                 <xsl:variable name="objectsAsString" >,<xsl:for-each select="/game/objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="../layouts" ><xsl:if test="name = $layoutName" ><xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
                 <xsl:variable name="createdObjectsAsString" >thiswasnullbefore,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
                 <xsl:variable name="externalEventActionModVarSceneAsString" >thiswasnullbefore,<xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
-                        
+
                     <xsl:call-template name="builtinCommonInstructionsGDNode" >
                         <xsl:with-param name="caller" >otherEventLayout</xsl:with-param>
                         <xsl:with-param name="selectedNodeIds" >
@@ -187,15 +187,15 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
                         </xsl:with-param>
 
                     </xsl:call-template>
-                    
+
             </xsl:if>
 
         </xsl:for-each>
-        
+
         <xsl:for-each select="externalLayouts" >
 
             <xsl:variable name="associatedLayout" select="associatedLayout" />
-            
+
             <xsl:variable name="layoutIndex" ><xsl:for-each select="../layouts" ><xsl:variable name="layoutIndex" select="position() - 1" /><xsl:if test="name = $associatedLayout" ><xsl:value-of select="$layoutIndex" /></xsl:if></xsl:for-each></xsl:variable>
 
             <xsl:if test="$selectedLayoutIndex = $layoutIndex" >
@@ -207,7 +207,7 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
                 <xsl:variable name="objectsAsString" >,<xsl:for-each select="/game/objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="../layouts" ><xsl:if test="name = $layoutName" ><xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
                 <xsl:variable name="createdObjectsAsString" >thiswasnullbefore,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
                 <xsl:variable name="externalLayoutActionModVarSceneAsString" >thiswasnullbefore,<xsl:call-template name="externalLayoutActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
-                        
+
                     <xsl:call-template name="builtinCommonInstructionsGDNode" >
                         <xsl:with-param name="caller" >otherEventLayout</xsl:with-param>
                         <xsl:with-param name="selectedNodeIds" >
@@ -239,16 +239,16 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
                         </xsl:with-param>
 
                     </xsl:call-template>
-                    
+
             </xsl:if>
 
         </xsl:for-each>
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
-            
+
             <xsl:if test="$selectedLayoutIndex = $layoutIndex" >
-                
+
                 <!-- Android images assets need to be enlarged if they are not setup to be inside the cirle area needed -->
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
                 <xsl:variable name="layoutName" select="name" />
@@ -261,7 +261,7 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
                 //instancesAsString=<xsl:value-of select="$instancesAsString" />
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
-                                    
+
                     //builtinCommonInstructionsGDNode - START
                     <xsl:call-template name="builtinCommonInstructionsGDNode" >
                         <xsl:with-param name="caller" >otherEventLayout</xsl:with-param>
@@ -300,321 +300,314 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
 
         </xsl:for-each>
 
-        public double TimeDelta() {
-            return globals.globalsGameTickTimeDelayHelper.timeDelta * .001;
+        open public fun TimeDelta(): Double {
+            return globals.globalsGameTickTimeDelayHelper.timeDelta * .001
         }
 
-        public int SceneWindowWidth() {
-            return gameTickDisplayInfoSingleton.getLastWidth();
+        open public fun SceneWindowWidth(): Int {
+            return gameTickDisplayInfoSingleton.getLastWidth()
         }
 
-        public int SceneWindowHeight() {
-            return gameTickDisplayInfoSingleton.getLastHeight();
+        open public fun SceneWindowHeight(): Int {
+            return gameTickDisplayInfoSingleton.getLastHeight()
         }
 
-        public int Random(final int range) {
-            return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
+        open public fun Random(range: Int): Int {
+            return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1)
         }
 
-        public float RandomFloatInRange(final double min, final double max) {
-            final double next = (max - min);
-            //this.logUtil.putF("NEXT: " + next, this, this.commonStrings.PROCESS);
-            final float nextF = (float) next * 1000;
-            //this.logUtil.putF("NEXTF: " + nextF, this, this.commonStrings.PROCESS);
-            final int nextI = Math.round(nextF);
-            //this.logUtil.putF("NEXTI: " + nextI, this, this.commonStrings.PROCESS);
-            final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
-            //this.logUtil.putF("RANDOM: " + random, this, this.commonStrings.PROCESS);
-            final float randomF = (float) random;
-            //this.logUtil.putF("RANDOMF: " + randomF, this, this.commonStrings.PROCESS);
-            final float result = (float) min + (randomF / 1000);
-            //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS);
-            return result;
-        }
-                    
-        public float RandomFloatInRange(final float min, final float max) {
-            final float nextF = (float) (max - min) * 1000;
-            //this.logUtil.putF("NEXTF: " + nextF, this, this.commonStrings.PROCESS);
-            final int nextI = Math.round(nextF);
-            //this.logUtil.putF("NEXTI: " + nextI, this, this.commonStrings.PROCESS);
-            final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
-            //this.logUtil.putF("RANDOM: " + random, this, this.commonStrings.PROCESS);
-            final float randomF = (float) random;
-            //this.logUtil.putF("RANDOMF: " + randomF, this, this.commonStrings.PROCESS);
-            final float result = (float) min + (randomF / 1000);
-            //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS);
-            return result;
+        open public fun RandomFloatInRange(min: Double, max: Double): Float {
+            val next: Double = (max - min)
+            //this.logUtil.putF("NEXT: " + next, this, this.commonStrings.PROCESS)
+            val nextF: Float = next.toFloat() * 1000
+            //this.logUtil.putF("NEXTF: " + nextF, this, this.commonStrings.PROCESS)
+            val nextI: Int = Math.round(nextF)
+            //this.logUtil.putF("NEXTI: " + nextI, this, this.commonStrings.PROCESS)
+            val random: Int = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI)
+            //this.logUtil.putF("RANDOM: " + random, this, this.commonStrings.PROCESS)
+            val randomF: Float = random.toFloat()
+            //this.logUtil.putF("RANDOMF: " + randomF, this, this.commonStrings.PROCESS)
+            val result: Float = min.toFloat() + (randomF / 1000)
+            //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS)
+            var result: return
         }
 
-        public int Variable(final int value) {
-            return value;
+        open public fun RandomFloatInRange(min: Float, max: Float): Float {
+            val nextF: Float = (max - min).toFloat() * 1000
+            //this.logUtil.putF("NEXTF: " + nextF, this, this.commonStrings.PROCESS)
+            val nextI: Int = Math.round(nextF)
+            //this.logUtil.putF("NEXTI: " + nextI, this, this.commonStrings.PROCESS)
+            val random: Int = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI)
+            //this.logUtil.putF("RANDOM: " + random, this, this.commonStrings.PROCESS)
+            val randomF: Float = random.toFloat()
+            //this.logUtil.putF("RANDOMF: " + randomF, this, this.commonStrings.PROCESS)
+            val result: Float = min.toFloat() + (randomF / 1000)
+            //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS)
+            var result: return
         }
 
-        public float Variable(final float value) {
-            return value;
+        open public fun Variable(value: Int): Int {
+            var value: return
         }
 
-        public double Variable(final double value) {
-            return value;
+        open public fun Variable(value: Float): Float {
+            var value: return
         }
 
-        public String VariableString(final String string) {
-            return string;
+        open public fun Variable(value: Double): Double {
+            var value: return
         }
 
-        public String VariableString(final Object object) {
-            return object.toString();
+        open public fun VariableString(string: String): String {
+            var string: return
         }
 
-        public int VariableChildCount(final String[] array) {
-            return array.length;
+        open public fun VariableString(object: Object): String {
+            return object.toString()
         }
 
-        public int VariableChildCount(final int[] array) {
-            return array.length;
+        open public fun VariableChildCount(array: Array&lt;String&gt;): Int {
+            return array.length
         }
 
-        public String GlobalVariable(final String value) {
-            return value;
+        open public fun VariableChildCount(array: IntArray): Int {
+            return array.length
         }
 
-        public float GlobalVariable(final float value) {
-            return value;
+        open public fun GlobalVariable(value: String): String {
+            var value: return
         }
 
-        public long GlobalVariable(final long value) {
-            return value;
+        open public fun GlobalVariable(value: Float): Float {
+            var value: return
         }
 
-        public int GlobalVariable(final int value) {
-            return value;
+        open public fun GlobalVariable(value: Long): Long {
+            var value: return
         }
 
-        public String GlobalVariableString(final String value) {
-            return value;
+        open public fun GlobalVariable(value: Int): Int {
+            var value: return
         }
 
-        public int GlobalVariableChildCount(final String[] array) {
-            return array.length;
+        open public fun GlobalVariableString(value: String): String {
+            var value: return
         }
 
-        public int GlobalVariableChildCount(final int[] array) {
-            return array.length;
+        open public fun GlobalVariableChildCount(array: Array&lt;String&gt;): Int {
+            return array.length
         }
 
-        public int GlobalVariableChildCount(final long[] array) {
-            return array.length;
+        open public fun GlobalVariableChildCount(array: IntArray): Int {
+            return array.length
         }
 
-        public String GlobalVarToJSON(final String value) {
-            return value;
+        open public fun GlobalVariableChildCount(array: LongArray): Int {
+            return array.length
         }
 
-        public String GlobalVarToJSON(final int value) {
-            return Integer.toString(value);
+        open public fun GlobalVarToJSON(value: String): String {
+            var value: return
         }
 
-        public String GlobalVarToJSON(final long value) {
-            return Long.toString(value);
+        open public fun GlobalVarToJSON(value: Int): String {
+            return Integer.toString(value)
         }
 
-        public int ToJSONType(final GDStructure value) {
-            return value.getJSONType();
+        open public fun GlobalVarToJSON(value: Long): String {
+            return Long.toString(value)
         }
 
-        public String ToJSON(final GDStructure value) {
-            return value.toJSONAsString();
+        open public fun ToJSONType(value: GDStructure): Int {
+            return value.getJSONType()
         }
 
-        public String ToJSON(final String value) {
-            return value;
+        open public fun ToJSON(value: GDStructure): String {
+            return value.toJSONAsString()
         }
 
-        public String ToJSON(final int value) {
-            return Integer.toString(value);
+        open public fun ToJSON(value: String): String {
+            var value: return
         }
 
-        public String ToJSON(final long value) {
-            return Long.toString(value);
+        open public fun ToJSON(value: Int): String {
+            return Integer.toString(value)
         }
 
-        public int SceneInstancesCount(final int size) {
-            return size;
+        open public fun ToJSON(value: Long): String {
+            return Long.toString(value)
         }
 
-        public int MouseX() {
-                        
-            return gameGlobalsFactory.point.getX();
+        open public fun SceneInstancesCount(size: Int): Int {
+            var size: return
         }
 
-        public int MouseY() {
-                        
-            return gameGlobalsFactory.point.getY();
+        open public fun MouseX(): Int {
+            return gameGlobalsFactory.point.getX()
         }
 
-        public int MouseX(final String string, int value) {
-                        
-            return gameGlobalsFactory.point.getX();
+        open public fun MouseY(): Int {
+            return gameGlobalsFactory.point.getY()
         }
 
-        public int MouseY(final String string, int value) {
-                        
-            return gameGlobalsFactory.point.getY();
-        }
-                    
-        public int CameraX(final String string, int value) {
-                        
-            return 0;
+        open public fun MouseX(string: String, value: Int): Int {
+            return gameGlobalsFactory.point.getX()
         }
 
-        public int CameraY(final String string, int value) {
-                        
-            return 0;
+        open public fun MouseY(string: String, value: Int): Int {
+            return gameGlobalsFactory.point.getY()
         }
 
-        public int CameraWidth(final String string, int value) {
-
-            return gameTickDisplayInfoSingleton.getLastWidth();
+        open public fun CameraX(string: String, value: Int): Int {
+            var 0: return
         }
 
-        public long TimerElapsedTime(final TimeDelayHelper timeDelayHelper) {
-            return timeDelayHelper.getElapsed(globals.globalsGameTickTimeDelayHelper.lastStartTime) / 1000;
+        open public fun CameraY(string: String, value: Int): Int {
+            var 0: return
         }
 
-        public int floor(final int value) {
-            return value;
+        open public fun CameraWidth(string: String, value: Int): Int {
+            return gameTickDisplayInfoSingleton.getLastWidth()
         }
 
-        public float floor(final float value) {
-            return (float) Math.floor((double) value);
+        open public fun TimerElapsedTime(timeDelayHelper: TimeDelayHelper): Long {
+            return timeDelayHelper.getElapsed(globals.globalsGameTickTimeDelayHelper.lastStartTime) / 1000
         }
 
-        public int mod(final int value, final int mod) {
-            return value % mod;
+        open public fun floor(value: Int): Int {
+            var value: return
         }
 
-        public int round(final int value) {
-            return value;
+        open public fun floor(value: Float): Float {
+            return Math.floor(value.toDouble()).toFloat()
         }
 
-        public long round(final long value) {
-            return value;
-        }
-                    
-        public float round(final float value) {
-            return Math.round(value);
-        }
-                    
-        public int abs(final int value) {
-            return Math.abs(value);
-        }
-                    
-        public float abs(final float value) {
-            return Math.abs(value);
+        open public fun mod(value: Int, mod: Int): Int {
+            return value % mod
         }
 
-        public double log2(final int value) {
-            return Math.log(value);
+        open public fun round(value: Int): Int {
+            var value: return
         }
 
-        public double sin(final double angle) {
-            return Math.sin(angle);
+        open public fun round(value: Long): Long {
+            var value: return
         }
 
-        public double cos(final double angle) {
-            return Math.cos(angle);
+        open public fun round(value: Float): Float {
+            return Math.round(value)
         }
 
-        public int min(final int min, final int max) {
-            return Math.min(min, max);
+        open public fun abs(value: Int): Int {
+            return Math.abs(value)
         }
 
-        public int max(final int min, final int max) {
-            return Math.max(min, max);
-        }
-                    
-        public int ceil(final double value) {
-            return (int) Math.ceil(value);
+        open public fun abs(value: Float): Float {
+            return Math.abs(value)
         }
 
-        public double ToRad(final double angdeg) {
-            //return Math.toRadians(angdeg);
-            return angdeg;
-        }
-                    
-        public long TimeFromStart() {
-            return globals.globalsGameTickTimeDelayHelper.getTimeFromStart() / 100;
+        open public fun log2(value: Int): Double {
+            return Math.log(value)
         }
 
-        public String NewLine() {
-            return CommonSeps.getInstance().NEW_LINE;
+        open public fun sin(angle: Double): Double {
+            return Math.sin(angle)
         }
 
-        public int LastTouchId() {
-            return 0;
+        open public fun cos(angle: Double): Double {
+            return Math.cos(angle)
         }
 
-        public int LastEndedTouchId() {
-            return 0;
+        open public fun min(min: Int, max: Int): Int {
+            return Math.min(min, max)
         }
 
-        public int TouchX(final int touchId, final String name, final int unknown) {
-            return 0;
+        open public fun max(min: Int, max: Int): Int {
+            return Math.max(min, max)
         }
 
-        public int TouchY(final int touchId, final String name, final int unknown) {
-            return 0;
+        open public fun ceil(value: Double): Int {
+            return Math.ceil(value).toInt()
         }
 
-        public float ToNumber(final String string) {
-            return Float.parseFloat(string);
+        open public fun ToRad(angdeg: Double): Double {
+            //return Math.toRadians(angdeg)
+            var angdeg: return
         }
 
-        public int StrLength(final String string) {
-            return string.length();
-        }
-                    
-        public String StrReplaceAll(final String string, final String find, final String replace) {
-            return string.replace(find, replace);
+        open public fun TimeFromStart(): Long {
+            return globals.globalsGameTickTimeDelayHelper.getTimeFromStart() / 100
         }
 
-        public String SubStr(final String string, final int startIndex, final int endIndex) {
-            return string.substring(startIndex, endIndex);
+        open public fun NewLine(): String {
+            return CommonSeps.getInstance().NEW_LINE
         }
 
-        public String ToString(final String value) {
-            return value;
+        open public fun LastTouchId(): Int {
+            var 0: return
         }
 
-        public String ToString(final int value) {
+        open public fun LastEndedTouchId(): Int {
+            var 0: return
+        }
+
+        open public fun TouchX(touchId: Int, name: String, unknown: Int): Int {
+            var 0: return
+        }
+
+        open public fun TouchY(touchId: Int, name: String, unknown: Int): Int {
+            var 0: return
+        }
+
+        open public fun ToNumber(string: String): Float {
+            return Float.parseFloat(string)
+        }
+
+        open public fun StrLength(string: String): Int {
+            return string.length
+        }
+
+        open public fun StrReplaceAll(string: String, find: String, replace: String): String {
+            return string.replace(find, replace)
+        }
+
+        open public fun SubStr(string: String, startIndex: Int, endIndex: Int): String {
+            return string.substring(startIndex, endIndex)
+        }
+
+        open public fun ToString(value: String): String {
+            var value: return
+        }
+
+        open public fun ToString(value: Int): String {
             if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
-                return Integer.toString(value);
+                return Integer.toString(value)
             } else {
-                return smallIntegerSingletonFactory.getString(value);
+                return smallIntegerSingletonFactory.getString(value)
             }
         }
 
-        public String ToString(final long value) {
-            //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
-            return Long.toString(value);
-        }
-                    
-        public String LargeNumberToString(final long value) {
-            //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
-            return Long.toString(value);
-        }
-                    
-        public String LargeNumberToString(final float value) {
-            //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
-            return Long.toString((long) value);
+        open public fun ToString(value: Long): String {
+            //this.primitiveLongUtil = PrimitiveLongUtil(max + 1)
+            return Long.toString(value)
         }
 
-        public String ToString(final float value) {
-            return Float.toString(value);
+        open public fun LargeNumberToString(value: Long): String {
+            //this.primitiveLongUtil = PrimitiveLongUtil(max + 1)
+            return Long.toString(value)
         }
 
-        public int ToNotString(final int value) {
-           return value;
+        open public fun LargeNumberToString(value: Float): String {
+            //this.primitiveLongUtil = PrimitiveLongUtil(max + 1)
+            return Long.toString(value.toLong())
+        }
+
+        open public fun ToString(value: Float): String {
+            return Float.toString(value)
+        }
+
+        open public fun ToNotString(value: Int): Int {
+           var value: return
         }
 
 }

@@ -20,11 +20,11 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDAction.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
@@ -42,7 +42,7 @@ Created By: Travis Berthelot
 
     <xsl:template match="/game">
         //game
-        
+
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
             //layouts=<xsl:value-of select="name" /> position=<xsl:value-of select="position()" />-1=<xsl:value-of select="$layoutIndex" />
@@ -66,135 +66,133 @@ Created By: Travis Berthelot
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
                 //variables=<xsl:value-of select="$variables" />
 
-                package org.allbinary.game.canvas;
+                package org.allbinary.game.canvas
 
-                import javax.microedition.lcdui.Font;
-                import javax.microedition.lcdui.Graphics;
+                import javax.microedition.lcdui.Font
+                import javax.microedition.lcdui.Graphics
 
-                import org.json.me.JSONArray;
-                import org.json.me.JSONObject;
-                import org.json.me.JSONTokener;
+                import org.json.me.JSONArray
+                import org.json.me.JSONObject
+                import org.json.me.JSONTokener
 
-                import org.allbinary.AndroidUtil;
-                import org.allbinary.animation.text.CustomTextAnimation;
-                import org.allbinary.game.canvas.GDExtensionGDNodes;
-                import org.allbinary.game.configuration.persistance.GDStructure;
-                import org.allbinary.game.identification.Group;
-                import org.allbinary.game.identification.GroupFactory;
-                import org.allbinary.game.input.GameInputProcessor;
-                import org.allbinary.game.input.InputFactory;
-                import org.allbinary.game.layer.behavior.DestroyOutsideBehavior;
-                import org.allbinary.game.layer.behavior.GDBehavior;
-                import org.allbinary.game.layer.SWTUtil;
-                import org.allbinary.game.layer.GDGameLayerStrings;
-                import org.allbinary.game.layer.GDGameLayer;
-                import org.allbinary.game.layer.special.GDConditionWithGroupActions;
-                import org.allbinary.game.layer.special.TempGameLayerUtil;
-                import org.allbinary.game.layout.GDNode;
-                import org.allbinary.game.layout.GDNodes;
-                import org.allbinary.game.layout.GDNodeUtil;
-                import org.allbinary.game.layout.GDObject;
-                import org.allbinary.game.rand.MyRandomFactory;
-                import org.allbinary.graphics.GPoint;
-                import org.allbinary.graphics.PointFactory;
-                import org.allbinary.graphics.Rectangle;
-                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
-                import org.allbinary.input.motion.gesture.MotionGestureInput;
-                import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
-                import org.allbinary.layer.AllBinaryLayer;
-                import org.allbinary.layer.event.LayerManagerEvent;
-                import org.allbinary.layer.event.LayerManagerEventHandler;
-                import org.allbinary.layer.event.LayerManagerEventListener;
-                import org.allbinary.logic.string.StringUtil;
-                import org.allbinary.string.CommonStrings;
-                import org.allbinary.logic.string.StringMaker;
-                import org.allbinary.logic.util.event.EventListenerInterface;
-                import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.media.audio.Sound;
-                import org.allbinary.time.GameTickTimeDelayHelper;
-                import org.allbinary.time.TimeDelayHelper;
-                import org.allbinary.logic.NullUtil;
-                import org.allbinary.util.ArrayUtil;
-                import org.allbinary.util.BasicArrayList;
-                import org.allbinary.util.BasicArrayListD;
-                import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+                import org.allbinary.AndroidUtil
+                import org.allbinary.animation.text.CustomTextAnimation
+                import org.allbinary.game.canvas.GDExtensionGDNodes
+                import org.allbinary.game.configuration.persistance.GDStructure
+                import org.allbinary.game.identification.Group
+                import org.allbinary.game.identification.GroupFactory
+                import org.allbinary.game.input.GameInputProcessor
+                import org.allbinary.game.input.InputFactory
+                import org.allbinary.game.layer.behavior.DestroyOutsideBehavior
+                import org.allbinary.game.layer.behavior.GDBehavior
+                import org.allbinary.game.layer.SWTUtil
+                import org.allbinary.game.layer.GDGameLayerStrings
+                import org.allbinary.game.layer.GDGameLayer
+                import org.allbinary.game.layer.special.GDConditionWithGroupActions
+                import org.allbinary.game.layer.special.TempGameLayerUtil
+                import org.allbinary.game.layout.GDNode
+                import org.allbinary.game.layout.GDNodes
+                import org.allbinary.game.layout.GDNodeUtil
+                import org.allbinary.game.layout.GDObject
+                import org.allbinary.game.rand.MyRandomFactory
+                import org.allbinary.graphics.GPoint
+                import org.allbinary.graphics.PointFactory
+                import org.allbinary.graphics.Rectangle
+                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton
+                import org.allbinary.input.motion.gesture.MotionGestureInput
+                import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener
+                import org.allbinary.layer.AllBinaryLayer
+                import org.allbinary.layer.event.LayerManagerEvent
+                import org.allbinary.layer.event.LayerManagerEventHandler
+                import org.allbinary.layer.event.LayerManagerEventListener
+                import org.allbinary.logic.string.StringUtil
+                import org.allbinary.string.CommonStrings
+                import org.allbinary.logic.string.StringMaker
+                import org.allbinary.logic.util.event.EventListenerInterface
+                import org.allbinary.logic.communication.log.LogUtil
+                import org.allbinary.media.audio.Sound
+                import org.allbinary.time.GameTickTimeDelayHelper
+                import org.allbinary.time.TimeDelayHelper
+                import org.allbinary.logic.NullUtil
+                import org.allbinary.util.ArrayUtil
+                import org.allbinary.util.BasicArrayList
+                import org.allbinary.util.BasicArrayListD
+                import org.allbinary.logic.math.SmallIntegerSingletonFactory
 
                 //LayoutGlobals name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals extends GDSceneGlobals
+                open public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals : GDSceneGlobals
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals instance = 
-                        new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals();
+                    private val instance: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals =
+                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals()
 
-                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals getInstanceOrCreate()
-                    {
-                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance;
+                    open public fun getInstanceOrCreate(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals {
+                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance
                     }
 
-                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals getInstance()
-                    {
-                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance;
+                    open public fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals {
+                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance
                     }
 
-                        protected final LogUtil logUtil = LogUtil.getInstance();
-                        private final CommonStrings commonStrings = CommonStrings.getInstance();
-                        private final StringUtil stringUtil = StringUtil.getInstance();
-                        private final String EMPTY_STRING = stringUtil.EMPTY_STRING;
-                        private final NullUtil nullUtil = NullUtil.getInstance();
-                        private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
-                        private final GroupFactory groupFactory = GroupFactory.getInstance();
-                        private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
-                        private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
-                        private final PointFactory pointFactory = PointFactory.getInstance();
-                        
-                        //private final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
-                        
-                        public final String PROCESS_RELEASE = "processReleased";
-                        
-                        //private final GDNodes gdNodes = GDNodeUtil.getInstance().getInstance(<xsl:value-of select="$layoutIndex" />);
+                        protected val logUtil: LogUtil = LogUtil.getInstance()
+                        private val commonStrings: CommonStrings = CommonStrings.getInstance()
+                        private val stringUtil: StringUtil = StringUtil.getInstance()
+                        private val EMPTY_STRING: String = stringUtil.EMPTY_STRING
+                        private val nullUtil: NullUtil = NullUtil.getInstance()
+                        private val arrayUtil: ArrayUtil = ArrayUtil.getInstance()
+                        private val groupFactory: GroupFactory = GroupFactory.getInstance()
+                        private val gameTickDisplayInfoSingleton: GameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance()
+                        private val smallIntegerSingletonFactory: SmallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
+                        private val pointFactory: PointFactory = PointFactory.getInstance()
+
+                        //private final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance()
+
+                        public val PROCESS_RELEASE: String = "processReleased"
+
+                        //private final GDNodes gdNodes = GDNodeUtil.getInstance().getInstance(<xsl:value-of select="$layoutIndex" />)
 
                         <xsl:variable name="hasHighscoreSubmissionComplete" >
                             <xsl:for-each select="variables" >
                                 <xsl:if test="name = 'highscoreSubmissionComplete'" >found</xsl:if>
                             </xsl:for-each>
                         </xsl:variable>
-                        
+
                         <xsl:if test="not(contains($hasHighscoreSubmissionComplete, 'found'))" >
                         //This layout should not be the highscore layout
-                        public boolean highscoreSubmissionComplete = false;
+                        public var highscoreSubmissionComplete: Boolean = false
                         </xsl:if>
 
                     //variablesStructuresChildrenNames - START
                     <xsl:call-template name="variablesStructuresChildrenNames" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
-                        </xsl:with-param>                       
+                        </xsl:with-param>
                         <xsl:with-param name="layoutName" >
                             <xsl:value-of select="$layoutName" />
                         </xsl:with-param>
                     </xsl:call-template>
                     //variablesStructuresChildrenNames - END
-                                                                                                                                                                        
+
                     //variablesStructures - START
                     <xsl:call-template name="variablesStructures" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
-                        </xsl:with-param>                       
+                        </xsl:with-param>
                         <xsl:with-param name="layoutName" >
                             <xsl:value-of select="$layoutName" />
                         </xsl:with-param>
                     </xsl:call-template>
                     //variablesStructures - END
-                                        
+
                         <xsl:for-each select="../externalEvents" >
                             <xsl:if test="$layoutName = associatedLayout" >
-                        public GDNode <xsl:value-of select="name" />GDNode = null;
+                        public var <xsl:value-of select="name" />GDNode: GDNode = null
                             </xsl:if>
                         </xsl:for-each>
 
                         <xsl:for-each select="../externalLayouts" >
                             <xsl:if test="$layoutName = associatedLayout" >
-                        public GDNode <xsl:value-of select="name" />GDNode = null;
+                        public var <xsl:value-of select="name" />GDNode: GDNode = null
                             </xsl:if>
                         </xsl:for-each>
 
@@ -202,26 +200,26 @@ Created By: Travis Berthelot
                         //objectsWithOnceCondition=<xsl:value-of select="$objectsWithOnceCondition" />
                         <xsl:for-each select="objects" >
                             <xsl:if test="contains($objectsWithOnceCondition, name/text())" >
-                        public final BasicArrayList <xsl:value-of select="name/text()" />OnceGDNodeList = new BasicArrayListD();
+                        public val <xsl:value-of select="name/text()" />OnceGDNodeList: BasicArrayList = BasicArrayListD()
                             </xsl:if>
                         </xsl:for-each>
 
-                    
-                        public final Graphics graphics = new Graphics();
-                        //public final BasicArrayList ZERO_GD_OBJECT = new BasicArrayList(this.nullUtil.NULL_OBJECT_ARRAY);
-                        
+
+                        public val graphics: Graphics = Graphics()
+                        //public final BasicArrayList ZERO_GD_OBJECT = BasicArrayList(this.nullUtil.NULL_OBJECT_ARRAY)
+
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
-                        public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME = "<xsl:value-of select="name" />";
-                        public final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroupByName(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME);
-                        //public final BasicArrayList <xsl:value-of select="name" />GDObjectListOfList = new BasicArrayListD();
-                        public final BasicArrayList <xsl:value-of select="name" />GDGameLayerListOfList = new BasicArrayListD();
-                        public final BasicArrayList <xsl:value-of select="name" />GDGameLayerRemoveListOfList = new BasicArrayListD();
-                        public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerListOfList = new BasicArrayListD();
-                        public final BasicArrayList <xsl:value-of select="name" />GDConditionWithGroupActionsList = new BasicArrayListD();
+                        public val <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME: String = "<xsl:value-of select="name" />"
+                        public val <xsl:value-of select="name" />GroupInterface: Group = this.groupFactory.getNextGroupByName(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME)
+                        //public final BasicArrayList <xsl:value-of select="name" />GDObjectListOfList = BasicArrayListD()
+                        public val <xsl:value-of select="name" />GDGameLayerListOfList: BasicArrayList = BasicArrayListD()
+                        public val <xsl:value-of select="name" />GDGameLayerRemoveListOfList: BasicArrayList = BasicArrayListD()
+                        public val <xsl:value-of select="name" />CacheGDGameLayerListOfList: BasicArrayList = BasicArrayListD()
+                        public val <xsl:value-of select="name" />GDConditionWithGroupActionsList: BasicArrayList = BasicArrayListD()
                         <xsl:for-each select="objects" >
-                        //public final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" />";
-                        //public final Group <xsl:value-of select="name" />GroupInterface;
+                        //public final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" />"
+                        //public final Group <xsl:value-of select="name" />GroupInterface
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroups - END
@@ -231,11 +229,11 @@ Created By: Travis Berthelot
                         //name=<xsl:value-of select="name" /> type=<xsl:value-of select="type" /><xsl:text>&#10;</xsl:text>
                         <xsl:variable name="initialVariablesValue" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="initialVariables/value" /></xsl:with-param><xsl:with-param name="find" >-</xsl:with-param><xsl:with-param name="replacementText" >Neg</xsl:with-param></xsl:call-template></xsl:variable>
 
-                        //public final BasicArrayList <xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayListD();
-                        public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayListD();
-                        public final BasicArrayList <xsl:value-of select="name" />RemoveList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayListD();
+                        //public final BasicArrayList <xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" /> = BasicArrayListD()
+                        public val <xsl:value-of select="name" />GDGameLayerList<xsl:value-of select="$initialVariablesValue" />: BasicArrayList = BasicArrayListD()
+                        public val <xsl:value-of select="name" />RemoveList<xsl:value-of select="$initialVariablesValue" />: BasicArrayList = BasicArrayListD()
                         <xsl:if test="type = 'TextObject::Text' or type = 'Sprite'" >
-                        public final BasicArrayList <xsl:value-of select="name" />RectangleList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayListD();
+                        public val <xsl:value-of select="name" />RectangleList<xsl:value-of select="$initialVariablesValue" />: BasicArrayList = BasicArrayListD()
                         </xsl:if>
 
                         <xsl:for-each select="animations" >
@@ -261,7 +259,7 @@ Created By: Travis Berthelot
 
 <!--                                <xsl:if test="not(preceding::animations[name = $name])" >-->
                                <xsl:if test="not(contains($hasAnimationWithTheSameName, 'found'))" >
-                        public final String <xsl:value-of select="$animationName" /> = "<xsl:value-of select="name" />";
+                        public val <xsl:value-of select="$animationName" />: String = "<xsl:value-of select="name" />"
                                </xsl:if>
                             </xsl:if>
                         </xsl:for-each>
@@ -285,13 +283,13 @@ Created By: Travis Berthelot
                     <xsl:call-template name="objectsClassProperty" >
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
-            private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-            private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
-            
-            //uniqueValues - Layout - START 
+            private val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
+            private val gdExtensionGDNodes: GDExtensionGDNodes = GDExtensionGDNodes.getInstance()
+
+            //uniqueValues - Layout - START
             <xsl:key name="uniqueValues" match="type" use="." />
             <xsl:for-each select="objects/type[count(. | key('uniqueValues', .)[1]) = 1]" >
-                public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template> = gameGlobals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template>;
+                public val <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template>: String = gameGlobals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template>
             </xsl:for-each>
             //uniqueValues - Layout - END
 
@@ -329,13 +327,13 @@ Created By: Travis Berthelot
                         <xsl:with-param name="variables" >
                             <xsl:value-of select="$variables" />
                         </xsl:with-param>
-                    </xsl:call-template>    
+                    </xsl:call-template>
                     //variables - ModVarScene - END
                     <xsl:text>&#10;</xsl:text>
 
                     //variables - START
                     <xsl:call-template name="variables" />
-                    
+
                     <xsl:call-template name="resetVariables" />
                     //variables - END
 
@@ -391,29 +389,29 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                         <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
-                    public BaseMotionGestureEventListener eventListenerInterfaceLastPoint;
-                    public GDNode lastPointGDNode;
-                            
-                    public int inUseMotionEventListIndex = 0;
-                    public int processingMotionEventListIndex = 0;
-                    public BasicArrayList[] motionEventListOfList = {
-                        new BasicArrayListD(),
-                        new BasicArrayListD()
-                    };
-                    public int inUseScrollingMotionEventListIndex = 0;
-                    public int processingScrollingMotionEventListIndex = 0;
-                    public BasicArrayList[] scrollingMotionEventListOfList = {
-                        new BasicArrayListD(),
-                        new BasicArrayListD()
-                    };
-                            
-                    //public GDNode currentButtonGDNodePressed = null;
-                    MotionGestureInput lastMotionGestureInput = null;
-                    MotionGestureInput lastScrollingMotionGestureInput = null;
+                    public var eventListenerInterfaceLastPoint: BaseMotionGestureEventListener
+                    public var lastPointGDNode: GDNode
+
+                    public var inUseMotionEventListIndex: Int = 0
+                    public var processingMotionEventListIndex: Int = 0
+                    public var motionEventListOfList: Array&lt;BasicArrayList&gt; = {
+                        BasicArrayListD(),
+                        BasicArrayListD()
+                    }
+                    public var inUseScrollingMotionEventListIndex: Int = 0
+                    public var processingScrollingMotionEventListIndex: Int = 0
+                    public var scrollingMotionEventListOfList: Array&lt;BasicArrayList&gt; = {
+                        BasicArrayListD(),
+                        BasicArrayListD()
+                    }
+
+                    //public GDNode currentButtonGDNodePressed = null
+                    var lastMotionGestureInput: MotionGestureInput = null
+                    var lastScrollingMotionGestureInput: MotionGestureInput = null
                     </xsl:if>
 
                     //eventsClassPropertyActions - START
-<!--                    
+<!--
                     <xsl:call-template name="eventsClassPropertyActions" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
@@ -421,7 +419,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 -->
                     //eventsClassPropertyActions - END
-                    
+
                     <xsl:call-template name="objectsGroup" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
@@ -436,15 +434,15 @@ Created By: Travis Berthelot
                     <xsl:text>&#10;</xsl:text>
 
                     <xsl:call-template name="layerManagerEventListenerList" >
-                    </xsl:call-template>    
+                    </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
 
-                    private final LayerManagerEventListener layerManagerEventListener;
-                    
-                    public final GameTickTimeDelayHelper globalsGameTickTimeDelayHelper = new GameTickTimeDelayHelper(System.currentTimeMillis());
-                 
-                    private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals() {
-                    
+                    private val layerManagerEventListener: LayerManagerEventListener
+
+                    public val globalsGameTickTimeDelayHelper: GameTickTimeDelayHelper = GameTickTimeDelayHelper(System.currentTimeMillis())
+
+                    private constructor() {
+
                     <xsl:call-template name="scale" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
@@ -459,9 +457,9 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                     </xsl:variable>
                     <xsl:if test="contains($hasScaleVariable, 'found')" >
-                    this.scale = scale;
+                    this.scale = scale
                     </xsl:if>
-                    
+
                     <xsl:call-template name="objectsAssignGroup" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
@@ -474,20 +472,20 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
-                    
+
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
                         <xsl:for-each select="objects" >
-                            //<xsl:value-of select="$name" />GDObjectListOfList.add(<xsl:value-of select="name" />GDObjectList);
-                            <xsl:value-of select="$name" />GDGameLayerListOfList.add(<xsl:value-of select="name" />GDGameLayerList);
-                            <xsl:value-of select="$name" />GDGameLayerRemoveListOfList.add(<xsl:value-of select="name" />RemoveList);
-                            <xsl:value-of select="$name" />CacheGDGameLayerListOfList.add(<xsl:value-of select="name" />CacheGDGameLayerList);
-                            //<xsl:value-of select="$name" />GDConditionWithGroupActionsList.add(<xsl:value-of select="name" />GDConditionWithGroupActions);
+                            //<xsl:value-of select="$name" />GDObjectListOfList.add(<xsl:value-of select="name" />GDObjectList)
+                            <xsl:value-of select="$name" />GDGameLayerListOfList.add(<xsl:value-of select="name" />GDGameLayerList)
+                            <xsl:value-of select="$name" />GDGameLayerRemoveListOfList.add(<xsl:value-of select="name" />RemoveList)
+                            <xsl:value-of select="$name" />CacheGDGameLayerListOfList.add(<xsl:value-of select="name" />CacheGDGameLayerList)
+                            //<xsl:value-of select="$name" />GDConditionWithGroupActionsList.add(<xsl:value-of select="name" />GDConditionWithGroupActions)
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroups - END
-                                    
+
                     //eventsClassPropertyArrayActions - START
                     <xsl:call-template name="eventsClassPropertyArrayActions" >
                         <xsl:with-param name="totalRecursions" >
@@ -495,130 +493,126 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     //eventsClassPropertyArrayActions - END
-                        
-                        final LayerManagerEventHandler layerManagerEventHandler = LayerManagerEventHandler.getInstance();
-                        
-                        layerManagerEventListener = new LayerManagerEventListener() {
 
-                            public void onDeleteLayerManagerEvent(final LayerManagerEvent layerManagerEvent) throws Exception
-                            {
-                                final AllBinaryLayer layerInterface = layerManagerEvent.getLayerInterface();
-                                
+                        val layerManagerEventHandler: LayerManagerEventHandler = LayerManagerEventHandler.getInstance()
+
+                        layerManagerEventListener = object : LayerManagerEventListener() {
+
+                            open public fun onDeleteLayerManagerEvent(layerManagerEvent: LayerManagerEvent) {
+                                val layerInterface: AllBinaryLayer = layerManagerEvent.getLayerInterface()
+
                     <xsl:call-template name="layerManagerEventListenerRemove" >
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
                             }
 
-                        };
+                        }
 
-                        layerManagerEventHandler.addListener(layerManagerEventListener);
-                        
-                    }
+                        layerManagerEventHandler.addListener(layerManagerEventListener)
 
-                    public int SceneWindowWidth() {
-                        return gameTickDisplayInfoSingleton.getLastWidth();
                     }
 
-                    public int SceneWindowHeight() {
-                        return gameTickDisplayInfoSingleton.getLastHeight();
+                    open public fun SceneWindowWidth(): Int {
+                        return gameTickDisplayInfoSingleton.getLastWidth()
                     }
 
-                    public int abs(final int value) {
-                        return Math.abs(value);
-                    }
-                    
-                    public float abs(final float value) {
-                        return Math.abs(value);
+                    open public fun SceneWindowHeight(): Int {
+                        return gameTickDisplayInfoSingleton.getLastHeight()
                     }
 
-                    public double log2(final int value) {
-                        return Math.log(value);
+                    open public fun abs(value: Int): Int {
+                        return Math.abs(value)
                     }
 
-                    public int Random(final int range) {
-                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
+                    open public fun abs(value: Float): Float {
+                        return Math.abs(value)
                     }
 
-                    public float Random(final double range) {
-                        return ((float) MyRandomFactory.getInstance().getAbsoluteNextInt((int) (range * 1000))) / 1000;
-                    }
-                    
-                    public int Variable(final int value) {
-                        return value;
+                    open public fun log2(value: Int): Double {
+                        return Math.log(value)
                     }
 
-                    public float Variable(final float value) {
-                        return value;
+                    open public fun Random(range: Int): Int {
+                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1)
                     }
 
-                    public double Variable(final double value) {
-                        return value;
+                    open public fun Random(range: Double): Float {
+                        return (MyRandomFactory.getInstance().getAbsoluteNextInt((range * 1000).toInt()).toFloat()) / 1000
                     }
 
-                    public String Variable(final String value) {
-                        return value;
+                    open public fun Variable(value: Int): Int {
+                        var value: return
                     }
 
-                    public int VariableString(final int value) {
-                        return value;
+                    open public fun Variable(value: Float): Float {
+                        var value: return
                     }
 
-                    public String VariableString(final String string) {
-                        return string;
+                    open public fun Variable(value: Double): Double {
+                        var value: return
                     }
 
-                    public int VariableChildCount(final String[] array) {
-                        return array.length;
+                    open public fun Variable(value: String): String {
+                        var value: return
                     }
 
-                    public int VariableChildCount(final int[] array) {
-                        return array.length;
+                    open public fun VariableString(value: Int): Int {
+                        var value: return
                     }
 
-                    public String GlobalVariable(final String value) {
-                        return value;
-                    }
-                    
-                    public float GlobalVariable(final float value) {
-                        return value;
-                    }
-                    
-                    public long GlobalVariable(final long value) {
-                        return value;
+                    open public fun VariableString(string: String): String {
+                        var string: return
                     }
 
-                    public int GlobalVariable(final int value) {
-                        return value;
+                    open public fun VariableChildCount(array: Array&lt;String&gt;): Int {
+                        return array.length
                     }
 
-                    public int MouseX(String string, int value) {
-                        return value;
+                    open public fun VariableChildCount(array: IntArray): Int {
+                        return array.length
                     }
 
-                    public int MouseY(String string, int value) {
-                        return value;
-                    }
-                    
-                    public int CameraX(final String string, int value) {
-                        
-                        return 0;
+                    open public fun GlobalVariable(value: String): String {
+                        var value: return
                     }
 
-                    public int CameraY(final String string, int value) {
-                        
-                        return 0;
+                    open public fun GlobalVariable(value: Float): Float {
+                        var value: return
                     }
 
-                    public int CameraWidth(final String string, int value) {
-                        
-                        return gameTickDisplayInfoSingleton.getLastWidth();
+                    open public fun GlobalVariable(value: Long): Long {
+                        var value: return
                     }
 
-                    public String ToString(final int value) {
+                    open public fun GlobalVariable(value: Int): Int {
+                        var value: return
+                    }
+
+                    open public fun MouseX(string: String, value: Int): Int {
+                        var value: return
+                    }
+
+                    open public fun MouseY(string: String, value: Int): Int {
+                        var value: return
+                    }
+
+                    open public fun CameraX(string: String, value: Int): Int {
+                        var 0: return
+                    }
+
+                    open public fun CameraY(string: String, value: Int): Int {
+                        var 0: return
+                    }
+
+                    open public fun CameraWidth(string: String, value: Int): Int {
+                        return gameTickDisplayInfoSingleton.getLastWidth()
+                    }
+
+                    open public fun ToString(value: Int): String {
                         if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
-                            return Integer.toString(value);
+                            return Integer.toString(value)
                         } else {
-                            return smallIntegerSingletonFactory.getString(value);
+                            return smallIntegerSingletonFactory.getString(value)
                         }
                     }
 

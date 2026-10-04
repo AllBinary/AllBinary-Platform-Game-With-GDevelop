@@ -19,13 +19,13 @@ Created By: Travis Berthelot
     <xsl:template name="variablesStructuresChildren" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="parentName" />
-        
+
         //children - totalRecursions=<xsl:value-of select="$totalRecursions" />
-                
+
         <xsl:for-each select="children" >
             <xsl:if test="type = 'structure'" >
             //structure
-            public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
+            open public class GDStructure<xsl:value-of select="name" /> : GDStructure {
 
             <xsl:call-template name="variablesStructuresChildren" >
                 <xsl:with-param name="totalRecursions" >
@@ -33,43 +33,43 @@ Created By: Travis Berthelot
                 </xsl:with-param>
                 <xsl:with-param name="parentName" ><xsl:value-of select="name" /></xsl:with-param>
             </xsl:call-template>
-                 
+
             }
-            
-            public final GDStructure<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:if test="number(name) = name" >n</xsl:if><xsl:value-of select="name" /> = new GDStructure<xsl:value-of select="name" />();
-            public JSONObject <xsl:value-of select="name" />JSONObject = JSONObject.NULL_OBJECT;
-            public JSONArray <xsl:value-of select="name" />JSONArray = JSONArray.NULL_ARRAY;
-            
+
+            public val <xsl:if test="number(name) = name" >n</xsl:if><xsl:value-of select="name" />: GDStructure<xsl:value-of select="name" /> = GDStructure<xsl:value-of select="name" />()
+            public var <xsl:value-of select="name" />JSONObject: JSONObject = JSONObject.NULL_OBJECT
+            public var <xsl:value-of select="name" />JSONArray: JSONArray = JSONArray.NULL_ARRAY
+
             <xsl:if test="number(name) = name" >
-            public GDStructure<xsl:value-of select="name" /> get<xsl:value-of select="$parentName" />Size() {
-                return this.get<xsl:value-of select="name" />();
+            open public fun get<xsl:value-of select="$parentName" />Size(): GDStructure<xsl:value-of select="name" /> {
+                return this.get<xsl:value-of select="name" />()
             }
             </xsl:if>
-            
-            public GDStructure<xsl:value-of select="name" /> get<xsl:value-of select="name" />() {
-                return <xsl:if test="number(name) = name" >n</xsl:if><xsl:value-of select="name" />;
+
+            open public fun get<xsl:value-of select="name" />(): GDStructure<xsl:value-of select="name" /> {
+                var <xsl:if test="number(name) = name" >n</xsl:if><xsl:value-of select="name" />: return
             }
-            
+
             </xsl:if>
-            
+
             //type=<xsl:value-of select="type" />
             <xsl:if test="type = 'array'" >
-            public int <xsl:value-of select="name" />Index = 0;
-            public Object[] <xsl:value-of select="name" /> = new Object[7];
+            public var <xsl:value-of select="name" />Index: Int = 0
+            public var <xsl:value-of select="name" />: Array&lt;Object&gt; = arrayOfNulls&lt;Object&gt;(7)
             </xsl:if>
             <xsl:if test="type = 'boolean'" >
-            public boolean <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+            public var <xsl:value-of select="name" />: Boolean = <xsl:value-of select="value" />
             </xsl:if>
             <xsl:if test="type = 'string'" >
             <xsl:if test="not(number(value) = value)" >
-            public String <xsl:value-of select="name" /> = <xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING</xsl:if><xsl:if test="string-length(value) > 0" >"<xsl:value-of select="value" />"</xsl:if>;
+            public var <xsl:value-of select="name" />: String = <xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING</xsl:if><xsl:if test="string-length(value) > 0" >"<xsl:value-of select="value" />"</xsl:if>
             </xsl:if>
             <xsl:if test="number(value) = value" >
-            public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+            public var <xsl:value-of select="name" />: Int = <xsl:value-of select="value" />
             </xsl:if>
             </xsl:if>
             <xsl:if test="type = 'number'" >
-            public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+            public var <xsl:value-of select="name" />: Int = <xsl:value-of select="value" />
             </xsl:if>
 
         </xsl:for-each>
@@ -78,11 +78,11 @@ Created By: Travis Berthelot
 
     <xsl:template name="variablesStructuresChildrenNames" >
         <xsl:param name="totalRecursions" />
-        
+
             <xsl:key name="uniqueValues" match="name" use="." />
             <xsl:for-each select="//children/name[count(. | key('uniqueValues', .)[1]) = 1]" >
                 <xsl:if test="string-length(text()) > 0" >
-            public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="text()" />";
+            public val <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>: String = "<xsl:value-of select="text()" />"
                 </xsl:if>
             </xsl:for-each>
 
@@ -95,10 +95,10 @@ Created By: Travis Berthelot
             <xsl:if test="type = 'structure'" >
             //variablesStructures - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
             <xsl:if test="name" >
-    public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
+    open public class GDStructure<xsl:value-of select="name" /> : GDStructure {
 
-        public GDStructure<xsl:value-of select="name" />() {
-            Size = <xsl:for-each select="children" ><xsl:if test="type = 'structure'" >1 + </xsl:if></xsl:for-each>0;
+        public constructor() {
+            Size = <xsl:for-each select="children" ><xsl:if test="type = 'structure'" >1 + </xsl:if></xsl:for-each>0
         }
 
         <xsl:call-template name="variablesStructuresChildren" >
@@ -110,29 +110,29 @@ Created By: Travis Berthelot
         <xsl:variable name="hasJSONUsage" ><xsl:for-each select=".." ><xsl:call-template name="hasJSONUsage" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template></xsl:for-each>//externalevents=<xsl:for-each select="//externalEvents" ><xsl:call-template name="hasJSONUsage" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template></xsl:for-each></xsl:variable>
         //name=<xsl:value-of select="$name" /> - //hasJSONUsage=<xsl:value-of select="$hasJSONUsage" />
         <xsl:if test="contains($hasJSONUsage, 'found')" >
-        public int getJSONType() {
+        open public fun getJSONType(): Int {
             if(<xsl:value-of select="$name" />JSONArray != nullUtil.NULL_OBJECT) {
-                return 2;
+                var 2: return
             } else if(<xsl:value-of select="$name" />JSONObject != nullUtil.NULL_OBJECT) {
-                return 1;
+                var 1: return
             } else {
-                this.logUtil.putF("Not JSONArray or JSONObject", this, "getJSONType()");
-                return -1;
-            }    
+                this.logUtil.putF("Not JSONArray or JSONObject", this, "getJSONType()")
+                return -1
+            }
         }
 
-        public String toJSONAsString() {
+        open public fun toJSONAsString(): String {
             if(<xsl:value-of select="$name" />JSONArray != nullUtil.NULL_OBJECT) {
-                return <xsl:value-of select="$name" />JSONArray.toString();
+                return <xsl:value-of select="$name" />JSONArray.toString()
             } else if(<xsl:value-of select="$name" />JSONObject != nullUtil.NULL_OBJECT) {
-                return <xsl:value-of select="$name" />JSONObject.toString();
+                return <xsl:value-of select="$name" />JSONObject.toString()
             } else {
-                this.logUtil.putF("Not JSONArray or JSONObject", this, "toJSONAsString");
-                return <xsl:value-of select="$name" />JSONObject.toString();
-            }    
+                this.logUtil.putF("Not JSONArray or JSONObject", this, "toJSONAsString")
+                return <xsl:value-of select="$name" />JSONObject.toString()
+            }
         }
         </xsl:if>
-        
+
     }
             </xsl:if>
             </xsl:if>
@@ -147,8 +147,8 @@ Created By: Travis Berthelot
         //name=<xsl:value-of select="$name" /> - //hasJSONUsage=<xsl:value-of select="$hasJSONUsage" />
         <xsl:text>&#10;</xsl:text>
         <xsl:if test="contains($hasJSONUsage, 'found')" >
-        public Object <xsl:value-of select="$name" />JSONObject = this.nullUtil.NULL_OBJECT;
-        public Object <xsl:value-of select="$name" />JSONArray = this.nullUtil.NULL_OBJECT;
+        public var <xsl:value-of select="$name" />JSONObject: Object = this.nullUtil.NULL_OBJECT
+        public var <xsl:value-of select="$name" />JSONArray: Object = this.nullUtil.NULL_OBJECT
         </xsl:if>
 
             </xsl:if>
@@ -160,61 +160,61 @@ Created By: Travis Berthelot
         //name=<xsl:value-of select="$name" /> - //hasJSONUsage=<xsl:value-of select="$hasJSONUsage" />
         <xsl:text>&#10;</xsl:text>
         <xsl:if test="contains($hasJSONUsage, 'found')" >
-        public Object <xsl:value-of select="$name" />JSONObject = this.nullUtil.NULL_OBJECT;
-        public Object <xsl:value-of select="$name" />JSONArray = this.nullUtil.NULL_OBJECT;
+        public var <xsl:value-of select="$name" />JSONObject: Object = this.nullUtil.NULL_OBJECT
+        public var <xsl:value-of select="$name" />JSONArray: Object = this.nullUtil.NULL_OBJECT
         </xsl:if>
-        
+
     </xsl:template>
 
     <xsl:template name="hasJSONUsage" >
         <xsl:param name="name" />
-                
+
         <xsl:for-each select="events" >
-            
+
             <xsl:if test="type = 'BuiltinCommonInstructions::ForEachChildVariable'" >
                 <xsl:if test="valueIteratorVariableName = $name" >//foundBuiltinCommonInstructions::ForEachChildVariable</xsl:if>
             </xsl:if>
-            
+
             <xsl:for-each select="actions" >
                 <xsl:if test="type/value = 'JSONToVariableStructure'" >
                     <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:if test="contains($param, $name)" >//foundJSONToVariableStructure</xsl:if>
                     <xsl:if test="$param2 = $name" >//foundJSONToVariableStructure</xsl:if>
-                    
+
                 <xsl:call-template name="hasConnectedJsonObjects">
                     <xsl:with-param name="param" select="$param2" />
                 </xsl:call-template>
-                    
+
                 </xsl:if>
                 <xsl:if test="type/value = 'JSONToVariableStructure2'" >
                     <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:if test="contains($param, $name)" >//foundJSONToVariableStructure</xsl:if>
                     <xsl:if test="$param2 = $name" >//foundJSONToVariableStructure2</xsl:if>
-                    
+
                 <xsl:call-template name="hasConnectedJsonObjects">
                     <xsl:with-param name="param" select="$param2" />
                 </xsl:call-template>
-                    
+
                 </xsl:if>
                 <xsl:if test="type/value = 'JSONToGlobalVariableStructure'" >
                     <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-<!--                    
+<!--
                     <xsl:if test="contains($param, $name)" >foundJSONToGlobalVariableStructure</xsl:if>
                     <xsl:if test="$param2 = $name" >foundJSONToGlobalVariableStructure</xsl:if>
-                                        
+
                 <xsl:call-template name="hasConnectedJsonObjects">
                     <xsl:with-param name="param" select="$param2" />
                 </xsl:call-template>
 
 -->
-                    
+
                 </xsl:if>
-                
+
             </xsl:for-each>
-        
+
         <xsl:call-template name="hasJSONUsage">
             <xsl:with-param name="name" select="$name" />
         </xsl:call-template>
@@ -239,9 +239,9 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:if>
         </xsl:for-each>
-        
+
     </xsl:template>
-    
+
     <xsl:template name="hasJsonObjects">
         <xsl:param name="param" />
         <xsl:param name="iteration" />
@@ -257,9 +257,9 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:if>
         </xsl:for-each>
-        
+
         <xsl:for-each select="//events" >
-            
+
             <xsl:for-each select="actions" >
                 <xsl:if test="type/value = 'JSONToVariableStructure'" >
         <xsl:variable name="jsonParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
@@ -278,7 +278,7 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:for-each>
 
-<!--        
+<!--
         <xsl:call-template name="hasJsonObjects">
             <xsl:with-param name="param" select="$param" />
             <xsl:with-param name="iteration" select="number($iteration) + 1" />
@@ -293,7 +293,7 @@ Created By: Travis Berthelot
         <xsl:param name="parentName" />
         <xsl:param name="variableName" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="totalRecursions" />        
+        <xsl:param name="totalRecursions" />
 
                                 <xsl:for-each select="children" >
                                     <xsl:text>//parentName=</xsl:text><xsl:value-of select="$parentName" /> //variableName=<xsl:value-of select="$variableName" /> //name=<xsl:value-of select="name" /> //Map the children - <xsl:value-of select="$totalRecursions" />
@@ -301,13 +301,13 @@ Created By: Travis Berthelot
                                     <xsl:variable name="name" ><xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$variableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" /></xsl:variable>
                                     <xsl:choose>
                                         <xsl:when test="type = 'number'" >
-                        <xsl:value-of select="$name" /><xsl:text> = </xsl:text><xsl:value-of select="$parentName" /><xsl:text>.getInt(globals.</xsl:text><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                        <xsl:value-of select="$name" /><xsl:text> = </xsl:text><xsl:value-of select="$parentName" /><xsl:text>.getInt(globals.</xsl:text><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>)
                                         </xsl:when>
                                         <xsl:when test="type = 'string'" >
-                        <xsl:value-of select="$name" /><xsl:text> = </xsl:text><xsl:value-of select="$parentName" /><xsl:text>.getString(globals.</xsl:text><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                        <xsl:value-of select="$name" /><xsl:text> = </xsl:text><xsl:value-of select="$parentName" /><xsl:text>.getString(globals.</xsl:text><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>)
                                         </xsl:when>
                                         <xsl:when test="type = 'structure'" >
-                        <xsl:value-of select="$name" /><xsl:text>JSONObject = </xsl:text><xsl:value-of select="$parentName" /><xsl:text>.getJSONObject(globals.</xsl:text><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                        <xsl:value-of select="$name" /><xsl:text>JSONObject = </xsl:text><xsl:value-of select="$parentName" /><xsl:text>.getJSONObject(globals.</xsl:text><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>)
                         <xsl:call-template name="variableJSONMapping" >
                             <xsl:with-param name="parentName" >
                                 <xsl:value-of select="$name" />JSONObject
@@ -317,7 +317,7 @@ Created By: Travis Berthelot
                             </xsl:with-param>
                             <xsl:with-param name="layoutIndex" >
                                 <xsl:value-of select="$layoutIndex" />
-                            </xsl:with-param>        
+                            </xsl:with-param>
                             <xsl:with-param name="totalRecursions" >
                                 <xsl:value-of select="number($totalRecursions) + 1" />
                             </xsl:with-param>
@@ -327,7 +327,7 @@ Created By: Travis Berthelot
                                             //Otherwise - <xsl:value-of select="type" />
                                         </xsl:otherwise>
                                     </xsl:choose>
-                                    
+
                                 </xsl:for-each>
     </xsl:template>
 
@@ -344,7 +344,7 @@ Created By: Travis Berthelot
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
 
             <xsl:variable name="hasParentButtonSibling" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'SourisSurObjet' or type/value = 'IsCursorOnObject'" >found</xsl:if></xsl:for-each></xsl:variable>
-            
+
             <xsl:choose>
                 <xsl:when test ="($hasParentOnceCondition = 'true' and not(contains($hasParentButtonSibling, 'found'))) or conditions/type/value = 'BuiltinCommonInstructions::Once'">
                     <!-- Once sibling/parent condition -->
@@ -369,7 +369,7 @@ Created By: Travis Berthelot
                                     <xsl:variable name="textTurnArrayToGet" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" >[</xsl:with-param><xsl:with-param name="replacementText" >.get(</xsl:with-param></xsl:call-template></xsl:variable>
                                     <xsl:variable name="textTurnArrayToGet2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$textTurnArrayToGet" /></xsl:with-param><xsl:with-param name="find" >]</xsl:with-param><xsl:with-param name="replacementText" >)</xsl:with-param></xsl:call-template></xsl:variable>
                                     <xsl:variable name="textValue" ><xsl:value-of select="$textTurnArrayToGet2" /></xsl:variable>
-                                            
+
                                     <xsl:variable name="rootText1" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" >[VariableString(</xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template></xsl:variable>
                                     <xsl:variable name="rootText2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$rootText1" /></xsl:with-param><xsl:with-param name="find" >.Size)]</xsl:with-param><xsl:with-param name="replacementText" >Size()</xsl:with-param></xsl:call-template></xsl:variable>
                                     <xsl:variable name="rootText" ><xsl:value-of select="$rootText2" /></xsl:variable>
@@ -378,12 +378,12 @@ Created By: Travis Berthelot
                                     <xsl:variable name="textTurnArrayToGet" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" >[VariableString(</xsl:with-param><xsl:with-param name="replacementText" >.get</xsl:with-param></xsl:call-template></xsl:variable>
                                     <xsl:variable name="textTurnArrayToGet2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$textTurnArrayToGet" /></xsl:with-param><xsl:with-param name="find" >.Size)]</xsl:with-param><xsl:with-param name="replacementText" >Size()</xsl:with-param></xsl:call-template></xsl:variable>
                                     <xsl:variable name="textValue" ><xsl:value-of select="$textTurnArrayToGet2" /></xsl:variable>
-                                    
+
                                             <xsl:value-of select="$textValue" />
                                             <xsl:if test="position() != last()" >
                                                 <xsl:text> </xsl:text>
                                             </xsl:if>
-                                            <xsl:if test="position() = last()" >;</xsl:if>
+                                            <xsl:if test="position() = last()" ></xsl:if>
                                         </xsl:for-each>
                                         </xsl:if>
                                         <!-- public boolean <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />_updated<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > = true;</xsl:if></xsl:for-each> -->
@@ -486,7 +486,7 @@ Created By: Travis Berthelot
 
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
-            
+
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
 
             <xsl:variable name="hasParentButtonSibling" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'SourisSurObjet'" >found</xsl:if></xsl:for-each></xsl:variable>
@@ -503,24 +503,24 @@ Created By: Travis Berthelot
                         <xsl:if test="$typeValue = 'ModVarScene'" >
                             //eventsClassPropertyActions - //ModVarScene - 2
                             <xsl:if test="parameters[2]/text() = '='" >
-                                public int <xsl:for-each select="parameters" >
+                                public var <xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />
                                     <xsl:if test="position() != last()" >
                                         <xsl:text> </xsl:text>
                                     </xsl:if>
-                                    <xsl:if test="position() = last()" >;</xsl:if>
+                                    <xsl:if test="position() = last()" ></xsl:if>
                                 </xsl:for-each>
                                 <!-- //public boolean <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />_updated<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > = true;</xsl:if></xsl:for-each> -->
                             </xsl:if>
                         </xsl:if>
                         <xsl:if test="$typeValue = 'SetNumberVariable'" >
                             //eventsClassPropertyActions - //SetNumberVariable
-                            <xsl:if test="parameters[2]/text() = '='" >public int <xsl:for-each select="parameters" >
+                            <xsl:if test="parameters[2]/text() = '='" >public var <xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />
                                     <xsl:if test="position() != last()" >
                                         <xsl:text> </xsl:text>
                                     </xsl:if>
-                                    <xsl:if test="position() = last()" >;</xsl:if>
+                                    <xsl:if test="position() = last()" ></xsl:if>
                                 </xsl:for-each>
                             </xsl:if>
                         </xsl:if>
@@ -531,18 +531,18 @@ Created By: Travis Berthelot
                                     <xsl:if test="position() != last()" >
                                         <xsl:text> </xsl:text>
                                     </xsl:if>
-                                    <xsl:if test="position() = last()" >;</xsl:if>
+                                    <xsl:if test="position() = last()" ></xsl:if>
                                 </xsl:for-each>
                             </xsl:if>
                         </xsl:if>
                         <xsl:if test="$typeValue = 'UnPauseTimer'" >
                             //eventsClassPropertyActions - //UnPauseTimer
-                            <xsl:if test="parameters[2]/text() = '='" >public int <xsl:for-each select="parameters" >
+                            <xsl:if test="parameters[2]/text() = '='" >public var <xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />
                                     <xsl:if test="position() != last()" >
                                         <xsl:text> </xsl:text>
                                     </xsl:if>
-                                    <xsl:if test="position() = last()" >;</xsl:if>
+                                    <xsl:if test="position() = last()" ></xsl:if>
                                 </xsl:for-each>
                             </xsl:if>
                         </xsl:if>
@@ -566,12 +566,12 @@ Created By: Travis Berthelot
                                     <xsl:if test="parameters[2]/text() = '='" >
                                         <xsl:variable name="foundArray" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1 and contains(text(), '[')" >found</xsl:if></xsl:for-each></xsl:variable>
                                         <xsl:if test="not(contains($foundArray, 'found'))" >
-                                        public int <xsl:for-each select="parameters" >
+                                        public var <xsl:for-each select="parameters" >
                                             <xsl:value-of select="text()" />
                                             <xsl:if test="position() != last()" >
                                                 <xsl:text> </xsl:text>
                                             </xsl:if>
-                                            <xsl:if test="position() = last()" >;</xsl:if>
+                                            <xsl:if test="position() = last()" ></xsl:if>
                                         </xsl:for-each>
                                         </xsl:if>
                                         <!-- public boolean <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />_updated<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > = true;</xsl:if></xsl:for-each> -->
@@ -579,12 +579,12 @@ Created By: Travis Berthelot
                                 </xsl:if>
                                 <xsl:if test="$typeValue = 'SetNumberVariable'" >
                                     //eventsClassPropertyActions - //SetNumberVariable - 2
-                                    <xsl:if test="parameters[2]/text() = '='" >public int <xsl:for-each select="parameters" >
+                                    <xsl:if test="parameters[2]/text() = '='" >public var <xsl:for-each select="parameters" >
                                             <xsl:value-of select="text()" />
                                             <xsl:if test="position() != last()" >
                                                 <xsl:text> </xsl:text>
                                             </xsl:if>
-                                            <xsl:if test="position() = last()" >;</xsl:if>
+                                            <xsl:if test="position() = last()" ></xsl:if>
                                         </xsl:for-each>
                                     </xsl:if>
                                 </xsl:if>
@@ -595,17 +595,17 @@ Created By: Travis Berthelot
                                             <xsl:if test="position() != last()" >
                                                 <xsl:text> </xsl:text>
                                             </xsl:if>
-                                            <xsl:if test="position() = last()" >;</xsl:if>
+                                            <xsl:if test="position() = last()" ></xsl:if>
                                         </xsl:for-each>
                                     </xsl:if>
                                 </xsl:if>
                                 <xsl:if test="$typeValue = 'UnPauseTimer'" >
-                                    <xsl:if test="parameters[2]/text() = '='" >public int <xsl:for-each select="parameters" >
+                                    <xsl:if test="parameters[2]/text() = '='" >public var <xsl:for-each select="parameters" >
                                             <xsl:value-of select="text()" />
                                             <xsl:if test="position() != last()" >
                                                 <xsl:text> </xsl:text>
                                             </xsl:if>
-                                            <xsl:if test="position() = last()" >;</xsl:if>
+                                            <xsl:if test="position() = last()" ></xsl:if>
                                         </xsl:for-each>
                                     </xsl:if>
                                 </xsl:if>
@@ -713,23 +713,23 @@ Created By: Travis Berthelot
                     //externalEventsClassPropertyActions - //ModVarScene
                     <xsl:if test="substring-after(parameters[3]/text(), '.') != ''" >
                     <xsl:if test="parameters[2]/text() = '='" >
-                        public double <xsl:for-each select="parameters" >
+                        public var <xsl:for-each select="parameters" >
                             <xsl:value-of select="text()" />
                             <xsl:if test="position() != last()" >
                                 <xsl:text> </xsl:text>
                             </xsl:if>
-                            <xsl:if test="position() = last()" >;</xsl:if>
+                            <xsl:if test="position() = last()" ></xsl:if>
                         </xsl:for-each>
                     </xsl:if>
                     </xsl:if>
                     <xsl:if test="substring-after(parameters[3]/text(), '.') = ''" >
                     <xsl:if test="parameters[2]/text() = '='" >
-                        public int <xsl:for-each select="parameters" >
+                        public var <xsl:for-each select="parameters" >
                             <xsl:value-of select="text()" />
                             <xsl:if test="position() != last()" >
                                 <xsl:text> </xsl:text>
                             </xsl:if>
-                            <xsl:if test="position() = last()" >;</xsl:if>
+                            <xsl:if test="position() = last()" ></xsl:if>
                         </xsl:for-each>
                         <!-- //public boolean <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />_updated<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > = true;</xsl:if></xsl:for-each> -->
                     </xsl:if>
@@ -767,14 +767,14 @@ Created By: Travis Berthelot
         </xsl:if>
 
         <xsl:for-each select="events" >
-            
+
             <xsl:variable name="once" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'BuiltinCommonInstructions::Once'" >found</xsl:if></xsl:for-each></xsl:variable>
 
             <xsl:call-template name="gdNodeToOnceList" >
                 <xsl:with-param name="iteration" ><xsl:value-of select="$iteration + 1" /></xsl:with-param>
                 <xsl:with-param name="once" ><xsl:value-of select="$once" /></xsl:with-param>
             </xsl:call-template>
-        
+
         </xsl:for-each>
 
     </xsl:template>

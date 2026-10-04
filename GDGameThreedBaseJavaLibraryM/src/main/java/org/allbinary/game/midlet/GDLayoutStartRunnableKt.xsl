@@ -38,75 +38,75 @@ Created By: Travis Berthelot
 * Created By: Travis Berthelot
 *
 */
-package org.allbinary.game.midlet;
+package org.allbinary.game.midlet
 
-import org.allbinary.game.midlet.DemoGameMidlet;
-import org.allbinary.game.midlet.DemoGameMidletEvent;
-import org.allbinary.game.midlet.DemoGameMidletEventHandler;
-import org.allbinary.game.midlet.DemoGameMidletStateFactory;
-import org.allbinary.string.CommonLabels;
-import org.allbinary.string.CommonStrings;
+import org.allbinary.game.midlet.DemoGameMidlet
+import org.allbinary.game.midlet.DemoGameMidletEvent
+import org.allbinary.game.midlet.DemoGameMidletEventHandler
+import org.allbinary.game.midlet.DemoGameMidletStateFactory
+import org.allbinary.string.CommonLabels
+import org.allbinary.string.CommonStrings
 
-import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
-import org.allbinary.graphics.displayable.command.MyCommandsFactory;
+import org.allbinary.logic.communication.log.LogUtil
+import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory
+import org.allbinary.graphics.displayable.command.MyCommandsFactory
 
-public class GDGameStart<xsl:value-of select="$layoutName" />CanvasRunnable implements Runnable
+open class GDGameStart<xsl:value-of select="$layoutName" />CanvasRunnable, Runnable
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
-    
-    private final CommonStrings commonStrings = CommonStrings.getInstance();
-    
-    private final GDGameMIDlet demoGameMidlet;
+    protected val logUtil: LogUtil = LogUtil.getInstance()
 
-    private final DemoGameMidletEvent startDemoGameMidletEvent;
+    private val commonStrings: CommonStrings = CommonStrings.getInstance()
 
-    public GDGameStart<xsl:value-of select="$layoutName" />CanvasRunnable(DemoGameMidlet demoGameMidlet)
+    private val demoGameMidlet: GDGameMIDlet
+
+    private val startDemoGameMidletEvent: DemoGameMidletEvent
+
+    constructor(DemoGameMidlet demoGameMidlet)
     {
-        this.demoGameMidlet = (GDGameMIDlet) demoGameMidlet;
+        this.demoGameMidlet = demoGameMidlet as GDGameMIDlet
 
         this.startDemoGameMidletEvent =
-            new DemoGameMidletEvent(this.demoGameMidlet,
-                DemoGameMidletStateFactory.getInstance().START_DEMO);
+            DemoGameMidletEvent(this.demoGameMidlet,
+                DemoGameMidletStateFactory.getInstance().START_DEMO)
     }
 
-    public void run()
+    fun run()
     {
         try
         {
             logUtil.put(
                     CommonLabels.getInstance().START_LABEL +
                     "GDGameStart<xsl:value-of select="$layoutName" />CanvasRunnableInterface",
-                    this, commonStrings.RUN);
+                    this, commonStrings.RUN)
 
             this.demoGameMidlet.commandAction(
                     MyCommandsFactory.getInstance().SET_DISPLAYABLE,
-                    ProgressCanvasFactory.getInstance());
+                    ProgressCanvasFactory.getInstance())
 
-            //ProgressCanvasFactory.getInstance().waitUntilDisplayed();
+            //ProgressCanvasFactory.getInstance().waitUntilDisplayed()
 
-            // mediaInit();
+            // mediaInit()
 
             this.demoGameMidlet.setGameCanvasRunnableInterface(
-                        this.demoGameMidlet.createGDGameStart<xsl:value-of select="$layoutName" />CanvasRunnableInterface());
+                        this.demoGameMidlet.createGDGameStart<xsl:value-of select="$layoutName" />CanvasRunnableInterface())
 
-            this.demoGameMidlet.demoSetup();
+            this.demoGameMidlet.demoSetup()
 
             // this.setDisplay((Displayable)
-            // this.getGameCanvasRunnableInterface());
+            // this.getGameCanvasRunnableInterface())
 
             DemoGameMidletEventHandler.getInstance().fireEvent(
-                    this.startDemoGameMidletEvent);
+                    this.startDemoGameMidletEvent)
 
-            this.demoGameMidlet.startGameCanvasRunnableInterface();
+            this.demoGameMidlet.startGameCanvasRunnableInterface()
 
-            this.demoGameMidlet.postDemoSetup();
+            this.demoGameMidlet.postDemoSetup()
 
-            logUtil.putF(commonStrings.END_RUNNABLE, this, commonStrings.RUN);
+            logUtil.putF(commonStrings.END_RUNNABLE, this, commonStrings.RUN)
         }
-        catch (Exception e)
+        catch(e: Exception)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.RUN, e);
+            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.RUN, e)
         }
 
     }

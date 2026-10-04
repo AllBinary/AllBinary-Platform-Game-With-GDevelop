@@ -20,11 +20,11 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionCentreCameraGlobal.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobal.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDCreateInstances.xsl" />
@@ -51,68 +51,67 @@ Created By: Travis Berthelot
 
     <xsl:template match="/game">
 
-                package org.allbinary.game.canvas;
+                package org.allbinary.game.canvas
 
-                import javax.microedition.lcdui.Graphics;
-                
-                import org.json.me.JSONArray;
-                import org.json.me.JSONObject;
-        
-                import org.allbinary.AndroidUtil;
-                import org.allbinary.J2MEUtil;        
-                import org.allbinary.animation.AnimationBehavior;
-                import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.game.configuration.persistance.JSONPersistance;
-                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
-                import org.allbinary.game.layer.AllBinaryGameLayerManager;
-                import org.allbinary.game.layer.GDGameLayer;
-                import org.allbinary.game.layout.GDNode;
-                import org.allbinary.game.layout.GDObject;
-                import org.allbinary.game.layout.BaseGDNodeStats;
-                import org.allbinary.game.layout.GDNodeStatsFactory;
-                import org.allbinary.game.layer.special.TempGameLayerUtil;
-                import org.allbinary.game.rand.MyRandomFactory;
-                import org.allbinary.input.motion.gesture.MotionGestureInput;
-                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
-                import org.allbinary.string.CommonStrings;
-                import org.allbinary.string.CommonSeps;
-                import org.allbinary.logic.string.StringUtil;
-                import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.logic.NullUtil;
-                import org.allbinary.util.ArrayUtil;
+                import javax.microedition.lcdui.Graphics
+
+                import org.json.me.JSONArray
+                import org.json.me.JSONObject
+
+                import org.allbinary.AndroidUtil
+                import org.allbinary.J2MEUtil
+                import org.allbinary.animation.AnimationBehavior
+                import org.allbinary.animation.special.SpecialAnimation
+                import org.allbinary.game.configuration.persistance.JSONPersistance
+                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton
+                import org.allbinary.game.layer.AllBinaryGameLayerManager
+                import org.allbinary.game.layer.GDGameLayer
+                import org.allbinary.game.layout.GDNode
+                import org.allbinary.game.layout.GDObject
+                import org.allbinary.game.layout.BaseGDNodeStats
+                import org.allbinary.game.layout.GDNodeStatsFactory
+                import org.allbinary.game.layer.special.TempGameLayerUtil
+                import org.allbinary.game.rand.MyRandomFactory
+                import org.allbinary.input.motion.gesture.MotionGestureInput
+                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent
+                import org.allbinary.string.CommonStrings
+                import org.allbinary.string.CommonSeps
+                import org.allbinary.logic.string.StringUtil
+                import org.allbinary.logic.communication.log.LogUtil
+                import org.allbinary.logic.NullUtil
+                import org.allbinary.util.ArrayUtil
 
                 //Search for "//extensionNames"
                 //Current exclusion list (Used by RPG) - TextInputVirtualKeyboard, TouchScreen, PanelSpriteSlider, MirrorFillBarExtension, SpriteMultitouchJoystick'
-                public class GDExtensionGDNodes extends SpecialAnimation
+                open public class GDExtensionGDNodes : SpecialAnimation
                 {
 
-                    private static final GDExtensionGDNodes instance = new GDExtensionGDNodes();
+                    private val instance: GDExtensionGDNodes = GDExtensionGDNodes()
 
-                    public static GDExtensionGDNodes getInstance()
-                    {
-                        return GDExtensionGDNodes.instance;
+                    open public fun getInstance(): GDExtensionGDNodes {
+                        return GDExtensionGDNodes.instance
                     }
 
-                    protected final LogUtil logUtil = LogUtil.getInstance();
-                    private final CommonStrings commonStrings = CommonStrings.getInstance();
-                    private final StringUtil stringUtil = StringUtil.getInstance();
-                    private final NullUtil nullUtil = NullUtil.getInstance();
-                    private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
-   
-                    private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-                    private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
-                
+                    protected val logUtil: LogUtil = LogUtil.getInstance()
+                    private val commonStrings: CommonStrings = CommonStrings.getInstance()
+                    private val stringUtil: StringUtil = StringUtil.getInstance()
+                    private val nullUtil: NullUtil = NullUtil.getInstance()
+                    private val arrayUtil: ArrayUtil = ArrayUtil.getInstance()
+
+                    private val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
+                    private val gdNodeStatsFactory: BaseGDNodeStats = GDNodeStatsFactory.getInstance()
+
         <xsl:for-each select="eventsFunctionsExtensions" >
             <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>
             <xsl:for-each select="eventsFunctions" >
                 <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
-                    <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>public final GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
+                    <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>public val <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode: GDNode
             </xsl:for-each>
             <xsl:for-each select="eventsBasedObjects" >
                 <xsl:variable name="eventsBasedObjectsName" ><xsl:value-of select="name" /></xsl:variable>
                 <xsl:for-each select="eventsFunctions" >
                     <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
-                    <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>public final GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
+                    <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>public val <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode: GDNode
                 </xsl:for-each>
             </xsl:for-each>
             <xsl:for-each select="globalVariables" >
@@ -126,22 +125,22 @@ Created By: Travis Berthelot
         <xsl:for-each select="eventsFunctionsExtensions" >
             <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>
             //Map calls to extensions
-            public class <xsl:value-of select="$extensionName" /> {
+            open public class <xsl:value-of select="$extensionName" /> {
             <xsl:for-each select="eventsFunctions" >
                 <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
                 <xsl:if test="not(functionType = 'Action' or functionType = 'Condition')" >
                 //functionType=<xsl:value-of select="functionType" />
                 <xsl:if test="functionType = 'StringExpression'" >
                 //<xsl:for-each select="parameters" >type=<xsl:value-of select="type" /></xsl:for-each>
-                public String <xsl:value-of select="$eventsFunctionsName" />(<xsl:for-each select="parameters" ><xsl:if test="type = 'scenevar'" >String</xsl:if><xsl:text> </xsl:text><xsl:value-of select="type" /></xsl:for-each>) {
-                    return stringUtil.EMPTY_STRING;
+                open public fun <xsl:value-of select="$eventsFunctionsName" />(<xsl:for-each select="parameters" ><xsl:value-of select="type" />: <xsl:if test="type = 'scenevar'" >String</xsl:if></xsl:for-each>): String {
+                    return stringUtil.EMPTY_STRING
                 }
                 </xsl:if>
                 </xsl:if>
             </xsl:for-each>
             <xsl:for-each select="eventsBasedObjects" >
                 <xsl:variable name="eventsBasedObjectsName" ><xsl:value-of select="name" /></xsl:variable>
-                public class <xsl:value-of select="$eventsBasedObjectsName" />EventBasedObject {
+                open public class <xsl:value-of select="$eventsBasedObjectsName" />EventBasedObject {
                 <xsl:for-each select="eventsFunctions" >
                     <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:if test="not(functionType = 'Action' or functionType = 'Condition')" >
@@ -149,45 +148,43 @@ Created By: Travis Berthelot
                     <xsl:if test="functionType = 'StringExpression'" >
                         //<xsl:for-each select="parameters" >type=<xsl:value-of select="type" /></xsl:for-each>
                         public <xsl:value-of select="expressionType" /><xsl:text> </xsl:text><xsl:value-of select="$eventsFunctionsName" />(<xsl:for-each select="parameters" ><xsl:if test="type = 'scenevar'" >String</xsl:if><xsl:text> </xsl:text><xsl:value-of select="type" /></xsl:for-each>) {
-                        return stringUtil.EMPTY_STRING;
+                        return stringUtil.EMPTY_STRING
                     }
                     </xsl:if>
                     </xsl:if>
                 </xsl:for-each>
                 }
-                
-                public final <xsl:value-of select="$eventsBasedObjectsName" />EventBasedObject<xsl:text> </xsl:text><xsl:value-of select="$eventsBasedObjectsName" />EventBasedObject = new <xsl:value-of select="$eventsBasedObjectsName" />EventBasedObject();
+
+                public final <xsl:value-of select="$eventsBasedObjectsName" />EventBasedObject<xsl:text> </xsl:text><xsl:value-of select="$eventsBasedObjectsName" />EventBasedObject = <xsl:value-of select="$eventsBasedObjectsName" />EventBasedObject()
             </xsl:for-each>
 
-            };
-            
-            public final <xsl:value-of select="$extensionName" /><xsl:text> </xsl:text><xsl:value-of select="$extensionName" /> = new <xsl:value-of select="$extensionName" />();
+            }
+
+            public final <xsl:value-of select="$extensionName" /><xsl:text> </xsl:text><xsl:value-of select="$extensionName" /> = <xsl:value-of select="$extensionName" />()
 
         </xsl:for-each>
-                                  
-                    private GDExtensionGDNodes() {
 
-                        super(AnimationBehavior.getInstance());
+                    private constructor() : super(AnimationBehavior.getInstance()) {
 
         <xsl:for-each select="eventsFunctionsExtensions" >
             <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>
             <xsl:for-each select="eventsFunctions" >
                 <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
-                        <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = null;
+                        <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>var <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode: GDNode = null
             </xsl:for-each>
             <xsl:for-each select="eventsBasedObjects" >
                 <xsl:variable name="eventsBasedObjectsName" ><xsl:value-of select="name" /></xsl:variable>
                 <xsl:for-each select="eventsFunctions" >
                     <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
-                        <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = null;
+                        <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>var <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode: GDNode = null
                 </xsl:for-each>
             </xsl:for-each>
-            
+
         </xsl:for-each>
 
                         try {
-                        
-                            this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR);
+
+                            this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR)
 
                             <xsl:for-each select="eventsFunctionsExtensions" >
                                 <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>
@@ -196,27 +193,27 @@ Created By: Travis Berthelot
                             <xsl:call-template name="extensionGDNode" />
                                 </xsl:if>
                             </xsl:for-each>
-                            
-                            this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR);
 
-                        } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e);
+                            this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR)
+
+                        } catch (e: Exception) {
+                            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e)
                         }
 
         <xsl:for-each select="eventsFunctionsExtensions" >
             <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>
             <xsl:for-each select="eventsFunctions" >
                 <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
-                        <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>this.<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
+                        <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>this.<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode
             </xsl:for-each>
             <xsl:for-each select="eventsBasedObjects" >
                 <xsl:variable name="eventsBasedObjectsName" ><xsl:value-of select="name" /></xsl:variable>
                 <xsl:for-each select="eventsFunctions" >
                     <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
-                        <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>this.<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
+                        <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>this.<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode
                 </xsl:for-each>
             </xsl:for-each>
-            
+
         </xsl:for-each>
 
                     }
@@ -235,24 +232,24 @@ Created By: Travis Berthelot
             </xsl:if>
         </xsl:for-each>
 
-                    public int mod(final int value, final int mod) {
-                        return value % mod;
-                    }
-                    
-                    public int round(final int value) {
-                        return value;
+                    open public fun mod(value: Int, mod: Int): Int {
+                        return value % mod
                     }
 
-                    public long round(final long value) {
-                        return value;
+                    open public fun round(value: Int): Int {
+                        var value: return
                     }
-                    
-                    public float round(final float value) {
-                        return Math.round(value);
+
+                    open public fun round(value: Long): Long {
+                        var value: return
                     }
-                    
-                    public int GetArgumentAsNumber(final int value) {
-                        return value;
+
+                    open public fun round(value: Float): Float {
+                        return Math.round(value)
+                    }
+
+                    open public fun GetArgumentAsNumber(value: Int): Int {
+                        var value: return
                     }
 
                 }
@@ -326,7 +323,7 @@ Created By: Travis Berthelot
                     //extension - conditions - END
 
                     <xsl:variable name="selectedNodeIds" ></xsl:variable>
-    
+
                     //extension - actions - START
                     <xsl:call-template name="actionGDNodes" >
                         <xsl:with-param name="caller" >actionLayout</xsl:with-param>
@@ -358,5 +355,5 @@ Created By: Travis Berthelot
                     //extension - actions - END
 
     </xsl:template>
-    
+
 </xsl:stylesheet>

@@ -23,7 +23,7 @@ Created By: Travis Berthelot
         <xsl:param name="createdObjectsAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
-        
+
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
         <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
@@ -35,19 +35,19 @@ Created By: Travis Berthelot
                                 <xsl:if test="position() = 4" >
                                     <xsl:if test="contains(text(), '&quot;') and not(contains(text(), '+')) and text() != '&quot;&quot;'" >
                                         //GDStringLiteral - TextContainerCapability::TextContainerBehavior::SetValue
-                                        private final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate(text(), '?', '_'), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template> = <xsl:call-template name="string-replace-all" >
+                                        private val <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate(text(), '?', '_'), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template>: String = <xsl:call-template name="string-replace-all" >
                                             <xsl:with-param name="text" >
                                     <xsl:call-template name="string-replace-all" >
                                         <xsl:with-param name="text" >
                                             <xsl:value-of select="text()" />
-                                        </xsl:with-param>                                
+                                        </xsl:with-param>
                                         <xsl:with-param name="find" >&quot;&quot;</xsl:with-param>
                                         <xsl:with-param name="replacementText" >stringUtil.EMPTY_STRING</xsl:with-param>
                                     </xsl:call-template>
                                         </xsl:with-param>
                                         <xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param>
                                         <xsl:with-param name="replacementText" >"</xsl:with-param>
-                                    </xsl:call-template>;
+                                    </xsl:call-template>
                                     </xsl:if>
                                 </xsl:if>
                             </xsl:for-each>
@@ -79,24 +79,24 @@ Created By: Travis Berthelot
                         //beforeSecondParam=<xsl:value-of select="$beforeSecondParam" />
                         //hasObject3=<xsl:value-of select="hasObject3" />
                         //hasObjectGroup3=<xsl:value-of select="$hasObjectGroup3" />
-                        
+
                         <xsl:variable name="gameLayerName" ><xsl:value-of select="$beforeSecondParam" /></xsl:variable>
 <!--                        <xsl:variable name="gameLayerName" ><xsl:value-of select="$param1" /></xsl:variable>-->
 
                                 <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gameLayerName" /></xsl:variable>
-                                
+
                         //TextContainerCapability::TextContainerBehavior::SetValue - action - START - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
-                        @Override
-                        public boolean process() throws Exception {
-                            super.processStats();
-                        
-                            //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="$nodeId" />, this, this.commonStrings.PROCESS);
-                            
-                            final GDGameLayer[] gameLayerArray = gameGlobals.tempGameLayerArray;
+
+                        override fun process(): Boolean {
+                            super.processStats()
+
+                            //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="$nodeId" />, this, this.commonStrings.PROCESS)
+
+                            val gameLayerArray: Array&lt;GDGameLayer&gt; = gameGlobals.tempGameLayerArray
                             <xsl:value-of select="$siblingOrParentOrList" />
                             <xsl:text>&#10;</xsl:text>
-                            
+
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 3" >
                                     <xsl:if test="text() = '='" ><xsl:value-of select="$param" />GDGameLayer.setText(</xsl:if><xsl:if test="text() = '+'" ><xsl:value-of select="$param" />GDGameLayer.setText(<xsl:value-of select="$param" />GDGameLayer.Text() + </xsl:if>
@@ -112,28 +112,28 @@ Created By: Travis Berthelot
                                         </xsl:if>
                                     </xsl:if>
                                 </xsl:if>
-                                <xsl:if test="position() = last()" >);</xsl:if>
+                                <xsl:if test="position() = last()" >)</xsl:if>
                             </xsl:for-each>
-                            
+
                             <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
-                            return true;
+                            return true
                         }
 
-                    @Override
-                    public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
-                        super.processStats(motionGestureEvent);
-                        
-                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
-                        
-                        return this.process();
+
+                    override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                        super.processStats(motionGestureEvent)
+
+                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
+
+                        return this.process()
                     }
 
-                    @Override      
-                    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
-                        super.processGDStats(gameLayerArray);
+
+                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                        super.processGDStats(gameLayerArray)
                         try {
-                     
+
                             <xsl:value-of select="$siblingOrParentOrList" />
 
                             <xsl:for-each select="parameters" >
@@ -149,40 +149,40 @@ Created By: Travis Berthelot
                                         </xsl:if>
                                     </xsl:if>
                                 </xsl:if>
-                                <xsl:if test="position() = last()" >);</xsl:if>
+                                <xsl:if test="position() = last()" >)</xsl:if>
                             </xsl:for-each>
-              
+
                         <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
-                        } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                        } catch(e: Exception) {
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e)
                         }
 
-                        return true;
+                        return true
                     }
 
                         //TextContainerCapability::TextContainerBehavior::SetValue - action - END
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >
-                        @Override
-                        public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
-                            
-                            //Map from object array with action params
-                            final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
-                            this.process(gameLayer, intArray[3], intArray[5]);
 
-                            return true;
+                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+
+                            //Map from object array with action params
+                            val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
+                            this.process(gameLayer, intArray[3], intArray[5])
+
+                            return true
                         }
                         </xsl:if>
 
-                        public void process(final GDGameLayer gameLayer, final int x, final int y) {
-                            final GDObject gdObject = gameLayer.gdObject;
-                            this.process(gdObject, x, y);
+                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                            val gdObject: GDObject = gameLayer.gdObject
+                            this.process(gdObject, x, y)
                         }
 
-                        public void process(final GDObject gdObject, final int x, final int y) {
-                            throw new RuntimeException();
+                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                            throw RuntimeException()
                         }
     </xsl:template>
 

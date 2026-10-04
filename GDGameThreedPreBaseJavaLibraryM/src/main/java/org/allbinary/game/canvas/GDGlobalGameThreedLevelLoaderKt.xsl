@@ -20,7 +20,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDAction.xsl" />
@@ -38,7 +38,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
-    
+
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -54,64 +54,64 @@ Created By: Travis Berthelot
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
-                
-                package org.allbinary.game.canvas;
 
-                import min3d.core.Object3d;
-                import min3d.core.TextureManager;
-                import min3d.parser.ModelType;
-                import min3d.parser.ModelTypeFactory;
+                package org.allbinary.game.canvas
 
-                import javax.microedition.lcdui.Image;
-                import javax.microedition.khronos.opengles.GL10;
+                import min3d.core.Object3d
+                import min3d.core.TextureManager
+                import min3d.parser.ModelType
+                import min3d.parser.ModelTypeFactory
 
-                import org.allbinary.animation.image.GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
-                import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.animation.threed.TextureListFactory;
-                import org.allbinary.game.gd.resource.GDResources;
-                import org.allbinary.graphics.threed.min3d.ThreedLoaderFactory;
-                import org.allbinary.graphics.threed.min3d.Min3dSceneResourcesFactory;
-                import org.allbinary.graphics.PointFactory;
-                import org.allbinary.graphics.Rectangle;
-                import org.allbinary.image.ImageCache;
-                import org.allbinary.image.ImageCacheFactory;
-                import org.allbinary.string.CommonStrings;
-                import org.allbinary.string.CommonSeps;
-                import org.allbinary.logic.string.StringUtil;
-                
-                import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.logic.java.bool.BooleanFactory;
-                import org.allbinary.logic.math.PrimitiveIntUtil;
-                import org.allbinary.media.image.ImageCopyUtil;
+                import javax.microedition.lcdui.Image
+                import javax.microedition.khronos.opengles.GL10
 
-                import org.allbinary.graphics.opengles.OpenGLCapabilities;
-                import org.allbinary.graphics.threed.min3d.renderer.Object3dContainerUtil;
-                import org.allbinary.graphics.opengles.shader.AppRendererShaderUpdaterFactory;
-                import org.platform.ThreedObjResources;
-                                
+                import org.allbinary.animation.image.GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
+                import org.allbinary.animation.special.SpecialAnimation
+                import org.allbinary.animation.threed.TextureListFactory
+                import org.allbinary.game.gd.resource.GDResources
+                import org.allbinary.graphics.threed.min3d.ThreedLoaderFactory
+                import org.allbinary.graphics.threed.min3d.Min3dSceneResourcesFactory
+                import org.allbinary.graphics.PointFactory
+                import org.allbinary.graphics.Rectangle
+                import org.allbinary.image.ImageCache
+                import org.allbinary.image.ImageCacheFactory
+                import org.allbinary.string.CommonStrings
+                import org.allbinary.string.CommonSeps
+                import org.allbinary.logic.string.StringUtil
+
+                import org.allbinary.logic.communication.log.LogUtil
+                import org.allbinary.logic.java.bool.BooleanFactory
+                import org.allbinary.logic.math.PrimitiveIntUtil
+                import org.allbinary.media.image.ImageCopyUtil
+
+                import org.allbinary.graphics.opengles.OpenGLCapabilities
+                import org.allbinary.graphics.threed.min3d.renderer.Object3dContainerUtil
+                import org.allbinary.graphics.opengles.shader.AppRendererShaderUpdaterFactory
+                import org.platform.ThreedObjResources
+
                 //Layout name=<xsl:value-of select="$layoutName" />
-                public class GDGlobalGameThreedLevelBuilder extends GDGameThreedLevelBuilder
+                open class GDGlobalGameThreedLevelBuilder : GDGameThreedLevelBuilder
                 {
-                        private final CommonStrings commonStrings = CommonStrings.getInstance();
-                
-                        private final GDResources gdResources = GDResources.getInstance();
-                        private final GDGlobalSpecialAnimationResources animationInterfaceFactoryInterfaceFactory = GDGlobalSpecialAnimationResources.getInstance();
+                        private val commonStrings: CommonStrings = CommonStrings.getInstance()
 
-                        private final TextureListFactory textureListFactory = TextureListFactory.getInstance();
-                        private final OpenGLCapabilities openGLCapabilities = OpenGLCapabilities.getInstance();
-                        private final ThreedObjResources threedObjResources = ThreedObjResources.getInstance();
-                        private final Object3dContainerUtil object3dContainerUtil = Object3dContainerUtil.getInstance();
-                        private final Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
-                            Min3dSceneResourcesFactory.getInstance();
-                        private final ThreedLoaderFactory threedLoaderFactory = ThreedLoaderFactory.getInstance();
-                        private final ModelTypeFactory modelTypeFactory = ModelTypeFactory.getInstance();
-                        private final Boolean FALSE = BooleanFactory.getInstance().FALSE;
-                                
-                    public void build(final GL10 gl, final String glInstanceVersion) throws Exception {
+                        private val gdResources: GDResources = GDResources.getInstance()
+                        private val animationInterfaceFactoryInterfaceFactory: GDGlobalSpecialAnimationResources = GDGlobalSpecialAnimationResources.getInstance()
+
+                        private val textureListFactory: TextureListFactory = TextureListFactory.getInstance()
+                        private val openGLCapabilities: OpenGLCapabilities = OpenGLCapabilities.getInstance()
+                        private val threedObjResources: ThreedObjResources = ThreedObjResources.getInstance()
+                        private val object3dContainerUtil: Object3dContainerUtil = Object3dContainerUtil.getInstance()
+                        private val min3dSceneResourcesFactory: Min3dSceneResourcesFactory =
+                            Min3dSceneResourcesFactory.getInstance()
+                        private val threedLoaderFactory: ThreedLoaderFactory = ThreedLoaderFactory.getInstance()
+                        private val modelTypeFactory: ModelTypeFactory = ModelTypeFactory.getInstance()
+                        private val FALSE: Boolean = BooleanFactory.getInstance().FALSE
+
+                    fun build(gl: GL10, glInstanceVersion: String) {
 
                         //try {
-                        
-                            logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
+
+                            logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR)
 
                     <xsl:call-template name="threedResourceLoadingCalls" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
@@ -129,10 +129,10 @@ Created By: Travis Berthelot
                         <xsl:with-param name="useExclusionList" >true</xsl:with-param>
                     </xsl:call-template>
 
-                    <xsl:text>&#10;</xsl:text>                    
+                    <xsl:text>&#10;</xsl:text>
 
-                        //} catch(Exception e) {
-                            //logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                        //} catch(e: Exception) {
+                            //logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e)
                         //}
 
                     }
@@ -153,25 +153,25 @@ Created By: Travis Berthelot
                         <xsl:with-param name="useExclusionList" >true</xsl:with-param>
                     </xsl:call-template>
 
-                    <xsl:text>&#10;</xsl:text>                    
+                    <xsl:text>&#10;</xsl:text>
 
-                    protected void addMapCell(final GL10 gl, final Object3d trackObject3dContainer, final String textureName)
-                    throws Exception
+                    protected fun addMapCell(gl: GL10, trackObject3dContainer: Object3d, textureName: String)
+
                     {
-                        //final ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
+                        //final ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance()
 
-                        //progressCanvas.addEarlyPortion(portion, loadingString, index++);
+                        //progressCanvas.addEarlyPortion(portion, loadingString, index++)
 
-                        final String glInstanceVersion = openGLCapabilities.glInstanceVersion;
+                        val glInstanceVersion: String = openGLCapabilities.glInstanceVersion
 
-                        final String mappedTexture = threedObjResources.get(textureName);
+                        val mappedTexture: String = threedObjResources.get(textureName)
                         if(TextureManager.getInstance().contains(mappedTexture)) {
-                            return;
+                            return
                         }
-                        textureListFactory.loadTexture(gl, glInstanceVersion, mappedTexture);
+                        textureListFactory.loadTexture(gl, glInstanceVersion, mappedTexture)
 
-                        object3dContainerUtil.replaceTextures(trackObject3dContainer, mappedTexture);
-                        min3dSceneResourcesFactory.add(mappedTexture, new Object3d[] {trackObject3dContainer});
+                        object3dContainerUtil.replaceTextures(trackObject3dContainer, mappedTexture)
+                        min3dSceneResourcesFactory.add(mappedTexture, arrayOf(trackObject3dContainer))
                     }
 
                 }

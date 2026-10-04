@@ -23,9 +23,9 @@ Created By: Travis Berthelot
 
         <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
         <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-        
+
         <xsl:variable name="quote" >"</xsl:variable>
-        
+
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
         <xsl:variable name="isExternalEvent" >
@@ -93,26 +93,26 @@ Created By: Travis Berthelot
                     <xsl:variable name="press" ><xsl:if test="contains($isThisInExternlEventCalledFromPress, 'found')" >found</xsl:if><xsl:if test="../subInstructions" ><xsl:for-each select="../../../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:if><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
 
                     //sourisSurObjetConditionGDNode - //Condition - //IsCursorOnObject - //release=<xsl:value-of select="$release" /> - //press=<xsl:value-of select="$press" /> //inverted=<xsl:value-of select="$inverted" /> - GDNode
-                    <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>final GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>val NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = object : GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                     <xsl:variable name="conditionNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
-                        private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
+                        private val CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />"
 
-                        //private final DisplayPointScalar displayPointScalar = DisplayPointScalar.getInstance();
+                        //private val displayPointScalar: DisplayPointScalar = DisplayPointScalar.getInstance()
 
                         //IsCursorOnObject - runnable
                         <xsl:if test="not(contains($forExtension, 'found'))" >
                         class IsCursorOnObjectABRunnable extends ABRunnable {
-                        
-                            private final LogUtil logUtil = LogUtil.getInstance();
-                            private final CommonStrings commonStrings = CommonStrings.getInstance();
-                            
-                            public void run() {
-                                try {
-                                    //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "run", this, this.commonStrings.PROCESS);
 
-                                    gdNodeStatsFactory.push(0, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
+                            private val logUtil: LogUtil = LogUtil.getInstance()
+                            private val commonStrings: CommonStrings = CommonStrings.getInstance()
+
+                            fun run() {
+                                try {
+                                    //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "run", this, this.commonStrings.PROCESS)
+
+                                    gdNodeStatsFactory.push(0, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />)
 
                                         <xsl:for-each select=".." >
 
@@ -123,22 +123,22 @@ Created By: Travis Berthelot
 
                     <xsl:for-each select="events" >
                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
-                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
+                            //var nodeId: Event = <xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
                             //Events only - //Event - //<xsl:value-of select="type" /> - call
-                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()
                         </xsl:if>
                         <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
-                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
-                            <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> 
+                            //var nodeId: Event = <xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" />
+                            <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if>
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process();
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process()
                         </xsl:if>
                     </xsl:for-each>
 
                                         </xsl:for-each>
 
-                                    gdNodeStatsFactory.push(1, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
+                                    gdNodeStatsFactory.push(1, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />)
 
                                     <xsl:variable name="processOneTimePerPress" >
                                     <xsl:if test="contains($press, 'found')" >
@@ -149,50 +149,50 @@ Created By: Travis Berthelot
                                     </xsl:for-each>
                                     </xsl:if>
                                     </xsl:variable>
-    
+
                                     <xsl:if test="contains($processOneTimePerPress, 'found')" >
                                     //This button only processes one time per press
-                                    currentRunnable = NullRunnable.getInstance();
+                                    currentRunnable = NullRunnable.getInstance()
                                     </xsl:if>
-                
-                                } catch(Exception e) {
-                                    this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + "Runnable", this, this.commonStrings.RUN, e);
+
+                                } catch(e: Exception) {
+                                    this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + "Runnable", this, this.commonStrings.RUN, e)
                                 }
                             }
-                        };
-                        private final Runnable runnable = new IsCursorOnObjectABRunnable();
+                        }
+                        private val runnable: Runnable = IsCursorOnObjectABRunnable()
                         </xsl:if>
-                        
+
                         //IsCursorOnObject - was //SourisSurObjet - condition - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
-                        @Override
-                        public boolean process() throws Exception {
-                            super.processStats();
+                        @Throws(Exception::class)
+                        override fun process(): Boolean {
+                            super.processStats()
 
-                            //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                            //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
                         <xsl:if test="contains($press, 'found') or contains($release, 'found')" >
                             //if(this.currentRunnable != this.runnable) {
-                                this.currentRunnable = this.runnable;
+                                this.currentRunnable = this.runnable
                             //} else {
                                 //Best to not remark out when parent conditions include: SourisBouton, SourisSurObjet, or KeyFromTextPressed
-                                //this.logUtil.putF(this.commonStrings.EXCEPTION_LABEL + "Runnable already set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, new Exception());
+                                //this.logUtil.putF(this.commonStrings.EXCEPTION_LABEL + "Runnable already set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, Exception())
                             //}
                         </xsl:if>
-                            
-                            return true;
+
+                            return true
                         }
 
                         //lastPointGDNode
-                        @Override
-                        public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
-                            super.processStats(motionGestureEvent);
+                        @Throws(Exception::class)
+                        override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                            super.processStats(motionGestureEvent)
 
-                            //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, this.commonStrings.PROCESS);
+                            //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, this.commonStrings.PROCESS)
                                 <xsl:for-each select="parameters" >
                                     <xsl:if test="position() = 1" >
-                            //final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RectangleList.size();
-                            //Rectangle <xsl:value-of select="text()" />Rectangle = null;                                        
+                            //val size: Int = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RectangleList.size()
+                            //Rectangle <xsl:value-of select="text()" />Rectangle = null
 
                         <xsl:variable name="object" ><xsl:value-of select="text()" /></xsl:variable>
                         <xsl:variable name="hasObjectGroup" >
@@ -200,94 +200,94 @@ Created By: Travis Berthelot
                                 <xsl:if test="name = $object" >found</xsl:if>
                             </xsl:for-each>
                         </xsl:variable>
-                                                        
+
                     <xsl:if test="contains($hasObjectGroup, 'found')" >
-                        final int size3 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$object" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$object" />GDGameLayerListOfList.size();
-                        for(int index3 = 0; index3 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; index3++) {
-                            final BasicArrayList <xsl:value-of select="text()" />GDGameLayerList = (BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$object" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$object" />GDGameLayerListOfList.get(index3);
+                        val size3: Int = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$object" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$object" />GDGameLayerListOfList.size()
+                        for(index3 in 0 until <xsl:text disable-output-escaping="yes" ></xsl:text>size3) {
+                            val <xsl:value-of select="text()" />GDGameLayerList: BasicArrayList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$object" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$object" />GDGameLayerListOfList.get(index3) as BasicArrayList
                     </xsl:if>
-                    
-                            final int size = <xsl:if test="not(contains($hasObjectGroup, 'found'))" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:value-of select="text()" />GDGameLayerList.size();
-                            //final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RectangleList.size();
-                            GDGameLayer gameLayer;
-                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                            
-                                //<xsl:value-of select="text()" />Rectangle = (Rectangle) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RectangleList.get(index);
-                                //this.logUtil.putF("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle - Not Null", this, this.commonStrings.PROCESS);
-                                //final GPoint point = displayPointScalar.process(motionGestureEvent.getCurrentPoint());
-                                //final GPoint rectangePoint = <xsl:value-of select="text()" />Rectangle.getPoint();
-                                
-                                gameLayer = (GDGameLayer) <xsl:if test="not(contains($hasObjectGroup, 'found'))" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:value-of select="text()" />GDGameLayerList.get(index);
-                                //this.logUtil.putF("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayer - Not Null", this, this.commonStrings.PROCESS);
-                                final GPoint point = motionGestureEvent.getCurrentPoint();
-                                //this.logUtil.putF("<xsl:value-of select="text()" />Rectangle - motionGestureEvent: " + motionGestureEvent.toString(), this, this.commonStrings.PROCESS);
-                                //this.logUtil.putF("<xsl:value-of select="text()" /> - point: " + point.toString(), this, this.commonStrings.PROCESS);
-                                //this.logUtil.putF("<xsl:value-of select="text()" />GDGameLayer: " + gameLayer.toString(), this, this.commonStrings.PROCESS);
-                                
-                                //this.logUtil.putF("<xsl:value-of select="text()" />Rectangle: " + <xsl:value-of select="text()" />Rectangle.toString(), this, this.commonStrings.PROCESS);
+
+                            val size: Int = <xsl:if test="not(contains($hasObjectGroup, 'found'))" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:value-of select="text()" />GDGameLayerList.size()
+                            //val size: Int = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RectangleList.size()
+                            lateinit var gameLayer: GDGameLayer
+                            for(index in 0 until <xsl:text disable-output-escaping="yes" ></xsl:text>size) {
+
+                                //<xsl:value-of select="text()" />Rectangle = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RectangleList.get(index) as Rectangle
+                                //this.logUtil.putF("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle - Not Null", this, this.commonStrings.PROCESS)
+                                //val point: GPoint = displayPointScalar.process(motionGestureEvent.getCurrentPoint())
+                                //val rectangePoint: GPoint = <xsl:value-of select="text()" />Rectangle.getPoint()
+
+                                gameLayer = <xsl:if test="not(contains($hasObjectGroup, 'found'))" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:value-of select="text()" />GDGameLayerList.get(index) as GDGameLayer
+                                //this.logUtil.putF("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayer - Not Null", this, this.commonStrings.PROCESS)
+                                val point: GPoint = motionGestureEvent.getCurrentPoint()
+                                //this.logUtil.putF("<xsl:value-of select="text()" />Rectangle - motionGestureEvent: " + motionGestureEvent.toString(), this, this.commonStrings.PROCESS)
+                                //this.logUtil.putF("<xsl:value-of select="text()" /> - point: " + point.toString(), this, this.commonStrings.PROCESS)
+                                //this.logUtil.putF("<xsl:value-of select="text()" />GDGameLayer: " + gameLayer.toString(), this, this.commonStrings.PROCESS)
+
+                                //this.logUtil.putF("<xsl:value-of select="text()" />Rectangle: " + <xsl:value-of select="text()" />Rectangle.toString(), this, this.commonStrings.PROCESS)
                                 //if (rectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY() - 2, <xsl:value-of select="text()" />Rectangle.getMaxX(), <xsl:value-of select="text()" />Rectangle.getMaxY() + 2, point.getX(), point.getY()))
                                 if (<xsl:if test="$inverted = 'true'" >!</xsl:if>rectangleCollisionUtil.isInside(gameLayer.getXP(), gameLayer.getYP() - 2, gameLayer.getX2(), gameLayer.getY2() + 2, point.getX(), point.getY()))
                                 {
-                                    //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "Inside: " + lastMotionGestureInput, this, this.commonStrings.PROCESS);
+                                    //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "Inside: " + lastMotionGestureInput, this, this.commonStrings.PROCESS)
 
                                     <xsl:if test="contains($press, 'found')" >
                                     //press
-                                    //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
+                                    //val motionGestureInput: MotionGestureInput = motionGestureEvent.getMotionGesture()
                                     if (lastMotionGestureInput == touchMotionGestureFactory.PRESSED) {
-                                        
+
                                         <xsl:if test="not(contains($conditions, 'found'))" >
                                         //Assume press when not parent condition telling us.
                                         </xsl:if>
 
                                         //if(globals.currentButtonGDNodePressed != null) {
-                                        //    globals.currentButtonGDNodePressed.processReleased();
+                                        //    globals.currentButtonGDNodePressed.processReleased()
                                         //}
-                                        //globals.currentButtonGDNodePressed = this;
+                                        //globals.currentButtonGDNodePressed = this
 
-                                        //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "press", this, this.commonStrings.PROCESS);
-                                        
-                                        return this.process();
-                                        
+                                        //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "press", this, this.commonStrings.PROCESS)
+
+                                        return this.process()
+
                                     } else if(lastMotionGestureInput == touchMotionGestureFactory.RELEASED) {
-                                    
-                                        //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "release", this, this.commonStrings.PROCESS);
 
-                                        this.processReleased();
+                                        //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "release", this, this.commonStrings.PROCESS)
+
+                                        this.processReleased()
                                     }
                                     </xsl:if>
                                     <xsl:if test="contains($release, 'found')" >
                                     //release
-                                    //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
+                                    //val motionGestureInput: MotionGestureInput = motionGestureEvent.getMotionGesture()
                                     if (lastMotionGestureInput == touchMotionGestureFactory.PRESSED) {
                                     } else if(lastMotionGestureInput == touchMotionGestureFactory.RELEASED) {
 
-                                        runnable.run();
-                                        return true;
+                                        runnable.run()
+                                        return true
                                     }
                                     </xsl:if>
                                     <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
-                                        return true;
+                                        return true
                                     </xsl:if>
 
                                 } else {
-                                
+
                                     <xsl:if test="contains($press, 'found')" >
                                     //Release button when not in button area
-                                    this.processReleased();
+                                    this.processReleased()
                                     </xsl:if>
-                                    
+
 <!--                                    <xsl:if test="$inverted = 'true'" >
                                     //Inverted
                                     <xsl:if test="not(contains($press, 'found')) or contains($release, 'found')" >
-                                    runnable.run();
-                                    return true;
+                                    runnable.run()
+                                    return true
                                     </xsl:if>
                                     </xsl:if>-->
 
                                 }
-                            } 
+                            }
                             //if(size == 0) {
-                                //this.logUtil.putF("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle - Null", this, this.commonStrings.PROCESS);
+                                //this.logUtil.putF("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle - Null", this, this.commonStrings.PROCESS)
                             //}
 
                         <xsl:if test="contains($hasObjectGroup, 'found')" >
@@ -295,20 +295,20 @@ Created By: Travis Berthelot
 
                                     </xsl:if>
                                 </xsl:for-each>
-                            
+
                             //Always false as the runnable does the real processing
-                            return false;
+                            return false
                         }
 
-                        @Override
-                        public boolean processReleased() throws Exception {
-                            super.processReleasedStats();
+                        @Throws(Exception::class)
+                        override fun processReleased(): Boolean {
+                            super.processReleasedStats()
 
                         <xsl:if test="contains($press, 'found') or contains($release, 'found')" >
                             if(this.currentRunnable != NullRunnable.getInstance()) {
-                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "released", this, this.commonStrings.PROCESS);
+                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "released", this, this.commonStrings.PROCESS)
 
-                                this.currentRunnable = NullRunnable.getInstance();
+                                this.currentRunnable = NullRunnable.getInstance()
 
                                         <xsl:for-each select=".." >
 
@@ -319,79 +319,78 @@ Created By: Travis Berthelot
 
                     <xsl:for-each select="events" >
                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
-                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
+                            //var nodeId: Event = <xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
                             //Events only - //Event - //<xsl:value-of select="type" /> - call
-                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased()
                         </xsl:if>
                         <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
-                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
-                            <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> 
+                            //var nodeId: Event = <xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" />
+                            <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if>
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processReleased();
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processReleased()
                         </xsl:if>
                     </xsl:for-each>
 
-                                        </xsl:for-each>                                                            
+                                        </xsl:for-each>
 
                             } else {
-                                //this.logUtil.putF(this.commonStrings.EXCEPTION_LABEL + "Runnable was not set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE);
+                                //this.logUtil.putF(this.commonStrings.EXCEPTION_LABEL + "Runnable was not set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE)
                             }
                         </xsl:if>
 
-                            return true;
+                            return true
 
                         }
 
-                                                
-                        @Override
-                        public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
-                            super.processGDStats(gameLayerArray);
+
+                        @Throws(Exception::class)
+                        override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                            super.processGDStats(gameLayerArray)
 
                             try {
-                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, this.commonStrings.PROCESS);
+                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, this.commonStrings.PROCESS)
 
-                                return this.process();
-                            } catch(Exception e) {
-                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                                return this.process()
+                            } catch(e: Exception) {
+                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e)
                             }
-                            return true;                   
+                            return true
                         }
 
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >
-                        @Override
-                        public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
-                            
-                            //Map from object array with action params
-                            final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
-                            this.process(gameLayer, intArray[3], intArray[5]);
+                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
-                            return true;
+                            //Map from object array with action params
+                            val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
+                            this.process(gameLayer, intArray[3], intArray[5])
+
+                            return true
                         }
                         </xsl:if>
 
-                        public void process(final GDGameLayer gameLayer, final int x, final int y) {
-                            final GDObject gdObject = gameLayer.gdObject;
-                            this.process(gdObject, x, y);
+                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                            val gdObject: GDObject = gameLayer.gdObject
+                            this.process(gdObject, x, y)
                         }
 
-                        public void process(final GDObject gdObject, final int x, final int y) {
-                            throw new RuntimeException();
+                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                            throw RuntimeException()
                         }
-                                                
-                    };
+
+                    }
 
                     <xsl:if test="not(contains($forExtension, 'found'))" >
                     if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
-                        throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
+                        throw RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />")
                     }
-                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
+                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />
                     </xsl:if>
 
                     <xsl:if test="contains($press, 'found')" >
-                    gdNodes.runnableList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                    gdNodes.runnableList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />])
                     </xsl:if>
 
     </xsl:template>

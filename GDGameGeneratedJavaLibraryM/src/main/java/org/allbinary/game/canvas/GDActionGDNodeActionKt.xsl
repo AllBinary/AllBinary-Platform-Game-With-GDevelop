@@ -34,16 +34,16 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDSetStringObjectVariableActionProcess.xsl" />
     <xsl:import href="./action/GDModVarObjetTxtActionProcess.xsl" />
     <xsl:import href="./action/GDModVarSceneTxtActionProcess.xsl" />
-    
+
     <xsl:import href="./action/GDLinkedObjectsLinkObjectsActionProcess.xsl" />
-    
+
     <xsl:import href="./action/GDObjectVariablePushNumberActionProcess.xsl" />
 
     <xsl:import href="./action/GDShowLayerActionProcess.xsl" />
     <xsl:import href="./action/GDHideLayerActionProcess.xsl" />
     <xsl:import href="./action/GDMontreToShowActionProcess.xsl" />
     <xsl:import href="./action/GDCacheToHideActionProcess.xsl" />
-    
+
     <xsl:import href="./action/GDPlayMusicActionProcess.xsl" />
     <xsl:import href="./action/GDPlayMusicCanalActionProcess.xsl" />
     <xsl:import href="./action/GDStopMusicCanalActionProcess.xsl" />
@@ -51,17 +51,17 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDPlaySoundActionProcess.xsl" />
     <xsl:import href="./action/GDPlaySoundCanalActionProcess.xsl" />
     <xsl:import href="./action/GDStopSoundCanalActionProcess.xsl" />
-    
+
     <xsl:import href="./action/GDResetTimerActionProcess.xsl" />
 
     <xsl:import href="./action/GDPauseTimerActionProcess.xsl" />
     <xsl:import href="./action/GDUnPauseTimerActionProcess.xsl" />
-    
+
     <xsl:import href="./action/GDResetObjectTimerActionProcess.xsl" />
 
     <xsl:import href="./action/GDCameraXActionProcess.xsl" />
     <xsl:import href="./action/GDCameraYActionProcess.xsl" />
-    
+
     <xsl:import href="./action/GDOpacityActionProcess.xsl" />
     <xsl:import href="./action/GDCreateActionProcess.xsl" />
     <xsl:import href="./action/GDCreateByNameActionProcess.xsl" />
@@ -116,13 +116,13 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDGlobalVariableClearChildrenActionProcess.xsl" />
     <xsl:import href="./action/GDPushStringActionProcess.xsl" />
     <xsl:import href="./action/GDPushVariableActionProcess.xsl" />
-    
+
     <xsl:import href="./action/GDSetReturnStringActionProcess.xsl" />
     <xsl:import href="./action/GDSetReturnBooleanActionProcess.xsl" />
     <xsl:import href="./action/GDSetReturnNumberActionProcess.xsl" />
-    
+
     <xsl:import href="./action/GDExtensionActionProcess.xsl" />
-    
+
     <xsl:template name="actionGDNodes" >
         <xsl:param name="caller" />
         <xsl:param name="totalRecursions" />
@@ -137,7 +137,7 @@ Created By: Travis Berthelot
         <xsl:param name="conditionEventPosition" />
 
         <xsl:variable name="quote" >"</xsl:variable>
-        
+
 <!--        //forExtension=<xsl:value-of select="$forExtension" />-->
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
@@ -150,7 +150,7 @@ Created By: Travis Berthelot
             </xsl:variable>
 
             <xsl:variable name="logString" >EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                        
+
             <xsl:variable name="actionWithTextObjectString" >
                 <xsl:for-each select="actions" >
                     <xsl:variable name="typeValue" select="type/value" />
@@ -183,24 +183,24 @@ Created By: Travis Berthelot
 
             <xsl:variable name="selectedNodeId" select="number(substring(generate-id(), 2) - 65536)" />
             <xsl:variable name="selectedNodeIdWithSep" >,<xsl:value-of select="$selectedNodeId" />,</xsl:variable>
-            
+
 <!--
             //selectedNodeIds=<xsl:value-of select="$selectedNodeIds" />
             //selectedNodeIdWithSep=<xsl:value-of select="$selectedNodeIdWithSep" />
 -->
-            
+
             <xsl:if test="contains($selectedNodeIds, $selectedNodeIdWithSep) or string-length($selectedNodeIds) = 0" >
 
                 //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                 <xsl:text>&#10;</xsl:text>
 
-                    //Action - GDNode - for Condition totalRecursions=<xsl:value-of select="$totalRecursions" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" /> 
-                    class GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode : GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    //Action - GDNode - for Condition totalRecursions=<xsl:value-of select="$totalRecursions" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" />
+                    open class GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode : GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                     //GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode
-                    
+
                     <xsl:variable name="nodeAsString" ><xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
-                    <xsl:variable name="actionAsString" >Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
+                    <xsl:variable name="actionAsString" >var nodeId: Action =<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         //GDNode - Strings 1
                         private val ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "B: <xsl:value-of select="translate($actionAsString, $quote, ' ')" />"
                         //private val ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "B: <xsl:value-of select="translate($actionAsString, $quote, ' ')" /> at: "
@@ -230,7 +230,7 @@ Created By: Travis Berthelot
                     </xsl:when>
 
                     <xsl:when test="$typeValue = 'TextContainerCapability::TextContainerBehavior::SetValue'" >
-                        
+
                         <xsl:call-template name="textContainerCapabilityTextContainerBehaviorSetValueActionProcess" >
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
@@ -246,7 +246,7 @@ Created By: Travis Berthelot
                             </xsl:with-param>
                         </xsl:call-template>
 
-                    </xsl:when>                    
+                    </xsl:when>
 
                 <xsl:when test="$typeValue = 'TextObject::ChangeColor'" >
 
@@ -263,10 +263,10 @@ Created By: Travis Berthelot
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
-                    </xsl:call-template>                        
-                    
+                    </xsl:call-template>
+
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'SceneBackground'" >
 
                     <xsl:call-template name="sceneBackgroundActionProcess" >
@@ -286,7 +286,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ChangeAnimation'" >
-                    
+
                     <xsl:call-template name="changeAnimationActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -303,9 +303,9 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'SetNumberObjectVariable' or $typeValue = 'ModVarObjet'" >
-                    
+
                     <xsl:call-template name="setNumberObjectVariableActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -323,7 +323,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SetStringObjectVariable'" >
-                    
+
                     <xsl:call-template name="setStringObjectVariableActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -341,7 +341,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SetBooleanObjectVariable'" >
-                    
+
                     <xsl:call-template name="setObjectVariableAsBooleanActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -358,7 +358,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'ModVarSceneTxt'" >
 
                     <xsl:call-template name="modVarSceneTxtActionProcess" >
@@ -401,7 +401,7 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'LinkedObjects::LinkObjects'" >
-                    
+
                     <xsl:call-template name="linkedObjectsLinkObjectsActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -418,8 +418,8 @@ Created By: Travis Berthelot
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
-                    </xsl:call-template>                        
-                    
+                    </xsl:call-template>
+
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'BuiltinExternalLayouts::CreateObjectsFromExternalLayout'" >
@@ -445,7 +445,7 @@ Created By: Travis Berthelot
                     val layoutGDNode: GDNode = gdLayoutGDNodes.layoutGDNodeList.get(index) as GDNode
                     //externalLinkLayoutGDNode - process
                     layoutGDNode.process()
-                    
+
                     return true
                 }
 
@@ -453,7 +453,7 @@ Created By: Travis Berthelot
                     super.processGDStats(gameLayerArray)
 
                     //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS)
-                    
+
                     return this.process()
                 }
 
@@ -462,19 +462,19 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'LinkedObjects::RemoveLinkBetween'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'LinkedObjects::RemoveAllLinksOf'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-                        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::Circle'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::Line'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::LineV2'" >
 
                     <xsl:call-template name="primitiveDrawingLineV2ActionProcess" >
@@ -491,81 +491,81 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::Ellipse'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::RoundedRectangle'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::ChamferRectangle'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::RegularPolygon'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::Torus'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::Star'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::Arc'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-            
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::BezierCurve'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::QuadraticCurve'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::BeginFillPath'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::EndFillPath'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::PathMoveTo'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::PathLineTo'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::PathBezierCurveTo'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::PathArc'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::PathQuadraticCurveTo'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::ClosePath'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::Arc'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::ArcTo'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
@@ -573,13 +573,13 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::Drawer::ClearShapes'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::ClearBetweenFrames'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::FillColor'" >
-                    
+
                     <xsl:call-template name="primitiveDrawingFillColorActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -594,41 +594,41 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::OutlineColor'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::OutlineSize'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::FillOpacity'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-                        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::OutlineOpacity'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::UseRelativeCoordinates'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-            
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::Scale'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::Drawer::SetScaleX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::Drawer::SetScaleX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::FlipX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
@@ -636,7 +636,7 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::FlipY'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::Width'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
@@ -648,7 +648,7 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::SetRotationCenter'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-        
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::Drawer'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
@@ -656,9 +656,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::SetAntialiasing'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'PrimitiveDrawing::Rectangle'" >
-                    
+
                     <xsl:call-template name="primitiveDrawingRectangleActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -673,7 +673,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'AjoutObjConcern'" >
@@ -687,15 +687,15 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ToggleObjectVariableAsBoolean'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-  
+
                 <xsl:when test="$typeValue = 'ObjectVariablePush'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-  
+
                 <xsl:when test="$typeValue = 'ObjectVariablePushString'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-  
+
                 <xsl:when test="$typeValue = 'ObjectVariablePushNumber'" >
 
                     <xsl:call-template name="objectVariablePushNumberActionProcess" >
@@ -712,13 +712,13 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                                        
+
                 </xsl:when>
-  
+
                 <xsl:when test="$typeValue = 'ObjectVariablePushBool'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-  
+
                 <xsl:when test="$typeValue = 'ObjectVariableRemoveAt'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
@@ -759,7 +759,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'Montre' or $typeValue = 'Show'" >
 
                     <xsl:call-template name="montreAsShowActionProcess" >
@@ -821,7 +821,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'PlaySound'" >
-                    
+
                     <xsl:call-template name="playSoundActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -839,7 +839,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'PlayMusic'" >
-                    
+
                     <xsl:call-template name="playMusicActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -857,7 +857,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'PlayMusicCanal'" >
-                    
+
                     <xsl:call-template name="playMusicCanalActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -875,7 +875,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'StopMusicCanal'" >
-                    
+
                     <xsl:call-template name="stopMusicCanalActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -890,10 +890,10 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
                 <xsl:when test="$typeValue = 'PlaySoundCanal' or $typeValue = 'PlaySoundOnChannel'" >
-                    
+
                     <xsl:call-template name="playSoundCanalActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -908,10 +908,10 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
                 <xsl:when test="$typeValue = 'StopSoundCanal'" >
-                    
+
                     <xsl:call-template name="stopSoundCanalActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -926,11 +926,11 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'ResetTimer'" >
-                    
+
                     <xsl:call-template name="resetTimerActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -948,7 +948,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'PauseTimer'" >
-                    
+
                     <xsl:call-template name="pauseTimerActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -962,7 +962,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
-                    </xsl:call-template>                        
+                    </xsl:call-template>
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'UnPauseTimer'" >
@@ -980,12 +980,12 @@ Created By: Travis Berthelot
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
-                    </xsl:call-template>                        
+                    </xsl:call-template>
 
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'ChangeScale'" >
-                    
+
                     <xsl:call-template name="changeScaleActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1004,7 +1004,7 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'ResetObjectTimer'" >
-                    
+
                     <xsl:call-template name="resetObjectTimerActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1018,12 +1018,12 @@ Created By: Travis Berthelot
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
-                    </xsl:call-template>                        
+                    </xsl:call-template>
 
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'Opacity' or $typeValue = 'OpacityCapability::OpacityBehavior::SetValue'" >
-                    
+
                     <xsl:call-template name="opacityActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1038,8 +1038,8 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    
-                </xsl:when>                
+
+                </xsl:when>
                 <xsl:when test="$typeValue = 'Create'" >
 
                     <xsl:call-template name="createActionProcess" >
@@ -1065,7 +1065,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'CreateByName'" >
@@ -1088,7 +1088,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                         <xsl:with-param name="objectsAsString" >
                             <xsl:value-of select="$objectsAsString" />
-                        </xsl:with-param>                        
+                        </xsl:with-param>
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
@@ -1097,7 +1097,7 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'SetAngle'" >
-                    
+
                     <xsl:call-template name="setAngleActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1116,7 +1116,7 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'SetZOrder' or $typeValue = 'ChangePlan'" >
-                    
+
                     <xsl:call-template name="setZOrderActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1135,7 +1135,7 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'ChangeColor'" >
-                    
+
                     <xsl:call-template name="changeColorActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1273,7 +1273,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
-                                
+
                 <xsl:when test="$typeValue = 'MettreAutourPos' or $typeValue = 'PutAroundPosition'" >
 
                     <xsl:call-template name="mettreAutourPosActionProcess" >
@@ -1316,7 +1316,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'SetNumberVariable' or $typeValue = 'ModVarGlobal'" >
 
                     <xsl:call-template name="modVarGlobalActionProcess" >
@@ -1356,7 +1356,7 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'Delete'" >
-                    
+
                     <xsl:call-template name="deleteActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1451,7 +1451,7 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'CopyArgumentToVariable'" >
-                    
+
                     <xsl:call-template name="copyArgumentToVariableActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1460,7 +1460,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'JSONToVariableStructure'" >
@@ -1555,7 +1555,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:when>              
+                </xsl:when>
 
                 <xsl:when test="$typeValue = 'SetCenterX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
@@ -1596,7 +1596,7 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'AddForceXY'" >
-                    
+
                     <xsl:call-template name="addForceXYActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1613,7 +1613,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'AddForceVersPos'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
@@ -1651,7 +1651,7 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ActivateBehavior'" >
-                    
+
                     <xsl:call-template name="activateBehaviorActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1670,13 +1670,13 @@ Created By: Travis Berthelot
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ObjectVariableRemoveChild'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
-                </xsl:when>  
+                </xsl:when>
                 <xsl:when test="$typeValue = 'ObjectVariableClearChildren'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'ClearVariableChildren'" >
-                    
+
                     <xsl:call-template name="clearVariableChildrenActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1690,10 +1690,10 @@ Created By: Travis Berthelot
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
-                    </xsl:call-template>                    
+                    </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$typeValue = 'GlobalVariableClearChildren'" >
-                    
+
                     <xsl:call-template name="globalVariableClearChildrenActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1707,10 +1707,10 @@ Created By: Travis Berthelot
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
-                    </xsl:call-template>                    
+                    </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$typeValue = 'PushString'" >
-                    
+
                     <xsl:call-template name="pushStringActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1724,10 +1724,10 @@ Created By: Travis Berthelot
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
-                    </xsl:call-template>                    
+                    </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$typeValue = 'PushVariable'" >
-                    
+
                     <xsl:call-template name="pushVariableActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -1741,7 +1741,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
-                    </xsl:call-template>                    
+                    </xsl:call-template>
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'PauseObjectTimer'" >
@@ -1762,14 +1762,14 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'SetEffectStringParameter'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-                              
+
                 <xsl:when test="$typeValue = 'SetEffectBooleanParameter'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SetIncludedInParentCollisionMask'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetIndex'" >
                     <xsl:call-template name="animatableCapabilityAnimatableBehaviorSetIndexActionProcess" >
                         <xsl:with-param name="forExtension" >
@@ -1786,7 +1786,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
-  
+
                 <xsl:when test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetName'" >
                     <xsl:call-template name="animatableCapabilityAnimatableBehaviorSetNameActionProcess" >
                         <xsl:with-param name="forExtension" >
@@ -1803,7 +1803,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
-  
+
                 <xsl:when test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetSpeedScale'" >
                     <xsl:call-template name="animatableCapabilityAnimatableBehaviorSetSpeedScaleActionProcess" >
                         <xsl:with-param name="forExtension" >
@@ -1932,10 +1932,10 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'ParticleSystem::JumpEmitterForwardInTime'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'EffectCapability::EffectBehavior::SetEffectDoubleParameter'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
-                </xsl:when>                       
+                </xsl:when>
                 <xsl:when test="$typeValue = 'EffectCapability::EffectBehavior::SetEffectStringParameter'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
@@ -1945,7 +1945,7 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'EffectCapability::EffectBehavior::EnableEffect'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-                                
+
                 <xsl:when test="$typeValue = 'ScalableCapability::ScalableBehavior::SetValue'" >
                     //TWB - does this work?
                     <xsl:call-template name="scalableBehaviorSetValueActionProcess" >
@@ -1997,7 +1997,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'ResizableCapability::ResizableBehavior::SetWidth'" >
 
                     <xsl:call-template name="resizableCapabilityResizableBehaviorSetWidthActionProcess" >
@@ -2017,7 +2017,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ResizableCapability::ResizableBehavior::SetHeight'" >
-                    
+
                     <xsl:call-template name="resizableCapabilityResizableBehaviorSetHeightActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -2035,7 +2035,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ResizableCapability::ResizableBehavior::SetSize'" >
- 
+
                     <xsl:call-template name="resizableCapabilityResizableBehaviorSetSizeActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -2052,14 +2052,14 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'FlippableCapability::FlippableBehavior::FlipX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
                 <xsl:when test="$typeValue = 'FlippableCapability::FlippableBehavior::FlipY'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'ChangeBlendMode'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
@@ -2070,7 +2070,7 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ChangeSprite'" >
-                    
+
                     <xsl:call-template name="changeSpriteActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -2129,7 +2129,7 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'FlipY'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'PhysicsBehavior::SetStatic'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
@@ -2190,10 +2190,10 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'PhysicsBehavior::SetAngularDamping'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
-                
+
                 <xsl:when test="$typeValue = 'PlatformBehavior::Gravity'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
-                </xsl:when>                  
+                </xsl:when>
                 <xsl:when test="$typeValue = 'PlatformBehavior::MaxFallingSpeed'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:when>
@@ -2451,7 +2451,7 @@ Created By: Travis Berthelot
 
                 <!-- Function Specific Actions below here -->
                 <xsl:when test="$typeValue = 'SetReturnString'" >
-                    
+
                     <xsl:call-template name="setReturnStringActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -2460,10 +2460,10 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SetReturnBoolean'" >
-                    
+
                     <xsl:call-template name="setReturnBooleanActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -2472,10 +2472,10 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
                 <xsl:when test="$typeValue = 'SetReturnNumber'" >
-                    
+
                     <xsl:call-template name="setReturnNumberActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -2484,12 +2484,12 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:when>
 
                 <!-- Extension Actions below here -->
                 <xsl:when test="$typeValue = 'PanelSpriteSlider::PanelSpriteSlider::SetValue'" >
-                    
+
                     <xsl:call-template name="panelSpriteSliderPanelSpriteSliderSetValueActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -2508,7 +2508,7 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'TextInput::TextInputObject::SetTextColor'" >
-                    
+
                     <xsl:call-template name="textInputTextInputObjectSetTextColorActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -2526,7 +2526,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'TextInput::TextInputObject::SetFillColor'" >
-                    
+
                     <xsl:call-template name="textInputTextInputObjectSetFillColorActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -2544,7 +2544,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'TextInputVirtualKeyboard::TextInputVirtualKeyboard::closeKeyboard'" >
-                    
+
                     <xsl:call-template name="textInputVirtualKeyboardTextInputVirtualKeyboardCloseKeyboardActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -2562,7 +2562,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'TextInputVirtualKeyboard::TextInputVirtualKeyboard::openKeyboard'" >
-                    
+
                     <xsl:call-template name="textInputVirtualKeyboardTextInputVirtualKeyboardOpenKeyboardActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -2581,7 +2581,7 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'CameraX'" >
-                    
+
                     <xsl:call-template name="cameraXActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -2593,7 +2593,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'CameraY'" >
-                    
+
                     <xsl:call-template name="cameraYActionProcess" >
                         <xsl:with-param name="forExtension" >
                             <xsl:value-of select="$forExtension" />
@@ -2604,7 +2604,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
-                
+
                 <xsl:when test="contains($extensionNames, $typeValue)" >
 
                     <xsl:call-template name="extensionActionProcess" >
@@ -2618,7 +2618,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
-                
+
                 <xsl:otherwise>
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
 <!--                    //<xsl:value-of select="$extensionNames" />-->
@@ -2628,7 +2628,7 @@ Created By: Travis Berthelot
                 <xsl:if test="not(contains($forExtension, 'found'))" >
 
                 <xsl:if test="$typeValue = 'Create'" >
-                        
+
                         <xsl:call-template name="createEndActionProcess" >
                             <xsl:with-param name="forExtension" >
                                 <xsl:value-of select="$forExtension" />
@@ -2676,7 +2676,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="$typeValue = 'SourisSurObjet' or $typeValue = 'IsCursorOnObject'" >
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                    <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
+                    <xsl:variable name="conditionAsString" >var nodeId: Condition =<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private val CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" /> "
                                 </xsl:if>
                             </xsl:for-each>
@@ -2693,12 +2693,12 @@ Created By: Travis Berthelot
                         -->
                         <xsl:variable name="childEventWithUsedEvent" ><xsl:for-each select="../events" ><xsl:call-template name="childEventWithUsedEvent" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="motionGestureEvent" >true</xsl:with-param></xsl:call-template></xsl:for-each></xsl:variable>
                         <xsl:variable name="hasSourisSurObjetCondition" ><xsl:for-each select="../conditions" ><xsl:variable name="typeValue" select="type/value" /><xsl:if test="$typeValue = 'SourisSurObjet' or $typeValue = 'IsCursorOnObject'" >found</xsl:if></xsl:for-each></xsl:variable>
-                        
+
                         <xsl:if test="contains($childEventWithUsedEvent, 'found') and contains($hasSourisSurObjetCondition, 'found')" >
                         //IsCursorOnObject - motionGestureEvent
                         override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
                             super.processStats(motionGestureEvent)
-                            
+
                             //Conditions - START
                             <xsl:for-each select="../conditions" >
                                 <xsl:variable name="typeValue" select="type/value" />
@@ -2709,19 +2709,19 @@ Created By: Travis Berthelot
                                 </xsl:if>
                             </xsl:for-each>
                             //Conditions - END
-                        
+
                             return true
                         }
                         </xsl:if>
 
                 </xsl:if>
-            
+
                     }
-                    
+
                     val NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode = GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode()
-                    
+
             </xsl:if>
-            
+
             </xsl:for-each>
             <!-- actions - END -->
 

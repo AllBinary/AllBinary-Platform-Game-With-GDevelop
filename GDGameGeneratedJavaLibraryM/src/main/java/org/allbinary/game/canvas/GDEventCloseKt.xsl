@@ -15,7 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
-    
+
     <xsl:template name="eventsClose" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="conditionEventPosition" />
@@ -51,27 +51,27 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
                     //MouseButtonReleased - removeListener
-                    //BasicMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
+                    //BasicMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />)
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonFromTextReleased'" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
                     //MouseButtonFromTextReleased - //MouseButtonReleased - removeListener
-                    //BasicMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
+                    //BasicMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />)
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonPressed'" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
                     //MouseButtonPressed - removeListener
-                    //BasicMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
+                    //BasicMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />)
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonFromTextPressed'" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
                     //MouseButtonFromTextPressed - //MouseButtonPressed - removeListener
-                    //BasicMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
+                    //BasicMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />)
                 </xsl:if>
                 <xsl:if test="$typeValue = 'SourisBouton'" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
                     //MouseButton - //SourisBouton - removeListener
-                    //BasicMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
+                    //BasicMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />)
                 </xsl:if>
             </xsl:for-each>
 

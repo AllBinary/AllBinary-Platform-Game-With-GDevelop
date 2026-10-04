@@ -20,14 +20,14 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionCentreCameraGlobal.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobal.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDCreateInstances.xsl" />            
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDCreateInstances.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEventsGDNodes.xsl" />
@@ -58,71 +58,68 @@ Created By: Travis Berthelot
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
                 <xsl:variable name="layoutName" select="name" />
 
-                package org.allbinary.game.canvas;
+                package org.allbinary.game.canvas
 
-                import org.allbinary.animation.AnimationBehavior;
-                import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.logic.string.StringMaker;
-                import org.allbinary.string.CommonStrings;
-                import org.allbinary.util.BasicArrayList;
-                import org.allbinary.util.BasicArrayListD;
+                import org.allbinary.animation.AnimationBehavior
+                import org.allbinary.animation.special.SpecialAnimation
+                import org.allbinary.logic.communication.log.LogUtil
+                import org.allbinary.logic.string.StringMaker
+                import org.allbinary.string.CommonStrings
+                import org.allbinary.util.BasicArrayList
+                import org.allbinary.util.BasicArrayListD
 
                 //LayoutExternalEvent name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes extends SpecialAnimation
+                open public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes : SpecialAnimation
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes instance = 
-                       new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes();
+                    private val instance: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes =
+                       GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes()
 
-                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes getInstance()
-                    {
-                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes.instance;
+                    open public fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes {
+                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes.instance
                     }
 
-                    protected final LogUtil logUtil = LogUtil.getInstance();
+                    protected val logUtil: LogUtil = LogUtil.getInstance()
 
-                    private final CommonStrings commonStrings = CommonStrings.getInstance();
+                    private val commonStrings: CommonStrings = CommonStrings.getInstance()
 <!--                private final StringUtil stringUtil = StringUtil.getInstance();
                     private final NullUtil nullUtil = NullUtil.getInstance();
                     private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
-                    
+
                     private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                     private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();-->
-                    
-                    private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+
+                    private val globals: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance()
 <!--                private final GDGlobalsGDObjectsFactory gdGlobalsObjectsFactory = GDGlobalsGDObjectsFactory.getInstance();
                     private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();-->
-                    
-                    public final BasicArrayList layoutNameList = new BasicArrayListD();
-                    public final BasicArrayList layoutGDNodeList = new BasicArrayListD();
-                    
-                    private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources createSpecialAnimationImageResources() {
-                        try {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstanceOrCreate();
-                        } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + "GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources", this, this.commonStrings.CONSTRUCTOR, e);
-                        }
-                        return null;
-                    }
-                    
-                    private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources createSpecialAnimationGDResources() {
-                        try {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstanceOrCreate();
-                        } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e);
-                        }
-                        return null;
-                    }
-                            
-                    private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes() {
 
-                        super(AnimationBehavior.getInstance());
+                    public val layoutNameList: BasicArrayList = BasicArrayListD()
+                    public val layoutGDNodeList: BasicArrayList = BasicArrayListD()
+
+                    private fun createSpecialAnimationImageResources(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources {
+                        try {
+                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstanceOrCreate()
+                        } catch (e: Exception) {
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + "GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources", this, this.commonStrings.CONSTRUCTOR, e)
+                        }
+                        var null: return
+                    }
+
+                    private fun createSpecialAnimationGDResources(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources {
+                        try {
+                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstanceOrCreate()
+                        } catch (e: Exception) {
+                            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e)
+                        }
+                        var null: return
+                    }
+
+                    private constructor() : super(AnimationBehavior.getInstance()) {
 
                         try {
-                        
-                            this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR);
+
+                            this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR)
 
 <!--                    <xsl:call-template name="scale" >
                         <xsl:with-param name="layoutIndex" >
@@ -132,11 +129,11 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$layoutName" />
                         </xsl:with-param>
                     </xsl:call-template>-->
-                    
-                            final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = this.createSpecialAnimationImageResources();
-                            
-                            final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = this.createSpecialAnimationGDResources();
-                    
+
+                            val imageResources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources = this.createSpecialAnimationImageResources()
+
+                            val resources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources = this.createSpecialAnimationGDResources()
+
                             <xsl:for-each select="../externalLayouts" >
                                 <xsl:if test="$layoutName = associatedLayout" >
                                     //externalLayouts - externalLayoutsGDNodes
@@ -147,11 +144,11 @@ Created By: Travis Berthelot
                                     </xsl:call-template>
                                 </xsl:if>
                             </xsl:for-each>
-                            
-                            this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR);
 
-                        } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e);
+                            this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR)
+
+                        } catch (e: Exception) {
+                            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e)
                         }
 
                     }

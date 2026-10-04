@@ -17,21 +17,21 @@
             <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
             <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
             //Count - //Parent of Event - //externalEventCountBefore - <xsl:value-of select="$externalEventCountBefore" /> //externalLayouts - <xsl:value-of select="$externalLayoutCountBefore" /> //events - <xsl:value-of select="$eventCountBefore" /> //conditions = <xsl:value-of select="$conditionsCountBefore" /> //actions = <xsl:value-of select="$actionsCountBefore" /> //actionParameters = <xsl:value-of select="$actionParametersCountBefore" />
-            public final int NODE_<xsl:value-of select="$nodeId" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
+            public val NODE_<xsl:value-of select="$nodeId" />: Int = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />
 
             <xsl:call-template name="generateIndexToNodeIdMapping" >
                 <xsl:with-param name="totalRecursion" >
                     <xsl:value-of select="$totalRecursion + 1" />
                 </xsl:with-param>
             </xsl:call-template>
-                
+
     </xsl:template>
 
     <xsl:template name="generateIndexToNodeIdMapping" >
         <xsl:param name="totalRecursion" />
-                
+
         <xsl:for-each select="events" >
-        
+
             <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
             <xsl:variable name="externalLayoutCountBefore" ><xsl:value-of select="count(//externalLayouts[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
@@ -42,7 +42,7 @@
             <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
             <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
             //Count - //Event - //Parents of Event - //externalEventCountBefore - <xsl:value-of select="$externalEventCountBefore" /> //externalLayouts - <xsl:value-of select="$externalLayoutCountBefore" /> //events - <xsl:value-of select="$eventCountBefore" /> //conditions = <xsl:value-of select="$conditionsCountBefore" /> //actions = <xsl:value-of select="$actionsCountBefore" /> //actionParameters = <xsl:value-of select="$actionParametersCountBefore" />
-            public final int NODE_<xsl:value-of select="$nodeId" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
+            public val NODE_<xsl:value-of select="$nodeId" />: Int = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />
 
             <xsl:for-each select="whileConditions" >
                 <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
@@ -55,7 +55,7 @@
                 <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
                 <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
                 //Count - //whileConditions - //Condition - //Parents of Event - //externalEventCountBefore - <xsl:value-of select="$externalEventCountBefore" /> //externalLayouts - <xsl:value-of select="$externalLayoutCountBefore" /> //events = <xsl:value-of select="$eventCountBefore" /> //conditions = <xsl:value-of select="$conditionsCountBefore" /> //actions = <xsl:value-of select="$actionsCountBefore" /> //actionParameters = <xsl:value-of select="$actionParametersCountBefore" />
-                public final int NODE_<xsl:value-of select="$nodeId" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
+                public val NODE_<xsl:value-of select="$nodeId" />: Int = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />
                 <xsl:for-each select="subInstructions" >
                     <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                     <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
@@ -67,10 +67,10 @@
                     <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
                     <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
                     //Count - //subInstructions - //Condition - //Parents of Event - //externalEventCountBefore - <xsl:value-of select="$externalEventCountBefore" /> //externalLayouts - <xsl:value-of select="$externalLayoutCountBefore" /> //events = <xsl:value-of select="$eventCountBefore" /> //conditions = <xsl:value-of select="$conditionsCountBefore" /> //actions = <xsl:value-of select="$actionsCountBefore" /> //actionParameters = <xsl:value-of select="$actionParametersCountBefore" />
-                    public final int NODE_<xsl:value-of select="$nodeId" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
+                    public val NODE_<xsl:value-of select="$nodeId" />: Int = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />
                 </xsl:for-each>
             </xsl:for-each>
-                        
+
             <xsl:for-each select="conditions" >
                 <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                 <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
@@ -82,7 +82,7 @@
                 <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
                 <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
                 //Count - //Condition - //Parents of Event - //externalEventCountBefore - <xsl:value-of select="$externalEventCountBefore" /> //externalLayouts - <xsl:value-of select="$externalLayoutCountBefore" /> //events = <xsl:value-of select="$eventCountBefore" /> //conditions = <xsl:value-of select="$conditionsCountBefore" /> //actions = <xsl:value-of select="$actionsCountBefore" /> //actionParameters = <xsl:value-of select="$actionParametersCountBefore" />
-                public final int NODE_<xsl:value-of select="$nodeId" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
+                public val NODE_<xsl:value-of select="$nodeId" />: Int = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />
                 <xsl:for-each select="subInstructions" >
                     <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                     <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
@@ -94,7 +94,7 @@
                     <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
                     <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
                     //Count - //subInstructions - //Condition - //Parents of Event - //externalEventCountBefore - <xsl:value-of select="$externalEventCountBefore" /> //externalLayouts - <xsl:value-of select="$externalLayoutCountBefore" /> //events = <xsl:value-of select="$eventCountBefore" /> //conditions = <xsl:value-of select="$conditionsCountBefore" /> //actions = <xsl:value-of select="$actionsCountBefore" /> //actionParameters = <xsl:value-of select="$actionParametersCountBefore" />
-                    public final int NODE_<xsl:value-of select="$nodeId" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
+                    public val NODE_<xsl:value-of select="$nodeId" />: Int = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />
                 </xsl:for-each>
             </xsl:for-each>
 
@@ -109,7 +109,7 @@
                 <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
                 <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
                 //Count - //Action - //Parents of Event - //externalEventCountBefore - <xsl:value-of select="$externalEventCountBefore" /> //externalLayouts - <xsl:value-of select="$externalLayoutCountBefore" /> //events = <xsl:value-of select="$eventCountBefore" /> //conditions = <xsl:value-of select="$conditionsCountBefore" /> //actions = <xsl:value-of select="$actionsCountBefore" /> //actionParameters = <xsl:value-of select="$actionParametersCountBefore" />
-                public final int NODE_<xsl:value-of select="$nodeId" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
+                public val NODE_<xsl:value-of select="$nodeId" />: Int = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />
                 <xsl:for-each select="parameters" >
                 <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                 <xsl:variable name="externalEventCountBefore" ><xsl:value-of select="count(//externalEvents[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
@@ -121,7 +121,7 @@
                 <xsl:variable name="actionsCountBefore" ><xsl:value-of select="count(//actions[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
                 <xsl:variable name="actionParametersCountBefore" ><xsl:value-of select="count(//actions/parameters[number(substring(generate-id(), 2) - 65536) &lt; $nodeId])" /></xsl:variable>
                 //Count - //Action Parameter - //Parents of Event - //externalEventCountBefore - <xsl:value-of select="$externalEventCountBefore" /> //externalLayouts - <xsl:value-of select="$externalLayoutCountBefore" /> //events = <xsl:value-of select="$eventCountBefore" /> //conditions = <xsl:value-of select="$conditionsCountBefore" /> //actions = <xsl:value-of select="$actionsCountBefore" /> //actionParameters = <xsl:value-of select="$actionParametersCountBefore" />
-                final int PARAM_NODE_<xsl:value-of select="$nodeId" /> = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />;
+                val PARAM_NODE_<xsl:value-of select="$nodeId" />: Int = <xsl:value-of select="$externalEventCountBefore + $externalLayoutCountBefore + $eventCountBefore + $conditionsCountBefore + $subInstructionsCountBefore + $whileConditionsCountBefore + $actionsCountBefore + $actionParametersCountBefore" />
                 </xsl:for-each>
             </xsl:for-each>
 
@@ -200,12 +200,12 @@
             <xsl:text>&#10;</xsl:text>
             //caller=<xsl:value-of select="$caller" /> - //eventIdsDoNotCallRecursions
             //eventIdsDoNotCallRecursions - //Events - //<xsl:value-of select="type" /> - //<xsl:value-of select="name" /> - call
-            <xsl:if test="$totalRecursions > 0" >//TWB not called anymore <xsl:value-of select="$caller" />//</xsl:if>gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+            <xsl:if test="$totalRecursions > 0" >//TWB not called anymore <xsl:value-of select="$caller" />//</xsl:if>gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()
         </xsl:if>
         <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
             //Event - //BuiltinCommonInstructions::Link - call - //eventIds
-            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if><xsl:if test="$totalRecursions > 0" >//TWB not called anymore <xsl:value-of select="$caller" />//</xsl:if>globals.<xsl:value-of select="target" />GDNode.process();
+            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if><xsl:if test="$totalRecursions > 0" >//TWB not called anymore <xsl:value-of select="$caller" />//</xsl:if>globals.<xsl:value-of select="target" />GDNode.process()
         </xsl:if>
 
         <xsl:if test="$caller = 'onceCondition - //BuiltinCommonInstructions::Once'" >
@@ -258,7 +258,7 @@
             <xsl:text>&#10;</xsl:text>
             //actionIdsGDObject - //<xsl:value-of select="type/value" />
             <xsl:if test="type/value = 'Delete'" >
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameGlobals.tempGameLayerArray);
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameGlobals.tempGameLayerArray)
             </xsl:if>
             <xsl:if test="type/value != 'Delete'" >
                 <xsl:if test="(contains($parametersHasGDObjectName, 'found') and contains($hasCreate, 'found')) or contains($parametersAsString0, $gdObjectName)" >
@@ -271,37 +271,37 @@
                     <xsl:if test="$hasCreateOrCreateByName &lt; number(substring(generate-id(), 2) - 65536)" >
             //Using specific param2 - <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
             //Using param that is not from the first 2 GameLayers - get
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameGlobals.tempGameLayerArray);
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameGlobals.tempGameLayerArray)
                     </xsl:if>
                     <xsl:if test="not($hasCreateOrCreateByName &lt; number(substring(generate-id(), 2) - 65536))" >
             //Using newly created layer as param2
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameGlobals.tempGameLayerArray);
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameGlobals.tempGameLayerArray)
                     </xsl:if>
                 </xsl:if>
                 <xsl:if test="not(string-length($hasCreateOrCreateByName) > 0)" >
             //Using null param
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameGlobals.tempGameLayerArray);
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameGlobals.tempGameLayerArray)
                 </xsl:if>
-            <!-- 
-            if(globals.<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) { 
+            <!--
+            if(globals.<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
             -->
 
             //updateGDObject - 8
-            <xsl:value-of select="$gdGameLayer" />.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+            <xsl:value-of select="$gdGameLayer" />.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta)
                 </xsl:if>
 
                 <xsl:if test="not((contains($parametersHasGDObjectName, 'found') and contains($hasCreate, 'found')) or contains($parametersAsString0, $gdObjectName))" >
             //Action - //<xsl:value-of select="type/value" /> - call //Not processing the on the same GDGameLayer2
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()
                 </xsl:if>
 
             </xsl:if>
-            <!-- 
+            <!--
             } else {
                 //this.logUtil.putF("<xsl:value-of select="$gdGameLayer" /> was smaller than <xsl:value-of select="$gdGameLayer" /> at index: " + index, this, this.commonStrings.PROCESS);
             }
             -->
-            
+
         </xsl:for-each>
 
     </xsl:template>
@@ -329,15 +329,15 @@
                     //Found - condition in children - <xsl:value-of select="$childEventWithUsedEvent" />
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                    //final String EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Events nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:value-of select="$parametersAsString" />";
-                    //this.logUtil.put(EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                    //final String EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Events nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:value-of select="$parametersAsString" />"
+                    //this.logUtil.put(EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
                     //actionIdsMotionGestureEvent - //Event - //<xsl:value-of select="type" /> - call
-                    //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
+                    //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput)
                         </xsl:for-each>
                     //Events - END
                     </xsl:if>
-                    
-     
+
+
                 </xsl:if>
             </xsl:for-each>
         </xsl:for-each>
@@ -351,19 +351,19 @@
 
             <xsl:for-each select="conditions" >
                 <xsl:if test="type/value = 'SourisSurObjet' or type/value = 'IsCursorOnObject'" >
-                    
+
                 <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
                 <xsl:variable name="conditions" ><xsl:for-each select="../../conditions" >found</xsl:for-each></xsl:variable>
                 <xsl:variable name="release" ><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
                 <xsl:variable name="press" ><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
-                    
+
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                
+
                 <xsl:if test="contains($press, 'found') or contains($release, 'found')" >
             //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
             //Condition - //IsCursorOnObject - call - //release=<xsl:value-of select="$release" /> - //press=<xsl:value-of select="$press" /> //inverted=<xsl:value-of select="$inverted" /> - GDNode
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput)
                 </xsl:if>
 
                 </xsl:if>
@@ -394,20 +394,20 @@
                 <xsl:variable name="conditions" ><xsl:for-each select="../conditions" >found</xsl:for-each></xsl:variable>
                 <xsl:variable name="release" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
                 <xsl:variable name="press" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
-                    
+
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                         <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
             //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
             //Condition - //GlobalVariableAsBoolean - call - //release=<xsl:value-of select="$release" /> - //press=<xsl:value-of select="$press" /> //inverted=<xsl:value-of select="$inverted" /> - GDNode
-                            //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
+                            //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture()
                             if (lastMotionGestureInput == touchMotionGestureFactory.PRESSED) {
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()
                             }
                         </xsl:if>
                     </xsl:if>
                 </xsl:if>
-                
+
 <!--       This is now called from the parent Event
             <xsl:if test="type/value = 'SourisSurObjet' or type/value = 'IsCursorOnObject'" >
 
@@ -415,7 +415,7 @@
                 <xsl:variable name="conditions" ><xsl:for-each select="../../conditions" >found</xsl:for-each></xsl:variable>
                 <xsl:variable name="release" ><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
                 <xsl:variable name="press" ><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
-                    
+
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                         <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
@@ -434,7 +434,7 @@
                     <xsl:variable name="conditions" ><xsl:for-each select="../../conditions" >found</xsl:for-each></xsl:variable>
                     <xsl:variable name="release" ><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="press" ><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
-                    
+
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                     <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
@@ -443,7 +443,7 @@
                 </xsl:if>
             </xsl:for-each>
             </xsl:variable>
-            
+
             <xsl:if test="contains($hasMotionCondition, 'found')" >
 
                 <xsl:for-each select="conditions" >
@@ -461,11 +461,11 @@
                         </xsl:if>
                     </xsl:if>
                 </xsl:for-each>
-                            
+
                 //Event with motion condition
-                <xsl:if test="contains(disabled, 'true')" >//</xsl:if>gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
+                <xsl:if test="contains(disabled, 'true')" >//</xsl:if>gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput)
             </xsl:if>
-            
+
             <xsl:call-template name="actionIdsMovedMotionGestureEvent" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="number($totalRecursions) + 1" />
@@ -483,41 +483,41 @@
 <!--            //Events - <xsl:value-of select="$totalRecursions" />-->
 
             <xsl:for-each select="conditions" >
-                
+
 <!--                //Conditions - <xsl:value-of select="$totalRecursions" />-->
                 <xsl:if test="type/value = 'MouseButtonReleased'" >
                             //MouseButtonReleased - eventListener
                             if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
-                                globals.mouseButtonReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
+                                globals.mouseButtonReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput)
                             }
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonFromTextReleased'" >
                             //MouseButtonReleased - eventListener
                             if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
-                                globals.mouseButtonFromTextReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
+                                globals.mouseButtonFromTextReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput)
                             }
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonPressed'" >
                             //MouseButtonPressed - eventListener
-                            globals.mouseButtonPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
+                            globals.mouseButtonPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput)
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonFromTextPressed'" >
                             //MouseButtonFromTextPressed - //MouseButtonPressed - eventListener
-                            globals.mouseButtonFromTextPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
+                            globals.mouseButtonFromTextPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput)
                 </xsl:if>
                 <xsl:if test="type/value = 'SourisBouton'" >
                             //MouseButton - //SourisBouton - eventListener
-                            globals.mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
+                            globals.mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput)
                             if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
-                                globals.mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processReleased();
+                                globals.mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processReleased()
                             }
                 </xsl:if>
 
                 <xsl:if test="type/value = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
                             //SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed - eventListener
-                            globals.spriteMultitouchJoystickGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
+                            globals.spriteMultitouchJoystickGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput)
                 </xsl:if>
-                                
+
             </xsl:for-each>
 
             <xsl:call-template name="processNodesForMotionGestureEvent" >
@@ -527,7 +527,7 @@
             </xsl:call-template>
 
         </xsl:for-each>
-        
+
     </xsl:template>
 
     <xsl:template name="processNodesForScrollingMotionGestureEvent" >
@@ -537,17 +537,17 @@
 <!--            //Events - <xsl:value-of select="$totalRecursions" />-->
 
             <xsl:for-each select="conditions" >
-                
+
 <!--                //Conditions - <xsl:value-of select="$totalRecursions" />-->
                 <xsl:if test="type/value = 'IsMouseWheelScrollingUp'" >
                             //IsMouseWheelScrollingUp - eventListener
-                            globals.mouseWheelScrollingUpGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processScrolling(motionGestureEvent, globals.lastScrollingMotionGestureInput);
+                            globals.mouseWheelScrollingUpGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processScrolling(motionGestureEvent, globals.lastScrollingMotionGestureInput)
                 </xsl:if>
                 <xsl:if test="type/value = 'IsMouseWheelScrollingDown'" >
                             //IsMouseWheelScrollingDown - eventListener
-                            globals.mouseWheelScrollingDownGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processScrolling(motionGestureEvent, globals.lastScrollingMotionGestureInput);
+                            globals.mouseWheelScrollingDownGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processScrolling(motionGestureEvent, globals.lastScrollingMotionGestureInput)
                 </xsl:if>
-                                
+
             </xsl:for-each>
 
             <xsl:call-template name="processNodesForScrollingMotionGestureEvent" >
@@ -557,7 +557,7 @@
             </xsl:call-template>
 
         </xsl:for-each>
-        
+
     </xsl:template>
 
     <xsl:template name="isChildNode" >
@@ -634,7 +634,7 @@
     <xsl:template name="childEventWithUsedEvent">
         <xsl:param name="totalRecursions" />
         <xsl:param name="motionGestureEvent" />
-    
+
         <xsl:variable name="hasKeyFromTextPressed" ><xsl:for-each select="conditions" ><xsl:if test = "type/value = 'KeyFromTextPressed' or type/value = 'KeyPressed' or type/value = 'AnyKeyPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
 
         <xsl:for-each select="conditions" >
@@ -648,7 +648,7 @@
 
         <xsl:for-each select="events" >
             <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
-                
+
                 <xsl:if test="not(conditions) or $hasKeyFromTextPressed = 'found'" >
                     <xsl:call-template name="childEventWithUsedEvent" >
                         <xsl:with-param name="totalRecursions" >

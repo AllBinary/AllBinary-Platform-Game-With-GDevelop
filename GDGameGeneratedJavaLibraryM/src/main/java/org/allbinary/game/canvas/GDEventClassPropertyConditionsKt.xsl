@@ -90,17 +90,17 @@ Created By: Travis Berthelot
                     //TextObject::String
                     <xsl:if test="preceding-sibling::actions[type/value/text() = 'Create']/parameters[2]/text() = parameters[1]/text()">
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    //public final BasicArrayList <xsl:value-of select="$name" />GDObjectList = new BasicArrayListD();
+                    //public final BasicArrayList <xsl:value-of select="$name" />GDObjectList = BasicArrayListD()
                     </xsl:if>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ModVarSceneTxt'" >
                     <xsl:if test="contains($hasQualifyingParentConditions, 'found')">
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //ModVarSceneTxt
-                    public String <xsl:value-of select="$name" /> = null;
+                    public var <xsl:value-of select="$name" />: String = null
                     </xsl:if>
                 </xsl:if>
-                
+
                 <xsl:text>&#10;</xsl:text>
             </xsl:for-each>
 
@@ -111,79 +111,79 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'Timer'" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
                     <xsl:if test="not(preceding::conditions[parameters[3]/text() = current()/parameters[3]/text()] and preceding::conditions[type/value = current()/type/value])" >
-                    public TimeDelayHelper <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper = new TimeDelayHelper(<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >(int) (1000 * <xsl:value-of select="text()" />)</xsl:if></xsl:for-each>);
+                    public var <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper: TimeDelayHelper = TimeDelayHelper(<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >(1000 * <xsl:value-of select="text()" />).toInt()</xsl:if></xsl:for-each>)
                     </xsl:if>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ObjectTimer'" >
                     //This should probably go under each GObject instance
                     <xsl:variable name="paramOne" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="paramThree0" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:variable name="paramThree2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$paramThree0" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$paramOne" /></xsl:with-param><xsl:with-param name="replacementText" >((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="paramOne" />) gameLayer.gdObject)</xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:variable name="paramThree2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$paramThree0" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$paramOne" /></xsl:with-param><xsl:with-param name="replacementText" >(gameLayer.gdObject as GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="paramOne" />)</xsl:with-param></xsl:call-template></xsl:variable>
                     <xsl:variable name="paramThree3" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$paramThree2" /></xsl:with-param><xsl:with-param name="find" >Variable(</xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template></xsl:variable>
                     <xsl:variable name="paramThree" ><xsl:value-of select="substring($paramThree3, 0, string-length($paramThree3))" /></xsl:variable>
-                    
-                    public float[] <xsl:value-of select="$paramOne" />PortionElapsedTotalArray = new float[10];
-                    public final BasicArrayList <xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList = new BasicArrayListD();
 
-                    public float ObjectTimerElapsedTime(final int index, final String name) {
-                        final GDGameLayer gameLayer = (GDGameLayer) <xsl:value-of select="$paramOne" />GDGameLayerList.get(index);
-                        final float max = <xsl:value-of select="$paramThree" />;
-                    
+                    public var <xsl:value-of select="$paramOne" />PortionElapsedTotalArray: FloatArray = FloatArray(10)
+                    public val <xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList: BasicArrayList = BasicArrayListD()
+
+                    open public fun ObjectTimerElapsedTime(index: Int, name: String): Float {
+                        val gameLayer: GDGameLayer = <xsl:value-of select="$paramOne" />GDGameLayerList.get(index) as GDGameLayer
+                        val max: Float = <xsl:value-of select="$paramThree" />
+
                         if(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> max) {
-                            //final float elapsed = ((TimeDelayHelper) this.<xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList.get(index)).getElapsed(lastStartTime);
-                            final float elapsed = this.timeDelta;
-                            <xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] += elapsed / 1000;
-                        
-                            //this.logUtil.put(new StringMaker().append("<xsl:value-of select="$paramOne" />PortionElapsedTotal: ").append(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index]).append(" max: ").append(max).toString(), this, this.commonStrings.PROCESS);
+                            //final float elapsed = (this.<xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList.get(index) as TimeDelayHelper).getElapsed(lastStartTime)
+                            val elapsed: Float = this.timeDelta
+                            <xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] += elapsed / 1000
+
+                            //this.logUtil.put(StringMaker().append("<xsl:value-of select="$paramOne" />PortionElapsedTotal: ").append(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index]).append(" max: ").append(max).toString(), this, this.commonStrings.PROCESS)
                             if(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> max) {
-                                this.logUtil.put(new StringMaker().appendint(index).append("<xsl:value-of select="$paramOne" />PortionElapsedTotal: ").append(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index]).append(" max: ").append(max).toString(), this, this.commonStrings.PROCESS);
-                                <xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] = max;
-                                ((TimeDelayHelper) this.<xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList.get(index)).delay = Integer.MAX_VALUE;
+                                this.logUtil.put(StringMaker().append(index).append("<xsl:value-of select="$paramOne" />PortionElapsedTotal: ").append(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index]).append(" max: ").append(max).toString(), this, this.commonStrings.PROCESS)
+                                <xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] = max
+                                (this.<xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList.get(index) as TimeDelayHelper).delay = Integer.MAX_VALUE
                             }
                         }
 
-                        return <xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index];
+                        return <xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index]
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
                     //GDNode - //MouseButtonReleased - eventListener
-                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
-                    public GDNode mouseButtonReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null
+                    public var mouseButtonReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: GDNode = null
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonFromTextReleased'" >
                     //GDNode - //MouseButtonFromTextReleased - //MouseButtonReleased - eventListener
-                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
-                    public GDNode mouseButtonFromTextReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null
+                    public var mouseButtonFromTextReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: GDNode = null
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonPressed'" >
                     //GDNode - //MouseButtonPressed - eventListener
-                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
-                    public GDNode mouseButtonPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null
+                    public var mouseButtonPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: GDNode = null
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonFromTextPressed'" >
                     //GDNode - //MouseButtonFromTextPressed - //MouseButtonPressed  - eventListener
-                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
-                    public GDNode mouseButtonFromTextPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null
+                    public var mouseButtonFromTextPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: GDNode = null
                 </xsl:if>
                 <xsl:if test="$typeValue = 'IsMouseWheelScrollingUp'" >
                     //GDNode - //IsMouseWheelScrollingUp  - eventListener
-                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
-                    public GDNode mouseWheelScrollingUpGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null
+                    public var mouseWheelScrollingUpGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: GDNode = null
                 </xsl:if>
                 <xsl:if test="$typeValue = 'IsMouseWheelScrollingDown'" >
                     //GDNode - //IsMouseWheelScrollingDown  - eventListener
-                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
-                    public GDNode mouseWheelScrollingDownGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null
+                    public var mouseWheelScrollingDownGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: GDNode = null
                 </xsl:if>
                 <xsl:if test="$typeValue = 'SourisBouton'" >
                     //GDNode - //MouseButton - //SourisBouton - eventListener
-                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
-                    public GDNode mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null
+                    public var mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: GDNode = null
                 </xsl:if>
                 <xsl:if test="type/value = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
                     //GDNode - //SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed - eventListener
-                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
-                    public GDNode spriteMultitouchJoystickGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null
+                    public var spriteMultitouchJoystickGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: GDNode = null
                 </xsl:if>
             </xsl:for-each>
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
-    
+
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -21,28 +21,28 @@
 * Created By: Travis Berthelot
 *
 */
-package org.allbinary.game;
+package org.allbinary.game
 
-import javax.microedition.lcdui.Command;
+import javax.microedition.lcdui.Command
 
-import org.allbinary.logic.string.StringUtil;
+import org.allbinary.logic.string.StringUtil
 
-public class GDGameCommandFactory {
-    
-    private static final GDGameCommandFactory instance = new GDGameCommandFactory();
+open public class GDGameCommandFactory {
+
+    private val instance: GDGameCommandFactory = GDGameCommandFactory()
 
     /**
      * @return the instance
      */
-    public static GDGameCommandFactory getInstance() {
-        return GDGameCommandFactory.instance;
+    open public fun getInstance(): GDGameCommandFactory {
+        return GDGameCommandFactory.instance
     }
 
     <xsl:for-each select="layouts" >
-    public final Command <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, ' ', '_')" /></xsl:with-param></xsl:call-template>_GD_LAYOUT  = new Command("<xsl:value-of select="name" />", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1);
-    </xsl:for-each>                
-         
-    
+    public val <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, ' ', '_')" /></xsl:with-param></xsl:call-template>_GD_LAYOUT: Command = Command("<xsl:value-of select="name" />", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
+    </xsl:for-each>
+
+
 
 }
     </xsl:template>

@@ -20,9 +20,9 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
@@ -39,9 +39,9 @@ Created By: Travis Berthelot
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/event/GDJsCodeEventGDNode.xsl" />
-    
+
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -64,82 +64,79 @@ Created By: Travis Berthelot
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
-                
-                package org.allbinary.game.canvas;
 
-                import javax.microedition.lcdui.Graphics;
-                import javax.microedition.lcdui.Image;
-                
-                import org.json.me.JSONArray;
-                import org.json.me.JSONObject;
-        
-                import org.allbinary.AndroidUtil;
-                import org.allbinary.J2MEUtil;
-                import org.allbinary.animation.AnimationBehavior;
-                import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.game.configuration.persistance.JSONPersistance;
-                import org.allbinary.game.canvas.GDExtensionGDNodes;
-                import org.allbinary.game.layer.GDGameLayer;
-                import org.allbinary.game.layer.GDGameLayerFactory;
-                import org.allbinary.game.layout.GDNode;
-                import org.allbinary.game.layer.special.TempGameLayerUtil;
-                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
-                import org.allbinary.game.layout.GDObject;
-                import org.allbinary.game.layout.GDObjectStrings;
-                import org.allbinary.game.layer.AllBinaryGameLayerManager;
-                import org.allbinary.game.layer.CollidableCompositeLayer;
-                import org.allbinary.game.layer.identification.GroupLayerManagerListener;
-                import org.allbinary.game.rand.MyRandomFactory;
-                import org.allbinary.input.motion.gesture.MotionGestureInput;
-                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
-                import org.allbinary.string.CommonStrings;
-                import org.allbinary.string.CommonSeps;
-                import org.allbinary.logic.string.StringUtil;
-                import org.allbinary.logic.string.StringMaker;
-                import org.allbinary.logic.io.file.FileSystem;
-                import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.util.BasicArrayList;
-                import org.allbinary.util.BasicArrayListD;
-                import org.allbinary.logic.NullUtil;
-                import org.allbinary.util.ArrayUtil;
-                import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+                package org.allbinary.game.canvas
+
+                import javax.microedition.lcdui.Graphics
+                import javax.microedition.lcdui.Image
+
+                import org.json.me.JSONArray
+                import org.json.me.JSONObject
+
+                import org.allbinary.AndroidUtil
+                import org.allbinary.J2MEUtil
+                import org.allbinary.animation.AnimationBehavior
+                import org.allbinary.animation.special.SpecialAnimation
+                import org.allbinary.game.configuration.persistance.JSONPersistance
+                import org.allbinary.game.canvas.GDExtensionGDNodes
+                import org.allbinary.game.layer.GDGameLayer
+                import org.allbinary.game.layer.GDGameLayerFactory
+                import org.allbinary.game.layout.GDNode
+                import org.allbinary.game.layer.special.TempGameLayerUtil
+                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton
+                import org.allbinary.game.layout.GDObject
+                import org.allbinary.game.layout.GDObjectStrings
+                import org.allbinary.game.layer.AllBinaryGameLayerManager
+                import org.allbinary.game.layer.CollidableCompositeLayer
+                import org.allbinary.game.layer.identification.GroupLayerManagerListener
+                import org.allbinary.game.rand.MyRandomFactory
+                import org.allbinary.input.motion.gesture.MotionGestureInput
+                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent
+                import org.allbinary.string.CommonStrings
+                import org.allbinary.string.CommonSeps
+                import org.allbinary.logic.string.StringUtil
+                import org.allbinary.logic.string.StringMaker
+                import org.allbinary.logic.io.file.FileSystem
+                import org.allbinary.logic.communication.log.LogUtil
+                import org.allbinary.util.BasicArrayList
+                import org.allbinary.util.BasicArrayListD
+                import org.allbinary.logic.NullUtil
+                import org.allbinary.util.ArrayUtil
+                import org.allbinary.logic.math.SmallIntegerSingletonFactory
 
                 //LayoutOtherEvent name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes extends SpecialAnimation
+                open public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes : SpecialAnimation
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes instance = 
-                       new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes();
+                    private val instance: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes =
+                       GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes()
 
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes getInstance()
-                        {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes.instance;
+                        open public fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes {
+                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes.instance
                         }
 
-                        protected final LogUtil logUtil = LogUtil.getInstance();
-                        private final CommonStrings commonStrings = CommonStrings.getInstance();
-                        private final StringUtil stringUtil = StringUtil.getInstance();
-                        private final NullUtil nullUtil = NullUtil.getInstance();
-                        private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
-                        private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
-                        private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
+                        protected val logUtil: LogUtil = LogUtil.getInstance()
+                        private val commonStrings: CommonStrings = CommonStrings.getInstance()
+                        private val stringUtil: StringUtil = StringUtil.getInstance()
+                        private val nullUtil: NullUtil = NullUtil.getInstance()
+                        private val arrayUtil: ArrayUtil = ArrayUtil.getInstance()
+                        private val gameTickDisplayInfoSingleton: GameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance()
+                        private val smallIntegerSingletonFactory: SmallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
 
-                        private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-                        private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-                        private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
-                        
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-                        private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
-                        
-                    private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes() {
+                        private val objectStrings: GDObjectStrings = GDObjectStrings.getInstance()
+                        private val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
+                        private val gdExtensionGDNodes: GDExtensionGDNodes = GDExtensionGDNodes.getInstance()
 
-                        super(AnimationBehavior.getInstance());
+                        private val globals: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance()
+                        private val gdObjectsFactory: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance()
+                        private val imageResources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance()
+                        private val resources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance()
+
+                    private constructor() : super(AnimationBehavior.getInstance()) {
 
                         try {
-                        
-                            this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR);
+
+                            this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR)
 
                         <xsl:call-template name="scale" >
                             <xsl:with-param name="layoutIndex" >
@@ -149,7 +146,7 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="$layoutName" />
                             </xsl:with-param>
                         </xsl:call-template>
-                    
+
                     //otherEventLayout - //eventsCreateAssignGDObjectGDNodesOtherEvent - START
                     <xsl:call-template name="eventsCreateAssignGDObjectGDNodesOtherEvent" >
                         <xsl:with-param name="caller" >otherEventLayout</xsl:with-param>
@@ -178,75 +175,75 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     //otherEventLayout - //eventsCreateAssignGDObjectGDNodesOtherEvent - END
 
-                    this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR);
+                    this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR)
 
-                        } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e);
+                        } catch (e: Exception) {
+                            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e)
                         }
 
                     }
 
                     //public long TimeDelta() {
-                        //return globals.globalsGameTickTimeDelayHelper.timeDelta;
+                        //return globals.globalsGameTickTimeDelayHelper.timeDelta
                     //}
 
-                    public int SceneWindowWidth() {
-                        return gameTickDisplayInfoSingleton.getLastWidth();
+                    open public fun SceneWindowWidth(): Int {
+                        return gameTickDisplayInfoSingleton.getLastWidth()
                     }
 
-                    public int SceneWindowHeight() {
-                        return gameTickDisplayInfoSingleton.getLastHeight();
+                    open public fun SceneWindowHeight(): Int {
+                        return gameTickDisplayInfoSingleton.getLastHeight()
                     }
 
-                    public int abs(final int value) {
-                        return Math.abs(value);
-                    }
-                    
-                    public float abs(final float value) {
-                        return Math.abs(value);
+                    open public fun abs(value: Int): Int {
+                        return Math.abs(value)
                     }
 
-                    public double log2(final int value) {
-                        return Math.log(value);
+                    open public fun abs(value: Float): Float {
+                        return Math.abs(value)
                     }
 
-                    public int Random(final int range) {
-                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
+                    open public fun log2(value: Int): Double {
+                        return Math.log(value)
                     }
 
-                    public int Variable(final int value) {
-                        return value;
+                    open public fun Random(range: Int): Int {
+                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1)
                     }
 
-                    public float Variable(final float value) {
-                        return value;
+                    open public fun Variable(value: Int): Int {
+                        var value: return
                     }
 
-                    public double Variable(final double value) {
-                        return value;
+                    open public fun Variable(value: Float): Float {
+                        var value: return
                     }
 
-                    public String GlobalVariable(final String value) {
-                        return value;
+                    open public fun Variable(value: Double): Double {
+                        var value: return
                     }
 
-                    public float GlobalVariable(final float value) {
-                        return value;
+                    open public fun GlobalVariable(value: String): String {
+                        var value: return
                     }
 
-                    public long GlobalVariable(final long value) {
-                        return value;
+                    open public fun GlobalVariable(value: Float): Float {
+                        var value: return
                     }
-                                        
-                    public int GlobalVariable(final int value) {
-                        return value;
+
+                    open public fun GlobalVariable(value: Long): Long {
+                        var value: return
                     }
-                    
-                    public String ToString(final int value) {
+
+                    open public fun GlobalVariable(value: Int): Int {
+                        var value: return
+                    }
+
+                    open public fun ToString(value: Int): String {
                         if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
-                            return Integer.toString(value);
+                            return Integer.toString(value)
                         } else {
-                            return smallIntegerSingletonFactory.getString(value);
+                            return smallIntegerSingletonFactory.getString(value)
                         }
                     }
 

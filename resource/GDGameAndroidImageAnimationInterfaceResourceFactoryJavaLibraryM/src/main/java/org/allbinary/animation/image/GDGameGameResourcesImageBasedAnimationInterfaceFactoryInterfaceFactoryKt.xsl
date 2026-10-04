@@ -20,9 +20,9 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/replace.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/split.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
@@ -73,72 +73,71 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>/root<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
-                -->                
+                -->
                 //showAll - END
-                
+
 /*
 * AllBinary Open License Version 1
 * Copyright (c) 2011 AllBinary
-* 
+*
 * By agreeing to this license you and any business entity you represent are
 * legally bound to the AllBinary Open License Version 1 legal agreement.
-* 
+*
 * You may obtain the AllBinary Open License Version 1 legal agreement from
 * AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-* 
+*
 * Created By: Travis Berthelot
-* 
+*
 */
-package org.allbinary.animation.image;
+package org.allbinary.animation.image
 
-import javax.microedition.lcdui.Image;
-import javax.microedition.lcdui.Font;
+import javax.microedition.lcdui.Image
+import javax.microedition.lcdui.Font
 
-import org.allbinary.AndroidUtil;
-import org.allbinary.animation.AnimationBehaviorFactory;
-import org.allbinary.animation.AnimationInterfaceFactoryInterface;
-import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
-import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
-import org.allbinary.animation.IndexedAnimationBehaviorFactory;
-import org.allbinary.animation.NullRotationAnimationFactory;
-import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
-import org.allbinary.animation.compound.SliderAnimationInterfaceFactory;
-import org.allbinary.animation.compound.SimultaneousCompoundIndexedAnimationInterfaceFactory;
-import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
-import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory;
-import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory;
-import org.allbinary.animation.text.CustomTextAnimationFactory;
-import org.allbinary.animation.text.CustomTextBoxIndexedAnimationFactory;
-import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil;
-import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
-import org.allbinary.game.resource.ResourceLoadingLevelFactory;
-import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
+import org.allbinary.AndroidUtil
+import org.allbinary.animation.AnimationBehaviorFactory
+import org.allbinary.animation.AnimationInterfaceFactoryInterface
+import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite
+import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite
+import org.allbinary.animation.IndexedAnimationBehaviorFactory
+import org.allbinary.animation.NullRotationAnimationFactory
+import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface
+import org.allbinary.animation.compound.SliderAnimationInterfaceFactory
+import org.allbinary.animation.compound.SimultaneousCompoundIndexedAnimationInterfaceFactory
+import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory
+import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory
+import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory
+import org.allbinary.animation.text.CustomTextAnimationFactory
+import org.allbinary.animation.text.CustomTextBoxIndexedAnimationFactory
+import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil
+import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources
+import org.allbinary.game.resource.ResourceLoadingLevelFactory
+import org.allbinary.graphics.opengles.OpenGLFeatureFactory
 
-import org.allbinary.game.configuration.feature.Features;
-import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
-import org.allbinary.game.layer.special.GDConditionWithGroupActions;
-import org.allbinary.graphics.PointFactory;
-import org.allbinary.graphics.Rectangle;
-import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
-import org.allbinary.image.ImageCache;
-import org.allbinary.image.ImageCacheFactory;
-import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.math.PrimitiveIntUtil;
-import org.allbinary.logic.string.StringMaker;
-import org.allbinary.logic.communication.log.LogFactory;
-import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.logic.string.StringUtil;
-import org.allbinary.media.ScaleProperties;
-import org.allbinary.util.ABHashtable;
+import org.allbinary.game.configuration.feature.Features
+import org.allbinary.game.configuration.feature.GraphicsFeatureFactory
+import org.allbinary.game.layer.special.GDConditionWithGroupActions
+import org.allbinary.graphics.PointFactory
+import org.allbinary.graphics.Rectangle
+import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton
+import org.allbinary.image.ImageCache
+import org.allbinary.image.ImageCacheFactory
+import org.allbinary.string.CommonStrings
+import org.allbinary.logic.math.PrimitiveIntUtil
+import org.allbinary.logic.string.StringMaker
+import org.allbinary.logic.communication.log.LogFactory
+import org.allbinary.logic.communication.log.LogUtil
+import org.allbinary.logic.string.StringUtil
+import org.allbinary.media.ScaleProperties
+import org.allbinary.util.ABHashtable
 
-public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
-    extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
+open class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory : BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
-    private final CommonStrings commonStrings = CommonStrings.getInstance();
-    private final StringUtil stringUtil = StringUtil.getInstance();
-    private final PointFactory pointFactory = PointFactory.getInstance();
-    
-    private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
+    private val commonStrings: CommonStrings = CommonStrings.getInstance()
+    private val stringUtil: StringUtil = StringUtil.getInstance()
+    private val pointFactory: PointFactory = PointFactory.getInstance()
+
+    private val specialAnimationResources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance()
 
         <xsl:call-template name="scaleProperty" >
             <xsl:with-param name="layoutIndex" >
@@ -148,48 +147,46 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                 <xsl:value-of select="$layoutName" />
             </xsl:with-param>
         </xsl:call-template>
-        
+
         <xsl:variable name="hasSprite" ><xsl:for-each select="objects" ><xsl:if test="type = 'Sprite'" >found</xsl:if></xsl:for-each></xsl:variable>
         <xsl:if test="contains($hasSprite, 'found')" >
-    private final int animationScale = 1;
+    private val animationScale: Int = 1
         </xsl:if>
 
-    public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
+    constructor() : super("Game Image Animations", ABHashtable(), ABHashtable(), ABHashtable())
     {
-        super("Game Image Animations", new ABHashtable(), new ABHashtable(), new ABHashtable());
     }
 
-    public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
+    constructor(String name) : super(name, ABHashtable(), ABHashtable(), ABHashtable())
     {
-        super(name, new ABHashtable(), new ABHashtable(), new ABHashtable());
-    }
-    
-    public void init(int level)
-    throws Exception
-    {
-        this.init(ImageCacheFactory.getInstance(), level);
     }
 
-    protected void init(ImageCache imageCache, int level)
-    throws Exception
+    fun init(level: Int)
+
+    {
+        this.init(ImageCacheFactory.getInstance(), level)
+    }
+
+    protected fun init(imageCache: ImageCache, level: Int)
+
     {
         if(this.isInitialized())
         {
-            return;
+            return
         }
 
-        //final int portion = 120;
-        //final String loadingString = this.toString() + " Loading: ";
-        
-        //int index = 0;
+        //final int portion = 120
+        //final String loadingString = this.toString() + " Loading: "
 
-        //ProgressCanvas progressCanvas = 
-          //  ProgressCanvasFactory.getInstance();
+        //int index = 0
+
+        //ProgressCanvas progressCanvas =
+          //  ProgressCanvasFactory.getInstance()
 
                         try {
 
-                    final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
-    
+                    val gameTickDisplayInfoSingleton: GameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance()
+
                     <xsl:call-template name="androidAnimationFactoryCalls" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
@@ -207,15 +204,15 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                     <xsl:text>&#10;</xsl:text>
 
                     <xsl:text>&#10;</xsl:text>
-                    new GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(this.getHashtable(), this.getRectangleHashtable(), this.getRectangleArrayOfArraysHashtable()).init(-1);
+                    GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(this.getHashtable(), this.getRectangleHashtable(), this.getRectangleArrayOfArraysHashtable()).init(-1)
 
-                        } catch(Exception e) {
-                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                        } catch(e: Exception) {
+                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e)
                         }
 
-        super.init(level);
+        super.init(level)
     }
-    
+
                     <xsl:call-template name="androidAnimationFactory" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
@@ -231,22 +228,22 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                         </xsl:with-param>
                     </xsl:call-template>
 
-    public boolean isLoadingLevel(int level)
+    fun isLoadingLevel(level: Int): Boolean
     {
         if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
         {
-            return true;
+            return true
         }
         else
         {
-            return super.isLoadingLevel(level);
+            return super.isLoadingLevel(level)
         }
     }
-    
-    public boolean isFeature()
+
+    fun isFeature(): Boolean
     {
-        Features features = Features.getInstance();
-        
+        var features: Features = Features.getInstance()
+
         if (features.isFeature(
                 GraphicsFeatureFactory.getInstance().IMAGE_GRAPHICS) <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
             features.isFeature(
@@ -254,18 +251,18 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
             !features.isDefault(
                 OpenGLFeatureFactory.getInstance().OPENGL))
         {
-            return true;
+            return true
         }
         else
         {
-            return false;
+            return false
         }
     }
 
-    private void addRectangles() throws Exception
+    private fun addRectangles()
     {
-       //this.addRectangle(BossOneShipResources.getInstance().RESOURCE, new Rectangle(PointFactory
-         //       .ZERO_ZERO, 52, 52));
+       //this.addRectangle(BossOneShipResources.getInstance().RESOURCE, Rectangle(PointFactory
+         //       .ZERO_ZERO, 52, 52))
     }
 }
 

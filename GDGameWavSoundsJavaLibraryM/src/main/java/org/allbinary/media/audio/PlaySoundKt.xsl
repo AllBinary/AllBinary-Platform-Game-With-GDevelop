@@ -22,7 +22,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="objectsAsString" />
         <xsl:param name="createdObjectsAsString" />
-         
+
         <xsl:variable name="quote" >"</xsl:variable>
 
         //<xsl:value-of select="$caller" /> - eventsCreateAssignGDObject - START
@@ -31,10 +31,10 @@ Created By: Travis Berthelot
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
 
             <xsl:variable name="eventAsString" >
-            private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />";
+            private val EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />"
             <xsl:text>&#10;</xsl:text>
             </xsl:variable>
-            
+
             //Hack - actionWithTextObjectString is probably bad idea
             <xsl:variable name="actionWithTextObjectString" >
                 <xsl:for-each select="actions" >
@@ -51,10 +51,10 @@ Created By: Travis Berthelot
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:variable name="actionAsString" >Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                         <xsl:if test="not($typeValue = 'PauseTimer' or $typeValue = 'PlaySoundCanal' or $typeValue = 'PlaySoundOnChannel')" >
-                private final String ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($actionAsString, $quote, ' ')" />";
+                private val ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "<xsl:value-of select="translate($actionAsString, $quote, ' ')" />"
                         </xsl:if>
                         <xsl:if test="not($typeValue = 'ModVarScene' or $typeValue = 'AddForceAL' or $typeValue = 'PlaySoundCanal' or $typeValue = 'PlaySoundOnChannel' or $typeValue = 'StopSoundCanal')" >
-                private final String ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($actionAsString, $quote, ' ')" /> at: ";
+                private val ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "<xsl:value-of select="translate($actionAsString, $quote, ' ')" /> at: "
                         </xsl:if>
                 <xsl:text>&#10;</xsl:text>
             </xsl:for-each>
@@ -69,7 +69,7 @@ Created By: Travis Berthelot
                     <xsl:with-param name="caller" >eventsCreateAssignGDObject</xsl:with-param>
                     <xsl:with-param name="thisNodeArray" >
                         <xsl:value-of select="$thisNodeArray" />
-                    </xsl:with-param>                    
+                    </xsl:with-param>
                     <xsl:with-param name="layoutIndex" >
                         <xsl:value-of select="$layoutIndex" />
                     </xsl:with-param>
@@ -122,7 +122,7 @@ Created By: Travis Berthelot
             </xsl:call-template>
 
         </xsl:for-each>
-    
+
         //<xsl:value-of select="$caller" /> - eventsCreateAssignGDObject - END
 
     </xsl:template>
@@ -136,7 +136,7 @@ Created By: Travis Berthelot
         <xsl:for-each select="layouts" >
 <!--            //Layout - <xsl:value-of select="position()" />-->
             <xsl:if test="position() - 1 = $layoutIndex" >
-                
+
             <xsl:call-template name="findSoundInActionRecursion" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="0" />
@@ -148,7 +148,7 @@ Created By: Travis Berthelot
                     <xsl:value-of select="$musicOrSound" />
                 </xsl:with-param>
             </xsl:call-template>
-            
+
             </xsl:if>
         </xsl:for-each>
         </xsl:for-each>
@@ -167,7 +167,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 <!--                //Action - <xsl:value-of select="$typeValue" />-->
                 <xsl:if test="$param = $file" >
-                
+
                 <xsl:if test="$musicOrSound = 'music'" >
                 <xsl:if test="$typeValue = 'PlayMusic'" >
                     //PlayMusic - <xsl:value-of select="$file" />
@@ -225,7 +225,7 @@ Created By: Travis Berthelot
                     <xsl:if test="contains(file, '.ogg') or contains(file, '.wav') or contains(file, '.mp3')" >
                     //Audio File - <xsl:value-of select="file" />
                         <xsl:variable name="thisLayoutHasThisSoundResource" >
-                            <xsl:call-template name="findSoundInAction" >       
+                            <xsl:call-template name="findSoundInAction" >
                                 <xsl:with-param name="layoutIndex" >
                                     <xsl:value-of select="$layoutIndex" />
                                 </xsl:with-param>
@@ -248,7 +248,7 @@ Created By: Travis Berthelot
                     <xsl:if test="$musicOrSound = 'music'" >
                     if(!soundList.contains(org.allbinary.game.gd.resource.GD<xsl:value-of select="$fileName4" />Sound.getInstance())) {
                     </xsl:if>
-                        soundList.add(org.allbinary.game.gd.resource.GD<xsl:value-of select="$fileName4" />Sound.getInstance());
+                        soundList.add(org.allbinary.game.gd.resource.GD<xsl:value-of select="$fileName4" />Sound.getInstance())
                     <xsl:if test="$musicOrSound = 'music'" >
                     }
                     </xsl:if>
@@ -257,7 +257,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:for-each>
             </xsl:for-each>
-                                
+
     </xsl:template>
 
 </xsl:stylesheet>

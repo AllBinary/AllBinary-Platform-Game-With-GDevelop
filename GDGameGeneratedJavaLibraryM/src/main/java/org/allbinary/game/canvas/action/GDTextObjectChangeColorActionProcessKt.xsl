@@ -35,22 +35,22 @@ Created By: Travis Berthelot
 
                         //TextObject::ChangeColor - action - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
-                        @Override
-                        public boolean process() throws Exception {
-                            super.processStats();
+
+                        override fun process(): Boolean {
+                            super.processStats()
 
                             try {
 
-                                //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                                //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
                                 <xsl:if test="contains($hasBuiltinCommonInstructionsForEachToProcessGD, 'found')" >
-                                    if(true) throw new RuntimeException();
+                                    if(true) throw RuntimeException()
                                 </xsl:if>
                                 <xsl:if test="not(contains($hasBuiltinCommonInstructionsForEachToProcessGD, 'found'))" >
-                                
+
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
-                                            final int colorAsInt = basicColorUtil.get</xsl:if>
+                                            val colorAsInt: Int = basicColorUtil.get</xsl:if>
                                         <xsl:if test="position() = 2" >
                                             <xsl:if test="contains(text(), ';')" >
                                                 <xsl:text>ARGB(255, </xsl:text><xsl:value-of select="translate(substring(text(), 2, string-length(text()) - 2), ';', ',')" />
@@ -59,49 +59,49 @@ Created By: Travis Berthelot
                                                 <xsl:text>(255, </xsl:text><xsl:value-of select="text()" />
                                             </xsl:if>
                                         </xsl:if>
-                                        <xsl:if test="position() = last()" >); //, "<xsl:value-of select="type/value" />"));</xsl:if>
+                                        <xsl:if test="position() = last()" >) //, "<xsl:value-of select="type/value" />"))</xsl:if>
                                     </xsl:for-each>
                                     <xsl:text>&#10;</xsl:text>
-                                    
-                                        final BasicColor basicColor = smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
-                                        final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$param1" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$param1" />GDGameLayerList.size();
-                                        GDGameLayer gameLayer;
-                                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                            gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$param1" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$param1" />GDGameLayerList.get(index);
-                                            gameLayer.setBasicColor(basicColor);
-                                            //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$param1" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$param1" />TextAnimation.setBasicColor(smallBasicColorCacheFactory.getAndOrCreate(colorAsInt));
+
+                                        val basicColor: BasicColor = smallBasicColorCacheFactory.getAndOrCreate(colorAsInt)
+                                        val size: Int = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$param1" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$param1" />GDGameLayerList.size()
+                                        lateinit var gameLayer: GDGameLayer
+                                        for(index in 0 until<xsl:text disable-output-escaping="yes" ></xsl:text> size) {
+                                            gameLayer = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$param1" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$param1" />GDGameLayerList.get(index) as GDGameLayer
+                                            gameLayer.setBasicColor(basicColor)
+                                            //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$param1" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$param1" />TextAnimation.setBasicColor(smallBasicColorCacheFactory.getAndOrCreate(colorAsInt))
                                         }
                                     <xsl:text>&#10;</xsl:text>
 
                                 </xsl:if>
 
 
-                            } catch(Exception e) {
-                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            } catch(e: Exception) {
+                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e)
                             }
 
-                            return true;
+                            return true
                         }
 
-                    @Override
-                    public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
-                        super.processStats(motionGestureEvent);
-                        
-                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
-                        
-                        return this.process();
+
+                    override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                        super.processStats(motionGestureEvent)
+
+                        //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
+
+                        return this.process()
                     }
 
-                    @Override      
-                    public boolean processGD(final GDGameLayer[] gameLayerArray) throws Exception {
+
+                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
                         try {
-                     
+
                         <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
                         <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
-                            final int colorAsInt = basicColorUtil.get</xsl:if>
+                            val colorAsInt: Int = basicColorUtil.get</xsl:if>
                                         <xsl:if test="position() = 2" >
                                             <xsl:if test="contains(text(), ';')" >
                                                 <xsl:text>ARGB(255, </xsl:text><xsl:value-of select="translate(substring(text(), 2, string-length(text()) - 2), ';', ',')" />
@@ -110,43 +110,43 @@ Created By: Travis Berthelot
                                                 <xsl:text>(255, </xsl:text><xsl:value-of select="text()" />
                                             </xsl:if>
                                         </xsl:if>
-                                        <xsl:if test="position() = last()" >); //, "<xsl:value-of select="type/value" />"));</xsl:if>
+                                        <xsl:if test="position() = last()" >) //, "<xsl:value-of select="type/value" />"))</xsl:if>
                                     </xsl:for-each>
                                     <xsl:text>&#10;</xsl:text>
 
-                            final BasicColor basicColor = smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
-                            <xsl:value-of select="$param1" />GDGameLayer.setBasicColor(basicColor);
+                            val basicColor: BasicColor = smallBasicColorCacheFactory.getAndOrCreate(colorAsInt)
+                            <xsl:value-of select="$param1" />GDGameLayer.setBasicColor(basicColor)
 
                             <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
-                        } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                        } catch(e: Exception) {
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e)
                         }
 
-                        return true;
+                        return true
                     }
 
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >
-                        @Override
-                        public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
-                            
-                            //Map from object array with action params
-                            final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
-                            this.process(gameLayer, intArray[3], intArray[5]);
 
-                            return true;
+                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+
+                            //Map from object array with action params
+                            val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
+                            this.process(gameLayer, intArray[3], intArray[5])
+
+                            return true
                         }
                         </xsl:if>
 
-                        public void process(final GDGameLayer gameLayer, final int x, final int y) {
-                            final GDObject gdObject = gameLayer.gdObject;
-                            this.process(gdObject, x, y);
+                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                            val gdObject: GDObject = gameLayer.gdObject
+                            this.process(gdObject, x, y)
                         }
 
-                        public void process(final GDObject gdObject, final int x, final int y) {
-                            throw new RuntimeException();
+                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                            throw RuntimeException()
                         }
     </xsl:template>
 

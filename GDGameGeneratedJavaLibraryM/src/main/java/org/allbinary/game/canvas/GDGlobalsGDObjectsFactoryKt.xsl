@@ -20,9 +20,9 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
@@ -36,7 +36,7 @@ Created By: Travis Berthelot
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
-    
+
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -52,83 +52,81 @@ Created By: Travis Berthelot
                 //instancesAsString=<xsl:value-of select="$instancesAsString" />
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
-                
-                package org.allbinary.game.canvas;
 
-                import javax.microedition.lcdui.Graphics;
+                package org.allbinary.game.canvas
 
-                import org.allbinary.AndroidUtil;
-                import org.allbinary.game.canvas.GDExtensionGDNodes;
-                import org.allbinary.game.layer.SWTUtil;
-                import org.allbinary.game.layer.GDGameLayer;
-                import org.allbinary.game.layer.behavior.GDBehaviorUtil;
-                import org.allbinary.game.layout.GDObject;
-                import org.allbinary.game.layout.GDObjectFactory;
-                
-                import org.allbinary.logic.string.StringMaker;
-                import org.allbinary.logic.io.file.FileSystem;
-                import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.logic.string.StringUtil;
-                import org.allbinary.util.BasicArrayList;
-                import org.allbinary.util.BasicArrayListD;
-                
-                public class GDGlobalsGDObjectsFactory
+                import javax.microedition.lcdui.Graphics
+
+                import org.allbinary.AndroidUtil
+                import org.allbinary.game.canvas.GDExtensionGDNodes
+                import org.allbinary.game.layer.SWTUtil
+                import org.allbinary.game.layer.GDGameLayer
+                import org.allbinary.game.layer.behavior.GDBehaviorUtil
+                import org.allbinary.game.layout.GDObject
+                import org.allbinary.game.layout.GDObjectFactory
+
+                import org.allbinary.logic.string.StringMaker
+                import org.allbinary.logic.io.file.FileSystem
+                import org.allbinary.logic.communication.log.LogUtil
+                import org.allbinary.logic.string.StringUtil
+                import org.allbinary.util.BasicArrayList
+                import org.allbinary.util.BasicArrayListD
+
+                open public class GDGlobalsGDObjectsFactory
                 {
 
-                    private static final GDGlobalsGDObjectsFactory instance = new GDGlobalsGDObjectsFactory();
+                    private val instance: GDGlobalsGDObjectsFactory = GDGlobalsGDObjectsFactory()
 
-                    public static GDGlobalsGDObjectsFactory getInstanceOrCreate()
-                    {
-                        return GDGlobalsGDObjectsFactory.instance;
+                    open public fun getInstanceOrCreate(): GDGlobalsGDObjectsFactory {
+                        return GDGlobalsGDObjectsFactory.instance
                     }
 
-                    public static GDGlobalsGDObjectsFactory getInstance()
-                    {
-                        return GDGlobalsGDObjectsFactory.instance;
+                    open public fun getInstance(): GDGlobalsGDObjectsFactory {
+                        return GDGlobalsGDObjectsFactory.instance
                     }
 
-                    protected final LogUtil logUtil = LogUtil.getInstance();
-                    private final StringUtil stringUtil = StringUtil.getInstance();
-                    
-                    private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
+                    protected val logUtil: LogUtil = LogUtil.getInstance()
+                    private val stringUtil: StringUtil = StringUtil.getInstance()
 
-                    private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-                    private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
-                    
+                    private val gdBehaviorUtil: GDBehaviorUtil = GDBehaviorUtil.getInstance()
+
+                    private val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
+                    private val gdExtensionGDNodes: GDExtensionGDNodes = GDExtensionGDNodes.getInstance()
+
                     <xsl:call-template name="objectsClassPropertyGDObjects" >
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
 
                     <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
-                    public final BasicArrayList <xsl:value-of select="$name" />GDObjectFactoryList = new BasicArrayListD();
+                    public val <xsl:value-of select="$name" />GDObjectFactoryList: BasicArrayList = BasicArrayListD()
                     </xsl:for-each>
-                                        
+
                     <xsl:variable name="hasObjectsGroup" ><xsl:for-each select="objectsGroups" >found</xsl:for-each></xsl:variable>
                     <xsl:if test="contains($hasObjectsGroup, 'found')" >
-                    
+
                     </xsl:if>
-                    
-                    private GDGlobalsGDObjectsFactory() {
-                    
+
+                    private constructor() {
+
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
                         <xsl:for-each select="objects" >
-                        <xsl:value-of select="$name" />GDObjectFactoryList.add(<xsl:value-of select="name" />GDObjectFactory);
+                        <xsl:value-of select="$name" />GDObjectFactoryList.add(<xsl:value-of select="name" />GDObjectFactory)
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroups - END
 
                     }
-                    
+
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
-                    public int get<xsl:value-of select="name" />Index(final String name) {
+                    open public fun get<xsl:value-of select="name" />Index(name: String): Int {
                         <xsl:for-each select="objects" >
                             <xsl:if test="position() != 1" >} else </xsl:if>if(name == globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
-                            return <xsl:value-of select="position() - 1" />;
+                            var <xsl:value-of select="position() - 1" />: return
                         </xsl:for-each>
                         <xsl:if test="objects" >
 <!--
@@ -140,26 +138,26 @@ Created By: Travis Berthelot
                         }
                         </xsl:if>
 
-                        throw new RuntimeException("Missing index for Name: " + name);
+                        throw RuntimeException("Missing index for Name: " + name)
                     }
-                    
-                    public String get<xsl:value-of select="name" />Name(final String name) {
+
+                    open public fun get<xsl:value-of select="name" />Name(name: String): String {
                         <xsl:for-each select="objects" >
                             <xsl:if test="position() != 1" >} else </xsl:if>if(name == globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
-                            return globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME;
+                            return globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME
                         </xsl:for-each>
                         <xsl:if test="objects" >
                         } else <xsl:for-each select="objects" >
-                            <xsl:if test="position() != 1" >} else </xsl:if>if(name.equals(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME)) {
-                            return globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME;
+                            <xsl:if test="position() != 1" >} else </xsl:if>if(name == globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                            return globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME
                         </xsl:for-each>
                         }
                         </xsl:if>
-                        throw new RuntimeException("Missing Name: " + name);
+                        throw RuntimeException("Missing Name: " + name)
                     }
                     </xsl:for-each>
                     //objectsGroups - END
-                    
+
                 }
     </xsl:template>
 

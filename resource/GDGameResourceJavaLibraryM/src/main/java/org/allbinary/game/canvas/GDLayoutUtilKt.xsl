@@ -20,9 +20,9 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
-    
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
@@ -53,16 +53,16 @@ Created By: Travis Berthelot
 
                 <xsl:variable name="layoutName" select="name" />
 
-                package org.allbinary.game.canvas;
+                package org.allbinary.game.canvas
 
-                public class GD<xsl:value-of select="$layoutIndex" />LayoutUtil
+                open class GD<xsl:value-of select="$layoutIndex" />LayoutUtil
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />LayoutUtil instance = new GD<xsl:value-of select="$layoutIndex" />LayoutUtil();
+                    private val instance: GD<xsl:value-of select="$layoutIndex" />LayoutUtil = GD<xsl:value-of select="$layoutIndex" />LayoutUtil()
 
-                    public static GD<xsl:value-of select="$layoutIndex" />LayoutUtil getInstance()
+                    fun getInstance(): GD<xsl:value-of select="$layoutIndex" />LayoutUtil
                     {
-                        return GD<xsl:value-of select="$layoutIndex" />LayoutUtil.instance;
+                        return GD<xsl:value-of select="$layoutIndex" />LayoutUtil.instance
                     }
 
         <xsl:call-template name="scaleProperties" >
@@ -73,9 +73,9 @@ Created By: Travis Berthelot
                 <xsl:value-of select="$layoutName" />
             </xsl:with-param>
         </xsl:call-template>
-                    
-                    private GD<xsl:value-of select="$layoutIndex" />LayoutUtil() {
-                    
+
+                    private constructor() {
+
                     }
 
                 }
