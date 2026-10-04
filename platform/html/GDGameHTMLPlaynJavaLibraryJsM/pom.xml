@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
   
-    <name>GDGameHTMLPlaynJavaLibraryJs</name>
+    <name>GDGameHTMLPlayNJavaLibraryJs</name>
     <groupId>org.allbinary.game.gd</groupId>
-    <artifactId>GDGameHTMLPlaynJavaLibraryJs</artifactId>
+    <artifactId>GDGameHTMLPlayNJavaLibraryJs</artifactId>
     <!-- AllBinary Platform Version Start -->
     <version>1.0.0-SNAPSHOT</version>
     <!-- AllBinary Platform Version End -->
@@ -26,10 +26,6 @@
     
     <properties>
         <gwt.version>2.6.1</gwt.version>
-    </properties>
-
-
-    <properties>
         <yarnVersion>v1.22.22</yarnVersion>
     </properties>
 
@@ -46,18 +42,10 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>ABDKPlaynJavaLibraryJs</artifactId>
+            <artifactId>ABDKPlaynJavaLibraryForJs</artifactId>
             <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
+            <version>2.0</version>
             <!-- AllBinary Platform Version End -->
-            
-            <optional>true</optional>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-userJs</artifactId>
-            <version>${gwt.version}</version>
             
             <optional>true</optional>
         </dependency>
@@ -120,21 +108,6 @@
                 </executions>
             </plugin>
 
-            
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.1.2</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -152,5 +125,6 @@
         </plugins>
 
     </build>
+    
 </project>
 

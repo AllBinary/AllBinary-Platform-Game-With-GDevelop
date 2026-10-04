@@ -10,23 +10,22 @@
         <!-- Game Version Start -->
     </parent>
 
-    <artifactId>GDGameHTMLJavaLibraryJs</artifactId>
+    <artifactId>GDGameHTMLJavaLibraryTs</artifactId>
     <packaging>jar</packaging>
 
-    <name>GDGameHTMLJavaLibraryJs</name>
+    <name>GDGameHTMLJavaLibraryTs</name>
     <url>http://www.allbinary.com/</url>
 
     <properties>
         <buildLabel>${version}</buildLabel>
         <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
-        <yarnVersion>v1.22.22</yarnVersion>
     </properties>
 
     <dependencies>
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>AllBinaryOptionalBasePlatformJavaLibraryJs</artifactId>
+            <artifactId>AllBinaryOptionalBasePlatformJavaLibraryTs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
@@ -35,7 +34,7 @@
 
         <dependency>
             <groupId>org.allbinary.input</groupId>
-            <artifactId>TouchButtonResourceAnimationJavaLibraryJs</artifactId>
+            <artifactId>TouchButtonResourceAnimationJavaLibraryTs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
@@ -44,7 +43,7 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>MusicJ2MEJavaLibraryJs</artifactId>
+            <artifactId>MusicJ2MEJavaLibraryTs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
@@ -53,7 +52,7 @@
         
         <dependency>
             <groupId>org.allbinary.input</groupId>
-            <artifactId>TouchButtonResourceOpenGLESAnimationJavaLibraryJs</artifactId>
+            <artifactId>TouchButtonResourceOpenGLESAnimationJavaLibraryTs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
@@ -62,10 +61,10 @@
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameTouchJavaLibraryJs</artifactId>
+            <artifactId>GDGameTouchJavaLibraryTs</artifactId>
             <!--
-            <artifactId>GDGameTouchJavaLibraryJs</artifactId>
-            <artifactId>GDGameNoTouchJavaLibraryJs</artifactId>
+            <artifactId>GDGameTouchJavaLibraryTs</artifactId>
+            <artifactId>GDGameNoTouchJavaLibraryTs</artifactId>
             -->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
@@ -75,7 +74,7 @@
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameJavaLibraryJs</artifactId>
+            <artifactId>GDGameJavaLibraryTs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
@@ -83,7 +82,7 @@
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameWavSoundsJavaLibraryJs</artifactId>
+            <artifactId>GDGameWavSoundsJavaLibraryTs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
@@ -91,7 +90,7 @@
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryJs</artifactId>
+            <artifactId>GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryTs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
@@ -100,7 +99,7 @@
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibraryJs</artifactId>
+            <artifactId>GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibraryTs</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
@@ -108,74 +107,75 @@
         
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>npm-install</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <version>2.0.0</version>
+                        <configuration>
+                            <installDirectory>c:\</installDirectory>
+                            <nodeVersion>v26.7.0</nodeVersion>
+                            <npmVersion>12.0.0</npmVersion>
+                            <testFailureIgnore>true</testFailureIgnore>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>install node and npm</id>
+                                <goals>
+                                    <goal>install-node-and-npm</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>npm install</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>install</arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
-            
+
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.6.3</version>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>2.0.0</version>
+                <configuration>
+                    <installDirectory>c:\</installDirectory>
+                    <nodeVersion>v26.7.0</nodeVersion>
+                    <npmVersion>12.0.0</npmVersion>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
                 <executions>
                     <execution>
-                        <id>npm-install-typescript</id>
-                        <phase>generate-sources</phase>
+                        <id>npm run validation</id>
                         <goals>
-                            <goal>exec</goal>
+                            <goal>npm</goal>
                         </goals>
+                        <phase>test</phase>
                         <configuration>
-                            <executable>cmd</executable>
-                            <workingDirectory>${basedir}</workingDirectory>
-                            <arguments>
-                                <argument>/c</argument>
-                                <argument>npm</argument>
-                                <argument>install</argument>
-                                <argument>typescript</argument>
-                                <argument>--no-save</argument>
-                                <argument>--no-audit</argument>
-                                <argument>--no-fund</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>tsc-compile</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>cmd</executable>
-                            <workingDirectory>${basedir}</workingDirectory>
-                            <!-- Uses the path from tsconfig.json instead of -p path; ignore tsc errors so the build continues -->
-                            <arguments>
-                                <argument>/c</argument>
-                                <!--                                <argument>npx tsc</argument>-->
-                                <argument>npx tsc || exit 0</argument>
-                            </arguments>
+                            <arguments>run validate</arguments>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
-            
+                        
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <version>2.1.2</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.3.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -190,4 +190,3 @@
     </build>
 
 </project>
-

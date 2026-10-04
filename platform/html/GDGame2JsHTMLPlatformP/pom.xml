@@ -21,19 +21,19 @@
     </properties>
 
     <modules>
-                
+
         <!--
         <module>../GDGameTouchHTMLM</module>
         -->
-        <module>../GDGameHTMLResourcesJavaLibraryM</module>
+        <module>../GDGameHTMLResourcesJavaLibraryJsM</module>
         <module>../GDGame2JsHTMLM</module>
-        <module>../GDGameHTMLJavaLibraryM</module>
+        <module>../GDGameHTMLJavaLibraryJsM</module>
         <module>../../../platformx/html/GDGame2JsHTMLTempM</module>
-        <module>../GDGameHTMLPlaynJavaLibraryM</module>
-        <module>../GDGame2JsPlayNM</module>
+        <module>../GDGameHTMLPlaynJavaLibraryJsM</module>
         <!--
         <module>../GDGamePlayNWarM</module>
         -->
+        <module>../GDGame2ForJsPlayNM</module>
     </modules>
 
 </project>

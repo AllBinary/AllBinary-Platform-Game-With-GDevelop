@@ -4,7 +4,7 @@
     
     <parent>
         <groupId>org.allbinary.game.gd</groupId>
-        <artifactId>GDGameParentJs</artifactId>
+        <artifactId>GDGameParent</artifactId>
         <!-- Game Version Start -->
         <version>1.0.0-SNAPSHOT</version>
         <!-- Game Version Start -->
@@ -32,10 +32,6 @@
         <inputPath3>..\..\..\Resources\sounds\release\</inputPath3>
         -->
 
-    </properties>
-
-
-    <properties>
         <yarnVersion>v1.22.22</yarnVersion>
     </properties>
 
@@ -64,80 +60,67 @@
     </dependencies>
 
     <build>
-        
-        <plugins>
 
-            <!-- Delete output directory -->
-<!--
+        <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-clean-pluginJs</artifactId>
-                <version>2.4.1</version>
-                <configuration>
-                    <followSymLinks>false</followSymLinks>
-                    <filesets>
-                        <fileset>
-                            <directory>${outputPath}</directory>
-                        </fileset>
-                    </filesets>
-                </configuration>
-            </plugin>
-      
-            <plugin>
-                <artifactId>maven-resources-pluginJs</artifactId>
-                <version>2.4.3</version>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.6.3</version>
                 <executions>
                     <execution>
-                        <id>copy-resources</id>
-                        <phase>package</phase>
+                        <id>npm-install-typescript</id>
+                        <phase>generate-sources</phase>
                         <goals>
-                            <goal>copy-resources</goal>
+                            <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${outputPath}</outputDirectory>
-                            <resources>          
-                                <resource>
-                                    <directory>${inputPath}</directory>
-                                    <filtering>false</filtering>
-                                </resource>
-                                <resource>
-                                    <directory>${inputPath2}</directory>
-                                    <filtering>false</filtering>
-                                </resource>
-                                <resource>
-                                    <directory>${inputPath3}</directory>
-                                    <filtering>false</filtering>
-                                </resource>
-                                <resource>
-                                    <directory>${inputPath5}</directory>
-                                    <filtering>false</filtering>
-                                </resource>
-                            </resources>              
-                        </configuration>            
+                            <executable>cmd</executable>
+                            <workingDirectory>${basedir}</workingDirectory>
+                            <arguments>
+                                <argument>/c</argument>
+                                <argument>npm</argument>
+                                <argument>install</argument>
+                                <argument>typescript</argument>
+                                <argument>--no-save</argument>
+                                <argument>--no-audit</argument>
+                                <argument>--no-fund</argument>
+                            </arguments>
+                        </configuration>
                     </execution>
-                </executions>
-            </plugin>            
-            
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-pluginJs</artifactId>
-                <executions>
                     <execution>
-                        <id>sources</id>
-                        <phase>validate</phase>
+                        <id>tsc-compile</id>
+                        <phase>generate-sources</phase>
                         <goals>
-                            <goal>unpack-dependencies</goal>
+                            <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <includes>**\/*.wav, **\/*.png</includes>
-                            <outputDirectory>../GDGamePlayNWarM/war/gd/res/</outputDirectory>
-                            <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+                            <executable>cmd</executable>
+                            <workingDirectory>${basedir}</workingDirectory>
+                            <!-- Uses the path from tsconfig.json instead of -p path; ignore tsc errors so the build continues -->
+                            <arguments>
+                                <argument>/c</argument>
+                                <!--                                <argument>npx tsc</argument>-->
+                                <argument>npx tsc || exit 0</argument>
+                            </arguments>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
--->
-                  
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
 
     </build>

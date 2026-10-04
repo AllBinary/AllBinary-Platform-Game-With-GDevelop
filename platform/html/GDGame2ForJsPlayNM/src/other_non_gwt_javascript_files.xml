@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files>
+    <file>./playn/core/MiniSpaceWars.js</file>
+    <file>./org/allbinary/game/ag/minispacewar/MiniSpaceWarsVectorMIDlet.js</file>
+    <file>./playn/core/MSWVGameHtmlLoadResourcesProcessorFactoryNI.js</file>
+</files>

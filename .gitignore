@@ -200,6 +200,7 @@ GDNonLayout.xml
 ./platform/html/GDGamePlayNM/src/playn/core/SoundTestGame.java
 /platform/html/GDGamePlayNWarM/war/gd/res
 /platform/html/GDGame2PlayNWarM/war/gd/res
+/platform/html/GDGame2JsPlayNWarM/war/gd/res
 /platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.java
 /platformx/android/GDGameAndroidApplicationM/src/main/java/**/*.xsl
 /platformx/android/GDGameAndroidApplicationM/src/main/java/META-INF/**/*.xml
@@ -310,6 +311,10 @@ GDNonLayout.xml
 
 /platform/html/GDGamePlayNWarM/war/gd/**/*.png
 /platform/html/GDGamePlayNWarM/war/gd/**/*.wav
+/platform/html/GDGame2PlayNWarM/war/gd/**/*.png
+/platform/html/GDGame2PlayNWarM/war/gd/**/*.wav
+/platform/html/GDGame2JsPlayNWarM/war/gd/**/*.png
+/platform/html/GDGame2JsPlayNWarM/war/gd/**/*.wav
 
 GDGameGeneratedJavaLibraryKtM/src/main/java/**/*.xml
 GDGameGeneratedJavaLibraryKtM/src/main/java/**/*.txt
