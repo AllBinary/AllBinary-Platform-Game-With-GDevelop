@@ -1,0 +1,243 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.allbinary.game.gd</groupId>
+        <artifactId>GDGameParent</artifactId>
+        <!-- Game Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- Game Version Start -->
+    </parent>
+
+    <artifactId>GDGameAndroidRawResourcesJavaLibraryKt</artifactId>
+    <packaging>jar</packaging>
+
+    <name>GDGameAndroidRawResourcesJavaLibraryKt</name>
+    <url>http://www.allbinary.com/</url>
+
+    <properties>
+
+        <outputPath>../../../platformx/android/GDGameAndroidApplicationM\src\main\res\raw</outputPath>
+        <outputPath2>../../../platformx/android/GDGameAndroidApplicationM\src\main\res\drawable</outputPath2>
+        <outputPath3>../../../platformx/android/GDGameAndroidApplicationNoLicensingGradle\app\src\main\res\raw</outputPath3>
+        <outputPath4>../../../platformx/android/GDGameAndroidApplicationNoLicensingGradle\app\src\main\res\drawable</outputPath4>
+        
+        <inputPath>..\..\..\Resources\2d\images\release\</inputPath>
+        <inputPath2>..\..\..\Resources\2d\images\wait\</inputPath2>
+        <inputPath5>..\..\..\Resources\2d\images\gd\</inputPath5>
+        <inputPath3>..\..\..\Resources\2d\sounds\ogg\</inputPath3>
+        <inputPath4>..\..\..\Resources\2d\partner\</inputPath4>
+        
+    </properties>
+
+    <dependencies>         
+        
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>2.4.0-RC</version><!-- kotlin -->
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        
+        <plugins>
+
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>2.4.0-RC</version><!-- kotlin -->
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <mainClass></mainClass>
+                </configuration>
+            </plugin>
+
+            
+            <!-- Delete output directory -->
+            <!--
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-pluginKt</artifactId>
+                <version>2.4.1</version>
+                <configuration>
+                    <followSymLinks>false</followSymLinks>
+                    <filesets>
+                        <fileset>
+                            <directory>${outputPath}</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${outputPath2}</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            -->
+      
+            <plugin>
+                <artifactId>maven-resources-pluginKt</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources-raw-mvn</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPath2}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath3}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath4}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath5}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>              
+                        </configuration>     
+                    </execution>
+                    <execution>
+                        <id>copy-resources-drawable-mvn</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath2}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPath}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath2}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>              
+                        </configuration>     
+                    </execution>                    
+                </executions>
+            </plugin>            
+
+            <plugin>
+                <artifactId>maven-resources-pluginKt</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources-raw-gradle</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath3}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPath}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath3}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath4}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath5}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>              
+                        </configuration>     
+                    </execution>
+                    <execution>
+                        <id>copy-resources-drawable-gradle</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath4}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPath}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath2}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>              
+                        </configuration>     
+                    </execution>                    
+                </executions>
+            </plugin>            
+                        
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-pluginKt</artifactId>
+                <version>3.1.2</version>
+                <executions>
+                    <execution>
+                        <id>sources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includes>**\/*.wav, **\/*.ogg, **\/*.png, **\/*.html</includes>
+                            <outputDirectory>../GDGameAndroidApplicationM\src\main\res\raw\</outputDirectory>
+                            <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+                        
+        </plugins>
+
+    </build>
+
+</project>
+

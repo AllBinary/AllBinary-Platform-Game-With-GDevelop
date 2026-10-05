@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    
     <parent>
         <groupId>org.allbinary.game.gd</groupId>
         <artifactId>GDGameParent</artifactId>
@@ -9,12 +9,12 @@
         <version>1.0.0-SNAPSHOT</version>
         <!-- Game Version End -->
     </parent>
-
-    <artifactId>GDGameGeneratedJavaLibraryKt</artifactId>
+    
+    <artifactId>GDGameThreedBaseJavaLibraryKt</artifactId>
     <packaging>jar</packaging>
-
-    <name>GDGameGeneratedJavaLibraryKt</name>
-    <url>http://www.allbinary.com/</url>
+    
+    <name>GDGameThreedBaseJavaLibraryKt</name>
+    <url>http://www.allbinary.com</url>
 
     <properties>
         <buildLabel>${version}</buildLabel>
@@ -28,44 +28,29 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
-        
+
 <!--
         <dependency>
             <groupId>com.sun</groupId>
             <artifactId>GDLWUITJavaLibraryKt</artifactId>
-            <version>${allbinary.platform.version}</version>
-        </dependency>
--->
-
-<!--
-            <artifactId>ABAtRuntimeJavaToTsToJsLibraryKt</artifactId>
-            <artifactId>ABAtRuntimeJsLibraryKt</artifactId>
--->
-<!--
-        <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>ABAtRuntimeJavaToTsToJsLibraryKt</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
 -->
 
+        <!--
+        -->
         <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>FileJ2SEJavaLibraryKt</artifactId>
+            <groupId>org.mapgenerator</groupId>
+            <artifactId>TileMapGeneratorJavaLibraryMKt</artifactId>
             <version>1.0.0-SNAPSHOT</version>
-
-            <optional>true</optional>
         </dependency>
-
-
         <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>NoSystemJavaLibraryKt</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
-            <optional>true</optional>
+            <groupId>org.mapgenerator.dungeon</groupId>
+            <artifactId>DungeonGeneratorJavaLibraryKt</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
+        <!--
+        -->
 
         <dependency>
             <groupId>org.allbinary</groupId>
@@ -75,7 +60,6 @@
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
-
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>LogJ2MEJavaLibraryKt</artifactId>
@@ -86,7 +70,7 @@
         </dependency>
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>OpenGLNoneOtherJavaLibraryKt</artifactId>
+            <artifactId>ImageCacheLazyJ2MEJavaLibraryKt</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
@@ -94,36 +78,52 @@
         </dependency>
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>NoSWTJavaLibraryKt</artifactId>
+            <artifactId>NoSystemJavaLibraryKt</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
-
         <dependency>
-            <groupId>org.allbinary.game.multiplayer</groupId>
-            <artifactId>AllBinaryGameClientBaseNullJavaLibraryKt</artifactId>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameThreedBaseJ2SEWithSWTJOGLJavaLibraryKt</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLNoneJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameThreedJ2SEWithSWTJOGLResourceJavaLibraryKt</artifactId>
+            
+<!--            <groupId>org.allbinary</groupId>
+            <artifactId>AppNoneOpenGLESJavaLibraryKt</artifactId>-->
+            <version>${allbinary.platform.version}</version>
+            <optional>true</optional>
+        </dependency>
+        
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>GameConfigurationJ2MEJavaLibraryKt</artifactId>
+            <artifactId>FormJMEJavaLibraryKt</artifactId>
             <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
+            <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
-
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>BasicPlayerJavaLibraryKt</artifactId>
+            <artifactId>J2SEForJ2MEJavaLibraryKt</artifactId>
             <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
+            <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
@@ -132,17 +132,81 @@
             <groupId>org.allbinary</groupId>
             <artifactId>GameScoresLocalJavaLibraryKt</artifactId>
             <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>MusicJ2MEJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
 
         <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDYourFormJavaLibraryKt</artifactId>
+            <groupId>org.allbinary</groupId>
+            <artifactId>FullScreenNoneJavaLibraryKt</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.threed</groupId>
+            <artifactId>AllBinaryToMin3dInputJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.threed</groupId>
+            <artifactId>AllBinaryToMin3dInputJavaLibraryKt</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.threed</groupId>
+            <artifactId>AllBinaryToMin3dJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+ 
+        <dependency>
+            <groupId>min3d</groupId>
+            <artifactId>Min3dForAndroidPlatformJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameGeneratedJavaLibraryKt</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameJavaLibraryKt</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.multiplayer</groupId>
+            <artifactId>AllBinaryGameClientBaseNullJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <!--
+            <artifactId>AllBinaryGameClientBaseJavaLibraryKt</artifactId>
+            -->
             <optional>true</optional>
         </dependency>
 
@@ -154,108 +218,72 @@
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGamePreBaseJavaLibraryKt</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameJavaLibraryKt</artifactId>
-        </dependency>
-        
-        <!--
-        <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameJ2MEJavaLibraryKt</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameAndroidSoundsJavaLibraryKt</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameThreedAndroidJavaLibraryKt</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-            <optional>true</optional>
-        </dependency>
-        -->
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameImageAnimationInterfaceResourceFactoryJavaLibraryKt</artifactId>
+            <artifactId>GDGameThreedPreBaseJavaLibraryKt</artifactId>
             <version>1.0.0-SNAPSHOT</version>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameWavSoundsJavaLibraryKt</artifactId>
+            <optional>true</optional>            
         </dependency>
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameResourceJavaLibraryKt</artifactId>
+            <optional>true</optional>
+        </dependency>
+                
+        <!--
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameLocalHighScoresJavaLibraryKt</artifactId>
+            <version>${allbinary.platform.version}</version>
+            <optional>true</optional>
+        </dependency>
+        -->
+        
+        <dependency>
+            <groupId>org.allbinary.game.threed</groupId>
+            <artifactId>AllBinaryToAdvancedMin3dJavaLibraryKt</artifactId>        
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
 
         <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>J2MEForJ2MEJavaLibraryKt</artifactId>
+            <groupId>org.allbinary.media.graphics.geography.map</groupId>
+            <artifactId>GeographicMapLibraryKt</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
-
-            <optional>true</optional>
         </dependency>
 
         <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>BasePreloaderFileJavaLibraryKt</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
-
-            <optional>true</optional>
+            <groupId>org.mapeditor</groupId>
+            <artifactId>TiledJSONJavaLibraryKt</artifactId>
+            <version>1.4.2-SNAPSHOT</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>OpenGLNoneJavaLibraryKt</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
-
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>j2me-json</groupId>
-            <artifactId>jsonKt</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-<!--
-        <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>FreeTTSJ2SEJavaLibraryKt</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-            
-            <optional>true</optional>
-        </dependency>
--->
         <dependency>
             <groupId>org.microemu</groupId>
             <artifactId>microemu-midpKt</artifactId>
             <version>2.0.4</version>
             <optional>true</optional>
         </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLESJOGLJavaLibraryKt</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <optional>true</optional>
+        </dependency>        
 
         <dependency>
-            <groupId>org.microemu</groupId>
-            <artifactId>microemu-javaseKt</artifactId>
-            <version>2.0.4</version>
+            <groupId>org.khronos</groupId>
+            <artifactId>opengl-apiKt</artifactId>
+            <version>gl1.1-android-2.1_r1</version>
             <optional>true</optional>
         </dependency>
 
@@ -271,7 +299,6 @@
     <build>
 
         <plugins>
-            
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
@@ -310,7 +337,9 @@
                 </configuration>
             </plugin>
 
-            
+
+
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -326,7 +355,7 @@
             </plugin>
 
         </plugins>
-
+        
     </build>
 
 </project>

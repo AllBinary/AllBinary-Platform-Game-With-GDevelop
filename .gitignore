@@ -4,6 +4,8 @@ gwt-tmp-dir
 **/app/release/
 gd_xsl.7z
 .github/*.md
+*.xml
+!pom.xml
 *.txt
 *.old
 *.bak

@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.allbinary.game.gd</groupId>
+        <artifactId>GDGameParent</artifactId>
+        <!-- Game Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- Game Version Start -->
+    </parent>
+
+    <artifactId>GDGameThreedAndroidGradleKt</artifactId>
+    <packaging>jar</packaging>
+
+    <name>GDGameThreedAndroidGradleKt</name>
+    <url>http://www.allbinary.com/</url>
+
+    <properties>
+        <inputPath>target\dependency\</inputPath>
+        <inputPath2>src\main\other\</inputPath2>
+        <outputPath>..\..\..\platformx\android\GDGameThreedAndroidApplicationNoLicensingGradle\app\src\main\java\</outputPath>        
+    </properties>
+
+    <dependencies>
+        <!--
+-        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        -->
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>LoggingAndroidAllKt</artifactId>
+            <!--
+            <artifactId>LoggingJ2MEAllKt</artifactId>
+            <artifactId>LoggingNoneKt</artifactId>
+            <artifactId>LoggingJ2MEExceptionKt</artifactId>
+            <artifactId>LoggingRemoteExceptionKt</artifactId>
+            <artifactId>LoggingAndroidAllKt</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+                
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>AllBinaryOnAndroidPlatformJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <!-- 
+            AllBinaryGyroSensorJavaLibrary is included
+            in the Platform project by default but is optional for final builds
+            -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>MotionInputAndroidResourcesJavaLibraryKt</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+                
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>AppNoneOpenGLESJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>AdvertisementClientNoneJavaLibraryKt</artifactId>
+            <!--
+            <artifactId>AndroidAdvertisementJavaLibraryKt</artifactId>            
+            <artifactId>AdvertisementClientNoneJavaLibraryKt</artifactId>           
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameAndroidAdvertisementJavaLibraryKt</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.multiplayer</groupId>
+            <artifactId>AllBinaryGameClientBaseNullJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GameLicensingOnlyDemoJavaLibraryKt</artifactId>
+            <!--
+                <artifactId>GameLicensingOnlyNormalJavaLibraryKt</artifactId>
+                <artifactId>GameLicensingOnlyDemoJavaLibraryKt</artifactId>
+                <artifactId>GameLicensingInAppPurchaseJavaLibraryKt</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>TouchButtonMappingJavaLibraryKt</artifactId>
+            <!--
+            <artifactId>NoTouchButtonJavaLibraryKt</artifactId>
+            <artifactId>TouchButtonMappingJavaLibraryKt</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.input</groupId>
+            <artifactId>NoTouchButtonResourceAnimationJavaLibraryKt</artifactId>
+            <!--
+            <artifactId>NoTouchButtonResourceAnimationJavaLibraryKt</artifactId>
+            <artifactId>TouchButtonResourceAnimationJavaLibraryKt</artifactId>
+            -->            
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+           
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GameScoresRemoteAndLocalJavaLibraryKt</artifactId>
+<!--
+            <artifactId>GameScoresRemoteAndLocalJavaLibraryKt</artifactId>
+            <artifactId>GameScoresLocalJavaLibraryKt</artifactId>
+-->
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>BouncyCastleDESJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameThreedBaseAndroidWithSWTJOGLJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameOpenGLTwoDAndroidImageAnimationInterfaceResourceFactoryJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameTouchJavaLibraryKt</artifactId>
+            <!--
+            <artifactId>GDGameNoTouchJavaLibraryKt</artifactId>
+            <artifactId>GDGameTouchJavaLibraryKt</artifactId>
+            -->            
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameAndroidClientInfoJavaLibraryKt</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDFormJavaLibraryKt</artifactId>
+            <!--
+            <artifactId>GDYourFormJavaLibraryKt</artifactId>
+            <artifactId>GDFormJavaLibraryKt</artifactId>
+            -->            
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameThreedPreBaseJavaLibraryKt</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameThreedAndroidJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->            
+        </dependency>
+                
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameThreedBaseJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameThreedAndroidResourceJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->                        
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameThreedAndroidActivityJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameAndroidSoundsJavaLibraryKt</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.animation</groupId>
+            <artifactId>AllBinaryImageAnimationRotationJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.animation</groupId>
+            <artifactId>AllBinaryAndroidImageRotationJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <!-- Android Specific -->
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>J2MEGameMidletAsActivityJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>J2MEMidletAsViewJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GameInputAndroidMotionJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GameInputAndroidBaseJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLESAndroidJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GyroSensorAndroidJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>SensorAndroidJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>MotionInputAndroidDynamicJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>AndroidTransitionAnimationJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>MotionInputAndroidJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>NullMusicAndroidJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary.game</groupId>
+            <artifactId>LazyGameResourceNoneJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>XmlRpcJavaLibraryKt</artifactId>
+<!--
+            <artifactId>XmlRpcJavaLibraryKt</artifactId>
+            <artifactId>YourXmlRpcJavaLibraryKt</artifactId>
+-->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        
+<!--        
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>BasicSecurityJavaLibraryKt</artifactId>
+            <version>${allbinary.platform.version}</version>
+        </dependency>
+-->
+
+<!--
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>BouncyCastleDESJavaLibraryKt</artifactId>
+-->
+<!--
+            <artifactId>BouncyCastleDESJavaLibraryKt</artifactId>
+            <artifactId>YourSecurityJavaLibraryKt</artifactId>
+-->
+<!--            <version>${allbinary.platform.version}</version>-->
+<!--            <scope>provided</scope>-->
+<!--
+        </dependency>
+-->
+
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-javaseKt</artifactId>
+            <version>2.0.2-SPECIAL-SNAPSHOT</version>
+            <optional>true</optional>
+            <exclusions>
+                <exclusion>
+                    <groupId>backport-util-concurrent</groupId>
+                    <artifactId>backport-util-concurrentKt</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>asm</groupId>
+                    <artifactId>asmKt</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-javase-nullKt</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-android-abKt</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
+        </dependency>
+
+<!--
+Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:2.0.2:compile (default-compile) on project GDGameAndroidApplication: Compilation failure: Compilation failure:
+G:\mnt\bc\mydev\working\j2me\games\test\platform\android\GDGameAndroidApplicationM\src\main\java\org\allbinary\media\audio\music\BaseMusicService.java:[66,12] cannot find symbol
+symbol  : variable START_STICKY
+location: class org.allbinary.media.audio.music.BaseMusicService
+
+G:\mnt\bc\mydev\working\j2me\games\test\platform\android\GDGameAndroidApplicationM\src\main\java\org\allbinary\game\gd\GDGameAndroidActivity.java:[73,47] cannot find symbol
+symbol  : variable gd_ad_overlay_layout
+location: class org.allbinary.game.gd.R.layout
+
+android.content.pm.PackageManager
+android.view.MotionEvent
+
+-->
+        
+<!--
+In Platform Lib but is not used:
+
+MovementJavaLibrary
+VelocityLibrary
+WeaponLayerJavaLibrary
+WeaponPropertiesJavaLibrary
+CombatGameJavaLibrary
+ContentNoneJavaLibrary
+DamageGameJavaLibrary
+DropJavaLibrary
+ImageCacheJ2MEJavaLibrary
+ImageJ2MEJavaLibrary
+MediaData
+MusicAndroidJavaLibrary
+PartsJavaLibrary
+PickupGameJavaLibrary
+
+In GDGameJavaLibrary but not currently needed:
+
+AIBasicGameLibrary
+CommonHeadsUpDisplayCombatGameLibrary
+BasicWeaponPartsJavaLibrary
+CommonHeadsUpDisplayCombatGameLibrary
+PickupLayerJavaLibrary
+SoundsBasicWeaponsJavaLibrary
+WeaponMineJavaLibrary
+NoTransitionAnimationJavaLibrary
+
+        -->
+
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>2.4.0-RC</version><!-- kotlin -->
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+           
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-pluginKt</artifactId>
+                <executions>
+                    <execution>
+                        <id>sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>sources</classifier>
+                            <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+                            <!--
+                            <outputDirectory>${project.build.directory}/sources</outputDirectory>
+                            -->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+                        
+            <!-- Delete output directory -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-pluginKt</artifactId>
+                <version>2.4.1</version>
+                <configuration>
+                    <followSymLinks>false</followSymLinks>
+                    <filesets>
+                        <fileset>
+                            <directory>${outputPath}</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+      
+            <plugin>
+                <artifactId>maven-resources-pluginKt</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPath}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath2}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <!--
+                                -->                
+                            </resources>              
+                        </configuration>            
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
+

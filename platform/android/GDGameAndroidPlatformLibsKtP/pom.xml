@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.allbinary.game.gd</groupId>
+        <artifactId>GDGameParent</artifactId>
+        <!-- Game Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- Game Version Start -->
+    </parent>
+            
+    <artifactId>GDGameAndroidPlatformLibsPKt</artifactId>
+    <packaging>pom</packaging>
+
+    <name>GDGameAndroidPlatformLibsPKt</name>
+    <url>http://www.allbinary.com/</url>
+
+    <modules>
+        
+        <!--
+        -->
+        <module>../../../resource/GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>
+
+        <module>../GDGameAndroidKtM</module>
+        <module>../GDGameAndroidActivityJavaLibraryKtM</module>
+        <module>../GDGameAndroidBaseJavaLibraryKtM</module>
+        <module>../GDGameAndroidClientInfoJavaLibraryKtM</module>
+        <module>../GDGameAndroidJavaLibraryKtM</module>
+        <module>../GDGameAndroidRawResourcesJavaLibraryKtM</module>
+        <module>../GDGameAndroidResourceJavaLibraryKtM</module>
+        <module>../GDGameAndroidResourcesTempJavaLibraryKtM</module>
+        <module>../GDGameAndroidSoundsJavaLibraryKtM</module>
+        
+<!--        <module>../../../platformx/android/GDGameAndroidGradleKtM</module>-->
+        <!--
+        <module>../../../platformx/android/GDGameAndroidApplicationKtM</module>
+        -->
+        
+    </modules>
+
+</project>
+
