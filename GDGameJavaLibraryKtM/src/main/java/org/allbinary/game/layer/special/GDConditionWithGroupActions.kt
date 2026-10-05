@@ -1,0 +1,73 @@
+
+        /*
+                * 
+                *  AllBinary Open License Version 1
+                *  Copyright (c) 2011 AllBinary
+                *  
+                *  By agreeing to this license you and any business entity you represent are
+                *  legally bound to the AllBinary Open License Version 1 legal agreement.
+                *  
+                *  You may obtain the AllBinary Open License Version 1 legal agreement from
+                *  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+                *  
+                *  Created By: Travis Berthelot   
+        */
+        
+        /* Generated Code Do Not Modify */
+        package org.allbinary.game.layer.special
+
+
+
+
+        import java.lang.Object        
+        
+        
+        import kotlin.Array
+        import kotlin.reflect.KClass
+        
+import org.allbinary.logic.string.StringMaker
+import org.allbinary.string.CommonSeps
+import org.allbinary.util.BasicArrayList
+import org.allbinary.util.BasicArrayListD
+
+open public class GDConditionWithGroupActions
+            : Object
+         {
+        
+
+    val groupWithActionsList: BasicArrayList = BasicArrayListD()
+
+    val actionForGroupsList: BasicArrayList = BasicArrayListD()
+public constructor ()
+            : super()
+        {
+}
+
+
+    open fun append(stringBuilder: StringMaker)
+        //nullable = true from not(false or (false and false)) = true
+{
+    //var stringBuilder = stringBuilder
+stringBuilder!!.append("GDConditionWithGroupActions: ")
+
+    var size: Int = this.groupWithActionsList!!.size()!!
+
+stringBuilder!!.appendint(size)
+stringBuilder!!.append(CommonSeps.getInstance()!!.SPACE)
+
+
+
+
+                        for (index in 0 until size)
+
+        {
+stringBuilder!!.append(this.groupWithActionsList!!.get(index)!!.toString())
+}
+
+}
+
+
+}
+                
+            
+
