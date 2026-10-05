@@ -5,16 +5,16 @@
     <parent>
         <groupId>org.allbinary.game.gd</groupId>
         <artifactId>GDGameParentKt</artifactId>
-        <!-- AllBinary Platform Version Start -->
+        <!-- Game Version Start -->
         <version>1.0.0-SNAPSHOT</version>
-        <!-- AllBinary Platform Version End -->
+        <!-- Game Version Start -->
     </parent>
 
-    <artifactId>GDGameAndroidClientInfoJavaLibraryKt</artifactId>
+    <artifactId>GDGameJ2MEJavaLibraryKt</artifactId>
     <packaging>jar</packaging>
 
-    <name>GDGameAndroidClientInfoJavaLibraryKt</name>
-    <url>http://www.allbinary.com/</url>
+    <name>GDGameJ2MEJavaLibraryKt</name>
+    <url>http://www.allbinary.com</url>    
 
     <properties>
         <buildLabel>${version}</buildLabel>
@@ -31,44 +31,83 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>LoggingJ2MEAllKt</artifactId>
+            <artifactId>AllBinaryOptionalBasePlatformJavaLibraryKt</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>LogJ2SEJavaLibraryKt</artifactId>
+            <artifactId>MusicJ2MEJavaLibraryKt</artifactId>
             <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
-
             <optional>true</optional>
         </dependency>
+                
+        <dependency>
+            <groupId>org.allbinary.input</groupId>
+            <artifactId>TouchButtonResourceAnimationJavaLibraryKt</artifactId>
+            <!--
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>        
 
         <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>ClientInfoLicensingJavaLibraryKt</artifactId>
+            <groupId>org.allbinary.input</groupId>
+            <artifactId>TouchButtonResourceOpenGLESAnimationJavaLibraryKt</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
-        </dependency>
-        
-        <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>ClientInformationMobileLicensingRegistrationJavaLibraryKt</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
-        </dependency>
-        
+        </dependency>        
+
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGamePreBaseJavaLibraryKt</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
+            <artifactId>GDGameNoTouchJavaLibraryKt</artifactId>
+            <!--
+            <artifactId>GDGameTouchJavaLibraryKt</artifactId>
+            <artifactId>GDGameNoTouchJavaLibraryKt</artifactId>
+            -->
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameJavaLibraryKt</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameImageAnimationInterfaceResourceFactoryJavaLibraryKt</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibraryKt</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameWavSoundsJavaLibraryKt</artifactId>
+        </dependency>
+        
+        <!-- Only to get maven to download it unless alread in repo from build -->
+        <dependency>
+            <groupId>net.sf.antenna</groupId>
+            <artifactId>antennaKt</artifactId>
+            <version>1.2.1-beta-SNAPSHOT</version>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-midpKt</artifactId>
+            <version>2.0.4</version>
             <optional>true</optional>
         </dependency>
 
@@ -82,8 +121,8 @@
     </dependencies>
 
     <build>
+        
         <plugins>
-            
             
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -137,9 +176,11 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
 
     </build>
 
 </project>
+
 

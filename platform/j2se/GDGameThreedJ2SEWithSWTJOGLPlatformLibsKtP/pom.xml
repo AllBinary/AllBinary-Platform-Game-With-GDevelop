@@ -2,13 +2,13 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.allbinary.game.gd</groupId>
-  <artifactId>GDGameThreedAndroidPlatformLibsPKtKt</artifactId>
+  <artifactId>GDGameThreedJ2SEWithSWTJOGLPlatformLibsPKt</artifactId>
   <packaging>pom</packaging>
   <!-- AllBinary Platform Version Start -->
   <version>1.0.0-SNAPSHOT</version>
   <!-- AllBinary Platform Version End -->
 
-  <name>GDGameThreedAndroidPlatformLibsPKtKt</name>
+  <name>GDGameThreedJ2SEWithSWTJOGLPlatformLibsPKt</name>
   <url>http://www.allbinary.com/</url>
     <distributionManagement>
         <snapshotRepository>
@@ -25,28 +25,18 @@
 
     <modules>
 
-        <module>../GDGameThreedAndroidRawResourcesJavaLibraryKtKtM</module>
-        <!--
-        <module>../GDGameThreedAndroidResourcesTempJavaLibraryKtKtM</module>
-        -->
-        <module>../GDGameThreedAndroidResourceJavaLibraryKtKtM</module>
-        
-        <module>../../../resource/GDGameOpenGLTwoDAndroidImageAnimationInterfaceResourceFactoryJavaLibraryKtKtM</module>
+<!--        <module>../GDGameThreedJ2SEWithSWTJOGLResourceJavaLibraryKtM</module>-->
 
-        <module>../GDGameThreedAndroidJavaLibraryKtKtM</module>
-        <module>../GDGameThreedAndroidActivityJavaLibraryKtKtM</module>
-        
-        <module>../GDGameThreedAndroidClientInfoJavaLibraryKtKtM</module>
-        
-        <module>../../../platform/android/GDGameThreedAndroidKtKtM</module>
-        
-<!--        <module>../../../platformx/android/GDGameThreedAndroidGradleKtKtM</module>-->
-        <!--
-        <module>../../../platformx/android/GDGameThreedAndroidApplicationKtKtM</module>
-        -->
+<!--        <module>../GDGameThreedBaseJ2SEWithSWTJOGLJavaLibraryKtM</module>-->
+        <module>../GDGameThreedJ2SEWithSWTJOGLJavaLibraryKtM</module>
+        <module>../GDGameThreedJ2SEWithSWTJOGLBaseJavaLibraryKtM</module>
+
+        <module>../GDGameThreedJ2SEWithSWTJOGLKtM</module>
+<!--        <module>../../../platformx/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationKtM</module>-->
+
+<!--        <module>../../GDGameJOGLResourcesJavaLibraryKtM</module>-->
 
     </modules>
 
 </project>
-
 

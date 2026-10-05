@@ -4,7 +4,7 @@
 
     <parent>
         <groupId>org.allbinary.game.gd</groupId>
-        <artifactId>GDGameParent</artifactId>
+        <artifactId>GDGameParentKt</artifactId>
         <!-- Game Version Start -->
         <version>1.0.0-SNAPSHOT</version>
         <!-- Game Version End -->

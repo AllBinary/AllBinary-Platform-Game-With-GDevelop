@@ -1,20 +1,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <parent>
-        <groupId>org.allbinary.game.gd</groupId>
-        <artifactId>GDGameParentKt</artifactId>
-        <!-- AllBinary Platform Version Start -->
-        <version>1.0.0-SNAPSHOT</version>
-        <!-- AllBinary Platform Version End -->
-    </parent>
-
-    <artifactId>GDGameAndroidClientInfoJavaLibraryKt</artifactId>
+    <groupId>org.allbinary.game.gd</groupId>
+    <artifactId>GDGamePlatformResourceJavaLibraryKt</artifactId>
     <packaging>jar</packaging>
+    <!-- AllBinary Platform Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- AllBinary Platform Version End -->
 
-    <name>GDGameAndroidClientInfoJavaLibraryKt</name>
+    <name>GDGamePlatformResourceJavaLibraryKt</name>
     <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
 
     <properties>
         <buildLabel>${version}</buildLabel>
@@ -33,45 +40,19 @@
             <groupId>org.allbinary</groupId>
             <artifactId>LoggingJ2MEAllKt</artifactId>
             <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>LogJ2SEJavaLibraryKt</artifactId>
-            <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
 
             <optional>true</optional>
         </dependency>
-
-        <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>ClientInfoLicensingJavaLibraryKt</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
-        </dependency>
         
         <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>ClientInformationMobileLicensingRegistrationJavaLibraryKt</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
-        </dependency>
-        
-        <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGamePreBaseJavaLibraryKt</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-midpKt</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
             <optional>true</optional>
         </dependency>
-
+        
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
@@ -83,8 +64,6 @@
 
     <build>
         <plugins>
-            
-            
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
@@ -123,7 +102,8 @@
                 </configuration>
             </plugin>
 
-            
+
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>

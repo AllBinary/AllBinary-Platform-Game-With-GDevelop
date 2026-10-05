@@ -50,7 +50,7 @@
         
         <module>../platform/GDGamePlatformResourceJavaLibraryTsM</module>
         <module>../platform/j2se/GDGamePCClientInfoJavaLibraryTsM</module>
-        <module>../platform/j2me/GDGameJ2MEJavaLibraryTsM</module>
+<!--        <module>../platform/j2me/GDGameJ2MEJavaLibraryTsM</module>-->
         <module>../GDGameGeneratedJavaLibraryTsM</module>
         <module>../GDGameBaseJavaLibraryTsM</module>
         <module>../GDGameAIJavaLibraryTsM</module>

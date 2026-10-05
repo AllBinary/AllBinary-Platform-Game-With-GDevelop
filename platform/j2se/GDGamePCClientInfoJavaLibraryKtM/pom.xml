@@ -5,21 +5,16 @@
     <parent>
         <groupId>org.allbinary.game.gd</groupId>
         <artifactId>GDGameParentKt</artifactId>
-        <!-- AllBinary Platform Version Start -->
+        <!-- Game Version Start -->
         <version>1.0.0-SNAPSHOT</version>
-        <!-- AllBinary Platform Version End -->
+        <!-- Game Version Start -->
     </parent>
 
-    <artifactId>GDGameAndroidClientInfoJavaLibraryKt</artifactId>
+    <artifactId>GDGamePCClientInfoJavaLibraryKt</artifactId>
     <packaging>jar</packaging>
 
-    <name>GDGameAndroidClientInfoJavaLibraryKt</name>
+    <name>GDGamePCClientInfoJavaLibraryKt</name>
     <url>http://www.allbinary.com/</url>
-
-    <properties>
-        <buildLabel>${version}</buildLabel>
-        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -29,14 +24,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>LoggingJ2MEAllKt</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
-            <optional>true</optional>
-        </dependency>
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>LogJ2SEJavaLibraryKt</artifactId>
@@ -54,15 +41,15 @@
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
-        
+
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>ClientInformationMobileLicensingRegistrationJavaLibraryKt</artifactId>
+            <artifactId>ThirdPartyStoreJavaLibraryKt</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
-        
+
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGamePreBaseJavaLibraryKt</artifactId>
@@ -83,7 +70,6 @@
 
     <build>
         <plugins>
-            
             
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -123,7 +109,7 @@
                 </configuration>
             </plugin>
 
-            
+                        
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -142,4 +128,5 @@
     </build>
 
 </project>
+
 

@@ -1,19 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    
     <parent>
         <groupId>org.allbinary.game.gd</groupId>
         <artifactId>GDGameParentKt</artifactId>
-        <!-- AllBinary Platform Version Start -->
+        <!-- Game Version Start -->
         <version>1.0.0-SNAPSHOT</version>
-        <!-- AllBinary Platform Version End -->
+        <!-- Game Version Start -->
     </parent>
 
-    <artifactId>GDGameAndroidClientInfoJavaLibraryKt</artifactId>
+    <artifactId>GDGameJ2SEJavaLibraryKt</artifactId>
     <packaging>jar</packaging>
 
-    <name>GDGameAndroidClientInfoJavaLibraryKt</name>
+    <name>GDGameJ2SEJavaLibraryKt</name>
     <url>http://www.allbinary.com/</url>
 
     <properties>
@@ -31,45 +31,77 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>LoggingJ2MEAllKt</artifactId>
+            <artifactId>AllBinaryOptionalBasePlatformJavaLibraryKt</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>LogJ2SEJavaLibraryKt</artifactId>
+            <artifactId>MusicJ2MEJavaLibraryKt</artifactId>
             <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
-
             <optional>true</optional>
         </dependency>
 
         <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>ClientInfoLicensingJavaLibraryKt</artifactId>
+            <groupId>org.allbinary.input</groupId>
+            <artifactId>TouchButtonResourceAnimationJavaLibraryKt</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
         </dependency>
         
         <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>ClientInformationMobileLicensingRegistrationJavaLibraryKt</artifactId>
+            <groupId>org.allbinary.input</groupId>
+            <artifactId>TouchButtonResourceOpenGLESAnimationJavaLibraryKt</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
-        
+
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGamePreBaseJavaLibraryKt</artifactId>
+            <artifactId>GDGameJavaLibraryKt</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameTouchJavaLibraryKt</artifactId>
+            <!--
+            <artifactId>GDGameTouchJavaLibraryKt</artifactId>
+            <artifactId>GDGameNoTouchJavaLibraryKt</artifactId>
+            -->
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryKt</artifactId>
+            
+            <!--
+            <artifactId>GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryKt</artifactId>
+            <artifactId>GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryKt</artifactId>
+            -->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibraryKt</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameWavSoundsJavaLibraryKt</artifactId>
         </dependency>
 
         <dependency>
@@ -83,7 +115,6 @@
 
     <build>
         <plugins>
-            
             
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>

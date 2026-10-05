@@ -1,0 +1,728 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.allbinary.game.gd</groupId>
+        <artifactId>GDGameParentKt</artifactId>
+        <!-- Game Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- Game Version Start -->
+    </parent>
+
+    <artifactId>GDGameJ2SEWithSWTKt</artifactId>
+    <packaging>jar</packaging>
+
+    <name>GDGameJ2SEWithSWTKt</name>
+    <url>http://www.allbinary.com/</url>
+
+    <properties>
+        <inputPath2>src\main\java\</inputPath2>
+        <inputPath7>src\main\resources\</inputPath7>
+        <inputPath>target\dependency\</inputPath>
+        <outputPath>..\..\..\platformx\j2se\GDGameJ2SEWithSWTApplicationM\src\main\java\</outputPath>
+        
+        <inputPath3>..\..\..\Resources\2d\images\raw\</inputPath3>
+<!--        <inputPath4>..\..\..\Resources\sounds\ogg_stereo\</inputPath4>-->
+        <inputPath4>..\..\..\Resources\sounds\release\</inputPath4>
+        <inputPath5>${project.build.directory}/resources</inputPath5>
+        <inputPath6>..\..\..\..\working_thirdparty\media\speech\resource\</inputPath6>
+        <outputPath2>..\..\..\platformx\j2se\GDGameJ2SEWithSWTApplicationM\src\main\resources\</outputPath2>
+        <outputPath3>..\..\..\platformx\j2se\GDGameJ2SEWithSWTFastBuildApplicationM\src\main\resources\</outputPath3>
+        
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>LoggingJ2MEAllKt</artifactId>
+            <!--
+            <artifactId>LoggingJ2MEAllKt</artifactId>
+            <artifactId>LoggingNoneKt</artifactId>
+            <artifactId>LoggingJ2MEExceptionKt</artifactId>
+            <artifactId>LoggingRemoteExceptionKt</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>J2MEExceptionLibraryKt</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>AllBinaryOnJ2SEPlatformJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+<!--
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>ScreenCaptureNoneJavaLibraryKt</artifactId>
+                </exclusion>
+-->
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>J2SEMediaMIDPMinimalJavaLibraryKt</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>J2SEForJ2MEJavaLibraryKt</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>NoSystemJavaLibraryKt</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>        
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>ImageCacheLazyJ2MEJavaLibraryKt</artifactId>
+            
+<!--
+            <artifactId>ImageCacheJ2MEJavaLibraryKt</artifactId>
+            <artifactId>ImageCacheLazyJ2MEJavaLibraryKt</artifactId>
+-->
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+                
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>PersonalComputerSystemJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>PersonalComputerHardwareJavaLibraryKt</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>J2SEForJ2MEJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>NoHardwareJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary.logging</groupId>
+            <artifactId>LogConfigTypeThickClientJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>SWTToJ2MELibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>SWTJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLESNullImageJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLNoneJavaLibraryKt</artifactId>        
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLNoneOtherJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLNoneOther2JavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>SWTWithoutJOGLJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        
+<!--
+        <dependency>
+            <groupId>com.sun</groupId>
+            <artifactId>LWUITForJ2MEJavaLibraryKt</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+-->
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>MusicJ2MEJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>BasicPlayerJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>J2SEMediaMIDPMinimalJavaLibraryKt</artifactId>
+<!--
+            <artifactId>J2SEMediaMIDPJorbisJavaLibraryKt</artifactId>
+            <artifactId>J2SEMediaMIDPMinimalJavaLibraryKt</artifactId>
+            <artifactId>J2SEMediaMIDPMiniAudioJavaLibraryKt</artifactId>
+            <artifactId>NotDeviceSpecificNoMediaMIDP1LibraryKt</artifactId>
+-->
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>FullScreenJavaLibraryKt</artifactId>
+<!-- 
+            <artifactId>FullScreenJavaLibraryKt</artifactId>
+            <artifactId>FullScreenNoneJavaLibraryKt</artifactId>
+-->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>FormJMEJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>AdvertisementClientNoneJavaLibraryKt</artifactId>
+            <!--
+            <artifactId>AndroidAdvertisementJavaLibraryKt</artifactId>            
+            <artifactId>AdvertisementClientNoneJavaLibraryKt</artifactId>           
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameAndroidAdvertisementJavaLibraryKt</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>ScreenCaptureJavaLibraryKt</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.multiplayer</groupId>
+            <artifactId>AllBinaryGameClientBaseNullJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>NoSWTJavaLibraryKt</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GameLicensingOnlyDemoJavaLibraryKt</artifactId>
+            <!--
+                <artifactId>GameLicensingOnlyNormalJavaLibraryKt</artifactId>
+                <artifactId>GameLicensingOnlyDemoJavaLibraryKt</artifactId>
+                <artifactId>GameLicensingInAppPurchaseJavaLibraryKt</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>TouchButtonMappingJavaLibraryKt</artifactId>
+            <!--
+            <artifactId>NoTouchButtonJavaLibraryKt</artifactId>
+            <artifactId>TouchButtonMappingJavaLibraryKt</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.input</groupId>
+            <artifactId>TouchButtonResourceAnimationJavaLibraryKt</artifactId>
+            <!--
+            <artifactId>NoTouchButtonResourceAnimationJavaLibraryKt</artifactId>
+            <artifactId>TouchButtonResourceAnimationJavaLibraryKt</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GameScoresRemoteAndLocalJavaLibraryKt</artifactId>
+<!--
+            <artifactId>GameScoresLocalJavaLibraryKt</artifactId>
+            <artifactId>GameScoresRemoteAndLocalJavaLibraryKt</artifactId>
+-->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>XmlRpcJavaLibraryKt</artifactId>
+<!--
+            <artifactId>XmlRpcJavaLibraryKt</artifactId>
+            <artifactId>YourXmlRpcJavaLibraryKt</artifactId>
+-->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+<!--
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>BasicSecurityJavaLibraryKt</artifactId>
+            <version>${allbinary.platform.version}</version>
+        </dependency>
+-->
+
+<!--
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>BouncyCastleDESJavaLibraryKt</artifactId>
+-->
+<!--
+            <artifactId>BouncyCastleDESJavaLibraryKt</artifactId>
+            <artifactId>YourSecurityJavaLibraryKt</artifactId>
+-->
+<!--            <version>${allbinary.platform.version}</version>-->
+<!--            <scope>provided</scope>-->
+<!--
+        </dependency>
+-->
+
+<!--
+        <dependency>
+            <groupId>sax</groupId>
+            <artifactId>saxKt</artifactId>
+            <version>2.0.1</version>
+        </dependency>        
+        <dependency>
+            <groupId>sax</groupId>
+            <artifactId>saxKt</artifactId>
+            <version>2.0.1</version>
+            <classifier>sources</classifier>
+        </dependency>        
+-->
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDFormJavaLibraryKt</artifactId>
+            <!--
+            <artifactId>GDFormJavaLibraryKt</artifactId>
+            <artifactId>GDYourFormJavaLibraryKt</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameTouchJavaLibraryKt</artifactId>
+            <!--
+            <artifactId>GDGameNoTouchJavaLibraryKt</artifactId>
+            <artifactId>GDGameTouchJavaLibraryKt</artifactId>
+            -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameBaseJavaLibraryKt</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameJ2SEJavaLibraryKt</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGamePCClientInfoJavaLibraryKt</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGamePreBaseJavaLibraryKt</artifactId>
+            <!-- Game Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- Game Version End -->
+        </dependency>
+
+        
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryKt</artifactId>
+            
+            <!--
+            <artifactId>GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryKt</artifactId>
+            <artifactId>GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryKt</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibraryKt</artifactId>
+            
+        </dependency>
+
+<!--
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>FreeTTSJ2SEJavaLibraryKt</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+-->
+
+        <dependency>
+            <groupId>org.allbinary.media.image</groupId>
+            <artifactId>ImageSwtJ2SEJavaLibraryKt</artifactId>
+<!--        
+            <artifactId>ImageJ2SEJavaLibraryKt</artifactId>
+            <artifactId>ImageSwtJ2SEJavaLibraryKt</artifactId>
+-->
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GameInputSwtJavaLibraryKt</artifactId>
+<!--        
+            <artifactId>GameInputPCJavaLibraryKt</artifactId>
+            <artifactId>GameInputSwtJavaLibraryKt</artifactId>
+-->
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-jsr-135Kt</artifactId>
+<!--
+           <artifactId>microemu-jsr-135Kt</artifactId>
+           <artifactId>microemu-jsr-135-no-javaxKt</artifactId>
+-->
+            <version>3.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-javase-swtKt</artifactId>
+<!--        
+            <artifactId>microemu-javase-swingKt</artifactId>
+            <artifactId>microemu-javase-swtKt</artifactId>
+-->
+            <version>3.0.0-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-midpKt</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>2.4.0-RC</version><!-- kotlin -->
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>2.4.0-RC</version><!-- kotlin -->
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <mainClass></mainClass>
+                </configuration>
+            </plugin>
+
+                        
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-pluginKt</artifactId>
+                <executions>
+                    <execution>
+                        <id>sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <excludeArtifactIds>BouncyCastleDESJavaLibrary</excludeArtifactIds>
+<!--                            ,microemu-midp,microemu-cldc-->
+<!--                            ,org.eclipse.swt.win32.win32.x86_64-->
+                            <classifier>sources</classifier>
+                            <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+                            <!--
+                            <outputDirectory>${project.build.directory}/sources</outputDirectory>
+                            -->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Delete output directory -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-pluginKt</artifactId>
+                <version>2.4.1</version>
+                <configuration>
+                    <followSymLinks>false</followSymLinks>
+                    <filesets>
+                        <fileset>
+                            <directory>${outputPath}</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${outputPath2}</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <artifactId>maven-resources-pluginKt</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath2}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPath3}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath4}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath5}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath6}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath7}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+
+                            </resources>              
+                        </configuration>            
+                    </execution>
+                    <!--
+                    <execution>
+                        <id>copy-speech-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPath4}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+
+                            </resources>              
+                        </configuration>            
+                    </execution>
+                    -->
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <artifactId>maven-resources-pluginKt</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources-fast</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath3}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPath3}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath4}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>              
+                        </configuration>            
+                    </execution>
+                    <!--
+                    <execution>
+                        <id>copy-speech-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPath4}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+
+                            </resources>              
+                        </configuration>            
+                    </execution>
+                    -->
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <artifactId>maven-resources-pluginKt</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <id>copy-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPath}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath2}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>              
+                        </configuration>            
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+        
+    </build>
+
+</project>
+
