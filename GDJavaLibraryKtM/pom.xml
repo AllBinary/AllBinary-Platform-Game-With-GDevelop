@@ -157,7 +157,7 @@
             </plugin>
 
             <plugin>
-                <artifactId>maven-assembly-pluginKt</artifactId>
+                <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
                     <execution>
                         <phase>package</phase>
