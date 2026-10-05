@@ -67,11 +67,17 @@
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameTouchJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
             <!--
             <artifactId>GDGameTouchJavaLibraryKt</artifactId>
             <artifactId>GDGameNoTouchJavaLibraryKt</artifactId>
@@ -96,12 +102,18 @@
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameWavSoundsJavaLibraryKt</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
 
         <dependency>

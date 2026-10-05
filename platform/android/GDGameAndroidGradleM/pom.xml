@@ -200,6 +200,9 @@
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameTouchJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
             <!--
             <artifactId>GDGameNoTouchJavaLibrary</artifactId>
             <artifactId>GDGameTouchJavaLibrary</artifactId>
@@ -209,6 +212,9 @@
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameAndroidClientInfoJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
 
         <dependency>
@@ -230,31 +236,49 @@
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameAndroidJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
         
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameBaseJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
         
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameAndroidResourceJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
         
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameAndroidActivityJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
         
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameAndroidSoundsJavaLibrary</artifactId>    
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameAndroidBaseJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
 
         <dependency>
