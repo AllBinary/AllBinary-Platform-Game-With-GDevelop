@@ -309,7 +309,7 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
             
             Bitmap bitmap =((BitmapDrawable)drawable).getBitmap();
 
-            ABHashtable hashtable = ImageCacheFactory.getInstance().getHashtableP();
+            ABHashtable<Object, Object> hashtable = ImageCacheFactory.getInstance().getHashtableP();
             
             hashtable.put(AndroidBasicTitleProgressBar.RESOURCE, Image.createImageBitmap(bitmap));
             
