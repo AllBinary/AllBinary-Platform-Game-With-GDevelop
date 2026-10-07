@@ -25,21 +25,11 @@
         import kotlin.Array
         import kotlin.reflect.KClass
         
-import org.allbinary.input.motion.button.TouchButtonGenericActionResource
-import org.allbinary.input.motion.button.BaseTouchInput
-import org.allbinary.input.motion.button.BasicTouchButtonCellPositionFactory
-import org.allbinary.input.motion.button.TouchButtonLocationHelper
-import org.allbinary.input.motion.button.BasicTouchInputFactory
-import org.allbinary.input.motion.button.TouchButton
-import org.allbinary.input.motion.button.CommonButtons
 import org.allbinary.util.BasicArrayList
 import org.allbinary.util.BasicArrayListD
 import org.allbinary.util.BasicArrayListUtil
-import org.allbinary.string.CommonStrings
-import org.allbinary.logic.communication.log.LogFactory
 import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.animation.Animation
-import org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory
 import org.allbinary.animation.NullAnimationFactory
 import org.allbinary.graphics.CellPositionFactory
 
@@ -53,7 +43,7 @@ open public class GDGameNeededMultiTouchButtonsBuilder : BaseTouchInput {
         
     val logUtil: LogUtil = LogUtil.getInstance()!!
 
-    open fun getList()
+    override fun getList()
         //nullable = true from not(false or (false and true)) = true
 : BasicArrayList{
 
