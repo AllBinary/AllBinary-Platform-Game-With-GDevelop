@@ -45,6 +45,15 @@ public constructor (jsonObject: JSONObject)
         {
     //var jsonObject = jsonObject
 
+    
+                        if(jsonObject == JSONObject.NULL_JSONOBJECT)
+                        
+                                    {
+                                    
+                                    }
+                                
+                        else {
+                            
     var commonStrings: CommonStrings = CommonStrings.getInstance()!!
 
 
@@ -74,6 +83,9 @@ this.resourceList!!.add(resourceFactory!!.create(nextJSONObject))
 }
 
 this.logUtil!!.putF(this.RESOURCES +this.resourceList!!.size(), this, commonStrings!!.CONSTRUCTOR)
+
+                        }
+                            
 }
 
 

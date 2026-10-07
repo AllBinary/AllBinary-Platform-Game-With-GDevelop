@@ -61,7 +61,7 @@ companion object {
 }
 
 
-    open fun paintXY(graphics: Graphics, x: Int, y: Int)
+    override fun paintXY(graphics: Graphics, x: Int, y: Int)
         //nullable = true from not(false or (false and false)) = true
 {
 var graphics = graphics
@@ -70,7 +70,7 @@ var y = y
 }
 
 
-    open fun paintThreedXYZ(graphics: Graphics, x: Int, y: Int, z: Int)
+    override fun paintThreedXYZ(graphics: Graphics, x: Int, y: Int, z: Int)
         //nullable = true from not(false or (false and false)) = true
 {
 var graphics = graphics
@@ -82,7 +82,7 @@ var z = z
 
                 @Throws(Exception::class)
             
-    open fun nextFrame()
+    override fun nextFrame()
         //nullable = true from not(false or (false and true)) = true
 {
 }

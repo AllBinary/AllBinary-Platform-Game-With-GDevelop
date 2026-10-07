@@ -33,20 +33,23 @@ public class GDResourcesManager
     
     public GDResourcesManager(final JSONObject jsonObject) {
         
-        final CommonStrings commonStrings = CommonStrings.getInstance();
-        
-        final GDProjectStrings gdProjectStrings = GDProjectStrings.getInstance();
-        final GDResourceFactory resourceFactory = GDResourceFactory.getInstance();
-        
-        final JSONArray conditionJSONArray = jsonObject.getJSONArray(gdProjectStrings.RESOURCES);
-        int size = conditionJSONArray.length();
-        JSONObject nextJSONObject;
-        for(int index = 0; index < size; index++) {
-            nextJSONObject = conditionJSONArray.getJSONObject(index);
-            this.resourceList.add(resourceFactory.create(nextJSONObject));
-        }
+        if(jsonObject == JSONObject.NULL_JSONOBJECT) {
+            
+        } else {
+            final CommonStrings commonStrings = CommonStrings.getInstance();
 
-        this.logUtil.putF(this.RESOURCES + this.resourceList.size(), this, commonStrings.CONSTRUCTOR);
+            final GDProjectStrings gdProjectStrings = GDProjectStrings.getInstance();
+            final GDResourceFactory resourceFactory = GDResourceFactory.getInstance();
+
+            final JSONArray conditionJSONArray = jsonObject.getJSONArray(gdProjectStrings.RESOURCES);
+            int size = conditionJSONArray.length();
+            JSONObject nextJSONObject;
+            for (int index = 0; index < size; index++) {
+                nextJSONObject = conditionJSONArray.getJSONObject(index);
+                this.resourceList.add(resourceFactory.create(nextJSONObject));
+            }
+
+            this.logUtil.putF(this.RESOURCES + this.resourceList.size(), this, commonStrings.CONSTRUCTOR);
 
 //        final JSONArray resourceFoldersJSONArray = jsonObject.getJSONArray(gdProjectStrings.RESOURCE_FOLDERS);
 //        size = resourceFoldersJSONArray.length();
@@ -56,5 +59,6 @@ public class GDResourcesManager
 //        }
     
 //        logUtil.put(RESOURCE_FOLDERS + this.resourceFolderList.size(), this, commonStrings.CONSTRUCTOR);
+        }
     }
 }

@@ -19,7 +19,7 @@ package org.allbinary.game.gd.layer.resources;
  */
 public class AppShaderResources {
     
-    protected static final AppShaderResources instance = new AppShaderResources();
+    private static final AppShaderResources instance = new AppShaderResources();
 
     /**
      * @return the instance

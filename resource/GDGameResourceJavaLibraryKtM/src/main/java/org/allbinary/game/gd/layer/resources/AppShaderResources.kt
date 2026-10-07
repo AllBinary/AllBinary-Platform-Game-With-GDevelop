@@ -32,7 +32,7 @@ open public class AppShaderResources
         
 companion object {
             
-    val instance: AppShaderResources = AppShaderResources()
+    private val instance: AppShaderResources = AppShaderResources()
 
     open fun getInstance()
         //nullable =  from not(true or (false and true)) = 
