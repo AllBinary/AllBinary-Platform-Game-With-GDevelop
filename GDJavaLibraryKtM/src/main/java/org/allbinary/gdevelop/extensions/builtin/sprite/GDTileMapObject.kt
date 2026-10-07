@@ -25,7 +25,7 @@ open public class GDTileMapObject : GDObject {
         
 
     private val content: GDContent
-public constructor (type: Object, jsonObject: Object)                        
+public constructor (type: String, jsonObject: JSONObject)                        
 
                             : super(type, jsonObject){
     //var type = type

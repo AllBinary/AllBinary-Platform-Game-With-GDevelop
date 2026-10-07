@@ -18,6 +18,7 @@
         import kotlin.reflect.KClass
         
 import org.allbinary.gdevelop.json.GDProjectStrings
+import org.allbinary.logic.string.StringUtil
 import org.json.JSONObject
 
 open public class GDResource
@@ -64,12 +65,8 @@ this.originIdentifier= originJSONObject!!.getString(gdProjectStrings!!.IDENTIFIE
                                     }
                                 
                         else {
-                            this.originName= 
-                                        null
-                                    
-this.originIdentifier= 
-                                        null
-                                    
+                            this.originName= StringUtil.getInstance()!!.NULL_STRING
+this.originIdentifier= StringUtil.getInstance()!!.NULL_STRING
 
                         }
                             

@@ -159,8 +159,7 @@ this.parameterList!!.add(parameterMetadata)
 : GDInstructionMetadata{
     //var type = type
 this.codeExtraInformation!!.setManipulatedType(type)
-this.addParameter(this.parameterFactory!!.RELATIONAL_OPERATOR, "Sign of the test", 
-                            null, false)
+this.addParameter(this.parameterFactory!!.RELATIONAL_OPERATOR, "Sign of the test", StringUtil.getInstance()!!.NULL_STRING, false)
 this.addParameter(if(type == this.parameterFactory!!.NUMBER) {
                             
                             this.parameterFactory!!.EXPRESSION
@@ -168,8 +167,7 @@ this.addParameter(if(type == this.parameterFactory!!.NUMBER) {
                             } else {
                             type
                             }
-    , "Value to compare", 
-                            null, false)
+    , "Value to compare", StringUtil.getInstance()!!.NULL_STRING, false)
 
     var operatorParamIndex: Int = this.parameterList!!.size() -2
 
@@ -231,9 +229,10 @@ this.sentence= stringBuilder!!.toString()
                         if(this.parameterList!!.size() > 0)
                         
                                     {
-                                    get = this.parameterList!!.get(this.parameterList!!.size() -1)get as GDParameterMetadata
-get.
-                    setLongDescription(longDescription)
+                                    
+    var gdParameterMetadata: GDParameterMetadata = this.parameterList!!.get(this.parameterList!!.size() -1) as GDParameterMetadata
+
+gdParameterMetadata!!.setLongDescription(longDescription)
 
                                     }
                                 
@@ -254,9 +253,10 @@ get.
                         if(this.parameterList!!.size() > 0)
                         
                                     {
-                                    get = this.parameterList!!.get(this.parameterList!!.size() -1)get as GDParameterMetadata
-get.
-                    setDefaultValue(defaultValue)
+                                    
+    var gdParameterMetadata: GDParameterMetadata = this.parameterList!!.get(this.parameterList!!.size() -1) as GDParameterMetadata
+
+gdParameterMetadata!!.setDefaultValue(defaultValue)
 
                                     }
                                 
@@ -285,8 +285,7 @@ this.hidden= true
 : GDInstructionMetadata{
     //var type = type
 this.codeExtraInformation!!.setManipulatedType(type)
-this.addParameter(this.parameterFactory!!.OPERATOR, "Modification's sign", 
-                            null, false)
+this.addParameter(this.parameterFactory!!.OPERATOR, "Modification's sign", StringUtil.getInstance()!!.NULL_STRING, false)
 this.addParameter(if(type == this.parameterFactory!!.NUMBER) {
                             
                             this.parameterFactory!!.EXPRESSION
@@ -294,8 +293,7 @@ this.addParameter(if(type == this.parameterFactory!!.NUMBER) {
                             } else {
                             type
                             }
-    , "Value", 
-                            null, false)
+    , "Value", StringUtil.getInstance()!!.NULL_STRING, false)
 
     var operatorParamIndex: Int = this.parameterList!!.size() -2
 

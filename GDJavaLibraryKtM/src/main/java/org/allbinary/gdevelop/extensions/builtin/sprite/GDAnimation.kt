@@ -46,7 +46,7 @@ this.useMultipleDirections= jsonObject!!.getBoolean(projectStrings!!.USE_MULTIPL
     var jsonArray: JSONArray = jsonObject!!.getJSONArray(projectStrings!!.DIRECTIONS)!!
 
 
-    var size: Int = jsonArray!!.length()!!
+    var size: Int = jsonArray!!.length()
 
 
 

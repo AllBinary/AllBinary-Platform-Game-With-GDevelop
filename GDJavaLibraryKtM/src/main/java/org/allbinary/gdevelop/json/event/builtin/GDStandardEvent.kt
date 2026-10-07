@@ -54,7 +54,7 @@ public constructor (type: String, jsonObject: JSONObject)
     var conditionJSONArray: JSONArray = jsonObject!!.getJSONArray(gdProjectStrings!!.CONDITIIONS)!!
 
 
-    var size: Int = conditionJSONArray!!.length()!!
+    var size: Int = conditionJSONArray!!.length()
 
 
     var nextJSONObject: JSONObject

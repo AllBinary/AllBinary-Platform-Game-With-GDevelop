@@ -6,6 +6,7 @@
 
 package org.allbinary.gdevelop.json;
 
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.util.ABHashMap;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
@@ -34,34 +35,37 @@ public class GDVariable
 
         this.type = typeFactory.get(jsonObject.getString(gdProjectStrings.TYPE));
         
+        String string;
+        double value;
+        boolean boolValue;        
         if (typeFactory.isPrimitive(this.type))
         {
             if (this.type == typeFactory.STRING)
             {
-                this.string = jsonObject.getString(gdProjectStrings.VALUE);
-                this.value = 0;
-                this.boolValue = false;
+                string = jsonObject.getString(gdProjectStrings.VALUE);
+                value = (double) 0;
+                boolValue = false;
             } else if (this.type == typeFactory.NUMBER)
             {
-                this.string = null;
-                this.value = jsonObject.getDouble(gdProjectStrings.VALUE);
-                this.boolValue = false;
+                string = StringUtil.getInstance().EMPTY_STRING;
+                value = jsonObject.getDouble(gdProjectStrings.VALUE);
+                boolValue = false;
 
             } else if (this.type == typeFactory.BOOLEAN)
             {
-                this.string = null;
-                this.value = 0;
-                this.boolValue = jsonObject.getBoolean(gdProjectStrings.VALUE);
+                string = StringUtil.getInstance().EMPTY_STRING;
+                value = (double) 0;
+                boolValue = jsonObject.getBoolean(gdProjectStrings.VALUE);
             } else {
-                this.string = null;
-                this.value = 0;
-                this.boolValue = false;
+                string = StringUtil.getInstance().EMPTY_STRING;
+                value = (double) 0;
+                boolValue = false;
             }
         } else
         {
-            this.string = null;
-            this.value = 0;
-            this.boolValue = false;
+            string = StringUtil.getInstance().EMPTY_STRING;
+            value = (double) 0;
+            boolValue = false;
             
             if(jsonObject.has(gdProjectStrings.CHILDREN)) {
                 final JSONArray variableJSONArray = jsonObject.getJSONArray(gdProjectStrings.CHILDREN);
@@ -77,6 +81,9 @@ public class GDVariable
                 }
             }
         }
+        this.string = string;
+        this.value = value;
+        this.boolValue = boolValue;
     }
 
 }

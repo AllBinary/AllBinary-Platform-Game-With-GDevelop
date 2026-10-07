@@ -48,7 +48,7 @@ open public class GDExpressionMetadata
 
     var shown: Boolean
 
-    var helpPath: String
+    var helpPath: String = StringUtil.getInstance()!!.EMPTY_STRING
 public constructor (returnType: String, extensionNamespace: String, name: String, fullname: String, description: String, group: String, smallicon: String)
             : super()
         {

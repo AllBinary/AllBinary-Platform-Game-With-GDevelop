@@ -37,11 +37,11 @@ public class GDContent
         this.displayMode = jsonObject.getString(projectStrings.DISPLAY_MODE);
         this.layerIndex = jsonObject.getInt(projectStrings.LAYER_INDEX);
         
+        int levelIndex = 0;
         if(jsonObject.has(projectStrings.LEVEL_INDEX)) {
-            this.levelIndex = jsonObject.getInt(projectStrings.LEVEL_INDEX);
-        } else {
-            this.levelIndex = 0;
+            jsonObject.getInt(projectStrings.LEVEL_INDEX);
         }
+        this.levelIndex = levelIndex;
 
         this.animationSpeedScale = jsonObject.getNumber(projectStrings.ANIMATION_SPEED_SCALE);
         this.animationFps = jsonObject.getNumber(projectStrings.ANIMATION_FPS);

@@ -33,33 +33,30 @@ public class GDMultipleInstructionMetadata
             final boolean parameterIsOptional)
     {
 
-        if (this.expression != null)
-        {
-            this.expression.addParameter(
-                    type, label, optionalObjectType, parameterIsOptional);
-        }
-        if (this.conditionInstructionMetadata != null)
-        {
-            this.conditionInstructionMetadata.addParameter(
-                    type, label, optionalObjectType, parameterIsOptional);
-        }
-        if (this.actionInstructionMetadata != null)
-        {
-            this.actionInstructionMetadata.addParameter(
-                    type, label, optionalObjectType, parameterIsOptional);
-        }
+//        if (this.expression != GDExpressionMetadata.NULL_GDEXPRESSION_METADATA)
+//        {
+            this.expression.addParameter(type, label, optionalObjectType, parameterIsOptional);
+//        }
+//        if (this.conditionInstructionMetadata != null)
+//        {
+            this.conditionInstructionMetadata.addParameter(type, label, optionalObjectType, parameterIsOptional);
+//        }
+//        if (this.actionInstructionMetadata != null)
+//        {
+            this.actionInstructionMetadata.addParameter(type, label, optionalObjectType, parameterIsOptional);
+//        }
         return this;
     }
     
     public GDMultipleInstructionMetadata useStandardParameters(final String type) {
 
-        if (this.conditionInstructionMetadata != null) {
+//        if (this.conditionInstructionMetadata != null) {
             this.conditionInstructionMetadata.useStandardRelationalOperatorParameters(type);
-        }
+//        }
     
-        if (this.actionInstructionMetadata != null) {
+//        if (this.actionInstructionMetadata != null) {
             this.actionInstructionMetadata.useStandardOperatorParameters(type);
-        }
+//        }
 
         return this;
     }

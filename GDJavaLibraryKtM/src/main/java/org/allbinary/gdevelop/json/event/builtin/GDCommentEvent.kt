@@ -19,6 +19,7 @@
         
 import org.allbinary.gdevelop.json.GDProjectStrings
 import org.allbinary.gdevelop.json.event.GDEvent
+import org.allbinary.logic.string.StringUtil
 import org.json.JSONObject
 
 open public class GDCommentEvent : GDEvent {
@@ -71,9 +72,7 @@ this.comment1= jsonObject!!.getString(gdProjectStrings!!.COMMENT)
                                     }
                                 
                         else {
-                            this.comment2= 
-                                        null
-                                    
+                            this.comment2= StringUtil.getInstance()!!.NULL_STRING
 
                         }
                             

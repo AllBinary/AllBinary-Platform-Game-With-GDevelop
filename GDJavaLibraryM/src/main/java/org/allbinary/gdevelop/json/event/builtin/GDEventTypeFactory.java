@@ -6,6 +6,8 @@
 
 package org.allbinary.gdevelop.json.event.builtin;
 
+import org.allbinary.logic.string.StringUtil;
+
 /**
  *
  * @author User
@@ -50,7 +52,7 @@ public class GDEventTypeFactory
         } else if(type.compareTo(this.WHILE) == 0) {
             return this.WHILE;
         }
-        return null;
+        return StringUtil.getInstance().NULL_STRING;
     }
     
 }

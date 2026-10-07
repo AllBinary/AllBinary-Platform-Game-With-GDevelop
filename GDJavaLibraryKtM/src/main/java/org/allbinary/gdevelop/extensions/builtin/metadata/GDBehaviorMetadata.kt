@@ -18,8 +18,8 @@
         import kotlin.reflect.KClass
         
 import org.allbinary.gdevelop.extensions.GDPlatformExtension
-import org.allbinary.gdevelop.project.GDBehavior
-import org.allbinary.gdevelop.project.GDBehaviorsSharedData
+import org.allbinary.gdevelop.project.GDProjectBehavior
+import org.allbinary.gdevelop.project.GDProjectBehaviorsSharedData
 import org.allbinary.string.CommonSeps
 import org.allbinary.util.ABHashMap
 import org.allbinary.util.BasicArrayList
@@ -31,9 +31,9 @@ open public class GDBehaviorMetadata
         
 companion object {
             
-    private var RETURN_: String = "Return "
+    private val RETURN_: String = "Return "
 
-    private var COMPARE_: String = "Compare "
+    private val COMPARE_: String = "Compare "
 
         }
             
@@ -43,7 +43,7 @@ companion object {
 
     val extensionNamespace: String
 
-    val name: String
+    val aname: String
 
     val fullname: String
 
@@ -57,9 +57,9 @@ companion object {
 
     val className: String
 
-    val behavior: GDBehavior
+    val behavior: GDProjectBehavior
 
-    val behaviorsSharedData: GDBehaviorsSharedData
+    val behaviorsSharedData: GDProjectBehaviorsSharedData
 
     val conditionInstructionMetadataList: BasicArrayList = BasicArrayListD()
 
@@ -72,7 +72,7 @@ companion object {
     private val nameToExpressionMetadataMap: ABHashMap<String, GDExpressionMetadata> = ABHashMap<String, GDExpressionMetadata>()
 
     private val nameToStrExpressionMetadataMap: ABHashMap<String, GDExpressionMetadata> = ABHashMap<String, GDExpressionMetadata>()
-public constructor (extensionNamespace: String, name: String, fullname: String, defaultName: String, description: String, group: String, icon24x24: String, className: String, behavior: GDBehavior, behaviorsSharedData: GDBehaviorsSharedData)
+public constructor (extensionNamespace: String, name: String, fullname: String, defaultName: String, description: String, group: String, icon24x24: String, className: String, behavior: GDProjectBehavior, behaviorsSharedData: GDProjectBehaviorsSharedData)
             : super()
         {
     //var extensionNamespace = extensionNamespace
@@ -86,7 +86,7 @@ public constructor (extensionNamespace: String, name: String, fullname: String, 
     //var behavior = behavior
     //var behaviorsSharedData = behaviorsSharedData
 this.extensionNamespace= extensionNamespace
-this.name= name
+this.aname= name
 this.fullname= fullname
 this.defaultName= defaultName
 this.description= description

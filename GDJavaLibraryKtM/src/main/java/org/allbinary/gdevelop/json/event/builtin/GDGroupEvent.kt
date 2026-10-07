@@ -68,7 +68,7 @@ this.colorB= jsonObject!!.getInt(gdProjectStrings!!.COLOR_B)
     var expressionJSONArray: JSONArray = jsonObject!!.getJSONArray(gdProjectStrings!!.PARAMETERS)!!
 
 
-    var size: Int = expressionJSONArray!!.length()!!
+    var size: Int = expressionJSONArray!!.length()
 
 
     var nextJSONObject: JSONObject

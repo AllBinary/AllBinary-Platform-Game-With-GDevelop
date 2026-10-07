@@ -19,7 +19,9 @@
         
 import org.allbinary.graphics.PointFactory
 import org.allbinary.graphics.Rectangle
+import org.allbinary.graphics.RectangleFactory
 import org.allbinary.logic.communication.log.LogUtil
+import org.allbinary.logic.string.StringUtil
 import org.allbinary.util.BasicArrayList
 import org.allbinary.util.BasicArrayListD
 import org.json.JSONArray
@@ -50,13 +52,13 @@ open public class GDProject
 
     val gdIde: GDIde = GDIde()
 
-    var packageName: String
+    var packageName: String = StringUtil.getInstance()!!.EMPTY_STRING
 
-    var name: String
+    var name: String = StringUtil.getInstance()!!.EMPTY_STRING
 
-    var version: String
+    var version: String = StringUtil.getInstance()!!.EMPTY_STRING
 
-    var gameResolutionSize: Rectangle
+    var gameResolutionSize: Rectangle = RectangleFactory.SINGLETON
 
     var maxFPS: Int= 0
 
@@ -64,15 +66,15 @@ open public class GDProject
 
     var verticalSyncActivatedByDefault: Boolean= false
 
-    var scaleMode: String
+    var scaleMode: String = StringUtil.getInstance()!!.EMPTY_STRING
 
     var adaptGameResolutionAtRuntime: Boolean= false
 
-    var sizeOnStartupMode: String
+    var sizeOnStartupMode: String = StringUtil.getInstance()!!.EMPTY_STRING
 
-    var projectUuid: String
+    var projectUuid: String = StringUtil.getInstance()!!.EMPTY_STRING
 
-    var resourcesManager: GDResourcesManager
+    var resourcesManager: GDResourcesManager = GDResourcesManager.NULL_GDRESOURCEMANAGER
 
     val objectList: BasicArrayList = BasicArrayListD()
 
@@ -99,10 +101,10 @@ this.packageName= properties.getString(gdProjectStrings!!.PACKAGE_NAME)
 this.name= properties.getString(gdProjectStrings!!.NAME)
 this.version= properties.getString(gdProjectStrings!!.VERSION)
 
-    var width: Int = properties.getInt(gdProjectStrings!!.WINDOW_WIDTH)!!
+    var width: Int = properties.getInt(gdProjectStrings!!.WINDOW_WIDTH)
 
 
-    var height: Int = properties.getInt(gdProjectStrings!!.WINDOW_HEIGHT)!!
+    var height: Int = properties.getInt(gdProjectStrings!!.WINDOW_HEIGHT)
 
 this.gameResolutionSize= Rectangle(PointFactory.getInstance()!!.ZERO_ZERO, width, height)
 this.maxFPS= properties.getInt(gdProjectStrings!!.MAX_FPS)
@@ -123,7 +125,7 @@ this.resourcesManager= GDResourcesManager(resourceJSONObject)
     var objectJSONArray: JSONArray = gameAsConfiguration!!.getJSONArray(gdProjectStrings!!.OBJECTS)!!
 
 
-    var size: Int = objectJSONArray!!.length()!!
+    var size: Int = objectJSONArray!!.length()
 
 
     var objectJSONObject: JSONObject

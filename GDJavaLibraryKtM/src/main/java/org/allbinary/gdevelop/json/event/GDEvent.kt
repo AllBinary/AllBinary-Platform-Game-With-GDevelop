@@ -18,13 +18,19 @@
         import kotlin.reflect.KClass
         
 import org.allbinary.gdevelop.json.GDProjectStrings
+import org.allbinary.logic.string.StringUtil
 import org.json.JSONObject
 
 open public class GDEvent
             : Object
          {
         
+companion object {
+            
+    val NULL_GDEVENT: GDEvent = GDEvent(StringUtil.getInstance()!!.NULL_STRING, JSONObject.NULL_JSONOBJECT)
 
+        }
+            
     val type: String
 public constructor (type: String, jsonObject: JSONObject)
             : super()

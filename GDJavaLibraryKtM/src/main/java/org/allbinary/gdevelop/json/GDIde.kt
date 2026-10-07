@@ -17,6 +17,7 @@
         import kotlin.Array
         import kotlin.reflect.KClass
         
+import org.allbinary.logic.string.StringUtil
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -39,31 +40,31 @@ open public class GDIde
 
     var revision: Int= 0
 
-    var author: String
+    var author: String = StringUtil.getInstance()!!.EMPTY_STRING
 
-    var packageName: String
+    var packageName: String = StringUtil.getInstance()!!.EMPTY_STRING
 
-    var orientation: String
+    var orientation: String = StringUtil.getInstance()!!.EMPTY_STRING
 
     var folderProject: Boolean= false
 
-    var latestCompilationDirectory: String
+    var latestCompilationDirectory: String = StringUtil.getInstance()!!.EMPTY_STRING
 
-    var platformSpecificAssets: JSONObject
+    var platformSpecificAssets: JSONObject = JSONObject.NULL_JSONOBJECT
 
-    var loadingScreen: JSONObject
+    var loadingScreen: JSONObject = JSONObject.NULL_JSONOBJECT
 
-    var extensionProperties: JSONArray
+    var extensionProperties: JSONArray = JSONArray.NULL_JSONARRAY
 
-    var currentPlatformName: String
+    var currentPlatformName: String = StringUtil.getInstance()!!.EMPTY_STRING
 
-    var platforms: JSONArray
+    var platforms: JSONArray = JSONArray.NULL_JSONARRAY
 
-    var objectsGroups: JSONArray
+    var objectsGroups: JSONArray = JSONArray.NULL_JSONARRAY
 
-    var externalEvents: JSONArray
+    var externalEvents: JSONArray = JSONArray.NULL_JSONARRAY
 
-    var eventsFunctionsExtensions: JSONArray
+    var eventsFunctionsExtensions: JSONArray = JSONArray.NULL_JSONARRAY
 
                 @Throws(JSONException::class)
             

@@ -30,7 +30,7 @@ open public class GDPoint
 
     val name: String
 
-    val automatic: Boolean= false
+    val automatic: Boolean
 
     val x: Int
 
@@ -44,19 +44,18 @@ public constructor (jsonObject: JSONObject)
 
 this.name= jsonObject!!.getString(projectStrings!!.NAME)
 
+    var automatic: Boolean = false
+
+
     
                         if(jsonObject!!.has(projectStrings!!.AUTOMATIC))
                         
                                     {
-                                    this.automatic= jsonObject!!.getBoolean(projectStrings!!.AUTOMATIC)
+                                    automatic= jsonObject!!.getBoolean(projectStrings!!.AUTOMATIC)
 
                                     }
                                 
-                        else {
-                            this.automatic= false
-
-                        }
-                            
+this.automatic= automatic
 this.x= jsonObject!!.getInt(projectStrings!!.X)
 this.y= jsonObject!!.getInt(projectStrings!!.Y)
 }

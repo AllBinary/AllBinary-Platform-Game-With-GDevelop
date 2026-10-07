@@ -49,7 +49,7 @@ this.timeBetweenFrames= jsonObject!!.getInt(projectStrings!!.TIME_BETWEEN_FRAMES
     var jsonArray: JSONArray = jsonObject!!.getJSONArray(projectStrings!!.SPRITES)!!
 
 
-    var size: Int = jsonArray!!.length()!!
+    var size: Int = jsonArray!!.length()
 
 
 

@@ -8,7 +8,9 @@ package org.allbinary.gdevelop.json;
 
 import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
+import org.allbinary.graphics.RectangleFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
 
@@ -32,19 +34,19 @@ public class GDProject
     
     public final GDIde gdIde = new GDIde();
     
-    public String packageName;
-    public String name;
-    public String version;
-    public Rectangle gameResolutionSize;
+    public String packageName = StringUtil.getInstance().EMPTY_STRING;
+    public String name = StringUtil.getInstance().EMPTY_STRING;
+    public String version = StringUtil.getInstance().EMPTY_STRING;
+    public Rectangle gameResolutionSize = RectangleFactory.SINGLETON;
     public int maxFPS;
     public int minFPS;
     public boolean verticalSyncActivatedByDefault;
-    public String scaleMode;
+    public String scaleMode = StringUtil.getInstance().EMPTY_STRING;
     public boolean adaptGameResolutionAtRuntime;
-    public String sizeOnStartupMode;
-    public String projectUuid;
+    public String sizeOnStartupMode = StringUtil.getInstance().EMPTY_STRING;
+    public String projectUuid = StringUtil.getInstance().EMPTY_STRING;
 
-    public GDResourcesManager resourcesManager;
+    public GDResourcesManager resourcesManager = GDResourcesManager.NULL_GDRESOURCEMANAGER;
 
     public final BasicArrayList objectList = new BasicArrayListD();
     

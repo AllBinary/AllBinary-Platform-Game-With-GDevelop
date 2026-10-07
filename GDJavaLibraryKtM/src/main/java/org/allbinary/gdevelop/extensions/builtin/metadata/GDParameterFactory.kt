@@ -404,7 +404,7 @@ companion object {
 }
 
 
-    open fun isObject(parameterType: Object)
+    open fun isObject(parameterType: String)
         //nullable = true from not(false or (false and false)) = true
 : Boolean{
     //var parameterType = parameterType

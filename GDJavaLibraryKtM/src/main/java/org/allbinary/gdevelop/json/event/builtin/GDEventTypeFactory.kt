@@ -17,6 +17,7 @@
         import kotlin.Array
         import kotlin.reflect.KClass
         
+import org.allbinary.logic.string.StringUtil
 
 open public class GDEventTypeFactory
             : Object
@@ -172,7 +173,7 @@ companion object {
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return null
+                        return StringUtil.getInstance()!!.NULL_STRING
 }
 
 

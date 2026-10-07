@@ -29,7 +29,12 @@ open public class GDResourcesManager
             : Object
          {
         
+companion object {
+            
+    val NULL_GDRESOURCEMANAGER: GDResourcesManager = GDResourcesManager(JSONObject.NULL_JSONOBJECT)
 
+        }
+            
     val logUtil: LogUtil = LogUtil.getInstance()!!
 
     private val RESOURCES: String = "GDResources: "
@@ -52,7 +57,7 @@ public constructor (jsonObject: JSONObject)
     var conditionJSONArray: JSONArray = jsonObject!!.getJSONArray(gdProjectStrings!!.RESOURCES)!!
 
 
-    var size: Int = conditionJSONArray!!.length()!!
+    var size: Int = conditionJSONArray!!.length()
 
 
     var nextJSONObject: JSONObject

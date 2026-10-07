@@ -51,6 +51,6 @@ public class GDEventFactory
             return new GDWhileEvent(type, jsonObject);
         }
         
-        return null;
+        return GDEvent.NULL_GDEVENT;
     }
 }

@@ -35,40 +35,50 @@ public class GDLayer
         
         final GDProjectStrings gdProjectStrings = GDProjectStrings.getInstance();
         
+        String name;
         if(jsonObject.has(gdProjectStrings.NAME)) {
-            this.name = jsonObject.getString(gdProjectStrings.NAME);
+            name = jsonObject.getString(gdProjectStrings.NAME);
         } else {
-            this.name = Integer.toHexString(this.hashCode());
+            name = Integer.toHexString(this.hashCode());
         }
+        this.name = name;
         
+        boolean isVisible;
         if(jsonObject.has(gdProjectStrings.VISIBILITY)) {
-            this.isVisible = jsonObject.getBoolean(gdProjectStrings.VISIBILITY);
+            isVisible = jsonObject.getBoolean(gdProjectStrings.VISIBILITY);
         } else {
-            this.isVisible = false;
+            isVisible = false;
         }
+        this.isVisible = isVisible;
         
+        boolean isLightingLayer;
         if(jsonObject.has(gdProjectStrings.VISIBILITY)) {
-            this.isLightingLayer = jsonObject.getBoolean(gdProjectStrings.IS_LIGHTING_LAYER);
+            isLightingLayer = jsonObject.getBoolean(gdProjectStrings.IS_LIGHTING_LAYER);
         } else {
-            this.isLightingLayer = false;
+            isLightingLayer = false;
         }
+        this.isLightingLayer = isLightingLayer;
         
-        if(jsonObject.has(gdProjectStrings.FOLLOW_BASE_LAYER_CAMERA)) {
-            this.followBaseLayerCamera = jsonObject.getBoolean(gdProjectStrings.FOLLOW_BASE_LAYER_CAMERA);
+        boolean followBaseLayerCamera;
+        if (jsonObject.has(gdProjectStrings.FOLLOW_BASE_LAYER_CAMERA)) {
+            followBaseLayerCamera = jsonObject.getBoolean(gdProjectStrings.FOLLOW_BASE_LAYER_CAMERA);
         } else {
-            this.followBaseLayerCamera = false;
+            followBaseLayerCamera = false;
         }
+        this.followBaseLayerCamera = followBaseLayerCamera;
 
-        if(jsonObject.has(gdProjectStrings.AMBIENT_LIGHT_COLOR_R)) {
-            this.ambientLightBasicColor = BasicColorFactory.getInstance().createInstanceARGB(BasicColorUtil.getInstance().ALPHA,
+        final BasicColor ambientLightBasicColor;
+        if (jsonObject.has(gdProjectStrings.AMBIENT_LIGHT_COLOR_R)) {
+            ambientLightBasicColor = BasicColorFactory.getInstance().createInstanceARGB(BasicColorUtil.getInstance().ALPHA,
                 jsonObject.getInt(gdProjectStrings.AMBIENT_LIGHT_COLOR_R),
                 jsonObject.getInt(gdProjectStrings.AMBIENT_LIGHT_COLOR_G),
                 jsonObject.getInt(gdProjectStrings.AMBIENT_LIGHT_COLOR_B),
-                        this.name);
+                this.name);
         } else {
-            this.ambientLightBasicColor = null;
+            ambientLightBasicColor = BasicColorFactory.getInstance().BLACK;
         }
-       
+        this.ambientLightBasicColor = ambientLightBasicColor;
+           
         if(jsonObject.has(gdProjectStrings.CAMERAS)) {
             final JSONArray camerasJSONArray = jsonObject.getJSONArray(gdProjectStrings.CAMERAS);
             int size = camerasJSONArray.length();

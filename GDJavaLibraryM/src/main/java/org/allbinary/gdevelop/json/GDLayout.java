@@ -120,7 +120,7 @@ public class GDLayout
         GDEvent event;
         for(int index = 0; index < size; index++) {
             event = eventFactory.create(eventJSONArray.getJSONObject(index));
-            if(event != null) {
+            if(event != GDEvent.NULL_GDEVENT) {
                 this.eventList.add(event);
             } else {
                 final CommonStrings commonStrings = CommonStrings.getInstance();

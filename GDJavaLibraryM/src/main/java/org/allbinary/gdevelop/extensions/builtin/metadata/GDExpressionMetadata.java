@@ -15,7 +15,12 @@ import org.allbinary.util.BasicArrayListD;
  */
 public class GDExpressionMetadata
 {
-
+//    public static final GDExpressionMetadata NULL_GDEXPRESSION_METADATA = new GDExpressionMetadata(
+//        StringUtil.getInstance().NULL_STRING, StringUtil.getInstance().NULL_STRING, 
+//        StringUtil.getInstance().NULL_STRING, StringUtil.getInstance().NULL_STRING, 
+//        StringUtil.getInstance().NULL_STRING, StringUtil.getInstance().NULL_STRING, 
+//        StringUtil.getInstance().NULL_STRING);
+    
     private final StringUtil stringUtil = StringUtil.getInstance();
     private final GDParameterFactory parameterFactory = GDParameterFactory.getInstance();
 
@@ -31,7 +36,7 @@ public class GDExpressionMetadata
     public final BasicArrayList parameterMetadataList = new BasicArrayListD();
 
     public boolean shown;
-    public String helpPath;
+    public String helpPath = StringUtil.getInstance().EMPTY_STRING;
 
     public GDExpressionMetadata(final String returnType,
             final String extensionNamespace,

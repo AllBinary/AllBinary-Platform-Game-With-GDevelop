@@ -7,6 +7,7 @@
 package org.allbinary.gdevelop.json.resource;
 
 import org.allbinary.gdevelop.json.GDProjectStrings;
+import org.allbinary.logic.string.StringUtil;
 import org.json.JSONObject;
 
 /**
@@ -40,8 +41,8 @@ public class GDResource
             this.originName = originJSONObject.getString(gdProjectStrings.NAME);
             this.originIdentifier = originJSONObject.getString(gdProjectStrings.IDENTIFIER);
         } else {
-            this.originName = null;
-            this.originIdentifier = null;
+            this.originName = StringUtil.getInstance().NULL_STRING;
+            this.originIdentifier = StringUtil.getInstance().NULL_STRING;
         }
         
         this.fileAsString = jsonObject.getString(gdProjectStrings.FILE);

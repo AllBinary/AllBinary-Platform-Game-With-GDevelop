@@ -17,12 +17,18 @@
         import kotlin.Array
         import kotlin.reflect.KClass
         
+import org.allbinary.logic.string.StringUtil
 
-open public class GDBehavior
+open public class GDProjectBehaviorsSharedData
             : Object
          {
         
+companion object {
+            
+    val NULL_GDBEHAVIORSHAREDDATA: GDProjectBehaviorsSharedData = GDProjectBehaviorsSharedData(StringUtil.getInstance()!!.NULL_STRING)
 
+        }
+            
     val type: String
 public constructor (type: String)
             : super()

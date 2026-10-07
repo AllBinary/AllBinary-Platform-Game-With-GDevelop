@@ -11,6 +11,7 @@ import org.allbinary.gdevelop.json.event.GDEvent;
 import org.allbinary.string.CommonStrings;
 
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.StringUtil;
 import org.json.JSONObject;
 
 /**
@@ -46,13 +47,13 @@ public class GDLinkEvent extends GDEvent
         this.target = jsonObject.getString(gdProjectStrings.TARGET);
         
         if (this.includeConfig == includeConfigFactory.INCLUDE_ALL) {
-            this.eventsGroupName = null;
+            this.eventsGroupName = StringUtil.getInstance().NULL_STRING;
         } else if (this.includeConfig == includeConfigFactory.INCLUDE_EVENTS_GROUP)
         {
             this.eventsGroupName = includeJSONObject.getString(gdProjectStrings.EVENTS_GROUP);
         } else
         {
-            this.eventsGroupName = null;
+            this.eventsGroupName = StringUtil.getInstance().NULL_STRING;
             final CommonStrings commonStrings = CommonStrings.getInstance();
             this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, new Exception());
         }

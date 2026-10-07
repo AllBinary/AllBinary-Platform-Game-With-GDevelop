@@ -23,7 +23,7 @@ import org.json.JSONObject
 
 open public class GDParticleSystemParticleEmitterObject : GDObject {
         
-public constructor (type: Object, jsonObject: Object)                        
+public constructor (type: String, jsonObject: JSONObject)                        
 
                             : super(type, jsonObject){
     //var type = type

@@ -41,7 +41,7 @@ open public class GDObject
     val effectsList: BasicArrayList = BasicArrayListD()
 
     val behaviorContentList: BasicArrayList = BasicArrayListD()
-public constructor (type: Object, jsonObject: Object)
+public constructor (type: String, jsonObject: JSONObject)
             : super()
         {
     //var type = type
@@ -70,7 +70,7 @@ this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)
     var variableJSONArray: JSONArray = jsonObject!!.getJSONArray(gdProjectStrings!!.VARIABLES)!!
 
 
-    var size: Int = variableJSONArray!!.length()!!
+    var size: Int = variableJSONArray!!.length()
 
 
 

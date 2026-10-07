@@ -6,6 +6,7 @@
 
 package org.allbinary.gdevelop.json;
 
+import org.allbinary.logic.string.StringUtil;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,26 +22,26 @@ public class GDIde
     public int build;
     public int revision;
     
-    public String author;
-    public String packageName;
-    public String orientation;
+    public String author = StringUtil.getInstance().EMPTY_STRING;
+    public String packageName = StringUtil.getInstance().EMPTY_STRING;
+    public String orientation = StringUtil.getInstance().EMPTY_STRING;
     public boolean folderProject;
-    public String latestCompilationDirectory;    
+    public String latestCompilationDirectory = StringUtil.getInstance().EMPTY_STRING;
     
-    public JSONObject platformSpecificAssets;
-    public JSONObject loadingScreen;
+    public JSONObject platformSpecificAssets = JSONObject.NULL_JSONOBJECT;
+    public JSONObject loadingScreen = JSONObject.NULL_JSONOBJECT;
 
     //public boolean useExternalSourceFiles;
     
-    public JSONArray extensionProperties;
+    public JSONArray extensionProperties = JSONArray.NULL_JSONARRAY;
     
-    public String currentPlatformName;
+    public String currentPlatformName = StringUtil.getInstance().EMPTY_STRING;
     
-    public JSONArray platforms;
+    public JSONArray platforms = JSONArray.NULL_JSONARRAY;
     
-    public JSONArray objectsGroups;
-    public JSONArray externalEvents;
-    public JSONArray eventsFunctionsExtensions;
+    public JSONArray objectsGroups = JSONArray.NULL_JSONARRAY;
+    public JSONArray externalEvents = JSONArray.NULL_JSONARRAY;
+    public JSONArray eventsFunctionsExtensions = JSONArray.NULL_JSONARRAY;
     //public JSONArray externalSourceFiles;
     
     public void load(JSONObject gameAsConfiguration) throws JSONException {

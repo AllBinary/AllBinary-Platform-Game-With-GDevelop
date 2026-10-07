@@ -44,7 +44,7 @@ this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)
     var initialInstancesJSONArray: JSONArray = jsonObject!!.getJSONArray(gdProjectStrings!!.INSTANCES)!!
 
 
-    var size: Int = initialInstancesJSONArray!!.length()!!
+    var size: Int = initialInstancesJSONArray!!.length()
 
 
     var nextJSONObject: JSONObject

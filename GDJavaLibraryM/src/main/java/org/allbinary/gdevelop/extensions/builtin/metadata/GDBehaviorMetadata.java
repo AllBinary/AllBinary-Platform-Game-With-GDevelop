@@ -6,8 +6,8 @@
 package org.allbinary.gdevelop.extensions.builtin.metadata;
 
 import org.allbinary.gdevelop.extensions.GDPlatformExtension;
-import org.allbinary.gdevelop.project.GDBehavior;
-import org.allbinary.gdevelop.project.GDBehaviorsSharedData;
+import org.allbinary.gdevelop.project.GDProjectBehavior;
+import org.allbinary.gdevelop.project.GDProjectBehaviorsSharedData;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.util.ABHashMap;
 import org.allbinary.util.BasicArrayList;
@@ -19,22 +19,22 @@ import org.allbinary.util.BasicArrayListD;
  */
 public class GDBehaviorMetadata
 {
-    private static String RETURN_ = "Return ";
-    private static String COMPARE_ = "Compare ";
+    private static final String RETURN_ = "Return ";
+    private static final String COMPARE_ = "Compare ";
 
     private final CommonSeps commonSeps = CommonSeps.getInstance();
     private final GDParameterFactory parameterFactory = GDParameterFactory.getInstance();
 
     public final String extensionNamespace;
-    public final String name;
+    public final String aname;
     public final String fullname;
     public final String defaultName;
     public final String description;
     public final String group;
     public final String icon24x24;
     public final String className;
-    public final GDBehavior behavior;
-    public final GDBehaviorsSharedData behaviorsSharedData;
+    public final GDProjectBehavior behavior;
+    public final GDProjectBehaviorsSharedData behaviorsSharedData;
 
     public final BasicArrayList conditionInstructionMetadataList = new BasicArrayListD();
     public final BasicArrayList actionInstructionMetadataList = new BasicArrayListD();
@@ -54,11 +54,11 @@ public class GDBehaviorMetadata
             final String group,
             final String icon24x24,
             final String className,
-            final GDBehavior behavior,
-            final GDBehaviorsSharedData behaviorsSharedData)
+            final GDProjectBehavior behavior,
+            final GDProjectBehaviorsSharedData behaviorsSharedData)
     {
         this.extensionNamespace = extensionNamespace;
-        this.name = name;
+        this.aname = name;
         this.fullname = fullname;
         this.defaultName = defaultName;
         this.description = description;

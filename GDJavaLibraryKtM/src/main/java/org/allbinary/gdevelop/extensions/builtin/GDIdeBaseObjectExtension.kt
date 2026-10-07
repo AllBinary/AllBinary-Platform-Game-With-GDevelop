@@ -20,6 +20,8 @@
 import org.allbinary.gdevelop.extensions.GDPlatformExtension
 import org.allbinary.gdevelop.extensions.builtin.metadata.GDBehaviorMetadata
 import org.allbinary.gdevelop.extensions.builtin.metadata.GDParameterFactory
+import org.allbinary.gdevelop.project.GDProjectBehavior
+import org.allbinary.gdevelop.project.GDProjectBehaviorsSharedData
 import org.allbinary.logic.string.StringUtil
 
 open public class GDIdeBaseObjectExtension
@@ -38,9 +40,7 @@ companion object {
 
     val platformExtension: GDPlatformExtension = GDPlatformExtension.getInstance()!!
 
-    val behaviorMetadata: GDBehaviorMetadata = GDBehaviorMetadata(this.stringUtil!!.EMPTY_STRING, this.stringUtil!!.EMPTY_STRING, this.stringUtil!!.EMPTY_STRING, this.stringUtil!!.EMPTY_STRING, this.stringUtil!!.EMPTY_STRING, this.stringUtil!!.EMPTY_STRING, this.stringUtil!!.EMPTY_STRING, this.stringUtil!!.EMPTY_STRING, 
-                            null, 
-                            null)
+    val behaviorMetadata: GDBehaviorMetadata = GDBehaviorMetadata(this.stringUtil!!.EMPTY_STRING, this.stringUtil!!.EMPTY_STRING, this.stringUtil!!.EMPTY_STRING, this.stringUtil!!.EMPTY_STRING, this.stringUtil!!.EMPTY_STRING, this.stringUtil!!.EMPTY_STRING, this.stringUtil!!.EMPTY_STRING, this.stringUtil!!.EMPTY_STRING, GDProjectBehavior.NULL_GDBEHAVIOR, GDProjectBehaviorsSharedData.NULL_GDBEHAVIORSHAREDDATA)
 public constructor ()
             : super()
         {

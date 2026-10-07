@@ -18,6 +18,8 @@
         import kotlin.reflect.KClass
         
 import org.allbinary.gdevelop.extensions.builtin.metadata.GDBehaviorMetadata
+import org.allbinary.gdevelop.project.GDProjectBehavior
+import org.allbinary.gdevelop.project.GDProjectBehaviorsSharedData
 import org.allbinary.logic.string.StringUtil
 
 open public class GDPlatformExtension : GDBehaviorMetadata {
@@ -42,9 +44,7 @@ companion object {
     val NAMESPACE_SEP: String = "::"
 private constructor ()                        
 
-                            : super(StringUtil.getInstance()!!.EMPTY_STRING, StringUtil.getInstance()!!.EMPTY_STRING, StringUtil.getInstance()!!.EMPTY_STRING, StringUtil.getInstance()!!.EMPTY_STRING, StringUtil.getInstance()!!.EMPTY_STRING, StringUtil.getInstance()!!.EMPTY_STRING, StringUtil.getInstance()!!.EMPTY_STRING, StringUtil.getInstance()!!.EMPTY_STRING, 
-                            null, 
-                            null){
+                            : super(StringUtil.getInstance()!!.EMPTY_STRING, StringUtil.getInstance()!!.EMPTY_STRING, StringUtil.getInstance()!!.EMPTY_STRING, StringUtil.getInstance()!!.EMPTY_STRING, StringUtil.getInstance()!!.EMPTY_STRING, StringUtil.getInstance()!!.EMPTY_STRING, StringUtil.getInstance()!!.EMPTY_STRING, StringUtil.getInstance()!!.EMPTY_STRING, GDProjectBehavior.NULL_GDBEHAVIOR, GDProjectBehaviorsSharedData.NULL_GDBEHAVIORSHAREDDATA){
 
 
                             //For kotlin this is before the body of the constructor.

@@ -21,6 +21,7 @@ import org.allbinary.gdevelop.json.GDProjectStrings
 import org.allbinary.gdevelop.json.event.GDEvent
 import org.allbinary.string.CommonStrings
 import org.allbinary.logic.communication.log.LogUtil
+import org.allbinary.logic.string.StringUtil
 import org.json.JSONObject
 
 open public class GDLinkEvent : GDEvent {
@@ -64,9 +65,7 @@ this.target= jsonObject!!.getString(gdProjectStrings!!.TARGET)
                         if(this.includeConfig == includeConfigFactory!!.INCLUDE_ALL)
                         
                                     {
-                                    this.eventsGroupName= 
-                                        null
-                                    
+                                    this.eventsGroupName= StringUtil.getInstance()!!.NULL_STRING
 
                                     }
                                 
@@ -80,9 +79,7 @@ this.target= jsonObject!!.getString(gdProjectStrings!!.TARGET)
                                     }
                                 
                         else {
-                            this.eventsGroupName= 
-                                        null
-                                    
+                            this.eventsGroupName= StringUtil.getInstance()!!.NULL_STRING
 
     var commonStrings: CommonStrings = CommonStrings.getInstance()!!
 

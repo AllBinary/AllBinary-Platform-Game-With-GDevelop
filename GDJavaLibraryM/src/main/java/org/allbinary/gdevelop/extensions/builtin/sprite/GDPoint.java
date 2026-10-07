@@ -32,12 +32,11 @@ public class GDPoint
         
         //logUtil.put(jsonObject.toString(3), this, "GDPoint");
         
+        boolean automatic = false;
         if(jsonObject.has(projectStrings.AUTOMATIC)) {
-            this.automatic = jsonObject.getBoolean(projectStrings.AUTOMATIC);
-        } else {
-            this.automatic = false;
+            automatic = jsonObject.getBoolean(projectStrings.AUTOMATIC);
         }
-        
+        this.automatic = automatic;
         
         this.x = jsonObject.getInt(projectStrings.X);
         this.y = jsonObject.getInt(projectStrings.Y);

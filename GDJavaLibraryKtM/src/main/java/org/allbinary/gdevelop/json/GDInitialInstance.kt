@@ -74,7 +74,7 @@ this.persistentUuid= jsonObject!!.getString(gdProjectStrings!!.PERSISTED_UUID)
     var numberPropertiesJSONArray: JSONArray = jsonObject!!.getJSONArray(gdProjectStrings!!.NUMBER_PROPERTIES)!!
 
 
-    var size: Int = numberPropertiesJSONArray!!.length()!!
+    var size: Int = numberPropertiesJSONArray!!.length()
 
 
     var nextJSONObject: JSONObject

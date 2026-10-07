@@ -6,6 +6,8 @@
 package org.allbinary.gdevelop.extensions;
 
 import org.allbinary.gdevelop.extensions.builtin.metadata.GDBehaviorMetadata;
+import org.allbinary.gdevelop.project.GDProjectBehavior;
+import org.allbinary.gdevelop.project.GDProjectBehaviorsSharedData;
 import org.allbinary.logic.string.StringUtil;
 
 /**
@@ -37,7 +39,7 @@ public class GDPlatformExtension extends GDBehaviorMetadata
             StringUtil.getInstance().EMPTY_STRING,
             StringUtil.getInstance().EMPTY_STRING,
             StringUtil.getInstance().EMPTY_STRING,
-            null,
-            null);
+            GDProjectBehavior.NULL_GDBEHAVIOR,
+            GDProjectBehaviorsSharedData.NULL_GDBEHAVIORSHAREDDATA);
     }    
 }

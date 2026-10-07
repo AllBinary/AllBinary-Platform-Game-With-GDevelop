@@ -17,6 +17,7 @@
         import kotlin.Array
         import kotlin.reflect.KClass
         
+import org.allbinary.logic.string.StringUtil
 import org.allbinary.util.ABHashMap
 import org.allbinary.util.BasicArrayList
 import org.allbinary.util.BasicArrayListD
@@ -32,9 +33,9 @@ open public class GDVariable
 
     val string: String
 
-    val value: Double= 0.0
+    val value: Double
 
-    val boolValue: Boolean= false
+    val boolValue: Boolean
 
     val childVariableMap: ABHashMap<String, GDVariable> = ABHashMap<String, GDVariable>()
 
@@ -51,6 +52,15 @@ public constructor (jsonObject: JSONObject)
 
 this.type= typeFactory!!.get(jsonObject!!.getString(gdProjectStrings!!.TYPE))
 
+    var string: String
+
+
+    var value: Double
+
+
+    var boolValue: Boolean
+
+
     
                         if(typeFactory!!.isPrimitive(this.type))
                         
@@ -60,9 +70,9 @@ this.type= typeFactory!!.get(jsonObject!!.getString(gdProjectStrings!!.TYPE))
                         if(this.type == typeFactory!!.STRING)
                         
                                     {
-                                    this.string= jsonObject!!.getString(gdProjectStrings!!.VALUE)
-this.value= 0
-this.boolValue= false
+                                    string= jsonObject!!.getString(gdProjectStrings!!.VALUE)
+value= 0.toDouble()
+boolValue= false
 
                                     }
                                 
@@ -71,11 +81,9 @@ this.boolValue= false
                         if(this.type == typeFactory!!.NUMBER)
                         
                                     {
-                                    this.string= 
-                                        null
-                                    
-this.value= jsonObject!!.getDouble(gdProjectStrings!!.VALUE)
-this.boolValue= false
+                                    string= StringUtil.getInstance()!!.EMPTY_STRING
+value= jsonObject!!.getDouble(gdProjectStrings!!.VALUE)
+boolValue= false
 
                                     }
                                 
@@ -84,20 +92,16 @@ this.boolValue= false
                         if(this.type == typeFactory!!.BOOLEAN)
                         
                                     {
-                                    this.string= 
-                                        null
-                                    
-this.value= 0
-this.boolValue= jsonObject!!.getBoolean(gdProjectStrings!!.VALUE)
+                                    string= StringUtil.getInstance()!!.EMPTY_STRING
+value= 0.toDouble()
+boolValue= jsonObject!!.getBoolean(gdProjectStrings!!.VALUE)
 
                                     }
                                 
                         else {
-                            this.string= 
-                                        null
-                                    
-this.value= 0
-this.boolValue= false
+                            string= StringUtil.getInstance()!!.EMPTY_STRING
+value= 0.toDouble()
+boolValue= false
 
                         }
                             
@@ -105,11 +109,9 @@ this.boolValue= false
                                     }
                                 
                         else {
-                            this.string= 
-                                        null
-                                    
-this.value= 0
-this.boolValue= false
+                            string= StringUtil.getInstance()!!.EMPTY_STRING
+value= 0.toDouble()
+boolValue= false
 
     
                         if(jsonObject!!.has(gdProjectStrings!!.CHILDREN))
@@ -119,7 +121,7 @@ this.boolValue= false
     var variableJSONArray: JSONArray = jsonObject!!.getJSONArray(gdProjectStrings!!.CHILDREN)!!
 
 
-    var size: Int = variableJSONArray!!.length()!!
+    var size: Int = variableJSONArray!!.length()
 
 
     var childJSONObject: JSONObject
@@ -158,6 +160,9 @@ childJSONObject= variableJSONArray!!.getJSONObject(index)
 
                         }
                             
+this.string= string
+this.value= value
+this.boolValue= boolValue
 }
 
 

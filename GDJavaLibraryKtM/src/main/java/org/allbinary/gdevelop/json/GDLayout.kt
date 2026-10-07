@@ -93,7 +93,7 @@ this.disableInputWhenNotFocused= jsonObject!!.getBoolean(gdProjectStrings!!.DISA
     var objectJSONArray: JSONArray = jsonObject!!.getJSONArray(gdProjectStrings!!.OBJECTS)!!
 
 
-    var size: Int = objectJSONArray!!.length()!!
+    var size: Int = objectJSONArray!!.length()
 
 
     var nextJSONObject: JSONObject
@@ -188,9 +188,7 @@ size= eventJSONArray!!.length()
 event= eventFactory!!.create(eventJSONArray!!.getJSONObject(index))
 
     
-                        if(event != 
-                                    null
-                                )
+                        if(event != GDEvent.NULL_GDEVENT)
                         
                                     {
                                     this.eventList!!.add(event)

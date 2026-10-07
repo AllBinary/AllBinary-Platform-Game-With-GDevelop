@@ -21,6 +21,8 @@ import org.json.JSONObject;
  */
 public class GDResourcesManager
 {
+    public static final GDResourcesManager NULL_GDRESOURCEMANAGER = new GDResourcesManager(JSONObject.NULL_JSONOBJECT);
+    
     protected final LogUtil logUtil = LogUtil.getInstance();
 
     private final String RESOURCES = "GDResources: ";

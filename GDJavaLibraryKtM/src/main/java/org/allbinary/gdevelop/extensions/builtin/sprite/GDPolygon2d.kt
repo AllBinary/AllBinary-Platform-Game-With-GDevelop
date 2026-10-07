@@ -41,7 +41,7 @@ public constructor (jsonArray: JSONArray)
     var projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!!
 
 
-    var size: Int = jsonArray!!.length()!!
+    var size: Int = jsonArray!!.length()
 
 
     var jsonObject: JSONObject

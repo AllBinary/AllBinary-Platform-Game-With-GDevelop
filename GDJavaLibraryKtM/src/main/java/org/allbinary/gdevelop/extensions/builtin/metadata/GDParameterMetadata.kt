@@ -17,6 +17,7 @@
         import kotlin.Array
         import kotlin.reflect.KClass
         
+import org.allbinary.logic.string.StringUtil
 
 open public class GDParameterMetadata
             : Object
@@ -33,11 +34,11 @@ open public class GDParameterMetadata
 
     val codeOnly: Boolean
 
-    private var longDescription: String
+    private var longDescription: String = StringUtil.getInstance()!!.EMPTY_STRING
 
-    private var defaultValue: String
+    private var defaultValue: String = StringUtil.getInstance()!!.EMPTY_STRING
 
-    private var name: String
+    private var name: String = StringUtil.getInstance()!!.EMPTY_STRING
 public constructor (type: String, supplementaryInformation: String, optional: Boolean, description: String, codeOnly: Boolean)
             : super()
         {

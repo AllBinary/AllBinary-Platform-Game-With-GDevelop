@@ -52,7 +52,7 @@ this.imageAsString= jsonObject!!.getString(projectStrings!!.IMAGE)
     var jsonArray: JSONArray = jsonObject!!.getJSONArray(projectStrings!!.POINTS)!!
 
 
-    var size: Int = jsonArray!!.length()!!
+    var size: Int = jsonArray!!.length()
 
 
 
@@ -70,7 +70,7 @@ this.centerPoint= GDPoint(jsonObject!!.getJSONObject(projectStrings!!.CENTER_POI
     var polygon2dJSONArray: JSONArray = jsonObject!!.getJSONArray(projectStrings!!.CUSTOM_COLLISION_MASK)!!
 
 
-    var size2: Int = polygon2dJSONArray!!.length()!!
+    var size2: Int = polygon2dJSONArray!!.length()
 
 
 

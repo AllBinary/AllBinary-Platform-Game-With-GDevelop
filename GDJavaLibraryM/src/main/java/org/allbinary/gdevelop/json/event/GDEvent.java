@@ -7,6 +7,7 @@
 package org.allbinary.gdevelop.json.event;
 
 import org.allbinary.gdevelop.json.GDProjectStrings;
+import org.allbinary.logic.string.StringUtil;
 import org.json.JSONObject;
 
 /**
@@ -15,6 +16,8 @@ import org.json.JSONObject;
  */
 public class GDEvent
 {
+    public final static GDEvent NULL_GDEVENT = new GDEvent(StringUtil.getInstance().NULL_STRING, JSONObject.NULL_JSONOBJECT);
+
     public final String type;
     
     //public final boolean folded;

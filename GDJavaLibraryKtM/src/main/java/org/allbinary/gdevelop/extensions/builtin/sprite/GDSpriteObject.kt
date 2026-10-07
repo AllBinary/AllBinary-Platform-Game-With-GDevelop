@@ -28,7 +28,7 @@ open public class GDSpriteObject : GDObject {
         
 
     private val animationList: BasicArrayList = BasicArrayListD()
-public constructor (type: Object, jsonObject: Object)                        
+public constructor (type: String, jsonObject: JSONObject)                        
 
                             : super(type, jsonObject){
     //var type = type
@@ -44,7 +44,7 @@ public constructor (type: Object, jsonObject: Object)
     var jsonArray: JSONArray = jsonObject!!.getJSONArray(projectStrings!!.ANIMATIONS)!!
 
 
-    var size: Int = jsonArray!!.length()!!
+    var size: Int = jsonArray!!.length()
 
 
 

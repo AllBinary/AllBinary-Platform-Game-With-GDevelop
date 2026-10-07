@@ -51,7 +51,7 @@ this.infiniteLoopWarning= jsonObject!!.getBoolean(gdProjectStrings!!.INFINITE_LO
     var whileConditionJSONArray: JSONArray = jsonObject!!.getJSONArray(gdProjectStrings!!.WHILE_CONDITIONS)!!
 
 
-    var size: Int = whileConditionJSONArray!!.length()!!
+    var size: Int = whileConditionJSONArray!!.length()
 
 
     var nextJSONObject: JSONObject

@@ -121,8 +121,8 @@ public class GDInstructionMetadata
     {
 
         this.codeExtraInformation.setManipulatedType(type);
-        this.addParameter(this.parameterFactory.RELATIONAL_OPERATOR, "Sign of the test", null, false);
-        this.addParameter(type == this.parameterFactory.NUMBER ? this.parameterFactory.EXPRESSION : type, "Value to compare", null, false);
+        this.addParameter(this.parameterFactory.RELATIONAL_OPERATOR, "Sign of the test", StringUtil.getInstance().NULL_STRING, false);
+        this.addParameter(type == this.parameterFactory.NUMBER ? this.parameterFactory.EXPRESSION : type, "Value to compare", StringUtil.getInstance().NULL_STRING, false);
 
         final int operatorParamIndex = this.parameterList.size() - 2;
         final int valueParamIndex = this.parameterList.size() - 1;
@@ -167,7 +167,8 @@ public class GDInstructionMetadata
     {
         if (this.parameterList.size() > 0)
         {
-            ((GDParameterMetadata) this.parameterList.get(this.parameterList.size() - 1)).setLongDescription(longDescription);
+            final GDParameterMetadata gdParameterMetadata = (GDParameterMetadata) this.parameterList.get(this.parameterList.size() - 1);
+            gdParameterMetadata.setLongDescription(longDescription);
         }
 
         return this;
@@ -176,7 +177,8 @@ public class GDInstructionMetadata
     public GDInstructionMetadata setDefaultValue(final String defaultValue) {
         if (this.parameterList.size() > 0)
         {
-            ((GDParameterMetadata) this.parameterList.get(this.parameterList.size() - 1)).setDefaultValue(defaultValue);
+            final GDParameterMetadata gdParameterMetadata = (GDParameterMetadata) this.parameterList.get(this.parameterList.size() - 1);
+            gdParameterMetadata.setDefaultValue(defaultValue);
         }
 
         return this;
@@ -191,8 +193,8 @@ public class GDInstructionMetadata
     {
 
         this.codeExtraInformation.setManipulatedType(type);
-        this.addParameter(this.parameterFactory.OPERATOR, "Modification's sign", null, false);
-        this.addParameter(type == this.parameterFactory.NUMBER ? this.parameterFactory.EXPRESSION : type, "Value", null, false);
+        this.addParameter(this.parameterFactory.OPERATOR, "Modification's sign", StringUtil.getInstance().NULL_STRING, false);
+        this.addParameter(type == this.parameterFactory.NUMBER ? this.parameterFactory.EXPRESSION : type, "Value", StringUtil.getInstance().NULL_STRING, false);
 
         final int operatorParamIndex = this.parameterList.size() - 2;
         final int valueParamIndex = this.parameterList.size() - 1;

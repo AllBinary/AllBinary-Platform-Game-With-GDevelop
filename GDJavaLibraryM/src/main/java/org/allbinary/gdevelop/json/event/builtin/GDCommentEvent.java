@@ -8,6 +8,7 @@ package org.allbinary.gdevelop.json.event.builtin;
 
 import org.allbinary.gdevelop.json.GDProjectStrings;
 import org.allbinary.gdevelop.json.event.GDEvent;
+import org.allbinary.logic.string.StringUtil;
 import org.json.JSONObject;
 
 /**
@@ -47,7 +48,7 @@ public class GDCommentEvent extends GDEvent
         if(jsonObject.has(gdProjectStrings.COMMENT2)) {
             this.comment2 = jsonObject.getString(gdProjectStrings.COMMENT2);
         } else {
-            this.comment2 = null;
+            this.comment2 = StringUtil.getInstance().NULL_STRING;
         }
     }
 }

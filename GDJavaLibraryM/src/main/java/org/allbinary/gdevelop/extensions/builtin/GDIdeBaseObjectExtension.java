@@ -8,6 +8,8 @@ package org.allbinary.gdevelop.extensions.builtin;
 import org.allbinary.gdevelop.extensions.GDPlatformExtension;
 import org.allbinary.gdevelop.extensions.builtin.metadata.GDBehaviorMetadata;
 import org.allbinary.gdevelop.extensions.builtin.metadata.GDParameterFactory;
+import org.allbinary.gdevelop.project.GDProjectBehavior;
+import org.allbinary.gdevelop.project.GDProjectBehaviorsSharedData;
 import org.allbinary.logic.string.StringUtil;
 
 /**
@@ -32,8 +34,8 @@ public class GDIdeBaseObjectExtension
             this.stringUtil.EMPTY_STRING,
             this.stringUtil.EMPTY_STRING,
             this.stringUtil.EMPTY_STRING,
-            null,
-            null);
+            GDProjectBehavior.NULL_GDBEHAVIOR,
+            GDProjectBehaviorsSharedData.NULL_GDBEHAVIORSHAREDDATA);
 
     public GDIdeBaseObjectExtension()
     {

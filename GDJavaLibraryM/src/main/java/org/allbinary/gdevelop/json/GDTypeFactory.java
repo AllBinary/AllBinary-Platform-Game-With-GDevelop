@@ -6,6 +6,8 @@
 
 package org.allbinary.gdevelop.json;
 
+import org.allbinary.logic.string.StringUtil;
+
 /**
  *
  * @author User
@@ -43,7 +45,7 @@ public class GDTypeFactory
             return this.ARRAY;
         }
         
-        return null;
+        return StringUtil.getInstance().NULL_STRING;
     }
 
     public boolean isPrimitive(final String type)

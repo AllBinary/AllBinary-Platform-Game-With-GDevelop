@@ -6,15 +6,19 @@
 
 package org.allbinary.gdevelop.project;
 
+import org.allbinary.logic.string.StringUtil;
+
 /**
  *
  * @author User
  */
-public class GDBehavior
+public class GDProjectBehavior
 {
+    public static final GDProjectBehavior NULL_GDBEHAVIOR = new GDProjectBehavior(StringUtil.getInstance().NULL_STRING);
+
     public final String type;
     
-    public GDBehavior(final String type) {
+    public GDProjectBehavior(final String type) {
         this.type = type;
     }
 }

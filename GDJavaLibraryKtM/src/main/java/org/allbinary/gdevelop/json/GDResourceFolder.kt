@@ -51,7 +51,7 @@ this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)
     var jsonArray: JSONArray = jsonObject!!.getJSONArray(gdProjectStrings!!.RESOURCES)!!
 
 
-    var size: Int = jsonArray!!.length()!!
+    var size: Int = jsonArray!!.length()
 
 
     var nextJSONObject: JSONObject

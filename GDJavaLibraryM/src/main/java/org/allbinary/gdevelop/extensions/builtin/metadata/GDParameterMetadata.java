@@ -6,6 +6,8 @@
 
 package org.allbinary.gdevelop.extensions.builtin.metadata;
 
+import org.allbinary.logic.string.StringUtil;
+
 /**
  *
  * @author User
@@ -18,9 +20,9 @@ public class GDParameterMetadata
     public final String description;
     public final boolean codeOnly;
 
-    private String longDescription;
-    private String defaultValue;
-    private String name;
+    private String longDescription = StringUtil.getInstance().EMPTY_STRING;
+    private String defaultValue = StringUtil.getInstance().EMPTY_STRING;
+    private String name = StringUtil.getInstance().EMPTY_STRING;
 
     public GDParameterMetadata(
             final String type,
