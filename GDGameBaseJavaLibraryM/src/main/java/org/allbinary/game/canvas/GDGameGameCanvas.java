@@ -119,7 +119,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
     @Override
     public void mediaInit() throws Exception
     {
-        logUtil.putF(commonStrings.START, this, "mediaInit");
+        this.logUtil.putF(this.commonStrings.START, this, "mediaInit");
         AllBinaryMediaManager.init(GDGameSoundsFactory.getInstance());
     }
 
@@ -139,7 +139,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
             if(Features.getInstance().isFeature(
                     TouchFeatureFactory.getInstance().AUTO_HIDE_SHOW_SCREEN_BUTTONS))
             {
-                if(gameInfo.getCurrentLevel() - getStartLevel() >= 1)
+                if(gameInfo.getCurrentLevel() - this.getStartLevel() >= 1)
                 {
                     nextTouchInputFactory = 
                         GDGameNeededTouchButtonsBuilder.getInstance(
@@ -162,7 +162,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
             {
                 super.initConfigurable(abeClientInformation);
 
-                progressCanvas.addNormalPortion(portion, "Group Manager");
+                progressCanvas.addNormalPortion(this.portion, "Group Manager");
                 GroupLayerManagerListener.getInstance().init(3);
 
                 AllBinaryVibration.init();
@@ -182,7 +182,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
             
         } catch (Exception e)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, "initConfigurable", e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, "initConfigurable", e);
         }
     }
 
@@ -192,7 +192,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
         try
         {
             final int portion = 60;
-            super.initApp(abeClientInformation);
+            super.initApp(this.abeClientInformation);
 
             if (!this.isRunning())
             {
@@ -211,7 +211,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
                 
                 progressCanvas.addNormalPortion(portion, "Main Processors");
 
-                this.setWait(WAIT);
+                this.setWait(this.WAIT);
                 this.loadState();
 
                 BasicArrayList list = new BasicArrayListD();
@@ -240,7 +240,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
                     list.add(new OptimizedTickableLayerProcessor());
                 }
 
-                gameLayerManager.setLayerProcessorList(list);
+                this.gameLayerManager.setLayerProcessorList(list);
 
                 progressCanvas.addNormalPortion(portion, "Initializing Game");
             }
@@ -249,14 +249,14 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
 
         } catch (Exception e)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, "_init", e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, "_init", e);
         }
     }
 
     @Override
     public void buildGameInit(boolean isProgress) throws Exception
     {
-        this.loadResources(gameLayerManager.getGameInfo().getCurrentLevel());
+        this.loadResources(this.gameLayerManager.getGameInfo().getCurrentLevel());
         
         ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
         
@@ -276,7 +276,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
         //this.cleanupGame();
         PrimaryPlayerQueueFactory.getInstance().clear();
         SecondaryPlayerQueueFactory.getInstance().clear();
-        gameLayerManager.cleanup();
+        this.gameLayerManager.cleanup();
 
         if (!this.isRunning())
         {
@@ -306,11 +306,11 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
             return;
         }
 
-        gameLayerManager.append(new PlayerGameInputGameLayer(0));
+        this.gameLayerManager.append(new PlayerGameInputGameLayer(0));
 
         progressCanvas.addNormalPortion(portion, "Ending Custom Build");
 
-        if (gameLayerManager.getGameInfo().getGameType() != GameTypeFactory.getInstance().BOT)
+        if (this.gameLayerManager.getGameInfo().getGameType() != GameTypeFactory.getInstance().BOT)
         {
             //PrimaryPlayerQueueFactory.getInstance().add(
                     //GameSounds.getBegin());
@@ -360,13 +360,14 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
 
     //private String soundQueue = PrimaryPlayerQueueFactory.getInstance().toString();
     
+    @Override
     public void draw(Graphics graphics)
     {
         //logUtil.putF(commonStrings.START, this, "draw");
         
         this.clear(graphics);
 
-        this.basicSetColorUtil.setBasicColorP(graphics, gameLayerManager.getForegroundBasicColor());
+        this.basicSetColorUtil.setBasicColorP(graphics, this.gameLayerManager.getForegroundBasicColor());
 
         //graphics.drawString(TEXT, 0, halfHeight, 0);
 
@@ -374,17 +375,17 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
         graphics.drawString(soundQueue, 0, halfHeight + 15, 0);
         */
 
-    	gameLayerManager.paint(graphics, 0, 0);
+    	this.gameLayerManager.paint(graphics, 0, 0);
 
-    	nonBotPaintable.paint(graphics);
+    	this.nonBotPaintable.paint(graphics);
 
-        gameSpecificPaintable.paint(graphics);    	
+        this.gameSpecificPaintable.paint(graphics);    	
 
-    	gamePerformanceInitUpdatePaintable.paint(graphics);
+    	this.gamePerformanceInitUpdatePaintable.paint(graphics);
         
-        touchPaintable.paint(graphics);
+        this.touchPaintable.paint(graphics);
         
-        screenCapture.saveFrame();
+        this.screenCapture.saveFrame();
 
         final int halfHeight = GameTickDisplayInfoSingleton.getInstance().getLastHalfHeight();
         graphics.drawString(this.gyroOrientationSensor.toString(), 0, halfHeight + 30 + 60, 0);
@@ -403,11 +404,12 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
     
     private final GameFeature soundGameFeature = GameFeatureFactory.getInstance().SOUND;
     
+    @Override
     protected void processGame() throws Exception
     {
-        if (playerTimeDelayHelper.isTimeTNT())
+        if (this.playerTimeDelayHelper.isTimeTNT())
         {
-            if(this.features.isFeature(soundGameFeature))
+            if(this.features.isFeature(this.soundGameFeature))
             {
                 //this.primaryPlayerQueue.add(TestSound.getInstance());
             }

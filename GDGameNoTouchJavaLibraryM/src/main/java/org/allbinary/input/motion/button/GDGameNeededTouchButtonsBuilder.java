@@ -30,11 +30,11 @@ extends BaseTouchInput
     public static BaseTouchInput getInstance(
             SensorGameUpdateProcessor sensorGameUpdateProcessor)
     {
-        return instance;
+        return GDGameNeededTouchButtonsBuilder.instance;
     }
     
     public void build()
     {
-       logUtil.putF(commonStrings.START, this, "build");
+       this.logUtil.putF(this.commonStrings.START, this, "build");
     }
 }

@@ -27,11 +27,13 @@ public class GDGameOpenGLESImageBasedAnimationInterfaceFactoryInterfaceFactory
         super("OpenGL Image Animations");
     }
 
+    @Override
     public void init(int level) throws Exception
     {
         super.initImageCache(OpenGLImageCacheFactory.getInstance(), level);
     }
     
+    @Override
     public boolean isFeature()
     {
         Features features = Features.getInstance();

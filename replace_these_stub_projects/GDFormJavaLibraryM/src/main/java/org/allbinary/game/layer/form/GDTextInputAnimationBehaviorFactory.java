@@ -28,7 +28,7 @@ public class GDTextInputAnimationBehaviorFactory extends GDAnimationBehaviorBase
      * @return the instance
      */
     public static GDTextInputAnimationBehaviorFactory getInstance() {
-        return instance;
+        return GDTextInputAnimationBehaviorFactory.instance;
     }
     
     @Override

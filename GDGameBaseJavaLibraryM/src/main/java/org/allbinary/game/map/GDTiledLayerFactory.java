@@ -45,6 +45,7 @@ public class GDTiledLayerFactory implements AllBinaryTiledLayerFactoryInterface 
         this.debugColor = debugColor;
     }
     
+    @Override
     public AllBinaryTiledLayer getInstance(final RaceTrackInfo raceTrackInfo, final RaceTrackData raceTrackData)
         throws Exception {
 
@@ -62,6 +63,7 @@ public class GDTiledLayerFactory implements AllBinaryTiledLayerFactoryInterface 
         return this.useAsMiniAllBinaryTiledLayer;
     }
 
+    @Override
     public AllBinaryTiledLayer getMiniInstance(final RaceTrackData raceTrackData) throws Exception {
         return this.useAsMiniAllBinaryTiledLayer;
     }

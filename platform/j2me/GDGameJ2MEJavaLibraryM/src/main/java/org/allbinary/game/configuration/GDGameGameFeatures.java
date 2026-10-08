@@ -15,9 +15,6 @@ package org.allbinary.game.configuration;
 
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
-
-import org.allbinary.game.configuration.GameConfigurationCentral;
-import org.allbinary.game.configuration.GameConfigurationSingleton;
 import org.allbinary.game.configuration.feature.GameFeatureChoiceGroups;
 import org.allbinary.game.configuration.feature.GameFeatureFactory;
 import org.allbinary.game.configuration.feature.SensorFeatureFactory;
@@ -32,6 +29,7 @@ public class GDGameGameFeatures implements InitInterface
         
     }
     
+    @Override
     public void init()
     {
         //BasicArrayList exclusiveOrientationSensorList = new BasicArrayListD();

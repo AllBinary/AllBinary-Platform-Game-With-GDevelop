@@ -13,8 +13,6 @@
 */
 package org.allbinary.input.motion.button;
 
-import org.allbinary.input.motion.button.TouchScreenFactory;
-import org.allbinary.input.motion.button.BaseTouchInput;
 import org.allbinary.input.gyro.SensorGameUpdateProcessor;
 
 //

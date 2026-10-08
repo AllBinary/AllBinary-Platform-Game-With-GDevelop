@@ -36,12 +36,14 @@ public class GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFac
         super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
     
+    @Override
     public void init(int level)
     throws Exception
     {
         this.initImageCache(ImageCacheFactory.getInstance(), level);
     }
 
+    @Override
     protected void initImageCache(ImageCache imageCache, int level)
     throws Exception
     {

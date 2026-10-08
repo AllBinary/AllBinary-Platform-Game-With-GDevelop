@@ -28,7 +28,7 @@ public class GDSliderAnimationBehaviorFactory extends GDAnimationBehaviorBaseFac
      * @return the instance
      */
     public static GDSliderAnimationBehaviorFactory getInstance() {
-        return instance;
+        return GDSliderAnimationBehaviorFactory.instance;
     }
     
     @Override    

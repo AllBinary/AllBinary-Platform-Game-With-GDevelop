@@ -28,10 +28,12 @@ implements GDGameLayerItemStateListener {
     public GDSliderAnimationBehavior() {
     }
 
+    @Override
     public IndexedAnimation[] init(final GDObject gdObject, final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray) {
         return null;
     }
     
+    @Override
     public void setAnimationArray(final IndexedAnimation[] animationArray)
     {
     }
@@ -39,9 +41,11 @@ implements GDGameLayerItemStateListener {
     public void setValue(final int value) {
     }
     
+    @Override
     public void add(final GDGameLayer gameLayer) {
     }
 
+    @Override
     public void itemStateChanged(GDGameLayer gameLayerAsItem) {
         
     }

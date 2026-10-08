@@ -26,7 +26,7 @@ public class GDFormInputProcessor
      * @return the instance
      */
     public static GDFormInputProcessor getInstance() {
-        return instance;
+        return GDFormInputProcessor.instance;
     }
     
     public void append(final GDFormInput gdFormInput) {

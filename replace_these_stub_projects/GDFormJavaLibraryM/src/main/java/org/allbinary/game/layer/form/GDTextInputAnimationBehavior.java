@@ -29,22 +29,27 @@ public class GDTextInputAnimationBehavior extends GDItemAnimationBehavior
     public GDTextInputAnimationBehavior() {
     }
 
+    @Override
     public IndexedAnimation[] init(final GDObject gdObject, final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray) {
         return null;
     }
     
+    @Override
     public void setAnimationArray(final IndexedAnimation[] animationArray)
     {
 
     }
     
+    @Override
     public void add(final GDGameLayer gameLayer) {
     }
 
+    @Override
     public void itemStateChanged(GDGameLayer gameLayerAsItem) {
         
     }
 
+    @Override
     public void onMotionGestureEvent(final MotionGestureEvent motionGestureEvent) {
 
     }

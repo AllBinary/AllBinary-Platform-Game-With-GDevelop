@@ -13,8 +13,6 @@
  */
 package org.allbinary.media.audio.music;
 
-import org.allbinary.media.audio.music.MusicManager;
-import org.allbinary.media.audio.music.MusicService;
 import org.allbinary.util.BasicArrayList;
 
 /**
