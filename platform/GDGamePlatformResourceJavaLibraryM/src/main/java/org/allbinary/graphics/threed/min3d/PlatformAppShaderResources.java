@@ -19,7 +19,7 @@ package org.allbinary.graphics.threed.min3d;
  */
 public class PlatformAppShaderResources {
     
-    protected static final PlatformAppShaderResources instance = new PlatformAppShaderResources();
+    private static final PlatformAppShaderResources instance = new PlatformAppShaderResources();
 
     /**
      * @return the instance

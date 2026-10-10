@@ -36,18 +36,18 @@
         <module>../platform/android/GDGameAndroidJavaLibraryKtM</module>
         -->
         <module>../resource/GDGameImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>
-        <module>../resource/GDGameLazyImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>
+<!--        <module>../resource/GDGameLazyImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>-->
 <!--        <module>../resource/GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>-->
         <module>../resource/GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>
-        <module>../resource/GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>
+<!--        <module>../resource/GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>-->
 <!--        <module>../resource/GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>
         <module>../resource/GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>-->
         <module>../resource/GDGameOpenGLTwoDJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>
-        <module>../resource/GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>
+<!--        <module>../resource/GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>-->
         <module>../resource/GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>
         
-        <module>../resource/GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>
-        <module>../resource/GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>
+<!--        <module>../resource/GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>-->
+<!--        <module>../resource/GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>-->
         
         <module>../platform/GDGamePlatformResourceJavaLibraryKtM</module>
         <module>../platform/j2se/GDGamePCClientInfoJavaLibraryKtM</module>
@@ -68,7 +68,7 @@
         <module>../replace_these_stub_projects/GDFormJavaLibraryKtM</module>
         <module>../../AllBinary-Platform-Integrationkt/embedded/j2me/microemulator/custom/GDFormJavaLibraryKtM</module>
 
-        <module>../GDGameThreedP</module>
+<!--        <module>../GDGameThreedP</module>-->
 
     </modules>
 

@@ -59,7 +59,8 @@
         </dependency>
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>ImageCacheLazyJ2MEJavaLibraryKt</artifactId>
+            <artifactId>ImageCacheJ2MEJavaLibraryKt</artifactId>
+<!--            <artifactId>ImageCacheLazyJ2MEJavaLibraryKt</artifactId>-->
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->

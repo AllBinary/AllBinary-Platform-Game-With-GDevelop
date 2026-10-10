@@ -58,7 +58,7 @@ var name = name
 
                 @Throws(Exception::class)
             
-    open fun init(level: Int)
+    override fun init(level: Int)
         //nullable = true from not(false or (false and false)) = true
 {
 var level = level
@@ -68,7 +68,7 @@ this.initImageCache(ImageCacheFactory.getInstance(), level)
 
                 @Throws(Exception::class)
             
-    open fun initImageCache(imageCache: ImageCache, level: Int)
+    override fun initImageCache(imageCache: ImageCache, level: Int)
         //nullable = true from not(false or (false and false)) = true
 {
 var imageCache = imageCache
@@ -90,7 +90,7 @@ super.init(level)
 }
 
 
-    open fun isFeature()
+    override fun isFeature()
         //nullable = true from not(false or (false and true)) = true
 : Boolean{
 
@@ -121,7 +121,7 @@ super.init(level)
 }
 
 
-    open fun isLoadingLevel(level: Int)
+    override fun isLoadingLevel(level: Int)
         //nullable = true from not(false or (false and false)) = true
 : Boolean{
 var level = level

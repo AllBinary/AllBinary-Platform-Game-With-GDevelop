@@ -99,7 +99,7 @@ companion object {
                         
                                     {
                                     
-    var SDK_VERSION: Int = AndroidInfoFactory.getInstance()!!.getVersion()!!
+    var SDK_VERSION: Int = AndroidInfoFactory.getInstance()!!.getVersion()
 
 
     
@@ -161,7 +161,7 @@ companion object {
 {
     //var cameraLayer = cameraLayer
 
-    var SDK_VERSION: Int = AndroidInfoFactory.getInstance()!!.getVersion()!!
+    var SDK_VERSION: Int = AndroidInfoFactory.getInstance()!!.getVersion()
 
 
     

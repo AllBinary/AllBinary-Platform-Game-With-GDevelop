@@ -49,12 +49,16 @@ public class XmlUnicodeReplacer {
 
     public static void main(String[] args) throws IOException {
         GDPaths.init();
+        //args = new String[1];
+        //args[0] = "G:\\mnt\\bc\\mydev\\AllBinary-Platform-Integration\\graphics\\layer\\TiledJSONJavaLibraryM\\src\\main\\java\\org\\mapeditor\\util\\TileCutter.java";
+        
         if (args.length < 1 || args.length > 3) {
             XmlUnicodeReplacer.printUsageAndExit();
             return;
         }
 
-        final Path inputPath = Paths.get(args[0]);
+        String path = args[0];
+        final Path inputPath = Paths.get(path);
         final Path outputPath = (args.length >= 2) ? Paths.get(args[1]) : inputPath;
         final Charset charset = (args.length == 3) ? Charset.forName(args[2]) : StandardCharsets.UTF_8;
 

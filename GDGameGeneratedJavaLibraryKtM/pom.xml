@@ -243,11 +243,14 @@
             <optional>true</optional>
         </dependency>
 
+<!--
         <dependency>
             <groupId>j2me-json</groupId>
             <artifactId>jsonKt</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
+-->
+
 <!--
         <dependency>
             <groupId>org.allbinary</groupId>
@@ -263,14 +266,14 @@
             <version>2.0.4</version>
             <optional>true</optional>
         </dependency>
-
+<!--
         <dependency>
             <groupId>org.microemu</groupId>
             <artifactId>microemu-javaseKt</artifactId>
             <version>2.0.4</version>
             <optional>true</optional>
         </dependency>
-
+-->
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>

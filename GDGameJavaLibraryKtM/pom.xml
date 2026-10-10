@@ -145,7 +145,7 @@
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
         
-        <dependency>
+<!--        <dependency>
             <groupId>org.allbinary.game.behavior.topview</groupId>
             <artifactId>TopViewGameBehaviorJavaLibraryKt</artifactId>
             <version>1.0.0-SNAPSHOT</version>
@@ -155,7 +155,7 @@
             <groupId>org.mapeditor</groupId>
             <artifactId>TiledJSONJavaLibraryKt</artifactId>
             <version>1.4.2-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.allbinary</groupId>

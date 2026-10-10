@@ -127,7 +127,7 @@ open public inner class RequestedText
 
     open fun getText(resource: String, inputStream: InputStream)
         //nullable = true from not(false or (false and false)) = true
-: InputStream{
+: InputStream?{
     //var resource = resource
     //var inputStream = inputStream
 

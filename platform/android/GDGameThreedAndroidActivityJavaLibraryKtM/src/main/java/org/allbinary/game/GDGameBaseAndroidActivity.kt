@@ -234,7 +234,7 @@ this.logUtil!!.putF(this.commonStrings!!.START, this, "setBackground")
                                     (drawable as BitmapDrawable).getBitmap()!!
 
 
-    var hashtable: ABHashtable = ImageCacheFactory.getInstance()!!.getHashtableP()!!
+    var hashtable: ABHashtable<Any, Any> = ImageCacheFactory.getInstance()!!.getHashtableP()!!
 
 hashtable.put(AndroidBasicTitleProgressBar.RESOURCE, Image.createImageBitmap(bitmap))
 AndroidBasicTitleProgressBar.setBackgroundResource(androidResources!!.drawable.gd_wait_256_by_256)

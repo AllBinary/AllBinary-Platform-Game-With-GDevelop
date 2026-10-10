@@ -76,7 +76,7 @@
         
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameLazyImageAnimationInterfaceResourceFactoryJavaLibraryKt</artifactId>
+            <artifactId>GDGameImageAnimationInterfaceResourceFactoryJavaLibraryKt</artifactId>
 <!-- 
             <artifactId>GDGameImageAnimationInterfaceResourceFactoryJavaLibraryKt</artifactId>
             <artifactId>GDGameLazyImageAnimationInterfaceResourceFactoryJavaLibraryKt</artifactId>
