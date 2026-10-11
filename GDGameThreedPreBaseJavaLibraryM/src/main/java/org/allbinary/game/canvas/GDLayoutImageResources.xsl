@@ -66,7 +66,6 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Image;
 
 <!--                import org.allbinary.animation.image.GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;-->
-                import org.allbinary.AndroidUtil;
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil;
                 import org.allbinary.animation.special.SpecialAnimation;
@@ -90,6 +89,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ABHashtable;
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.J2MEUtil;
+                import org.allbinary.game.layout.GDConfig;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources extends SpecialAnimation

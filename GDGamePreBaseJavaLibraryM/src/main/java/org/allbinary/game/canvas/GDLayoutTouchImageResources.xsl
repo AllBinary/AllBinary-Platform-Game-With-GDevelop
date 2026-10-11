@@ -62,7 +62,6 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Image;
 
-                import org.allbinary.AndroidUtil;
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.gd.resource.GDResources;
@@ -85,6 +84,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ABHashtable;
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.J2MEUtil;
+                import org.allbinary.game.layout.GDConfig;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources extends SpecialAnimation

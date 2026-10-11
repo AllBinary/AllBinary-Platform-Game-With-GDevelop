@@ -76,6 +76,7 @@ Created By: Travis Berthelot
                 import org.json.me.JSONTokener;
 
                 import org.allbinary.AndroidUtil;
+                import org.allbinary.game.layout.GDConfig;
                 import org.allbinary.animation.text.CustomTextAnimation;
                 import org.allbinary.game.canvas.GDExtensionGDNodes;
                 import org.allbinary.game.configuration.persistance.GDStructure;

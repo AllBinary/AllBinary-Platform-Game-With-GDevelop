@@ -32,10 +32,10 @@ Created By: Travis Berthelot
                             <xsl:if test="contains($name, 'speed')" >
                     //TWB - speed hack
                                 <xsl:if test="contains($name, '_speed')" >
-                    public var <xsl:value-of select="name" />: Float = if (<xsl:value-of select="value" /> * ((SWTUtil.isSWT || AndroidUtil.isAndroid())) 2 else 3)
+                    public var <xsl:value-of select="name" />: Float = if (<xsl:value-of select="value" /> * GDConfig.getInstance().getScaleHack()
                                 </xsl:if>
                                 <xsl:if test="contains($name, 'speed') and not(contains($name, '_speed'))" >
-                    public var <xsl:value-of select="name" />: Int = if (<xsl:value-of select="value" /> * ((SWTUtil.isSWT || AndroidUtil.isAndroid())) 2 else 3)
+                    public var <xsl:value-of select="name" />: Int = if (<xsl:value-of select="value" /> * GDConfig.getInstance().getScaleHack()
                                 </xsl:if>
                             </xsl:if>
                             <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains($name, 'speed') or contains(name, 'score'))" >
@@ -113,7 +113,7 @@ Created By: Travis Berthelot
                             <xsl:if test="not(contains(name, 'scale'))" >
                             <xsl:if test="contains($name, 'speed')" >
                     //TWB - speed hack
-                    this.<xsl:value-of select="name" /> = if (<xsl:value-of select="value" /> * ((SWTUtil.isSWT || AndroidUtil.isAndroid())) 2 else 3)
+                    this.<xsl:value-of select="name" /> = if (<xsl:value-of select="value" /> * GDConfig.getInstance().getScaleHack()
                             </xsl:if>
                             <xsl:if test="not(contains(name, 'time') or contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains($name, 'speed'))" >
                     this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />
@@ -331,7 +331,7 @@ Created By: Travis Berthelot
                             <xsl:if test="not(contains(name, 'scale'))" >
                             <xsl:if test="contains($name, 'speed')" >
                    //TWB - speed hack
-                    this.<xsl:value-of select="name" /> = if (<xsl:value-of select="value" /> * ((SWTUtil.isSWT || AndroidUtil.isAndroid())) 2 else 3)
+                    this.<xsl:value-of select="name" /> = if (<xsl:value-of select="value" /> * GDConfig.getInstance().getScaleHack()
                             </xsl:if>
                             <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains($name, 'speed'))" >
                     this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />

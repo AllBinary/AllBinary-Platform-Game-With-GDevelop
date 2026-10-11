@@ -480,7 +480,7 @@ Created By: Travis Berthelot
             
             if(layoutIndex == <xsl:value-of select="$layoutIndex" />) {
                 this.handleLayout<xsl:value-of select="$layoutIndex" />();
-                this.scale = (AndroidUtil.isAndroid() <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>  isThreed) ? GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale : 1.0f;
+                this.scale = GDConfig.getInstance().getScaleThreed(GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale);
             }
         </xsl:for-each>
 

@@ -64,6 +64,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.J2MEUtil;
+                import org.allbinary.game.layout.GDConfig;
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
                 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
@@ -186,7 +187,7 @@ Created By: Travis Berthelot
                     if(features.isFeature(openGLFeatureFactory.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory.OPENGL_3D)) {
                         isThreed = true;
                     }
-                    final float scale = (AndroidUtil.isAndroid() <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>  isThreed) ? GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale : 1.0f;
+                    final float scale = GDConfig.getInstance().getScaleThreed(GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale);
 
                     animationInterfaceFactoryInterfaceFactory.init(<xsl:value-of select="$layoutIndex" />);
                                         

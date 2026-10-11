@@ -67,7 +67,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
                         //final int width = (int) (touchImageResources.<xsl:value-of select="name" />Width(0) / 1.44f);
                         //final int height = (int) (touchImageResources.<xsl:value-of select="name" />Height(0) / 1.44f);
-                        <xsl:if test="contains(name, 'joystick_')" >final float joystickScale = (AndroidUtil.isAndroid() ? 0.75f : 1.0f);</xsl:if>
+                        <xsl:if test="contains(name, 'joystick_')" >final float joystickScale = GDConfig.getInstance().getScale();</xsl:if>
                         final int width = (int) (touchImageResources.<xsl:value-of select="name" />Width(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>);
                         final int height = (int) (touchImageResources.<xsl:value-of select="name" />Height(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>);
                                 </xsl:if>

@@ -231,7 +231,7 @@ Created By: Travis Berthelot
                             scaleProperties2.scaleY = scaleProperties.scaleY / denominator
                             scaleProperties2.shouldScale = scaleProperties.shouldScale
 
-                            val joystickScale: Float = if (AndroidUtil.isAndroid()) 0.75f else 2.0f
+                            val joystickScale: Float = GDConfig.getInstance().getScale2();
                             this.animationFactoryInitializationVisitor.dx = (scaleProperties2.scaleWidth / (joystickScale * 3.33f)).toInt()
                             this.animationFactoryInitializationVisitor.dy = (scaleProperties2.scaleHeight / (joystickScale * 3.33f)).toInt()
 

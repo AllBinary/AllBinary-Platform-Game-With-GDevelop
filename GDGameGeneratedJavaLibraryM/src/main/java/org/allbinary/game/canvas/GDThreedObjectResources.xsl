@@ -240,7 +240,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:if test="type = 'TextInput::TextInputObject'" >                
-                final int <xsl:value-of select="name" />TextInputAnimationSize = AndroidUtil.isAndroid() ? (<xsl:value-of select="content/fontSize" />) : (<xsl:value-of select="content/fontSize" /> / 2);
+                final int <xsl:value-of select="name" />TextInputAnimationSize = GDConfig.getInstance().getFontScale(<xsl:value-of select="content/fontSize" />);
                 this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />TextInputAnimationSize * (12 - 1), <xsl:value-of select="name" />TextInputAnimationSize);
             </xsl:if>
 

@@ -56,7 +56,8 @@ Created By: Travis Berthelot
                 package org.allbinary.game.canvas;
 
                 import org.allbinary.AndroidUtil;
-                import org.allbinary.J2MEUtil;        
+                import org.allbinary.J2MEUtil;
+                import org.allbinary.game.layout.GDConfig;    
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
                 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;

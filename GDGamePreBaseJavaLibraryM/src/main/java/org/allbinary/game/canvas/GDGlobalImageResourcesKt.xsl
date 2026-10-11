@@ -76,6 +76,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ABHashtable
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.J2MEUtil;
+                import org.allbinary.game.layout.GDConfig;
 
                 //Game name=<xsl:value-of select="$gameName" />
                 open class GDGlobalSpecialAnimationImageResources : SpecialAnimation

@@ -73,6 +73,7 @@ Created By: Travis Berthelot
         
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.J2MEUtil;
+                import org.allbinary.game.layout.GDConfig;
                 import org.allbinary.canvas.GameGlobalsFactory;
                 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
                 import org.allbinary.animation.AnimationBehavior;

@@ -26,6 +26,7 @@ import min3d.core.Object3d;
 import min3d.vos.Camera;
 
 import org.allbinary.AndroidUtil;
+import org.allbinary.game.layout.GDConfig;
 import org.allbinary.animation.threed.ThreedAnimation;
 import org.allbinary.game.canvas.GDGameGlobals;
 import org.allbinary.game.layer.CameraLayer;

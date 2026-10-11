@@ -77,7 +77,6 @@ import min3d.animation.AnimationObject3d;
 import min3d.core.Object3d;
 import min3d.vos.Number3d;
 
-import org.allbinary.AndroidUtil;
 import org.allbinary.animation.AnimationBehaviorFactory;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
@@ -126,6 +125,7 @@ import org.allbinary.logic.StdUtil;
 import org.allbinary.util.ABHashtable;
 import org.allbinary.AndroidUtil;
 import org.allbinary.J2MEUtil;
+import org.allbinary.game.layout.GDConfig;
 
 public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {

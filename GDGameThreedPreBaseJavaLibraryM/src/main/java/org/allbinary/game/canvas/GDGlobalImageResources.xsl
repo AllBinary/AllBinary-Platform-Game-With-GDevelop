@@ -56,7 +56,6 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Image;
 
-                import org.allbinary.AndroidUtil;
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.image.GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
                 import org.allbinary.animation.special.SpecialAnimation;
@@ -79,6 +78,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ABHashtable;
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.J2MEUtil;
+                import org.allbinary.game.layout.GDConfig;
 
                 //Game name=<xsl:value-of select="$gameName" />
                 public class GDGlobalSpecialAnimationImageResources extends SpecialAnimation

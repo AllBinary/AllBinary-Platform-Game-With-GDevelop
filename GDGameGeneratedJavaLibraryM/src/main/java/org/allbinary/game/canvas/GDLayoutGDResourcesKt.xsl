@@ -183,7 +183,7 @@ Created By: Travis Berthelot
                     if(features.isFeature(openGLFeatureFactory.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory.OPENGL_3D)) {
                         isThreed = true
                     }
-                    val scale: Float = if ((AndroidUtil.isAndroid() <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>  isThreed)) GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale else 1.0f
+                    val scale: Float = GDConfig.getInstance().getScaleThreed(GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale)
 
                     animationInterfaceFactoryInterfaceFactory.init(<xsl:value-of select="$layoutIndex" />)
 

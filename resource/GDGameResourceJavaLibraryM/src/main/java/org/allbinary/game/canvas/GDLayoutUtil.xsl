@@ -57,6 +57,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.J2MEUtil;
+                import org.allbinary.game.layout.GDConfig;
                 
                 public class GD<xsl:value-of select="$layoutIndex" />LayoutUtil
                 {

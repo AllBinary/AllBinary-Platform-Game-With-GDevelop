@@ -74,7 +74,8 @@ Created By: Travis Berthelot
                 import org.json.me.JSONTokener;
 
                 import org.allbinary.AndroidUtil;
-                import org.allbinary.J2MEUtil;                
+                import org.allbinary.J2MEUtil;
+                import org.allbinary.game.layout.GDConfig;
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.canvas.GDExtensionGDNodes;

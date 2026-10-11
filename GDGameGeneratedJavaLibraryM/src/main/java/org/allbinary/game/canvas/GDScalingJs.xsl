@@ -17,7 +17,7 @@
         <xsl:if test="contains($layoutIndex, 'Global')" >
             //Can Globals have scaling?
             //$layoutIndex != 1
-            final float scale = AndroidUtil.isAndroid() ? <xsl:value-of select="/game/properties/scale/android" /> : J2MEUtil.isHTML() ? <xsl:value-of select="/game/properties/scale/html" /> : <xsl:value-of select="/game/properties/scale/j2se" />;
+            final float scale = GDConfig.getInstance().getGameScale(<xsl:value-of select="/game/properties/scale/android" />, <xsl:value-of select="/game/properties/scale/html" />, <xsl:value-of select="/game/properties/scale/j2se" />);
         </xsl:if>
         <xsl:if test="not(contains($layoutIndex, 'Global'))" >
                             //<xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
@@ -38,7 +38,7 @@
                             final int scaleLayout = <xsl:if test="not(contains($layoutName, 'Scaled')) or contains($layoutIndex, 'Global')" >1</xsl:if><xsl:if test="contains($layoutName, 'Scaled')" >2</xsl:if>;
                             <xsl:variable name="name2" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template></xsl:variable>
 <!--                            number($layoutIndex) = 0 or contains($name2, 'options')  or contains($name2, 'about') or contains($name2, 'score') or contains($name2, 'over')-->
-                            final float scaleTouchButtons = <xsl:if test="not(number($layoutIndex) = 1)" >1.0f</xsl:if><xsl:if test="number($layoutIndex) = 1" >AndroidUtil.isAndroid() ? <xsl:value-of select="/game/properties/scaletouch/android" /> : org.allbinary.J2MEUtil.isHTML() ? <xsl:value-of select="/game/properties/scaletouch/html" /> : <xsl:value-of select="/game/properties/scaletouch/j2se" /></xsl:if>;
+                            final float scaleTouchButtons = <xsl:if test="not(number($layoutIndex) = 1)" >1.0f</xsl:if><xsl:if test="number($layoutIndex) = 1" >GDConfig.getInstance().getGameScale(<xsl:value-of select="/game/properties/scale/android" />, <xsl:value-of select="/game/properties/scale/html" />, <xsl:value-of select="/game/properties/scale/j2se" />)</xsl:if>;
 <!--                            final int scaleTouch = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth * scaleTouchButtons : scaleHeight * scaleTouchButtons;-->
                             this.logUtil.putF(new StringMaker().append("scaleTouchButtons - scale: ").appendfloat(scaleTouchButtons).toString(), this, this.commonStrings.CONSTRUCTOR);            
         </xsl:if>
@@ -54,13 +54,13 @@
         <xsl:if test="contains($layoutIndex, 'Global')" >
             //Can Globals have scaling?
             //$layoutIndex != 1
-            public final float scale = AndroidUtil.isAndroid() ? <xsl:value-of select="/game/properties/scale/android" /> : J2MEUtil.isHTML() ? <xsl:value-of select="/game/properties/scale/html" /> : <xsl:value-of select="/game/properties/scale/j2se" />;
+            public final float scale = GDConfig.getInstance().getGameScale(<xsl:value-of select="/game/properties/scale/android" />, <xsl:value-of select="/game/properties/scale/html" />, <xsl:value-of select="/game/properties/scale/j2se" />);
         </xsl:if>
         <xsl:if test="not(contains($layoutIndex, 'Global'))" >
                             private final float scale = GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale;
                             
                             private final float halfScale = ((float) scale) / 2;
-                            private final float scaleTouchButtons = <xsl:if test="not(number($layoutIndex) = 1)" >1; //same as .AndroidUtil.isAndroid() ? scale : scale / 2.0f</xsl:if><xsl:if test="number($layoutIndex) = 1" >AndroidUtil.isAndroid() ? <xsl:value-of select="/game/properties/scaletouch/android" /> : org.allbinary.J2MEUtil.isHTML() ? <xsl:value-of select="/game/properties/scaletouch/html" /> : <xsl:value-of select="/game/properties/scaletouch/j2se" /></xsl:if>;
+                            private final float scaleTouchButtons = <xsl:if test="not(number($layoutIndex) = 1)" >1; //same as .AndroidUtil.isAndroid ? scale : scale / 2.0f</xsl:if><xsl:if test="number($layoutIndex) = 1" >GDConfig.getInstance().getGameScale(<xsl:value-of select="/game/properties/scale/android" />, <xsl:value-of select="/game/properties/scale/html" />, <xsl:value-of select="/game/properties/scale/j2se" />)</xsl:if>;
         </xsl:if>
                             
     </xsl:template>
@@ -71,10 +71,10 @@
         <xsl:param name="type" />
 
             <xsl:if test="$layoutIndex = 1" >
-                    public final float scale = AndroidUtil.isAndroid() ? <xsl:value-of select="/game/properties/scale1/android" /> : J2MEUtil.isHTML() ? <xsl:value-of select="/game/properties/scale1/html" /> : <xsl:value-of select="/game/properties/scale1/j2se" />;
+                    public final float scale = GDConfig.getInstance().getGameScale(<xsl:value-of select="/game/properties/scale/android" />, <xsl:value-of select="/game/properties/scale/html" />, <xsl:value-of select="/game/properties/scale/j2se" />);
             </xsl:if>
             <xsl:if test="$layoutIndex != 1" >
-                    public final float scale = AndroidUtil.isAndroid() ? <xsl:value-of select="/game/properties/scale/android" /> : J2MEUtil.isHTML() ? <xsl:value-of select="/game/properties/scale/html" /> : <xsl:value-of select="/game/properties/scale/j2se" />;
+                    public final float scale = GDConfig.getInstance().getGameScale(<xsl:value-of select="/game/properties/scale/android" />, <xsl:value-of select="/game/properties/scale/html" />, <xsl:value-of select="/game/properties/scale/j2se" />);
             </xsl:if>
 
     </xsl:template>

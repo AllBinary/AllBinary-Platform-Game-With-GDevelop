@@ -59,7 +59,8 @@ Created By: Travis Berthelot
                 import org.json.me.JSONObject;
         
                 import org.allbinary.AndroidUtil;
-                import org.allbinary.J2MEUtil;        
+                import org.allbinary.J2MEUtil;
+                import org.allbinary.game.layout.GDConfig;     
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.configuration.persistance.JSONPersistance;

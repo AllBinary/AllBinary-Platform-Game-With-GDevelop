@@ -58,6 +58,7 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Graphics;
 
                 import org.allbinary.AndroidUtil;
+                import org.allbinary.game.layout.GDConfig;
                 import org.allbinary.game.canvas.GDExtensionGDNodes;
                 import org.allbinary.game.layer.SWTUtil;
                 import org.allbinary.game.layer.GDGameLayer;
