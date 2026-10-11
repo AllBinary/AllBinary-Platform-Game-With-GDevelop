@@ -42,7 +42,7 @@ open class GDGameSounds : BaseSoundsFactory
 {
     private var soundInterfaceArray: Array&lt;Sound&gt; = arrayOfNulls&lt;Sound&gt;(0)
 
-    fun init()
+    override fun init()
     {
         //soundInterfaceArray = arrayOfNulls&lt;Sound&gt;(1)
         var index: Int = 0
@@ -63,7 +63,7 @@ open class GDGameSounds : BaseSoundsFactory
         soundInterfaceArray = list.toArrayType(arrayOfNulls&lt;Sound&gt;(list.size())) as Array&lt;Sound&gt;
     }
 
-    fun getSoundInterfaceArray(): Array&lt;Sound&gt;
+    override fun getSoundInterfaceArray(): Array&lt;Sound&gt;
     {
         return soundInterfaceArray
     }

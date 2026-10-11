@@ -254,6 +254,7 @@ exclusionList20!!.add("GDGameHelpPaintable.java")
 exclusionList20!!.add("GDGameInputMappingHelpPaintable.java")
 exclusionList20!!.add("GDGameGameInputMappingFactory.java")
 exclusionList20!!.add("AppShaderResources.java")
+exclusionList20!!.add("GDConfig.java")
 
     var files20: BasicArrayList = fileListFetcher!!.getFiles(gdPaths!!.GEN_PATH +"resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\", this.gdToolStrings!!.JAVA)!!
 

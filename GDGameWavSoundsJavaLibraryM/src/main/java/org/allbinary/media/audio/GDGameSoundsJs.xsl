@@ -43,6 +43,7 @@ extends BaseSoundsFactory
 {
     private Sound[] soundInterfaceArray = new Sound[0];
     
+    @Override
     public void init() 
     {
         //soundInterfaceArray = new Sound[1];
@@ -64,6 +65,7 @@ extends BaseSoundsFactory
         soundInterfaceArray = (Sound[]) list.toArrayType(new Sound[list.size()]);
     }
     
+    @Override
     public Sound[] getSoundInterfaceArray() throws Exception
     {
         return soundInterfaceArray;
