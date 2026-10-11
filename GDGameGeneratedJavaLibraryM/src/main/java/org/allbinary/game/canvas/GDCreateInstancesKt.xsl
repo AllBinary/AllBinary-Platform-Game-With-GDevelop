@@ -67,7 +67,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
                         //final int width = (touchImageResources.<xsl:value-of select="name" />Width(0) / 1.44f).toInt()
                         //final int height = (touchImageResources.<xsl:value-of select="name" />Height(0) / 1.44f).toInt()
-                        <xsl:if test="contains(name, 'joystick_')" >val joystickScale: Float = if ((org.allbinary.AndroidUtil.isAndroid()) 0.75f else 1.0f)</xsl:if>
+                        <xsl:if test="contains(name, 'joystick_')" >val joystickScale: Float = if ((AndroidUtil.isAndroid()) 0.75f else 1.0f)</xsl:if>
                         val width: Int = (touchImageResources.<xsl:value-of select="name" />Width(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>).toInt()
                         val height: Int = (touchImageResources.<xsl:value-of select="name" />Height(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>).toInt()
                                 </xsl:if>

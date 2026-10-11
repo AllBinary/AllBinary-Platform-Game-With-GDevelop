@@ -16,6 +16,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.gdevelop.extensions.builtin.metadata.GDBehaviorMetadata
 import org.allbinary.gdevelop.project.GDProjectBehavior

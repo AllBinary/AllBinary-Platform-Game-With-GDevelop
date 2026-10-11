@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import javax.microedition.lcdui.Graphics
 import org.allbinary.animation.Animation
@@ -97,7 +98,7 @@ this.pointList!!.add(this.pointFactory!!.createXY(x2, y2))
     //var y = y
 this.colorAnimation!!.paintXY(graphics, x, y)
 
-    var size: Int = this.pointList!!.size()!!
+    var size: Int = this.pointList!!.size()
 
 
     var point: GPoint

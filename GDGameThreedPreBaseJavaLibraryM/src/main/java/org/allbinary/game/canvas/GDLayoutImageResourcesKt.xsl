@@ -88,6 +88,8 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayList
                 import org.allbinary.util.BasicArrayListD
                 import org.allbinary.util.ABHashtable
+                import org.allbinary.AndroidUtil
+                import org.allbinary.J2MEUtil
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 open class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources : SpecialAnimation

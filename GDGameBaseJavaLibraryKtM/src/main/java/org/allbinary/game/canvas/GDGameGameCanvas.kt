@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import javax.microedition.lcdui.CommandListener
 import javax.microedition.lcdui.Font
@@ -78,7 +79,7 @@ import org.allbinary.time.TimeDelayHelper
 open public class GDGameGameCanvas : AllBinaryGameCanvas {
         
 
-    private val WAIT: Int = GameSpeed.getInstance()!!.getDelay()!!
+    private val WAIT: Int = GameSpeed.getInstance()!!.getDelay()
 
     private val portion: Int = 4
 
@@ -143,7 +144,7 @@ this.setStartIntermissionPaintable(GDStartIntermissionPaintable(this))
     override fun mediaInit()
         //nullable = true from not(false or (false and true)) = true
 {
-logUtil!!.putF(commonStrings!!.START, this, "mediaInit")
+this.logUtil!!.putF(this.commonStrings!!.START, this, "mediaInit")
 AllBinaryMediaManager.init(GDGameSoundsFactory.getInstance())
 }
 
@@ -171,7 +172,7 @@ AllBinaryMediaManager.init(GDGameSoundsFactory.getInstance())
                                     {
                                     
     
-                        if(gameInfo!!.getCurrentLevel() -getStartLevel() >= 1)
+                        if(gameInfo!!.getCurrentLevel() -this.getStartLevel() >= 1)
                         
                                     {
                                     nextTouchInputFactory= GDGameNeededTouchButtonsBuilder.getInstance(this.getSensorGameUpdateProcessor())
@@ -206,7 +207,7 @@ this.updateCurrentTouchInputFactory(nextTouchInputFactory)
                         
                                     {
                                     super.initConfigurable(abeClientInformation)
-progressCanvas!!.addNormalPortion(portion, "Group Manager")
+progressCanvas!!.addNormalPortion(this.portion, "Group Manager")
 GroupLayerManagerListener.getInstance()!!.init(3)
 AllBinaryVibration.init()
 ChangedGameFeatureListener.getInstance()!!.setChanged(false)
@@ -233,7 +234,7 @@ ChangedGameFeatureListener.getInstance()!!.setChanged(false)
                             
 } catch(e: Exception)
             {
-logUtil!!.put(commonStrings!!.EXCEPTION, this, "initConfigurable", e)
+this.logUtil!!.put(this.commonStrings!!.EXCEPTION, this, "initConfigurable", e)
 }
 
 }
@@ -249,7 +250,7 @@ logUtil!!.put(commonStrings!!.EXCEPTION, this, "initConfigurable", e)
             
     var portion: Int = 60
 
-super.initApp(abeClientInformation)
+super.initApp(this.abeClientInformation)
 
     
                         if(!this.isRunning())
@@ -285,7 +286,7 @@ super.initApp(abeClientInformation)
     var progressCanvas: ProgressCanvas = ProgressCanvasFactory.getInstance()!!
 
 progressCanvas!!.addNormalPortion(portion, "Main Processors")
-this.setWait(WAIT)
+this.setWait(this.WAIT)
 this.loadState()
 
     var list: BasicArrayList = BasicArrayListD()
@@ -332,7 +333,7 @@ this.loadState()
 
                                     }
                                 
-gameLayerManager!!.setLayerProcessorList(list)
+this.gameLayerManager!!.setLayerProcessorList(list)
 progressCanvas!!.addNormalPortion(portion, "Initializing Game")
 
                                     }
@@ -340,7 +341,7 @@ progressCanvas!!.addNormalPortion(portion, "Initializing Game")
 this.buildGameInit(false)
 } catch(e: Exception)
             {
-logUtil!!.put(commonStrings!!.EXCEPTION, this, "_init", e)
+this.logUtil!!.put(this.commonStrings!!.EXCEPTION, this, "_init", e)
 }
 
 }
@@ -352,7 +353,7 @@ logUtil!!.put(commonStrings!!.EXCEPTION, this, "_init", e)
         //nullable = true from not(false or (false and false)) = true
 {
 var isProgress = isProgress
-this.loadResources(gameLayerManager!!.getGameInfo()!!.getCurrentLevel())
+this.loadResources(this.gameLayerManager!!.getGameInfo()!!.getCurrentLevel())
 
     var progressCanvas: ProgressCanvas = ProgressCanvasFactory.getInstance()!!
 
@@ -372,7 +373,7 @@ portion= 4
                                 
 PrimaryPlayerQueueFactory.getInstance()!!.clear()
 SecondaryPlayerQueueFactory.getInstance()!!.clear()
-gameLayerManager!!.cleanup()
+this.gameLayerManager!!.cleanup()
 
     
                         if(!this.isRunning())
@@ -401,11 +402,11 @@ progressCanvas!!.addNormalPortion(portion, "Set Background")
 
                                     }
                                 
-gameLayerManager!!.append(PlayerGameInputGameLayer(0))
+this.gameLayerManager!!.append(PlayerGameInputGameLayer(0))
 progressCanvas!!.addNormalPortion(portion, "Ending Custom Build")
 
     
-                        if(gameLayerManager!!.getGameInfo()!!.getGameType() != GameTypeFactory.getInstance()!!.BOT)
+                        if(this.gameLayerManager!!.getGameInfo()!!.getGameType() != GameTypeFactory.getInstance()!!.BOT)
                         
                                     {
                                     
@@ -459,20 +460,20 @@ super.setGameState(gameState)
 
     private val accelerometerOrientationSensor: AllBinaryOrientationSensor = AccelerometerSensorFactory.getInstance()!!
 
-    open fun draw(graphics: Graphics)
+    override fun draw(graphics: Graphics)
         //nullable = true from not(false or (false and false)) = true
 {
 var graphics = graphics
 this.clear(graphics)
-this.basicSetColorUtil!!.setBasicColorP(graphics, gameLayerManager!!.getForegroundBasicColor())
-gameLayerManager!!.paint(graphics, 0, 0)
-nonBotPaintable!!.paint(graphics)
-gameSpecificPaintable!!.paint(graphics)
-gamePerformanceInitUpdatePaintable!!.paint(graphics)
-touchPaintable!!.paint(graphics)
-screenCapture!!.saveFrame()
+this.basicSetColorUtil!!.setBasicColorP(graphics, this.gameLayerManager!!.getForegroundBasicColor())
+this.gameLayerManager!!.paint(graphics, 0, 0)
+this.nonBotPaintable!!.paint(graphics)
+this.gameSpecificPaintable!!.paint(graphics)
+this.gamePerformanceInitUpdatePaintable!!.paint(graphics)
+this.touchPaintable!!.paint(graphics)
+this.screenCapture!!.saveFrame()
 
-    var halfHeight: Int = GameTickDisplayInfoSingleton.getInstance()!!.getLastHalfHeight()!!
+    var halfHeight: Int = GameTickDisplayInfoSingleton.getInstance()!!.getLastHalfHeight()
 
 graphics.drawString(this.gyroOrientationSensor!!.toString(), 0, halfHeight +30 +60, 0)
 graphics.drawString(this.accelerometerOrientationSensor!!.toString(), 0, halfHeight +30 +75, 0)
@@ -492,17 +493,17 @@ this.getTouchPaintableP()!!.paint(graphics)
 
                 @Throws(Exception::class)
             
-    open fun processGame()
+    override fun processGame()
         //nullable = true from not(false or (false and true)) = true
 {
 
     
-                        if(playerTimeDelayHelper!!.isTimeTNT())
+                        if(this.playerTimeDelayHelper!!.isTimeTNT())
                         
                                     {
                                     
     
-                        if(this.features.isFeature(soundGameFeature))
+                        if(this.features.isFeature(this.soundGameFeature))
                         
                                     {
                                     

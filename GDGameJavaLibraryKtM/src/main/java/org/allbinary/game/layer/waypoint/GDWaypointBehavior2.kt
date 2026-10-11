@@ -12,6 +12,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.game.layer.AllBinaryTiledLayer
 import org.allbinary.game.layer.PathFindingLayerInterface
@@ -310,7 +311,7 @@ this.processTargetList()
 {
 var layerInterface = layerInterface
 
-    var anotherTargetDistance: Int = this.layerDistanceUtil!!.getDistance(this.associatedAdvancedRTSGameLayer as CollidableDestroyableDamageableLayer, layerInterface as CollidableDestroyableDamageableLayer)!!
+    var anotherTargetDistance: Int = this.layerDistanceUtil!!.getDistance(this.associatedAdvancedRTSGameLayer as CollidableDestroyableDamageableLayer, layerInterface as CollidableDestroyableDamageableLayer)
 
 
     
@@ -470,7 +471,7 @@ this.setTarget(currentTargetLayerInterface as PathFindingLayerInterface)
 {
     //var layerInterface = layerInterface
 
-    var anotherTargetDistance: Int = this.layerDistanceUtil!!.getDistance(this.associatedAdvancedRTSGameLayer as AllBinaryLayer, layerInterface as AllBinaryLayer)!!
+    var anotherTargetDistance: Int = this.layerDistanceUtil!!.getDistance(this.associatedAdvancedRTSGameLayer as AllBinaryLayer, layerInterface as AllBinaryLayer)
 
 this.setTargetWithDistance(layerInterface, anotherTargetDistance)
 }
@@ -605,7 +606,7 @@ super.setGeographicMapCellHistoryPath(geographicMapCellPositionBasicArrayList)
         //nullable = true from not(false or (false and true)) = true
 {
 
-    var size: Int = this.targetList!!.size()!!
+    var size: Int = this.targetList!!.size()
 
 
     
@@ -1268,7 +1269,7 @@ var anyType = anyType
     var cellPosition: GeographicMapCellPosition = this.getPositionList()!!.get(0) as GeographicMapCellPosition
 
 
-    var clear: Boolean = this@GDWaypointBehavior2.buildingChase(allbinaryLayer, cellPosition)!!
+    var clear: Boolean = this@GDWaypointBehavior2.buildingChase(allbinaryLayer, cellPosition)
 
 
     
@@ -1289,7 +1290,7 @@ this.positionList!!.clear()
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return Boolean.FALSE
+                        return false
 
                                     }
                                 

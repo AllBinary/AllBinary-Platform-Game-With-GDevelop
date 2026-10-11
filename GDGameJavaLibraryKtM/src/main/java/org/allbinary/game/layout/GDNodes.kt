@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.logic.string.StringMaker
@@ -51,7 +52,7 @@ open public class GDNodes
     var gdNode: GDNode
 
 
-    var size2: Int = this.runnableList!!.size()!!
+    var size2: Int = this.runnableList!!.size()
 
 
 
@@ -74,7 +75,7 @@ gdNode!!.currentRunnable!!.run()
     var gdNode: GDNode
 
 
-    var size2: Int = this.runnableList!!.size()!!
+    var size2: Int = this.runnableList!!.size()
 
 
 

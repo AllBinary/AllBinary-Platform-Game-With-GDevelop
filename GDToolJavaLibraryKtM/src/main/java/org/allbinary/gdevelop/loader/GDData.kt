@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import java.io.FileInputStream
 import org.allbinary.logic.communication.log.LogUtil
@@ -288,7 +289,7 @@ companion object {
     //var xslPath = xslPath
     //var sharedBytes = sharedBytes
 
-    var index: Int = this.xslPathList!!.indexOf(xslPath)!!
+    var index: Int = this.xslPathList!!.indexOf(xslPath)
 
 
     

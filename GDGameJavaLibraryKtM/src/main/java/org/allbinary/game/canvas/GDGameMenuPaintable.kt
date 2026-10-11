@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.game.paint.GameScrollMenuPaintable
 import org.allbinary.game.paint.MainGameDemoStatePaintable

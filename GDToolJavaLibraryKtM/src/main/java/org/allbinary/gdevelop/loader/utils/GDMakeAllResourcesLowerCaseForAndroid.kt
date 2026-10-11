@@ -26,6 +26,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.gdevelop.loader.GDJSONGeneratorBase
 import org.allbinary.gdevelop.loader.GDJSONPersistence
@@ -118,7 +119,7 @@ jsonObject!!.put(this.gdProjectStrings!!.NAME, this.fileUnamedUtil!!.process(val
 
                 @Throws(Exception::class)
             
-    open fun processObjects(layoutJSONObject: Object)
+    open fun processObjects(layoutJSONObject: JSONObject)
         //nullable = true from not(false or (false and false)) = true
 {
     //var layoutJSONObject = layoutJSONObject
@@ -127,7 +128,7 @@ jsonObject!!.put(this.gdProjectStrings!!.NAME, this.fileUnamedUtil!!.process(val
 
 System.out.println("Object Total: " +jsonArray!!.length())
 
-    var size: Int = jsonArray!!.length()!!
+    var size: Int = jsonArray!!.length()
 
 
     var jsonObject: JSONObject
@@ -148,7 +149,7 @@ this.processObject(jsonObject)
 
                 @Throws(Exception::class)
             
-    open fun processObject(jsonObject: Object)
+    open fun processObject(jsonObject: JSONObject)
         //nullable = true from not(false or (false and false)) = true
 {
     //var jsonObject = jsonObject
@@ -188,7 +189,7 @@ this.processAnimations(jsonArray)
 {
     //var jsonArray = jsonArray
 
-    var size: Int = jsonArray!!.length()!!
+    var size: Int = jsonArray!!.length()
 
 
     var jsonObject: JSONObject
@@ -218,7 +219,7 @@ this.processDirections(animationsJSONArray)
 {
     //var jsonArray = jsonArray
 
-    var size: Int = jsonArray!!.length()!!
+    var size: Int = jsonArray!!.length()
 
 
     var jsonObject: JSONObject
@@ -248,7 +249,7 @@ this.processSprites(spritesJSONArray)
 {
     //var jsonArray = jsonArray
 
-    var size: Int = jsonArray!!.length()!!
+    var size: Int = jsonArray!!.length()
 
 
     var jsonObject: JSONObject

@@ -26,6 +26,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.animation.Animation
 import org.allbinary.animation.special.SpecialAnimation
@@ -91,7 +92,7 @@ open public class GDGameInputProcessor
     var gameKeyEvent: GameKeyEvent
 
 
-    var size: Int = this.gameKeyEventList!!.size()!!
+    var size: Int = this.gameKeyEventList!!.size()
 
 
 
@@ -105,7 +106,7 @@ globals.inputProcessorArray[gameKeyEvent!!.getKey()]!!.processEvent(allbinaryLay
 }
 
 
-    var size2: Int = this.removalGameKeyEventList!!.size()!!
+    var size2: Int = this.removalGameKeyEventList!!.size()
 
 
 
@@ -122,7 +123,7 @@ globals.inputProcessorArray[gameKeyEvent!!.getKey()]!!.processReleasedEvent(allb
     var keyAsInteger: Integer
 
 
-    var size3: Int = this.keyEventList!!.size()!!
+    var size3: Int = this.keyEventList!!.size()
 
 
     
@@ -146,7 +147,7 @@ globals.unmappedInputProcessorArray[keyAsInteger!!.toInt()]!!.process(allbinaryL
 }
 
 
-    var size4: Int = this.removalKeyEventList!!.size()!!
+    var size4: Int = this.removalKeyEventList!!.size()
 
 
 

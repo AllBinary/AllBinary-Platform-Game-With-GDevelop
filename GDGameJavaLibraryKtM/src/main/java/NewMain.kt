@@ -11,6 +11,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.game.rand.MyRandomFactory
 import org.allbinary.util.BasicArrayList
@@ -214,7 +215,7 @@ countArray[list.indexOf(enemy)]++
 }
 
 
-    var size: Int = list.size()!!
+    var size: Int = list.size()
 
 
 

@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import java.io.StringBufferInputStream
 import javax.xml.transform.stream.StreamSource
@@ -825,7 +826,7 @@ var fileIndex = fileIndex
     var charIndex: Int = 0
 
 
-    var size: Int = list.size()!!
+    var size: Int = list.size()
 
 
     var stringMaker: StringMaker = StringMaker()

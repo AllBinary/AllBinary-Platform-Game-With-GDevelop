@@ -26,6 +26,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import javax.microedition.khronos.opengles.GL
 import javax.microedition.lcdui.Graphics
@@ -298,7 +299,7 @@ this.rectangleArrayOfArrays= rectangleArrayOfArrays
 
                 @Throws(Exception::class)
             
-    open fun setGDObject(gdObject: Object)
+    open fun setGDObject(gdObject: GDObject)
         //nullable = true from not(false or (false and false)) = true
 {
     //var gdObject = gdObject
@@ -479,10 +480,10 @@ this.combatBaseBehavior!!.getDestroyableBaseBehavior()!!.setDestroyed(destroyed)
         //nullable = true from not(false or (false and true)) = true
 {
 
-    var velocityX: Long = this.velocityInterface!!.getVelocityXBasicDecimalP()!!.getUnscaled()!!
+    var velocityX: Long = this.velocityInterface!!.getVelocityXBasicDecimalP()!!.getUnscaled()
 
 
-    var velocityY: Long = this.velocityInterface!!.getVelocityYBasicDecimalP()!!.getUnscaled()!!
+    var velocityY: Long = this.velocityInterface!!.getVelocityYBasicDecimalP()!!.getUnscaled()
 
 this.realX= this.realX +velocityX
 this.realY= this.realY +velocityY
@@ -776,10 +777,10 @@ this.scalableProcessor= ScalableProcessor.getInstance()
     var viewPosition: ViewPositionBase = this.getViewPosition()!!
 
 
-    var x: Int = viewPosition!!.getX()!!
+    var x: Int = viewPosition!!.getX()
 
 
-    var y: Int = viewPosition!!.getY()!!
+    var y: Int = viewPosition!!.getY()
 
 this.indexedAnimationInterfaceArray[this.gdObject!!.animation]!!.paintXY(graphics, x, y)
 this.primitiveDrawing!!.paintXY(graphics, x, y)
@@ -802,13 +803,13 @@ this.logUtil!!.put(this.commonStrings!!.EXCEPTION, this, "paint", e)
     var viewPosition: ViewPositionBase = this.getViewPosition()!!
 
 
-    var x: Int = viewPosition!!.getX()!!
+    var x: Int = viewPosition!!.getX()
 
 
-    var y: Int = viewPosition!!.getY()!!
+    var y: Int = viewPosition!!.getY()
 
 
-    var z: Int = viewPosition!!.getZ()!!
+    var z: Int = viewPosition!!.getZ()
 
 this.indexedAnimationInterfaceArray[this.gdObject!!.animation]!!.paintThreedXYZ(graphics, x, y, z)
 this.primitiveDrawing!!.paintThreedXYZ(graphics, x, y, z)

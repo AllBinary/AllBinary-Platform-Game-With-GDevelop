@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.game.canvas.ABToGBUtil
 import org.allbinary.game.layer.AllBinaryGameLayerManager
@@ -154,7 +155,7 @@ var ev = ev
     var point: GPoint = ev.getCurrentPoint()!!
 
 
-    var size: Int = allBinaryGameLayerManager!!.getSize()!!
+    var size: Int = allBinaryGameLayerManager!!.getSize()
 
 
     var draggableGameLayer: CollidableDestroyableDamageableLayer
@@ -206,7 +207,7 @@ var ev = ev
 
         try {
             
-    var size: Int = this.gameLayerDraggedList!!.size()!!
+    var size: Int = this.gameLayerDraggedList!!.size()
 
 
     var draggableGameLayer: CollidableDestroyableDamageableLayer

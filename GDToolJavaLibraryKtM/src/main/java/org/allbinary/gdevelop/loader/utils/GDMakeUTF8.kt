@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.gdevelop.loader.GDJSONGeneratorBase
 import org.allbinary.gdevelop.loader.GDJSONPersistence

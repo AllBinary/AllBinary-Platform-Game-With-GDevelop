@@ -10,6 +10,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import javax.microedition.lcdui.CommandListener
 import org.allbinary.game.resource.ResourceInitialization

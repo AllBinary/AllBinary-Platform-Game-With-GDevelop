@@ -18,6 +18,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import java.io.FileInputStream
 import org.allbinary.logic.io.BufferedWriterUtil
@@ -135,7 +136,7 @@ this.resourceStringMaker!!.append(this.VALUE_RESOURCE_END)
 {
     //var hasRotationImages = hasRotationImages
 
-    var size: Int = this.gdResources!!.resourceNameList!!.size()!!
+    var size: Int = this.gdResources!!.resourceNameList!!.size()
 
 
 
@@ -158,7 +159,7 @@ this.appendResource(hasRotationImages, this.gdResources!!.resourceNameList!!.get
 this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
 this.resourceStringMaker!!.append("    public final String[] resourceStringArray = {\nBLANK,\n")
 
-    var size: Int = this.gdResources!!.resourceNameList!!.size()!!
+    var size: Int = this.gdResources!!.resourceNameList!!.size()
 
 
     var name: String
@@ -228,7 +229,7 @@ this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
     //var usedList = usedList
 this.resourceStringMaker!!.append("    public final int[] imageResourceWidthArray = {\n32,\n")
 
-    var size: Int = usedList!!.size()!!
+    var size: Int = usedList!!.size()
 
 
     var name: String
@@ -293,7 +294,7 @@ arrayIndex++
     //var usedList = usedList
 this.resourceStringMaker!!.append("    public final int[] imageResourceHeightArray = {\n32,\n")
 
-    var size: Int = usedList!!.size()!!
+    var size: Int = usedList!!.size()
 
 
     var name: String
@@ -353,11 +354,11 @@ this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
 
     open fun getGDResourceForName(name: String, gdResourceList: BasicArrayList)
         //nullable = true from not(false or (false and false)) = true
-: GDResource{
+: GDResource?{
     //var name = name
     //var gdResourceList = gdResourceList
 
-    var size: Int = gdResourceList!!.size()!!
+    var size: Int = gdResourceList!!.size()
 
 
     var gdResource: GDResource
@@ -401,7 +402,7 @@ gdResource= gdResourceList!!.get(index) as GDResource
     var stringMaker: StringMaker = StringMaker()
 
 
-    var size: Int = gdResourceList!!.size()!!
+    var size: Int = gdResourceList!!.size()
 
 stringMaker!!.appendint(size)!!.append(this.commonSeps!!.COLON)
 
@@ -443,7 +444,7 @@ stringMaker!!.append(gdResource!!.name)!!.append(this.commonSeps!!.COMMA)
 {
 this.resourceStringMaker!!.append("    public final String[] requiredResourcesBeforeLoadingArray = {\n")
 
-    var size: Int = this.gdResources!!.resourceNameList!!.size()!!
+    var size: Int = this.gdResources!!.resourceNameList!!.size()
 
 
     var resource: String
@@ -549,7 +550,7 @@ this.appendImmediatelyLoadedImage(imagePath)
 {
     //var imagePath = imagePath
 
-    var endIndex: Int = imagePath!!.lastIndexOf('.')!!
+    var endIndex: Int = imagePath!!.lastIndexOf('.')
 
 
     var imageName: String = imagePath!!.substring(0, endIndex)!!
@@ -573,7 +574,7 @@ this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
     var stringMaker: StringMaker = StringMaker()
 
 
-    var hasRotationImages: Boolean = this.gdResourceSelection!!.hasRotationImages()!!
+    var hasRotationImages: Boolean = this.gdResourceSelection!!.hasRotationImages()
 
 this.appendResources(hasRotationImages)
 this.timeDelayHelper!!.setStartTimeTNT()

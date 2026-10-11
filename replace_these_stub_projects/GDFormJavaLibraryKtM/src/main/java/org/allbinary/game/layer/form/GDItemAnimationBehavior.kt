@@ -10,6 +10,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.game.input.GameKey
 import org.allbinary.game.input.GameKeyFactory
@@ -81,7 +82,7 @@ this.hasFocus= hasFocus
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return hasFocus
+                        return this.hasFocus
 }
 
 

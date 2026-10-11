@@ -12,6 +12,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.game.input.event.DownKeyEventListenerInterface
 import org.allbinary.game.input.event.GameKeyEvent
@@ -139,7 +140,7 @@ var itemNum = itemNum
 
     open fun get(itemNum: Int)
         //nullable = true from not(false or (false and false)) = true
-: GDGameLayer{
+: GDGameLayer?{
 var itemNum = itemNum
 
 

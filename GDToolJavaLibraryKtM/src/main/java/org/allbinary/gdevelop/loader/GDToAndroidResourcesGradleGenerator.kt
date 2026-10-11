@@ -16,6 +16,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import java.io.FileInputStream
 import org.allbinary.data.CamelCaseUtil
@@ -117,7 +118,7 @@ this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
                                     }
                                 
 
-    var hasRotationImages: Boolean = this.gdResourceSelection!!.hasRotationImages()!!
+    var hasRotationImages: Boolean = this.gdResourceSelection!!.hasRotationImages()
 
 this.gdResourceSelection!!.appendCommentIfNeeded2(resource.uppercase(), resource, this.resourceStringMaker, hasRotationImages)
 this.resourceStringMaker!!.append(this.PUBLIC_FINAL_STRING)
@@ -165,7 +166,7 @@ sharedBytes!!.outputStream!!.reset()
     var newFileAsString2: String = replace2.all(androidRFileAsString)!!
 
 
-    var size: Int = this.gdResources!!.playSoundAndroidResourceNameList!!.size()!!
+    var size: Int = this.gdResources!!.playSoundAndroidResourceNameList!!.size()
 
 
     var resource: String

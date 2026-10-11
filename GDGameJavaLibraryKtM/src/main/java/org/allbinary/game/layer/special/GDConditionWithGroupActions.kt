@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.logic.string.StringMaker
 import org.allbinary.string.CommonSeps
@@ -50,7 +51,7 @@ public constructor ()
     //var stringBuilder = stringBuilder
 stringBuilder!!.append("GDConditionWithGroupActions: ")
 
-    var size: Int = this.groupWithActionsList!!.size()!!
+    var size: Int = this.groupWithActionsList!!.size()
 
 stringBuilder!!.appendint(size)
 stringBuilder!!.append(CommonSeps.getInstance()!!.SPACE)

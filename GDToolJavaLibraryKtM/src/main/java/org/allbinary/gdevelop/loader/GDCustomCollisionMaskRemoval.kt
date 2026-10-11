@@ -26,6 +26,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.json.JSONArray
 import org.json.JSONObject
@@ -100,7 +101,7 @@ this.processObjects(jsonObject)
 }
 
 
-    open fun processObjects(name: Object)
+    open fun processObjects(name: String)
         //nullable = true from not(false or (false and false)) = true
 : Boolean{
     //var name = name
@@ -140,7 +141,7 @@ this.processObjects(jsonObject)
 
                 @Throws(Exception::class)
             
-    open fun processObjects(layoutJSONObject: Object)
+    open fun processObjects(layoutJSONObject: JSONObject)
         //nullable = true from not(false or (false and false)) = true
 {
     //var layoutJSONObject = layoutJSONObject
@@ -149,7 +150,7 @@ this.processObjects(jsonObject)
 
 System.out.println("Object Total: " +jsonArray!!.length())
 
-    var size: Int = jsonArray!!.length()!!
+    var size: Int = jsonArray!!.length()
 
 
     var jsonObject: JSONObject
@@ -213,7 +214,7 @@ this.processAnimations(jsonArray)
 {
     //var jsonArray = jsonArray
 
-    var size: Int = jsonArray!!.length()!!
+    var size: Int = jsonArray!!.length()
 
 
     var jsonObject: JSONObject
@@ -243,7 +244,7 @@ this.processDirections(animationsJSONArray)
 {
     //var jsonArray = jsonArray
 
-    var size: Int = jsonArray!!.length()!!
+    var size: Int = jsonArray!!.length()
 
 
     var jsonObject: JSONObject
@@ -273,7 +274,7 @@ this.processSprites(spritesJSONArray)
 {
     //var jsonArray = jsonArray
 
-    var size: Int = jsonArray!!.length()!!
+    var size: Int = jsonArray!!.length()
 
 
     var jsonObject: JSONObject

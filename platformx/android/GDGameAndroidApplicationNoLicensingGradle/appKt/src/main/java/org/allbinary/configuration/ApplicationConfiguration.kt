@@ -10,6 +10,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import java.io.Closeable
 import java.io.InputStream
@@ -113,7 +114,7 @@ this.logUtil!!.put(commonStrings!!.EXCEPTION, this, commonStrings!!.CONSTRUCTOR,
     var dataInputStream: AbDataInputStream = AbDataInputStream(fileInputStream)
 
 
-    var fullScreen: Int = dataInputStream!!.readInt()!!
+    var fullScreen: Int = dataInputStream!!.readInt()
 
 
     
@@ -142,7 +143,7 @@ this.logUtil!!.put(commonStrings!!.EXCEPTION, this, commonStrings!!.CONSTRUCTOR,
                         }
                             
 
-    var progressBarView: Int = dataInputStream!!.readInt()!!
+    var progressBarView: Int = dataInputStream!!.readInt()
 
 
     
@@ -171,7 +172,7 @@ this.logUtil!!.put(commonStrings!!.EXCEPTION, this, commonStrings!!.CONSTRUCTOR,
                         }
                             
 
-    var showTitleBar: Int = dataInputStream!!.readInt()!!
+    var showTitleBar: Int = dataInputStream!!.readInt()
 
 
     

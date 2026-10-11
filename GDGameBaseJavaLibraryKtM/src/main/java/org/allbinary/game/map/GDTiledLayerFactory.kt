@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import javax.microedition.lcdui.Image
 import javax.microedition.lcdui.game.TiledLayer
@@ -69,7 +70,7 @@ this.debugColor= debugColor
 
                 @Throws(Exception::class)
             
-    open fun getInstance(raceTrackInfo: RaceTrackInfo, raceTrackData: RaceTrackData)
+    override fun getInstance(raceTrackInfo: RaceTrackInfo, raceTrackData: RaceTrackData)
         //nullable =  from not(true or (false and false)) = 
 : AllBinaryTiledLayer{
     //var raceTrackInfo = raceTrackInfo
@@ -85,7 +86,7 @@ this.useAsMiniAllBinaryTiledLayer= PlacementAllBinaryJ2METiledLayer(SmallInteger
 
                 @Throws(Exception::class)
             
-    open fun getMiniInstance(raceTrackData: RaceTrackData)
+    override fun getMiniInstance(raceTrackData: RaceTrackData)
         //nullable = true from not(false or (false and false)) = true
 : AllBinaryTiledLayer{
     //var raceTrackData = raceTrackData

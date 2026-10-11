@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.util.BasicArrayList
 import org.allbinary.util.BasicArrayListD
@@ -48,7 +49,7 @@ open public class GDGameNeededWithSensorTouchButtonsBuilder : BaseTouchInput {
 : BasicArrayList{
 
         try {
-            logUtil!!.putF(commonStrings!!.START, this, commonStrings!!.CONSTRUCTOR)
+            this.logUtil!!.putF(this.commonStrings!!.START, this, this.commonStrings!!.CONSTRUCTOR)
 
     var list: BasicArrayList = BasicArrayListD()
 
@@ -129,7 +130,7 @@ list.add(SPECIAL4)
                         return list
 } catch(e: Exception)
             {
-logUtil!!.put(commonStrings!!.EXCEPTION, this, commonStrings!!.GET_LIST, e)
+this.logUtil!!.put(this.commonStrings!!.EXCEPTION, this, this.commonStrings!!.GET_LIST, e)
 
 
 

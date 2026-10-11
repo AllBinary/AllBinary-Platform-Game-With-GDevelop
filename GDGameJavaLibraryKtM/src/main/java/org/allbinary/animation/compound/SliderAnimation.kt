@@ -26,6 +26,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import javax.microedition.lcdui.Graphics
 import org.allbinary.J2MEUtil
@@ -77,7 +78,7 @@ this.height= height
                         
                                     {
                                     
-    var h: Int = this.dxhack()!!
+    var h: Int = this.dxhack()
 
 animation.setDy( -h /3 *2)
 
@@ -85,7 +86,7 @@ animation.setDy( -h /3 *2)
                                 
                         else {
                             
-    var h: Int = this.dxhack()!!
+    var h: Int = this.dxhack()
 
 animation.setDy( -h +(h /10))
 

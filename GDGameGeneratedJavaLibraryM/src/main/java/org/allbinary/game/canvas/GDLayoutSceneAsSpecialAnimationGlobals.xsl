@@ -118,6 +118,8 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+                import org.allbinary.AndroidUtil;
+                import org.allbinary.J2MEUtil;
 
                 //LayoutGlobals name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals extends GDSceneGlobals

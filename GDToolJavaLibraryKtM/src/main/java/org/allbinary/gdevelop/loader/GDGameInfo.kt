@@ -26,6 +26,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.logic.string.StringMaker
 import org.allbinary.string.CommonSeps
@@ -139,7 +140,7 @@ public constructor ()
 
 stringMaker!!.append("layoutTotal: ")!!.appendint(this.layoutTotal)
 
-    var size: Int = this.externalLayoutsTotalPerLayoutPositionList!!.size()!!
+    var size: Int = this.externalLayoutsTotalPerLayoutPositionList!!.size()
 
 
     var externalLayoutTotal: Integer
@@ -161,7 +162,7 @@ externalLayoutTotal= this.externalLayoutsTotalPerLayoutPositionList!!.get(index)
 stringMaker!!.append(commonSeps!!.NEW_LINE)!!.append(LAYOUT)!!.appendint(index)!!.append(WITH)!!.append(externalLayoutTotal!!.toString())!!.append(INSTANCE_TOTAL)!!.appendint(this.getLayoutInstanceTotal(index))
 externalLayoutIndexList= this.externalLayoutsIndexPerLayoutPositionList!!.get(index) as BasicArrayList
 
-    var size2: Int = externalLayoutIndexList!!.size()!!
+    var size2: Int = externalLayoutIndexList!!.size()
 
 
 

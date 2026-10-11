@@ -18,6 +18,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import java.io.StringBufferInputStream
 import javax.xml.transform.stream.StreamSource
@@ -97,7 +98,8 @@ public constructor ()
     var resultPartList: BasicArrayList = Tokenizer(this.commonSeps!!.SPACE).
                             getTokensFromString(result, BasicArrayListD())!!
 
-gdGameInfo!!.layoutTotal= Integer.parseInt(resultPartList!!.get(0) as String)
+gdGameInfo!!.layoutTotal= resultPartList!!.get(0).toInt()
+    
 
     var externalLayoutsTotalAsStringList: BasicArrayList = Tokenizer(this.commonSeps!!.COMMA).
                             getTokensFromString(resultPartList!!.get(1) as String, BasicArrayListD())!!

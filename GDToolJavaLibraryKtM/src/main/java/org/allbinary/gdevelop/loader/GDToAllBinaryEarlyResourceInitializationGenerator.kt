@@ -16,6 +16,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import java.io.FileInputStream
 import org.allbinary.logic.io.BufferedWriterUtil
@@ -113,7 +114,7 @@ this.bufferedWriterUtil!!.overwrite(RESOURCE_INITIALIZATION, newFileAsString)
     var playSoundAndroidResourceNameList: BasicArrayList = this.gdResources!!.playSoundAndroidResourceNameList
 
 
-    var size: Int = playSoundResourceClassNameList!!.size()!!
+    var size: Int = playSoundResourceClassNameList!!.size()
 
 
 
@@ -145,7 +146,7 @@ stringMaker!!.append(this.commonSeps!!.NEW_LINE)
     var stringUtil: StringUtil = StringUtil.getInstance()!!
 
 
-    var hasRotationImages: Boolean = this.gdResourceSelection!!.hasRotationImages()!!
+    var hasRotationImages: Boolean = this.gdResourceSelection!!.hasRotationImages()
 
 
     var resourceList: BasicArrayList = this.gdResources!!.resourceNameList
@@ -154,7 +155,7 @@ stringMaker!!.append(this.commonSeps!!.NEW_LINE)
     var androidResourceList: BasicArrayList = this.gdResources!!.androidResourceList
 
 
-    var size: Int = resourceList!!.size()!!
+    var size: Int = resourceList!!.size()
 
 
     var size2: Int = 100

@@ -77,6 +77,8 @@ Created By: Travis Berthelot
                 import org.allbinary.media.image.ImageCopyUtil
                 import org.allbinary.media.image.ImageScaleUtil
                 import org.allbinary.util.ABHashtable
+                import org.allbinary.AndroidUtil
+                import org.allbinary.J2MEUtil
 
                 //Game name=<xsl:value-of select="$gameName" />
                 open class GDGlobalSpecialAnimationImageResources : SpecialAnimation

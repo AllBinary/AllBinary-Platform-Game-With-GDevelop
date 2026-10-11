@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.game.canvas.GDGameSoftwareInfo
 import org.allbinary.game.canvas.GDGameMenuPaintable
@@ -93,7 +94,7 @@ PreLogUtil.put("******************Demo Next Random Is Always 1", this, "getNextR
             
     override fun createGameLayerManager(randomValue: Int)
         //nullable = true from not(false or (false and false)) = true
-: AllBinaryGameLayerManager{
+: AllBinaryGameLayerManager?{
 var randomValue = randomValue
 
     var gameInfo: GameInfo = GameInfo(GameTypeFactory.getInstance()!!.BOT, GameMode.SERVER, PlayerTypesFactory.getInstance()!!.PLAYER_TYPE_ONE, GDGameLayerManager.MAX_LEVEL, randomValue)

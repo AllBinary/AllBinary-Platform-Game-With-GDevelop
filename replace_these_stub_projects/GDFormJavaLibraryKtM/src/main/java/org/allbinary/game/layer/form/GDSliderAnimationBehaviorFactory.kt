@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.game.layer.GDAnimationBehaviorBase
 import org.allbinary.game.layer.GDAnimationBehaviorBaseFactory
@@ -41,7 +42,7 @@ companion object {
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return instance
+                        return GDSliderAnimationBehaviorFactory.instance
 }
 
 

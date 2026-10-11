@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.game.resource.ResourceInitialization
 import org.allbinary.game.resource.GDGameJ2MEEarlyResourceInitialization

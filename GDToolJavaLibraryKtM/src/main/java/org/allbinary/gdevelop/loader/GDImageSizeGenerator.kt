@@ -26,6 +26,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import java.awt.image.BufferedImage
 import java.io.IOException
@@ -109,7 +110,7 @@ gdImageSizeGenerator!!.process()
     var bufferedImage: BufferedImage
 
 
-    var size: Int = files.size()!!
+    var size: Int = files.size()
 
 
     var arrayIndex: Int = 0

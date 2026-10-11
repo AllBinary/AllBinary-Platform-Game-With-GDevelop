@@ -10,6 +10,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.game.resource.ResourceInitialization
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory

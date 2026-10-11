@@ -15,6 +15,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.logic.io.file.AbFile
@@ -137,7 +138,7 @@ companion object {
     var stringList: BasicArrayList = BasicArrayListD()
 
 
-    var size: Int = threedFileList!!.size()!!
+    var size: Int = threedFileList!!.size()
 
 
     var file: AbFile

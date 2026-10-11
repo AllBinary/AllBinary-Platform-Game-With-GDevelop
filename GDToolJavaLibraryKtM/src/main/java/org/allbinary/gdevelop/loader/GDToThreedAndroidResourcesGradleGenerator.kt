@@ -16,6 +16,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import java.io.FileInputStream
 import org.allbinary.data.CamelCaseUtil
@@ -114,7 +115,7 @@ this.resourceList!!.add(resourceString)
     var stringUtil: StringUtil = StringUtil.getInstance()!!
 
 
-    var size: Int = this.resourceList!!.size()!!
+    var size: Int = this.resourceList!!.size()
 
 
     var resourceString: String
@@ -144,7 +145,7 @@ resourceString= this.resourceList!!.get(index) as String
     var extensionList: BasicArrayList = this.gdToolStrings!!.getExtensions(threedFileList, resource)!!
 
 
-    var size3: Int = extensionList!!.size()!!
+    var size3: Int = extensionList!!.size()
 
 
     var extension: String
@@ -234,7 +235,7 @@ sharedBytes!!.outputStream!!.reset()
     var newFileAsString2: String = replace2.all(androidRFileAsString)!!
 
 
-    var size: Int = this.gdResources!!.playSoundAndroidResourceNameList!!.size()!!
+    var size: Int = this.gdResources!!.playSoundAndroidResourceNameList!!.size()
 
 
     var resource: String

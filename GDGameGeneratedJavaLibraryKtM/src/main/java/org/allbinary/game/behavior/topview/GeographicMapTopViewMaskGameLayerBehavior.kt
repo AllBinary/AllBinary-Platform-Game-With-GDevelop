@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.media.graphics.geography.map.MultiGeographicMapBehavior
 import org.allbinary.game.layer.AllBinaryTiledLayer
@@ -96,7 +97,7 @@ this.autoStepBlocks= autoStepBlocks
                                     {
                                     this.geographicMapBehavior!!.getCellTypeAt(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPosition)
 
-    var hasSolidBlock: Boolean = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray)!!
+    var hasSolidBlock: Boolean = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray)
 
 
     
@@ -133,7 +134,7 @@ this.gravity()
     var customGameLayer: GDCustomGameLayer = layer as GDCustomGameLayer
 
 
-    var frame: Int = customGameLayer!!.getIndexedAnimationInterface()!!.getFrame()!!
+    var frame: Int = customGameLayer!!.getIndexedAnimationInterface()!!.getFrame()
 
 
     var maskRectangle: Rectangle = customGameLayer!!.rectangleArrayOfArrays[customGameLayer!!.gdObject!!.animation]!![frame]!!
@@ -145,10 +146,10 @@ this.gravity()
     var viewPosition: ViewPositionBase = customGameLayer!!.getViewPosition()!!
 
 
-    var viewX: Int = viewPosition!!.getX()!!
+    var viewX: Int = viewPosition!!.getX()
 
 
-    var viewY: Int = viewPosition!!.getY()!!
+    var viewY: Int = viewPosition!!.getY()
 
 
     var xCellPosition: Int = viewX +maskPoint!!.getX() + -x
@@ -181,7 +182,7 @@ this.gravity()
     var customGameLayer: GDCustomGameLayer = layer as GDCustomGameLayer
 
 
-    var frame: Int = customGameLayer!!.getIndexedAnimationInterface()!!.getFrame()!!
+    var frame: Int = customGameLayer!!.getIndexedAnimationInterface()!!.getFrame()
 
 
     var maskRectangle: Rectangle = customGameLayer!!.rectangleArrayOfArrays[customGameLayer!!.gdObject!!.animation]!![frame]!!
@@ -193,10 +194,10 @@ this.gravity()
     var viewPosition: ViewPositionBase = customGameLayer!!.getViewPosition()!!
 
 
-    var viewX: Int = viewPosition!!.getX()!!
+    var viewX: Int = viewPosition!!.getX()
 
 
-    var viewY: Int = viewPosition!!.getY()!!
+    var viewY: Int = viewPosition!!.getY()
 
 
     var xCellPosition: Int = viewX +maskPoint!!.getX()
@@ -223,7 +224,7 @@ this.gravity()
     var customGameLayer: GDCustomGameLayer = layer as GDCustomGameLayer
 
 
-    var frame: Int = customGameLayer!!.getIndexedAnimationInterface()!!.getFrame()!!
+    var frame: Int = customGameLayer!!.getIndexedAnimationInterface()!!.getFrame()
 
 
     var maskRectangle: Rectangle = customGameLayer!!.rectangleArrayOfArrays[customGameLayer!!.gdObject!!.animation]!![frame]!!
@@ -235,10 +236,10 @@ this.gravity()
     var viewPosition: ViewPositionBase = customGameLayer!!.getViewPosition()!!
 
 
-    var viewX: Int = viewPosition!!.getX()!!
+    var viewX: Int = viewPosition!!.getX()
 
 
-    var viewY: Int = viewPosition!!.getY()!!
+    var viewY: Int = viewPosition!!.getY()
 
 
     var xCellPosition: Int = viewX +maskPoint!!.getX() +maskRectangle!!.getWidth()
@@ -314,7 +315,7 @@ this.unsafePossibleGeographicMapCellPositionList!!.clear()
                         
                                     {
                                     
-    var size: Int = geographicMapCellPositionList!!.size()!!
+    var size: Int = geographicMapCellPositionList!!.size()
 
 
 
@@ -336,10 +337,10 @@ this.unsafePossibleGeographicMapCellPositionList!!.clear()
                                     {
                                     this.geographicMapBehavior!!.getCellTypeAt(geographicMapInterfaceArray, geographicMapCellTypeArray, possibleStepGeographicMapCellPosition)
 
-    var hasSolidBlock: Boolean = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray)!!
+    var hasSolidBlock: Boolean = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray)
 
 
-    var hasOffMap: Boolean = this.isOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray)!!
+    var hasOffMap: Boolean = this.isOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray)
 
 
     
@@ -484,7 +485,7 @@ this.moveAndLand(geographicMapInterfaceArray, geographicMapCellTypeArray, geogra
 
 this.geographicMapBehavior!!.getCellTypeAt(geographicMapInterfaceArray, geographicMapCellTypeArray, possibleStepGeographicMapCellPosition)
 
-    var hasSolidBlock: Boolean = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray)!!
+    var hasSolidBlock: Boolean = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray)
 
 
     
@@ -545,7 +546,7 @@ layer.
 
 this.geographicMapBehavior!!.getCellTypeAt(geographicMapInterfaceArray, geographicMapCellTypeArray, possibleStepGeographicMapCellPosition)
 
-    var hasSolidBlock: Boolean = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray)!!
+    var hasSolidBlock: Boolean = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray)
 
 
     

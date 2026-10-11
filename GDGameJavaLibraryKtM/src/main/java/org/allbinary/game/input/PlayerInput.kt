@@ -26,6 +26,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.game.input.event.DownKeyEventListenerInterface
 import org.allbinary.game.input.event.UpKeyEventListenerInterface
@@ -202,7 +203,7 @@ super.update()
     var list: BasicArrayList = this.keyEventList
 
 
-    var size: Int = removeList!!.size()!!
+    var size: Int = removeList!!.size()
 
 
 

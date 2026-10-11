@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.gdevelop.json.GDProjectStrings
 import org.allbinary.logic.communication.log.LogUtil
@@ -64,7 +65,7 @@ open public class UpdateEnemyExclusionRatio
     var variablesJSONArray: JSONArray = jsonObject!!.getJSONArray("variables")!!
 
 
-    var size: Int = variablesJSONArray!!.length()!!
+    var size: Int = variablesJSONArray!!.length()
 
 
 

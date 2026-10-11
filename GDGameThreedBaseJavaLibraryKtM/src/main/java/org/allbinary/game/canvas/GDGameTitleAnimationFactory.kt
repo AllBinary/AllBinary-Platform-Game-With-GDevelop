@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.animation.AnimationBehavior
 import org.allbinary.animation.ColorLessVectorAnimation

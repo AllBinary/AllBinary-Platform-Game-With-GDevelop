@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.logic.io.file.AbFile
 import org.allbinary.logic.io.file.FileListFetcher
@@ -75,10 +76,10 @@ GDDelete().
     var stringMaker: StringMaker = StringMaker()
 
 
-    var size: Int = fileBasicArrayList!!.size()!!
+    var size: Int = fileBasicArrayList!!.size()
 
 
-    var size2: Int = exclusionList!!.size()!!
+    var size2: Int = exclusionList!!.size()
 
 
     var exclusion: String
@@ -249,8 +250,12 @@ this.process(files5, exclusionList5)
 
     var exclusionList20: BasicArrayList = BasicArrayListD()
 
+exclusionList20!!.add("GDGameHelpPaintable.java")
+exclusionList20!!.add("GDGameInputMappingHelpPaintable.java")
+exclusionList20!!.add("GDGameGameInputMappingFactory.java")
+exclusionList20!!.add("AppShaderResources.java")
 
-    var files20: BasicArrayList = fileListFetcher!!.getFiles(gdPaths!!.GEN_PATH +"resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource", this.gdToolStrings!!.JAVA)!!
+    var files20: BasicArrayList = fileListFetcher!!.getFiles(gdPaths!!.GEN_PATH +"resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\", this.gdToolStrings!!.JAVA)!!
 
 this.process(files20, exclusionList20)
 

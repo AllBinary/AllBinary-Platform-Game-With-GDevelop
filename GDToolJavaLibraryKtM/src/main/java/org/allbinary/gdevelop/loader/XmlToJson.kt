@@ -12,6 +12,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.json.JSONObject
 import org.json.XML
@@ -82,7 +83,7 @@ XmlToJson.getInstance()!!.processAll(svgPath, gdToolStrings!!._SVG)
     var list: BasicArrayList = this.directory.search(extension, AbFile.createAbFile(path), true)!!
 
 
-    var size: Int = list.size()!!
+    var size: Int = list.size()
 
 System.out.println(StringMaker().
                             append("total ")!!.append(extension)!!.append(": ")!!.appendint(size)!!.toString())

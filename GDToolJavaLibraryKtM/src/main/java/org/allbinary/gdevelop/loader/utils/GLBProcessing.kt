@@ -26,6 +26,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.logic.io.file.AbFile
 import org.allbinary.logic.io.file.FileListFetcher
@@ -55,7 +56,7 @@ var glbVisitor = glbVisitor
     var fileList: BasicArrayList = this.fileListFetcher!!.getFiles(GDGame0.getInstance()!!.PATH, arrayOf("glb"))!!
 
 
-    var size: Int = fileList!!.size()!!
+    var size: Int = fileList!!.size()
 
 System.out.println("size: " +size)
 
@@ -93,7 +94,7 @@ file= fileList!!.get(index) as AbFile
     var lastIndex: Int = path.lastIndexOf('\\') +1
 
 
-    var endIndex: Int = path.lastIndexOf('.')!!
+    var endIndex: Int = path.lastIndexOf('.')
 
 
     var fileNameAsString: String = path.substring(lastIndex)!!

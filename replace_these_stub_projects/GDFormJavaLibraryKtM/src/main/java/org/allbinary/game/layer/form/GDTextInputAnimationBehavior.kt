@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.animation.AnimationInterfaceFactoryInterface
 import org.allbinary.animation.IndexedAnimation
@@ -38,9 +39,9 @@ public constructor (){
 }
 
 
-    open fun init(gdObject: GDObject, animationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?>)
+    override fun init(gdObject: GDObject, animationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?>)
         //nullable = true from not(false or (false and false)) = true
-: Array<IndexedAnimation?>{
+: Array<IndexedAnimation?>?{
     //var gdObject = gdObject
     //var animationInterfaceFactoryInterfaceArray = animationInterfaceFactoryInterfaceArray
 
@@ -51,28 +52,28 @@ public constructor (){
 }
 
 
-    open fun setAnimationArray(animationArray: Array<IndexedAnimation?>)
+    override fun setAnimationArray(animationArray: Array<IndexedAnimation?>)
         //nullable = true from not(false or (false and false)) = true
 {
     //var animationArray = animationArray
 }
 
 
-    open fun add(gameLayer: GDGameLayer)
+    override fun add(gameLayer: GDGameLayer)
         //nullable = true from not(false or (false and false)) = true
 {
     //var gameLayer = gameLayer
 }
 
 
-    open fun itemStateChanged(gameLayerAsItem: GDGameLayer)
+    override fun itemStateChanged(gameLayerAsItem: GDGameLayer)
         //nullable = true from not(false or (false and false)) = true
 {
 var gameLayerAsItem = gameLayerAsItem
 }
 
 
-    open fun onMotionGestureEvent(motionGestureEvent: MotionGestureEvent)
+    override fun onMotionGestureEvent(motionGestureEvent: MotionGestureEvent)
         //nullable = true from not(false or (false and false)) = true
 {
     //var motionGestureEvent = motionGestureEvent

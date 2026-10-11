@@ -16,6 +16,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import java.io.FileInputStream
 import org.allbinary.logic.io.BufferedWriterUtil
@@ -115,7 +116,7 @@ this.fileAsStringList!!.add(fileAsString)
     //var threedFileList = threedFileList
     //var stringMaker = stringMaker
 
-    var size: Int = this.fileAsStringList!!.size()!!
+    var size: Int = this.fileAsStringList!!.size()
 
 
     var fileAsString: String
@@ -137,7 +138,7 @@ stringMaker!!.append(this.commonSeps!!.NEW_LINE)
     var extensionList: BasicArrayList = this.gdToolStrings!!.getExtensions(threedFileList, fileAsString)!!
 
 
-    var size3: Int = extensionList!!.size()!!
+    var size3: Int = extensionList!!.size()
 
 
     var extension: String
@@ -193,7 +194,7 @@ stringMaker!!.append(this.VALUE)
     //var threedFileList = threedFileList
     //var stringMaker = stringMaker
 
-    var size: Int = this.paramList!!.size()!!
+    var size: Int = this.paramList!!.size()
 
 
     var param: String

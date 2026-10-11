@@ -55,6 +55,9 @@ Created By: Travis Berthelot
 
                 package org.allbinary.game.canvas
 
+                import org.allbinary.AndroidUtil
+                import org.allbinary.J2MEUtil
+                
                 open class GD<xsl:value-of select="$layoutIndex" />LayoutUtil
                 {
 

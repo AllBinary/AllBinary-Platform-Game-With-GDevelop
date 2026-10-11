@@ -16,6 +16,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import java.io.FileInputStream
 import org.allbinary.logic.io.BufferedWriterUtil
@@ -112,10 +113,10 @@ this.bufferedWriterUtil!!.overwrite(RESOURCE_INITIALIZATION, newFileAsString)
     var androidResourceList: BasicArrayList = this.gdResources!!.androidResourceList
 
 
-    var hasRotationImages: Boolean = this.gdResourceSelection!!.hasRotationImages()!!
+    var hasRotationImages: Boolean = this.gdResourceSelection!!.hasRotationImages()
 
 
-    var size: Int = resourceList!!.size()!!
+    var size: Int = resourceList!!.size()
 
 
     var size2: Int = 100
@@ -135,7 +136,7 @@ resource= resourceList!!.get(index) as String
     var extensionList: BasicArrayList = this.gdToolStrings!!.getExtensions(threedFileList, resource.lowercase())!!
 
 
-    var size3: Int = extensionList!!.size()!!
+    var size3: Int = extensionList!!.size()
 
 
     var extension: String

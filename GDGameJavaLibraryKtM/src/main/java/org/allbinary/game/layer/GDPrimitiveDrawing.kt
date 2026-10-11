@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import javax.microedition.lcdui.Graphics
 import org.allbinary.animation.Animation
@@ -153,7 +154,7 @@ this.aRetangleFilledAnimationInUseList!!.add(rectangleFilledAnimation)
     var animationList: BasicArrayList = this.animationList
 
 
-    var size: Int = animationList!!.size()!!
+    var size: Int = animationList!!.size()
 
 
 
@@ -181,7 +182,7 @@ get.
     var animationList: BasicArrayList = this.animationList
 
 
-    var size: Int = animationList!!.size()!!
+    var size: Int = animationList!!.size()
 
 
     var animation: Animation

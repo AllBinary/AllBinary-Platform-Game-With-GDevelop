@@ -10,6 +10,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import javax.microedition.khronos.opengles.GL10
 import min3d.core.TextureManager
@@ -126,7 +127,7 @@ progressCanvas!!.addEarlyPortion(this.portion, this.loadingString, this.index++)
     var gdGameThreedLevelBuilder: GDGameThreedLevelBuilder
 
 
-    var size: Int = this.gameThreedLevelBuilderFactory!!.list.size()!!
+    var size: Int = this.gameThreedLevelBuilderFactory!!.list.size()
 
 
 

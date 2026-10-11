@@ -10,6 +10,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 
 open public class GDGameClientInformationInterfaceFactory : ClientInformationFactory {

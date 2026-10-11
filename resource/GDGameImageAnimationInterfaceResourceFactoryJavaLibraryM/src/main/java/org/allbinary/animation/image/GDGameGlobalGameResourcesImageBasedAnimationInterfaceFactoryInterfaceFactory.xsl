@@ -115,6 +115,8 @@ import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.StdUtil;
 import org.allbinary.util.ABHashtable;
+import org.allbinary.AndroidUtil;
+import org.allbinary.J2MEUtil;
 
 public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {

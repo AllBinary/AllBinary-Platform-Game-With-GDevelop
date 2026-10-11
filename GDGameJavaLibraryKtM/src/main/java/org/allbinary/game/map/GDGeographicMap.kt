@@ -27,6 +27,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import javax.microedition.lcdui.Image
 import javax.microedition.lcdui.game.TiledLayer
@@ -98,7 +99,7 @@ this.map= map
 
 this.createAnimationTiles(tileList)
 
-    var size: Int = tileList!!.size()!!
+    var size: Int = tileList!!.size()
 
 this.animationTileIndexArray= IntArray(size)
 this.startTimeFrameArray= LongArray(size)
@@ -127,7 +128,7 @@ this.setAnimations(tileList)
     var tileSetList: BasicArrayList = this.map.getTileSets()!!
 
 
-    var size: Int = tileSetList!!.size()!!
+    var size: Int = tileSetList!!.size()
 
 
     
@@ -207,7 +208,7 @@ animation= tile.getAnimation()
                                     }
                                 
 
-    var size: Int = tileList!!.size()!!
+    var size: Int = tileList!!.size()
 
 
     var animationTileIndex: Int= 0
@@ -334,7 +335,7 @@ tiledLayer!!.setAnimatedTile(this.animationTileIndexArray[index]!!, frame.getTil
     var allBinaryTiledLayer: AllBinaryTiledLayer = this.getAllBinaryTiledLayer()!!
 
 
-    var lastHeight: Int = GameTickDisplayInfoSingleton.getInstance()!!.getLastHeight()!!
+    var lastHeight: Int = GameTickDisplayInfoSingleton.getInstance()!!.getLastHeight()
 
 
     var y: Int =  -lastHeight +allBinaryTiledLayer!!.getHeight()

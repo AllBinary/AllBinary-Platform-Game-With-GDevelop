@@ -26,6 +26,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.gdevelop.json.GDBehavior
 import org.allbinary.gdevelop.json.GDObject
@@ -112,7 +113,7 @@ super.process(gameAsConfigurationJSONObject)
 
                 @Throws(Exception::class)
             
-    open fun processObjects(layoutJSONObject: Object)
+    open fun processObjects(layoutJSONObject: JSONObject)
         //nullable = true from not(false or (false and false)) = true
 {
     //var layoutJSONObject = layoutJSONObject
@@ -121,7 +122,7 @@ super.process(gameAsConfigurationJSONObject)
 
 System.out.println("Object Total: " +jsonArray!!.length())
 
-    var size: Int = jsonArray!!.length()!!
+    var size: Int = jsonArray!!.length()
 
 
     var jsonObject: JSONObject
@@ -162,7 +163,7 @@ jsonObject= jsonArray!!.getJSONObject(index)
     var behaviorList: BasicArrayList = gdObject!!.behaviorContentList
 
 
-    var size: Int = behaviorList!!.size()!!
+    var size: Int = behaviorList!!.size()
 
 System.out.println("Behavior Total: " +size)
 

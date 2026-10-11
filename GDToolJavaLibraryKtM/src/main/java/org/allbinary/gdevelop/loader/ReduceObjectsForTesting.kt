@@ -26,6 +26,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.util.BasicArrayList
 import org.allbinary.util.BasicArrayListD
@@ -95,7 +96,7 @@ this.list.add("SkeletonWarriorEnemy")
 : Boolean{
     //var value = value
 
-    var size: Int = this.list.size()!!
+    var size: Int = this.list.size()
 
 
 
@@ -127,7 +128,7 @@ this.list.add("SkeletonWarriorEnemy")
 }
 
 
-    open fun reduceObjectsInObjectGroups(jsonArray: Object, inclusion: Object)
+    open fun reduceObjectsInObjectGroups(jsonArray: JSONArray, inclusion: String)
         //nullable = true from not(false or (false and false)) = true
 {
     //var jsonArray = jsonArray
@@ -172,7 +173,7 @@ index--
 }
 
 
-    open fun reduceObjectGroups(layoutJSONObject: Object)
+    open fun reduceObjectGroups(layoutJSONObject: JSONObject)
         //nullable = true from not(false or (false and false)) = true
 {
     //var layoutJSONObject = layoutJSONObject
@@ -180,7 +181,7 @@ index--
     var jsonArray: JSONArray = layoutJSONObject!!.getJSONArray(this.gdProjectStrings!!.OBJECT_GROUPS)!!
 
 
-    var size: Int = jsonArray!!.length()!!
+    var size: Int = jsonArray!!.length()
 
 
     var jsonObject: JSONObject
@@ -256,7 +257,7 @@ System.out.println(jsonArray!!.length())
 }
 
 
-    open fun reduceObjects(layoutJSONObject: Object)
+    open fun reduceObjects(layoutJSONObject: JSONObject)
         //nullable = true from not(false or (false and false)) = true
 {
     //var layoutJSONObject = layoutJSONObject
@@ -311,7 +312,7 @@ System.out.println(jsonArray!!.length())
     var jsonArray: JSONArray = layoutJSONObject!!.getJSONArray(this.gdProjectStrings!!.VARIABLES)!!
 
 
-    var size: Int = jsonArray!!.length()!!
+    var size: Int = jsonArray!!.length()
 
 
     var jsonObject: JSONObject

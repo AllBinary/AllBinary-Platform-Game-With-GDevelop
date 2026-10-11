@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.logic.io.file.AbFile
 import org.allbinary.logic.io.file.FileListFetcher
@@ -90,7 +91,7 @@ GDCopy().
     var PATH: String = stringMaker!!.append(gdPaths!!.ROOT_PATH)!!.append("platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\")!!.toString()!!
 
 
-    var size: Int = files.size()!!
+    var size: Int = files.size()
 
 stringMaker!!.delete(0, stringMaker!!.length())
 this.logUtil!!.putF(stringMaker!!.append("Total JSON Files for Copying: ")!!.appendint(size)!!.toString(), this, this.commonStrings!!.PROCESS)

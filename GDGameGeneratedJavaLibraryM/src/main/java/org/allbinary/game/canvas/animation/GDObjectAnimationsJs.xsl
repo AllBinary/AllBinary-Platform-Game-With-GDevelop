@@ -233,7 +233,7 @@ Created By: Travis Berthelot
                             scaleProperties2.scaleY = scaleProperties.scaleY / denominator;
                             scaleProperties2.shouldScale = scaleProperties.shouldScale;
 
-                            final float joystickScale = org.allbinary.AndroidUtil.isAndroid() ? 0.75f : 2.0f;
+                            final float joystickScale = AndroidUtil.isAndroid() ? 0.75f : 2.0f;
                             this.animationFactoryInitializationVisitor.dx = (int) (scaleProperties2.scaleWidth / (joystickScale * 3.33f));
                             this.animationFactoryInitializationVisitor.dy = (int) (scaleProperties2.scaleHeight / (joystickScale * 3.33f));
 

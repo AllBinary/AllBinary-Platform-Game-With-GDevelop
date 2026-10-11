@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import javax.microedition.lcdui.Graphics
 import org.allbinary.AndroidUtil
@@ -113,7 +114,7 @@ open public class GDObject
     var updateSinceSetAngle: Boolean= false
 
     var forceAngle: Int = 0
-public constructor (width: Int, height: Int, name: Object, type: Object)
+public constructor (width: Int, height: Int, name: String, type: String)
             : super()
         {
     //var width = width

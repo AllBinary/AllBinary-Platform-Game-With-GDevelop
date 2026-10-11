@@ -31,6 +31,7 @@ public class GD<GDNAME>Sound extends CompositeSound
       return soundInterface;
    }
 
+   @Override
    public int getDuration()
    {
 	   return <GD_DURATION>;

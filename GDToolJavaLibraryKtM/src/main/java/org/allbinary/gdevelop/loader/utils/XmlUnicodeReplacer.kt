@@ -12,6 +12,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import java.io.IOException
 import java.nio.charset.Charset
@@ -20,7 +21,8 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.util.ArrayList
-import java.util.List
+
+//import java.util.List
 import org.allbinary.gdevelop.loader.GDPaths
 
 open public class XmlUnicodeReplacer
@@ -95,7 +97,10 @@ GDPaths.init()
                                     }
                                 
 
-    var inputPath: Path = Paths.get(args[0]!!)!!
+    var path: String = args[0]!!
+
+
+    var inputPath: Path = Paths.get(path)!!
 
 
     var outputPath: Path = if((args.size >= 2)) {
@@ -161,7 +166,7 @@ System.out.println(messageBuilder!!.toString())
     var positions: List<String> = XmlUnicodeReplacer.findNonAsciiPositions(content, 20)!!
 
 
-    var totalCount: Int = XmlUnicodeReplacer.countNonAsciiOccurrences(content)!!
+    var totalCount: Int = XmlUnicodeReplacer.countNonAsciiOccurrences(content)
 
 System.out.println(XmlUnicodeReplacer.TARGET_UNICODE_RANGE)
 
@@ -266,7 +271,7 @@ System.out.println(replacedBuilder!!.toString())
 
         {
 
-    var current: Char = content[i]!!
+    var current: Char = content[i]
 
 
     
@@ -314,7 +319,7 @@ System.out.println(replacedBuilder!!.toString())
 
         {
 
-    var current: Char = content[i]!!
+    var current: Char = content[i]
 
 
     

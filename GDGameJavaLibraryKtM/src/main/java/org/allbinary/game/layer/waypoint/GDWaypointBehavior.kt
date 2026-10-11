@@ -12,6 +12,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.game.input.form.PrimaryWaypointHelper
 import org.allbinary.game.layer.PathFindingLayerInterface
@@ -289,7 +290,7 @@ this.setMoving(false)
                                     }
                                 
 
-    var size: Int = pathsList!!.size()!!
+    var size: Int = pathsList!!.size()
 
 this.associatedAdvancedRTSGameLayer!!.getWaypointLogHelper()!!.setRandomGeographicMapCellHistoryList(this.associatedAdvancedRTSGameLayer, pathsList)
 

@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import javax.xml.transform.Source
 import javax.xml.transform.TransformerException
@@ -49,7 +50,7 @@ public constructor ()
             
     open fun resolve(href: String, base: String)
         //nullable = true from not(false or (false and false)) = true
-: Source{
+: Source?{
 var href = href
 var base = base
 

@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.input.motion.button.BaseTouchInput
 import org.allbinary.string.CommonStrings
@@ -45,7 +46,7 @@ var sensorGameUpdateProcessor = sensorGameUpdateProcessor
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return instance
+                        return GDGameNeededTouchButtonsBuilder.instance
 }
 
 
@@ -61,7 +62,7 @@ var sensorGameUpdateProcessor = sensorGameUpdateProcessor
     open fun build()
         //nullable = true from not(false or (false and true)) = true
 {
-logUtil!!.putF(commonStrings!!.START, this, "build")
+this.logUtil!!.putF(this.commonStrings!!.START, this, "build")
 }
 
 

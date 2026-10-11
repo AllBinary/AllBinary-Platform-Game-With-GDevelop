@@ -16,6 +16,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import java.io.FileInputStream
 import org.allbinary.logic.io.BufferedWriterUtil
@@ -110,7 +111,7 @@ this.bufferedWriterUtil!!.overwrite(RESOURCE_INITIALIZATION, newFileAsString)
     var playSoundAndroidResourceNameList: BasicArrayList = this.gdResources!!.playSoundAndroidResourceNameList
 
 
-    var size: Int = playSoundResourceClassNameList!!.size()!!
+    var size: Int = playSoundResourceClassNameList!!.size()
 
 
 

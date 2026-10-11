@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.animation.AnimationInterfaceFactoryInterface
 import org.allbinary.animation.NullAnimationFactory
@@ -132,9 +133,7 @@ this.resetAnimationBehavior= resetAnimationBehavior
                             this.animationInterfaceFactoryInterfaceArray[0]!!.toString()
                         
                             } else {
-                            
-                                        //Otherwise - expression - elseExpr - StringLiteralExpr
-
+                            "empty"
                             }
     )!!.toString(), this, "create", Exception())
 

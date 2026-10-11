@@ -26,6 +26,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.gdevelop.json.GDProjectStrings
 import org.json.JSONArray
@@ -68,7 +69,7 @@ open public class GDJSONGeneratorBase
     var jsonArray: JSONArray = gameAsConfigurationJSONObject!!.getJSONArray(this.gdProjectStrings!!.LAYOUTS)!!
 
 
-    var size: Int = jsonArray!!.length()!!
+    var size: Int = jsonArray!!.length()
 
 
     var jsonObject: JSONObject

@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import min3d.core.Object3d
 import org.allbinary.animation.AnimationInterfaceFactoryInterface

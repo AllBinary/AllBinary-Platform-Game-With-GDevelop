@@ -28,6 +28,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.game.input.event.GameKeyEvent
 import org.allbinary.game.layer.GDGameLayer
@@ -302,7 +303,7 @@ this.nodeStatsFactory!!.push(7, this.name)
 
                 @Throws(Exception::class)
             
-    open fun processCreateWithGDObject(gdObject: Object)
+    open fun processCreateWithGDObject(gdObject: GDObject)
         //nullable = true from not(false or (false and false)) = true
 : Boolean{
     //var gdObject = gdObject

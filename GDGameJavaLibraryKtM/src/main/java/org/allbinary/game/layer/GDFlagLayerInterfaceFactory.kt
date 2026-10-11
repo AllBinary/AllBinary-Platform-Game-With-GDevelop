@@ -15,6 +15,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.animation.AnimationInterfaceFactoryInterface
 import org.allbinary.logic.communication.log.LogUtil
@@ -66,7 +67,7 @@ private constructor ()
 
                 @Throws(Exception::class)
             
-    override fun getNextInstance(hashtable: ABHashtable, x: Int, y: Int, z: Int)
+    override fun getNextInstance(hashtable: ABHashtable<Any, Any>, x: Int, y: Int, z: Int)
         //nullable = true from not(false or (false and false)) = true
 : AllBinaryLayer{
     //var hashtable = hashtable

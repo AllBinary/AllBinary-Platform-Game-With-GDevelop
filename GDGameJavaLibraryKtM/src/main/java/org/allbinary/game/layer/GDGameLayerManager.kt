@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.game.GameInfo
 import org.allbinary.graphics.color.BasicColor

@@ -18,6 +18,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import java.io.StringBufferInputStream
 import javax.xml.transform.stream.StreamSource
@@ -130,7 +131,7 @@ this.nameList!!.add(name)
     var END: String = this.end
 
 
-    var size: Int = this.nameList!!.size()!!
+    var size: Int = this.nameList!!.size()
 
 
 

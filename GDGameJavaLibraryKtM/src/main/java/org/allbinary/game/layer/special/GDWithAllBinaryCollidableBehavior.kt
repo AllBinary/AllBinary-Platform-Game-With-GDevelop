@@ -24,6 +24,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.game.collision.CollidableBaseBehavior
 import org.allbinary.game.collision.CollidableInterfaceCompositeInterface

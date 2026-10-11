@@ -26,6 +26,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import org.allbinary.game.midlet.DemoGameMidlet
 import org.allbinary.game.midlet.DemoGameMidletEvent
@@ -59,7 +60,7 @@ this.startDemoGameMidletEvent= DemoGameMidletEvent(this.demoGameMidlet, DemoGame
 }
 
 
-    open fun run()
+    override fun run()
         //nullable = true from not(false or (false and true)) = true
 {
 

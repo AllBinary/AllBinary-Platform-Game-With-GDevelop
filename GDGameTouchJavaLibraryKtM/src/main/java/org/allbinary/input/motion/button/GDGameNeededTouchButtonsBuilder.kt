@@ -24,9 +24,8 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
-import org.allbinary.input.motion.button.TouchScreenFactory
-import org.allbinary.input.motion.button.BaseTouchInput
 import org.allbinary.input.gyro.SensorGameUpdateProcessor
 
 open public class GDGameNeededTouchButtonsBuilder

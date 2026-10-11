@@ -26,6 +26,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import java.awt.image.BufferedImage
 import javax.imageio.ImageIO
@@ -80,7 +81,7 @@ gdImageMaskGenerator!!.process()
 
     private val SKIPPING_IMAGE: String = "Skipping Image: "
 
-    override fun processObjects(name: Object)
+    override fun processObjects(name: String)
         //nullable = true from not(false or (false and false)) = true
 : Boolean{
     //var name = name
@@ -158,13 +159,13 @@ this.addOrReplaceCollisionMask(jsonObject)
 : Rectangle{
     //var bufferedImage = bufferedImage
 
-    var transparentColor: Int = BasicColorFactory.getInstance()!!.TRANSPARENT_COLOR.toInt()!!
+    var transparentColor: Int = BasicColorFactory.getInstance()!!.TRANSPARENT_COLOR.toInt()
 
 
-    var width: Int = bufferedImage!!.getWidth()!!
+    var width: Int = bufferedImage!!.getWidth()
 
 
-    var height: Int = bufferedImage!!.getHeight()!!
+    var height: Int = bufferedImage!!.getHeight()
 
 
     var minX: Int = width
@@ -285,10 +286,10 @@ System.out.println(rectangle.toString())
     var bufferedImage: BufferedImage = ImageIO.read(AbFileNativeUtil.get(abFile))!!
 
 
-    var adjustMaxY: Int = bufferedImage!!.getHeight()!!
+    var adjustMaxY: Int = bufferedImage!!.getHeight()
 
 
-    var underScoreIndex: Int = imagePath!!.lastIndexOf('_')!!
+    var underScoreIndex: Int = imagePath!!.lastIndexOf('_')
 
 
     var imagePath2: String = 
@@ -301,7 +302,7 @@ System.out.println(rectangle.toString())
                         
                                     {
                                     
-    var periodIndex: Int = imagePath!!.lastIndexOf('.')!!
+    var periodIndex: Int = imagePath!!.lastIndexOf('.')
 
 imagePath2= StringMaker().
                             append(imagePath!!.substring(0, underScoreIndex +1))!!.append(this.ONE)!!.append(imagePath!!.substring(periodIndex))!!.toString()

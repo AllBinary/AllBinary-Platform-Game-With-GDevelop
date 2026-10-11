@@ -57,6 +57,8 @@ Created By: Travis Berthelot
 
                 import org.allbinary.animation.AnimationBehavior
                 import org.allbinary.animation.special.SpecialAnimation
+                import org.allbinary.AndroidUtil
+                import org.allbinary.J2MEUtil
 
                 //Game name=<xsl:value-of select="$gameName" />
                 open class GDGlobalSpecialAnimationResources : SpecialAnimation

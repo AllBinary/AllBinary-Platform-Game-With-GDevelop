@@ -16,6 +16,7 @@
         
         import kotlin.Array
         import kotlin.reflect.KClass
+                    
         
 import java.io.File
 import java.io.FileInputStream
@@ -89,7 +90,7 @@ open public class GDToAllBinarySoundsGenerator
     //var resourceString = resourceString
 this.logUtil!!.putF(this.SOUND +param, this, this.commonStrings!!.PROCESS)
 
-    var startIndex: Int = param.lastIndexOf('/')!!
+    var startIndex: Int = param.lastIndexOf('/')
 
 
     
@@ -178,7 +179,7 @@ sharedBytes!!.outputStream!!.reset()
     var androidRFileAsString: String = streamUtil!!.getByteArray.toCharArray()
 
 
-    var size: Int = this.gdResources!!.playSoundAndroidResourceNameList!!.size()!!
+    var size: Int = this.gdResources!!.playSoundAndroidResourceNameList!!.size()
 
 stringMaker!!.delete(0, stringMaker!!.length())
 this.logUtil!!.putF(stringMaker!!.append("Sound Total: ")!!.appendint(size)!!.toString(), this, this.commonStrings!!.PROCESS)
@@ -198,7 +199,7 @@ this.logUtil!!.putF(resource, this, this.commonStrings!!.PROCESS)
     var player: Player = AllBinaryMediaManager.createPlayer(resource)!!
 
 
-    var duration: Long = player.getDuration()!!
+    var duration: Long = player.getDuration()
 
 
     var name: String = this.camelCaseUtil!!.getAsCamelCase(resource, stringMaker)!!
