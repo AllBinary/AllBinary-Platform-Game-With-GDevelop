@@ -180,7 +180,7 @@ Created By: Travis Berthelot
                         
                             this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR);
             
-                    final float scale = GDConfig.getInstance().getFontThreed(GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale);
+                    final float scale = GDConfig.getInstance().getScaleThreed(GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale);
 
                     animationInterfaceFactoryInterfaceFactory.init(<xsl:value-of select="$layoutIndex" />);
                                         

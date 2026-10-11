@@ -33,6 +33,9 @@ Created By: Travis Berthelot
         import javax.microedition.lcdui.game.TiledLayer;
 
         import org.allbinary.AndroidUtil;
+        import org.allbinary.J2MEUtil;
+        import org.allbinary.game.layout.GDConfig;
+
         import org.allbinary.animation.Animation;
         import org.allbinary.animation.AnimationInterfaceFactoryInterface;
         import org.allbinary.animation.IndexedAnimationInterface;
