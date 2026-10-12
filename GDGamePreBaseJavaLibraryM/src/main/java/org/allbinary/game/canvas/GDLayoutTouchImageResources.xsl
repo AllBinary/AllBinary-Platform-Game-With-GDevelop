@@ -85,29 +85,29 @@ Created By: Travis Berthelot
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.J2MEUtil;
                 import org.allbinary.game.layout.GDConfig;
+                import org.allbinary.logic.NullUtil;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources extends SpecialAnimation
                 {
 
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources instance = null;
+                    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources getInstanceOrCreate() throws Exception
                         {
-                            if(instance == null) {
-                                instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources();
+                            if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.instance == NullUtil.getInstance().NULL_OBJECT) {
+                                GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources();
                             }
 
-                            return instance;
+                            return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.instance;
                         }
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources getInstance()
                         {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.instance;
+                            return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.instance;
                         }
 
                         protected final LogUtil logUtil = LogUtil.getInstance();
-                        private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
                         private final ImageScaleUtil imageScaleUtil = ImageScaleUtil.getInstance();
                         private final ImageCache imageCache = ImageCacheFactory.getInstance();

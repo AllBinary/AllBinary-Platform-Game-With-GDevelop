@@ -85,25 +85,26 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ABHashtable
                 import org.allbinary.AndroidUtil
                 import org.allbinary.J2MEUtil
+                import org.allbinary.logic.NullUtil;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 open class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources : SpecialAnimation
                 {
 
-                    private var instance: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources = null
+                    private var instance: Object = NullUtil.getInstance().NULL_OBJECT
 
                         fun getInstanceOrCreate(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources
                         {
-                            if(instance == null) {
-                                instance = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources()
+                            if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.instance == NullUtil.getInstance().NULL_OBJECT) {
+                                GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.instance = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources()
                             }
 
-                            return instance
+                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.instance as GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources
                         }
 
                         fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources
                         {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.instance
+                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.instance as GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources
                         }
 
                         protected val logUtil: LogUtil = LogUtil.getInstance()

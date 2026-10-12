@@ -88,25 +88,26 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ABHashtable
                 import org.allbinary.AndroidUtil
                 import org.allbinary.J2MEUtil
+                import org.allbinary.logic.NullUtil;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 open class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources : SpecialAnimation
                 {
 
-                    private var instance: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources = null
+                    private var instance: Object = NullUtil.getInstance().NULL_OBJECT
 
                         fun getInstanceOrCreate(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources
                         {
-                            if(instance == null) {
-                                instance = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources()
+                            if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.instance == NullUtil.getInstance().NULL_OBJECT) {
+                                GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.instance = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources()
                             }
 
-                            return instance
+                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.instance as GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources
                         }
 
                         fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources
                         {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.instance
+                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.instance as GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources
                         }
 
                         protected val logUtil: LogUtil = LogUtil.getInstance()

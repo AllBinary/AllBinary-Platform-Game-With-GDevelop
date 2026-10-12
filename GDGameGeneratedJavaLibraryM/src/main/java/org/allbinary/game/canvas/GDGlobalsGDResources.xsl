@@ -94,22 +94,23 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDRotationBehaviorFactory;
                 import org.allbinary.game.configuration.feature.Features;
                 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
+                import org.allbinary.logic.NullUtil;
 
                 public class GDGlobalsGDResources extends SpecialAnimation
                 {
-
-                    private static GDGlobalsGDResources instance = null;
+                
+                    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
                         
                         public static GDGlobalsGDResources getInstanceOrCreate() throws Exception {
-                            if(GDGlobalsGDResources.instance == null) {
+                            if(GDGlobalsGDResources.instance == NullUtil.getInstance().NULL_OBJECT) {
                                 GDGlobalsGDResources.instance = new GDGlobalsGDResources();
                             }
-                            return GDGlobalsGDResources.instance;
+                            return (GDGlobalsGDResources) GDGlobalsGDResources.instance;
                         }
                 
                         public static GDGlobalsGDResources getInstance()
                         {
-                            return GDGlobalsGDResources.instance;
+                            return (GDGlobalsGDResources) GDGlobalsGDResources.instance;
                         }
 
                         protected final LogUtil logUtil = LogUtil.getInstance();

@@ -87,29 +87,29 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
                 import org.allbinary.util.ABHashtable;
+                import org.allbinary.logic.NullUtil;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources extends SpecialAnimation
                 {
 
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources instance = null;
+                    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources getInstanceOrCreate() throws Exception
                         {
-                            if(instance == null) {
-                                instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources();
+                            if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.instance == NullUtil.getInstance().NULL_OBJECT) {
+                                GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources();
                             }
 
-                            return instance;
+                            return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.instance;
                         }
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources getInstance()
                         {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.instance;
+                            return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.instance;
                         }
 
                         protected final LogUtil logUtil = LogUtil.getInstance();
-                        private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
                         private final ImageScaleUtil imageScaleUtil = ImageScaleUtil.getInstance();
                         private final ImageCache imageCache = ImageCacheFactory.getInstance();

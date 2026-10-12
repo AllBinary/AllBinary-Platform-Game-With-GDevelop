@@ -129,7 +129,7 @@ Created By: Travis Berthelot
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimation extends GDSpecialAnimation
                 {
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation instance = null;
+                    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
 
                     public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation getInstance(final MyCanvas abCanvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) 
                         throws Exception {
@@ -139,18 +139,19 @@ Created By: Travis Berthelot
                         abToGBUtil.abCanvas = abCanvas;
                         abToGBUtil.allBinaryGameLayerManager = allBinaryGameLayerManager;
 
-                        if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance == null) {
+                        if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance == NullUtil.getInstance().NULL_OBJECT) {
                             GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimation();
                         } else {
-                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance.reinitInstances();
+                            final GD<xsl:value-of select="$layoutIndex" />SpecialAnimation myInstance  = (GD<xsl:value-of select="$layoutIndex" />SpecialAnimation) GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance;
+                            myInstance.reinitInstances();
                         }
-                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance;
+                        return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimation) GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance;
 
                     }
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation getInstance()
                         {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance;
+                            return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimation) GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance;
                         }
 
                         protected final LogUtil logUtil = LogUtil.getInstance();

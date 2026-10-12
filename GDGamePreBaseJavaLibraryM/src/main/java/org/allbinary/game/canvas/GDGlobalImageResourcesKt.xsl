@@ -77,25 +77,25 @@ Created By: Travis Berthelot
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.J2MEUtil;
                 import org.allbinary.game.layout.GDConfig;
+                import org.allbinary.logic.NullUtil;
 
                 //Game name=<xsl:value-of select="$gameName" />
                 open class GDGlobalSpecialAnimationImageResources : SpecialAnimation
                 {
-
-                    private var instance: GDGlobalSpecialAnimationImageResources
+                    private var instance: Object = NullUtil.getInstance().NULL_OBJECT
 
                         fun getInstanceOrCreate(): GDGlobalSpecialAnimationImageResources
                         {
-                            if(instance == null) {
-                                instance = GDGlobalSpecialAnimationImageResources()
+                            if(GDGlobalSpecialAnimationImageResources.instance == NullUtil.getInstance().NULL_OBJECT) {
+                                GDGlobalSpecialAnimationImageResources.instance = GDGlobalSpecialAnimationImageResources()
                             }
 
-                            return instance
+                            return GDGlobalSpecialAnimationImageResources.instance as GDGlobalSpecialAnimationImageResources
                         }
 
                         fun getInstance(): GDGlobalSpecialAnimationImageResources
                         {
-                            return GDGlobalSpecialAnimationImageResources.instance
+                            return GDGlobalSpecialAnimationImageResources.instance as GDGlobalSpecialAnimationImageResources
                         }
 
                         protected val logUtil: LogUtil = LogUtil.getInstance()

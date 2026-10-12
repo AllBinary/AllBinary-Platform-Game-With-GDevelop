@@ -106,7 +106,6 @@ Created By: Travis Berthelot
                 import org.allbinary.string.CommonStrings;
                 import org.allbinary.string.CommonSeps;
                 import org.allbinary.logic.string.StringUtil;
-                
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
@@ -114,23 +113,24 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDRotationBehaviorFactory;
                 import org.allbinary.game.configuration.feature.Features;
                 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
+                import org.allbinary.logic.NullUtil;
 
                 //LayoutGDResources name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources extends SpecialAnimation
                 {
 
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources instance = null;
+                    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
                         
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources getInstanceOrCreate() throws Exception {
-                            if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.instance == null) {
+                            if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.instance == NullUtil.getInstance().NULL_OBJECT) {
                                 GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources();
                             }
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.instance;
+                            return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.instance;
                         }
                         
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources getInstance()
                         {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.instance;
+                            return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.instance;
                         }
 
                         protected final LogUtil logUtil = LogUtil.getInstance();

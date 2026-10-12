@@ -75,29 +75,29 @@ Created By: Travis Berthelot
                 import org.allbinary.media.image.ImageCopyUtil;
                 import org.allbinary.media.image.ImageScaleUtil;
                 import org.allbinary.util.ABHashtable;
+                import org.allbinary.logic.NullUtil;
 
                 //Game name=<xsl:value-of select="$gameName" />
                 public class GDGlobalSpecialAnimationImageResources extends SpecialAnimation
                 {
 
-                    private static GDGlobalSpecialAnimationImageResources instance;
+                    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
 
                         public static GDGlobalSpecialAnimationImageResources getInstanceOrCreate() throws Exception
                         {
-                            if(instance == null) {
-                                instance = new GDGlobalSpecialAnimationImageResources();
+                            if(GDGlobalSpecialAnimationImageResources.instance == NullUtil.getInstance().NULL_OBJECT) {
+                                GDGlobalSpecialAnimationImageResources.instance = new GDGlobalSpecialAnimationImageResources();
                             }
 
-                            return instance;
+                            return (GDGlobalSpecialAnimationImageResources) GDGlobalSpecialAnimationImageResources.instance;
                         }
 
                         public static GDGlobalSpecialAnimationImageResources getInstance()
                         {
-                            return GDGlobalSpecialAnimationImageResources.instance;
+                            return (GDGlobalSpecialAnimationImageResources) GDGlobalSpecialAnimationImageResources.instance;
                         }
 
                         protected final LogUtil logUtil = LogUtil.getInstance();
-                        private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
                         private final ImageScaleUtil imageScaleUtil = ImageScaleUtil.getInstance();
                         private final ImageCache imageCache = ImageCacheFactory.getInstance();

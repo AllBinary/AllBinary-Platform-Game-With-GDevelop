@@ -131,7 +131,7 @@ Created By: Travis Berthelot
                 //Layout name=<xsl:value-of select="$layoutName" />
                 open public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimation : GDSpecialAnimation
                 {
-                    private var instance: GD<xsl:value-of select="$layoutIndex" />SpecialAnimation = null
+                    private var instance: Object = NullUtil.getInstance().NULL_OBJECT
 
                     open public fun getInstance(abCanvas: MyCanvas, allBinaryGameLayerManager: AllBinaryGameLayerManager): GD<xsl:value-of select="$layoutIndex" />SpecialAnimation {
                         val abToGBUtil: ABToGBUtil = ABToGBUtil.getInstance()
@@ -139,17 +139,18 @@ Created By: Travis Berthelot
                         abToGBUtil.abCanvas = abCanvas
                         abToGBUtil.allBinaryGameLayerManager = allBinaryGameLayerManager
 
-                        if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance == null) {
+                        if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance == NullUtil.getInstance().NULL_OBJECT) {
                             GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance = GD<xsl:value-of select="$layoutIndex" />SpecialAnimation()
                         } else {
-                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance.reinitInstances()
+                            final GD<xsl:value-of select="$layoutIndex" />SpecialAnimation myInstance = (GD<xsl:value-of select="$layoutIndex" />SpecialAnimation) GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance;
+                            myInstance.reinitInstances()
                         }
-                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance
+                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance as GD<xsl:value-of select="$layoutIndex" />SpecialAnimation
 
                     }
 
                         open public fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimation {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance
+                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance as GD<xsl:value-of select="$layoutIndex" />SpecialAnimation
                         }
 
                         protected val logUtil: LogUtil = LogUtil.getInstance()

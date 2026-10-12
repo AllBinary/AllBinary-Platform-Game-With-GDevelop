@@ -93,21 +93,22 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDRotationBehaviorFactory
                 import org.allbinary.game.configuration.feature.Features
                 import org.allbinary.graphics.opengles.OpenGLFeatureFactory
+                import org.allbinary.logic.NullUtil;
 
                 open public class GDGlobalsGDResources : SpecialAnimation
                 {
 
-                    private var instance: GDGlobalsGDResources = null
+                    private var instance: Object = NullUtil.getInstance().NULL_OBJECT
 
                         open public fun getInstanceOrCreate(): GDGlobalsGDResources {
-                            if(GDGlobalsGDResources.instance == null) {
+                            if(GDGlobalsGDResources.instance == NullUtil.getInstance().NULL_OBJECT) {
                                 GDGlobalsGDResources.instance = GDGlobalsGDResources()
                             }
-                            return GDGlobalsGDResources.instance
+                            return GDGlobalsGDResources.instance as GDGlobalsGDResources
                         }
 
                         open public fun getInstance(): GDGlobalsGDResources {
-                            return GDGlobalsGDResources.instance
+                            return GDGlobalsGDResources.instance as GDGlobalsGDResources
                         }
 
                         protected val logUtil: LogUtil = LogUtil.getInstance()
