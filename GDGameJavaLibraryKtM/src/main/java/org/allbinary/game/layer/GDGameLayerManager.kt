@@ -29,7 +29,6 @@
 import org.allbinary.game.GameInfo
 import org.allbinary.graphics.color.BasicColor
 import org.allbinary.layer.AllBinaryLayer
-import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.string.CommonStrings
 import org.allbinary.media.graphics.geography.map.BasicGeographicMap
 import org.allbinary.media.graphics.geography.map.GeographicMapCellType
@@ -45,8 +44,6 @@ companion object {
 
         }
             
-    val logUtil: LogUtil = LogUtil.getInstance()!!
-
     private var geographicMapInterfaceArray: Array<BasicGeographicMap?> = BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY
 
     private var geographicMapCellTypeArray: Array<GeographicMapCellType?> = GeographicMapCellType.NULL_GEOGRAPHIC_MAP_CELL_TYPE_ARRAY

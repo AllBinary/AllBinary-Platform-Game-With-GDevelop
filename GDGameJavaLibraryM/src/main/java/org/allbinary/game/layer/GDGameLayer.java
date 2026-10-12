@@ -21,7 +21,6 @@ import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.RotationAnimation;
-import org.allbinary.animation.text.CustomTextAnimation;
 import org.allbinary.animation.text.TextChangeListener;
 import org.allbinary.canvas.Processor;
 import org.allbinary.game.combat.CombatBaseBehavior;
@@ -38,8 +37,6 @@ import org.allbinary.graphics.Rectangle;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.image.opengles.OpenGLSurfaceChangedInterface;
 import org.allbinary.logic.string.StringMaker;
-
-import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.ScaleFactorFactory;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.math.FrameUtil;
@@ -61,8 +58,6 @@ public class GDGameLayer
         //ArtificialIntelligenceCompositeInterface, GameInputInterface,
         //VelocityInterfaceCompositeInterface 
         {
-
-    protected final LogUtil logUtil = LogUtil.getInstance();
 
     protected final StringUtil stringUtil = StringUtil.getInstance();
     protected final FrameUtil frameUtil = FrameUtil.getInstance();
@@ -129,6 +124,7 @@ public class GDGameLayer
             this.gameLayer = gameLayer;
         }
         
+        @Override
         public void onMeasure() {
             this.gameLayer.onMeasure();
         }

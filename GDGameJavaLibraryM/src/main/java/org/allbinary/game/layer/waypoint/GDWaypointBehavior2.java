@@ -1,6 +1,5 @@
 package org.allbinary.game.layer.waypoint;
 
-
 import org.allbinary.game.layer.AllBinaryTiledLayer;
 import org.allbinary.game.layer.PathFindingLayerInterface;
 import org.allbinary.game.layer.SteeringVisitor;
@@ -13,7 +12,6 @@ import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.layer.AllBinaryLayer;
 import org.allbinary.layer.AllBinaryLayerManager;
 import org.allbinary.logic.NullUtil;
-import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
@@ -32,7 +30,6 @@ import org.allbinary.util.BasicArrayListUtil;
 public class GDWaypointBehavior2 
 extends GDWaypointBehavior
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
 
     private final LayerDistanceUtil layerDistanceUtil = LayerDistanceUtil.getInstance();
     private final ThreadPool pathFindingThreadPool = PathFindingThreadPool.getInstance();

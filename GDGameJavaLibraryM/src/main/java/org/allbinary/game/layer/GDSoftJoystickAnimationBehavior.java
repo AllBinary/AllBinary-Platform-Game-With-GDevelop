@@ -21,14 +21,12 @@ import org.allbinary.game.layout.GDObject;
 import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.PointFactory;
 import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
-import org.allbinary.logic.communication.log.LogUtil;
 
 /**
  *
  * @author User
  */
 public class GDSoftJoystickAnimationBehavior extends GDAnimationBehaviorBase {
-    protected final LogUtil logUtil = LogUtil.getInstance();
     
     private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
     

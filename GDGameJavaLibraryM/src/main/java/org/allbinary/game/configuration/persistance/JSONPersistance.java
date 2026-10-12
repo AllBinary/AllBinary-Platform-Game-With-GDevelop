@@ -24,14 +24,12 @@ import org.allbinary.TsUtil;
 
 import org.allbinary.logic.string.StringMaker;
 
-import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 
 public class JSONPersistance extends BasicPersitance
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
     
     private final TsUtil tsUtil = TsUtil.getInstance();
 

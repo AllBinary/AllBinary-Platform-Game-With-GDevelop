@@ -34,7 +34,6 @@ import org.allbinary.game.layout.GDObject
 import org.allbinary.graphics.GPoint
 import org.allbinary.graphics.PointFactory
 import org.allbinary.input.motion.gesture.TouchMotionGestureFactory
-import org.allbinary.logic.communication.log.LogUtil
 
 open public class GDSoftJoystickAnimationBehavior : GDAnimationBehaviorBase {
         
@@ -44,8 +43,6 @@ open public class GDSoftJoystickAnimationBehavior : GDAnimationBehaviorBase {
             {
             }            
         
-    val logUtil: LogUtil = LogUtil.getInstance()!!
-
     private val touchMotionGestureFactory: TouchMotionGestureFactory = TouchMotionGestureFactory.getInstance()!!
 
     private var initialX: Int= 0

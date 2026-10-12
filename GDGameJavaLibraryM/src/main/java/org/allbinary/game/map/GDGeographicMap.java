@@ -50,10 +50,6 @@ import org.mapeditor.core.TileSet;
 import org.mapeditor.core.TiledMap;
 
 public class GDGeographicMap extends RaceTrackGeographicMap {
-    protected final LogUtil logUtil = LogUtil.getInstance();
-
-
-    protected final CommonStrings commonStrings = CommonStrings.getInstance();
     
     private final TiledMap map;
     

@@ -17,6 +17,7 @@ import org.allbinary.graphics.Rectangle;
 import org.allbinary.graphics.RectangleFactory;
 import org.allbinary.layer.AllBinaryLayer;
 import org.allbinary.layer.LayerInterfaceFactoryInterface;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.util.ABHashtable;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListD;
@@ -91,7 +92,7 @@ public class GDFlagLayerInterfaceFactory
             layerInfo,
             rectangleArrayOfArrays, false);
         
-        final GDObject gdObject = new GDObject(0, 0, GDFlagLayerInterfaceFactory.NAME, null);
+        final GDObject gdObject = new GDObject(0, 0, GDFlagLayerInterfaceFactory.NAME, StringUtil.getInstance().EMPTY_STRING);
         gdObject.set(null, x, y, z);
         
         final GDGameLayer layer = gameLayerFactory.create(-1, GDFlagLayerInterfaceFactory.NAME, gdObject, 0, 0, new GDConditionWithGroupActions());

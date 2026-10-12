@@ -35,7 +35,6 @@ import org.allbinary.animation.AnimationInterfaceFactoryInterface
 import org.allbinary.animation.IndexedAnimation
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface
 import org.allbinary.animation.RotationAnimation
-import org.allbinary.animation.text.CustomTextAnimation
 import org.allbinary.animation.text.TextChangeListener
 import org.allbinary.canvas.Processor
 import org.allbinary.game.combat.CombatBaseBehavior
@@ -52,7 +51,6 @@ import org.allbinary.graphics.Rectangle
 import org.allbinary.graphics.color.BasicColor
 import org.allbinary.image.opengles.OpenGLSurfaceChangedInterface
 import org.allbinary.logic.string.StringMaker
-import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.logic.math.ScaleFactorFactory
 import org.allbinary.logic.string.StringUtil
 import org.allbinary.math.FrameUtil
@@ -71,8 +69,6 @@ companion object {
 
         }
             
-    val logUtil: LogUtil = LogUtil.getInstance()!!
-
     val stringUtil: StringUtil = StringUtil.getInstance()!!
 
     val frameUtil: FrameUtil = FrameUtil.getInstance()!!
@@ -153,7 +149,7 @@ this.gameLayer= gameLayer
 }
 
 
-    open fun onMeasure()
+    override fun onMeasure()
         //nullable = true from not(false or (false and true)) = true
 {
 this.gameLayer!!.onMeasure()

@@ -34,7 +34,6 @@ import javax.microedition.rms.RecordEnumeration
 import javax.microedition.rms.RecordStore
 import org.allbinary.TsUtil
 import org.allbinary.logic.string.StringMaker
-import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.logic.math.SmallIntegerSingletonFactory
 import org.allbinary.logic.string.StringUtil
 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
@@ -47,8 +46,6 @@ companion object {
 
         }
             
-    val logUtil: LogUtil = LogUtil.getInstance()!!
-
     private val tsUtil: TsUtil = TsUtil.getInstance()!!
 public constructor (recordId: String)                        
 

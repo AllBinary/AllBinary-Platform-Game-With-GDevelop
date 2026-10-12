@@ -29,8 +29,6 @@ import org.allbinary.math.FrameUtil;
  */
 public class GDRotationBehavior extends GDAnimationBehaviorBase {
     
-    protected final LogUtil logUtil = LogUtil.getInstance();
-
     protected final FrameUtil frameUtil = FrameUtil.getInstance();
     
     public RotationAnimation[] rotationAnimationInterfaceArray;
@@ -123,6 +121,7 @@ public class GDRotationBehavior extends GDAnimationBehaviorBase {
         //}
     }
 
+    @Override
     public void toString(final GDObject gdObject, final StringMaker stringBuffer) {
         final RotationAnimation rotationAnimation = this.rotationAnimationInterfaceArray[gdObject.animation];
         stringBuffer.append(GraphicsStrings.getInstance().ANGLE).appendint(rotationAnimation.getAngleInfoP().getAngle());

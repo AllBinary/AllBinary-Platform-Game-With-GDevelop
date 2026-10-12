@@ -38,8 +38,6 @@ open public class PlayerInput : PlayerGameInput
                 , UpKeyEventListenerInterface {
         
 
-    val logUtil: LogUtil = LogUtil.getInstance()!!
-
     private val keyEventList: BasicArrayList
 
     private val removalKeyEventList: BasicArrayList

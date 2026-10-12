@@ -44,8 +44,6 @@ open public class GDRotationBehavior : GDAnimationBehaviorBase {
             {
             }            
         
-    val logUtil: LogUtil = LogUtil.getInstance()!!
-
     val frameUtil: FrameUtil = FrameUtil.getInstance()!!
 
     var rotationAnimationInterfaceArray: Array<RotationAnimation?>
@@ -183,7 +181,7 @@ value++
 }
 
 
-    open fun toString(gdObject: GDObject, stringBuffer: StringMaker)
+    override fun toString(gdObject: GDObject, stringBuffer: StringMaker)
         //nullable = true from not(false or (true and false)) = true
 {
     //var gdObject = gdObject

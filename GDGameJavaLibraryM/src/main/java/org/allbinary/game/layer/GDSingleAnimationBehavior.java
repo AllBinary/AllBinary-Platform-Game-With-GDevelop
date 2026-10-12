@@ -16,16 +16,12 @@ package org.allbinary.game.layer;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.logic.string.StringMaker;
 
 /**
  *
  * @author User
  */
 public class GDSingleAnimationBehavior extends GDAnimationBehaviorBase {
-    protected final LogUtil logUtil = LogUtil.getInstance();
-
     
     private static final GDSingleAnimationBehavior instance = new GDSingleAnimationBehavior();
 

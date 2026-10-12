@@ -26,7 +26,6 @@ import org.allbinary.graphics.color.BasicColorFactory
 import org.allbinary.layer.AllBinaryLayer
 import org.allbinary.layer.AllBinaryLayerManager
 import org.allbinary.logic.NullUtil
-import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.string.CommonSeps
 import org.allbinary.string.CommonStrings
 import org.allbinary.logic.string.StringMaker
@@ -84,8 +83,6 @@ companion object {
 
         }
             
-    val logUtil: LogUtil = LogUtil.getInstance()!!
-
     private val layerDistanceUtil: LayerDistanceUtil = LayerDistanceUtil.getInstance()!!
 
     private val pathFindingThreadPool: ThreadPool = PathFindingThreadPool.getInstance()!!

@@ -63,10 +63,6 @@ import org.mapeditor.core.TiledMap
 open public class GDGeographicMap : RaceTrackGeographicMap {
         
 
-    val logUtil: LogUtil = LogUtil.getInstance()!!
-
-    val commonStrings: CommonStrings = CommonStrings.getInstance()!!
-
     private val map: TiledMap
 
     private val animationTileIndexArray: IntArray
