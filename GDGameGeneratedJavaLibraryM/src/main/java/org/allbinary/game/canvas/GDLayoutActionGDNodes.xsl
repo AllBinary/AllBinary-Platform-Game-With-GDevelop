@@ -168,7 +168,7 @@ Created By: Travis Berthelot
 
                         //private final GD<xsl:value-of select="$layoutIndex" />ActionGDNodes gd<xsl:value-of select="$layoutIndex" />ActionGDNodes = GD<xsl:value-of select="$layoutIndex" />ActionGDNodes.getInstance();
                         
-                        private final AbeClientInformationInterface abeClientInformation = GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION;
+                        private final AbeClientInformationInterface abeClientInformation = (AbeClientInformationInterface) GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION;
 
                     private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes() {
 

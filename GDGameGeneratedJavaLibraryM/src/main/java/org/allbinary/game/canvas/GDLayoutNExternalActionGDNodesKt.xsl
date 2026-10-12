@@ -181,7 +181,7 @@ Created By: Travis Berthelot
                         private val imageResources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance()
                         private val resources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance()
 
-                        private val abeClientInformation: AbeClientInformationInterface = GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION
+                        private val abeClientInformation: AbeClientInformationInterface = GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION as AbeClientInformationInterface
 
         <xsl:call-template name="scaleProperty" >
             <xsl:with-param name="layoutIndex" >

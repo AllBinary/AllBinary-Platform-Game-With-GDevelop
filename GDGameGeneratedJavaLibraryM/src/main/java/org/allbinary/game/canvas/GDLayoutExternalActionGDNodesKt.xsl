@@ -123,7 +123,7 @@ Created By: Travis Berthelot
 
                         //private final GD<xsl:value-of select="$layoutIndex" />var gd<xsl:value-of select="$layoutIndex" />ExternalActionGDNodes: ExternalActionGDNodes = GD<xsl:value-of select="$layoutIndex" />ExternalActionGDNodes.getInstance()
 
-                        private val abeClientInformation: AbeClientInformationInterface = GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION
+                        private val abeClientInformation: AbeClientInformationInterface = (AbeClientInformationInterface) GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION
 
                     private constructor() : super(AnimationBehavior.getInstance()) {
 

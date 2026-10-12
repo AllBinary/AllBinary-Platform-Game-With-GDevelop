@@ -140,7 +140,7 @@ Created By: Travis Berthelot
 
                             final PointFactory pointFactory = PointFactory.getInstance();
 
-                            final ABHashtable hashTable = imageCache.getHashtableP();
+                            final ABHashtable&lt;Object, Object<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> hashTable = imageCache.getHashtableP();
 
                     <xsl:call-template name="imageCache" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >

@@ -132,7 +132,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
                             <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />
 
-                            val hashTable: ABHashtable = imageCache.getHashtableP()
+                            val hashTable: ABHashtable&lt;Any, Any<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> = imageCache.getHashtableP()
 
                     <xsl:call-template name="imageCache" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >

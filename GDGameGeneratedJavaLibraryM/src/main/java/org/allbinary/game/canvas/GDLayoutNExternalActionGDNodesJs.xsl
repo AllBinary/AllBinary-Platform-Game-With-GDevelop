@@ -183,7 +183,7 @@ Created By: Travis Berthelot
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
 
-                        private final AbeClientInformationInterface abeClientInformation = GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION;
+                        private final AbeClientInformationInterface abeClientInformation = (AbeClientInformationInterface) GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION;
 
         <xsl:call-template name="scaleProperty" >
             <xsl:with-param name="layoutIndex" >

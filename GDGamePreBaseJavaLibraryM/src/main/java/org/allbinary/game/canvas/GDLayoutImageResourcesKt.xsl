@@ -144,7 +144,7 @@ Created By: Travis Berthelot
 
                             val pointFactory: PointFactory = PointFactory.getInstance()
 
-                            val hashTable: ABHashtable = imageCache.getHashtableP()
+                            val hashTable: ABHashtable&lt;Any, Any<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> = imageCache.getHashtableP()
 
                     <xsl:call-template name="imageCache" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
