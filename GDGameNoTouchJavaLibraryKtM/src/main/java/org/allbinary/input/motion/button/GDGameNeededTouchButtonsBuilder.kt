@@ -43,8 +43,6 @@ companion object {
 : BaseTouchInput{
 var sensorGameUpdateProcessor = sensorGameUpdateProcessor
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDGameNeededTouchButtonsBuilder.instance
 }

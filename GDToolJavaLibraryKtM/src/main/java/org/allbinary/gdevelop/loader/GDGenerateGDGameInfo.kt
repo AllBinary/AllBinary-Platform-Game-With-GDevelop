@@ -133,7 +133,7 @@ gdGameInfo!!.externalLayoutsTotalPerLayoutPositionList!!.add(.parseInt())
         {
 externalLayoutIndexList= BasicArrayListD()
 externalLayoutsIndexAsStringList= Tokenizer(this.commonSeps!!.COMMA).
-                            getTokensFromString(externalLayoutsIndexGroupAsStringList!!.get(index) as String, BasicArrayListD())
+                            getTokensFromString(externalLayoutsIndexGroupAsStringList!!.get(index) as String, BasicArrayListD())!!
 
 
 
@@ -179,8 +179,6 @@ stringMaker!!.delete(0, stringMaker!!.length())
 this.logUtil!!.putF(stringMaker!!.append("result: ")!!.append(result)!!.toString(), this, this.commonStrings!!.PROCESS)
 stringMaker!!.delete(0, stringMaker!!.length())
 this.logUtil!!.putF(stringMaker!!.append("gdGameInfo: ")!!.append(gdGameInfo!!.toString())!!.toString(), this, this.commonStrings!!.PROCESS)
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return gdGameInfo

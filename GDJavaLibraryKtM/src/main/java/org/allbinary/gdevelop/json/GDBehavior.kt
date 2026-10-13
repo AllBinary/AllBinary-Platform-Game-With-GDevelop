@@ -37,8 +37,8 @@ public constructor (jsonObject: JSONObject)
 
     var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!!
 
-this.type= jsonObject!!.getString(gdProjectStrings!!.TYPE)
-this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)
+this.type= jsonObject!!.getString(gdProjectStrings!!.TYPE)!!
+this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)!!
 this.jsonObject= jsonObject
 }
 

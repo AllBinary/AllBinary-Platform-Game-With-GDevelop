@@ -77,8 +77,8 @@ open public class GDTransformGenerator : GDNameGenerator {
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
 
-result= replaceLT!!.all(result)
-result= this.format(result)
+result= replaceLT!!.all(result)!!
+result= this.format(result)!!
 this.logUtil!!.putF(this.gdToolStrings!!.FILENAME +outputFile, this, this.commonStrings!!.PROCESS)
 this.bufferedWriterUtil!!.overwrite(outputFile, result)
 }
@@ -92,8 +92,6 @@ this.bufferedWriterUtil!!.overwrite(outputFile, result)
     //var updatedXslDocumentStr = updatedXslDocumentStr
     //var xmlDocumentStr = xmlDocumentStr
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentStr)), StreamSource(StringBufferInputStream(xmlDocumentStr)))
 }
@@ -105,8 +103,6 @@ this.bufferedWriterUtil!!.overwrite(outputFile, result)
         //nullable = true from not(false or (false and false)) = true
 : String{
 var result = result
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return result

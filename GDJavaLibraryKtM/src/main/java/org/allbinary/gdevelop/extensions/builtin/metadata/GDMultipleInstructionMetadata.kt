@@ -52,8 +52,6 @@ this.expression.addParameter(type, label, optionalObjectType, parameterIsOptiona
 this.conditionInstructionMetadata!!.addParameter(type, label, optionalObjectType, parameterIsOptional)
 this.actionInstructionMetadata!!.addParameter(type, label, optionalObjectType, parameterIsOptional)
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this
 }
@@ -65,8 +63,6 @@ this.actionInstructionMetadata!!.addParameter(type, label, optionalObjectType, p
     //var type = type
 this.conditionInstructionMetadata!!.useStandardRelationalOperatorParameters(type)
 this.actionInstructionMetadata!!.useStandardOperatorParameters(type)
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this

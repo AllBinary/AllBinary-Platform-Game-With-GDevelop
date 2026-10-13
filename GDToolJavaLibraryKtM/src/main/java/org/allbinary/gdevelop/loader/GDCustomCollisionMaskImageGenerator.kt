@@ -101,8 +101,6 @@ gdImageMaskGenerator!!.process()
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 
@@ -127,16 +125,12 @@ gdImageMaskGenerator!!.process()
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 
                                     }
                                 
 }
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -252,8 +246,6 @@ maxY++
 
 System.out.println(rectangle.toString())
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return rectangle
 }
@@ -305,7 +297,7 @@ System.out.println(rectangle.toString())
     var periodIndex: Int = imagePath!!.lastIndexOf('.')
 
 imagePath2= StringMaker().
-                            append(imagePath!!.substring(0, underScoreIndex +1))!!.append(this.ONE)!!.append(imagePath!!.substring(periodIndex))!!.toString()
+                            append(imagePath!!.substring(0, underScoreIndex +1))!!.append(this.ONE)!!.append(imagePath!!.substring(periodIndex))!!.toString()!!
 
     var abFile2: AbFile = AbFile.createAbFileFromRawPath(this.gdPaths!!.TWOD_RESOURCES_PATH +imagePath2)!!
 
@@ -398,8 +390,6 @@ firstCustomCollisionMaskJSONArray!!.put(topLeftJSONObject)
 firstCustomCollisionMaskJSONArray!!.put(topRightJSONObject)
 firstCustomCollisionMaskJSONArray!!.put(bottomRightJSONObject)
 firstCustomCollisionMaskJSONArray!!.put(bottomLeftJSONObject)
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return customCollisionMaskJSONArray

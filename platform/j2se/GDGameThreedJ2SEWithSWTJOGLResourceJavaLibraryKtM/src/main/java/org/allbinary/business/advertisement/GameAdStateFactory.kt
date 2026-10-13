@@ -29,8 +29,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GameAdStateFactory{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return instance
 }
@@ -51,8 +49,6 @@ companion object {
         //nullable = true from not(false or (false and true)) = true
 : GameAdState{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.gameAdState
 }
@@ -70,8 +66,6 @@ companion object {
                         
                                     {
                                     this.gameAdState= gameAdStateArray[0]!!
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return gameAdStateArray[0]!!

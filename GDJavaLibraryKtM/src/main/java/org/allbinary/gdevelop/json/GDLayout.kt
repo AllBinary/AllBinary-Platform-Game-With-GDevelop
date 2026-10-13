@@ -68,14 +68,14 @@ public constructor (jsonObject: JSONObject)
 
     var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!!
 
-this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)
-this.basicColor= BasicColorFactory.getInstance()!!.createInstanceARGB(BasicColorUtil.getInstance()!!.ALPHA, jsonObject!!.getInt(gdProjectStrings!!.R), jsonObject!!.getInt(gdProjectStrings!!.G_V), jsonObject!!.getInt(gdProjectStrings!!.B), this.name)
+this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)!!
+this.basicColor= BasicColorFactory.getInstance()!!.createInstanceARGB(BasicColorUtil.getInstance()!!.ALPHA, jsonObject!!.getInt(gdProjectStrings!!.R), jsonObject!!.getInt(gdProjectStrings!!.G_V), jsonObject!!.getInt(gdProjectStrings!!.B), this.name)!!
 
     
                         if(jsonObject!!.has(gdProjectStrings!!.TITLE))
                         
                                     {
-                                    this.title= jsonObject!!.getString(gdProjectStrings!!.TITLE)
+                                    this.title= jsonObject!!.getString(gdProjectStrings!!.TITLE)!!
 
                                     }
                                 
@@ -106,7 +106,7 @@ this.disableInputWhenNotFocused= jsonObject!!.getBoolean(gdProjectStrings!!.DISA
                         for (index in 0 until size)
 
         {
-nextJSONObject= objectJSONArray!!.getJSONObject(index)
+nextJSONObject= objectJSONArray!!.getJSONObject(index)!!
 this.objectList!!.add(objectFactory!!.create(nextJSONObject))
 }
 
@@ -121,7 +121,7 @@ size= initialInstancesJSONArray!!.length()
                         for (index in 0 until size)
 
         {
-nextJSONObject= initialInstancesJSONArray!!.getJSONObject(index)
+nextJSONObject= initialInstancesJSONArray!!.getJSONObject(index)!!
 this.initialInstanceList!!.add(GDInitialInstance(nextJSONObject))
 }
 
@@ -150,7 +150,7 @@ size= layersJSONArray!!.length()
                         for (index in 0 until size)
 
         {
-nextJSONObject= layersJSONArray!!.getJSONObject(index)
+nextJSONObject= layersJSONArray!!.getJSONObject(index)!!
 this.layerList!!.add(GDLayer(nextJSONObject))
 }
 
@@ -165,7 +165,7 @@ size= behaviorsJSONArray!!.length()
                         for (index in 0 until size)
 
         {
-nextJSONObject= behaviorsJSONArray!!.getJSONObject(index)
+nextJSONObject= behaviorsJSONArray!!.getJSONObject(index)!!
 this.behaviorContentList!!.add(GDBehavior(nextJSONObject))
 }
 
@@ -186,7 +186,7 @@ size= eventJSONArray!!.length()
                         for (index in 0 until size)
 
         {
-event= eventFactory!!.create(eventJSONArray!!.getJSONObject(index))
+event= eventFactory!!.create(eventJSONArray!!.getJSONObject(index))!!
 
     
                         if(event != GDEvent.NULL_GDEVENT)

@@ -65,7 +65,8 @@ public constructor ()
     var columns: Int = raceTrackData!!.getMapArray()[0]!!.length
 
 
-    var rows: Int = raceTrackData!!.getMapArray()!!.length
+    var rows: Int = raceTrackData!!.getMapArray()!!.size
+                
 
 
     var width: Int = columns *raceTrackData!!.getCellWidth()
@@ -74,8 +75,6 @@ public constructor ()
     var height: Int = rows *raceTrackData!!.getCellHeight()
 
 this.useAsMiniAllBinaryTiledLayer= AllBinaryThreedVisibleTiledLayer(raceTrackData!!.getId(), raceTrackData!!.getMapArray(), animationInterfaceArray, columns, rows, width, height, raceTrackData!!.getCellWidth(), raceTrackData!!.getCellHeight(), 9)
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.useAsMiniAllBinaryTiledLayer
@@ -88,8 +87,6 @@ this.useAsMiniAllBinaryTiledLayer= AllBinaryThreedVisibleTiledLayer(raceTrackDat
         //nullable = true from not(false or (false and false)) = true
 : AllBinaryTiledLayer{
     //var raceTrackData = raceTrackData
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.useAsMiniAllBinaryTiledLayer

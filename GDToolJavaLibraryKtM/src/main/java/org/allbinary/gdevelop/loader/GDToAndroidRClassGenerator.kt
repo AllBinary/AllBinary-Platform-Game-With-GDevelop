@@ -78,8 +78,6 @@ this.androidRFileStringMaker!!.append(this.commonSeps!!.NEW_LINE)
                                     {
                                     this.logUtil!!.putF(this.SKIPPING +fileAsString, this, this.commonStrings!!.PROCESS)
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 

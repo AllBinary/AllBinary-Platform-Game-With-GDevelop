@@ -46,8 +46,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GDJSONPersistence{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDJSONPersistence.instance
 }
@@ -87,8 +85,6 @@ sharedBytes!!.outputStream!!.reset()
 
 
     var gameAsConfigurationJSONObject: JSONObject = jsonTokener!!.nextValue() as JSONObject
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.

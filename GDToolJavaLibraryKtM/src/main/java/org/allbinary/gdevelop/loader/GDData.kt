@@ -45,8 +45,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GDData{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return instance
 }
@@ -307,8 +305,6 @@ sharedBytes!!.outputStream!!.reset()
 this.xslPathList!!.add(xslPath)
 this.xslDataList!!.add(xslAsString)
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return xslAsString
 
@@ -316,8 +312,6 @@ this.xslDataList!!.add(xslAsString)
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.xslDataList!!.get(index) as String
 

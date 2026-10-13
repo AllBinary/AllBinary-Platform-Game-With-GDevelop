@@ -48,8 +48,6 @@ GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION= GDGameClientInformationInterfac
                                     }
                                 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDGameMIDletFactory.SINGLETON
 }

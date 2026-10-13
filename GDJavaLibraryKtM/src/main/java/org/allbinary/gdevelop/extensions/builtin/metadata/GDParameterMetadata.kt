@@ -62,8 +62,6 @@ this.codeOnly= codeOnly
     //var longDescription = longDescription
 this.longDescription= longDescription
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this
 }
@@ -74,8 +72,6 @@ this.longDescription= longDescription
 : GDParameterMetadata{
     //var defaultValue = defaultValue
 this.defaultValue= defaultValue
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this

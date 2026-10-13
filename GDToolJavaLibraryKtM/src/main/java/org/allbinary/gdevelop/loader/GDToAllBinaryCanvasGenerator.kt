@@ -60,9 +60,9 @@ this.path= path
     //var index = index
     //var size = size
 this.index= index
-this.name= this.camelCaseUtil!!.getAsCamelCase(layout.name, this.stringMaker)
+this.name= this.camelCaseUtil!!.getAsCamelCase(layout.name, this.stringMaker)!!
 this.stringMaker!!.delete(0, this.stringMaker!!.length())
-this.className= this.stringMaker!!.append("GDGame")!!.append(this.name)!!.append("Canvas")!!.toString()
+this.className= this.stringMaker!!.append("GDGame")!!.append(this.name)!!.append("Canvas")!!.toString()!!
 this.origXslPath= this.xslPath
 }
 

@@ -122,16 +122,12 @@ this.processObjects(jsonObject)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
                                     }
                                 
 }
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -168,14 +164,14 @@ System.out.println("Object Total: " +jsonArray!!.length())
                         for (index in 0 until size)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
-type= jsonObject!!.getString(this.gdProjectStrings!!.TYPE)
+jsonObject= jsonArray!!.getJSONObject(index)!!
+type= jsonObject!!.getString(this.gdProjectStrings!!.TYPE)!!
 
     
                         if(type.compareTo(this.gdProjectStrings!!.SPRITE) == 0)
                         
                                     {
-                                    name= jsonObject!!.getString(this.gdProjectStrings!!.NAME)
+                                    name= jsonObject!!.getString(this.gdProjectStrings!!.NAME)!!
 
     
                         if(this.processObjects(name))
@@ -229,8 +225,8 @@ this.processAnimations(jsonArray)
                         for (index in 0 until size)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
-animationsJSONArray= jsonObject!!.getJSONArray(this.gdProjectStrings!!.DIRECTIONS)
+jsonObject= jsonArray!!.getJSONObject(index)!!
+animationsJSONArray= jsonObject!!.getJSONArray(this.gdProjectStrings!!.DIRECTIONS)!!
 this.processDirections(animationsJSONArray)
 }
 
@@ -259,8 +255,8 @@ this.processDirections(animationsJSONArray)
                         for (index in 0 until size)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
-spritesJSONArray= jsonObject!!.getJSONArray(this.gdProjectStrings!!.SPRITES)
+jsonObject= jsonArray!!.getJSONObject(index)!!
+spritesJSONArray= jsonObject!!.getJSONArray(this.gdProjectStrings!!.SPRITES)!!
 this.processSprites(spritesJSONArray)
 }
 
@@ -286,7 +282,7 @@ this.processSprites(spritesJSONArray)
                         for (index in 0 until size)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
+jsonObject= jsonArray!!.getJSONObject(index)!!
 this.updateSprite(jsonObject)
 }
 

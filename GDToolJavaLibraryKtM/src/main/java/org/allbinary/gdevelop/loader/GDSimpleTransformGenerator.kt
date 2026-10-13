@@ -66,8 +66,6 @@ var result = result
 
         try {
             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return XmlDocumentHelper.getInstance()!!.format(result)
 } catch(e: Exception)

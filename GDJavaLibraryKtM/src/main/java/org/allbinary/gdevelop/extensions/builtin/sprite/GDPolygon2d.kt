@@ -54,7 +54,7 @@ public constructor (jsonArray: JSONArray)
                         for (index in 0 until size)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
+jsonObject= jsonArray!!.getJSONObject(index)!!
 this.pointList!!.add(pointFactory!!.createXY(jsonObject!!.getInt(projectStrings!!.X), jsonObject!!.getInt(projectStrings!!.Y)))
 }
 

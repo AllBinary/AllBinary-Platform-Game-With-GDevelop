@@ -44,8 +44,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GDResourceSelection{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDResourceSelection.instance
 }
@@ -128,8 +126,6 @@ resourceStringMaker!!.append(this.commonSeps!!.COMMENT)
                                     }
                                 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return used
 }
@@ -203,8 +199,6 @@ resourceStringMaker!!.append(this.commonSeps!!.COMMENT)
                                     }
                                 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return used
 }
@@ -268,8 +262,6 @@ resourceStringMaker!!.append(this.commonSeps!!.COMMENT)
                                     }
                                 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return used
 }
@@ -318,8 +310,6 @@ this.logUtil!!.putF(stringMaker!!.append("hasRotationImages: ")!!.appendboolean(
 
                                     }
                                 
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.hasRotationImages

@@ -35,8 +35,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GDObjectFactory{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDObjectFactory.instance
 }
@@ -71,8 +69,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDSpriteObject(this.SPRITE, jsonObject)
 
@@ -84,8 +80,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDParticleSystemParticleEmitterObject(this.PARTICLE_SYSTEM_PARTICLE_EMITTER, jsonObject)
 
@@ -97,8 +91,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDTileMapObject(this.TILE_MAP, jsonObject)
 
@@ -106,8 +98,6 @@ companion object {
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDObject(type, jsonObject)
 

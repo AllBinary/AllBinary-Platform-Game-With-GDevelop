@@ -72,8 +72,6 @@ stringBuffer!!.append(abPath!!.toString())
 stringBuffer!!.append(" is a urlglobal")
 this.logUtil!!.putF(stringBuffer!!.toString(), this, "resolve")
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return null
 } catch(e: TransformerException)
@@ -104,14 +102,10 @@ this.logUtil!!.putF(stringBuffer!!.toString(), this, "resolve")
 
 stringBuffer!!.append("/{import url}")
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return stringBuffer!!.toString()
 } catch(e: Exception)
             {
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return "BasicUriResolver - Does not work without webapp path should be changed"

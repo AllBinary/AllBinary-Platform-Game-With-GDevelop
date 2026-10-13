@@ -32,8 +32,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : InApplicationPurchaseFactory{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return InApplicationPurchaseFactory.instance
 }
@@ -108,8 +106,6 @@ var lockableFeature = lockableFeature
 : Boolean{
 var lockableFeature = lockableFeature
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 }
@@ -126,8 +122,6 @@ var lockableFeature = lockableFeature
         //nullable = true from not(false or (false and true)) = true
 : String{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return StringUtil.getInstance()!!.EMPTY_STRING
 }
@@ -136,8 +130,6 @@ var lockableFeature = lockableFeature
     open fun isEnabled()
         //nullable = true from not(false or (false and true)) = true
 : Boolean{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false

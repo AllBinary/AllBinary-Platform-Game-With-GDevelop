@@ -147,7 +147,7 @@ public class GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInt
     private final int animationScale = 1;
         </xsl:if>
     
-    public GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(final ABHashtable hashtable, final ABHashtable rectangleHashtable, final ABHashtable rectangleArrayHashtable)
+    public GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(final ABHashtable&lt;Object, Object<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> hashtable, final ABHashtable&lt;Object, Object<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> rectangleHashtable, final ABHashtable&lt;Object, Object<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> rectangleArrayHashtable)
     {
         super("Game Image Animations", hashtable, rectangleHashtable, rectangleArrayHashtable);
     }

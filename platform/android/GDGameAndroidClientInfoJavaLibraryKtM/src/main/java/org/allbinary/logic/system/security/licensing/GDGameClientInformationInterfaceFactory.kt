@@ -23,8 +23,6 @@ companion object {
         //nullable = true from not(false or (false and true)) = true
 : ClientInformationFactory{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return instance
 }
@@ -40,8 +38,6 @@ companion object {
     open fun getInstance()
         //nullable =  from not(true or (false and true)) = 
 : ClientInformation{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDGameAndroidMobileClientInformation.instance

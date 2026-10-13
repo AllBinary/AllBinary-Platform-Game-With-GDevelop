@@ -119,7 +119,6 @@ import org.allbinary.util.ABHashtable;
 public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
-    private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final PointFactory pointFactory = PointFactory.getInstance();
 
     private final GDGlobalSpecialAnimationResources specialAnimationResources = GDGlobalSpecialAnimationResources.getInstance();
@@ -148,6 +147,7 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
         super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
     
+    @Override
     public void init(int level)
     throws Exception
     {
@@ -205,7 +205,8 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-        
+
+    @Override
     public boolean isLoadingLevel(int level)
     {
         if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
@@ -217,7 +218,8 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
             return super.isLoadingLevel(level);
         }
     }
-    
+
+    @Override    
     public boolean isFeature()
     {
         Features features = Features.getInstance();

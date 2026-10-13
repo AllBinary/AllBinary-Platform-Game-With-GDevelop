@@ -202,8 +202,7 @@ logUtil!!.putF(commonStrings!!.START, this, "getBackground")
     var view: View = this.getRootView()!!
 
 
-    var bitmap: Bitmap = 
-                                    (drawable as BitmapDrawable).getBitmap()!!
+    var bitmap: Bitmap = (drawable as BitmapDrawable).getBitmap()!!
 
 
     var hashtable: ABHashtable<Any, Any> = ImageCacheFactory.getInstance()!!.getHashtableP()!!

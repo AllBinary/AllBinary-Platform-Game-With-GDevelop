@@ -46,8 +46,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GDGameTitleAnimationFactory{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDGameTitleAnimationFactory.instance
 }
@@ -82,8 +80,6 @@ deltaXArray[1]= 52
 deltaYArray[0]= 0
 deltaYArray[1]= 30
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return TitleAnimation.createAnimation(animationInterfaceArray, basicColorArray, deltaXArray, deltaYArray, 15, 120)
 }
@@ -107,10 +103,8 @@ deltaYArray[1]= 30
     var points: Array<Array<IntArray?>?> = vectorExplosionGenerator!!.getInstance(titleVectorData!!.testPoints, 6, vectorExplosionGenerator!!.RANDOM)!!
 
 animationInterfaceArray[0]= ColorLessVectorAnimation(points, AnimationBehavior.getInstance())
-points= vectorExplosionGenerator!!.getInstance(titleVectorData!!.gamePoints, 6, vectorExplosionGenerator!!.RANDOM)
+points= vectorExplosionGenerator!!.getInstance(titleVectorData!!.gamePoints, 6, vectorExplosionGenerator!!.RANDOM)!!
 animationInterfaceArray[1]= ColorLessVectorAnimation(points, AnimationBehavior.getInstance())
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return animationInterfaceArray

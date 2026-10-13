@@ -118,8 +118,6 @@ var eventObject = eventObject
 : Int{
 var gameLayerAsItem = gameLayerAsItem
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return  -1
 }
@@ -143,8 +141,6 @@ var itemNum = itemNum
 : GDGameLayer?{
 var itemNum = itemNum
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return null
 }
@@ -154,8 +150,6 @@ var itemNum = itemNum
         //nullable = true from not(false or (false and true)) = true
 : Int{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return  -1
 }
@@ -164,8 +158,6 @@ var itemNum = itemNum
     open fun getWidth()
         //nullable = true from not(false or (false and true)) = true
 : Int{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return  -1
@@ -198,8 +190,6 @@ var iListener = iListener
     open fun size()
         //nullable = true from not(false or (false and true)) = true
 : Int{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 0
@@ -275,8 +265,6 @@ var keyCode = keyCode
 var top = top
 var bottom = bottom
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return  -1
 }
@@ -286,8 +274,6 @@ var bottom = bottom
         //nullable = true from not(false or (false and false)) = true
 : Int{
 var top = top
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return  -1
@@ -299,8 +285,6 @@ var top = top
 : Int{
 var bottom = bottom
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return  -1
 }
@@ -310,8 +294,6 @@ var bottom = bottom
         //nullable = true from not(false or (false and false)) = true
 : Int{
 var itemIndex = itemIndex
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return  -1

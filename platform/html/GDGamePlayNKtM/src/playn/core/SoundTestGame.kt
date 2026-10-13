@@ -74,7 +74,7 @@ private var touchVectorY: Float= 0.0f
     var graphics: Graphics = PlayN.graphics()!!
 
 graphics.setSize(800, 600)
-this.gameLayer= graphics.createSurfaceLayer(graphics.width(), graphics.height())
+this.gameLayer= graphics.createSurfaceLayer(graphics.width(), graphics.height())!!
 graphics.rootLayer()!!.add(this.gameLayer)
 PlayN.keyboard()!!.setListener(this)
 PlayN.pointer()!!.setListener(object: Pointer.Listener()
@@ -84,7 +84,8 @@ PlayN.pointer()!!.setListener(object: Pointer.Listener()
         //nullable = true from not(false or (false and false)) = true
 {
 var event = event
-touchVectorX= touchVectorY= 0
+touchVectorY= 0f
+touchVectorX= touchVectorY
 }
 
     override fun onPointerDrag(event: Pointer.Event)
@@ -137,7 +138,7 @@ PlayN.log()!!.debug("key up")
                                 )
                         
                                     {
-                                    this.sound= PlayN.assetManager()!!.getSound("/wav/select")
+                                    this.sound= PlayN.assetManager()!!.getSound("/wav/select")!!
 
                                     }
                                 
@@ -236,8 +237,6 @@ var error = error
     override fun updateRate()
         //nullable = true from not(false or (false and true)) = true
 : Int{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 42

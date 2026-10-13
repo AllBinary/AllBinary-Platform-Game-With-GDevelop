@@ -196,7 +196,7 @@ this.logUtil!!.put(this.commonStrings!!.EXCEPTION, this, this.sceneStrings!!.INI
                         
                             } else {
                             
-                                        //Otherwise - expression - elseExpr - EnclosedExpr
+                                        //Otherwise - expression - elseExpr -EnclosedExpr
 
                             }
     
@@ -286,8 +286,6 @@ this.scene.getLights()!!.add(light)
     override fun toString()
         //nullable =  from not(false or (true and true)) = 
 : String{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.NAME

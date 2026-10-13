@@ -41,8 +41,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GDGameGameInputMappingFactory{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDGameGameInputMappingFactory.SINGLETON
 }
@@ -70,8 +68,6 @@ this.gameInputMappingArray[6]= GameInputMapping("Zoom In", gameKeyFactory!!.KEY_
     open fun get()
         //nullable = true from not(false or (false and true)) = true
 : Array<GameInputMapping?>{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.gameInputMappingArray

@@ -58,7 +58,7 @@ companion object {
 
     private val completeTimeDelayHelper: TimeDelayHelper
 
-    var currentGeographicMapCellHistory: GeographicMapCellHistory
+    var currentGeographicMapCellHistoryP: GeographicMapCellHistory
 
     private var lastPathGeographicMapCellPosition: GeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION
 
@@ -66,19 +66,19 @@ companion object {
 
     private val FAKE_WAYPOINT_LAYER: CollidableDestroyableDamageableLayer
 
-    val targetList: BasicArrayList
+    val targetListP: BasicArrayList
 
     private var moving: Boolean = false
 
     private var movingFromStopped: Boolean = false
 
-    var waypointPathsList: BasicArrayList = BasicArrayListUtil.getInstance()!!.getImmutableInstance()!!
+    var waypointPathsListP: BasicArrayList = BasicArrayListUtil.getInstance()!!.getImmutableInstance()!!
 
     private val possibleTargetList: BasicArrayList
 
     private var currentTargetDistance: Int = Integer.MAX_VALUE
 
-    var currentTargetLayerInterface: CollidableDestroyableDamageableLayer = CollidableDestroyableDamageableLayer.getNullInstance()!!
+    var currentTargetLayerInterfaceP: CollidableDestroyableDamageableLayer = CollidableDestroyableDamageableLayer.getNullInstance()!!
 
     var currentTargetGeographicMapCellPosition: GeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION
 
@@ -90,10 +90,10 @@ protected constructor (associatedAdvancedRTSGameLayer: PathFindingLayerInterface
     //var fakeWaypoint = fakeWaypoint
 this.associatedAdvancedRTSGameLayer= associatedAdvancedRTSGameLayer
 this.completeTimeDelayHelper= TimeDelayHelper(30000)
-this.targetList= BasicArrayListD()
+this.targetListP= BasicArrayListD()
 this.possibleTargetList= BasicArrayListD()
 this.setWaypointPathsList(GDWaypointBehavior.DEFAULT)
-this.currentGeographicMapCellHistory= GeographicMapCellHistory()
+this.currentGeographicMapCellHistoryP= GeographicMapCellHistory()
 this.FAKE_WAYPOINT_LAYER= fakeWaypoint
 }
 
@@ -167,7 +167,7 @@ this.associatedAdvancedRTSGameLayer!!.getWaypointLogHelper()!!.onWaypointEvent(t
                                     {
                                     
     
-                        if(!this.targetList!!.contains(advancedRTSGameLayer))
+                        if(!this.targetListP!!.contains(advancedRTSGameLayer))
                         
                                     {
                                     this.associatedAdvancedRTSGameLayer!!.getWaypointLogHelper()!!.addWaypointFromBuilding(this.associatedAdvancedRTSGameLayer, advancedRTSGameLayer)
@@ -183,8 +183,8 @@ this.associatedAdvancedRTSGameLayer!!.getWaypointLogHelper()!!.onWaypointEvent(t
 
                                     }
                                 
-this.targetList!!.add(advancedRTSGameLayer)
-this.associatedAdvancedRTSGameLayer!!.getWaypointLogHelper()!!.addWaypointFromBuildingList(this.associatedAdvancedRTSGameLayer, advancedRTSGameLayer, this.targetList)
+this.targetListP!!.add(advancedRTSGameLayer)
+this.associatedAdvancedRTSGameLayer!!.getWaypointLogHelper()!!.addWaypointFromBuildingList(this.associatedAdvancedRTSGameLayer, advancedRTSGameLayer, this.targetListP)
 
                                     }
                                 
@@ -228,8 +228,8 @@ this.associatedAdvancedRTSGameLayer!!.getWaypointLogHelper()!!.addWaypointFromBu
 
                                     }
                                 
-this.targetList!!.addAt(index, rtsLayer)
-this.associatedAdvancedRTSGameLayer!!.getWaypointLogHelper()!!.insertWaypointList(this.associatedAdvancedRTSGameLayer, index, rtsLayer, this.getName(), this.targetList)
+this.targetListP!!.addAt(index, rtsLayer)
+this.associatedAdvancedRTSGameLayer!!.getWaypointLogHelper()!!.insertWaypointList(this.associatedAdvancedRTSGameLayer, index, rtsLayer, this.getName(), this.targetListP)
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
@@ -316,8 +316,8 @@ this.lastPathGeographicMapCellPosition= SimpleGeographicMapCellPositionFactory.N
 
                                     }
                                 
-this.currentGeographicMapCellHistory!!.init()
-this.associatedAdvancedRTSGameLayer!!.init(this.currentGeographicMapCellHistory, geographicMapCellPositionBasicArrayList)
+this.currentGeographicMapCellHistoryP!!.init()
+this.associatedAdvancedRTSGameLayer!!.init(this.currentGeographicMapCellHistoryP, geographicMapCellPositionBasicArrayList)
 this.setTrackingWaypoint(true)
 this.getCompleteTimeDelayHelper()!!.setStartTimeTNT()
 }
@@ -330,7 +330,7 @@ this.getCompleteTimeDelayHelper()!!.setStartTimeTNT()
     //var rtsLayer = rtsLayer
 
     
-                        if(this.targetList!!.size() > 4)
+                        if(this.targetListP!!.size() > 4)
                         
                                     {
                                     
@@ -338,7 +338,7 @@ this.getCompleteTimeDelayHelper()!!.setStartTimeTNT()
                                 
                              else 
     
-                        if(this.targetList!!.contains(rtsLayer))
+                        if(this.targetListP!!.contains(rtsLayer))
                         
                                     {
                                     
@@ -423,7 +423,7 @@ this.associatedAdvancedRTSGameLayer!!.setClosestGeographicMapCellHistory(pathsLi
 this.associatedAdvancedRTSGameLayer!!.getWaypointLogHelper()!!.needToMove(this.associatedAdvancedRTSGameLayer, this)
 
     
-                        if(this.isTrackingWaypoint() || this.sensorAction == SensorActionFactory.getInstance()!!.EVADE || (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance() && this.getCurrentTargetDistance() >= this.longWeaponRange +this.currentTargetLayerInterface!!.getHalfHeight()))
+                        if(this.isTrackingWaypoint() || this.sensorAction == SensorActionFactory.getInstance()!!.EVADE || (this.currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance() && this.getCurrentTargetDistance() >= this.longWeaponRange +this.currentTargetLayerInterfaceP!!.getHalfHeight()))
                         
                                     {
                                     this.repeatedToLong!!.setStartTimeTNT()
@@ -462,16 +462,16 @@ stringBuffer!!.appendboolean(this.isTrackingWaypoint())
 stringBuffer!!.append(" sensorAction: ")
 stringBuffer!!.append(this.sensorAction!!.name)
 stringBuffer!!.append(" getCurrentTargetLayerInterface: ")
-stringBuffer!!.append(StringUtil.getInstance()!!.toString(this.currentTargetLayerInterface))
+stringBuffer!!.append(StringUtil.getInstance()!!.toString(this.currentTargetLayerInterfaceP))
 
     
-                        if(this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance())
+                        if(this.currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance())
                         
                                     {
                                     stringBuffer!!.append(" Target Range: ")
 stringBuffer!!.appendint(this.getCurrentTargetDistance())
 stringBuffer!!.append(" >= ")
-stringBuffer!!.appendint((this.longWeaponRange +this.currentTargetLayerInterface!!.getHalfHeight()).toInt())
+stringBuffer!!.appendint((this.longWeaponRange +this.currentTargetLayerInterfaceP!!.getHalfHeight()).toInt())
 
                                     }
                                 
@@ -502,7 +502,7 @@ this.movingFromStopped= movingFromStopped
         //nullable = true from not(false or (false and false)) = true
 {
 var waypointPathsList = waypointPathsList
-this.waypointPathsList= waypointPathsList
+this.waypointPathsListP= waypointPathsList
 }
 
 
@@ -511,7 +511,7 @@ this.waypointPathsList= waypointPathsList
 : BasicArrayList{
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.waypointPathsList
+                        return this.waypointPathsListP
 }
 
 
@@ -607,7 +607,7 @@ this.sensorAction= sensorAction
 : BasicArrayList{
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.targetList
+                        return this.targetListP
 }
 
 
@@ -617,13 +617,13 @@ this.sensorAction= sensorAction
         //nullable = true from not(false or (false and false)) = true
 {
 var currentTargetLayerInterface = currentTargetLayerInterface
-this.currentTargetLayerInterface= currentTargetLayerInterface
+this.currentTargetLayerInterfaceP= currentTargetLayerInterface
 
     
-                        if(this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance())
+                        if(this.currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance())
                         
                                     {
-                                    this.currentTargetGeographicMapCellPosition= (this.currentTargetLayerInterface as PathFindingLayerInterface).getCurrentGeographicMapCellPosition()!!
+                                    this.currentTargetGeographicMapCellPosition= (this.currentTargetLayerInterfaceP as PathFindingLayerInterface).getCurrentGeographicMapCellPosition()!!
 
                                     }
                                 
@@ -640,7 +640,7 @@ this.currentTargetLayerInterface= currentTargetLayerInterface
 : CollidableDestroyableDamageableLayer{
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.currentTargetLayerInterface
+                        return this.currentTargetLayerInterfaceP
 }
 
 
@@ -675,7 +675,7 @@ this.currentTargetDistance= currentTargetDistance
 : GeographicMapCellHistory{
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.currentGeographicMapCellHistory
+                        return this.currentGeographicMapCellHistoryP
 }
 
 

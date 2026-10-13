@@ -49,8 +49,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : PlatformAssetManager{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return PlatformAssetManager.instance
 }
@@ -76,8 +74,6 @@ companion object {
 
 
     var inputStream: InputStream = resourceUtil!!.getResourceAsStream(resource)!!
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -151,8 +147,6 @@ open public inner class RequestedText
     var byteArrayInputStream: ByteArrayInputStream = ByteArrayInputStream(byteArray)
 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return byteArrayInputStream
 
@@ -184,8 +178,6 @@ logUtil!!.putF("Loaded Text: " +text.length, this, GET_TEXT)
 
                         }
                             
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return null

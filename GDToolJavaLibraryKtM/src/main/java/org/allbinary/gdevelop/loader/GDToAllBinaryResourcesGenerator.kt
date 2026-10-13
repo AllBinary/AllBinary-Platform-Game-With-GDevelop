@@ -248,7 +248,7 @@ this.resourceStringMaker!!.append("    public final int[] imageResourceWidthArra
 
         {
 name= usedList!!.get(index) as String
-gdResource= this.getGDResourceForName(name, gdResourceList)
+gdResource= this.getGDResourceForName(name, gdResourceList)!!
 
     
                         if(gdResource != 
@@ -257,7 +257,7 @@ gdResource= this.getGDResourceForName(name, gdResourceList)
                         
                                     {
                                     this.resourceStringMaker!!.append(this.INDENT)
-this.resourceStringMaker!!.appendint(gdResource!!.width)
+this.resourceStringMaker!!.appendint(gdResource!!.width.toInt())
 this.resourceStringMaker!!.append(this.commonSeps!!.COMMA)
 this.resourceStringMaker!!.append(this.commonSeps!!.SPACE)
 this.resourceStringMaker!!.append(this.commonSeps!!.COMMENT)
@@ -313,7 +313,7 @@ this.resourceStringMaker!!.append("    public final int[] imageResourceHeightArr
 
         {
 name= usedList!!.get(index) as String
-gdResource= this.getGDResourceForName(name, gdResourceList)
+gdResource= this.getGDResourceForName(name, gdResourceList)!!
 
     
                         if(gdResource != 
@@ -322,7 +322,7 @@ gdResource= this.getGDResourceForName(name, gdResourceList)
                         
                                     {
                                     this.resourceStringMaker!!.append(this.INDENT)
-this.resourceStringMaker!!.appendint(gdResource!!.height)
+this.resourceStringMaker!!.appendint(gdResource!!.height.toInt())
 this.resourceStringMaker!!.append(this.commonSeps!!.COMMA)
 this.resourceStringMaker!!.append(this.commonSeps!!.SPACE)
 this.resourceStringMaker!!.append(this.commonSeps!!.COMMENT)
@@ -377,16 +377,12 @@ gdResource= gdResourceList!!.get(index) as GDResource
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return gdResource
 
                                     }
                                 
 }
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -418,8 +414,6 @@ stringMaker!!.appendint(size)!!.append(this.commonSeps!!.COLON)
 gdResource= gdResourceList!!.get(index) as GDResource
 stringMaker!!.append(gdResource!!.name)!!.append(this.commonSeps!!.COMMA)
 }
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -611,9 +605,7 @@ stringMaker!!.delete(0, stringMaker!!.length())
 this.logUtil!!.putF(stringMaker!!.append(this.gdToolStrings!!.FILENAME)!!.append(RESOURCE)!!.toString(), this, this.commonStrings!!.PROCESS)
 this.bufferedWriterUtil!!.overwrite(RESOURCE, newFileAsString)
 stringMaker!!.delete(0, stringMaker!!.length())
-this.logUtil!!.putF(stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(this.timeDelayHelper!!.getElapsedTNT())!!.toString(), this, this.commonStrings!!.PROCESS)
-
-
+this.logUtil!!.putF(stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(this.timeDelayHelper!!.getElapsedTNT().toLong())!!.toString(), this, this.commonStrings!!.PROCESS)
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return usedList
@@ -676,7 +668,7 @@ stringMaker!!.delete(0, stringMaker!!.length())
 this.logUtil!!.putF(this.gdToolStrings!!.FILENAME +LAZY_RESOURCE, this, this.commonStrings!!.PROCESS)
 this.bufferedWriterUtil!!.overwrite(LAZY_RESOURCE, newFileAsString)
 stringMaker!!.delete(0, stringMaker!!.length())
-this.logUtil!!.putF(stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(this.timeDelayHelper!!.getElapsedTNT())!!.toString(), this, this.commonStrings!!.PROCESS)
+this.logUtil!!.putF(stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(this.timeDelayHelper!!.getElapsedTNT().toLong())!!.toString(), this, this.commonStrings!!.PROCESS)
 }
 
 

@@ -52,10 +52,10 @@ public constructor (jsonObject: JSONObject)
 
     var projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!!
 
-this.tilemapJsonFile= jsonObject!!.getString(projectStrings!!.TILEMAP_JSON_FILE)
-this.tilesetJsonFile= jsonObject!!.getString(projectStrings!!.TILESET_JSON_FILE)
-this.tilemapAtlasImage= jsonObject!!.getString(projectStrings!!.TILEMAP_ATLAS_IMAGE)
-this.displayMode= jsonObject!!.getString(projectStrings!!.DISPLAY_MODE)
+this.tilemapJsonFile= jsonObject!!.getString(projectStrings!!.TILEMAP_JSON_FILE)!!
+this.tilesetJsonFile= jsonObject!!.getString(projectStrings!!.TILESET_JSON_FILE)!!
+this.tilemapAtlasImage= jsonObject!!.getString(projectStrings!!.TILEMAP_ATLAS_IMAGE)!!
+this.displayMode= jsonObject!!.getString(projectStrings!!.DISPLAY_MODE)!!
 this.layerIndex= jsonObject!!.getInt(projectStrings!!.LAYER_INDEX)
 
     var levelIndex: Int = 0
@@ -70,8 +70,8 @@ this.layerIndex= jsonObject!!.getInt(projectStrings!!.LAYER_INDEX)
                                     }
                                 
 this.levelIndex= levelIndex
-this.animationSpeedScale= jsonObject!!.getNumber(projectStrings!!.ANIMATION_SPEED_SCALE)
-this.animationFps= jsonObject!!.getNumber(projectStrings!!.ANIMATION_FPS)
+this.animationSpeedScale= jsonObject!!.getNumber(projectStrings!!.ANIMATION_SPEED_SCALE)!!
+this.animationFps= jsonObject!!.getNumber(projectStrings!!.ANIMATION_FPS)!!
 }
 
 

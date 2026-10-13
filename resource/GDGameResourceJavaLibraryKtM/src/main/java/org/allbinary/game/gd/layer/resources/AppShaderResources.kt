@@ -39,8 +39,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : AppShaderResources{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return AppShaderResources.instance
 }
@@ -66,8 +64,6 @@ companion object {
 : String{
     //var shaderIndex = shaderIndex
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.VERTEX_ARRAY[shaderIndex]!!
 }
@@ -77,8 +73,6 @@ companion object {
         //nullable = true from not(false or (false and false)) = true
 : String{
     //var shaderIndex = shaderIndex
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.FRAGMENT_ARRAY[shaderIndex]!!

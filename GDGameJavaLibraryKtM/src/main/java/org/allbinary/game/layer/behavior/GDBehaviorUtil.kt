@@ -33,7 +33,7 @@ open public class GDBehaviorUtil
         
 companion object {
             
-    val instance: GDBehaviorUtil = GDBehaviorUtil()
+    private val instance: GDBehaviorUtil = GDBehaviorUtil()
 
     open fun getInstance()
         //nullable =  from not(true or (false and true)) = 

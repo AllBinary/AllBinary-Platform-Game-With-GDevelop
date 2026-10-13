@@ -86,19 +86,19 @@ this.revision= versionJSONObject!!.getInt(gdProjectStrings!!.REVISION)
 
     var propertiesJSONObject: JSONObject = gameAsConfiguration!!.getJSONObject(gdProjectStrings!!.PROPERTIES)!!
 
-this.author= propertiesJSONObject!!.getString(gdProjectStrings!!.AUTHOR)
-this.packageName= propertiesJSONObject!!.getString(gdProjectStrings!!.PACKAGE_NAME)
-this.orientation= propertiesJSONObject!!.getString(gdProjectStrings!!.ORIENTATION)
+this.author= propertiesJSONObject!!.getString(gdProjectStrings!!.AUTHOR)!!
+this.packageName= propertiesJSONObject!!.getString(gdProjectStrings!!.PACKAGE_NAME)!!
+this.orientation= propertiesJSONObject!!.getString(gdProjectStrings!!.ORIENTATION)!!
 this.folderProject= propertiesJSONObject!!.getBoolean(gdProjectStrings!!.FOLDER_PROJECT)
-this.latestCompilationDirectory= propertiesJSONObject!!.getString(gdProjectStrings!!.LATEST_COMPILATION_DIRECTORY)
-this.platformSpecificAssets= propertiesJSONObject!!.getJSONObject(gdProjectStrings!!.PLATFORM_SPECIFIC_ASSETS)
-this.loadingScreen= propertiesJSONObject!!.getJSONObject(gdProjectStrings!!.LOADING_SCREEN)
-this.extensionProperties= propertiesJSONObject!!.getJSONArray(gdProjectStrings!!.EXTENSION_PROPERTIES)
-this.currentPlatformName= propertiesJSONObject!!.getString(gdProjectStrings!!.CURRENT_PLATFORM)
-this.platforms= propertiesJSONObject!!.getJSONArray(gdProjectStrings!!.PLATFORMS)
-this.objectsGroups= gameAsConfiguration!!.getJSONArray(gdProjectStrings!!.OBJECT_GROUPS)
-this.externalEvents= gameAsConfiguration!!.getJSONArray(gdProjectStrings!!.EXTERNAL_EVENTS)
-this.eventsFunctionsExtensions= gameAsConfiguration!!.getJSONArray(gdProjectStrings!!.EVENTS_FUNCTIONS_EXTENSIONS)
+this.latestCompilationDirectory= propertiesJSONObject!!.getString(gdProjectStrings!!.LATEST_COMPILATION_DIRECTORY)!!
+this.platformSpecificAssets= propertiesJSONObject!!.getJSONObject(gdProjectStrings!!.PLATFORM_SPECIFIC_ASSETS)!!
+this.loadingScreen= propertiesJSONObject!!.getJSONObject(gdProjectStrings!!.LOADING_SCREEN)!!
+this.extensionProperties= propertiesJSONObject!!.getJSONArray(gdProjectStrings!!.EXTENSION_PROPERTIES)!!
+this.currentPlatformName= propertiesJSONObject!!.getString(gdProjectStrings!!.CURRENT_PLATFORM)!!
+this.platforms= propertiesJSONObject!!.getJSONArray(gdProjectStrings!!.PLATFORMS)!!
+this.objectsGroups= gameAsConfiguration!!.getJSONArray(gdProjectStrings!!.OBJECT_GROUPS)!!
+this.externalEvents= gameAsConfiguration!!.getJSONArray(gdProjectStrings!!.EXTERNAL_EVENTS)!!
+this.eventsFunctionsExtensions= gameAsConfiguration!!.getJSONArray(gdProjectStrings!!.EVENTS_FUNCTIONS_EXTENSIONS)!!
 }
 
 

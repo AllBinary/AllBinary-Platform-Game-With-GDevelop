@@ -80,8 +80,6 @@ var level = level
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -103,8 +101,6 @@ super.init(level)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
@@ -112,8 +108,6 @@ super.init(level)
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 
@@ -132,8 +126,6 @@ var level = level
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
@@ -141,8 +133,6 @@ var level = level
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return super.isLoadingLevel(level)
 

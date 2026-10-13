@@ -51,7 +51,7 @@ public constructor (jsonObject: JSONObject)
 
     var typeFactory: GDTypeFactory = GDTypeFactory.getInstance()!!
 
-this.type= typeFactory!!.get(jsonObject!!.getString(gdProjectStrings!!.TYPE))
+this.type= typeFactory!!.get(jsonObject!!.getString(gdProjectStrings!!.TYPE))!!
 
     var string: String
 
@@ -71,7 +71,7 @@ this.type= typeFactory!!.get(jsonObject!!.getString(gdProjectStrings!!.TYPE))
                         if(this.type == typeFactory!!.STRING)
                         
                                     {
-                                    string= jsonObject!!.getString(gdProjectStrings!!.VALUE)
+                                    string= jsonObject!!.getString(gdProjectStrings!!.VALUE)!!
 value= 0.toDouble()
 boolValue= false
 
@@ -134,7 +134,7 @@ boolValue= false
                         for (index in 0 until size)
 
         {
-childJSONObject= variableJSONArray!!.getJSONObject(index)
+childJSONObject= variableJSONArray!!.getJSONObject(index)!!
 
     
                         if(this.type == typeFactory!!.STRUCTURE)

@@ -62,8 +62,6 @@ this.type= type
         //nullable = true from not(false or (false and true)) = true
 : Int{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GameTickDisplayInfoSingleton.getInstance()!!.getLastWidth()
 }
@@ -72,8 +70,6 @@ this.type= type
     open fun SceneWindowHeight()
         //nullable = true from not(false or (false and true)) = true
 : Int{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GameTickDisplayInfoSingleton.getInstance()!!.getLastHeight()

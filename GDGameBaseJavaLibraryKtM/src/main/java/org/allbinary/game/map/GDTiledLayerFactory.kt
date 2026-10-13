@@ -77,8 +77,6 @@ this.debugColor= debugColor
     //var raceTrackData = raceTrackData
 this.useAsMiniAllBinaryTiledLayer= PlacementAllBinaryJ2METiledLayer(SmallIntegerSingletonFactory.getInstance()!!.getAt( -1), TiledLayer(this.map.getWidth(), this.map.getHeight(), this.tileSetImage, (this.map.getTileWidth()).toInt(), (this.map.getTileHeight()).toInt()), this.tileLayer!!.getMapArray(), this.debugColor!!.toInt())
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.useAsMiniAllBinaryTiledLayer
 }
@@ -90,8 +88,6 @@ this.useAsMiniAllBinaryTiledLayer= PlacementAllBinaryJ2METiledLayer(SmallInteger
         //nullable = true from not(false or (false and false)) = true
 : AllBinaryTiledLayer{
     //var raceTrackData = raceTrackData
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.useAsMiniAllBinaryTiledLayer

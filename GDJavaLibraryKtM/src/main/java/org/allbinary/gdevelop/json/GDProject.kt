@@ -98,9 +98,9 @@ this.gdIde!!.load(gameAsConfiguration)
 
     var properties: JSONObject = gameAsConfiguration!!.getJSONObject(gdProjectStrings!!.PROPERTIES)!!
 
-this.packageName= properties.getString(gdProjectStrings!!.PACKAGE_NAME)
-this.name= properties.getString(gdProjectStrings!!.NAME)
-this.version= properties.getString(gdProjectStrings!!.VERSION)
+this.packageName= properties.getString(gdProjectStrings!!.PACKAGE_NAME)!!
+this.name= properties.getString(gdProjectStrings!!.NAME)!!
+this.version= properties.getString(gdProjectStrings!!.VERSION)!!
 
     var width: Int = properties.getInt(gdProjectStrings!!.WINDOW_WIDTH)
 
@@ -111,10 +111,10 @@ this.gameResolutionSize= Rectangle(PointFactory.getInstance()!!.ZERO_ZERO, width
 this.maxFPS= properties.getInt(gdProjectStrings!!.MAX_FPS)
 this.minFPS= properties.getInt(gdProjectStrings!!.MIN_FPS)
 this.verticalSyncActivatedByDefault= properties.getBoolean(gdProjectStrings!!.VERTICAL_SYNC)
-this.scaleMode= properties.getString(gdProjectStrings!!.SCALE_MODE)
+this.scaleMode= properties.getString(gdProjectStrings!!.SCALE_MODE)!!
 this.adaptGameResolutionAtRuntime= properties.getBoolean(gdProjectStrings!!.ADAPT_GAME_RESOLUTION_AT_RUNTIME)
-this.sizeOnStartupMode= properties.getString(gdProjectStrings!!.SIZE_ON_STARTUP_MODE)
-this.projectUuid= properties.getString(gdProjectStrings!!.PROJECT_UUID)
+this.sizeOnStartupMode= properties.getString(gdProjectStrings!!.SIZE_ON_STARTUP_MODE)!!
+this.projectUuid= properties.getString(gdProjectStrings!!.PROJECT_UUID)!!
 
     var resourceJSONObject: JSONObject = gameAsConfiguration!!.getJSONObject(gdProjectStrings!!.RESOURCES)!!
 
@@ -138,7 +138,7 @@ this.resourcesManager= GDResourcesManager(resourceJSONObject)
                         for (index in 0 until size)
 
         {
-objectJSONObject= objectJSONArray!!.getJSONObject(index)
+objectJSONObject= objectJSONArray!!.getJSONObject(index)!!
 this.objectList!!.add(objectFactory!!.create(objectJSONObject))
 }
 
@@ -169,7 +169,7 @@ size= layoutsJSONArray!!.length()
                         for (index in 0 until size)
 
         {
-objectJSONObject= layoutsJSONArray!!.getJSONObject(index)
+objectJSONObject= layoutsJSONArray!!.getJSONObject(index)!!
 this.layoutList!!.add(GDLayout(objectJSONObject))
 }
 
@@ -185,7 +185,7 @@ size= externalLayoutsJSONArray!!.length()
                         for (index in 0 until size)
 
         {
-objectJSONObject= externalLayoutsJSONArray!!.getJSONObject(index)
+objectJSONObject= externalLayoutsJSONArray!!.getJSONObject(index)!!
 this.externalLayoutList!!.add(GDExternalLayout(objectJSONObject))
 }
 

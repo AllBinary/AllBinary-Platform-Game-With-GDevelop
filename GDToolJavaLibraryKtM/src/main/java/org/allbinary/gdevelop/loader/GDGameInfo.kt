@@ -61,8 +61,6 @@ public constructor ()
     var integer: Integer = this.externalLayoutsTotalPerLayoutPositionList!!.get(layoutIndex) as Integer
 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return integer.toInt()
 }
@@ -80,8 +78,6 @@ public constructor ()
     var integer: Integer = externalLayoutIndexList!!.get(atIndex) as Integer
 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return integer.toInt()
 }
@@ -95,8 +91,6 @@ public constructor ()
     var integer: Integer = this.instanceTotalPerLayoutPositionList!!.get(layoutIndex) as Integer
 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return integer.toInt()
 }
@@ -108,8 +102,6 @@ public constructor ()
     //var externalLayoutIndex = externalLayoutIndex
 
     var integer: Integer = this.instanceTotalPerExternalLayoutPositionList!!.get(externalLayoutIndex) as Integer
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -171,15 +163,11 @@ externalLayoutIndexList= this.externalLayoutsIndexPerLayoutPositionList!!.get(in
                         for (indexListIndex in 0 until size2)
 
         {
-externalLayoutIndex= get = externalLayoutIndexList!!.get(indexListIndex)get as Integer
-get.
-                    toInt()
+externalLayoutIndex= (externalLayoutIndexList!!.get(indexListIndex) as Integer).toInt()
 stringMaker!!.append(AT_INDEX)!!.appendint(externalLayoutIndex)!!.append(INSTANCE_TOTAL)!!.appendint(this.getExternalLayoutInstanceTotal(externalLayoutIndex))
 }
 
 }
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.

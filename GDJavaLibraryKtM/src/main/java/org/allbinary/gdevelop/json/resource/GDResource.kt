@@ -49,8 +49,8 @@ public constructor (kind: String, jsonObject: JSONObject)
     var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!!
 
 this.kind= kind
-this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)
-this.metadata= jsonObject!!.getString(gdProjectStrings!!.METADATA)
+this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)!!
+this.metadata= jsonObject!!.getString(gdProjectStrings!!.METADATA)!!
 this.userAdded= jsonObject!!.getBoolean(gdProjectStrings!!.USER_ADDED)
 
     
@@ -60,8 +60,8 @@ this.userAdded= jsonObject!!.getBoolean(gdProjectStrings!!.USER_ADDED)
                                     
     var originJSONObject: JSONObject = jsonObject!!.getJSONObject(gdProjectStrings!!.ORIGIN)!!
 
-this.originName= originJSONObject!!.getString(gdProjectStrings!!.NAME)
-this.originIdentifier= originJSONObject!!.getString(gdProjectStrings!!.IDENTIFIER)
+this.originName= originJSONObject!!.getString(gdProjectStrings!!.NAME)!!
+this.originIdentifier= originJSONObject!!.getString(gdProjectStrings!!.IDENTIFIER)!!
 
                                     }
                                 
@@ -71,7 +71,7 @@ this.originIdentifier= StringUtil.getInstance()!!.NULL_STRING
 
                         }
                             
-this.fileAsString= jsonObject!!.getString(gdProjectStrings!!.FILE)
+this.fileAsString= jsonObject!!.getString(gdProjectStrings!!.FILE)!!
 }
 
 

@@ -44,8 +44,6 @@ var sensorGameUpdateProcessor = sensorGameUpdateProcessor
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDGameWithSensorTouchButtonsBuilder()
 
@@ -57,8 +55,6 @@ var sensorGameUpdateProcessor = sensorGameUpdateProcessor
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDGameMultiTouchButtonsBuilder()
 
@@ -66,8 +62,6 @@ var sensorGameUpdateProcessor = sensorGameUpdateProcessor
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDGameMultiTouchButtonsBuilder()
 

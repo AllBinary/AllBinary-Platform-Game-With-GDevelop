@@ -44,8 +44,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GDConfig{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDConfig.instance
 }
@@ -67,8 +65,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 0.75f
 
@@ -76,8 +72,6 @@ companion object {
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 1.0f
 
@@ -95,8 +89,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 0.75f
 
@@ -104,8 +96,6 @@ companion object {
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 2.0f
 
@@ -123,8 +113,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 2
 
@@ -132,8 +120,6 @@ companion object {
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 3
 
@@ -152,8 +138,6 @@ var fontSize = fontSize
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return fontSize
 
@@ -161,8 +145,6 @@ var fontSize = fontSize
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return fontSize /2
 
@@ -183,8 +165,6 @@ var j2seScale = j2seScale
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return androidScale
 
@@ -197,8 +177,6 @@ var j2seScale = j2seScale
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return htmlScale
 
@@ -206,8 +184,6 @@ var j2seScale = j2seScale
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return j2seScale
 
@@ -247,8 +223,6 @@ var layoutScale = layoutScale
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return layoutScale
 
@@ -256,8 +230,6 @@ var layoutScale = layoutScale
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 1.0f
 

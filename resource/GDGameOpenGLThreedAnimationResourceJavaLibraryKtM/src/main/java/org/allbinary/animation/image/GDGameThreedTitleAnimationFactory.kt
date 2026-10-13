@@ -29,8 +29,6 @@ companion object {
         //nullable = true from not(false or (false and true)) = true
 : GDGameThreedTitleAnimationFactory{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDGameThreedTitleAnimationFactory.instance
 }
@@ -70,8 +68,6 @@ deltaXArray[2]= 0
 deltaYArray[0]= 0
 deltaYArray[1]= 30
 deltaYArray[2]= 37
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDGameThreedTitleAnimation(animationInterfaceArray, basicColorArray, deltaXArray, deltaYArray, 15, 120)

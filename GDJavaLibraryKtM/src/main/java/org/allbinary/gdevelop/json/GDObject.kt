@@ -52,13 +52,13 @@ this.jsonObject= jsonObject
     var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!!
 
 this.type= type
-this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)
+this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)!!
 
     
                         if(jsonObject!!.has(gdProjectStrings!!.TAGS))
                         
                                     {
-                                    this.tags= jsonObject!!.getString(gdProjectStrings!!.TAGS)
+                                    this.tags= jsonObject!!.getString(gdProjectStrings!!.TAGS)!!
 
                                     }
                                 

@@ -188,9 +188,7 @@ openGLConfiguration!!.write()
     override fun initView()
         //nullable = true from not(false or (false and true)) = true
 {
-glSurfaceView = this.glSurfaceViewglSurfaceView as EmulatorViewInterface
-glSurfaceView.
-                    setMidlet(this)
+(this.glSurfaceView as EmulatorViewInterface).setMidlet(this)
 }
 
 

@@ -191,7 +191,7 @@ this.gameLayerDestroyedList= gameLayerDestroyedList
 this.behaviorList= behaviorList
 this.gdObject= gdObject
 this.velocityInterface= velocityInterface
-this.initPositionXYZ(this.gdObject!!.x, this.gdObject!!.y, this.gdObject!!.zOrder)
+this.initPositionXYZ(this.gdObject!!.xP, this.gdObject!!.yP, this.gdObject!!.zOrder)
 this.initPosition()
 
     var size: Int = animationInterfaceFactoryInterfaceArray!!.size
@@ -313,12 +313,12 @@ this.rectangleArrayOfArrays= rectangleArrayOfArrays
 this.initIndexedAnimationInterfaceArrayP[index]!!.setFrame(this.frameUtil!!.getFrameForAngle(0.toShort(), 1))
 }
 
-gdObject!!.angle= this.gdObject!!.angle
+gdObject!!.angleP= this.gdObject!!.angleP
 this.dimensionalBehavior!!.getAnimationBehavior()!!.setAnimationArray(this.initIndexedAnimationInterfaceArrayP)
 this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArrayP)
 this.dimensionalBehavior!!.reset(this, gdObject)
 this.gdObject= gdObject
-this.initPositionXYZ(this.gdObject!!.x, this.gdObject!!.y, this.gdObject!!.zOrder)
+this.initPositionXYZ(this.gdObject!!.xP, this.gdObject!!.yP, this.gdObject!!.zOrder)
 this.initPosition()
 this.setDestroyed(false)
 }
@@ -592,7 +592,7 @@ this.velocityInterface!!.getVelocityYBasicDecimalP()!!.setint(y *this.SCALE_FACT
     open fun updatePosition()
         //nullable = true from not(false or (false and true)) = true
 {
-this.setPosition(this.gdObject!!.x, this.gdObject!!.y, this.gdObject!!.zOrder)
+this.setPosition(this.gdObject!!.xP, this.gdObject!!.yP, this.gdObject!!.zOrder)
 }
 
 

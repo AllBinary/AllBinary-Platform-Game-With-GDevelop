@@ -89,8 +89,6 @@ GDPaths.init()
                                     {
                                     XmlUnicodeReplacer.printUsageAndExit()
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -134,8 +132,6 @@ messageBuilder!!.append(XmlUnicodeReplacer.INPUT_FILE_NOT_FOUND_PREFIX)
 messageBuilder!!.append(inputPath)
 System.err.println(messageBuilder!!.toString())
 System.exit(2)
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
@@ -216,8 +212,6 @@ System.out.println(replacedBuilder!!.toString())
                         }
                             
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return replaced
 }
@@ -247,8 +241,6 @@ System.out.println(replacedBuilder!!.toString())
                                     }
                                 
 }
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -290,8 +282,6 @@ System.out.println(replacedBuilder!!.toString())
 }
 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return stringBuilder!!.toString()
 }
@@ -327,7 +317,7 @@ System.out.println(replacedBuilder!!.toString())
                         
                                     {
                                     
-    var unicode: String = String.format(XmlUnicodeReplacer.UNICODE_FORMAT, current.toInt())!!
+    var unicode: String = String.format(XmlUnicodeReplacer.UNICODE_FORMAT, current.code)!!
 
 
     var positionBuilder: StringBuilder = StringBuilder()
@@ -371,8 +361,6 @@ column= 1
                         }
                             
 }
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.

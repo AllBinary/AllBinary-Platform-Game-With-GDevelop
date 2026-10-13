@@ -74,7 +74,7 @@ open public class UpdateEnemyExclusionRatio
                         for (index in 0 until size)
 
         {
-jsonObject= variablesJSONArray!!.getJSONObject(index)
+jsonObject= variablesJSONArray!!.getJSONObject(index)!!
 
     
                         if(jsonObject!!.getString(this.gdProjectStrings!!.NAME)!!.compareTo(ENEMY_EXCLUSION_RATIO) == 0)

@@ -43,7 +43,7 @@ public constructor (jsonObject: JSONObject)
 
     var projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!!
 
-this.name= jsonObject!!.getString(projectStrings!!.NAME)
+this.name= jsonObject!!.getString(projectStrings!!.NAME)!!
 
     var automatic: Boolean = false
 

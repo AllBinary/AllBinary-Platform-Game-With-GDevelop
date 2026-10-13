@@ -37,8 +37,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GDToolStrings{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDToolStrings.instance
 }
@@ -157,7 +155,7 @@ companion object {
 
         {
 file= threedFileList!!.get(index) as AbFile
-path= file.getPath()
+path= file.getPath()!!
 startIndex= path.indexOf(resource)
 
     
@@ -263,8 +261,6 @@ startIndex= path.indexOf(resource)
                                     }
                                 
 }
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.

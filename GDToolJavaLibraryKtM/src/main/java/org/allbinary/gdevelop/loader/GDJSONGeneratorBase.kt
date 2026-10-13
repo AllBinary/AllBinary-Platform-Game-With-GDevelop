@@ -84,8 +84,8 @@ open public class GDJSONGeneratorBase
                         for (index in 0 until size)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
-value= jsonObject!!.getString(this.gdProjectStrings!!.NAME)
+jsonObject= jsonArray!!.getJSONObject(index)!!
+value= jsonObject!!.getString(this.gdProjectStrings!!.NAME)!!
 System.out.println(this.LAYOUT +value)
 this.processLayout(jsonObject)
 }

@@ -124,8 +124,6 @@ this.behaviorsSharedData= behaviorsSharedData
 
 this.conditionInstructionMetadataList!!.add(instructionMetadata)
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return instructionMetadata
 }
@@ -156,8 +154,6 @@ this.conditionInstructionMetadataList!!.add(instructionMetadata)
 
 this.actionInstructionMetadataList!!.add(instructionMetadata)
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return instructionMetadata
 }
@@ -181,8 +177,6 @@ this.actionInstructionMetadataList!!.add(instructionMetadata)
     var instructionMetadata: GDInstructionMetadata = GDInstructionMetadata(this.extensionNamespace, nameWithNamespace, fullname, description, sentence, group, icon, smallicon)
 
 this.nameToConditionInstructionMetadataMap!!.put(nameWithNamespace, instructionMetadata)
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return instructionMetadata
@@ -208,8 +202,6 @@ this.nameToConditionInstructionMetadataMap!!.put(nameWithNamespace, instructionM
 
 this.nameToActionInstructionMetadataMap!!.put(nameWithNamespace, instructionMetadata)
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return instructionMetadata
 }
@@ -228,8 +220,6 @@ this.nameToActionInstructionMetadataMap!!.put(nameWithNamespace, instructionMeta
 
 this.nameToExpressionMetadataMap!!.put(name, expressionMetadata)
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return expressionMetadata
 }
@@ -247,8 +237,6 @@ this.nameToExpressionMetadataMap!!.put(name, expressionMetadata)
     var expressionMetadata: GDExpressionMetadata = GDExpressionMetadata(this.parameterFactory!!.STRING, this.extensionNamespace, name, fullname, description, group, smallicon)
 
 this.nameToStrExpressionMetadataMap!!.put(name, expressionMetadata)
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return expressionMetadata
@@ -286,8 +274,6 @@ this.nameToStrExpressionMetadataMap!!.put(name, expressionMetadata)
                             append(GDBehaviorMetadata.COMPARE_)!!.append(descriptionSubject)!!.append(this.commonSeps!!.PERIOD)!!.toString(), sentenceName, group, icon, icon)!!
 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDMultipleInstructionMetadata(expression, conditionInstructionMetadata, actionInstructionMetadata)
 }
@@ -296,8 +282,6 @@ this.nameToStrExpressionMetadataMap!!.put(name, expressionMetadata)
     open fun getName()
         //nullable = true from not(false or (false and true)) = true
 : String{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.behavior.type

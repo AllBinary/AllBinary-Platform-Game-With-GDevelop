@@ -53,8 +53,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : AppRendererShaderUpdaterFactory{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return AppRendererShaderUpdaterFactory.instance
 }
@@ -162,7 +160,7 @@ shaderComposite!!.compositeShaderUpdater!!.onSurfaceCreated(gl, eglConfig, shade
 
                         }
                             
-this.shaderManager= ShaderManager.getInstance()
+this.shaderManager= ShaderManager.getInstance()!!
 }
 
 
@@ -233,8 +231,6 @@ this.logUtil!!.put(this.commonStrings!!.EXCEPTION +resource, this, this.renderer
 : Array<ShaderOpenGLProcessor?>{
 
     var shaderOpenGLProcessorArray: Array<ShaderOpenGLProcessor?> = arrayOf()
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.

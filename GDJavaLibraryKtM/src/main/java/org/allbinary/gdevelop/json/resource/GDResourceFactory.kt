@@ -35,8 +35,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GDResourceFactory{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDResourceFactory.instance
 }
@@ -79,8 +77,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.IMAGE
 
@@ -92,8 +88,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.AUDIO
 
@@ -105,8 +99,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.FONT
 
@@ -118,8 +110,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.VIDEO
 
@@ -131,8 +121,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.JSON
 
@@ -144,8 +132,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.TILE_MAP
 
@@ -157,8 +143,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.TILE_SET
 
@@ -170,8 +154,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.BITMAP_FONT
 
@@ -205,8 +187,6 @@ this.logUtil!!.putF(kind, this, commonStrings!!.CONSTRUCTOR)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDImageResource(kind, jsonObject)
 
@@ -218,8 +198,6 @@ this.logUtil!!.putF(kind, this, commonStrings!!.CONSTRUCTOR)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDAudioResource(kind, jsonObject)
 
@@ -231,8 +209,6 @@ this.logUtil!!.putF(kind, this, commonStrings!!.CONSTRUCTOR)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDFontResource(kind, jsonObject)
 
@@ -244,8 +220,6 @@ this.logUtil!!.putF(kind, this, commonStrings!!.CONSTRUCTOR)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDVideoResource(kind, jsonObject)
 
@@ -257,8 +231,6 @@ this.logUtil!!.putF(kind, this, commonStrings!!.CONSTRUCTOR)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDJsonResource(kind, jsonObject)
 
@@ -270,8 +242,6 @@ this.logUtil!!.putF(kind, this, commonStrings!!.CONSTRUCTOR)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDJsonResource(kind, jsonObject)
 
@@ -283,8 +253,6 @@ this.logUtil!!.putF(kind, this, commonStrings!!.CONSTRUCTOR)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDJsonResource(kind, jsonObject)
 
@@ -296,8 +264,6 @@ this.logUtil!!.putF(kind, this, commonStrings!!.CONSTRUCTOR)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDBitmapFontResource(kind, jsonObject)
 

@@ -84,8 +84,6 @@ gdImageSizeGenerator!!.process()
     var files: BasicArrayList = fileListFetcher!!.getFiles(this.gdPaths!!.TWOD_RESOURCES_PATH)!!
 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.process(files)
 }
@@ -137,7 +135,7 @@ abFile= files.get(index) as AbFile
                         if(abFile!!.getAbsolutePath()!!.endsWith(this.gdToolStrings!!.PNG))
                         
                                     {
-                                    bufferedImage= ImageIO.read(AbFileNativeUtil.get(abFile))
+                                    bufferedImage= ImageIO.read(AbFileNativeUtil.get(abFile))!!
 
     var name: String = abFile!!.getName()!!.substring(0, abFile!!.getName()!!.length() -4)!!.uppercase()!!
 
@@ -146,7 +144,7 @@ abFile= files.get(index) as AbFile
                         if(bufferedImage!!.getWidth() % 16 != 0 || bufferedImage!!.getHeight() % 16 != 0)
                         
                                     {
-                                    stringMaker!!.appendint(arrayIndex)!!.append(name)!!.append(this.commonSeps!!.SPACE)!!.appendint(bufferedImage!!.getWidth())!!.append(this.commonSeps!!.COMMA)!!.append(this.commonSeps!!.SPACE)!!.appendint(bufferedImage!!.getHeight())!!.append(this.commonSeps!!.NEW_LINE)
+                                    stringMaker!!.appendint(arrayIndex)!!.append(name)!!.append(this.commonSeps!!.SPACE)!!.appendint(bufferedImage!!.getWidth().toInt())!!.append(this.commonSeps!!.COMMA)!!.append(this.commonSeps!!.SPACE)!!.appendint(bufferedImage!!.getHeight().toInt())!!.append(this.commonSeps!!.NEW_LINE)
 
                                     }
                                 
@@ -160,8 +158,6 @@ arrayIndex++
 }
 
 System.out.println(stringMaker!!.toString())
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return list

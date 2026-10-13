@@ -124,7 +124,7 @@ includeExtensionBasicArrayList!!.add(includeExtension)
 
         {
 abFile= (files[index]!! as AbFile)
-jsonFileName= abFile!!.getAbsolutePath()
+jsonFileName= abFile!!.getAbsolutePath()!!
 
     
                         if(!abFile!!.isDirectory() && jsonFileName!!.indexOf(GIT) < 0)
@@ -160,7 +160,7 @@ stringMaker!!.delete(0, stringMaker!!.length())
 
     var fixQuotes: String = replace.all(formattedXml)!!
 
-fixQuotes= replace2.all(fixQuotes)
+fixQuotes= replace2.all(fixQuotes)!!
 
     
                         if(gameAsConfigurationJSONObject!!.has(GDProjectStrings.getInstance()!!.TYPE) && gameAsConfigurationJSONObject!!.getString(GDProjectStrings.getInstance()!!.TYPE)!!.compareTo("map") == 0)

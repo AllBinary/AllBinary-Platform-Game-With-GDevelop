@@ -107,10 +107,10 @@ System.out.println("Resource Total: " +jsonArray!!.length())
                         for (index in 0 until jsonArray!!.length()!!)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
-value= jsonObject!!.getString(this.gdProjectStrings!!.FILE)
+jsonObject= jsonArray!!.getJSONObject(index)!!
+value= jsonObject!!.getString(this.gdProjectStrings!!.FILE)!!
 jsonObject!!.put(this.gdProjectStrings!!.FILE, this.fileUnamedUtil!!.process(value))
-value= jsonObject!!.getString(this.gdProjectStrings!!.NAME)
+value= jsonObject!!.getString(this.gdProjectStrings!!.NAME)!!
 jsonObject!!.put(this.gdProjectStrings!!.NAME, this.fileUnamedUtil!!.process(value))
 }
 
@@ -140,7 +140,7 @@ System.out.println("Object Total: " +jsonArray!!.length())
                         for (index in 0 until size)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
+jsonObject= jsonArray!!.getJSONObject(index)!!
 this.processObject(jsonObject)
 }
 
@@ -161,7 +161,7 @@ this.processObject(jsonObject)
                                     
     var texture: String = jsonObject!!.getString(this.gdProjectStrings!!.TEXTURE)!!
 
-texture= this.fileUnamedUtil!!.process(texture)
+texture= this.fileUnamedUtil!!.process(texture)!!
 System.out.println(this.TEXTURE +texture)
 jsonObject!!.put(this.gdProjectStrings!!.TEXTURE, texture)
 
@@ -204,8 +204,8 @@ this.processAnimations(jsonArray)
                         for (index in 0 until size)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
-animationsJSONArray= jsonObject!!.getJSONArray(this.gdProjectStrings!!.DIRECTIONS)
+jsonObject= jsonArray!!.getJSONObject(index)!!
+animationsJSONArray= jsonObject!!.getJSONArray(this.gdProjectStrings!!.DIRECTIONS)!!
 this.processDirections(animationsJSONArray)
 }
 
@@ -234,8 +234,8 @@ this.processDirections(animationsJSONArray)
                         for (index in 0 until size)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
-spritesJSONArray= jsonObject!!.getJSONArray(this.gdProjectStrings!!.SPRITES)
+jsonObject= jsonArray!!.getJSONObject(index)!!
+spritesJSONArray= jsonObject!!.getJSONArray(this.gdProjectStrings!!.SPRITES)!!
 this.processSprites(spritesJSONArray)
 }
 
@@ -261,7 +261,7 @@ this.processSprites(spritesJSONArray)
                         for (index in 0 until size)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
+jsonObject= jsonArray!!.getJSONObject(index)!!
 this.makeResourcesLowercaseForLayout(jsonObject)
 }
 
@@ -275,7 +275,7 @@ this.makeResourcesLowercaseForLayout(jsonObject)
 
     var image: String = jsonObject!!.getString(this.gdProjectStrings!!.IMAGE)!!
 
-image= this.fileUnamedUtil!!.process(image)
+image= this.fileUnamedUtil!!.process(image)!!
 System.out.println(this.IMAGE +image)
 jsonObject!!.put(this.gdProjectStrings!!.IMAGE, image)
 }

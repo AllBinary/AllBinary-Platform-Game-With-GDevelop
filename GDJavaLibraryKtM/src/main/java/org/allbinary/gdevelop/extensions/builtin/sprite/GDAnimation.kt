@@ -41,7 +41,7 @@ public constructor (jsonObject: JSONObject)
 
     var projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!!
 
-this.name= jsonObject!!.getString(projectStrings!!.NAME)
+this.name= jsonObject!!.getString(projectStrings!!.NAME)!!
 this.useMultipleDirections= jsonObject!!.getBoolean(projectStrings!!.USE_MULTIPLE_DIRECTIONS)
 
     var jsonArray: JSONArray = jsonObject!!.getJSONArray(projectStrings!!.DIRECTIONS)!!

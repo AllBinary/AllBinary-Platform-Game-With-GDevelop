@@ -124,15 +124,11 @@ list.add(ZOOM_OUT)
 list.add(SPECIAL3)
 list.add(SPECIAL4)
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return list
 } catch(e: Exception)
             {
 this.logUtil!!.put(this.commonStrings!!.EXCEPTION, this, this.commonStrings!!.GET_LIST, e)
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return BasicArrayListUtil.getInstance()!!.getImmutableInstance()

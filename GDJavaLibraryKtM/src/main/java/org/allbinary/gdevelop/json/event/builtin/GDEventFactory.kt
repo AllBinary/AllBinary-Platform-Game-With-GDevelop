@@ -34,8 +34,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GDEventFactory{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDEventFactory.instance
 }
@@ -61,15 +59,13 @@ companion object {
 
     var type: String = jsonObject!!.getString(gdProjectStrings!!.TYPE)!!
 
-type= eventTypeFactory!!.get(type)
+type= eventTypeFactory!!.get(type)!!
 
     
                         if(type == eventTypeFactory!!.COMMENT)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDCommentEvent(type, jsonObject)
 
@@ -81,8 +77,6 @@ type= eventTypeFactory!!.get(type)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDForEachEvent(type, jsonObject)
 
@@ -94,8 +88,6 @@ type= eventTypeFactory!!.get(type)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDForEachChildVariableEvent(type, jsonObject)
 
@@ -107,8 +99,6 @@ type= eventTypeFactory!!.get(type)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDGroupEvent(type, jsonObject)
 
@@ -120,8 +110,6 @@ type= eventTypeFactory!!.get(type)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDLinkEvent(type, jsonObject)
 
@@ -133,8 +121,6 @@ type= eventTypeFactory!!.get(type)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDRepeatEvent(type, jsonObject)
 
@@ -146,8 +132,6 @@ type= eventTypeFactory!!.get(type)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDStandardEvent(type, jsonObject)
 
@@ -159,15 +143,11 @@ type= eventTypeFactory!!.get(type)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDWhileEvent(type, jsonObject)
 
                                     }
                                 
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDEvent.NULL_GDEVENT

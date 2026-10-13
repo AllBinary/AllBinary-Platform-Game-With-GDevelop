@@ -111,16 +111,12 @@ this.list.add("SkeletonWarriorEnemy")
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
                                     }
                                 
 }
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -147,8 +143,8 @@ System.out.println("Object Total: " +jsonArray!!.length())
                         for (index in 0 until jsonArray!!.length()!!)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
-value= jsonObject!!.getString(this.gdProjectStrings!!.NAME)
+jsonObject= jsonArray!!.getJSONObject(index)!!
+value= jsonObject!!.getString(this.gdProjectStrings!!.NAME)!!
 
     
                         if(this.contains(value))
@@ -193,7 +189,7 @@ index--
                         for (index in 0 until size)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
+jsonObject= jsonArray!!.getJSONObject(index)!!
 
     
                         if(jsonObject!!.getString(this.gdProjectStrings!!.NAME)!!.compareTo(this.ENEMIES) == 0)
@@ -234,8 +230,8 @@ jsonObject= jsonArray!!.getJSONObject(index)
                         for (index in 0 until jsonArray!!.length()!!)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
-value= jsonObject!!.getString(this.gdProjectStrings!!.VALUE)
+jsonObject= jsonArray!!.getJSONObject(index)!!
+value= jsonObject!!.getString(this.gdProjectStrings!!.VALUE)!!
 
     
                         if(this.contains(value))
@@ -277,8 +273,8 @@ System.out.println(jsonArray!!.length())
                         for (index in 0 until jsonArray!!.length()!!)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
-value= jsonObject!!.getString(this.gdProjectStrings!!.NAME)
+jsonObject= jsonArray!!.getJSONObject(index)!!
+value= jsonObject!!.getString(this.gdProjectStrings!!.NAME)!!
 
     
                         if(this.contains(value))
@@ -324,7 +320,7 @@ System.out.println(jsonArray!!.length())
                         for (index in 0 until size)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
+jsonObject= jsonArray!!.getJSONObject(index)!!
 
     
                         if(jsonObject!!.getString(this.gdProjectStrings!!.NAME)!!.compareTo(this.ENEMY_ARRAY) == 0)

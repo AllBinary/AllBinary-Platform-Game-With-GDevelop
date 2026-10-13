@@ -80,7 +80,7 @@ private var touchVectorY: Float= 0.0f
     var graphics: Graphics = PlayN.graphics()!!
 
 graphics.setSize(800, 600)
-this.gameLayer= graphics.createSurfaceLayer(graphics.width(), graphics.height())
+this.gameLayer= graphics.createSurfaceLayer(graphics.width(), graphics.height())!!
 graphics.rootLayer()!!.add(this.gameLayer)
 PlayN.keyboard()!!.setListener(this)
 PlayN.pointer()!!.setListener(object: Pointer.Listener()
@@ -90,7 +90,8 @@ PlayN.pointer()!!.setListener(object: Pointer.Listener()
         //nullable = true from not(false or (false and false)) = true
 {
 var event = event
-touchVectorX= touchVectorY= 0
+touchVectorY= 0f
+touchVectorX= touchVectorY
 }
 
     override fun onPointerDrag(event: Pointer.Event)
@@ -110,7 +111,7 @@ touchMove(event.x(), event.y())
                                 }
                             )
 DeviceFactory.setDevice(PlaynDevice())
-this.device= DeviceFactory.getDevice()
+this.device= DeviceFactory.getDevice()!!
 this.graphics= PlaynSurfaceDisplayGraphics(this.gameLayer!!.surface())
 this.graphics.setColor(BasicColorFactory.getInstance()!!.WHITE.toInt())
 
@@ -121,7 +122,8 @@ this.graphics.setColor(BasicColorFactory.getInstance()!!.WHITE.toInt())
 
     var image: javax.microedition.lcdui.Image = javax.microedition.lcdui.Image.createImage(inputStream)!!
 
-this.originalImage= this.imageArray[0]= image
+this.imageArray[0]= image
+this.originalImage= this.imageArray[0]
 ImageModifierUtil.getInstanceOrCreate()!!.handleImage(this.imageArray, 0, image)
 } catch(e: Exception)
             {
@@ -167,7 +169,7 @@ var delta = delta
 
     var falling: Boolean = true
 
-    var alpha: Float = 1
+    var alpha: Float = 1f
 
     override fun paint(alpha: Float)
         //nullable = true from not(false or (false and false)) = true
@@ -189,12 +191,12 @@ this.graphics.drawImage(this.imageArray[0]!!, 20, 50, 0)
                         if(this.falling)
                         
                                     {
-                                    alpha -= .01
+                                    alpha = (alpha - .01).toFloat()
 
                                     }
                                 
                         else {
-                            alpha += .01
+                            alpha = (alpha + .01).toFloat()
 
                         }
                             
@@ -263,8 +265,6 @@ var error = error
     override fun updateRate()
         //nullable = true from not(false or (false and true)) = true
 : Int{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 33

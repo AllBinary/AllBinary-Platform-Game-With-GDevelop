@@ -164,8 +164,6 @@ this.gravity()
     var y2CellPosition: Int = viewY +maskPoint!!.getY() + -y +maskRectangle!!.getHeight()
 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return geographicMapInterfaceArray[0]!!.getCellPositionAtNoThrow(xCellPosition, yCellPosition, x2CellPosition, y2CellPosition, geographicMapCellPositionList)
 }
@@ -204,8 +202,6 @@ this.gravity()
 
 
     var yCellPosition: Int = viewY +maskPoint!!.getY() +maskRectangle!!.getHeight()
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -248,8 +244,6 @@ this.gravity()
     var yCellPosition: Int = viewY +maskPoint!!.getY() +maskRectangle!!.getHeight()
 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return geographicMapInterfaceArray[0]!!.getCellPositionAtXYNoThrow(xCellPosition, yCellPosition)
 }
@@ -279,8 +273,6 @@ this.get(geographicMapInterfaceArray, geographicMapCellPositionList, layer, x, y
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION
 
@@ -290,8 +282,6 @@ this.get(geographicMapInterfaceArray, geographicMapCellPositionList, layer, x, y
                             
                         }
                             
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return geographicMapCellPosition
@@ -348,8 +338,6 @@ this.unsafePossibleGeographicMapCellPositionList!!.clear()
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION
 
@@ -371,8 +359,6 @@ this.unsafePossibleGeographicMapCellPositionList!!.clear()
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.unsafePossibleGeographicMapCellPositionList!!.get(0) as GeographicMapCellPosition
 
@@ -385,8 +371,6 @@ this.unsafePossibleGeographicMapCellPositionList!!.clear()
                             
                         }
                             
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION
@@ -444,8 +428,6 @@ this.moveAndLand(geographicMapInterfaceArray, geographicMapCellTypeArray, geogra
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 
@@ -453,8 +435,6 @@ this.moveAndLand(geographicMapInterfaceArray, geographicMapCellTypeArray, geogra
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 

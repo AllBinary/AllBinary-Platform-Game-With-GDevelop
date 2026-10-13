@@ -125,8 +125,6 @@ this.logUtil!!.putF(this.SOUND +param, this, this.commonStrings!!.PROCESS)
                                     {
                                     this.logUtil!!.putF(this.SKIPPING_SOUND +fileAsString, this, this.commonStrings!!.PROCESS)
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -138,8 +136,6 @@ this.logUtil!!.putF(this.SOUND +param, this, this.commonStrings!!.PROCESS)
                         
                                     {
                                     this.logUtil!!.putF(this.SKIPPING_SOUND +fileAsString, this, this.commonStrings!!.PROCESS)
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
@@ -213,11 +209,11 @@ this.logUtil!!.putF(resource, this, this.commonStrings!!.PROCESS)
 
     var replace2: Replace = Replace(this.GD_FILE_NAME, resource)
 
-newFileAsString= replace2.all(newFileAsString)
+newFileAsString= replace2.all(newFileAsString)!!
 
     var replace3: Replace = Replace(this.GD_DURATION, (duration).toString())
 
-newFileAsString= replace3.all(newFileAsString)
+newFileAsString= replace3.all(newFileAsString)!!
 stringMaker!!.delete(0, stringMaker!!.length())
 stringMaker!!.append(this.GD)!!.append(name)!!.append(this.SOUND)
 this.playSoundResourceClassNameList!!.add(stringMaker!!.toString())

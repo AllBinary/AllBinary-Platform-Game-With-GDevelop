@@ -37,7 +37,7 @@ public constructor (jsonObject: JSONObject)
     var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!!
 
 this.editorSettings= GDEditorSettings(jsonObject!!.getJSONObject(gdProjectStrings!!.EDITOR_SETTINGS))
-this.objectsGroups= jsonObject!!.getJSONArray(gdProjectStrings!!.OBJECT_GROUPS)
+this.objectsGroups= jsonObject!!.getJSONArray(gdProjectStrings!!.OBJECT_GROUPS)!!
 }
 
 

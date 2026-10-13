@@ -32,8 +32,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GDTypeFactory{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDTypeFactory.instance
 }
@@ -66,8 +64,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.STRING
 
@@ -79,8 +75,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.NUMBER
 
@@ -92,8 +86,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.BOOLEAN
 
@@ -105,8 +97,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.STRUCTURE
 
@@ -118,15 +108,11 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.ARRAY
 
                                     }
                                 
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return StringUtil.getInstance()!!.NULL_STRING
@@ -143,8 +129,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
@@ -156,8 +140,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
@@ -169,15 +151,11 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
                                     }
                                 
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false

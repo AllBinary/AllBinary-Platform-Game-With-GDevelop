@@ -64,7 +64,7 @@ this.infiniteLoopWarning= jsonObject!!.getBoolean(gdProjectStrings!!.INFINITE_LO
                         for (index in 0 until size)
 
         {
-nextJSONObject= whileConditionJSONArray!!.getJSONObject(index)
+nextJSONObject= whileConditionJSONArray!!.getJSONObject(index)!!
 this.whileConditionInstructionList!!.add(GDInstruction(nextJSONObject))
 }
 

@@ -44,9 +44,9 @@ public constructor (type: String, jsonObject: JSONObject)
 
     var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!!
 
-this.valueIteratorVariableName= jsonObject!!.getString(gdProjectStrings!!.VALUE_ITERATOR_VARIABLE_NAME)
-this.keyIteratorVariableName= jsonObject!!.getString(gdProjectStrings!!.KEY_ITERATOR_VARIABLE_NAME)
-this.iterableVariableName= jsonObject!!.getString(gdProjectStrings!!.ITERABLE_VARIABLE_NAME)
+this.valueIteratorVariableName= jsonObject!!.getString(gdProjectStrings!!.VALUE_ITERATOR_VARIABLE_NAME)!!
+this.keyIteratorVariableName= jsonObject!!.getString(gdProjectStrings!!.KEY_ITERATOR_VARIABLE_NAME)!!
+this.iterableVariableName= jsonObject!!.getString(gdProjectStrings!!.ITERABLE_VARIABLE_NAME)!!
 }
 
 

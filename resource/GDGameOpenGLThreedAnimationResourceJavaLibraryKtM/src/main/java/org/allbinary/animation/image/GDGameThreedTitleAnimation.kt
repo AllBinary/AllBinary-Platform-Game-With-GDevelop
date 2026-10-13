@@ -74,8 +74,7 @@ this.logUtil!!.putF("Constructor", this, this::class.toString()!!)
 {
 var eventObject = eventObject
 
-    var basicColor: BasicColor = 
-                                    (eventObject as ColorChangeEvent).getBasicColorP()!!
+    var basicColor: BasicColor = (eventObject as ColorChangeEvent).getBasicColorP()!!
 
 this.color= basicColor!!.toInt()
 }

@@ -59,8 +59,8 @@ public constructor (type: String, jsonObject: JSONObject)
 
     var eventFactory: GDEventFactory = GDEventFactory.getInstance()!!
 
-this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)
-this.source= jsonObject!!.getString(gdProjectStrings!!.SOURCE)
+this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)!!
+this.source= jsonObject!!.getString(gdProjectStrings!!.SOURCE)!!
 this.creationTime= jsonObject!!.getInt(gdProjectStrings!!.CREATION_TIME)
 this.colorR= jsonObject!!.getInt(gdProjectStrings!!.COLOR_R)
 this.colorG= jsonObject!!.getInt(gdProjectStrings!!.COLOR_G)
@@ -95,7 +95,7 @@ size= eventJSONArray!!.length()
                         for (index in 0 until size)
 
         {
-nextJSONObject= eventJSONArray!!.getJSONObject(index)
+nextJSONObject= eventJSONArray!!.getJSONObject(index)!!
 this.eventList!!.add(eventFactory!!.create(nextJSONObject))
 }
 

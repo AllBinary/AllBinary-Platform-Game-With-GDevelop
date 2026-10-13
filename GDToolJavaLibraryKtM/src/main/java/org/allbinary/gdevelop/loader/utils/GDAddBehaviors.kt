@@ -134,7 +134,7 @@ System.out.println("Object Total: " +jsonArray!!.length())
                         for (index in 0 until size)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
+jsonObject= jsonArray!!.getJSONObject(index)!!
 
     var gdObject: GDObject = GDObjectFactory.getInstance()!!.create(jsonObject)!!
 

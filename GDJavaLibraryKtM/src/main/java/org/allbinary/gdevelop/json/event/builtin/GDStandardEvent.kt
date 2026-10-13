@@ -67,7 +67,7 @@ public constructor (type: String, jsonObject: JSONObject)
                         for (index in 0 until size)
 
         {
-nextJSONObject= conditionJSONArray!!.getJSONObject(index)
+nextJSONObject= conditionJSONArray!!.getJSONObject(index)!!
 this.conditionList!!.add(GDInstruction(nextJSONObject))
 }
 
@@ -82,7 +82,7 @@ size= actionJSONArray!!.length()
                         for (index in 0 until size)
 
         {
-nextJSONObject= actionJSONArray!!.getJSONObject(index)
+nextJSONObject= actionJSONArray!!.getJSONObject(index)!!
 this.actionList!!.add(GDInstruction(nextJSONObject))
 }
 
@@ -102,7 +102,7 @@ size= eventJSONArray!!.length()
                         for (index in 0 until size)
 
         {
-nextJSONObject= eventJSONArray!!.getJSONObject(index)
+nextJSONObject= eventJSONArray!!.getJSONObject(index)!!
 this.eventList!!.add(eventFactory!!.create(nextJSONObject))
 }
 

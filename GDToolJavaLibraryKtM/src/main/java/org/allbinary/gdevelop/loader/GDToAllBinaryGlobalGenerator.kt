@@ -87,7 +87,7 @@ this.stringMaker!!.delete(0, this.stringMaker!!.length())
 
     var className: String
 
-className= this.stringMaker!!.append("GDGame")!!.append(name)!!.append("Canvas")!!.toString()
+className= this.stringMaker!!.append("GDGame")!!.append(name)!!.append("Canvas")!!.toString()!!
 this.logUtil!!.putF(className, this, "loadLayout")
 this.layoutNameList!!.add(layout.name.uppercase())
 this.nameList!!.add(name)
@@ -140,14 +140,14 @@ this.logUtil!!.putF(updatedXslDocumentStr, this, this.commonStrings!!.PROCESS)
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
 
-result= replaceLT!!.all(result)
+result= replaceLT!!.all(result)!!
 this.stringMaker!!.delete(0, this.stringMaker!!.length())
 this.logUtil!!.putF(this.stringMaker!!.append(this.gdToolStrings!!.FILENAME)!!.append(outputArray[index2]!!)!!.toString(), this, this.commonStrings!!.PROCESS)
 this.bufferedWriterUtil!!.overwrite(outputArray[index2]!!, result)
 }
 
 this.stringMaker!!.delete(0, this.stringMaker!!.length())
-this.logUtil!!.putF(this.stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(this.timeDelayHelper!!.getElapsedTNT())!!.toString(), this, this.commonStrings!!.PROCESS)
+this.logUtil!!.putF(this.stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(this.timeDelayHelper!!.getElapsedTNT().toLong())!!.toString(), this, this.commonStrings!!.PROCESS)
 }
 
 

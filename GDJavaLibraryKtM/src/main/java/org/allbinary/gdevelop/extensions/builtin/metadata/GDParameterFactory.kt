@@ -25,8 +25,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GDParameterFactory{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDParameterFactory.instance
 }
@@ -101,8 +99,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.OBJECT
 
@@ -114,8 +110,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.OBJECT_PTR
 
@@ -127,8 +121,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.OBJECT_LIST
 
@@ -140,8 +132,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.OBJECT_LIST_WITHOUT_PICKING
 
@@ -153,8 +143,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.BEHAVIOR
 
@@ -166,8 +154,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.NUMBER
 
@@ -179,8 +165,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.EXPRESSION
 
@@ -192,8 +176,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.CAMERA
 
@@ -205,8 +187,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.FORCE_MULTIPLIER
 
@@ -218,8 +198,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.STRING
 
@@ -231,8 +209,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.LAYER
 
@@ -244,8 +220,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.COLOR
 
@@ -257,8 +231,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.FILE
 
@@ -270,8 +242,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.JOY_AXIS
 
@@ -283,8 +253,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.STRING_WITH_SELECTOR
 
@@ -296,8 +264,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.SCENE_NAME
 
@@ -309,8 +275,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.OBJECT_POINT_NAME
 
@@ -322,8 +286,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.OBJECT_ANIMATION_NAME
 
@@ -335,8 +297,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.VARIABLE
 
@@ -348,8 +308,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.OBJECT_VAR
 
@@ -361,8 +319,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.GLOBAL_VAR
 
@@ -374,8 +330,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.SCENE_VAR
 
@@ -387,8 +341,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.RELATIONAL_OPERATOR
 
@@ -410,8 +362,6 @@ companion object {
 : Boolean{
     //var parameterType = parameterType
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return parameterType == this.OBJECT || parameterType == this.OBJECT_PTR || parameterType == this.OBJECT_LIST || parameterType == this.OBJECT_LIST_WITHOUT_PICKING
 }
@@ -421,8 +371,6 @@ companion object {
         //nullable = true from not(false or (false and false)) = true
 : Boolean{
     //var parameterType = parameterType
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return parameterType == this.BEHAVIOR
@@ -440,8 +388,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return parameterType == this.EXPRESSION || parameterType == this.CAMERA || parameterType == this.FORCE_MULTIPLIER
 
@@ -453,8 +399,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return parameterType == this.STRING || parameterType == this.LAYER || parameterType == this.COLOR || parameterType == this.FILE || parameterType == this.JOY_AXIS || parameterType == this.STRING_WITH_SELECTOR || parameterType == this.SCENE_NAME || parameterType == this.OBJECT_POINT_NAME || parameterType == this.OBJECT_ANIMATION_NAME
 
@@ -466,15 +410,11 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return parameterType == this.OBJECT_VAR || parameterType == this.GLOBAL_VAR || parameterType == this.SCENE_VAR
 
                                     }
                                 
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false

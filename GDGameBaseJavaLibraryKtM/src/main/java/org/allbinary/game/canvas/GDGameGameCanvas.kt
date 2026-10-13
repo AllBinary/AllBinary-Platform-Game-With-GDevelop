@@ -175,7 +175,7 @@ AllBinaryMediaManager.init(GDGameSoundsFactory.getInstance())
                         if(gameInfo!!.getCurrentLevel() -this.getStartLevel() >= 1)
                         
                                     {
-                                    nextTouchInputFactory= GDGameNeededTouchButtonsBuilder.getInstance(this.getSensorGameUpdateProcessor())
+                                    nextTouchInputFactory= GDGameNeededTouchButtonsBuilder.getInstance(this.getSensorGameUpdateProcessor())!!
 
                                     }
                                 
@@ -217,8 +217,6 @@ ChangedGameFeatureListener.getInstance()!!.setChanged(false)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -257,8 +255,6 @@ super.initApp(this.abeClientInformation)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -275,8 +271,6 @@ super.initApp(this.abeClientInformation)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -380,8 +374,6 @@ this.gameLayerManager!!.cleanup()
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -395,8 +387,6 @@ progressCanvas!!.addNormalPortion(portion, "Set Background")
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 

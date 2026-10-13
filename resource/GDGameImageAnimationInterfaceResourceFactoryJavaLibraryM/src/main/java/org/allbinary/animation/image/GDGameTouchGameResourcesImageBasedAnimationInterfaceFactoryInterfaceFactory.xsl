@@ -116,7 +116,6 @@ import org.allbinary.game.layout.GDConfig;
 public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
-    private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final PointFactory pointFactory = PointFactory.getInstance();
     
     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
@@ -136,7 +135,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
     private final int animationScale = 1;
         </xsl:if>
 
-    public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(final ABHashtable hashtable, final ABHashtable rectangleHashtable, final ABHashtable rectangleArrayHashtable)
+    public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(final ABHashtable&lt;Object, Object<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> hashtable, final ABHashtable&lt;Object, Object<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> rectangleHashtable, final ABHashtable&lt;Object, Object<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> rectangleArrayHashtable)
     {
         super("Game Image Animations", hashtable, rectangleHashtable, rectangleArrayHashtable);
     }
@@ -151,6 +150,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
         super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
     
+    @Override
     public void init(int level)
     throws Exception
     {
@@ -199,6 +199,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
         super.init(level);
     }
     
+    @Override
     public boolean isLoadingLevel(int level)
     {
         if(level == 1) {
@@ -218,6 +219,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
         return false;
     }
     
+    @Override
     public boolean isFeature()
     {
         final Features features = Features.getInstance();

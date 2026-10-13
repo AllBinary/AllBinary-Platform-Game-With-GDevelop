@@ -61,16 +61,16 @@ public constructor (jsonObject: JSONObject)
 
     var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!!
 
-this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)
+this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)!!
 this.x= jsonObject!!.getDouble(gdProjectStrings!!.X)
 this.y= jsonObject!!.getDouble(gdProjectStrings!!.Y)
 this.angle= jsonObject!!.getDouble(gdProjectStrings!!.ANGLE)
 this.zOrder= jsonObject!!.getInt(gdProjectStrings!!.Z_ORDER)
 this.personalizedSize= jsonObject!!.getBoolean(gdProjectStrings!!.CUSTOM_SIZE)
-this.layer= jsonObject!!.getString(gdProjectStrings!!.LAYER)
+this.layer= jsonObject!!.getString(gdProjectStrings!!.LAYER)!!
 this.width= jsonObject!!.getDouble(gdProjectStrings!!.WIDTH)
 this.height= jsonObject!!.getDouble(gdProjectStrings!!.HEIGHT)
-this.persistentUuid= jsonObject!!.getString(gdProjectStrings!!.PERSISTED_UUID)
+this.persistentUuid= jsonObject!!.getString(gdProjectStrings!!.PERSISTED_UUID)!!
 
     var numberPropertiesJSONArray: JSONArray = jsonObject!!.getJSONArray(gdProjectStrings!!.NUMBER_PROPERTIES)!!
 
@@ -93,9 +93,9 @@ this.persistentUuid= jsonObject!!.getString(gdProjectStrings!!.PERSISTED_UUID)
                         for (index in 0 until size)
 
         {
-nextJSONObject= numberPropertiesJSONArray!!.getJSONObject(index)
-name= nextJSONObject!!.getString(gdProjectStrings!!.NAME)
-valueAsDouble= nextJSONObject!!.getDouble(gdProjectStrings!!.VALUE)
+nextJSONObject= numberPropertiesJSONArray!!.getJSONObject(index)!!
+name= nextJSONObject!!.getString(gdProjectStrings!!.NAME)!!
+valueAsDouble= nextJSONObject!!.getDouble(gdProjectStrings!!.VALUE)!!
 this.numberPropertiesMap!!.put(name, valueAsDouble)
 }
 
@@ -113,9 +113,9 @@ size= stringPropertiesJSONArray!!.length()
                         for (index in 0 until size)
 
         {
-nextJSONObject= stringPropertiesJSONArray!!.getJSONObject(index)
-name= nextJSONObject!!.getString(gdProjectStrings!!.NAME)
-value= nextJSONObject!!.getString(gdProjectStrings!!.VALUE)
+nextJSONObject= stringPropertiesJSONArray!!.getJSONObject(index)!!
+name= nextJSONObject!!.getString(gdProjectStrings!!.NAME)!!
+value= nextJSONObject!!.getString(gdProjectStrings!!.VALUE)!!
 this.stringPropertiesMap!!.put(name, value)
 }
 

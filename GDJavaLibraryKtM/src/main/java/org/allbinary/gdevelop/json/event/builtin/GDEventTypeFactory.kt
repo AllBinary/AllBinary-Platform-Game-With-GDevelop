@@ -32,8 +32,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GDEventTypeFactory{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDEventTypeFactory.instance
 }
@@ -72,8 +70,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.COMMENT
 
@@ -85,8 +81,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.FOR_EACH
 
@@ -98,8 +92,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.FOR_EACH_CHILD
 
@@ -111,8 +103,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.GROUP
 
@@ -124,8 +114,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.LINK
 
@@ -137,8 +125,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.REPEAT
 
@@ -150,8 +136,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.STANDARD
 
@@ -163,15 +147,11 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.WHILE
 
                                     }
                                 
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return StringUtil.getInstance()!!.NULL_STRING

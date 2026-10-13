@@ -35,8 +35,6 @@ open public class GDItemAnimationBehavior : GDAnimationBehaviorBase {
     //var gameKey = gameKey
     //var keyCode = keyCode
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 0
 }
@@ -60,8 +58,6 @@ open public class GDItemAnimationBehavior : GDAnimationBehaviorBase {
         //nullable = true from not(false or (false and true)) = true
 : Boolean{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 }
@@ -79,8 +75,6 @@ this.hasFocus= hasFocus
         //nullable = true from not(false or (false and true)) = true
 : Boolean{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.hasFocus
 }
@@ -93,8 +87,6 @@ var gameKeyCode = gameKeyCode
 var top = top
 var bottom = bottom
 var action = action
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 0

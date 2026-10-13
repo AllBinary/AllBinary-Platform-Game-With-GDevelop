@@ -42,7 +42,7 @@ public constructor (jsonObject: JSONObject)
 
     var typeJSONObject: JSONObject = jsonObject!!.getJSONObject(gdProjectStrings!!.TYPE)!!
 
-this.typeValue= typeJSONObject!!.getString(gdProjectStrings!!.VALUE)
+this.typeValue= typeJSONObject!!.getString(gdProjectStrings!!.VALUE)!!
 
     var expressionJSONArray: JSONArray = jsonObject!!.getJSONArray(gdProjectStrings!!.PARAMETERS)!!
 

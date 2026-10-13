@@ -109,10 +109,10 @@ System.out.println("Resource Total: " +jsonArray!!.length())
                         for (index in 0 until jsonArray!!.length()!!)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
-value= jsonObject!!.getString(this.gdProjectStrings!!.FILE)
+jsonObject= jsonArray!!.getJSONObject(index)!!
+value= jsonObject!!.getString(this.gdProjectStrings!!.FILE)!!
 jsonObject!!.put(this.gdProjectStrings!!.FILE, this.fileUnamedUtil!!.process(value))
-value= jsonObject!!.getString(this.gdProjectStrings!!.NAME)
+value= jsonObject!!.getString(this.gdProjectStrings!!.NAME)!!
 jsonObject!!.put(this.gdProjectStrings!!.NAME, this.fileUnamedUtil!!.process(value))
 }
 
@@ -142,7 +142,7 @@ System.out.println("Object Total: " +jsonArray!!.length())
                         for (index in 0 until size)
 
         {
-jsonObject= jsonArray!!.getJSONObject(index)
+jsonObject= jsonArray!!.getJSONObject(index)!!
 
     var gdObject: GDObject = GDObjectFactory.getInstance()!!.create(jsonObject)!!
 

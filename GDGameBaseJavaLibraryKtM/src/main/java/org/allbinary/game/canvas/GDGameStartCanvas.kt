@@ -83,8 +83,6 @@ this.setDefaultPaintableInterface(ColorFillPaintableFactory.getInstance()!!.getI
 : Int{
 PreLogUtil.put("******************Demo Next Random Is Always 1", this, "getNextRandom")
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 1
 }
@@ -100,8 +98,6 @@ var randomValue = randomValue
     var gameInfo: GameInfo = GameInfo(GameTypeFactory.getInstance()!!.BOT, GameMode.SERVER, PlayerTypesFactory.getInstance()!!.PLAYER_TYPE_ONE, GDGameLayerManager.MAX_LEVEL, randomValue)
 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDGameLayerManager(
                             null, 
@@ -115,8 +111,6 @@ var randomValue = randomValue
         //nullable = true from not(false or (false and false)) = true
 : GameCanvasRunnableInterface{
 var randomValue = randomValue
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDGameGameCanvas(this.abeClientInformation, this.createGameLayerManager(this.getNextRandom()))

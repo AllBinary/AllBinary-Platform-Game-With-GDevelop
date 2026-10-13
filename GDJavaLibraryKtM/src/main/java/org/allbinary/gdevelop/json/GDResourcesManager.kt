@@ -79,7 +79,7 @@ public constructor (jsonObject: JSONObject)
                         for (index in 0 until size)
 
         {
-nextJSONObject= conditionJSONArray!!.getJSONObject(index)
+nextJSONObject= conditionJSONArray!!.getJSONObject(index)!!
 this.resourceList!!.add(resourceFactory!!.create(nextJSONObject))
 }
 

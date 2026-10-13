@@ -131,8 +131,6 @@ this.behaviorInstruction= false
 
 this.parameterList!!.add(parameterMetadata)
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this
 }
@@ -147,8 +145,6 @@ this.parameterList!!.add(parameterMetadata)
     var parameterMetadata: GDParameterMetadata = GDParameterMetadata(type, supplementaryInformation, false, this.stringUtil!!.EMPTY_STRING, false)
 
 this.parameterList!!.add(parameterMetadata)
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this
@@ -192,7 +188,7 @@ stringBuilder!!.append(this.commonSeps!!.SPACE)
 stringBuilder!!.append(GDInstructionMetadata._PARAM)
 stringBuilder!!.append(valueParamIndex)
 stringBuilder!!.append(this.commonSeps!!.UNDERSCORE)
-this.sentence= stringBuilder!!.toString()
+this.sentence= stringBuilder!!.toString()!!
 
                                     }
                                 
@@ -209,12 +205,10 @@ stringBuilder!!.append(this.commonSeps!!.SPACE)
 stringBuilder!!.append(GDInstructionMetadata._PARAM)
 stringBuilder!!.append(valueParamIndex)
 stringBuilder!!.append(this.commonSeps!!.UNDERSCORE)
-this.sentence= stringBuilder!!.toString()
+this.sentence= stringBuilder!!.toString()!!
 
                         }
                             
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this
@@ -238,8 +232,6 @@ gdParameterMetadata!!.setLongDescription(longDescription)
                                     }
                                 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this
 }
@@ -262,8 +254,6 @@ gdParameterMetadata!!.setDefaultValue(defaultValue)
                                     }
                                 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this
 }
@@ -273,8 +263,6 @@ gdParameterMetadata!!.setDefaultValue(defaultValue)
         //nullable = true from not(false or (false and true)) = true
 : GDInstructionMetadata{
 this.hidden= true
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this
@@ -319,7 +307,7 @@ stringBuilder!!.append(this.commonSeps!!.SPACE)
 stringBuilder!!.append(GDInstructionMetadata._PARAM)
 stringBuilder!!.append(valueParamIndex)
 stringBuilder!!.append(this.commonSeps!!.UNDERSCORE)
-this.sentence= stringBuilder!!.toString()
+this.sentence= stringBuilder!!.toString()!!
 
                                     }
                                 
@@ -337,12 +325,10 @@ stringBuilder!!.append(this.commonSeps!!.SPACE)
 stringBuilder!!.append(GDInstructionMetadata._PARAM)
 stringBuilder!!.append(valueParamIndex)
 stringBuilder!!.append(this.commonSeps!!.UNDERSCORE)
-this.sentence= stringBuilder!!.toString()
+this.sentence= stringBuilder!!.toString()!!
 
                         }
                             
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this
@@ -354,8 +340,6 @@ this.sentence= stringBuilder!!.toString()
 : GDInstructionMetadata{
 this.usageComplexity= 2
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this
 }
@@ -366,8 +350,6 @@ this.usageComplexity= 2
 : GDInstructionMetadata{
 this.usageComplexity= 7
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this
 }
@@ -377,8 +359,6 @@ this.usageComplexity= 7
         //nullable = true from not(false or (false and true)) = true
 : GDInstructionMetadata{
 this.usageComplexity= 9
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this

@@ -60,7 +60,7 @@ public constructor (type: String, jsonObject: JSONObject)
     var includeJSONObject: JSONObject = jsonObject!!.getJSONObject(gdProjectStrings!!.INCLUDE)!!
 
 this.includeConfig= includeJSONObject!!.getInt(gdProjectStrings!!.INCLUDE_CONFIG)
-this.target= jsonObject!!.getString(gdProjectStrings!!.TARGET)
+this.target= jsonObject!!.getString(gdProjectStrings!!.TARGET)!!
 
     
                         if(this.includeConfig == includeConfigFactory!!.INCLUDE_ALL)
@@ -75,7 +75,7 @@ this.target= jsonObject!!.getString(gdProjectStrings!!.TARGET)
                         if(this.includeConfig == includeConfigFactory!!.INCLUDE_EVENTS_GROUP)
                         
                                     {
-                                    this.eventsGroupName= includeJSONObject!!.getString(gdProjectStrings!!.EVENTS_GROUP)
+                                    this.eventsGroupName= includeJSONObject!!.getString(gdProjectStrings!!.EVENTS_GROUP)!!
 
                                     }
                                 

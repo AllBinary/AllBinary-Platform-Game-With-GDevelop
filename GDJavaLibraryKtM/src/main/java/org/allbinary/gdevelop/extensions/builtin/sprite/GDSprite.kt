@@ -48,7 +48,7 @@ public constructor (jsonObject: JSONObject)
     var projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!!
 
 this.hasCustomCollisionMask= jsonObject!!.getBoolean(projectStrings!!.HAS_CUSTOM_COLLISION_MASK)
-this.imageAsString= jsonObject!!.getString(projectStrings!!.IMAGE)
+this.imageAsString= jsonObject!!.getString(projectStrings!!.IMAGE)!!
 
     var jsonArray: JSONArray = jsonObject!!.getJSONArray(projectStrings!!.POINTS)!!
 

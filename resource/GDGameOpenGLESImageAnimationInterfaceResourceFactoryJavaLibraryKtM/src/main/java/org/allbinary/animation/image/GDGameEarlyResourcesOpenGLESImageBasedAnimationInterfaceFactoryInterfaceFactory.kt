@@ -65,8 +65,6 @@ super.initImageCache(OpenGLImageCacheFactory.getInstance(), level)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
@@ -74,8 +72,6 @@ super.initImageCache(OpenGLImageCacheFactory.getInstance(), level)
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 

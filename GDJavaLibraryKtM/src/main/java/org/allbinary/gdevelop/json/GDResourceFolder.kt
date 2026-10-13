@@ -47,7 +47,7 @@ public constructor (jsonObject: JSONObject)
 
     var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!!
 
-this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)
+this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)!!
 
     var jsonArray: JSONArray = jsonObject!!.getJSONArray(gdProjectStrings!!.RESOURCES)!!
 
@@ -64,7 +64,7 @@ this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)
                         for (index in 0 until size)
 
         {
-nextJSONObject= jsonArray!!.getJSONObject(index)
+nextJSONObject= jsonArray!!.getJSONObject(index)!!
 this.resourceList!!.add(nextJSONObject!!.getString(gdProjectStrings!!.NAME))
 }
 

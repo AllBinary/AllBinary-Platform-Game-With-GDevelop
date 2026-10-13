@@ -82,7 +82,7 @@ this.rotationRemainderZ= this.rotationRemainderZ +newPortion
                         if(angleAdjustment.toInt() != 0)
                         
                                     {
-                                    gdObject!!.angle= (gdObject!!.angle +angleAdjustment).toShort()
+                                    gdObject!!.angleP= (gdObject!!.angleP +angleAdjustment).toShort()
 this.setRotationZ(gdObject, angleAdjustment)
 this.rotationRemainderZ -= angleAdjustment
 

@@ -68,9 +68,9 @@ open public class GDObject
 
     private val offsetBehavior: BaseOffsetBehavior
 
-    var x: Int= 0
+    var xP: Int= 0
 
-    var y: Int= 0
+    var yP: Int= 0
 
     var zOrder: Int= 0
 
@@ -78,7 +78,7 @@ open public class GDObject
 
     var rotationZP: Float= 0.0f
 
-    var angle: Short= 0
+    var angleP: Short= 0
 
     var movement_angle: Int= 0
 
@@ -155,8 +155,8 @@ this.updateSize(width, height)
     //var x = x
     //var y = y
     //var zOrder = zOrder
-this.x= x
-this.y= y
+this.xP= x
+this.yP= y
 this.zOrder= zOrder
 }
 
@@ -256,7 +256,7 @@ this.setX(x.toInt())
         //nullable = true from not(false or (false and false)) = true
 {
     //var x = x
-this.x= x
+this.xP= x
 }
 
 
@@ -272,7 +272,7 @@ this.setY(y.toInt())
         //nullable = true from not(false or (false and false)) = true
 {
     //var y = y
-this.y= y
+this.yP= y
 }
 
 
@@ -281,7 +281,7 @@ this.y= y
 : Int{
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.x
+                        return this.xP
 }
 
 
@@ -290,7 +290,7 @@ this.y= y
 : Int{
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.y
+                        return this.yP
 }
 
 
@@ -299,7 +299,7 @@ this.y= y
 : Int{
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.x +this.width
+                        return this.xP +this.width
 }
 
 
@@ -308,7 +308,7 @@ this.y= y
 : Int{
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.y +this.height
+                        return this.yP +this.height
 }
 
 
@@ -328,7 +328,7 @@ this.y= y
 : Int{
     //var point = point
 
-    var adjustedAngle: Int = this.angle.toInt()
+    var adjustedAngle: Int = this.angleP.toInt()
 
 
         while(adjustedAngle > 359)
@@ -347,7 +347,7 @@ adjustedAngle += 360
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return (this.x +(x *this.offsetX) +this.offsetBehavior!!.PointX(this.halfWidth)).toInt()
+                        return (this.xP +(x *this.offsetX) +this.offsetBehavior!!.PointX(this.halfWidth)).toInt()
 }
 
 
@@ -356,7 +356,7 @@ adjustedAngle += 360
 : Int{
     //var point = point
 
-    var adjustedAngle: Int = this.angle.toInt()
+    var adjustedAngle: Int = this.angleP.toInt()
 
 
         while(adjustedAngle > 359)
@@ -380,7 +380,7 @@ adjustedAngle += 360
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return (this.y +(y *this.offsetY) +this.offsetBehavior!!.PointY(this.halfHeight)).toInt()
+                        return (this.yP +(y *this.offsetY) +this.offsetBehavior!!.PointY(this.halfHeight)).toInt()
 
                                     }
                                 
@@ -390,7 +390,7 @@ adjustedAngle += 360
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return (this.y +(y *this.offsetY) +this.offsetBehavior!!.PointY(this.halfHeight)).toInt()
+                        return (this.yP +(y *this.offsetY) +this.offsetBehavior!!.PointY(this.halfHeight)).toInt()
 
                         }
                             
@@ -401,7 +401,7 @@ adjustedAngle += 360
         //nullable = true from not(false or (false and false)) = true
 {
     //var angle = angle
-this.angle= angle
+this.angleP= angle
 }
 
 
@@ -426,7 +426,7 @@ adjustedAngle = (adjustedAngle - 360).toShort()
 adjustedAngle = (adjustedAngle + 360).toShort()
 }
 
-this.angle= adjustedAngle
+this.angleP= adjustedAngle
 gameLayer!!.setRotation(adjustedAngle)
 }
 
@@ -437,7 +437,7 @@ gameLayer!!.setRotation(adjustedAngle)
     //var gameLayer = gameLayer
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.angle
+                        return this.angleP
 }
 
 
@@ -446,7 +446,7 @@ gameLayer!!.setRotation(adjustedAngle)
 : Short{
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.angle
+                        return this.angleP
 }
 
 
@@ -535,7 +535,7 @@ gameLayer!!.setRotation(adjustedAngle)
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return stringBuilder!!.append(gdObjectStrings!!.GDOBJECT)!!.append(CommonSeps.getInstance()!!.COLON)!!.append(this.name)!!.append(commonSeps!!.SPACE)!!.append(positionStrings!!.X_LABEL)!!.appendint(this.x)!!.append(positionStrings!!.Y_LABEL)!!.appendint(this.y)!!.append(commonLabels!!.WIDTH_LABEL)!!.appendint(this.width)!!.append(commonLabels!!.HEIGHT_LABEL)!!.appendint(this.height)!!.toString()
+                        return stringBuilder!!.append(gdObjectStrings!!.GDOBJECT)!!.append(CommonSeps.getInstance()!!.COLON)!!.append(this.name)!!.append(commonSeps!!.SPACE)!!.append(positionStrings!!.X_LABEL)!!.appendint(this.xP)!!.append(positionStrings!!.Y_LABEL)!!.appendint(this.yP)!!.append(commonLabels!!.WIDTH_LABEL)!!.appendint(this.width)!!.append(commonLabels!!.HEIGHT_LABEL)!!.appendint(this.height)!!.toString()
 }
 
 
@@ -562,7 +562,7 @@ gameLayer!!.setRotation(adjustedAngle)
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return stringBuilder!!.append(gdObjectStrings!!.GDOBJECT)!!.append(CommonSeps.getInstance()!!.COLON)!!.append(this.name)!!.appendint(this.hashCode())!!.append(commonSeps!!.SPACE)!!.append(positionStrings!!.X_LABEL)!!.appendint(this.x)!!.append(positionStrings!!.Y_LABEL)!!.appendint(this.y)!!.append(commonSeps!!.SPACE)!!.append(positionStrings!!.Z_LABEL)!!.appendint(this.zOrder)!!.append(commonSeps!!.SPACE)!!.append(commonLabels!!.WIDTH_LABEL)!!.appendint(this.width)!!.append(commonSeps!!.SPACE)!!.append(commonLabels!!.HEIGHT_LABEL)!!.appendint(this.height)!!.append(commonSeps!!.SPACE)!!.append(commonLabels!!.WIDTH_LABEL)!!.appendint(this.halfWidth)!!.append(commonSeps!!.SPACE)!!.append(commonLabels!!.HEIGHT_LABEL)!!.appendint(this.halfHeight)!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.ANIMATION)!!.appendint(this.animation)!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.ANGLE)!!.append(commonSeps!!.COLON)!!.appendint(this.angle.toInt())!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.MOVEMENT_ANGLE)!!.append(commonSeps!!.COLON)!!.appendint(this.movement_angle)!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.ROTATION)!!.append(commonSeps!!.COLON)!!.appendfloat(this.rotationP)!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.OPACITY)!!.append(commonSeps!!.COLON)!!.appendfloat(this.opacity)!!.toString()
+                        return stringBuilder!!.append(gdObjectStrings!!.GDOBJECT)!!.append(CommonSeps.getInstance()!!.COLON)!!.append(this.name)!!.appendint(this.hashCode())!!.append(commonSeps!!.SPACE)!!.append(positionStrings!!.X_LABEL)!!.appendint(this.xP)!!.append(positionStrings!!.Y_LABEL)!!.appendint(this.yP)!!.append(commonSeps!!.SPACE)!!.append(positionStrings!!.Z_LABEL)!!.appendint(this.zOrder)!!.append(commonSeps!!.SPACE)!!.append(commonLabels!!.WIDTH_LABEL)!!.appendint(this.width)!!.append(commonSeps!!.SPACE)!!.append(commonLabels!!.HEIGHT_LABEL)!!.appendint(this.height)!!.append(commonSeps!!.SPACE)!!.append(commonLabels!!.WIDTH_LABEL)!!.appendint(this.halfWidth)!!.append(commonSeps!!.SPACE)!!.append(commonLabels!!.HEIGHT_LABEL)!!.appendint(this.halfHeight)!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.ANIMATION)!!.appendint(this.animation)!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.ANGLE)!!.append(commonSeps!!.COLON)!!.appendint(this.angleP.toInt())!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.MOVEMENT_ANGLE)!!.append(commonSeps!!.COLON)!!.appendint(this.movement_angle)!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.ROTATION)!!.append(commonSeps!!.COLON)!!.appendfloat(this.rotationP)!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.OPACITY)!!.append(commonSeps!!.COLON)!!.appendfloat(this.opacity)!!.toString()
 }
 
 

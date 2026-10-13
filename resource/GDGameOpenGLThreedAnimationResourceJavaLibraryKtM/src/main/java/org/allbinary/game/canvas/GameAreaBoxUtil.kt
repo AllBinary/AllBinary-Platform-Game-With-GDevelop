@@ -55,8 +55,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GameAreaBoxUtil{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GameAreaBoxUtil.instance
 }
@@ -120,12 +118,10 @@ companion object {
     var btn_rotate_leftGroupInterface: Group = GroupFactory.getInstance()!!.getNextGroupByName(this.BOX)!!
 
 
-    var boxAnimationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?> = 
-                                    (getBasicAnimationInterfaceFactoryInstance as AnimationInterfaceFactoryInterfaceComposite).getAnimationInterfaceFactoryInterfaceArray() as Array<AnimationInterfaceFactoryInterface?>
+    var boxAnimationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?> = (animationInterfaceFactoryInterfaceFactory!!.getBasicAnimationInterfaceFactoryInstance(this.BOX_ANIMATION_NAME) as AnimationInterfaceFactoryInterfaceComposite).getAnimationInterfaceFactoryInterfaceArray() as Array<AnimationInterfaceFactoryInterface?>
 
 
-    var boxProceduralAnimationInterfaceFactoryInterfaceArray: Array<ProceduralAnimationInterfaceFactoryInterface?> = 
-                                    (getBasicAnimationInterfaceFactoryInstance as BaseAnimationInterfaceFactoryInterfaceComposite).getBasicAnimationInterfaceFactoryInterfaceArray() as Array<ProceduralAnimationInterfaceFactoryInterface?>
+    var boxProceduralAnimationInterfaceFactoryInterfaceArray: Array<ProceduralAnimationInterfaceFactoryInterface?> = (animationInterfaceFactoryInterfaceFactory!!.getBasicAnimationInterfaceFactoryInstance(this.BOX_PROCEDURAL_ANIMATION_NAME) as BaseAnimationInterfaceFactoryInterfaceComposite).getBasicAnimationInterfaceFactoryInterfaceArray() as Array<ProceduralAnimationInterfaceFactoryInterface?>
 
 
     var boxLayerInfo1: Rectangle = animationInterfaceFactoryInterfaceFactory!!.getRectangle(this.BOX_RECTANGLE_NAME_1)!!

@@ -40,7 +40,7 @@ public constructor (jsonObject: JSONObject)
 
     var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!!
 
-this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)
+this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)!!
 
     var initialInstancesJSONArray: JSONArray = jsonObject!!.getJSONArray(gdProjectStrings!!.INSTANCES)!!
 
@@ -57,11 +57,11 @@ this.name= jsonObject!!.getString(gdProjectStrings!!.NAME)
                         for (index in 0 until size)
 
         {
-nextJSONObject= initialInstancesJSONArray!!.getJSONObject(index)
+nextJSONObject= initialInstancesJSONArray!!.getJSONObject(index)!!
 this.initialInstanceList!!.add(GDInitialInstance(nextJSONObject))
 }
 
-this.associatedLayout= jsonObject!!.getString(gdProjectStrings!!.ASSOCIATED_LAYOUT)
+this.associatedLayout= jsonObject!!.getString(gdProjectStrings!!.ASSOCIATED_LAYOUT)!!
 }
 
 

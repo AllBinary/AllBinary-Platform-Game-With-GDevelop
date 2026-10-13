@@ -61,12 +61,12 @@ public constructor (jsonObject: JSONObject)
                         if(jsonObject!!.has(gdProjectStrings!!.NAME))
                         
                                     {
-                                    name= jsonObject!!.getString(gdProjectStrings!!.NAME)
+                                    name= jsonObject!!.getString(gdProjectStrings!!.NAME)!!
 
                                     }
                                 
                         else {
-                            name= Integer.toHexString(this.hashCode())
+                            name= Integer.toHexString(this.hashCode())!!
 
                         }
                             
@@ -133,7 +133,7 @@ this.followBaseLayerCamera= followBaseLayerCamera
                         if(jsonObject!!.has(gdProjectStrings!!.AMBIENT_LIGHT_COLOR_R))
                         
                                     {
-                                    ambientLightBasicColor= BasicColorFactory.getInstance()!!.createInstanceARGB(BasicColorUtil.getInstance()!!.ALPHA, jsonObject!!.getInt(gdProjectStrings!!.AMBIENT_LIGHT_COLOR_R), jsonObject!!.getInt(gdProjectStrings!!.AMBIENT_LIGHT_COLOR_G), jsonObject!!.getInt(gdProjectStrings!!.AMBIENT_LIGHT_COLOR_B), this.name)
+                                    ambientLightBasicColor= BasicColorFactory.getInstance()!!.createInstanceARGB(BasicColorUtil.getInstance()!!.ALPHA, jsonObject!!.getInt(gdProjectStrings!!.AMBIENT_LIGHT_COLOR_R), jsonObject!!.getInt(gdProjectStrings!!.AMBIENT_LIGHT_COLOR_G), jsonObject!!.getInt(gdProjectStrings!!.AMBIENT_LIGHT_COLOR_B), this.name)!!
 
                                     }
                                 
@@ -164,7 +164,7 @@ this.ambientLightBasicColor= ambientLightBasicColor
                         for (index in 0 until size)
 
         {
-nextJSONObject= camerasJSONArray!!.getJSONObject(index)
+nextJSONObject= camerasJSONArray!!.getJSONObject(index)!!
 this.cameraList!!.add(GDLayer(nextJSONObject))
 }
 

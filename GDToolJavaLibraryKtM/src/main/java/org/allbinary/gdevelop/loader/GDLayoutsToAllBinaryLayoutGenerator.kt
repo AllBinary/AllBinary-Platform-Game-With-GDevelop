@@ -162,7 +162,7 @@ this.smallIntegerSingletonFactory!!.init()
                         for (index in 0 until xslTotal0)
 
         {
-xslDocumentAsString0[index]= this.gdData!!.getAsString(xslPathInputArray0[index]!!, sharedBytes)
+xslDocumentAsString0[index]= this.gdData!!.getAsString(xslPathInputArray0[index]!!, sharedBytes)!!
 }
 
 
@@ -284,7 +284,7 @@ stringMaker!!.delete(0, stringMaker!!.length())
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
 
-formattedXml= replaceLT!!.all(formattedXml)
+formattedXml= replaceLT!!.all(formattedXml)!!
 this.bufferedWriterUtil!!.overwrite(fileName, formattedXml)
 
                                     }
@@ -293,13 +293,13 @@ this.bufferedWriterUtil!!.overwrite(fileName, formattedXml)
                             
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
 
-result= replaceLT!!.all(result)
+result= replaceLT!!.all(result)!!
 this.bufferedWriterUtil!!.overwrite(fileName, result)
 
                         }
                             
 stringMaker!!.delete(0, stringMaker!!.length())
-this.logUtil!!.putF(stringMaker!!.appendint(index2)!!.append(this.commonSeps!!.SPACE)!!.append(xslPathInputArray0[index2]!!)!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(timeDelayHelper!!.getElapsedTNT())!!.toString(), this, this.commonStrings!!.PROCESS)
+this.logUtil!!.putF(stringMaker!!.appendint(index2)!!.append(this.commonSeps!!.SPACE)!!.append(xslPathInputArray0[index2]!!)!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(timeDelayHelper!!.getElapsedTNT().toLong())!!.toString(), this, this.commonStrings!!.PROCESS)
 }
 
 
@@ -340,7 +340,7 @@ this.logUtil!!.putF(stringMaker!!.appendint(index2)!!.append(this.commonSeps!!.S
                         for (index in 0 until xslTotal)
 
         {
-xslDocumentAsString[index]= this.gdData!!.getAsString(xslPathInputArray[index]!!, sharedBytes)
+xslDocumentAsString[index]= this.gdData!!.getAsString(xslPathInputArray[index]!!, sharedBytes)!!
 }
 
 
@@ -369,7 +369,7 @@ xslDocumentAsString[index]= this.gdData!!.getAsString(xslPathInputArray[index]!!
 
         {
 externalLayoutTotalForSceneLayout= gdGameInfo!!.getExternalLayoutTotal(index)
-indexAsString= index.toString()
+indexAsString= index.toString()!!
 
     var replace: Replace = Replace(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, indexAsString)
 
@@ -387,7 +387,7 @@ indexAsString= index.toString()
                         for (index4 in 0 until externalLayoutTotalForSceneLayout)
 
         {
-index4AsString= index4.toString()
+index4AsString= index4.toString()!!
 
     var replace3: Replace = Replace(this.gdToolStrings!!.GD_EXTERNAL_LAYOUT_INDEX, index4AsString)
 
@@ -397,7 +397,7 @@ this.logUtil!!.putF(stringMaker!!.append(this.gdToolStrings!!.FILENAME)!!.append
 
     var updatedXslDocumentAsString: String = replace.all(xslDocumentAsString[index2]!!)!!
 
-updatedXslDocumentAsString= replace3.all(updatedXslDocumentAsString)
+updatedXslDocumentAsString= replace3.all(updatedXslDocumentAsString)!!
 
     var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentAsString)), StreamSource(StringBufferInputStream(xmlStringArray[index2]!!)))!!
 
@@ -411,10 +411,10 @@ this.logUtil!!.putF(stringMaker!!.append(this.gdToolStrings!!.FILENAME)!!.append
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
 
-result= replaceLT!!.all(result)
+result= replaceLT!!.all(result)!!
 this.bufferedWriterUtil!!.overwrite(fileName, result)
 stringMaker!!.delete(0, stringMaker!!.length())
-this.logUtil!!.putF(stringMaker!!.appendint(index)!!.append(this.commonSeps!!.COMMA)!!.appendint(index2)!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(timeDelayHelper!!.getElapsedTNT())!!.toString(), this, this.commonStrings!!.PROCESS)
+this.logUtil!!.putF(stringMaker!!.appendint(index)!!.append(this.commonSeps!!.COMMA)!!.appendint(index2)!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(timeDelayHelper!!.getElapsedTNT().toLong())!!.toString(), this, this.commonStrings!!.PROCESS)
 }
 
 }
@@ -463,7 +463,7 @@ this.logUtil!!.putF(stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!
                         for (index in 0 until xslTotal)
 
         {
-xslDocumentAsString[index]= this.gdData!!.getAsString(xslPathInputArray[index]!!, sharedBytes)
+xslDocumentAsString[index]= this.gdData!!.getAsString(xslPathInputArray[index]!!, sharedBytes)!!
 }
 
 
@@ -498,7 +498,7 @@ xslDocumentAsString[index]= this.gdData!!.getAsString(xslPathInputArray[index]!!
 
         {
 externalLayoutTotalForSceneLayout= gdGameInfo!!.getExternalLayoutTotal(index)
-indexAsString= index.toString()
+indexAsString= index.toString()!!
 
     var replace: Replace = Replace(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, indexAsString)
 
@@ -517,7 +517,7 @@ indexAsString= index.toString()
 
         {
 externalCreateInstanceTotal= gdGameInfo!!.getExternalLayoutInstanceTotal(index4)
-index4AsString= index4.toString()
+index4AsString= index4.toString()!!
 
     var replace3: Replace = Replace(this.gdToolStrings!!.GD_EXTERNAL_LAYOUT_INDEX, index4AsString)
 
@@ -528,7 +528,7 @@ index4AsString= index4.toString()
                         for (index5 in 0 until externalCreateInstanceTotal)
 
         {
-createInstanceIndexAsString= index5.toString()
+createInstanceIndexAsString= index5.toString()!!
 
     var replace4: Replace = Replace(this.gdToolStrings!!.GD_CREATE_INSTANCE_INDEX, createInstanceIndexAsString)
 
@@ -538,8 +538,8 @@ this.logUtil!!.putF(stringMaker!!.append(this.gdToolStrings!!.FILENAME)!!.append
 
     var updatedXslDocumentAsString: String = replace.all(xslDocumentAsString[index2]!!)!!
 
-updatedXslDocumentAsString= replace3.all(updatedXslDocumentAsString)
-updatedXslDocumentAsString= replace4.all(updatedXslDocumentAsString)
+updatedXslDocumentAsString= replace3.all(updatedXslDocumentAsString)!!
+updatedXslDocumentAsString= replace4.all(updatedXslDocumentAsString)!!
 
     var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentAsString)), StreamSource(StringBufferInputStream(xmlStringArray[index2]!!)))!!
 
@@ -553,10 +553,10 @@ this.logUtil!!.putF(stringMaker!!.append(this.gdToolStrings!!.FILENAME)!!.append
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
 
-result= replaceLT!!.all(result)
+result= replaceLT!!.all(result)!!
 this.bufferedWriterUtil!!.overwrite(fileName, result)
 stringMaker!!.delete(0, stringMaker!!.length())
-this.logUtil!!.putF(stringMaker!!.appendint(index)!!.append(this.commonSeps!!.COMMA)!!.appendint(index2)!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(timeDelayHelper!!.getElapsedTNT())!!.toString(), this, this.commonStrings!!.PROCESS)
+this.logUtil!!.putF(stringMaker!!.appendint(index)!!.append(this.commonSeps!!.COMMA)!!.appendint(index2)!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(timeDelayHelper!!.getElapsedTNT().toLong())!!.toString(), this, this.commonStrings!!.PROCESS)
 }
 
 }
@@ -607,7 +607,7 @@ this.logUtil!!.putF(stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!
                         for (index in 0 until xslTotal)
 
         {
-xslDocumentAsString[index]= this.gdData!!.getAsString(xslPathInputArray[index]!!, sharedBytes)
+xslDocumentAsString[index]= this.gdData!!.getAsString(xslPathInputArray[index]!!, sharedBytes)!!
 }
 
 
@@ -636,7 +636,7 @@ xslDocumentAsString[index]= this.gdData!!.getAsString(xslPathInputArray[index]!!
 
         {
 createInstanceTotal= gdGameInfo!!.getLayoutInstanceTotal(index)
-indexAsString= index.toString()
+indexAsString= index.toString()!!
 
     var replace: Replace = Replace(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, indexAsString)
 
@@ -654,7 +654,7 @@ indexAsString= index.toString()
                         for (index4 in 0 until createInstanceTotal)
 
         {
-createInstanceIndexAsString= index4.toString()
+createInstanceIndexAsString= index4.toString()!!
 
     var replace3: Replace = Replace(this.gdToolStrings!!.GD_CREATE_INSTANCE_INDEX, createInstanceIndexAsString)
 
@@ -664,7 +664,7 @@ this.logUtil!!.putF(stringMaker!!.append(this.gdToolStrings!!.FILENAME)!!.append
 
     var updatedXslDocumentAsString: String = replace.all(xslDocumentAsString[index2]!!)!!
 
-updatedXslDocumentAsString= replace3.all(updatedXslDocumentAsString)
+updatedXslDocumentAsString= replace3.all(updatedXslDocumentAsString)!!
 
     var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentAsString)), StreamSource(StringBufferInputStream(xmlStringArray[index2]!!)))!!
 
@@ -678,10 +678,10 @@ this.logUtil!!.putF(stringMaker!!.append(this.gdToolStrings!!.FILENAME)!!.append
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
 
-result= replaceLT!!.all(result)
+result= replaceLT!!.all(result)!!
 this.bufferedWriterUtil!!.overwrite(fileName, result)
 stringMaker!!.delete(0, stringMaker!!.length())
-this.logUtil!!.putF(stringMaker!!.appendint(index)!!.append(this.commonSeps!!.COMMA)!!.appendint(index2)!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(timeDelayHelper!!.getElapsedTNT())!!.toString(), this, this.commonStrings!!.PROCESS)
+this.logUtil!!.putF(stringMaker!!.appendint(index)!!.append(this.commonSeps!!.COMMA)!!.appendint(index2)!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(timeDelayHelper!!.getElapsedTNT().toLong())!!.toString(), this, this.commonStrings!!.PROCESS)
 }
 
 }
@@ -729,7 +729,7 @@ this.logUtil!!.putF(stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!
                         for (index in 0 until xslTotal)
 
         {
-xslDocumentAsString[index]= this.gdData!!.getAsString(xslPathInputArray[index]!!, sharedBytes)
+xslDocumentAsString[index]= this.gdData!!.getAsString(xslPathInputArray[index]!!, sharedBytes)!!
 }
 
 
@@ -748,7 +748,7 @@ xslDocumentAsString[index]= this.gdData!!.getAsString(xslPathInputArray[index]!!
                         for (index in startIndex until size)
 
         {
-indexAsString= index.toString()
+indexAsString= index.toString()!!
 
     var replace: Replace = Replace(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, indexAsString)
 
@@ -789,7 +789,7 @@ stringMaker!!.delete(0, stringMaker!!.length())
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
 
-formattedXml= replaceLT!!.all(formattedXml)
+formattedXml= replaceLT!!.all(formattedXml)!!
 this.bufferedWriterUtil!!.overwrite(fileName, formattedXml)
 
                                     }
@@ -798,13 +798,13 @@ this.bufferedWriterUtil!!.overwrite(fileName, formattedXml)
                             
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
 
-result= replaceLT!!.all(result)
+result= replaceLT!!.all(result)!!
 this.bufferedWriterUtil!!.overwrite(fileName, result)
 
                         }
                             
 stringMaker!!.delete(0, stringMaker!!.length())
-this.logUtil!!.putF(stringMaker!!.appendint(index)!!.append(this.commonSeps!!.COMMA)!!.appendint(index2)!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(timeDelayHelper!!.getElapsedTNT())!!.toString(), this, this.commonStrings!!.PROCESS)
+this.logUtil!!.putF(stringMaker!!.appendint(index)!!.append(this.commonSeps!!.COMMA)!!.appendint(index2)!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(timeDelayHelper!!.getElapsedTNT().toLong())!!.toString(), this, this.commonStrings!!.PROCESS)
 }
 
 }
@@ -895,8 +895,6 @@ charIndex++
 }
 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return stringMaker!!.toString()
 }
@@ -938,8 +936,8 @@ charIndex++
                         for (index in 0 until xslTotal)
 
         {
-xslDocumentAsString[index]= this.gdData!!.getAsString(gdNodeXSLPathInputArray[index]!!, sharedBytes)
-updatedXslDocumentAsString= replace.all(xslDocumentAsString[index]!!)
+xslDocumentAsString[index]= this.gdData!!.getAsString(gdNodeXSLPathInputArray[index]!!, sharedBytes)!!
+updatedXslDocumentAsString= replace.all(xslDocumentAsString[index]!!)!!
 }
 
 
@@ -948,9 +946,7 @@ updatedXslDocumentAsString= replace.all(xslDocumentAsString[index]!!)
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
 
-result= replaceLT!!.all(result)
-
-
+result= replaceLT!!.all(result)!!
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return result
@@ -970,8 +966,6 @@ result= replaceLT!!.all(result)
 
 
     var tokenizer: Tokenizer = Tokenizer(this.commonSeps!!.SPACE)
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -1027,7 +1021,7 @@ result= replaceLT!!.all(result)
                         for (index in 0 until xslTotal)
 
         {
-xslDocumentAsString[index]= this.gdData!!.getAsString(gdNodeXSLPathInputArray[index]!!, sharedBytes)
+xslDocumentAsString[index]= this.gdData!!.getAsString(gdNodeXSLPathInputArray[index]!!, sharedBytes)!!
 }
 
 
@@ -1046,7 +1040,7 @@ xslDocumentAsString[index]= this.gdData!!.getAsString(gdNodeXSLPathInputArray[in
                         for (fileIndex in 0 until 2)
 
         {
-indexAsString= this.getIndexAsString(list, fileIndex)
+indexAsString= this.getIndexAsString(list, fileIndex)!!
 
     
                         if(indexAsString!!.isEmpty())
@@ -1078,14 +1072,14 @@ timeDelayHelper!!.setStartTimeTNT()
 
     var updatedXslDocumentAsString: String = replace.all(xslDocumentAsString[index2]!!)!!
 
-updatedXslDocumentAsString= replace2.all(updatedXslDocumentAsString)
+updatedXslDocumentAsString= replace2.all(updatedXslDocumentAsString)!!
 
     var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentAsString)), StreamSource(StringBufferInputStream(xmlStringArray[index2]!!)))!!
 
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
 
-result= replaceLT!!.all(result)
+result= replaceLT!!.all(result)!!
 stringMaker!!.delete(0, stringMaker!!.length())
 
     var fileName: String = stringMaker!!.append(START[index2]!!)!!.appendint(layoutIndex)!!.append(MIDDLE[index2]!!)!!.appendint(fileIndex)!!.append(END[index2]!!)!!.toString()!!
@@ -1110,7 +1104,7 @@ stringMaker!!.delete(0, stringMaker!!.length())
 this.logUtil!!.putF(stringMaker!!.append(this.gdToolStrings!!.FILENAME)!!.append(fileName)!!.toString(), this, this.commonStrings!!.PROCESS)
 this.bufferedWriterUtil!!.overwrite(fileName, result)
 stringMaker!!.delete(0, stringMaker!!.length())
-this.logUtil!!.putF(stringMaker!!.appendint(fileIndex)!!.append(this.commonSeps!!.COMMA)!!.appendint(index2)!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(timeDelayHelper!!.getElapsedTNT())!!.toString(), this, this.commonStrings!!.PROCESS)
+this.logUtil!!.putF(stringMaker!!.appendint(fileIndex)!!.append(this.commonSeps!!.COMMA)!!.appendint(index2)!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(timeDelayHelper!!.getElapsedTNT().toLong())!!.toString(), this, this.commonStrings!!.PROCESS)
 }
 
 }
@@ -1158,8 +1152,8 @@ this.logUtil!!.putF(stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!
                         for (index in 0 until xslTotal)
 
         {
-xslDocumentAsString[index]= this.gdData!!.getAsString(gdNodeXSLPathInputArray[index]!!, sharedBytes)
-updatedXslDocumentAsString= replace.all(xslDocumentAsString[index]!!)
+xslDocumentAsString[index]= this.gdData!!.getAsString(gdNodeXSLPathInputArray[index]!!, sharedBytes)!!
+updatedXslDocumentAsString= replace.all(xslDocumentAsString[index]!!)!!
 }
 
 
@@ -1168,9 +1162,7 @@ updatedXslDocumentAsString= replace.all(xslDocumentAsString[index]!!)
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
 
-result= replaceLT!!.all(result)
-
-
+result= replaceLT!!.all(result)!!
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return result
@@ -1190,8 +1182,6 @@ result= replaceLT!!.all(result)
 
 
     var tokenizer: Tokenizer = Tokenizer(this.commonSeps!!.SPACE)
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -1252,7 +1242,7 @@ this.logUtil!!.putF(stringMaker!!.appendint(layoutIndex)!!.append(" action list:
                         for (index in 0 until xslTotal)
 
         {
-xslDocumentAsString[index]= this.gdData!!.getAsString(gdNodeXSLPathInputArray[index]!!, sharedBytes)
+xslDocumentAsString[index]= this.gdData!!.getAsString(gdNodeXSLPathInputArray[index]!!, sharedBytes)!!
 }
 
 
@@ -1271,7 +1261,7 @@ xslDocumentAsString[index]= this.gdData!!.getAsString(gdNodeXSLPathInputArray[in
                         for (fileIndex in 0 until 2)
 
         {
-indexAsString= this.getIndexAsString(list, fileIndex)
+indexAsString= this.getIndexAsString(list, fileIndex)!!
 
     
                         if(indexAsString!!.isEmpty())
@@ -1303,14 +1293,14 @@ timeDelayHelper!!.setStartTimeTNT()
 
     var updatedXslDocumentAsString: String = replace.all(xslDocumentAsString[index2]!!)!!
 
-updatedXslDocumentAsString= replace2.all(updatedXslDocumentAsString)
+updatedXslDocumentAsString= replace2.all(updatedXslDocumentAsString)!!
 
     var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentAsString)), StreamSource(StringBufferInputStream(xmlStringArray[index2]!!)))!!
 
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
 
-result= replaceLT!!.all(result)
+result= replaceLT!!.all(result)!!
 stringMaker!!.delete(0, stringMaker!!.length())
 
     var fileName: String = stringMaker!!.append(START[index2]!!)!!.appendint(layoutIndex)!!.append(MIDDLE[index2]!!)!!.appendint(fileIndex)!!.append(END[index2]!!)!!.toString()!!
@@ -1335,7 +1325,7 @@ stringMaker!!.delete(0, stringMaker!!.length())
 this.logUtil!!.putF(stringMaker!!.append(this.gdToolStrings!!.FILENAME)!!.append(fileName)!!.toString(), this, this.commonStrings!!.PROCESS)
 this.bufferedWriterUtil!!.overwrite(fileName, result)
 stringMaker!!.delete(0, stringMaker!!.length())
-this.logUtil!!.putF(stringMaker!!.appendint(fileIndex)!!.append(this.commonSeps!!.COMMA)!!.appendint(index2)!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(timeDelayHelper!!.getElapsedTNT())!!.toString(), this, this.commonStrings!!.PROCESS)
+this.logUtil!!.putF(stringMaker!!.appendint(fileIndex)!!.append(this.commonSeps!!.COMMA)!!.appendint(index2)!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(timeDelayHelper!!.getElapsedTNT().toLong())!!.toString(), this, this.commonStrings!!.PROCESS)
 }
 
 }
@@ -1385,7 +1375,7 @@ this.logUtil!!.putF(stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!
                         for (index in 0 until xslTotal2)
 
         {
-xslDocumentAsString2[index]= this.gdData!!.getAsString(xslPathInputArray2[index]!!, sharedBytes)
+xslDocumentAsString2[index]= this.gdData!!.getAsString(xslPathInputArray2[index]!!, sharedBytes)!!
 }
 
 
@@ -1399,7 +1389,7 @@ xslDocumentAsString2[index]= this.gdData!!.getAsString(xslPathInputArray2[index]
 
         {
 timeDelayHelper!!.setStartTimeTNT()
-indexAsString= index.toString()
+indexAsString= index.toString()!!
 
     var replace: Replace = Replace(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, indexAsString)
 
@@ -1419,7 +1409,7 @@ indexAsString= index.toString()
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
 
-result= replaceLT!!.all(result)
+result= replaceLT!!.all(result)!!
 stringMaker!!.delete(0, stringMaker!!.length())
 
     var outputFilePath: String = stringMaker!!.append(OUTPUT_FILE_PATHS[index2]!!)!!.appendint(index)!!.append(OUTPUT_FILE_PATH_END_ARRAY[index2]!!)!!.toString()!!
@@ -1430,7 +1420,7 @@ stringMaker!!.delete(0, stringMaker!!.length())
                         
                                     {
                                     stringMaker!!.delete(0, stringMaker!!.length())
-outputFilePath= stringMaker!!.append(OUTPUT_FILE_PATHS[index2]!!)!!.append(OUTPUT_FILE_PATH_END_ARRAY[index2]!!)!!.toString()
+outputFilePath= stringMaker!!.append(OUTPUT_FILE_PATHS[index2]!!)!!.append(OUTPUT_FILE_PATH_END_ARRAY[index2]!!)!!.toString()!!
 
                                     }
                                 
@@ -1438,7 +1428,7 @@ stringMaker!!.delete(0, stringMaker!!.length())
 this.logUtil!!.putF(stringMaker!!.append(this.gdToolStrings!!.FILENAME)!!.append(outputFilePath)!!.toString(), this, this.commonStrings!!.PROCESS)
 this.bufferedWriterUtil!!.overwrite(outputFilePath, result)
 stringMaker!!.delete(0, stringMaker!!.length())
-this.logUtil!!.putF(stringMaker!!.appendint(index)!!.append(this.commonSeps!!.COMMA)!!.appendint(index2)!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(timeDelayHelper!!.getElapsedTNT())!!.toString(), this, this.commonStrings!!.PROCESS)
+this.logUtil!!.putF(stringMaker!!.appendint(index)!!.append(this.commonSeps!!.COMMA)!!.appendint(index2)!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(timeDelayHelper!!.getElapsedTNT().toLong())!!.toString(), this, this.commonStrings!!.PROCESS)
 }
 
 }
@@ -1469,51 +1459,51 @@ this.logUtil!!.putF(stringMaker!!.appendint(index)!!.append(this.commonSeps!!.CO
 
     var replace2: Replace = Replace(".Width()", ".Width(null)")
 
-gameXmlAsString= replace2.all(gameXmlAsString)
+gameXmlAsString= replace2.all(gameXmlAsString)!!
 
     var replace3: Replace = Replace(".Height()", ".Height(null)")
 
-gameXmlAsString= replace3.all(gameXmlAsString)
+gameXmlAsString= replace3.all(gameXmlAsString)!!
 
     var replace4: Replace = Replace("GlobalVariable(", "GlobalVariable(gameGlobals.")
 
-gameXmlAsString= replace4.all(gameXmlAsString)
+gameXmlAsString= replace4.all(gameXmlAsString)!!
 
     var replace5: Replace = Replace("GlobalVariableString(", "GlobalVariableString(gameGlobals.")
 
-gameXmlAsString= replace5.all(gameXmlAsString)
+gameXmlAsString= replace5.all(gameXmlAsString)!!
 
     var replace6: Replace = Replace("GlobalVariableChildCount(", "GlobalVariableChildCount(gameGlobals.")
 
-gameXmlAsString= replace6.all(gameXmlAsString)
+gameXmlAsString= replace6.all(gameXmlAsString)!!
 
     var replace9: Replace = Replace("Time(&quot;timestamp&quot;)", "gameTickTimeDelayHelper.startTime")
 
-gameXmlAsString= replace9.all(gameXmlAsString)
+gameXmlAsString= replace9.all(gameXmlAsString)!!
 
     var replace10: Replace = Replace("GlobalVarToJSON(", "GlobalVarToJSON(gameGlobals.")
 
-gameXmlAsString= replace10.all(gameXmlAsString)
+gameXmlAsString= replace10.all(gameXmlAsString)!!
 
     var replace11: Replace = Replace("Text::Value()", "Text()")
 
-gameXmlAsString= replace11.all(gameXmlAsString)
+gameXmlAsString= replace11.all(gameXmlAsString)!!
 
     var replace1: Replace = Replace("FileSystem::", "FileSystem.")
 
-gameXmlAsString= replace1.all(gameXmlAsString)
+gameXmlAsString= replace1.all(gameXmlAsString)!!
 
     var replaceRevert: Replace = Replace("FileSystem.ReadDirectory", "FileSystem::ReadDirectory")
 
-gameXmlAsString= replaceRevert!!.all(gameXmlAsString)
+gameXmlAsString= replaceRevert!!.all(gameXmlAsString)!!
 
     var replaceHTTP: Replace = Replace("AdvancedHTTP::ResponseStatusText", "AdvancedHTTP.ResponseStatusText")
 
-gameXmlAsString= replaceHTTP!!.all(gameXmlAsString)
+gameXmlAsString= replaceHTTP!!.all(gameXmlAsString)!!
 
     var replaceText: Replace = Replace(".Text()", "GDGameLayer.Text()")
 
-gameXmlAsString= replaceText!!.all(gameXmlAsString)
+gameXmlAsString= replaceText!!.all(gameXmlAsString)!!
 
     var layoutGameXmlAsString: String = gameXmlAsString.toCharArray().concatToString()
 
@@ -1571,7 +1561,7 @@ index= layoutGameXmlAsString!!.indexOf(VARIABLE, index +VARIABLE.length)
                                 
                         else {
                             stringMaker!!.delete(0, stringMaker!!.length())
-layoutGameXmlAsString= stringMaker!!.append(layoutGameXmlAsString!!.substring(0, index +VARIABLE.length))!!.append(GLOBALS)!!.append(layoutGameXmlAsString!!.substring(index +VARIABLE.length))!!.toString()
+layoutGameXmlAsString= stringMaker!!.append(layoutGameXmlAsString!!.substring(0, index +VARIABLE.length))!!.append(GLOBALS)!!.append(layoutGameXmlAsString!!.substring(index +VARIABLE.length))!!.toString()!!
 
                         }
                             
@@ -1582,39 +1572,39 @@ layoutGameXmlAsString= stringMaker!!.append(layoutGameXmlAsString!!.substring(0,
 
     var replace7: Replace = Replace("PointX(&quot;", "PointX(&quot;globals.")
 
-layoutGameXmlAsString= replace7.all(layoutGameXmlAsString)
+layoutGameXmlAsString= replace7.all(layoutGameXmlAsString)!!
 
     var replace8: Replace = Replace("PointY(&quot;", "PointY(&quot;globals.")
 
-layoutGameXmlAsString= replace8.all(layoutGameXmlAsString)
+layoutGameXmlAsString= replace8.all(layoutGameXmlAsString)!!
 
     var replace12: Replace = Replace("MouseX(&quot;&quot;", "MouseX(EMPTY_STRING")
 
-layoutGameXmlAsString= replace12.all(layoutGameXmlAsString)
+layoutGameXmlAsString= replace12.all(layoutGameXmlAsString)!!
 
     var replace13: Replace = Replace("MouseY(&quot;&quot;", "MouseY(EMPTY_STRING")
 
-layoutGameXmlAsString= replace13.all(layoutGameXmlAsString)
+layoutGameXmlAsString= replace13.all(layoutGameXmlAsString)!!
 
     var replace14: Replace = Replace("CameraX(&quot;&quot;", "CameraX(EMPTY_STRING")
 
-layoutGameXmlAsString= replace14.all(layoutGameXmlAsString)
+layoutGameXmlAsString= replace14.all(layoutGameXmlAsString)!!
 
     var replace15: Replace = Replace("CameraY(&quot;&quot;", "CameraY(EMPTY_STRING")
 
-layoutGameXmlAsString= replace15.all(layoutGameXmlAsString)
+layoutGameXmlAsString= replace15.all(layoutGameXmlAsString)!!
 
     var replace16: Replace = Replace("CameraWidth(&quot;&quot;", "CameraWidth(EMPTY_STRING")
 
-layoutGameXmlAsString= replace16.all(layoutGameXmlAsString)
+layoutGameXmlAsString= replace16.all(layoutGameXmlAsString)!!
 
     var replace17: Replace = Replace("\"value\": \" V\"", "\"value\": \" &#8595;\"")
 
-layoutGameXmlAsString= replace17.all(layoutGameXmlAsString)
+layoutGameXmlAsString= replace17.all(layoutGameXmlAsString)!!
 
     var replace18: Replace = Replace("\"value\": \"V \"", "\"value\": \"&#8595; \"")
 
-layoutGameXmlAsString= replace18.all(layoutGameXmlAsString)
+layoutGameXmlAsString= replace18.all(layoutGameXmlAsString)!!
 
     var gameXmlAsString2: String = gameXmlAsString
 
@@ -1635,7 +1625,7 @@ layoutGameXmlAsString= replace18.all(layoutGameXmlAsString)
 
 generateXMLAndGlobals(gameXmlAsString2, finished)
 System.out.println(StringMaker().
-                            append("generateXMLAndGlobals (Takes a long time and has little output) ElapsedTime: ")!!.appendlong(timeDelayHelper!!.getElapsedTNT())!!.toString())
+                            append("generateXMLAndGlobals (Takes a long time and has little output) ElapsedTime: ")!!.appendlong(timeDelayHelper!!.getElapsedTNT().toLong())!!.toString())
 finished[1]= true
 } catch(e: Exception)
             {
@@ -1673,7 +1663,7 @@ Thread(runnable).
 
 generateLayouts(startIndex, layoutTotal, gameXmlAsString2, layoutGameXmlAsString2, stringMaker)
 stringMaker!!.delete(0, stringMaker!!.length())
-System.out.println(stringMaker!!.append("generateLayouts ")!!.append(ELAPSED_TIME)!!.appendlong(timeDelayHelper!!.getElapsedTNT())!!.toString())
+System.out.println(stringMaker!!.append("generateLayouts ")!!.append(ELAPSED_TIME)!!.appendlong(timeDelayHelper!!.getElapsedTNT().toLong())!!.toString())
 finished[2]= true
 stringMaker!!.delete(0, stringMaker!!.length())
 System.out.println(stringMaker!!.append(CURRENT_STATE_ELAPSED_TIME)!!.append(BooleanUtil.getInstance()!!.toStringFromBooleanArray(finished))!!.toString())
@@ -1707,7 +1697,7 @@ Thread(runnable2a).
 
 generateCreateInstances(startIndex, layoutTotal, gameXmlAsString2, layoutGameXmlAsString2, gdGameInfo, StringMaker())
 stringMaker!!.delete(0, stringMaker!!.length())
-System.out.println(stringMaker!!.append("generateCreateInstances ")!!.append(ELAPSED_TIME)!!.appendlong(timeDelayHelper!!.getElapsedTNT())!!.toString())
+System.out.println(stringMaker!!.append("generateCreateInstances ")!!.append(ELAPSED_TIME)!!.appendlong(timeDelayHelper!!.getElapsedTNT().toLong())!!.toString())
 finished[3]= true
 stringMaker!!.delete(0, stringMaker!!.length())
 System.out.println(stringMaker!!.append(CURRENT_STATE_ELAPSED_TIME)!!.append(BooleanUtil.getInstance()!!.toStringFromBooleanArray(finished))!!.toString())
@@ -1741,7 +1731,7 @@ Thread(runnable2b).
 
 generateExternalLinkLayouts(startIndex, layoutTotal, gameXmlAsString2, layoutGameXmlAsString2, gdGameInfo, StringMaker())
 stringMaker!!.delete(0, stringMaker!!.length())
-System.out.println(stringMaker!!.append("generateExternalLinkLayouts ")!!.append(ELAPSED_TIME)!!.appendlong(timeDelayHelper!!.getElapsedTNT())!!.toString())
+System.out.println(stringMaker!!.append("generateExternalLinkLayouts ")!!.append(ELAPSED_TIME)!!.appendlong(timeDelayHelper!!.getElapsedTNT().toLong())!!.toString())
 finished[4]= true
 stringMaker!!.delete(0, stringMaker!!.length())
 System.out.println(stringMaker!!.append(CURRENT_STATE_ELAPSED_TIME)!!.append(BooleanUtil.getInstance()!!.toStringFromBooleanArray(finished))!!.toString())
@@ -1775,7 +1765,7 @@ Thread(runnable2c).
 
 generateExternalCreateInstances(startIndex, layoutTotal, gameXmlAsString2, layoutGameXmlAsString2, gdGameInfo, StringMaker())
 stringMaker!!.delete(0, stringMaker!!.length())
-System.out.println(stringMaker!!.append("generateExternalCreateInstances ")!!.append(ELAPSED_TIME)!!.appendlong(timeDelayHelper!!.getElapsedTNT())!!.toString())
+System.out.println(stringMaker!!.append("generateExternalCreateInstances ")!!.append(ELAPSED_TIME)!!.appendlong(timeDelayHelper!!.getElapsedTNT().toLong())!!.toString())
 finished[5]= true
 stringMaker!!.delete(0, stringMaker!!.length())
 System.out.println(stringMaker!!.append(CURRENT_STATE_ELAPSED_TIME)!!.append(BooleanUtil.getInstance()!!.toStringFromBooleanArray(finished))!!.toString())
@@ -1809,7 +1799,7 @@ Thread(runnable2d).
 
 generateActionGDNodes(gameXmlAsString2, layoutGameXmlAsString2, layoutTotal, StringMaker())
 stringMaker!!.delete(0, stringMaker!!.length())
-System.out.println(stringMaker!!.append("generateActionGDNodes ")!!.append(ELAPSED_TIME)!!.appendlong(timeDelayHelper!!.getElapsedTNT())!!.toString())
+System.out.println(stringMaker!!.append("generateActionGDNodes ")!!.append(ELAPSED_TIME)!!.appendlong(timeDelayHelper!!.getElapsedTNT().toLong())!!.toString())
 finished[6]= true
 stringMaker!!.delete(0, stringMaker!!.length())
 System.out.println(stringMaker!!.append(CURRENT_STATE_ELAPSED_TIME)!!.append(BooleanUtil.getInstance()!!.toStringFromBooleanArray(finished))!!.toString())
@@ -1843,7 +1833,7 @@ Thread(runnable3).
 
 generateBuiltInGDNodes(gameXmlAsString2, layoutGameXmlAsString2, layoutTotal, StringMaker())
 stringMaker!!.delete(0, stringMaker!!.length())
-System.out.println(stringMaker!!.append("generateBuiltInGDNodes ")!!.append(ELAPSED_TIME)!!.appendlong(timeDelayHelper!!.getElapsedTNT())!!.toString())
+System.out.println(stringMaker!!.append("generateBuiltInGDNodes ")!!.append(ELAPSED_TIME)!!.appendlong(timeDelayHelper!!.getElapsedTNT().toLong())!!.toString())
 finished[7]= true
 stringMaker!!.delete(0, stringMaker!!.length())
 System.out.println(stringMaker!!.append(CURRENT_STATE_ELAPSED_TIME)!!.append(BooleanUtil.getInstance()!!.toStringFromBooleanArray(finished))!!.toString())
@@ -1877,7 +1867,7 @@ Thread(runnable4).
 
 generateResourcesLoadersSetup(startIndex, layoutTotal, gameXmlAsString2, StringMaker())
 stringMaker!!.delete(0, stringMaker!!.length())
-System.out.println(stringMaker!!.append("generateResourcesLoadersSetup ")!!.append(ELAPSED_TIME)!!.appendlong(timeDelayHelper!!.getElapsedTNT())!!.toString())
+System.out.println(stringMaker!!.append("generateResourcesLoadersSetup ")!!.append(ELAPSED_TIME)!!.appendlong(timeDelayHelper!!.getElapsedTNT().toLong())!!.toString())
 finished[8]= true
 stringMaker!!.delete(0, stringMaker!!.length())
 System.out.println(stringMaker!!.append(CURRENT_STATE_ELAPSED_TIME)!!.append(BooleanUtil.getInstance()!!.toStringFromBooleanArray(finished))!!.toString())

@@ -152,7 +152,7 @@ this.nameList!!.add(name)
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
 
-result= replaceLT!!.all(result)
+result= replaceLT!!.all(result)!!
 stringMaker!!.delete(0, stringMaker!!.length())
 
     var fileName: String = stringMaker!!.append(START)!!.append(stringUtil!!.toString(this.nameList!!.get(index)))!!.append(END)!!.toString()!!
@@ -172,7 +172,7 @@ this.logUtil!!.put(this.commonStrings!!.EXCEPTION, this, this.commonStrings!!.PR
 }
 
 this.stringMaker!!.delete(0, this.stringMaker!!.length())
-this.logUtil!!.putF(this.stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(this.timeDelayHelper!!.getElapsedTNT())!!.toString(), this, this.commonStrings!!.PROCESS)
+this.logUtil!!.putF(this.stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!.appendlong(this.timeDelayHelper!!.getElapsedTNT().toLong())!!.toString(), this, this.commonStrings!!.PROCESS)
 }
 
 

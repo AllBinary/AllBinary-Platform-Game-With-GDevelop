@@ -47,8 +47,6 @@ this.logUtil!!.putF(this.getName(), this, "init")
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -72,8 +70,6 @@ var level = level
                                     {
                                     this.logUtil!!.putF(this.getName(), this, "isLoadingLevel")
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
@@ -81,8 +77,6 @@ var level = level
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return super.isLoadingLevel(level)
 
@@ -110,8 +104,6 @@ var level = level
                                     {
                                     this.logUtil!!.putF(this.getName(), this, "isFeature")
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
@@ -119,8 +111,6 @@ var level = level
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 
