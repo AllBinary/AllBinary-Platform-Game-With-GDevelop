@@ -539,7 +539,7 @@ Created By: Travis Berthelot
                 }
 -->
 
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[] {
                     NullRotationAnimationFactory.getFactoryInstance()
                 };
 
@@ -627,7 +627,7 @@ Created By: Travis Berthelot
                 }
 -->
 
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[] {
                     NullRotationAnimationFactory.getFactoryInstance()
                 };
 
@@ -780,7 +780,7 @@ Created By: Travis Berthelot
 
                 final int <xsl:value-of select="name" />TextAnimationSize = (<xsl:value-of select="characterSize" />);
 
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[] {
                     new CustomTextAnimationFactory(
                         <xsl:if test="$multilineString = ''" >stringUtil.EMPTY_STRING</xsl:if>
                         <xsl:if test="$multilineString = '&quot;&quot;'" >stringUtil.EMPTY_STRING</xsl:if>
@@ -821,7 +821,7 @@ Created By: Travis Berthelot
                 final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" />;
                 //final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> / 2;
 
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[] {
                     new CustomTextBoxIndexedAnimationFactory(<xsl:value-of select="name" />TextInputAnimationSize, maxLength)
                 };
 
@@ -907,7 +907,7 @@ Created By: Travis Berthelot
                     this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, this.commonStrings.INIT);
                 }
 
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[] {
                 <xsl:for-each select="animations" >
                     <xsl:for-each select="directions" >
                     //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
@@ -985,7 +985,7 @@ Created By: Travis Berthelot
                     this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, this.commonStrings.INIT);
                 }
 -->
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[] {
                     NullRotationAnimationFactory.getFactoryInstance()
                 };
 
@@ -1044,7 +1044,7 @@ Created By: Travis Berthelot
                     this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, this.commonStrings.INIT);
                 }
 -->
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[] {
                     NullRotationAnimationFactory.getFactoryInstance()
                 };
 
@@ -1094,7 +1094,7 @@ Created By: Travis Berthelot
                     this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, this.commonStrings.INIT);
                 }
 
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[] {
                     NullRotationAnimationFactory.getFactoryInstance()
                 };
 
@@ -1136,7 +1136,7 @@ Created By: Travis Berthelot
             private void add<xsl:value-of select="name" />TextObjectAnimations(final ImageCache imageCache) throws Exception {
 
                 /*
-<!--                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+<!--                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[] {
                     NullRotationAnimationFactory.getFactoryInstance()
                 };
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];

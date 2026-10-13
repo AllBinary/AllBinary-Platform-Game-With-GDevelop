@@ -47,7 +47,7 @@ Created By: Travis Berthelot
                 
 <!--                <xsl:for-each select="animations" ><xsl:for-each select="directions/sprites/image" ><xsl:if test="position() != 1" >found</xsl:if></xsl:for-each></xsl:for-each>-->
                 <xsl:variable name="hasMoreThanOneImage" >found</xsl:variable>
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[] {
                 <xsl:for-each select="animations" >
                     <xsl:for-each select="directions" >
                     //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
@@ -190,7 +190,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="hasMoreThanOneImage" ><xsl:for-each select="animations" ><xsl:for-each select="directions/sprites/image" ><xsl:if test="position() != 1" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
                 <xsl:variable name="hasOriginPointX" ><xsl:if test="animations/directions/sprites/originPoint/x = 0" >found</xsl:if></xsl:variable>
                 final int denominator = 2;
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[] {
                 <xsl:for-each select="childrenContent" >
                     <xsl:for-each select="Border" >
                         <xsl:if test="contains($lazy, 'true')" >
@@ -255,7 +255,7 @@ Created By: Travis Berthelot
 
                 final SimultaneousCompoundIndexedAnimationInterfaceFactory simultaneousCompoundIndexedAnimationInterfaceFactory = 
                     new SimultaneousCompoundIndexedAnimationInterfaceFactory(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray, AnimationBehaviorFactory.getInstance());
-                final AnimationInterfaceFactoryInterface[] joystickAnimationInterfaceFactoryInterfaceArray = {
+                final AnimationInterfaceFactoryInterface[] joystickAnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[] {
                     simultaneousCompoundIndexedAnimationInterfaceFactory
                 };
                 this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(joystickAnimationInterfaceFactoryInterfaceArray));
@@ -525,7 +525,7 @@ Created By: Travis Berthelot
                     this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, this.commonStrings.INIT);
                 }    
                     
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[] {
                     NullRotationAnimationFactory.getFactoryInstance()
                 };
 
