@@ -103,12 +103,12 @@ Created By: Travis Berthelot
 
                         //IsCursorOnObject - runnable
                         <xsl:if test="not(contains($forExtension, 'found'))" >
-                        class IsCursorOnObjectABRunnable extends ABRunnable {
+                        open inner class IsCursorOnObjectABRunnable : ABRunnable() {
 
                             private val logUtil: LogUtil = LogUtil.getInstance()
                             private val commonStrings: CommonStrings = CommonStrings.getInstance()
 
-                            fun run() {
+                            override fun run() {
                                 try {
                                     //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "run", this, this.commonStrings.PROCESS)
 

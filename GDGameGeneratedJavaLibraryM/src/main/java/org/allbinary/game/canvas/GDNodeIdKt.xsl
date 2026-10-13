@@ -298,7 +298,7 @@
             </xsl:if>
             <!--
             } else {
-                //this.logUtil.putF("<xsl:value-of select="$gdGameLayer" /> was smaller than <xsl:value-of select="$gdGameLayer" /> at index: " + index, this, this.commonStrings.PROCESS);
+                //this.logUtil.putF("<xsl:value-of select="$gdGameLayer" /> was smaller than <xsl:value-of select="$gdGameLayer" /> at index: " + index, this, this.commonStrings.PROCESS)
             }
             -->
 
@@ -329,7 +329,7 @@
                     //Found - condition in children - <xsl:value-of select="$childEventWithUsedEvent" />
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                    //final String EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Events nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:value-of select="$parametersAsString" />"
+                    //var EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "Events nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:value-of select="$parametersAsString" />"
                     //this.logUtil.put(EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
                     //actionIdsMotionGestureEvent - //Event - //<xsl:value-of select="type" /> - call
                     //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput)
@@ -400,7 +400,7 @@
                         <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
             //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
             //Condition - //GlobalVariableAsBoolean - call - //release=<xsl:value-of select="$release" /> - //press=<xsl:value-of select="$press" /> //inverted=<xsl:value-of select="$inverted" /> - GDNode
-                            //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture()
+                            //var motionGestureInput: MotionGestureInput = motionGestureEvent.getMotionGesture()
                             if (lastMotionGestureInput == touchMotionGestureFactory.PRESSED) {
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()
                             }
@@ -421,7 +421,7 @@
                         <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
             //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
             //Condition - //IsCursorOnObject - call - //release=<xsl:value-of select="$release" /> - //press=<xsl:value-of select="$press" /> //inverted=<xsl:value-of select="$inverted" /> - GDNode
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput)
                         </xsl:if>
             </xsl:if>
 -->

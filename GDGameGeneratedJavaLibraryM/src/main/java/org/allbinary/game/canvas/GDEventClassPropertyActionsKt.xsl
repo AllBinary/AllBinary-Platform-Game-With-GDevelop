@@ -112,9 +112,9 @@ Created By: Travis Berthelot
         <xsl:if test="contains($hasJSONUsage, 'found')" >
         open public fun getJSONType(): Int {
             if(<xsl:value-of select="$name" />JSONArray != nullUtil.NULL_OBJECT) {
-                var 2: return
+                return 2
             } else if(<xsl:value-of select="$name" />JSONObject != nullUtil.NULL_OBJECT) {
-                var 1: return
+                return 1
             } else {
                 this.logUtil.putF("Not JSONArray or JSONObject", this, "getJSONType()")
                 return -1

@@ -1,7 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobal.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobalKt.xsl" />
 
     <xsl:output method="html" indent="yes" />
 
@@ -21,7 +21,7 @@ import com.google.gwt.resources.client.TextResource
 interface GD<xsl:value-of select="$index" />GamePlaynResources : ClientBundle {
   val INSTANCE: GD<xsl:value-of select="$index" />GamePlaynResources = GWT.create(GD<xsl:value-of select="$index" />GamePlaynResources::class.java)
 
-  val NAMES: Array&lt;String&gt; = {
+  val NAMES: Array&lt;String&gt; = arrayOf(
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
@@ -44,7 +44,7 @@ interface GD<xsl:value-of select="$index" />GamePlaynResources : ClientBundle {
             </xsl:if>
 
         </xsl:for-each>
-    }
+    )
 
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />

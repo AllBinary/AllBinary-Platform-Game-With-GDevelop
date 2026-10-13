@@ -21,24 +21,24 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCallsKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScalingKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObjectGDNodeCondition.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjects.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssign.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeIdKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObjectGDNodeConditionKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEventsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjectsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssignKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndexKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActionsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditionsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObjectKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceConditionKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstructionKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcessKt.xsl" />
 
     <xsl:output method="html" indent="yes" />
 
@@ -239,15 +239,15 @@ Created By: Travis Berthelot
                     }
 
                     open public fun Variable(value: Int): Int {
-                        var value: return
+                        return value
                     }
 
                     open public fun Variable(value: Float): Float {
-                        var value: return
+                        return value
                     }
 
                     open public fun Variable(value: Double): Double {
-                        var value: return
+                        return value
                     }
 
                     open public fun VariableChildCount(array: Array&lt;String&gt;): Int {
@@ -259,27 +259,27 @@ Created By: Travis Berthelot
                     }
 
                     open public fun SceneInstancesCount(size: Int): Int {
-                        var size: return
+                        return size
                     }
 
                     open public fun GlobalVariable(value: String): String {
-                        var value: return
+                        return value
                     }
 
                     open public fun GlobalVariable(value: Float): Float {
-                        var value: return
+                        return value
                     }
 
                     open public fun GlobalVariable(value: Long): Long {
-                        var value: return
+                        return value
                     }
 
                     open public fun GlobalVariable(value: Int): Int {
-                        var value: return
+                        return value
                     }
 
                     open public fun GlobalVariableString(value: String): String {
-                        var value: return
+                        return value
                     }
 
                     open public fun GlobalVariableChildCount(array: Array&lt;String&gt;): Int {
@@ -319,11 +319,11 @@ Created By: Travis Berthelot
                     }
 
                     open public fun CameraX(string: String, value: Int): Int {
-                        var 0: return
+                        return 0
                     }
 
                     open public fun CameraY(string: String, value: Int): Int {
-                        var 0: return
+                        return 0
                     }
 
                     open public fun CameraWidth(string: String, value: Int): Int {
@@ -331,7 +331,7 @@ Created By: Travis Berthelot
                     }
 
                     open public fun floor(value: Int): Int {
-                        var value: return
+                        return value
                     }
 
                     open public fun floor(value: Float): Float {
@@ -343,11 +343,11 @@ Created By: Travis Berthelot
                     }
 
                     open public fun round(value: Int): Int {
-                        var value: return
+                        return value
                     }
 
                     open public fun round(value: Long): Long {
-                        var value: return
+                        return value
                     }
 
                     open public fun round(value: Float): Float {
@@ -355,15 +355,15 @@ Created By: Travis Berthelot
                     }
 
                     open public fun LastTouchId(): Int {
-                        var 0: return
+                        return 0
                     }
 
                     open public fun LastEndedTouchId(): Int {
-                        var 0: return
+                        return 0
                     }
 
                     open public fun ToNumber(string: String): Float {
-                        return Float.parseFloat(string)
+                        return (string).toFloat()
                     }
 
                     open public fun StrLength(string: String): Int {
@@ -375,7 +375,7 @@ Created By: Travis Berthelot
                     }
 
                     open public fun ToString(string: String): String {
-                        var string: return
+                        return string
                     }
 
                     open public fun ToString(value: Int): String {

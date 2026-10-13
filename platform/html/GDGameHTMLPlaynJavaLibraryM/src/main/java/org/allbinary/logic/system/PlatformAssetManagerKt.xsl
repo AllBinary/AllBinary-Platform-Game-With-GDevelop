@@ -1,7 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobal.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobalKt.xsl" />
 
     <xsl:output method="html" indent="yes" />
 
@@ -62,11 +62,11 @@ open class PlatformAssetManager {
     }
 
     private val GET_TEXT: String = "getText"
-    //private final String DONE = "ResourceCallback:done"
-    //private final String ERROR = "ResourceCallback:error"
+    //private val DONE: String = "ResourceCallback:done"
+    //private val ERROR: String = "ResourceCallback:error"
 
     private var textToResource: Map = HashMap()
-    //private Map requestToResource = HashMap()
+    //private var requestToResource: Map = HashMap()
 
     open class RequestedText {
         var text: String
@@ -90,7 +90,7 @@ open class PlatformAssetManager {
         return GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.
         <xsl:call-template name="upper-case" >
             <xsl:with-param name="text" >
-                <xsl:value-of select="$json" />();</xsl:with-param>
+                <xsl:value-of select="$json" />()</xsl:with-param>
         </xsl:call-template>
 
         <xsl:variable name="tilesetJsonFileWithExtension" select="content/tilesetJsonFile" />
@@ -98,7 +98,7 @@ open class PlatformAssetManager {
         return GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.<xsl:variable name="tilesetJsonFileN" select="substring-before($tilesetJsonFileWithExtension, '.')" />
         <xsl:call-template name="upper-case" >
             <xsl:with-param name="text" >
-                <xsl:value-of select="$tilesetJsonFileN" />();</xsl:with-param>
+                <xsl:value-of select="$tilesetJsonFileN" />()</xsl:with-param>
         </xsl:call-template>
 
         <xsl:if test="not(content/tilesetJsonFiles)" >
@@ -108,7 +108,7 @@ open class PlatformAssetManager {
         <xsl:for-each select="content/tilesetJsonFiles" >
         <xsl:variable name="json" select="substring-before(text(), '.')" />
         } else if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[<xsl:value-of select="($previousCount * 2) + 2" />].compareTo(resource) == 0) {
-        return GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$json" />();</xsl:with-param></xsl:call-template>
+        return GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$json" />()</xsl:with-param></xsl:call-template>
 
     <xsl:for-each select="../../../objects" >
         <xsl:if test="$lastPosition" >
@@ -141,9 +141,9 @@ open class PlatformAssetManager {
         val requestedText2: RequestedText = textToResource.get(resource) as RequestedText
         if(requestedText2 != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> requestedText2.text != null) {
             logUtil.putF("Text already loaded: " + resource, this, GET_TEXT)
-            val byteArray: Array&lt;Byte&gt; = requestedText2.text.getBytes()
+            val byteArray: ByteArray = requestedText2.text.encodeToByteArray()
             val byteArrayInputStream: ByteArrayInputStream = ByteArrayInputStream(byteArray)
-            //return new Object[] {byteArrayInputStream, text.length()}
+            //return arrayOf&lt;Object&gt;(byteArrayInputStream, text.length)
             return byteArrayInputStream
         } else {
 
@@ -156,18 +156,16 @@ open class PlatformAssetManager {
                 val requestedText: RequestedText = RequestedText()
                 requestedText.text = text
                 textToResource.put(resource, requestedText)
-                logUtil.putF("Loaded Text: " + text.length(), this, GET_TEXT)
+                logUtil.putF("Loaded Text: " + text.length, this, GET_TEXT)
 
-//                final ResourceCallback callback = ResourceCallback() {
-//                    @Override
-//                    public void done(Object resource) {
+//                var callback: ResourceCallback = object: ResourceCallback() {
+//                    override fun done(resource: Object) {
 //                        logUtil.putF(DONE, this, GET_TEXT)
 //                        text = resource as String
 //                        requestProcessing = false
 //                    }
 //
-//                    @Override
-//                    public void error(Throwable e) {
+//                    override fun error(e: Throwable) {
 //                        logUtil.putF(CommonStrings.getInstance().EXCEPTION_LABEL + ERROR, this, GET_TEXT)
 //                        requestProcessing = false
 //                    }
@@ -175,16 +173,14 @@ open class PlatformAssetManager {
 //
 //                PlayN.assetManager().getText(inputStream.getLocator(), callback)
 
-//                final RequestCallback requestCallback = RequestCallback() {
-//                    @Override
-//                    public void onResponseReceived(Request req, Response resp) {
+//                var requestCallback: RequestCallback = object: RequestCallback() {
+//                    override fun onResponseReceived(req: Request, resp: Response) {
 //                        logUtil.putF(DONE, this, GET_TEXT)
 //                        text = resp.getText()
 //                        requestProcessing = false
 //                    }
 //
-//                    @Override
-//                    public void onError(Request res, Throwable throwable) {
+//                    override fun onError(res: Request, throwable: Throwable) {
 //                        logUtil.putF(CommonStrings.getInstance().EXCEPTION_LABEL + ERROR, this, GET_TEXT)
 //                        requestProcessing = false
 //                    }

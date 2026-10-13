@@ -16,9 +16,9 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:import href="./GDNodeId.xsl" />
-    <xsl:import href="./GDEventLogicConstruction.xsl" />
-    <xsl:import href="./condition/GDConditionUtils.xsl" />
+    <xsl:import href="./GDNodeIdKt.xsl" />
+    <xsl:import href="./GDEventLogicConstructionKt.xsl" />
+    <xsl:import href="./condition/GDConditionUtilsKt.xsl" />
 
     <xsl:template name="createGDObject" >
         <xsl:param name="layoutIndex" />
@@ -96,32 +96,32 @@ Created By: Travis Berthelot
 <!--
                     <xsl:if test="contains($objectsAsString, $spriteName) or contains($objectsAsString, $textInputName)" >
                     this.logUtil.put(
-                    "Sprite info: <xsl:value-of select="$name" /> l: " + ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray.length)) +
-                    "w: " + ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0))) +
-                    "h: " + ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)))
-                    , this, this.commonStrings.PROCESS);
+                    "Sprite info: <xsl:value-of select="$name" /> l: " + ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray.size).toInt()) +
+                    "w: " + ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0)).toInt()) +
+                    "h: " + ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt())
+                    , this, this.commonStrings.PROCESS)
                     </xsl:if>
 -->
 
                     <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
 
                     //createGDObject - //GDEventCreatedAssignGDObject
-                    final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectFactory.get(
+                    var <xsl:value-of select="$name" />: <xsl:value-of select="$gdObjectFactory" /> = <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectFactory.get(
                     //Objects have name - <xsl:value-of select="$name" />/<xsl:value-of select="$spriteName" />
                             <xsl:if test="contains($objectsAsString, $spriteName)" >
                                 //(<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0) / 1.44f).toInt(),
                                 //(<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0) / 1.44f).toInt(),
-<!--                                ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0))) ==
-                                ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0))) ?
-                                ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0))) :
-                                ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)) * scale)
+<!--                                if(((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0)).toInt()) ==
+                                ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt())) {
+                                ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt()) } else {
+                                ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt() * scale) }
 -->
                                 ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt())
                                 ,
-<!--                                ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0))) ==
-                                ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0))) ?
-                                ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0))) :
-                                ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)) * scale)
+<!--                                if(((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0)).toInt()) ==
+                                ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt())) {
+                                ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt()) } else {
+                                ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt() * scale) }
 -->
                                 ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt())
                                 ,
@@ -264,23 +264,23 @@ Created By: Travis Berthelot
                     val <xsl:value-of select="$gameLayerName" />GDGameLayer: GDGameLayer = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(0) as GDGameLayer
                 </xsl:if>
 
-                    final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$gameLayerName" /> = <xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject as <xsl:value-of select="$gdObjectFactory" />
+                    var <xsl:value-of select="$gameLayerName" />: <xsl:value-of select="$gdObjectFactory" /> = <xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject as <xsl:value-of select="$gdObjectFactory" />
                     </xsl:if>
 
                     </xsl:if>
 
                         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
 
-                        final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (gdObjectsFactory.<xsl:value-of select="$name" />GDObjectFactoryList.get(createIndex) as GDObjectFactory) as <xsl:value-of select="$gdObjectFactory" />.get(
+                        var <xsl:value-of select="$name" />: <xsl:value-of select="$gdObjectFactory" /> = (gdObjectsFactory.<xsl:value-of select="$name" />GDObjectFactoryList.get(createIndex) as GDObjectFactory).get(
                     //Objects have name - <xsl:value-of select="$name" />/<xsl:value-of select="$spriteName" />
                             <xsl:if test="contains($objectsAsString, $spriteName)" >
                                 //(<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0) / 1.44f).toInt(),
                                 //(<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0) / 1.44f).toInt(),
-                                ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0)).toInt()) ==
-                                if (((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt())) ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt()) else ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt() * scale)
+                                if(((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0)).toInt()) ==
+                                ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt())) { ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt()) } else { ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt() * scale) }
                                 ,
-                                ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0)).toInt()) ==
-                                if (((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt())) ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt()) else ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt() * scale)
+                                if(((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0)).toInt()) ==
+                                ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt())) { ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt()) } else { ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt() * scale) }
                                 ,
                             </xsl:if>
                             <xsl:if test="contains($objectsGroupsAsString, $name)" >
@@ -297,7 +297,7 @@ Created By: Travis Berthelot
                                 0, 0,
                             </xsl:if>
                             createString
-                    )
+                    ) as <xsl:value-of select="$gdObjectFactory" />
 
                     <xsl:value-of select="$name" />.set(
                     <xsl:for-each select="parameters" >
@@ -358,24 +358,24 @@ Created By: Travis Berthelot
                     <xsl:if test="$name = 'player_bullet'" >
                     //TWB - Hack
                     //stringBuilder.delete(0, stringBuilder.length)
-                    //this.logUtil.put(stringBuilder.append("<xsl:value-of select="$nodeAsString" />").append(commonSeps.SPACE).append<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:if test="position() != last()" ><xsl:if test="string-length(text()) > 0" >.append("<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" >'</xsl:with-param></xsl:call-template>: ").append</xsl:if></xsl:if><xsl:if test="position() = last()" ><xsl:if test="string-length(text()) = 0" >.toString()</xsl:if><xsl:if test="string-length(text()) > 0" >.append("<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" >'</xsl:with-param></xsl:call-template>: ").append.toString()</xsl:if></xsl:if></xsl:if></xsl:for-each> as <xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template> as <xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template> as <xsl:value-of select="$name" />.name, this, this.commonStrings.PROCESS)
-                    //final int size2 = globals.player_bulletGDGameLayerList.size()
+                    //this.logUtil.put(stringBuilder.append("<xsl:value-of select="$nodeAsString" />").append(commonSeps.SPACE).append(<xsl:value-of select="$name" />.name)<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:if test="position() != last()" ><xsl:if test="string-length(text()) > 0" >.append("<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" >'</xsl:with-param></xsl:call-template>: ").append(<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template>)</xsl:if></xsl:if><xsl:if test="position() = last()" ><xsl:if test="string-length(text()) = 0" >.toString()</xsl:if><xsl:if test="string-length(text()) > 0" >.append("<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" >'</xsl:with-param></xsl:call-template>: ").append(<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template>).toString()</xsl:if></xsl:if></xsl:if></xsl:for-each>, this, this.commonStrings.PROCESS)
+                    //var size2: Int = globals.player_bulletGDGameLayerList.size()
                     //for(index2 in 0 until size2) {
                         //stringBuilder.delete(0, stringBuilder.length)
-                        //this.logUtil.put(stringBuilder.append("<xsl:value-of select="$nodeAsString" />").append(commonSeps.SPACE).append.append(commonSeps.SPACE).append(index2).append('\"').append(globals.player_bulletGDGameLayerList.get(index2)).toString() as <xsl:value-of select="$name" />.name, this, this.commonStrings.PROCESS)
+                        //this.logUtil.put(stringBuilder.append("<xsl:value-of select="$nodeAsString" />").append(commonSeps.SPACE).append(<xsl:value-of select="$name" />.name).append(commonSeps.SPACE).append(index2).append('\"').append(globals.player_bulletGDGameLayerList.get(index2)).toString(), this, this.commonStrings.PROCESS)
                     //}
                     </xsl:if>
 
 <!--
                     <xsl:if test="contains($objectsAsString, $spriteName)" >
                     //We may need to set a dimension for each image/animation. CreateAssign
-                    //<xsl:value-of select="$name" />.canvasWidth = <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0);
-                    //<xsl:value-of select="$name" />.canvasHeight = <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0);
+                    //<xsl:value-of select="$name" />.canvasWidth = <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0)
+                    //<xsl:value-of select="$name" />.canvasHeight = <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)
                     </xsl:if>
                     <xsl:if test="contains($objectsGroupsAsString, $name)" >
                     //We may need to set a dimension for each image/animation. CreateAssign
-                    //<xsl:value-of select="$name" />.canvasWidth = ((Image[]) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArrayList.get(createIndex))[0].getHeight();
-                    //<xsl:value-of select="$name" />.canvasHeight = ((Image[]) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArrayList.get(createIndex))[0].getHeight();
+                    //<xsl:value-of select="$name" />.canvasWidth = (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArrayList.get(createIndex) as Array&lt;Image&gt;)[0].getHeight()
+                    //<xsl:value-of select="$name" />.canvasHeight = (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArrayList.get(createIndex) as Array&lt;Image&gt;)[0].getHeight()
                     </xsl:if>
 -->
 
@@ -413,16 +413,16 @@ Created By: Travis Berthelot
 
                         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
 
-                        final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (gdObjectsFactory.<xsl:value-of select="$name" />GDObjectFactoryList.get(createIndex) as GDObjectFactory) as <xsl:value-of select="$gdObjectFactory" />.get(
+                        var <xsl:value-of select="$name" />: <xsl:value-of select="$gdObjectFactory" /> = (gdObjectsFactory.<xsl:value-of select="$name" />GDObjectFactoryList.get(createIndex) as GDObjectFactory).get(
                     //Objects have name - <xsl:value-of select="$name" />/<xsl:value-of select="$spriteName" />
                             <xsl:if test="contains($objectsAsString, $spriteName)" >
                                 //(<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0) / 1.44f).toInt(),
                                 //(<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height() / 1.44f).toInt(),
-                                ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0)).toInt()) ==
-                                if (((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt())) ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt()) else ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt() * scale)
+                                if(((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0)).toInt()) ==
+                                ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt())) { ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt()) } else { ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt() * scale) }
                                 ,
-                                ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0)).toInt()) ==
-                                if (((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt())) ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt()) else ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt() * scale)
+                                if(((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0)).toInt()) ==
+                                ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt())) { ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt()) } else { ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt() * scale) }
                                 ,
                             </xsl:if>
                             <xsl:if test="contains($objectsGroupsAsString, $name)" >
@@ -439,7 +439,7 @@ Created By: Travis Berthelot
                                 0, 0,
                             </xsl:if>
                             createString
-                    )
+                    ) as <xsl:value-of select="$gdObjectFactory" />
 
                     <xsl:value-of select="$name" />.set(
                     <xsl:for-each select="parameters" >

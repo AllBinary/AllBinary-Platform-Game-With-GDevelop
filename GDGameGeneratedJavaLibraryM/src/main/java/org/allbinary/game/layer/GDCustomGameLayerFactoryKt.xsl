@@ -56,7 +56,7 @@ open public class GDCustomGameLayerFactory : GDGameLayerFactory
             proceduralAnimationInterfaceFactoryInterfaceArray,
             layerInfo,
             rectangleArrayOfArrays,
-        animationBehaviorFactory<xsl:for-each select="properties" ><xsl:if test="not(resetAnimationBehavior)" >, true</xsl:if><xsl:for-each select="resetAnimationBehavior" >, <xsl:value-of select="text()" /></xsl:for-each></xsl:for-each>) {; <xsl:for-each select="properties" ><xsl:if test="not(resetAnimationBehavior)" >//Using default true value when not in json</xsl:if></xsl:for-each> //abjson final boolean resetAnimationBehavior
+        animationBehaviorFactory<xsl:for-each select="properties" ><xsl:if test="not(resetAnimationBehavior)" >, true</xsl:if><xsl:for-each select="resetAnimationBehavior" >, <xsl:value-of select="text()" /></xsl:for-each></xsl:for-each>) { <xsl:for-each select="properties" ><xsl:if test="not(resetAnimationBehavior)" >//Using default true value when not in json</xsl:if></xsl:for-each> //abjson resetAnimationBehavior: Boolean
 
         this.primitiveDrawingAnimationFactory = primitiveDrawingAnimationFactory
         this.width = this.layerInfo.getWidth()
@@ -66,7 +66,7 @@ open public class GDCustomGameLayerFactory : GDGameLayerFactory
     override public fun create(layoutIndex: Int, name: String, gdObject: GDObject, scaleX: Float, scaleY: Float, collidableBehavior: GDConditionWithGroupActions): GDGameLayer {
         if(!name.startsWith(gdObject.name)) {
             val stringUtil: StringUtil = StringUtil.getInstance()
-            this.logUtil.put(StringMaker().append(name).append(" 0GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").append(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(stringUtil.toString(this.animationInterfaceFactoryInterfaceArray[0])).toString(), this, "create", Exception())
+            this.logUtil.put(StringMaker().append(name).append(" 0GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").append(this.animationInterfaceFactoryInterfaceArray.size).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(stringUtil.toString(this.animationInterfaceFactoryInterfaceArray[0])).toString(), this, "create", Exception())
         }
 
         val gdObjectWidth: Int = gdObject.Width(null)
@@ -84,7 +84,7 @@ open public class GDCustomGameLayerFactory : GDGameLayerFactory
 
         val rectangle: Rectangle = this.init(gdObject, scaleX, scaleY)
 
-        val gameLayer: GDCustomGameLayer = GDCustomGameLayer(
+        val gameLayer: GDCustomGameLayer = object : GDCustomGameLayer(
                 layoutIndex,
                 this.primitiveDrawingAnimationFactory.getInstance(0),
                 this.gameLayerList, this.gameLayerDestroyedList,
@@ -97,7 +97,7 @@ open public class GDCustomGameLayerFactory : GDGameLayerFactory
                 rectangle,
                 this.rectangleArrayOfArrays,
                 gdObject, this.animationBehaviorFactory.create(), this.resetAnimationBehavior) {
-                    /*public void updatePosition() {
+                    /*override fun updatePosition() {
                         var change: Boolean = false
                         if(this.gdObject.x != this.getXP() || this.gdObject.y != this.getYP()) {
                             change = true
@@ -118,7 +118,7 @@ open public class GDCustomGameLayerFactory : GDGameLayerFactory
 
         //this.logUtil.put(StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(" w/h/d: ").append(gameLayer.getWidth()).append('/').append(gameLayer.getHeight()).append('/').append(gameLayer.getDepth()).toString(), this, "create")
 
-        var gameLayer: return
+        return gameLayer
     }
 
     open public fun init(gdObject: GDObject, scaleX: Float, scaleY: Float): Rectangle {
@@ -130,7 +130,7 @@ open public class GDCustomGameLayerFactory : GDGameLayerFactory
             (this.layerInfo.getHeight() * scaleY).toInt()
         )
 
-        var rectangle: return
+        return rectangle
     }
 
 }

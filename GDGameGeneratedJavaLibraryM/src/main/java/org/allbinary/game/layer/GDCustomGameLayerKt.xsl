@@ -18,7 +18,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCallsKt.xsl" />
 
     <xsl:output method="html" indent="yes" />
 
@@ -198,11 +198,11 @@ Created By: Travis Berthelot
                     public var waypointLogHelper: WaypointLogHelper = WaypointLogHelper.getInstance()
                     public var waypoint2LogHelper: Waypoint2LogHelper = Waypoint2LogHelper.getInstance()
                     public var waypointRunnableLogHelper: WaypointRunnableLogHelper = WaypointRunnableLogHelper.getInstance()
-                    //protected RTSLayerLogHelper rtsLogHelper = RTSLayerSelectedLogHelper.getInstance()
-                    //public RTSLayer2LogHelper rtsLayer2LogHelper = RTSLayer2SelectedLogHelper.getInstance()
-                    //public WaypointLogHelper waypointLogHelper = WaypointSelectedLogHelper.getInstance()
-                    //public Waypoint2LogHelper waypoint2LogHelper = Waypoint2SelectedLogHelper.getInstance()
-                    //public WaypointRunnableLogHelper waypointRunnableLogHelper = WaypointRunnableSelectedLogHelper.getInstance()
+                    //protected var rtsLogHelper: RTSLayerLogHelper = RTSLayerSelectedLogHelper.getInstance()
+                    //public var rtsLayer2LogHelper: RTSLayer2LogHelper = RTSLayer2SelectedLogHelper.getInstance()
+                    //public var waypointLogHelper: WaypointLogHelper = WaypointSelectedLogHelper.getInstance()
+                    //public var waypoint2LogHelper: Waypoint2LogHelper = Waypoint2SelectedLogHelper.getInstance()
+                    //public var waypointRunnableLogHelper: WaypointRunnableLogHelper = WaypointRunnableSelectedLogHelper.getInstance()
 
                     private val initPathAnimation: Animation
                     private var pathAnimation: Animation = NullAnimationFactory.getFactoryInstance().getInstance(0)
@@ -269,11 +269,11 @@ Created By: Travis Berthelot
                     protected val rectangleArrayOfArrays: Array&lt;Array&lt;Rectangle&gt;&gt;
 
 <!--
-                    public boolean hasCollisionMask() {
-                        if(this.rectangleArrayOfArrays != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.rectangleArrayOfArrays.length <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.rectangleArrayOfArrays[0].length <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                            return true;
+                    open fun hasCollisionMask(): Boolean {
+                        if(this.rectangleArrayOfArrays != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.rectangleArrayOfArrays.size <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.rectangleArrayOfArrays[0].size <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                            return true
                         } else {
-                            return false;
+                            return false
                         }
                     }
 -->
@@ -357,7 +357,7 @@ Created By: Travis Berthelot
 
             super.moveAndLand(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPosition, velocityProperties, layer, x, y)
 
-            //final String MOVE_AND_LAND = "moveAndLand"
+            //var MOVE_AND_LAND: String = "moveAndLand"
             //this.logUtil.put(StringMaker().append("Should Land at: ").append(this.gravityActionIndex).append(" y: ").append(y).toString(), this, MOVE_AND_LAND)
         } else {
             //this.logUtil.putF("do not move", this, "moveAndLand")
@@ -381,7 +381,7 @@ Created By: Travis Berthelot
 
             super.moveAndLand(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPosition, velocityProperties, layer, x, y)
 
-            //final String MOVE_AND_LAND = "moveAndLand"
+            //var MOVE_AND_LAND: String = "moveAndLand"
             //this.logUtil.put(StringMaker().append("Should Land at: ").append(this.gravityActionIndex).append(" y: ").append(y).toString(), this, MOVE_AND_LAND)
         } else {
             //this.logUtil.putF("do not move", this, "moveAndLand")
@@ -462,7 +462,7 @@ Created By: Travis Berthelot
 
             if(layoutIndex == <xsl:value-of select="$layoutIndex" />) {
                 this.handleLayout<xsl:value-of select="$layoutIndex" />()
-                this.scale = GDConfig.getInstance().getScaleThreed(GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale);
+                this.scale = GDConfig.getInstance().getScaleThreed(GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale)
             }
         </xsl:for-each>
 
@@ -506,21 +506,21 @@ Created By: Travis Berthelot
 
         <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
 
-        //private int lastX
-        //private int lastY
+        //private var lastX: Int = 0
+        //private var lastY: Int = 0
 
         private var total: Int
 
-        //String lastString = ""
+        //var lastString: String = ""
 
     override public fun move() {
         try {
             //this.logUtil.putF("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move")
 
 //            if(gameGlobals.PlayerGDGameLayerList.size() >= 0) {
-//                final GDGameLayer player = gameGlobals.PlayerGDGameLayerList.get(0) as GDGameLayer
+//                var player: GDGameLayer = gameGlobals.PlayerGDGameLayerList.get(0) as GDGameLayer
 //                if(this == player) {
-//                    String layerManagerAsString = this.allBinaryGameLayerManagerP.toString()
+//                    var layerManagerAsString: String = this.allBinaryGameLayerManagerP.toString()
 //                    if(lastString.compareTo(layerManagerAsString) != 0)
 //                    lastString = layerManagerAsString
 //                    if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
@@ -747,7 +747,7 @@ Created By: Travis Berthelot
         GameInputProcessorUtil.init(this.inputProcessorArray)
     }
 
-//    private int lastSize = -1
+//    private var lastSize: Int = -1
 
     @Synchronized open public fun processInput2(allbinaryLayerManager: AllBinaryLayerManager) {
         //this.workSpecialIndex = this.minSpecialIndex
@@ -902,10 +902,11 @@ Created By: Travis Berthelot
       }
 
       /*
-       * int hatFrame = this.absoluteXVelocity.toInt() / hatReverseDenominator
-       * int yHatFrame = (int)
-       * Math.abs(this.velocityInterface.getVelocityYBasicDecimalP().getUnscaled()) /
-       * hatReverseDenominator; hatFrame += yHatFrame
+       * var hatFrame: Int = this.absoluteXVelocity.toInt() / hatReverseDenominator
+       * var yHatFrame: Int =
+       * Math.abs(this.velocityInterface.getVelocityYBasicDecimalP().getUnscaled()).toInt() /
+       * hatReverseDenominator
+       * hatFrame += yHatFrame
        *
        * if (hatFrame > TOTAL_HAT_FRAMES - 1) { hatFrame = TOTAL_HAT_FRAMES -
        * 1; }
@@ -913,16 +914,16 @@ Created By: Travis Berthelot
        * (this.direction.getFrameFactor() * TOTAL_HAT_FRAMES))
        */
 
-//      final IndexedAnimationInterface legsIndexedAnimationInterface =
+//      var legsIndexedAnimationInterface: IndexedAnimationInterface =
 //         this.specialAnimationInterfaceArray[LEGS_ANIMATION]
 //
 //      if (this.platformGameBehavior.gravityActionIndex == 0  || this.platformGameBehavior.isFallingWithoutJumpAttempt)
 //      {
-//         int legDirectionIndex = this.direction.getFrameFactor() * TOTAL_LEG_FRAMES
+//         var legDirectionIndex: Int = this.direction.getFrameFactor() * TOTAL_LEG_FRAMES
 //
 //         if (this.movedEnoughForMovement || this.directionChanged)
 //         {
-//            int nextFrame = this.runFrameSequence[legsIndexedAnimationInterface.getFrame()]
+//            var nextFrame: Int = this.runFrameSequence[legsIndexedAnimationInterface.getFrame()]
 //            legsIndexedAnimationInterface.setFrame(nextFrame + legDirectionIndex)
 //         }
 //         else if (!isMovingEnough)
@@ -934,7 +935,7 @@ Created By: Travis Berthelot
     }
 
     open public fun armAnimation() {
-//        final int armsDirectionIndex = TOTAL_ARM_FRAMES * this.direction.getFrameFactor()
+//        var armsDirectionIndex: Int = TOTAL_ARM_FRAMES * this.direction.getFrameFactor()
 //        if (this.platformGameBehavior.gravityActionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
 //            this.specialAnimationInterfaceArray[ARMS_ANIMATION].setFrame(JUMP_ARMS_FRAME + armsDirectionIndex)
 //        } else if (!this.movedEnoughForMovement) {
@@ -957,7 +958,7 @@ Created By: Travis Berthelot
     }
 
     open public fun getSourceId(): Int {
-        var id: return
+        return id
     }
 
                         <xsl:if test="1" >
@@ -990,7 +991,7 @@ Created By: Travis Berthelot
     }
 
     open public fun implmentsGameInputInterface(): Boolean {
-        var true: return
+        return true
     }
 
                         </xsl:if>
@@ -1027,16 +1028,16 @@ Created By: Travis Berthelot
     }
 
     open public fun implmentsTickableInterface(): Boolean {
-        var true: return
+        return true
     }
 
-<!--    int ox = Integer.MAX_VALUE;
-    int oy = Integer.MAX_VALUE;-->
+<!--    var ox: Int = Integer.MAX_VALUE
+    var oy: Int = Integer.MAX_VALUE-->
     open public fun processTick(allBinaryLayerManager: AllBinaryLayerManager) {
-//    private final String PLAYER = "Player"
-//        if(this.getName().indexOf<xsl:text disable-output-escaping="yes" > as PLAYER&gt;</xsl:text>= 0) {
-//            final int size = this.initIndexedAnimationInterfaceArray.length
-//            RotationAnimation rotationAnimation
+//    private val PLAYER: String = "Player"
+//        if(this.getName().indexOf(PLAYER) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text>= 0) {
+//            var size: Int = this.initIndexedAnimationInterfaceArray.size
+//            lateinit var rotationAnimation: RotationAnimation
 //            for(index in 0 until size) {
 //                rotationAnimation = (this.initIndexedAnimationInterfaceArrayP[index] as RotationAnimation)
 //                //rotationAnimation.nextRotationX()
@@ -1047,9 +1048,9 @@ Created By: Travis Berthelot
         if(this.gdObject.isBehaviorEnabledArray[gdBehaviorUtil.PATHFINDING_BEHAVIOR_INDEX]) {
 
 <!--            if(this.x != this.ox || this.y != this.oy) {
-                this.ox = this.x;
-                this.oy = this.y;
-                this.logUtil.put(new StringMaker().append(this.getName()).append(commonSeps.SPACE).append(this.x).append(commonSeps.SPACE).append(this.y).toString(), this, GameStrings.getInstance().PROCESS_TICK);
+                this.ox = this.x
+                this.oy = this.y
+                this.logUtil.put(StringMaker().append(this.getName()).append(commonSeps.SPACE).append(this.x).append(commonSeps.SPACE).append(this.y).toString(), this, GameStrings.getInstance().PROCESS_TICK)
             }-->
 
             this.captionAnimationHelper.tick()
@@ -1073,8 +1074,8 @@ Created By: Travis Berthelot
             if (basicGeographicMapArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
                 val geographicMapInterface: BasicGeographicMap = basicGeographicMapArray[0]
 
-//            final AllBinaryTiledLayer tiledLayer = geographicMapInterface.getAllBinaryTiledLayer()
-//            final TileLayerPositionIntoViewPosition viewPosition2
+//            var tiledLayer: AllBinaryTiledLayer = geographicMapInterface.getAllBinaryTiledLayer()
+//            var viewPosition2: TileLayerPositionIntoViewPosition
 //                = this.getViewPosition() as TileLayerPositionIntoViewPosition
 //            viewPosition2.setTiledLayer(tiledLayer)
                 this.updateWaypointBehavior(geographicMapInterface)
@@ -1126,11 +1127,11 @@ Created By: Travis Berthelot
     }
 
     open public fun getHudPaintable(): SelectionHudPaintable {
-        var null: return
+        return null
     }
 
     open public fun getSourceId(): Int {
-        var 0: return
+        return 0
     }
 
     open public fun getEndGeographicMapCellPositionList(): BasicArrayList {
@@ -1144,11 +1145,11 @@ Created By: Travis Berthelot
     }
 
     open public fun getGeographicMapCellPositionArea(): GeographicMapCellPositionArea {
-        var geographicMapCellPositionArea: return
+        return geographicMapCellPositionArea
     }
 
     open public fun shouldHandleStartSameAsEnd(): Boolean {
-        var true: return
+        return true
     }
 
     open public fun handleCost(ownerLayer: PathFindingLayerInterface) {
@@ -1183,18 +1184,18 @@ Created By: Travis Berthelot
     }
 
     open public fun shouldAddWaypointFromBuilding(): Boolean {
-        var false: return
+        return false
     }
 
     open public fun getCaptionAnimationHelper(): CaptionAnimationHelperBase {
-        var captionAnimationHelper: return
+        return captionAnimationHelper
     }
 
     open public fun isShowMoreCaptionStates(): Boolean {
         return this.showMoreCaptionStates
     }
 
-    //private final String REMOVING_LAST_CELLPOSITION = "Removing last cell position in path: "
+    //private val REMOVING_LAST_CELLPOSITION: String = "Removing last cell position in path: "
     open public fun init(geographicMapCellHistory: GeographicMapCellHistory, geographicMapCellPositionBasicArrayList: BasicArrayList) {
         //System.out.println("geographicMapCellPositionBasicArrayList: " + geographicMapCellPositionBasicArrayList.size())
         val geographicMapCompositeInterface: GeographicMapCompositeInterface = this.allBinaryGameLayerManagerP as GeographicMapCompositeInterface
@@ -1222,7 +1223,7 @@ Created By: Travis Berthelot
             this.y + this.getHalfHeight())
 
         //This should never happen remove when bug is found
-//        final RTSRaceTrackGeographicMap raceTrackGeographicMap =
+//        var raceTrackGeographicMap: RTSRaceTrackGeographicMap =
 //            geographicMapInterface as RTSRaceTrackGeographicMap
 //
 //        if(!raceTrackGeographicMap.isValid(geographicMapCellPosition))
@@ -1230,7 +1231,7 @@ Created By: Travis Berthelot
 //            throw Exception("Position is not really on the map: " + geographicMapCellPosition)
 //        }
 
-        var geographicMapCellPosition: return
+        return geographicMapCellPosition
     }
 
     open public fun getTopLeftGeographicMapCellPosition(): GeographicMapCellPosition {
@@ -1242,7 +1243,7 @@ Created By: Travis Berthelot
             this.x,
             this.y)
 
-        var geographicMapCellPosition: return
+        return geographicMapCellPosition
     }
 
     open public fun getMoveOutOfBuildAreaPath(geographicMapCellPosition: GeographicMapCellPosition): BasicArrayList {
@@ -1339,7 +1340,7 @@ Created By: Travis Berthelot
         {
             this.captionAnimationHelper.update(CommonPhoneStrings.getInstance().FIRE, this.basicColorFactory.RED)
 
-            // int anotherTargetDistance = DistanceUtil.getDistance(this, this.currentTargetLayerInterface)
+            // var anotherTargetDistance: Int = DistanceUtil.getDistance(this, this.currentTargetLayerInterface)
 
             this.rtsLayer2LogHelper.steeringFireOrStop(this)
 
@@ -1389,13 +1390,13 @@ Created By: Travis Berthelot
     }
 
     private fun turnTo(dx: Int, dy: Int, targetAngle: Int): Boolean {
-        // int angleOfTarget = NoDecimalTrigTable.antiTan(dx, dy)
+        // var angleOfTarget: Int = NoDecimalTrigTable.antiTan(dx, dy)
 
         val nextUnvisitedPathGeographicMapCellPosition: GeographicMapCellPosition = this.waypointBehaviorBase.getNextUnvisitedPathGeographicMapCellPosition()
 
         if(nextUnvisitedPathGeographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
             //this.logUtil.put(StringMaker().append(this.getName()).append(" - do not turn or move until we have the first unvisited cell position").toString(), this, "turnTo")
-            var true: return
+            return true
         }
 
         val currentGeographicMapCellPosition: GeographicMapCellPosition = this.getCurrentGeographicMapCellPosition()
@@ -1411,18 +1412,18 @@ Created By: Travis Berthelot
 //            targetAngle += 180
 //        }
 
-        //final int angleOfTarget = FrameUtil.getInstance().adjustAngleToFrameAngle(targetAngle)
-        //final int angleOfTarget2 = angleOfTarget
-        //final int angleOfTarget2 = angleOfTarget / 10 * 10
-        //final int angleOfTarget2 = AngleFactory.getInstance().getClosestDirection(angleOfTarget).getValue()
+        //var angleOfTarget: Int = FrameUtil.getInstance().adjustAngleToFrameAngle(targetAngle)
+        //var angleOfTarget2: Int = angleOfTarget
+        //var angleOfTarget2: Int = angleOfTarget / 10 * 10
+        //var angleOfTarget2: Int = AngleFactory.getInstance().getClosestDirection(angleOfTarget).getValue()
 
-        //final AngleInfo angleInfo = this.rotationAnimationInterface.getAngleInfo()
-        //final AngleInfo angleInfo = (this.indexedAnimationInterfaceArray[0] as RotationAnimation).getAngleInfo()
-        //final int angle = FrameUtil.getInstance().adjustAngleToFrameAngle(angleInfo.getAngle() - 270)
+        //var angleInfo: AngleInfo = this.rotationAnimationInterface.getAngleInfo()
+        //var angleInfo: AngleInfo = (this.indexedAnimationInterfaceArray[0] as RotationAnimation).getAngleInfo()
+        //var angle: Int = FrameUtil.getInstance().adjustAngleToFrameAngle(angleInfo.getAngle() - 270)
 
         val angle: Int = gdObject.angle
 
-        //final int angle = angleInfo.getAngle()
+        //var angle: Int = angleInfo.getAngle()
 
         //if (this.getUnitWaypointBehavior().isWaypointListEmptyOrOnlyTargets())
 
@@ -1430,11 +1431,11 @@ Created By: Travis Berthelot
 
         val geographicMapCellHistory: GeographicMapCellHistory = this.waypointBehaviorBase.getCurrentGeographicMapCellHistory()
 
-        //final GameKeyEventFactory gameKeyEventFactory = GameKeyEventFactory.getInstance()
+        //var gameKeyEventFactory: GameKeyEventFactory = GameKeyEventFactory.getInstance()
 
-        //int deltaAngle = closestDirectionAngle.getValue() - angle
-//        int deltaAngle = angleOfTarget2 - angle
-//        int absoluteDeltaAngle = Math.abs(deltaAngle)
+        //var deltaAngle: Int = closestDirectionAngle.getValue() - angle
+//        var deltaAngle: Int = angleOfTarget2 - angle
+//        var absoluteDeltaAngle: Int = Math.abs(deltaAngle)
           //absoluteDeltaAngle == 0 ||
           //() ||
         if(Math.abs(dx) <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 3 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> Math.abs(dy) <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 3) {
@@ -1453,7 +1454,7 @@ Created By: Travis Berthelot
                 this.getWaypointBehavior().updatePathOnTargetMove(reason)
             }
 
-            var true: return
+            return true
 
         } else if(Math.abs(dx) <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 5 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> Math.abs(dy) <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 5) {
 
@@ -1472,11 +1473,11 @@ Created By: Travis Berthelot
 
             this.setPosition(this.x + dx, this.y + dy, z)
 
-            var true: return
+            return true
 
         } else if(this.movementAngle.getValue() == angle) {
 
-            //final BasicArrayList occupyingList = this.getEndGeographicMapCellPositionList()
+            //var occupyingList: BasicArrayList = this.getEndGeographicMapCellPositionList()
             val pathList: BasicArrayList = geographicMapCellHistory.getTracked()
             if(pathList.contains(currentGeographicMapCellPosition)
 //                ||
@@ -1485,19 +1486,19 @@ Created By: Travis Berthelot
 
             if(dx <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.LEFT) {
                 this.rtsLogHelper.movingLeft(this)
-                var false: return
+                return false
             }
             if(dx <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.RIGHT) {
                 this.rtsLogHelper.movingRight(this)
-                var false: return
+                return false
             }
             if(dy <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.UP) {
                 this.rtsLogHelper.movingUp(this)
-                var false: return
+                return false
             }
             if(dy <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.DOWN) {
                 this.rtsLogHelper.movingDown(this)
-                var false: return
+                return false
             }
 
             } else {
@@ -1506,7 +1507,7 @@ Created By: Travis Berthelot
                     //StringMaker().append(commonSeps.SPACE).append(geographicMapCellHistory.getTotalVisited()).append(commonSeps.SPACE).append(currentGeographicMapCellPosition).append(" - trying to move but not on path: ").append(pathList).toString()
                 this.rtsLogHelper.notOnPath(this, geographicMapCellHistory, currentGeographicMapCellPosition, pathList)
                 this.getWaypointBehavior().updatePathOnTargetMove(reason)
-                var true: return
+                return true
             }
 
             this.rtsLogHelper.currentMoveEnded(this)
@@ -1519,7 +1520,7 @@ Created By: Travis Berthelot
                 this.handleDeltalX(dx, dy)
             }
 
-            var true: return
+            return true
         //} else if(absoluteDeltaAngle <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> ANGLE_INCREMENT) {
 
             //return false
@@ -1552,64 +1553,65 @@ Created By: Travis Berthelot
                     this.left()
                 }
 
-                var true: return
+                return true
 
             } else {
                 this.rtsLogHelper.noRotation(this)
             }
 
             //System.out.println(allowing movement outside of logic?")
-            var true: return
+            return true
             //return false
         }
 
     }
 
     override public fun isWaypointListEmptyOrOnlyTargets(): Boolean {
-        var false: return
+        return false
     }
 
     override public fun getTrackingEvent(): TrackingEvent {
-        var null: return
+        return null
     }
 
     override public fun buildingChase(allbinaryLayer: AllBinaryLayer, cellPosition: GeographicMapCellPosition): Boolean {
-        var false: return
+        return false
     }
 
     override public fun allStop() {
     }
 
-<!--    public boolean isDestination(final GDGameLayer gdGameLayer) throws Exception {
+<!--    @Throws(Exception::class)
+    open fun isDestination(gdGameLayer: GDGameLayer): Boolean {
 
         if(gdGameLayer == null) {
-            return false;
+            return false
         }
 
-        final WaypointBehaviorBase waypointBehaviorBase = this.getWaypointBehavior();
+        var waypointBehaviorBase: WaypointBehaviorBase = this.getWaypointBehavior()
 
         if(waypointBehaviorBase.isRunning()) {
-            //System.out.println("isDestination - unknown as path is processing - true");
-            return true;
+            //System.out.println("isDestination - unknown as path is processing - true")
+            return true
         }
 
-        final BasicArrayList waypointPathList = waypointBehaviorBase.getWaypointPathsList();
+        var waypointPathList: BasicArrayList = waypointBehaviorBase.getWaypointPathsList()
 
         if(waypointPathList == null || waypointPathList.size() == 0) {
-            //System.out.println("isDestination no path - false");
-            return false;
+            //System.out.println("isDestination no path - false")
+            return false
         }
 
-        final GDCustomGameLayer destinationGDCustomGameLayer = (GDCustomGameLayer) gdGameLayer;
-        final BasicArrayList occupyPathList = destinationGDCustomGameLayer.getEndGeographicMapCellPositionList();
-        final BasicArrayList pathList = (BasicArrayList) waypointPathList.get(waypointPathList.size() - 1);
-        final GeographicMapCellPosition lastCellPosition = (GeographicMapCellPosition) pathList.get(pathList.size() - 1);
+        var destinationGDCustomGameLayer: GDCustomGameLayer = gdGameLayer as GDCustomGameLayer
+        var occupyPathList: BasicArrayList = destinationGDCustomGameLayer.getEndGeographicMapCellPositionList()
+        var pathList: BasicArrayList = waypointPathList.get(waypointPathList.size() - 1) as BasicArrayList
+        var lastCellPosition: GeographicMapCellPosition = pathList.get(pathList.size() - 1) as GeographicMapCellPosition
         if(occupyPathList.contains(lastCellPosition)) {
-            //System.out.println("isDestination - target is the path destination - true");
-            return true;
+            //System.out.println("isDestination - target is the path destination - true")
+            return true
         }
-        //System.out.println("isDestination not target - false");
-        return false;
+        //System.out.println("isDestination not target - false")
+        return false
     }-->
 
     public var direction: Int = 0

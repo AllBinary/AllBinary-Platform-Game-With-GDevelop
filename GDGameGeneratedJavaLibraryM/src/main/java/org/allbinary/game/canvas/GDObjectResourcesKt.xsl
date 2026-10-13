@@ -64,11 +64,11 @@ Created By: Travis Berthelot
 
             <xsl:if test="contains($isTextObject, 'found') or contains($isTextInput, 'found') or contains($isPrimitiveDrawingDrawer, 'found')" >
             open public fun get<xsl:value-of select="name" />Width(createIndex: Int): Int {
-                var 0: return
+                return 0
             }
 
             open public fun get<xsl:value-of select="name" />Height(createIndex: Int): Int {
-                var 0: return
+                return 0
             }
             </xsl:if>
 
@@ -104,9 +104,9 @@ Created By: Travis Berthelot
 
                     <!--
                 <xsl:for-each select="animations" >
-                public final String[] <xsl:value-of select="$name" /><xsl:value-of select="name" />ResourceArray;
+                public val <xsl:value-of select="$name" /><xsl:value-of select="name" />ResourceArray: Array&lt;String&gt;
 
-                private Image[] <xsl:value-of select="$name" /><xsl:value-of select="name" />ImageArray;
+                private lateinit var <xsl:value-of select="$name" /><xsl:value-of select="name" />ImageArray: Array&lt;Image&gt;
                 </xsl:for-each>
                     -->
                 <xsl:if test="type = 'Sprite'" >
@@ -188,7 +188,7 @@ Created By: Travis Berthelot
                 this.<xsl:value-of select="$name" />ResourceArray = arrayOf&lt;String&gt;(
                 <xsl:for-each select="animations" >
                     <!--
-                this.<xsl:value-of select="$name" /><xsl:value-of select="name" />ResourceArray = new String[] {
+                this.<xsl:value-of select="$name" /><xsl:value-of select="name" />ResourceArray = arrayOf&lt;String&gt;(
                     <xsl:for-each select="directions/sprites/image" >
                     <xsl:variable name="imageWithExtension" select="text()" />
                     -->
@@ -206,7 +206,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                     <!--
                     </xsl:for-each>
-                };
+                )
                     -->
                 </xsl:for-each>
 
@@ -308,9 +308,9 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
                     <!--
                     <xsl:for-each select="directions/sprites/image" >
-                    final Image <xsl:value-of select="$name" /><xsl:value-of select="$animationName" />Image<xsl:value-of select="position() - 1" /> = imageCache.getWithKey(<xsl:value-of select="$name" /><xsl:value-of select="$animationName" />ResourceArray[<xsl:value-of select="position() - 1" />]);
+                    var <xsl:value-of select="$name" /><xsl:value-of select="$animationName" />Image<xsl:value-of select="position() - 1" />: Image = imageCache.getWithKey(<xsl:value-of select="$name" /><xsl:value-of select="$animationName" />ResourceArray[<xsl:value-of select="position() - 1" />])
 //                    if(<xsl:value-of select="$name" /><xsl:value-of select="$animationName" />Image<xsl:value-of select="position() - 1" /> == null) {
-//                        throw new RuntimeException();
+//                        throw RuntimeException()
 //                    }
                     -->
                     val <xsl:value-of select="$name" /><xsl:value-of select="$animationName" />Image<xsl:value-of select="position() - 1" />: Image = imageCache.getWithKey(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />])
@@ -324,9 +324,9 @@ Created By: Travis Berthelot
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
                     <!--
                     <xsl:for-each select="directions/sprites/image" >
-                    final Image <xsl:value-of select="$name" /><xsl:value-of select="$animationName" />Image<xsl:value-of select="position() - 1" /> = imageCache.getWithKey(<xsl:value-of select="$name" /><xsl:value-of select="$animationName" />ResourceArray[<xsl:value-of select="position() - 1" />]);
+                    var <xsl:value-of select="$name" /><xsl:value-of select="$animationName" />Image<xsl:value-of select="position() - 1" />: Image = imageCache.getWithKey(<xsl:value-of select="$name" /><xsl:value-of select="$animationName" />ResourceArray[<xsl:value-of select="position() - 1" />])
 //                    if(<xsl:value-of select="$name" /><xsl:value-of select="$animationName" />Image<xsl:value-of select="position() - 1" /> == null) {
-//                        throw new RuntimeException();
+//                        throw RuntimeException()
 //                    }
                     -->
                     val <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />: Image =
@@ -413,7 +413,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
                     <!--
-                this.<xsl:value-of select="$name" /><xsl:value-of select="$animationName" />ImageArray = new Image[] {
+                this.<xsl:value-of select="$name" /><xsl:value-of select="$animationName" />ImageArray = arrayOf&lt;Image&gt;(
                     <xsl:for-each select="directions/sprites/image" >
                     -->
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
@@ -428,7 +428,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                     <!--
                     </xsl:for-each>
-                };
+                )
                     -->
                 </xsl:for-each>
                 <xsl:if test="animations" >
@@ -544,7 +544,7 @@ Created By: Travis Berthelot
                 </xsl:if>
                 )
 
-                size = this.<xsl:value-of select="name" />JSONResourceArray.length
+                size = this.<xsl:value-of select="name" />JSONResourceArray.size
                 for(index in 0 until size) {
                     platformAssetManager.getResourceAsStream(this.<xsl:value-of select="name" />JSONResourceArray[index])
                 }

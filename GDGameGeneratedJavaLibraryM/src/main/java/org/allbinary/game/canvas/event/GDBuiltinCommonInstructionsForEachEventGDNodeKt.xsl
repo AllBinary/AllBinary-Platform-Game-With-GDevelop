@@ -103,7 +103,7 @@ Created By: Travis Berthelot
 
                     </xsl:if>
 
-                    var true: return
+                    return true
 
                 }
 
@@ -165,7 +165,7 @@ Created By: Travis Berthelot
 
                     </xsl:if>
 
-                    var true: return
+                    return true
                 }
 
                 open public fun processList(gdGameLayerList: BasicArrayList) {
@@ -219,26 +219,26 @@ Created By: Travis Berthelot
                 <xsl:if test="string-length(orderBy) > 0" >
                 open public fun sort(gdGameLayerList: BasicArrayList) {
 <!--
-                    final StringMaker stringBuilder = new StringMaker();
-                    GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$object" /><xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="$object" />;
-                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList.size(); index++) {
+                    var stringBuilder: StringMaker = StringMaker()
+                    lateinit var <xsl:value-of select="$object" />: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$object" />
+                    for(index in 0 until gdGameLayerList.size()) {
 
-                        <xsl:value-of select="$object" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$object" />) ((GDGameLayer) gdGameLayerList.get(index)).gdObject;
-                        stringBuilder.append(<xsl:value-of select="orderBy" />).append(",");
+                        <xsl:value-of select="$object" /> = (gdGameLayerList.get(index) as GDGameLayer).gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$object" />
+                        stringBuilder.append(<xsl:value-of select="orderBy" />).append(",")
 
                     }
-                    this.logUtil.put(stringBuilder.toString(), this, this.commonStrings.PROCESS, new Exception());
+                    this.logUtil.put(stringBuilder.toString(), this, this.commonStrings.PROCESS, Exception())
 -->
 
                     val sortSize: Int = gdGameLayerList.size()
                     var min<xsl:value-of select="$object" />: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$object" />
                     for(leftIndex in 0 until sortSize - 1) {
                         var minIndex: Int = leftIndex
-                        min<xsl:value-of select="$object" /> = (gdGameLayerList.get(minIndex) as GDGameLayer) as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$object" />.gdObject
+                        min<xsl:value-of select="$object" /> = (gdGameLayerList.get(minIndex) as GDGameLayer).gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$object" />
 
                         var right<xsl:value-of select="$object" />: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$object" />
                         for(rightIndex in leftIndex + 1 until sortSize) {
-                            right<xsl:value-of select="$object" /> = (gdGameLayerList.get(rightIndex) as GDGameLayer) as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$object" />.gdObject
+                            right<xsl:value-of select="$object" /> = (gdGameLayerList.get(rightIndex) as GDGameLayer).gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$object" />
                             if(right<xsl:value-of select="orderBy" /> <xsl:if test="order = 'asc'" ><xsl:text disable-output-escaping="yes" > &lt; </xsl:text></xsl:if><xsl:if test="order = 'dsc'" ><xsl:text disable-output-escaping="yes" > &gt; </xsl:text></xsl:if> min<xsl:value-of select="orderBy" />) {
                                 minIndex = rightIndex
                                 min<xsl:value-of select="$object" /> = right<xsl:value-of select="$object" />
@@ -253,15 +253,15 @@ Created By: Travis Berthelot
                     }
 
 <!--
-                    stringBuilder.delete(0, stringBuilder.length());
-                    stringBuilder.append("after");
-                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList.size(); index++) {
+                    stringBuilder.delete(0, stringBuilder.length())
+                    stringBuilder.append("after")
+                    for(index in 0 until gdGameLayerList.size()) {
 
-                        <xsl:value-of select="$object" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$object" />) ((GDGameLayer) gdGameLayerList.get(index)).gdObject;
-                        stringBuilder.append(<xsl:value-of select="orderBy" />).append(",");
+                        <xsl:value-of select="$object" /> = (gdGameLayerList.get(index) as GDGameLayer).gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$object" />
+                        stringBuilder.append(<xsl:value-of select="orderBy" />).append(",")
 
                     }
-                    this.logUtil.put(stringBuilder.toString(), this, this.commonStrings.PROCESS, new Exception());
+                    this.logUtil.put(stringBuilder.toString(), this, this.commonStrings.PROCESS, Exception())
 -->
 
                 }

@@ -150,7 +150,7 @@ Created By: Travis Berthelot
 
                                                 //<xsl:value-of select="$name" /><xsl:text>&#10;</xsl:text>
 
-<!--                                            //final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance()
+<!--                                            //var abToGBUtil: ABToGBUtil = ABToGBUtil.getInstance()
                                             //val allBinaryGameLayerManager: AllBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager
                                             //if(allBinaryGameLayerManager.getLayerManager().contains(<xsl:value-of select="$name" />GDGameLayer)) {
                                                 //allBinaryGameLayerManager.remove(<xsl:value-of select="$name" />GDGameLayer);-->

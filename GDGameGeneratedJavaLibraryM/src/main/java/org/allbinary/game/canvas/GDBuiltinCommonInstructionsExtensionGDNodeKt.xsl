@@ -91,7 +91,7 @@ Created By: Travis Berthelot
 
                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
-                    var true: return
+                    return true
 
                 }
 
@@ -129,7 +129,7 @@ Created By: Travis Berthelot
 
                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
-                    var true: return
+                    return true
 
                 }
 <!--                </xsl:if>-->
@@ -161,7 +161,7 @@ Created By: Travis Berthelot
 
                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
-                    var true: return
+                    return true
 
                 }
 
@@ -170,7 +170,7 @@ Created By: Travis Berthelot
 
                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
-                    var true: return
+                    return true
 
                 }
 
@@ -179,7 +179,7 @@ Created By: Travis Berthelot
 
                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, this.commonStrings.PROCESS)
 
-                    var true: return
+                    return true
                 }
 
                 override public fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
@@ -187,7 +187,7 @@ Created By: Travis Berthelot
 
                     //this.logUtil.putF(EVENT_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
-                    var true: return
+                    return true
                 }
 
                 <xsl:if test="contains(disabled, 'true')" >

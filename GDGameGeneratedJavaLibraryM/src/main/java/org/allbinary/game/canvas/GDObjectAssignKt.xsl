@@ -44,7 +44,7 @@ Created By: Travis Berthelot
 
                 <xsl:variable name="groupInterfaceArray" >
                     <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf&lt;Group&gt;(globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
-                    <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf&lt;Group&gt;</xsl:if> as <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface
+                    <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf&lt;Group&gt;(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                 </xsl:variable>
 
                     <xsl:call-template name="objectsGroupsGDGameLayer" >
@@ -85,8 +85,8 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
-                this.<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = (animationInterfaceFactoryInterfaceFactory.getBasicAnimationInterfaceFactoryInstance(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME) as AnimationInterfaceFactoryInterfaceComposite) as Array&lt;AnimationInterfaceFactoryInterface&gt;.getAnimationInterfaceFactoryInterfaceArray()
-                this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = (animationInterfaceFactoryInterfaceFactory.getBasicAnimationInterfaceFactoryInstance(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_PROCEDURAL_ANIMATION_NAME) as BaseAnimationInterfaceFactoryInterfaceComposite) as Array&lt;ProceduralAnimationInterfaceFactoryInterface&gt;.getBasicAnimationInterfaceFactoryInterfaceArray()
+                this.<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = (animationInterfaceFactoryInterfaceFactory.getBasicAnimationInterfaceFactoryInstance(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME) as AnimationInterfaceFactoryInterfaceComposite).getAnimationInterfaceFactoryInterfaceArray() as Array&lt;AnimationInterfaceFactoryInterface&gt;
+                this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = (animationInterfaceFactoryInterfaceFactory.getBasicAnimationInterfaceFactoryInstance(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_PROCEDURAL_ANIMATION_NAME) as BaseAnimationInterfaceFactoryInterfaceComposite).getBasicAnimationInterfaceFactoryInterfaceArray() as Array&lt;ProceduralAnimationInterfaceFactoryInterface&gt;
                 this.<xsl:value-of select="name" />LayerInfo = animationInterfaceFactoryInterfaceFactory.getRectangle(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME)
                 this.<xsl:value-of select="name" />RectangleArrayOfArrays = animationInterfaceFactoryInterfaceFactory.getRectangleArrayOfArrays(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME)
 
@@ -101,7 +101,7 @@ Created By: Travis Berthelot
 
                 <xsl:variable name="groupInterfaceArray" >
                     <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf&lt;Group&gt;(globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
-                    <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf&lt;Group&gt;</xsl:if> as <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface
+                    <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf&lt;Group&gt;(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                 </xsl:variable>
 
                     <xsl:call-template name="objectsGroupsGDGameLayer" >
@@ -205,7 +205,7 @@ Created By: Travis Berthelot
                                 (this.layerInfo.getHeight()).toInt()
                             )
 
-                            var rectangle: return
+                            return rectangle
                         }
 
                     }</xsl:if>
@@ -354,7 +354,7 @@ Created By: Travis Berthelot
                             <xsl:for-each select="objectsGroups" >
                                 <xsl:for-each select="objects" >
                                     <xsl:if test="name = $layerName" >
-                //this.<xsl:value-of select="$layerName" />GroupInterface = <xsl:value-of select="$layerName" />GroupInterface;
+                //this.<xsl:value-of select="$layerName" />GroupInterface = <xsl:value-of select="$layerName" />GroupInterface
                                     </xsl:if>
                                 </xsl:for-each>
                             </xsl:for-each>

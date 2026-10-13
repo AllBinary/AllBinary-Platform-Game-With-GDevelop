@@ -2,12 +2,12 @@
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-    <xsl:import href="./GDEventCreateAssignGDObjectGDNodeCondition.xsl" />
-    <xsl:import href="./GDActionGDNodeAction.xsl" />
-    <xsl:import href="./GDEventCreateAssignGDObjectGDNodeObjectEvent.xsl" />
-    <xsl:import href="./GDEventCreateAssignGDObjectGDNodeOtherEvent.xsl" />
+    <xsl:import href="./GDEventCreateAssignGDObjectGDNodeConditionKt.xsl" />
+    <xsl:import href="./GDActionGDNodeActionKt.xsl" />
+    <xsl:import href="./GDEventCreateAssignGDObjectGDNodeObjectEventKt.xsl" />
+    <xsl:import href="./GDEventCreateAssignGDObjectGDNodeOtherEventKt.xsl" />
     
-    <xsl:import href="./event/GDJsCodeEventGDNode.xsl" />
+    <xsl:import href="./event/GDJsCodeEventGDNodeKt.xsl" />
     
     <xsl:template name="externalActionGDNodes" >
         <xsl:param name="layoutName" />

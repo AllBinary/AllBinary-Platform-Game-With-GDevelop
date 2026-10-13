@@ -2,10 +2,10 @@
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScalingKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionCentreCameraGlobal.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobal.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionCentreCameraGlobalKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobalKt.xsl" />
 
     <xsl:output method="html" indent="yes" />
 
@@ -186,7 +186,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
     )
 
     private val gdResources: GDResources = GDResources.getInstance()
-    //private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance()
+    //private val gameTickDisplayInfoSingleton: GameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance()
 
     private val layerManager: AllBinaryGameLayerManager
 
@@ -245,7 +245,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
         var tileMapInputStream2: InputStream = null
                     <xsl:if test="content/generator = 'TileMapGenerator'" >
                     //"generator": "TileMapGenerator",
-        val data: Array&lt;Byte&gt; = TileMapGenerator().process2().getBytes()
+        val data: ByteArray = TileMapGenerator().process2().encodeToByteArray()
         tileMapInputStream2 = ByteArrayInputStream(data)
                     </xsl:if>
                     <xsl:if test="content/generator = 'DungeonGenerator'" >
@@ -267,7 +267,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
             val mapData: Array&lt;IntArray&gt; = dungeonGenerator.generate()
             generatedWidth = mapData.size
             generatedHeight = mapData[0].size
-            val data: Array&lt;Byte&gt; = tiledJSONUtil.generateJSONAsString(mapData, gameGlobals.tileWidth, gameGlobals.tileHeight).getBytes()
+            val data: ByteArray = tiledJSONUtil.generateJSONAsString(mapData, gameGlobals.tileWidth, gameGlobals.tileHeight).encodeToByteArray()
             tileMapInputStream2 = ByteArrayInputStream(data)
         }
                     </xsl:if>
@@ -292,7 +292,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
                 org.allbinary.game.behavior.topview.placement.PropsTileMapPlacementVisitor()
             tileMapPlacementVisitor.visit(lastMap, mapData)
 
-            val data: Array&lt;Byte&gt; = tiledJSONUtil.generateJSONAsString(mapData, gameGlobals.tileWidth, gameGlobals.tileHeight).getBytes()
+            val data: ByteArray = tiledJSONUtil.generateJSONAsString(mapData, gameGlobals.tileWidth, gameGlobals.tileHeight).encodeToByteArray()
             tileMapInputStream2 = ByteArrayInputStream(data)
         }
                     </xsl:if>
@@ -302,7 +302,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
 
         val tileMapInputStream: InputStream = tileMapInputStream2
 
-        val tileSetInputStreamArray: Array&lt;InputStream&gt; = {
+        val tileSetInputStreamArray: Array&lt;InputStream&gt; = arrayOf(
                     <xsl:variable name="tileSetJSONWithExtension" select="content/tilesetJsonFile" />
                     <xsl:variable name="tileSetJSON" select="substring-before($tileSetJSONWithExtension, '.')" />
                     <xsl:if test="string-length(content/tilesetJsonFile) > 1" >
@@ -313,7 +313,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
                        <xsl:variable name="tileSetJSON" select="substring-before(text(), '.')" />
             platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>),
                     </xsl:for-each>
-                    }
+                    )
                 </xsl:if>
 
         //logUtil.put("Loaded Tiled Map Asset", this, commonStrings.PROCESS)
@@ -447,9 +447,9 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
         </xsl:for-each>
         //logUtil.put(StringMaker().append("numStaticTiles: ").append((tileSetImage.getWidth() / map.getTileWidth()) * (tileSetImage.getHeight() / map.getTileHeight())).toString(), this, commonStrings.PROCESS)
         //logUtil.put(StringMaker().append("tileset w/h: ").append(tileSetImage.getWidth()).append(',').append(tileSetImage.getHeight()).toString(), this, commonStrings.PROCESS)
-        //final String string2 = StringMaker().append("w: ").append(map.getWidth()).append(" h: ").append(map.getHeight()).append("tw: ").append(map.getTileWidth()).append(" th: ").append(map.getTileHeight()).toString()
+        //var string2: String = StringMaker().append("w: ").append(map.getWidth()).append(" h: ").append(map.getHeight()).append("tw: ").append(map.getTileWidth()).append(" th: ").append(map.getTileHeight()).toString()
         //logUtil.put(string2, this, commonStrings.PROCESS)
-        //final String string = StringMaker().append("w: ").append(map.getWidth() * tileMapScale)).append(" h: ").append((int) (map.getHeight() * tileMapScale)).append("tw: ").append((int) (map.getTileWidth() * tileMapScale)).append(" th: ").append((int) (map.getTileHeight() * tileMapScale)).toString(.toInt()
+        //var string: String = StringMaker().append("w: ").append((map.getWidth() * tileMapScale).toInt()).append(" h: ").append((map.getHeight() * tileMapScale).toInt()).append("tw: ").append((map.getTileWidth() * tileMapScale).toInt()).append(" th: ").append((map.getTileHeight() * tileMapScale).toInt()).toString()
         //logUtil.put(string, this, commonStrings.PROCESS)
 
         stringMaker.delete(0, stringMaker.length())
@@ -490,7 +490,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
 
         </xsl:for-each>
 
-        val geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt; = geographicMapList.toArrayType as Array&lt;BasicGeographicMap&gt;(arrayOfNulls&lt;BasicGeographicMap&gt;(geographicMapList.size()))
+        val geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt; = geographicMapList.toArrayType(arrayOfNulls&lt;BasicGeographicMap&gt;(geographicMapList.size())) as Array&lt;BasicGeographicMap&gt;
 
                 <xsl:value-of select="$tileMapGenerator" />
                 <xsl:if test="contains($tileMapGenerator, 'TileMapGenerator')" >
@@ -618,7 +618,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
     </xsl:call-template>
 
         val stringMaker: StringMaker = StringMaker()
-        //final String F = "Finding Start Position: "
+        //var F: String = "Finding Start Position: "
 
         //logUtil.put("Find Start Position", this, commonStrings.PROCESS)
 
@@ -632,7 +632,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
 
         if(true) {
         val layerIndex: Int = 0
-        //for (int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
+        //for (layerIndex in 0 until size3) {
             //logUtil.put("Find Start Position on map layer: " + layerIndex, this, commonStrings.PROCESS)
             val gdGeographicMap: GDGeographicMap = geographicMapInterfaceArray[layerIndex] as GDGeographicMap
             val map: TiledMap = gdGeographicMap.getMap()
@@ -660,7 +660,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
         if(true) {
         val layerIndex: Int = 0
         val propsLayerIndex: Int = 1
-        //for (int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
+        //for (layerIndex in 0 until size3) {
             //logUtil.put("Find Start Position on map layer: " + layerIndex, this, commonStrings.PROCESS)
 
             val gdGeographicMap: GDGeographicMap = geographicMapInterfaceArray[layerIndex] as GDGeographicMap
@@ -808,9 +808,9 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
                         //(SceneWindowWidth() / 2) - (Player.Width() / 2)
                         this.setStartPosition(geographicMapInterfaceArray, geographicMapCellPosition, layerIndex, stringMaker)
 
-//                        final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance()
-//                        final int lastWidth = displayInfoSingleton.getLastHalfWidth()
-//                        final int lastHeight = displayInfoSingleton.getLastHalfHeight()
+//                        var displayInfoSingleton: DisplayInfoSingleton = DisplayInfoSingleton.getInstance()
+//                        var lastWidth: Int = displayInfoSingleton.getLastHalfWidth()
+//                        var lastHeight: Int = displayInfoSingleton.getLastHalfHeight()
 //                        if(lastWidth != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> lastHeight != 0) {
 //                            this.udpatePositionFromWindowSize(lastWidth, lastHeight, stringMaker, this)
 //                        } else {
@@ -855,21 +855,21 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
         globals.placementMax = placementTotal - 2
     }
 
-//    private int lastWidthUsed = 0
-//    private int lastHeightUsed = 0
+//    private var lastWidthUsed: Int = 0
+//    private var lastHeightUsed: Int = 0
 
-//    public void udpatePositionFromWindowSize(lastWidth: Int, lastHeight: Int, stringMaker: StringMaker, reason: Object) {
+//    open fun udpatePositionFromWindowSize(lastWidth: Int, lastHeight: Int, stringMaker: StringMaker, reason: Object) {
 //
 //        stringMaker.delete(0, stringMaker.length())
 //        logUtil.putF(stringMaker.append("lastWidth:  ").append(lastWidth).append(CommonSeps.getInstance().COMMA).append(lastHeight).toString(), reason, commonStrings.PROCESS)
 //
-//        final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance()
+//        var globals: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance()
 //
-//        final GDCustomGameLayer <xsl:value-of select="name" />GDGameLayer = globals as GDCustomGameLayer.<xsl:value-of select="name" />GDGameLayerList.get(0)
-//        final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) <xsl:value-of select="name" />GDGameLayer.gdObject
+//        var <xsl:value-of select="name" />GDGameLayer: GDCustomGameLayer = globals.<xsl:value-of select="name" />GDGameLayerList.get(0) as GDCustomGameLayer
+//        var platformerMap: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer.gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />
 //
-//        final int dx = (lastWidth - lastWidthUsed)
-//        final int dy = (lastHeight - lastHeightUsed)
+//        var dx: Int = (lastWidth - lastWidthUsed)
+//        var dy: Int = (lastHeight - lastHeightUsed)
 //
 //        if(dx != 0 || dy != 0) {
 //            stringMaker.delete(0, stringMaker.length())
@@ -886,18 +886,18 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
 
     fun setStartPosition(geographicMapInterfaceArray: Array&lt;GeographicMapInterface&gt;, geographicMapCellPosition: GeographicMapCellPosition, layerIndex: Int, stringMaker: StringMaker) {
 
-//                            DisplayChangeEventHandler.getInstance().addListener(DisplayChangeEventListener() {
+//                            DisplayChangeEventHandler.getInstance().addListener(object: DisplayChangeEventListener() {
 //
-//                                public void onEvent(eventObject: AllBinaryEventObject) {
+//                                override fun onEvent(eventObject: AllBinaryEventObject) {
 //
 //                                }
 //
-//                                private final String ON_DISPLAY_CHANGE_EVENT = "onDisplayChangeEvent"
-//                                public void onDisplayChangeEvent(displayChangeEvent: DisplayChangeEvent) {
+//                                private val ON_DISPLAY_CHANGE_EVENT: String = "onDisplayChangeEvent"
+//                                override fun onDisplayChangeEvent(displayChangeEvent: DisplayChangeEvent) {
 //
-//                                    final DisplayInfoSingleton gameTickDisplayInfoSingleton = DisplayInfoSingleton.getInstance()
-//                                    final int lastWidth = gameTickDisplayInfoSingleton.getLastHalfWidth()
-//                                    final int lastHeight = gameTickDisplayInfoSingleton.getLastHalfHeight()
+//                                    var gameTickDisplayInfoSingleton: DisplayInfoSingleton = DisplayInfoSingleton.getInstance()
+//                                    var lastWidth: Int = gameTickDisplayInfoSingleton.getLastHalfWidth()
+//                                    var lastHeight: Int = gameTickDisplayInfoSingleton.getLastHalfHeight()
 //                                    //displayChangeEventHandler.removeListener(this)
 //                                    //udpatePositionFromWindowSize(lastWidth, lastHeight, stringMaker, this)
 //                                    logUtil.put(ON_DISPLAY_CHANGE_EVENT, this, commonStrings.PROCESS)
@@ -908,13 +908,13 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
 
         val <xsl:value-of select="name" />GDGameLayer: GDCustomGameLayer = globals.<xsl:value-of select="name" />GDGameLayerList.get(0) as GDCustomGameLayer
         val platformerMap: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer.gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />
-        //final GDObject Wall = (GDObject) (globals.WallGDGameLayerList.get(0) as GDGameLayer).gdObject
-        //final GDGameLayer wallGDGameLayer = globals.WallGDGameLayerList.get(0) as GDGameLayer
+        //var Wall: GDObject = (globals.WallGDGameLayerList.get(0) as GDGameLayer).gdObject as GDObject
+        //var wallGDGameLayer: GDGameLayer = globals.WallGDGameLayerList.get(0) as GDGameLayer
 
         val allBinaryTiledLayer: AllBinaryTiledLayer = geographicMapInterfaceArray[layerIndex].getAllBinaryTiledLayer()
 
-        //final GDGameGlobals gameGlobals = GDGameGlobals.getInstance()
-        //final GDGameLayer PlayerGDGameLayer = gameGlobals.PlayerGDGameLayerList.get(0) as GDGameLayer
+        //var gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
+        //var PlayerGDGameLayer: GDGameLayer = gameGlobals.PlayerGDGameLayerList.get(0) as GDGameLayer
 
         platformerMap.startX = -( ((geographicMapCellPosition.getColumn()) * allBinaryTiledLayer.getCellWidth()) )
         platformerMap.startY = -( ((geographicMapCellPosition.getRow()) * allBinaryTiledLayer.getCellHeight()) )
@@ -974,13 +974,13 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
 
         val <xsl:value-of select="name" />GDGameLayer: GDCustomGameLayer = globals.<xsl:value-of select="name" />GDGameLayerList.get(0) as GDCustomGameLayer
         val platformerMap: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer.gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />
-        //final GDObject Wall = (GDObject) (globals.WallGDGameLayerList.get(0) as GDGameLayer).gdObject
-        //final GDGameLayer wallGDGameLayer = globals.WallGDGameLayerList.get(0) as GDGameLayer
+        //var Wall: GDObject = (globals.WallGDGameLayerList.get(0) as GDGameLayer).gdObject as GDObject
+        //var wallGDGameLayer: GDGameLayer = globals.WallGDGameLayerList.get(0) as GDGameLayer
 
         val allBinaryTiledLayer: AllBinaryTiledLayer = geographicMapInterfaceArray[layerIndex].getAllBinaryTiledLayer()
 
-        //final GDGameGlobals gameGlobals = GDGameGlobals.getInstance()
-        //final GDGameLayer PlayerGDGameLayer = gameGlobals.PlayerGDGameLayerList.get(0) as GDGameLayer
+        //var gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
+        //var PlayerGDGameLayer: GDGameLayer = gameGlobals.PlayerGDGameLayerList.get(0) as GDGameLayer
 
         platformerMap.endX = -( ((geographicMapCellPosition.getColumn()) * allBinaryTiledLayer.getCellWidth()) )
         platformerMap.endY = -( ((geographicMapCellPosition.getRow()) * allBinaryTiledLayer.getCellHeight()) )
@@ -1010,21 +1010,21 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
             geographicMapInterface = geographicMapInterfaceArray[index] as GDGeographicMap
             tiledLayer = geographicMapInterface.getAllBinaryTiledLayer()
 
-            //final int centerCameraX = SceneWindowWidth() / 2.toInt()
-            //final int centerCameraY = SceneWindowHeight() / 2.toInt()
-            //final int x2 = centerCameraX - layer.getHalfWidth() - tiledLayer.getX()
-            //final int y2 = centerCameraY - layer.getHalfHeight() - tiledLayer.getY()
-            //final int x2 = layer.getX() - tiledLayer.getX()
-            //final int y2 = layer.getY() - tiledLayer.getY()
+            //var centerCameraX: Int = SceneWindowWidth() / 2.toInt()
+            //var centerCameraY: Int = SceneWindowHeight() / 2.toInt()
+            //var x2: Int = centerCameraX - layer.getHalfWidth() - tiledLayer.getX()
+            //var y2: Int = centerCameraY - layer.getHalfHeight() - tiledLayer.getY()
+            //var x2: Int = layer.getX() - tiledLayer.getX()
+            //var y2: Int = layer.getY() - tiledLayer.getY()
             val mapX: Int = ((tiledLayer.getRows() * tiledLayer.getCellHeight()) / 2)
             val mapY: Int = ((tiledLayer.getColumns() * tiledLayer.getCellWidth()) / 2)
-            //final int x2 = mapX + tiledLayer.getX()
-            //final int y2 = mapY + tiledLayer.getY()
+            //var x2: Int = mapX + tiledLayer.getX()
+            //var y2: Int = mapY + tiledLayer.getY()
 
             val x2: Int = mapX - layer.getHalfWidth() - 78
             val y2: Int = mapY + layer.getHeight() + layer.getHalfHeight()
 
-//        final CommonStrings commonStrings = CommonStrings.getInstance()
+//        var commonStrings: CommonStrings = CommonStrings.getInstance()
 //        logUtil.put(StringMaker().append("camera x: ").append(centerCameraX).append("y: ").append(centerCameraY).toString(), this, commonStrings.PROCESS)
 //        logUtil.put(StringMaker().append("x: ").append(layer.getX()).append("y: ").append(layer.getY()).toString(), this, commonStrings.PROCESS)
 //        logUtil.put(StringMaker().append("tile x: ").append(tiledLayer.getX()).append("y: ").append(tiledLayer.getY()).toString(), this, commonStrings.PROCESS)
@@ -1043,9 +1043,9 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
             </xsl:if>
         </xsl:for-each>
 
-    //private BasicGameResources[] playerResourceArray = arrayOfNulls&lt;BasicGameResources&gt;(1)
-    //private ABHashtable hashtable = ABHashtable()
-    //private ArtificialIntelligenceInterfaceFactoryInterface artificialIntelligenceInterfaceFactoryInterface =
+    //private var playerResourceArray: Array&lt;BasicGameResources&gt; = arrayOfNulls&lt;BasicGameResources&gt;(1)
+    //private var hashtable: ABHashtable = ABHashtable()
+    //private var artificialIntelligenceInterfaceFactoryInterface: ArtificialIntelligenceInterfaceFactoryInterface =
       //  BoundBounceAIFactory()
 
     fun build()

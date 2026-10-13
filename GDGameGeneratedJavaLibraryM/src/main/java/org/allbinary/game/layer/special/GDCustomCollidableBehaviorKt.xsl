@@ -18,7 +18,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCallsKt.xsl" />
 
     <xsl:output method="html" indent="yes" />
 
@@ -80,16 +80,16 @@ open public class GDCustomCollidableBehavior : CollidableBaseBehavior
         this.conditionWIthGroupActions = collidableBehavior
     }
 
-    //private final String IS_COLLISION = "isCollision"
-    //private final String B = "BatEnemy"
+    //private val IS_COLLISION: String = "isCollision"
+    //private val B: String = "BatEnemy"
 
     override public fun isCollision(ownerLayer: CollidableCompositeLayer, collisionLayer: CollidableCompositeLayer): Boolean {
-//        final GDCustomGameLayer customGameLayer = (ownerLayer as GDCustomGameLayer)
+//        var customGameLayer: GDCustomGameLayer = (ownerLayer as GDCustomGameLayer)
 //        if (customGameLayer.gdObject.name.compareTo(B) == 0) {
 //            this.logUtil.putF("isCollision: " + customGameLayer.toString(), this, this.commonStrings.PROCESS)
 //        }
 
-        //final GDGameGlobals gameGlobals = GDGameGlobals.getInstance()
+        //var gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
         //if((ownerLayer as GDCustomGameLayer).gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
         val collisionMaskCustomGameLayer: GDCustomGameLayer = (collisionLayer as GDCustomGameLayer)
         <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
@@ -103,7 +103,7 @@ open public class GDCustomCollidableBehavior : CollidableBaseBehavior
                 //return this.isCollision2(collisionLayer)
             }
         }
-        var false: return
+        return false
         </xsl:if>
         <xsl:if test="not(contains($hasLayoutWithTileMapAndIsTopView, 'found'))" >
         return super.isCollision(ownerLayer, collisionLayer)
@@ -118,7 +118,7 @@ open public class GDCustomCollidableBehavior : CollidableBaseBehavior
 
             if(collisionMaskCustomGameLayer.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
                 this.logUtil.putF(StringMaker().append("LayerManager was null: ").append(stringUtil.toString(collisionMaskCustomGameLayer.allBinaryGameLayerManagerP)).toString(), this, "move")
-                var false: return
+                return false
             }
 
             val geographicMapCompositeInterface: GeographicMapCompositeInterface = collisionMaskCustomGameLayer.allBinaryGameLayerManagerP as GeographicMapCompositeInterface
@@ -141,33 +141,33 @@ open public class GDCustomCollidableBehavior : CollidableBaseBehavior
 //                }
 
                 if(geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
-                    //final GDGameGlobals gameGlobals = GDGameGlobals.getInstance()
+                    //var gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
                     //this.logUtil.put(gameGlobals.TILEMAP__COLLISIONMASK, this, this.commonStrings.PROCESS)
                     //this.logUtil.put(gdObject.toShortString(), this, this.commonStrings.PROCESS)
-                    var true: return
+                    return true
                 }
 
             } else {
                 this.logUtil.put(this.this.commonStrings.EXCEPTION, this, this.this.commonStrings.PROCESS, Exception())
-                var true: return
+                return true
             }
 
         } catch (e: Exception) {
             this.logUtil.put(this.this.commonStrings.EXCEPTION, this, this.this.commonStrings.PROCESS, e)
         }
 
-        var false: return
+        return false
     }
     </xsl:if>
 
     // TODO TWB Special Super Efficient Collision Processing
     open public fun isCollision2(ownerLayer: CollidableCompositeLayer, collisionLayer: CollidableCompositeLayer): Boolean {
-        //final StringMaker stringBuilder = StringMaker()
+        //var stringBuilder: StringMaker = StringMaker()
         //this.logUtil.put(stringBuilder.append(commonSeps.COLON).append(ownerLayer.getName()).append(commonSeps.COLON).append(collisionLayer.getName()).toString(), this, IS_COLLISION)
 
 //        if(!ownerLayer.getName().startsWith("player_bullet") || !collisionLayer.getName().startsWith("player_bullet")) {
-//            final StringMaker stringBuilder = StringMaker()
-//            final String string = this.toString(collisionLayer, stringBuilder)
+//            var stringBuilder: StringMaker = StringMaker()
+//            var string: String = this.toString(collisionLayer, stringBuilder)
 //            this.logUtil.put(string, this, "isCollision")
 //        } else {
 //            this.logUtil.put(this.commonStrings.PROCESS, this, "isCollision - with self")
@@ -187,13 +187,13 @@ open public class GDCustomCollidableBehavior : CollidableBaseBehavior
             //this.logUtil.put(stringBuilder.append("isCollision: No Groups for: ").append(collisionLayer).toString(), this, IS_COLLISION)
         }
 
-        var false: return
+        return false
     }
 
-    //private final String COLLIDE = "collide"
+    //private val COLLIDE: String = "collide"
 
     // TODO TWB Special Super Efficient Collision Processing
-    //public void collide(CollidableDestroyableDamageableTeamLayer collisionLayer)
+    //open fun collide(collisionLayer: CollidableDestroyableDamageableTeamLayer)
     override public fun collide(ownerLayer: CollidableCompositeLayer, collisionLayer: CollidableCompositeLayer) {
         if((collisionLayer as CollidableDestroyableDamageableLayer).isDestroyed()) {
             return
@@ -204,13 +204,13 @@ open public class GDCustomCollidableBehavior : CollidableBaseBehavior
         }
 
         if(this.conditionWIthGroupActions.groupWithActionsList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-            //final StringMaker stringBuilder = StringMaker()
+            //var stringBuilder: StringMaker = StringMaker()
             //this.logUtil.put(stringBuilder.append.append(commonSeps.COLON).append(ownerLayer.getName()).append(commonSeps.COLON).append(collisionLayer.getName()).toString() as COLLIDE, this, COLLIDE)
 
             val groupInterfaceArray: Array&lt;GroupInterface&gt; = collisionLayer.getGroupInterface()
-            //final GroupInterface[] groupInterfaceArray = ownerLayer.getGroupInterface()
+            //var groupInterfaceArray: Array&lt;GroupInterface&gt; = ownerLayer.getGroupInterface()
 
-            val size: Int = groupInterfaceArray.length
+            val size: Int = groupInterfaceArray.size
             var indexOfGroup: Int
             var node: GDNode
             for(index in 0 until size) {
@@ -245,7 +245,7 @@ open public class GDCustomCollidableBehavior : CollidableBaseBehavior
 
     override public fun isCollisionInterface(ownerLayer: CollidableCompositeLayer, collidableInterfaceCompositeInterface: CollidableInterfaceCompositeInterface): Boolean {
         ForcedLogUtil.log("No Longer Used", this)
-        var false: return
+        return false
     }
 
     override public fun collideInterface(ownerLayer: CollidableCompositeLayer, collidableInterfaceCompositeInterface: CollidableInterfaceCompositeInterface) {

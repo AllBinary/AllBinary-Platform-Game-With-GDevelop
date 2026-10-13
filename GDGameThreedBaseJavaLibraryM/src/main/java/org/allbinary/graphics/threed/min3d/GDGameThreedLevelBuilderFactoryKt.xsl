@@ -48,7 +48,7 @@ import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />GameThr
  *
  * @author User
  */
-//private final GDGameThreedLevelBuilderFactory gameThreedLevelBuilderFactory = GDGameThreedLevelBuilderFactory.getInstance()
+//private val gameThreedLevelBuilderFactory: GDGameThreedLevelBuilderFactory = GDGameThreedLevelBuilderFactory.getInstance()
 open class GDGameThreedLevelBuilderFactory {
 
     private val instance: GDGameThreedLevelBuilderFactory = GDGameThreedLevelBuilderFactory()

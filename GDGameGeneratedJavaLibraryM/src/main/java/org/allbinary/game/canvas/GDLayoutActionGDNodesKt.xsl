@@ -21,24 +21,24 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCallsKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScalingKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObjectGDNodeAction.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjects.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssign.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeIdKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObjectGDNodeActionKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEventsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjectsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssignKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndexKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActionsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditionsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObjectKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceConditionKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstructionKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcessKt.xsl" />
 
     <xsl:output method="html" indent="yes" />
 
@@ -164,7 +164,7 @@ Created By: Travis Berthelot
                         private val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
                         private val gdExtensionGDNodes: GDExtensionGDNodes = GDExtensionGDNodes.getInstance()
 
-                        //private final GD<xsl:value-of select="$layoutIndex" />var gd<xsl:value-of select="$layoutIndex" />ActionGDNodes: ActionGDNodes = GD<xsl:value-of select="$layoutIndex" />ActionGDNodes.getInstance()
+                        //private val gd<xsl:value-of select="$layoutIndex" />ActionGDNodes: GD<xsl:value-of select="$layoutIndex" />ActionGDNodes = GD<xsl:value-of select="$layoutIndex" />ActionGDNodes.getInstance()
 
                         private val abeClientInformation: AbeClientInformationInterface = GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION as AbeClientInformationInterface
 
@@ -221,277 +221,279 @@ Created By: Travis Berthelot
 
                     }
 
-<!--                    public double TimeDelta() {
-                        return globals.globalsGameTickTimeDelayHelper.timeDelta * .001;
+<!--                    open fun TimeDelta(): Double {
+                        return globals.globalsGameTickTimeDelayHelper.timeDelta * .001
                     }
 
-                    public int SceneWindowWidth() {
-                        return gameTickDisplayInfoSingleton.getLastWidth();
+                    open fun SceneWindowWidth(): Int {
+                        return gameTickDisplayInfoSingleton.getLastWidth()
                     }
 
-                    public int SceneWindowHeight() {
-                        return gameTickDisplayInfoSingleton.getLastHeight();
+                    open fun SceneWindowHeight(): Int {
+                        return gameTickDisplayInfoSingleton.getLastHeight()
                     }
 
 
-                    public int Random(final int range) {
-                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
+                    open fun Random(range: Int): Int {
+                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1)
                     }
 
-                    public float RandomFloatInRange(final double min, final double max) {
-                        final double next = (max - min);
-                        //this.logUtil.putF("NEXT: " + next, this, this.commonStrings.PROCESS);
-                        final float nextF = (float) next * 1000;
-                        //this.logUtil.putF("NEXTF: " + nextF, this, this.commonStrings.PROCESS);
-                        final int nextI = Math.round(nextF);
-                        //this.logUtil.putF("NEXTI: " + nextI, this, this.commonStrings.PROCESS);
-                        final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
-                        //this.logUtil.putF("RANDOM: " + random, this, this.commonStrings.PROCESS);
-                        final float randomF = (float) random;
-                        //this.logUtil.putF("RANDOMF: " + randomF, this, this.commonStrings.PROCESS);
-                        final float result = (float) min + (randomF / 1000);
-                        //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS);
-                        return result;
+                    open fun RandomFloatInRange(min: Double, max: Double): Float {
+                        var next: Double = (max - min)
+                        //this.logUtil.putF("NEXT: " + next, this, this.commonStrings.PROCESS)
+                        var nextF: Float = next.toFloat() * 1000
+                        //this.logUtil.putF("NEXTF: " + nextF, this, this.commonStrings.PROCESS)
+                        var nextI: Int = Math.round(nextF)
+                        //this.logUtil.putF("NEXTI: " + nextI, this, this.commonStrings.PROCESS)
+                        var random: Int = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI)
+                        //this.logUtil.putF("RANDOM: " + random, this, this.commonStrings.PROCESS)
+                        var randomF: Float = random.toFloat()
+                        //this.logUtil.putF("RANDOMF: " + randomF, this, this.commonStrings.PROCESS)
+                        var result: Float = min.toFloat() + (randomF / 1000)
+                        //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS)
+                        return result
                     }
 
-                    public float RandomFloatInRange(final float min, final float max) {
-                        final float nextF = (float) (max - min) * 1000;
-                        //this.logUtil.putF("NEXTF: " + nextF, this, this.commonStrings.PROCESS);
-                        final int nextI = Math.round(nextF);
-                        //this.logUtil.putF("NEXTI: " + nextI, this, this.commonStrings.PROCESS);
-                        final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
-                        //this.logUtil.putF("RANDOM: " + random, this, this.commonStrings.PROCESS);
-                        final float randomF = (float) random;
-                        //this.logUtil.putF("RANDOMF: " + randomF, this, this.commonStrings.PROCESS);
-                        final float result = (float) min + (randomF / 1000);
-                        //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS);
-                        return result;
+                    open fun RandomFloatInRange(min: Float, max: Float): Float {
+                        var nextF: Float = (max - min).toFloat() * 1000
+                        //this.logUtil.putF("NEXTF: " + nextF, this, this.commonStrings.PROCESS)
+                        var nextI: Int = Math.round(nextF)
+                        //this.logUtil.putF("NEXTI: " + nextI, this, this.commonStrings.PROCESS)
+                        var random: Int = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI)
+                        //this.logUtil.putF("RANDOM: " + random, this, this.commonStrings.PROCESS)
+                        var randomF: Float = random.toFloat()
+                        //this.logUtil.putF("RANDOMF: " + randomF, this, this.commonStrings.PROCESS)
+                        var result: Float = min.toFloat() + (randomF / 1000)
+                        //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS)
+                        return result
                     }
 
-                    public int Variable(final int value) {
-                        return value;
+                    open fun Variable(value: Int): Int {
+                        return value
                     }
 
-                    public float Variable(final float value) {
-                        return value;
+                    open fun Variable(value: Float): Float {
+                        return value
                     }
 
-                    public double Variable(final double value) {
-                        return value;
+                    open fun Variable(value: Double): Double {
+                        return value
                     }
 
-                    public String VariableString(final String string) {
-                        return string;
+                    open fun VariableString(string: String): String {
+                        return string
                     }
 
-                    public String VariableString(final Object object) {
-                        return object.toString();
+                    open fun VariableString(`object`: Object): String {
+                        return `object`.toString()
                     }
 
-                    public int VariableChildCount(final String[] array) {
-                        return array.length;
+                    open fun VariableChildCount(array: Array&lt;String?&gt;): Int {
+                        return array.size
                     }
 
-                    public int VariableChildCount(final int[] array) {
-                        return array.length;
+                    open fun VariableChildCount(array: IntArray): Int {
+                        return array.size
                     }
 
-                    public String GlobalVariable(final String value) {
-                        return value;
+                    open fun GlobalVariable(value: String): String {
+                        return value
                     }
 
-                    public float GlobalVariable(final float value) {
-                        return value;
+                    open fun GlobalVariable(value: Float): Float {
+                        return value
                     }
 
-                    public long GlobalVariable(final long value) {
-                        return value;
+                    open fun GlobalVariable(value: Long): Long {
+                        return value
                     }
 
-                    public int GlobalVariable(final int value) {
-                        return value;
+                    open fun GlobalVariable(value: Int): Int {
+                        return value
                     }
 
-                    public String GlobalVariableString(final String value) {
-                        return value;
+                    open fun GlobalVariableString(value: String): String {
+                        return value
                     }
 
-                    public int GlobalVariableChildCount(final String[] array) {
-                        return array.length;
+                    open fun GlobalVariableChildCount(array: Array&lt;String?&gt;): Int {
+                        return array.size
                     }
 
-                    public int GlobalVariableChildCount(final int[] array) {
-                        return array.length;
+                    open fun GlobalVariableChildCount(array: IntArray): Int {
+                        return array.size
                     }
 
-                    public int GlobalVariableChildCount(final long[] array) {
-                        return array.length;
+                    open fun GlobalVariableChildCount(array: LongArray): Int {
+                        return array.size
                     }
 
-                    public String GlobalVarToJSON(final String value) {
-                        return value;
+                    open fun GlobalVarToJSON(value: String): String {
+                        return value
                     }
 
-                    public String GlobalVarToJSON(final int value) {
-                        return Integer.toString(value);
+                    open fun GlobalVarToJSON(value: Int): String {
+                        return value.toString()
                     }
 
-                    public String GlobalVarToJSON(final long value) {
-                        return Long.toString(value);
+                    open fun GlobalVarToJSON(value: Long): String {
+                        return (value).toString()
                     }
 
-                    public int ToJSONType(final GDStructure value) {
-                        return value.getJSONType();
+                    open fun ToJSONType(value: GDStructure): Int {
+                        return value.getJSONType()
                     }
 
-                    public String ToJSON(final GDStructure value) {
-                        return value.toJSONAsString();
+                    open fun ToJSON(value: GDStructure): String {
+                        return value.toJSONAsString()
                     }
 
-                    public String ToJSON(final String value) {
-                        return value;
+                    open fun ToJSON(value: String): String {
+                        return value
                     }
 
-                    public String ToJSON(final int value) {
-                        return Integer.toString(value);
+                    open fun ToJSON(value: Int): String {
+                        return value.toString()
                     }
 
-                    public String ToJSON(final long value) {
-                        return Long.toString(value);
+                    open fun ToJSON(value: Long): String {
+                        return (value).toString()
                     }
 
-                    public int SceneInstancesCount(final int size) {
-                        return size;
+                    open fun SceneInstancesCount(size: Int): Int {
+                        return size
                     }
 
-                    public int MouseX() {
+                    open fun MouseX(): Int {
 
-                        return gameGlobalsFactory.point.getX();
+                        return gameGlobalsFactory.point.getX()
                     }
 
-                    public int MouseY() {
+                    open fun MouseY(): Int {
 
-                        return gameGlobalsFactory.point.getY();
+                        return gameGlobalsFactory.point.getY()
                     }
 
-                    public int MouseX(final String string, int value) {
+                    open fun MouseX(string: String, value: Int): Int {
+                        var value = value
 
-                        return gameGlobalsFactory.point.getX();
+                        return gameGlobalsFactory.point.getX()
                     }
 
-                    public int MouseY(final String string, int value) {
+                    open fun MouseY(string: String, value: Int): Int {
+                        var value = value
 
-                        return gameGlobalsFactory.point.getY();
+                        return gameGlobalsFactory.point.getY()
                     }
 
-                    public long TimerElapsedTime(final TimeDelayHelper timeDelayHelper) {
-                        return timeDelayHelper.getElapsed(globals.globalsGameTickTimeDelayHelper.lastStartTime) / 1000;
+                    open fun TimerElapsedTime(timeDelayHelper: TimeDelayHelper): Long {
+                        return timeDelayHelper.getElapsed(globals.globalsGameTickTimeDelayHelper.lastStartTime) / 1000
                     }
 
-                    public int floor(final int value) {
-                        return value;
+                    open fun floor(value: Int): Int {
+                        return value
                     }
 
-                    public float floor(final float value) {
-                        return (float) Math.floor((double) value);
+                    open fun floor(value: Float): Float {
+                        return Math.floor(value.toDouble()).toFloat()
                     }
 
-                    public int mod(final int value, final int mod) {
-                        return value % mod;
+                    open fun mod(value: Int, mod: Int): Int {
+                        return value % mod
                     }
 
-                    public int round(final int value) {
-                        return value;
+                    open fun round(value: Int): Int {
+                        return value
                     }
 
-                    public long round(final long value) {
-                        return value;
+                    open fun round(value: Long): Long {
+                        return value
                     }
 
-                    public float round(final float value) {
-                        return Math.round(value);
+                    open fun round(value: Float): Float {
+                        return Math.round(value)
                     }
 
-                    public int abs(final int value) {
-                        return Math.abs(value);
+                    open fun abs(value: Int): Int {
+                        return Math.abs(value)
                     }
 
-                    public float abs(final float value) {
-                        return Math.abs(value);
+                    open fun abs(value: Float): Float {
+                        return Math.abs(value)
                     }
 
-                    public double log2(final int value) {
-                        return Math.log(value);
+                    open fun log2(value: Int): Double {
+                        return Math.log(value)
                     }
 
-                    public double sin(final double angle) {
-                        return Math.sin(angle);
+                    open fun sin(angle: Double): Double {
+                        return Math.sin(angle)
                     }
 
-                    public double cos(final double angle) {
-                        return Math.cos(angle);
+                    open fun cos(angle: Double): Double {
+                        return Math.cos(angle)
                     }
 
-                    public int min(final int min, final int max) {
-                        return Math.min(min, max);
+                    open fun min(min: Int, max: Int): Int {
+                        return Math.min(min, max)
                     }
 
-                    public int max(final int min, final int max) {
-                        return Math.max(min, max);
+                    open fun max(min: Int, max: Int): Int {
+                        return Math.max(min, max)
                     }
 
-                    public int ceil(final double value) {
-                        return (int) Math.ceil(value);
+                    open fun ceil(value: Double): Int {
+                        return Math.ceil(value).toInt()
                     }
 
-                    public double ToRad(final double angdeg) {
-                        //return Math.toRadians(angdeg);
-                        return angdeg;
+                    open fun ToRad(angdeg: Double): Double {
+                        //return Math.toRadians(angdeg)
+                        return angdeg
                     }
 
-                    public long TimeFromStart() {
-                        return globals.globalsGameTickTimeDelayHelper.getTimeFromStart() / 100;
+                    open fun TimeFromStart(): Long {
+                        return globals.globalsGameTickTimeDelayHelper.getTimeFromStart() / 100
                     }
 
-                    public String NewLine() {
-                        return CommonSeps.getInstance().NEW_LINE;
+                    open fun NewLine(): String {
+                        return CommonSeps.getInstance().NEW_LINE
                     }
 
-                    public int LastTouchId() {
-                        return 0;
+                    open fun LastTouchId(): Int {
+                        return 0
                     }
 
-                    public int LastEndedTouchId() {
-                        return 0;
+                    open fun LastEndedTouchId(): Int {
+                        return 0
                     }
 
-                    public int TouchX(final int touchId, final String name, final int unknown) {
-                        return 0;
+                    open fun TouchX(touchId: Int, name: String, unknown: Int): Int {
+                        return 0
                     }
 
-                    public int TouchY(final int touchId, final String name, final int unknown) {
-                        return 0;
+                    open fun TouchY(touchId: Int, name: String, unknown: Int): Int {
+                        return 0
                     }
 
-                    public String ToString(final String value) {
-                        return value;
+                    open fun ToString(value: String): String {
+                        return value
                     }
 
-                    public String ToString(final int value) {
+                    open fun ToString(value: Int): String {
                         if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
-                            return Integer.toString(value);
+                            return value.toString()
                         } else {
-                            return smallIntegerSingletonFactory.getString(value);
+                            return smallIntegerSingletonFactory.getString(value)
                         }
                     }
 
-                    public String ToString(final long value) {
-                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
-                        return Long.toString(value);
+                    open fun ToString(value: Long): String {
+                        //this.primitiveLongUtil = PrimitiveLongUtil(max + 1)
+                        return (value).toString()
                     }
 
-                    public int ToNotString(final int value) {
-                        return value;
+                    open fun ToNotString(value: Int): Int {
+                        return value
                     }-->
 
                 }

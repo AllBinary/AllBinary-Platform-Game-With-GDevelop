@@ -35,19 +35,19 @@ Created By: Travis Berthelot
 
         <xsl:if test="string-length($baseLayerScale) > 0" >
                     //ZoomCamera - Base layer
-                    //final float baseLayerScale = Math.ceil(<xsl:value-of select="$baseLayerScale" /> * 1.44f).toFloat()
+                    //var baseLayerScale: Float = Math.ceil(<xsl:value-of select="$baseLayerScale" /> * 1.44f).toFloat()
                     val baseLayerScale: Float = <xsl:value-of select="$baseLayerScale" />.toFloat()
         </xsl:if>
         <xsl:if test="$baseLayer = 'true'" >
         <xsl:if test="string-length($baseLayerScale) = 0" >
-                    //final float baseLayerScale = 1f.toFloat() * 1.44f
+                    //var baseLayerScale: Float = 1f.toFloat() * 1.44f
                     val baseLayerScale: Float = scale
         </xsl:if>
         </xsl:if>
 
         <xsl:if test="string-length($tileMapScale) > 0" >
                     //ZoomCamera - TileMap
-                    //final float tileMapScale = Math.ceil(<xsl:value-of select="$tileMapScale" /> * 1.44f).toFloat()
+                    //var tileMapScale: Float = Math.ceil(<xsl:value-of select="$tileMapScale" /> * 1.44f).toFloat()
                     val tileMapScale: Float = <xsl:value-of select="$tileMapScale" />.toFloat()
         </xsl:if>
         <xsl:if test="$tileMap = 'true'" >

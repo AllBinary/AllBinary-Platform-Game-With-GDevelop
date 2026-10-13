@@ -21,29 +21,29 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCallsKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScalingKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionCentreCameraGlobal.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobal.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDCreateInstances.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjects.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssign.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/condition/GDEventWithKeyFromTextCondition.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionCentreCameraGlobalKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobalKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDCreateInstancesKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeIdKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEventsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjectsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssignKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndexKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActionsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditionsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObjectKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceConditionKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/condition/GDEventWithKeyFromTextConditionKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventOpen.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClose.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstructionKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventOpenKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCloseKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcessKt.xsl" />
 
     <xsl:output method="html" indent="yes" />
 
@@ -155,7 +155,7 @@ Created By: Travis Berthelot
                             } catch (e: Exception) {
                                 this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + "GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources", this, this.commonStrings.CONSTRUCTOR, e)
                             }
-                            var null: return
+                            return null
                         }
 
                         private fun createSpecialAnimationTouchImageResources(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources {
@@ -164,7 +164,7 @@ Created By: Travis Berthelot
                             } catch (e: Exception) {
                                 this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + "GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources", this, this.commonStrings.CONSTRUCTOR, e)
                             }
-                            var null: return
+                            return null
                         }
 
                         private fun createSpecialAnimationGDResources(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources {
@@ -173,7 +173,7 @@ Created By: Travis Berthelot
                             } catch (e: Exception) {
                                 this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e)
                             }
-                            var null: return
+                            return null
                         }
 
                         open public fun createGlobalSpecialAnimationImageResources(): GDGlobalSpecialAnimationImageResources {
@@ -182,7 +182,7 @@ Created By: Travis Berthelot
                             } catch (e: Exception) {
                                 this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + "GDGlobalSpecialAnimationImageResources", this, this.commonStrings.CONSTRUCTOR, e)
                             }
-                            var null: return
+                            return null
                         }
 
                         open public fun createGlobalsSpecialAnimationGDResources(): GDGlobalsGDResources {
@@ -191,7 +191,7 @@ Created By: Travis Berthelot
                             } catch (e: Exception) {
                                 this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e)
                             }
-                            var null: return
+                            return null
                         }
 
                         public constructor() : super(AnimationBehavior.getInstance()) {
@@ -235,20 +235,20 @@ Created By: Travis Berthelot
                             var otherEventNodes: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes
                             var objectEventNodes: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes
 
-                            var size: Int = gameGlobals.nodeArray.length
+                            var size: Int = gameGlobals.nodeArray.size
                         <!--
-                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                            final int currentIndex = index;
-                            gameGlobals.nodeArray[index2][index] = new GDNode() {
+                        for(index in 0 until size) {
+                            var currentIndex: Int = index
+                            gameGlobals.nodeArray[index2][index] = object: GDNode() {
 
-                                @Override
-                                public boolean process() throws Exception {
-                                    super.processStats();
-                                    this.logUtil.put(Integer.toString(currentIndex), this, this.commonStrings.PROCESS, new Exception());
+                                @Throws(Exception::class)
+                                override fun process(): Boolean {
+                                    super.processStats()
+                                    this.logUtil.put(currentIndex.toString(), this, this.commonStrings.PROCESS, Exception())
 
-                                    return true;
+                                    return true
                                 }
-                            };
+                            }
                         }
                         -->
 
@@ -448,31 +448,31 @@ Created By: Travis Berthelot
                     }
 
                     open public fun Variable(value: Int): Int {
-                        var value: return
+                        return value
                     }
 
                     open public fun Variable(value: Float): Float {
-                        var value: return
+                        return value
                     }
 
                     open public fun Variable(value: Double): Double {
-                        var value: return
+                        return value
                     }
 
                     open public fun GlobalVariable(value: String): String {
-                        var value: return
+                        return value
                     }
 
                     open public fun GlobalVariable(value: Float): Float {
-                        var value: return
+                        return value
                     }
 
                     open public fun GlobalVariable(value: Long): Long {
-                        var value: return
+                        return value
                     }
 
                     open public fun GlobalVariable(value: Int): Int {
-                        var value: return
+                        return value
                     }
 
                     open public fun ToString(value: Int): String {

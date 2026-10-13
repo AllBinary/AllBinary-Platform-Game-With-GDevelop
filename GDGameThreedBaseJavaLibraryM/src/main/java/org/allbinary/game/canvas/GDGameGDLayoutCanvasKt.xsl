@@ -177,7 +177,7 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
 
         <xsl:if test="number($layoutIndex) = 1" >
         this.imageCache.initProgress()
-        this.gdResources.currentLayoutRequiredTotal = this.gdResources.resourceStringArray.length
+        this.gdResources.currentLayoutRequiredTotal = this.gdResources.resourceStringArray.size
         </xsl:if>
         <xsl:if test="number($layoutIndex) != 1" >
         this.gdResources.currentLayoutRequiredTotal = 0
@@ -326,8 +326,7 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
                 this.lineYOffsetArray = intArrayOf(0)
             }
 
-//            @Override
-//            public void updateMeasurement(graphics: Graphics) {
+//            override fun updateMeasurement(graphics: Graphics) {
 //                super.updateMeasurement(graphics)
 //            }
         }
@@ -559,7 +558,7 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
                 //geographicMapInterface.getForegroundBasicColor())
 
             /*
-            val layerArray: Array&lt;Layer&gt; = arrayOfNulls&lt;Layer&gt;(geographicMapInterfaceArray.length + 1)
+            val layerArray: Array&lt;Layer&gt; = arrayOfNulls&lt;Layer&gt;(geographicMapInterfaceArray.size + 1)
 
             if (features.isFeature(RaceTrackGameFeature.MINI_MAP))
             {
@@ -590,9 +589,9 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
                 val threedVisibleTiledLayer: AllBinaryThreedVisibleTiledLayer = (allbinaryTiledLayer as AllBinaryThreedVisibleTiledLayer)
                 threedVisibleTiledLayer.setTarget(player)
 
-                val layerThreedArray: Array&lt;Layer&gt; = arrayOfNulls&lt;Layer&gt;(geographicMapInterfaceArray.length)
+                val layerThreedArray: Array&lt;Layer&gt; = arrayOfNulls&lt;Layer&gt;(geographicMapInterfaceArray.size)
 
-                val size: Int = geographicMapInterfaceArray.length
+                val size: Int = geographicMapInterfaceArray.size
                 for(index in 0 until size) {
                     layerThreedArray[index] = allbinaryTiledLayer
                 }
@@ -663,10 +662,10 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
         }
     }
 
-//    private final Paintable paintable =
-//            Paintable() {
-//        public void paint(Graphics graphics) {
-//            final int halfHeight = GameTickDisplayInfoSingleton.getInstance().getLastHalfHeight()
+//    private val paintable: Paintable =
+//            object: Paintable() {
+//        override fun paint(graphics: Graphics) {
+//            var halfHeight: Int = GameTickDisplayInfoSingleton.getInstance().getLastHalfHeight()
 //            graphics.drawString(gyroOrientationSensor.toString(), 0, halfHeight + 30 + 60, 0)
 //            graphics.drawString(accelerometerOrientationSensor.toString(), 0, halfHeight + 30 + 75, 0)
 //        }
@@ -679,10 +678,10 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
     private val gyroOrientationSensor: AllBinaryOrientationSensor = GyroSensorFactory.getInstance()
     private val accelerometerOrientationSensor: AllBinaryOrientationSensor = AccelerometerSensorFactory.getInstance()
 
-    //private String soundQueue = PrimaryPlayerQueueFactory.getInstance().toString()
+    //private var soundQueue: String = PrimaryPlayerQueueFactory.getInstance().toString()
 
-    //private boolean isFirst = true
-    //private final String DRAW = "draw"
+    //private var isFirst: Boolean = true
+    //private val DRAW: String = "draw"
 
     fun draw(graphics: Graphics)
     {
@@ -697,7 +696,7 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
 
         this.basicSetColorUtil.setBasicColorP(graphics, gameLayerManager.getForegroundBasicColor())
 
-        //final int halfHeight = GameTickDisplayInfoSingleton.getInstance().getLastHalfHeight()
+        //var halfHeight: Int = GameTickDisplayInfoSingleton.getInstance().getLastHalfHeight()
         //graphics.drawString(TEXT, 0, halfHeight, 0)
 
         //graphics.drawString(soundQueue, 0, halfHeight + 15, 0)
@@ -795,7 +794,7 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
             geographicMapCompositeInterface.getGeographicMapInterface()
 
         lateinit var geographicMapInterface: GDGeographicMap
-        val size: Int = geographicMapInterfaceArray.length
+        val size: Int = geographicMapInterfaceArray.size
         for(index in 0 until size) {
             geographicMapInterface = geographicMapInterfaceArray as GDGeographicMap[index]
             geographicMapInterface.update()
@@ -845,9 +844,9 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
             </xsl:if>
         </xsl:for-each>
 
-        //boolean isOverScan = OperatingSystemFactory.getInstance().getOperatingSystemInstance().isOverScan()
+        //var isOverScan: Boolean = OperatingSystemFactory.getInstance().getOperatingSystemInstance().isOverScan()
 
-        //final Features features = Features.getInstance()
+        //var features: Features = Features.getInstance()
 
         //if(!J2MEUtil.isHTML() and !isOverScan)
         //{
@@ -864,7 +863,7 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
     }
 
     fun handleRawKey(keyCode: Int, deviceId: Int, repeated: Boolean) {
-        //final Integer keyCodeAsInteger = smallIntegerSingletonFactory.getInstance(keyCode)
+        //var keyCodeAsInteger: Integer = smallIntegerSingletonFactory.getInstance(keyCode)
         //this.upKeyEventHandler.fireEvent(keyCodeAsInteger)
         //this.upKeyEventHandler.getInstance(deviceId).fireEvent(keyCodeAsInteger)
     }

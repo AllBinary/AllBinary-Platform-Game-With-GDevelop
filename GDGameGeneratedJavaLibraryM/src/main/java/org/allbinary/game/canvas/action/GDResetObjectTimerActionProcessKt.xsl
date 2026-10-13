@@ -55,9 +55,9 @@ Created By: Travis Berthelot
 
                         if(index <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template><xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList.size()) {
 
-                            if(index <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template><xsl:value-of select="$paramOne" />PortionElapsedTotalArray.length - 1) {
+                            if(index <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template><xsl:value-of select="$paramOne" />PortionElapsedTotalArray.size - 1) {
                                 //this.logUtil.put(, this, this.commonStrings.PROCESS)
-                                val size: Int = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template><xsl:value-of select="$paramOne" />PortionElapsedTotalArray.length
+                                val size: Int = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template><xsl:value-of select="$paramOne" />PortionElapsedTotalArray.size
                                 val floatArray: FloatArray = FloatArray(size * 2)
                                 System.arraycopy(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template><xsl:value-of select="$paramOne" />PortionElapsedTotalArray, 0, floatArray, 0, size)
                                 <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template><xsl:value-of select="$paramOne" />PortionElapsedTotalArray = floatArray

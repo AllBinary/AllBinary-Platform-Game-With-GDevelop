@@ -127,7 +127,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="hasMoreThanOneImage" ><xsl:for-each select="animations" ><xsl:for-each select="directions/sprites/image" ><xsl:if test="position() != 1" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
                 <xsl:variable name="hasMoreThanOneImageOrRotationDisabled" ><xsl:if test="contains($hasMoreThanOneImage, 'found')" >found</xsl:if><xsl:if test="/game/properties/custom[name = name and rotation]" >found</xsl:if></xsl:variable>
                 <xsl:variable name="hasOriginPointX" ><xsl:if test="animations/directions/sprites/originPoint/x = 0" >found</xsl:if></xsl:variable>
-                val <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface&gt; = {
+                val <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface&gt; = arrayOf(
                 <xsl:for-each select="animations" >
                     <xsl:for-each select="directions" >
                     //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
@@ -136,9 +136,9 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray[<xsl:value-of select="position() - 1" />] =
                     <xsl:if test="contains($hasMoreThanOneImageOrRotationDisabled, 'found')" >
                         <xsl:if test="contains($lazy, 'true')" >
-                    LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
+                    <xsl:if test="$name = 'Background'" >object : </xsl:if>LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>
-                    OneRowSpriteIndexedAnimationFactory(
+                    <xsl:if test="$name = 'DialogBox' or ($name = 'Background' and not(contains($lazy, 'true')))" >object : </xsl:if>OneRowSpriteIndexedAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />],
                     PrimitiveIntUtil.getArrayInstance(),
                     //)
@@ -177,9 +177,9 @@ Created By: Travis Berthelot
                     </xsl:if>
                     <xsl:if test="not(contains($hasMoreThanOneImageOrRotationDisabled, 'found'))" >
                         <xsl:if test="contains($lazy, 'true')" >
-                    LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
+                    <xsl:if test="$name = 'Background'" >object : </xsl:if>LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>
-                    AllBinaryAndroidImageRotationAnimationFactory(
+                    <xsl:if test="$name = 'DialogBox' or ($name = 'Background' and not(contains($lazy, 'true')))" >object : </xsl:if>AllBinaryAndroidImageRotationAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />],
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth(),
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight(),
@@ -190,7 +190,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     <xsl:if test="not(contains($hasMoreThanOneImageOrRotationDisabled, 'found'))" >, true</xsl:if>)
                     <xsl:if test="$name = 'DialogBox'" >{
-                        open public fun setInitialScale(scaleProperties: ScaleProperties) {
+                        override public fun setInitialScale(scaleProperties: ScaleProperties) {
                             scaleProperties.scaleX = scaleProperties.scaleX * 75 / 100
                             scaleProperties.scaleY = scaleProperties.scaleY * 75 / 100
                             scaleProperties.scaleWidth = scaleProperties.scaleWidth * 75 / 100
@@ -206,7 +206,7 @@ Created By: Travis Berthelot
                         <xsl:if test="$name = 'Background'" >
                             //Temp Hack for background
                     {
-                        open public fun setInitialScale(scaleProperties: ScaleProperties) {
+                        override public fun setInitialScale(scaleProperties: ScaleProperties) {
                             val scaleProperties1: ScaleProperties = ScaleProperties()
                             scaleProperties1.shouldScale = scaleProperties.shouldScale
                             scaleProperties1.scaleX = scaleProperties.scaleX * 116 / 100
@@ -224,7 +224,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     <xsl:if test="position() != last()" >,</xsl:if>
                 </xsl:for-each>
-                }
+                )
 
                 val <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray: Array&lt;ProceduralAnimationInterfaceFactoryInterface&gt; = arrayOfNulls&lt;ProceduralAnimationInterfaceFactoryInterface&gt;(0)
 
@@ -240,7 +240,8 @@ Created By: Travis Berthelot
                                 0,
                                 </xsl:if>
                                 <xsl:if test="animations/directions/sprites/originPoint/y != 0" >
-                                (<xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 36 / 25) - </xsl:if> as <xsl:value-of select="animations/directions/sprites/originPoint/y" />
+                                (<xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/y" />)
+                                </xsl:if>
                                 <xsl:if test="animations/directions/sprites/originPoint/y = 0" >
                                 0
                                 </xsl:if>
@@ -483,10 +484,10 @@ Created By: Travis Berthelot
                                 widthF.toInt(), heightF.toInt())
 
 <!--
-                final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
-                                pointFactory.createXY((int) (<xsl:value-of select="array[1]/x" /> * scale), (int) (<xsl:value-of select="array[1]/y" /> * scale)),
-                                    (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * scale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * scale)
-                                );
+                var <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask: Rectangle = Rectangle(
+                                pointFactory.createXY((<xsl:value-of select="array[1]/x" /> * scale).toInt(), (<xsl:value-of select="array[1]/y" /> * scale).toInt()),
+                                    ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * scale).toInt(), ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * scale).toInt()
+                                )
 -->
 
 //              this.logUtil.putF("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, this.commonStrings.PROCESS)
@@ -519,7 +520,7 @@ Created By: Travis Berthelot
 
                 <xsl:variable name="groupInterfaceArray" >
                     <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf&lt;Group&gt;(globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
-                    <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf&lt;Group&gt;</xsl:if> as <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface
+                    <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf&lt;Group&gt;(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                 </xsl:variable>
 
                     <xsl:call-template name="objectsGroupsGDGameLayer" >
@@ -545,9 +546,9 @@ Created By: Travis Berthelot
                     this.logUtil.putF("<xsl:value-of select="name" />ImageArray found", this, this.commonStrings.INIT)
                 }
 
-                val <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface&gt; = {
+                val <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface&gt; = arrayOf(
                     NullRotationAnimationFactory.getFactoryInstance()
-                }
+                )
 
                 val <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray: Array&lt;ProceduralAnimationInterfaceFactoryInterface&gt; = arrayOfNulls&lt;ProceduralAnimationInterfaceFactoryInterface&gt;(0)
 
@@ -571,7 +572,7 @@ Created By: Travis Berthelot
 
                 <xsl:variable name="groupInterfaceArray" >
                     <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf&lt;Group&gt;(globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
-                    <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf&lt;Group&gt;</xsl:if> as <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface
+                    <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf&lt;Group&gt;(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                 </xsl:variable>
 
                     <xsl:call-template name="objectsGroupsGDGameLayer" >
@@ -603,7 +604,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="behaviors" ><xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >found</xsl:if></xsl:for-each>
                 </xsl:variable>
 
-                val <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray0: Array&lt;AnimationInterfaceFactoryInterface&gt; = {
+                val <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray0: Array&lt;AnimationInterfaceFactoryInterface&gt; = arrayOf(
                 <xsl:for-each select="childrenContent" >
                     <xsl:for-each select="Background" >
                     //Background
@@ -661,7 +662,7 @@ Created By: Travis Berthelot
                     //Label
                     object : CustomTextAnimationFactory(stringUtil.EMPTY_STRING, <xsl:value-of select="$name" />TextAnimationSize, AnimationBehaviorFactory.getInstance()) {
 
-                        open public fun setInitialScale(scaleProperties: ScaleProperties) {
+                        override public fun setInitialScale(scaleProperties: ScaleProperties) {
                             //super.setInitialScale(scaleProperties)
                             this.dx = 0
                             this.dy = -1
@@ -677,15 +678,15 @@ Created By: Travis Berthelot
                     },
                     </xsl:for-each>
                 </xsl:for-each>
-                }
+                )
 
-                val <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface&gt; = {
-                    SliderAnimationInterfaceFactory(
+                val <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface&gt; = arrayOf(
+                    object : SliderAnimationInterfaceFactory(
                         <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray0,
                         <xsl:value-of select="$name" />ImageArray[1].getWidth(),
                         <xsl:value-of select="$name" />ImageArray[1].getHeight()
                     ) {
-                        open public fun setInitialScale(scaleProperties: ScaleProperties) {
+                        override public fun setInitialScale(scaleProperties: ScaleProperties) {
                             val scaleProperties1: ScaleProperties = ScaleProperties()
                             scaleProperties1.shouldScale = scaleProperties.shouldScale
                             scaleProperties1.scaleX = scaleProperties.scaleX
@@ -725,7 +726,7 @@ Created By: Travis Berthelot
                             this.basicAnimationInterfaceFactoryInterfaceArrayP[4].setInitialScale(scaleProperties4)
                         }
                     }
-                }
+                )
 
                 val <xsl:value-of select="$name" />ProceduralAnimationInterfaceFactoryInterfaceArray: Array&lt;ProceduralAnimationInterfaceFactoryInterface&gt; = arrayOfNulls&lt;ProceduralAnimationInterfaceFactoryInterface&gt;(0)
 
@@ -743,7 +744,7 @@ Created By: Travis Berthelot
 
                 this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="$name" />LayerInfo)
 
-                //final GDConditionWithGroupActions <xsl:value-of select="$name" />GDConditionWithGroupActions = GDConditionWithGroupActions()
+                //var <xsl:value-of select="$name" />GDConditionWithGroupActions: GDConditionWithGroupActions = GDConditionWithGroupActions()
             }
             </xsl:when>
 
@@ -755,7 +756,7 @@ Created By: Travis Berthelot
             private fun add<xsl:value-of select="name" />TextObjectAnimations(imageCache: ImageCache) {
                 val <xsl:value-of select="name" />TextAnimationSize: Int = (<xsl:value-of select="characterSize" />)
 
-                val <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface&gt; = {
+                val <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface&gt; = arrayOf(
                     CustomTextAnimationFactory(
                         <xsl:if test="$multilineString = ''" >stringUtil.EMPTY_STRING</xsl:if>
                         <xsl:if test="$multilineString = '&quot;&quot;'" >stringUtil.EMPTY_STRING</xsl:if>
@@ -763,7 +764,7 @@ Created By: Travis Berthelot
                         <xsl:if test="not($multilineString = '' or $multilineString = '&quot;&quot;') and contains($multilineString, '.append(')" >StringMaker().append("<xsl:value-of select="$multilineString" />").toString()</xsl:if>
                         ,
                         <xsl:value-of select="name" />TextAnimationSize, AnimationBehaviorFactory.getInstance())
-                }
+                )
 
                 val <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray: Array&lt;ProceduralAnimationInterfaceFactoryInterface&gt; = arrayOfNulls&lt;ProceduralAnimationInterfaceFactoryInterface&gt;(0)
 
@@ -785,7 +786,7 @@ Created By: Travis Berthelot
                                 </xsl:variable>
                 this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo)
 
-                //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = GDConditionWithGroupActions()
+                //var <xsl:value-of select="name" />GDConditionWithGroupActions: GDConditionWithGroupActions = GDConditionWithGroupActions()
             }
             </xsl:when>
 
@@ -794,11 +795,11 @@ Created By: Travis Berthelot
             private fun add<xsl:value-of select="name" />TextInputObjectAnimations(imageCache: ImageCache) {
                 val maxLength: Int = if (<xsl:if test="content/maxLength" >(<xsl:value-of select="content/maxLength" /> == 0)) 8 else <xsl:value-of select="content/maxLength" />;</xsl:if><xsl:if test="not(content/maxLength)" >8</xsl:if>
                 val <xsl:value-of select="name" />TextInputAnimationSize: Int = <xsl:value-of select="content/fontSize" /> * 3
-                //final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> * 3 / 2
+                //var <xsl:value-of select="name" />TextInputAnimationSize: Int = <xsl:value-of select="content/fontSize" /> * 3 / 2
 
-                val <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface&gt; = {
+                val <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface&gt; = arrayOf(
                     CustomTextBoxIndexedAnimationFactory(<xsl:value-of select="name" />TextInputAnimationSize, maxLength)
-                }
+                )
 
                 val <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray: Array&lt;ProceduralAnimationInterfaceFactoryInterface&gt; = arrayOfNulls&lt;ProceduralAnimationInterfaceFactoryInterface&gt;(0)
 
@@ -820,7 +821,7 @@ Created By: Travis Berthelot
                                 </xsl:variable>
                 this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo)
 
-                //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = GDConditionWithGroupActions()
+                //var <xsl:value-of select="name" />GDConditionWithGroupActions: GDConditionWithGroupActions = GDConditionWithGroupActions()
 
             }
             </xsl:when>
@@ -828,7 +829,7 @@ Created By: Travis Berthelot
             <xsl:when test="$typeValue = 'TextEntryObject::TextEntry'" >
                 <xsl:variable name="stringValue" select="string" />
 
-                //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = GDConditionWithGroupActions()
+                //var <xsl:value-of select="name" />GDConditionWithGroupActions: GDConditionWithGroupActions = GDConditionWithGroupActions()
 
             </xsl:when>
 

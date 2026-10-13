@@ -97,13 +97,13 @@ Created By: Travis Berthelot
                         //Skip - Key Input condition for process() as it can only be called from GDGameInputProcessor, but probably should not be
                             </xsl:when>
                             <xsl:when test="type/value = 'MouseButton' or type/value = 'MouseButtonFromTextPressed' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >
-                        //Skip - MouseButton/SourisBouton, MouseButtonReleased, MouseButtonFromTextPressed for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
+                        //Skip - MouseButton/SourisBouton, MouseButtonReleased, MouseButtonFromTextPressed for process() as it can only be called from process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
                             </xsl:when>
                             <xsl:when test="type/value = 'IsCursorOnObject' or type/value = 'SourisSurObjet'" >
-                        //Skip - IsCursorOnObject/SourisSurObjet for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
+                        //Skip - IsCursorOnObject/SourisSurObjet for process() as it can only be called from process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
                             </xsl:when>
                             <xsl:when test="type/value = 'IsMouseWheelScrollingDown' or type/value = 'IsMouseWheelScrollingUp'" >
-                        //Skip - IsMouseWheelScrollingDown for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
+                        //Skip - IsMouseWheelScrollingDown for process() as it can only be called from process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
                             </xsl:when>
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()
@@ -169,7 +169,7 @@ Created By: Travis Berthelot
 
                     }
 
-                    var true: return
+                    return true
 
                 }
 
@@ -190,13 +190,13 @@ Created By: Travis Berthelot
                         //Skip - Key Input condition for process() as it can only be called from GDGameInputProcessor, but probably should not be
                             </xsl:when>
                             <xsl:when test="type/value = 'MouseButton' or type/value = 'MouseButtonFromTextPressed' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >
-                        //Skip - MouseButton/SourisBouton, MouseButtonReleased for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
+                        //Skip - MouseButton/SourisBouton, MouseButtonReleased for process() as it can only be called from process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
                             </xsl:when>
                             <xsl:when test="type/value = 'IsCursorOnObject' or type/value = 'SourisSurObjet'" >
-                        //Skip - IsCursorOnObject/SourisSurObjet for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
+                        //Skip - IsCursorOnObject/SourisSurObjet for process() as it can only be called from process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
                             </xsl:when>
                             <xsl:when test="type/value = 'IsMouseWheelScrollingDown' or type/value = 'IsMouseWheelScrollingUp'" >
-                        //Skip - IsMouseWheelScrollingDown for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
+                        //Skip - IsMouseWheelScrollingDown for process() as it can only be called from process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
                             </xsl:when>
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index3)
@@ -262,7 +262,7 @@ Created By: Travis Berthelot
 
                     }
 
-                    var true: return
+                    return true
 
                 }
 
@@ -335,7 +335,7 @@ Created By: Travis Berthelot
 
                     }
 
-                    var true: return
+                    return true
                 }
 
                 override public fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
@@ -407,7 +407,7 @@ Created By: Travis Berthelot
 
                     }
 
-                    var true: return
+                    return true
                 }
 
                 override public fun processReleased(): Boolean {
@@ -481,7 +481,7 @@ Created By: Travis Berthelot
 
                     }
 
-                    var true: return
+                    return true
                 }
 
                 <xsl:if test="contains(disabled, 'true')" >

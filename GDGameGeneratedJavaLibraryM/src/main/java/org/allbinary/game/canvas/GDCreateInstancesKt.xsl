@@ -65,15 +65,15 @@ Created By: Travis Berthelot
                             <xsl:if test="contains(name, 'btn_')" >
                         //btn_ - found
                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
-                        //final int width = (touchImageResources.<xsl:value-of select="name" />Width(0) / 1.44f).toInt()
-                        //final int height = (touchImageResources.<xsl:value-of select="name" />Height(0) / 1.44f).toInt()
+                        //var width: Int = (touchImageResources.<xsl:value-of select="name" />Width(0) / 1.44f).toInt()
+                        //var height: Int = (touchImageResources.<xsl:value-of select="name" />Height(0) / 1.44f).toInt()
                         <xsl:if test="contains(name, 'joystick_')" >val joystickScale: Float = GDConfig.getInstance().getScale()</xsl:if>
                         val width: Int = (touchImageResources.<xsl:value-of select="name" />Width(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>).toInt()
                         val height: Int = (touchImageResources.<xsl:value-of select="name" />Height(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>).toInt()
                                 </xsl:if>
                                 <xsl:if test="height != 0 and width != 0" >
-                        //final int width = (<xsl:value-of select="width" /> * 1.44f).toInt()
-                        //final int height = (<xsl:value-of select="height" /> * 1.44f).toInt()
+                        //var width: Int = (<xsl:value-of select="width" /> * 1.44f).toInt()
+                        //var height: Int = (<xsl:value-of select="height" /> * 1.44f).toInt()
                         val width: Int = (<xsl:value-of select="width" /> * scaleTouchButtons).toInt()
                         val height: Int = (<xsl:value-of select="height" /> * scaleTouchButtons).toInt()
                                 </xsl:if>
@@ -82,16 +82,16 @@ Created By: Travis Berthelot
                             <xsl:if test="not(contains(name, 'btn_'))" >
                         //btn_ - not
                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
-                        //final int width = (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth() / 1.44f).toInt()
-                        //final int height = (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight() / 1.44f).toInt()
+                        //var width: Int = (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth() / 1.44f).toInt()
+                        //var height: Int = (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight() / 1.44f).toInt()
                         val width: Int = (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth()).toInt()
                         val height: Int = (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight()).toInt()
                                 </xsl:if>
                                 <xsl:if test="height != 0 and width != 0" >
-                        //final int width = (<xsl:value-of select="width" /> * 1.44f).toInt()
-                        //final int height = (<xsl:value-of select="height" /> * 1.44f).toInt()
-                        val width: Int = .toInt() as <xsl:value-of select="width" />
-                        val height: Int = .toInt() as <xsl:value-of select="height" />
+                        //var width: Int = (<xsl:value-of select="width" /> * 1.44f).toInt()
+                        //var height: Int = (<xsl:value-of select="height" /> * 1.44f).toInt()
+                        val width: Int = (<xsl:value-of select="width" />).toInt()
+                        val height: Int = (<xsl:value-of select="height" />).toInt()
                                 </xsl:if>
                         val customScale: Float = 1.0f
 
@@ -122,7 +122,7 @@ Created By: Travis Berthelot
 
                         //LayoutBuilder
                         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
-                        final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectFactory.get(
+                        var <xsl:value-of select="name" />: <xsl:value-of select="$gdObjectFactory" /> = <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectFactory.get(
                         width, height,
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) as <xsl:value-of select="$gdObjectFactory" />
 
@@ -182,7 +182,7 @@ Created By: Travis Berthelot
                         <xsl:if test="contains(name, 'btn_')" >
                         //btn_ - //Rectangle
                         //Touch Rectangle
-                        //final Rectangle <xsl:value-of select="name" />Rectangle = Rectangle(
+                        //var <xsl:value-of select="name" />Rectangle: Rectangle = Rectangle(
                         //    pointFactory.createXY(<xsl:value-of select="name" />.xP, <xsl:value-of select="name" />.yP),
                         //    (<xsl:value-of select="name" />.Width(globals.graphics) * scaleTouchButtons).toInt(), (<xsl:value-of select="name" />.Height(globals.graphics) * scaleTouchButtons).toInt())
                         //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle)

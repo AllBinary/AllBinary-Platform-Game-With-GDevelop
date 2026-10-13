@@ -21,22 +21,22 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDAction.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScalingKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCallsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssignGroups.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeIdKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEventsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssignGroupsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndexKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActionsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditionsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObjectKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceConditionKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstructionKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcessKt.xsl" />
 
     <xsl:output method="html" indent="yes" />
 
@@ -114,12 +114,16 @@ Created By: Travis Berthelot
 
                     private val instance: GDGameGlobals = GDGameGlobals()
 <!--
-                    private static GDGameGlobals instance;
+                    companion object {
 
-                    public static GDGameGlobals create()
+                    private lateinit var instance: GDGameGlobals
+
+                    open fun create(): GDGameGlobals
                     {
-                        instance = new GDGameGlobals();
-                        return GDGameGlobals.instance;
+                        instance = GDGameGlobals()
+                        return GDGameGlobals.instance
+                    }
+
                     }
 -->
 
@@ -179,14 +183,14 @@ Created By: Travis Berthelot
                     <xsl:for-each select="objectsGroups" >
                         public val <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME: String = "<xsl:value-of select="name" />"
                         public val <xsl:value-of select="name" />GroupInterface: Group = this.groupFactory.getNextGroupByName(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME)
-                        //public final BasicArrayList <xsl:value-of select="name" />GDObjectListOfList = BasicArrayListD()
+                        //public val <xsl:value-of select="name" />GDObjectListOfList: BasicArrayList = BasicArrayListD()
                         public val <xsl:value-of select="name" />GDGameLayerListOfList: BasicArrayList = BasicArrayListD()
                         public val <xsl:value-of select="name" />GDGameLayerRemoveListOfList: BasicArrayList = BasicArrayListD()
                         public val <xsl:value-of select="name" />CacheGDGameLayerListOfList: BasicArrayList = BasicArrayListD()
                         public val <xsl:value-of select="name" />GDConditionWithGroupActionsList: BasicArrayList = BasicArrayListD()
                         <xsl:for-each select="objects" >
-                        //public final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" />"
-                        //public final Group <xsl:value-of select="name" />GroupInterface
+                        //public val <xsl:value-of select="name" />: String = "<xsl:value-of select="name" />"
+                        //public val <xsl:value-of select="name" />GroupInterface: Group
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroups - END
@@ -196,7 +200,7 @@ Created By: Travis Berthelot
                         //name=<xsl:value-of select="name" /> type=<xsl:value-of select="type" /><xsl:text>&#10;</xsl:text>
                         <xsl:variable name="initialVariablesValue" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="initialVariables/value" /></xsl:with-param><xsl:with-param name="find" >-</xsl:with-param><xsl:with-param name="replacementText" >Neg</xsl:with-param></xsl:call-template></xsl:variable>
 
-                        //public final BasicArrayList <xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" /> = BasicArrayListD()
+                        //public val <xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" />: BasicArrayList = BasicArrayListD()
                         public val <xsl:value-of select="name" />GDGameLayerList<xsl:value-of select="$initialVariablesValue" />: BasicArrayList = BasicArrayListD()
                         public val <xsl:value-of select="name" />RemoveList<xsl:value-of select="$initialVariablesValue" />: BasicArrayList = BasicArrayListD()
                         <xsl:if test="type = 'TextObject::Text'" >
@@ -304,7 +308,7 @@ Created By: Travis Berthelot
 
                         this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR)
 
-                        val size: Int = channelSoundArray.length
+                        val size: Int = channelSoundArray.size
                         for(index in 0 until size) {
                             channelSoundArray[index] = BasicArrayListD()
                         }
@@ -402,7 +406,7 @@ Created By: Travis Berthelot
                     }
 
                     open public fun VariableString(string: String): String {
-                        var string: return
+                        return string
                     }
 
                 }

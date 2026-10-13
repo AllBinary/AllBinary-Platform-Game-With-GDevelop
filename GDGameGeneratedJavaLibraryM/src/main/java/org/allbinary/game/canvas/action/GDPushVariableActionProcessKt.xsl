@@ -52,7 +52,7 @@ Created By: Travis Berthelot
 
                         if(globals.chatRequestBody.messagesIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> <xsl:value-of select="$param1" />.length - 1) {
                             val sourceArray: Array&lt;Object&gt; = <xsl:value-of select="$param1" />
-                            val newDestinationArray: Array&lt;Object?&gt; = arrayOfNulls&lt;Object&gt;(sourceArray.length * 2)
+                            val newDestinationArray: Array&lt;Object?&gt; = arrayOfNulls&lt;Object&gt;(sourceArray.size * 2)
                             System.arraycopy(sourceArray, 0, newDestinationArray, 0, 0)
                             <xsl:value-of select="$param1" /> = newDestinationArray
                         }

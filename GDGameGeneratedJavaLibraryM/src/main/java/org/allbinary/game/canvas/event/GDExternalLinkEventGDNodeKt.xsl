@@ -27,7 +27,7 @@ Created By: Travis Berthelot
                             }
                             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDNode = gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = object : GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
-                                //private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=-1 type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />"
+                                //private val EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=-1 type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />"
                                 <xsl:text>&#10;</xsl:text>
 
 
@@ -64,7 +64,7 @@ Created By: Travis Berthelot
 
                                     </xsl:for-each>
 
-                                    var true: return
+                                    return true
                                 }
 
                                 override public fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
@@ -104,7 +104,7 @@ Created By: Travis Berthelot
                                     </xsl:for-each>
 
                                     //return <xsl:if test="$inverted = 'true'" >!</xsl:if>result
-                                    var result: return
+                                    return result
 
                                 }
 
@@ -142,7 +142,7 @@ Created By: Travis Berthelot
 
                                     </xsl:for-each>
 
-                                    var true: return
+                                    return true
                                 }
 
                             }
@@ -182,7 +182,7 @@ Created By: Travis Berthelot
                                         <xsl:with-param name="layoutType" >External</xsl:with-param>
                                     </xsl:call-template>
 
-                                    var true: return
+                                    return true
                                 }
 
                             }

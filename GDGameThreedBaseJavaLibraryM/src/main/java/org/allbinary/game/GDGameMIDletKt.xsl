@@ -260,7 +260,8 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
                 "mediaShutdown - postStopGameCanvasRunnableInterface")
    }
 
-//    public synchronized void setDemo() throws Exception
+//    @Throws(Exception::class)
+//    @Synchronized open fun setDemo()
 //    {
         <!--
         <xsl:if test="$totalLayouts > 1" >
@@ -273,7 +274,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
         </xsl:if>
         <xsl:if test="$totalLayouts = 1" >
         -->
-//        final DemoGameMidletEvent startDemoGameMidletEvent =
+//        var startDemoGameMidletEvent: DemoGameMidletEvent =
 //            DemoGameMidletEvent(this, DemoGameMidletStateFactory.getInstance().START_DEMO)
 //        DemoGameMidletEventHandler.getInstance().fireEvent(startDemoGameMidletEvent)
 
@@ -290,7 +291,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
         super.setDisplay(newDisplay)
     }
 
-    //private final String NEW_CANVAS = commonStrings.START + "newCanvas"
+    //private val NEW_CANVAS: String = commonStrings.START + "newCanvas"
     override fun startGameCanvasRunnableInterface() {
 
         //logUtil.putF(NEW_CANVAS, this, "startGameCanvasRunnableInterface")

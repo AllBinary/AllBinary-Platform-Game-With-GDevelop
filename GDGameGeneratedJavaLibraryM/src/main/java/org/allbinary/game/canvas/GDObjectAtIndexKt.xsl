@@ -22,7 +22,7 @@ Created By: Travis Berthelot
                                     <xsl:if test="$iteration > 1" >//iteration=<xsl:value-of select="$iteration" /> - More than 2 game layers</xsl:if>
                                     <xsl:if test="2 > $iteration" ></xsl:if>
                                     <xsl:if test="$iteration >= 1" ></xsl:if>
-                                    val <xsl:value-of select="$name" />Size2: Int = gameLayerArray.length
+                                    val <xsl:value-of select="$name" />Size2: Int = gameLayerArray.size
                                     var <xsl:value-of select="$name" />GDGameLayer1: GDGameLayer = null
                                     var <xsl:value-of select="$name" />GDGameLayer2: GDGameLayer
                                     for(index in 0 until <xsl:value-of select="$name" />Size2) {
@@ -57,7 +57,7 @@ Created By: Travis Berthelot
                                         //}
 
                                     } else {
-                                        //final String message = " - iteration=<xsl:value-of select="$iteration" /> - <xsl:value-of select="$name" /> warning: not initialized"
+                                        //var message: String = " - iteration=<xsl:value-of select="$iteration" /> - <xsl:value-of select="$name" /> warning: not initialized"
                                         //this.logUtil.put(message, this, message)
                                     }
 

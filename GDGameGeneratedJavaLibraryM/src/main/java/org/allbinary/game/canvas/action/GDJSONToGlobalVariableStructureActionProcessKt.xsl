@@ -40,12 +40,12 @@ Created By: Travis Berthelot
 
                             <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
-                            <xsl:variable name="start" ><xsl:for-each select="//variables" ><xsl:if test="name = $param2" ><xsl:if test="type = 'number'" >Integer.parseInt(</xsl:if><xsl:if test="type = 'boolean'" ></xsl:if></xsl:if></xsl:for-each></xsl:variable>
-                            <xsl:variable name="end" ><xsl:for-each select="//variables" ><xsl:if test="name = $param2" ><xsl:if test="type = 'number'" >)</xsl:if><xsl:if test="type = 'boolean'" >)</xsl:if></xsl:if></xsl:for-each></xsl:variable>
+                            <xsl:variable name="start" ><xsl:for-each select="//variables" ><xsl:if test="name = $param2" ><xsl:if test="type = 'number'" >(</xsl:if><xsl:if test="type = 'boolean'" ></xsl:if></xsl:if></xsl:for-each></xsl:variable>
+                            <xsl:variable name="end" ><xsl:for-each select="//variables" ><xsl:if test="name = $param2" ><xsl:if test="type = 'number'" >).toInt()</xsl:if><xsl:if test="type = 'boolean'" >)</xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
                             //gameGlobals.<xsl:value-of select="$param2" />JSONObject = jsonObject
                             //gameGlobals.<xsl:value-of select="$param2" /> = <xsl:value-of select="$start" />jsonObject.getString("<xsl:value-of select="$param2" />")<xsl:value-of select="$end" />
-                            if(globals.<xsl:value-of select="$firstParametersAsString" /> != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> globals.<xsl:value-of select="$firstParametersAsString" />.length() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                            if(globals.<xsl:value-of select="$firstParametersAsString" /> != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> globals.<xsl:value-of select="$firstParametersAsString" />.length <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                 gameGlobals.<xsl:value-of select="$param2" /> = <xsl:value-of select="$start" />globals.<xsl:value-of select="$firstParametersAsString" /><xsl:value-of select="$end" />
                                 this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + gameGlobals.<xsl:value-of select="$param2" />, this, this.commonStrings.PROCESS)
                             } else {

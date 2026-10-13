@@ -56,14 +56,14 @@ Created By: Travis Berthelot
                         </xsl:if>
                         <xsl:if test="type = 'array'" >
                             <xsl:if test="contains(name, 'BoolArray')" >
-                    public var <xsl:value-of select="name" />: BooleanArray = {
+                    public var <xsl:value-of select="name" />: BooleanArray = booleanArrayOf(
                             <xsl:for-each select="children" >
                         <xsl:value-of select="value" />,
                             </xsl:for-each>
-                    }
+                    )
                             </xsl:if>
                             <xsl:if test="contains(name, 'IntArray')" >
-                    public var <xsl:value-of select="name" />: IntArray = {
+                    public var <xsl:value-of select="name" />: IntArray = intArrayOf(
                             <xsl:for-each select="children" >
                                 <xsl:if test="contains(value, ';')" >
                         basicColorUtil.getARGB(255, <xsl:value-of select="translate(translate(value, '\&quot;', ''), ';', ',')" />),
@@ -72,22 +72,22 @@ Created By: Travis Berthelot
                         <xsl:value-of select="value" />,
                                 </xsl:if>
                             </xsl:for-each>
-                    }
+                    )
                             </xsl:if>
                             <xsl:if test="contains(name, 'LongArray')" >
-                        public var <xsl:value-of select="name" />: LongArray = {
+                        public var <xsl:value-of select="name" />: LongArray = longArrayOf(
                             <xsl:for-each select="children" >
                             <xsl:value-of select="value" />,
                             </xsl:for-each>
-                        }
+                        )
                             </xsl:if>
                             <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'LongArray') or contains(name, 'BoolArray'))" >
                     public var <xsl:value-of select="name" />Index: Int = 0
-                    public var <xsl:value-of select="name" />: Array&lt;String&gt; = {
+                    public var <xsl:value-of select="name" />: Array&lt;String&gt; = arrayOf(
                             <xsl:for-each select="children" >
                         "<xsl:value-of select="value" />",
                             </xsl:for-each>
-                    }
+                    )
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>
@@ -269,14 +269,14 @@ Created By: Travis Berthelot
                 <xsl:if test="animations" >
                     //animations/directions/sprites/originPoint/x <xsl:value-of select="animations/directions/sprites/originPoint/x" />
                     //animations/directions/sprites/originPoint/y <xsl:value-of select="animations/directions/sprites/originPoint/y" />
-                    public val ANIMATION_NAMES: Array&lt;String&gt; = {
+                    public val ANIMATION_NAMES: Array&lt;String&gt; = arrayOf(
                 <xsl:for-each select="animations" >
                     <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(name, ' ', '_'), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
                     <xsl:if test="string-length($animationName) > 0" >
                     <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$animationName" />,
                     </xsl:if>
                 </xsl:for-each>
-                    }
+                    )
                 </xsl:if>
 
                     //type=<xsl:value-of select="type" />
@@ -427,26 +427,26 @@ Created By: Travis Berthelot
                                 //this.logUtil.put(animationName, this, "setAnimation")
                                 if(this.animation != index) {
                                     this.animation = index
-                                    var true: return
+                                    return true
                                 } else if(this.ANIMATION_NAMES.length == 1) {
-                                    var true: return
+                                    return true
                                 } else {
-                                    var false: return
+                                    return false
                                 }
                             }
                         }
-                        var false: return
+                        return false
                     }
                     </xsl:if>
 
                     <xsl:if test="animations/directions/sprites/originPoint/x = 0 and animations/directions/sprites/originPoint/y = 0" >
 <!--
-                    public int Width(final Graphics graphics) {
-                        return canvasWidth;
+                    open fun Width(graphics: Graphics): Int {
+                        return canvasWidth
                     }
 
-                    public int Height(final Graphics graphics) {
-                        return canvasHeight;
+                    open fun Height(graphics: Graphics): Int {
+                        return canvasHeight
                     }
 -->
                     </xsl:if>
@@ -466,14 +466,14 @@ Created By: Travis Berthelot
 -->
                     //type=<xsl:value-of select="type" />
                         <xsl:for-each select="behaviors" >
-                    //private String name = "<xsl:value-of select="name" />"
-                    //private String joystickIdentifier = "<xsl:value-of select="JoystickIdentifier" />"
-                    //private boolean floatingEnabled = <xsl:value-of select="FloatingEnabled" />
-                    //private int touchIndex = <xsl:value-of select="TouchIndex" />
-                    //private int touchId = <xsl:value-of select="TouchId" />
-                    //private int controllerIdentifier = <xsl:value-of select="ControllerIdentifier" />
-                    //private float joystickAngle = <xsl:value-of select="JoystickAngle" />
-                    //private float joystickForce = <xsl:value-of select="JoystickForce" />
+                    //private var name: String = "<xsl:value-of select="name" />"
+                    //private var joystickIdentifier: String = "<xsl:value-of select="JoystickIdentifier" />"
+                    //private var floatingEnabled: Boolean = <xsl:value-of select="FloatingEnabled" />
+                    //private var touchIndex: Int = <xsl:value-of select="TouchIndex" />
+                    //private var touchId: Int = <xsl:value-of select="TouchId" />
+                    //private var controllerIdentifier: Int = <xsl:value-of select="ControllerIdentifier" />
+                    //private var joystickAngle: Float = <xsl:value-of select="JoystickAngle" />
+                    //private var joystickForce: Float = <xsl:value-of select="JoystickForce" />
                     private var deadZoneRadius: Float = <xsl:value-of select="DeadZoneRadius" />f / 2
                         </xsl:for-each>
                                    </xsl:for-each>
@@ -514,15 +514,15 @@ Created By: Travis Berthelot
                     }
 
                     open public fun StickForceX(): Float {
-                        var stickForceX: return
+                        return stickForceX
                     }
 
                     open public fun StickForceY(): Float {
-                        var stickForceY: return
+                        return stickForceY
                     }
 
                     open public fun DeadZoneRadius(): Float {
-                        var deadZoneRadius: return
+                        return deadZoneRadius
                     }
                     </xsl:if>
                     <xsl:if test="type = 'Scrollbar::Scrollbar'" >
@@ -554,17 +554,17 @@ Created By: Travis Berthelot
                 //ParticleSystem::ParticleEmitter - GDObject
                 public final class <xsl:value-of select="name" /> : GDObject {
 
-                    //public final StringMaker stringMaker = StringMaker()
+                    //public val stringMaker: StringMaker = StringMaker()
 
                     public constructor(width: Int, height: Int, name: String) : super(width, height, name, null) {
                     }
 
                     open public fun Width(graphics: Graphics): Int {
-                        var 0: return
+                        return 0
                     }
 
                     open public fun Height(graphics: Graphics): Int {
-                        var 0: return
+                        return 0
                     }
 
                     open public fun String(): String {

@@ -21,26 +21,26 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCallsKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScalingKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDBuiltinCommonInstructionsGDNode.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjects.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssign.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeIdKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDBuiltinCommonInstructionsGDNodeKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEventsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjectsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssignKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndexKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActionsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditionsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObjectKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceConditionKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstructionKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcessKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/event/GDJsCodeEventGDNode.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/event/GDJsCodeEventGDNodeKt.xsl" />
 
     <xsl:output method="html" indent="yes" />
 
@@ -91,15 +91,15 @@ import org.allbinary.logic.NullUtil
 import org.allbinary.time.TimeDelayHelper
 import org.allbinary.util.ArrayUtil
 
-<!--import org.allbinary.game.configuration.persistance.JSONPersistance;
-import org.allbinary.game.layer.GDGameLayerFactory;
-import org.allbinary.game.layer.special.TempGameLayerUtil;
-import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
-import org.allbinary.game.layout.GDObject;
-import org.allbinary.game.layout.GDObjectStrings;
-import org.allbinary.game.layer.AllBinaryGameLayerManager;
-import org.allbinary.game.layer.CollidableCompositeLayer;
-import org.allbinary.game.layer.identification.GroupLayerManagerListener;
+<!--import org.allbinary.game.configuration.persistance.JSONPersistance
+import org.allbinary.game.layer.GDGameLayerFactory
+import org.allbinary.game.layer.special.TempGameLayerUtil
+import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton
+import org.allbinary.game.layout.GDObject
+import org.allbinary.game.layout.GDObjectStrings
+import org.allbinary.game.layer.AllBinaryGameLayerManager
+import org.allbinary.game.layer.CollidableCompositeLayer
+import org.allbinary.game.layer.identification.GroupLayerManagerListener
 -->
 
 <xsl:variable name="selectedNodeIdSet" select="substring(substring($selectedNodeIds, string-length($selectedNodeIds) - 1), 1, 1)" />
@@ -123,10 +123,10 @@ open public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:va
     private val gameGlobalsFactory: GameGlobalsFactory = GameGlobalsFactory.getInstance()
 
 <!--
-    private final StringUtil stringUtil = StringUtil.getInstance();
-    private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
+    private val stringUtil: StringUtil = StringUtil.getInstance()
+    private val smallIntegerSingletonFactory: SmallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
 
-    private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
+    private val objectStrings: GDObjectStrings = GDObjectStrings.getInstance()
 -->
 
     private val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
@@ -329,7 +329,7 @@ open public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:va
             //this.logUtil.putF("RANDOMF: " + randomF, this, this.commonStrings.PROCESS)
             val result: Float = min.toFloat() + (randomF / 1000)
             //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS)
-            var result: return
+            return result
         }
 
         open public fun RandomFloatInRange(min: Float, max: Float): Float {
@@ -343,23 +343,23 @@ open public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:va
             //this.logUtil.putF("RANDOMF: " + randomF, this, this.commonStrings.PROCESS)
             val result: Float = min.toFloat() + (randomF / 1000)
             //this.logUtil.putF("RESULT: " + result, this, this.commonStrings.PROCESS)
-            var result: return
+            return result
         }
 
         open public fun Variable(value: Int): Int {
-            var value: return
+            return value
         }
 
         open public fun Variable(value: Float): Float {
-            var value: return
+            return value
         }
 
         open public fun Variable(value: Double): Double {
-            var value: return
+            return value
         }
 
         open public fun VariableString(string: String): String {
-            var string: return
+            return string
         }
 
         open public fun VariableString(object: Object): String {
@@ -375,23 +375,23 @@ open public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:va
         }
 
         open public fun GlobalVariable(value: String): String {
-            var value: return
+            return value
         }
 
         open public fun GlobalVariable(value: Float): Float {
-            var value: return
+            return value
         }
 
         open public fun GlobalVariable(value: Long): Long {
-            var value: return
+            return value
         }
 
         open public fun GlobalVariable(value: Int): Int {
-            var value: return
+            return value
         }
 
         open public fun GlobalVariableString(value: String): String {
-            var value: return
+            return value
         }
 
         open public fun GlobalVariableChildCount(array: Array&lt;String&gt;): Int {
@@ -407,7 +407,7 @@ open public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:va
         }
 
         open public fun GlobalVarToJSON(value: String): String {
-            var value: return
+            return value
         }
 
         open public fun GlobalVarToJSON(value: Int): String {
@@ -427,7 +427,7 @@ open public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:va
         }
 
         open public fun ToJSON(value: String): String {
-            var value: return
+            return value
         }
 
         open public fun ToJSON(value: Int): String {
@@ -439,7 +439,7 @@ open public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:va
         }
 
         open public fun SceneInstancesCount(size: Int): Int {
-            var size: return
+            return size
         }
 
         open public fun MouseX(): Int {
@@ -459,11 +459,11 @@ open public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:va
         }
 
         open public fun CameraX(string: String, value: Int): Int {
-            var 0: return
+            return 0
         }
 
         open public fun CameraY(string: String, value: Int): Int {
-            var 0: return
+            return 0
         }
 
         open public fun CameraWidth(string: String, value: Int): Int {
@@ -475,7 +475,7 @@ open public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:va
         }
 
         open public fun floor(value: Int): Int {
-            var value: return
+            return value
         }
 
         open public fun floor(value: Float): Float {
@@ -487,11 +487,11 @@ open public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:va
         }
 
         open public fun round(value: Int): Int {
-            var value: return
+            return value
         }
 
         open public fun round(value: Long): Long {
-            var value: return
+            return value
         }
 
         open public fun round(value: Float): Float {
@@ -532,7 +532,7 @@ open public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:va
 
         open public fun ToRad(angdeg: Double): Double {
             //return Math.toRadians(angdeg)
-            var angdeg: return
+            return angdeg
         }
 
         open public fun TimeFromStart(): Long {
@@ -544,23 +544,23 @@ open public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:va
         }
 
         open public fun LastTouchId(): Int {
-            var 0: return
+            return 0
         }
 
         open public fun LastEndedTouchId(): Int {
-            var 0: return
+            return 0
         }
 
         open public fun TouchX(touchId: Int, name: String, unknown: Int): Int {
-            var 0: return
+            return 0
         }
 
         open public fun TouchY(touchId: Int, name: String, unknown: Int): Int {
-            var 0: return
+            return 0
         }
 
         open public fun ToNumber(string: String): Float {
-            return Float.parseFloat(string)
+            return (string).toFloat()
         }
 
         open public fun StrLength(string: String): Int {
@@ -576,7 +576,7 @@ open public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:va
         }
 
         open public fun ToString(value: String): String {
-            var value: return
+            return value
         }
 
         open public fun ToString(value: Int): String {
@@ -607,7 +607,7 @@ open public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:va
         }
 
         open public fun ToNotString(value: Int): Int {
-           var value: return
+           return value
         }
 
 }

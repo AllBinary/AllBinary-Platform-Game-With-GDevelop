@@ -140,7 +140,7 @@ Created By: Travis Berthelot
                 this.<xsl:value-of select="$name" />ResourceArray = arrayOf&lt;String&gt;(
                 <xsl:for-each select="animations" >
                     <!--
-                this.<xsl:value-of select="$name" /><xsl:value-of select="name" />ResourceArray = new String[] {
+                this.<xsl:value-of select="$name" /><xsl:value-of select="name" />ResourceArray = arrayOf&lt;String&gt;(
                     <xsl:for-each select="directions/sprites/image" >
                     <xsl:variable name="imageWithExtension" select="text()" />
                     -->
@@ -158,7 +158,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                     <!--
                     </xsl:for-each>
-                };
+                )
                     -->
                 </xsl:for-each>
 
@@ -276,7 +276,7 @@ Created By: Travis Berthelot
                 </xsl:if>
                 )
 
-                size = this.<xsl:value-of select="name" />JSONResourceArray.length
+                size = this.<xsl:value-of select="name" />JSONResourceArray.size
                 for(index in 0 until size) {
                     platformAssetManager.getResourceAsStream(this.<xsl:value-of select="name" />JSONResourceArray[index])
                 }

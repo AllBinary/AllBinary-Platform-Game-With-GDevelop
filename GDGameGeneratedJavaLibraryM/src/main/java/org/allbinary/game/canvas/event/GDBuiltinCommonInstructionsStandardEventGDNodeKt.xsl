@@ -98,13 +98,13 @@ Created By: Travis Berthelot
                         //Skip - Key Input condition for process() as it can only be called from GDGameInputProcessor, but probably should not be
                             </xsl:when>
                             <xsl:when test="type/value = 'MouseButton' or type/value = 'MouseButtonFromTextPressed' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >
-                        //Skip - MouseButton/SourisBouton, MouseButtonReleased, MouseButtonFromTextPressed for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
+                        //Skip - MouseButton/SourisBouton, MouseButtonReleased, MouseButtonFromTextPressed for process() as it can only be called from process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
                             </xsl:when>
                             <xsl:when test="type/value = 'IsCursorOnObject' or type/value = 'SourisSurObjet'" >
-                        //Skip - IsCursorOnObject/SourisSurObjet for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
+                        //Skip - IsCursorOnObject/SourisSurObjet for process() as it can only be called from process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
                             </xsl:when>
                             <xsl:when test="type/value = 'IsMouseWheelScrollingDown' or type/value = 'IsMouseWheelScrollingUp'" >
-                        //Skip - IsMouseWheelScrollingDown for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
+                        //Skip - IsMouseWheelScrollingDown for process() as it can only be called from process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
                             </xsl:when>
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()
@@ -124,8 +124,8 @@ Created By: Travis Berthelot
                             <xsl:variable name="id" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
                             <xsl:variable name="id2" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
 
-                            //final GDGameLayer gameLayer = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />]
-                            //final GDGameLayer gameLayer2 = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id2])" />]
+                            //var gameLayer: GDGameLayer = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />]
+                            //var gameLayer2: GDGameLayer = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id2])" />]
                             </xsl:when>
                             <xsl:when test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                         //CollisionNP - include params
@@ -135,8 +135,8 @@ Created By: Travis Berthelot
                             <xsl:variable name="id" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
                             <xsl:variable name="id2" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
 
-                            //final GDGameLayer gameLayer = gameGlobals.tempGameLayerArray[0]
-                            //final GDGameLayer gameLayer2 = gameGlobals.tempGameLayerArray[1]
+                            //var gameLayer: GDGameLayer = gameGlobals.tempGameLayerArray[0]
+                            //var gameLayer2: GDGameLayer = gameGlobals.tempGameLayerArray[1]
                             </xsl:when>
                             <xsl:otherwise>
                         if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
@@ -190,7 +190,7 @@ Created By: Travis Berthelot
                         </xsl:choose>
                     </xsl:for-each>
 
-                    var true: return
+                    return true
 
                 }
 
@@ -208,13 +208,13 @@ Created By: Travis Berthelot
                         //Skip - Key Input condition for process() as it can only be called from GDGameInputProcessor, but probably should not be
                             </xsl:when>
                             <xsl:when test="type/value = 'MouseButton' or type/value = 'MouseButtonFromTextPressed' or type/value = 'SourisBouton' or type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >
-                        //Skip - MouseButton/SourisBouton, MouseButtonReleased for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
+                        //Skip - MouseButton/SourisBouton, MouseButtonReleased for process() as it can only be called from process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
                             </xsl:when>
                             <xsl:when test="type/value = 'IsCursorOnObject' or type/value = 'SourisSurObjet'" >
-                        //Skip - IsCursorOnObject/SourisSurObjet for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
+                        //Skip - IsCursorOnObject/SourisSurObjet for process() as it can only be called from process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
                             </xsl:when>
                             <xsl:when test="type/value = 'IsMouseWheelScrollingDown' or type/value = 'IsMouseWheelScrollingUp'" >
-                        //Skip - IsMouseWheelScrollingDown for process() as it can only be called from process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput)
+                        //Skip - IsMouseWheelScrollingDown for process() as it can only be called from process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
                             </xsl:when>
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index3)
@@ -278,7 +278,7 @@ Created By: Travis Berthelot
                         </xsl:choose>
                     </xsl:for-each>
 
-                    var true: return
+                    return true
 
                 }
 
@@ -346,7 +346,7 @@ Created By: Travis Berthelot
                         </xsl:choose>
                     </xsl:for-each>
 
-                    var true: return
+                    return true
                 }
 
                 override public fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
@@ -413,7 +413,7 @@ Created By: Travis Berthelot
                         </xsl:choose>
                     </xsl:for-each>
 
-                    var true: return
+                    return true
                 }
 
                 override public fun processReleased(): Boolean {
@@ -477,13 +477,13 @@ Created By: Travis Berthelot
                             <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
                             </xsl:when>
                             <xsl:otherwise>
-                            var true: return
+                            return true
                         }
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
 
-                    var false: return
+                    return false
                 }
 
                 <xsl:if test="contains(disabled, 'true')" >

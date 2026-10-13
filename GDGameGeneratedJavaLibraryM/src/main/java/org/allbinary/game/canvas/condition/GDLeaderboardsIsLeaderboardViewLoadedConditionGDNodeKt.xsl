@@ -48,7 +48,7 @@ Created By: Travis Berthelot
 
                                 val highScoresArray: Array&lt;HighScores&gt; = gameGlobals.highScoresHelper.getHighScoresArray()
 
-                                val leaderBoardTotal: Int = highScoresArray.length
+                                val leaderBoardTotal: Int = highScoresArray.size
 
                                 HighScores highScores
                                 //val index2: Int = leaderBoardTotal - 1

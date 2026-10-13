@@ -78,7 +78,7 @@ Created By: Travis Berthelot
                                         try {
 
                                 val gameInfo: GameInfo = abCanvas.getLayerManager().getGameInfo()
-                                if(name != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> name.length() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                                if(name != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> name.length <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                     val score: Long = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
                                     this.logUtil.putF(StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Submitting and Fetching leaderboard(s): ").appendlong(score).toString(), this, this.commonStrings.RUN)
 
@@ -210,7 +210,7 @@ Created By: Travis Berthelot
 
                                 val gameInfo: GameInfo = abCanvas.getLayerManager().getGameInfo()
 
-                                if(name != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> name.length() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                                if(name != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> name.length <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                     val score: Long = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
                                     this.logUtil.putF(StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Submitting and Fetching leaderboard(s): ").appendlong(score).toString(), this, this.commonStrings.RUN)
 

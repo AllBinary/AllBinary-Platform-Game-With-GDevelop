@@ -23,7 +23,7 @@
                 <xsl:for-each select="instances" >
                     <xsl:if test="not(contains(name, $name))" >
                         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /></xsl:variable>
-                        final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = (<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0) as GDGameLayer) as <xsl:value-of select="$gdObjectFactory" />.gdObject
+                        var <xsl:value-of select="name" />: <xsl:value-of select="$gdObjectFactory" /> = (<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0) as GDGameLayer).gdObject as <xsl:value-of select="$gdObjectFactory" />
                     </xsl:if>
                 </xsl:for-each>
                 //layout - instances - END

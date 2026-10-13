@@ -15,22 +15,22 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/case.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/indexof.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/replace.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/reverse.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/split.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCallsKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDNodeIdKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDExternalEventsKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDAction.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAtIndexKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDActionKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObjectKt.xsl" />
 
-    <xsl:import href="../GDGameWavSoundsJavaLibraryM/src/main/java/org/allbinary/media/audio/PlaySound.xsl" />
+    <xsl:import href="../GDGameWavSoundsJavaLibraryM/src/main/java/org/allbinary/media/audio/PlaySoundKt.xsl" />
 
     <xsl:output method="html" indent="yes" />
 

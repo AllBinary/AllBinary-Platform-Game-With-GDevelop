@@ -15,7 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-    <xsl:import href="./GDConditionUtils.xsl" />
+    <xsl:import href="./GDConditionUtilsKt.xsl" />
 
     <xsl:output method="html" indent="yes" />
 

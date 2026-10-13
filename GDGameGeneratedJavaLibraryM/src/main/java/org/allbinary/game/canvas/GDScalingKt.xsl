@@ -22,24 +22,24 @@
         <xsl:if test="not(contains($layoutIndex, 'Global'))" >
                             //<xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
                             //<xsl:variable name="windowHeight" select="/game/properties/windowHeight" />
-                            //final int scaleWidth = (displayUtil.width2 / <xsl:value-of select="$windowWidth" />)
-                            //final int scaleHeight = (displayUtil.height2 / <xsl:value-of select="$windowHeight" />)
+                            //var scaleWidth: Int = (displayUtil.width2 / <xsl:value-of select="$windowWidth" />)
+                            //var scaleHeight: Int = (displayUtil.height2 / <xsl:value-of select="$windowHeight" />)
 
                             //this.logUtil.put(StringMaker().append("displayUtil.width2: ").append(displayUtil.height2).append("displayUtil.height2: ").append(displayUtil.width2).toString(), this, this.commonStrings.CONSTRUCTOR)
 
-                            //int scale2 = if ((scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight)) scaleWidth else scaleHeight
+                            //var scale2: Int = if ((scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight)) scaleWidth else scaleHeight
                             //if(scale2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 2) scale2 = 2
-                            //final int scale = scale2
+                            //var scale: Int = scale2
                             val scale: Float = GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale
-                            //final int scaleNominator = scale
-                            //final int scaleDenominator = 2
+                            //var scaleNominator: Int = scale
+                            //var scaleDenominator: Int = 2
                             this.logUtil.putF(StringMaker().append("scale: ").append(scale).toString(), this, this.commonStrings.CONSTRUCTOR)
 
                             val scaleLayout: Int = <xsl:if test="not(contains($layoutName, 'Scaled')) or contains($layoutIndex, 'Global')" >1</xsl:if><xsl:if test="contains($layoutName, 'Scaled')" >2</xsl:if>
                             <xsl:variable name="name2" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template></xsl:variable>
 <!--                            number($layoutIndex) = 0 or contains($name2, 'options')  or contains($name2, 'about') or contains($name2, 'score') or contains($name2, 'over')-->
                             val scaleTouchButtons: Float = if (<xsl:if test="not(number($layoutIndex) = 1)" >1.0f</xsl:if><xsl:if test="number($layoutIndex) = 1" >GDConfig.getInstance().getGameScale(<xsl:value-of select="/game/properties/scale/android" />, <xsl:value-of select="/game/properties/scale/html" />, <xsl:value-of select="/game/properties/scale/j2se" />)</xsl:if>
-<!--                            final int scaleTouch = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth * scaleTouchButtons : scaleHeight * scaleTouchButtons;-->
+<!--                            var scaleTouch: Int = if((scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight)) { scaleWidth * scaleTouchButtons } else { scaleHeight * scaleTouchButtons }-->
                             this.logUtil.putF(StringMaker().append("scaleTouchButtons - scale: ").append(scaleTouchButtons).toString(), this, this.commonStrings.CONSTRUCTOR)
         </xsl:if>
 

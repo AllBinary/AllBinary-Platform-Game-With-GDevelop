@@ -161,7 +161,7 @@ Created By: Travis Berthelot
 
                 </xsl:for-each>
 
-                val <xsl:value-of select="$name" />Object3dContainerArray: Array&lt;Object3d&gt; = {
+                val <xsl:value-of select="$name" />Object3dContainerArray: Array&lt;Object3d&gt; = arrayOf(
                 <xsl:for-each select="animations" >
                     <xsl:variable name="resourceWithExtension" select="directions/sprites/image" />
                     <xsl:variable name="image2" select="substring-before($resourceWithExtension, '.')" />
@@ -173,7 +173,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:for-each>
 
-                }
+                )
 
                 min3dSceneResourcesFactory.add(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME, <xsl:value-of select="$name" />Object3dContainerArray)
 

@@ -21,25 +21,25 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCallsKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScalingKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObjectGDNodeAction.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEventsGDNodes.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjects.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssign.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeIdKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObjectGDNodeActionKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEventsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEventsGDNodesKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjectsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssignKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndexKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActionsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditionsKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObjectKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceConditionKt.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstructionKt.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcessKt.xsl" />
 
     <xsl:output method="html" indent="yes" />
 
@@ -121,9 +121,9 @@ Created By: Travis Berthelot
                         private val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
                         private val gdExtensionGDNodes: GDExtensionGDNodes = GDExtensionGDNodes.getInstance()
 
-                        //private final GD<xsl:value-of select="$layoutIndex" />var gd<xsl:value-of select="$layoutIndex" />ExternalActionGDNodes: ExternalActionGDNodes = GD<xsl:value-of select="$layoutIndex" />ExternalActionGDNodes.getInstance()
+                        //private val gd<xsl:value-of select="$layoutIndex" />ExternalActionGDNodes: GD<xsl:value-of select="$layoutIndex" />ExternalActionGDNodes = GD<xsl:value-of select="$layoutIndex" />ExternalActionGDNodes.getInstance()
 
-                        private val abeClientInformation: AbeClientInformationInterface = (AbeClientInformationInterface) GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION
+                        private val abeClientInformation: AbeClientInformationInterface = GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION as AbeClientInformationInterface
 
                     private constructor() : super(AnimationBehavior.getInstance()) {
 
@@ -168,115 +168,115 @@ Created By: Travis Berthelot
                     }
 
 <!--
-                    public int SceneWindowWidth() {
-                        return gameTickDisplayInfoSingleton.getLastWidth();
+                    open fun SceneWindowWidth(): Int {
+                        return gameTickDisplayInfoSingleton.getLastWidth()
                     }
 
-                    public int SceneWindowHeight() {
-                        return gameTickDisplayInfoSingleton.getLastHeight();
+                    open fun SceneWindowHeight(): Int {
+                        return gameTickDisplayInfoSingleton.getLastHeight()
                     }
 
-                    public int abs(final int value) {
-                        return Math.abs(value);
+                    open fun abs(value: Int): Int {
+                        return Math.abs(value)
                     }
 
-                    public float abs(final float value) {
-                        return Math.abs(value);
+                    open fun abs(value: Float): Float {
+                        return Math.abs(value)
                     }
 
-                    public double log2(final int value) {
-                        return Math.log(value);
+                    open fun log2(value: Int): Double {
+                        return Math.log(value)
                     }
 
-                    public int Random(final int range) {
-                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
+                    open fun Random(range: Int): Int {
+                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1)
                     }
 
-                    public String VariableString(final String string) {
-                        return string;
+                    open fun VariableString(string: String): String {
+                        return string
                     }
 
-                    public int Variable(final int value) {
-                        return value;
+                    open fun Variable(value: Int): Int {
+                        return value
                     }
 
-                    public float Variable(final float value) {
-                        return value;
+                    open fun Variable(value: Float): Float {
+                        return value
                     }
 
-                    public double Variable(final double value) {
-                        return value;
+                    open fun Variable(value: Double): Double {
+                        return value
                     }
 
-                    public String GlobalVariable(final String value) {
-                        return value;
+                    open fun GlobalVariable(value: String): String {
+                        return value
                     }
 
-                    public float GlobalVariable(final float value) {
-                        return value;
+                    open fun GlobalVariable(value: Float): Float {
+                        return value
                     }
 
-                    public long GlobalVariable(final long value) {
-                        return value;
+                    open fun GlobalVariable(value: Long): Long {
+                        return value
                     }
 
-                    public int GlobalVariable(final int value) {
-                        return value;
+                    open fun GlobalVariable(value: Int): Int {
+                        return value
                     }
 
-                    public String GlobalVariableString(final String value) {
-                        return value;
+                    open fun GlobalVariableString(value: String): String {
+                        return value
                     }
 
-                    public int GlobalVariableChildCount(final String[] array) {
-                        return array.length;
+                    open fun GlobalVariableChildCount(array: Array&lt;String?&gt;): Int {
+                        return array.size
                     }
 
-                    public int GlobalVariableChildCount(final int[] array) {
-                        return array.length;
+                    open fun GlobalVariableChildCount(array: IntArray): Int {
+                        return array.size
                     }
 
-                    public int GlobalVariableChildCount(final long[] array) {
-                        return array.length;
+                    open fun GlobalVariableChildCount(array: LongArray): Int {
+                        return array.size
                     }
 
-                    public String GlobalVarToJSON(final String value) {
-                        return value;
+                    open fun GlobalVarToJSON(value: String): String {
+                        return value
                     }
 
-                    public String GlobalVarToJSON(final int value) {
-                        return Integer.toString(value);
+                    open fun GlobalVarToJSON(value: Int): String {
+                        return value.toString()
                     }
 
-                    public String GlobalVarToJSON(final long value) {
-                        return Long.toString(value);
+                    open fun GlobalVarToJSON(value: Long): String {
+                        return (value).toString()
                     }
 
-                    public int ToJSONType(final GDStructure value) {
-                        return value.getJSONType();
+                    open fun ToJSONType(value: GDStructure): Int {
+                        return value.getJSONType()
                     }
 
-                    public String ToJSON(final GDStructure value) {
-                        return value.toJSONAsString();
+                    open fun ToJSON(value: GDStructure): String {
+                        return value.toJSONAsString()
                     }
 
-                    public String ToJSON(final String value) {
-                        return value;
+                    open fun ToJSON(value: String): String {
+                        return value
                     }
 
-                    public String ToJSON(final int value) {
-                        return Integer.toString(value);
+                    open fun ToJSON(value: Int): String {
+                        return value.toString()
                     }
 
-                    public String ToJSON(final long value) {
-                        return Long.toString(value);
+                    open fun ToJSON(value: Long): String {
+                        return (value).toString()
                     }
 
-                    public String ToString(final int value) {
+                    open fun ToString(value: Int): String {
                         if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
-                            return Integer.toString(value);
+                            return value.toString()
                         } else {
-                            return smallIntegerSingletonFactory.getString(value);
+                            return smallIntegerSingletonFactory.getString(value)
                         }
                     }
                     -->

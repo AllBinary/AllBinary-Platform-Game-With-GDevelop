@@ -15,77 +15,77 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:import href="./condition/GDLeaderboardsIsLeaderboardViewLoadedConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDTextContainerCapabilityTextContainerBehaviorValueConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDTextInputTextInputObjectIsInputSubmittedConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDJSONGroupExistsConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDOnceConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDAlwaysConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDLinkedObjectsPickObjectsLinkedToConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDOrConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDAndConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDMusicPlayingConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDMusicStoppedConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDSoundPlayingConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDSoundStoppedConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDSoundPausedConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDLayerVisibleConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDBehaviorActivatedConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDAnyKeyPressedConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDKeyFromTextPressedConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDKeyFromTextReleasedConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDAnyKeyReleasedConditionGDNodeConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDKeyPressedConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDKeyReleasedConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDIsTouchConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDIsMultitouchConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDCanAutoHideConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDTimerConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDObjectTimerConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDPosXConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDPosYConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDNbObjetConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDOpacityConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDObjectVariableChildCountConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDVarGlobalConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDNumberObjectVariableConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDSceneInstancesCountConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDGlobalVariableAsBooleanConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDGlobalVariableChildExistsConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDVarSceneConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDSourisSurObjetConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDSourisBoutonConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDMouseButtonPressedConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDMouseButtonReleasedConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDIsMouseWheelScrollingUpConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDIsMouseWheelScrollingDownConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDDepartSceneConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDNumberVariableConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDSceneVariableAsBooleanConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDSceneVariableAsTextConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDPopStartedTouchConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDPopEndedTouchConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDVelocityConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDObjectVariableAsBooleanConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDDistanceConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDCompareNumbersConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDSpriteMultitouchJoystickIsPressedConditionProcess.xsl" />
-    <xsl:import href="./condition/GDPanelSpriteSliderPanelSpriteSliderValueConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDSystemInfoIsNativeMobileAppConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDSystemInfoIsNativeDesktopAppConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDStringVariableConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDCompareStringsConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDIsStoppedVelocityConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDDraggableBehaviorDraggedConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDDraggableBehaviorDroppedConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDScrollbarScrollbarIsScrollingRequiredConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDScrollbarScrollbarIsThumbDraggedConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDResizableCapabilityResizableBehaviorHeightConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDAnimationHasAnimationEndedConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDAnimationElapsedTimeConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDFileSystemPathExistsConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDAdvancedHTTPResponseSuccessConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDAdvancedHTTPResponseStatusCodeConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDLeaderboardsIsLeaderboardViewLoadedConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDTextContainerCapabilityTextContainerBehaviorValueConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDTextInputTextInputObjectIsInputSubmittedConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDJSONGroupExistsConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDOnceConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDAlwaysConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDLinkedObjectsPickObjectsLinkedToConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDOrConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDAndConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDMusicPlayingConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDMusicStoppedConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDSoundPlayingConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDSoundStoppedConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDSoundPausedConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDLayerVisibleConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDBehaviorActivatedConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDAnyKeyPressedConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDKeyFromTextPressedConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDKeyFromTextReleasedConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDAnyKeyReleasedConditionGDNodeConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDKeyPressedConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDKeyReleasedConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDIsTouchConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDIsMultitouchConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDCanAutoHideConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDTimerConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDObjectTimerConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDPosXConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDPosYConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDNbObjetConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDOpacityConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDObjectVariableChildCountConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDVarGlobalConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDNumberObjectVariableConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDSceneInstancesCountConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDGlobalVariableAsBooleanConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDGlobalVariableChildExistsConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDVarSceneConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDSourisSurObjetConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDSourisBoutonConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDMouseButtonPressedConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDMouseButtonReleasedConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDIsMouseWheelScrollingUpConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDIsMouseWheelScrollingDownConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDDepartSceneConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDNumberVariableConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDSceneVariableAsBooleanConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDSceneVariableAsTextConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDPopStartedTouchConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDPopEndedTouchConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDVelocityConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDObjectVariableAsBooleanConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDDistanceConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDCompareNumbersConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDSpriteMultitouchJoystickIsPressedConditionProcessKt.xsl" />
+    <xsl:import href="./condition/GDPanelSpriteSliderPanelSpriteSliderValueConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDSystemInfoIsNativeMobileAppConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDSystemInfoIsNativeDesktopAppConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDStringVariableConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDCompareStringsConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDIsStoppedVelocityConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDDraggableBehaviorDraggedConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDDraggableBehaviorDroppedConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDScrollbarScrollbarIsScrollingRequiredConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDScrollbarScrollbarIsThumbDraggedConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDResizableCapabilityResizableBehaviorHeightConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDAnimationHasAnimationEndedConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDAnimationElapsedTimeConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDFileSystemPathExistsConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDAdvancedHTTPResponseSuccessConditionGDNodeKt.xsl" />
+    <xsl:import href="./condition/GDAdvancedHTTPResponseStatusCodeConditionGDNodeKt.xsl" />
 
     <xsl:template name="eventsCreateAssignGDObjectGDNodesCondition2" >
         <xsl:param name="caller" />
@@ -1719,9 +1719,9 @@ Created By: Travis Berthelot
                         <xsl:if test="not($typeValue = 'PauseTimer' or $typeValue = 'PlaySoundCanal' or $typeValue = 'PlaySoundOnChannel')" >
 <!--
                 //GDNode - Strings 4
-                private final String ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($actionAsString, $quote, ' ')" />";
-                //private final String ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($actionAsString, $quote, ' ')" /> at: ";
-                //private final String ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "processGD - " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
+                private val ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "<xsl:value-of select="translate($actionAsString, $quote, ' ')" />"
+                //private val ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "<xsl:value-of select="translate($actionAsString, $quote, ' ')" /> at: "
+                //private val ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "processGD - " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />
 -->
                         </xsl:if>
                 <xsl:text>&#10;</xsl:text>

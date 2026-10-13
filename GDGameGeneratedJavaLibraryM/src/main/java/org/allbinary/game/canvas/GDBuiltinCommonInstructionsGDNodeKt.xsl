@@ -16,12 +16,12 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:import href="./event/GDBuiltinCommonInstructionsForEachChildVariableEventGDNode.xsl" />
-    <xsl:import href="./event/GDBuiltinCommonInstructionsForEachEventGDNode.xsl" />
-    <xsl:import href="./event/GDBuiltinCommonInstructionsGroupEventGDNode.xsl" />
-    <xsl:import href="./event/GDBuiltinCommonInstructionsWhileEventGDNode.xsl" />
-    <xsl:import href="./event/GDBuiltinCommonInstructionsRepeatEventGDNode.xsl" />
-    <xsl:import href="./event/GDBuiltinCommonInstructionsStandardEventGDNode.xsl" />
+    <xsl:import href="./event/GDBuiltinCommonInstructionsForEachChildVariableEventGDNodeKt.xsl" />
+    <xsl:import href="./event/GDBuiltinCommonInstructionsForEachEventGDNodeKt.xsl" />
+    <xsl:import href="./event/GDBuiltinCommonInstructionsGroupEventGDNodeKt.xsl" />
+    <xsl:import href="./event/GDBuiltinCommonInstructionsWhileEventGDNodeKt.xsl" />
+    <xsl:import href="./event/GDBuiltinCommonInstructionsRepeatEventGDNodeKt.xsl" />
+    <xsl:import href="./event/GDBuiltinCommonInstructionsStandardEventGDNodeKt.xsl" />
 
     <xsl:template name="builtinCommonInstructionsGDNode" >
         <xsl:param name="caller" />

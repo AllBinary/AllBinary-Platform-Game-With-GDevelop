@@ -108,7 +108,7 @@ Created By: Travis Berthelot
                             <xsl:text>&#10;</xsl:text><xsl:text>
                             </xsl:text>val <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />_GDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: GDNode = object : GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
-                                //private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=-1 type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />"
+                                //private val EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=-1 type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />"
                                 <xsl:text>&#10;</xsl:text>
 
                                 private val mappedObjectArray: Array&lt;Object&gt; = arrayOfNulls&lt;Object&gt;(<xsl:value-of select="count(../parameters) + 1" />)
@@ -231,7 +231,7 @@ Created By: Travis Berthelot
                         }
                     </xsl:for-each>
 
-                                    var true: return
+                                    return true
                                 }
 
                             }
@@ -241,7 +241,7 @@ Created By: Travis Berthelot
 
                             <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = object : GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
-                                //private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" /> Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=-1 type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />"
+                                //private val EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" /> Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=-1 type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />"
                                 <xsl:text>&#10;</xsl:text>
 
                                 //eventsFunctionsGDNode - //extension
@@ -256,7 +256,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:for-each>
 
-                                    var true: return
+                                    return true
                                 }
 
                             }

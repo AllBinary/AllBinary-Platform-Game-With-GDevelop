@@ -9,7 +9,7 @@
 
 package org.allbinary.game.canvas
 
-import org.allbinary.logic.NullUtil;
+import org.allbinary.logic.NullUtil
 import org.allbinary.logic.system.SoftwareInformation
 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
 

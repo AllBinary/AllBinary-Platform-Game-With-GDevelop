@@ -157,7 +157,7 @@ Created By: Travis Berthelot
 -->
                         <xsl:for-each select="points" >
                 //Point name=<xsl:value-of select="name" /> x=<xsl:value-of select="x" /> y=<xsl:value-of select="y" />
-                //public final GPoint <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_POINT = pointFactory.createXY(<xsl:value-of select="x" />, <xsl:value-of select="y" />)
+                //public val <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_POINT: GPoint = pointFactory.createXY(<xsl:value-of select="x" />, <xsl:value-of select="y" />)
                 public val <xsl:value-of select="name" />: GPoint = pointFactory.createXY((<xsl:value-of select="x" /> * 36 / 25 <xsl:if test="not(contains($hasMoreThanOneImageOrRotationDisabled, 'found'))" >* 1.44f</xsl:if>).toInt(), (<xsl:value-of select="y" /> * 36 / 25 <xsl:if test="not(contains($hasMoreThanOneImageOrRotationDisabled, 'found'))" >* 1.44f</xsl:if>).toInt())
                         </xsl:for-each>
                     </xsl:for-each>
@@ -174,7 +174,7 @@ Created By: Travis Berthelot
             <xsl:if test="type = 'PrimitiveDrawing::Drawer'" >
                 //PrimitiveDrawing::Drawer
                 public val <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>: String = "<xsl:value-of select="name" />"
-                //public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = BasicArrayList(this.nullUtil.NULL_OBJECT_ARRAY)
+                //public val <xsl:value-of select="name" />GDGameLayerList: BasicArrayList = BasicArrayList(this.nullUtil.NULL_OBJECT_ARRAY)
             </xsl:if>
             <xsl:if test="type = 'Sprite' or type = 'TileMap::CollisionMask' or type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >
                 <xsl:variable name="stringValue" select="string" />
@@ -182,10 +182,10 @@ Created By: Travis Berthelot
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
 
                 //<xsl:value-of select="type" />
-                //private BasicArrayList <xsl:value-of select="name" />List = ZERO_GD_OBJECT
-                //private BasicArrayList <xsl:value-of select="name" />GDGameLayerList
-                //public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = BasicArrayList(this.nullUtil.NULL_OBJECT_ARRAY)
-                //public final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = GDConditionWithGroupActions()
+                //private var <xsl:value-of select="name" />List: BasicArrayList = ZERO_GD_OBJECT
+                //private lateinit var <xsl:value-of select="name" />GDGameLayerList: BasicArrayList
+                //public val <xsl:value-of select="name" />GDGameLayerList: BasicArrayList = BasicArrayList(this.nullUtil.NULL_OBJECT_ARRAY)
+                //public val <xsl:value-of select="name" />GDConditionWithGroupActions: GDConditionWithGroupActions = GDConditionWithGroupActions()
             </xsl:if>
 
             <xsl:if test="type = 'ParticleSystem::ParticleEmitter'" >
@@ -208,7 +208,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
                 public val <xsl:value-of select="$NAME" />_OBJECT_NAME: String = "<xsl:value-of select="name" />"
-                //public Rectangle <xsl:value-of select="name" />Rectangle = null
+                //public var <xsl:value-of select="name" />Rectangle: Rectangle? = null
 
         </xsl:for-each>
         //objects - all - //objectsClassProperty2 - END

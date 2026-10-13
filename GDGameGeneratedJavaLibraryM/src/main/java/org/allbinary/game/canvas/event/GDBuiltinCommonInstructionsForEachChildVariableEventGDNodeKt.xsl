@@ -233,7 +233,7 @@ Created By: Travis Berthelot
                     }
                     </xsl:if>
 
-                    var true: return
+                    return true
 
                 }
 
@@ -255,7 +255,7 @@ Created By: Travis Berthelot
                     } catch (e: Exception) {
                         this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e)
                     }
-                    var true: return
+                    return true
                 }
 
                 <xsl:if test="contains(disabled, 'true')" >

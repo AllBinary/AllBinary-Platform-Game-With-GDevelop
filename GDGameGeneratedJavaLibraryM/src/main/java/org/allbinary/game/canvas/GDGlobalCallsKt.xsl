@@ -315,7 +315,7 @@
 <!--                                //Replace  or contains($text, $hasDotOperatorButStillCouldBeStructure) with something that checks for '('-->
                                 <xsl:variable name="hasDotOperatorButStillCouldBeStructure" ><xsl:value-of select="name" />.</xsl:variable>
                                 <xsl:variable name="asMethodParam0" >(<xsl:value-of select="name" />,</xsl:variable>
-                                <xsl:variable name="asMethodParam" ></xsl:variable> as <xsl:value-of select="name" />
+                                <xsl:variable name="asMethodParam" >(<xsl:value-of select="name" />)</xsl:variable>
                                 <xsl:variable name="asMethodParam2" ><xsl:value-of select="name" />)</xsl:variable>
                                 <xsl:variable name="asMethodParamPS" >(<xsl:value-of select="name" /><xsl:text> </xsl:text> </xsl:variable>
                                 <xsl:variable name="asMethodParamArray" ><xsl:value-of select="name" />[</xsl:variable>
@@ -375,7 +375,7 @@
 <!--                                //Replace  or contains($text, $hasDotOperatorButStillCouldBeStructure) with something that checks for '('-->
                                 <xsl:variable name="hasDotOperatorButStillCouldBeStructure" ><xsl:value-of select="name" />.</xsl:variable>
                                 <xsl:variable name="asMethodParam0" >(<xsl:value-of select="name" />,</xsl:variable>
-                                <xsl:variable name="asMethodParam" ></xsl:variable> as <xsl:value-of select="name" />
+                                <xsl:variable name="asMethodParam" >(<xsl:value-of select="name" />)</xsl:variable>
                                 <xsl:variable name="asMethodParam2" ><xsl:value-of select="name" />)</xsl:variable>
                                 <xsl:variable name="asMethodParamPS" >(<xsl:value-of select="name" /><xsl:text> </xsl:text> </xsl:variable>
                                 <xsl:variable name="asMethodParamArray" ><xsl:value-of select="name" />[</xsl:variable>
@@ -582,14 +582,14 @@
                         //array
                         <xsl:if test="type = 'array'" >
                             <xsl:if test="contains(name, 'BoolArray')" >
-                        public var <xsl:value-of select="name" />: BooleanArray = {
+                        public var <xsl:value-of select="name" />: BooleanArray = booleanArrayOf(
                             <xsl:for-each select="children" >
                         <xsl:value-of select="value" />,
                             </xsl:for-each>
-                        }
+                        )
                             </xsl:if>
                             <xsl:if test="contains(name, 'IntArray')" >
-                        public var <xsl:value-of select="name" />: IntArray = {
+                        public var <xsl:value-of select="name" />: IntArray = intArrayOf(
                             <xsl:for-each select="children" >
                                 <xsl:if test="contains(value, ';')" >
                             basicColorUtil.getARGB(255, <xsl:value-of select="translate(translate(value, '\&quot;', ''), ';', ',')" />),
@@ -598,24 +598,24 @@
                             <xsl:value-of select="value" />,
                                 </xsl:if>
                             </xsl:for-each>
-                        }
+                        )
                             </xsl:if>
                             <xsl:if test="contains(name, 'LongArray')" >
-                        public var <xsl:value-of select="name" />: LongArray = {
+                        public var <xsl:value-of select="name" />: LongArray = longArrayOf(
                             <xsl:for-each select="children" >
                             <xsl:value-of select="value" />,
                             </xsl:for-each>
-                        }
+                        )
                             </xsl:if>
                             <xsl:if test="contains(name, 'highScoresNameArray')" >
 
                         public var <xsl:value-of select="name" />Index: Int = 0
-                        public var <xsl:value-of select="name" />: Array&lt;String&gt; = {
+                        public var <xsl:value-of select="name" />: Array&lt;String&gt; = arrayOf(
 <!--                                        <xsl:for-each select="children" >
                                         <xsl:value-of select="value" />,
                                         <xsl:text>&#10;</xsl:text>
                                         </xsl:for-each>                                        -->
-                        }
+                        )
 
                             </xsl:if>
 
@@ -635,20 +635,20 @@
                                 </xsl:if>
 
                         public var <xsl:value-of select="name" />Index: Int = 0
-                        public var <xsl:value-of select="name" />: Array&lt;String&gt; = {
+                        public var <xsl:value-of select="name" />: Array&lt;String&gt; = arrayOf(
                                         <xsl:for-each select="children" >
                                             <xsl:if test="string-length(value) > 0" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate(value, '.', '_'), ':', '_'), '\', '_')" /></xsl:with-param></xsl:call-template>,</xsl:if>
                                             <xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING,</xsl:if>
                                         <xsl:text>&#10;</xsl:text>
                                         </xsl:for-each>
-                        }
+                        )
 
 <!--
-                        public String[] <xsl:value-of select="name" /> = {
+                        public var <xsl:value-of select="name" />: Array&lt;String&gt; = arrayOf(
                             <xsl:for-each select="children" >
                             "<xsl:value-of select="value" />",
                             </xsl:for-each>
-                        };
+                        )
 -->
 
                             </xsl:if>
@@ -731,21 +731,21 @@
                             </xsl:if>
 <!--                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'LongArray') or contains(name, 'BoolArray'))" >
                                 <xsl:for-each select="children" >
-                        this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="value" />";
+                        this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="value" />"
                                 </xsl:for-each>
 
-                        this.<xsl:value-of select="name" /> = new String[] {
+                        this.<xsl:value-of select="name" /> = arrayOf(
                                         <xsl:for-each select="children" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template>,
                                         <xsl:text>&#10;</xsl:text>
                                         </xsl:for-each>
-                        };-->
+                        )-->
 
 <!--
-                        this.<xsl:value-of select="name" /> = new String[] {
+                        this.<xsl:value-of select="name" /> = arrayOf(
                             <xsl:for-each select="children" >
                         "<xsl:value-of select="value" />",
                             </xsl:for-each>
-                    };
+                    )
 -->
 <!--                            </xsl:if>-->
                             </xsl:if>

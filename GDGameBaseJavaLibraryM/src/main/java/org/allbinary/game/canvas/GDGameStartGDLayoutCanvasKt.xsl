@@ -55,7 +55,7 @@ open class <xsl:value-of select="$layoutName" /> : StartCanvas
 
     private val WAIT: Int = ((GameSpeed.getInstance().getDelay() * 3) <xsl:text disable-output-escaping="yes" >&gt;&gt;</xsl:text> 1)
 
-    //protected final LogUtil logUtil = LogUtil.getInstance()
+    //protected val logUtil: LogUtil = LogUtil.getInstance()
     private val gameInputProcessor: GDGameInputProcessor = GDGameInputProcessor()
 
     private val downKeyEventHandler: DownKeyEventHandler = DownKeyEventHandler.getInstance()
@@ -177,22 +177,24 @@ open class <xsl:value-of select="$layoutName" /> : StartCanvas
         this.downKeyEventHandler.removeListener(playerGameInput)
     }
 
-//    protected int getNextRandom()
+//    open fun getNextRandom(): Int
 //    {
 //        PreLogUtil.put("******************Demo Next Random Is Always 1", this, "getNextRandom")
 //        // return MyRandom.getAbsoluteNextInt(Integer.MAX_VALUE / 10) + 1
 //        return 1
 //    }
 //
-//    protected AllBinaryGameLayerManager createGameLayerManager(int randomValue) throws Exception
+//    @Throws(Exception::class)
+//    open fun createGameLayerManager(randomValue: Int): AllBinaryGameLayerManager
 //    {
-//        GameInfo gameInfo = GameInfo(GameTypeFactory.getInstance().BOT, GameMode.SERVER, PlayerTypesFactory
+//        var gameInfo: GameInfo = GameInfo(GameTypeFactory.getInstance().BOT, GameMode.SERVER, PlayerTypesFactory
 //                .getInstance().PLAYER_TYPE_ONE, GDGameLayerManager.MAX_LEVEL, randomValue)
 //
 //        return GDGameLayerManager(gameInfo)
 //    }
 //
-//    public GameCanvasRunnableInterface createRunnable(int randomValue) throws Exception
+//    @Throws(Exception::class)
+//    open fun createRunnable(randomValue: Int): GameCanvasRunnableInterface
 //    {
 //        return GDGameGameCanvas(this.createGameLayerManager(this.getNextRandom()))
 //    }
