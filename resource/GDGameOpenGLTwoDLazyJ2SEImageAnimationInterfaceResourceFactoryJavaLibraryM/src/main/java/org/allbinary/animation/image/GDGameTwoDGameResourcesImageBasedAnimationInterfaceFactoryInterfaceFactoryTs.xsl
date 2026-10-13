@@ -134,7 +134,6 @@ import org.allbinary.util.ABHashtable;
 public class GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
-    private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final StringUtil stringUtil = StringUtil.getInstance();
     private final PointFactory pointFactory = PointFactory.getInstance();
 

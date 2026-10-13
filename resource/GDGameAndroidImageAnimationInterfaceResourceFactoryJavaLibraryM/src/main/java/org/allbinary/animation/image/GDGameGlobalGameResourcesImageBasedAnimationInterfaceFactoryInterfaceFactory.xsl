@@ -127,7 +127,6 @@ import org.allbinary.J2MEUtil
 public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
-    private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final PointFactory pointFactory = PointFactory.getInstance();
     
     private final GDGlobalSpecialAnimationResources specialAnimationResources = GDGlobalSpecialAnimationResources.getInstance();

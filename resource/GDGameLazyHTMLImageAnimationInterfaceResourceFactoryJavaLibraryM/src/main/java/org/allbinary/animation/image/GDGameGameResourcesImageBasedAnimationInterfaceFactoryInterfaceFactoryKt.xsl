@@ -137,7 +137,6 @@ import org.allbinary.game.layout.GDConfig
 
 open class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory : BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
-    private val commonStrings: CommonStrings = CommonStrings.getInstance()
     private val stringUtil: StringUtil = StringUtil.getInstance()
     private val pointFactory: PointFactory = PointFactory.getInstance()
 

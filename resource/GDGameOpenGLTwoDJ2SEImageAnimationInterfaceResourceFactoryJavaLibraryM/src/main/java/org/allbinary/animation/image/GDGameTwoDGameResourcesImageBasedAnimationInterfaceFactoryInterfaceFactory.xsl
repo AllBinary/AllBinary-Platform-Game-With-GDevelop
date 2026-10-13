@@ -137,7 +137,6 @@ import org.allbinary.game.layout.GDConfig;
 public class GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
-    private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final StringUtil stringUtil = StringUtil.getInstance();
     private final PointFactory pointFactory = PointFactory.getInstance();
 
@@ -172,6 +171,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageB
         super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
     
+    @Override
     public void init(int level)
     throws Exception
     {
@@ -236,6 +236,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageB
                         <xsl:with-param name="useExclusionList" >true</xsl:with-param>
                     </xsl:call-template>
 
+    @Override
     public boolean isLoadingLevel(int level)
     {
         if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
@@ -248,6 +249,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageB
         }
     }
     
+    @Override
     public boolean isFeature()
     {
         Features features = Features.getInstance();

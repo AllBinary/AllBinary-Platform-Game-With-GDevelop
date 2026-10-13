@@ -113,7 +113,6 @@ import org.allbinary.util.ABHashtable;
 public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
-    private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final PointFactory pointFactory = PointFactory.getInstance();
     
     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
@@ -148,6 +147,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
         super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
     
+    @Override
     public void init(int level)
     throws Exception
     {
@@ -195,6 +195,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
         super.init(level);
     }
     
+    @Override
     public boolean isLoadingLevel(int level)
     {
         if(level == 1) {
@@ -214,6 +215,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
         return false;
     }
     
+    @Override
     public boolean isFeature()
     {
         final Features features = Features.getInstance();

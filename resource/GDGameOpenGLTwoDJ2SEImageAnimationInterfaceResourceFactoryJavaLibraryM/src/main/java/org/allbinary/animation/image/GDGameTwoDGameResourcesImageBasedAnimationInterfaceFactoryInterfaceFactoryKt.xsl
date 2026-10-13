@@ -134,7 +134,6 @@ import org.allbinary.J2MEUtil
 
 open class GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory : BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
-    private val commonStrings: CommonStrings = CommonStrings.getInstance()
     private val stringUtil: StringUtil = StringUtil.getInstance()
     private val pointFactory: PointFactory = PointFactory.getInstance()
 
@@ -166,8 +165,7 @@ open class GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBas
     {
     }
 
-    fun init(level: Int)
-
+    override fun init(level: Int)
     {
         this.init(ImageCacheFactory.getInstance(), level)
     }
@@ -230,7 +228,7 @@ open class GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBas
                         <xsl:with-param name="useExclusionList" >true</xsl:with-param>
                     </xsl:call-template>
 
-    fun isLoadingLevel(level: Int): Boolean
+    override fun isLoadingLevel(level: Int): Boolean
     {
         if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
         {
@@ -242,7 +240,7 @@ open class GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBas
         }
     }
 
-    fun isFeature(): Boolean
+    override fun isFeature(): Boolean
     {
         var features: Features = Features.getInstance()
 

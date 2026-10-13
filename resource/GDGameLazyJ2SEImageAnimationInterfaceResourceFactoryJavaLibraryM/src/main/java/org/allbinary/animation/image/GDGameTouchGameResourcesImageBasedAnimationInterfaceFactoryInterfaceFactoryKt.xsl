@@ -114,7 +114,6 @@ import org.allbinary.J2MEUtil
 
 open class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory : BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
-    private val commonStrings: CommonStrings = CommonStrings.getInstance()
     private val pointFactory: PointFactory = PointFactory.getInstance()
 
     private val specialAnimationResources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance()

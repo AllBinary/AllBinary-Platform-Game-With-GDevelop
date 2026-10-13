@@ -113,7 +113,6 @@ import org.allbinary.J2MEUtil
 
 open class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory : BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
-    private val commonStrings: CommonStrings = CommonStrings.getInstance()
     private val pointFactory: PointFactory = PointFactory.getInstance()
 
     private val specialAnimationResources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance()
@@ -145,8 +144,7 @@ open class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBa
     {
     }
 
-    fun init(level: Int)
-
+    override fun init(level: Int)
     {
         this.init(ImageCacheFactory.getInstance(), level)
     }
@@ -192,7 +190,7 @@ open class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBa
         super.init(level)
     }
 
-    fun isLoadingLevel(level: Int): Boolean
+    override fun isLoadingLevel(level: Int): Boolean
     {
         if(level == 1) {
             return true
@@ -211,7 +209,7 @@ open class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBa
         return false
     }
 
-    fun isFeature(): Boolean
+    override fun isFeature(): Boolean
     {
         val features: Features = Features.getInstance()
 

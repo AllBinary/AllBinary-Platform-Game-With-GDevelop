@@ -126,7 +126,6 @@ import org.allbinary.J2MEUtil
 
 open class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory : BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
-    private val commonStrings: CommonStrings = CommonStrings.getInstance()
     private val pointFactory: PointFactory = PointFactory.getInstance()
 
     private val specialAnimationResources: GDGlobalSpecialAnimationResources = GDGlobalSpecialAnimationResources.getInstance()

@@ -128,7 +128,6 @@ import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.media.ScaleProperties;
-import org.allbinary.logic.string.StringUtil;
 import org.allbinary.logic.StdUtil;
 import org.allbinary.util.ABHashtable;
 import org.allbinary.AndroidUtil;
@@ -138,7 +137,6 @@ import org.allbinary.game.layout.GDConfig;
 public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
-    private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final StringUtil stringUtil = StringUtil.getInstance();
     private final PointFactory pointFactory = PointFactory.getInstance();
 
@@ -168,6 +166,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
         super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
     
+    @Override
     public void init(int level)
     throws Exception
     {
@@ -235,6 +234,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                         </xsl:with-param>
                     </xsl:call-template>
 
+    @Override
     public boolean isLoadingLevel(int level)
     {
         if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
@@ -247,6 +247,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
         }
     }
     
+    @Override
     public boolean isFeature()
     {
         Features features = Features.getInstance();

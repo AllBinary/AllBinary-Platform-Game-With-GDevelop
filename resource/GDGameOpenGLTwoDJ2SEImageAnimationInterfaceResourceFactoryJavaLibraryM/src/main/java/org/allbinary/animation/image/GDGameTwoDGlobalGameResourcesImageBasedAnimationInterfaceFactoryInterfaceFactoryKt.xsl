@@ -126,7 +126,6 @@ import org.allbinary.J2MEUtil
 
 open class GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory : BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
-    private val commonStrings: CommonStrings = CommonStrings.getInstance()
     private val pointFactory: PointFactory = PointFactory.getInstance()
 
     private val specialAnimationResources: GDGlobalSpecialAnimationResources = GDGlobalSpecialAnimationResources.getInstance()
@@ -157,7 +156,7 @@ open class GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInter
     {
     }
 
-    fun init(level: Int)
+    override fun init(level: Int)
 
     {
         this.init(ImageCacheFactory.getInstance(), level)
@@ -215,7 +214,7 @@ open class GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInter
                         <xsl:with-param name="useExclusionList" >true</xsl:with-param>
                     </xsl:call-template>
 
-    fun isLoadingLevel(level: Int): Boolean
+    override fun isLoadingLevel(level: Int): Boolean
     {
         if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
         {
@@ -227,7 +226,7 @@ open class GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInter
         }
     }
 
-    fun isFeature(): Boolean
+    override fun isFeature(): Boolean
     {
         var features: Features = Features.getInstance()
 
