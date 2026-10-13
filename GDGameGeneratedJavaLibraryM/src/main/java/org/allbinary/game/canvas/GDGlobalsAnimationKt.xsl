@@ -215,8 +215,8 @@ Created By: Travis Berthelot
                         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /></xsl:variable>
 
                             final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="name" />GDobject = (<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0) as GDGameLayer) as <xsl:value-of select="$gdObjectFactory" />.gdObject
-                            val <xsl:value-of select="name" />X: Int = x + <xsl:value-of select="name" />GDobject.x
-                            val <xsl:value-of select="name" />Y: Int = y + <xsl:value-of select="name" />GDobject.y
+                            val <xsl:value-of select="name" />X: Int = x + <xsl:value-of select="name" />GDobject.xP
+                            val <xsl:value-of select="name" />Y: Int = y + <xsl:value-of select="name" />GDobject.yP
 
                             //TextObject::Text - //Rectangle 1
                             val <xsl:value-of select="name" />Rectangle: Rectangle = Rectangle(

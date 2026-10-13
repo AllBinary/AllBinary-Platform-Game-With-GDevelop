@@ -35,8 +35,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : OffsetBehavior{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return OffsetBehavior.instance
 }
@@ -56,8 +54,6 @@ companion object {
 : Int{
     //var value = value
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return value
 }
@@ -67,8 +63,6 @@ companion object {
         //nullable = true from not(false or (false and false)) = true
 : Int{
     //var value = value
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return value

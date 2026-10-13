@@ -62,8 +62,6 @@ open public class DestroyOutsideBehavior : GDBehavior {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 
@@ -75,8 +73,6 @@ open public class DestroyOutsideBehavior : GDBehavior {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
@@ -88,8 +84,6 @@ open public class DestroyOutsideBehavior : GDBehavior {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
@@ -101,8 +95,6 @@ open public class DestroyOutsideBehavior : GDBehavior {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
@@ -114,15 +106,11 @@ open public class DestroyOutsideBehavior : GDBehavior {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
                                     }
                                 
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
@@ -133,8 +121,6 @@ open public class DestroyOutsideBehavior : GDBehavior {
         //nullable = true from not(false or (false and true)) = true
 : Int{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.gameTickDisplayInfoSingleton!!.getLastWidth()
 }
@@ -143,8 +129,6 @@ open public class DestroyOutsideBehavior : GDBehavior {
     open fun SceneWindowHeight()
         //nullable = true from not(false or (false and true)) = true
 : Int{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.gameTickDisplayInfoSingleton!!.getLastHeight()

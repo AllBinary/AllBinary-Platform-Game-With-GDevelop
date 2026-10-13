@@ -163,9 +163,7 @@ this.aRetangleFilledAnimationInUseList!!.add(rectangleFilledAnimation)
                         for (index in 0 until size)
 
         {
-get = animationList!!.get(index)get as Animation
-get.
-                    paintXY(graphics, x, y)
+(animationList!!.get(index) as Animation).paintXY(graphics, x, y)
 }
 
 }

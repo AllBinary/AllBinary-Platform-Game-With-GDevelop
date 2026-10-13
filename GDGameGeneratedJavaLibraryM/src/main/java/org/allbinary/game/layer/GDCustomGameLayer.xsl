@@ -497,7 +497,7 @@ Created By: Travis Berthelot
 
     @Override
     public void onMeasure() {
-        final TextInterface textInterface = ((TextInterface) this.initIndexedAnimationInterfaceArray[0]);
+        final TextInterface textInterface = ((TextInterface) this.initIndexedAnimationInterfaceArrayP[0]);
         this.gdObject.width = (int) (textInterface.getWidth() / this.scale);
         this.gdObject.height = textInterface.getFontHeight();
         
@@ -1112,7 +1112,7 @@ Created By: Travis Berthelot
 //            final int size = this.initIndexedAnimationInterfaceArray.length;
 //            RotationAnimation rotationAnimation;
 //            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-//                rotationAnimation = ((RotationAnimation) this.initIndexedAnimationInterfaceArray[index]);
+//                rotationAnimation = ((RotationAnimation) this.initIndexedAnimationInterfaceArrayP[index]);
 //                //rotationAnimation.nextRotationX();
 //                //rotationAnimation.nextRotationZ();
 //            }

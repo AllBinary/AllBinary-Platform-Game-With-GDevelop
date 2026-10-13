@@ -46,7 +46,7 @@ open public class GDRotationBehavior : GDAnimationBehaviorBase {
         
     val frameUtil: FrameUtil = FrameUtil.getInstance()!!
 
-    var rotationAnimationInterfaceArray: Array<RotationAnimation?> = NullRotationAnimationFactory.getFactoryInstance()!!.NULL_ROTATION_ANIMATION_ARRAY
+    var rotationAnimationInterfaceArrayP: Array<RotationAnimation?> = NullRotationAnimationFactory.getFactoryInstance()!!.NULL_ROTATION_ANIMATION_ARRAY
 
     override fun init(gdObject: GDObject, animationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?>)
         //nullable = true from not(false or (false and false)) = true
@@ -82,12 +82,10 @@ this.logUtil!!.put(gdObject!!.toString(), this, commonStrings!!.CONSTRUCTOR, e)
 
 }
 
-this.rotationAnimationInterfaceArray= initIndexedAnimationInterfaceArray
-
-
+this.rotationAnimationInterfaceArrayP= initIndexedAnimationInterfaceArray
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return initIndexedAnimationInterfaceArray
+                        return initIndexedAnimationInterfaceArray as Array<IndexedAnimation?>
 }
 
 
@@ -95,7 +93,7 @@ this.rotationAnimationInterfaceArray= initIndexedAnimationInterfaceArray
         //nullable = true from not(false or (false and false)) = true
 {
     //var rotationAnimationInterfaceArray = rotationAnimationInterfaceArray
-this.rotationAnimationInterfaceArray= rotationAnimationInterfaceArray as Array<RotationAnimation?>
+this.rotationAnimationInterfaceArrayP= rotationAnimationInterfaceArray as Array<RotationAnimation?>
 }
 
 
@@ -103,10 +101,8 @@ this.rotationAnimationInterfaceArray= rotationAnimationInterfaceArray as Array<R
         //nullable = true from not(false or (false and true)) = true
 : Array<RotationAnimation?>{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.rotationAnimationInterfaceArray
+                        return this.rotationAnimationInterfaceArrayP
 }
 
 
@@ -118,7 +114,7 @@ this.rotationAnimationInterfaceArray= rotationAnimationInterfaceArray as Array<R
     //var gameLayer = gameLayer
     //var gdObject = gdObject
 
-    var size: Int = this.rotationAnimationInterfaceArray!!.size
+    var size: Int = this.rotationAnimationInterfaceArrayP!!.size
                 
 
 
@@ -128,7 +124,7 @@ this.rotationAnimationInterfaceArray= rotationAnimationInterfaceArray as Array<R
                         for (index in 0 until size)
 
         {
-this.rotationAnimationInterfaceArray[index]!!.setFrame(this.frameUtil!!.getFrameForAngle(0.toShort(), 1))
+this.rotationAnimationInterfaceArrayP[index]!!.setFrame(this.frameUtil!!.getFrameForAngle(0.toShort(), 1))
 }
 
 }
@@ -145,7 +141,7 @@ this.rotationAnimationInterfaceArray[index]!!.setFrame(this.frameUtil!!.getFrame
 
     var rotationAnimation: RotationAnimation
 
-rotationAnimation= this.rotationAnimationInterfaceArray[gdObject!!.animation]!!
+rotationAnimation= this.rotationAnimationInterfaceArrayP[gdObject!!.animation]!!
 
     
                         if(angleAdjustment > 0)
@@ -187,9 +183,9 @@ value++
     //var gdObject = gdObject
     //var stringBuffer = stringBuffer
 
-    var rotationAnimation: RotationAnimation = this.rotationAnimationInterfaceArray[gdObject!!.animation]!!
+    var rotationAnimation: RotationAnimation = this.rotationAnimationInterfaceArrayP[gdObject!!.animation]!!
 
-stringBuffer!!.append(GraphicsStrings.getInstance()!!.ANGLE)!!.appendint(rotationAnimation!!.getAngleInfoP()!!.getAngle())
+stringBuffer!!.append(GraphicsStrings.getInstance()!!.ANGLE)!!.appendint(rotationAnimation!!.getAngleInfoP()!!.getAngle().toInt())
 }
 
 

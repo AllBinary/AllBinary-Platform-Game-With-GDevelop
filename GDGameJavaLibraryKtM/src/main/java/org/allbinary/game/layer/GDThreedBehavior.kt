@@ -57,7 +57,7 @@ this.rotationAnimationInterfaceArray= rotationAnimationInterfaceArray
     //var gameLayer = gameLayer
     //var gdObject = gdObject
 super.reset(gameLayer, gdObject)
-this.rotationRemainderZ= 0
+this.rotationRemainderZ= 0f
 }
 
 
@@ -75,14 +75,14 @@ super.updateRotation(gameLayer, timeDelta)
 
 this.rotationRemainderZ= this.rotationRemainderZ +newPortion
 
-    var angleAdjustment: Short = ().toShort()
+    var angleAdjustment: Short = (this.rotationRemainderZ).toInt().toShort()
 
 
     
-                        if(angleAdjustment != 0)
+                        if(angleAdjustment.toInt() != 0)
                         
                                     {
-                                    gdObject!!.angle += angleAdjustment
+                                    gdObject!!.angle= (gdObject!!.angle +angleAdjustment).toShort()
 this.setRotationZ(gdObject, angleAdjustment)
 this.rotationRemainderZ -= angleAdjustment
 

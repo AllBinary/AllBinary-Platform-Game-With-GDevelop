@@ -28,6 +28,7 @@
         
 import org.allbinary.game.collision.CollidableBaseBehavior
 import org.allbinary.game.collision.CollidableInterfaceCompositeInterface
+import org.allbinary.game.identification.Group
 import org.allbinary.game.identification.GroupInterface
 import org.allbinary.game.layer.CollidableCompositeLayer
 import org.allbinary.game.layout.GDNode
@@ -78,8 +79,6 @@ this.conditionWIthGroupActions= collidableBehavior
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return super.isCollision(ownerLayer, collisionLayer)
 
@@ -96,8 +95,6 @@ this.conditionWIthGroupActions= collidableBehavior
                         }
                             
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 }
@@ -112,13 +109,10 @@ this.conditionWIthGroupActions= collidableBehavior
     //var collisionLayer = collisionLayer
 
     
-                        if(
-                                    (collisionLayer as CollidableDestroyableDamageableLayer).isDestroyed())
+                        if((collisionLayer as CollidableDestroyableDamageableLayer).isDestroyed())
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -126,13 +120,10 @@ this.conditionWIthGroupActions= collidableBehavior
                                 
 
     
-                        if(
-                                    (ownerLayer as CollidableDestroyableDamageableLayer).isDestroyed())
+                        if((ownerLayer as CollidableDestroyableDamageableLayer).isDestroyed())
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -144,7 +135,7 @@ this.conditionWIthGroupActions= collidableBehavior
                         
                                     {
                                     
-    var groupInterfaceArray: Array<GroupInterface?> = collisionLayer!!.getGroupInterface()!!
+    var groupInterfaceArray: Array<Group?> = collisionLayer!!.getGroupInterface()!!
 
 
     var size: Int = groupInterfaceArray!!.size
@@ -199,8 +190,6 @@ tempGameLayerUtil!!.clear2()
     //var collidableInterfaceCompositeInterface = collidableInterfaceCompositeInterface
 ForcedLogUtil.log("No Longer Used", this)
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 }
@@ -227,7 +216,8 @@ ForcedLogUtil.log("No Longer Used", this)
     var stringUtil: StringUtil = StringUtil.getInstance()!!
 
 
-    var size: Int = ownerLayer!!.getGroupInterface()!!.length
+    var size: Int = ownerLayer!!.getGroupInterface()!!.size
+                
 
 
 
@@ -240,7 +230,7 @@ stringBuilder!!.append(stringUtil!!.toString(ownerLayer!!.getGroupInterface()[in
 }
 
 stringBuilder!!.append(" != ")
-size= collisionLayer!!.getGroupInterface()!!.length
+size= collisionLayer!!.getGroupInterface()!!.size
 
 
 
@@ -250,8 +240,6 @@ size= collisionLayer!!.getGroupInterface()!!.length
         {
 stringBuilder!!.append(stringUtil!!.toString(collisionLayer!!.getGroupInterface()[index]!!))
 }
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.

@@ -40,23 +40,23 @@ public class GDWaypointBehavior
 
     private final TimeDelayHelper completeTimeDelayHelper;
     
-    protected GeographicMapCellHistory currentGeographicMapCellHistory;
+    protected GeographicMapCellHistory currentGeographicMapCellHistoryP;
     
     private GeographicMapCellPosition lastPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
     private GeographicMapCellPosition currentPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
 
     private final CollidableDestroyableDamageableLayer FAKE_WAYPOINT_LAYER;
     
-    protected final BasicArrayList targetList;
+    protected final BasicArrayList targetListP;
 
     private boolean moving = false;
     private boolean movingFromStopped = false;
-    protected BasicArrayList waypointPathsList = BasicArrayListUtil.getInstance().getImmutableInstance();
+    protected BasicArrayList waypointPathsListP = BasicArrayListUtil.getInstance().getImmutableInstance();
     
     private final BasicArrayList possibleTargetList;
     
     private int currentTargetDistance = Integer.MAX_VALUE;
-    protected CollidableDestroyableDamageableLayer currentTargetLayerInterface = CollidableDestroyableDamageableLayer.getNullInstance();
+    protected CollidableDestroyableDamageableLayer currentTargetLayerInterfaceP = CollidableDestroyableDamageableLayer.getNullInstance();
     protected GeographicMapCellPosition currentTargetGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
     
     private boolean trackingWaypoint;
@@ -75,13 +75,13 @@ public class GDWaypointBehavior
                 
         this.completeTimeDelayHelper = new TimeDelayHelper(30000);
         
-        this.targetList = new BasicArrayListD();
+        this.targetListP = new BasicArrayListD();
 
         this.possibleTargetList = new BasicArrayListD();
 
         this.setWaypointPathsList(GDWaypointBehavior.DEFAULT);
 
-        this.currentGeographicMapCellHistory = new GeographicMapCellHistory();
+        this.currentGeographicMapCellHistoryP = new GeographicMapCellHistory();
 
         this.FAKE_WAYPOINT_LAYER = fakeWaypoint;
     }
@@ -131,7 +131,7 @@ public class GDWaypointBehavior
         if (advancedRTSGameLayer == PrimaryWaypointHelper.getInstance().getWaypointLayer()
                 || advancedRTSGameLayer.getParentLayer() == this.associatedAdvancedRTSGameLayer.getParentLayer())
         {
-            if (!this.targetList.contains(advancedRTSGameLayer))
+            if (!this.targetListP.contains(advancedRTSGameLayer))
             {
                 this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().addWaypointFromBuilding(this.associatedAdvancedRTSGameLayer, advancedRTSGameLayer);
                 
@@ -140,9 +140,9 @@ public class GDWaypointBehavior
                     throw new Exception("Trying to add a dead: " + advancedRTSGameLayer);
                 }
 
-                this.targetList.add(advancedRTSGameLayer);
+                this.targetListP.add(advancedRTSGameLayer);
 
-                this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().addWaypointFromBuildingList(this.associatedAdvancedRTSGameLayer, advancedRTSGameLayer, this.targetList);
+                this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().addWaypointFromBuildingList(this.associatedAdvancedRTSGameLayer, advancedRTSGameLayer, this.targetListP);
             }
         }
     }
@@ -165,9 +165,9 @@ public class GDWaypointBehavior
                 throw new Exception("Trying to add a dead: " + rtsLayer);
             }
             
-            this.targetList.addAt(index, rtsLayer);
+            this.targetListP.addAt(index, rtsLayer);
 
-            this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().insertWaypointList(this.associatedAdvancedRTSGameLayer, index, rtsLayer, this.getName(), this.targetList);
+            this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().insertWaypointList(this.associatedAdvancedRTSGameLayer, index, rtsLayer, this.getName(), this.targetListP);
 
             return true;
         }
@@ -218,10 +218,10 @@ public class GDWaypointBehavior
                     GDWaypointBehavior.PATHING, BasicColorFactory.getInstance().GREEN);
         }
         
-        this.currentGeographicMapCellHistory.init();
+        this.currentGeographicMapCellHistoryP.init();
 
         //System.out.println("geographicMapCellPositionBasicArrayList: " + geographicMapCellPositionBasicArrayList.size());
-        this.associatedAdvancedRTSGameLayer.init(this.currentGeographicMapCellHistory,
+        this.associatedAdvancedRTSGameLayer.init(this.currentGeographicMapCellHistoryP,
                 geographicMapCellPositionBasicArrayList);
 
         this.setTrackingWaypoint(true);
@@ -230,13 +230,13 @@ public class GDWaypointBehavior
         
     protected boolean canInsertWaypoint(final int index, final CollidableDestroyableDamageableLayer rtsLayer)
     {
-        if (this.targetList.size() > 4)
+        if (this.targetListP.size() > 4)
         {
             //logUtil.put(
             //  this.getName() + " has Too Many Waypoints of: " +
             //rtsLayer.getName(), this, "insertWaypoint");
         }
-        else if (this.targetList.contains(rtsLayer))
+        else if (this.targetListP.contains(rtsLayer))
         {
             //logUtil.put(this.getName() + " Already Contains Same Waypoint: " + rtsLayer.getName(), this, "insertWaypoint");
         }
@@ -293,9 +293,9 @@ public class GDWaypointBehavior
         
         if(this.isTrackingWaypoint() ||
                 this.sensorAction == SensorActionFactory.getInstance().EVADE ||
-                (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance() &&
+                (this.currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance() &&
                 this.getCurrentTargetDistance() >= this.longWeaponRange +
-                this.currentTargetLayerInterface.getHalfHeight()))
+                this.currentTargetLayerInterfaceP.getHalfHeight()))
         {
             this.repeatedToLong.setStartTimeTNT();
             return true;
@@ -320,13 +320,13 @@ public class GDWaypointBehavior
         stringBuffer.append(" sensorAction: ");
         stringBuffer.append(this.sensorAction.name);
         stringBuffer.append(" getCurrentTargetLayerInterface: ");
-        stringBuffer.append(StringUtil.getInstance().toString(this.currentTargetLayerInterface));
+        stringBuffer.append(StringUtil.getInstance().toString(this.currentTargetLayerInterfaceP));
 
-        if (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance()) {
+        if (this.currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance()) {
             stringBuffer.append(" Target Range: ");
             stringBuffer.appendint(this.getCurrentTargetDistance());
             stringBuffer.append(" >= ");
-            stringBuffer.appendint(this.longWeaponRange + this.currentTargetLayerInterface.getHalfHeight());
+            stringBuffer.appendint(this.longWeaponRange + this.currentTargetLayerInterfaceP.getHalfHeight());
         }
         return stringBuffer.toString();
 
@@ -348,13 +348,13 @@ public class GDWaypointBehavior
     @Override
     public void setWaypointPathsList(BasicArrayList waypointPathsList)
     {
-        this.waypointPathsList = waypointPathsList;
+        this.waypointPathsListP = waypointPathsList;
     }
 
     @Override
     public BasicArrayList getWaypointPathsList()
     {
-        return this.waypointPathsList;
+        return this.waypointPathsListP;
     }
     
     /**
@@ -425,14 +425,14 @@ public class GDWaypointBehavior
      */
     protected BasicArrayList getTargetList()
     {
-        return this.targetList;
+        return this.targetListP;
     }
 
     protected void setCurrentTargetLayerInterface(CollidableDestroyableDamageableLayer currentTargetLayerInterface) throws Exception
     {
-        this.currentTargetLayerInterface = currentTargetLayerInterface;
-        if(this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance()) {
-            this.currentTargetGeographicMapCellPosition = ((PathFindingLayerInterface) this.currentTargetLayerInterface).getCurrentGeographicMapCellPosition();
+        this.currentTargetLayerInterfaceP = currentTargetLayerInterface;
+        if(this.currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance()) {
+            this.currentTargetGeographicMapCellPosition = ((PathFindingLayerInterface) this.currentTargetLayerInterfaceP).getCurrentGeographicMapCellPosition();
             //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target? ").append(this.currentTargetGeographicMapCellPosition).append(commonSeps.SPACE).append(this.currentTargetLayerInterface).toString(), this, "updatePathOnTargetMove");            
         } else {
             this.currentTargetGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
@@ -442,7 +442,7 @@ public class GDWaypointBehavior
     @Override
     public CollidableDestroyableDamageableLayer getCurrentTargetLayerInterface()
     {
-        return this.currentTargetLayerInterface;
+        return this.currentTargetLayerInterfaceP;
     }
 
     protected void setCurrentTargetDistance(int currentTargetDistance)
@@ -463,7 +463,7 @@ public class GDWaypointBehavior
     @Override
     public GeographicMapCellHistory getCurrentGeographicMapCellHistory()
     {
-        return this.currentGeographicMapCellHistory;
+        return this.currentGeographicMapCellHistoryP;
     }
 
     protected void setTrackingWaypoint(boolean trackingWaypoint)

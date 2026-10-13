@@ -475,7 +475,7 @@ Created By: Travis Berthelot
         }
 
     override public fun onMeasure() {
-        val textInterface: TextInterface = (this.initIndexedAnimationInterfaceArray[0] as TextInterface)
+        val textInterface: TextInterface = (this.initIndexedAnimationInterfaceArrayP[0] as TextInterface)
         this.gdObject.width = (textInterface.getWidth() / this.scale).toInt()
         this.gdObject.height = textInterface.getFontHeight()
 
@@ -1038,7 +1038,7 @@ Created By: Travis Berthelot
 //            final int size = this.initIndexedAnimationInterfaceArray.length
 //            RotationAnimation rotationAnimation
 //            for(index in 0 until size) {
-//                rotationAnimation = (this.initIndexedAnimationInterfaceArray[index] as RotationAnimation)
+//                rotationAnimation = (this.initIndexedAnimationInterfaceArrayP[index] as RotationAnimation)
 //                //rotationAnimation.nextRotationX()
 //                //rotationAnimation.nextRotationZ()
 //            }

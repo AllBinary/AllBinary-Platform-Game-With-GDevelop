@@ -19,7 +19,7 @@ package org.allbinary.game.layer.behavior;
  */
 public class GDBehaviorUtil {
  
-    protected static final GDBehaviorUtil instance = new GDBehaviorUtil();
+    private static final GDBehaviorUtil instance = new GDBehaviorUtil();
 
     /**
      * @return the behaviorTracker

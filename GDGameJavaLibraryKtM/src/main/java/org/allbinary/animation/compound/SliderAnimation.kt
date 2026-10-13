@@ -104,8 +104,6 @@ animation.setDy( -h +(h /10))
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.height *2 /3
 
@@ -113,8 +111,6 @@ animation.setDy( -h +(h /10))
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.height
 
@@ -144,8 +140,6 @@ this.animationInterfaceArray[index]!!.setFrame(frameIndex)
         //nullable = true from not(false or (false and true)) = true
 : Int{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.animationInterfaceArray[0]!!.getFrame()
 }
@@ -154,8 +148,6 @@ this.animationInterfaceArray[index]!!.setFrame(frameIndex)
     override fun getSize()
         //nullable = true from not(false or (false and true)) = true
 : Int{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.animationInterfaceArray[0]!!.getSize()
@@ -188,8 +180,6 @@ this.animationInterfaceArray[index]!!.previousFrame()
     override fun getSequence()
         //nullable = true from not(false or (false and true)) = true
 : IntArray{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return PrimitiveIntUtil.getArrayInstance()
@@ -264,8 +254,6 @@ this.animationInterfaceArray[index]!!.paintThreedXYZ(graphics, x, y, z)
     open fun getAnimationInterfaceArray()
         //nullable = true from not(false or (false and true)) = true
 : Array<IndexedAnimation?>{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.animationInterfaceArray
@@ -361,8 +349,6 @@ this.setValue(value)
         //nullable = true from not(false or (false and true)) = true
 : Int{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.animationInterfaceArray[3]!!.getDx()
 }
@@ -372,8 +358,6 @@ this.setValue(value)
         //nullable = true from not(false or (false and true)) = true
 : Int{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.animationInterfaceArray[3]!!.getWidth()
 }
@@ -382,8 +366,6 @@ this.setValue(value)
     open fun getValue()
         //nullable = true from not(false or (false and true)) = true
 : Int{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.value

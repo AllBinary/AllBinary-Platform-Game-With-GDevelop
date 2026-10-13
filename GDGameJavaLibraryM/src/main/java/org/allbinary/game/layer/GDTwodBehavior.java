@@ -63,7 +63,7 @@ public class GDTwodBehavior {
 //            stringBuilder.delete(0, stringBuilder.length());
 //            logUtil.putF(stringBuilder.append("angleAdjustment: ").appendint(angleAdjustment).toString(), this, UPDATE_ROTATION);
             
-            int adjustedAngle2 = gdObject.angle + angleAdjustment;
+            int adjustedAngle2 = gdObject.angleP + angleAdjustment;
             while (adjustedAngle2 > 359) {
                 adjustedAngle2 -= 360;
             }
@@ -74,7 +74,7 @@ public class GDTwodBehavior {
 //            stringBuilder.delete(0, stringBuilder.length());
 //            logUtil.putF(stringBuilder.append("adjustedAngle2: ").appendint(adjustedAngle2).toString(), this, UPDATE_ROTATION);
             gdObject.setAngle((short) adjustedAngle2);
-            gdObject.angle = (short) adjustedAngle2;
+            gdObject.angleP = (short) adjustedAngle2;
             //gdObject.angle += angleAdjustment;
             this.getAnimationBehavior().setRotation(gameLayer, angleAdjustment);
             this.rotationRemainder -= angleAdjustment;

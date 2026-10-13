@@ -73,8 +73,6 @@ this.height= height
 : Array<Animation?>{
     //var size = size
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return arrayOfNulls(size)
 }
@@ -84,8 +82,6 @@ this.height= height
         //nullable = true from not(false or (false and false)) = true
 : Animation{
     //var animationInterfaceArray = animationInterfaceArray
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return SliderAnimation(animationInterfaceArray as Array<IndexedAnimation?>, this.scaleProperties!!.scaleWidth, this.scaleProperties!!.scaleHeight, this.animationBehaviorFactory!!.getOrCreateInstance())

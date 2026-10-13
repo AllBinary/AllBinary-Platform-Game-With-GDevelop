@@ -31,7 +31,7 @@ public class GDRotationBehavior extends GDAnimationBehaviorBase {
 
     protected final FrameUtil frameUtil = FrameUtil.getInstance();
 
-    public RotationAnimation[] rotationAnimationInterfaceArray = NullRotationAnimationFactory.getFactoryInstance().NULL_ROTATION_ANIMATION_ARRAY;
+    public RotationAnimation[] rotationAnimationInterfaceArrayP = NullRotationAnimationFactory.getFactoryInstance().NULL_ROTATION_ANIMATION_ARRAY;
 
     @Override
     public IndexedAnimation[] init(final GDObject gdObject, final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray) {
@@ -51,24 +51,24 @@ public class GDRotationBehavior extends GDAnimationBehaviorBase {
             }
         }
 
-        this.rotationAnimationInterfaceArray = initIndexedAnimationInterfaceArray;
+        this.rotationAnimationInterfaceArrayP = initIndexedAnimationInterfaceArray;
         return initIndexedAnimationInterfaceArray;
     }
 
     @Override
     public void setAnimationArray(final IndexedAnimation[] rotationAnimationInterfaceArray) {
-        this.rotationAnimationInterfaceArray = (RotationAnimation[]) rotationAnimationInterfaceArray;
+        this.rotationAnimationInterfaceArrayP = (RotationAnimation[]) rotationAnimationInterfaceArray;
     }
 
     public RotationAnimation[] getRotationAnimationInterfaceArray() {
-        return this.rotationAnimationInterfaceArray;
+        return this.rotationAnimationInterfaceArrayP;
     }
 
     @Override
     public void set(final GDGameLayer gameLayer, final GDObject gdObject) throws Exception {
-        final int size = this.rotationAnimationInterfaceArray.length;
+        final int size = this.rotationAnimationInterfaceArrayP.length;
         for (int index = 0; index < size; index++) {
-            this.rotationAnimationInterfaceArray[index].setFrame(this.frameUtil.getFrameForAngle((short) 0, 1));
+            this.rotationAnimationInterfaceArrayP[index].setFrame(this.frameUtil.getFrameForAngle((short) 0, 1));
         }
     }
 
@@ -81,7 +81,7 @@ public class GDRotationBehavior extends GDAnimationBehaviorBase {
         //for (int index = 0; index < SIZE; index++)
         //{
         //logUtil.putF(new StringMaker().append(gameLayer.getName()).append(" GDObject name: ").append(gdObject.name).append(" angleAdjustment: ").appendshort(angleAdjustment).toString(), this, "setRotation");
-        rotationAnimation = this.rotationAnimationInterfaceArray[gdObject.animation];
+        rotationAnimation = this.rotationAnimationInterfaceArrayP[gdObject.animation];
 
         if (angleAdjustment > 0) {
             short value = angleAdjustment;
@@ -117,7 +117,7 @@ public class GDRotationBehavior extends GDAnimationBehaviorBase {
 
     @Override
     public void toString(final GDObject gdObject, final StringMaker stringBuffer) {
-        final RotationAnimation rotationAnimation = this.rotationAnimationInterfaceArray[gdObject.animation];
+        final RotationAnimation rotationAnimation = this.rotationAnimationInterfaceArrayP[gdObject.animation];
         stringBuffer.append(GraphicsStrings.getInstance().ANGLE).appendint(rotationAnimation.getAngleInfoP().getAngle());
     }
 

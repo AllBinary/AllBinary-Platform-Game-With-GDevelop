@@ -143,7 +143,7 @@ Created By: Travis Berthelot
 
                                 //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:value-of select="$name" />.toString(), this, this.commonStrings.PROCESS)
 
-                                <xsl:variable name="existingValue" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.y</xsl:if></xsl:for-each></xsl:variable>
+                                <xsl:variable name="existingValue" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.yP</xsl:if></xsl:for-each></xsl:variable>
 
                                 <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setY(</xsl:if>

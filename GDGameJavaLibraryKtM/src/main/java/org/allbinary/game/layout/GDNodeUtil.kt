@@ -41,8 +41,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GDNodeUtil{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDNodeUtil.instance
 }
@@ -66,8 +64,6 @@ companion object {
         {
 this.gdNodesList!!.add(GDNodes())
 }
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.

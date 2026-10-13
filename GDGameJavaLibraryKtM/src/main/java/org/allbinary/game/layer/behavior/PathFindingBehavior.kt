@@ -42,8 +42,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : PathFindingBehavior{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return PathFindingBehavior.instance
 }
@@ -74,15 +72,11 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 
                                     }
                                 
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false

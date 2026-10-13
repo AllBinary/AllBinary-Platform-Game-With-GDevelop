@@ -50,8 +50,6 @@ open public class GDPrimitiveDrawingLinesOnlyAnimationFactory
 : Animation{
     //var instanceId = instanceId
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDPrimitiveDrawingLinesOnly()
 }
@@ -63,8 +61,6 @@ open public class GDPrimitiveDrawingLinesOnlyAnimationFactory
         //nullable = true from not(false or (false and false)) = true
 : Animation{
     //var animationInterface = animationInterface
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDPrimitiveDrawingLinesOnly()

@@ -77,8 +77,6 @@ public constructor (backgroundBasicColor: BasicColor, foregroundBasicColor: Basi
                                     {
                                     this.logUtil!!.putF("Remove: null", this, "remove")
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -91,8 +89,6 @@ super.remove(layerInterface)
     override fun getGeographicMapInterface()
         //nullable = true from not(false or (false and true)) = true
 : Array<BasicGeographicMap?>{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.geographicMapInterfaceArray
@@ -120,8 +116,6 @@ geographicMapEventHandler!!.removeAllListeners()
     override fun geographicMapCellTypeArray()
         //nullable = true from not(false or (false and true)) = true
 : Array<GeographicMapCellType?>{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.geographicMapCellTypeArray

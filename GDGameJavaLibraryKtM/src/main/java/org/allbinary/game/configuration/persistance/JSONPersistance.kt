@@ -82,7 +82,7 @@ var size = size
     var recordEnum: RecordEnumeration = recordStore!!.enumerateRecords(NullRecordFilter.NULL_RECORD_FILTER, NullRecordComparator.NULL_RECORD_COMPARATOR, true)!!
 
 this.logUtil!!.putF(StringMaker().
-                            append(this.persistanceStrings!!.NUMBER_OF_RECORDS)!!.appendint(recordEnum!!.numRecords())!!.toString(), this, this.persistanceStrings!!.LOAD_ALL)
+                            append(this.persistanceStrings!!.NUMBER_OF_RECORDS)!!.appendint(recordEnum!!.numRecords().toInt())!!.toString(), this, this.persistanceStrings!!.LOAD_ALL)
 
     var smallIntegerSingletonFactory: SmallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()!!
 
@@ -116,7 +116,7 @@ inputStream= DataInputStream(byteArrayInputStream)
                         for (index in 0 until size)
 
         {
-value= inputStream!!.readUTF()
+value= inputStream!!.readUTF()!!
 this.logUtil!!.putF(value, this, this.persistanceStrings!!.LOAD_ALL)
 this.valueList!!.add(value)
 }
@@ -164,15 +164,11 @@ recordStore!!.closeRecordStore()
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.valueList!!.get(0) as String
 
                                     }
                                 
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return StringUtil.getInstance()!!.EMPTY_STRING

@@ -55,15 +55,15 @@ public class GDObject
     public final boolean[] hasBehaviorArray = new boolean[10]; //BEHAVIOR_MAX
     private final BaseOffsetBehavior offsetBehavior;
     
-    public int x;
-    public int y;
+    public int xP;
+    public int yP;
 
     public int zOrder;
     
     public float rotationP;
     public float rotationZP;
 
-    public short angle;
+    public short angleP;
     public int movement_angle;
     
     public float scaleX = 1.0f;
@@ -122,8 +122,8 @@ public class GDObject
     }
 
     public void set(final String unknown, final int x, final int y, final int zOrder) {
-        this.x = x;
-        this.y = y;
+        this.xP = x;
+        this.yP = y;
         this.zOrder = zOrder;
     }
     
@@ -178,7 +178,7 @@ public class GDObject
 //            logUtil.put("GameTickDisplayInfoSingleton lastWidth: " + lastWidth, this, "setX", new Exception());
 //            this.x = lastWidth;
 //        } else {
-           this.x = x;
+           this.xP = x;
 //        }
 
 //        if(this.name.indexOf(MAP) >= 0) {
@@ -196,7 +196,7 @@ public class GDObject
 //            logUtil.put("GameTickDisplayInfoSingleton lastHeight: " + lastHeight, this, "setX", new Exception());
 //            this.y = lastHeight;
 //        } else {
-           this.y = y;
+           this.yP = y;
 //        }
 
 //        if(this.name.indexOf(MAP) >= 0) {
@@ -205,19 +205,19 @@ public class GDObject
     }
     
     public int X() {
-        return this.x;
+        return this.xP;
     }
 
     public int Y() {
-        return this.y;
+        return this.yP;
     }
 
     public int X2() {
-        return this.x + this.width;
+        return this.xP + this.width;
     }
 
     public int Y2() {
-        return this.y + this.height;
+        return this.yP + this.height;
     }
     
     private final float offsetX = AndroidUtil.isAndroid() ? 1.00f : 0.75f;
@@ -226,7 +226,7 @@ public class GDObject
     //private final StringMaker stringBuilder = new StringMaker();
     public int PointX(final GPoint point) {
         
-        int adjustedAngle = this.angle;
+        int adjustedAngle = this.angleP;
         while (adjustedAngle > 359) {
             adjustedAngle -= 360;
         }
@@ -234,7 +234,7 @@ public class GDObject
             adjustedAngle += 360;
         }
 
-        final int x = (int) (this.noDecimalTrigTable.cos((short) adjustedAngle) * (point.getX() - this.halfWidth - (this.halfWidth / 2))) / this.noDecimalTrigTable.SCALE;
+        final int x = (int) (this.noDecimalTrigTable.cos(adjustedAngle) * (point.getX() - this.halfWidth - (this.halfWidth / 2))) / this.noDecimalTrigTable.SCALE;
 
         //F <x>32</x>, <y>16</y>
         //E <x>0</x>, <y>16</y>        
@@ -248,13 +248,13 @@ public class GDObject
         //logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append('g').append(objectStrings.ANGLE).append(adjustedAngle).append(commonSeps.COLON).append(this.x).append(commonSeps.COLON).append(x).append(commonSeps.COLON).append(halfWidth).toString());
 
         // + this.width
-        return (int) (this.x + (x * this.offsetX) + this.offsetBehavior.PointX(this.halfWidth));
+        return (int) (this.xP + (x * this.offsetX) + this.offsetBehavior.PointX(this.halfWidth));
         //return this.x;
     }
 
     public int PointY(final GPoint point) {
         
-        int adjustedAngle = this.angle;
+        int adjustedAngle = this.angleP;
         while (adjustedAngle > 359) {
             adjustedAngle -= 360;
         }
@@ -263,11 +263,11 @@ public class GDObject
         }
 
         if(point.getX() > this.halfWidth) {
-            final int y = (int) (this.noDecimalTrigTable.sin((short) adjustedAngle) * (point.getY() - (this.halfHeight / 2))) / this.noDecimalTrigTable.SCALE;
-            return (int) (this.y + (y * this.offsetY) + this.offsetBehavior.PointY(this.halfHeight));
+            final int y = (int) (this.noDecimalTrigTable.sin(adjustedAngle) * (point.getY() - (this.halfHeight / 2))) / this.noDecimalTrigTable.SCALE;
+            return (int) (this.yP + (y * this.offsetY) + this.offsetBehavior.PointY(this.halfHeight));
         } else {
-            final int y = (int) (this.noDecimalTrigTable.sin((short) adjustedAngle) * -(point.getY() - (this.halfHeight / 2))) / this.noDecimalTrigTable.SCALE;
-            return (int) (this.y + (y * this.offsetY) + this.offsetBehavior.PointY(this.halfHeight));
+            final int y = (int) (this.noDecimalTrigTable.sin(adjustedAngle) * -(point.getY() - (this.halfHeight / 2))) / this.noDecimalTrigTable.SCALE;
+            return (int) (this.yP + (y * this.offsetY) + this.offsetBehavior.PointY(this.halfHeight));
         }
 
         //return this.y;
@@ -277,7 +277,7 @@ public class GDObject
 //        if(debug) {
 //            logUtil.put("setAngle: " + angle, this, "setAngle");
 //        }
-        this.angle = angle;
+        this.angleP = angle;
     }
     
     public void setAngle(final short angle, final GDGameLayer gameLayer) {
@@ -300,7 +300,7 @@ public class GDObject
 //            .append(objectStrings.ANGLE).append(adjustedAngle).toString(), this, objectStrings.ANGLE);
 
         //this.setAngle(adjustedAngle);
-        this.angle = adjustedAngle;
+        this.angleP = adjustedAngle;
 
 //        if (gameLayer != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER) {
             gameLayer.setRotation(adjustedAngle);
@@ -312,7 +312,7 @@ public class GDObject
     }
          
     public short Angle(final GDGameLayer gameLayer) {
-        return this.angle;
+        return this.angleP;
     }
 
     public short Angle() {
@@ -321,7 +321,7 @@ public class GDObject
         //logUtil.put(new StringMaker()
                 //.append(objectStrings.ANGLE).append(angle).toString(), this, objectStrings.ANGLE);
         
-        return this.angle;
+        return this.angleP;
     }
     
     public int Variable(final int value)
@@ -364,8 +364,8 @@ public class GDObject
         return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON)
                 .append(this.name)
                 .append(commonSeps.SPACE)
-                .append(positionStrings.X_LABEL).appendint(this.x)
-                .append(positionStrings.Y_LABEL).appendint(this.y)
+                .append(positionStrings.X_LABEL).appendint(this.xP)
+                .append(positionStrings.Y_LABEL).appendint(this.yP)
                 .append(commonLabels.WIDTH_LABEL).appendint(this.width)
                 .append(commonLabels.HEIGHT_LABEL).appendint(this.height)
                 .toString();
@@ -382,8 +382,8 @@ public class GDObject
         return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON)
                 .append(this.name).appendint(this.hashCode())
                 .append(commonSeps.SPACE)
-                .append(positionStrings.X_LABEL).appendint(this.x)
-                .append(positionStrings.Y_LABEL).appendint(this.y)
+                .append(positionStrings.X_LABEL).appendint(this.xP)
+                .append(positionStrings.Y_LABEL).appendint(this.yP)
                 .append(commonSeps.SPACE)
                 .append(positionStrings.Z_LABEL).appendint(this.zOrder)
 //                .append(commonSeps.SPACE)
@@ -401,7 +401,7 @@ public class GDObject
                 .append(commonSeps.SPACE)
                 .append(graphicsStrings.ANIMATION).appendint(this.animation)
                 .append(commonSeps.SPACE)
-                .append(graphicsStrings.ANGLE).append(commonSeps.COLON).appendint(this.angle)
+                .append(graphicsStrings.ANGLE).append(commonSeps.COLON).appendint(this.angleP)
                 .append(commonSeps.SPACE)
                 .append(graphicsStrings.MOVEMENT_ANGLE).append(commonSeps.COLON).appendint(this.movement_angle)
                 .append(commonSeps.SPACE)

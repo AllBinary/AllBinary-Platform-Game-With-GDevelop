@@ -111,8 +111,6 @@ var keyInteger = keyInteger
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -151,8 +149,6 @@ this.removalKeyEventList!!.add(keyInteger)
         //nullable = true from not(false or (false and false)) = true
 : Boolean{
 var keyInteger = keyInteger
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.removalKeyEventList!!.contains(keyInteger)

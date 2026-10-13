@@ -45,8 +45,6 @@ companion object {
 : Boolean{
     //var path = path
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return AbFileSystem.getInstance()!!.isDirectoryOrFile(path)
 }
@@ -64,8 +62,6 @@ companion object {
 
 logUtil!!.putF(path, commonStrings, commonStrings!!.PROCESS)
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return AbFileSystem.getInstance()!!.readAsString(path)
 }
@@ -77,8 +73,6 @@ logUtil!!.putF(path, commonStrings, commonStrings!!.PROCESS)
     //var currentDirPath = currentDirPath
 
     var name: String = AbPathData.getInstance()!!.removeNameFromPath(currentDirPath)!!
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -117,8 +111,6 @@ var fileList = fileList
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return arrayOfNulls(PAGE_SIZE)
 
@@ -158,8 +150,6 @@ fileList[index]= realFilePathAsStringArray[index]!!
 }
 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return fileList
 }
@@ -175,15 +165,11 @@ var path = path
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return path +FilePathData.getInstance()!!.SEPARATORCHAR
 
                                     }
                                 
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return path
@@ -193,8 +179,6 @@ var path = path
     open fun UserHomePath()
         //nullable = true from not(false or (false and true)) = true
 : String{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return SystemProperties.getInstance()!!.getUserHomePath()
@@ -206,8 +190,6 @@ var path = path
 : Char{
 
     var SEPARATOR: Char = FilePathData.getInstance()!!.SEPARATORCHAR
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -231,8 +213,6 @@ var path = path
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return StringUtil.getInstance()!!.EMPTY_STRING
 
@@ -240,8 +220,6 @@ var path = path
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return pathData!!.getExtensionWithDot(name)
 

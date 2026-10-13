@@ -77,16 +77,13 @@ open public class GDGameInputProcessor
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
                                     }
                                 
 
-    var globals: GDSceneGlobals = 
-                                    (specialAnimation as GDSpecialAnimation).getGlobals()!!
+    var globals: GDSceneGlobals = (specialAnimation as GDSpecialAnimation).getGlobals()!!
 
 
     var gameKeyEvent: GameKeyEvent
@@ -188,8 +185,6 @@ this.logUtil!!.putF(commonStrings!!.EXCEPTION, this, this.gameInputStrings!!.PRO
         //nullable = true from not(false or (false and true)) = true
 : PlayerGameInput{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.playerGameInput
 }
@@ -198,8 +193,6 @@ this.logUtil!!.putF(commonStrings!!.EXCEPTION, this, this.gameInputStrings!!.PRO
     open fun getGameKeyEventList()
         //nullable = true from not(false or (false and true)) = true
 : BasicArrayList{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.gameKeyEventList

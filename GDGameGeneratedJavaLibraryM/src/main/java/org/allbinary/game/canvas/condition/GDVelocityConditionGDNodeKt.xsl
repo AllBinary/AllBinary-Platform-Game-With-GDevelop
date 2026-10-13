@@ -52,7 +52,7 @@ Created By: Travis Berthelot
 
                                 <xsl:value-of select="$gdObjectName" /><xsl:text>GDGameLayer = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.</xsl:text><xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index) as GDGameLayer
                                 <xsl:value-of select="$gdObjectName" /><xsl:text> = </xsl:text><xsl:value-of select="$gdObjectName" />GDGameLayer.gdObject
-                                <xsl:variable name="closedValueForGDObject" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '&lt;' or text() = '&lt;='" >.x</xsl:if><xsl:if test="text() = '&gt;' or text() = '&gt;='" >.X2()</xsl:if></xsl:if></xsl:for-each></xsl:variable>
+                                <xsl:variable name="closedValueForGDObject" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '&lt;' or text() = '&lt;='" >.xP</xsl:if><xsl:if test="text() = '&gt;' or text() = '&gt;='" >.X2()</xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
                                 //stringBuilder.delete(0, stringBuilder.length())
                                 //this.logUtil.put(stringBuilder.append("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> ").append(commonLabels.INDEX_LABEL).appendint(index)

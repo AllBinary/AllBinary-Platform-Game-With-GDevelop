@@ -198,8 +198,6 @@ this.associatedAdvancedRTSGameLayer!!.getWaypointLogHelper()!!.addWaypointFromBu
         //nullable = true from not(false or (false and true)) = true
 : Boolean{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 }
@@ -233,15 +231,11 @@ this.associatedAdvancedRTSGameLayer!!.getWaypointLogHelper()!!.addWaypointFromBu
 this.targetList!!.addAt(index, rtsLayer)
 this.associatedAdvancedRTSGameLayer!!.getWaypointLogHelper()!!.insertWaypointList(this.associatedAdvancedRTSGameLayer, index, rtsLayer, this.getName(), this.targetList)
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
                                     }
                                 
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
@@ -281,8 +275,6 @@ this.setMoving(false)
                         
                                     {
                                     this.associatedAdvancedRTSGameLayer!!.getWaypointLogHelper()!!.setRandomGeographicMapCellHistory(this.associatedAdvancedRTSGameLayer)
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
@@ -354,15 +346,11 @@ this.getCompleteTimeDelayHelper()!!.setStartTimeTNT()
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
                         }
                             
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
@@ -394,8 +382,6 @@ this.getCompleteTimeDelayHelper()!!.setStartTimeTNT()
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -442,8 +428,6 @@ this.associatedAdvancedRTSGameLayer!!.getWaypointLogHelper()!!.needToMove(this.a
                                     {
                                     this.repeatedToLong!!.setStartTimeTNT()
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
@@ -461,8 +445,6 @@ ForcedLogUtil.log(message, this.associatedAdvancedRTSGameLayer)
 
                                     }
                                 
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
@@ -489,12 +471,10 @@ stringBuffer!!.append(StringUtil.getInstance()!!.toString(this.currentTargetLaye
                                     stringBuffer!!.append(" Target Range: ")
 stringBuffer!!.appendint(this.getCurrentTargetDistance())
 stringBuffer!!.append(" >= ")
-stringBuffer!!.appendint(this.longWeaponRange +this.currentTargetLayerInterface!!.getHalfHeight())
+stringBuffer!!.appendint((this.longWeaponRange +this.currentTargetLayerInterface!!.getHalfHeight()).toInt())
 
                                     }
                                 
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return stringBuffer!!.toString()
@@ -504,8 +484,6 @@ stringBuffer!!.appendint(this.longWeaponRange +this.currentTargetLayerInterface!
     open fun isMovingFromStopped()
         //nullable = true from not(false or (false and true)) = true
 : Boolean{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.movingFromStopped
@@ -532,8 +510,6 @@ this.waypointPathsList= waypointPathsList
         //nullable = true from not(false or (false and true)) = true
 : BasicArrayList{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.waypointPathsList
 }
@@ -542,8 +518,6 @@ this.waypointPathsList= waypointPathsList
     open fun isMoving()
         //nullable = true from not(false or (false and true)) = true
 : Boolean{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.moving
@@ -562,8 +536,6 @@ this.moving= moving
         //nullable = true from not(false or (false and true)) = true
 : Boolean{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.trackingWaypoint
 }
@@ -572,8 +544,6 @@ this.moving= moving
     open fun getPossibleTargetList()
         //nullable = true from not(false or (false and true)) = true
 : BasicArrayList{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.possibleTargetList
@@ -591,8 +561,6 @@ this.lastPathGeographicMapCellPosition= lastPathGeographicMapCellPosition
     open fun getLastPathGeographicMapCellPosition()
         //nullable = true from not(false or (false and true)) = true
 : GeographicMapCellPosition{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.lastPathGeographicMapCellPosition
@@ -612,8 +580,6 @@ this.currentPathGeographicMapCellPosition= currentPathGeographicMapCellPosition
         //nullable = true from not(false or (false and true)) = true
 : GeographicMapCellPosition{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.currentPathGeographicMapCellPosition
 }
@@ -631,8 +597,6 @@ this.sensorAction= sensorAction
         //nullable = true from not(false or (false and true)) = true
 : SensorAction{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.sensorAction
 }
@@ -641,8 +605,6 @@ this.sensorAction= sensorAction
     open fun getTargetList()
         //nullable = true from not(false or (false and true)) = true
 : BasicArrayList{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.targetList
@@ -661,8 +623,7 @@ this.currentTargetLayerInterface= currentTargetLayerInterface
                         if(this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance())
                         
                                     {
-                                    this.currentTargetGeographicMapCellPosition= 
-                                    (currentTargetLayerInterface as PathFindingLayerInterface).getCurrentGeographicMapCellPosition()
+                                    this.currentTargetGeographicMapCellPosition= (this.currentTargetLayerInterface as PathFindingLayerInterface).getCurrentGeographicMapCellPosition()!!
 
                                     }
                                 
@@ -677,8 +638,6 @@ this.currentTargetLayerInterface= currentTargetLayerInterface
     override fun getCurrentTargetLayerInterface()
         //nullable = true from not(false or (false and true)) = true
 : CollidableDestroyableDamageableLayer{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.currentTargetLayerInterface
@@ -697,8 +656,6 @@ this.currentTargetDistance= currentTargetDistance
         //nullable = true from not(false or (false and true)) = true
 : Int{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.currentTargetDistance
 }
@@ -708,8 +665,6 @@ this.currentTargetDistance= currentTargetDistance
         //nullable = true from not(false or (false and true)) = true
 : TimeDelayHelper{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.completeTimeDelayHelper
 }
@@ -718,8 +673,6 @@ this.currentTargetDistance= currentTargetDistance
     override fun getCurrentGeographicMapCellHistory()
         //nullable = true from not(false or (false and true)) = true
 : GeographicMapCellHistory{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.currentGeographicMapCellHistory

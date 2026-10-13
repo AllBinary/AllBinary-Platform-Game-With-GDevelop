@@ -15,6 +15,7 @@ package org.allbinary.game.layer.special;
 
 import org.allbinary.game.collision.CollidableBaseBehavior;
 import org.allbinary.game.collision.CollidableInterfaceCompositeInterface;
+import org.allbinary.game.identification.Group;
 import org.allbinary.game.identification.GroupInterface;
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layout.GDNode;
@@ -96,7 +97,7 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
             //final StringMaker stringBuilder = new StringMaker();
             //logUtil.put(stringBuilder.append(COLLIDE).append(commonSeps.COLON).append(this.ownerLayer.getName()).append(commonSeps.COLON).append(collisionLayer.getName()).toString(), this, COLLIDE);
 
-            final GroupInterface[] groupInterfaceArray = collisionLayer.getGroupInterface();
+            final Group[] groupInterfaceArray = collisionLayer.getGroupInterface();
             //final GroupInterface[] groupInterfaceArray = this.ownerLayer.getGroupInterface();
 
             final int size = groupInterfaceArray.length;

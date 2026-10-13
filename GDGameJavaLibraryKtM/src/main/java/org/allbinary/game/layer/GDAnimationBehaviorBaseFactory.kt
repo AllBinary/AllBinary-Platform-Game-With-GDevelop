@@ -39,8 +39,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GDAnimationBehaviorBaseFactory{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDAnimationBehaviorBaseFactory.instance
 }
@@ -56,8 +54,6 @@ companion object {
     open fun create()
         //nullable = true from not(false or (false and true)) = true
 : GDAnimationBehaviorBase{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDAnimationBehaviorBase.getInstance()

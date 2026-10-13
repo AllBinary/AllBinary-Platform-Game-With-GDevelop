@@ -85,11 +85,11 @@ companion object {
 
     val quarterHeight: Int = (this.getHalfHeight() shr 1) -1
 
-    val combatBaseBehavior: CombatBaseBehavior
+    val combatBaseBehaviorP: CombatBaseBehavior
 
-    val initIndexedAnimationInterfaceArray: Array<IndexedAnimation?>
+    val initIndexedAnimationInterfaceArrayP: Array<IndexedAnimation?>
 
-    var indexedAnimationInterfaceArray: Array<IndexedAnimation?> = NullIndexedAnimationFactory.NULL_INDEXED_ANIMATION_ARRAY
+    var indexedAnimationInterfaceArrayP: Array<IndexedAnimation?> = NullIndexedAnimationFactory.NULL_INDEXED_ANIMATION_ARRAY
 
     private val resetAnimationBehavior: ResetAnimationBehavior
 
@@ -226,19 +226,19 @@ scaleProperties!!.scaleHeight= this.gdObject!!.Height(NullGraphics.NULL_GRAPHICS
 animationInterfaceFactoryInterfaceArray[index]!!.setInitialScale(scaleProperties)
 }
 
-this.initIndexedAnimationInterfaceArray= animationBehavior!!.init(this.gdObject, animationInterfaceFactoryInterfaceArray)
-this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray)
+this.initIndexedAnimationInterfaceArrayP= animationBehavior!!.init(this.gdObject, animationInterfaceFactoryInterfaceArray)!!
+this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArrayP)
 
     
-                        if(this.initIndexedAnimationInterfaceArray[0]!!.getSize() >= 90 && rotationAdjustment)
+                        if(this.initIndexedAnimationInterfaceArrayP[0]!!.getSize() >= 90 && rotationAdjustment)
                         
                                     {
-                                    this.resetAnimationBehavior= ResetRotationAnimationBehavior.getInstance()
+                                    this.resetAnimationBehavior= ResetRotationAnimationBehavior.getInstance()!!
 
                                     }
                                 
                         else {
-                            this.resetAnimationBehavior= ResetAnimationBehavior.getInstance()
+                            this.resetAnimationBehavior= ResetAnimationBehavior.getInstance()!!
 
                         }
                             
@@ -248,10 +248,10 @@ animationBehavior!!.add(this)
 
 
     
-                        if(this.initIndexedAnimationInterfaceArray!!.size > 0 && this.initIndexedAnimationInterfaceArray[0]!!.isThreed())
+                        if(this.initIndexedAnimationInterfaceArrayP!!.size > 0 && this.initIndexedAnimationInterfaceArrayP[0]!!.isThreed())
                         
                                     {
-                                    dimensionalBehavior= GDThreedBehavior(animationBehavior, this.initIndexedAnimationInterfaceArray as Array<RotationAnimation?>)
+                                    dimensionalBehavior= GDThreedBehavior(animationBehavior, this.initIndexedAnimationInterfaceArrayP as Array<RotationAnimation?>)
 
                                     }
                                 
@@ -261,7 +261,7 @@ animationBehavior!!.add(this)
                         }
                             
 this.dimensionalBehavior= dimensionalBehavior
-this.combatBaseBehavior= CombatBaseBehavior(DamageableBaseBehavior.getInstance(), GDDestroyableSimpleBehavior(this))
+this.combatBaseBehaviorP= CombatBaseBehavior(DamageableBaseBehavior.getInstance(), GDDestroyableSimpleBehavior(this))
 this.dimensionalBehavior!!.reset(this, gdObject)
 this.rectangleArrayOfArrays= rectangleArrayOfArrays
 }
@@ -278,8 +278,6 @@ this.rectangleArrayOfArrays= rectangleArrayOfArrays
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
@@ -287,8 +285,6 @@ this.rectangleArrayOfArrays= rectangleArrayOfArrays
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 
@@ -304,7 +300,7 @@ this.rectangleArrayOfArrays= rectangleArrayOfArrays
 {
     //var gdObject = gdObject
 
-    var size: Int = this.initIndexedAnimationInterfaceArray!!.size
+    var size: Int = this.initIndexedAnimationInterfaceArrayP!!.size
                 
 
 
@@ -314,12 +310,12 @@ this.rectangleArrayOfArrays= rectangleArrayOfArrays
                         for (index in 0 until size)
 
         {
-this.initIndexedAnimationInterfaceArray[index]!!.setFrame(this.frameUtil!!.getFrameForAngle(0.toShort(), 1))
+this.initIndexedAnimationInterfaceArrayP[index]!!.setFrame(this.frameUtil!!.getFrameForAngle(0.toShort(), 1))
 }
 
 gdObject!!.angle= this.gdObject!!.angle
-this.dimensionalBehavior!!.getAnimationBehavior()!!.setAnimationArray(this.initIndexedAnimationInterfaceArray)
-this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray)
+this.dimensionalBehavior!!.getAnimationBehavior()!!.setAnimationArray(this.initIndexedAnimationInterfaceArrayP)
+this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArrayP)
 this.dimensionalBehavior!!.reset(this, gdObject)
 this.gdObject= gdObject
 this.initPositionXYZ(this.gdObject!!.x, this.gdObject!!.y, this.gdObject!!.zOrder)
@@ -335,7 +331,7 @@ this.setDestroyed(false)
 {
     //var gl = gl
 
-    var size: Int = this.initIndexedAnimationInterfaceArray!!.size
+    var size: Int = this.initIndexedAnimationInterfaceArrayP!!.size
                 
 
 
@@ -348,7 +344,7 @@ this.setDestroyed(false)
                         for (index in 0 until size)
 
         {
-openGLSurfaceChangedInterface= this.initIndexedAnimationInterfaceArray[index]!! as OpenGLSurfaceChangedInterface
+openGLSurfaceChangedInterface= this.initIndexedAnimationInterfaceArrayP[index]!! as OpenGLSurfaceChangedInterface
 openGLSurfaceChangedInterface!!.set(gl)
 }
 
@@ -358,8 +354,6 @@ openGLSurfaceChangedInterface!!.set(gl)
     open fun getVelocityProperties()
         //nullable = true from not(false or (false and true)) = true
 : VelocityProperties{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.velocityInterface
@@ -378,10 +372,8 @@ this.dimensionalBehavior!!.getAnimationBehavior()!!.setRotation(this, angleAdjus
         //nullable = true from not(false or (false and true)) = true
 : Array<IndexedAnimation?>{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.initIndexedAnimationInterfaceArray
+                        return this.initIndexedAnimationInterfaceArrayP
 }
 
 
@@ -389,7 +381,7 @@ this.dimensionalBehavior!!.getAnimationBehavior()!!.setRotation(this, angleAdjus
         //nullable = true from not(false or (false and false)) = true
 {
     //var animationInterface = animationInterface
-this.indexedAnimationInterfaceArray= animationInterface
+this.indexedAnimationInterfaceArrayP= animationInterface
 }
 
 
@@ -397,10 +389,8 @@ this.indexedAnimationInterfaceArray= animationInterface
         //nullable = true from not(false or (false and true)) = true
 : Array<IndexedAnimation?>{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.indexedAnimationInterfaceArray
+                        return this.indexedAnimationInterfaceArrayP
 }
 
 
@@ -408,10 +398,8 @@ this.indexedAnimationInterfaceArray= animationInterface
         //nullable = true from not(false or (false and true)) = true
 : IndexedAnimation{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.indexedAnimationInterfaceArray[this.gdObject!!.animation]!!
+                        return this.indexedAnimationInterfaceArrayP[this.gdObject!!.animation]!!
 }
 
 
@@ -419,10 +407,8 @@ this.indexedAnimationInterfaceArray= animationInterface
         //nullable = true from not(false or (false and true)) = true
 : CombatBaseBehavior{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.combatBaseBehavior
+                        return this.combatBaseBehaviorP
 }
 
 
@@ -433,7 +419,7 @@ this.indexedAnimationInterfaceArray= animationInterface
 {
     //var damage = damage
     //var damageType = damageType
-this.combatBaseBehavior!!.getDamageableBaseBehavior()!!.damage(damage, damageType)
+this.combatBaseBehaviorP!!.getDamageableBaseBehavior()!!.damage(damage, damageType)
 }
 
 
@@ -444,10 +430,8 @@ this.combatBaseBehavior!!.getDamageableBaseBehavior()!!.damage(damage, damageTyp
 : Int{
     //var damageType = damageType
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.combatBaseBehavior!!.getDamageableBaseBehavior()!!.getDamage(damageType)
+                        return this.combatBaseBehaviorP!!.getDamageableBaseBehavior()!!.getDamage(damageType)
 }
 
 
@@ -457,10 +441,8 @@ this.combatBaseBehavior!!.getDamageableBaseBehavior()!!.damage(damage, damageTyp
         //nullable = true from not(false or (false and true)) = true
 : Boolean{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.combatBaseBehavior!!.getDestroyableBaseBehavior()!!.isDestroyed()
+                        return this.combatBaseBehaviorP!!.getDestroyableBaseBehavior()!!.isDestroyed()
 }
 
 
@@ -472,7 +454,7 @@ this.combatBaseBehavior!!.getDamageableBaseBehavior()!!.damage(damage, damageTyp
     //var destroyed = destroyed
 this.gameLayerList!!.remove(this)
 this.gameLayerDestroyedList!!.add(this)
-this.combatBaseBehavior!!.getDestroyableBaseBehavior()!!.setDestroyed(destroyed)
+this.combatBaseBehaviorP!!.getDestroyableBaseBehavior()!!.setDestroyed(destroyed)
 }
 
 
@@ -504,8 +486,6 @@ super.setPosition(x, y, this.z)
         //nullable = true from not(false or (false and true)) = true
 : Int{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return (this.velocityInterface!!.getVelocityXBasicDecimalP()!!.getScaled() /this.SCALE_FACTOR).toInt()
 }
@@ -514,8 +494,6 @@ super.setPosition(x, y, this.z)
     open fun isMovingY()
         //nullable = true from not(false or (false and true)) = true
 : Int{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return (this.velocityInterface!!.getVelocityYBasicDecimalP()!!.getScaled() /this.SCALE_FACTOR).toInt()
@@ -532,8 +510,8 @@ super.setPosition(x, y, z)
 
     var scaleFactorValue: Int = ScaleFactorFactory.getInstance()!!.DEFAULT_SCALE_VALUE
 
-this.realX= x *scaleFactorValue
-this.realY= y *scaleFactorValue
+this.realX= (x *scaleFactorValue).toLong()
+this.realY= (y *scaleFactorValue).toLong()
 }
 
 
@@ -544,25 +522,25 @@ this.realY= y *scaleFactorValue
     //var length = length
     //var clearing = clearing
 
-    var adjustedAngle: Short = angle.toShort()
+    var adjustedAngle: Short = angle.toInt().toShort()
 
 
         while(adjustedAngle > 359)
         {
-adjustedAngle -= 360
+adjustedAngle = (adjustedAngle - 360).toShort()
 }
 
 
         while(adjustedAngle < 0)
         {
-adjustedAngle += 360
+adjustedAngle = (adjustedAngle + 360).toShort()
 }
 
-this.gdObject!!.forceAngle= adjustedAngle.toShort()
-this.velocityInterface!!.setVelocityi(length.toLong() *this.SCALE_FACTOR2, adjustedAngle.toShort(), 0.toShort())
+this.gdObject!!.forceAngle= adjustedAngle.toInt()
+this.velocityInterface!!.setVelocityi(length.toLong() *this.SCALE_FACTOR2, adjustedAngle.toInt(), 0)
 
     
-                        if(clearing == 1)
+                        if(clearing == 1f)
                         
                                     {
                                     
@@ -597,7 +575,7 @@ updateGDObject(timeDelta)
     open fun StopForce()
         //nullable = true from not(false or (false and true)) = true
 {
-this.velocityInterface!!.setVelocityi(0, 0.toShort(), 0.toShort())
+this.velocityInterface!!.setVelocityi(0, 0, 0)
 }
 
 
@@ -656,7 +634,7 @@ this.updateRotation(timeDelta)
                                     }
                                 
 
-    var size: Int = this.initIndexedAnimationInterfaceArray!!.size
+    var size: Int = this.initIndexedAnimationInterfaceArrayP!!.size
                 
 
 
@@ -666,8 +644,8 @@ this.updateRotation(timeDelta)
                         for (index in 0 until size)
 
         {
-this.initIndexedAnimationInterfaceArray[index]!!.setAlpha(opacity)
-this.scalableProcessor!!.process(this, this.initIndexedAnimationInterfaceArray[index]!!)
+this.initIndexedAnimationInterfaceArrayP[index]!!.setAlpha(opacity)
+this.scalableProcessor!!.process(this, this.initIndexedAnimationInterfaceArrayP[index]!!)
 
     
                         if(this.gdObject!!.basicColor != 
@@ -675,7 +653,7 @@ this.scalableProcessor!!.process(this, this.initIndexedAnimationInterfaceArray[i
                                 )
                         
                                     {
-                                    this.initIndexedAnimationInterfaceArray[index]!!.changeBasicColor(this.gdObject!!.basicColor)
+                                    this.initIndexedAnimationInterfaceArrayP[index]!!.changeBasicColor(this.gdObject!!.basicColor)
 
                                     }
                                 
@@ -687,7 +665,7 @@ this.scalableProcessor!!.process(this, this.initIndexedAnimationInterfaceArray[i
     open fun resetAnimation()
         //nullable = true from not(false or (false and true)) = true
 {
-this.resetAnimationBehavior!!.resetAnimation(this.indexedAnimationInterfaceArray, this.gdObject!!.animation)
+this.resetAnimationBehavior!!.resetAnimation(this.indexedAnimationInterfaceArrayP, this.gdObject!!.animation)
 }
 
 
@@ -698,7 +676,7 @@ this.resetAnimationBehavior!!.resetAnimation(this.indexedAnimationInterfaceArray
 {
     //var timeDelta = timeDelta
 this.velocityBehavior!!.reduce(this.velocityInterface, 30, 100)
-this.dimensionalBehavior!!.getAnimationBehavior()!!.animate(this.gdObject, this.initIndexedAnimationInterfaceArray, timeDelta)
+this.dimensionalBehavior!!.getAnimationBehavior()!!.animate(this.gdObject, this.initIndexedAnimationInterfaceArrayP, timeDelta)
 this.primitiveDrawing!!.nextFrame()
 }
 
@@ -720,7 +698,7 @@ this.dimensionalBehavior!!.updateRotation(this, timeDelta)
                         
                                     {
                                     
-    var size: Int = this.initIndexedAnimationInterfaceArray!!.size
+    var size: Int = this.initIndexedAnimationInterfaceArrayP!!.size
                 
 
 
@@ -730,13 +708,13 @@ this.dimensionalBehavior!!.updateRotation(this, timeDelta)
                         for (index in 0 until size)
 
         {
-this.initIndexedAnimationInterfaceArray[index]!!.setMaxScale(5, 5)
+this.initIndexedAnimationInterfaceArrayP[index]!!.setMaxScale(5.0f, 5.0f)
 }
 
 
                                     }
                                 
-this.scalableProcessor= ScalableProcessor.getInstance()
+this.scalableProcessor= ScalableProcessor.getInstance()!!
 }
 
 
@@ -759,8 +737,6 @@ this.scalableProcessor= ScalableProcessor.getInstance()
         //nullable = true from not(false or (false and true)) = true
 : Int{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.getIndexedAnimationInterface()!!.getSize()
 }
@@ -782,7 +758,7 @@ this.scalableProcessor= ScalableProcessor.getInstance()
 
     var y: Int = viewPosition!!.getY()
 
-this.indexedAnimationInterfaceArray[this.gdObject!!.animation]!!.paintXY(graphics, x, y)
+this.indexedAnimationInterfaceArrayP[this.gdObject!!.animation]!!.paintXY(graphics, x, y)
 this.primitiveDrawing!!.paintXY(graphics, x, y)
 this.paintDebug(graphics)
 } catch(e: Exception)
@@ -811,7 +787,7 @@ this.logUtil!!.put(this.commonStrings!!.EXCEPTION, this, "paint", e)
 
     var z: Int = viewPosition!!.getZ()
 
-this.indexedAnimationInterfaceArray[this.gdObject!!.animation]!!.paintThreedXYZ(graphics, x, y, z)
+this.indexedAnimationInterfaceArrayP[this.gdObject!!.animation]!!.paintThreedXYZ(graphics, x, y, z)
 this.primitiveDrawing!!.paintThreedXYZ(graphics, x, y, z)
 } catch(e: Exception)
             {
@@ -834,7 +810,7 @@ this.logUtil!!.put(this.commonStrings!!.EXCEPTION, this, "paintThreed", e)
     //var angle = angle
     //var graphics = graphics
 
-    var adjustedAngle: Int = angle
+    var adjustedAngle: Int = angle.toInt()
 
 }
 
@@ -852,7 +828,7 @@ this.getCollidableInferface()!!.paint(this, graphics)
         //nullable = true from not(false or (false and false)) = true
 {
     //var basicColor = basicColor
-this.initIndexedAnimationInterfaceArray[0]!!.setBasicColorP(basicColor)
+this.initIndexedAnimationInterfaceArrayP[0]!!.setBasicColorP(basicColor)
 }
 
 
@@ -860,7 +836,7 @@ this.initIndexedAnimationInterfaceArray[0]!!.setBasicColorP(basicColor)
         //nullable = true from not(false or (false and false)) = true
 {
     //var basicColor = basicColor
-this.initIndexedAnimationInterfaceArray[0]!!.setBackgroundBasicColorP(basicColor)
+this.initIndexedAnimationInterfaceArrayP[0]!!.setBackgroundBasicColorP(basicColor)
 }
 
 
@@ -877,7 +853,7 @@ this.setText(value.toString())
 {
     //var text = text
 
-    var textInterface: TextInterface = (this.initIndexedAnimationInterfaceArray[0]!! as TextInterface)
+    var textInterface: TextInterface = (this.initIndexedAnimationInterfaceArrayP[0]!! as TextInterface)
 
 
     
@@ -912,19 +888,14 @@ this.setText(value.toString())
         //nullable = true from not(false or (false and true)) = true
 : String{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return 
-                                    ( as TextInterface).getText()
+                        return (this.initIndexedAnimationInterfaceArrayP[0]!! as TextInterface).getText()
 }
 
 
     open fun getDimensionalBehavior()
         //nullable = true from not(false or (false and true)) = true
 : GDTwodBehavior{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.dimensionalBehavior
@@ -979,8 +950,6 @@ stringBuffer!!.append(this.gdObject!!.toString())
     var stringBuffer: StringMaker = StringMaker()
 
 this.toStringAppend(stringBuffer)
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return stringBuffer!!.toString()

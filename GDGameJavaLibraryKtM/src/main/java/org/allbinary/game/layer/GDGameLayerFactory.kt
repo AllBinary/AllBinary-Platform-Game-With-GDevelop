@@ -147,8 +147,6 @@ gdObject!!.updateScale(scaleX, scaleY)
     var gameLayer: GDGameLayer = GDGameLayer(NullAnimationFactory.getFactoryInstance()!!.getInstance(0), this.gameLayerList, this.gameLayerDestroyedList, this.behaviorList, VelocityProperties(9600, 9600), RemoteInfo.REMOTE_INFO, this.groupInterface, name, this.animationInterfaceFactoryInterfaceArray, this.proceduralAnimationInterfaceFactoryInterfaceArray, rectangle, this.rectangleArrayOfArrays, ViewPosition.getInstanceD(), gdObject, this.animationBehaviorFactory!!.create(), this.resetAnimationBehavior)
 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return gameLayer
 }

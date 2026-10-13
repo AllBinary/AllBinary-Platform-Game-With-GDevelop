@@ -183,7 +183,7 @@ Created By: Travis Berthelot
                         //btn_ - //Rectangle
                         //Touch Rectangle
                         //final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
-                        //    pointFactory.createXY(<xsl:value-of select="name" />.x, <xsl:value-of select="name" />.y),
+                        //    pointFactory.createXY(<xsl:value-of select="name" />.xP, <xsl:value-of select="name" />.yP),
                         //    (int) (<xsl:value-of select="name" />.Width(globals.graphics) * scaleTouchButtons), (int) (<xsl:value-of select="name" />.Height(globals.graphics) * scaleTouchButtons));
                         //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         </xsl:if>

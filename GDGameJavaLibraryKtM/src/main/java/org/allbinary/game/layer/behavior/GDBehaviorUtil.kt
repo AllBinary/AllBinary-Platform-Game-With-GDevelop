@@ -39,8 +39,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GDBehaviorUtil{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDBehaviorUtil.instance
 }
@@ -69,8 +67,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return PathFindingBehavior.getInstance()
 
@@ -82,8 +78,6 @@ companion object {
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return DraggableBehavior.getInstance()
 

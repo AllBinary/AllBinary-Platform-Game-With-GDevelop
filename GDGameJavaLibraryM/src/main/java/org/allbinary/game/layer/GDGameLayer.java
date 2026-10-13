@@ -76,10 +76,10 @@ public class GDGameLayer
     protected final int quarterWidth = (this.getHalfWidth() >> 1) - 1;
     protected final int quarterHeight = (this.getHalfHeight() >> 1) - 1;
 
-    protected final CombatBaseBehavior combatBaseBehavior;
+    protected final CombatBaseBehavior combatBaseBehaviorP;
 
-    protected final IndexedAnimation[] initIndexedAnimationInterfaceArray;
-    protected IndexedAnimation[] indexedAnimationInterfaceArray = NullIndexedAnimationFactory.NULL_INDEXED_ANIMATION_ARRAY;
+    protected final IndexedAnimation[] initIndexedAnimationInterfaceArrayP;
+    protected IndexedAnimation[] indexedAnimationInterfaceArrayP = NullIndexedAnimationFactory.NULL_INDEXED_ANIMATION_ARRAY;
     private final ResetAnimationBehavior resetAnimationBehavior;
 
     protected final VelocityProperties velocityInterface;
@@ -205,7 +205,7 @@ public class GDGameLayer
                 );
         */
         
-        this.initPositionXYZ(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
+        this.initPositionXYZ(this.gdObject.xP, this.gdObject.yP, this.gdObject.zOrder);
         this.initPosition();
 
         //logUtil.put(this.gdObject.toShortString(), this, commonStrings.CONSTRUCTOR);
@@ -224,11 +224,11 @@ public class GDGameLayer
             animationInterfaceFactoryInterfaceArray[index].setInitialScale(scaleProperties);
         }
 
-        this.initIndexedAnimationInterfaceArray = animationBehavior.init(this.gdObject, animationInterfaceFactoryInterfaceArray);
-        this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray);
+        this.initIndexedAnimationInterfaceArrayP = animationBehavior.init(this.gdObject, animationInterfaceFactoryInterfaceArray);
+        this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArrayP);
         
         //logUtil.putF(new StringMaker().append(this.gdObject.name).append(" s: ").appendint(this.initIndexedAnimationInterfaceArray[0].getSize()).append(" rotationAdjustment: ").appendboolean(rotationAdjustment).toString(), this, commonStrings.CONSTRUCTOR);
-        if(this.initIndexedAnimationInterfaceArray[0].getSize() >= 90 && rotationAdjustment) {
+        if(this.initIndexedAnimationInterfaceArrayP[0].getSize() >= 90 && rotationAdjustment) {
             this.resetAnimationBehavior = ResetRotationAnimationBehavior.getInstance();
         } else {
             this.resetAnimationBehavior = ResetAnimationBehavior.getInstance();
@@ -237,8 +237,8 @@ public class GDGameLayer
         animationBehavior.add(this);
 
         GDTwodBehavior dimensionalBehavior;
-        if(this.initIndexedAnimationInterfaceArray.length > 0 && this.initIndexedAnimationInterfaceArray[0].isThreed()) { 
-            dimensionalBehavior = new GDThreedBehavior(animationBehavior, (RotationAnimation[]) this.initIndexedAnimationInterfaceArray);
+        if(this.initIndexedAnimationInterfaceArrayP.length > 0 && this.initIndexedAnimationInterfaceArrayP[0].isThreed()) { 
+            dimensionalBehavior = new GDThreedBehavior(animationBehavior, (RotationAnimation[]) this.initIndexedAnimationInterfaceArrayP);
         } else {
 //            if(this.gdObject.name.indexOf("player") >=0) {
 //                this.dimensionalBehavior = new GDTwodBehavior2(animationBehavior);
@@ -248,7 +248,7 @@ public class GDGameLayer
         }
         this.dimensionalBehavior = dimensionalBehavior;
         
-        this.combatBaseBehavior = new CombatBaseBehavior(
+        this.combatBaseBehaviorP = new CombatBaseBehavior(
                 DamageableBaseBehavior.getInstance(), new GDDestroyableSimpleBehavior(this));
         
         //logUtil.put(this.toString(), this, commonStrings.CONSTRUCTOR);
@@ -268,9 +268,9 @@ public class GDGameLayer
 
     public void setGDObject(final GDObject gdObject) throws Exception {
 
-        final int size = this.initIndexedAnimationInterfaceArray.length;
+        final int size = this.initIndexedAnimationInterfaceArrayP.length;
         for (int index = 0; index < size; index++) {
-            this.initIndexedAnimationInterfaceArray[index].setFrame(this.frameUtil.getFrameForAngle((short) 0, 1));
+            this.initIndexedAnimationInterfaceArrayP[index].setFrame(this.frameUtil.getFrameForAngle((short) 0, 1));
         }
 
         //logUtil.put(playerGDGameLayer.getName(), this, "new");
@@ -278,14 +278,14 @@ public class GDGameLayer
         //playerGDGameLayer.setGDObject(gdObject);
 
         //gdObject.setAngle(this.gdObject.angle);
-        gdObject.angle = this.gdObject.angle;
+        gdObject.angleP = this.gdObject.angleP;
 
-        this.dimensionalBehavior.getAnimationBehavior().setAnimationArray(this.initIndexedAnimationInterfaceArray);
-        this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray);
+        this.dimensionalBehavior.getAnimationBehavior().setAnimationArray(this.initIndexedAnimationInterfaceArrayP);
+        this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArrayP);
         this.dimensionalBehavior.reset(this, gdObject);
         
         this.gdObject = gdObject;
-        this.initPositionXYZ(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
+        this.initPositionXYZ(this.gdObject.xP, this.gdObject.yP, this.gdObject.zOrder);
         this.initPosition();
         this.setDestroyed(false);
     }
@@ -306,10 +306,10 @@ public class GDGameLayer
     @Override
     public void set(final GL gl) throws Exception
     {
-        final int size = this.initIndexedAnimationInterfaceArray.length;
+        final int size = this.initIndexedAnimationInterfaceArrayP.length;
         OpenGLSurfaceChangedInterface openGLSurfaceChangedInterface;
         for(int index = 0; index < size; index++) {
-            openGLSurfaceChangedInterface = (OpenGLSurfaceChangedInterface) this.initIndexedAnimationInterfaceArray[index];
+            openGLSurfaceChangedInterface = (OpenGLSurfaceChangedInterface) this.initIndexedAnimationInterfaceArrayP[index];
             openGLSurfaceChangedInterface.set(gl);
         }
     }
@@ -324,23 +324,23 @@ public class GDGameLayer
     
     protected IndexedAnimation[] getInitIndexedAnimationInterfaceArray()
     {
-        return this.initIndexedAnimationInterfaceArray;
+        return this.initIndexedAnimationInterfaceArrayP;
     }
 
     protected void setIndexedAnimationInterfaceArray(
             final IndexedAnimation[] animationInterface)
     {
-        this.indexedAnimationInterfaceArray = animationInterface;
+        this.indexedAnimationInterfaceArrayP = animationInterface;
     }
 
     public IndexedAnimation[] getIndexedAnimationInterfaceArray()
     {
-        return this.indexedAnimationInterfaceArray;
+        return this.indexedAnimationInterfaceArrayP;
     }
 
     public IndexedAnimation getIndexedAnimationInterface()
     {
-        return this.indexedAnimationInterfaceArray[this.gdObject.animation];
+        return this.indexedAnimationInterfaceArrayP[this.gdObject.animation];
     }
     
 //    public void setCombatBaseBehavior(CombatBaseBehavior combatBaseBehavior)
@@ -350,28 +350,28 @@ public class GDGameLayer
 
     public CombatBaseBehavior getCombatBaseBehavior()
     {
-        return this.combatBaseBehavior;
+        return this.combatBaseBehaviorP;
     }
 
     @Override
     public void damage(final int damage, final int damageType)
     throws Exception
     {
-        this.combatBaseBehavior.getDamageableBaseBehavior().damage(damage, damageType);
+        this.combatBaseBehaviorP.getDamageableBaseBehavior().damage(damage, damageType);
     }
     
     @Override
     public int getDamage(final int damageType)
     throws Exception
     {
-        return this.combatBaseBehavior.getDamageableBaseBehavior().getDamage(damageType);
+        return this.combatBaseBehaviorP.getDamageableBaseBehavior().getDamage(damageType);
     }
 
     @Override
     public boolean isDestroyed() 
     throws Exception
     {
-        return this.combatBaseBehavior.getDestroyableBaseBehavior().isDestroyed();
+        return this.combatBaseBehaviorP.getDestroyableBaseBehavior().isDestroyed();
     }
 
     public void setDestroyed(final boolean destroyed)
@@ -381,7 +381,7 @@ public class GDGameLayer
         this.gameLayerList.remove(this);
         this.gameLayerDestroyedList.add(this);
         //logUtil.putF(this.toString(), this, "setDestroyed");
-        this.combatBaseBehavior.getDestroyableBaseBehavior().setDestroyed(destroyed);
+        this.combatBaseBehaviorP.getDestroyableBaseBehavior().setDestroyed(destroyed);
     }
         
 //    private final String PLAYER = "player";
@@ -464,8 +464,8 @@ public class GDGameLayer
         
         //angle *= Math.PI / 180.0;
         
-        this.gdObject.forceAngle = (short) adjustedAngle;
-        this.velocityInterface.setVelocityi((long) length * this.SCALE_FACTOR2, (short) adjustedAngle, (short) 0);
+        this.gdObject.forceAngle = (int) adjustedAngle;
+        this.velocityInterface.setVelocityi((long) length * this.SCALE_FACTOR2, (int) adjustedAngle, 0);
         //this.Force((int) (noDecimalTrigTable.cos((short) angle) * length) / SCALE, (int) (noDecimalTrigTable.sin((short) angle) * length) / SCALE, clearing);
         
         //if(this.getName().equals(PLAYER_0)) {
@@ -500,7 +500,7 @@ public class GDGameLayer
 
     public void StopForce() {
         
-        this.velocityInterface.setVelocityi(0, (short) 0, (short) 0);
+        this.velocityInterface.setVelocityi(0, 0, 0);
 
     }
     
@@ -533,7 +533,7 @@ public class GDGameLayer
     //}
     
     public void updatePosition() {
-        this.setPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
+        this.setPosition(this.gdObject.xP, this.gdObject.yP, this.gdObject.zOrder);
     }
 
     public void updateSize() {
@@ -565,14 +565,14 @@ public class GDGameLayer
             opacity = 0;
         }
         
-        final int size = this.initIndexedAnimationInterfaceArray.length;
+        final int size = this.initIndexedAnimationInterfaceArrayP.length;
         for(int index = 0; index < size; index++) {
             //logUtil.put(this.getName(), this, "updateGDObject2");
-            this.initIndexedAnimationInterfaceArray[index].setAlpha(opacity);
-            this.scalableProcessor.process(this, this.initIndexedAnimationInterfaceArray[index]);
+            this.initIndexedAnimationInterfaceArrayP[index].setAlpha(opacity);
+            this.scalableProcessor.process(this, this.initIndexedAnimationInterfaceArrayP[index]);
             if(this.gdObject.basicColor != null) {
                 //logUtil.put("setBasicColor: " + this.gdObject.basicColor, this, "updateGDObject");
-                this.initIndexedAnimationInterfaceArray[index].changeBasicColor(this.gdObject.basicColor);
+                this.initIndexedAnimationInterfaceArrayP[index].changeBasicColor(this.gdObject.basicColor);
             }
         }
 
@@ -582,14 +582,14 @@ public class GDGameLayer
     }
 
     public void resetAnimation() {
-        this.resetAnimationBehavior.resetAnimation(this.indexedAnimationInterfaceArray, this.gdObject.animation);
+        this.resetAnimationBehavior.resetAnimation(this.indexedAnimationInterfaceArrayP, this.gdObject.animation);
     }
     
     public void animate(final long timeDelta) throws Exception {
         
         this.velocityBehavior.reduce(this.velocityInterface, 30, 100);
 
-        this.dimensionalBehavior.getAnimationBehavior().animate(this.gdObject, this.initIndexedAnimationInterfaceArray, timeDelta);
+        this.dimensionalBehavior.getAnimationBehavior().animate(this.gdObject, this.initIndexedAnimationInterfaceArrayP, timeDelta);
         this.primitiveDrawing.nextFrame();
     }
 
@@ -609,9 +609,9 @@ public class GDGameLayer
         
         if(this.scalableProcessor == ScalableBaseProcessor.getInstance()) {
             //logUtil.put("set maxscaleallowed 5", this, commonStrings.PROCESS);
-            final int size = this.initIndexedAnimationInterfaceArray.length;
+            final int size = this.initIndexedAnimationInterfaceArrayP.length;
             for (int index = 0; index < size; index++) {
-                this.initIndexedAnimationInterfaceArray[index].setMaxScale(5, 5);
+                this.initIndexedAnimationInterfaceArrayP[index].setMaxScale(5.0f, 5.0f);
             }
         }
         this.scalableProcessor = ScalableProcessor.getInstance();
@@ -655,7 +655,7 @@ public class GDGameLayer
 //            }
 
             //for (int index = 0; index < SIZE; index++) {
-            this.indexedAnimationInterfaceArray[this.gdObject.animation].paintXY(graphics, x, y);
+            this.indexedAnimationInterfaceArrayP[this.gdObject.animation].paintXY(graphics, x, y);
             //}
 
             this.primitiveDrawing.paintXY(graphics, x, y);
@@ -683,7 +683,7 @@ public class GDGameLayer
             final int y = viewPosition.getY();
             final int z = viewPosition.getZ();
 
-            this.indexedAnimationInterfaceArray[this.gdObject.animation].paintThreedXYZ(graphics, x, y, z);
+            this.indexedAnimationInterfaceArrayP[this.gdObject.animation].paintThreedXYZ(graphics, x, y, z);
             
             this.primitiveDrawing.paintThreedXYZ(graphics, x, y, z);
 
@@ -859,12 +859,12 @@ public class GDGameLayer
 //    public int r;
 
     public void setBasicColor(final BasicColor basicColor) {
-        this.initIndexedAnimationInterfaceArray[0].setBasicColorP(basicColor);
+        this.initIndexedAnimationInterfaceArrayP[0].setBasicColorP(basicColor);
     }
 
     public void setBackgroundBasicColor(final BasicColor basicColor)
     {
-        this.initIndexedAnimationInterfaceArray[0].setBackgroundBasicColorP(basicColor);
+        this.initIndexedAnimationInterfaceArrayP[0].setBackgroundBasicColorP(basicColor);
     }
     
     public void setText(final int value) {
@@ -873,7 +873,7 @@ public class GDGameLayer
     
     public void setText(final String text) {
         
-        final TextInterface textInterface = ((TextInterface) this.initIndexedAnimationInterfaceArray[0]);
+        final TextInterface textInterface = ((TextInterface) this.initIndexedAnimationInterfaceArrayP[0]);
         
         if(text == null) {
             textInterface.setTextWithOnMeasure(this.stringUtil.EMPTY_STRING, this.textChangeListener);
@@ -888,7 +888,7 @@ public class GDGameLayer
     }
 
     public String Text() {
-        return ((TextInterface) this.initIndexedAnimationInterfaceArray[0]).getText();
+        return ((TextInterface) this.initIndexedAnimationInterfaceArrayP[0]).getText();
     }
 
     public GDTwodBehavior getDimensionalBehavior() {

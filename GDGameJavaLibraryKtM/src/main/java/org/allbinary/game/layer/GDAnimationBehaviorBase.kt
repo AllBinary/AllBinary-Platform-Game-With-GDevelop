@@ -45,8 +45,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GDAnimationBehaviorBase{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDAnimationBehaviorBase.instance
 }
@@ -94,8 +92,6 @@ this.logUtil!!.put(gdObject!!.toString(), this, commonStrings!!.CONSTRUCTOR, e)
 }
 
 }
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.

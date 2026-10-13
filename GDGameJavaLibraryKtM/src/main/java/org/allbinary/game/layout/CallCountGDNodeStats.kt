@@ -118,7 +118,7 @@ stringBuilder!!.append(this.TOTAL_CALLS)
 stringBuilder!!.append(commonSeps!!.COLON)
 stringBuilder!!.appendint(index2)
 stringBuilder!!.append(commonSeps!!.COLON)
-stringBuilder!!.appendlong(this.totalCalls[index]!![index2]!!)
+stringBuilder!!.appendlong(this.totalCalls[index]!![index2]!!.toLong())
 
                                     }
                                 

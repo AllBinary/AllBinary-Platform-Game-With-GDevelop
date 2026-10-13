@@ -29,7 +29,6 @@ import org.allbinary.util.BasicArrayListD;
 public class GDFlagLayerInterfaceFactory
     implements LayerInterfaceFactoryInterface
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
 
     private static final GDFlagLayerInterfaceFactory instance =
         new GDFlagLayerInterfaceFactory();
@@ -38,6 +37,8 @@ public class GDFlagLayerInterfaceFactory
     {
         return GDFlagLayerInterfaceFactory.instance;
     }
+ 
+    protected final LogUtil logUtil = LogUtil.getInstance();
     
     private int index = 0;
 

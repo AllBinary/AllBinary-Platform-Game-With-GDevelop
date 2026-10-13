@@ -71,7 +71,7 @@ this.init()
     open fun reset()
         //nullable = true from not(false or (false and true)) = true
 {
-this.currentRunnable= NullRunnable.getInstance()
+this.currentRunnable= NullRunnable.getInstance()!!
 }
 
 
@@ -80,8 +80,6 @@ this.currentRunnable= NullRunnable.getInstance()
     open fun process()
         //nullable = true from not(false or (false and true)) = true
 : Boolean{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
@@ -95,8 +93,6 @@ this.currentRunnable= NullRunnable.getInstance()
     //var intArray = intArray
     //var longArray = longArray
     //var floatArray = floatArray
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
@@ -124,8 +120,6 @@ this.nodeStatsFactory!!.push(3, this.name)
 : Boolean{
 this.processReleasedStats()
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 }
@@ -145,8 +139,6 @@ this.nodeStatsFactory!!.push(4, this.name)
 : Boolean{
     //var gameKeyEvent = gameKeyEvent
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 }
@@ -158,8 +150,6 @@ this.nodeStatsFactory!!.push(4, this.name)
         //nullable = true from not(false or (false and false)) = true
 : Boolean{
     //var gameKeyEvent = gameKeyEvent
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
@@ -173,8 +163,6 @@ this.nodeStatsFactory!!.push(4, this.name)
 : Boolean{
     //var keyAsInteger = keyAsInteger
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 }
@@ -186,8 +174,6 @@ this.nodeStatsFactory!!.push(4, this.name)
         //nullable = true from not(false or (false and false)) = true
 : Boolean{
     //var keyAsInteger = keyAsInteger
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
@@ -202,8 +188,6 @@ this.nodeStatsFactory!!.push(4, this.name)
     //var motionGestureEvent = motionGestureEvent
     //var lastMotionGestureInput = lastMotionGestureInput
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 }
@@ -216,8 +200,6 @@ this.nodeStatsFactory!!.push(4, this.name)
 : Boolean{
     //var motionGestureEvent = motionGestureEvent
     //var lastMotionGestureInput = lastMotionGestureInput
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
@@ -238,8 +220,6 @@ this.nodeStatsFactory!!.push(5, this.name)
         //nullable = true from not(false or (false and false)) = true
 : Boolean{
     //var index = index
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
@@ -294,8 +274,6 @@ this.nodeStatsFactory!!.push(7, this.name)
                         
                                     throw RuntimeException()
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 }
@@ -312,8 +290,6 @@ this.nodeStatsFactory!!.push(7, this.name)
                         if(true)
                         
                                     throw RuntimeException()
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
@@ -334,8 +310,6 @@ this.nodeStatsFactory!!.push(7, this.name)
                         
                                     throw RuntimeException()
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 }
@@ -352,8 +326,6 @@ this.nodeStatsFactory!!.push(7, this.name)
                         if(true)
                         
                                     throw RuntimeException()
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
@@ -384,8 +356,6 @@ this.nodeStatsFactory!!.push(11, this.name)
     //var gameLayerArray = gameLayerArray
 this.processGDStats(gameLayerArray)
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 }
@@ -403,8 +373,6 @@ this.nodeStatsFactory!!.push(14, this.name)
         //nullable = true from not(false or (false and true)) = true
 : Any{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return NullUtil.getInstance()!!.NULL_OBJECT
 }
@@ -414,10 +382,8 @@ this.nodeStatsFactory!!.push(14, this.name)
         //nullable = true from not(false or (false and true)) = true
 : Long{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.name
+                        return this.name.toLong()
 }
 
 

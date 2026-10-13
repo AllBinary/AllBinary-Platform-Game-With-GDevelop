@@ -143,8 +143,6 @@ this.associatedAdvancedRTSGameLayer!!.getWaypoint2LogHelper()!!.initRange(this.a
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
@@ -152,8 +150,6 @@ this.associatedAdvancedRTSGameLayer!!.getWaypoint2LogHelper()!!.initRange(this.a
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 
@@ -174,8 +170,6 @@ this.associatedAdvancedRTSGameLayer!!.getWaypoint2LogHelper()!!.initRange(this.a
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -233,8 +227,6 @@ this.associatedAdvancedRTSGameLayer!!.getWaypoint2LogHelper()!!.initRange(this.a
                         else {
                             this.updatePathOnTargetMove(GDWaypointBehavior2.RETURNING_AS_WAYPOINT_PATH_LIST)
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -255,8 +247,6 @@ this.processTargetList()
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -273,8 +263,6 @@ this.processTargetList()
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -291,8 +279,6 @@ this.processTargetList()
                                 
                         else {
                             
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -416,8 +402,7 @@ this.associatedAdvancedRTSGameLayer!!.teleportTo(geographicMapCellPosition)
                         
                                     {
                                     
-    var geographicMapCellPosition: GeographicMapCellPosition = 
-                                    (currentTargetLayerInterface as PathFindingLayerInterface).getCurrentGeographicMapCellPosition()!!
+    var geographicMapCellPosition: GeographicMapCellPosition = (currentTargetLayerInterface as PathFindingLayerInterface).getCurrentGeographicMapCellPosition()!!
 
 
     
@@ -425,8 +410,6 @@ this.associatedAdvancedRTSGameLayer!!.teleportTo(geographicMapCellPosition)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -483,7 +466,7 @@ this.setTargetWithDistance(layerInterface, anotherTargetDistance)
     //var anotherTargetDistance = anotherTargetDistance
 this.associatedAdvancedRTSGameLayer!!.getWaypoint2LogHelper()!!.setTarget(this.associatedAdvancedRTSGameLayer, this, layerInterface, anotherTargetDistance)
 this.associatedAdvancedRTSGameLayer!!.getCaptionAnimationHelper()!!.update(GDWaypointBehavior2.TARGET, BasicColorFactory.getInstance()!!.GREEN)
-this.associatedAdvancedRTSGameLayer!!.setLoad(0.toShort())
+this.associatedAdvancedRTSGameLayer!!.setLoad(0)
 this.setCurrentTargetDistance(anotherTargetDistance)
 this.setCurrentTargetLayerInterface(layerInterface as CollidableDestroyableDamageableLayer)
 this.setTrackingWaypoint(false)
@@ -502,8 +485,6 @@ this.targetList!!.clear()
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -561,8 +542,6 @@ this.setWaypointPathsList(list)
                                     this.associatedAdvancedRTSGameLayer!!.getWaypoint2LogHelper()!!.setTargetPath(this.associatedAdvancedRTSGameLayer)
 this.associatedAdvancedRTSGameLayer!!.getCaptionAnimationHelper()!!.update(GDWaypointBehavior2.KILL, BasicColorFactory.getInstance()!!.ORANGE)
 this.clearTarget()
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
@@ -635,8 +614,6 @@ this.removeWaypoint(targetLayer, GDWaypointBehavior2.WAYPOINT_DESTROYED)
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -691,8 +668,6 @@ this.setWaypointPathsList(list)
                                     this.waitingOnWaypointPath= true
 this.associatedAdvancedRTSGameLayer!!.getCaptionAnimationHelper()!!.update(GDWaypointBehavior2.THINKING, BasicColorFactory.getInstance()!!.GREEN)
 this.runWaypointPathTask(targetLayer)
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
@@ -839,8 +814,6 @@ this.associatedAdvancedRTSGameLayer!!.trackTo(GDWaypointBehavior2.NEXT_PATH_NODE
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.currentGeographicMapCellHistory!!.visit(geographicMapCellPosition)
 
@@ -849,8 +822,6 @@ this.associatedAdvancedRTSGameLayer!!.trackTo(GDWaypointBehavior2.NEXT_PATH_NODE
 
                                     }
                                 
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
@@ -896,7 +867,7 @@ this.associatedAdvancedRTSGameLayer!!.trackTo(GDWaypointBehavior2.NEXT_PATH_NODE
                                     this.waitingOnTargetPath= true
 this.associatedAdvancedRTSGameLayer!!.getCaptionAnimationHelper()!!.update(GDWaypointBehavior2.THINKING_ABOUT_TARGET, BasicColorFactory.getInstance()!!.GREEN)
 this.runWaypointPathTask(this.currentTargetLayerInterface as PathFindingLayerInterface)
-this.targetWithoutCachedPathLayerInterface= CollidableDestroyableDamageableLayer.getNullInstance()
+this.targetWithoutCachedPathLayerInterface= CollidableDestroyableDamageableLayer.getNullInstance()!!
 
                                     }
                                 
@@ -922,8 +893,6 @@ this.getPossibleTargetList()!!.clear()
                                     this.associatedAdvancedRTSGameLayer!!.getWaypoint2LogHelper()!!.targetDestroyed(this.associatedAdvancedRTSGameLayer)
 this.associatedAdvancedRTSGameLayer!!.getCaptionAnimationHelper()!!.update(GDWaypointBehavior2.KILL, BasicColorFactory.getInstance()!!.ORANGE)
 this.clearTarget()
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
@@ -999,7 +968,7 @@ this.associatedAdvancedRTSGameLayer!!.allStop()
 this.setLastPathGeographicMapCellPosition(this.getCurrentPathGeographicMapCellPosition())
 this.setCurrentPathGeographicMapCellPosition(this.associatedAdvancedRTSGameLayer!!.getCurrentGeographicMapCellPosition())
 this.setNextUnvisitedPathGeographicMapCellPosition(this.currentGeographicMapCellHistory!!.getFirstUnvisited())
-this.afterNextUnvisitedPathGeographicMapCellPosition= this.currentGeographicMapCellHistory!!.getAfterIfNotLast(this.nextUnvisitedPathGeographicMapCellPosition)
+this.afterNextUnvisitedPathGeographicMapCellPosition= this.currentGeographicMapCellHistory!!.getAfterIfNotLast(this.nextUnvisitedPathGeographicMapCellPosition)!!
 
     
                         if(this.getCurrentPathGeographicMapCellPosition() != this.nextUnvisitedPathGeographicMapCellPosition)
@@ -1024,7 +993,7 @@ this.afterNextUnvisitedPathGeographicMapCellPosition= this.currentGeographicMapC
                         
                                     {
                                     this.setCurrentTargetLayerInterface(waypointLayer as CollidableDestroyableDamageableLayer)
-this.setCurrentTargetDistance(.MAX_VALUE())
+this.setCurrentTargetDistance(Integer.MAX_VALUE)
 this.setRandomGeographicMapCellHistory(this.waypointPathsList)
 
                                     }
@@ -1096,7 +1065,7 @@ this.clearTarget()
 this.associatedAdvancedRTSGameLayer!!.getWaypoint2LogHelper()!!.clearTarget(this.associatedAdvancedRTSGameLayer)
 this.setCurrentTargetLayerInterface(CollidableDestroyableDamageableLayer.getNullInstance())
 this.setTrackingWaypoint(false)
-this.setCurrentTargetDistance(.MAX_VALUE())
+this.setCurrentTargetDistance(Integer.MAX_VALUE)
 TrackingEventHandler.getInstance()!!.fireEvent(this.associatedAdvancedRTSGameLayer!!.getTrackingEvent())
 }
 
@@ -1113,8 +1082,6 @@ TrackingEventHandler.getInstance()!!.fireEvent(this.associatedAdvancedRTSGameLay
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return true
 
@@ -1136,16 +1103,12 @@ TrackingEventHandler.getInstance()!!.fireEvent(this.associatedAdvancedRTSGameLay
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 
                                     }
                                 
 }
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -1159,8 +1122,6 @@ TrackingEventHandler.getInstance()!!.fireEvent(this.associatedAdvancedRTSGameLay
     //var layerInterface = layerInterface
     //var targetDistance = targetDistance
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return targetDistance < this.closeRange +layerInterface!!.getHalfHeight()
 }
@@ -1171,8 +1132,6 @@ TrackingEventHandler.getInstance()!!.fireEvent(this.associatedAdvancedRTSGameLay
 : Boolean{
     //var layerInterface = layerInterface
     //var targetDistance = targetDistance
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return targetDistance < this.sensorRange +layerInterface!!.getHalfHeight()
@@ -1197,12 +1156,10 @@ stringBuffer!!.append(" with")
 stringBuffer!!.append(CommonSeps.getInstance()!!.SPACE)
 stringBuffer!!.append(GDWaypointBehavior2.TARGET_DISTANCE)
 stringBuffer!!.append(CommonSeps.getInstance()!!.SPACE)
-stringBuffer!!.appendint(this.getCurrentTargetDistance())
+stringBuffer!!.appendint(this.getCurrentTargetDistance().toInt())
 
                                     }
                                 
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return stringBuffer!!.toString()
@@ -1277,23 +1234,17 @@ var anyType = anyType
                                     this.getList()!!.clear()
 this.positionList!!.clear()
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return NullUtil.getInstance()!!.NULL_OBJECT
 
                                     }
                                 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 
                                     }
                                 
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return NullUtil.getInstance()!!.NULL_OBJECT
@@ -1303,8 +1254,6 @@ this.positionList!!.clear()
     var commonStrings: CommonStrings = CommonStrings.getInstance()!!
 
 logUtil!!.put(commonStrings!!.EXCEPTION, this, "visit", e)
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return NullUtil.getInstance()!!.NULL_OBJECT
@@ -1316,8 +1265,6 @@ logUtil!!.put(commonStrings!!.EXCEPTION, this, "visit", e)
     open fun getPositionList()
         //nullable = true from not(false or (false and true)) = true
 : BasicArrayList{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.positionList
@@ -1366,8 +1313,6 @@ this.buildingSteeringVisitor!!.getPositionList()!!.add(cellPosition)
     //var allbinaryLayer = allbinaryLayer
     //var cellPosition = cellPosition
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.associatedAdvancedRTSGameLayer!!.buildingChase(allbinaryLayer, cellPosition)
 }
@@ -1376,8 +1321,6 @@ this.buildingSteeringVisitor!!.getPositionList()!!.add(cellPosition)
     override fun getNextUnvisitedPathGeographicMapCellPosition()
         //nullable = true from not(false or (false and true)) = true
 : GeographicMapCellPosition{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.nextUnvisitedPathGeographicMapCellPosition

@@ -309,8 +309,8 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="hasGameLayer2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:if test="contains(text(), '.')" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
-                                <xsl:variable name="existingValueX" ><xsl:value-of select="$name" />.x</xsl:variable>
-                                <xsl:variable name="existingValueY" ><xsl:value-of select="$name" />.y</xsl:variable>
+                                <xsl:variable name="existingValueX" ><xsl:value-of select="$name" />.xP</xsl:variable>
+                                <xsl:variable name="existingValueY" ><xsl:value-of select="$name" />.yP</xsl:variable>
 
                         <xsl:variable name="hasObjectVariable" ><xsl:for-each select="parameters" ><xsl:if test="contains(text(), '.Variable(')" >found</xsl:if></xsl:for-each></xsl:variable>
 
@@ -374,8 +374,8 @@ Created By: Travis Berthelot
         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
         <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
-        <xsl:variable name="existingValueX" ><xsl:value-of select="$name" />.x</xsl:variable>
-        <xsl:variable name="existingValueY" ><xsl:value-of select="$name" />.y</xsl:variable>
+        <xsl:variable name="existingValueX" ><xsl:value-of select="$name" />.xP</xsl:variable>
+        <xsl:variable name="existingValueY" ><xsl:value-of select="$name" />.yP</xsl:variable>
         <xsl:variable name="hasObjectVariable" ><xsl:for-each select="parameters" ><xsl:if test="contains(text(), '.Variable(')" >found</xsl:if></xsl:for-each></xsl:variable>
 
                             <xsl:variable name="parentObjectHasObjectGroup" >

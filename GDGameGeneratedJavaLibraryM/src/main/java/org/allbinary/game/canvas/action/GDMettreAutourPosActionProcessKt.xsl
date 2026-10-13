@@ -138,7 +138,7 @@ Created By: Travis Berthelot
 
                                 //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:value-of select="$name" />.toString(), this, this.commonStrings.PROCESS)
 
-                                <xsl:variable name="existingValue" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.x</xsl:if></xsl:for-each></xsl:variable>
+                                <xsl:variable name="existingValue" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.xP</xsl:if></xsl:for-each></xsl:variable>
 
                                 <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setX(</xsl:if>
@@ -154,7 +154,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="position() = 5" > * sin(<xsl:value-of select="text()" />))</xsl:if>
                                 </xsl:for-each>)
 
-                                //<xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.x</xsl:if></xsl:for-each>
+                                //<xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.xP</xsl:if></xsl:for-each>
 
                             } catch(e: Exception) {
                                 this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e)

@@ -109,8 +109,6 @@ this.setAnimations(tileList)
         //nullable = true from not(false or (false and true)) = true
 : TiledMap{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.map
 }
@@ -159,8 +157,8 @@ tileCount= tileSet!!.getTilecount()
                         for (index2 in 0 until tileCount)
 
         {
-tile= tileSet!!.getTile(index2)
-animation= tile.getAnimation()
+tile= tileSet!!.getTile(index2)!!
+animation= tile.getAnimation()!!
 
     
                         if(animation != Animation.NULL_ANIMATION)
@@ -196,8 +194,6 @@ animation= tile.getAnimation()
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -234,11 +230,10 @@ animation= tile.getAnimation()
 tile= tileList!!.get(index) as Tile
 animationTileIndex= tiledLayer!!.createAnimatedTile(tile.getId())
 this.logUtil!!.putF(CREATING_ANIMATION_TILE +animationTileIndex, this, this.commonStrings!!.PROCESS)
-this.animationArray[index]= animation= tile.getAnimation()
+animation= tile.getAnimation()!!
+this.animationArray[index]= animation
 this.animationTileIndexArray[index]= animationTileIndex
-allBinaryJ2METiledLayer!!.updateCells(
-                                    (getLayer as TileLayer).getMapArray(), 
-                                    (get as Frame).getTileid(), animationTileIndex)
+allBinaryJ2METiledLayer!!.updateCells((this.map.getLayer(0) as TileLayer).getMapArray(), (animation.getFrame()!!.get(0) as Frame).getTileid(), animationTileIndex)
 }
 
 }
@@ -259,8 +254,6 @@ allBinaryJ2METiledLayer!!.updateCells(
                         
                                     {
                                     
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return 
 
@@ -283,8 +276,7 @@ allBinaryJ2METiledLayer!!.updateCells(
     var frame: Frame
 
 
-    var tiledLayer: TiledLayer = 
-                                    (getAllBinaryTiledLayer as AllBinaryJ2METiledLayer).getTiledLayer()!!
+    var tiledLayer: TiledLayer = (this.getAllBinaryTiledLayer() as AllBinaryJ2METiledLayer).getTiledLayer()!!
 
 
 
@@ -351,8 +343,6 @@ allBinaryTiledLayer!!.setPosition(0,  -y, allBinaryTiledLayer!!.getZP())
     var allBinaryTiledLayer: AllBinaryTiledLayer = this.getAllBinaryTiledLayer()!!
 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return super.getCellPositionAtXY(x +allBinaryTiledLayer!!.getXP(), y +allBinaryTiledLayer!!.getYP())
 }
@@ -365,8 +355,6 @@ allBinaryTiledLayer!!.setPosition(0,  -y, allBinaryTiledLayer!!.getZP())
     //var y = y
 
     var allBinaryTiledLayer: AllBinaryTiledLayer = this.getAllBinaryTiledLayer()!!
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.

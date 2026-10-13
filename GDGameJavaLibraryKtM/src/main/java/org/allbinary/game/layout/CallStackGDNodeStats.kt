@@ -119,7 +119,7 @@ stringBuilder!!.delete(0, stringBuilder!!.length())
 stringBuilder!!.append(commonSeps!!.COLON)
 stringBuilder!!.appendint(index)
 stringBuilder!!.append(commonSeps!!.COLON)
-stringBuilder!!.appendint(this.callStack[index]!![index2]!!)
+stringBuilder!!.appendint(this.callStack[index]!![index2]!!.toInt())
 stringBuilder!!.append(commonSeps!!.SEMICOLON)
 
     

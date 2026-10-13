@@ -218,8 +218,8 @@ Created By: Travis Berthelot
                         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /></xsl:variable>
 
                             final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="name" />GDobject = (<xsl:value-of select="$gdObjectFactory" />) ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject;
-                            final int <xsl:value-of select="name" />X = x + <xsl:value-of select="name" />GDobject.x;
-                            final int <xsl:value-of select="name" />Y = y + <xsl:value-of select="name" />GDobject.y;
+                            final int <xsl:value-of select="name" />X = x + <xsl:value-of select="name" />GDobject.xP;
+                            final int <xsl:value-of select="name" />Y = y + <xsl:value-of select="name" />GDobject.yP;
 
                             //TextObject::Text - //Rectangle 1
                             final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(

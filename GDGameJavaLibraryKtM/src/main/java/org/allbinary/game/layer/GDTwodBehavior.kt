@@ -62,7 +62,7 @@ this.animationBehavior= animationBehavior
 {
     //var gameLayer = gameLayer
     //var gdObject = gdObject
-this.rotationRemainder= 0
+this.rotationRemainder= 0f
 this.animationBehavior!!.set(gameLayer, gdObject)
 }
 
@@ -80,11 +80,11 @@ this.animationBehavior!!.set(gameLayer, gdObject)
 
 this.rotationRemainder= this.rotationRemainder +newPortion
 
-    var angleAdjustment: Short = ().toShort()
+    var angleAdjustment: Short = (this.rotationRemainder).toInt().toShort()
 
 
     
-                        if(angleAdjustment != 0)
+                        if(angleAdjustment.toInt() != 0)
                         
                                     {
                                     
@@ -119,8 +119,6 @@ this.rotationRemainder -= angleAdjustment
     open fun getAnimationBehavior()
         //nullable = true from not(false or (false and true)) = true
 : GDAnimationBehaviorBase{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.animationBehavior

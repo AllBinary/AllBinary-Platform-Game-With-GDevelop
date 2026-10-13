@@ -67,9 +67,9 @@ Created By: Travis Berthelot
                         val <xsl:value-of select="$name" />: <xsl:value-of select="$gdObjectFactory" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject as <xsl:value-of select="$gdObjectFactory" />
                         <xsl:text>&#10;</xsl:text>
 
-<xsl:text>                        </xsl:text>val dx: Int = <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.x - </xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" ></xsl:if></xsl:for-each>
+<xsl:text>                        </xsl:text>val dx: Int = <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.xP - </xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" ></xsl:if></xsl:for-each>
                         <xsl:text>&#10;</xsl:text>
-<xsl:text>                        </xsl:text>val dy: Int = <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.y - </xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" ></xsl:if></xsl:for-each>
+<xsl:text>                        </xsl:text>val dy: Int = <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.yP - </xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" ></xsl:if></xsl:for-each>
 
                             val angleOfTarget: Int = noDecimalTrigTable.antiTan(dx, dy)
                             var angle: Short = (270 - angleOfTarget - <xsl:value-of select="$name" />.angle) as short

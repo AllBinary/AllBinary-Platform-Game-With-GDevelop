@@ -46,8 +46,6 @@ companion object {
         //nullable =  from not(true or (false and true)) = 
 : GDFlagLayerInterfaceFactory{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return GDFlagLayerInterfaceFactory.instance
 }
@@ -110,8 +108,6 @@ gdObject!!.set(StringUtil.getInstance()!!.EMPTY_STRING, x, y, z)
     var layer: GDGameLayer = gameLayerFactory!!.create( -1, GDFlagLayerInterfaceFactory.NAME, gdObject, 0.0f, 0.0f, GDConditionWithGroupActions())!!
 
 layer.setAllBinaryGameLayerManager(hashtable.get(AllBinaryGameLayerManager.ID) as AllBinaryGameLayerManager)
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return layer

@@ -96,7 +96,7 @@ open public class GDObject
 
     var timeScale: Float = 1.0f
 
-    var opacity: Float = 255
+    var opacity: Float = 255f
 
     var basicColor: BasicColor = BasicColorFactory.getInstance()!!.BLACK
 
@@ -136,12 +136,12 @@ this.updateSize(width, height)
                         if(features.isFeature(openGLFeatureFactory!!.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory!!.OPENGL_3D))
                         
                                     {
-                                    this.offsetBehavior= BaseOffsetBehavior.getInstance()
+                                    this.offsetBehavior= BaseOffsetBehavior.getInstance()!!
 
                                     }
                                 
                         else {
-                            this.offsetBehavior= OffsetBehavior.getInstance()
+                            this.offsetBehavior= OffsetBehavior.getInstance()!!
 
                         }
                             
@@ -188,8 +188,6 @@ this.halfHeight= height /2
         //nullable = true from not(false or (false and true)) = true
 : Int{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.forceAngle
 }
@@ -199,8 +197,6 @@ this.halfHeight= height /2
         //nullable = true from not(false or (false and false)) = true
 : String{
     //var index = index
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return StringUtil.getInstance()!!.EMPTY_STRING
@@ -223,8 +219,6 @@ this.halfHeight= height /2
 : Boolean{
     //var animationName = animationName
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return false
 }
@@ -235,8 +229,6 @@ this.halfHeight= height /2
 : Int{
     //var graphics = graphics
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.width
 }
@@ -246,8 +238,6 @@ this.halfHeight= height /2
         //nullable = true from not(false or (false and false)) = true
 : Int{
     //var graphics = graphics
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.height
@@ -290,8 +280,6 @@ this.y= y
         //nullable = true from not(false or (false and true)) = true
 : Int{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.x
 }
@@ -300,8 +288,6 @@ this.y= y
     open fun Y()
         //nullable = true from not(false or (false and true)) = true
 : Int{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.y
@@ -312,8 +298,6 @@ this.y= y
         //nullable = true from not(false or (false and true)) = true
 : Int{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.x +this.width
 }
@@ -323,8 +307,6 @@ this.y= y
         //nullable = true from not(false or (false and true)) = true
 : Int{
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.y +this.height
 }
@@ -332,14 +314,10 @@ this.y= y
 
     private val offsetX: Float = if(AndroidUtil.isAndroid()) {
                             
-                            
-                                        //Otherwise - thenExpr - DoubleLiteralExpr
-
+                            1.00f
                         
                             } else {
-                            
-                                        //Otherwise - expression - elseExpr - DoubleLiteralExpr
-
+                            0.75f
                             }
     
 
@@ -350,7 +328,7 @@ this.y= y
 : Int{
     //var point = point
 
-    var adjustedAngle: Int = this.angle
+    var adjustedAngle: Int = this.angle.toInt()
 
 
         while(adjustedAngle > 359)
@@ -365,9 +343,7 @@ adjustedAngle += 360
 }
 
 
-    var x: Int = (this.noDecimalTrigTable!!.cos(adjustedAngle.toShort()) *(point.getX() -this.halfWidth -(this.halfWidth /2))).toInt() /this.noDecimalTrigTable!!.SCALE
-
-
+    var x: Int = (this.noDecimalTrigTable!!.cos(adjustedAngle) *(point.getX() -this.halfWidth -(this.halfWidth /2))).toInt() /this.noDecimalTrigTable!!.SCALE
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -380,7 +356,7 @@ adjustedAngle += 360
 : Int{
     //var point = point
 
-    var adjustedAngle: Int = this.angle
+    var adjustedAngle: Int = this.angle.toInt()
 
 
         while(adjustedAngle > 359)
@@ -400,9 +376,7 @@ adjustedAngle += 360
                         
                                     {
                                     
-    var y: Int = (this.noDecimalTrigTable!!.sin(adjustedAngle.toShort()) *(point.getY() -(this.halfHeight /2))).toInt() /this.noDecimalTrigTable!!.SCALE
-
-
+    var y: Int = (this.noDecimalTrigTable!!.sin(adjustedAngle) *(point.getY() -(this.halfHeight /2))).toInt() /this.noDecimalTrigTable!!.SCALE
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -412,9 +386,7 @@ adjustedAngle += 360
                                 
                         else {
                             
-    var y: Int = (this.noDecimalTrigTable!!.sin(adjustedAngle.toShort()) * -(point.getY() -(this.halfHeight /2))).toInt() /this.noDecimalTrigTable!!.SCALE
-
-
+    var y: Int = (this.noDecimalTrigTable!!.sin(adjustedAngle) * -(point.getY() -(this.halfHeight /2))).toInt() /this.noDecimalTrigTable!!.SCALE
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -445,13 +417,13 @@ this.updateSinceSetAngle= false
 
         while(adjustedAngle > 359)
         {
-adjustedAngle -= 360
+adjustedAngle = (adjustedAngle - 360).toShort()
 }
 
 
         while(adjustedAngle < 0)
         {
-adjustedAngle += 360
+adjustedAngle = (adjustedAngle + 360).toShort()
 }
 
 this.angle= adjustedAngle
@@ -464,8 +436,6 @@ gameLayer!!.setRotation(adjustedAngle)
 : Short{
     //var gameLayer = gameLayer
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.angle
 }
@@ -474,8 +444,6 @@ gameLayer!!.setRotation(adjustedAngle)
     open fun Angle()
         //nullable = true from not(false or (false and true)) = true
 : Short{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.angle
@@ -487,8 +455,6 @@ gameLayer!!.setRotation(adjustedAngle)
 : Int{
     //var value = value
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return value
 }
@@ -498,8 +464,6 @@ gameLayer!!.setRotation(adjustedAngle)
         //nullable = true from not(false or (false and false)) = true
 : Float{
     //var value = value
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return value
@@ -511,8 +475,6 @@ gameLayer!!.setRotation(adjustedAngle)
 : Int{
     //var array = array
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return array.size
 }
@@ -523,8 +485,6 @@ gameLayer!!.setRotation(adjustedAngle)
 : Int{
     //var array = array
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return array.size
 }
@@ -533,8 +493,6 @@ gameLayer!!.setRotation(adjustedAngle)
     open fun ObjectName()
         //nullable = true from not(false or (false and true)) = true
 : String{
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.name
@@ -551,8 +509,6 @@ gameLayer!!.setRotation(adjustedAngle)
         //nullable = true from not(false or (false and false)) = true
 : GDBehavior{
     //var index = index
-
-
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.behaviorArray[index]!! as GDBehavior
@@ -576,8 +532,6 @@ gameLayer!!.setRotation(adjustedAngle)
 
 
     var stringBuilder: StringMaker = StringMaker()
-
-
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -607,10 +561,8 @@ gameLayer!!.setRotation(adjustedAngle)
     var stringBuilder: StringMaker = StringMaker()
 
 
-
-
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return stringBuilder!!.append(gdObjectStrings!!.GDOBJECT)!!.append(CommonSeps.getInstance()!!.COLON)!!.append(this.name)!!.appendint(this.hashCode())!!.append(commonSeps!!.SPACE)!!.append(positionStrings!!.X_LABEL)!!.appendint(this.x)!!.append(positionStrings!!.Y_LABEL)!!.appendint(this.y)!!.append(commonSeps!!.SPACE)!!.append(positionStrings!!.Z_LABEL)!!.appendint(this.zOrder)!!.append(commonSeps!!.SPACE)!!.append(commonLabels!!.WIDTH_LABEL)!!.appendint(this.width)!!.append(commonSeps!!.SPACE)!!.append(commonLabels!!.HEIGHT_LABEL)!!.appendint(this.height)!!.append(commonSeps!!.SPACE)!!.append(commonLabels!!.WIDTH_LABEL)!!.appendint(this.halfWidth)!!.append(commonSeps!!.SPACE)!!.append(commonLabels!!.HEIGHT_LABEL)!!.appendint(this.halfHeight)!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.ANIMATION)!!.appendint(this.animation)!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.ANGLE)!!.append(commonSeps!!.COLON)!!.appendint(this.angle)!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.MOVEMENT_ANGLE)!!.append(commonSeps!!.COLON)!!.appendint(this.movement_angle)!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.ROTATION)!!.append(commonSeps!!.COLON)!!.appendfloat(this.rotationP)!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.OPACITY)!!.append(commonSeps!!.COLON)!!.appendfloat(this.opacity)!!.toString()
+                        return stringBuilder!!.append(gdObjectStrings!!.GDOBJECT)!!.append(CommonSeps.getInstance()!!.COLON)!!.append(this.name)!!.appendint(this.hashCode())!!.append(commonSeps!!.SPACE)!!.append(positionStrings!!.X_LABEL)!!.appendint(this.x)!!.append(positionStrings!!.Y_LABEL)!!.appendint(this.y)!!.append(commonSeps!!.SPACE)!!.append(positionStrings!!.Z_LABEL)!!.appendint(this.zOrder)!!.append(commonSeps!!.SPACE)!!.append(commonLabels!!.WIDTH_LABEL)!!.appendint(this.width)!!.append(commonSeps!!.SPACE)!!.append(commonLabels!!.HEIGHT_LABEL)!!.appendint(this.height)!!.append(commonSeps!!.SPACE)!!.append(commonLabels!!.WIDTH_LABEL)!!.appendint(this.halfWidth)!!.append(commonSeps!!.SPACE)!!.append(commonLabels!!.HEIGHT_LABEL)!!.appendint(this.halfHeight)!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.ANIMATION)!!.appendint(this.animation)!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.ANGLE)!!.append(commonSeps!!.COLON)!!.appendint(this.angle.toInt())!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.MOVEMENT_ANGLE)!!.append(commonSeps!!.COLON)!!.appendint(this.movement_angle)!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.ROTATION)!!.append(commonSeps!!.COLON)!!.appendfloat(this.rotationP)!!.append(commonSeps!!.SPACE)!!.append(graphicsStrings!!.OPACITY)!!.append(commonSeps!!.COLON)!!.appendfloat(this.opacity)!!.toString()
 }
 
 
