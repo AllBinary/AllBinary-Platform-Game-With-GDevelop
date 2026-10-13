@@ -30,9 +30,11 @@
         
 import javax.microedition.khronos.opengles.GL
 import javax.microedition.lcdui.Graphics
+import javax.microedition.lcdui.NullGraphics
 import org.allbinary.animation.Animation
 import org.allbinary.animation.AnimationInterfaceFactoryInterface
 import org.allbinary.animation.IndexedAnimation
+import org.allbinary.animation.NullIndexedAnimationFactory
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface
 import org.allbinary.animation.RotationAnimation
 import org.allbinary.animation.text.TextChangeListener
@@ -87,7 +89,7 @@ companion object {
 
     val initIndexedAnimationInterfaceArray: Array<IndexedAnimation?>
 
-    var indexedAnimationInterfaceArray: Array<IndexedAnimation?>
+    var indexedAnimationInterfaceArray: Array<IndexedAnimation?> = NullIndexedAnimationFactory.NULL_INDEXED_ANIMATION_ARRAY
 
     private val resetAnimationBehavior: ResetAnimationBehavior
 
@@ -210,10 +212,8 @@ this.initPosition()
 
 scaleProperties!!.scaleX= this.gdObject!!.initScaleX *this.gdObject!!.customScale
 scaleProperties!!.scaleY= this.gdObject!!.initScaleY *this.gdObject!!.customScale
-scaleProperties!!.scaleWidth= this.gdObject!!.Width(
-                            null)
-scaleProperties!!.scaleHeight= this.gdObject!!.Height(
-                            null)
+scaleProperties!!.scaleWidth= this.gdObject!!.Width(NullGraphics.NULL_GRAPHICS)
+scaleProperties!!.scaleHeight= this.gdObject!!.Height(NullGraphics.NULL_GRAPHICS)
 
     
                         if(animationName != StringUtil.getInstance()!!.EMPTY_STRING && animationName!!.indexOf(GDGameLayer.HACK_ANIMATION_NAME) >= 0)
@@ -244,19 +244,23 @@ this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray)
                             
 animationBehavior!!.add(this)
 
+    var dimensionalBehavior: GDTwodBehavior
+
+
     
                         if(this.initIndexedAnimationInterfaceArray!!.size > 0 && this.initIndexedAnimationInterfaceArray[0]!!.isThreed())
                         
                                     {
-                                    this.dimensionalBehavior= GDThreedBehavior(animationBehavior, this.initIndexedAnimationInterfaceArray as Array<RotationAnimation?>)
+                                    dimensionalBehavior= GDThreedBehavior(animationBehavior, this.initIndexedAnimationInterfaceArray as Array<RotationAnimation?>)
 
                                     }
                                 
                         else {
-                            this.dimensionalBehavior= GDTwodBehavior(animationBehavior)
+                            dimensionalBehavior= GDTwodBehavior(animationBehavior)
 
                         }
                             
+this.dimensionalBehavior= dimensionalBehavior
 this.combatBaseBehavior= CombatBaseBehavior(DamageableBaseBehavior.getInstance(), GDDestroyableSimpleBehavior(this))
 this.dimensionalBehavior!!.reset(this, gdObject)
 this.rectangleArrayOfArrays= rectangleArrayOfArrays

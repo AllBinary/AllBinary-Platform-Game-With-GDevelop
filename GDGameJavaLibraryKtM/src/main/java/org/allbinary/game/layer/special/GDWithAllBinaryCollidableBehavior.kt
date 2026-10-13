@@ -60,10 +60,11 @@ this.conditionWIthGroupActions= collidableBehavior
     //var ownerLayer = ownerLayer
     //var collisionLayer = collisionLayer
 
+    var gdWithAllBinaryCollidableBehavior: GDWithAllBinaryCollidableBehavior = (collisionLayer!!.getCollidableInferface() as GDWithAllBinaryCollidableBehavior)
+
+
     
-                        if(getCollidableInferface = collisionLayer!!.getCollidableInferface()getCollidableInferface as GDWithAllBinaryCollidableBehavior
-getCollidableInferface.
-                    conditionWIthGroupActions!!.groupWithActionsList!!.size() > 0)
+                        if(gdWithAllBinaryCollidableBehavior!!.conditionWIthGroupActions!!.groupWithActionsList!!.size() > 0)
                         
                                     {
                                     

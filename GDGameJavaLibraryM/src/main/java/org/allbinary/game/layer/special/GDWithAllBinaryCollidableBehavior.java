@@ -56,8 +56,9 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
 //            logUtil.put(commonStrings.PROCESS, this, "isCollision - with self");
 //        }
 
+        final GDWithAllBinaryCollidableBehavior gdWithAllBinaryCollidableBehavior = ((GDWithAllBinaryCollidableBehavior) collisionLayer.getCollidableInferface());
         //if(this.collidableBehavior.groupCollisionList.size() > 0) {
-        if(((GDWithAllBinaryCollidableBehavior) collisionLayer.getCollidableInferface()).conditionWIthGroupActions.groupWithActionsList.size() > 0) {
+        if(gdWithAllBinaryCollidableBehavior.conditionWIthGroupActions.groupWithActionsList.size() > 0) {
             //stringBuilder.delete(0, stringBuilder.length());
             //logUtil.put(stringBuilder.append(this.ownerLayer.getGroupInterface()[0]).append(" != ").append(collisionLayer.getGroupInterface()[0]).toString(), this, IS_COLLISION);
             if (ownerLayer.getGroupInterface()[0] != collisionLayer.getGroupInterface()[0]) {

@@ -79,9 +79,7 @@ var size = size
     var recordStore: RecordStore = RecordStore.openRecordStore(this.getRecordId(abeClientInformation), true)!!
 
 
-    var recordEnum: RecordEnumeration = recordStore!!.enumerateRecords(
-                            null, 
-                            null, true)!!
+    var recordEnum: RecordEnumeration = recordStore!!.enumerateRecords(NullRecordFilter.NULL_RECORD_FILTER, NullRecordComparator.NULL_RECORD_COMPARATOR, true)!!
 
 this.logUtil!!.putF(StringMaker().
                             append(this.persistanceStrings!!.NUMBER_OF_RECORDS)!!.appendint(recordEnum!!.numRecords())!!.toString(), this, this.persistanceStrings!!.LOAD_ALL)

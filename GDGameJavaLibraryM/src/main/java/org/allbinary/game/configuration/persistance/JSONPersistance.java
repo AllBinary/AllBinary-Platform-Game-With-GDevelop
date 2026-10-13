@@ -20,10 +20,9 @@ import java.io.DataOutputStream;
 
 import javax.microedition.rms.RecordEnumeration;
 import javax.microedition.rms.RecordStore;
+
 import org.allbinary.TsUtil;
-
 import org.allbinary.logic.string.StringMaker;
-
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
@@ -51,7 +50,7 @@ public class JSONPersistance extends BasicPersitance
                 this.getRecordId(abeClientInformation), true);
 
         final RecordEnumeration recordEnum = 
-            recordStore.enumerateRecords(null, null,true);
+            recordStore.enumerateRecords(NullRecordFilter.NULL_RECORD_FILTER, NullRecordComparator.NULL_RECORD_COMPARATOR,true);
         
         this.logUtil.putF(new StringMaker().append(this.persistanceStrings.NUMBER_OF_RECORDS).appendint(recordEnum.numRecords()).toString(), this, this.persistanceStrings.LOAD_ALL);
         

@@ -17,16 +17,13 @@ import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.IndexedAnimationBehavior;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.logic.string.StringMaker;
+
 
 /**
  *
  * @author User
  */
 public class GDIndividualAnimationBehavior extends GDAnimationBehaviorBase {
-    protected final LogUtil logUtil = LogUtil.getInstance();
-
     
     private static final GDIndividualAnimationBehavior instance = new GDIndividualAnimationBehavior();
 

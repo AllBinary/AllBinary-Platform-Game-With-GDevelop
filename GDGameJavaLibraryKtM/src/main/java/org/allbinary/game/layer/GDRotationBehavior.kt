@@ -28,12 +28,12 @@
         
 import org.allbinary.animation.AnimationInterfaceFactoryInterface
 import org.allbinary.animation.IndexedAnimation
+import org.allbinary.animation.NullRotationAnimationFactory
 import org.allbinary.animation.RotationAnimation
 import org.allbinary.game.layout.GDObject
 import org.allbinary.graphics.GraphicsStrings
 import org.allbinary.string.CommonStrings
 import org.allbinary.logic.string.StringMaker
-import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.math.FrameUtil
 
 open public class GDRotationBehavior : GDAnimationBehaviorBase {
@@ -46,7 +46,7 @@ open public class GDRotationBehavior : GDAnimationBehaviorBase {
         
     val frameUtil: FrameUtil = FrameUtil.getInstance()!!
 
-    var rotationAnimationInterfaceArray: Array<RotationAnimation?>
+    var rotationAnimationInterfaceArray: Array<RotationAnimation?> = NullRotationAnimationFactory.getFactoryInstance()!!.NULL_ROTATION_ANIMATION_ARRAY
 
     override fun init(gdObject: GDObject, animationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?>)
         //nullable = true from not(false or (false and false)) = true

@@ -32,8 +32,6 @@ import org.allbinary.animation.IndexedAnimation
 import org.allbinary.animation.IndexedAnimationBehavior
 import org.allbinary.game.layout.GDObject
 import org.allbinary.string.CommonStrings
-import org.allbinary.logic.communication.log.LogUtil
-import org.allbinary.logic.string.StringMaker
 
 open public class GDIndividualAnimationBehavior : GDAnimationBehaviorBase {
         
@@ -59,8 +57,6 @@ companion object {
             {
             }            
         
-    val logUtil: LogUtil = LogUtil.getInstance()!!
-
     override fun animate(gdObject: GDObject, initIndexedAnimationInterfaceArray: Array<IndexedAnimation?>, timeDelta: Long)
         //nullable = true from not(false or (false and false)) = true
 {

@@ -26,21 +26,19 @@
         import kotlin.reflect.KClass
                     
         
+import org.allbinary.animation.AnimationInterfaceFactoryInterface
+import org.allbinary.animation.NullRotationAnimationFactory
+import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface
+import org.allbinary.game.identification.GroupFactory
 import org.allbinary.game.layout.GDObject
+import org.allbinary.graphics.RectangleFactory
+import org.allbinary.util.BasicArrayListUtil
 
 open public class NullGDGameLayerFactory : GDGameLayerFactory {
         
 public constructor ()                        
 
-                            : super(
-                            null, 
-                            null, 
-                            null, 
-                            null, 
-                            null, 
-                            null, 
-                            null, 
-                            null, false){
+                            : super(BasicArrayListUtil.getInstance()!!.getImmutableInstance(), BasicArrayListUtil.getInstance()!!.getImmutableInstance(), GroupFactory.getInstance()!!.NULL_GROUP_ARRAY, BasicArrayListUtil.getInstance()!!.getImmutableInstance(), arrayOf(NullRotationAnimationFactory.getFactoryInstance()), arrayOf(NullRotationAnimationFactory.getFactoryInstance()), RectangleFactory.SINGLETON, RectangleFactory.ARRAY_OF_ARRAYS, false){
 
 
                             //For kotlin this is before the body of the constructor.

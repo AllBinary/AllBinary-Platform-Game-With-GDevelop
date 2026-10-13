@@ -15,10 +15,12 @@ package org.allbinary.game.layer;
 
 import javax.microedition.khronos.opengles.GL;
 import javax.microedition.lcdui.Graphics;
+import javax.microedition.lcdui.NullGraphics;
 
 import org.allbinary.animation.Animation;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
+import org.allbinary.animation.NullIndexedAnimationFactory;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.RotationAnimation;
 import org.allbinary.animation.text.TextChangeListener;
@@ -77,7 +79,7 @@ public class GDGameLayer
     protected final CombatBaseBehavior combatBaseBehavior;
 
     protected final IndexedAnimation[] initIndexedAnimationInterfaceArray;
-    protected IndexedAnimation[] indexedAnimationInterfaceArray;
+    protected IndexedAnimation[] indexedAnimationInterfaceArray = NullIndexedAnimationFactory.NULL_INDEXED_ANIMATION_ARRAY;
     private final ResetAnimationBehavior resetAnimationBehavior;
 
     protected final VelocityProperties velocityInterface;
@@ -213,8 +215,8 @@ public class GDGameLayer
             final ScaleProperties scaleProperties = new ScaleProperties();
             scaleProperties.scaleX = this.gdObject.initScaleX * this.gdObject.customScale;
             scaleProperties.scaleY = this.gdObject.initScaleY * this.gdObject.customScale;
-            scaleProperties.scaleWidth = this.gdObject.Width(null);
-            scaleProperties.scaleHeight = this.gdObject.Height(null);
+            scaleProperties.scaleWidth = this.gdObject.Width(NullGraphics.NULL_GRAPHICS);
+            scaleProperties.scaleHeight = this.gdObject.Height(NullGraphics.NULL_GRAPHICS);
             if(animationName != StringUtil.getInstance().EMPTY_STRING && animationName.indexOf(GDGameLayer.HACK_ANIMATION_NAME) >= 0) {
                 scaleProperties.shouldScale = true;
                 //logUtil.put(new StringMaker().append(this.gdObject.toShortString()).append(scaleProperties.toString()).toString(), this, commonStrings.CONSTRUCTOR);
@@ -234,15 +236,17 @@ public class GDGameLayer
 
         animationBehavior.add(this);
 
+        GDTwodBehavior dimensionalBehavior;
         if(this.initIndexedAnimationInterfaceArray.length > 0 && this.initIndexedAnimationInterfaceArray[0].isThreed()) { 
-            this.dimensionalBehavior = new GDThreedBehavior(animationBehavior, (RotationAnimation[]) this.initIndexedAnimationInterfaceArray);
+            dimensionalBehavior = new GDThreedBehavior(animationBehavior, (RotationAnimation[]) this.initIndexedAnimationInterfaceArray);
         } else {
 //            if(this.gdObject.name.indexOf("player") >=0) {
 //                this.dimensionalBehavior = new GDTwodBehavior2(animationBehavior);
 //            } else {
-                this.dimensionalBehavior = new GDTwodBehavior(animationBehavior);
+                dimensionalBehavior = new GDTwodBehavior(animationBehavior);
 //            }
         }
+        this.dimensionalBehavior = dimensionalBehavior;
         
         this.combatBaseBehavior = new CombatBaseBehavior(
                 DamageableBaseBehavior.getInstance(), new GDDestroyableSimpleBehavior(this));

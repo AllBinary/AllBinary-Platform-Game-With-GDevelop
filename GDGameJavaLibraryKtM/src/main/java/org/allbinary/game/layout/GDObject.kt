@@ -35,6 +35,7 @@ import org.allbinary.game.layer.behavior.GDBehaviorUtil
 import org.allbinary.graphics.GPoint
 import org.allbinary.graphics.GraphicsStrings
 import org.allbinary.graphics.color.BasicColor
+import org.allbinary.graphics.color.BasicColorFactory
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory
 import org.allbinary.string.CommonSeps
 import org.allbinary.logic.communication.log.LogUtil
@@ -97,7 +98,7 @@ open public class GDObject
 
     var opacity: Float = 255
 
-    var basicColor: BasicColor
+    var basicColor: BasicColor = BasicColorFactory.getInstance()!!.BLACK
 
     var widthAtInitialScale: Int= 0
 

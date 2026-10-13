@@ -28,6 +28,7 @@ import org.allbinary.graphics.Rectangle
 import org.allbinary.graphics.RectangleFactory
 import org.allbinary.layer.AllBinaryLayer
 import org.allbinary.layer.LayerInterfaceFactoryInterface
+import org.allbinary.logic.string.StringUtil
 import org.allbinary.util.ABHashtable
 import org.allbinary.util.BasicArrayList
 import org.allbinary.util.BasicArrayListD
@@ -96,20 +97,17 @@ private constructor ()
     var layerInfo: Rectangle = RectangleFactory.SINGLETON
 
 
-    var rectangleArrayOfArrays: Array<Array<Rectangle?>?> = Array(0) { arrayOfNulls<Rectangle?>(0) }
-                                                            
+    var rectangleArrayOfArrays: Array<Array<Rectangle?>?> = RectangleFactory.ARRAY_OF_ARRAYS
 
 
     var gameLayerFactory: GDGameLayerFactory = GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, false)
 
 
-    var gdObject: GDObject = GDObject(0, 0, GDFlagLayerInterfaceFactory.NAME, 
-                            null)
+    var gdObject: GDObject = GDObject(0, 0, GDFlagLayerInterfaceFactory.NAME, StringUtil.getInstance()!!.EMPTY_STRING)
 
-gdObject!!.set(
-                            null, x, y, z)
+gdObject!!.set(StringUtil.getInstance()!!.EMPTY_STRING, x, y, z)
 
-    var layer: GDGameLayer = gameLayerFactory!!.create( -1, GDFlagLayerInterfaceFactory.NAME, gdObject, 0, 0, GDConditionWithGroupActions())!!
+    var layer: GDGameLayer = gameLayerFactory!!.create( -1, GDFlagLayerInterfaceFactory.NAME, gdObject, 0.0f, 0.0f, GDConditionWithGroupActions())!!
 
 layer.setAllBinaryGameLayerManager(hashtable.get(AllBinaryGameLayerManager.ID) as AllBinaryGameLayerManager)
 

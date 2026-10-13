@@ -82,7 +82,7 @@ public class GDFlagLayerInterfaceFactory
             {NullRotationAnimationFactory.getFactoryInstance()};
         
         final Rectangle layerInfo = RectangleFactory.SINGLETON;
-        final Rectangle[][] rectangleArrayOfArrays = new Rectangle[0][0];
+        final Rectangle[][] rectangleArrayOfArrays = RectangleFactory.ARRAY_OF_ARRAYS;
         
         final GDGameLayerFactory gameLayerFactory = new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, 
             groupInterface,
@@ -93,9 +93,9 @@ public class GDFlagLayerInterfaceFactory
             rectangleArrayOfArrays, false);
         
         final GDObject gdObject = new GDObject(0, 0, GDFlagLayerInterfaceFactory.NAME, StringUtil.getInstance().EMPTY_STRING);
-        gdObject.set(null, x, y, z);
+        gdObject.set(StringUtil.getInstance().EMPTY_STRING, x, y, z);
         
-        final GDGameLayer layer = gameLayerFactory.create(-1, GDFlagLayerInterfaceFactory.NAME, gdObject, 0, 0, new GDConditionWithGroupActions());
+        final GDGameLayer layer = gameLayerFactory.create(-1, GDFlagLayerInterfaceFactory.NAME, gdObject, 0.0f, 0.0f, new GDConditionWithGroupActions());
         
         layer.setAllBinaryGameLayerManager((AllBinaryGameLayerManager) hashtable.get(AllBinaryGameLayerManager.ID));
 

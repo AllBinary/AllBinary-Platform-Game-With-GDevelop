@@ -97,7 +97,7 @@ companion object {
 
     var nextUnvisitedPathGeographicMapCellPosition: GeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION
 
-    private var afterNextUnvisitedPathGeographicMapCellPosition: GeographicMapCellPosition
+    private var afterNextUnvisitedPathGeographicMapCellPosition: GeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION
 
     private val wanderPathsList: BasicArrayList
 
@@ -510,9 +510,10 @@ this.targetList!!.clear()
                                     }
                                 
 
-    var waypoint: WaypointBase = currentTargetLayerInterface = this.currentTargetLayerInterfacecurrentTargetLayerInterface as PathFindingLayerInterface
-currentTargetLayerInterface.
-                    getWaypointBehavior()!!.getWaypoint()!!
+    var pathFindingLayerInterface: PathFindingLayerInterface = (this.currentTargetLayerInterface as PathFindingLayerInterface)
+
+
+    var waypoint: WaypointBase = pathFindingLayerInterface!!.getWaypointBehavior()!!.getWaypoint()!!
 
 
     var list: BasicArrayList = waypoint.getPathsListFromCacheOnly(geographicMapCellPosition)!!

@@ -13,7 +13,13 @@
  */
 package org.allbinary.game.layer;
 
+import org.allbinary.animation.AnimationInterfaceFactoryInterface;
+import org.allbinary.animation.NullRotationAnimationFactory;
+import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
+import org.allbinary.game.identification.GroupFactory;
 import org.allbinary.game.layout.GDObject;
+import org.allbinary.graphics.RectangleFactory;
+import org.allbinary.util.BasicArrayListUtil;
 
 /**
  *
@@ -22,7 +28,8 @@ import org.allbinary.game.layout.GDObject;
 public class NullGDGameLayerFactory extends GDGameLayerFactory
 {
     public NullGDGameLayerFactory() {
-        super(null, null, null, null, null, null, null, null, false);
+        
+        super(BasicArrayListUtil.getInstance().getImmutableInstance(), BasicArrayListUtil.getInstance().getImmutableInstance(), GroupFactory.getInstance().NULL_GROUP_ARRAY, BasicArrayListUtil.getInstance().getImmutableInstance(), new AnimationInterfaceFactoryInterface[] {NullRotationAnimationFactory.getFactoryInstance()}, new ProceduralAnimationInterfaceFactoryInterface[] {NullRotationAnimationFactory.getFactoryInstance()}, RectangleFactory.SINGLETON, RectangleFactory.ARRAY_OF_ARRAYS, false);
     }
     
     public GDGameLayer create(final GDObject gdObject) {

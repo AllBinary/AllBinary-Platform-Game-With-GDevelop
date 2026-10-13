@@ -42,7 +42,7 @@ extends GDWaypointBehavior
     private final TimeDelayHelper progressTimeDelayHelper;
     
     protected GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
-    private GeographicMapCellPosition afterNextUnvisitedPathGeographicMapCellPosition;
+    private GeographicMapCellPosition afterNextUnvisitedPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
     
     private final BasicArrayList wanderPathsList;
     
@@ -369,11 +369,10 @@ extends GDWaypointBehavior
                 return;
             }
             
-            final WaypointBase waypoint = ((PathFindingLayerInterface) 
-                this.currentTargetLayerInterface).getWaypointBehavior().getWaypoint();
+            PathFindingLayerInterface pathFindingLayerInterface = ((PathFindingLayerInterface) this.currentTargetLayerInterface);
+            final WaypointBase waypoint = pathFindingLayerInterface.getWaypointBehavior().getWaypoint();
             
-            final BasicArrayList list = 
-                waypoint.getPathsListFromCacheOnly(geographicMapCellPosition);
+            final BasicArrayList list = waypoint.getPathsListFromCacheOnly(geographicMapCellPosition);
              
             //logUtil.put(list.toString(), this, "setTarget");
             //"waypointPathsList: " + list, this);

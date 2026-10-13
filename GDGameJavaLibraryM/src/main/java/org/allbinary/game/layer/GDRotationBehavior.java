@@ -15,12 +15,12 @@ package org.allbinary.game.layer;
 
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
+import org.allbinary.animation.NullRotationAnimationFactory;
 import org.allbinary.animation.RotationAnimation;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.graphics.GraphicsStrings;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
-import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.math.FrameUtil;
 
 /**
@@ -28,96 +28,90 @@ import org.allbinary.math.FrameUtil;
  * @author User
  */
 public class GDRotationBehavior extends GDAnimationBehaviorBase {
-    
+
     protected final FrameUtil frameUtil = FrameUtil.getInstance();
-    
-    public RotationAnimation[] rotationAnimationInterfaceArray;
-    
+
+    public RotationAnimation[] rotationAnimationInterfaceArray = NullRotationAnimationFactory.getFactoryInstance().NULL_ROTATION_ANIMATION_ARRAY;
+
     @Override
     public IndexedAnimation[] init(final GDObject gdObject, final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray) {
         final int size = animationInterfaceFactoryInterfaceArray.length;
         final RotationAnimation[] initIndexedAnimationInterfaceArray = new RotationAnimation[size];
-        
-            for (int index = 0; index < size; index++)
-            {
-        try {
+
+        for (int index = 0; index < size; index++) {
+            try {
                 initIndexedAnimationInterfaceArray[index] = (RotationAnimation) animationInterfaceFactoryInterfaceArray[index].getInstance(0);
-        } catch(Exception e) {
-            //final StringMaker stringMaker = new StringMaker();
-            //super.toString(stringMaker);
-            //stringMaker.toString()
-            final CommonStrings commonStrings = CommonStrings.getInstance();
-            this.logUtil.put(new StringMaker().append(animationInterfaceFactoryInterfaceArray[index].toString()).append(" index: ").appendint(index).toString(), this, commonStrings.CONSTRUCTOR, e);
-            this.logUtil.put(gdObject.toString(), this, commonStrings.CONSTRUCTOR, e);
-        }
+            } catch (Exception e) {
+                //final StringMaker stringMaker = new StringMaker();
+                //super.toString(stringMaker);
+                //stringMaker.toString()
+                final CommonStrings commonStrings = CommonStrings.getInstance();
+                this.logUtil.put(new StringMaker().append(animationInterfaceFactoryInterfaceArray[index].toString()).append(" index: ").appendint(index).toString(), this, commonStrings.CONSTRUCTOR, e);
+                this.logUtil.put(gdObject.toString(), this, commonStrings.CONSTRUCTOR, e);
             }
-        
+        }
+
         this.rotationAnimationInterfaceArray = initIndexedAnimationInterfaceArray;
         return initIndexedAnimationInterfaceArray;
     }
-    
+
     @Override
-    public void setAnimationArray(final IndexedAnimation[] rotationAnimationInterfaceArray)
-    {
+    public void setAnimationArray(final IndexedAnimation[] rotationAnimationInterfaceArray) {
         this.rotationAnimationInterfaceArray = (RotationAnimation[]) rotationAnimationInterfaceArray;
     }
 
-    public RotationAnimation[] getRotationAnimationInterfaceArray()
-    {
+    public RotationAnimation[] getRotationAnimationInterfaceArray() {
         return this.rotationAnimationInterfaceArray;
     }
-    
+
     @Override
     public void set(final GDGameLayer gameLayer, final GDObject gdObject) throws Exception {
         final int size = this.rotationAnimationInterfaceArray.length;
-        for(int index = 0; index < size; index++) {
+        for (int index = 0; index < size; index++) {
             this.rotationAnimationInterfaceArray[index].setFrame(this.frameUtil.getFrameForAngle((short) 0, 1));
         }
     }
-    
+
     @Override
     public void setRotation(final GDGameLayer gameLayer, final short angleAdjustment) {
-                
+
         final GDObject gdObject = gameLayer.gdObject;
         RotationAnimation rotationAnimation;
         //short nextAngle;
         //for (int index = 0; index < SIZE; index++)
         //{
-            //logUtil.putF(new StringMaker().append(gameLayer.getName()).append(" GDObject name: ").append(gdObject.name).append(" angleAdjustment: ").appendshort(angleAdjustment).toString(), this, "setRotation");
-            rotationAnimation = this.rotationAnimationInterfaceArray[gdObject.animation];
-            
-            if(angleAdjustment > 0) {
-                short value = angleAdjustment;
-                while(value > 0) {
-                    rotationAnimation.nextRotation();                    
-                    value--;
-                }
-                
-            } else {
-                short value = angleAdjustment;
-                while(value < 0) {
-                    rotationAnimation.previousRotation();
-                    value++;
-                }
-                
+        //logUtil.putF(new StringMaker().append(gameLayer.getName()).append(" GDObject name: ").append(gdObject.name).append(" angleAdjustment: ").appendshort(angleAdjustment).toString(), this, "setRotation");
+        rotationAnimation = this.rotationAnimationInterfaceArray[gdObject.animation];
+
+        if (angleAdjustment > 0) {
+            short value = angleAdjustment;
+            while (value > 0) {
+                rotationAnimation.nextRotation();
+                value--;
             }
-            
-            //short angle = (short) (this.gdObject.angle + angleAdjustment);
-            //while(angle > 359) { angle -= 360; }
-            //while(angle < 0) { angle += 360; }
-            //this.gdObject.angle = angle;
-            //this.gdObject.angle = rotationAnimation.getAngleInfo().getAngle();
-            
-            //setFrame(FrameUtil.getInstance().getFrameForAngle(angle, 1));
-            //rotationAnimation.setFrame(AngleFactory.getInstance().getInstance(angle));            
-            //rotationAnimation.adjustFrame(nextAngle);
-            //rotationAnimation.setFrame(rotationAnimation.getFrame() + angleAdjustment);
-            
-            //if(this.getName().equals(PLAYER)) {
-            //if(this.getName().startsWith(PLAYER)) {
-                //logUtil.put(rotationAnimation.toString(), this, "setRotation");
-            //}
-            
+
+        } else {
+            short value = angleAdjustment;
+            while (value < 0) {
+                rotationAnimation.previousRotation();
+                value++;
+            }
+
+        }
+
+        //short angle = (short) (this.gdObject.angle + angleAdjustment);
+        //while(angle > 359) { angle -= 360; }
+        //while(angle < 0) { angle += 360; }
+        //this.gdObject.angle = angle;
+        //this.gdObject.angle = rotationAnimation.getAngleInfo().getAngle();
+        //setFrame(FrameUtil.getInstance().getFrameForAngle(angle, 1));
+        //rotationAnimation.setFrame(AngleFactory.getInstance().getInstance(angle));            
+        //rotationAnimation.adjustFrame(nextAngle);
+        //rotationAnimation.setFrame(rotationAnimation.getFrame() + angleAdjustment);
+        //if(this.getName().equals(PLAYER)) {
+        //if(this.getName().startsWith(PLAYER)) {
+        //logUtil.put(rotationAnimation.toString(), this, "setRotation");
+        //}
         //}
     }
 
@@ -126,5 +120,5 @@ public class GDRotationBehavior extends GDAnimationBehaviorBase {
         final RotationAnimation rotationAnimation = this.rotationAnimationInterfaceArray[gdObject.animation];
         stringBuffer.append(GraphicsStrings.getInstance().ANGLE).appendint(rotationAnimation.getAngleInfoP().getAngle());
     }
-    
+
 }

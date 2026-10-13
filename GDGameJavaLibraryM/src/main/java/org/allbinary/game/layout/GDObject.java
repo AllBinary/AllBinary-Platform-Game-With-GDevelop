@@ -23,6 +23,7 @@ import org.allbinary.game.layer.behavior.GDBehaviorUtil;
 import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.GraphicsStrings;
 import org.allbinary.graphics.color.BasicColor;
+import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -76,7 +77,7 @@ public class GDObject
     public float timeScale = 1.0f;
     
     public float opacity = 255;
-    public BasicColor basicColor;
+    public BasicColor basicColor = BasicColorFactory.getInstance().BLACK;
 
 //    public int canvasWidth;
 //    public int canvasHeight;
