@@ -93,6 +93,7 @@ import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.IndexedAnimationBehaviorFactory;
 import org.allbinary.animation.NullRotationAnimationFactory;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
+import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.compound.SliderAnimationInterfaceFactory;
 import org.allbinary.animation.compound.SimultaneousCompoundIndexedAnimationInterfaceFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
