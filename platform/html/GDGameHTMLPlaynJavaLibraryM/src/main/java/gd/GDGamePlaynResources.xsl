@@ -6,7 +6,7 @@
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
-        
+
 package gd.res;
 
 import com.google.gwt.core.shared.GWT;

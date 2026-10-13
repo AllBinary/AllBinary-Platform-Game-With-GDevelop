@@ -6,7 +6,7 @@
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
-        
+
 package gd.res;
 
 import com.google.gwt.core.shared.GWT;
@@ -19,6 +19,7 @@ import com.google.gwt.resources.client.TextResource;
             <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
 
 public interface GD<xsl:value-of select="$index" />GamePlaynResources extends ClientBundle {
+
   public static final GD<xsl:value-of select="$index" />GamePlaynResources INSTANCE =  GWT.create(GD<xsl:value-of select="$index" />GamePlaynResources.class);
 
   final String[] NAMES = {
