@@ -101,6 +101,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton
                 import org.allbinary.input.motion.gesture.MotionGestureInput
                 import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener
+                import org.allbinary.input.motion.gesture.observer.GDMotionGestureEventListener
                 import org.allbinary.layer.AllBinaryLayer
                 import org.allbinary.layer.event.LayerManagerEvent
                 import org.allbinary.layer.event.LayerManagerEventHandler
@@ -391,7 +392,7 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                         <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
-                    public var eventListenerInterfaceLastPoint: BaseMotionGestureEventListener
+                    public var eventListenerInterfaceLastPoint: GDMotionGestureEventListener
                     public var lastPointGDNode: GDNode
 
                     public var inUseMotionEventListIndex: Int = 0
@@ -498,6 +499,24 @@ Created By: Travis Berthelot
 
                         val layerManagerEventHandler: LayerManagerEventHandler = LayerManagerEventHandler.getInstance()
 
+                        class SceneLayoutLayerManagerEventListener: LayerManagerEventListener {
+
+                            private val gdGameGlobals: GDGameGlobals
+
+                            open public SceneLayoutLayerManagerEventListener(gdGameGlobals: GDGameGlobals) {
+                                this.gdGameGlobals = gdGameGlobals;
+                            }
+
+                            open public fun onDeleteLayerManagerEvent(layerManagerEvent: LayerManagerEvent) {
+                                val layerInterface: AllBinaryLayer = layerManagerEvent.getLayerInterface()
+
+                                this.gdGameGlobals.layerManagerEventListenerRemove(layerInterface);
+                            }
+
+                        }
+
+                        layerManagerEventListener = new SceneLayoutLayerManagerEventListener(this);
+
                         layerManagerEventListener = object : LayerManagerEventListener() {
 
                             open public fun onDeleteLayerManagerEvent(layerManagerEvent: LayerManagerEvent) {
@@ -512,6 +531,12 @@ Created By: Travis Berthelot
 
                         layerManagerEventHandler.addListener(layerManagerEventListener)
 
+                    }
+
+                    open public fun layerManagerEventListenerRemove(layerInterface: AllBinaryLayer) {
+                    <xsl:call-template name="layerManagerEventListenerRemove" >
+                    </xsl:call-template>
+                    <xsl:text>&#10;</xsl:text>
                     }
 
                     open public fun SceneWindowWidth(): Int {

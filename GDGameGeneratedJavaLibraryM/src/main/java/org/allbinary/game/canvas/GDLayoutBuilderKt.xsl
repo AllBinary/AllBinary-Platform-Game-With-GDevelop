@@ -108,6 +108,7 @@ Created By: Travis Berthelot
                 import org.allbinary.input.motion.gesture.MotionGestureInput
                 import org.allbinary.input.motion.gesture.TouchMotionGestureFactory
                 import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener
+                import org.allbinary.input.motion.gesture.observer.GDMotionGestureEventListener
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent
                 import org.allbinary.logic.communication.log.LogUtil
                 import org.allbinary.string.CommonStrings
@@ -146,8 +147,6 @@ Created By: Travis Berthelot
                         private val gdObjectsFactory: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance()
 
                         private val CREATE_INSTANCES: String = "createInstances"
-
-                        public var initialized: Boolean = false
 
                         private fun createSpecialAnimationImageResources(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources {
                             try {
@@ -414,7 +413,7 @@ Created By: Travis Berthelot
 
                         this.logUtil.putF("DepartScene - completed newCanvas is now false", this, this.commonStrings.PROCESS)
                         gameGlobalsFactory.newCanvas = false
-                        initialized = true
+                        globals.eventListenerInterfaceLastPoint.initialized = true;
 
                         } catch (e: Exception) {
                             this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.PROCESS, e)

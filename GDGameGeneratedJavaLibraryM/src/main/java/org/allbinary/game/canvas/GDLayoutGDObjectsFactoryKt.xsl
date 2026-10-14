@@ -110,6 +110,7 @@ Created By: Travis Berthelot
                     private val globals: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance()
 
                     <xsl:call-template name="objectsClassPropertyGDObjects" >
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
 

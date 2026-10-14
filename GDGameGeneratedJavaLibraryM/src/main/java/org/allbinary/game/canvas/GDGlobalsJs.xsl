@@ -93,6 +93,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
+                import org.allbinary.input.motion.gesture.observer.GDMotionGestureEventListener;
                 import org.allbinary.layer.AllBinaryLayer;
                 import org.allbinary.layer.event.LayerManagerEvent;
                 import org.allbinary.layer.event.LayerManagerEventHandler;
@@ -239,7 +240,7 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                         <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
-                    public BaseMotionGestureEventListener eventListenerInterfaceLastPoint;
+                    public GDMotionGestureEventListener eventListenerInterfaceLastPoint;
                     </xsl:if>
 
                     //eventsClassPropertyActions - START
@@ -366,22 +367,33 @@ Created By: Travis Berthelot
                         
                         final LayerManagerEventHandler layerManagerEventHandler = LayerManagerEventHandler.getInstance();
                         
-                        layerManagerEventListener = new LayerManagerEventListener() {
+                        class GlobalsLayerManagerEventListener extends LayerManagerEventListener {
+
+                            private final GDGameGlobals gdGameGlobals;
+                            
+                            public GlobalsLayerManagerEventListener(final GDGameGlobals gdGameGlobals) {
+                                this.gdGameGlobals = gdGameGlobals;
+                            }
 
                             public void onDeleteLayerManagerEvent(final LayerManagerEvent layerManagerEvent) throws Exception
                             {
                                 final AllBinaryLayer layerInterface = layerManagerEvent.getLayerInterface();
-                                
-                    <xsl:call-template name="layerManagerEventListenerRemove" >
-                    </xsl:call-template>
-                    <xsl:text>&#10;</xsl:text>
+                                this.gdGameGlobals.layerManagerEventListenerRemove(layerInterface);
                             }
 
                         };
-
+                                        
+                        layerManagerEventListener = new GlobalsLayerManagerEventListener(this);
                         layerManagerEventHandler.addListener(layerManagerEventListener);
                         
                         this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR);
+                    }
+                    
+                    
+                    public void layerManagerEventListenerRemove(final AllBinaryLayer layerInterface) {
+                    <xsl:call-template name="layerManagerEventListenerRemove" >
+                    </xsl:call-template>
+                    <xsl:text>&#10;</xsl:text>
                     }
                     
                     public void reset() {

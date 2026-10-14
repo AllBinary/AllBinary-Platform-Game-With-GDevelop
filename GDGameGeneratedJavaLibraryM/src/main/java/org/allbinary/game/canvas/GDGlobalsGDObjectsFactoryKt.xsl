@@ -94,6 +94,7 @@ Created By: Travis Berthelot
                     private val gdExtensionGDNodes: GDExtensionGDNodes = GDExtensionGDNodes.getInstance()
 
                     <xsl:call-template name="objectsClassPropertyGDObjects" >
+                        <xsl:with-param name="layoutIndex" >Globals</xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
 

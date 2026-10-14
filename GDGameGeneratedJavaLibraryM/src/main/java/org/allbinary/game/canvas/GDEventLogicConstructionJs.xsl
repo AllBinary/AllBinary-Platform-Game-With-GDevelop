@@ -2438,12 +2438,9 @@ Created By: Travis Berthelot
             <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
             <xsl:if test="contains($foundMousePositionNeeded, 'found')" >        
                 //MouseX MouseY
-                class MouseBaseMotionGestureEventListener implements BaseMotionGestureEventListener {
+                class MouseBaseMotionGestureEventListener extends GDMotionGestureEventListener {
 
-                        public void onEvent(final AllBinaryEventObject eventObject)
-                        {
-                        }
-
+                        @Override
                         public void onMotionGestureEvent(final MotionGestureEvent motionGestureEvent) {
 
                             try {

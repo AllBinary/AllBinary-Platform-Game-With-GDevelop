@@ -241,10 +241,10 @@ Created By: Travis Berthelot
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
                 //Sprite - Add to cache
-                if(<xsl:value-of select="name" />GDGameLayerDestroyedList.contains(layerInterface)) {
-                    <xsl:value-of select="name" />GDGameLayerDestroyedList.remove(layerInterface);
-                    if(!<xsl:value-of select="name" />CacheGDGameLayerList.contains(layerInterface)) {
-                        <xsl:value-of select="name" />CacheGDGameLayerList.add(layerInterface);
+                if(this.<xsl:value-of select="name" />GDGameLayerDestroyedList.contains(layerInterface)) {
+                    this.<xsl:value-of select="name" />GDGameLayerDestroyedList.remove(layerInterface);
+                    if(!this.<xsl:value-of select="name" />CacheGDGameLayerList.contains(layerInterface)) {
+                        this.<xsl:value-of select="name" />CacheGDGameLayerList.add(layerInterface);
                     } else {
                         //this.logUtil.put(gameLayerStrings.MULTIPLE_TIMES + layerInterface, this, this.commonStrings.PROCESS);
                     }
@@ -255,10 +255,10 @@ Created By: Travis Berthelot
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
                 //ParticleSystem::ParticleEmitter - Add to cache
-                if(<xsl:value-of select="name" />GDGameLayerDestroyedList.contains(layerInterface)) {
-                    <xsl:value-of select="name" />GDGameLayerDestroyedList.remove(layerInterface);
-                    if(!<xsl:value-of select="name" />CacheGDGameLayerList.contains(layerInterface)) {
-                        <xsl:value-of select="name" />CacheGDGameLayerList.add(layerInterface);
+                if(this.<xsl:value-of select="name" />GDGameLayerDestroyedList.contains(layerInterface)) {
+                    this.<xsl:value-of select="name" />GDGameLayerDestroyedList.remove(layerInterface);
+                    if(!this.<xsl:value-of select="name" />CacheGDGameLayerList.contains(layerInterface)) {
+                        this.<xsl:value-of select="name" />CacheGDGameLayerList.add(layerInterface);
                     } else {
                         //this.logUtil.put(gameLayerStrings.MULTIPLE_TIMES + layerInterface, this, this.commonStrings.PROCESS);
                     }

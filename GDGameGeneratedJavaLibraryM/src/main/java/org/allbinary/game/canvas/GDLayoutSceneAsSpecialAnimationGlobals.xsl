@@ -102,6 +102,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.input.motion.gesture.MotionGestureInput;
                 import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
+                import org.allbinary.input.motion.gesture.observer.GDMotionGestureEventListener;
                 import org.allbinary.layer.AllBinaryLayer;
                 import org.allbinary.layer.event.LayerManagerEvent;
                 import org.allbinary.layer.event.LayerManagerEventHandler;
@@ -394,7 +395,7 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                         <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
-                    public BaseMotionGestureEventListener eventListenerInterfaceLastPoint;
+                    public GDMotionGestureEventListener eventListenerInterfaceLastPoint;
                     public GDNode lastPointGDNode;
                             
                     public int inUseMotionEventListIndex = 0;
@@ -501,21 +502,31 @@ Created By: Travis Berthelot
                         
                         final LayerManagerEventHandler layerManagerEventHandler = LayerManagerEventHandler.getInstance();
                         
-                        layerManagerEventListener = new LayerManagerEventListener() {
+                        class LayoutSceneLayerManagerEventListener extends LayerManagerEventListener {
+
+                            private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals gdGameGlobals;
+                            
+                            public LayoutSceneLayerManagerEventListener(final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals gdGameGlobals) {
+                                this.gdGameGlobals = gdGameGlobals;
+                            }
 
                             public void onDeleteLayerManagerEvent(final LayerManagerEvent layerManagerEvent) throws Exception
                             {
                                 final AllBinaryLayer layerInterface = layerManagerEvent.getLayerInterface();
-                                
-                    <xsl:call-template name="layerManagerEventListenerRemove" >
-                    </xsl:call-template>
-                    <xsl:text>&#10;</xsl:text>
+                                this.gdGameGlobals.layerManagerEventListenerRemove(layerInterface);
                             }
 
                         };
-
+                        
+                        layerManagerEventListener = new LayoutSceneLayerManagerEventListener(this);
                         layerManagerEventHandler.addListener(layerManagerEventListener);
                         
+                    }
+
+                    public void layerManagerEventListenerRemove(final AllBinaryLayer layerInterface) {
+                    <xsl:call-template name="layerManagerEventListenerRemove" >
+                    </xsl:call-template>
+                    <xsl:text>&#10;</xsl:text>
                     }
 
                     public int SceneWindowWidth() {

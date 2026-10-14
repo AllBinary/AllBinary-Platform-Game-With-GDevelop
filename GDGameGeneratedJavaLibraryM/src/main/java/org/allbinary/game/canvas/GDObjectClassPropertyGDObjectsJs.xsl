@@ -16,6 +16,8 @@ Created By: Travis Berthelot
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <xsl:template name="variablesForGDObject" >
+        <xsl:param name="layoutIndex" />
+        
                     <xsl:for-each select="variables" >
                         <xsl:variable name="name" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
                     //Object - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
@@ -177,6 +179,7 @@ Created By: Travis Berthelot
     </xsl:template>
     
     <xsl:template name="objectsClassPropertyGDObjects" >
+        <xsl:param name="layoutIndex" />
 
         //ObjectsGroups - GDObject
         <xsl:for-each select="/game/layouts/objectsGroups" >
@@ -194,7 +197,9 @@ Created By: Travis Berthelot
                 <xsl:variable name="name" select="name" />
 
                     <xsl:if test="name = $objectName" >
-                    <xsl:call-template name="variablesForGDObject" />
+                        <xsl:call-template name="variablesForGDObject" >
+                            <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        </xsl:call-template>
                     </xsl:if>
 
             </xsl:for-each>
@@ -253,11 +258,15 @@ Created By: Travis Berthelot
                 public final class <xsl:value-of select="name" /> extends <xsl:call-template name="gdObject" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template> 
                 <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" > implements SoftJoystickInterface </xsl:if>{
 
+                    private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+
                     <xsl:variable name="hasObjectInObjectsGroups" ><xsl:for-each select="/game/layouts/objectsGroups" ><xsl:variable name="objectsGroupsName" select="name" /><xsl:for-each select="objects" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
 
                     <xsl:if test="not(contains($hasObjectInObjectsGroups, 'found'))" >
 
-                        <xsl:call-template name="variablesForGDObject" />
+                        <xsl:call-template name="variablesForGDObject" >
+                            <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        </xsl:call-template>
 
                     //objectsClassPropertyGDObjects2
                     public void reset() {
@@ -286,11 +295,8 @@ Created By: Travis Berthelot
                         super(width, height, name, 
                     <xsl:if test="string-length(type) = 0 or type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'PanelSpriteSlider::PanelSpriteSlider' or type = 'SelectBox::SelectBox'" >null</xsl:if>
                     <xsl:if test="not(string-length(type) = 0 or type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'PanelSpriteSlider::PanelSpriteSlider' or type = 'SelectBox::SelectBox')" >
-                        <xsl:call-template name="globals" >
-                            <xsl:with-param name="name" >
-                                <xsl:value-of select="$name" />
-                            </xsl:with-param>
-                        </xsl:call-template>.<xsl:call-template name="upper-case" >
+<!--                        <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>-->
+                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance().<xsl:call-template name="upper-case" >
                             <xsl:with-param name="text" >
                                 <xsl:value-of select="translate(type, ':', '_')" />
                             </xsl:with-param>
