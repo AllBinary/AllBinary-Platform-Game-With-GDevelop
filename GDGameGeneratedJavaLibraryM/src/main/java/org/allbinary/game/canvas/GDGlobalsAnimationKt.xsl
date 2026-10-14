@@ -100,8 +100,6 @@ Created By: Travis Berthelot
                             return GDGlobalsSpecialAnimation.instance
                         }
 
-                        protected val logUtil: LogUtil = LogUtil.getInstance()
-                        private val commonStrings: CommonStrings = CommonStrings.getInstance()
                         private val nullUtil: NullUtil = NullUtil.getInstance()
                         private val arrayUtil: ArrayUtil = ArrayUtil.getInstance()
                         private val pointFactory: PointFactory = PointFactory.getInstance()

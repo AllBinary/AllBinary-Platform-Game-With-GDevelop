@@ -126,7 +126,7 @@ Created By: Travis Berthelot
                         width, height,
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME);
 
-                        <xsl:value-of select="name" />.set(null, <xsl:value-of select="name" />X, 
+                        <xsl:value-of select="name" />.set(StringUtil.getInstance().EMPTY_STRING, <xsl:value-of select="name" />X, 
                         <xsl:value-of select="name" />Y, 
                     //Create - Instances - //zOrder - <xsl:value-of select="zOrder" />
                     //layer=<xsl:value-of select="layer" /> (Base Layer is emtpy)
@@ -166,6 +166,8 @@ Created By: Travis Berthelot
 
                             <xsl:if test="initialVariables" >
                             class CreateInstanceGDInitialVariables extends GDInitialVariables {
+                                
+                                @Override
                                 public void reset() {
                             <xsl:for-each select="initialVariables" >//initialVariables - //<xsl:value-of select="type" /> - //<xsl:value-of select="name" /> - //<xsl:value-of select="value" />
                             <xsl:text>&#10;</xsl:text>
@@ -190,7 +192,7 @@ Created By: Travis Berthelot
                         
                         final GDGameLayer <xsl:value-of select="name" />GDGameLayer = <xsl:call-template name="globalResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:value-of select="$layoutIndex" />, stringBuilder.append(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME).append(CommonSeps.getInstance().UNDERSCORE).appendint(index).toString(), <xsl:value-of select="name" />, 
                         scale, scale,     
-                        null); //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDConditionWithGroupActions);
+                        GDConditionWithGroupActions.NULL_GD_CONDITION_WITH_GROUP_ACTIONS); //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDConditionWithGroupActions);
                         <xsl:value-of select="name" />GDGameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
                         //this.logUtil.putF("<xsl:value-of select="$nodeIdAsString" /> for <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0", this, this.commonStrings.PROCESS);
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);

@@ -24,6 +24,8 @@ import org.allbinary.util.BasicArrayListD;
  */
 public class GDConditionWithGroupActions 
 {
+    public static final GDConditionWithGroupActions NULL_GD_CONDITION_WITH_GROUP_ACTIONS = new GDConditionWithGroupActions();
+    
     public final BasicArrayList groupWithActionsList = new BasicArrayListD();
     public final BasicArrayList actionForGroupsList = new BasicArrayListD();
     

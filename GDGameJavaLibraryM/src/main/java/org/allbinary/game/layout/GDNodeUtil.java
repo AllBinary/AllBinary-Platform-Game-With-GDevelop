@@ -31,6 +31,8 @@ public class GDNodeUtil {
         return GDNodeUtil.instance;
     }
 
+    public final GDNode NULL_GDNODE = new GDNode(Integer.MIN_VALUE);
+
     public final BasicArrayList gdNodesList = new BasicArrayListD();    
     
     public GDNodes getInstance(final int index) {

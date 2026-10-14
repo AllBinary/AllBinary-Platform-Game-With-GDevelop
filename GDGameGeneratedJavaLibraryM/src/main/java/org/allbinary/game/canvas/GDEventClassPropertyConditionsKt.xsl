@@ -97,7 +97,7 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($hasQualifyingParentConditions, 'found')">
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //ModVarSceneTxt
-                    public var <xsl:value-of select="$name" />: String = null
+                    public var <xsl:value-of select="$name" />: String = StringUtil.getInstance().EMPTY_STRING;
                     </xsl:if>
                 </xsl:if>
 

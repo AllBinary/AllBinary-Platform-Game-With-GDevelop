@@ -115,9 +115,6 @@ Created By: Travis Berthelot
                             return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes.instance
                         }
 
-                        protected val logUtil: LogUtil = LogUtil.getInstance()
-                        private val commonStrings: CommonStrings = CommonStrings.getInstance()
-
                         private val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
                         private val gdExtensionGDNodes: GDExtensionGDNodes = GDExtensionGDNodes.getInstance()
 

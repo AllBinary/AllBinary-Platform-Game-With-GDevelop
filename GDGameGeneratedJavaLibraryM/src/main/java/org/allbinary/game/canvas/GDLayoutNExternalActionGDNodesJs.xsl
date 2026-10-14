@@ -160,8 +160,6 @@ Created By: Travis Berthelot
                             return GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$lastDigit2" />GDNodes.instance;
                         }
 
-                        protected final LogUtil logUtil = LogUtil.getInstance();
-                        private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
                         private final String EMPTY_STRING = stringUtil.EMPTY_STRING;
                         private final NullUtil nullUtil = NullUtil.getInstance();

@@ -143,8 +143,6 @@ Created By: Travis Berthelot
                             return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes.instance
                         }
 
-                        protected val logUtil: LogUtil = LogUtil.getInstance()
-                        private val commonStrings: CommonStrings = CommonStrings.getInstance()
                         private val nullUtil: NullUtil = NullUtil.getInstance()
                         private val arrayUtil: ArrayUtil = ArrayUtil.getInstance()
                         private val stringUtil: StringUtil = StringUtil.getInstance()

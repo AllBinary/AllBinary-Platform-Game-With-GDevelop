@@ -206,7 +206,7 @@ Created By: Travis Berthelot
             </xsl:for-each>
 
             //objectsClassPropertyGDObjects
-            open public fun reset() {
+            override open public fun reset() {
             <xsl:for-each select="objects" >
                 <xsl:if test="position() = 1" >
                 <xsl:variable name="objectName" select="name" />
@@ -267,7 +267,7 @@ Created By: Travis Berthelot
                         </xsl:call-template>
 
                     //objectsClassPropertyGDObjects2
-                    open public fun reset() {
+                    override open public fun reset() {
                         <xsl:call-template name="variablesResetForGDObject" />
 
                         this.initialVariables.reset()
@@ -392,7 +392,7 @@ Created By: Travis Berthelot
                     }
 
                     <xsl:if test="animations" >
-                    open public fun getAnimationFromIndex(index: Int): String {
+                    override open public fun getAnimationFromIndex(index: Int): String {
                         <xsl:variable name="hasAnimationWithName" >
                             <xsl:for-each select="animations" >
                                 <xsl:if test="string-length(name) > 0" >found</xsl:if>
@@ -406,7 +406,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     }
 
-                    open public fun getAnimation(animationName: String): String {
+                    override open public fun getAnimation(animationName: String): String {
                         val size: Int = ANIMATION_NAMES.length
                         for(index in 0 until size) {
                             if(this.ANIMATION_NAMES[index] == animationName) {
@@ -426,7 +426,7 @@ Created By: Travis Berthelot
                         throw RuntimeException(animationName)
                     }
 
-                    open public fun setAnimation(animationName: String): Boolean {
+                    override open public fun setAnimation(animationName: String): Boolean {
                         val size: Int = ANIMATION_NAMES.length
                         for(index in 0 until size) {
                             if(this.ANIMATION_NAMES[index] == animationName) {
@@ -495,48 +495,48 @@ Created By: Travis Berthelot
                     private var stickForceX: Float = 0.0f
                     private var stickForceY: Float = 0.0f
 
-                    open public fun setId(id: Int) {
+                    override open public fun setId(id: Int) {
                         this.id = id
                     }
 
-                    open public fun getId(): Int {
+                    override open public fun getId(): Int {
                         return this.id
                     }
 
-                    open public fun setPoint(point: GPoint) {
+                    override open public fun setPoint(point: GPoint) {
                         this.point = point
                     }
 
-                    open public fun getPoint(): GPoint {
+                    override open public fun getPoint(): GPoint {
                         return this.point
                     }
 
-                    open public fun setStickForceX(stickForceX: Float) {
+                    override open public fun setStickForceX(stickForceX: Float) {
                         this.stickForceX = stickForceX
                     }
 
-                    open public fun setStickForceY(stickForceY: Float) {
+                    override open public fun setStickForceY(stickForceY: Float) {
                         this.stickForceY = stickForceY
                     }
 
-                    open public fun StickForceX(): Float {
+                    override open public fun StickForceX(): Float {
                         return stickForceX
                     }
 
-                    open public fun StickForceY(): Float {
+                    override open public fun StickForceY(): Float {
                         return stickForceY
                     }
 
-                    open public fun DeadZoneRadius(): Float {
+                    override open public fun DeadZoneRadius(): Float {
                         return deadZoneRadius
                     }
                     </xsl:if>
                     <xsl:if test="type = 'Scrollbar::Scrollbar'" >
                     private var scrollPositionValue: Int
-                    open public fun setScrollPosition(scrollPositionValue: Int) {
+                    override open public fun setScrollPosition(scrollPositionValue: Int) {
                         this.scrollPositionValue = scrollPositionValue
                     }
-                    open public fun ScrollPosition(): Int {
+                    override open public fun ScrollPosition(): Int {
                         return this.scrollPositionValue
                     }
                     </xsl:if>
@@ -545,7 +545,7 @@ Created By: Travis Berthelot
 
                 open class <xsl:value-of select="name" />GDObjectClassGDObjectFactory : GDObjectFactory {
 
-                    open public fun get(width: Int, height: Int, name: String): GDObject {
+                    override open public fun get(width: Int, height: Int, name: String): GDObject {
                         return <xsl:value-of select="name" />(width, height, name)
                     }
 
@@ -565,15 +565,15 @@ Created By: Travis Berthelot
                     public constructor(width: Int, height: Int, name: String) : super(width, height, name, null) {
                     }
 
-                    open public fun Width(graphics: Graphics): Int {
+                    override open public fun Width(graphics: Graphics): Int {
                         return 0
                     }
 
-                    open public fun Height(graphics: Graphics): Int {
+                    override open public fun Height(graphics: Graphics): Int {
                         return 0
                     }
 
-                    open public fun String(): String {
+                    override open public fun String(): String {
                         //return stringMaker.toString()
                         return stringUtil.EMPTY_STRING
                     }
@@ -581,7 +581,7 @@ Created By: Travis Berthelot
 
                 open class GDObjectClass2GDObjectFactory : GDObjectFactory {
 
-                    open public fun get(width: Int, height: Int, name: String): GDObject {
+                    override open public fun get(width: Int, height: Int, name: String): GDObject {
                         return <xsl:value-of select="name" />(width, height, name)
                     }
 

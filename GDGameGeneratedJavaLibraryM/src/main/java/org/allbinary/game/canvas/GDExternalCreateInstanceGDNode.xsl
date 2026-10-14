@@ -79,6 +79,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.canvas.GDExtensionGDNodes;
                 import org.allbinary.game.configuration.persistance.JSONPersistance;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
+                import org.allbinary.game.layer.special.GDConditionWithGroupActions;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.BaseGDNodeStats;

@@ -153,8 +153,6 @@ Created By: Travis Berthelot
                             return GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance as GD<xsl:value-of select="$layoutIndex" />SpecialAnimation
                         }
 
-                        protected val logUtil: LogUtil = LogUtil.getInstance()
-                        private val commonStrings: CommonStrings = CommonStrings.getInstance()
                         private val nullUtil: NullUtil = NullUtil.getInstance()
                         private val arrayUtil: ArrayUtil = ArrayUtil.getInstance()
                         private val pointFactory: PointFactory = PointFactory.getInstance()
@@ -576,7 +574,7 @@ Created By: Travis Berthelot
                         clear = false
                     }
 
-                    open public fun reset() {
+                    override open public fun reset() {
                         //this.logUtil.putF("scene - clear", this, this.commonStrings.PROCESS)
 
                         clear = true

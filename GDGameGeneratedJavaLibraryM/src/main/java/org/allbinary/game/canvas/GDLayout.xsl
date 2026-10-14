@@ -157,8 +157,6 @@ Created By: Travis Berthelot
                             return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimation) GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance;
                         }
 
-                        protected final LogUtil logUtil = LogUtil.getInstance();
-                        private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final NullUtil nullUtil = NullUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final PointFactory pointFactory = PointFactory.getInstance();
@@ -586,6 +584,7 @@ Created By: Travis Berthelot
                         clear = false;
                     }
                     
+                    @Override
                     public void reset() {
 
                         //this.logUtil.putF("scene - clear", this, this.commonStrings.PROCESS);

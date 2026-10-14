@@ -97,7 +97,7 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($hasQualifyingParentConditions, 'found')">
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //ModVarSceneTxt
-                    public String <xsl:value-of select="$name" /> = null;
+                    public String <xsl:value-of select="$name" /> = StringUtil.getInstance().EMPTY_STRING;
                     </xsl:if>
                 </xsl:if>
                 
@@ -147,43 +147,43 @@ Created By: Travis Berthelot
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
                     //GDNode - //MouseButtonReleased - eventListener
-                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
-                    public GDNode mouseButtonReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = ;
+                    public GDNode mouseButtonReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = this.gdNodeUtil.NULL_GDNODE;
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonFromTextReleased'" >
                     //GDNode - //MouseButtonFromTextReleased - //MouseButtonReleased - eventListener
-                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
-                    public GDNode mouseButtonFromTextReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = ;
+                    public GDNode mouseButtonFromTextReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = this.gdNodeUtil.NULL_GDNODE;
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonPressed'" >
                     //GDNode - //MouseButtonPressed - eventListener
-                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
-                    public GDNode mouseButtonPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = ;
+                    public GDNode mouseButtonPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = this.gdNodeUtil.NULL_GDNODE;
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonFromTextPressed'" >
                     //GDNode - //MouseButtonFromTextPressed - //MouseButtonPressed  - eventListener
-                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
-                    public GDNode mouseButtonFromTextPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = ;
+                    public GDNode mouseButtonFromTextPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = this.gdNodeUtil.NULL_GDNODE;
                 </xsl:if>
                 <xsl:if test="$typeValue = 'IsMouseWheelScrollingUp'" >
                     //GDNode - //IsMouseWheelScrollingUp  - eventListener
-                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
-                    public GDNode mouseWheelScrollingUpGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = ;
+                    public GDNode mouseWheelScrollingUpGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = this.gdNodeUtil.NULL_GDNODE;
                 </xsl:if>
                 <xsl:if test="$typeValue = 'IsMouseWheelScrollingDown'" >
                     //GDNode - //IsMouseWheelScrollingDown  - eventListener
-                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
-                    public GDNode mouseWheelScrollingDownGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = ;
+                    public GDNode mouseWheelScrollingDownGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = this.gdNodeUtil.NULL_GDNODE;
                 </xsl:if>
                 <xsl:if test="$typeValue = 'SourisBouton'" >
                     //GDNode - //MouseButton - //SourisBouton - eventListener
-                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
-                    public GDNode mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = ;
+                    public GDNode mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = this.gdNodeUtil.NULL_GDNODE;
                 </xsl:if>
                 <xsl:if test="type/value = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
                     //GDNode - //SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed - eventListener
-                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
-                    public GDNode spriteMultitouchJoystickGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = ;
+                    public GDNode spriteMultitouchJoystickGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = this.gdNodeUtil.NULL_GDNODE;
                 </xsl:if>
             </xsl:for-each>
 

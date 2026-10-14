@@ -35,7 +35,12 @@ open public class GDConditionWithGroupActions
             : Object
          {
         
+companion object {
+            
+    val NULL_GD_CONDITION_WITH_GROUP_ACTIONS: GDConditionWithGroupActions = GDConditionWithGroupActions()
 
+        }
+            
     val groupWithActionsList: BasicArrayList = BasicArrayListD()
 
     val actionForGroupsList: BasicArrayList = BasicArrayListD()

@@ -111,8 +111,6 @@ Created By: Travis Berthelot
                             return GDGlobalsGDResources.instance as GDGlobalsGDResources
                         }
 
-                        protected val logUtil: LogUtil = LogUtil.getInstance()
-                        private val commonStrings: CommonStrings = CommonStrings.getInstance()
                         private val basicColorUtil: BasicColorUtil = BasicColorUtil.getInstance()
                         private val pointFactory: PointFactory = PointFactory.getInstance()
                         private val smallBasicColorCacheFactory: SmallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance()

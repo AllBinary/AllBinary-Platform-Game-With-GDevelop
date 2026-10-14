@@ -31,6 +31,7 @@ Created By: Travis Berthelot
                             this.reset();
                         }
         
+                        @Override
                         public void reset() {
                             final int size = hasReleased.length;
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {

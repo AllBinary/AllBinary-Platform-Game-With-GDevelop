@@ -21,6 +21,8 @@
 
         import java.lang.Object        
         
+        import java.lang.Integer
+        
         
         import kotlin.Array
         import kotlin.reflect.KClass
@@ -53,6 +55,8 @@ companion object {
             {
             }            
         
+    val NULL_GDNODE: GDNode = GDNode(Integer.MIN_VALUE)
+
     val gdNodesList: BasicArrayList = BasicArrayListD()
 
     open fun getInstance(index: Int)

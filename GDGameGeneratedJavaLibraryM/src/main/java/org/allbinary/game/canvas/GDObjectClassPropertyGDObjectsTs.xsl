@@ -207,6 +207,7 @@ Created By: Travis Berthelot
             </xsl:for-each>
 
             //objectsClassPropertyGDObjects
+            @Override
             public void reset() {
             
             <xsl:for-each select="objects" >
@@ -269,6 +270,7 @@ Created By: Travis Berthelot
                         </xsl:call-template>
 
                     //objectsClassPropertyGDObjects2
+                    @Override
                     public void reset() {
                         <xsl:call-template name="variablesResetForGDObject" />
                     

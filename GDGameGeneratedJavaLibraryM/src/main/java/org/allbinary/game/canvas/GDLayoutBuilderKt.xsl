@@ -125,8 +125,6 @@ Created By: Travis Berthelot
                 //LayoutBuilder name=<xsl:value-of select="$layoutName" />
                 open public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder : SpecialAnimation
                 {
-                        protected val logUtil: LogUtil = LogUtil.getInstance()
-                        private val commonStrings: CommonStrings = CommonStrings.getInstance()
                         private val nullUtil: NullUtil = NullUtil.getInstance()
                         private val arrayUtil: ArrayUtil = ArrayUtil.getInstance()
                         private val pointFactory: PointFactory = PointFactory.getInstance()

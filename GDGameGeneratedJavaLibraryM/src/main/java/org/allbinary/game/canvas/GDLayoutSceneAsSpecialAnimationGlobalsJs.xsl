@@ -148,12 +148,13 @@ Created By: Travis Berthelot
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
                         private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
                         private final PointFactory pointFactory = PointFactory.getInstance();
+                        private final GDNodeUtil gdNodeUtil = GDNodeUtil.getInstance();
                         
                         //private final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
                         
                         public final String PROCESS_RELEASE = "processReleased";
                         
-                        //private final GDNodes gdNodes = GDNodeUtil.getInstance().getInstance(<xsl:value-of select="$layoutIndex" />);
+                        //private final GDNodes gdNodes = this.gdNodeUtil.getInstance(<xsl:value-of select="$layoutIndex" />);
 
                         <xsl:variable name="hasHighscoreSubmissionComplete" >
                             <xsl:for-each select="variables" >

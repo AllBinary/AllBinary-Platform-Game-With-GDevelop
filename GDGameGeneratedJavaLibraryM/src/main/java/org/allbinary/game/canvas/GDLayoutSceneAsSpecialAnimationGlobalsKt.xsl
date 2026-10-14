@@ -147,12 +147,13 @@ Created By: Travis Berthelot
                         private val gameTickDisplayInfoSingleton: GameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance()
                         private val smallIntegerSingletonFactory: SmallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
                         private val pointFactory: PointFactory = PointFactory.getInstance()
+                        private val gdNodeUtil: GDNodeUtil = GDNodeUtil.getInstance();
 
                         //private val gameLayerStrings: GDGameLayerStrings = GDGameLayerStrings.getInstance()
 
                         public val PROCESS_RELEASE: String = "processReleased"
 
-                        //private val gdNodes: GDNodes = GDNodeUtil.getInstance().getInstance(<xsl:value-of select="$layoutIndex" />)
+                        //private val gdNodes: GDNodes = this.gdNodeUtil.getInstance(<xsl:value-of select="$layoutIndex" />)
 
                         <xsl:variable name="hasHighscoreSubmissionComplete" >
                             <xsl:for-each select="variables" >

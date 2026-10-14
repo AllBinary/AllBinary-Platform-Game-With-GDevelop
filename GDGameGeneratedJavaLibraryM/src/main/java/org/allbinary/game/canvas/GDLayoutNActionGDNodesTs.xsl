@@ -181,8 +181,6 @@ Created By: Travis Berthelot
                             return GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes.instance;
                         }
 
-                        protected final LogUtil logUtil = LogUtil.getInstance();
-                        private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final NullUtil nullUtil = NullUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final PointFactory pointFactory = PointFactory.getInstance();

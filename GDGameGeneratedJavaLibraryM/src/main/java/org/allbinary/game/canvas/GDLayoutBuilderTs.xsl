@@ -126,8 +126,6 @@ Created By: Travis Berthelot
                 //LayoutBuilder name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder extends SpecialAnimation
                 {
-                        protected final LogUtil logUtil = LogUtil.getInstance();
-                        private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final NullUtil nullUtil = NullUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final PointFactory pointFactory = PointFactory.getInstance();

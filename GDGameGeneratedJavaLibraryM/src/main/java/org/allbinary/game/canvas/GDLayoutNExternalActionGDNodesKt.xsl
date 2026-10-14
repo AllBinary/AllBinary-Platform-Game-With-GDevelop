@@ -158,8 +158,6 @@ Created By: Travis Berthelot
                             return GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$lastDigit2" />GDNodes.instance
                         }
 
-                        protected val logUtil: LogUtil = LogUtil.getInstance()
-                        private val commonStrings: CommonStrings = CommonStrings.getInstance()
                         private val stringUtil: StringUtil = StringUtil.getInstance()
                         private val EMPTY_STRING: String = stringUtil.EMPTY_STRING
                         private val nullUtil: NullUtil = NullUtil.getInstance()

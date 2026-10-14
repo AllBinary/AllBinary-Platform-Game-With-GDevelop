@@ -207,6 +207,7 @@ Created By: Travis Berthelot
             </xsl:for-each>
 
             //objectsClassPropertyGDObjects
+            @Override
             public void reset() {
             
             <xsl:for-each select="objects" >
@@ -269,6 +270,7 @@ Created By: Travis Berthelot
                         </xsl:call-template>
 
                     //objectsClassPropertyGDObjects2
+                    @Override
                     public void reset() {
                         <xsl:call-template name="variablesResetForGDObject" />
                     
@@ -395,6 +397,7 @@ Created By: Travis Berthelot
                     }
 
                     <xsl:if test="animations" >
+                    @Override
                     public String getAnimationFromIndex(final int index) {
                         <xsl:variable name="hasAnimationWithName" >
                             <xsl:for-each select="animations" >
@@ -409,6 +412,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     }
 
+                    @Override
                     public String getAnimation(final String animationName) {
                         final int size = ANIMATION_NAMES.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -429,6 +433,7 @@ Created By: Travis Berthelot
                         throw new RuntimeException(animationName);
                     }
                     
+                    @Override
                     public boolean setAnimation(final String animationName) {
                         final int size = ANIMATION_NAMES.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -498,38 +503,47 @@ Created By: Travis Berthelot
                     private float stickForceX = 0.0f;
                     private float stickForceY = 0.0f;
 
+                    @Override
                     public void setId(final int id) {
                         this.id = id;
                     }
-                        
+                    
+                    @Override
                     public int getId() {
                         return this.id;
                     }
 
+                    @Override
                     public void setPoint(final GPoint point) {
                         this.point = point;
                     }
-                        
+
+                    @Override
                     public GPoint getPoint() {
                         return this.point;
                     }
-                        
+
+                    @Override
                     public void setStickForceX(final float stickForceX) {
                         this.stickForceX = stickForceX;
                     }
 
+                    @Override
                     public void setStickForceY(final float stickForceY) {
                         this.stickForceY = stickForceY;
                     }
 
+                    @Override
                     public float StickForceX() {
                         return stickForceX;
                     }
 
+                    @Override
                     public float StickForceY() {
                         return stickForceY;
                     }
-                        
+
+                    @Override
                     public float DeadZoneRadius() {
                         return deadZoneRadius;
                     }
@@ -548,6 +562,7 @@ Created By: Travis Berthelot
 
                 class <xsl:value-of select="name" />GDObjectClassGDObjectFactory extends GDObjectFactory {
 
+                    @Override
                     public GDObject get(final int width, final int height, final String name) {
                         return new <xsl:value-of select="name" />(width, height, name);
                     }
@@ -569,10 +584,12 @@ Created By: Travis Berthelot
                         super(width, height, name, null);
                     }
 
+                    @Override
                     public int Width(final Graphics graphics) {
                         return 0;
                     }
 
+                    @Override
                     public int Height(final Graphics graphics) {
                         return 0;
                     }
@@ -585,6 +602,7 @@ Created By: Travis Berthelot
 
                 class GDObjectClass2GDObjectFactory extends GDObjectFactory {
 
+                    @Override
                     public GDObject get(final int width, final int height, final String name) {
                         return new <xsl:value-of select="name" />(width, height, name);
                     }

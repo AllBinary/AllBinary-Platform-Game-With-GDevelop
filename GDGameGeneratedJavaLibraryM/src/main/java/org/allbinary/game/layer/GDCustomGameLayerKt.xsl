@@ -493,7 +493,7 @@ Created By: Travis Berthelot
     open public fun rightp() {
     }
 
-    open public fun reset() {
+    override open public fun reset() {
     }
 
     open public fun terrainMove(geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt;, geographicMapCellTypeArray: Array&lt;GeographicMapCellType&gt;, dx: Int, dy: Int) {
@@ -943,7 +943,7 @@ Created By: Travis Berthelot
 //        }
     }
 
-    open public fun reset() {
+    override open public fun reset() {
         //this.specialIndex = this.minSpecialIndex
 
         this.platformGameBehavior.land(this.velocityInterface as VelocityProperties)

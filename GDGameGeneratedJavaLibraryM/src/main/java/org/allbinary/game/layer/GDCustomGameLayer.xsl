@@ -518,6 +518,7 @@ Created By: Travis Berthelot
     {
     }
 
+    @Override
     public void reset() throws Exception
     {
     }
@@ -1006,6 +1007,7 @@ Created By: Travis Berthelot
 //        }
     }
 
+    @Override
     public void reset() throws Exception
     {
         //this.specialIndex = this.minSpecialIndex;
