@@ -120,6 +120,7 @@ companion object {
     var moveProcessor: Processor = object: Processor()
                                 {
                                 
+                                
                 @Throws(Exception::class)
             
     override fun processt(timeDelta: Long)
@@ -550,6 +551,7 @@ this.velocityInterface!!.setVelocityi(length.toLong() *this.SCALE_FACTOR2, adjus
                                     {
                                     this.processor= object: Processor()
                                 {
+                                
                                 
                 @Throws(Exception::class)
             

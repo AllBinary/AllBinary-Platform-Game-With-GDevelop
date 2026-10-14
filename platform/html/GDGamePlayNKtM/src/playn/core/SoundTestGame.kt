@@ -80,6 +80,7 @@ PlayN.keyboard()!!.setListener(this)
 PlayN.pointer()!!.setListener(object: Pointer.Listener()
                                 {
                                 
+                                
     override fun onPointerEnd(event: Pointer.Event)
         //nullable = true from not(false or (false and false)) = true
 {
@@ -216,6 +217,7 @@ this.touchVectorY= (y -cy) *1.0f /cy
 var payload = payload
 PlayN.net()!!.post("/rpc", payload, object: Callback<String>()
                                 {
+                                
                                 
     override fun onSuccess(response: String)
         //nullable = true from not(false or (false and false)) = true

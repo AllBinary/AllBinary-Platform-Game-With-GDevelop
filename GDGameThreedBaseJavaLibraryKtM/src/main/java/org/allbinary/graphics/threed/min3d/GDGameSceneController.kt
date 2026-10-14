@@ -55,6 +55,7 @@ open public class GDGameSceneController : AllBinaryGameSceneController {
     private val cameraInputProcessor: GDCameraInputProcessor = object: GDCameraInputProcessor()
                                 {
                                 
+                                
     override fun process(gdGameCameraSetup: GDGameCameraSetup)
         //nullable = true from not(false or (false and false)) = true
 {

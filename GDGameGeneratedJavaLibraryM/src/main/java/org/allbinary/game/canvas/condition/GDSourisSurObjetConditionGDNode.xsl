@@ -108,11 +108,15 @@ Created By: Travis Berthelot
                             private final LogUtil logUtil = LogUtil.getInstance();
                             private final CommonStrings commonStrings = CommonStrings.getInstance();
                             
+                            private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
+                            private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+
+                            @Override
                             public void run() {
                                 try {
                                     //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "run", this, this.commonStrings.PROCESS);
 
-                                    gdNodeStatsFactory.push(0, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
+                                    this.gdNodeStatsFactory.push(0, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
 
                                         <xsl:for-each select=".." >
 
@@ -125,20 +129,20 @@ Created By: Travis Berthelot
                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
                             //Events only - //Event - //<xsl:value-of select="type" /> - call
-                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                         </xsl:if>
                         <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
                             <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> 
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process();
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>this.globals.<xsl:value-of select="target" />GDNode.process();
                         </xsl:if>
                     </xsl:for-each>
 
                                         </xsl:for-each>
 
-                                    gdNodeStatsFactory.push(1, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
+                                    this.gdNodeStatsFactory.push(1, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
 
                                     <xsl:variable name="processOneTimePerPress" >
                                     <xsl:if test="contains($press, 'found')" >
