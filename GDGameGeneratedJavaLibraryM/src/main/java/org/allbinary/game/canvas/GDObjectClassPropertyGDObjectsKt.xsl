@@ -562,7 +562,7 @@ Created By: Travis Berthelot
 
                     //public val stringMaker: StringMaker = StringMaker()
 
-                    public constructor(width: Int, height: Int, name: String) : super(width, height, name, null) {
+                    public constructor(width: Int, height: Int, name: String) : super(width, height, name, StringUtil.getInstance().EMPTY_STRING) {
                     }
 
                     override open public fun Width(graphics: Graphics): Int {

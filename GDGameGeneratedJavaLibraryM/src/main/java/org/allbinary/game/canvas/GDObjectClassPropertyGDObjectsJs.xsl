@@ -568,7 +568,7 @@ Created By: Travis Berthelot
                     //public final StringMaker stringMaker = new StringMaker();
 
                     public <xsl:value-of select="name" />(final int width, final int height, final String name) {
-                        super(width, height, name, null);
+                        super(width, height, name, StringUtil.getInstance().EMPTY_STRING);
                     }
 
                     public int Width(final Graphics graphics) {
