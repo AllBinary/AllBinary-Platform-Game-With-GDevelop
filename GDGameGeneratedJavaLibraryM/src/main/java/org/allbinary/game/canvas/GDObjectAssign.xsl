@@ -74,7 +74,7 @@ Created By: Travis Berthelot
         <xsl:param name="instancesAsString" />
 
                 int colorAsInt = 0;
-                BasicColor basicColor = null;
+                BasicColor basicColor;
                 int size = 0;
         
         //objects - all - //objectsAssign - START
@@ -201,7 +201,7 @@ Created By: Travis Berthelot
                             gdObject.height = (int) (customTextAnimationFactory.getHeight());
 
                             final Rectangle rectangle = new Rectangle(
-                                pointFactory.getInstance().ZERO_ZERO,
+                                pointFactory.ZERO_ZERO,
                                 (int) (this.layerInfo.getWidth()), 
                                 (int) (this.layerInfo.getHeight())
                             );

@@ -359,7 +359,7 @@ Created By: Travis Berthelot
                     }
                     
                     public float round(final float value) {
-                        return Math.round(value);
+                        return (float) Math.round(value);
                     }
 
                     public int LastTouchId() {

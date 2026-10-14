@@ -252,7 +252,7 @@ Created By: Travis Berthelot
                                 final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) gameLayer.gdObject;
                                 if(motionGestureEvent.getId() == <xsl:value-of select="name" />.getId()) {
                                     <xsl:value-of select="name" />.setId(-1);
-                                    <xsl:value-of select="name" />.setPoint(pointFactory.getInstance().ZERO_ZERO);
+                                    <xsl:value-of select="name" />.setPoint(pointFactory.ZERO_ZERO);
                                 }
                             }
                             </xsl:if>

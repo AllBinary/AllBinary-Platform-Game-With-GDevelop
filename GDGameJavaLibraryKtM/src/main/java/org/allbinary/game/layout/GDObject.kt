@@ -224,20 +224,20 @@ this.halfHeight= height /2
 }
 
 
-    open fun Width(graphics: Graphics)
+    open fun Width(graphicsCanBeNull: Graphics?)
         //nullable = true from not(false or (false and false)) = true
 : Int{
-    //var graphics = graphics
+    //var graphicsCanBeNull = graphicsCanBeNull
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.width
 }
 
 
-    open fun Height(graphics: Graphics)
+    open fun Height(graphicsCanBeNull: Graphics?)
         //nullable = true from not(false or (false and false)) = true
 : Int{
-    //var graphics = graphics
+    //var graphicsCanBeNull = graphicsCanBeNull
 
                         //if statement needs to be on the same line and ternary does not work the same way.
                         return this.height

@@ -81,6 +81,7 @@ Created By: Travis Berthelot
                      
                         //private int lastTotal = -1;
                         //private int index = 0;
+                        @Override
                         public boolean processC() throws Exception {
                             //final StringMaker stringBuilder = new StringMaker();
                             final int size = <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>;
@@ -120,11 +121,13 @@ Created By: Travis Berthelot
                         }
                         </xsl:if>
 
+                        @Override
                         public void process(final GDGameLayer gameLayer, final int x, final int y) {
                             final GDObject gdObject = gameLayer.gdObject;
                             this.process(gdObject, x, y);
                         }
 
+                        @Override
                         public void process(final GDObject gdObject, final int x, final int y) {
                             throw new RuntimeException();
                         }

@@ -156,12 +156,12 @@ public class GDObject
         return false;
     }
 
-    public int Width(final Graphics graphics) {
+    public int Width(final Graphics graphicsCanBeNull) {
         //return canvasWidth;
         return this.width;
     }
     
-    public int Height(final Graphics graphics) {
+    public int Height(final Graphics graphicsCanBeNull) {
         //return canvasHeight;
         return this.height;
     }

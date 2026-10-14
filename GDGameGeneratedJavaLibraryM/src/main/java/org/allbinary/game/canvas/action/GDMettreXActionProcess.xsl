@@ -123,11 +123,13 @@ Created By: Travis Berthelot
                         }
                         </xsl:if>
 
+                        @Override
                         public void process(final GDGameLayer gameLayer, final int x, final int y) {
                             final GDObject gdObject = gameLayer.gdObject;
                             this.process(gdObject, x, y);
                         }
 
+                        @Override
                         public void process(final GDObject gdObject, final int x, final int y) {
                             gdObject.setX(x);
                         }
