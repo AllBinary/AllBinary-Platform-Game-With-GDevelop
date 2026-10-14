@@ -18,7 +18,6 @@ import javax.microedition.lcdui.Graphics;
 import org.allbinary.J2MEUtil;
 import org.allbinary.animation.AnimationBehavior;
 import org.allbinary.animation.IndexedAnimation;
-import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.PrimitiveIntUtil;
 
 /**
@@ -31,8 +30,6 @@ public class ScrollBarAnimation
     extends IndexedAnimation
     //implements IndexedAnimationInterface
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
-
     private IndexedAnimation[] animationInterfaceArray;
 
     private final int width;

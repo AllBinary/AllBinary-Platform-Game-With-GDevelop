@@ -30,13 +30,10 @@ import javax.microedition.lcdui.Graphics
 import org.allbinary.J2MEUtil
 import org.allbinary.animation.AnimationBehavior
 import org.allbinary.animation.IndexedAnimation
-import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.logic.math.PrimitiveIntUtil
 //Similar to Slider
 open public class ScrollBarAnimation : IndexedAnimation {
         
-
-    val logUtil: LogUtil = LogUtil.getInstance()!!
 
     private var animationInterfaceArray: Array<IndexedAnimation?>
 

@@ -271,7 +271,8 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
         
         if (geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
 
-            ((TopViewCharacterInterface) layer).terrainMove(geographicMapInterfaceArray, geographicMapCellTypeArray, x, y);
+            final TopViewCharacterInterface topViewCharacterInterface = ((TopViewCharacterInterface) layer);
+            topViewCharacterInterface.terrainMove(geographicMapInterfaceArray, geographicMapCellTypeArray, x, y);
 
             //final String MOVE_AND_LAND = "moveAndLand";
             //logUtil.put(new StringMaker().append("Should Land at: ").append(this.gravityActionIndex).append(" y: ").append(y).toString(), this, MOVE_AND_LAND);
@@ -332,14 +333,15 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
             this.geographicMapBehavior.getCellTypeAt(geographicMapInterfaceArray, geographicMapCellTypeArray, possibleStepGeographicMapCellPosition);
             final boolean hasSolidBlock = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray);
 
+            final TopViewCharacterInterface topViewCharacterInterface = ((TopViewCharacterInterface) layer);
             if (hasSolidBlock) {
                 if (this.autoStepBlocks) {
-                    ((TopViewCharacterInterface) layer).leftp();
+                    topViewCharacterInterface.leftp();
                 } else {
                     velocityProperties.getVelocityXBasicDecimalP().setint(0);
                 }
             } else {
-                ((TopViewCharacterInterface) layer).leftp();
+                topViewCharacterInterface.leftp();
             }
         }
         
@@ -360,14 +362,15 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
             this.geographicMapBehavior.getCellTypeAt(geographicMapInterfaceArray, geographicMapCellTypeArray, possibleStepGeographicMapCellPosition);
             final boolean hasSolidBlock = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray);
 
+            final TopViewCharacterInterface topViewCharacterInterface = ((TopViewCharacterInterface) layer);
             if (hasSolidBlock) {
                 if (this.autoStepBlocks) {
-                    ((TopViewCharacterInterface) layer).rightp();
+                    topViewCharacterInterface.rightp();
                 } else {
                     velocityProperties.getVelocityXBasicDecimalP().setint(0);
                 }
             } else {
-                ((TopViewCharacterInterface) layer).rightp();
+                topViewCharacterInterface.rightp();
             }
         }
     }

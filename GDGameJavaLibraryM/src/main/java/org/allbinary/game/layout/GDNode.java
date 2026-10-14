@@ -160,7 +160,16 @@ public class GDNode
     protected void processGDStats(final GDGameLayer[] gameLayerArray) {
         this.nodeStatsFactory.push(14, this.name);
     }
-    
+
+    //Overridden by generated nodes so Kotlin has a method to override
+    public void process(final GDGameLayer gameLayer, final int x, final int y) {
+        throw new RuntimeException();
+    }
+
+    public void process(final GDObject gdObject, final int x, final int y) {
+        throw new RuntimeException();
+    }
+
     //This is used by functions
     public Object getReturnValue() {
         return NullUtil.getInstance().NULL_OBJECT;

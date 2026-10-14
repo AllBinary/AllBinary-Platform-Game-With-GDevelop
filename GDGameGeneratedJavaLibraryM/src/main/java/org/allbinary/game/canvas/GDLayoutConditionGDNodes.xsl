@@ -116,7 +116,6 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.input.motion.button.TouchScreenFactory;
-                import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
                 import org.allbinary.math.LayerDistanceUtil;
                 import org.allbinary.math.RectangleCollisionUtil;
                 import org.allbinary.thread.NullRunnable;
@@ -233,7 +232,7 @@ Created By: Travis Berthelot
                     }
 
                     public double log2(final int value) {
-                        return Math.log(value);
+                        return Math.log((double) value);
                     }
 
                     public int Random(final int range) {

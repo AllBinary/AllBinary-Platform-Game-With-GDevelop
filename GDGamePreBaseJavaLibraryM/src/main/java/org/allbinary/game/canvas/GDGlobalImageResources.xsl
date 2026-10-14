@@ -98,7 +98,6 @@ Created By: Travis Berthelot
                             return (GDGlobalSpecialAnimationImageResources) GDGlobalSpecialAnimationImageResources.instance;
                         }
 
-                        protected final LogUtil logUtil = LogUtil.getInstance();
                         private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
                         private final ImageScaleUtil imageScaleUtil = ImageScaleUtil.getInstance();
                         private final ImageCache imageCache = ImageCacheFactory.getInstance();

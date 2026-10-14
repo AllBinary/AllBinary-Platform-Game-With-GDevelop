@@ -107,7 +107,6 @@ Created By: Travis Berthelot
                             return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.instance;
                         }
 
-                        protected final LogUtil logUtil = LogUtil.getInstance();
                         private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
                         private final ImageScaleUtil imageScaleUtil = ImageScaleUtil.getInstance();
                         private final ImageCache imageCache = ImageCacheFactory.getInstance();

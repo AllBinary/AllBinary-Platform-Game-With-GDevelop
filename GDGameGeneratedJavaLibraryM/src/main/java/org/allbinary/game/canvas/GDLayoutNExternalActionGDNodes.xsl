@@ -431,7 +431,7 @@ Created By: Travis Berthelot
                     }
 
                     public double log2(final int value) {
-                        return Math.log(value);
+                        return Math.log((double) value);
                     }
 
                     public double sin(final double angle) {

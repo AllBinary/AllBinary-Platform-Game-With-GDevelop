@@ -35,13 +35,10 @@ import org.allbinary.animation.AnimationBehavior
 import org.allbinary.animation.IndexedAnimation
 import org.allbinary.animation.text.CustomTextAnimation
 import org.allbinary.game.layer.SWTUtil
-import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.logic.math.PrimitiveIntUtil
 //Similar to ScollBar
 open public class SliderAnimation : IndexedAnimation {
         
-
-    val logUtil: LogUtil = LogUtil.getInstance()!!
 
     private var animationInterfaceArray: Array<IndexedAnimation?>
 

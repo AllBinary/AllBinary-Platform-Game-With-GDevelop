@@ -133,8 +133,6 @@ Created By: Travis Berthelot
                             return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.instance;
                         }
 
-                        protected final LogUtil logUtil = LogUtil.getInstance();
-                        private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final PointFactory pointFactory = PointFactory.getInstance();
 
                         private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();

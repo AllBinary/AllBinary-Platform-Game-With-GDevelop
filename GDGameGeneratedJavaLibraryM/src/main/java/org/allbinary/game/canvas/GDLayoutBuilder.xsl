@@ -235,7 +235,8 @@ Created By: Travis Berthelot
                             GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes otherEventNodes;
                             GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes objectEventNodes;
                         
-                            int size = gameGlobals.nodeArray.length;
+                            final GDNode[] nodeArray = gameGlobals.nodeArray;
+                            int size = nodeArray.length;
                         <!--
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             final int currentIndex = index;
@@ -441,7 +442,7 @@ Created By: Travis Berthelot
                     }
 
                     public double log2(final int value) {
-                        return Math.log(value);
+                        return Math.log((double) value);
                     }
 
                     public int Random(final int range) {

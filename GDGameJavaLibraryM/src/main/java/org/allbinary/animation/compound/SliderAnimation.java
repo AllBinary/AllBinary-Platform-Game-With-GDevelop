@@ -21,7 +21,6 @@ import org.allbinary.animation.AnimationBehavior;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.text.CustomTextAnimation;
 import org.allbinary.game.layer.SWTUtil;
-import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.PrimitiveIntUtil;
 
 /**
@@ -34,7 +33,6 @@ public class SliderAnimation
     extends IndexedAnimation
     //implements IndexedAnimationInterface
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
 
     private IndexedAnimation[] animationInterfaceArray;
 

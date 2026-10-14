@@ -369,6 +369,32 @@ this.nodeStatsFactory!!.push(14, this.name)
 }
 
 
+    open fun process(gameLayer: GDGameLayer, x: Int, y: Int)
+        //nullable = true from not(false or (false and false)) = true
+{
+    //var gameLayer = gameLayer
+    //var x = x
+    //var y = y
+
+
+
+                            throw RuntimeException()
+}
+
+
+    open fun process(gdObject: GDObject, x: Int, y: Int)
+        //nullable = true from not(false or (false and false)) = true
+{
+    //var gdObject = gdObject
+    //var x = x
+    //var y = y
+
+
+
+                            throw RuntimeException()
+}
+
+
     open fun getReturnValue()
         //nullable = true from not(false or (false and true)) = true
 : Any{

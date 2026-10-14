@@ -337,8 +337,9 @@ Created By: Travis Berthelot
 
                     }
 
+                    @Override
                     public void process() {
-                        
+
                         try {
 
                         globals.globalsGameTickTimeDelayHelper.loop();
@@ -498,8 +499,9 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     //instances - END - layout
 
+                    @Override
                     public void open() {
-                    
+
                         //this.logUtil.putF("scene - open", this, this.commonStrings.PROCESS);
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
@@ -520,8 +522,9 @@ Created By: Travis Berthelot
                     //eventsOpen - END
                     }
 
+                    @Override
                     public void close() {
-                    
+
                         //this.logUtil.putF("scene - close", this, this.commonStrings.PROCESS);
 
                         GDFormInputProcessor.getInstance().close();
@@ -532,9 +535,10 @@ Created By: Travis Berthelot
                         ScrolledMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterfaceLastPoint);
                     </xsl:if>
                     
-                        final int size = globals.motionEventListOfList.length;
+                        final BasicArrayList[] motionEventListOfList = globals.motionEventListOfList;
+                        final int size = motionEventListOfList.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                            final BasicArrayList motionEventList = (BasicArrayList) globals.motionEventListOfList[index];
+                            final BasicArrayList motionEventList = motionEventListOfList[index];
                             motionEventList.clear();
                         }
                         
@@ -613,6 +617,7 @@ Created By: Travis Berthelot
                         
                     }
 
+                    @Override
                     public GDSceneGlobals getGlobals() {
                         return this.globals;
                     }
