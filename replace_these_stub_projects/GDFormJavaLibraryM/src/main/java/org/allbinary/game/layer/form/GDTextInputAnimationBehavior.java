@@ -31,7 +31,8 @@ public class GDTextInputAnimationBehavior extends GDItemAnimationBehavior
 
     @Override
     public IndexedAnimation[] init(final GDObject gdObject, final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray) {
-        return null;
+        throw new RuntimeException();
+        //return null;
     }
     
     @Override
@@ -54,9 +55,11 @@ public class GDTextInputAnimationBehavior extends GDItemAnimationBehavior
 
     }
 
+    @Override
     public void keyPressed(final int keyCode) {
     }
 
+    @Override
     public void setFocus(final boolean hasFocus) {    
     }
         

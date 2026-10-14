@@ -71,7 +71,8 @@ public class GDForm
     }
 
     public GDGameLayer get(int itemNum) {
-        return null;
+        throw new RuntimeException();
+        //return null;
     }
 
     public int getHeight() {

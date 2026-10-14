@@ -41,12 +41,13 @@ public constructor (){
 
     override fun init(gdObject: GDObject, animationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?>)
         //nullable = true from not(false or (false and false)) = true
-: Array<IndexedAnimation?>?{
+: Array<IndexedAnimation?>{
     //var gdObject = gdObject
     //var animationInterfaceFactoryInterfaceArray = animationInterfaceFactoryInterfaceArray
 
-                        //if statement needs to be on the same line and ternary does not work the same way.
-                        return null
+
+
+                            throw RuntimeException()
 }
 
 
@@ -78,14 +79,14 @@ var gameLayerAsItem = gameLayerAsItem
 }
 
 
-    open fun keyPressed(keyCode: Int)
+    override fun keyPressed(keyCode: Int)
         //nullable = true from not(false or (false and false)) = true
 {
     //var keyCode = keyCode
 }
 
 
-    open fun setFocus(hasFocus: Boolean)
+    override fun setFocus(hasFocus: Boolean)
         //nullable = true from not(false or (false and false)) = true
 {
     //var hasFocus = hasFocus

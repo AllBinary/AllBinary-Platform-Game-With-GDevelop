@@ -138,11 +138,12 @@ var itemNum = itemNum
 
     open fun get(itemNum: Int)
         //nullable = true from not(false or (false and false)) = true
-: GDGameLayer?{
+: GDGameLayer{
 var itemNum = itemNum
 
-                        //if statement needs to be on the same line and ternary does not work the same way.
-                        return null
+
+
+                            throw RuntimeException()
 }
 
 

@@ -30,7 +30,8 @@ implements GDGameLayerItemStateListener {
 
     @Override
     public IndexedAnimation[] init(final GDObject gdObject, final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray) {
-        return null;
+        throw new RuntimeException();
+        //return null;
     }
     
     @Override

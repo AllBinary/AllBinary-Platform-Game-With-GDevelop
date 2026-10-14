@@ -40,12 +40,13 @@ public constructor (){
 
     override fun init(gdObject: GDObject, animationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?>)
         //nullable = true from not(false or (false and false)) = true
-: Array<IndexedAnimation?>?{
+: Array<IndexedAnimation?>{
     //var gdObject = gdObject
     //var animationInterfaceFactoryInterfaceArray = animationInterfaceFactoryInterfaceArray
 
-                        //if statement needs to be on the same line and ternary does not work the same way.
-                        return null
+
+
+                            throw RuntimeException()
 }
 
 
