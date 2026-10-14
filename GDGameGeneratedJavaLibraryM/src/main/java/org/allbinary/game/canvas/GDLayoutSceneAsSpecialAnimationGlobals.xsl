@@ -107,6 +107,7 @@ Created By: Travis Berthelot
                 import org.allbinary.layer.event.LayerManagerEvent;
                 import org.allbinary.layer.event.LayerManagerEventHandler;
                 import org.allbinary.layer.event.LayerManagerEventListener;
+                import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
                 import org.allbinary.logic.string.StringUtil;
                 import org.allbinary.string.CommonStrings;
                 import org.allbinary.logic.string.StringMaker;
@@ -150,6 +151,7 @@ Created By: Travis Berthelot
                         private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
                         private final PointFactory pointFactory = PointFactory.getInstance();
                         private final GDNodeUtil gdNodeUtil = GDNodeUtil.getInstance();
+                        private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
                         
                         //private final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
                         
@@ -412,8 +414,8 @@ Created By: Travis Berthelot
                     };
                             
                     //public GDNode currentButtonGDNodePressed = null;
-                    MotionGestureInput lastMotionGestureInput = null;
-                    MotionGestureInput lastScrollingMotionGestureInput = null;
+                    MotionGestureInput lastMotionGestureInput = touchMotionGestureFactory.NO_MOTION;
+                    MotionGestureInput lastScrollingMotionGestureInput = touchMotionGestureFactory.NO_MOTION;
                     </xsl:if>
 
                     //eventsClassPropertyActions - START

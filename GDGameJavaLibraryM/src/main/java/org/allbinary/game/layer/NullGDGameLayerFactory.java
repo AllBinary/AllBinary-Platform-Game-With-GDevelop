@@ -27,7 +27,9 @@ import org.allbinary.util.BasicArrayListUtil;
  */
 public class NullGDGameLayerFactory extends GDGameLayerFactory
 {
-    public NullGDGameLayerFactory() {
+    public static final NullGDGameLayerFactory NULL_GD_GAME_LAYER_FACTORY = new NullGDGameLayerFactory();
+    
+    private NullGDGameLayerFactory() {
         
         super(BasicArrayListUtil.getInstance().getImmutableInstance(), BasicArrayListUtil.getInstance().getImmutableInstance(), GroupFactory.getInstance().NULL_GROUP_ARRAY, BasicArrayListUtil.getInstance().getImmutableInstance(), new AnimationInterfaceFactoryInterface[] {NullRotationAnimationFactory.getFactoryInstance()}, new ProceduralAnimationInterfaceFactoryInterface[] {NullRotationAnimationFactory.getFactoryInstance()}, RectangleFactory.SINGLETON, RectangleFactory.ARRAY_OF_ARRAYS, false);
     }

@@ -291,7 +291,7 @@ Created By: Travis Berthelot
 
                 //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
 
-                //this.<xsl:value-of select="name" />GDGameLayerFactory = new NullGDGameLayerFactory();
+                //this.<xsl:value-of select="name" />GDGameLayerFactory = NullGDGameLayerFactory.NULL_GD_GAME_LAYER_FACTORY;
 
             </xsl:if>
 

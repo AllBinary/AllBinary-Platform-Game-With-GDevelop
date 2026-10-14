@@ -542,7 +542,7 @@ Created By: Travis Berthelot
                             motionEventList.clear();
                         }
                         
-                        globals.lastMotionGestureInput = null;
+                        globals.lastMotionGestureInput = touchMotionGestureFactory.NO_MOTION;
                     
                     //eventsClose - START
                     <xsl:call-template name="eventsClose" >
