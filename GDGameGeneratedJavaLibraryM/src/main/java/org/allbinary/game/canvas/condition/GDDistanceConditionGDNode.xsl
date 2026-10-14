@@ -124,13 +124,16 @@ Created By: Travis Berthelot
                         GDGameLayer gameLayer;
                         GDGameLayer gameLayer2;
                         //for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList.size(); index++) {
-                        
+                        //while instead of for since the index is changed in the loop
+                        int index = 0;
+                        while(index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList.size()) {
+
                         final int initialSize = gdGameLayerList.size();
                         gameLayer = (GDGameLayer) gdGameLayerList.get(index);
 
                         //for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
-                        for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList2.size(); index2++) {
+                        int index2 = 0;
+                        while(index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList2.size()) {
 
                             final int initialSize2 = gdGameLayerList2.size();
                             gameLayer2 = (GDGameLayer) gdGameLayerList2.get(index2);
@@ -152,13 +155,15 @@ Created By: Travis Berthelot
                             if(initialSize2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> gdGameLayerList2.size()) {
                                 index2--;
                             }
-                            
+
+                            index2++;
                         }
 
                             if(initialSize <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> gdGameLayerList.size()) {
                                 index--;
                             }
 
+                        index++;
                         }
 
                         <xsl:if test="contains($hasObjectGroup2, 'found')" >

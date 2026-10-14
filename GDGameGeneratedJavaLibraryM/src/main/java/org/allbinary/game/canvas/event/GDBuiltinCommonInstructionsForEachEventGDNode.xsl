@@ -175,7 +175,9 @@ Created By: Travis Berthelot
 
                     GDGameLayer <xsl:value-of select="$object" />GDGameLayer;
                     //for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList.size(); index++) {
+                    //while instead of for since the index is changed in the loop
+                    int index = 0;
+                    while(index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList.size()) {
 
                         final int initialSize = gdGameLayerList.size();
                         <xsl:value-of select="$object" />GDGameLayer = (GDGameLayer) gdGameLayerList.get(index);
@@ -217,6 +219,7 @@ Created By: Travis Berthelot
                         if(initialSize <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> gdGameLayerList.size()) {
                             index--;
                         }
+                        index++;
                     }
                 }
 

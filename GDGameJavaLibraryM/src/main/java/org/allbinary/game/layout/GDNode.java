@@ -170,6 +170,22 @@ public class GDNode
         throw new RuntimeException();
     }
 
+    public void processSub() throws Exception {
+        throw new RuntimeException();
+    }
+
+    public void processSub(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+        throw new RuntimeException();
+    }
+
+    public void processSub(final GDGameLayer[] gameLayerArray) throws Exception {
+        throw new RuntimeException();
+    }
+
+    public boolean processC() throws Exception {
+        throw new RuntimeException();
+    }
+
     //This is used by functions
     public Object getReturnValue() {
         return NullUtil.getInstance().NULL_OBJECT;

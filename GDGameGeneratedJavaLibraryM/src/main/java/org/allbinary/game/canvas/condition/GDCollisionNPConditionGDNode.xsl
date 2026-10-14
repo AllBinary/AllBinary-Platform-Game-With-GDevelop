@@ -115,7 +115,9 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                     //for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />Size</xsl:if></xsl:for-each>; index2++) {
-                    for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList2.size(); index2++) {
+                    //while instead of for since the index is changed in the loop
+                    int index2 = 0;
+                    while(index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList2.size()) {
                     final int initialSize2 = gdGameLayerList2.size();
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
@@ -123,7 +125,9 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                     //for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" />Size2</xsl:if></xsl:for-each>; index++) {
-                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList.size(); index++) {
+                    //while instead of for since the index is changed in the loop
+                    int index = 0;
+                    while(index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList.size()) {
                     final int initialSize = gdGameLayerList.size();
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
@@ -139,7 +143,7 @@ Created By: Travis Berthelot
                             } //else {
                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " TWB process collision", this, this.commonStrings.PROCESS);
                             //}
-                        
+
                             //CollisionNP - <xsl:value-of select="$name" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
                             gameGlobals.tempGameLayerArray[0] = gameLayer2;
                             gameGlobals.tempGameLayerArray[1] = gameLayer;
@@ -151,22 +155,24 @@ Created By: Travis Berthelot
                             //if(gameGlobals.tempGameLayerArray[1] != null) this.logUtil.put(gameGlobals.tempGameLayerArray[1].toString(), this, this.commonStrings.PROCESS);
 
                             //name=<xsl:value-of select="name()" />
-        
+
                             result = true;
-         
+
                         }
 
                             if(initialSize <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> gdGameLayerList.size()) {
                                 index--;
                             }
-                                        
+
                     <xsl:text>&#10;</xsl:text>
+                    index++;
                     }
 
                         if(initialSize2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> gdGameLayerList2.size()) {
                             index2--;
                         }
 
+                    index2++;
                     }
                                 
                     <xsl:if test="string-length($hasObjectGroup) > 0" >
@@ -232,7 +238,9 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                     //for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" />Size2</xsl:if></xsl:for-each>; index++) {
-                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList.size(); index++) {
+                    //while instead of for since the index is changed in the loop
+                    int index = 0;
+                    while(index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList.size()) {
                     final int initialSize = gdGameLayerList.size();
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
@@ -268,10 +276,11 @@ Created By: Travis Berthelot
                             if(initialSize <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> gdGameLayerList.size()) {
                                 index--;
                             }
-                                        
+
                     <xsl:text>&#10;</xsl:text>
+                    index++;
                     }
-                                
+
                     <xsl:if test="string-length($hasObjectGroup) > 0" >
                     }
                     </xsl:if>

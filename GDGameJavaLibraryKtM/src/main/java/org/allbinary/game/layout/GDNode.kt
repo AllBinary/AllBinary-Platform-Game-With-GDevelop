@@ -395,6 +395,57 @@ this.nodeStatsFactory!!.push(14, this.name)
 }
 
 
+                @Throws(Exception::class)
+            
+    open fun processSub()
+        //nullable = true from not(false or (false and true)) = true
+{
+
+
+
+                            throw RuntimeException()
+}
+
+
+                @Throws(Exception::class)
+            
+    open fun processSub(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
+        //nullable = true from not(false or (false and false)) = true
+{
+    //var motionGestureEvent = motionGestureEvent
+    //var lastMotionGestureInput = lastMotionGestureInput
+
+
+
+                            throw RuntimeException()
+}
+
+
+                @Throws(Exception::class)
+            
+    open fun processSub(gameLayerArray: Array<GDGameLayer?>)
+        //nullable = true from not(false or (false and false)) = true
+{
+    //var gameLayerArray = gameLayerArray
+
+
+
+                            throw RuntimeException()
+}
+
+
+                @Throws(Exception::class)
+            
+    open fun processC()
+        //nullable = true from not(false or (false and true)) = true
+: Boolean{
+
+
+
+                            throw RuntimeException()
+}
+
+
     open fun getReturnValue()
         //nullable = true from not(false or (false and true)) = true
 : Any{
