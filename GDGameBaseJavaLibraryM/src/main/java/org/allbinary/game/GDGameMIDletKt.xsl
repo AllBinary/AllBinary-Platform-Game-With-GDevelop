@@ -94,7 +94,6 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
    //DemoGameMidlet
 {
 
-   protected val logUtil: LogUtil = LogUtil.getInstance()
    private val gameTickTimeDelayHelper: GameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance()
    private val gameGlobalsFactory: GameGlobalsFactory = GameGlobalsFactory.getInstance()
 

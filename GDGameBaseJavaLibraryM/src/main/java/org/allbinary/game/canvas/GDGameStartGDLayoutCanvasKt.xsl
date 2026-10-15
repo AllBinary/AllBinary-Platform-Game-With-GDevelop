@@ -23,7 +23,6 @@ package org.allbinary.game.canvas
 import javax.microedition.lcdui.CommandListener
 
 import org.allbinary.animation.special.SpecialAnimation
-
 import org.allbinary.game.init.GDGameStaticInitializerFactory
 import org.allbinary.game.input.PlayerGameInput
 import org.allbinary.game.input.event.DownKeyEventHandler
@@ -55,7 +54,6 @@ open class <xsl:value-of select="$layoutName" /> : StartCanvas
 
     private val WAIT: Int = ((GameSpeed.getInstance().getDelay() * 3) <xsl:text disable-output-escaping="yes" >&gt;&gt;</xsl:text> 1)
 
-    //protected val logUtil: LogUtil = LogUtil.getInstance()
     private val gameInputProcessor: GDGameInputProcessor = GDGameInputProcessor()
 
     private val downKeyEventHandler: DownKeyEventHandler = DownKeyEventHandler.getInstance()

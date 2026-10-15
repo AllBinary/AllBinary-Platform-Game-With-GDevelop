@@ -55,7 +55,6 @@ public class <xsl:value-of select="$layoutName" /> extends StartCanvas
 
     private final int WAIT = ((GameSpeed.getInstance().getDelay() * 3) <xsl:text disable-output-escaping="yes" >&gt;&gt;</xsl:text> 1);
     
-    //protected final LogUtil logUtil = LogUtil.getInstance();
     private final GDGameInputProcessor gameInputProcessor = new GDGameInputProcessor();
 
     private final DownKeyEventHandler downKeyEventHandler = DownKeyEventHandler.getInstance();

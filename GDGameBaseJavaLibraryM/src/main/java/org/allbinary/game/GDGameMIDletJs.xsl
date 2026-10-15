@@ -95,7 +95,6 @@ public class GDGameMIDlet extends
    //DemoGameMidlet
 {
 
-   protected final LogUtil logUtil = LogUtil.getInstance();
    private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
    private final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
 

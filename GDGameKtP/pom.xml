@@ -51,7 +51,7 @@
         
         <module>../platform/GDGamePlatformResourceJavaLibraryKtM</module>
         <module>../platform/j2se/GDGamePCClientInfoJavaLibraryKtM</module>
-<!--        <module>../platform/j2me/GDGameJ2MEJavaLibraryKtM</module>-->
+        <module>../platform/j2me/GDGameJ2MEJavaLibraryKtM</module>
         <module>../GDGameGeneratedJavaLibraryKtM</module>
         <module>../GDGameBaseJavaLibraryKtM</module>
         <module>../GDGameAIJavaLibraryKtM</module>

@@ -4,7 +4,7 @@
 
     <parent>
         <groupId>org.allbinary.game.gd</groupId>
-        <artifactId>GDGameParentKt</artifactId>
+        <artifactId>GDGameParent</artifactId>
         <!-- Game Version Start -->
         <version>1.0.0-SNAPSHOT</version>
         <!-- Game Version Start -->
@@ -112,12 +112,12 @@
         </dependency>
         
         <!-- Only to get maven to download it unless alread in repo from build -->
-        <dependency>
+<!--        <dependency>
             <groupId>net.sf.antenna</groupId>
             <artifactId>antennaKt</artifactId>
             <version>1.2.1-beta-SNAPSHOT</version>
             <optional>true</optional>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.microemu</groupId>
