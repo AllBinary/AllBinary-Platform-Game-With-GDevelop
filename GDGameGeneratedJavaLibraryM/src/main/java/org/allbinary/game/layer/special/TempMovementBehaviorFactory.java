@@ -28,6 +28,6 @@ public class TempMovementBehaviorFactory {
         return TempMovementBehaviorFactory.instance;
     }
 
-    public TempMovementBehavior movementBehavior = null;
+    public TempMovementBehavior movementBehavior = TempMovementBehavior.NULL_TEMP_MOVEMENT_BEHAVIOR;
     
 }

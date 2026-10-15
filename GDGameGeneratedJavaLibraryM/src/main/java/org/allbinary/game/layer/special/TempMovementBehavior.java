@@ -19,4 +19,6 @@ package org.allbinary.game.layer.special;
  */
 public class TempMovementBehavior {
     
+    public static final TempMovementBehavior NULL_TEMP_MOVEMENT_BEHAVIOR = new TempMovementBehavior();
+
 }
