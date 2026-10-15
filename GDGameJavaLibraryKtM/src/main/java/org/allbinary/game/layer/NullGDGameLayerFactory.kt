@@ -36,7 +36,12 @@ import org.allbinary.util.BasicArrayListUtil
 
 open public class NullGDGameLayerFactory : GDGameLayerFactory {
         
-public constructor ()                        
+companion object {
+            
+    val NULL_GD_GAME_LAYER_FACTORY: NullGDGameLayerFactory = NullGDGameLayerFactory()
+
+        }
+            private constructor ()                        
 
                             : super(BasicArrayListUtil.getInstance()!!.getImmutableInstance(), BasicArrayListUtil.getInstance()!!.getImmutableInstance(), GroupFactory.getInstance()!!.NULL_GROUP_ARRAY, BasicArrayListUtil.getInstance()!!.getImmutableInstance(), arrayOf(NullRotationAnimationFactory.getFactoryInstance()), arrayOf(NullRotationAnimationFactory.getFactoryInstance()), RectangleFactory.SINGLETON, RectangleFactory.ARRAY_OF_ARRAYS, false){
 

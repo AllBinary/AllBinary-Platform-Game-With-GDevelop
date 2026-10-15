@@ -112,6 +112,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDRotationBehaviorFactory
                 import org.allbinary.game.configuration.feature.Features
                 import org.allbinary.graphics.opengles.OpenGLFeatureFactory
+                import org.allbinary.game.layer.NullGDGameLayerFactory
                 import org.allbinary.logic.NullUtil
 
                 //LayoutGDResources name=<xsl:value-of select="$layoutName" />
@@ -167,7 +168,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="objects" >
 
                         //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
-                        public var <xsl:value-of select="name" />GDGameLayerFactory: GDGameLayerFactory = null
+                        public var <xsl:value-of select="name" />GDGameLayerFactory: GDGameLayerFactory = NullGDGameLayerFactory.NULL_GD_GAME_LAYER_FACTORY
                     </xsl:for-each>
 
                     private constructor() : super(AnimationBehavior.getInstance()) {
