@@ -194,13 +194,13 @@ Created By: Travis Berthelot
                                         
                         <xsl:for-each select="../externalEvents" >
                             <xsl:if test="$layoutName = associatedLayout" >
-                        public GDNode <xsl:value-of select="name" />GDNode = null;
+                        public GDNode <xsl:value-of select="name" />GDNode = this.gdNodeUtil.NULL_GDNODE;
                             </xsl:if>
                         </xsl:for-each>
 
                         <xsl:for-each select="../externalLayouts" >
                             <xsl:if test="$layoutName = associatedLayout" >
-                        public GDNode <xsl:value-of select="name" />GDNode = null;
+                        public GDNode <xsl:value-of select="name" />GDNode = this.gdNodeUtil.NULL_GDNODE;
                             </xsl:if>
                         </xsl:for-each>
 
@@ -397,8 +397,8 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                         <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
-                    public GDMotionGestureEventListener eventListenerInterfaceLastPoint;
-                    public GDNode lastPointGDNode;
+                    public GDMotionGestureEventListener eventListenerInterfaceLastPoint = GDMotionGestureEventListener.NULL_GD_MOTION_GESTURE_EVENT_LISTENER;
+                    public GDNode lastPointGDNode = this.gdNodeUtil.NULL_GDNODE;
                             
                     public int inUseMotionEventListIndex = 0;
                     public int processingMotionEventListIndex = 0;

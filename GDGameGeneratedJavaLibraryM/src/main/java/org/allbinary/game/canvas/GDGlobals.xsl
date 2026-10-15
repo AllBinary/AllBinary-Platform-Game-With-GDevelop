@@ -240,7 +240,7 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                         <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
-                    public GDMotionGestureEventListener eventListenerInterfaceLastPoint;
+                    public GDMotionGestureEventListener eventListenerInterfaceLastPoint = GDMotionGestureEventListener.NULL_GD_MOTION_GESTURE_EVENT_LISTENER;
                     </xsl:if>
 
                     //eventsClassPropertyActions - START

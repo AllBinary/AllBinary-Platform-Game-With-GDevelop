@@ -21,6 +21,8 @@ import org.allbinary.logic.util.event.AllBinaryEventObject;
  */
 public class GDMotionGestureEventListener implements BaseMotionGestureEventListener {
 
+    public static final GDMotionGestureEventListener NULL_GD_MOTION_GESTURE_EVENT_LISTENER = new GDMotionGestureEventListener();
+    
     public boolean initialized = false;
 
     @Override
