@@ -379,7 +379,7 @@ Created By: Travis Berthelot
                             <xsl:if test="position() != last()" >
                                 <xsl:variable name="param" >
                                 <xsl:if test="string-length(text()) = 0" >
-                                    null
+                                    stringUtil.EMPTY_STRING
                                 </xsl:if>
                                 <xsl:if test="string-length(text()) > 0" >
                                     <xsl:call-template name="string-replace-all" >
