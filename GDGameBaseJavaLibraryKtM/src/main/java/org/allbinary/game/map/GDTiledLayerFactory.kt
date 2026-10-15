@@ -52,7 +52,7 @@ open public class GDTiledLayerFactory
 
     private val debugColor: BasicColor
 
-    private var useAsMiniAllBinaryTiledLayer: AllBinaryTiledLayer
+    private lateinit var useAsMiniAllBinaryTiledLayerLateInit: AllBinaryTiledLayer
 public constructor (tileLayer: TileLayer, cellTypeIdToGeographicMapCellType: IntArray, map: TiledMap, tileSetImage: Image, debugColor: BasicColor)
             : super()
         {
@@ -75,10 +75,10 @@ this.debugColor= debugColor
 : AllBinaryTiledLayer{
     //var raceTrackInfo = raceTrackInfo
     //var raceTrackData = raceTrackData
-this.useAsMiniAllBinaryTiledLayer= PlacementAllBinaryJ2METiledLayer(SmallIntegerSingletonFactory.getInstance()!!.getAt( -1), TiledLayer(this.map.getWidth(), this.map.getHeight(), this.tileSetImage, (this.map.getTileWidth()).toInt(), (this.map.getTileHeight()).toInt()), this.tileLayer!!.getMapArray(), this.debugColor!!.toInt())
+this.useAsMiniAllBinaryTiledLayerLateInit= PlacementAllBinaryJ2METiledLayer(SmallIntegerSingletonFactory.getInstance()!!.getAt( -1), TiledLayer(this.map.getWidth(), this.map.getHeight(), this.tileSetImage, (this.map.getTileWidth()).toInt(), (this.map.getTileHeight()).toInt()), this.tileLayer!!.getMapArray(), this.debugColor!!.toInt())
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.useAsMiniAllBinaryTiledLayer
+                        return this.useAsMiniAllBinaryTiledLayerLateInit
 }
 
 
@@ -90,7 +90,7 @@ this.useAsMiniAllBinaryTiledLayer= PlacementAllBinaryJ2METiledLayer(SmallInteger
     //var raceTrackData = raceTrackData
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.useAsMiniAllBinaryTiledLayer
+                        return this.useAsMiniAllBinaryTiledLayerLateInit
 }
 
 

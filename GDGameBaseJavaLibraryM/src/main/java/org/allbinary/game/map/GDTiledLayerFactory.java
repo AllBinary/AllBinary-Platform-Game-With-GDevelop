@@ -36,7 +36,7 @@ public class GDTiledLayerFactory implements AllBinaryTiledLayerFactoryInterface 
     private final Image tileSetImage;
     private final BasicColor debugColor;
         
-    private AllBinaryTiledLayer useAsMiniAllBinaryTiledLayer;
+    private AllBinaryTiledLayer useAsMiniAllBinaryTiledLayerLateInit;
     
     public GDTiledLayerFactory(final TileLayer tileLayer, final int[] cellTypeIdToGeographicMapCellType, final TiledMap map, final Image tileSetImage, final BasicColor debugColor) {
         this.tileLayer = tileLayer;
@@ -49,7 +49,7 @@ public class GDTiledLayerFactory implements AllBinaryTiledLayerFactoryInterface 
     public AllBinaryTiledLayer getInstance(final RaceTrackInfo raceTrackInfo, final RaceTrackData raceTrackData)
         throws Exception {
 
-        this.useAsMiniAllBinaryTiledLayer = new PlacementAllBinaryJ2METiledLayer(
+        this.useAsMiniAllBinaryTiledLayerLateInit = new PlacementAllBinaryJ2METiledLayer(
             SmallIntegerSingletonFactory.getInstance().getAt(-1),
             new TiledLayer(
                 this.map.getWidth(),
@@ -60,12 +60,12 @@ public class GDTiledLayerFactory implements AllBinaryTiledLayerFactoryInterface 
             this.tileLayer.getMapArray(),
             this.debugColor.intValue());
 
-        return this.useAsMiniAllBinaryTiledLayer;
+        return this.useAsMiniAllBinaryTiledLayerLateInit;
     }
 
     @Override
     public AllBinaryTiledLayer getMiniInstance(final RaceTrackData raceTrackData) throws Exception {
-        return this.useAsMiniAllBinaryTiledLayer;
+        return this.useAsMiniAllBinaryTiledLayerLateInit;
     }
 
 }

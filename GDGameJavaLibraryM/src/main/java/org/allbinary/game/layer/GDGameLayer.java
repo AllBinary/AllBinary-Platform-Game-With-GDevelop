@@ -19,9 +19,9 @@ import javax.microedition.lcdui.NullGraphics;
 
 import org.allbinary.animation.Animation;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
+import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.NullIndexedAnimationFactory;
-import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.RotationAnimation;
 import org.allbinary.animation.text.TextChangeListener;
 import org.allbinary.canvas.Processor;
@@ -48,6 +48,7 @@ import org.allbinary.util.BasicArrayListD;
 import org.allbinary.view.ViewPosition;
 import org.allbinary.view.ViewPositionBase;
 import org.allbinary.animation.text.TextInterface;
+import org.allbinary.graphics.color.BasicColorFactory;
 
 /**
  *
@@ -143,7 +144,7 @@ public class GDGameLayer
             final Group[] groupInterface,
             final String gdName, 
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
-            final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
+            final BasicAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo, 
             final Rectangle[][] rectangleArrayOfArrays,
             final ViewPosition viewPosition,
@@ -570,7 +571,7 @@ public class GDGameLayer
             //logUtil.put(this.getName(), this, "updateGDObject2");
             this.initIndexedAnimationInterfaceArrayP[index].setAlpha(opacity);
             this.scalableProcessor.process(this, this.initIndexedAnimationInterfaceArrayP[index]);
-            if(this.gdObject.basicColor != null) {
+            if(this.gdObject.basicColor != BasicColorFactory.getInstance().NULL_COLOR) {
                 //logUtil.put("setBasicColor: " + this.gdObject.basicColor, this, "updateGDObject");
                 this.initIndexedAnimationInterfaceArrayP[index].changeBasicColor(this.gdObject.basicColor);
             }

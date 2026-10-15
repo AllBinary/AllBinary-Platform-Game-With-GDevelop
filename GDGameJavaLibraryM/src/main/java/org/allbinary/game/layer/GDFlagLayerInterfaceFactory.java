@@ -7,9 +7,9 @@ package org.allbinary.game.layer;
 
 
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
+import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.animation.NullRotationAnimationFactory;
-import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
 import org.allbinary.game.layout.GDObject;
@@ -79,7 +79,7 @@ public class GDFlagLayerInterfaceFactory
         final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray = 
             {NullRotationAnimationFactory.getFactoryInstance()};
             
-        final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray = 
+        final BasicAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray = 
             {NullRotationAnimationFactory.getFactoryInstance()};
         
         final Rectangle layerInfo = RectangleFactory.SINGLETON;

@@ -23,6 +23,7 @@ package org.allbinary.game.layer;
 
 import org.allbinary.animation.Animation;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
+import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.GDCustomCollidableBehavior;
@@ -52,7 +53,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             final Group[] groupInterface,
             final BasicArrayList behaviorList,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
-            final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
+            final BasicAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo,
             final Rectangle[][] rectangleArrayOfArrays) {
         this(primitiveDrawingAnimationFactory, gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance());
@@ -64,7 +65,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             final Group[] groupInterface,
             final BasicArrayList behaviorList,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
-            final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
+            final BasicAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo, 
             final Rectangle[][] rectangleArrayOfArrays,
             final GDAnimationBehaviorBaseFactory animationBehaviorFactory) {

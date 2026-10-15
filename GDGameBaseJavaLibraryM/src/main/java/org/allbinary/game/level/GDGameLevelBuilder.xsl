@@ -64,7 +64,6 @@ import org.allbinary.game.gd.resource.GDLazyResources;
 import org.allbinary.game.view.StaticTileLayerIntoPositionViewPosition;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
-import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.graphics.displayable.event.DisplayChangeEvent;
@@ -100,7 +99,6 @@ import org.mapeditor.io.GDJSONMapReader;
 import org.mapeditor.io.TiledJSONUtil;
 import org.allbinary.util.ABHashtable;
 import org.allbinary.AndroidUtil;
-import org.allbinary.J2MEUtil;
 import org.allbinary.game.layout.GDConfig;
 
         <xsl:for-each select="layouts" >
@@ -1054,6 +1052,7 @@ public class GDGame<xsl:value-of select="$layoutName" />LevelBuilder implements 
         this.init();
     }
 
+    @Override
     public void visit(final AllBinaryLayer layerInterface) throws Exception
     {
         layerInterface.setVisible(true);

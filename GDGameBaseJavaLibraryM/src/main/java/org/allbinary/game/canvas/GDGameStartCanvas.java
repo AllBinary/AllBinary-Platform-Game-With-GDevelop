@@ -52,7 +52,7 @@ public class GDGameStartCanvas extends DemoCanvas
 
         this.setWait(this.WAIT);
         
-        GD0SpecialAnimation.getInstance(this, null);
+        GD0SpecialAnimation.getInstance(this, AllBinaryGameLayerManager.getNullInstance());
     }
 
     @Override
@@ -83,7 +83,8 @@ public class GDGameStartCanvas extends DemoCanvas
         GameInfo gameInfo = new GameInfo(GameTypeFactory.getInstance().BOT, GameMode.SERVER, PlayerTypesFactory
                 .getInstance().PLAYER_TYPE_ONE, GDGameLayerManager.MAX_LEVEL, randomValue);
 
-        return new GDGameLayerManager(null, null, gameInfo);
+        final BasicColorFactory basicColorFactory = BasicColorFactory.getInstance();
+        return new GDGameLayerManager(basicColorFactory.NULL_COLOR, basicColorFactory.NULL_COLOR, gameInfo);
     }
 
     @Override

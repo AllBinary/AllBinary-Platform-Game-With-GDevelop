@@ -77,7 +77,7 @@ public class GDObject
     public float timeScale = 1.0f;
     
     public float opacity = 255;
-    public BasicColor basicColor = BasicColorFactory.getInstance().BLACK;
+    public BasicColor basicColor = BasicColorFactory.getInstance().NULL_COLOR;
 
 //    public int canvasWidth;
 //    public int canvasHeight;

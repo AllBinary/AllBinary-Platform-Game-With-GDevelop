@@ -14,6 +14,7 @@
 package org.allbinary.game.layer;
 
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
+import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.NullAnimationFactory;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.game.layout.GDObject;
@@ -39,7 +40,7 @@ public class GDGameLayerFactory
     protected final BasicArrayList behaviorList;
     protected final Group[] groupInterface;
     protected final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray;
-    protected final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray;
+    protected final BasicAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray;
     protected final Rectangle layerInfo;
     protected final Rectangle[][] rectangleArrayOfArrays;
     protected final GDAnimationBehaviorBaseFactory animationBehaviorFactory;
@@ -52,7 +53,7 @@ public class GDGameLayerFactory
             final Group[] groupInterface,
             final BasicArrayList behaviorList,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
-            final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
+            final BasicAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo,
             final Rectangle[][] rectangleArrayOfArrays,
             final boolean resetAnimationBehavior) {
@@ -63,7 +64,7 @@ public class GDGameLayerFactory
             final Group[] groupInterface,
             final BasicArrayList behaviorList,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
-            final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
+            final BasicAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo, 
             final Rectangle[][] rectangleArrayOfArrays,
             final GDAnimationBehaviorBaseFactory animationBehaviorFactory,

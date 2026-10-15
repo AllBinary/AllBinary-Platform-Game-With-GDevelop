@@ -53,11 +53,11 @@ public class GDGame<xsl:value-of select="$layoutName" />CanvasRunnable implement
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     
     private final GDGameMIDlet demoGameMidlet;
-    private final ABHashtable hashtable;
+    private final ABHashtable<xsl:text disable-output-escaping="yes" >&lt;</xsl:text>Object, Object<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> hashtable;
     
     private final DemoGameMidletEvent startGameMidletEvent;
     
-    public GDGame<xsl:value-of select="$layoutName" />CanvasRunnable(DemoGameMidlet demoGameMidlet, ABHashtable hashtable)
+    public GDGame<xsl:value-of select="$layoutName" />CanvasRunnable(DemoGameMidlet demoGameMidlet, ABHashtable<xsl:text disable-output-escaping="yes" >&lt;</xsl:text>Object, Object<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> hashtable)
     {
         this.demoGameMidlet = (GDGameMIDlet) demoGameMidlet;
         this.hashtable = hashtable;
@@ -66,6 +66,7 @@ public class GDGame<xsl:value-of select="$layoutName" />CanvasRunnable implement
                 this, DemoGameMidletStateFactory.getInstance().START_GAME);        
     }
     
+    @Override
     public void run()
     {
         try

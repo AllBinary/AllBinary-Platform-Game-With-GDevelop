@@ -39,6 +39,7 @@ Created By: Travis Berthelot
         import org.allbinary.animation.Animation;
         import org.allbinary.animation.AnimationInterfaceFactoryInterface;
         import org.allbinary.animation.IndexedAnimationInterface;
+        import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface;
         import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
         import org.allbinary.animation.text.TextInterface;
         import org.allbinary.direction.Direction;
@@ -302,7 +303,7 @@ Created By: Travis Berthelot
                         final Group[] groupInterface,
                         final String gdName, 
                         final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
-                        final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
+                        final BasicAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
                         final Rectangle layerInfo, 
                         final Rectangle[][] rectangleArrayOfArrays,
                         final GDObject gdObject, 

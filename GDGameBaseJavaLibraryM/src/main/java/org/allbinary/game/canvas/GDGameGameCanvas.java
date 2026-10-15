@@ -16,6 +16,7 @@ package org.allbinary.game.canvas;
 import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Graphics;
+import javax.microedition.lcdui.NullCommandListener;
 
 import org.allbinary.game.init.GDGameStaticInitializerFactory;
 import org.allbinary.game.state.GameStateFactory;
@@ -91,7 +92,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
     public GDGameGameCanvas(final AbeClientInformationInterface abeClientInformation, final AllBinaryGameLayerManager allBinaryGameLayerManager)
     throws Exception
     {
-        this(abeClientInformation, null, allBinaryGameLayerManager);
+        this(abeClientInformation, NullCommandListener.NULL_COMMAND_LISTENER, allBinaryGameLayerManager);
     }
     
     @Override

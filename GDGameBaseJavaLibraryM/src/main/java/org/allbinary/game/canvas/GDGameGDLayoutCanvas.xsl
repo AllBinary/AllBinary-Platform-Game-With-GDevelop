@@ -91,7 +91,6 @@ import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.color.SmallBasicColorCacheFactory;
 import org.allbinary.graphics.color.BasicColorUtil;
-import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
 import org.allbinary.media.audio.music.MusicManagerFactory;
@@ -101,7 +100,6 @@ import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.graphics.paint.NullPaintable;
 import org.allbinary.graphics.paint.InitUpdatePaintable;
 import org.allbinary.graphics.paint.NullInitUpdatePaintable;
-import org.allbinary.graphics.paint.NullPaintable;
 import org.allbinary.graphics.paint.Paintable;
 import org.allbinary.graphics.paint.PaintableInterface;
 import org.allbinary.image.ImageCache;
@@ -179,7 +177,8 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
 
         <xsl:if test="number($layoutIndex) = 1" >
         this.imageCache.initProgress();
-        this.gdResources.currentLayoutRequiredTotal = this.gdResources.resourceStringArray.length;
+        final String[] resourceStringArray = this.gdResources.resourceStringArray;
+        this.gdResources.currentLayoutRequiredTotal = resourceStringArray.length;
         </xsl:if>
         <xsl:if test="number($layoutIndex) != 1" >
         this.gdResources.currentLayoutRequiredTotal = 0;
@@ -259,12 +258,14 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
 
     <xsl:variable name="name2" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
     <xsl:if test="number($layoutIndex) = 0 or position() = last() or contains($name2, 'game_options') or contains($name2, 'score') or contains($name2, 'over')" >
+    @Override
     public BaseMenuBehavior getInGameMenuBehavior() {
         return BaseMenuBehavior.getInstance();
     }
     </xsl:if>
 
     private final InitGameProcessor initGameProcessor = new InitGameProcessor(this);
+    @Override
     protected void setProcessGameProcessorInit() {
         if(ProgressCanvasFactory.getInstance().isInGame()) {
             this.setProcessGameProcessor(new GameProcessor(this));
@@ -306,18 +307,21 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
 
     }
 
+    @Override
     public void open()
     {
         super.open();
         this.specialAnimation.open();
     }
 
+    @Override
     public void close()
     {
         super.close();
         this.specialAnimation.close();
     }
 
+    @Override
     protected void initSpecialPaint()
     {
         super.initSpecialPaint();
@@ -351,6 +355,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
         </xsl:if>
     }
 
+    @Override
     public void mediaInit() throws Exception
     {
         logUtil.putF(commonStrings.START, this, "mediaInit");
@@ -358,6 +363,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
     }
 
     //Don't Auto Hide instead update the list
+    @Override
     protected  void updateTouch()
     throws Exception
     {
@@ -383,6 +389,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
 //        }
     }
 
+    @Override
     protected synchronized void initConfigurable(final AbeClientInformationInterface abeClientInformation) throws Exception
     {
         try
@@ -418,6 +425,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
         }
     }
 
+    @Override
     protected void threadInit() throws Exception
     {
         try
@@ -617,6 +625,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
         this.setGameState(this.gameStateFactory.PLAYING_GAME_STATE);
     }
 
+    @Override
     public void setGameState(GameState gameState) throws Exception
     {
         super.setGameState(gameState);
@@ -663,6 +672,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
     //private boolean isFirst = true;
     //private final String DRAW = "draw";
 
+    @Override
     public void draw(Graphics graphics)
     {
 
@@ -711,6 +721,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
 
     private final GameFeature soundGameFeature = GameFeatureFactory.getInstance().SOUND;
 
+    @Override
     protected void processGame() throws Exception
     {
         if (playerTimeDelayHelper.isTimeTNT())
@@ -751,6 +762,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
         this.gamePerformanceInitUpdatePaintable.update();
     }
 
+    @Override
     protected void processPlayingGame() throws Exception {
 
         gdNodeStatsFactory.reset();
@@ -798,6 +810,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
     	musicManager.stop();
     }
 
+    @Override
     public void addCommands()
     {
         final GDGameCommandFactory gdGameCommandFactory = GDGameCommandFactory.getInstance();
@@ -842,12 +855,14 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
         //}
     }
 
+    @Override
     public void handleRawKey(final int keyCode, final int deviceId, final boolean repeated) throws Exception {
         //final Integer keyCodeAsInteger = smallIntegerSingletonFactory.getInstance(keyCode);
         //this.upKeyEventHandler.fireEvent(keyCodeAsInteger);
         //this.upKeyEventHandler.getInstance(deviceId).fireEvent(keyCodeAsInteger);
     }
 
+    @Override
     public void addKeyInputListener(final PlayerGameInput playerGameInput) {
         super.addKeyInputListener(playerGameInput);
 
@@ -857,10 +872,12 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
 
     <xsl:if test="number($layoutIndex) != 1" >
     //Do not remove on build for this layout
+    @Override
     protected void removeAllGameKeyInputListenersOnBuild() {
     }
     </xsl:if>
 
+    @Override
     public void removeKeyInputListener(final PlayerGameInput playerGameInput) {
         super.removeKeyInputListener(playerGameInput);
 
@@ -868,7 +885,8 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
         this.upKeyEventHandler.removeListener(playerGameInput);
     }
 
-    public void setRunning(final boolean running) 
+    @Override
+    public void setRunning(final boolean running)
     {
         super.setRunning(running);
 
@@ -891,6 +909,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
     }
 
     //Special end2 case for GDevelop
+    @Override
     public void end2() {
 //        try {
 //            logUtil.putF(this.commonStrings.END, this, this.commonStrings.END);
@@ -904,6 +923,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
     }
 
     //Special end case for GDevelop
+    @Override
     public void end() {
         try {
             super.end();

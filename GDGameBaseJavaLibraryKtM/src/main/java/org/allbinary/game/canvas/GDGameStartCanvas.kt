@@ -62,8 +62,7 @@ public constructor (abeClientInformation: AbeClientInformationInterface, command
                             //For kotlin this is before the body of the constructor.
                     
 this.setWait(this.WAIT)
-GD0SpecialAnimation.getInstance(this, 
-                            null)
+GD0SpecialAnimation.getInstance(this, AllBinaryGameLayerManager.getNullInstance())
 }
 
 
@@ -92,16 +91,17 @@ PreLogUtil.put("******************Demo Next Random Is Always 1", this, "getNextR
             
     override fun createGameLayerManager(randomValue: Int)
         //nullable = true from not(false or (false and false)) = true
-: AllBinaryGameLayerManager?{
+: AllBinaryGameLayerManager{
 var randomValue = randomValue
 
     var gameInfo: GameInfo = GameInfo(GameTypeFactory.getInstance()!!.BOT, GameMode.SERVER, PlayerTypesFactory.getInstance()!!.PLAYER_TYPE_ONE, GDGameLayerManager.MAX_LEVEL, randomValue)
 
 
+    var basicColorFactory: BasicColorFactory = BasicColorFactory.getInstance()!!
+
+
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return GDGameLayerManager(
-                            null, 
-                            null, gameInfo)
+                        return GDGameLayerManager(basicColorFactory!!.NULL_COLOR, basicColorFactory!!.NULL_COLOR, gameInfo)
 }
 
 

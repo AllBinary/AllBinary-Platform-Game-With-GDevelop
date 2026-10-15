@@ -29,6 +29,7 @@
 import javax.microedition.lcdui.CommandListener
 import javax.microedition.lcdui.Font
 import javax.microedition.lcdui.Graphics
+import javax.microedition.lcdui.NullCommandListener
 import org.allbinary.game.init.GDGameStaticInitializerFactory
 import org.allbinary.game.state.GameStateFactory
 import org.allbinary.input.accelerometer.AccelerometerSensorFactory
@@ -99,8 +100,7 @@ this.abeClientInformation= abeClientInformation
 
 public constructor (abeClientInformation: AbeClientInformationInterface, allBinaryGameLayerManager: AllBinaryGameLayerManager)                        
 
-                            : this(abeClientInformation, 
-                            null, allBinaryGameLayerManager){
+                            : this(abeClientInformation, NullCommandListener.NULL_COMMAND_LISTENER, allBinaryGameLayerManager){
     //var abeClientInformation = abeClientInformation
     //var allBinaryGameLayerManager = allBinaryGameLayerManager
 

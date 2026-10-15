@@ -77,6 +77,7 @@ import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.image.opengles.OpenGLESImageExclusionUtil;
+import org.allbinary.logic.StdUtil;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.system.security.licensing.ClientInformationFactory;
 import org.allbinary.media.audio.AllBinaryMediaManagerShutdown;
@@ -106,15 +107,15 @@ public class GDGameMIDlet extends
        //com.sun.lwuit.Display.init(this);
        
        //objectsGroups count=<xsl:value-of select="count(//objectsGroups)" /> + //object count=<xsl:value-of select="count(//objects)" /> + 1
-       final short SIZE = <xsl:value-of select="count(//objectsGroups) + count(//objects) + 1" />;
+       final int SIZE = <xsl:value-of select="count(//objectsGroups) + count(//objects) + 1" />;
        final String[] groupNames = new String[SIZE];
        final String GROUP_ = "Group ";
        final StringMaker stringBuilder = new StringMaker();
-       for(short index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> SIZE; index++) {
+       for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> SIZE; index++) {
            stringBuilder.delete(0, stringBuilder.length());
            groupNames[index] = stringBuilder.append(GROUP_).appendint(index).toString();
        }
-       GroupFactory.getInstance().init(SIZE, groupNames);
+       GroupFactory.getInstance().init((short) SIZE, groupNames);
        GroupLayerManagerListener.getInstance().init(SIZE);
 
        final OpenGLESImageExclusionUtil openGLESImageExclusionUtil = OpenGLESImageExclusionUtil.getInstance();
@@ -212,8 +213,8 @@ public class GDGameMIDlet extends
         ////TWB - Loading Feature Change - Can remove remark after testing
         ProgressCanvasFactory.getInstance().start();
 
-        final ABHashtable hashtable = this.getStartStateHashtable();
-        this.setStartStateHashtable(null);
+        final ABHashtable<xsl:text disable-output-escaping="yes" >&lt;</xsl:text>Object, Object<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> hashtable = this.getStartStateHashtable();
+        this.setStartStateHashtable(StdUtil.getInstance().NULL_TABLE);
         
         PrimaryThreadPool.getInstance().runTask(new <xsl:value-of select="$name" />Runnable(this, hashtable));
         //this.postDemoSetup();
@@ -329,7 +330,8 @@ public class GDGameMIDlet extends
 
             final Displayable displayable = this.getCurrentDisplayable();
             if(displayable instanceof RunnableCanvas) {
-                ((RunnableCanvas) displayable).end2();
+                final RunnableCanvas runnableCanvas = (RunnableCanvas) displayable;
+                runnableCanvas.end2();
             }
 
        <xsl:for-each select="layouts" >
