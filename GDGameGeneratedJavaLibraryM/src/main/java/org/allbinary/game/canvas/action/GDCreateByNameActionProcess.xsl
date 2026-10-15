@@ -322,7 +322,7 @@ Created By: Travis Berthelot
                                 .appendint(gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />]).toString(), 
                                 gdObject, 
                                 scale, scale,
-                                null); //<xsl:value-of select="text()" />GDConditionWithGroupActions);
+                                GDConditionWithGroupActions.NULL_GD_CONDITION_WITH_GROUP_ACTIONS); //<xsl:value-of select="text()" />GDConditionWithGroupActions);
                                 //Increment after use since Kotlin can not increment an array element inside an expression
                                 gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] + 1;
                                 <xsl:text>&#10;</xsl:text>
