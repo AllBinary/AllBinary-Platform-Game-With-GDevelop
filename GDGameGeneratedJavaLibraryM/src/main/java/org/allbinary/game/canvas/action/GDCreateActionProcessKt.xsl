@@ -80,8 +80,7 @@ Created By: Travis Berthelot
 
                     }
 
-                    private lateinit var createdGameLayer: GDGameLayer
-
+                    private var createdGameLayer: CollidableDestroyableDamageableLayer = CollidableDestroyableDamageableLayer.getNullInstance();
 
                     override fun processCreate(): Boolean {
                         super.processStats()
@@ -492,9 +491,10 @@ Created By: Travis Berthelot
                             <xsl:variable name="layerName" ><xsl:value-of select="text()" /></xsl:variable>
                             <xsl:variable name="gameLayer" ><xsl:value-of select="text()" />GDGameLayer</xsl:variable>
 
-                            val <xsl:value-of select="$gameLayer" />: GDGameLayer = this.createdGameLayer
+                            if(this.createdGameLayer != CollidableDestroyableDamageableLayer.getNullInstance() {
+                            
+                                val <xsl:value-of select="$gameLayer" />: GDGameLayer = this.createdGameLayer as GDGameLayer
 
-                            if(<xsl:value-of select="$gameLayer" /> != null) {
                                 //updateGDObject - 3
                                 <xsl:value-of select="$gameLayer" />.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta)
 

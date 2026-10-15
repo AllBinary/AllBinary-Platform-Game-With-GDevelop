@@ -80,7 +80,7 @@ Created By: Travis Berthelot
                         
                     }
 
-                    private GDGameLayer createdGameLayer;
+                    private CollidableDestroyableDamageableLayer createdGameLayer = CollidableDestroyableDamageableLayer.getNullInstance();
 
                     @Override
                     public boolean processCreate() throws Exception {
@@ -491,9 +491,10 @@ Created By: Travis Berthelot
                             <xsl:variable name="layerName" ><xsl:value-of select="text()" /></xsl:variable>
                             <xsl:variable name="gameLayer" ><xsl:value-of select="text()" />GDGameLayer</xsl:variable>
 
-                            final GDGameLayer <xsl:value-of select="$gameLayer" /> = this.createdGameLayer;
+                            if(this.createdGameLayer != CollidableDestroyableDamageableLayer.getNullInstance() {
                             
-                            if(<xsl:value-of select="$gameLayer" /> != null) {
+                                final GDGameLayer <xsl:value-of select="$gameLayer" /> = (GDGameLayer) this.createdGameLayer;
+                                
                                 //updateGDObject - 3
                                 <xsl:value-of select="$gameLayer" />.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
                                 
