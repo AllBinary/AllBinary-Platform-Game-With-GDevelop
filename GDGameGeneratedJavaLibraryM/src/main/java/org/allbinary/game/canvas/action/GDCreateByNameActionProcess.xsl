@@ -187,6 +187,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     <xsl:variable name="hasKnownParamsFromParent" ><xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >found</xsl:if></xsl:variable>
                     <xsl:if test="not(contains($hasKnownParamsFromParent, 'found'))" >
+                    @Override
                     public boolean processCreateGD(final GDGameLayer[] gameLayerArray) throws Exception {
 
                     </xsl:if>
@@ -266,6 +267,7 @@ Created By: Travis Berthelot
                     
                     <xsl:if test="not(contains($hasObject, 'found') or contains($hasObjectGroup, 'found'))" >
                     //processCreateGD - without object or objectgroup
+                    @Override
                     public boolean processCreateGD(final GDGameLayer[] gameLayerArray) throws Exception {
                         
                         return this.processCreate();
@@ -317,10 +319,12 @@ Created By: Travis Berthelot
                                 //globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>
                                 <xsl:text>&#10;</xsl:text>
                                 <xsl:value-of select="text()" />GDGameLayer = <xsl:value-of select="text()" />GDGameLayerFactory.create(<xsl:value-of select="$layoutIndex" />, stringBuilder.append(createString).append(CommonSeps.getInstance().UNDERSCORE)
-                                .appendint(gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />]++).toString(), 
+                                .appendint(gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />]).toString(), 
                                 gdObject, 
                                 scale, scale,
                                 null); //<xsl:value-of select="text()" />GDConditionWithGroupActions);
+                                //Increment after use since Kotlin can not increment an array element inside an expression
+                                gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] + 1;
                                 <xsl:text>&#10;</xsl:text>
                                 //stringBuilder.delete(0, stringBuilder.length());
                             } else {

@@ -143,13 +143,15 @@ Created By: Travis Berthelot
                                 }
                                 <xsl:text>&#10;</xsl:text>
                                 <xsl:value-of select="text()" />GDGameLayer = <xsl:call-template name="globalResource" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerFactory.create(<xsl:value-of select="$layoutIndex" />, stringBuilder.append(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>_OBJECT_NAME).append(CommonSeps.getInstance().UNDERSCORE)
-                                .appendint(gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />]++).toString(), gdObject, 
+                                .appendint(gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />]).toString(), gdObject, 
                                 scale, scale,
                                 null); //<xsl:call-template name="globals" >
                                     <xsl:with-param name="name" >
                                         <xsl:value-of select="text()" />
                                     </xsl:with-param>
                                 </xsl:call-template>.<xsl:value-of select="text()" />GDConditionWithGroupActions);
+                                //Increment after use since Kotlin can not increment an array element inside an expression
+                                gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] + 1;
                                 <xsl:text>&#10;</xsl:text>
                                 //stringBuilder.delete(0, stringBuilder.length());
                             } else {
@@ -279,6 +281,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="callEnding" >Create</xsl:with-param>
                     </xsl:call-template>
                     <xsl:if test="not(contains($hasKnownParamsFromParent, 'found'))" >
+                      @Override
                       public boolean processCreateGD(final GDGameLayer[] gameLayerArray) throws Exception {
 
                     </xsl:if>

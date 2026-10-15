@@ -44,6 +44,7 @@ import javax.microedition.lcdui.Graphics;
 import org.allbinary.game.canvas.GDGameGlobals;
 import org.allbinary.game.collision.CollidableBaseBehavior;
 import org.allbinary.game.collision.CollidableInterfaceCompositeInterface;
+import org.allbinary.game.identification.Group;
 import org.allbinary.game.identification.GroupInterface;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.game.layer.CollidableCompositeLayer;
@@ -75,10 +76,8 @@ import org.allbinary.media.graphics.geography.map.SimpleGeographicMapCellPositio
  */
 public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior 
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
 
     private final StringUtil stringUtil = StringUtil.getInstance();
-    private final CommonStrings commonStrings = CommonStrings.getInstance();
     
     private final RectangleCollisionUtil rectangleCollisionUtil = RectangleCollisionUtil.getInstance();
     
@@ -300,7 +299,7 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
             //final StringMaker stringBuilder = new StringMaker();
             //this.logUtil.put(stringBuilder.append(COLLIDE).append(commonSeps.COLON).append(ownerLayer.getName()).append(commonSeps.COLON).append(collisionLayer.getName()).toString(), this, COLLIDE);
 
-            final GroupInterface[] groupInterfaceArray = collisionLayer.getGroupInterface();
+            final Group[] groupInterfaceArray = collisionLayer.getGroupInterface();
             //final GroupInterface[] groupInterfaceArray = ownerLayer.getGroupInterface();
 
             final int size = groupInterfaceArray.length;

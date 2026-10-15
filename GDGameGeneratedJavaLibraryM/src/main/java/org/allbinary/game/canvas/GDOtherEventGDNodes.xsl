@@ -485,6 +485,10 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
             return value;
         }
 
+        public float floor(final long value) {
+            return (float) value;
+        }
+
         public float floor(final float value) {
             return (float) Math.floor((double) value);
         }
@@ -609,8 +613,10 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
             return Long.toString((long) value);
         }
 
+        private final StringMaker fStringMaker = new StringMaker();
         public String ToString(final float value) {
-            return Float.toString(value);
+            fStringMaker.delete(0, fStringMaker.length());
+            return fStringMaker.appendfloat(value).toString();
         }
 
         public int ToNotString(final int value) {

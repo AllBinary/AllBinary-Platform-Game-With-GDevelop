@@ -166,7 +166,6 @@ Created By: Travis Berthelot
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >org.allbinary.game.behavior.topview.TopViewCharacterInterface </xsl:if>        
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >, CurrentGeographicMapCellPositionInterface, org.allbinary.game.layer.PathFindingLayerInterface </xsl:if>
                 {
-                    private final StringUtil stringUtil = StringUtil.getInstance();
                     private final BasicGeographicMapUtil basicGeographicMapUtil = BasicGeographicMapUtil.getInstance();
                     
                     private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
@@ -506,14 +505,17 @@ Created By: Travis Berthelot
     }
 
         <xsl:if test="not(contains($hasLayoutWithTileMapAndIsTopView, 'found') or contains($foundOtherViewPosition, 'found'))" >
+    @Override
     public void upp()
     {
     }
 
+    @Override
     public void leftp()
     {
     }
 
+    @Override
     public void rightp()
     {
     }
@@ -522,11 +524,13 @@ Created By: Travis Berthelot
     public void reset() throws Exception
     {
     }
-            
+
+    @Override
     public void terrainMove(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final int dx, final int dy) {
     }
 
-    public void terrainEvent(final int dx, final int dy, 
+    @Override
+    public void terrainEvent(final int dx, final int dy,
             final BasicGeographicMap[] geographicMapInterfaceArray,
             final GeographicMapCellType[] geographicMapCellTypeArray,
             final GeographicMapCellPosition geographicMapCellPosition) throws Exception {
@@ -1079,10 +1083,12 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:for-each>
 
+    @Override
     public void setValue(final int value) {
         ((GDSliderAnimationBehavior) this.getDimensionalBehavior().getAnimationBehavior()).setValue(value);
     }
 
+    @Override
     public int Value() {
         return ((GDSliderAnimationBehavior) this.getDimensionalBehavior().getAnimationBehavior()).Value();
     }
