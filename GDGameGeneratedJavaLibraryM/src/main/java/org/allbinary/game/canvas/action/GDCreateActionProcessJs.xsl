@@ -491,7 +491,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="layerName" ><xsl:value-of select="text()" /></xsl:variable>
                             <xsl:variable name="gameLayer" ><xsl:value-of select="text()" />GDGameLayer</xsl:variable>
 
-                            if(this.createdGameLayer != CollidableDestroyableDamageableLayer.getNullInstance() {
+                            if(this.createdGameLayer != CollidableDestroyableDamageableLayer.getNullInstance()) {
                             
                                 final GDGameLayer <xsl:value-of select="$gameLayer" /> = (GDGameLayer) this.createdGameLayer;
                                 
