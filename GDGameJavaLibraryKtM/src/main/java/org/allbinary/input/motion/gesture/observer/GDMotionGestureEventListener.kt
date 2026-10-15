@@ -33,7 +33,12 @@ open public class GDMotionGestureEventListener
         
                 , BaseMotionGestureEventListener {
         
+companion object {
+            
+    val NULL_GD_MOTION_GESTURE_EVENT_LISTENER: GDMotionGestureEventListener = GDMotionGestureEventListener()
 
+        }
+            
             //Auto Generated
             public constructor() : super()
             {

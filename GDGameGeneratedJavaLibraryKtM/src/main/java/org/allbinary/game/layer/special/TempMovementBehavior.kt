@@ -31,7 +31,12 @@ open public class TempMovementBehavior
             : Object
          {
         
+companion object {
+            
+    val NULL_TEMP_MOVEMENT_BEHAVIOR: TempMovementBehavior = TempMovementBehavior()
 
+        }
+            
             //Auto Generated
             public constructor() : super()
             {

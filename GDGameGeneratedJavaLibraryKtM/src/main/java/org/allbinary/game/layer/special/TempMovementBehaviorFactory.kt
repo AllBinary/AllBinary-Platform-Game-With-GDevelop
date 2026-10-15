@@ -51,9 +51,7 @@ companion object {
             {
             }            
         
-    var movementBehavior: TempMovementBehavior = 
-                null
-            
+    var movementBehavior: TempMovementBehavior = TempMovementBehavior.NULL_TEMP_MOVEMENT_BEHAVIOR
 
 }
                 
