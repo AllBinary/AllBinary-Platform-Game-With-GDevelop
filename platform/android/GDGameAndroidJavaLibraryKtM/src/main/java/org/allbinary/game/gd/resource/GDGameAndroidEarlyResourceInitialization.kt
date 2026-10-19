@@ -34,7 +34,7 @@ open public class GDGameAndroidEarlyResourceInitialization : ResourceInitializat
         
                 @Throws(Exception::class)
             
-    open fun init()
+    override fun init()
         //nullable = true from not(false or (false and true)) = true
 {
 super.init()

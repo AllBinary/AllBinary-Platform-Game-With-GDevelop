@@ -33,7 +33,6 @@ import org.allbinary.util.ABHashtable;
 
 public class GDGameAndroidActivityBase extends GameMidletActivity
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
 
 //    @Override
 //    public AbeClientInformationInterface getClientInformation() {
@@ -193,6 +192,7 @@ public class GDGameAndroidActivityBase extends GameMidletActivity
     }
     */
 
+    @Override
     public void initEmulator() throws Exception
     {
         super.initEmulator();

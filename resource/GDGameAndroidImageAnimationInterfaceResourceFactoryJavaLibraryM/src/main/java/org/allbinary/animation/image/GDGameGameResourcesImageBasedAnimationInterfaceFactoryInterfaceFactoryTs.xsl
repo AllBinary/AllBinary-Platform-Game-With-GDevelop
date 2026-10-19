@@ -107,7 +107,6 @@ import org.allbinary.animation.compound.SliderAnimationInterfaceFactory;
 import org.allbinary.animation.compound.SimultaneousCompoundIndexedAnimationInterfaceFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory;
-import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory;
 import org.allbinary.animation.text.CustomTextAnimationFactory;
 import org.allbinary.animation.text.CustomTextBoxIndexedAnimationFactory;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil;
@@ -131,6 +130,7 @@ import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.media.ScaleProperties;
 import org.allbinary.util.ABHashtable;
+import org.allbinary.game.layout.GDConfig;
 
 public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
@@ -164,6 +164,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
         super(name, new ABHashtable(), new ABHashtable(), new ABHashtable());
     }
     
+    @Override
     public void init(int level)
     throws Exception
     {
@@ -231,6 +232,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                         </xsl:with-param>
                     </xsl:call-template>
 
+    @Override
     public boolean isLoadingLevel(int level)
     {
         if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
@@ -243,6 +245,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
         }
     }
     
+    @Override
     public boolean isFeature()
     {
         Features features = Features.getInstance();

@@ -24,21 +24,21 @@
 
         <!--
         -->
-        <module>../../GDGameP</module>
+        <module>../../GDGameKtP</module>
 
         <!--
-        <module>../j2me/GDGameJ2MEPlatformP</module>
+        <module>../j2me/GDGameJ2MEPlatformKtP</module>
         -->
-        <module>../j2se/GDGameJ2SEPlatformP</module>
+<!--        <module>../j2se/GDGameJ2SEPlatformKtP</module>-->
         
-        <module>../html/GDGameHTMLPlatformP</module>
-        <module>../android/GDGameAndroidPlatformP</module>
-        <module>../avian/GDGameAvianPlatformP</module>
+<!--        <module>../html/GDGameHTMLPlatformKtP</module>-->
+        <module>../android/GDGameAndroidPlatformKtP</module>
+<!--        <module>../avian/GDGameAvianPlatformKtP</module>-->
 
-        <module>../j2se/GDGameThreedJ2SEWithSWTJOGLPlatformP</module>
-        <module>../android/GDGameThreedAndroidPlatformP</module>
+<!--        <module>../j2se/GDGameThreedJ2SEWithSWTJOGLPlatformKtP</module>
+        <module>../android/GDGameThreedAndroidPlatformKtP</module>-->
         
-        <module>../avian/GDGameThreedAvianJOGLKtM</module>
+<!--        <module>../avian/GDGameThreedAvianJOGLKtM</module>-->
 
         
     </modules>

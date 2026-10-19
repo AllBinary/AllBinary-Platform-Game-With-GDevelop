@@ -27,8 +27,8 @@
                     
         
 import org.allbinary.animation.AnimationInterfaceFactoryInterface
+import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface
 import org.allbinary.animation.NullRotationAnimationFactory
-import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface
 import org.allbinary.game.identification.GroupFactory
 import org.allbinary.game.layout.GDObject
 import org.allbinary.graphics.RectangleFactory

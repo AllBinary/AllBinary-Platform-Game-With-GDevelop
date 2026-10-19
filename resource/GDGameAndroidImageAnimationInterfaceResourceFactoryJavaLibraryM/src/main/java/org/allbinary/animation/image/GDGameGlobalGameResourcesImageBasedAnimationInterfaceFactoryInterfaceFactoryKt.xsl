@@ -122,6 +122,7 @@ import org.allbinary.logic.StdUtil
 import org.allbinary.util.ABHashtable
 import org.allbinary.AndroidUtil
 import org.allbinary.J2MEUtil
+import org.allbinary.game.layout.GDConfig
 
 open class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory : BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
@@ -151,7 +152,7 @@ open class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterface
     {
     }
 
-    fun init(level: Int)
+    override fun init(level: Int)
 
     {
         this.init(ImageCacheFactory.getInstance(), level)
@@ -209,7 +210,7 @@ open class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterface
                         </xsl:with-param>
                     </xsl:call-template>
 
-    fun isLoadingLevel(level: Int): Boolean
+    override fun isLoadingLevel(level: Int): Boolean
     {
         if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
         {
@@ -221,7 +222,7 @@ open class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterface
         }
     }
 
-    fun isFeature(): Boolean
+    override fun isFeature(): Boolean
     {
         var features: Features = Features.getInstance()
 

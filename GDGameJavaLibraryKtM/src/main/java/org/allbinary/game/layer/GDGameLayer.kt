@@ -33,9 +33,9 @@ import javax.microedition.lcdui.Graphics
 import javax.microedition.lcdui.NullGraphics
 import org.allbinary.animation.Animation
 import org.allbinary.animation.AnimationInterfaceFactoryInterface
+import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface
 import org.allbinary.animation.IndexedAnimation
 import org.allbinary.animation.NullIndexedAnimationFactory
-import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface
 import org.allbinary.animation.RotationAnimation
 import org.allbinary.animation.text.TextChangeListener
 import org.allbinary.canvas.Processor
@@ -62,6 +62,7 @@ import org.allbinary.util.BasicArrayListD
 import org.allbinary.view.ViewPosition
 import org.allbinary.view.ViewPositionBase
 import org.allbinary.animation.text.TextInterface
+import org.allbinary.graphics.color.BasicColorFactory
 
 open public class GDGameLayer : MultiPlayerGameLayer {
         
@@ -163,7 +164,7 @@ this.gameLayer!!.onMeasure()
                 
             
     private var textChangeListener: TextChangeListener = GDTextChangeListener(this)
-public constructor (primitiveDrawing: Animation, gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, behaviorList: BasicArrayList, velocityInterface: VelocityProperties, remoteInfo: RemoteInfo, groupInterface: Array<Group?>, gdName: String, animationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?>, proceduralAnimationInterfaceFactoryInterfaceArray: Array<ProceduralAnimationInterfaceFactoryInterface?>, layerInfo: Rectangle, rectangleArrayOfArrays: Array<Array<Rectangle?>?>, viewPosition: ViewPosition, gdObject: GDObject, animationBehavior: GDAnimationBehaviorBase, rotationAdjustment: Boolean)                        
+public constructor (primitiveDrawing: Animation, gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, behaviorList: BasicArrayList, velocityInterface: VelocityProperties, remoteInfo: RemoteInfo, groupInterface: Array<Group?>, gdName: String, animationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?>, proceduralAnimationInterfaceFactoryInterfaceArray: Array<BasicAnimationInterfaceFactoryInterface?>, layerInfo: Rectangle, rectangleArrayOfArrays: Array<Array<Rectangle?>?>, viewPosition: ViewPosition, gdObject: GDObject, animationBehavior: GDAnimationBehaviorBase, rotationAdjustment: Boolean)                        
 
                             : super(remoteInfo, groupInterface, gdName, layerInfo, viewPosition){
     //var primitiveDrawing = primitiveDrawing
@@ -650,9 +651,7 @@ this.initIndexedAnimationInterfaceArrayP[index]!!.setAlpha(opacity)
 this.scalableProcessor!!.process(this, this.initIndexedAnimationInterfaceArrayP[index]!!)
 
     
-                        if(this.gdObject!!.basicColor != 
-                                    null
-                                )
+                        if(this.gdObject!!.basicColor != BasicColorFactory.getInstance()!!.NULL_COLOR)
                         
                                     {
                                     this.initIndexedAnimationInterfaceArrayP[index]!!.changeBasicColor(this.gdObject!!.basicColor)

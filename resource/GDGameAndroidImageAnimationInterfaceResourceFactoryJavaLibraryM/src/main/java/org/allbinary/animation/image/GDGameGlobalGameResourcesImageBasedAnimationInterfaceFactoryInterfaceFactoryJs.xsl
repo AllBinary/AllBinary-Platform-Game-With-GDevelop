@@ -121,6 +121,7 @@ import org.allbinary.logic.string.StringUtil;
 import org.allbinary.media.ScaleProperties;
 import org.allbinary.logic.StdUtil;
 import org.allbinary.util.ABHashtable;
+import org.allbinary.game.layout.GDConfig;
 
 public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
@@ -153,6 +154,7 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
         super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
     
+    @Override
     public void init(int level)
     throws Exception
     {
@@ -211,6 +213,7 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
                         </xsl:with-param>
                     </xsl:call-template>
     
+    @Override
     public boolean isLoadingLevel(int level)
     {
         if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
@@ -223,6 +226,7 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
         }
     }
     
+    @Override
     public boolean isFeature()
     {
         Features features = Features.getInstance();

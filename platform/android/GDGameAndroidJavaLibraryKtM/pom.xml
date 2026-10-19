@@ -4,7 +4,7 @@
 
     <parent>
         <groupId>org.allbinary.game.gd</groupId>
-        <artifactId>GDGameParentKt</artifactId>
+        <artifactId>GDGameParent</artifactId>
         <!-- Game Version Start -->
         <version>1.0.0-SNAPSHOT</version>
         <!-- Game Version Start -->
@@ -144,13 +144,13 @@
 
         <dependency>
             <groupId>com.google.android</groupId>
-            <artifactId>androidKt</artifactId>
+            <artifactId>android</artifactId>
             <version>${android.sdk.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.google.android</groupId>
-            <artifactId>androidKt</artifactId>
+            <artifactId>android</artifactId>
             <version>${android.sdk.version}</version>
             <scope>provided</scope>
             <classifier>sources</classifier>

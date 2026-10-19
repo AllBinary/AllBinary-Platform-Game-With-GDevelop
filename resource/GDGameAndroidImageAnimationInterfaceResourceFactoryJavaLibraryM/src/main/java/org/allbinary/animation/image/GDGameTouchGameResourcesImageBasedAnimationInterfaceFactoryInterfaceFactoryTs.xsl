@@ -108,6 +108,7 @@ import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.media.ScaleProperties;
 import org.allbinary.util.ABHashtable;
+import org.allbinary.game.layout.GDConfig;
 
 public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
@@ -146,6 +147,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
         super(name, new ABHashtable(), new ABHashtable(), new ABHashtable());
     }
     
+    @Override
     public void init(int level)
     throws Exception
     {
@@ -194,6 +196,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
         super.init(level);
     }
     
+    @Override
     public boolean isLoadingLevel(int level)
     {
         if(level == 1) {
@@ -213,6 +216,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
         return false;
     }
     
+    @Override
     public boolean isFeature()
     {
         final Features features = Features.getInstance();

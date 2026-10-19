@@ -42,8 +42,6 @@ import org.allbinary.util.ABHashtable
 
 open public class GDGameAndroidActivityBase : GameMidletActivity {
         
-
-    val logUtil: LogUtil = LogUtil.getInstance()!!
 public constructor ()                        
 
                             : super(ProgressHelper.NULL_PROGRESS_HELPER){
@@ -131,7 +129,7 @@ logUtil!!.put(commonStrings!!.EXCEPTION, this, CommonStateStrings.getInstance()!
 
                 @Throws(Exception::class)
             
-    open fun initEmulator()
+    override fun initEmulator()
         //nullable = true from not(false or (false and true)) = true
 {
 super.initEmulator()

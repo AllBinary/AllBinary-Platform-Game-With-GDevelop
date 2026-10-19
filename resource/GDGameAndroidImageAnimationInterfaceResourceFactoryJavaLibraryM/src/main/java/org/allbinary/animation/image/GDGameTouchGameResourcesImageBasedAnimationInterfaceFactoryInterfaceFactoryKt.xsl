@@ -109,6 +109,7 @@ import org.allbinary.media.ScaleProperties
 import org.allbinary.util.ABHashtable
 import org.allbinary.AndroidUtil
 import org.allbinary.J2MEUtil
+import org.allbinary.game.layout.GDConfig
 
 open class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory : BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
@@ -143,7 +144,7 @@ open class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBa
     {
     }
 
-    fun init(level: Int)
+    override fun init(level: Int)
 
     {
         this.init(ImageCacheFactory.getInstance(), level)
@@ -191,7 +192,7 @@ open class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBa
         super.init(level)
     }
 
-    fun isLoadingLevel(level: Int): Boolean
+    override fun isLoadingLevel(level: Int): Boolean
     {
         if(level == 1) {
             return true

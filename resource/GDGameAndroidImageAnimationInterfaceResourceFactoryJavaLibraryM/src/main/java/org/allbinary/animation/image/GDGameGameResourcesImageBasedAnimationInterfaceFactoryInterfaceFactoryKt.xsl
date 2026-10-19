@@ -106,7 +106,6 @@ import org.allbinary.animation.compound.SliderAnimationInterfaceFactory
 import org.allbinary.animation.compound.SimultaneousCompoundIndexedAnimationInterfaceFactory
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory
 import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory
-import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory
 import org.allbinary.animation.text.CustomTextAnimationFactory
 import org.allbinary.animation.text.CustomTextBoxIndexedAnimationFactory
 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />LayoutUtil
@@ -130,8 +129,8 @@ import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.logic.string.StringUtil
 import org.allbinary.media.ScaleProperties
 import org.allbinary.util.ABHashtable
-import org.allbinary.AndroidUtil
 import org.allbinary.J2MEUtil
+import org.allbinary.game.layout.GDConfig
 
 open class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory : BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
@@ -162,7 +161,7 @@ open class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAn
     {
     }
 
-    fun init(level: Int)
+    override fun init(level: Int)
 
     {
         this.init(ImageCacheFactory.getInstance(), level)
@@ -229,7 +228,7 @@ open class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAn
                         </xsl:with-param>
                     </xsl:call-template>
 
-    fun isLoadingLevel(level: Int): Boolean
+    override fun isLoadingLevel(level: Int): Boolean
     {
         if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
         {
@@ -241,7 +240,7 @@ open class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAn
         }
     }
 
-    fun isFeature(): Boolean
+    override fun isFeature(): Boolean
     {
         var features: Features = Features.getInstance()
 

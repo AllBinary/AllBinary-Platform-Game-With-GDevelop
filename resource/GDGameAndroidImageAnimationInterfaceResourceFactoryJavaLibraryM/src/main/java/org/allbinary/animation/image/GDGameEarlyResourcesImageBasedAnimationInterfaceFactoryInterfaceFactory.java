@@ -34,13 +34,15 @@ public class GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFac
     {
         super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
-    
+
+    @Override    
     public void init(int level)
     throws Exception
     {
         this.initImageCache(ImageCacheFactory.getInstance(), level);
     }
 
+    @Override
     protected void initImageCache(ImageCache imageCache, int level)
     throws Exception
     {
@@ -71,6 +73,7 @@ public class GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFac
         super.init(level);
     }
     
+    @Override
     public boolean isFeature()
     {
         Features features = Features.getInstance();
@@ -90,6 +93,7 @@ public class GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFac
         }
     }
 
+    @Override
     public boolean isLoadingLevel(int level)
     {
         if(level == ResourceLoadingLevelFactory.getInstance().LOAD_EARLY.getLevel())

@@ -22,6 +22,8 @@ import org.allbinary.util.BasicArrayList;
 public class GDGameAndroidEarlyResourceInitialization 
 extends ResourceInitialization
 {
+
+    @Override
     public void init() 
     throws Exception
     {

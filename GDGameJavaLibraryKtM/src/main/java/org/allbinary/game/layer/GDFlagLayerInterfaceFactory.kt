@@ -18,9 +18,9 @@
                     
         
 import org.allbinary.animation.AnimationInterfaceFactoryInterface
+import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface
 import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.animation.NullRotationAnimationFactory
-import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface
 import org.allbinary.game.identification.Group
 import org.allbinary.game.layer.special.GDConditionWithGroupActions
 import org.allbinary.game.layout.GDObject
@@ -89,7 +89,7 @@ private constructor ()
     var animationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?> = arrayOf(NullRotationAnimationFactory.getFactoryInstance())
 
 
-    var proceduralAnimationInterfaceFactoryInterfaceArray: Array<ProceduralAnimationInterfaceFactoryInterface?> = arrayOf(NullRotationAnimationFactory.getFactoryInstance())
+    var proceduralAnimationInterfaceFactoryInterfaceArray: Array<BasicAnimationInterfaceFactoryInterface?> = arrayOf(NullRotationAnimationFactory.getFactoryInstance())
 
 
     var layerInfo: Rectangle = RectangleFactory.SINGLETON

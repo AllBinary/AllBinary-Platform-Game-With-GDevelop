@@ -27,6 +27,7 @@
                     
         
 import org.allbinary.animation.AnimationInterfaceFactoryInterface
+import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface
 import org.allbinary.animation.NullAnimationFactory
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface
 import org.allbinary.game.layout.GDObject
@@ -54,7 +55,7 @@ open public class GDGameLayerFactory
 
     val animationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?>
 
-    val proceduralAnimationInterfaceFactoryInterfaceArray: Array<ProceduralAnimationInterfaceFactoryInterface?>
+    val proceduralAnimationInterfaceFactoryInterfaceArray: Array<BasicAnimationInterfaceFactoryInterface?>
 
     val layerInfo: Rectangle
 
@@ -67,7 +68,7 @@ open public class GDGameLayerFactory
     val gameLayerDestroyedList: BasicArrayList
 
     val resetAnimationBehavior: Boolean
-public constructor (gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, groupInterface: Array<Group?>, behaviorList: BasicArrayList, animationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?>, proceduralAnimationInterfaceFactoryInterfaceArray: Array<ProceduralAnimationInterfaceFactoryInterface?>, layerInfo: Rectangle, rectangleArrayOfArrays: Array<Array<Rectangle?>?>, resetAnimationBehavior: Boolean)                        
+public constructor (gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, groupInterface: Array<Group?>, behaviorList: BasicArrayList, animationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?>, proceduralAnimationInterfaceFactoryInterfaceArray: Array<BasicAnimationInterfaceFactoryInterface?>, layerInfo: Rectangle, rectangleArrayOfArrays: Array<Array<Rectangle?>?>, resetAnimationBehavior: Boolean)                        
 
                             : this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance(), resetAnimationBehavior){
     //var gameLayerList = gameLayerList
@@ -85,7 +86,7 @@ public constructor (gameLayerList: BasicArrayList, gameLayerDestroyedList: Basic
                     
 }
 
-public constructor (gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, groupInterface: Array<Group?>, behaviorList: BasicArrayList, animationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?>, proceduralAnimationInterfaceFactoryInterfaceArray: Array<ProceduralAnimationInterfaceFactoryInterface?>, layerInfo: Rectangle, rectangleArrayOfArrays: Array<Array<Rectangle?>?>, animationBehaviorFactory: GDAnimationBehaviorBaseFactory, resetAnimationBehavior: Boolean)
+public constructor (gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, groupInterface: Array<Group?>, behaviorList: BasicArrayList, animationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?>, proceduralAnimationInterfaceFactoryInterfaceArray: Array<BasicAnimationInterfaceFactoryInterface?>, layerInfo: Rectangle, rectangleArrayOfArrays: Array<Array<Rectangle?>?>, animationBehaviorFactory: GDAnimationBehaviorBaseFactory, resetAnimationBehavior: Boolean)
             : super()
         {
     //var gameLayerList = gameLayerList

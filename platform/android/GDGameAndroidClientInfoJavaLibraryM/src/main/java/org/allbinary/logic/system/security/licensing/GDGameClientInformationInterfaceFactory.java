@@ -11,6 +11,7 @@ public class GDGameClientInformationInterfaceFactory extends ClientInformationFa
         return instance;
     }
     
+    @Override
     public ClientInformation getInstance()
     {
         return GDGameAndroidMobileClientInformation.instance;

@@ -98,7 +98,7 @@ open public class GDObject
 
     var opacity: Float = 255f
 
-    var basicColor: BasicColor = BasicColorFactory.getInstance()!!.BLACK
+    var basicColor: BasicColor = BasicColorFactory.getInstance()!!.NULL_COLOR
 
     var widthAtInitialScale: Int= 0
 

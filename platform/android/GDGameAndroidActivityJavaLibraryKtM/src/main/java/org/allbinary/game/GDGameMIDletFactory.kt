@@ -14,6 +14,7 @@
         
 import javax.microedition.midlet.MIDlet
 import org.allbinary.game.canvas.GDGameSoftwareInfo
+import org.allbinary.logic.NullUtil
 import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory
 import org.allbinary.midlet.MidletFactoryInterface
 
@@ -21,9 +22,7 @@ open public class GDGameMIDletFactory : MidletFactoryInterface {
         
 companion object {
             
-    private var SINGLETON: MIDlet = 
-                null
-            
+    private var SINGLETON: Any = NullUtil.getInstance()!!.NULL_OBJECT
 
         }
             
@@ -37,9 +36,7 @@ companion object {
 : MIDlet{
 
     
-                        if(GDGameMIDletFactory.SINGLETON == 
-                                    null
-                                )
+                        if(GDGameMIDletFactory.SINGLETON == NullUtil.getInstance()!!.NULL_OBJECT)
                         
                                     {
                                     GDGameMIDletFactory.SINGLETON= GDGameMIDlet(GDGameClientInformationInterfaceFactory.getFactoryInstance())
@@ -49,7 +46,7 @@ GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION= GDGameClientInformationInterfac
                                 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return GDGameMIDletFactory.SINGLETON
+                        return GDGameMIDletFactory.SINGLETON as MIDlet
 }
 
 
