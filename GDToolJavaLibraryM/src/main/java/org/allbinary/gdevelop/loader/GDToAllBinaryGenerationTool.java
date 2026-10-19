@@ -59,6 +59,7 @@ public class GDToAllBinaryGenerationTool
     private final GDNameGenerator[] gdNameFileGeneratorArray = {
         new GDToAndroidManifestGenerator(),
         new GDToAndroidManifestGradleGenerator(),
+        new GDToAndroidManifestKtGradleGenerator(),
         new GDToThreedAndroidManifestGenerator(),
         new GDToThreedAndroidManifestGradleGenerator(),
         new GDToAndroidResourcesGenerator(),
@@ -71,6 +72,7 @@ public class GDToAllBinaryGenerationTool
         new GDToThreedAndroidResourceStringsXmlGenerator(),
         new GDToThreedAndroidResourceStringsXmlGradleGenerator(),
         new GDToAndroidBuildGradleGenerator(),
+        new GDToAndroidBuildKtGradleGenerator(),
         new GDToThreedAndroidBuildGradleGenerator(),
     };
     

@@ -153,6 +153,7 @@ public class GDData {
 
     public final String GD_ANDROID_MANIFEST = this.gdPaths.ROOT_PATH + "platformx\\android\\GDGameAndroidApplicationM\\src\\main\\AndroidManifest.xsl";
     public final String GD_ANDROID_GRADLE_MANIFEST = this.gdPaths.ROOT_PATH + "platformx\\android\\GDGameAndroidApplicationNoLicensingGradle\\app\\src\\main\\AndroidManifest.xsl";
+    public final String GD_ANDROID_KT_GRADLE_MANIFEST = this.gdPaths.ROOT_PATH + "platformx\\android\\GDGameAndroidApplicationNoLicensingKtGradle\\app\\src\\main\\AndroidManifest.xsl";
     public final String GD_THREED_ANDROID_MANIFEST = this.gdPaths.ROOT_PATH + "platformx\\android\\GDGameThreedAndroidApplicationM\\src\\main\\AndroidManifest.xsl";
     public final String GD_THREED_ANDROID_GRADLE_MANIFEST = this.gdPaths.ROOT_PATH + "platformx\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\app\\src\\main\\AndroidManifest.xsl";
 
