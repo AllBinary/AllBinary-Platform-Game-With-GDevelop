@@ -551,10 +551,16 @@ NoTransitionAnimationJavaLibrary
                                 <resource>
                                     <directory>${inputPath}</directory>
                                     <filtering>false</filtering>
+                                    <includes>
+                                        <include>**/*.kt</include>
+                                    </includes>
                                 </resource>
                                 <resource>
                                     <directory>${inputPath2}</directory>
                                     <filtering>false</filtering>
+                                    <includes>
+                                        <include>**/*.kt</include>
+                                    </includes>
                                 </resource>
                                 <!--
                                 -->                
