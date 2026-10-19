@@ -96,7 +96,7 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>GameScoresRemoteAndLocalJavaLibraryKt</artifactId>
+            <artifactId>GameScoresLocalJavaLibraryKt</artifactId>
 <!--
             <artifactId>GameScoresLocalJavaLibraryKt</artifactId>
             <artifactId>GameScoresRemoteAndLocalJavaLibraryKt</artifactId>

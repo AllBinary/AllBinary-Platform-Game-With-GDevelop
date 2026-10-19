@@ -397,6 +397,19 @@ GD*Game*CreateInstance.java
 GD*Sound.java
 GD*Sounds.java
 
+/platformx/android/GDGameAndroidApplicationNoLicensingKtGradle/app/src/main/java/**/*.kt
+/platformx/android/GDGameAndroidApplicationNoLicensingKtGradle/app/src/main/java/**/*.xsl
+/platformx/android/GDGameAndroidApplicationNoLicensingKtGradle/app/src/main/java/META-INF/**/*.xml
+/platformx/android/GDGameAndroidApplicationNoLicensingKtGradle/app/src/main/res/**/*.xml
+/platformx/android/GDGameAndroidApplicationNoLicensingKtGradle/app/src/main/java/**/*.MF
+/platformx/android/GDGameAndroidApplicationNoLicensingKtGradle/app/src/main/java/**/*.origin
+/platformx/android/GDGameAndroidApplicationNoLicensingKtGradle/app/src/main/java/**/*.original
+/platformx/android/GDGameAndroidApplicationNoLicensingKtGradle/app/src/main/java/**/*.properties
+/platformx/android/GDGameAndroidApplicationNoLicensingKtGradle/app/src/main/java/**/*.svg
+/platformx/android/GDGameAndroidApplicationNoLicensingKtGradle/app/src/main/java/**/*.png
+/platformx/android/GDGameAndroidApplicationNoLicensingKtGradle/app/src/main/java/**/*.ogg
+/platformx/android/GDGameAndroidApplicationNoLicensingKtGradle/app/src/main/res/drawable/
+/platformx/android/GDGameAndroidApplicationNoLicensingKtGradle/app/src/main/res/raw/
 **/gd/res/GD*GamePlaynResources.kt
 **/org/allbinary/AndroidResources.kt
 **/org/allbinary/animation/image/GD*GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.kt
