@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "org.allbinary.game.zeptoracer"
-    compileSdk = 37
+    namespace = "org.allbinary.game.gd.com.zat.invaders"
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "org.allbinary.game.zeptoracer"
+        applicationId = "org.allbinary.game.gd.com.zat.invaders"
         minSdk = 30
-        targetSdk = 37
+        targetSdk = 34
         versionCode = 52
         versionName = "1.2.18"
 
@@ -19,9 +19,6 @@ android {
 
     buildTypes {
         release {
-            optimization {
-                enable = true
-            }
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "G:/mnt/bc/mydev/work/j2me/games/All_Android.pro")

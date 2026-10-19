@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ZeptoRacer Kt"
+rootProject.name = "GDGame Kt"
 include(":app")
  
