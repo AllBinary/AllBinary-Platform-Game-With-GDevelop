@@ -11,7 +11,7 @@
  * Created By: Travis Berthelot
  * 
  */
-package org.allbinary.gdevelop.loader;
+package org.allbinary.gdevelop.loader.comparison;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;

@@ -11,9 +11,16 @@
  * Created By: Travis Berthelot
  * 
  */
-package org.allbinary.gdevelop.loader;
+package org.allbinary.gdevelop.loader.comparison;
 
 import org.allbinary.data.tree.dom.document.DomDocumentHelper;
+import org.allbinary.gdevelop.loader.GDGameInfo;
+import org.allbinary.gdevelop.loader.GDGenerateGDGameInfo;
+import org.allbinary.gdevelop.loader.GDLanguage;
+import org.allbinary.gdevelop.loader.GDLanguageSelection;
+import org.allbinary.gdevelop.loader.GDLayoutsToAllBinaryLayoutGenerator;
+import org.allbinary.gdevelop.loader.GDPaths;
+import org.allbinary.gdevelop.loader.GDToAllBinaryGenerationTool;
 
 /**
  * Generates the language specific (for example Kt.xsl) output into a scratch directory
