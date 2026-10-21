@@ -44,6 +44,13 @@ public class GDPaths {
         GDPaths.instance = new GDPaths(GDPaths.DEFAULT_PATH, GDPaths.DEFAULT_PATH, GDPaths.DEFAULT_PATH, "Resources\\", "Resources\\", "2d\\res\\raw\\", "3d\\res\\raw\\", language);
     }
 
+    /**
+     * Default paths except the generation output path. Useful for generating into a scratch directory.
+     */
+    public static void initGenPath(final String genPath, final GDLanguage language) {
+        GDPaths.instance = new GDPaths(GDPaths.DEFAULT_PATH, genPath, GDPaths.DEFAULT_PATH, "Resources\\", "Resources\\", "2d\\res\\raw\\", "3d\\res\\raw\\", language);
+    }
+
     public static void init(final String xslPath, final String genPath, final String projectPath) {
         GDPaths.init(xslPath, genPath, projectPath, GDLanguageFactory.getInstance().JAVA);
     }
