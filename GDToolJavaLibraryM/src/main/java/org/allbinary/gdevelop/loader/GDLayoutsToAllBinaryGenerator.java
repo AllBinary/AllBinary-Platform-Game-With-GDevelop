@@ -105,7 +105,7 @@ public class GDLayoutsToAllBinaryGenerator
                 result = replaceLT.all(result);
                 
                 stringMaker.delete(0, stringMaker.length());
-                final String fileName = stringMaker.append(START).append(stringUtil.toString(this.nameList.get(index))).append(END).toString();
+                final String fileName = gdPaths.getOutputPath(stringMaker.append(START).append(stringUtil.toString(this.nameList.get(index))).append(END).toString());
 
                 this.logUtil.putF(this.gdToolStrings.FILENAME + fileName, this, this.commonStrings.PROCESS);
 

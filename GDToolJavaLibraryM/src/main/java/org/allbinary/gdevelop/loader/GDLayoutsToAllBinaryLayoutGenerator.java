@@ -151,7 +151,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             new StreamSource(new StringBufferInputStream(xmlStringArray0[index2])));
         
         stringMaker.delete(0, stringMaker.length());
-        String fileName = fileName = stringMaker.append(START0[index2]).append(END0[index2]).toString();
+        String fileName = fileName = this.gdPaths.getOutputPath(stringMaker.append(START0[index2]).append(END0[index2]).toString());
 
         //logUtil.put(RESULT + result, this, commonStrings.PROCESS);
         stringMaker.delete(0, stringMaker.length());
@@ -240,7 +240,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
                  
                 stringMaker.delete(0, stringMaker.length());
-                final String fileName = stringMaker.append(START[index2]).append(indexAsString).append(MID[index2]).appendint(index4).append(END[index2]).toString();
+                final String fileName = this.gdPaths.getOutputPath(stringMaker.append(START[index2]).append(indexAsString).append(MID[index2]).appendint(index4).append(END[index2]).toString());
                 this.directory.create(new AbFilePath(fileName));
 
                 //logUtil.put(RESULT + result, this, commonStrings.PROCESS);
@@ -338,7 +338,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
                  
                 stringMaker.delete(0, stringMaker.length());
-                final String fileName = stringMaker.append(START[index2]).append(indexAsString).append(MID[index2]).appendint(index5).append(END[index2]).toString();
+                final String fileName = this.gdPaths.getOutputPath(stringMaker.append(START[index2]).append(indexAsString).append(MID[index2]).appendint(index5).append(END[index2]).toString());
                 this.directory.create(new AbFilePath(fileName));
 
                 //logUtil.put(RESULT + result, this, commonStrings.PROCESS);
@@ -431,7 +431,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
                  
                 stringMaker.delete(0, stringMaker.length());
-                final String fileName = stringMaker.append(START[index2]).append(indexAsString).append(MID[index2]).appendint(index4).append(END[index2]).toString();
+                final String fileName = this.gdPaths.getOutputPath(stringMaker.append(START[index2]).append(indexAsString).append(MID[index2]).appendint(index4).append(END[index2]).toString());
                 this.directory.create(new AbFilePath(fileName));
 
                 //logUtil.put(RESULT + result, this, commonStrings.PROCESS);
@@ -569,7 +569,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
                  
                 stringMaker.delete(0, stringMaker.length());
-                final String fileName = stringMaker.append(START[index2]).append(indexAsString).append(END[index2]).toString();
+                final String fileName = this.gdPaths.getOutputPath(stringMaker.append(START[index2]).append(indexAsString).append(END[index2]).toString());
                 this.directory.create(new AbFilePath(fileName));
 
                 //logUtil.put(RESULT + result, this, commonStrings.PROCESS);
@@ -745,7 +745,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
                     stringMaker.delete(0, stringMaker.length());
                     //String fileName = stringMaker.append(START[index2]).append(layoutIndex).append(MIDDLE[index2]).append(indexAsString.substring(indexAsString.length() - 2, indexAsString.length() - 1)).append(END[index2]).toString();
-                    String fileName = stringMaker.append(START[index2]).appendint(layoutIndex).append(MIDDLE[index2]).appendint(fileIndex).append(END[index2]).toString();
+                    String fileName = this.gdPaths.getOutputPath(stringMaker.append(START[index2]).appendint(layoutIndex).append(MIDDLE[index2]).appendint(fileIndex).append(END[index2]).toString());
 
                     if (result.indexOf(this.PACKAGE) < 0) {
                         stringMaker.delete(0, stringMaker.length());
@@ -889,7 +889,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     result = replaceLT.all(result);
 
                     stringMaker.delete(0, stringMaker.length());
-                    String fileName = stringMaker.append(START[index2]).appendint(layoutIndex).append(MIDDLE[index2]).appendint(fileIndex).append(END[index2]).toString();
+                    String fileName = this.gdPaths.getOutputPath(stringMaker.append(START[index2]).appendint(layoutIndex).append(MIDDLE[index2]).appendint(fileIndex).append(END[index2]).toString());
 
                     if (result.indexOf(this.PACKAGE) < 0) {
                         stringMaker.delete(0, stringMaker.length());
@@ -1096,10 +1096,10 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                 result = replaceLT.all(result);
 
                 stringMaker.delete(0, stringMaker.length());
-                String outputFilePath = stringMaker.append(OUTPUT_FILE_PATHS[index2]).appendint(index).append(OUTPUT_FILE_PATH_END_ARRAY[index2]).toString();
+                String outputFilePath = this.gdPaths.getOutputPath(stringMaker.append(OUTPUT_FILE_PATHS[index2]).appendint(index).append(OUTPUT_FILE_PATH_END_ARRAY[index2]).toString());
                 if (index2 < 15) {
                     stringMaker.delete(0, stringMaker.length());
-                    outputFilePath = stringMaker.append(OUTPUT_FILE_PATHS[index2]).append(OUTPUT_FILE_PATH_END_ARRAY[index2]).toString();
+                    outputFilePath = this.gdPaths.getOutputPath(stringMaker.append(OUTPUT_FILE_PATHS[index2]).append(OUTPUT_FILE_PATH_END_ARRAY[index2]).toString());
                 }
 
                 stringMaker.delete(0, stringMaker.length());
@@ -1378,7 +1378,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
     public static void main(String[] args) throws Exception {
         DomDocumentHelper.init();
-        GDPaths.init();
+        GDPaths.init(GDLanguageSelection.getInstance().select(args));
 
         //Generate Layout 1
         final boolean[] finished = new boolean[6];

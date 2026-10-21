@@ -40,8 +40,9 @@ public class GDTransformGenerator extends GDNameGenerator {
     
     private final XslHelper xslHelper = XslHelper.getInstance();
     
-    public void process(final String updatedXslDocumentStr, final String outputFile, final SharedBytes sharedBytes) throws Exception {
+    public void process(final String updatedXslDocumentStr, final String javaOutputFile, final SharedBytes sharedBytes) throws Exception {
 
+        final String outputFile = this.gdPaths.getOutputPath(javaOutputFile);
         final String xmlDocumentStr = this.gdData.getAsString(this.gdPaths.GAME_XML_PATH, sharedBytes);
 
         String result = this.process(updatedXslDocumentStr, xmlDocumentStr);

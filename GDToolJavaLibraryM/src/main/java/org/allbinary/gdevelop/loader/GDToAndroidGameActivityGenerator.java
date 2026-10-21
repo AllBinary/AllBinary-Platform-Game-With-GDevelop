@@ -37,10 +37,10 @@ public class GDToAndroidGameActivityGenerator extends GDNameGenerator
         final StringMaker stringMaker = new StringMaker();
         final String name = camelCaseUtil.getAsCamelCase(this.packageName, stringMaker).toLowerCase();
         
-        final String R_ORIGINAL = this.gdPaths.ROOT_PATH + "platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\GDGameAndroidActivity.original";
+        final String R_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\GDGameAndroidActivity.original");
         stringMaker.delete(0, stringMaker.length());
         stringMaker.append(this.gdPaths.GEN_PATH + "platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\").append(name);
-        final String R = stringMaker.append("\\GDGameAndroidActivity.java").toString();
+        final String R = this.gdPaths.getOutputPath(stringMaker.append("\\GDGameAndroidActivity.java").toString());
         
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final SharedBytes sharedBytes = SharedBytes.getInstance();

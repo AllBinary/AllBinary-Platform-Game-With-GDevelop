@@ -498,7 +498,7 @@ public class GDToAllBinaryGenerationTool
     public static void main(String[] args) throws Exception
     {
         DomDocumentHelper.init();
-        GDPaths.init();
+        GDPaths.init(GDLanguageSelection.getInstance().select(args));
         new GDToAllBinaryGenerationTool().process();
     }
 

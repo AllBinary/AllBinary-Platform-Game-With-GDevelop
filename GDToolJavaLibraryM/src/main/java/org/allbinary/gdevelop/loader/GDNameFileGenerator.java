@@ -29,8 +29,9 @@ public class GDNameFileGenerator extends GDNameGenerator
     protected final String newFilePath;
 
     public GDNameFileGenerator(final String originalFilePath, final String newFilePath) {
-        this.originalFilePath = originalFilePath;
-        this.newFilePath = newFilePath;
+        final GDPaths gdPaths = GDPaths.getInstance();
+        this.originalFilePath = gdPaths.getTemplatePath(originalFilePath);
+        this.newFilePath = gdPaths.getOutputPath(newFilePath);
     }
     
     @Override

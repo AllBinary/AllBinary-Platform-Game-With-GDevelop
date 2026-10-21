@@ -78,7 +78,7 @@ public class GDToAllBinaryRotationGenerator
         final String[] xslPathInputArray = {this.gdData.GD_ROTATION_ANIMATION};
 
         final String[] outputArray = {
-            this.gdPaths.ROTATION_ANIMATION_FILE_PATH,
+            this.gdPaths.getOutputPath(this.gdPaths.ROTATION_ANIMATION_FILE_PATH),
         };
         
         final int size2 = xslPathInputArray.length;

@@ -84,8 +84,8 @@ public class GDToAndroidResourcesGradleGenerator
     
     public void process() throws Exception {
 
-        final String RESOURCE_ORIGINAL = this.gdPaths.ROOT_PATH + "platform\\android\\GDGameAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.original";
-        final String RESOURCE = this.gdPaths.GEN_PATH + "platform\\android\\GDGameAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java";
+        final String RESOURCE_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "platform\\android\\GDGameAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.original");
+        final String RESOURCE = this.gdPaths.getOutputPath(this.gdPaths.GEN_PATH + "platform\\android\\GDGameAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java");
         
         final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
         final StringMaker stringMaker = new StringMaker();        

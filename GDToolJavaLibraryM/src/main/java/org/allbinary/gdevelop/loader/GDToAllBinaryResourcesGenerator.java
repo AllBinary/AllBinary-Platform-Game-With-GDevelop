@@ -334,8 +334,8 @@ public class GDToAllBinaryResourcesGenerator
         
         this.timeDelayHelper.setStartTimeTNT();
         
-        final String RESOURCE_ORIGINAL = this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.origin";
-        final String RESOURCE = this.gdPaths.GEN_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.java";
+        final String RESOURCE_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.origin");
+        final String RESOURCE = this.gdPaths.getOutputPath(this.gdPaths.GEN_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.java");
         
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final SharedBytes sharedBytes = SharedBytes.getInstance();
@@ -378,8 +378,8 @@ public class GDToAllBinaryResourcesGenerator
         
         this.timeDelayHelper.setStartTimeTNT();
         
-        final String LAZY_RESOURCE_ORIGINAL = this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.origin";
-        final String LAZY_RESOURCE = this.gdPaths.GEN_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.java";
+        final String LAZY_RESOURCE_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.origin");
+        final String LAZY_RESOURCE = this.gdPaths.getOutputPath(this.gdPaths.GEN_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.java");
         
         stringMaker.delete(0, stringMaker.length());
         final StreamUtil streamUtil = StreamUtil.getInstance();

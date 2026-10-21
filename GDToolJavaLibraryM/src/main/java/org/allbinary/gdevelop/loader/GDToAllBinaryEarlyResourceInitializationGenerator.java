@@ -45,8 +45,8 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
     {
         final String GD_KEY = "//GD";
         
-        final String RESOURCE_INITIALIZATION_ORIGINAL = this.gdPaths.ROOT_PATH + "platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.origin";
-        final String RESOURCE_INITIALIZATION = this.gdPaths.GEN_PATH + "platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.java";
+        final String RESOURCE_INITIALIZATION_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.origin");
+        final String RESOURCE_INITIALIZATION = this.gdPaths.getOutputPath(this.gdPaths.GEN_PATH + "platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.java");
         
         final StringMaker stringMaker = new StringMaker();
 
