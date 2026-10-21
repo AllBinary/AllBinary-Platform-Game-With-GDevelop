@@ -122,7 +122,7 @@ Created By: Travis Berthelot
                     //private val gdGlobalsObjectsFactory: GDGlobalsGDObjectsFactory = GDGlobalsGDObjectsFactory.getInstance()
                     private val gdObjectsFactory: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance()
 
-                    private val CREATE_INSTANCES: String = "createInstances"
+                    //private val CREATE_INSTANCES: String = "createInstances"
 
                     private constructor() {
                     }

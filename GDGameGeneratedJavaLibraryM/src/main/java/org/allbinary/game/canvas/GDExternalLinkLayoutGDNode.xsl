@@ -120,7 +120,7 @@ Created By: Travis Berthelot
                     //private final GDGlobalsGDObjectsFactory gdGlobalsObjectsFactory = GDGlobalsGDObjectsFactory.getInstance();
                     private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
 
-                    private final String CREATE_INSTANCES = "createInstances";
+                    //private final String CREATE_INSTANCES = "createInstances";
 
                     private GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode() {
                     }

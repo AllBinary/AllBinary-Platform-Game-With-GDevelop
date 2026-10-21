@@ -271,6 +271,8 @@ companion object {
 
     val GD_ANDROID_GRADLE_MANIFEST: String = this.gdPaths!!.ROOT_PATH +"platformx\\android\\GDGameAndroidApplicationNoLicensingGradle\\app\\src\\main\\AndroidManifest.xsl"
 
+    val GD_ANDROID_KT_GRADLE_MANIFEST: String = this.gdPaths!!.ROOT_PATH +"platformx\\android\\GDGameAndroidApplicationNoLicensingKtGradle\\app\\src\\main\\AndroidManifest.xsl"
+
     val GD_THREED_ANDROID_MANIFEST: String = this.gdPaths!!.ROOT_PATH +"platformx\\android\\GDGameThreedAndroidApplicationM\\src\\main\\AndroidManifest.xsl"
 
     val GD_THREED_ANDROID_GRADLE_MANIFEST: String = this.gdPaths!!.ROOT_PATH +"platformx\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\app\\src\\main\\AndroidManifest.xsl"

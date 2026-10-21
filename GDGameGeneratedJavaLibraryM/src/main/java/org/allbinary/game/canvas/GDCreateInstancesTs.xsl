@@ -44,7 +44,7 @@ Created By: Travis Berthelot
         <xsl:variable name="hasCentreCamera" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera' or type/value = 'CenterCameraOnObject'" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
         
                     //instances create - START
-                    this.logUtil.putF(this.commonStrings.START, this, CREATE_INSTANCES);
+                    //this.logUtil.putF(this.commonStrings.START, this, CREATE_INSTANCES);
                     
                     //Create - Instances - START
                     final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
@@ -219,7 +219,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                     
-                    this.logUtil.putF(this.commonStrings.END, this, CREATE_INSTANCES);
+                    //this.logUtil.putF(this.commonStrings.END, this, CREATE_INSTANCES);
                     //instances create - END
     </xsl:template>
 

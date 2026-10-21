@@ -62,13 +62,19 @@ extends BaseSoundsFactory
     list.addAllList(gd<xsl:value-of select="position() - 1" />GameSoundsFactory.soundList);
 </xsl:for-each>
 
-        soundInterfaceArray = (Sound[]) list.toArrayType(new Sound[list.size()]);
+        //this.soundInterfaceArray = (Sound[]) list.toArrayType(new Sound[list.size()]);
+        final int size = list.size();
+        this.soundInterfaceArray = new Sound[size];
+        for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index2++) {
+            this.soundInterfaceArray[index2] = (Sound) list.get(index2);
+        }
+
     }
     
     @Override
     public Sound[] getSoundInterfaceArray() throws Exception
     {
-        return soundInterfaceArray;
+        return this.soundInterfaceArray;
     }
 }
     </xsl:template>

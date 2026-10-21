@@ -60,12 +60,18 @@ open class GDGameSounds : BaseSoundsFactory
     list.addAllList(gd<xsl:value-of select="position() - 1" />GameSoundsFactory.soundList)
 </xsl:for-each>
 
-        soundInterfaceArray = list.toArrayType(arrayOfNulls&lt;Sound&gt;(list.size())) as Array&lt;Sound&gt;
+        //soundInterfaceArray = list.toArrayType(arrayOfNulls&lt;Sound&gt;(list.size())) as Array&lt;Sound&gt;
+        final int size = list.size();
+        this.soundInterfaceArray = new Sound[size];
+        for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index2++) {
+            this.soundInterfaceArray[index2] = (Sound) list.get(index2);
+        }
+
     }
 
     override fun getSoundInterfaceArray(): Array&lt;Sound&gt;
     {
-        return soundInterfaceArray
+        return this.soundInterfaceArray
     }
 }
     </xsl:template>
