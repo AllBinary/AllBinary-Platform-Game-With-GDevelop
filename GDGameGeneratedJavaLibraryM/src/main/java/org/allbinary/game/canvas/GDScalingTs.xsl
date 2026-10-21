@@ -33,14 +33,14 @@
                             final float scale = GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale;
                             //final int scaleNominator = scale;
                             //final int scaleDenominator = 2;
-                            this.logUtil.putF(new StringMaker().append("scale: ").appendfloat(scale).toString(), this, this.commonStrings.CONSTRUCTOR);
+                            //this.logUtil.putF(new StringMaker().append("scale: ").appendfloat(scale).toString(), this, this.commonStrings.CONSTRUCTOR);
 
                             final int scaleLayout = <xsl:if test="not(contains($layoutName, 'Scaled')) or contains($layoutIndex, 'Global')" >1</xsl:if><xsl:if test="contains($layoutName, 'Scaled')" >2</xsl:if>;
                             <xsl:variable name="name2" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template></xsl:variable>
 <!--                            number($layoutIndex) = 0 or contains($name2, 'options')  or contains($name2, 'about') or contains($name2, 'score') or contains($name2, 'over')-->
                             final float scaleTouchButtons = <xsl:if test="not(number($layoutIndex) = 1)" >1.0f</xsl:if><xsl:if test="number($layoutIndex) = 1" >GDConfig.getInstance().getGameScale(<xsl:value-of select="/game/properties/scale/android" />, <xsl:value-of select="/game/properties/scale/html" />, <xsl:value-of select="/game/properties/scale/j2se" />)</xsl:if>;
 <!--                            final int scaleTouch = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth * scaleTouchButtons : scaleHeight * scaleTouchButtons;-->
-                            this.logUtil.putF(new StringMaker().append("scaleTouchButtons - scale: ").appendfloat(scaleTouchButtons).toString(), this, this.commonStrings.CONSTRUCTOR);            
+                            //this.logUtil.putF(new StringMaker().append("scaleTouchButtons - scale: ").appendfloat(scaleTouchButtons).toString(), this, this.commonStrings.CONSTRUCTOR);            
         </xsl:if>
 
     </xsl:template>

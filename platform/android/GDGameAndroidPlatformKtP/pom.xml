@@ -22,7 +22,7 @@
         -->
         <module>../../../resource/GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>
 
-        <module>../GDGameAndroidKtM</module>
+<!--        <module>../GDGameAndroidKtM</module>-->
         <module>../GDGameAndroidActivityJavaLibraryKtM</module>
         <module>../GDGameAndroidBaseJavaLibraryKtM</module>
         <module>../GDGameAndroidClientInfoJavaLibraryKtM</module>
