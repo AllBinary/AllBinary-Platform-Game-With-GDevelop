@@ -70,10 +70,10 @@ open class PlatformAssetManager {
     //private val DONE: String = "ResourceCallback:done"
     //private val ERROR: String = "ResourceCallback:error"
 
-    private var textToResource: Map = HashMap()
+    private var textToResource: Map = HashMap&lt;Any, Any&gt;()
     //private var requestToResource: Map = HashMap()
 
-    open class RequestedText {
+    open inner class RequestedText {
         var text: String
     }
 
@@ -141,7 +141,7 @@ open class PlatformAssetManager {
         }
     }
 
-    open fun getText(resource: String, inputStream: InputStream): InputStream {
+    open fun getText(resource: String, inputStream: InputStream): InputStream? {
 
         val requestedText2: RequestedText = textToResource.get(resource) as RequestedText
         if(requestedText2 != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> requestedText2.text != null) {

@@ -183,7 +183,7 @@ Created By: Travis Berthelot
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />],
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]!!.getWidth(),
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]!!.getHeight(),
-                    angleIncrement
+                    angleIncrement.toInt()
                     </xsl:if>
                     <xsl:for-each select="directions" >,
                     IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
@@ -612,7 +612,7 @@ Created By: Travis Berthelot
                         <xsl:value-of select="$name" />ImageArray[0],
                         <xsl:value-of select="$name" />ImageArray[0]!!.getWidth(),
                         <xsl:value-of select="$name" />ImageArray[0]!!.getHeight(),
-                        angleIncrement,
+                        angleIncrement.toInt(),
                         AnimationBehaviorFactory.getInstance()
                         //IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
                     , true)
@@ -652,7 +652,7 @@ Created By: Travis Berthelot
                         <xsl:value-of select="$name" />ImageArray[4]!!.getHeight(),
                         (<xsl:value-of select="$name" />ImageArray[0]!!.getWidth() - <xsl:value-of select="$name" />ImageArray[2]!!.getWidth()) / 2,
                         (<xsl:value-of select="$name" />ImageArray[0]!!.getHeight() - <xsl:value-of select="$name" />ImageArray[4]!!.getHeight()) / 2,
-                        angleIncrement,
+                        angleIncrement.toInt(),
                         AnimationBehaviorFactory.getInstance()
                         //IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
                     , true)

@@ -341,14 +341,14 @@ Created By: Travis Berthelot
                                 (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt() } else {
                                 ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt() * scale) }
 -->
-                                (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt()
+                                ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt())
                                 ,
 <!--                                if((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0)).toInt() ==
                                 (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt()) {
                                 (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt() } else {
                                 ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt() * scale) }
 -->
-                                (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt()
+                                ((<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Height(0)).toInt())
                                 ,
                             </xsl:if>
                             <xsl:variable name="name2" >:<xsl:value-of select="$name" />,</xsl:variable>

@@ -62,10 +62,10 @@ open class GDGameSounds : BaseSoundsFactory
 </xsl:for-each>
 
         //soundInterfaceArray = list.toArrayType(arrayOfNulls(list.size())) as Array&lt;Sound?&gt;
-        final int size = list.size();
-        this.soundInterfaceArray = new Sound[size];
-        for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index2++) {
-            this.soundInterfaceArray[index2] = (Sound) list.get(index2);
+        val size: Int = list.size()
+        this.soundInterfaceArray = arrayOfNulls(size)
+        for(index2 in 0 until size) {
+            this.soundInterfaceArray[index2] = list.get(index2) as Sound
         }
 
     }

@@ -532,9 +532,11 @@ Created By: Travis Berthelot
                         ScrolledMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterfaceLastPoint)
                     </xsl:if>
 
-                        val size: Int = globals.motionEventListOfList.length
+                        val motionEventListOfList: Array&lt;BasicArrayList?&gt; = globals.motionEventListOfList
+
+                        val size: Int = motionEventListOfList.size
                         for(index in 0 until size) {
-                            val motionEventList: BasicArrayList = globals.motionEventListOfList[index] as BasicArrayList
+                            val motionEventList: BasicArrayList = motionEventListOfList[index]!!
                             motionEventList.clear()
                         }
 

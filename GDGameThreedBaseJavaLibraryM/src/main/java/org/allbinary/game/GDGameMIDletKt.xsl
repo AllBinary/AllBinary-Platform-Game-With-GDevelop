@@ -38,6 +38,7 @@ import javax.microedition.lcdui.Displayable
     <xsl:variable name="name3" >GDGame<xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
     <xsl:variable name="name" ><xsl:value-of select="translate($name3, ' ', '')" /></xsl:variable>
     import org.allbinary.game.canvas.<xsl:value-of select="$name" />
+    import org.allbinary.logic.StdUtil
     import org.allbinary.game.midlet.<xsl:value-of select="$name" />Runnable
 </xsl:for-each>
 import org.allbinary.canvas.RunnableCanvas
@@ -104,7 +105,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
 
        //objectsGroups count=<xsl:value-of select="count(//objectsGroups)" /> + //object count=<xsl:value-of select="count(//objects)" /> + 1
        val SIZE: Short = <xsl:value-of select="count(//objectsGroups) + count(//objects) + 1" />
-       val groupNames: Array&lt;String?&gt; = arrayOfNulls(SIZE)
+       val groupNames: Array&lt;String?&gt; = arrayOfNulls(SIZE.toInt())
        val GROUP_: String = "Group "
        val stringBuilder: StringMaker = StringMaker()
        for(index in 0 until SIZE) {
@@ -112,7 +113,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
            groupNames[index] = stringBuilder.append(GROUP_).appendint(index).toString()
    }
        GroupFactory.getInstance().init(SIZE, groupNames)
-       GroupLayerManagerListener.getInstance().init(SIZE)
+       GroupLayerManagerListener.getInstance().init(SIZE.toInt())
 
    }
 
@@ -154,7 +155,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
       //return GDGameStartCanvas(this.abeClientInformation, this)
    }
 
-    @Synchronized fun set<xsl:value-of select="$name" />RunnableInterface()
+    @Synchronized open fun set<xsl:value-of select="$name" />RunnableInterface()
     {
         logUtil.putF(commonStrings.START, this, "set<xsl:value-of select="$name" />")
 
@@ -193,7 +194,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
        //return GDGameGameCanvas(this.abeClientInformation, this, allBinaryGameLayerManager)
    }
 
-    @Synchronized fun set<xsl:value-of select="$name" />RunnableInterface()
+    @Synchronized open fun set<xsl:value-of select="$name" />RunnableInterface()
     {
         logUtil.putF(commonStrings.START, this, "set<xsl:value-of select="$name" />")
 
@@ -201,7 +202,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
         ProgressCanvasFactory.getInstance().start()
 
         val hashtable: ABHashtable&lt;Any, Any&gt; = this.getStartStateHashtable()
-        this.setStartStateHashtable(null)
+        this.setStartStateHashtable(StdUtil.getInstance().NULL_TABLE)
 
         PrimaryThreadPool.getInstance().runTask(<xsl:value-of select="$name" />Runnable(this, hashtable))
         //this.postDemoSetup()
@@ -301,8 +302,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
         super.startGameCanvasRunnableInterface()
     }
 
-    override
-    @Synchronized fun commandAction(command: Command, displayable2: Displayable) {
+    @Synchronized override fun commandAction(command: Command, displayable2: Displayable) {
 
         try {
 

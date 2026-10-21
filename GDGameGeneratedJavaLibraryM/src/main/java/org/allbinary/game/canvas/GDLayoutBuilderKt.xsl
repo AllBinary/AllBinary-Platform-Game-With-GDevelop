@@ -232,7 +232,9 @@ Created By: Travis Berthelot
                             var otherEventNodes: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes
                             var objectEventNodes: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes
 
-                            var size: Int = gameGlobals.nodeArray.size
+                            val nodeArray: Array&lt;GDNode?&gt; = gameGlobals.nodeArray
+
+                            var size: Int = nodeArray.size
                         <!--
                         for(index in 0 until size) {
                             var currentIndex: Int = index

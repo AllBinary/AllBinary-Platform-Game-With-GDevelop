@@ -173,8 +173,7 @@ Created By: Travis Berthelot
                     private val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
                     private val groupCommonFactory: GroupCommonFactory = GroupCommonFactory.getInstance()
 
-                    private var scale: Float
-
+                    private var scale: Float = 0.0f
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
                     private val basicColorFactory: BasicColorFactory = BasicColorFactory.getInstance()
                     private val angleFactory: AngleFactory = AngleFactory.getInstance()
@@ -510,7 +509,7 @@ Created By: Travis Berthelot
         //private var lastX: Int = 0
         //private var lastY: Int = 0
 
-        private var total: Int
+        private var total: Int = 0
 
         //var lastString: String = ""
 

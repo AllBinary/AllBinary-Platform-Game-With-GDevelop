@@ -181,13 +181,6 @@ Created By: Travis Berthelot
 
                             this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR)
 
-                    val features: Features = Features.getInstance()
-                    val openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()
-
-                    var isThreed: Boolean = false
-                    if(features.isFeature(openGLFeatureFactory.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory.OPENGL_3D)) {
-                        isThreed = true
-                    }
                     val scale: Float = GDConfig.getInstance().getScaleThreed(GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale)
 
                     animationInterfaceFactoryInterfaceFactory.init(<xsl:value-of select="$layoutIndex" />)

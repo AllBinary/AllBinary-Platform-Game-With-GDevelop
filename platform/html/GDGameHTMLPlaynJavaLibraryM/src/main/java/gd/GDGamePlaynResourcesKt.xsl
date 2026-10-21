@@ -21,7 +21,9 @@ import com.google.gwt.resources.client.TextResource
             <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
 
 interface GD<xsl:value-of select="$index" />GamePlaynResources : ClientBundle {
+  companion object {
   val INSTANCE: GD<xsl:value-of select="$index" />GamePlaynResources = GWT.create(GD<xsl:value-of select="$index" />GamePlaynResources::class.java)
+  }
 
   val NAMES: Array&lt;String?&gt; = arrayOf(
         <xsl:variable name="kotlinArrayItems24" >        <xsl:for-each select="objects" >

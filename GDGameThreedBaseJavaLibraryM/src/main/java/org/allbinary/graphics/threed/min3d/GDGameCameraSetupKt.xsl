@@ -49,7 +49,7 @@ open class GD<GD_CURRENT_INDEX>GameCameraSetup : GDGameCameraSetup
     /**
      * @return the instance
      */
-    fun getInstance(): GD<GD_CURRENT_INDEX>GameCameraSetup {
+    open fun getInstance(): GD<GD_CURRENT_INDEX>GameCameraSetup {
         return GD<GD_CURRENT_INDEX>GameCameraSetup.instance
     }
 

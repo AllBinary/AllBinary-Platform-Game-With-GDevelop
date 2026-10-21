@@ -913,7 +913,7 @@ Created By: Travis Berthelot
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />],
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]!!.getWidth(),
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]!!.getHeight(),
-                    angleIncrement
+                    angleIncrement.toInt()
                     )<xsl:if test="position() != last()" >,</xsl:if>
                 </xsl:for-each>
                 )

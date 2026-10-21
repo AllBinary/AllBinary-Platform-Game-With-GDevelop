@@ -164,7 +164,7 @@ Created By: Travis Berthelot
 
                 <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
 
-                this.<xsl:value-of select="name" />GDGameLayerFactory = GDCustomGameLayerFactory(
+                this.<xsl:value-of select="name" />GDGameLayerFactory = <xsl:if test="type = 'TextObject::Text'" >object : </xsl:if>GDCustomGameLayerFactory(
                     NullAnimationFactory.getFactoryInstance(),
                     <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList,
                     <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerDestroyedList,

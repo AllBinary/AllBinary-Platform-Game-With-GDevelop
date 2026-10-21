@@ -490,7 +490,7 @@ Created By: Travis Berthelot
 
                         </xsl:for-each>
 
-                    private var id: Int
+                    private var id: Int = 0
                     private var point: GPoint = pointFactory.getInstance().ZERO_ZERO
                     private var stickForceX: Float = 0.0f
                     private var stickForceY: Float = 0.0f
@@ -532,7 +532,7 @@ Created By: Travis Berthelot
                     }
                     </xsl:if>
                     <xsl:if test="type = 'Scrollbar::Scrollbar'" >
-                    private var scrollPositionValue: Int
+                    private var scrollPositionValue: Int = 0
                     open public override fun setScrollPosition(scrollPositionValue: Int) {
                         this.scrollPositionValue = scrollPositionValue
                     }

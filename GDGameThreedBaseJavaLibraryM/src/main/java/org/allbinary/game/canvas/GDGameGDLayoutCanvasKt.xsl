@@ -172,7 +172,12 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
     private val abeClientInformation: AbeClientInformationInterface
 
     constructor(abeClientInformation: AbeClientInformationInterface,
-        commandListener: CommandListener, allBinaryGameLayerManager: AllBinaryGameLayerManager) : super(commandListener, allBinaryGameLayerManager, //BasicHighScoresFactory(abeClientInformation,, GDGameSoftwareInfo.getInstance()), NoHighScoresFactory.getInstance(), GDGameStaticInitializerFactory(), //BasicBuildGameInitializerFactory(), false)
+        commandListener: CommandListener, allBinaryGameLayerManager: AllBinaryGameLayerManager) : super(commandListener, allBinaryGameLayerManager,
+                //BasicHighScoresFactory(abeClientInformation,, GDGameSoftwareInfo.getInstance()),
+                NoHighScoresFactory.getInstance(),
+                GDGameStaticInitializerFactory(),
+           //BasicBuildGameInitializerFactory(),
+           false)
 
     {
 
@@ -371,7 +376,7 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
 //        }
     }
 
-    protected @Synchronized fun initConfigurable(abeClientInformation: AbeClientInformationInterface)
+    @Synchronized override fun initConfigurable(abeClientInformation: AbeClientInformationInterface)
     {
         try
         {

@@ -16,7 +16,9 @@ import org.allbinary.logic.system.security.licensing.AbeClientInformationInterfa
 
 open class GDGameSoftwareInfo
 {
-    var TEMP_HACK_CLIENT_INFORMATION: Object = NullUtil.getInstance().NULL_OBJECT
+    companion object {
+
+    var TEMP_HACK_CLIENT_INFORMATION: Any = NullUtil.getInstance().NULL_OBJECT
 
     <xsl:variable name="shortName" ><xsl:value-of select="properties/shortName" /><xsl:if test="not(properties/shortName)" ><xsl:call-template name="after-lastIndexOf" ><xsl:with-param name="string" ><xsl:value-of select="properties/packageName" /></xsl:with-param><xsl:with-param name="char" select="'.'" /></xsl:call-template></xsl:if></xsl:variable>
     private val SINGLETON: SoftwareInformation =
@@ -25,6 +27,8 @@ open class GDGameSoftwareInfo
     open fun getInstance(): SoftwareInformation
     {
         return SINGLETON
+    }
+
     }
 }
 

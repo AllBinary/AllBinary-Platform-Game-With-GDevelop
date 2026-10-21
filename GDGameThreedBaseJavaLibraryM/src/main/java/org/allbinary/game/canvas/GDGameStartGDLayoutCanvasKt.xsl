@@ -61,7 +61,11 @@ open class <xsl:value-of select="$layoutName" /> : StartCanvas
     private val upKeyEventHandler: UpKeyEventHandler = UpKeyEventHandler.getInstance()
     private val smallIntegerSingletonFactory: SmallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
 
-    constructor(abeClientInformation: AbeClientInformationInterface, commandListener: CommandListener) : super(abeClientInformation, commandListener, //BasicHighScoresFactory(abeClientInformation,, GDGameSoftwareInfo.getInstance()), NoHighScoresFactory.getInstance(), NullPaintable.getInstance(), NullInitUpdatePaintable.getInstance(), GDGameStaticInitializerFactory(), false)
+    constructor(abeClientInformation: AbeClientInformationInterface, commandListener: CommandListener) : super(abeClientInformation, commandListener,
+                //BasicHighScoresFactory(abeClientInformation,, GDGameSoftwareInfo.getInstance()),
+                NoHighScoresFactory.getInstance(),
+                NullPaintable.getInstance(), NullInitUpdatePaintable.getInstance(),
+                GDGameStaticInitializerFactory(), false)
     {
 
         this.setWait(WAIT)
@@ -141,7 +145,7 @@ open class <xsl:value-of select="$layoutName" /> : StartCanvas
         GD<xsl:value-of select="$index" />SpecialAnimation.getInstance().close()
     }
 
-    @Synchronized fun unPause()
+    @Synchronized open fun unPause()
     {
         super.unPause()
         this.paintedSpecialAnimationInterface = GD<xsl:value-of select="$index" />SpecialAnimation.getInstance()

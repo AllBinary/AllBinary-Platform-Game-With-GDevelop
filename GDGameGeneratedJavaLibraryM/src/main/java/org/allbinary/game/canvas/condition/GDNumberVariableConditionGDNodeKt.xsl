@@ -96,8 +96,11 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                         </xsl:if>
+                            <!-- Same long rule as GDGlobalCalls.xsl so the literal compared to a long variable is a long -->
+                            <xsl:variable name="variableName" select="parameters[1]/text()" />
+                            <xsl:variable name="isLongVariable" select="(contains($variableName, 'time') or contains($variableName, 'Time') or contains($variableName, 'Delay') or contains($variableName, 'MAX_VALUE') or contains($variableName, 'Long')) and not(contains($variableName, 'Float'))" />
 
-                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:value-of select="text() " disable-output-escaping="yes" /></xsl:for-each>) {
+                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:value-of select="text() " disable-output-escaping="yes" /><xsl:if test="position() = 3 and $isLongVariable and string(number(text())) = text() and not(contains(text(), '.'))" >L</xsl:if></xsl:for-each>) {
 
                                 //stringBuilder.delete(0, stringBuilder.length())
                                 //this.logUtil.put(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).toString(), this, this.commonStrings.PROCESS)

@@ -67,7 +67,7 @@ open public class GDCustomGameLayerFactory : GDGameLayerFactory
     override fun create(layoutIndex: Int, name: String, gdObject: GDObject, scaleX: Float, scaleY: Float, collidableBehavior: GDConditionWithGroupActions): GDGameLayer {
         if(!name.startsWith(gdObject.name)) {
             val stringUtil: StringUtil = StringUtil.getInstance()
-            this.logUtil.put(StringMaker().append(name).append(" 0GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").append(this.animationInterfaceFactoryInterfaceArray.size).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(stringUtil.toString(this.animationInterfaceFactoryInterfaceArray[0])).toString(), this, "create", Exception())
+            this.logUtil.put(StringMaker().append(name).append(" 0GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").appendint(this.animationInterfaceFactoryInterfaceArray.size).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(stringUtil.toString(this.animationInterfaceFactoryInterfaceArray[0])).toString(), this, "create", Exception())
         }
 
         val gdObjectWidth: Int = gdObject.Width(null)

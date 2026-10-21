@@ -106,7 +106,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
        //com.sun.lwuit.Display.init(this)
 
        //objectsGroups count=<xsl:value-of select="count(//objectsGroups)" /> + //object count=<xsl:value-of select="count(//objects)" /> + 1
-       val SIZE: Short = <xsl:value-of select="count(//objectsGroups) + count(//objects) + 1" />
+       val SIZE: Int = <xsl:value-of select="count(//objectsGroups) + count(//objects) + 1" />
        val groupNames: Array&lt;String?&gt; = arrayOfNulls(SIZE)
        val GROUP_: String = "Group "
        val stringBuilder: StringMaker = StringMaker()
@@ -114,7 +114,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
            stringBuilder.delete(0, stringBuilder.length())
            groupNames[index] = stringBuilder.append(GROUP_).appendint(index).toString()
        }
-       GroupFactory.getInstance().init(SIZE, groupNames)
+       GroupFactory.getInstance().init(SIZE.toShort(), groupNames)
        GroupLayerManagerListener.getInstance().init(SIZE)
 
        val openGLESImageExclusionUtil: OpenGLESImageExclusionUtil = OpenGLESImageExclusionUtil.getInstance()
@@ -163,7 +163,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
       //return GDGameStartCanvas(this.abeClientInformation, this)
    }
 
-    @Synchronized fun set<xsl:value-of select="$name" />RunnableInterface()
+    @Synchronized open fun set<xsl:value-of select="$name" />RunnableInterface()
     {
         logUtil.putF(commonStrings.START, this, "set<xsl:value-of select="$name" />")
 
@@ -202,7 +202,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
        //return GDGameGameCanvas(this.abeClientInformation, this, allBinaryGameLayerManager)
    }
 
-    @Synchronized fun set<xsl:value-of select="$name" />RunnableInterface()
+    @Synchronized open fun set<xsl:value-of select="$name" />RunnableInterface()
     {
         logUtil.putF(commonStrings.START, this, "set<xsl:value-of select="$name" />")
 
@@ -210,7 +210,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
         ProgressCanvasFactory.getInstance().start()
 
         val hashtable: ABHashtable&lt;Any, Any&gt; = this.getStartStateHashtable()
-        this.setStartStateHashtable(null)
+        this.setStartStateHashtable(StdUtil.getInstance().NULL_TABLE)
 
         PrimaryThreadPool.getInstance().runTask(<xsl:value-of select="$name" />Runnable(this, hashtable))
         //this.postDemoSetup()
@@ -310,8 +310,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
         super.startGameCanvasRunnableInterface()
     }
 
-    override
-    @Synchronized fun commandAction(command: Command, displayable2: Displayable) {
+    @Synchronized override fun commandAction(command: Command, displayable2: Displayable) {
 
         try {
 

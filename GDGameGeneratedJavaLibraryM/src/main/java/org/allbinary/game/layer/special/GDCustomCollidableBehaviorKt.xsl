@@ -207,11 +207,11 @@ open public class GDCustomCollidableBehavior : CollidableBaseBehavior
             //var stringBuilder: StringMaker = StringMaker()
             //this.logUtil.put(stringBuilder.append.append(commonSeps.COLON).append(ownerLayer.getName()).append(commonSeps.COLON).append(collisionLayer.getName()).toString() as COLLIDE, this, COLLIDE)
 
-            val groupInterfaceArray: Array&lt;GroupInterface?&gt; = collisionLayer.getGroupInterface()
+            val groupInterfaceArray: Array&lt;Group?&gt; = collisionLayer.getGroupInterface()
             //var groupInterfaceArray: Array&lt;GroupInterface?&gt; = ownerLayer.getGroupInterface()
 
             val size: Int = groupInterfaceArray.size
-            var indexOfGroup: Int
+            var indexOfGroup: Int = 0
             var node: GDNode
             for(index in 0 until size) {
 
@@ -253,12 +253,12 @@ open public class GDCustomCollidableBehavior : CollidableBaseBehavior
     }
 
     open public fun toString(ownerLayer: CollidableCompositeLayer, collisionLayer: CollidableCompositeLayer, stringBuilder: StringMaker): String {
-        var size: Int = ownerLayer.getGroupInterface().length
+        var size: Int = ownerLayer.getGroupInterface().size
         for(index in 0 until size) {
             stringBuilder.append(stringUtil.toString(ownerLayer.getGroupInterface()[index]))
         }
         stringBuilder.append(" != ")
-        size = collisionLayer.getGroupInterface().length
+        size = collisionLayer.getGroupInterface().size
         for(index in 0 until size) {
             stringBuilder.append(stringUtil.toString(collisionLayer.getGroupInterface()[index]))
         }

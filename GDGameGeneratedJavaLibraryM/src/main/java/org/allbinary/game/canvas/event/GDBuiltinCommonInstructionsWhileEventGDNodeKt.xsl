@@ -81,8 +81,7 @@ Created By: Travis Berthelot
                 /*
                 </xsl:if>
 
-                private var iterationTotal: Long
-
+                private var iterationTotal: Long = 0
                 //BuiltinCommonInstructions::While - //whileConditionsTotal=<xsl:value-of select="count(whileConditions)" /> - event
                 override fun process(): Boolean {
                     super.processStats()
