@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -77,6 +78,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.AndroidUtil
                 import org.allbinary.J2MEUtil
+                import org.allbinary.game.layout.GDConfig
                 import org.allbinary.animation.AnimationBehavior
                 import org.allbinary.animation.special.SpecialAnimation
                 import org.allbinary.canvas.GameGlobalsFactory
@@ -144,7 +146,7 @@ Created By: Travis Berthelot
                         private val gdGlobalsObjectsFactory: GDGlobalsGDObjectsFactory = GDGlobalsGDObjectsFactory.getInstance()
                         private val gdObjectsFactory: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance()
 
-                        private fun createSpecialAnimationImageResources(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources {
+                        open fun createSpecialAnimationImageResources(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources? {
                             try {
                                 return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstanceOrCreate()
                             } catch (e: Exception) {
@@ -153,7 +155,7 @@ Created By: Travis Berthelot
                             return null
                         }
 
-                        private fun createSpecialAnimationTouchImageResources(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources {
+                        open fun createSpecialAnimationTouchImageResources(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources? {
                             try {
                                 return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.getInstanceOrCreate()
                             } catch (e: Exception) {
@@ -162,7 +164,7 @@ Created By: Travis Berthelot
                             return null
                         }
 
-                        private fun createSpecialAnimationGDResources(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources {
+                        open fun createSpecialAnimationGDResources(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources? {
                             try {
                                 return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstanceOrCreate()
                             } catch (e: Exception) {
@@ -171,7 +173,7 @@ Created By: Travis Berthelot
                             return null
                         }
 
-                        open public fun createGlobalSpecialAnimationImageResources(): GDGlobalSpecialAnimationImageResources {
+                        open public fun createGlobalSpecialAnimationImageResources(): GDGlobalSpecialAnimationImageResources? {
                             try {
                                 return GDGlobalSpecialAnimationImageResources.getInstanceOrCreate()
                             } catch (e: Exception) {
@@ -180,7 +182,7 @@ Created By: Travis Berthelot
                             return null
                         }
 
-                        open public fun createGlobalsSpecialAnimationGDResources(): GDGlobalsGDResources {
+                        open public fun createGlobalsSpecialAnimationGDResources(): GDGlobalsGDResources? {
                             try {
                                 return GDGlobalsGDResources.getInstanceOrCreate()
                             } catch (e: Exception) {
@@ -200,7 +202,7 @@ Created By: Travis Berthelot
                                 </xsl:with-param>
                             </xsl:call-template>
 
-                            this.logUtil.putF(StringMaker().append(this.commonStrings.START).append(":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder scale: ").append(scale).toString(), this, this.commonStrings.CONSTRUCTOR)
+                            this.logUtil.putF(StringMaker().append(this.commonStrings.START).append(":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder scale: ").appendfloat(scale).toString(), this, this.commonStrings.CONSTRUCTOR)
 
                     <xsl:call-template name="findMousePositionNeeded" >
                         <xsl:with-param name="totalRecursions" >
@@ -234,7 +236,7 @@ Created By: Travis Berthelot
                         <!--
                         for(index in 0 until size) {
                             var currentIndex: Int = index
-                            gameGlobals.nodeArray[index2][index] = object: GDNode() {
+                            gameGlobals.nodeArray[index2]!![index] = object: GDNode() {
 
                                 @Throws(Exception::class)
                                 override fun process(): Boolean {
@@ -247,12 +249,12 @@ Created By: Travis Berthelot
                         }
                         -->
 
-                        val globalImageResources: GDGlobalSpecialAnimationImageResources = this.createGlobalSpecialAnimationImageResources()
-                        val imageResources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources = this.createSpecialAnimationImageResources()
-                        val touchImageResources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources = this.createSpecialAnimationTouchImageResources()
+                        val globalImageResources: GDGlobalSpecialAnimationImageResources = this.createGlobalSpecialAnimationImageResources()!!
+                        val imageResources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources = this.createSpecialAnimationImageResources()!!
+                        val touchImageResources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources = this.createSpecialAnimationTouchImageResources()!!
 
-                    val globalResources: GDGlobalsGDResources = this.createGlobalsSpecialAnimationGDResources()
-                    val resources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources = this.createSpecialAnimationGDResources()
+                    val globalResources: GDGlobalsGDResources = this.createGlobalsSpecialAnimationGDResources()!!
+                    val resources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources = this.createSpecialAnimationGDResources()!!
 
                     //GDNode - START
                     externalEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes.getInstance()
@@ -435,7 +437,7 @@ Created By: Travis Berthelot
                     }
 
                     open public fun log2(value: Int): Double {
-                        return Math.log(value)
+                        return Math.log(value.toDouble())
                     }
 
                     open public fun Random(range: Int): Int {
@@ -472,7 +474,7 @@ Created By: Travis Berthelot
 
                     open public fun ToString(value: Int): String {
                         if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
-                            return Integer.toString(value)
+                            return value.toString()
                         } else {
                             return smallIntegerSingletonFactory.getString(value)
                         }

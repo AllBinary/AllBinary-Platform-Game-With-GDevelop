@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -40,7 +41,7 @@ import org.allbinary.util.BasicArrayListD
 
 open class GDGameSounds : BaseSoundsFactory
 {
-    private var soundInterfaceArray: Array&lt;Sound&gt; = arrayOfNulls&lt;Sound&gt;(0)
+    private var soundInterfaceArray: Array&lt;Sound?&gt; = arrayOfNulls(0)
 
     override fun init()
     {
@@ -60,7 +61,7 @@ open class GDGameSounds : BaseSoundsFactory
     list.addAllList(gd<xsl:value-of select="position() - 1" />GameSoundsFactory.soundList)
 </xsl:for-each>
 
-        //soundInterfaceArray = list.toArrayType(arrayOfNulls&lt;Sound&gt;(list.size())) as Array&lt;Sound&gt;
+        //soundInterfaceArray = list.toArrayType(arrayOfNulls(list.size())) as Array&lt;Sound?&gt;
         final int size = list.size();
         this.soundInterfaceArray = new Sound[size];
         for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index2++) {
@@ -69,7 +70,7 @@ open class GDGameSounds : BaseSoundsFactory
 
     }
 
-    override fun getSoundInterfaceArray(): Array&lt;Sound&gt;
+    override fun getSoundInterfaceArray(): Array&lt;Sound?&gt;
     {
         return this.soundInterfaceArray
     }

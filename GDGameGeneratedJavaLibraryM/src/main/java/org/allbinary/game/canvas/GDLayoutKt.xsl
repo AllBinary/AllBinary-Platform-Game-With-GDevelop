@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -127,11 +128,14 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayListD
                 import org.allbinary.AndroidUtil
                 import org.allbinary.J2MEUtil
+                import org.allbinary.game.layout.GDConfig
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 open public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimation : GDSpecialAnimation
                 {
-                    private var instance: Object = NullUtil.getInstance().NULL_OBJECT
+                    companion object {
+
+                    private var instance: Any = NullUtil.getInstance().NULL_OBJECT
 
                     open public fun getInstance(abCanvas: MyCanvas, allBinaryGameLayerManager: AllBinaryGameLayerManager): GD<xsl:value-of select="$layoutIndex" />SpecialAnimation {
                         val abToGBUtil: ABToGBUtil = ABToGBUtil.getInstance()
@@ -152,6 +156,8 @@ Created By: Travis Berthelot
                         open public fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimation {
                             return GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.instance as GD<xsl:value-of select="$layoutIndex" />SpecialAnimation
                         }
+
+                    }
 
                         private val nullUtil: NullUtil = NullUtil.getInstance()
                         private val arrayUtil: ArrayUtil = ArrayUtil.getInstance()
@@ -215,7 +221,7 @@ Created By: Travis Berthelot
                         this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR)
                     }
 
-                    private fun processMotionEvents() {
+                    open fun processMotionEvents() {
                         <xsl:for-each select="objects" >
                             <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
                         var point: GPoint
@@ -247,7 +253,7 @@ Created By: Travis Berthelot
                                 val <xsl:value-of select="name" />: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> = gameLayer.gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />
                                 if(motionGestureEvent.getId() == <xsl:value-of select="name" />.getId()) {
                                     <xsl:value-of select="name" />.setId(-1)
-                                    <xsl:value-of select="name" />.setPoint(pointFactory.getInstance().ZERO_ZERO)
+                                    <xsl:value-of select="name" />.setPoint(pointFactory.ZERO_ZERO)
                                 }
                             }
                             </xsl:if>
@@ -267,7 +273,7 @@ Created By: Travis Berthelot
                                 gameLayer = globals.<xsl:value-of select="name" />GDGameLayerList.get(index2) as GDGameLayer
                                 point = motionGestureEvent.getCurrentPoint()
                                 if (rectangleCollisionUtil.isInside(gameLayer.getXP(), gameLayer.getYP() - 2, gameLayer.getX2(), gameLayer.getY2() + 2, point.getX(), point.getY())) {
-                                    val <xsl:value-of select="name" />: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> = gameLayer.gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />
+                                    val <xsl:value-of select="name" />: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> = gameLayer.gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /><xsl:text>&#10;</xsl:text>
 
                                     <xsl:value-of select="name" />.setId(motionGestureEvent.getId())
                                     <xsl:value-of select="name" />.setPoint(point)
@@ -332,7 +338,7 @@ Created By: Travis Berthelot
 
                     }
 
-                    open public fun process() {
+                    override fun process() {
                         try {
 
                         globals.globalsGameTickTimeDelayHelper.loop()
@@ -375,7 +381,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     //eventsProcess - END
 
-                    var size: Int
+                    var size: Int = 0
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:variable name="objectName" select="name" />
@@ -433,6 +439,9 @@ Created By: Travis Berthelot
                     }
 
                     open public fun paint(graphics: Graphics, x: Int, y: Int) {
+                        var graphics = graphics
+                        var x = x
+                        var y = y
                         //gdNodeStatsFactory.reset()
 
                     <xsl:call-template name="paintDebugButtons" >
@@ -470,7 +479,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="textObjectTextName" >TextObject::Text:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:if test="contains($objectsAsString, $textObjectTextName)" >
                         //TextObject::Text instance - layout
-                        private fun textObjectText<xsl:value-of select="position()" />(x: Int, y: Int) {
+                        open fun textObjectText<xsl:value-of select="position()" />(x: Int, y: Int) {
                             val <xsl:value-of select="name" />Size: Int = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.size()
                             if(<xsl:value-of select="name" />Size != 0) {
 
@@ -491,7 +500,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     //instances - END - layout
 
-                    open public fun open() {
+                    override fun open() {
                         //this.logUtil.putF("scene - open", this, this.commonStrings.PROCESS)
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
@@ -512,7 +521,7 @@ Created By: Travis Berthelot
                     //eventsOpen - END
                     }
 
-                    open public fun close() {
+                    override fun close() {
                         //this.logUtil.putF("scene - close", this, this.commonStrings.PROCESS)
 
                         GDFormInputProcessor.getInstance().close()
@@ -529,7 +538,7 @@ Created By: Travis Berthelot
                             motionEventList.clear()
                         }
 
-                        globals.lastMotionGestureInput = null
+                        globals.lastMotionGestureInput = touchMotionGestureFactory.NO_MOTION
 
                     //eventsClose - START
                     <xsl:call-template name="eventsClose" >
@@ -574,7 +583,7 @@ Created By: Travis Berthelot
                         clear = false
                     }
 
-                    override open public fun reset() {
+                    override fun reset() {
                         //this.logUtil.putF("scene - clear", this, this.commonStrings.PROCESS)
 
                         clear = true
@@ -601,7 +610,7 @@ Created By: Travis Berthelot
 
                     }
 
-                    open public fun getGlobals(): GDSceneGlobals {
+                    override fun getGlobals(): GDSceneGlobals {
                         return this.globals
                     }
 

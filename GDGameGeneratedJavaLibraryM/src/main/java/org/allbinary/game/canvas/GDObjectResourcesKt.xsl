@@ -42,21 +42,21 @@ Created By: Travis Berthelot
             <!-- Groups are not allowed in exclusion list currently -->
             <xsl:if test="$useExclusionList != 'true'" >
             open public fun get<xsl:value-of select="name" />Width(createIndex: Int): Int {
-                return ((this.<xsl:value-of select="name" />ImageArrayList.get(createIndex) as Array&lt;Image&gt;)[0].getWidth()).toInt()
+                return ((this.<xsl:value-of select="name" />ImageArrayList.get(createIndex) as Array&lt;Image?&gt;)[0].getWidth()).toInt()
             }
 
             open public fun get<xsl:value-of select="name" />Height(createIndex: Int): Int {
-                return ((this.<xsl:value-of select="name" />ImageArrayList.get(createIndex) as Array&lt;Image&gt;)[0].getHeight()).toInt()
+                return ((this.<xsl:value-of select="name" />ImageArrayList.get(createIndex) as Array&lt;Image?&gt;)[0].getHeight()).toInt()
             }
             </xsl:if>
 
             <xsl:if test="$useExclusionList = 'true'" >
             open public fun get<xsl:value-of select="name" />Width(createIndex: Int): Int {
-                return ((this.<xsl:value-of select="name" />ImageArrayList.get(createIndex) as Array&lt;Rectangle&gt;)[0].getWidth()).toInt()
+                return ((this.<xsl:value-of select="name" />ImageArrayList.get(createIndex) as Array&lt;Rectangle?&gt;)[0].getWidth()).toInt()
             }
 
             open public fun get<xsl:value-of select="name" />Height(createIndex: Int): Int {
-                return ((this.<xsl:value-of select="name" />ImageArrayList.get(createIndex) as Array&lt;Rectangle&gt;)[0].getHeight()).toInt()
+                return ((this.<xsl:value-of select="name" />ImageArrayList.get(createIndex) as Array&lt;Rectangle?&gt;)[0].getHeight()).toInt()
             }
             </xsl:if>
 
@@ -91,41 +91,43 @@ Created By: Travis Berthelot
                 //Animation Total: <xsl:value-of select="count(animations)" /><xsl:text>&#10;</xsl:text>
                 public var <xsl:value-of select="name" />Rectangle: Rectangle
                 <xsl:if test="type != 'TextObject::Text'" >
-                private var <xsl:value-of select="name" />ImageArray: Array&lt;Image&gt;
+                private var <xsl:value-of select="name" />ImageArray: Array&lt;Image?&gt;
                 open public fun <xsl:value-of select="name" />Width(index: Int): Int {
-                    return <xsl:value-of select="name" />ImageArray[index].getWidth()
+                    var index = index
+                    return <xsl:value-of select="name" />ImageArray[index]!!.getWidth()
                 }
 
                 open public fun <xsl:value-of select="name" />Height(index: Int): Int {
-                    return <xsl:value-of select="name" />ImageArray[index].getHeight()
+                    var index = index
+                    return <xsl:value-of select="name" />ImageArray[index]!!.getHeight()
                 }
 
                 </xsl:if>
 
                     <!--
                 <xsl:for-each select="animations" >
-                public val <xsl:value-of select="$name" /><xsl:value-of select="name" />ResourceArray: Array&lt;String&gt;
+                public val <xsl:value-of select="$name" /><xsl:value-of select="name" />ResourceArray: Array&lt;String?&gt;
 
-                private lateinit var <xsl:value-of select="$name" /><xsl:value-of select="name" />ImageArray: Array&lt;Image&gt;
+                private lateinit var <xsl:value-of select="$name" /><xsl:value-of select="name" />ImageArray: Array&lt;Image?&gt;
                 </xsl:for-each>
                     -->
                 <xsl:if test="type = 'Sprite'" >
-                public val <xsl:value-of select="$name" />ResourceArray: Array&lt;String&gt;
+                public val <xsl:value-of select="$name" />ResourceArray: Array&lt;String?&gt;
                 </xsl:if>
 
                 <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
-                public val <xsl:value-of select="$name" />ResourceArray: Array&lt;String&gt;
+                public val <xsl:value-of select="$name" />ResourceArray: Array&lt;String?&gt;
                 </xsl:if>
 
                 <xsl:if test="type = 'PanelSpriteSlider::PanelSpriteSlider'" >
-                public val <xsl:value-of select="$name" />ResourceArray: Array&lt;String&gt;
+                public val <xsl:value-of select="$name" />ResourceArray: Array&lt;String?&gt;
                 </xsl:if>
 
                 <xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >
-                public val <xsl:value-of select="$name" />ResourceArray: Array&lt;String&gt;
+                public val <xsl:value-of select="$name" />ResourceArray: Array&lt;String?&gt;
                 </xsl:if>
                 <xsl:if test="type = 'TileMap::TileMap'" >
-                public val <xsl:value-of select="name" />JSONResourceArray: Array&lt;String&gt;
+                public val <xsl:value-of select="name" />JSONResourceArray: Array&lt;String?&gt;
                 </xsl:if>
 
             </xsl:if>
@@ -161,7 +163,7 @@ Created By: Travis Berthelot
 -->
 
         //objects - image - cache - START
-        var size: Int
+        var size: Int = 0
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             <xsl:variable name="name" select="name" />
@@ -185,10 +187,10 @@ Created By: Travis Berthelot
                 <xsl:text>&#10;</xsl:text>
 
                 <xsl:if test="type = 'Sprite' or type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick' or type = 'ParticleSystem::ParticleEmitter' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >
-                this.<xsl:value-of select="$name" />ResourceArray = arrayOf&lt;String&gt;(
-                <xsl:for-each select="animations" >
+                this.<xsl:value-of select="$name" />ResourceArray = arrayOf(
+                <xsl:variable name="kotlinArrayItems190" >                <xsl:for-each select="animations" >
                     <!--
-                this.<xsl:value-of select="$name" /><xsl:value-of select="name" />ResourceArray = arrayOf&lt;String&gt;(
+                this.<xsl:value-of select="$name" /><xsl:value-of select="name" />ResourceArray = arrayOf(
                     <xsl:for-each select="directions/sprites/image" >
                     <xsl:variable name="imageWithExtension" select="text()" />
                     -->
@@ -270,12 +272,12 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                 </xsl:for-each>
-
+</xsl:variable><xsl:call-template name="kotlinRemoveTrailingComma" ><xsl:with-param name="text" select="$kotlinArrayItems190" /></xsl:call-template>
                 )
                 </xsl:if>
 
                 <xsl:if test="type = 'TileMap::TileMap'" >
-                this.<xsl:value-of select="name" />ResourceArray = arrayOf&lt;String&gt;(
+                this.<xsl:value-of select="name" />ResourceArray = arrayOf(
                 <xsl:if test="content" >
                     //TileMap::TileMap - content
                     <xsl:variable name="imageWithExtension" select="content/tilemapAtlasImage" />
@@ -285,12 +287,12 @@ Created By: Travis Berthelot
                 )
                 </xsl:if>
                 <xsl:if test="type = 'TiledSpriteObject::TiledSprite'" >
-                this.<xsl:value-of select="name" />ResourceArray = arrayOf&lt;String&gt;(
-                <xsl:for-each select="texture" >
+                this.<xsl:value-of select="name" />ResourceArray = arrayOf(
+                <xsl:variable name="kotlinArrayItems290" >                <xsl:for-each select="texture" >
                     //TiledSpriteObject::TiledSprite - texture
                     <xsl:variable name="image" select="substring-before(text(), '.')" />
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
-                </xsl:for-each>
+                </xsl:for-each></xsl:variable><xsl:call-template name="kotlinRemoveTrailingComma" ><xsl:with-param name="text" select="$kotlinArrayItems290" /></xsl:call-template>
                 )
                 </xsl:if>
 
@@ -406,14 +408,14 @@ Created By: Travis Berthelot
                 </xsl:for-each>
 
                 <xsl:if test="animations" >
-                this.<xsl:value-of select="$name" />ImageArray = arrayOf&lt;Image&gt;(
+                this.<xsl:value-of select="$name" />ImageArray = arrayOf(
                 </xsl:if>
-                <xsl:for-each select="animations" >
+                <xsl:variable name="kotlinArrayItems412" >                <xsl:for-each select="animations" >
                     //<xsl:value-of select="$typeValue" /> - animations
                     <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
                     <!--
-                this.<xsl:value-of select="$name" /><xsl:value-of select="$animationName" />ImageArray = arrayOf&lt;Image&gt;(
+                this.<xsl:value-of select="$name" /><xsl:value-of select="$animationName" />ImageArray = arrayOf(
                     <xsl:for-each select="directions/sprites/image" >
                     -->
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
@@ -430,15 +432,15 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                 )
                     -->
-                </xsl:for-each>
+                </xsl:for-each></xsl:variable><xsl:call-template name="kotlinRemoveTrailingComma" ><xsl:with-param name="text" select="$kotlinArrayItems412" /></xsl:call-template>
                 <xsl:if test="animations" >
                 )
                 </xsl:if>
 
                 <xsl:if test="childrenContent" >
-                this.<xsl:value-of select="$name" />ImageArray = arrayOf&lt;Image&gt;(
+                this.<xsl:value-of select="$name" />ImageArray = arrayOf(
                 </xsl:if>
-                <xsl:for-each select="childrenContent" >
+                <xsl:variable name="kotlinArrayItems442" >                <xsl:for-each select="childrenContent" >
                     //<xsl:value-of select="$typeValue" /> - childrenContent
                     <xsl:for-each select="Background" >
                     <xsl:value-of select="$name" />BackgroundImage,
@@ -456,7 +458,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="Thumb" >
                     <xsl:value-of select="$name" />ThumbImage,
                     </xsl:for-each>
-                </xsl:for-each>
+                </xsl:for-each></xsl:variable><xsl:call-template name="kotlinRemoveTrailingComma" ><xsl:with-param name="text" select="$kotlinArrayItems442" /></xsl:call-template>
                 <xsl:if test="childrenContent" >
                 )
                 </xsl:if>
@@ -464,7 +466,7 @@ Created By: Travis Berthelot
                 <xsl:if test="not(type = 'PanelSpriteSlider::PanelSpriteSlider' or type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick')" >
                 <xsl:if test="content" >
                 //<xsl:value-of select="type" /> - content
-                this.<xsl:value-of select="$name" />ImageArray = arrayOf&lt;Image&gt;(
+                this.<xsl:value-of select="$name" />ImageArray = arrayOf(
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
                     <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />,
@@ -480,7 +482,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="texture" >
                 //TiledSpriteObject::TiledSprite - texture
                     <xsl:variable name="image" select="substring-before(text(), '.')" />
-                this.<xsl:value-of select="$name" />ImageArray = arrayOf&lt;Image&gt;(
+                this.<xsl:value-of select="$name" />ImageArray = arrayOf(
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
                     <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />,
@@ -496,7 +498,7 @@ Created By: Travis Berthelot
 
                 //this.validateSprites(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ResourceArray, <xsl:value-of select="name" />ImageArray)
                 hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray)
-                this.<xsl:value-of select="$name" />Rectangle = Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />ImageArray[0].getWidth(), <xsl:value-of select="name" />ImageArray[0].getHeight())
+                this.<xsl:value-of select="$name" />Rectangle = Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />ImageArray[0]!!.getWidth(), <xsl:value-of select="name" />ImageArray[0]!!.getHeight())
 
             </xsl:if>
 
@@ -511,7 +513,7 @@ Created By: Travis Berthelot
 
             <xsl:if test="type = 'TileMap::CollisionMask'" >
                 //TileMap::CollisionMask
-                this.<xsl:value-of select="$name" />ImageArray = arrayOf&lt;Image&gt;(
+                this.<xsl:value-of select="$name" />ImageArray = arrayOf(
                 )
                 hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray)
                 this.<xsl:value-of select="$name" />Rectangle = Rectangle(pointFactory.ZERO_ZERO, 0, 0)
@@ -525,8 +527,8 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 //TileMap::TileMap - JSON
-                this.<xsl:value-of select="name" />JSONResourceArray = arrayOf&lt;String&gt;(
-                <xsl:if test="content" >
+                this.<xsl:value-of select="name" />JSONResourceArray = arrayOf(
+                <xsl:variable name="kotlinArrayItems530" >                <xsl:if test="content" >
                     //TileMap::TileMap - content
                     <xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" />
                     <xsl:variable name="json" select="substring-before($jsonWithExtension, '.')" />
@@ -541,7 +543,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="tileSetJSON" select="substring-before(text(), '.')" />
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>,
                     </xsl:for-each>
-                </xsl:if>
+                </xsl:if></xsl:variable><xsl:call-template name="kotlinRemoveTrailingComma" ><xsl:with-param name="text" select="$kotlinArrayItems530" /></xsl:call-template>
                 )
 
                 size = this.<xsl:value-of select="name" />JSONResourceArray.size

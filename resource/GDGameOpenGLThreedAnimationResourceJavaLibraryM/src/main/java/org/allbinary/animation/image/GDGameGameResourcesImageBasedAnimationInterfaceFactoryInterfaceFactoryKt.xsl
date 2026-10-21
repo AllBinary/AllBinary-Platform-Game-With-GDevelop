@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/replace.xsl" />
@@ -95,6 +96,7 @@ import org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory
 import org.allbinary.animation.IndexedAnimationBehaviorFactory
 import org.allbinary.animation.NullRotationAnimationFactory
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface
+import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface
 import org.allbinary.animation.threed.ThreedAnimationSingletonFactory
 import org.allbinary.animation.image.AllBinaryArrayImageRotationAnimationFactory
 import org.allbinary.animation.compound.SliderAnimationInterfaceFactory
@@ -143,6 +145,7 @@ import org.allbinary.logic.StdUtil
 import org.allbinary.util.ABHashtable
 import org.allbinary.AndroidUtil
 import org.allbinary.J2MEUtil
+import org.allbinary.game.layout.GDConfig
 
 open class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory : BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
@@ -198,16 +201,17 @@ open class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAn
 
     constructor(name: String) : super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable())
     {
+        var name = name
     }
 
-    fun loadDayTrack(loadingString: String)
+    open fun loadDayTrack(loadingString: String)
     {
         var progressCanvas: ProgressCanvas = ProgressCanvasFactory.getInstance()
     }
 
-    private var isInitialized: Array&lt;Boolean&gt; = BooleanArray(11)
+    private var isInitialized: BooleanArray = BooleanArray(11)
 
-    fun init(level: Int)
+    open fun init(level: Int)
 
     {
         if(this.isInitialized())
@@ -275,7 +279,7 @@ open class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAn
                         </xsl:with-param>
                     </xsl:call-template>
 
-    fun isLoadingLevel(level: Int): Boolean
+    open fun isLoadingLevel(level: Int): Boolean
     {
         if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
         {
@@ -287,7 +291,7 @@ open class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAn
         }
     }
 
-    fun isFeature(): Boolean
+    open fun isFeature(): Boolean
     {
         val features: Features = Features.getInstance()
 

@@ -2,6 +2,7 @@
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
 
     <xsl:output method="text" indent="yes" />
@@ -29,6 +30,8 @@ import org.allbinary.logic.string.StringUtil
 
 open public class GDGameCommandFactory {
 
+    companion object {
+
     private val instance: GDGameCommandFactory = GDGameCommandFactory()
 
     /**
@@ -36,6 +39,8 @@ open public class GDGameCommandFactory {
      */
     open public fun getInstance(): GDGameCommandFactory {
         return GDGameCommandFactory.instance
+    }
+
     }
 
     <xsl:for-each select="layouts" >

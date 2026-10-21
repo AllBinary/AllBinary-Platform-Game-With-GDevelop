@@ -1,5 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScalingKt.xsl" />
@@ -100,6 +102,7 @@ import org.mapeditor.io.GDJSONMapReader
 import org.mapeditor.io.TiledJSONUtil
 import org.allbinary.util.ABHashtable
 import org.allbinary.AndroidUtil
+import org.allbinary.game.layout.GDConfig
 import org.allbinary.J2MEUtil
 
         <xsl:for-each select="layouts" >
@@ -176,11 +179,11 @@ import org.allbinary.game.media.graphics.geography.map.racetrack.PathFindingInfo
 
 open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterfaceVisitor
 {
-    protected val logUtil: LogUtil = LogUtil.getInstance()
+    val logUtil: LogUtil = LogUtil.getInstance()
     private val commonStrings: CommonStrings = CommonStrings.getInstance()
     private val commonSeps: CommonSeps = CommonSeps.getInstance()
 
-    private val COLORS: Array&lt;BasicColor&gt; = arrayOf(
+    private val COLORS: Array&lt;BasicColor?&gt; = arrayOf(
         BasicColorFactory.getInstance().RED,
         BasicColorFactory.getInstance().GREEN,
     )
@@ -190,9 +193,8 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
 
     private val layerManager: AllBinaryGameLayerManager
 
-    private var generatedWidth: Int
-    private var generatedHeight: Int
-
+    private var generatedWidth: Int = 0
+    private var generatedHeight: Int = 0
     <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
     //if path findingbehavior
     private val geographicMapCelPositionFactoryInitVisitorInterface: GeographicMapCellPositionFactoryInitVisitorInterface =
@@ -217,7 +219,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
 
             <xsl:if test="type = 'TileMap::TileMap'" >
     //TileMap::TileMap - create TileMap
-    fun create<xsl:value-of select="name" />TiledMap(lastMap: TiledMap, tileSetImageHeightArray: IntArray): TiledMap {
+    open fun create<xsl:value-of select="name" />TiledMap(lastMap: TiledMap?, tileSetImageHeightArray: IntArray): TiledMap {
 
     <xsl:call-template name="scale" >
         <xsl:with-param name="layoutIndex" >
@@ -242,7 +244,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
                     //TileMap::TileMap:content - <xsl:value-of select="content/generator" />
                     <xsl:variable name="tileMapJSONWithExtension" select="content/tilemapJsonFile" />
                     <xsl:variable name="tileMapJSON" select="substring-before($tileMapJSONWithExtension, '.')" />
-        var tileMapInputStream2: InputStream = null
+        var tileMapInputStream2: InputStream? = null
                     <xsl:if test="content/generator = 'TileMapGenerator'" >
                     //"generator": "TileMapGenerator",
         val data: ByteArray = TileMapGenerator().process2().encodeToByteArray()
@@ -264,9 +266,9 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
             val dungeonGenerator: DungeonGenerator = DungeonGenerator()
             val tiledJSONUtil: TiledJSONUtil = TiledJSONUtil.getInstance()
             //dungeonGenerator.setConfig(Tunneller.getConfigParameters())
-            val mapData: Array&lt;IntArray&gt; = dungeonGenerator.generate()
+            val mapData: Array&lt;IntArray?&gt; = dungeonGenerator.generate()
             generatedWidth = mapData.size
-            generatedHeight = mapData[0].size
+            generatedHeight = mapData[0]!!.size
             val data: ByteArray = tiledJSONUtil.generateJSONAsString(mapData, gameGlobals.tileWidth, gameGlobals.tileHeight).encodeToByteArray()
             tileMapInputStream2 = ByteArrayInputStream(data)
         }
@@ -285,12 +287,12 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
         } else {
             //logUtil.put("Loading Tiled Map Asset", this, commonStrings.PROCESS)
             val tiledJSONUtil: TiledJSONUtil = TiledJSONUtil.getInstance()
-            val mapData: Array&lt;IntArray&gt; = Array(generatedWidth) { IntArray(generatedHeight) }
+            val mapData: Array&lt;IntArray?&gt; = Array(generatedWidth) { IntArray(generatedHeight) }
 
             val tileMapPlacementVisitor: TileMapPlacementVisitor =
                 //org.allbinary.game.behavior.topview.placement.AllAnimationsEverywhereTileMapPlacementVisitor()
                 org.allbinary.game.behavior.topview.placement.PropsTileMapPlacementVisitor()
-            tileMapPlacementVisitor.visit(lastMap, mapData)
+            tileMapPlacementVisitor.visit(lastMap!!, mapData)
 
             val data: ByteArray = tiledJSONUtil.generateJSONAsString(mapData, gameGlobals.tileWidth, gameGlobals.tileHeight).encodeToByteArray()
             tileMapInputStream2 = ByteArrayInputStream(data)
@@ -302,8 +304,8 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
 
         val tileMapInputStream: InputStream = tileMapInputStream2
 
-        val tileSetInputStreamArray: Array&lt;InputStream&gt; = arrayOf(
-                    <xsl:variable name="tileSetJSONWithExtension" select="content/tilesetJsonFile" />
+        val tileSetInputStreamArray: Array&lt;InputStream?&gt; = arrayOf(
+                    <xsl:variable name="kotlinArrayItems306" >                    <xsl:variable name="tileSetJSONWithExtension" select="content/tilesetJsonFile" />
                     <xsl:variable name="tileSetJSON" select="substring-before($tileSetJSONWithExtension, '.')" />
                     <xsl:if test="string-length(content/tilesetJsonFile) > 1" >
             platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>),
@@ -312,7 +314,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
                     <xsl:for-each select="content/tilesetJsonFiles" >
                        <xsl:variable name="tileSetJSON" select="substring-before(text(), '.')" />
             platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>),
-                    </xsl:for-each>
+                    </xsl:for-each></xsl:variable><xsl:call-template name="kotlinRemoveTrailingComma" ><xsl:with-param name="text" select="$kotlinArrayItems306" /></xsl:call-template>
                     )
                 </xsl:if>
 
@@ -326,7 +328,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
         if(J2MEUtil.isHTML()) {
             //logUtil.put("tileMapInputStream.available()", this, commonStrings.PROCESS)
             size = tileMapInputStream.available()
-            lateinit var tileSetInputStream: InputStream
+            var tileSetInputStream: InputStream
             val size2: Int = tileSetInputStreamArray.size
             for(index in 0 until size2) {
                 tileSetInputStream = tileSetInputStreamArray[index]
@@ -359,7 +361,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
 
         </xsl:for-each>
 
-    fun init()
+    open fun init()
     {
 
     <xsl:call-template name="scale" >
@@ -399,7 +401,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
 
         val geographicMapList: BasicArrayList = BasicArrayListD()
 
-        var map: TiledMap = null
+        var map: TiledMap? = null
 
         <xsl:for-each select="objects" >
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
@@ -412,7 +414,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
 
         //logUtil.put("Loading Tiled Map Asset: <xsl:value-of select="name" />", this, commonStrings.PROCESS)
 
-        val <xsl:value-of select="name" />ImageArray: Array&lt;Image&gt; = imageCache.getHashtableP().get(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME) as Array&lt;Image&gt;
+        val <xsl:value-of select="name" />ImageArray: Array&lt;Image?&gt; = imageCache.getHashtableP().get(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME) as Array&lt;Image?&gt;
 
         <xsl:variable name="imageWithExtension" select="content/tilemapAtlasImage" />
         <xsl:if test="$imageWithExtension" >
@@ -422,9 +424,9 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
         <xsl:if test="not($imageWithExtension)" >
         val resourceIndex: Int = imageCache.getIndex(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME)
         </xsl:if>
-        val tileSetImageHeightArray: Array&lt;Int&gt; = intArrayOf( GDLazyResources.getInstance().imageResourceHeightArray[resourceIndex] )
+        val tileSetImageHeightArray: IntArray = intArrayOf( GDLazyResources.getInstance().imageResourceHeightArray[resourceIndex] )
 
-        var tileSetImage: Image = null
+        var tileSetImage: Image? = null
         if(<xsl:value-of select="name" />ImageArray != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> <xsl:value-of select="name" />ImageArray.size <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
             tileSetImage = <xsl:value-of select="name" />ImageArray[0]
         }
@@ -457,7 +459,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
         val size3: Int = map.getLayers().size()
         for(layerIndex in 0 until size3) {
             val tileSet: TileSet = map.getTileSets().get(0) as TileSet
-            val tileTypeToTileIdsMap: ABHashtable = TileSetToGeographicMapUtil.getInstance().convert(tileSet)
+            val tileTypeToTileIdsMap: ABHashtable&lt;Any, Any&gt; = TileSetToGeographicMapUtil.getInstance().convert(tileSet)
 
             val maxTileId: Int = tileSet.getMaxTileId() + 1
 
@@ -471,7 +473,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
 
             stringMaker.delete(0, stringMaker.length())
             this.logUtil.putF(stringMaker.append(MAX_TILE_ID).appendint(maxTileId).toString(), this, commonStrings.PROCESS)
-            val cellTypeMapping: Array&lt;Int&gt; = IntArray(maxTileId)
+            val cellTypeMapping: IntArray = IntArray(maxTileId)
             for(index in 0 until maxTileId) {
                 cellTypeMapping[index] = index
             }
@@ -490,7 +492,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
 
         </xsl:for-each>
 
-        val geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt; = geographicMapList.toArrayType(arrayOfNulls&lt;BasicGeographicMap&gt;(geographicMapList.size())) as Array&lt;BasicGeographicMap&gt;
+        val geographicMapInterfaceArray: Array&lt;BasicGeographicMap?&gt; = geographicMapList.toArrayType(arrayOfNulls(geographicMapList.size())) as Array&lt;BasicGeographicMap?&gt;
 
                 <xsl:value-of select="$tileMapGenerator" />
                 <xsl:if test="contains($tileMapGenerator, 'TileMapGenerator')" >
@@ -555,7 +557,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
     //TileMap::TileMap - initialization methods for TileMap
                 <xsl:if test="name = 'PlatformerMap'" >
 
-    fun isAlreadyIncluded(placementCellXIntArray: Array&lt;IntArray&gt;, placementCellYIntArray: Array&lt;IntArray&gt;, placementCellTotal: IntArray, indexX: Int, indexY: Int): Boolean {
+    open fun isAlreadyIncluded(placementCellXIntArray: Array&lt;IntArray?&gt;, placementCellYIntArray: Array&lt;IntArray?&gt;, placementCellTotal: IntArray, indexX: Int, indexY: Int): Boolean {
 
         for(index in 0 until 4) {
             val size: Int = placementCellTotal[index]
@@ -570,7 +572,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
         return false
     }
 
-    private val ADJACENT: Array&lt;IntArray&gt; = arrayOf(
+    private val ADJACENT: Array&lt;IntArray?&gt; = arrayOf(
         intArrayOf(0, -1),
         intArrayOf(0, 1),
         intArrayOf(1, -1),
@@ -583,16 +585,16 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
 
     var result: Boolean = true
     fun isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory: org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory,
-        mapArray: Array&lt;IntArray&gt;, propsMapArray: Array&lt;IntArray&gt;, indexX: Int, indexY: Int, recursionIndex: Int) {
+        mapArray: Array&lt;IntArray?&gt;, propsMapArray: Array&lt;IntArray?&gt;, indexX: Int, indexY: Int, recursionIndex: Int) {
 
-        if(indexY <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexY <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray.size <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray[0].size) {
+        if(indexY <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexY <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray.size <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray[0]!!.size) {
             val size: Int = this.ADJACENT.size
             for(index in 0 until size) {
-                val adjacentIndexX: Int = indexX + ADJACENT[index][1]
-                val adjacentIndexY: Int = indexY + ADJACENT[index][0]
+                val adjacentIndexX: Int = indexX + ADJACENT[index]!![1]
+                val adjacentIndexY: Int = indexY + ADJACENT[index]!![0]
 
-                if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[adjacentIndexY][adjacentIndexX]) <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
-                    propsMapArray[adjacentIndexY][adjacentIndexX] != 49) {
+                if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[adjacentIndexY]!![adjacentIndexX]) <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
+                    propsMapArray[adjacentIndexY]!![adjacentIndexX] != 49) {
                     if (recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                         this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, propsMapArray, adjacentIndexX, adjacentIndexY, recursionIndex - 1)
                     }
@@ -606,7 +608,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
 
     }
 
-    fun setStartPoint(geographicMapInterfaceArray: Array&lt;GeographicMapInterface&gt;) {
+    open fun setStartPoint(geographicMapInterfaceArray: Array&lt;GeographicMapInterface?&gt;) {
 
     <xsl:call-template name="scale" >
         <xsl:with-param name="layoutIndex" >
@@ -637,22 +639,22 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
             val gdGeographicMap: GDGeographicMap = geographicMapInterfaceArray[layerIndex] as GDGeographicMap
             val map: TiledMap = gdGeographicMap.getMap()
             val tileLayer: TileLayer = (map.getLayer(layerIndex) as TileLayer)
-            val mapArray: Array&lt;IntArray&gt; = tileLayer.getMapArray()
-            val size: Int = mapArray.size * mapArray[0].size
+            val mapArray: Array&lt;IntArray?&gt; = tileLayer.getMapArray()
+            val size: Int = mapArray.size * mapArray[0]!!.size
             if(size <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> placementMax) {
                 placementMax = size
             }
         }
-        val placementXIntArray: Array&lt;Int&gt; = IntArray(placementMax)
-        val placementYIntArray: Array&lt;Int&gt; = IntArray(placementMax)
-        val placementSizeIntArray: Array&lt;Int&gt; = IntArray(placementMax)
+        val placementXIntArray: IntArray = IntArray(placementMax)
+        val placementYIntArray: IntArray = IntArray(placementMax)
+        val placementSizeIntArray: IntArray = IntArray(placementMax)
 
         var placed: Boolean = false
 
-        lateinit var allBinaryTiledLayer: AllBinaryTiledLayer
-        lateinit var basicTopViewGeographicMapCellTypeFactory: org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory
-        lateinit var geographicMapCellPositionFactory: BasicGeographicMapCellPositionFactory
-        lateinit var geographicMapCellPosition: GeographicMapCellPosition
+        var allBinaryTiledLayer: AllBinaryTiledLayer
+        var basicTopViewGeographicMapCellTypeFactory: org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory
+        var geographicMapCellPositionFactory: BasicGeographicMapCellPositionFactory
+        var geographicMapCellPosition: GeographicMapCellPosition
 
         var currentY: Int = 0
         val MAX_HISTORY_Y: Int = 4
@@ -666,22 +668,22 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
             val gdGeographicMap: GDGeographicMap = geographicMapInterfaceArray[layerIndex] as GDGeographicMap
             val map: TiledMap = gdGeographicMap.getMap()
             val tileLayer: TileLayer = (map.getLayer(layerIndex) as TileLayer)
-            val mapArray: Array&lt;IntArray&gt; = tileLayer.getMapArray()
+            val mapArray: Array&lt;IntArray?&gt; = tileLayer.getMapArray()
 
             val propsGDGeographicMap: GDGeographicMap = geographicMapInterfaceArray[propsLayerIndex] as GDGeographicMap
             val propsMap: TiledMap = propsGDGeographicMap.getMap()
             val propsTileLayer: TileLayer = (propsMap.getLayer(0) as TileLayer)
-            val propsMapArray: Array&lt;IntArray&gt; = propsTileLayer.getMapArray()
+            val propsMapArray: Array&lt;IntArray?&gt; = propsTileLayer.getMapArray()
 
             basicTopViewGeographicMapCellTypeFactory = gdGeographicMap.getGeographicMapCellTypeFactory() as org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory
             allBinaryTiledLayer = gdGeographicMap.getAllBinaryTiledLayer()
             geographicMapCellPositionFactory = gdGeographicMap.getGeographicMapCellPositionFactory()
 
             val size4: Int = mapArray.size
-            val size2: Int = mapArray[0].size
+            val size2: Int = mapArray[0]!!.size
 
-            val placementCellXIntArray: Array&lt;IntArray&gt; = Array(MAX_HISTORY_Y) { IntArray(size2) }
-            val placementCellYIntArray: Array&lt;IntArray&gt; = Array(MAX_HISTORY_Y) { IntArray(size2) }
+            val placementCellXIntArray: Array&lt;IntArray?&gt; = Array(MAX_HISTORY_Y) { IntArray(size2) }
+            val placementCellYIntArray: Array&lt;IntArray?&gt; = Array(MAX_HISTORY_Y) { IntArray(size2) }
             val placementCellTotal: IntArray = IntArray(MAX_HISTORY_Y)
 
             var type: Int = 0
@@ -689,7 +691,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
                 placementCellTotal[currentY] = 0
                 for(indexX in 0 until size2) {
 
-                    type = mapArray[indexY][indexX]
+                    type = mapArray[indexY]!![indexX]
 
 //                    if (basicTopViewGeographicMapCellTypeFactory.BLOCK_CELL_TYPE.hasType(type) || basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(type)) {
 //                    } else {
@@ -744,7 +746,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
                         }
 
 <!--                        if(!placed) {
-                            if(indexY <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexY <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray.size <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray[0].size) {
+                            if(indexY <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexY <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray.size <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray[0]!!.size) {
                                 placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2)
                                 placementXIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2)
                                 placementSizeIntArray[placementTotal] = 1
@@ -757,43 +759,43 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
                     } else if (basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.hasType(type)) {
 
 <!--
-                        if(indexY > 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX > 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexY < mapArray.size <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX < mapArray[0].size) {
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY + 1][indexX])) {
+                        if(indexY > 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX > 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexY < mapArray.size <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX < mapArray[0]!!.size) {
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY + 1]!![indexX])) {
                                 placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2)
                                 placementYIntArray[placementTotal] = ((indexY + 1) * map.getTileHeight()) + (map.getTileHeight() / 2)
                                 placementTotal++
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY + 1][indexX + 1])) {
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY + 1]!![indexX + 1])) {
                                 placementXIntArray[placementTotal] = ((indexX + 1) * map.getTileWidth()) + (map.getTileWidth() / 2)
                                 placementYIntArray[placementTotal] = ((indexY + 1) * map.getTileHeight()) + (map.getTileHeight() / 2)
                                 placementTotal++
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY][indexX + 1])) {
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY]!![indexX + 1])) {
                                 placementXIntArray[placementTotal] = ((indexX + 1) * map.getTileWidth()) + (map.getTileWidth() / 2)
                                 placementYIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2)
                                 placementTotal++
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY - 1][indexX])) {
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY - 1]!![indexX])) {
                                 placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2)
                                 placementYIntArray[placementTotal] = ((indexY - 1) * map.getTileHeight()) + (map.getTileHeight() / 2)
                                 placementTotal++
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY][indexX - 1])) {
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY]!![indexX - 1])) {
                                 placementXIntArray[placementTotal] = ((indexX - 1) * map.getTileWidth()) + (map.getTileWidth() / 2)
                                 placementYIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2)
                                 placementTotal++
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY - 1][indexX - 1])) {
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY - 1]!![indexX - 1])) {
                                 placementXIntArray[placementTotal] = ((indexX - 1) * map.getTileWidth()) + (map.getTileWidth() / 2)
                                 placementYIntArray[placementTotal] = ((indexY - 1) * map.getTileHeight()) + (map.getTileHeight() / 2)
                                 placementTotal++
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY - 1][indexX + 1])) {
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY - 1]!![indexX + 1])) {
                                 placementXIntArray[placementTotal] = ((indexX - 1) * map.getTileWidth()) + (map.getTileWidth() / 2)
                                 placementYIntArray[placementTotal] = ((indexY - 1) * map.getTileHeight()) + (map.getTileHeight() / 2)
                                 placementTotal++
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY + 1][indexX - 1])) {
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[indexY + 1]!![indexX - 1])) {
                                 placementXIntArray[placementTotal] = ((indexX - 1) * map.getTileWidth()) + (map.getTileWidth() / 2)
                                 placementYIntArray[placementTotal] = ((indexY - 1) * map.getTileHeight()) + (map.getTileHeight() / 2)
                                 placementTotal++
@@ -884,7 +886,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
 //        <xsl:value-of select="name" />GDGameLayer.updatePosition2()
 //    }
 
-    fun setStartPosition(geographicMapInterfaceArray: Array&lt;GeographicMapInterface&gt;, geographicMapCellPosition: GeographicMapCellPosition, layerIndex: Int, stringMaker: StringMaker) {
+    open fun setStartPosition(geographicMapInterfaceArray: Array&lt;GeographicMapInterface?&gt;, geographicMapCellPosition: GeographicMapCellPosition, layerIndex: Int, stringMaker: StringMaker) {
 
 //                            DisplayChangeEventHandler.getInstance().addListener(object: DisplayChangeEventListener() {
 //
@@ -911,7 +913,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
         //var Wall: GDObject = (globals.WallGDGameLayerList.get(0) as GDGameLayer).gdObject as GDObject
         //var wallGDGameLayer: GDGameLayer = globals.WallGDGameLayerList.get(0) as GDGameLayer
 
-        val allBinaryTiledLayer: AllBinaryTiledLayer = geographicMapInterfaceArray[layerIndex].getAllBinaryTiledLayer()
+        val allBinaryTiledLayer: AllBinaryTiledLayer = geographicMapInterfaceArray[layerIndex]!!.getAllBinaryTiledLayer()
 
         //var gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
         //var PlayerGDGameLayer: GDGameLayer = gameGlobals.PlayerGDGameLayerList.get(0) as GDGameLayer
@@ -950,12 +952,12 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
             gdGeographicMap.getGeographicMapCellTypeFactory() as org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory
         val map: TiledMap = gdGeographicMap.getMap()
         val tileLayer: TileLayer = (map.getLayer(layerIndex) as TileLayer)
-        val mapArray: Array&lt;IntArray&gt; = tileLayer.getMapArray()
+        val mapArray: Array&lt;IntArray?&gt; = tileLayer.getMapArray()
 
-        if(!basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[geographicMapCellPosition.getRow()][geographicMapCellPosition.getColumn() + 1])) {
+        if(!basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[geographicMapCellPosition.getRow()]!![geographicMapCellPosition.getColumn() + 1])) {
             platformerMap.startX = platformerMap.startX + 18
         }
-        if(!basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[geographicMapCellPosition.getRow()][geographicMapCellPosition.getColumn() - 1])) {
+        if(!basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.hasType(mapArray[geographicMapCellPosition.getRow()]!![geographicMapCellPosition.getColumn() - 1])) {
             platformerMap.startX = platformerMap.startX - 18
         }
 
@@ -968,7 +970,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
         <xsl:value-of select="name" />GDGameLayer.updatePosition2()
     }
 
-    fun setEndPosition(geographicMapInterfaceArray: Array&lt;GeographicMapInterface&gt;, geographicMapCellPosition: GeographicMapCellPosition, layerIndex: Int, stringMaker: StringMaker) {
+    open fun setEndPosition(geographicMapInterfaceArray: Array&lt;GeographicMapInterface?&gt;, geographicMapCellPosition: GeographicMapCellPosition, layerIndex: Int, stringMaker: StringMaker) {
 
         val globals: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance()
 
@@ -977,7 +979,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
         //var Wall: GDObject = (globals.WallGDGameLayerList.get(0) as GDGameLayer).gdObject as GDObject
         //var wallGDGameLayer: GDGameLayer = globals.WallGDGameLayerList.get(0) as GDGameLayer
 
-        val allBinaryTiledLayer: AllBinaryTiledLayer = geographicMapInterfaceArray[layerIndex].getAllBinaryTiledLayer()
+        val allBinaryTiledLayer: AllBinaryTiledLayer = geographicMapInterfaceArray[layerIndex]!!.getAllBinaryTiledLayer()
 
         //var gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
         //var PlayerGDGameLayer: GDGameLayer = gameGlobals.PlayerGDGameLayerList.get(0) as GDGameLayer
@@ -995,16 +997,16 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
         logUtil.putF(stringMaker.append("PlatformerMap end: ").appendint(platformerMap.endX).append(CommonSeps.getInstance().SPACE).appendint(platformerMap.endY).toString(), this, commonStrings.PROCESS)
     }
 
-    fun setPosition(geographicMapCompositeInterface: GeographicMapCompositeInterface)
+    open fun setPosition(geographicMapCompositeInterface: GeographicMapCompositeInterface)
     {
         val layer: AllBinaryLayer = StaticTileLayerIntoPositionViewPosition.layer
 
         if(layer != null) {
 
-        val geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt; = geographicMapCompositeInterface.getGeographicMapInterface()
-        lateinit var tiledLayer: AllBinaryTiledLayer
+        val geographicMapInterfaceArray: Array&lt;BasicGeographicMap?&gt; = geographicMapCompositeInterface.getGeographicMapInterface()
+        var tiledLayer: AllBinaryTiledLayer
 
-        lateinit var geographicMapInterface: GDGeographicMap
+        var geographicMapInterface: GDGeographicMap
         val size: Int = geographicMapInterfaceArray.size
         for(index in 0 until size) {
             geographicMapInterface = geographicMapInterfaceArray[index] as GDGeographicMap
@@ -1043,17 +1045,17 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
             </xsl:if>
         </xsl:for-each>
 
-    //private var playerResourceArray: Array&lt;BasicGameResources&gt; = arrayOfNulls&lt;BasicGameResources&gt;(1)
-    //private var hashtable: ABHashtable = ABHashtable()
+    //private var playerResourceArray: Array&lt;BasicGameResources?&gt; = arrayOfNulls(1)
+    //private var hashtable: ABHashtable&lt;Any, Any&gt; = ABHashtable()
     //private var artificialIntelligenceInterfaceFactoryInterface: ArtificialIntelligenceInterfaceFactoryInterface =
       //  BoundBounceAIFactory()
 
-    fun build()
+    open fun build()
     {
         this.init()
     }
 
-    fun visit(layerInterface: AllBinaryLayer)
+    override fun visit(layerInterface: AllBinaryLayer)
     {
         layerInterface.setVisible(true)
         this.layerManager.append(layerInterface)
@@ -1063,7 +1065,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
         return gameTickDisplayInfoSingleton.getLastWidth()
     }
 
-    fun SceneWindowHeight(): Int {
+    open fun SceneWindowHeight(): Int {
         return gameTickDisplayInfoSingleton.getLastHeight()
     }-->
 

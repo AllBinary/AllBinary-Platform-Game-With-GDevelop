@@ -40,7 +40,7 @@ Created By: Travis Berthelot
                                 }
 
                                 //BuiltinCommonInstructions::JsCode - event
-                                override public fun process(): Boolean {
+                                override fun process(): Boolean {
                                     <xsl:variable name="speechVariable1" ><xsl:value-of select="substring(substring-after(inlineCode,'variables.get'), 3)" /></xsl:variable>
                                     <xsl:variable name="speechVariable2" ><xsl:value-of select="substring-before($speechVariable1,').getAsString()')" /></xsl:variable>
                                     <xsl:variable name="speechVariable" ><xsl:value-of select="substring($speechVariable2, 0, string-length($speechVariable2))" /></xsl:variable>
@@ -53,6 +53,11 @@ Created By: Travis Berthelot
                                         //textToSpeech.process(voiceName, speech)
 
                                         open class TextToSpeechABRunnable : ABRunnable {
+
+
+                                            constructor() {
+
+                                            }
 
                                             private val logUtil: LogUtil = LogUtil.getInstance()
                                             private val commonStrings: CommonStrings = CommonStrings.getInstance()
@@ -76,7 +81,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="not(contains(inlineCode, 'SpeechSynthesisUtterance'))" >
 
                                 //BuiltinCommonInstructions::JsCode - event
-                                override public fun process(): Boolean {
+                                override fun process(): Boolean {
                                     //I don't have plans to implement this event type anytime soon for especially non HTML5 builds.
                                     this.logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + this.commonStrings.NOT_IMPLEMENTED, this, this.commonStrings.PROCESS, Exception())
                                 </xsl:if>

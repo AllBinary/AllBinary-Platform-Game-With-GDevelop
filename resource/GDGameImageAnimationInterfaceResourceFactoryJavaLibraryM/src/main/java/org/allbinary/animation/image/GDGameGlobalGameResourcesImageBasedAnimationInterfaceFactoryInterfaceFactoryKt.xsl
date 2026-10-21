@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -93,6 +94,7 @@ import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite
 import org.allbinary.animation.IndexedAnimationBehaviorFactory
 import org.allbinary.animation.NullRotationAnimationFactory
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface
+import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface
 import org.allbinary.animation.image.AllBinaryArrayImageRotationAnimationFactory
 import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory
@@ -117,6 +119,7 @@ import org.allbinary.logic.StdUtil
 import org.allbinary.util.ABHashtable
 import org.allbinary.AndroidUtil
 import org.allbinary.J2MEUtil
+import org.allbinary.game.layout.GDConfig
 
 open class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory : BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
@@ -144,17 +147,21 @@ open class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterface
 
     constructor(name: String) : super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable())
     {
+        var name = name
     }
 
     override fun init(level: Int)
 
     {
+        var level = level
         this.init(ImageCacheFactory.getInstance(), level)
     }
 
-    protected fun init(imageCache: ImageCache, level: Int)
+    open fun init(imageCache: ImageCache, level: Int)
 
     {
+        var imageCache = imageCache
+        var level = level
         if(this.isInitialized())
         {
             return
@@ -206,6 +213,7 @@ open class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterface
 
     override fun isLoadingLevel(level: Int): Boolean
     {
+        var level = level
         if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
         {
             return true
@@ -235,7 +243,7 @@ open class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterface
         }
     }
 
-    private fun addRectangles()
+    open fun addRectangles()
     {
        //this.addRectangle(BossOneShipResources.getInstance().RESOURCE, Rectangle(PointFactory
          //       .ZERO_ZERO, 52, 52))

@@ -52,8 +52,8 @@ Created By: Travis Berthelot
 
                     <xsl:if test="$gameObjectNames != ''" >
                                 //This may need to loop through more than 1 game object found 2: <xsl:value-of select="$gameObjectName" />
-                                lateinit var <xsl:value-of select="$gameObjectName" />GDGameLayer = null: GDGameLayer
-                                lateinit var <xsl:value-of select="$gameObjectName" />  = null: GDObject
+                                var <xsl:value-of select="$gameObjectName" />GDGameLayer = null: GDGameLayer
+                                var <xsl:value-of select="$gameObjectName" />  = null: GDObject
                                 if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameObjectName" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                     <xsl:value-of select="$gameObjectName" />GDGameLayer = (<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameObjectName" />GDGameLayerList.get(0) as GDGameLayer)
                                     <xsl:value-of select="$gameObjectName" /> = <xsl:value-of select="$gameObjectName" />GDGameLayer.gdObject as GDObject
@@ -140,7 +140,7 @@ Created By: Travis Berthelot
                     }
 
 
-                        override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                        override fun processGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
                             super.processGDStats(gameLayerArray)
                             try {
 
@@ -199,7 +199,7 @@ Created By: Travis Berthelot
 
                         <xsl:if test="contains($forExtension, 'found')" >
 
-                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                        override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
                             //Map from object array with action params
                             val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
@@ -209,12 +209,12 @@ Created By: Travis Berthelot
                         }
                         </xsl:if>
 
-                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                        override fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
                             val gdObject: GDObject = gameLayer.gdObject
                             this.process(gdObject, x, y)
                         }
 
-                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                        override fun process(gdObject: GDObject, x: Int, y: Int) {
                             throw RuntimeException()
                         }
 

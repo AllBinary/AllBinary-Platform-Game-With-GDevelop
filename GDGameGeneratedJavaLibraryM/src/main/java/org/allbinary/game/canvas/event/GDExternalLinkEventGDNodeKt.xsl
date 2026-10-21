@@ -32,7 +32,7 @@ Created By: Travis Berthelot
 
 
                                 //<xsl:value-of select="name" /> - external - externalEvent - //associatedLayout=<xsl:value-of select="associatedLayout" />
-                                override public fun process(): Boolean {
+                                override fun process(): Boolean {
                                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
                                     <xsl:for-each select="events" >
@@ -49,7 +49,7 @@ Created By: Travis Berthelot
 
                                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                                     //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()
+                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
                                         </xsl:if>
 
                                         <xsl:if test="position() = last()" >
@@ -67,7 +67,7 @@ Created By: Travis Berthelot
                                     return true
                                 }
 
-                                override public fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                                override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
                                     super.processStats(motionGestureEvent)
 
                                     var result: Boolean = true
@@ -88,7 +88,7 @@ Created By: Travis Berthelot
 
                                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                                     //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput)
+                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process(motionGestureEvent, lastMotionGestureInput)
                                         </xsl:if>
 
                                         <xsl:if test="position() = last()" >
@@ -108,7 +108,7 @@ Created By: Travis Berthelot
 
                                 }
 
-                                override public fun processReleased(): Boolean {
+                                override fun processReleased(): Boolean {
                                     super.processReleasedStats()
 
                                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
@@ -127,7 +127,7 @@ Created By: Travis Berthelot
 
                                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                                     //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased()
+                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()
                                         </xsl:if>
 
                                         <xsl:if test="position() = last()" >
@@ -171,7 +171,7 @@ Created By: Travis Berthelot
 
 
                                 //<xsl:value-of select="name" /> - external - externalLayout - //associatedLayout=<xsl:value-of select="associatedLayout" />
-                                override public fun process(): Boolean {
+                                override fun process(): Boolean {
                                     this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:value-of select="name" />", this, this.commonStrings.PROCESS)
 
                                     //Create the Objects in the layout=<xsl:value-of select="name" />

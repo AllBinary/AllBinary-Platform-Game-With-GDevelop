@@ -40,10 +40,11 @@ Created By: Travis Berthelot
                                 //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
                                 val size: Int = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$paramOne" />GDGameLayerList.size()
-                                lateinit var gameLayer: GDGameLayer
+                                var gameLayer: GDGameLayer
                                 for(index in 0 until<xsl:text disable-output-escaping="yes" ></xsl:text> size) {
                                     gameLayer = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$paramOne" />GDGameLayerList.get(index) as GDGameLayer
-                                    gameLayer.gdObject.scaleX = gameLayer.gdObject.scaleY = <xsl:value-of select="$paramThree" /> as float
+                                    gameLayer.gdObject.scaleY = (<xsl:value-of select="$paramThree" />).toFloat()
+                                    gameLayer.gdObject.scaleX = gameLayer.gdObject.scaleY
                                     gameLayer.setScalable()
                                     gameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta)
                                 }
@@ -64,7 +65,8 @@ Created By: Travis Berthelot
                                 //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, this.commonStrings.PROCESS)
 
                                 val gameLayer: GDGameLayer = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$paramOne" />GDGameLayerList.get(index) as GDGameLayer
-                                gameLayer.gdObject.scaleX = gameLayer.gdObject.scaleY = <xsl:value-of select="$paramThree" /> as float
+                                gameLayer.gdObject.scaleY = (<xsl:value-of select="$paramThree" />).toFloat()
+                                gameLayer.gdObject.scaleX = gameLayer.gdObject.scaleY
                                 gameLayer.setScalable()
 
                             } catch(e: Exception) {
@@ -84,7 +86,7 @@ Created By: Travis Berthelot
                     }
 
 
-                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
                         super.processGDStats(gameLayerArray)
 
                         //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
@@ -92,7 +94,8 @@ Created By: Travis Berthelot
                         <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
                         <xsl:call-template name="siblingOrParentOrList" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
-                        <xsl:value-of select="$paramOne" />GDGameLayer.gdObject.scaleX = <xsl:value-of select="$paramOne" />GDGameLayer.gdObject.scaleY = <xsl:value-of select="$paramThree" /> as float
+                        <xsl:value-of select="$paramOne" />GDGameLayer.gdObject.scaleY = (<xsl:value-of select="$paramThree" />).toFloat()
+                        <xsl:value-of select="$paramOne" />GDGameLayer.gdObject.scaleX = <xsl:value-of select="$paramOne" />GDGameLayer.gdObject.scaleY
                         <xsl:value-of select="$paramOne" />GDGameLayer.setScalable()
 
                         <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
@@ -104,7 +107,7 @@ Created By: Travis Berthelot
 
                         <xsl:if test="contains($forExtension, 'found')" >
 
-                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                        override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
                             //Map from object array with action params
                             val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
@@ -114,12 +117,12 @@ Created By: Travis Berthelot
                         }
                         </xsl:if>
 
-                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                        override fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
                             val gdObject: GDObject = gameLayer.gdObject
                             this.process(gdObject, x, y)
                         }
 
-                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                        override fun process(gdObject: GDObject, x: Int, y: Int) {
                             throw RuntimeException()
                         }
 

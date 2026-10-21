@@ -77,11 +77,11 @@ Created By: Travis Berthelot
         <xsl:if test="string-length($baseLayerScale) > 0" >
                             DisplayChangeEventHandler.getInstance().addListener(object : DisplayChangeEventListener {
                                 
-                                override fun onEvent(eventObject: AllBinaryEventObject) {
+                                open override fun onEvent(eventObject: AllBinaryEventObject) {
                                     
                                 }
 
-                                override fun onDisplayChangeEvent(displayChangeEvent: DisplayChangeEvent) {
+                                open override fun onDisplayChangeEvent(displayChangeEvent: DisplayChangeEvent) {
                                     //TWB - currently would write over the map positioning in the builder.
                                     //val centerCameraX: Int = (SceneWindowWidth() / 2).toInt()
                                     //val centerCameraY: Int = (SceneWindowHeight() / 2).toInt()
@@ -104,11 +104,11 @@ Created By: Travis Berthelot
                 val tiledLayer2: AllBinaryTiledLayer = tiledLayer
                 DisplayChangeEventHandler.getInstance().addListener(object : DisplayChangeEventListener {
 
-                    override fun onEvent(eventObject: AllBinaryEventObject) {
+                    open override fun onEvent(eventObject: AllBinaryEventObject) {
 
                     }
 
-                    override fun onDisplayChangeEvent(displayChangeEvent: DisplayChangeEvent) {
+                    open override fun onDisplayChangeEvent(displayChangeEvent: DisplayChangeEvent) {
                         val centerCameraX: Int = (SceneWindowWidth() / 2).toInt()
                         val centerCameraY: Int = (SceneWindowHeight() / 2).toInt()
                         tiledLayer2.setPosition(centerCameraX - (tiledLayer2.getHalfWidth() - 78), centerCameraY - (tiledLayer2.getHalfHeight() + 109), 0)
@@ -146,7 +146,7 @@ Created By: Travis Berthelot
                     //CentreCamera - TileMap
         </xsl:if>
         <xsl:if test="string-length($baseLayerScale) > 0 or string-length($tileMapScale) > 0" >
-        StaticTileLayerIntoPositionViewPosition.setTiledLayer(geographicMapInterfaceArray[0].getAllBinaryTiledLayer())
+        StaticTileLayerIntoPositionViewPosition.setTiledLayer(geographicMapInterfaceArray[0]!!.getAllBinaryTiledLayer())
         this.setPosition(geographicMapCompositeInterface)
         </xsl:if>
 

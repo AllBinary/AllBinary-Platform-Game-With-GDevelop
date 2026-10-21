@@ -93,7 +93,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="press" ><xsl:if test="contains($isThisInExternlEventCalledFromPress, 'found')" >found</xsl:if><xsl:if test="../subInstructions" ><xsl:for-each select="../../../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:if><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
 
                     //sourisSurObjetConditionGDNode - //Condition - //IsCursorOnObject - //release=<xsl:value-of select="$release" /> - //press=<xsl:value-of select="$press" /> //inverted=<xsl:value-of select="$inverted" /> - GDNode
-                    <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>val NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = object : GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>val NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: GDNode = object : GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                     <xsl:variable name="conditionNodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
@@ -103,13 +103,16 @@ Created By: Travis Berthelot
 
                         //IsCursorOnObject - runnable
                         <xsl:if test="not(contains($forExtension, 'found'))" >
-                        open inner class IsCursorOnObjectABRunnable : ABRunnable() {
+                        open inner class IsCursorOnObjectABRunnable : ABRunnable {
+
+                            constructor() {
+                            }
 
                             private val logUtil: LogUtil = LogUtil.getInstance()
                             private val commonStrings: CommonStrings = CommonStrings.getInstance()
 
-                            private val gdNodeStatsFactory: BaseGDNodeStats = GDNodeStatsFactory.getInstance();
-                            private val GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                            private val gdNodeStatsFactory: BaseGDNodeStats = GDNodeStatsFactory.getInstance()
+                            private val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
                             
                             override fun run() {
                                 try {
@@ -128,7 +131,7 @@ Created By: Travis Berthelot
                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             //var nodeId: Event = <xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
                             //Events only - //Event - //<xsl:value-of select="type" /> - call
-                            this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()
+                            this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
                         </xsl:if>
                         <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                             //var nodeId: Event = <xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" />
@@ -212,7 +215,7 @@ Created By: Travis Berthelot
 
                             val size: Int = <xsl:if test="not(contains($hasObjectGroup, 'found'))" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:value-of select="text()" />GDGameLayerList.size()
                             //val size: Int = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RectangleList.size()
-                            lateinit var gameLayer: GDGameLayer
+                            var gameLayer: GDGameLayer
                             for(index in 0 until <xsl:text disable-output-escaping="yes" ></xsl:text>size) {
 
                                 //<xsl:value-of select="text()" />Rectangle = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RectangleList.get(index) as Rectangle
@@ -324,7 +327,7 @@ Created By: Travis Berthelot
                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             //var nodeId: Event = <xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
                             //Events only - //Event - //<xsl:value-of select="type" /> - call
-                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased()
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()
                         </xsl:if>
                         <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                             //var nodeId: Event = <xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" />
@@ -348,7 +351,7 @@ Created By: Travis Berthelot
 
 
                         @Throws(Exception::class)
-                        override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                        override fun processGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
                             super.processGDStats(gameLayerArray)
 
                             try {
@@ -364,7 +367,7 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >
-                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                        override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
                             //Map from object array with action params
                             val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
@@ -374,12 +377,12 @@ Created By: Travis Berthelot
                         }
                         </xsl:if>
 
-                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                        override fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
                             val gdObject: GDObject = gameLayer.gdObject
                             this.process(gdObject, x, y)
                         }
 
-                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                        override fun process(gdObject: GDObject, x: Int, y: Int) {
                             throw RuntimeException()
                         }
 

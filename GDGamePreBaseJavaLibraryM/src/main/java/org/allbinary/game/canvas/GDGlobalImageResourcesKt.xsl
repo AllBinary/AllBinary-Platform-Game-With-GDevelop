@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -82,9 +83,11 @@ Created By: Travis Berthelot
                 //Game name=<xsl:value-of select="$gameName" />
                 open class GDGlobalSpecialAnimationImageResources : SpecialAnimation
                 {
-                    private var instance: Object = NullUtil.getInstance().NULL_OBJECT
+                    companion object {
 
-                        fun getInstanceOrCreate(): GDGlobalSpecialAnimationImageResources
+                    private var instance: Any = NullUtil.getInstance().NULL_OBJECT
+
+                        open fun getInstanceOrCreate(): GDGlobalSpecialAnimationImageResources
                         {
                             if(GDGlobalSpecialAnimationImageResources.instance == NullUtil.getInstance().NULL_OBJECT) {
                                 GDGlobalSpecialAnimationImageResources.instance = GDGlobalSpecialAnimationImageResources()
@@ -93,13 +96,13 @@ Created By: Travis Berthelot
                             return GDGlobalSpecialAnimationImageResources.instance as GDGlobalSpecialAnimationImageResources
                         }
 
-                        fun getInstance(): GDGlobalSpecialAnimationImageResources
+                        open fun getInstance(): GDGlobalSpecialAnimationImageResources
                         {
                             return GDGlobalSpecialAnimationImageResources.instance as GDGlobalSpecialAnimationImageResources
                         }
 
-                        protected val logUtil: LogUtil = LogUtil.getInstance()
-                        private val commonStrings: CommonStrings = CommonStrings.getInstance()
+                    }
+
                         private val imageCopyUtil: ImageCopyUtil = ImageCopyUtil.getInstance()
                         private val imageScaleUtil: ImageScaleUtil = ImageScaleUtil.getInstance()
                         private val imageCache: ImageCache = ImageCacheFactory.getInstance()
@@ -177,14 +180,14 @@ Created By: Travis Berthelot
 
                     }
 
-                    fun validateSprites(name: String, resourceArray: Array&lt;String&gt;, imageArray: Array&lt;Image&gt;) {
+                    open fun validateSprites(name: String, resourceArray: Array&lt;String?&gt;, imageArray: Array&lt;Image?&gt;) {
                         val commonSeps: CommonSeps = CommonSeps.getInstance()
                         val size: Int = imageArray.size
-                        lateinit var image: Image
+                        var image: Image
                         for(index in 0 until size) {
                             image = imageArray[index]
                             if (image.getWidth() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> image.getHeight() <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> image.getWidth() % image.getHeight() != 0) {
-                                logUtil.put(StringMaker().appendint(index).append(name).appendint(image.getWidth()).append(commonSeps.COLON).appendint(image.getHeight()).toString(), this, commonStrings.PROCESS, Exception())
+                                logUtil.put(StringMaker().appendint(index).append(name).appendint(image.getWidth().toInt()).append(commonSeps.COLON).appendint(image.getHeight().toInt()).toString(), this, commonStrings.PROCESS, Exception())
                             }
                         }
                     }

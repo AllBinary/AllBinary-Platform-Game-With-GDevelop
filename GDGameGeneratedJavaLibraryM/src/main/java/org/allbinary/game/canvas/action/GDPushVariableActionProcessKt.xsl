@@ -51,13 +51,13 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
 
                         if(globals.chatRequestBody.messagesIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> <xsl:value-of select="$param1" />.length - 1) {
-                            val sourceArray: Array&lt;Object&gt; = <xsl:value-of select="$param1" />
-                            val newDestinationArray: Array&lt;Object?&gt; = arrayOfNulls&lt;Object&gt;(sourceArray.size * 2)
+                            val sourceArray: Array&lt;Any?&gt; = <xsl:value-of select="$param1" />
+                            val newDestinationArray: Array&lt;Any?&gt; = arrayOfNulls(sourceArray.size * 2)
                             System.arraycopy(sourceArray, 0, newDestinationArray, 0, 0)
                             <xsl:value-of select="$param1" /> = newDestinationArray
                         }
 
-                        <xsl:value-of select="$param1" />[<xsl:value-of select="$param1" />Index] = <xsl:value-of select="$param2" />
+                        <xsl:value-of select="$param1" />[<xsl:value-of select="$param1" />Index] = <xsl:value-of select="$param2" /><xsl:text>&#10;</xsl:text>
                         <xsl:value-of select="$param1" />Index++
 
                         return true
@@ -82,7 +82,7 @@ Created By: Travis Berthelot
                     }
 
 
-                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
                         super.processGDStats(gameLayerArray)
 
                         try {
@@ -99,7 +99,7 @@ Created By: Travis Berthelot
 
                         <xsl:if test="contains($forExtension, 'found')" >
 
-                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                        override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
                             //Map from object array with action params
                             val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
@@ -109,12 +109,12 @@ Created By: Travis Berthelot
                         }
                         </xsl:if>
 
-                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                        override fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
                             val gdObject: GDObject = gameLayer.gdObject
                             this.process(gdObject, x, y)
                         }
 
-                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                        override fun process(gdObject: GDObject, x: Int, y: Int) {
                             throw RuntimeException()
                         }
     </xsl:template>

@@ -48,7 +48,7 @@ Created By: Travis Berthelot
             <xsl:if test="contains($selectedNodeIds, $selectedNodeIdWithSep) or $selectedNodeIds = 'All'" >
 
         //<xsl:value-of select="type" /> - //nodeId=<xsl:value-of select="$selectedNodeId" /> - //BuiltinCommonInstructions - //Event - //repeatExpression=<xsl:value-of select="repeatExpression" />
-        open public class GD<xsl:value-of select="$selectedNodeId" />GDNode : GDNode
+        open public inner class GD<xsl:value-of select="$selectedNodeId" />GDNode : GDNode
         {
             public constructor() : super(<xsl:value-of select="$selectedNodeId" />) {
 

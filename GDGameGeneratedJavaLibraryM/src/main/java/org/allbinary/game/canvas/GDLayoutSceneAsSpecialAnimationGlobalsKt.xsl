@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -76,6 +77,7 @@ Created By: Travis Berthelot
                 import org.json.me.JSONTokener
 
                 import org.allbinary.AndroidUtil
+                import org.allbinary.game.layout.GDConfig
                 import org.allbinary.animation.text.CustomTextAnimation
                 import org.allbinary.game.canvas.GDExtensionGDNodes
                 import org.allbinary.game.configuration.persistance.GDStructure
@@ -106,6 +108,7 @@ Created By: Travis Berthelot
                 import org.allbinary.layer.event.LayerManagerEvent
                 import org.allbinary.layer.event.LayerManagerEventHandler
                 import org.allbinary.layer.event.LayerManagerEventListener
+                import org.allbinary.input.motion.gesture.TouchMotionGestureFactory
                 import org.allbinary.logic.string.StringUtil
                 import org.allbinary.string.CommonStrings
                 import org.allbinary.logic.string.StringMaker
@@ -126,6 +129,8 @@ Created By: Travis Berthelot
                 open public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals : GDSceneGlobals
                 {
 
+                    companion object {
+
                     private val instance: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals =
                         GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals()
 
@@ -137,7 +142,9 @@ Created By: Travis Berthelot
                         return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance
                     }
 
-                        protected val logUtil: LogUtil = LogUtil.getInstance()
+                    }
+
+                        val logUtil: LogUtil = LogUtil.getInstance()
                         private val commonStrings: CommonStrings = CommonStrings.getInstance()
                         private val stringUtil: StringUtil = StringUtil.getInstance()
                         private val EMPTY_STRING: String = stringUtil.EMPTY_STRING
@@ -147,7 +154,8 @@ Created By: Travis Berthelot
                         private val gameTickDisplayInfoSingleton: GameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance()
                         private val smallIntegerSingletonFactory: SmallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
                         private val pointFactory: PointFactory = PointFactory.getInstance()
-                        private val gdNodeUtil: GDNodeUtil = GDNodeUtil.getInstance();
+                        private val gdNodeUtil: GDNodeUtil = GDNodeUtil.getInstance()
+                        private val touchMotionGestureFactory: TouchMotionGestureFactory = TouchMotionGestureFactory.getInstance()
 
                         //private val gameLayerStrings: GDGameLayerStrings = GDGameLayerStrings.getInstance()
 
@@ -190,13 +198,13 @@ Created By: Travis Berthelot
 
                         <xsl:for-each select="../externalEvents" >
                             <xsl:if test="$layoutName = associatedLayout" >
-                        public var <xsl:value-of select="name" />GDNode: GDNode = null
+                        public var <xsl:value-of select="name" />GDNode: GDNode = this.gdNodeUtil.NULL_GDNODE
                             </xsl:if>
                         </xsl:for-each>
 
                         <xsl:for-each select="../externalLayouts" >
                             <xsl:if test="$layoutName = associatedLayout" >
-                        public var <xsl:value-of select="name" />GDNode: GDNode = null
+                        public var <xsl:value-of select="name" />GDNode: GDNode = this.gdNodeUtil.NULL_GDNODE
                             </xsl:if>
                         </xsl:for-each>
 
@@ -393,25 +401,25 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                         <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
-                    public var eventListenerInterfaceLastPoint: GDMotionGestureEventListener
-                    public var lastPointGDNode: GDNode
+                    public var eventListenerInterfaceLastPoint: GDMotionGestureEventListener = GDMotionGestureEventListener.NULL_GD_MOTION_GESTURE_EVENT_LISTENER
+                    public var lastPointGDNode: GDNode = this.gdNodeUtil.NULL_GDNODE
 
                     public var inUseMotionEventListIndex: Int = 0
                     public var processingMotionEventListIndex: Int = 0
-                    public var motionEventListOfList: Array&lt;BasicArrayList&gt; = arrayOf(
+                    public var motionEventListOfList: Array&lt;BasicArrayList?&gt; = arrayOf(
                         BasicArrayListD(),
                         BasicArrayListD()
                     )
                     public var inUseScrollingMotionEventListIndex: Int = 0
                     public var processingScrollingMotionEventListIndex: Int = 0
-                    public var scrollingMotionEventListOfList: Array&lt;BasicArrayList&gt; = arrayOf(
+                    public var scrollingMotionEventListOfList: Array&lt;BasicArrayList?&gt; = arrayOf(
                         BasicArrayListD(),
                         BasicArrayListD()
                     )
 
                     //public var currentButtonGDNodePressed: GDNode? = null
-                    var lastMotionGestureInput: MotionGestureInput = null
-                    var lastScrollingMotionGestureInput: MotionGestureInput = null
+                    var lastMotionGestureInput: MotionGestureInput = touchMotionGestureFactory.NO_MOTION
+                    var lastScrollingMotionGestureInput: MotionGestureInput = touchMotionGestureFactory.NO_MOTION
                     </xsl:if>
 
                     //eventsClassPropertyActions - START
@@ -500,36 +508,24 @@ Created By: Travis Berthelot
 
                         val layerManagerEventHandler: LayerManagerEventHandler = LayerManagerEventHandler.getInstance()
 
-                        class SceneLayoutLayerManagerEventListener: LayerManagerEventListener {
+                        open class LayoutSceneLayerManagerEventListener : LayerManagerEventListener {
 
-                            private val gdGameGlobals: GDGameGlobals
+                            private val gdGameGlobals: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals
 
-                            open public SceneLayoutLayerManagerEventListener(gdGameGlobals: GDGameGlobals) {
-                                this.gdGameGlobals = gdGameGlobals;
+                            public constructor(gdGameGlobals: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals) {
+                                this.gdGameGlobals = gdGameGlobals
                             }
 
-                            open public fun onDeleteLayerManagerEvent(layerManagerEvent: LayerManagerEvent) {
+                            @Throws(Exception::class)
+                            override fun onDeleteLayerManagerEvent(layerManagerEvent: LayerManagerEvent)
+                            {
                                 val layerInterface: AllBinaryLayer = layerManagerEvent.getLayerInterface()
-
-                                this.gdGameGlobals.layerManagerEventListenerRemove(layerInterface);
+                                this.gdGameGlobals.layerManagerEventListenerRemove(layerInterface)
                             }
 
                         }
 
-                        layerManagerEventListener = new SceneLayoutLayerManagerEventListener(this);
-
-                        layerManagerEventListener = object : LayerManagerEventListener() {
-
-                            open public fun onDeleteLayerManagerEvent(layerManagerEvent: LayerManagerEvent) {
-                                val layerInterface: AllBinaryLayer = layerManagerEvent.getLayerInterface()
-
-                    <xsl:call-template name="layerManagerEventListenerRemove" >
-                    </xsl:call-template>
-                    <xsl:text>&#10;</xsl:text>
-                            }
-
-                        }
-
+                        layerManagerEventListener = LayoutSceneLayerManagerEventListener(this)
                         layerManagerEventHandler.addListener(layerManagerEventListener)
 
                     }
@@ -557,7 +553,7 @@ Created By: Travis Berthelot
                     }
 
                     open public fun log2(value: Int): Double {
-                        return Math.log(value)
+                        return Math.log(value.toDouble())
                     }
 
                     open public fun Random(range: Int): Int {
@@ -592,12 +588,12 @@ Created By: Travis Berthelot
                         return string
                     }
 
-                    open public fun VariableChildCount(array: Array&lt;String&gt;): Int {
-                        return array.length
+                    open public fun VariableChildCount(array: Array&lt;String?&gt;): Int {
+                        return array.size
                     }
 
                     open public fun VariableChildCount(array: IntArray): Int {
-                        return array.length
+                        return array.size
                     }
 
                     open public fun GlobalVariable(value: String): String {
@@ -617,28 +613,35 @@ Created By: Travis Berthelot
                     }
 
                     open public fun MouseX(string: String, value: Int): Int {
+                        var string = string
+                        var value = value
                         return value
                     }
 
                     open public fun MouseY(string: String, value: Int): Int {
+                        var string = string
+                        var value = value
                         return value
                     }
 
                     open public fun CameraX(string: String, value: Int): Int {
+                        var value = value
                         return 0
                     }
 
                     open public fun CameraY(string: String, value: Int): Int {
+                        var value = value
                         return 0
                     }
 
                     open public fun CameraWidth(string: String, value: Int): Int {
+                        var value = value
                         return gameTickDisplayInfoSingleton.getLastWidth()
                     }
 
                     open public fun ToString(value: Int): String {
                         if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
-                            return Integer.toString(value)
+                            return value.toString()
                         } else {
                             return smallIntegerSingletonFactory.getString(value)
                         }

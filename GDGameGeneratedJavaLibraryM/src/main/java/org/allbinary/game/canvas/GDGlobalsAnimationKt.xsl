@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -81,6 +82,8 @@ Created By: Travis Berthelot
                 open public class GDGlobalsSpecialAnimation : GDSpecialAnimation
                 {
 
+                    companion object {
+
                     private val instance: GDGlobalsSpecialAnimation = GDGlobalsSpecialAnimation()
 <!--
                     companion object {
@@ -99,6 +102,8 @@ Created By: Travis Berthelot
                         open public fun getInstance(): GDGlobalsSpecialAnimation {
                             return GDGlobalsSpecialAnimation.instance
                         }
+
+                    }
 
                         private val nullUtil: NullUtil = NullUtil.getInstance()
                         private val arrayUtil: ArrayUtil = ArrayUtil.getInstance()
@@ -128,7 +133,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     //eventsProcess - END
 
-                    var size: Int
+                    var size: Int = 0
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:variable name="objectName" select="name" />
@@ -187,6 +192,9 @@ Created By: Travis Berthelot
                     }
 
                     open public fun paint(graphics: Graphics, x: Int, y: Int) {
+                        var graphics = graphics
+                        var x = x
+                        var y = y
                         //gdNodeStatsFactory.reset()
 
                     <xsl:call-template name="paintDebugButtons" >

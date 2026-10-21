@@ -47,18 +47,20 @@ import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory
 import org.allbinary.graphics.displayable.command.MyCommandsFactory
 import org.allbinary.util.ABHashtable
 
-open class GDGame<xsl:value-of select="$layoutName" />CanvasRunnable, Runnable
+open class GDGame<xsl:value-of select="$layoutName" />CanvasRunnable : Runnable
 {
-    protected val logUtil: LogUtil = LogUtil.getInstance()
+    val logUtil: LogUtil = LogUtil.getInstance()
     private val commonStrings: CommonStrings = CommonStrings.getInstance()
 
     private val demoGameMidlet: GDGameMIDlet
-    private val hashtable: ABHashtable
+    private val hashtable: ABHashtable&lt;Any, Any&gt;
 
     private val startGameMidletEvent: DemoGameMidletEvent
 
-    constructor(DemoGameMidlet demoGameMidlet, ABHashtable hashtable)
+    constructor(demoGameMidlet: DemoGameMidlet, hashtable: ABHashtable&lt;Any, Any&gt;)
     {
+        var demoGameMidlet = demoGameMidlet
+        var hashtable = hashtable
         this.demoGameMidlet = demoGameMidlet as GDGameMIDlet
         this.hashtable = hashtable
 
@@ -66,7 +68,7 @@ open class GDGame<xsl:value-of select="$layoutName" />CanvasRunnable, Runnable
                 this, DemoGameMidletStateFactory.getInstance().START_GAME)
     }
 
-    fun run()
+    override fun run()
     {
         try
         {

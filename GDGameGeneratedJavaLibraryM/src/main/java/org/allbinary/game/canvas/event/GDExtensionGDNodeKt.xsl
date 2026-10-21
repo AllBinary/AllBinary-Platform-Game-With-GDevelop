@@ -111,13 +111,13 @@ Created By: Travis Berthelot
                                 //private val EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=-1 type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />"
                                 <xsl:text>&#10;</xsl:text>
 
-                                private val mappedObjectArray: Array&lt;Object&gt; = arrayOfNulls&lt;Object&gt;(<xsl:value-of select="count(../parameters) + 1" />)
+                                private val mappedObjectArray: Array&lt;Any?&gt; = arrayOfNulls(<xsl:value-of select="count(../parameters) + 1" />)
                                 private val mappedIntArray: IntArray = IntArray(<xsl:value-of select="count(../parameters) + 1" />)
                                 private val mappedLongArray: LongArray = LongArray(<xsl:value-of select="count(../parameters) + 1" />)
                                 private val mappedFloatArray: FloatArray = FloatArray(<xsl:value-of select="count(../parameters) + 1" />)
 
                                 //eventsFunctionsGDNode - event - <xsl:value-of select="position()" /> - //extension
-                                override public fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                                override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
                                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
                 <xsl:for-each select="../objectGroups" >
@@ -245,7 +245,7 @@ Created By: Travis Berthelot
                                 <xsl:text>&#10;</xsl:text>
 
                                 //eventsFunctionsGDNode - //extension
-                                override public fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                                override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
                                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "mapping", this, this.commonStrings.PROCESS)
 
                         <xsl:for-each select="events" >

@@ -23,6 +23,7 @@ package org.allbinary.game.layer
 
 import org.allbinary.animation.Animation
 import org.allbinary.animation.AnimationInterfaceFactoryInterface
+import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface
 import org.allbinary.game.identification.Group
 import org.allbinary.game.layer.special.GDCustomCollidableBehavior
@@ -46,10 +47,10 @@ open public class GDCustomGameLayerFactory : GDGameLayerFactory
     private val width: Int
     private val height: Int
 
-    public constructor(primitiveDrawingAnimationFactory: AnimationInterfaceFactoryInterface, gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, groupInterface: Array&lt;Group&gt;, behaviorList: BasicArrayList, animationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface&gt;, proceduralAnimationInterfaceFactoryInterfaceArray: Array&lt;ProceduralAnimationInterfaceFactoryInterface&gt;, layerInfo: Rectangle, rectangleArrayOfArrays: Array&lt;Array&lt;Rectangle&gt;&gt;) : this(primitiveDrawingAnimationFactory, gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance()) {
+    public constructor(primitiveDrawingAnimationFactory: AnimationInterfaceFactoryInterface, gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, groupInterface: Array&lt;Group?&gt;, behaviorList: BasicArrayList, animationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface?&gt;, proceduralAnimationInterfaceFactoryInterfaceArray: Array&lt;BasicAnimationInterfaceFactoryInterface?&gt;, layerInfo: Rectangle, rectangleArrayOfArrays: Array&lt;Array&lt;Rectangle?&gt;?&gt;) : this(primitiveDrawingAnimationFactory, gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance()) {
     }
 
-    public constructor(primitiveDrawingAnimationFactory: AnimationInterfaceFactoryInterface, gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, groupInterface: Array&lt;Group&gt;, behaviorList: BasicArrayList, animationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface&gt;, proceduralAnimationInterfaceFactoryInterfaceArray: Array&lt;ProceduralAnimationInterfaceFactoryInterface&gt;, layerInfo: Rectangle, rectangleArrayOfArrays: Array&lt;Array&lt;Rectangle&gt;&gt;, animationBehaviorFactory: GDAnimationBehaviorBaseFactory) : super(gameLayerList, gameLayerDestroyedList,
+    public constructor(primitiveDrawingAnimationFactory: AnimationInterfaceFactoryInterface, gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, groupInterface: Array&lt;Group?&gt;, behaviorList: BasicArrayList, animationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface?&gt;, proceduralAnimationInterfaceFactoryInterfaceArray: Array&lt;BasicAnimationInterfaceFactoryInterface?&gt;, layerInfo: Rectangle, rectangleArrayOfArrays: Array&lt;Array&lt;Rectangle?&gt;?&gt;, animationBehaviorFactory: GDAnimationBehaviorBaseFactory) : super(gameLayerList, gameLayerDestroyedList,
             groupInterface,
             behaviorList,
             animationInterfaceFactoryInterfaceArray,
@@ -63,7 +64,7 @@ open public class GDCustomGameLayerFactory : GDGameLayerFactory
         this.height = this.layerInfo.getHeight()
     }
 
-    override public fun create(layoutIndex: Int, name: String, gdObject: GDObject, scaleX: Float, scaleY: Float, collidableBehavior: GDConditionWithGroupActions): GDGameLayer {
+    override fun create(layoutIndex: Int, name: String, gdObject: GDObject, scaleX: Float, scaleY: Float, collidableBehavior: GDConditionWithGroupActions): GDGameLayer {
         if(!name.startsWith(gdObject.name)) {
             val stringUtil: StringUtil = StringUtil.getInstance()
             this.logUtil.put(StringMaker().append(name).append(" 0GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").append(this.animationInterfaceFactoryInterfaceArray.size).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(stringUtil.toString(this.animationInterfaceFactoryInterfaceArray[0])).toString(), this, "create", Exception())
@@ -71,7 +72,7 @@ open public class GDCustomGameLayerFactory : GDGameLayerFactory
 
         val gdObjectWidth: Int = gdObject.Width(null)
         val gdObjectHeight: Int = gdObject.Height(null)
-        ////this.logUtil.put(StringMaker().append(name).append(" 1GDObject name: ").append(gdObject.name).append(" gdObjectWidth: ").append(gdObjectWidth).append("gdObjectHeight: ").append(gdObjectHeight).append(" this.width: ").append(this.width).append(" this.height: ").append(this.height).toString(), this, "create")
+        ////this.logUtil.put(StringMaker().append(name).append(" 1GDObject name: ").append(gdObject.name).append(" gdObjectWidth: ").appendint(gdObjectWidth).append("gdObjectHeight: ").appendint(gdObjectHeight).append(" this.width: ").appendint(this.width).append(" this.height: ").appendint(this.height).toString(), this, "create")
         if(gdObjectWidth != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> gdObjectHeight != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> (this.width != gdObjectWidth || this.height != gdObjectHeight)) {
             this.layerInfo.setWidth(gdObjectWidth)
             this.layerInfo.setHeight(gdObjectHeight)

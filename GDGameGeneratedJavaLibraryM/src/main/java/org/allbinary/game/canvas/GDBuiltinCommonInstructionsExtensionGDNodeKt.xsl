@@ -41,7 +41,7 @@ Created By: Travis Berthelot
             <xsl:if test="contains($selectedNodeIds, $selectedNodeIdWithSep) or $selectedNodeIds = 'All'" >
 
         //nodeId=<xsl:value-of select="$selectedNodeId" /> - //extension - childevents
-        open public class GD<xsl:value-of select="$selectedNodeId" />GDNode : GDNode
+        open public inner class GD<xsl:value-of select="$selectedNodeId" />GDNode : GDNode
         {
             public constructor() : super(<xsl:value-of select="$selectedNodeId" />) {
 
@@ -86,7 +86,7 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 //BuiltinCommonInstructions::ForEachChildVariable - event - //extension
-                override public fun process(): Boolean {
+                override fun process(): Boolean {
                     super.processStats()
 
                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
@@ -124,7 +124,7 @@ Created By: Travis Berthelot
 
 <!--                <xsl:if test="not(contains(disabled, 'true'))" >-->
                 //BuiltinCommonInstructions::ForEach - //extension
-                override public fun process(): Boolean {
+                override fun process(): Boolean {
                     super.processStats()
 
                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
@@ -156,7 +156,7 @@ Created By: Travis Berthelot
 
 <!--                <xsl:if test="not(contains(disabled, 'true'))" >-->
                 //BuiltinCommonInstructions::ForEachChildVariable - event
-                override public fun process(): Boolean {
+                override fun process(): Boolean {
                     super.processStats()
 
                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
@@ -165,7 +165,7 @@ Created By: Travis Berthelot
 
                 }
 
-                override public fun process(index3: Int): Boolean {
+                override fun process(index3: Int): Boolean {
                     super.processStats()
 
                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
@@ -174,7 +174,7 @@ Created By: Travis Berthelot
 
                 }
 
-                override public fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
                     super.processStats(motionGestureEvent)
 
                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, this.commonStrings.PROCESS)
@@ -182,7 +182,7 @@ Created By: Travis Berthelot
                     return true
                 }
 
-                override public fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                override fun processGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
                     super.processGDStats(gameLayerArray)
 
                     //this.logUtil.putF(EVENT_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)

@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -72,11 +73,15 @@ Created By: Travis Berthelot
                 open public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes : SpecialAnimation
                 {
 
+                    companion object {
+
                     private val instance: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes =
                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes()
 
                     open public fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes {
                         return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes.instance
+                    }
+
                     }
 
 <!--                private val stringUtil: StringUtil = StringUtil.getInstance()
@@ -94,7 +99,7 @@ Created By: Travis Berthelot
                     public val layoutNameList: BasicArrayList = BasicArrayListD()
                     public val layoutGDNodeList: BasicArrayList = BasicArrayListD()
 
-                    private fun createSpecialAnimationImageResources(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources {
+                    open fun createSpecialAnimationImageResources(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources? {
                         try {
                             return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstanceOrCreate()
                         } catch (e: Exception) {
@@ -103,7 +108,7 @@ Created By: Travis Berthelot
                         return null
                     }
 
-                    private fun createSpecialAnimationGDResources(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources {
+                    open fun createSpecialAnimationGDResources(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources? {
                         try {
                             return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstanceOrCreate()
                         } catch (e: Exception) {
@@ -127,9 +132,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>-->
 
-                            val imageResources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources = this.createSpecialAnimationImageResources()
+                            val imageResources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources = this.createSpecialAnimationImageResources()!!
 
-                            val resources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources = this.createSpecialAnimationGDResources()
+                            val resources: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources = this.createSpecialAnimationGDResources()!!
 
                             <xsl:for-each select="../externalLayouts" >
                                 <xsl:if test="$layoutName = associatedLayout" >

@@ -38,7 +38,7 @@ Created By: Travis Berthelot
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
                     //objectTimerConditionGDNode - //Condition - //Timer - GDNode
-                    <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>val NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = object : GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>val NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: GDNode = object : GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                     <xsl:value-of select="$eventAsString" disable-output-escaping="yes" />
 
@@ -98,7 +98,7 @@ Created By: Travis Berthelot
                         }
 
                         @Throws(Exception::class)
-                        override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                        override fun processGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
                             super.processGDStats(gameLayerArray)
 
                             try {
@@ -114,7 +114,7 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >
-                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                        override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
                             //Map from object array with action params
                             val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
@@ -124,12 +124,12 @@ Created By: Travis Berthelot
                         }
                         </xsl:if>
 
-                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                        override fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
                             val gdObject: GDObject = gameLayer.gdObject
                             this.process(gdObject, x, y)
                         }
 
-                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                        override fun process(gdObject: GDObject, x: Int, y: Int) {
                             throw RuntimeException()
                         }
 

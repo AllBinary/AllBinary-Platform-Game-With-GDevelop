@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -60,6 +61,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.AndroidUtil
                 import org.allbinary.J2MEUtil
+                import org.allbinary.game.layout.GDConfig
                 import org.allbinary.animation.AnimationBehavior
                 import org.allbinary.animation.special.SpecialAnimation
                 import org.allbinary.game.configuration.persistance.JSONPersistance
@@ -86,14 +88,16 @@ Created By: Travis Berthelot
                 open public class GDExtensionGDNodes : SpecialAnimation
                 {
 
+                    companion object {
+
                     private val instance: GDExtensionGDNodes = GDExtensionGDNodes()
 
                     open public fun getInstance(): GDExtensionGDNodes {
                         return GDExtensionGDNodes.instance
                     }
 
-                    protected val logUtil: LogUtil = LogUtil.getInstance()
-                    private val commonStrings: CommonStrings = CommonStrings.getInstance()
+                    }
+
                     private val stringUtil: StringUtil = StringUtil.getInstance()
                     private val nullUtil: NullUtil = NullUtil.getInstance()
                     private val arrayUtil: ArrayUtil = ArrayUtil.getInstance()
@@ -170,13 +174,13 @@ Created By: Travis Berthelot
             <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>
             <xsl:for-each select="eventsFunctions" >
                 <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
-                        <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>var <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode: GDNode = null
+                        <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>var <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode: GDNode
             </xsl:for-each>
             <xsl:for-each select="eventsBasedObjects" >
                 <xsl:variable name="eventsBasedObjectsName" ><xsl:value-of select="name" /></xsl:variable>
                 <xsl:for-each select="eventsFunctions" >
                     <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
-                        <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>var <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode: GDNode = null
+                        <xsl:if test="$extensionName = 'TextInputVirtualKeyboard' or $extensionName = 'TouchScreen' or $extensionName = 'PanelSpriteSlider' or $extensionName = 'MirrorFillBarExtension' or $extensionName = 'SpriteMultitouchJoystick'" >//</xsl:if>var <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode: GDNode
                 </xsl:for-each>
             </xsl:for-each>
 
@@ -245,7 +249,7 @@ Created By: Travis Berthelot
                     }
 
                     open public fun round(value: Float): Float {
-                        return Math.round(value)
+                        return Math.round(value).toFloat()
                     }
 
                     open public fun GetArgumentAsNumber(value: Int): Int {

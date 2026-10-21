@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
 
     <xsl:output method="text" indent="yes" />
@@ -42,13 +43,17 @@ package org.allbinary.game.canvas
  */
 open class GDGameThreedAnimationResources {
 
+    companion object {
+
     private val instance: GDGameThreedAnimationResources = GDGameThreedAnimationResources()
 
     /**
      * @return the instance
      */
-    fun getInstance(): GDGameThreedAnimationResources {
+    open fun getInstance(): GDGameThreedAnimationResources {
         return GDGameThreedAnimationResources.instance
+    }
+
     }
 
     private constructor() {

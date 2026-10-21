@@ -610,11 +610,11 @@
                             <xsl:if test="contains(name, 'highScoresNameArray')" >
 
                         public var <xsl:value-of select="name" />Index: Int = 0
-                        public var <xsl:value-of select="name" />: Array&lt;String&gt; = arrayOf(
-<!--                                        <xsl:for-each select="children" >
+                        public var <xsl:value-of select="name" />: Array&lt;String?&gt; = arrayOf(
+<xsl:variable name="kotlinArrayItems613" ><!--                                        <xsl:for-each select="children" >
                                         <xsl:value-of select="value" />,
                                         <xsl:text>&#10;</xsl:text>
-                                        </xsl:for-each>                                        -->
+                                        </xsl:for-each>                                        --></xsl:variable><xsl:call-template name="kotlinRemoveTrailingComma" ><xsl:with-param name="text" select="$kotlinArrayItems613" /></xsl:call-template>
                         )
 
                             </xsl:if>
@@ -635,7 +635,7 @@
                                 </xsl:if>
 
                         public var <xsl:value-of select="name" />Index: Int = 0
-                        public var <xsl:value-of select="name" />: Array&lt;String&gt; = arrayOf(
+                        public var <xsl:value-of select="name" />: Array&lt;String?&gt; = arrayOf(
                                         <xsl:for-each select="children" >
                                             <xsl:if test="string-length(value) > 0" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate(value, '.', '_'), ':', '_'), '\', '_')" /></xsl:with-param></xsl:call-template>,</xsl:if>
                                             <xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING,</xsl:if>
@@ -644,7 +644,7 @@
                         )
 
 <!--
-                        public var <xsl:value-of select="name" />: Array&lt;String&gt; = arrayOf(
+                        public var <xsl:value-of select="name" />: Array&lt;String?&gt; = arrayOf(
                             <xsl:for-each select="children" >
                             "<xsl:value-of select="value" />",
                             </xsl:for-each>

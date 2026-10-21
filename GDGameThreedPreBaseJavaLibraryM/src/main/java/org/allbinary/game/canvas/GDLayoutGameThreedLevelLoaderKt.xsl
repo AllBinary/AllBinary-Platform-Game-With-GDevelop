@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -118,7 +119,7 @@ Created By: Travis Berthelot
 
                         private val threedAnimationResources: GDGameThreedAnimationResources = GDGameThreedAnimationResources.getInstance()
 
-                    fun build(gl: GL10, glInstanceVersion: String) {
+                    open fun build(gl: GL10, glInstanceVersion: String) {
 
                         //try {
 
@@ -181,7 +182,7 @@ Created By: Travis Berthelot
 
                     <xsl:text>&#10;</xsl:text>
 
-                    protected fun addMapCell(gl: GL10, trackObject3dContainer: Object3d, textureName: String)
+                    open fun addMapCell(gl: GL10, trackObject3dContainer: Object3d, textureName: String)
 
                     {
                         //var progressCanvas: ProgressCanvas = ProgressCanvasFactory.getInstance()

@@ -53,7 +53,7 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 //BuiltinCommonInstructions::ForEach - //object=<xsl:value-of select="object" /> - //orderBy=<xsl:value-of select="orderBy" /> - //order=<xsl:value-of select="order" />
-                override public fun process(): Boolean {
+                override fun process(): Boolean {
                     super.processStats()
 
                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
@@ -107,7 +107,7 @@ Created By: Travis Berthelot
 
                 }
 
-                override public fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
                     super.processStats(motionGestureEvent)
 
                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, this.commonStrings.PROCESS)
@@ -115,7 +115,7 @@ Created By: Travis Berthelot
                     return this.process()
                 }
 
-                override public fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                override fun processGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
                     super.processGDStats(gameLayerArray)
 
                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
@@ -171,7 +171,8 @@ Created By: Travis Berthelot
                 open public fun processList(gdGameLayerList: BasicArrayList) {
                     var <xsl:value-of select="$object" />GDGameLayer: GDGameLayer
                     //for(index in 0 until size) {
-                    for(index in 0 until gdGameLayerList.size()) {
+                    var index: Int = 0
+                    while(index &lt; gdGameLayerList.size()) {
 
                         val initialSize: Int = gdGameLayerList.size()
                         <xsl:value-of select="$object" />GDGameLayer = gdGameLayerList.get(index) as GDGameLayer
@@ -182,7 +183,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                         <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                         //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameGlobals.tempGameLayerArray)) {
+                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(gameGlobals.tempGameLayerArray)) {
                     </xsl:for-each>
 
                         <xsl:call-template name="actionsProcessing" >
@@ -202,7 +203,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                             <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                         //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> totalRecursions=<xsl:value-of select="$totalRecursions" />
-                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameGlobals.tempGameLayerArray)
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(gameGlobals.tempGameLayerArray)
                             </xsl:if>
                         </xsl:for-each>
 
@@ -213,6 +214,7 @@ Created By: Travis Berthelot
                         if(initialSize <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> gdGameLayerList.size()) {
                             index--
                         }
+                            index++
                     }
                 }
 
@@ -220,11 +222,11 @@ Created By: Travis Berthelot
                 open public fun sort(gdGameLayerList: BasicArrayList) {
 <!--
                     var stringBuilder: StringMaker = StringMaker()
-                    lateinit var <xsl:value-of select="$object" />: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$object" />
+                    var <xsl:value-of select="$object" />: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$object" />
                     for(index in 0 until gdGameLayerList.size()) {
 
                         <xsl:value-of select="$object" /> = (gdGameLayerList.get(index) as GDGameLayer).gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$object" />
-                        stringBuilder.append(<xsl:value-of select="orderBy" />).append(",")
+                        stringBuilder.appendint(<xsl:value-of select="orderBy" />).append(",")
 
                     }
                     this.logUtil.put(stringBuilder.toString(), this, this.commonStrings.PROCESS, Exception())
@@ -258,7 +260,7 @@ Created By: Travis Berthelot
                     for(index in 0 until gdGameLayerList.size()) {
 
                         <xsl:value-of select="$object" /> = (gdGameLayerList.get(index) as GDGameLayer).gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$object" />
-                        stringBuilder.append(<xsl:value-of select="orderBy" />).append(",")
+                        stringBuilder.appendint(<xsl:value-of select="orderBy" />).append(",")
 
                     }
                     this.logUtil.put(stringBuilder.toString(), this, this.commonStrings.PROCESS, Exception())

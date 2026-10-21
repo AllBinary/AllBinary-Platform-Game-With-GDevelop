@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
 
@@ -39,6 +40,7 @@ Created By: Travis Berthelot
         import org.allbinary.animation.Animation
         import org.allbinary.animation.AnimationInterfaceFactoryInterface
         import org.allbinary.animation.IndexedAnimationInterface
+        import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface
         import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface
         import org.allbinary.animation.text.TextInterface
         import org.allbinary.direction.Direction
@@ -165,7 +167,6 @@ Created By: Travis Berthelot
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >org.allbinary.game.behavior.topview.TopViewCharacterInterface </xsl:if>
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >, CurrentGeographicMapCellPositionInterface, org.allbinary.game.layer.PathFindingLayerInterface </xsl:if>
                 {
-                    private val stringUtil: StringUtil = StringUtil.getInstance()
                     private val basicGeographicMapUtil: BasicGeographicMapUtil = BasicGeographicMapUtil.getInstance()
 
                     private val gdBehaviorUtil: GDBehaviorUtil = GDBehaviorUtil.getInstance()
@@ -178,7 +179,7 @@ Created By: Travis Berthelot
                     private val basicColorFactory: BasicColorFactory = BasicColorFactory.getInstance()
                     private val angleFactory: AngleFactory = AngleFactory.getInstance()
 
-                    protected val debug: Boolean = true
+                    val debug: Boolean = true
                     public val showMoreCaptionStates: Boolean = debug
                     private val waypointLayerInterfaceFactoryInterface: LayerInterfaceFactoryInterface
 
@@ -193,7 +194,7 @@ Created By: Travis Berthelot
 
                     private var waypointBehaviorBase: WaypointBehaviorBase = WaypointBehaviorBase()
 
-                    protected var rtsLogHelper: RTSLayerLogHelper = RTSLayerLogHelper.getInstance()
+                    var rtsLogHelper: RTSLayerLogHelper = RTSLayerLogHelper.getInstance()
                     public var rtsLayer2LogHelper: RTSLayer2LogHelper = RTSLayer2LogHelper.getInstance()
                     public var waypointLogHelper: WaypointLogHelper = WaypointLogHelper.getInstance()
                     public var waypoint2LogHelper: Waypoint2LogHelper = Waypoint2LogHelper.getInstance()
@@ -226,7 +227,7 @@ Created By: Travis Berthelot
                 <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
                     public val topViewGameBehavior: org.allbinary.game.behavior.topview.GeographicMapTopViewLayerBehavior
 
-                    protected val topViewCharacterBehavior: org.allbinary.game.behavior.topview.TopViewCharacterBehavior =
+                    val topViewCharacterBehavior: org.allbinary.game.behavior.topview.TopViewCharacterBehavior =
                         <xsl:if test="1" >org.allbinary.game.behavior.topview.PlayerTopViewCharacterBehavior()</xsl:if>
                         <xsl:if test="0" >org.allbinary.game.behavior.topview.NonPlayerTopViewCharacterBehavior()</xsl:if>
 
@@ -246,27 +247,27 @@ Created By: Travis Berthelot
 
                     private val id: Int = 0
 
-                    protected val inputProcessorArray: Array&lt;GameInputProcessor&gt; = arrayOfNulls&lt;GameInputProcessor&gt;(InputFactory.getInstance().MAX)
+                    val inputProcessorArray: Array&lt;GameInputProcessor?&gt; = arrayOfNulls(InputFactory.getInstance().MAX)
 
-    protected val isSingleKeyProcessing: Boolean =
+    val isSingleKeyProcessing: Boolean =
         Features.getInstance().isFeature(
                 InputFeatureFactory.getInstance().SINGLE_KEY_REPEAT_PRESS)
             || Features.getInstance().isFeature(
                     InputFeatureFactory.getInstance().SINGLE_KEY_PRESS)
 
                     private val initialJumpBehavior: org.allbinary.game.behavior.platformer.InitialJumpBehavior = object : org.allbinary.game.behavior.platformer.InitialJumpBehavior() {
-                        open public fun process() {
+                        open public override fun process() {
                             //SecondaryPlayerQueueFactory.getInstance().add(JumpSound.getInstance())
                         }
                     }
 
-                    protected val platformGameBehavior: org.allbinary.game.behavior.platformer.GeographicMapPlatformGameLayerBehavior =
+                    val platformGameBehavior: org.allbinary.game.behavior.platformer.GeographicMapPlatformGameLayerBehavior =
                         org.allbinary.game.behavior.platformer.GeographicMapPlatformGameLayerBehavior(64, false, 6)
-                    protected val platformCharacterBehavior: org.allbinary.game.behavior.platformer.PlatformCharacterBehavior =
+                    val platformCharacterBehavior: org.allbinary.game.behavior.platformer.PlatformCharacterBehavior =
                         <xsl:if test="1" >org.allbinary.game.behavior.platformer.PlayerPlatformCharacterBehavior()</xsl:if>
                         <xsl:if test="0" >org.allbinary.game.behavior.platformer.NonPlayerPlatformCharacterBehavior()</xsl:if>
 
-                    protected val rectangleArrayOfArrays: Array&lt;Array&lt;Rectangle&gt;&gt;
+                    val rectangleArrayOfArrays: Array&lt;Array&lt;Rectangle?&gt;?&gt;
 
 <!--
                     open fun hasCollisionMask(): Boolean {
@@ -278,21 +279,21 @@ Created By: Travis Berthelot
                     }
 -->
 
-                    protected var acceleration: BasicAccelerationProperties
+                    var acceleration: BasicAccelerationProperties
 
-    protected var angle: Short = 0
-    protected var lastDirectionKey: Int = Canvas.RIGHT
-    protected var direction: Direction = DirectionFactory.getInstance().RIGHT
-    protected var lastDirection: Direction = direction
+    var angle: Short = 0
+    var lastDirectionKey: Int = Canvas.RIGHT
+    var direction: Direction = DirectionFactory.getInstance().RIGHT
+    var lastDirection: Direction = direction
 
-    protected var directionChanged: Boolean = false
+    var directionChanged: Boolean = false
 
                     </xsl:if>
                 </xsl:for-each>
             </xsl:for-each>
         </xsl:for-each>
 
-                    public constructor(layoutIndex: Int, primitiveDrawing: Animation, gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, behaviorList: BasicArrayList, remoteInfo: RemoteInfo, groupInterface: Array&lt;Group&gt;, gdName: String, animationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface&gt;, proceduralAnimationInterfaceFactoryInterfaceArray: Array&lt;ProceduralAnimationInterfaceFactoryInterface&gt;, layerInfo: Rectangle, rectangleArrayOfArrays: Array&lt;Array&lt;Rectangle&gt;&gt;, gdObject: GDObject, animationBehavior: GDAnimationBehaviorBase, resetAnimationBehavior: Boolean) : super(primitiveDrawing, gameLayerList, gameLayerDestroyedList,
+                    public constructor(layoutIndex: Int, primitiveDrawing: Animation, gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, behaviorList: BasicArrayList, remoteInfo: RemoteInfo, groupInterface: Array&lt;Group?&gt;, gdName: String, animationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface?&gt;, proceduralAnimationInterfaceFactoryInterfaceArray: Array&lt;BasicAnimationInterfaceFactoryInterface?&gt;, layerInfo: Rectangle, rectangleArrayOfArrays: Array&lt;Array&lt;Rectangle?&gt;?&gt;, gdObject: GDObject, animationBehavior: GDAnimationBehaviorBase, resetAnimationBehavior: Boolean) : super(primitiveDrawing, gameLayerList, gameLayerDestroyedList,
                             behaviorList,
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
@@ -350,7 +351,7 @@ Created By: Travis Berthelot
 
                     topViewGameBehavior = object : org.allbinary.game.behavior.topview.GeographicMapTopViewMaskGameLayerBehavior(64, false, 6) {
 
-    override public fun moveAndLand(geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt;, geographicMapCellTypeArray: Array&lt;GeographicMapCellType&gt;, geographicMapCellPosition: GeographicMapCellPosition, velocityProperties: VelocityProperties, layer: AllBinaryLayer, x: Int, y: Int) {
+    override fun moveAndLand(geographicMapInterfaceArray: Array&lt;BasicGeographicMap?&gt;, geographicMapCellTypeArray: Array&lt;GeographicMapCellType?&gt;, geographicMapCellPosition: GeographicMapCellPosition, velocityProperties: VelocityProperties, layer: AllBinaryLayer, x: Int, y: Int) {
         //this.logUtil.put(StringMaker().append("x: ").append(x).append(" y: ").append(y).append(CommonSeps.getInstance().SPACE).append(layer.getViewPosition().getX()).toString(), this, "moveAndLand")
 
         if (geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
@@ -374,7 +375,7 @@ Created By: Travis Berthelot
 
                     topViewGameBehavior = object : org.allbinary.game.behavior.topview.GeographicMapTopViewGameLayerBehavior2(64, false, 6) {
 
-    override public fun moveAndLand(geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt;, geographicMapCellTypeArray: Array&lt;GeographicMapCellType&gt;, geographicMapCellPosition: GeographicMapCellPosition, velocityProperties: VelocityProperties, layer: AllBinaryLayer, x: Int, y: Int) {
+    override fun moveAndLand(geographicMapInterfaceArray: Array&lt;BasicGeographicMap?&gt;, geographicMapCellTypeArray: Array&lt;GeographicMapCellType?&gt;, geographicMapCellPosition: GeographicMapCellPosition, velocityProperties: VelocityProperties, layer: AllBinaryLayer, x: Int, y: Int) {
         //this.logUtil.put(StringMaker().append("x: ").append(x).append(" y: ").append(y).append(CommonSeps.getInstance().SPACE).append(layer.getViewPosition().getX()).toString(), this, "moveAndLand")
 
         if (geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
@@ -474,7 +475,7 @@ Created By: Travis Berthelot
 
         }
 
-    override public fun onMeasure() {
+    override fun onMeasure() {
         val textInterface: TextInterface = (this.initIndexedAnimationInterfaceArrayP[0] as TextInterface)
         this.gdObject.width = (textInterface.getWidth() / this.scale).toInt()
         this.gdObject.height = textInterface.getFontHeight()
@@ -484,22 +485,22 @@ Created By: Travis Berthelot
     }
 
         <xsl:if test="not(contains($hasLayoutWithTileMapAndIsTopView, 'found') or contains($foundOtherViewPosition, 'found'))" >
-    open public fun upp() {
+    override fun upp() {
     }
 
-    open public fun leftp() {
+    override fun leftp() {
     }
 
-    open public fun rightp() {
+    override fun rightp() {
     }
 
-    override open public fun reset() {
+    override fun reset() {
     }
 
-    open public fun terrainMove(geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt;, geographicMapCellTypeArray: Array&lt;GeographicMapCellType&gt;, dx: Int, dy: Int) {
+    override fun terrainMove(geographicMapInterfaceArray: Array&lt;BasicGeographicMap?&gt;, geographicMapCellTypeArray: Array&lt;GeographicMapCellType?&gt;, dx: Int, dy: Int) {
     }
 
-    open public fun terrainEvent(dx: Int, dy: Int, geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt;, geographicMapCellTypeArray: Array&lt;GeographicMapCellType&gt;, geographicMapCellPosition: GeographicMapCellPosition) {
+    override public fun terrainEvent(dx: Int, dy: Int, geographicMapInterfaceArray: Array&lt;BasicGeographicMap?&gt;, geographicMapCellTypeArray: Array&lt;GeographicMapCellType?&gt;, geographicMapCellPosition: GeographicMapCellPosition) {
     }
 
         </xsl:if>
@@ -513,7 +514,7 @@ Created By: Travis Berthelot
 
         //var lastString: String = ""
 
-    override public fun move() {
+    override fun move() {
         try {
             //this.logUtil.putF("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move")
 
@@ -536,14 +537,14 @@ Created By: Travis Berthelot
             if(this.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
                 if(this.total <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 5) {
                     this.total++
-                    this.logUtil.putF(StringMaker().append("0LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(stringUtil.toString(this.allBinaryGameLayerManagerP)).toString(), this, "move")
+                    this.logUtil.putF(StringMaker().append("0LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).appendint(this.gdObject.x).append(",").appendint(this.gdObject.y).append(" LayerManager: ").append(stringUtil.toString(this.allBinaryGameLayerManagerP)).toString(), this, "move")
                 }
                 return
             }
 
             val geographicMapCompositeInterface: GeographicMapCompositeInterface = this.allBinaryGameLayerManagerP as GeographicMapCompositeInterface
 
-            val geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt; = geographicMapCompositeInterface.getGeographicMapInterface()
+            val geographicMapInterfaceArray: Array&lt;BasicGeographicMap?&gt; = geographicMapCompositeInterface.getGeographicMapInterface()
 
             if(geographicMapInterfaceArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
                 val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
@@ -568,7 +569,7 @@ Created By: Travis Berthelot
 //                    } else {
 //                        //this.gdObject.setX(lastX)
 //                        //this.gdObject.setY(lastY)
-//                        //this.logUtil.put(StringMaker().append("Move Back?: ").append(this.gdObject.x).append(CommonSeps.getInstance().COMMA).append(this.gdObject.y).toString(), this, "move")
+//                        //this.logUtil.put(StringMaker().append("Move Back?: ").appendint(this.gdObject.x).append(CommonSeps.getInstance().COMMA).appendint(this.gdObject.y).toString(), this, "move")
 //                    }
                     }
                 } else {
@@ -597,7 +598,7 @@ Created By: Travis Berthelot
         }
     }
 
-    override public fun updatePosition() {
+    override fun updatePosition() {
         super.updatePosition()
         this.move()
     }
@@ -615,7 +616,7 @@ Created By: Travis Berthelot
 
             val geographicMapCompositeInterface: GeographicMapCompositeInterface = this.allBinaryGameLayerManagerP as GeographicMapCompositeInterface
 
-            val geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt; = geographicMapCompositeInterface.getGeographicMapInterface()
+            val geographicMapInterfaceArray: Array&lt;BasicGeographicMap?&gt; = geographicMapCompositeInterface.getGeographicMapInterface()
 
             if(geographicMapInterfaceArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
                 val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
@@ -670,27 +671,27 @@ Created By: Travis Berthelot
         this.move2()
     }
 
-    override public fun terrainMove(geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt;, geographicMapCellTypeArray: Array&lt;GeographicMapCellType&gt;, dx: Int, dy: Int) {
+    override fun terrainMove(geographicMapInterfaceArray: Array&lt;BasicGeographicMap?&gt;, geographicMapCellTypeArray: Array&lt;GeographicMapCellType?&gt;, dx: Int, dy: Int) {
         this.topViewCharacterBehavior.terrainMove(this, geographicMapInterfaceArray, dx, dy)
     }
 
-    override public fun terrainEvent(dx: Int, dy: Int, geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt;, geographicMapCellTypeArray: Array&lt;GeographicMapCellType&gt;, geographicMapCellPosition: GeographicMapCellPosition) {
+    override public fun terrainEvent(dx: Int, dy: Int, geographicMapInterfaceArray: Array&lt;BasicGeographicMap?&gt;, geographicMapCellTypeArray: Array&lt;GeographicMapCellType?&gt;, geographicMapCellPosition: GeographicMapCellPosition) {
     }
 
-    override public fun upp() {
+    override fun upp() {
     }
 
-    override public fun leftp() {
+    override fun leftp() {
     }
 
-    override public fun rightp() {
+    override fun rightp() {
     }
 
-    override public fun reset() {
+    override fun reset() {
     }
 
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
-    override public fun paint(graphics: Graphics) {
+    override fun paint(graphics: Graphics) {
         super.paint(graphics)
 
         val viewPosition: ViewPositionBase = this.getViewPosition()
@@ -768,7 +769,7 @@ Created By: Travis Berthelot
             gameKeyEvent = list.get(index) as GameKeyEvent
             key = gameKeyEvent.getKey()
 
-            inputProcessorArray[key].process(allbinaryLayerManager, gameKeyEvent)
+            inputProcessorArray[key]!!.process(allbinaryLayerManager, gameKeyEvent)
         }
         //this.updateSpecialAnimation()
 //      }
@@ -778,15 +779,15 @@ Created By: Travis Berthelot
         VelocityUtil.reduceX(this.velocityInterface, 90, 100)
     }
 
-    open public fun terrainEvent(dx: Int, dy: Int, geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt;, geographicMapCellPosition: GeographicMapCellPosition) {
+    open public fun terrainEvent(dx: Int, dy: Int, geographicMapInterfaceArray: Array&lt;BasicGeographicMap?&gt;, geographicMapCellPosition: GeographicMapCellPosition) {
     }
 
-    open public fun terrainMove(geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt;, geographicMapCellTypeArray: Array&lt;GeographicMapCellType&gt;, dx: Int, dy: Int) {
+    open public fun terrainMove(geographicMapInterfaceArray: Array&lt;BasicGeographicMap?&gt;, geographicMapCellTypeArray: Array&lt;GeographicMapCellType?&gt;, dx: Int, dy: Int) {
         this.platformCharacterBehavior.terrainMove(this, geographicMapInterfaceArray, dx, dy)
     }
 
     open public fun terrainLand() {
-        //this.specialAnimationInterfaceArray[LEGS_ANIMATION].setFrame(STANDARD_FRAME)
+        //this.specialAnimationInterfaceArray[LEGS_ANIMATION]!!.setFrame(STANDARD_FRAME)
     }
 
     open public fun move() {
@@ -798,7 +799,7 @@ Created By: Travis Berthelot
 
             val geographicMapCompositeInterface: GeographicMapCompositeInterface = this.allBinaryGameLayerManagerP as GeographicMapCompositeInterface
 
-            val geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt; = geographicMapCompositeInterface.getGeographicMapInterface()
+            val geographicMapInterfaceArray: Array&lt;BasicGeographicMap?&gt; = geographicMapCompositeInterface.getGeographicMapInterface()
 
             if(geographicMapInterfaceArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
                 this.platformGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this)
@@ -830,7 +831,7 @@ Created By: Travis Berthelot
 
             val geographicMapCompositeInterface: GeographicMapCompositeInterface = this.allBinaryGameLayerManagerP as GeographicMapCompositeInterface
 
-            val geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt; = geographicMapCompositeInterface.getGeographicMapInterface()
+            val geographicMapInterfaceArray: Array&lt;BasicGeographicMap?&gt; = geographicMapCompositeInterface.getGeographicMapInterface()
 
             if(geographicMapInterfaceArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
                 this.platformGameBehavior.right(geographicMapInterfaceArray, this.velocityInterface, this)
@@ -876,7 +877,7 @@ Created By: Travis Berthelot
 
             val geographicMapCompositeInterface: GeographicMapCompositeInterface = this.allBinaryGameLayerManagerP as GeographicMapCompositeInterface
 
-            val geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt; = geographicMapCompositeInterface.getGeographicMapInterface()
+            val geographicMapInterfaceArray: Array&lt;BasicGeographicMap?&gt; = geographicMapCompositeInterface.getGeographicMapInterface()
 
             if(geographicMapInterfaceArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
                 this.platformGameBehavior.left(geographicMapInterfaceArray, this.velocityInterface, this)
@@ -891,7 +892,7 @@ Created By: Travis Berthelot
       this.platformGameBehavior.inputFrames(this.velocityInterface)
 
       //TWB - Was this supposed to be remarked
-      //this.specialAnimationInterfaceArray[HEAD_ANIMATION].setFrame(this.direction.getFrameFactor())
+      //this.specialAnimationInterfaceArray[HEAD_ANIMATION]!!.setFrame(this.direction.getFrameFactor())
 
       // this.armAnimation()
 
@@ -910,7 +911,7 @@ Created By: Travis Berthelot
        *
        * if (hatFrame > TOTAL_HAT_FRAMES - 1) { hatFrame = TOTAL_HAT_FRAMES -
        * 1; }
-       * this.specialAnimationInterfaceArray[HAT_ANIMATION].setFrame(hatFrame +
+       * this.specialAnimationInterfaceArray[HAT_ANIMATION]!!.setFrame(hatFrame +
        * (this.direction.getFrameFactor() * TOTAL_HAT_FRAMES))
        */
 
@@ -928,7 +929,7 @@ Created By: Travis Berthelot
 //         }
 //         else if (!isMovingEnough)
 //         {
-//            this.specialAnimationInterfaceArray[LEGS_ANIMATION].setFrame(STANDARD_FRAME + legDirectionIndex)
+//            this.specialAnimationInterfaceArray[LEGS_ANIMATION]!!.setFrame(STANDARD_FRAME + legDirectionIndex)
 //         }
 //      }
 
@@ -937,13 +938,13 @@ Created By: Travis Berthelot
     open public fun armAnimation() {
 //        var armsDirectionIndex: Int = TOTAL_ARM_FRAMES * this.direction.getFrameFactor()
 //        if (this.platformGameBehavior.gravityActionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-//            this.specialAnimationInterfaceArray[ARMS_ANIMATION].setFrame(JUMP_ARMS_FRAME + armsDirectionIndex)
+//            this.specialAnimationInterfaceArray[ARMS_ANIMATION]!!.setFrame(JUMP_ARMS_FRAME + armsDirectionIndex)
 //        } else if (!this.movedEnoughForMovement) {
-//            this.specialAnimationInterfaceArray[ARMS_ANIMATION].setFrame(armsDirectionIndex)
+//            this.specialAnimationInterfaceArray[ARMS_ANIMATION]!!.setFrame(armsDirectionIndex)
 //        }
     }
 
-    override open public fun reset() {
+    override fun reset() {
         //this.specialIndex = this.minSpecialIndex
 
         this.platformGameBehavior.land(this.velocityInterface as VelocityProperties)
@@ -1009,17 +1010,18 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:for-each>
 
-    open public fun setValue(value: Int) {
+    override fun setValue(value: Int) {
         (this.getDimensionalBehavior().getAnimationBehavior() as GDSliderAnimationBehavior).setValue(value)
     }
 
-    open public fun Value(): Int {
+    override fun Value(): Int {
         return (this.getDimensionalBehavior().getAnimationBehavior() as GDSliderAnimationBehavior).Value()
     }
 
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
 
-    open protected fun setSelected(selected: Boolean) {
+    open fun setSelected(selected: Boolean) {
+        var selected = selected
         this.selected = selected
     }
 
@@ -1069,7 +1071,7 @@ Created By: Travis Berthelot
         if(this.gdObject.hasBehaviorArray[gdBehaviorUtil.PATHFINDING_BEHAVIOR_INDEX]) {
 
             val geographicMapCompositeInterface: GeographicMapCompositeInterface = this.allBinaryGameLayerManagerP as GeographicMapCompositeInterface
-            val basicGeographicMapArray: Array&lt;BasicGeographicMap&gt; = geographicMapCompositeInterface.getGeographicMapInterface()
+            val basicGeographicMapArray: Array&lt;BasicGeographicMap?&gt; = geographicMapCompositeInterface.getGeographicMapInterface()
 
             if (basicGeographicMapArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
                 val geographicMapInterface: BasicGeographicMap = basicGeographicMapArray[0]
@@ -1099,7 +1101,7 @@ Created By: Travis Berthelot
     }
 
     open public fun updateWaypointBehavior(geographicMapInterface: BasicGeographicMap) {
-        val hashtable: ABHashtable = ABHashtable()
+        val hashtable: ABHashtable&lt;Any, Any&gt; = ABHashtable()
         hashtable.put(groupCommonFactory.ID, this.getGroupInterface())
         hashtable.put(Layer.ID, this)
         hashtable.put(AllBinaryGameLayerManager.ID, allBinaryGameLayerManagerP)
@@ -1153,13 +1155,15 @@ Created By: Travis Berthelot
     }
 
     open public fun handleCost(ownerLayer: PathFindingLayerInterface) {
+        var ownerLayer = ownerLayer
     }
 
     open public fun getWaypointBehavior(): WaypointBehaviorBase {
         return this.waypointBehaviorBase
     }
 
-    open protected fun setWaypointBehavior(unitWaypointHelper: WaypointBehaviorBase) {
+    open fun setWaypointBehavior(unitWaypointHelper: WaypointBehaviorBase) {
+        var unitWaypointHelper = unitWaypointHelper
         this.waypointBehaviorBase = unitWaypointHelper
     }
 
@@ -1257,6 +1261,7 @@ Created By: Travis Berthelot
     }
 
     open public fun setLoad(resource: Int) {
+        var resource = resource
     }
 
     open public fun getSurroundingGeographicMapCellPositionList(): BasicArrayList {
@@ -1288,7 +1293,7 @@ Created By: Travis Berthelot
 
     }
 
-    private fun trackTo(dx: Int, dy: Int, targetAngle: Int) {
+    open fun trackTo(dx: Int, dy: Int, targetAngle: Int) {
         //If colliding with a game object then don't try to turn since in chase mode
         val list: BasicArrayList = this.getWaypointBehavior().getSteeringVisitorList()
 
@@ -1318,7 +1323,7 @@ Created By: Travis Berthelot
 
     private val MOVE: String = "Moving"
 
-    open protected fun fireOrMove() {
+    open fun fireOrMove() {
         //this.logUtil.putF("Move/Attack: trackingWaypoint: " + this.trackingWaypoint + " sensorAction: " + this.sensorAction + " currentTargetDistance &gt;= longWeaponRange " + this.currentTargetDistance + "&gt;=" + this.longWeaponRange, this, "trackTo")
 
         val gameKeyEventFactory: GameKeyEventFactory = GameKeyEventFactory.getInstance()
@@ -1357,7 +1362,7 @@ Created By: Travis Berthelot
         }
     }
 
-    private fun handleDeltalX(dx: Int, dy: Int) {
+    open fun handleDeltalX(dx: Int, dy: Int) {
         val nextUnvisitedPathGeographicMapCellPosition: GeographicMapCellPosition = this.waypointBehaviorBase.getNextUnvisitedPathGeographicMapCellPosition()
         if (dx <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
             this.movementAngle = this.angleFactory.LEFT
@@ -1373,7 +1378,7 @@ Created By: Travis Berthelot
 
     }
 
-    private fun handleDeltalY(dx: Int, dy: Int) {
+    open fun handleDeltalY(dx: Int, dy: Int) {
         val nextUnvisitedPathGeographicMapCellPosition: GeographicMapCellPosition = this.waypointBehaviorBase.getNextUnvisitedPathGeographicMapCellPosition()
         if (dy <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
             this.movementAngle = this.angleFactory.UP
@@ -1389,7 +1394,8 @@ Created By: Travis Berthelot
 
     }
 
-    private fun turnTo(dx: Int, dy: Int, targetAngle: Int): Boolean {
+    open fun turnTo(dx: Int, dy: Int, targetAngle: Int): Boolean {
+        var targetAngle = targetAngle
         // var angleOfTarget: Int = NoDecimalTrigTable.antiTan(dx, dy)
 
         val nextUnvisitedPathGeographicMapCellPosition: GeographicMapCellPosition = this.waypointBehaviorBase.getNextUnvisitedPathGeographicMapCellPosition()
@@ -1566,19 +1572,19 @@ Created By: Travis Berthelot
 
     }
 
-    override public fun isWaypointListEmptyOrOnlyTargets(): Boolean {
+    override fun isWaypointListEmptyOrOnlyTargets(): Boolean {
         return false
     }
 
-    override public fun getTrackingEvent(): TrackingEvent {
+    override fun getTrackingEvent(): TrackingEvent {
         return null
     }
 
-    override public fun buildingChase(allbinaryLayer: AllBinaryLayer, cellPosition: GeographicMapCellPosition): Boolean {
+    override fun buildingChase(allbinaryLayer: AllBinaryLayer, cellPosition: GeographicMapCellPosition): Boolean {
         return false
     }
 
-    override public fun allStop() {
+    override fun allStop() {
     }
 
 <!--    @Throws(Exception::class)
@@ -1633,7 +1639,7 @@ Created By: Travis Berthelot
 
     }
 
-    override public fun right() {
+    override fun right() {
         //this.logUtil.put(this.getName(), this, "right")
 
         if(this.direction == 0) {
@@ -1655,7 +1661,7 @@ Created By: Travis Berthelot
 
     }
 
-    override public fun left() {
+    override fun left() {
         //this.logUtil.put(this.getName(), this, "left")
 
         if(this.direction == 0) {

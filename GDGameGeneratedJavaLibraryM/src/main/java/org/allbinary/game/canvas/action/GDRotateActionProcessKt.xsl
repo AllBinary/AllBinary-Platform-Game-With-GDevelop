@@ -44,17 +44,17 @@ Created By: Travis Berthelot
                             try {
                             //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
-                            val gameLayerArray: Array&lt;GDGameLayer&gt; = gameGlobals.tempGameLayerArray
+                            val gameLayerArray: Array&lt;GDGameLayer?&gt; = gameGlobals.tempGameLayerArray
                             <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParamIncludeList" />
 
-                            lateinit var <xsl:value-of select="$name" />GDGameLayer: GDGameLayer
-                            lateinit var <xsl:value-of select="$name" />: <xsl:value-of select="$gdObjectFactory" />
+                            var <xsl:value-of select="$name" />GDGameLayer: GDGameLayer
+                            var <xsl:value-of select="$name" />: <xsl:value-of select="$gdObjectFactory" />
                             val size: Int = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size()
                             //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + size, this, this.commonStrings.PROCESS)
 
                             for(index in 0 until<xsl:text disable-output-escaping="yes" ></xsl:text> size) {
                                 <xsl:value-of select="$name" />GDGameLayer = <xsl:value-of select="$name" />GDGameLayerList.get(index) as GDGameLayer
-                                <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject as <xsl:value-of select="$gdObjectFactory" />
+                                <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject as <xsl:value-of select="$gdObjectFactory" /><xsl:text>&#10;</xsl:text>
 
                                 <xsl:call-template name="rotateActionProcessGDObject" >
                                 </xsl:call-template>
@@ -77,7 +77,7 @@ Created By: Travis Berthelot
                             //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE)
 
                             if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.objectArray != nullUtil.NULL_OBJECT_ARRAY) {
-                            lateinit var gameLayer: GDGameLayer
+                            var gameLayer: GDGameLayer
                             val size: Int = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size()
                             for(index in 0 until<xsl:text disable-output-escaping="yes" ></xsl:text> size) {
                                 gameLayer = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(index) as GDGameLayer
@@ -104,7 +104,7 @@ Created By: Travis Berthelot
                     }
 
 
-                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
                         super.processGDStats(gameLayerArray)
                         try {
 
@@ -125,7 +125,7 @@ Created By: Travis Berthelot
                         return true
                     }
 
-                        fun processReleased(<xsl:value-of select="$name" />: GDObject): Boolean {
+                        open fun processReleased(<xsl:value-of select="$name" />: GDObject): Boolean {
                             //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
                             <xsl:variable name="isAllowedToRelease" >
@@ -142,7 +142,7 @@ Created By: Travis Berthelot
 
                         <xsl:if test="contains($forExtension, 'found')" >
 
-                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                        override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
                             //Map from object array with action params
                             val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
@@ -152,12 +152,12 @@ Created By: Travis Berthelot
                         }
                         </xsl:if>
 
-                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                        override fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
                             val gdObject: GDObject = gameLayer.gdObject
                             this.process(gdObject, x, y)
                         }
 
-                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                        override fun process(gdObject: GDObject, x: Int, y: Int) {
                             throw RuntimeException()
                         }
     </xsl:template>

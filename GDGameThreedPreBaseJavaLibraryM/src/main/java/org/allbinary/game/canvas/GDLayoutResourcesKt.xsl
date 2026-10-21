@@ -15,6 +15,8 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -69,12 +71,16 @@ Created By: Travis Berthelot
                 open class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources : SpecialAnimation
                 {
 
+                    companion object {
+
                     private val instance: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources()
 
-                        fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources
+                        open fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources
                         {
                             return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.instance
                         }
+
+                    }
 
                     private constructor() : super(AnimationBehavior.getInstance()) {
                     }
@@ -126,8 +132,8 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
-                    val MAP_CELL_MODEL_ARRAY: Array&lt;String&gt; = arrayOf(
-                    <xsl:for-each select="objects" >
+                    val MAP_CELL_MODEL_ARRAY: Array&lt;String?&gt; = arrayOf(
+                    <xsl:variable name="kotlinArrayItems133" >                    <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:variable name="name" select="name" />
 
@@ -144,7 +150,7 @@ Created By: Travis Berthelot
 
                         </xsl:if>
 
-                    </xsl:for-each>
+                    </xsl:for-each></xsl:variable><xsl:call-template name="kotlinRemoveTrailingComma" ><xsl:with-param name="text" select="$kotlinArrayItems133" /></xsl:call-template>
                     )
 
                 }

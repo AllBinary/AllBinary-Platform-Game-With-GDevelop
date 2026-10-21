@@ -32,7 +32,7 @@ Created By: Travis Berthelot
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
                     //anykeyPressedConditionGDNode - //Condition - //AnyKeyPressed - GDNode
-                    <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>val NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = object : GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>val NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: GDNode = object : GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private val CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />"
@@ -48,7 +48,7 @@ Created By: Travis Berthelot
                             globals.anyKeyProcessorArray[0] = object : GDRGameInputProcessor() {
 
                                 @Throws(Exception::class)
-                                override fun process(allbinaryLayerManager: AllBinaryLayerManager, keyAsInteger: Integer)
+                                open override fun process(allbinaryLayerManager: AllBinaryLayerManager, keyAsInteger: Integer)
                                 {
                                     this.releasedGameInputProcessor.process(allbinaryLayerManager, keyAsInteger)
 
@@ -56,7 +56,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
                                     //../Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" />
                                     //Event - //BuiltinCommonInstructions::Standard - call
-                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()
+                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
                                 </xsl:if>
                                 <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
                                     //Event - //BuiltinCommonInstructions::ForEach
@@ -75,7 +75,7 @@ Created By: Travis Berthelot
                                     //var nodeId: Condition = <xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />,</xsl:for-each>
                                     //Condition - //<xsl:value-of select="type/value" /> - call
-                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()
+                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
                             </xsl:for-each>
 
                             <xsl:for-each select=".." >
@@ -88,14 +88,14 @@ Created By: Travis Berthelot
                                 }
 
                                 @Throws(Exception::class)
-                                override fun processReleased(allbinaryLayerManager: AllBinaryLayerManager, keyAsInteger: Integer)
+                                open override fun processReleased(allbinaryLayerManager: AllBinaryLayerManager, keyAsInteger: Integer)
                                 {
 
                             <xsl:for-each select="../events" >
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
                                     //...Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" />
                                     //Event - //BuiltinCommonInstructions::Standard - call
-                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased()
+                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()
                                 </xsl:if>
                                 <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
                                     //Event - //BuiltinCommonInstructions::ForEach
@@ -114,7 +114,7 @@ Created By: Travis Berthelot
                                     //var nodeId: Condition = <xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />,</xsl:for-each>
                                     //Condition - //<xsl:value-of select="type/value" /> - call
-                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased()
+                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()
                                     //TWB - I don't think conditions occur here remove after more testing
                                     throw RuntmeException()
                             </xsl:for-each>
@@ -147,7 +147,7 @@ Created By: Travis Berthelot
                         }
 
                         @Throws(Exception::class)
-                        override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                        override fun processGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
                             super.processGDStats(gameLayerArray)
 
                             try {
@@ -163,7 +163,7 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >
-                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                        override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
                             //Map from object array with action params
                             val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
@@ -173,12 +173,12 @@ Created By: Travis Berthelot
                         }
                         </xsl:if>
 
-                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                        override fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
                             val gdObject: GDObject = gameLayer.gdObject
                             this.process(gdObject, x, y)
                         }
 
-                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                        override fun process(gdObject: GDObject, x: Int, y: Int) {
                             throw RuntimeException()
                         }
 

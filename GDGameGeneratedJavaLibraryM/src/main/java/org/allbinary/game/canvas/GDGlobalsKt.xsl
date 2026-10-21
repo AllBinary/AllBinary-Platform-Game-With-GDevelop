@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -67,6 +68,7 @@ Created By: Travis Berthelot
                 import org.json.me.JSONTokener
 
                 import org.allbinary.AndroidUtil
+                import org.allbinary.game.layout.GDConfig
                 import org.allbinary.game.layer.SWTUtil
                 import org.allbinary.animation.text.CustomTextAnimation
                 import org.allbinary.game.identification.Group
@@ -113,6 +115,9 @@ Created By: Travis Berthelot
                 open public class GDGameGlobals : GDGlobals
                 {
 
+                    companion object {
+
+
                     private val instance: GDGameGlobals = GDGameGlobals()
 <!--
                     companion object {
@@ -132,7 +137,9 @@ Created By: Travis Berthelot
                         return GDGameGlobals.instance
                     }
 
-                    protected val logUtil: LogUtil = LogUtil.getInstance()
+                    }
+
+                    val logUtil: LogUtil = LogUtil.getInstance()
 
                     private val stringUtil: StringUtil = StringUtil.getInstance()
                     private val basicColorUtil: BasicColorUtil = BasicColorUtil.getInstance()
@@ -176,9 +183,9 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="total" ><xsl:call-template name="generateGDNodeTotal" ></xsl:call-template></xsl:variable>
                         private val MAX_NODES: Int = <xsl:value-of select="$total" />
-                        public val nodeArray: Array&lt;GDNode&gt; = arrayOfNulls&lt;GDNode&gt;(MAX_NODES)
+                        public val nodeArray: Array&lt;GDNode?&gt; = arrayOfNulls(MAX_NODES)
 
-                        public val channelSoundArray: Array&lt;BasicArrayList&gt; = arrayOfNulls&lt;BasicArrayList&gt;(16)
+                        public val channelSoundArray: Array&lt;BasicArrayList?&gt; = arrayOfNulls(16)
 
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
@@ -242,7 +249,7 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                         <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
-                    public var eventListenerInterfaceLastPoint: GDMotionGestureEventListener
+                    public var eventListenerInterfaceLastPoint: GDMotionGestureEventListener = GDMotionGestureEventListener.NULL_GD_MOTION_GESTURE_EVENT_LISTENER
                     </xsl:if>
 
                     //eventsClassPropertyActions - START
@@ -300,7 +307,7 @@ Created By: Travis Berthelot
                     //variables - END
 
                     <xsl:text>&#10;</xsl:text>
-                    public val tempGameLayerArray: Array&lt;GDGameLayer&gt; = arrayOfNulls&lt;GDGameLayer&gt;(<xsl:value-of select="((count(//objectsGroups) + count(//objects)) * 2) + 1" />)
+                    public val tempGameLayerArray: Array&lt;GDGameLayer?&gt; = arrayOfNulls(<xsl:value-of select="((count(//objectsGroups) + count(//objects)) * 2) + 1" />)
                     public val creationIndex: IntArray = IntArray(<xsl:value-of select="count(//objectsGroups) + count(//objects) + 1" />)
 
                     private val layerManagerEventListener: LayerManagerEventListener
@@ -328,7 +335,7 @@ Created By: Travis Berthelot
 
         val commonStrings: CommonStrings = CommonStrings.getInstance()
         val stringMaker: StringMaker = StringMaker()
-        this.this.logUtil.putF(stringMaker.append("PlatformerMap: RandomDungeon: ").append(this.RandomDungeon).toString(), this, this.commonStrings.PROCESS)
+        this.this.logUtil.putF(stringMaker.append("PlatformerMap: RandomDungeon: ").appendboolean(this.RandomDungeon).toString(), this, this.commonStrings.PROCESS)
 
                                 </xsl:if>
                             </xsl:if>
@@ -369,23 +376,24 @@ Created By: Travis Berthelot
 
                         val layerManagerEventHandler: LayerManagerEventHandler = LayerManagerEventHandler.getInstance()
 
-                        class GlobalsLayerManagerEventListener: LayerManagerEventListener {
+                        open class GlobalsLayerManagerEventListener : LayerManagerEventListener {
 
                             private val gdGameGlobals: GDGameGlobals
 
-                            open public GlobalsLayerManagerEventListener(gdGameGlobals: GDGameGlobals) {
-                                this.gdGameGlobals = gdGameGlobals;
+                            public constructor(gdGameGlobals: GDGameGlobals) {
+                                this.gdGameGlobals = gdGameGlobals
                             }
 
-                            open public fun onDeleteLayerManagerEvent(layerManagerEvent: LayerManagerEvent) {
+                            @Throws(Exception::class)
+                            override fun onDeleteLayerManagerEvent(layerManagerEvent: LayerManagerEvent)
+                            {
                                 val layerInterface: AllBinaryLayer = layerManagerEvent.getLayerInterface()
-
-                                this.gdGameGlobals.layerManagerEventListenerRemove(layerInterface);
+                                this.gdGameGlobals.layerManagerEventListenerRemove(layerInterface)
                             }
 
                         }
 
-                        layerManagerEventListener = new GlobalsLayerManagerEventListener(this);
+                        layerManagerEventListener = GlobalsLayerManagerEventListener(this)
 
                         layerManagerEventHandler.addListener(layerManagerEventListener)
 

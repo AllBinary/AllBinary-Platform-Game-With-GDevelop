@@ -64,7 +64,7 @@ Created By: Travis Berthelot
                                 val name: String = <xsl:value-of select="$param4" />
                                 </xsl:if>
                                 <xsl:if test="$beforeFourthParam = ''" >
-                                val name: String = null
+                                val name: String? = null
                                 </xsl:if>
 
                                 val abToGBUtil: ABToGBUtil = ABToGBUtil.getInstance()
@@ -74,7 +74,7 @@ Created By: Travis Berthelot
 
                                 class SaveHighScoreRunnable : Runnable {
 
-                                    override fun run() {
+                                    open override fun run() {
                                         try {
 
                                 val gameInfo: GameInfo = abCanvas.getLayerManager().getGameInfo()
@@ -87,7 +87,7 @@ Created By: Travis Berthelot
                                     val basicHighScoresFactory: BasicHighScoresFactory = BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance())
 
                                     class SaveHighScoresResultsListener : HighScoresResultsListener {
-                                        override fun setHighScoresArray(highScoresArray: Array&lt;HighScores&gt;) {
+                                        open override fun setHighScoresArray(highScoresArray: Array&lt;HighScores?&gt;) {
                                             try {
                                             val highScoresHelperBase: HighScoresHelperBase = HighScoresHelperBase()
                                             gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray)
@@ -114,7 +114,7 @@ Created By: Travis Berthelot
                                     val basicHighScoresFactory: BasicHighScoresFactory = BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance())
 
                                     class SaveHighScoresResultsListener2 : HighScoresResultsListener {
-                                        override fun setHighScoresArray(highScoresArray: Array&lt;HighScores&gt;) {
+                                        open override fun setHighScoresArray(highScoresArray: Array&lt;HighScores?&gt;) {
                                             try {
                                                 val highScoresHelperBase: HighScoresHelperBase = HighScoresHelperBase()
                                                 gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray)
@@ -186,7 +186,7 @@ Created By: Travis Berthelot
                         </xsl:variable>
 
 
-                        override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                        override fun processGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
                             try {
 
                                 <xsl:value-of select="$siblingOrParentOrList" />
@@ -198,14 +198,14 @@ Created By: Travis Berthelot
                                 val name: String = <xsl:value-of select="$param4" />
                                 </xsl:if>
                                 <xsl:if test="$beforeFourthParam = ''" >
-                                val name: String = null
+                                val name: String? = null
                                 </xsl:if>
 
                                 this.logUtil.putF(StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(name).toString(), this, this.commonStrings.PROCESS)
 
                                 class SaveHighScoreRunnable : Runnable {
 
-                                    override fun run() {
+                                    open override fun run() {
                                         try {
 
                                 val gameInfo: GameInfo = abCanvas.getLayerManager().getGameInfo()
@@ -219,7 +219,7 @@ Created By: Travis Berthelot
                                     val basicHighScoresFactory: BasicHighScoresFactory = BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance())
 
                                     class SaveHighScoresResultsListener3 : HighScoresResultsListener {
-                                        override fun setHighScoresArray(highScoresArray: Array&lt;HighScores&gt;) {
+                                        open override fun setHighScoresArray(highScoresArray: Array&lt;HighScores?&gt;) {
                                             try {
                                             val highScoresHelperBase: HighScoresHelperBase = HighScoresHelperBase()
                                             gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray)
@@ -246,7 +246,7 @@ Created By: Travis Berthelot
                                     val basicHighScoresFactory: BasicHighScoresFactory = BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance())
 
                                     class SaveHighScoresResultsListener4 : HighScoresResultsListener {
-                                        override fun setHighScoresArray(highScoresArray: Array&lt;HighScores&gt;) {
+                                        open override fun setHighScoresArray(highScoresArray: Array&lt;HighScores?&gt;) {
                                             try {
                                                 val highScoresHelperBase: HighScoresHelperBase = HighScoresHelperBase()
                                                 gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray)
@@ -288,7 +288,7 @@ Created By: Travis Berthelot
 
                         <xsl:if test="contains($forExtension, 'found')" >
 
-                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                        override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
                             //Map from object array with action params
                             val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
@@ -298,12 +298,12 @@ Created By: Travis Berthelot
                         }
                         </xsl:if>
 
-                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                        override fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
                             val gdObject: GDObject = gameLayer.gdObject
                             this.process(gdObject, x, y)
                         }
 
-                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                        override fun process(gdObject: GDObject, x: Int, y: Int) {
                             throw RuntimeException()
                         }
     </xsl:template>

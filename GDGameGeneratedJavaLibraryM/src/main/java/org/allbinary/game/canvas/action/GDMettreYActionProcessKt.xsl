@@ -37,7 +37,7 @@ Created By: Travis Berthelot
 
                         //SetY - was //MettreY - //forExtension=<xsl:value-of select="$forExtension" />
                         <xsl:if test="not(contains($forExtension, 'found'))" >
-                        fun process(): Boolean {
+                        override fun process(): Boolean {
 
                             var result: Boolean = true
 
@@ -45,18 +45,18 @@ Created By: Travis Berthelot
 
                             //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
-                            val gameLayerArray: Array&lt;GDGameLayer&gt; = gameGlobals.tempGameLayerArray
+                            val gameLayerArray: Array&lt;GDGameLayer?&gt; = gameGlobals.tempGameLayerArray
                             <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParamIncludeList" />
 
                             val size2: Int = <xsl:value-of select="$name" />GDGameLayerList.size()
 
                             //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + size2, this, this.commonStrings.PROCESS)
 
-                            lateinit var <xsl:value-of select="$name" />GDGameLayer: GDGameLayer
-                            lateinit var <xsl:value-of select="$name" />: <xsl:value-of select="$gdObjectFactory" />
+                            var <xsl:value-of select="$name" />GDGameLayer: GDGameLayer
+                            var <xsl:value-of select="$name" />: <xsl:value-of select="$gdObjectFactory" />
                             for(index2 in 0 until<xsl:text disable-output-escaping="yes" ></xsl:text> size2) {
                                 <xsl:value-of select="$name" />GDGameLayer = <xsl:value-of select="$name" />GDGameLayerList.get(index2) as GDGameLayer
-                                <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject as <xsl:value-of select="$gdObjectFactory" />
+                                <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject as <xsl:value-of select="$gdObjectFactory" /><xsl:text>&#10;</xsl:text>
 
                                 <xsl:call-template name="mettreYActionProcessGDObject" >
                                     <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
@@ -85,7 +85,7 @@ Created By: Travis Berthelot
                     }
 
 
-                        override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                        override fun processGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
                             try {
 
                                 //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, this.commonStrings.PROCESS)
@@ -111,7 +111,7 @@ Created By: Travis Berthelot
 
                         <xsl:if test="contains($forExtension, 'found')" >
 
-                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                        override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
                             //Map from object array with action params
                             val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
@@ -122,12 +122,12 @@ Created By: Travis Berthelot
                         }
                         </xsl:if>
 
-                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                        override fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
                             val gdObject: GDObject = gameLayer.gdObject
                             this.process(gdObject, x, y)
                         }
 
-                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                        override fun process(gdObject: GDObject, x: Int, y: Int) {
                             gdObject.setY(y)
                         }
 

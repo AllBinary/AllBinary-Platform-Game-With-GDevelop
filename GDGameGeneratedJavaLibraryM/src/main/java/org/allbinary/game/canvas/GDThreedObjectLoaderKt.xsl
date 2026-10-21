@@ -75,7 +75,7 @@ Created By: Travis Berthelot
                 <xsl:if test="not(contains($threedExclusionsFound, 'found'))" >
 
             //Animation Total: <xsl:value-of select="count(animations)" />
-            private fun add<xsl:value-of select="name" />SpriteAnimations(gl: GL10, glInstanceVersion: String) {
+            open fun add<xsl:value-of select="name" />SpriteAnimations(gl: GL10, glInstanceVersion: String) {
                 val appRendererShaderUpdaterFactory: AppRendererShaderUpdaterFactory = AppRendererShaderUpdaterFactory.getInstance()
 
                 <xsl:variable name="rootAnimationNames" >
@@ -150,9 +150,11 @@ Created By: Travis Berthelot
 
                 appRendererShaderUpdaterFactory.setShaderComposite(<xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer)
 
-                <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().x =
-                    <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().y =
-                    <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().z = <xsl:if test="/game/properties/scale3d" ><xsl:value-of select="/game/properties/scale3d" /></xsl:if><xsl:if test="not(/game/properties/scale3d)" >0</xsl:if>f
+                <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().z = <xsl:if test="/game/properties/scale3d" ><xsl:value-of select="/game/properties/scale3d" /></xsl:if><xsl:if test="not(/game/properties/scale3d)" >0</xsl:if>f
+
+                <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().y = <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().z
+
+                <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().x = <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().y
 
                                 </xsl:otherwise>
                             </xsl:choose>
@@ -161,8 +163,8 @@ Created By: Travis Berthelot
 
                 </xsl:for-each>
 
-                val <xsl:value-of select="$name" />Object3dContainerArray: Array&lt;Object3d&gt; = arrayOf(
-                <xsl:for-each select="animations" >
+                val <xsl:value-of select="$name" />Object3dContainerArray: Array&lt;Object3d?&gt; = arrayOf(
+                <xsl:variable name="kotlinArrayItems164" >                <xsl:for-each select="animations" >
                     <xsl:variable name="resourceWithExtension" select="directions/sprites/image" />
                     <xsl:variable name="image2" select="substring-before($resourceWithExtension, '.')" />
                     <xsl:variable name="ends-with" ><xsl:call-template name="ends-with" ><xsl:with-param name="string" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="token" >_0</xsl:with-param></xsl:call-template></xsl:variable>
@@ -172,7 +174,7 @@ Created By: Travis Berthelot
                     <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer,
                     </xsl:if>
                 </xsl:for-each>
-
+</xsl:variable><xsl:call-template name="kotlinRemoveTrailingComma" ><xsl:with-param name="text" select="$kotlinArrayItems164" /></xsl:call-template>
                 )
 
                 min3dSceneResourcesFactory.add(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME, <xsl:value-of select="$name" />Object3dContainerArray)
@@ -186,7 +188,7 @@ Created By: Travis Berthelot
             <!--3d TiledLayer-->
             <xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >
             //Animation Total: <xsl:value-of select="count(animations)" />
-            private fun add<xsl:value-of select="name" />TileMapAnimations(gl: GL10, glInstanceVersion: String) {
+            open fun add<xsl:value-of select="name" />TileMapAnimations(gl: GL10, glInstanceVersion: String) {
                 val appRendererShaderUpdaterFactory: AppRendererShaderUpdaterFactory = AppRendererShaderUpdaterFactory.getInstance()
 
                 val mapCellModelObject3dContainer: Object3d =

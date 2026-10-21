@@ -195,12 +195,15 @@ Created By: Travis Berthelot
                 <xsl:text>&#10;</xsl:text>
 
                     //Action - GDNode - for Condition totalRecursions=<xsl:value-of select="$totalRecursions" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" />
-                    open class GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode : GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    open inner class GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode : GDNode {
+
+                    constructor() : super(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    }
                     //GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode
 
                     <xsl:variable name="nodeAsString" ><xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
-                    <xsl:variable name="actionAsString" >var nodeId: Action =<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
+                    <xsl:variable name="actionAsString" >Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         //GDNode - Strings 1
                         private val ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "B: <xsl:value-of select="translate($actionAsString, $quote, ' ')" />"
                         //private val ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "B: <xsl:value-of select="translate($actionAsString, $quote, ' ')" /> at: "
@@ -429,7 +432,7 @@ Created By: Travis Berthelot
 
                     val gdLayoutGDNodes: org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes = org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes.getInstance()
                     val LAYOUT: String = <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
-                    val size: Int = gdLayoutGDNodes.layoutNameList.size
+                    val size: Int = gdLayoutGDNodes.layoutNameList.size()
                     var key: String
                     var index: Int = 0
                     while(index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size) {
@@ -449,7 +452,7 @@ Created By: Travis Berthelot
                     return true
                 }
 
-                override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                override fun processGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
                     super.processGDStats(gameLayerArray)
 
                     //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS)
@@ -2676,7 +2679,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="$typeValue = 'SourisSurObjet' or $typeValue = 'IsCursorOnObject'" >
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                    <xsl:variable name="conditionAsString" >var nodeId: Condition =<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
+                    <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private val CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" /> "
                                 </xsl:if>
                             </xsl:for-each>
@@ -2705,7 +2708,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="$typeValue = 'SourisSurObjet' or $typeValue = 'IsCursorOnObject'" >
                             //Condition - //IsCursorOnObject - call - motionGestureEvent
                                 //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
-                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput)
+                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process(motionGestureEvent, lastMotionGestureInput)
                                 </xsl:if>
                             </xsl:for-each>
                             //Conditions - END

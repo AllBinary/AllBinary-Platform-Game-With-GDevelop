@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -58,6 +59,7 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Graphics
 
                 import org.allbinary.AndroidUtil
+                import org.allbinary.game.layout.GDConfig
                 import org.allbinary.game.canvas.GDExtensionGDNodes
                 import org.allbinary.game.layer.SWTUtil
                 import org.allbinary.game.layer.GDGameLayer
@@ -75,6 +77,8 @@ Created By: Travis Berthelot
                 open public class GDGlobalsGDObjectsFactory
                 {
 
+                    companion object {
+
                     private val instance: GDGlobalsGDObjectsFactory = GDGlobalsGDObjectsFactory()
 
                     open public fun getInstanceOrCreate(): GDGlobalsGDObjectsFactory {
@@ -85,7 +89,9 @@ Created By: Travis Berthelot
                         return GDGlobalsGDObjectsFactory.instance
                     }
 
-                    protected val logUtil: LogUtil = LogUtil.getInstance()
+                    }
+
+                    val logUtil: LogUtil = LogUtil.getInstance()
                     private val stringUtil: StringUtil = StringUtil.getInstance()
 
                     private val gdBehaviorUtil: GDBehaviorUtil = GDBehaviorUtil.getInstance()
@@ -127,7 +133,7 @@ Created By: Travis Berthelot
                     open public fun get<xsl:value-of select="name" />Index(name: String): Int {
                         <xsl:for-each select="objects" >
                             <xsl:if test="position() != 1" >} else </xsl:if>if(name == globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
-                            var <xsl:value-of select="position() - 1" />: return
+                            return <xsl:value-of select="position() - 1" />
                         </xsl:for-each>
                         <xsl:if test="objects" >
 <!--
@@ -149,7 +155,7 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                         <xsl:if test="objects" >
                         } else <xsl:for-each select="objects" >
-                            <xsl:if test="position() != 1" >} else </xsl:if>if(name == globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                            <xsl:if test="position() != 1" >} else </xsl:if>if(name.equals(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME)) {
                             return globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME
                         </xsl:for-each>
                         }

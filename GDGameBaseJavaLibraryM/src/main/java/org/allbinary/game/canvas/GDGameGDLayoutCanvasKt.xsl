@@ -1,5 +1,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
 
     <xsl:output method="text" indent="yes" />
@@ -252,13 +253,13 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
 
     <xsl:variable name="name2" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
     <xsl:if test="number($layoutIndex) = 0 or position() = last() or contains($name2, 'game_options') or contains($name2, 'score') or contains($name2, 'over')" >
-    fun getInGameMenuBehavior(): BaseMenuBehavior {
+    override fun getInGameMenuBehavior(): BaseMenuBehavior {
         return BaseMenuBehavior.getInstance()
     }
     </xsl:if>
 
     private val initGameProcessor: InitGameProcessor = InitGameProcessor(this)
-    protected fun setProcessGameProcessorInit() {
+    override fun setProcessGameProcessorInit() {
         if(ProgressCanvasFactory.getInstance().isInGame()) {
             this.setProcessGameProcessor(GameProcessor(this))
             if(this.getMainStateProcessor() == initGameProcessor) {
@@ -271,24 +272,26 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
         }
     }
 
-    fun setPlayingGameState()
+    open fun setPlayingGameState()
     {
         this.setWait(WAIT)
 
         //super.setPlayingGameState()
 
         this.setGameSpecificPaintableP(
-                Paintable()
+                object : Paintable()
         {
             val specialAnimation: SpecialAnimation = GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance()
 
             override fun paint(graphics: Graphics)
             {
+                var graphics = graphics
                 specialAnimation.paintXY(graphics, 0, 0)
             }
 
             override fun paintThreed(graphics: Graphics)
             {
+                var graphics = graphics
                 specialAnimation.paintThreedXYZ(graphics, 0, 0, 0)
             }
 
@@ -297,19 +300,19 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
 
     }
 
-    fun open()
+    override fun open()
     {
         super.open()
         this.specialAnimation.open()
     }
 
-    fun close()
+    override fun close()
     {
         super.close()
         this.specialAnimation.close()
     }
 
-    protected fun initSpecialPaint()
+    override fun initSpecialPaint()
     {
         super.initSpecialPaint()
 
@@ -340,14 +343,14 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
         </xsl:if>
     }
 
-    fun mediaInit()
+    override fun mediaInit()
     {
         logUtil.putF(commonStrings.START, this, "mediaInit")
         AllBinaryMediaManager.init(GDGameSoundsFactory.getInstance())
     }
 
     //Don't Auto Hide instead update the list
-    protected fun updateTouch()
+    override fun updateTouch()
 
     {
         var gameInfo: GameInfo = this.gameLayerManager.getGameInfo()
@@ -407,7 +410,7 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
         }
     }
 
-    protected fun threadInit()
+    override fun threadInit()
     {
         try
         {
@@ -484,8 +487,9 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
         }
     }
 
-    fun buildGame(isProgress: Boolean)
+    open fun buildGame(isProgress: Boolean)
     {
+        var isProgress = isProgress
         //logUtil.putF(commonStrings.START, this, "buildGame")
 
         this.specialAnimation = GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance(this, gameLayerManager)
@@ -539,7 +543,7 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
         val geographicMapCompositeInterface: GeographicMapCompositeInterface =
             layerManager as GeographicMapCompositeInterface
 
-        val geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt; =
+        val geographicMapInterfaceArray: Array&lt;BasicGeographicMap?&gt; =
             geographicMapCompositeInterface.getGeographicMapInterface()
 
         //layerManager.setBackgroundBasicColor(
@@ -549,7 +553,7 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
                 //geographicMapInterface.getForegroundBasicColor())
 
             /*
-            val layerArray: Array&lt;Layer&gt; = arrayOfNulls&lt;Layer&gt;(geographicMapInterfaceArray.size + 1)
+            val layerArray: Array&lt;Layer?&gt; = arrayOfNulls(geographicMapInterfaceArray.size + 1)
 
             if (features.isFeature(RaceTrackGameFeature.MINI_MAP))
             {
@@ -606,8 +610,9 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
         this.setGameState(this.gameStateFactory.PLAYING_GAME_STATE)
     }
 
-    fun setGameState(gameState: GameState)
+    override fun setGameState(gameState: GameState)
     {
+        var gameState = gameState
         super.setGameState(gameState)
 
         var intermissionFactory: IntermissionFactory = IntermissionFactory.getInstance()
@@ -652,8 +657,9 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
     //private var isFirst: Boolean = true
     //private val DRAW: String = "draw"
 
-    fun draw(graphics: Graphics)
+    override fun draw(graphics: Graphics)
     {
+        var graphics = graphics
 
         //if (this.isFirst)
         //{
@@ -700,7 +706,7 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
 
     private val soundGameFeature: GameFeature = GameFeatureFactory.getInstance().SOUND
 
-    protected fun processGame()
+    override fun processGame()
     {
         if (playerTimeDelayHelper.isTimeTNT())
         {
@@ -740,7 +746,7 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
         this.gamePerformanceInitUpdatePaintable.update()
     }
 
-    protected fun processPlayingGame() {
+    override fun processPlayingGame() {
 
         gdNodeStatsFactory.reset()
 
@@ -756,10 +762,10 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
         val geographicMapCompositeInterface: GeographicMapCompositeInterface =
             this.getLayerManager() as GeographicMapCompositeInterface
 
-        val geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt; =
+        val geographicMapInterfaceArray: Array&lt;BasicGeographicMap?&gt; =
             geographicMapCompositeInterface.getGeographicMapInterface()
 
-        lateinit var geographicMapInterface: GDGeographicMap
+        var geographicMapInterface: GDGeographicMap
         val size: Int = geographicMapInterfaceArray.size
         for(index in 0 until size) {
             geographicMapInterface = geographicMapInterfaceArray as GDGeographicMap[index]
@@ -785,7 +791,7 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
         musicManager.stop()
     }
 
-    fun addCommands()
+    override fun addCommands()
     {
         val gdGameCommandFactory: GDGameCommandFactory = GDGameCommandFactory.getInstance()
         val gameCommandsFactory: GameCommandsFactory = GameCommandsFactory.getInstance()
@@ -829,13 +835,13 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
         //}
     }
 
-    fun handleRawKey(keyCode: Int, deviceId: Int, repeated: Boolean) {
+    override fun handleRawKey(keyCode: Int, deviceId: Int, repeated: Boolean) {
         //var keyCodeAsInteger: Integer = smallIntegerSingletonFactory.getInstance(keyCode)
         //this.upKeyEventHandler.fireEvent(keyCodeAsInteger)
         //this.upKeyEventHandler.getInstance(deviceId).fireEvent(keyCodeAsInteger)
     }
 
-    fun addKeyInputListener(playerGameInput: PlayerGameInput) {
+    override fun addKeyInputListener(playerGameInput: PlayerGameInput) {
         super.addKeyInputListener(playerGameInput)
 
         this.downKeyEventHandler.getInstanceForPlayer(playerGameInput.getPlayerInputId()).addListenerSingleThreaded(playerGameInput)
@@ -844,18 +850,18 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
 
     <xsl:if test="number($layoutIndex) != 1" >
     //Do not remove on build for this layout
-    protected fun removeAllGameKeyInputListenersOnBuild() {
+    override fun removeAllGameKeyInputListenersOnBuild() {
     }
     </xsl:if>
 
-    fun removeKeyInputListener(playerGameInput: PlayerGameInput) {
+    override fun removeKeyInputListener(playerGameInput: PlayerGameInput) {
         super.removeKeyInputListener(playerGameInput)
 
         this.downKeyEventHandler.removeListener(playerGameInput)
         this.upKeyEventHandler.removeListener(playerGameInput)
     }
 
-    fun setRunning(running: Boolean)
+    override fun setRunning(running: Boolean)
     {
         super.setRunning(running)
 
@@ -878,7 +884,7 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
     }
 
     //Special end2 case for GDevelop
-    fun end2() {
+    override fun end2() {
 //        try {
 //            logUtil.putF(this.commonStrings.END, this, this.commonStrings.END)
 //            this.cleanupGame()
@@ -891,7 +897,7 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
     }
 
     //Special end case for GDevelop
-    fun end() {
+    override fun end() {
         try {
             super.end()
             musicManager.stop()

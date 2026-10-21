@@ -23,7 +23,7 @@ Created By: Travis Berthelot
                                     <xsl:if test="2 > $iteration" ></xsl:if>
                                     <xsl:if test="$iteration >= 1" ></xsl:if>
                                     val <xsl:value-of select="$name" />Size2: Int = gameLayerArray.size
-                                    var <xsl:value-of select="$name" />GDGameLayer1: GDGameLayer = null
+                                    var <xsl:value-of select="$name" />GDGameLayer1: GDGameLayer? = null
                                     var <xsl:value-of select="$name" />GDGameLayer2: GDGameLayer
                                     for(index in 0 until <xsl:value-of select="$name" />Size2) {
                                         <xsl:value-of select="$name" />GDGameLayer2 = (gameLayerArray[index] as GDGameLayer)
@@ -48,7 +48,7 @@ Created By: Travis Berthelot
                                         }
                                     }
                                     val <xsl:value-of select="$name" />GDGameLayer: GDGameLayer = <xsl:value-of select="$name" />GDGameLayer1
-                                    var <xsl:value-of select="$name" />: GDObject = null
+                                    var <xsl:value-of select="$name" />: GDObject? = null
                                     if(<xsl:value-of select="$name" />GDGameLayer != null) {
                                         <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject
 

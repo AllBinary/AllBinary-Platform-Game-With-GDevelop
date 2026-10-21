@@ -85,10 +85,10 @@ Created By: Travis Berthelot
                             </xsl:if>
                             <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'LongArray') or contains(name, 'BoolArray'))" >
                     public var <xsl:value-of select="name" />Index: Int = 0
-                    public var <xsl:value-of select="name" />: Array&lt;String&gt; = arrayOf(
-                            <xsl:for-each select="children" >
+                    public var <xsl:value-of select="name" />: Array&lt;String?&gt; = arrayOf(
+                            <xsl:variable name="kotlinArrayItems88" >                            <xsl:for-each select="children" >
                         "<xsl:value-of select="value" />",
-                            </xsl:for-each>
+                            </xsl:for-each></xsl:variable><xsl:call-template name="kotlinRemoveTrailingComma" ><xsl:with-param name="text" select="$kotlinArrayItems88" /></xsl:call-template>
                     )
                             </xsl:if>
                         </xsl:if>
@@ -162,10 +162,10 @@ Created By: Travis Berthelot
                     )
                             </xsl:if>
                             <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'LongArray') or contains(name, 'BoolArray'))" >
-                    this.<xsl:value-of select="name" /> = arrayOf&lt;String&gt;(
-                            <xsl:for-each select="children" >
+                    this.<xsl:value-of select="name" /> = arrayOf(
+                            <xsl:variable name="kotlinArrayItems165" >                            <xsl:for-each select="children" >
                         "<xsl:value-of select="value" />",
-                            </xsl:for-each>
+                            </xsl:for-each></xsl:variable><xsl:call-template name="kotlinRemoveTrailingComma" ><xsl:with-param name="text" select="$kotlinArrayItems165" /></xsl:call-template>
                     )
                             </xsl:if>
                         </xsl:if>
@@ -183,7 +183,7 @@ Created By: Travis Berthelot
 
         //ObjectsGroups - GDObject
         <xsl:for-each select="/game/layouts/objectsGroups" >
-        open public class <xsl:value-of select="name" /> : GDObject {
+        open inner class <xsl:value-of select="name" /> : GDObject {
 
             public constructor(width: Int, height: Int, name: String, type: String) : super(width, height, name, type) {
             }
@@ -206,7 +206,7 @@ Created By: Travis Berthelot
             </xsl:for-each>
 
             //objectsClassPropertyGDObjects
-            override open public fun reset() {
+            override fun reset() {
             <xsl:for-each select="objects" >
                 <xsl:if test="position() = 1" >
                 <xsl:variable name="objectName" select="name" />
@@ -253,10 +253,10 @@ Created By: Travis Berthelot
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
 
                 //Generic GDObject
-                public final class <xsl:value-of select="name" /> : <xsl:call-template name="gdObject" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>
+                open inner class <xsl:value-of select="name" /> : <xsl:call-template name="gdObject" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>
                 <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >, SoftJoystickInterface </xsl:if>{
 
-                    private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+                    private val globals: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance()
 
                     <xsl:variable name="hasObjectInObjectsGroups" ><xsl:for-each select="/game/layouts/objectsGroups" ><xsl:variable name="objectsGroupsName" select="name" /><xsl:for-each select="objects" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
 
@@ -267,7 +267,7 @@ Created By: Travis Berthelot
                         </xsl:call-template>
 
                     //objectsClassPropertyGDObjects2
-                    override open public fun reset() {
+                    override fun reset() {
                         <xsl:call-template name="variablesResetForGDObject" />
 
                         this.initialVariables.reset()
@@ -278,11 +278,11 @@ Created By: Travis Berthelot
                 <xsl:if test="animations" >
                     //animations/directions/sprites/originPoint/x <xsl:value-of select="animations/directions/sprites/originPoint/x" />
                     //animations/directions/sprites/originPoint/y <xsl:value-of select="animations/directions/sprites/originPoint/y" />
-                    public val ANIMATION_NAMES: Array&lt;String&gt; = arrayOf(
+                    public val ANIMATION_NAMES: Array&lt;String?&gt; = arrayOf(
                 <xsl:for-each select="animations" >
                     <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(name, ' ', '_'), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
                     <xsl:if test="string-length($animationName) > 0" >
-                    <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$animationName" />,
+                    <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$animationName" /><xsl:if test="position() != last()" >,</xsl:if>
                     </xsl:if>
                 </xsl:for-each>
                     )
@@ -290,7 +290,7 @@ Created By: Travis Berthelot
 
                     //type=<xsl:value-of select="type" />
                     public constructor(width: Int, height: Int, name: String) : super(width, height, name,
-                    <xsl:if test="string-length(type) = 0 or type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'PanelSpriteSlider::PanelSpriteSlider' or type = 'SelectBox::SelectBox'" >null</xsl:if>
+                    <xsl:if test="string-length(type) = 0 or type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'PanelSpriteSlider::PanelSpriteSlider' or type = 'SelectBox::SelectBox'" >StringUtil.getInstance().EMPTY_STRING</xsl:if>
                     <xsl:if test="not(string-length(type) = 0 or type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'PanelSpriteSlider::PanelSpriteSlider' or type = 'SelectBox::SelectBox')" >
 <!--                        <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>-->
                         GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance().<xsl:call-template name="upper-case" >
@@ -392,7 +392,7 @@ Created By: Travis Berthelot
                     }
 
                     <xsl:if test="animations" >
-                    override open public fun getAnimationFromIndex(index: Int): String {
+                    override fun getAnimationFromIndex(index: Int): String {
                         <xsl:variable name="hasAnimationWithName" >
                             <xsl:for-each select="animations" >
                                 <xsl:if test="string-length(name) > 0" >found</xsl:if>
@@ -406,8 +406,8 @@ Created By: Travis Berthelot
                         </xsl:if>
                     }
 
-                    override open public fun getAnimation(animationName: String): String {
-                        val size: Int = ANIMATION_NAMES.length
+                    override fun getAnimation(animationName: String): String {
+                        val size: Int = ANIMATION_NAMES.size
                         for(index in 0 until size) {
                             if(this.ANIMATION_NAMES[index] == animationName) {
                                 //this.logUtil.put(animationName, this, "getAnimation")
@@ -426,15 +426,15 @@ Created By: Travis Berthelot
                         throw RuntimeException(animationName)
                     }
 
-                    override open public fun setAnimation(animationName: String): Boolean {
-                        val size: Int = ANIMATION_NAMES.length
+                    override fun setAnimation(animationName: String): Boolean {
+                        val size: Int = ANIMATION_NAMES.size
                         for(index in 0 until size) {
                             if(this.ANIMATION_NAMES[index] == animationName) {
                                 //this.logUtil.put(animationName, this, "setAnimation")
                                 if(this.animation != index) {
                                     this.animation = index
                                     return true
-                                } else if(this.ANIMATION_NAMES.length == 1) {
+                                } else if(this.ANIMATION_NAMES.size == 1) {
                                     return true
                                 } else {
                                     return false
@@ -495,57 +495,62 @@ Created By: Travis Berthelot
                     private var stickForceX: Float = 0.0f
                     private var stickForceY: Float = 0.0f
 
-                    override open public fun setId(id: Int) {
+                    override fun setId(id: Int) {
                         this.id = id
                     }
 
-                    override open public fun getId(): Int {
+                    override fun getId(): Int {
                         return this.id
                     }
 
-                    override open public fun setPoint(point: GPoint) {
+                    override fun setPoint(point: GPoint) {
                         this.point = point
                     }
 
-                    override open public fun getPoint(): GPoint {
+                    override fun getPoint(): GPoint {
                         return this.point
                     }
 
-                    override open public fun setStickForceX(stickForceX: Float) {
+                    override fun setStickForceX(stickForceX: Float) {
                         this.stickForceX = stickForceX
                     }
 
-                    override open public fun setStickForceY(stickForceY: Float) {
+                    override fun setStickForceY(stickForceY: Float) {
                         this.stickForceY = stickForceY
                     }
 
-                    override open public fun StickForceX(): Float {
+                    override fun StickForceX(): Float {
                         return stickForceX
                     }
 
-                    override open public fun StickForceY(): Float {
+                    override fun StickForceY(): Float {
                         return stickForceY
                     }
 
-                    override open public fun DeadZoneRadius(): Float {
+                    override fun DeadZoneRadius(): Float {
                         return deadZoneRadius
                     }
                     </xsl:if>
                     <xsl:if test="type = 'Scrollbar::Scrollbar'" >
                     private var scrollPositionValue: Int
-                    override open public fun setScrollPosition(scrollPositionValue: Int) {
+                    open public override fun setScrollPosition(scrollPositionValue: Int) {
                         this.scrollPositionValue = scrollPositionValue
                     }
-                    override open public fun ScrollPosition(): Int {
+                    open public override fun ScrollPosition(): Int {
                         return this.scrollPositionValue
                     }
                     </xsl:if>
 
                 }
 
-                open class <xsl:value-of select="name" />GDObjectClassGDObjectFactory : GDObjectFactory {
+                open inner class <xsl:value-of select="name" />GDObjectClassGDObjectFactory : GDObjectFactory {
 
-                    override open public fun get(width: Int, height: Int, name: String): GDObject {
+
+                    constructor() {
+
+                    }
+
+                    override fun get(width: Int, height: Int, name: String): GDObject {
                         return <xsl:value-of select="name" />(width, height, name)
                     }
 
@@ -558,30 +563,35 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
 
                 //ParticleSystem::ParticleEmitter - GDObject
-                public final class <xsl:value-of select="name" /> : GDObject {
+                open inner class <xsl:value-of select="name" /> : GDObject {
 
                     //public val stringMaker: StringMaker = StringMaker()
 
                     public constructor(width: Int, height: Int, name: String) : super(width, height, name, StringUtil.getInstance().EMPTY_STRING) {
                     }
 
-                    override open public fun Width(graphics: Graphics): Int {
+                    override fun Width(graphics: Graphics): Int {
                         return 0
                     }
 
-                    override open public fun Height(graphics: Graphics): Int {
+                    override fun Height(graphics: Graphics): Int {
                         return 0
                     }
 
-                    override open public fun String(): String {
+                    open public override fun String(): String {
                         //return stringMaker.toString()
                         return stringUtil.EMPTY_STRING
                     }
                 }
 
-                open class GDObjectClass2GDObjectFactory : GDObjectFactory {
+                open inner class GDObjectClass2GDObjectFactory : GDObjectFactory {
 
-                    override open public fun get(width: Int, height: Int, name: String): GDObject {
+
+                    constructor() {
+
+                    }
+
+                    override fun get(width: Int, height: Int, name: String): GDObject {
                         return <xsl:value-of select="name" />(width, height, name)
                     }
 

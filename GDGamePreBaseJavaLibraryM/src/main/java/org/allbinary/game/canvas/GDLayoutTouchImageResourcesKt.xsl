@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -85,15 +86,18 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ABHashtable
                 import org.allbinary.AndroidUtil
                 import org.allbinary.J2MEUtil
+                import org.allbinary.game.layout.GDConfig
                 import org.allbinary.logic.NullUtil
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 open class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources : SpecialAnimation
                 {
 
-                    private var instance: Object = NullUtil.getInstance().NULL_OBJECT
+                    companion object {
 
-                        fun getInstanceOrCreate(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources
+                    private var instance: Any = NullUtil.getInstance().NULL_OBJECT
+
+                        open fun getInstanceOrCreate(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources
                         {
                             if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.instance == NullUtil.getInstance().NULL_OBJECT) {
                                 GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.instance = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources()
@@ -102,13 +106,13 @@ Created By: Travis Berthelot
                             return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.instance as GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources
                         }
 
-                        fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources
+                        open fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources
                         {
                             return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.instance as GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources
                         }
 
-                        protected val logUtil: LogUtil = LogUtil.getInstance()
-                        private val commonStrings: CommonStrings = CommonStrings.getInstance()
+                    }
+
                         private val imageCopyUtil: ImageCopyUtil = ImageCopyUtil.getInstance()
                         private val imageScaleUtil: ImageScaleUtil = ImageScaleUtil.getInstance()
                         private val imageCache: ImageCache = ImageCacheFactory.getInstance()
@@ -181,14 +185,14 @@ Created By: Travis Berthelot
 
                     }
 
-                    fun validateSprites(name: String, resourceArray: Array&lt;String&gt;, imageArray: Array&lt;Image&gt;) {
+                    open fun validateSprites(name: String, resourceArray: Array&lt;String?&gt;, imageArray: Array&lt;Image?&gt;) {
                         val commonSeps: CommonSeps = CommonSeps.getInstance()
                         val size: Int = imageArray.size
-                        lateinit var image: Image
+                        var image: Image
                         for(index in 0 until size) {
                             image = imageArray[index]
                             if (image.getWidth() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> image.getHeight() <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> image.getWidth() % image.getHeight() != 0) {
-                                logUtil.put(StringMaker().appendint(index).append(name).appendint(image.getWidth()).append(commonSeps.COLON).appendint(image.getHeight()).toString(), this, commonStrings.PROCESS, Exception())
+                                logUtil.put(StringMaker().appendint(index).append(name).appendint(image.getWidth().toInt()).append(commonSeps.COLON).appendint(image.getHeight().toInt()).toString(), this, commonStrings.PROCESS, Exception())
                             }
                         }
                     }

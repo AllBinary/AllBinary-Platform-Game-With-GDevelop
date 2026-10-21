@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -59,17 +60,22 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.special.SpecialAnimation
                 import org.allbinary.AndroidUtil
                 import org.allbinary.J2MEUtil
+                import org.allbinary.game.layout.GDConfig
 
                 //Game name=<xsl:value-of select="$gameName" />
                 open class GDGlobalSpecialAnimationResources : SpecialAnimation
                 {
 
+                    companion object {
+
                     private var instance: GDGlobalSpecialAnimationResources = GDGlobalSpecialAnimationResources()
 
-                        fun getInstance(): GDGlobalSpecialAnimationResources
+                        open fun getInstance(): GDGlobalSpecialAnimationResources
                         {
                             return GDGlobalSpecialAnimationResources.instance
                         }
+
+                    }
 
                     private constructor() : super(AnimationBehavior.getInstance()) {
                     }

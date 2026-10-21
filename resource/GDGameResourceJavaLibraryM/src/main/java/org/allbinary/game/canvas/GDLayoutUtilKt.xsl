@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -57,15 +58,20 @@ Created By: Travis Berthelot
 
                 import org.allbinary.AndroidUtil
                 import org.allbinary.J2MEUtil
+                import org.allbinary.game.layout.GDConfig
                 
                 open class GD<xsl:value-of select="$layoutIndex" />LayoutUtil
                 {
 
+                    companion object {
+
                     private val instance: GD<xsl:value-of select="$layoutIndex" />LayoutUtil = GD<xsl:value-of select="$layoutIndex" />LayoutUtil()
 
-                    fun getInstance(): GD<xsl:value-of select="$layoutIndex" />LayoutUtil
+                    open fun getInstance(): GD<xsl:value-of select="$layoutIndex" />LayoutUtil
                     {
                         return GD<xsl:value-of select="$layoutIndex" />LayoutUtil.instance
+                    }
+
                     }
 
         <xsl:call-template name="scaleProperties" >

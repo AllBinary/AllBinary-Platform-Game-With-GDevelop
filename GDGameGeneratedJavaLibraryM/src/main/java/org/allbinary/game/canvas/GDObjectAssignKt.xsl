@@ -28,10 +28,10 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
-                public val <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface&gt;
-                public val <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray: Array&lt;ProceduralAnimationInterfaceFactoryInterface&gt;
+                public val <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface?&gt;
+                public val <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray: Array&lt;BasicAnimationInterfaceFactoryInterface?&gt;
                 public val <xsl:value-of select="name" />LayerInfo: Rectangle
-                public val <xsl:value-of select="name" />RectangleArrayOfArrays: Array&lt;Array&lt;Rectangle&gt;&gt;
+                public val <xsl:value-of select="name" />RectangleArrayOfArrays: Array&lt;Array&lt;Rectangle?&gt;?&gt;
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
 
@@ -43,8 +43,8 @@ Created By: Travis Berthelot
                                 </xsl:variable>
 
                 <xsl:variable name="groupInterfaceArray" >
-                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf&lt;Group&gt;(globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
-                    <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf&lt;Group&gt;(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
+                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf(globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
+                    <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                 </xsl:variable>
 
                     <xsl:call-template name="objectsGroupsGDGameLayer" >
@@ -57,10 +57,10 @@ Created By: Travis Berthelot
             <xsl:if test="type != 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
 
-                public val <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface&gt;
-                public val <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray: Array&lt;ProceduralAnimationInterfaceFactoryInterface&gt;
+                public val <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface?&gt;
+                public val <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray: Array&lt;BasicAnimationInterfaceFactoryInterface?&gt;
                 public val <xsl:value-of select="name" />LayerInfo: Rectangle
-                public val <xsl:value-of select="name" />RectangleArrayOfArrays: Array&lt;Array&lt;Rectangle&gt;&gt;
+                public val <xsl:value-of select="name" />RectangleArrayOfArrays: Array&lt;Array&lt;Rectangle?&gt;?&gt;
 
             </xsl:if>
 
@@ -74,7 +74,7 @@ Created By: Travis Berthelot
         <xsl:param name="instancesAsString" />
 
                 var colorAsInt: Int = 0
-                var basicColor: BasicColor = null
+                var basicColor: BasicColor
                 var size: Int = 0
 
         //objects - all - //objectsAssign - START
@@ -85,8 +85,8 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
-                this.<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = (animationInterfaceFactoryInterfaceFactory.getBasicAnimationInterfaceFactoryInstance(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME) as AnimationInterfaceFactoryInterfaceComposite).getAnimationInterfaceFactoryInterfaceArray() as Array&lt;AnimationInterfaceFactoryInterface&gt;
-                this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = (animationInterfaceFactoryInterfaceFactory.getBasicAnimationInterfaceFactoryInstance(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_PROCEDURAL_ANIMATION_NAME) as BaseAnimationInterfaceFactoryInterfaceComposite).getBasicAnimationInterfaceFactoryInterfaceArray() as Array&lt;ProceduralAnimationInterfaceFactoryInterface&gt;
+                this.<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = (animationInterfaceFactoryInterfaceFactory.getBasicAnimationInterfaceFactoryInstance(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME) as AnimationInterfaceFactoryInterfaceComposite).getAnimationInterfaceFactoryInterfaceArray() as Array&lt;AnimationInterfaceFactoryInterface?&gt;
+                this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = (animationInterfaceFactoryInterfaceFactory.getBasicAnimationInterfaceFactoryInstance(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_PROCEDURAL_ANIMATION_NAME) as BaseAnimationInterfaceFactoryInterfaceComposite).getBasicAnimationInterfaceFactoryInterfaceArray() as Array&lt;BasicAnimationInterfaceFactoryInterface?&gt;
                 this.<xsl:value-of select="name" />LayerInfo = animationInterfaceFactoryInterfaceFactory.getRectangle(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME)
                 this.<xsl:value-of select="name" />RectangleArrayOfArrays = animationInterfaceFactoryInterfaceFactory.getRectangleArrayOfArrays(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME)
 
@@ -100,8 +100,8 @@ Created By: Travis Berthelot
                                 </xsl:variable>
 
                 <xsl:variable name="groupInterfaceArray" >
-                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf&lt;Group&gt;(globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
-                    <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf&lt;Group&gt;(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
+                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf(globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
+                    <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                 </xsl:variable>
 
                     <xsl:call-template name="objectsGroupsGDGameLayer" >
@@ -157,7 +157,7 @@ Created By: Travis Berthelot
 
                 //PanelSpriteSlider::PanelSpriteSlider - set the layer size from the initial text
                 val <xsl:value-of select="name" />SliderAnimationInterfaceFactory: SliderAnimationInterfaceFactory = <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray[0] as SliderAnimationInterfaceFactory
-                val <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface&gt; = <xsl:value-of select="name" />SliderAnimationInterfaceFactory.getBasicAnimationInterfaceFactoryInterfaceArray()
+                val <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray: Array&lt;AnimationInterfaceFactoryInterface?&gt; = <xsl:value-of select="name" />SliderAnimationInterfaceFactory.getBasicAnimationInterfaceFactoryInterfaceArray()
                 val <xsl:value-of select="name" />CustomTextAnimationFactory: CustomTextAnimationFactory = <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray[4] as CustomTextAnimationFactory
                 <xsl:value-of select="name" />CustomTextAnimationFactory.basicColor = basicColor
                 </xsl:if>
@@ -191,7 +191,7 @@ Created By: Travis Berthelot
                     <xsl:if test="type = 'TextObject::Text'" >
                     {
 
-                        override public fun init(gdObject: GDObject, scaleX: Float, scaleY: Float): Rectangle {
+                        override fun init(gdObject: GDObject, scaleX: Float, scaleY: Float): Rectangle {
                             //text animation sizing
                             //this.logUtil.putF("CustomTextAnimation", this, "init")
                             val customTextAnimationFactory: CustomTextAnimationFactory = animationInterfaceFactoryInterfaceArray[0] as CustomTextAnimationFactory
@@ -200,7 +200,7 @@ Created By: Travis Berthelot
                             gdObject.height = (customTextAnimationFactory.getHeight()).toInt()
 
                             val rectangle: Rectangle = Rectangle(
-                                pointFactory.getInstance().ZERO_ZERO,
+                                pointFactory.ZERO_ZERO,
                                 (this.layerInfo.getWidth()).toInt(),
                                 (this.layerInfo.getHeight()).toInt()
                             )
@@ -215,7 +215,7 @@ Created By: Travis Berthelot
             <xsl:if test="type = 'PrimitiveDrawing::Drawer'" >
                 <xsl:variable name="stringValue" select="string" />
 
-                this.<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = arrayOf&lt;AnimationInterfaceFactoryInterface&gt;(
+                this.<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = arrayOf(
                     NullRotationAnimationFactory.getFactoryInstance()
                 )
                 this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = arrayOfNulls&lt;ProceduralAnimationInterfaceFactoryInterface&gt;(0)
@@ -223,7 +223,7 @@ Created By: Travis Berthelot
                                 pointFactory.createXY(0, 0),
                                 0, 0
                                 )
-                this.<xsl:value-of select="name" />RectangleArrayOfArrays = Array(0) { arrayOfNulls&lt;Rectangle&gt;(0) }
+                this.<xsl:value-of select="name" />RectangleArrayOfArrays = Array(0) { arrayOfNulls&lt;Rectangle?&gt;(0) }
 
                 val <xsl:value-of select="name" />BehaviorList: BasicArrayList = BasicArrayListD()
 
@@ -281,7 +281,7 @@ Created By: Travis Berthelot
 
                     <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList,
                     <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerDestroyedList,
-                    arrayOf&lt;Group&gt;(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface),
+                    arrayOf(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface),
                     <xsl:value-of select="name" />BehaviorList,
                     <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,

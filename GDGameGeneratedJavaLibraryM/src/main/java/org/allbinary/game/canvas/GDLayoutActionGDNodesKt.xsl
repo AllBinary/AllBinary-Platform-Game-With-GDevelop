@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -75,6 +76,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.AndroidUtil
                 import org.allbinary.J2MEUtil
+                import org.allbinary.game.layout.GDConfig
                 import org.allbinary.animation.AnimationBehavior
                 import org.allbinary.animation.special.SpecialAnimation
                 import org.allbinary.canvas.GameGlobalsFactory
@@ -152,12 +154,16 @@ Created By: Travis Berthelot
                 open public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes : SpecialAnimation
                 {
 
+                    companion object {
+
                     private val instance: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes =
                         GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes()
 
                         open public fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes {
                             return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes.instance
                         }
+
+                    }
 
                         private val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
                         private val gdExtensionGDNodes: GDExtensionGDNodes = GDExtensionGDNodes.getInstance()
@@ -282,8 +288,8 @@ Created By: Travis Berthelot
                         return string
                     }
 
-                    open fun VariableString(`object`: Object): String {
-                        return `object`.toString()
+                    open fun VariableString(anyType: Any): String {
+                        return anyType.toString()
                     }
 
                     open fun VariableChildCount(array: Array&lt;String?&gt;): Int {
@@ -392,6 +398,10 @@ Created By: Travis Berthelot
                         return value
                     }
 
+                    open fun floor(value: Long): Float {
+                        return value.toFloat()
+                    }
+
                     open fun floor(value: Float): Float {
                         return Math.floor(value.toDouble()).toFloat()
                     }
@@ -409,7 +419,7 @@ Created By: Travis Berthelot
                     }
 
                     open fun round(value: Float): Float {
-                        return Math.round(value)
+                        return Math.round(value).toFloat()
                     }
 
                     open fun abs(value: Int): Int {
@@ -421,7 +431,7 @@ Created By: Travis Berthelot
                     }
 
                     open fun log2(value: Int): Double {
-                        return Math.log(value)
+                        return Math.log(value.toDouble())
                     }
 
                     open fun sin(angle: Double): Double {

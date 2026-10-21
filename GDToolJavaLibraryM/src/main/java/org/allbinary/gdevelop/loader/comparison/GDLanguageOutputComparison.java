@@ -433,6 +433,7 @@ public class GDLanguageOutputComparison {
      * The converter extends Object, delegates to an empty super() and adds empty public constructors which are the Kotlin defaults.
      */
     private void removeNeutralConverterIdioms(final List<String> tokenList) {
+        //The empty super() call is removed first so 'constructor() : super() {}' is also an empty constructor
         for (int index = 0; index < tokenList.size(); index++) {
             int end = this.match(tokenList, index, OBJECT_SUPER_TYPE);
             if (end < 0) {
@@ -440,9 +441,10 @@ public class GDLanguageOutputComparison {
             }
             if (end >= 0) {
                 tokenList.subList(index, end - 1).clear();
-                continue;
             }
-            end = this.match(tokenList, index, EMPTY_CONSTRUCTOR);
+        }
+        for (int index = 0; index < tokenList.size(); index++) {
+            final int end = this.match(tokenList, index, EMPTY_CONSTRUCTOR);
             if (end >= 0) {
                 final String previous = this.previousToken(tokenList, index);
                 if (!previous.equals("private") && !previous.equals("protected") && !previous.equals("internal")) {

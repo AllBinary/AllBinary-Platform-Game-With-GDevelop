@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -73,6 +74,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.AndroidUtil
                 import org.allbinary.J2MEUtil
+                import org.allbinary.game.layout.GDConfig
                 import org.allbinary.canvas.GameGlobalsFactory
                 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas
                 import org.allbinary.animation.AnimationBehavior
@@ -137,11 +139,15 @@ Created By: Travis Berthelot
                 open public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes : SpecialAnimation
                 {
 
+                    companion object {
+
                     private val instance: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes()
 
                         open public fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes {
                             return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes.instance
                         }
+
+                    }
 
                         private val nullUtil: NullUtil = NullUtil.getInstance()
                         private val arrayUtil: ArrayUtil = ArrayUtil.getInstance()
@@ -229,7 +235,7 @@ Created By: Travis Berthelot
                     }
 
                     open public fun log2(value: Int): Double {
-                        return Math.log(value)
+                        return Math.log(value.toDouble())
                     }
 
                     open public fun Random(range: Int): Int {
@@ -248,12 +254,12 @@ Created By: Travis Berthelot
                         return value
                     }
 
-                    open public fun VariableChildCount(array: Array&lt;String&gt;): Int {
-                        return array.length
+                    open public fun VariableChildCount(array: Array&lt;String?&gt;): Int {
+                        return array.size
                     }
 
                     open public fun VariableChildCount(array: IntArray): Int {
-                        return array.length
+                        return array.size
                     }
 
                     open public fun SceneInstancesCount(size: Int): Int {
@@ -280,16 +286,16 @@ Created By: Travis Berthelot
                         return value
                     }
 
-                    open public fun GlobalVariableChildCount(array: Array&lt;String&gt;): Int {
-                        return array.length
+                    open public fun GlobalVariableChildCount(array: Array&lt;String?&gt;): Int {
+                        return array.size
                     }
 
                     open public fun GlobalVariableChildCount(array: IntArray): Int {
-                        return array.length
+                        return array.size
                     }
 
                     open public fun GlobalVariableChildCount(array: LongArray): Int {
-                        return array.length
+                        return array.size
                     }
 
                     open public fun abs(value: Int): Int {
@@ -309,27 +315,36 @@ Created By: Travis Berthelot
                     }
 
                     open public fun MouseX(string: String, value: Int): Int {
+                        var value = value
                         return gameGlobalsFactory.point.getX()
                     }
 
                     open public fun MouseY(string: String, value: Int): Int {
+                        var value = value
                         return gameGlobalsFactory.point.getY()
                     }
 
                     open public fun CameraX(string: String, value: Int): Int {
+                        var value = value
                         return 0
                     }
 
                     open public fun CameraY(string: String, value: Int): Int {
+                        var value = value
                         return 0
                     }
 
                     open public fun CameraWidth(string: String, value: Int): Int {
+                        var value = value
                         return gameTickDisplayInfoSingleton.getLastWidth()
                     }
 
                     open public fun floor(value: Int): Int {
                         return value
+                    }
+
+                    open public fun floor(value: Long): Float {
+                        return value.toFloat()
                     }
 
                     open public fun floor(value: Float): Float {
@@ -349,7 +364,7 @@ Created By: Travis Berthelot
                     }
 
                     open public fun round(value: Float): Float {
-                        return Math.round(value)
+                        return Math.round(value).toFloat()
                     }
 
                     open public fun LastTouchId(): Int {
@@ -369,6 +384,8 @@ Created By: Travis Berthelot
                     }
 
                     open public fun StrFind(string: String, key: String): Int {
+                        var string = string
+                        var key = key
                         return string.indexOf(key)
                     }
 
@@ -378,7 +395,7 @@ Created By: Travis Berthelot
 
                     open public fun ToString(value: Int): String {
                         if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
-                            return Integer.toString(value)
+                            return value.toString()
                         } else {
                             return smallIntegerSingletonFactory.getString(value)
                         }

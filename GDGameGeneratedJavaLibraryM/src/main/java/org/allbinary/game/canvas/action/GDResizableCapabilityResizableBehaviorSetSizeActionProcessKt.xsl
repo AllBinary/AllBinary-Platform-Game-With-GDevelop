@@ -68,11 +68,11 @@ Created By: Travis Berthelot
                             </xsl:if>
 
                                 val size: Int = <xsl:value-of select="$paramOne" />GDGameLayerList.size()
-                                lateinit var <xsl:value-of select="$paramOne" />GDGameLayer: GDGameLayer
-                                lateinit var <xsl:value-of select="$paramOne" />: <xsl:value-of select="$gdObjectFactory" />
+                                var <xsl:value-of select="$paramOne" />GDGameLayer: GDGameLayer
+                                var <xsl:value-of select="$paramOne" />: <xsl:value-of select="$gdObjectFactory" />
                                 for(index in 0 until<xsl:text disable-output-escaping="yes" ></xsl:text> size) {
                                     <xsl:value-of select="$paramOne" />GDGameLayer = <xsl:value-of select="$paramOne" />GDGameLayerList.get(index) as GDGameLayer
-                                    <xsl:value-of select="$paramOne" /> = <xsl:value-of select="$paramOne" />GDGameLayer.gdObject as <xsl:value-of select="$gdObjectFactory" />
+                                    <xsl:value-of select="$paramOne" /> = <xsl:value-of select="$paramOne" />GDGameLayer.gdObject as <xsl:value-of select="$gdObjectFactory" /><xsl:text>&#10;</xsl:text>
 
                                     <xsl:value-of select="$paramOne" />.updateSize(<xsl:value-of select="$param3" />, (<xsl:value-of select="$paramFour" />).toInt())
                                     <xsl:value-of select="$paramOne" />GDGameLayer.updateSize()
@@ -123,7 +123,7 @@ Created By: Travis Berthelot
                             </xsl:if>
 
                                 val <xsl:value-of select="$paramOne" />GDGameLayer: GDGameLayer = <xsl:value-of select="$paramOne" />GDGameLayerList.get(index) as GDGameLayer
-                                val <xsl:value-of select="$paramOne" />: <xsl:value-of select="$gdObjectFactory" /> = <xsl:value-of select="$paramOne" />GDGameLayer.gdObject as <xsl:value-of select="$gdObjectFactory" />
+                                val <xsl:value-of select="$paramOne" />: <xsl:value-of select="$gdObjectFactory" /> = <xsl:value-of select="$paramOne" />GDGameLayer.gdObject as <xsl:value-of select="$gdObjectFactory" /><xsl:text>&#10;</xsl:text>
 
                                 <xsl:value-of select="$paramOne" />.updateSize(<xsl:value-of select="$param3" />, (<xsl:value-of select="$paramFour" />).toInt())
                                 <xsl:value-of select="$paramOne" />GDGameLayer.updateSize()
@@ -162,7 +162,7 @@ Created By: Travis Berthelot
                     }
 
 
-                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
                         super.processGDStats(gameLayerArray)
                         try {
 
@@ -197,7 +197,7 @@ Created By: Travis Berthelot
 
                         <xsl:if test="contains($forExtension, 'found')" >
 
-                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                        override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
                             //Map from object array with action params
                             val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
@@ -207,12 +207,12 @@ Created By: Travis Berthelot
                         }
                         </xsl:if>
 
-                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                        override fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
                             val gdObject: GDObject = gameLayer.gdObject
                             this.process(gdObject, x, y)
                         }
 
-                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                        override fun process(gdObject: GDObject, x: Int, y: Int) {
                             throw RuntimeException()
                         }
     </xsl:template>

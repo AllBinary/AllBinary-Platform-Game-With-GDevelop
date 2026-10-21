@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -70,11 +71,15 @@ Created By: Travis Berthelot
                 open class GD<xsl:value-of select="$layoutIndex" />GameSoundsFactory
                 {
 
+                    companion object {
+
                     private val instance: GD<xsl:value-of select="$layoutIndex" />GameSoundsFactory = GD<xsl:value-of select="$layoutIndex" />GameSoundsFactory()
 
-                    fun getInstance(): GD<xsl:value-of select="$layoutIndex" />GameSoundsFactory
+                    open fun getInstance(): GD<xsl:value-of select="$layoutIndex" />GameSoundsFactory
                     {
                         return GD<xsl:value-of select="$layoutIndex" />GameSoundsFactory.instance
+                    }
+
                     }
 
                     private val logUtil: LogUtil = LogUtil.getInstance()

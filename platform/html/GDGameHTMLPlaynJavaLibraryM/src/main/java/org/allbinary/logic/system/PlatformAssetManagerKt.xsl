@@ -1,5 +1,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobalKt.xsl" />
 
@@ -44,18 +45,22 @@ import gd.res.GD<xsl:value-of select="$index" />GamePlaynResources
  */
 open class PlatformAssetManager {
 
+    companion object {
+
     private val instance: PlatformAssetManager = PlatformAssetManager()
 
     /**
      * @return the instance
      */
-    fun getInstance(): PlatformAssetManager {
+    open fun getInstance(): PlatformAssetManager {
         return PlatformAssetManager.instance
     }
 
-    protected val logUtil: LogUtil = LogUtil.getInstance()
+    }
 
-    fun getResourceAsStream(resource: String): InputStream {
+    val logUtil: LogUtil = LogUtil.getInstance()
+
+    open fun getResourceAsStream(resource: String): InputStream {
         val resourceUtil: ResourceUtil = ResourceUtil.getInstance()
         val inputStream: InputStream = resourceUtil.getResourceAsStream(resource)
         return this.getText(resource, inputStream)
@@ -72,7 +77,7 @@ open class PlatformAssetManager {
         var text: String
     }
 
-    fun getTextResource(resource: String): TextResource {
+    open fun getTextResource(resource: String): TextResource {
         <xsl:for-each select="layouts" >
             <xsl:variable name="index" select="position() - 1" />
 
@@ -86,7 +91,7 @@ open class PlatformAssetManager {
                 <xsl:variable name="lastPosition" ><xsl:value-of select="position()" /></xsl:variable>
                 <xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" />
                 <xsl:variable name="json" select="substring-before($jsonWithExtension, '.')" />
-        if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[<xsl:value-of select="$previousCount * 2" />].compareTo(resource) == 0) {
+        if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[<xsl:value-of select="$previousCount * 2" />]!!.compareTo(resource) == 0) {
         return GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.
         <xsl:call-template name="upper-case" >
             <xsl:with-param name="text" >
@@ -94,7 +99,7 @@ open class PlatformAssetManager {
         </xsl:call-template>
 
         <xsl:variable name="tilesetJsonFileWithExtension" select="content/tilesetJsonFile" />
-        } else if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[<xsl:value-of select="($previousCount * 2) + 1" />].compareTo(resource) == 0) {
+        } else if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[<xsl:value-of select="($previousCount * 2) + 1" />]!!.compareTo(resource) == 0) {
         return GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.<xsl:variable name="tilesetJsonFileN" select="substring-before($tilesetJsonFileWithExtension, '.')" />
         <xsl:call-template name="upper-case" >
             <xsl:with-param name="text" >
@@ -107,7 +112,7 @@ open class PlatformAssetManager {
 
         <xsl:for-each select="content/tilesetJsonFiles" >
         <xsl:variable name="json" select="substring-before(text(), '.')" />
-        } else if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[<xsl:value-of select="($previousCount * 2) + 2" />].compareTo(resource) == 0) {
+        } else if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[<xsl:value-of select="($previousCount * 2) + 2" />]!!.compareTo(resource) == 0) {
         return GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$json" />()</xsl:with-param></xsl:call-template>
 
     <xsl:for-each select="../../../objects" >
@@ -136,14 +141,14 @@ open class PlatformAssetManager {
         }
     }
 
-    fun getText(resource: String, inputStream: InputStream): InputStream {
+    open fun getText(resource: String, inputStream: InputStream): InputStream {
 
         val requestedText2: RequestedText = textToResource.get(resource) as RequestedText
         if(requestedText2 != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> requestedText2.text != null) {
             logUtil.putF("Text already loaded: " + resource, this, GET_TEXT)
             val byteArray: ByteArray = requestedText2.text.encodeToByteArray()
             val byteArrayInputStream: ByteArrayInputStream = ByteArrayInputStream(byteArray)
-            //return arrayOf&lt;Object&gt;(byteArrayInputStream, text.length)
+            //return arrayOf(byteArrayInputStream, text.length)
             return byteArrayInputStream
         } else {
 

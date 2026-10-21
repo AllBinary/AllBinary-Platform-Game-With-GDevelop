@@ -76,7 +76,7 @@ open class <xsl:value-of select="$layoutName" /> : StartCanvas
         GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(this, null)
     }
 
-    fun initPostPaint()
+    open fun initPostPaint()
     {
         //logUtil.put("initPostPaint", this, "initPostPaint")
 
@@ -122,13 +122,13 @@ open class <xsl:value-of select="$layoutName" /> : StartCanvas
         this.setPaintableInterface(this.getDefaultPaintableInterface())
     }
 
-    fun open()
+    open fun open()
     {
         super.open()
         GD<xsl:value-of select="$index" />SpecialAnimation.getInstance().open()
     }
 
-    fun close()
+    open fun close()
     {
         super.close()
         GD<xsl:value-of select="$index" />SpecialAnimation.getInstance().close()
@@ -141,23 +141,23 @@ open class <xsl:value-of select="$layoutName" /> : StartCanvas
     }
 
     //Hack for GD
-    fun end2() {
+    open fun end2() {
         this.paintedSpecialAnimationInterface = SpecialAnimation.getInstance()
     }
 
-    protected fun processGame()
+    open fun processGame()
     {
         this.gameInputProcessor.process(null, this.paintedSpecialAnimationInterface)
         super.processGame()
     }
 
-    fun handleRawKey(keyCode: Int, deviceId: Int, repeated: Boolean) {
+    open fun handleRawKey(keyCode: Int, deviceId: Int, repeated: Boolean) {
         val keyCodeAsInteger: Integer = smallIntegerSingletonFactory.getInstance(keyCode)
         this.upKeyEventHandler.fireEvent(keyCodeAsInteger)
         this.upKeyEventHandler.getInstance(deviceId).fireEvent(keyCodeAsInteger)
     }
 
-    fun addKeyInputListener(playerGameInput: PlayerGameInput) {
+    open fun addKeyInputListener(playerGameInput: PlayerGameInput) {
         super.addKeyInputListener(playerGameInput)
 
         this.downKeyEventHandler.getInstanceForPlayer(playerGameInput.getPlayerInputId()).addListenerSingleThreaded(playerGameInput)
@@ -165,11 +165,11 @@ open class <xsl:value-of select="$layoutName" /> : StartCanvas
 
     <xsl:if test="number($layoutIndex) != 1" >
     //Do not remove on build for this layout
-    protected fun removeAllGameKeyInputListenersOnBuild() {
+    open fun removeAllGameKeyInputListenersOnBuild() {
     }
     </xsl:if>
 
-    fun removeKeyInputListener(playerGameInput: PlayerGameInput) {
+    open fun removeKeyInputListener(playerGameInput: PlayerGameInput) {
         super.removeKeyInputListener(playerGameInput)
 
         this.downKeyEventHandler.removeListener(playerGameInput)

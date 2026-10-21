@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -70,6 +71,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.AndroidUtil
                 import org.allbinary.J2MEUtil
+                import org.allbinary.game.layout.GDConfig
                 import org.allbinary.animation.AnimationBehavior
                 import org.allbinary.animation.special.SpecialAnimation
                 import org.allbinary.game.canvas.GDExtensionGDNodes
@@ -96,6 +98,8 @@ Created By: Travis Berthelot
                 open public class GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode
                 {
 
+                    companion object {
+
                     private val instance: GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode =
                        GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode()
 
@@ -103,7 +107,9 @@ Created By: Travis Berthelot
                         return GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode.instance
                     }
 
-                    protected val logUtil: LogUtil = LogUtil.getInstance()
+                    }
+
+                    val logUtil: LogUtil = LogUtil.getInstance()
 
                     private val commonStrings: CommonStrings = CommonStrings.getInstance()
                     private val stringUtil: StringUtil = StringUtil.getInstance()

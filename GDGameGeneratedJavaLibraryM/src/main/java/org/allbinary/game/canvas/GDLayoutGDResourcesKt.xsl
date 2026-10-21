@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -64,6 +65,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.AndroidUtil
                 import org.allbinary.J2MEUtil
+                import org.allbinary.game.layout.GDConfig
                 import org.allbinary.animation.AnimationBehavior
                 import org.allbinary.animation.AnimationInterfaceFactoryInterface
                 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite
@@ -119,7 +121,9 @@ Created By: Travis Berthelot
                 open public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources : SpecialAnimation
                 {
 
-                    private var instance: Object = NullUtil.getInstance().NULL_OBJECT
+                    companion object {
+
+                    private var instance: Any = NullUtil.getInstance().NULL_OBJECT
 
                         open public fun getInstanceOrCreate(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources {
                             if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.instance == NullUtil.getInstance().NULL_OBJECT) {
@@ -132,8 +136,8 @@ Created By: Travis Berthelot
                             return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.instance as GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources
                         }
 
-                        protected val logUtil: LogUtil = LogUtil.getInstance()
-                        private val commonStrings: CommonStrings = CommonStrings.getInstance()
+                    }
+
                         private val pointFactory: PointFactory = PointFactory.getInstance()
 
                         private val basicColorUtil: BasicColorUtil = BasicColorUtil.getInstance()

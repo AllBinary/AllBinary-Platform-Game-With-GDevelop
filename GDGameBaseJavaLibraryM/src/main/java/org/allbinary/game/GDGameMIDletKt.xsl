@@ -2,6 +2,7 @@
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
 
     <xsl:output method="text" indent="yes" />
@@ -77,6 +78,7 @@ import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory
 import org.allbinary.graphics.color.BasicColor
 import org.allbinary.graphics.color.BasicColorFactory
 import org.allbinary.image.opengles.OpenGLESImageExclusionUtil
+import org.allbinary.logic.StdUtil
 import org.allbinary.logic.string.StringMaker
 import org.allbinary.logic.system.security.licensing.ClientInformationFactory
 import org.allbinary.media.audio.AllBinaryMediaManagerShutdown
@@ -105,7 +107,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
 
        //objectsGroups count=<xsl:value-of select="count(//objectsGroups)" /> + //object count=<xsl:value-of select="count(//objects)" /> + 1
        val SIZE: Short = <xsl:value-of select="count(//objectsGroups) + count(//objects) + 1" />
-       val groupNames: Array&lt;String&gt; = arrayOfNulls&lt;String&gt;(SIZE)
+       val groupNames: Array&lt;String?&gt; = arrayOfNulls(SIZE)
        val GROUP_: String = "Group "
        val stringBuilder: StringMaker = StringMaker()
        for(index in 0 until SIZE) {
@@ -123,7 +125,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
        </xsl:for-each>
    }
 
-   protected override fun getHelpPaintable(): HelpPaintable
+   override fun getHelpPaintable(): HelpPaintable
 
    {
        //return GDGameHelpPaintable.getInstance()
@@ -139,7 +141,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
     <xsl:variable name="name" ><xsl:value-of select="translate($name3, ' ', '')" /></xsl:variable>
     <!--
     <xsl:if test="position() = 1 and $totalLayouts > 1" >
-   fun createDemoGameCanvasRunnableInterface(): GameCanvasRunnableInterface
+   open fun createDemoGameCanvasRunnableInterface(): GameCanvasRunnableInterface
    {
        return <xsl:value-of select="$name" />(this.abeClientInformation, this)
       //return GDGameStartCanvas(this.abeClientInformation, this)
@@ -148,14 +150,14 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
     -->
     <!--
     <xsl:if test="position() = 2 or $totalLayouts = 1" >
-   fun createGameCanvasRunnable(allBinaryGameLayerManager: AllBinaryGameLayerManager): GameCanvasRunnableInterface
+   open fun createGameCanvasRunnable(allBinaryGameLayerManager: AllBinaryGameLayerManager): GameCanvasRunnableInterface
    {
        return <xsl:value-of select="$name" />(this.abeClientInformation, this, allBinaryGameLayerManager)
        //return GDGameGameCanvas(this.abeClientInformation, this, allBinaryGameLayerManager)
    }
     </xsl:if>
     <xsl:if test="position() != 1 and position() != 2" >
-   fun create<xsl:value-of select="$name" />RunnableInterface(): GameCanvasRunnableInterface
+   open fun create<xsl:value-of select="$name" />RunnableInterface(): GameCanvasRunnableInterface
    {
        return <xsl:value-of select="$name" />(this.abeClientInformation, this)
       //return GDGameStartCanvas(this.abeClientInformation, this)
@@ -188,13 +190,13 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
    }
     </xsl:if>
 
-   fun create<xsl:value-of select="$name" />RunnableInterface(): GameCanvasRunnableInterface
+   open fun create<xsl:value-of select="$name" />RunnableInterface(): GameCanvasRunnableInterface
    {
        return <xsl:value-of select="$name" />(this.abeClientInformation, this, this.createGameLayerManager())
        //return GDGameGameCanvas(this.abeClientInformation, this, this.createGameLayerManager())
    }
 
-   fun create<xsl:value-of select="$name" />RunnableInterface(allBinaryGameLayerManager: AllBinaryGameLayerManager): GameCanvasRunnableInterface
+   open fun create<xsl:value-of select="$name" />RunnableInterface(allBinaryGameLayerManager: AllBinaryGameLayerManager): GameCanvasRunnableInterface
    {
        return <xsl:value-of select="$name" />(this.abeClientInformation, this, allBinaryGameLayerManager)
        //return GDGameGameCanvas(this.abeClientInformation, this, allBinaryGameLayerManager)
@@ -207,7 +209,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
         ////TWB - Loading Feature Change - Can remove remark after testing
         ProgressCanvasFactory.getInstance().start()
 
-        val hashtable: ABHashtable = this.getStartStateHashtable()
+        val hashtable: ABHashtable&lt;Any, Any&gt; = this.getStartStateHashtable()
         this.setStartStateHashtable(null)
 
         PrimaryThreadPool.getInstance().runTask(<xsl:value-of select="$name" />Runnable(this, hashtable))
@@ -216,7 +218,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
 
 </xsl:for-each>
 
-   protected override fun createHighScoresCanvas(): HighScoresCanvas
+   override fun createHighScoresCanvas(): HighScoresCanvas
    {
        val layerManager: AllBinaryGameLayerManager = this.createGameLayerManager()
        return HighScoresCanvas(this,
@@ -235,7 +237,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
        return LicenseLevelUtil.getInstance().getMaxLevel(GDGameLayerManager.MAX_LEVEL, 6)
    }
 
-   protected override fun createGameLayerManager(): AllBinaryGameLayerManager
+   override fun createGameLayerManager(): AllBinaryGameLayerManager
    {
        val gameInfo: GameInfo = GameInfo(
                GameTypeFactory.getInstance().SINGLE_PLAYER, GameMode.SERVER,
@@ -249,12 +251,12 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
    }
 
    /*
-   protected fun mediaInit()
+   open fun mediaInit()
    {
    }
    */
 
-   protected override fun mediaShutdown()
+   override fun mediaShutdown()
    {
         //PrelogUtil.putF(commonStrings.START, this, "mediaShutdown - postStopGameCanvasRunnableInterface")
 
@@ -292,7 +294,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
         -->
 //    }
 
-    protected override fun setDisplay(newDisplay: Displayable)
+    override fun setDisplay(newDisplay: Displayable)
     {
         gameGlobalsFactory.newDisplaybleTime = System.currentTimeMillis()
         //logUtil.putF("newDisplaybleTime: " + gameGlobalsFactory.newDisplaybleTime, this, "setDisplay")

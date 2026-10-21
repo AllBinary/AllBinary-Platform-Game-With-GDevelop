@@ -1,5 +1,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
 
     <xsl:output method="text" indent="yes" />
@@ -26,6 +27,7 @@ import min3d.core.Object3d
 import min3d.vos.Camera
 
 import org.allbinary.AndroidUtil
+import org.allbinary.game.layout.GDConfig
 import org.allbinary.animation.threed.ThreedAnimation
 import org.allbinary.game.canvas.GDGameGlobals
 import org.allbinary.game.layer.CameraLayer
@@ -40,6 +42,8 @@ import org.allbinary.logic.string.StringMaker
 
 open class GD<GD_CURRENT_INDEX>GameCameraSetup : GDGameCameraSetup
 {
+    companion object {
+
     private val instance: GD<GD_CURRENT_INDEX>GameCameraSetup = GD<GD_CURRENT_INDEX>GameCameraSetup()
 
     /**
@@ -49,7 +53,9 @@ open class GD<GD_CURRENT_INDEX>GameCameraSetup : GDGameCameraSetup
         return GD<GD_CURRENT_INDEX>GameCameraSetup.instance
     }
 
-    protected val logUtil: LogUtil = LogUtil.getInstance()
+    }
+
+    val logUtil: LogUtil = LogUtil.getInstance()
 
     private val sceneStrings: SceneStrings = SceneStrings.getInstance()
 
@@ -77,7 +83,7 @@ open class GD<GD_CURRENT_INDEX>GameCameraSetup : GDGameCameraSetup
     }
 
         <xsl:for-each select="properties" >
-    fun process(camera: Camera, stringMaker: StringMaker) {
+    open fun process(camera: Camera, stringMaker: StringMaker) {
 
             val displayInfoSingleton: DisplayInfoSingleton = DisplayInfoSingleton.getInstance()
 
@@ -227,7 +233,7 @@ open class GD<GD_CURRENT_INDEX>GameCameraSetup : GDGameCameraSetup
 
         </xsl:for-each>
 
-    fun processTarget(cameraLayer: CameraLayer, camera: Camera) {
+    open fun processTarget(cameraLayer: CameraLayer, camera: Camera) {
 
         <xsl:for-each select="properties" >
             <xsl:for-each select="camera" >

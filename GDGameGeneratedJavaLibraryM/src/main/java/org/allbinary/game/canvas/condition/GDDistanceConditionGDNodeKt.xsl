@@ -29,7 +29,7 @@ Created By: Travis Berthelot
         <xsl:variable name="hasOtherConditions" ><xsl:for-each select="preceding-sibling::conditions" >found</xsl:for-each></xsl:variable>
         <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
                     //distanceConditionGDNode - //Condition - //Distance - GDNode
-                    <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>val NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = object : GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>val NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: GDNode = object : GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                     <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
@@ -121,16 +121,18 @@ Created By: Travis Berthelot
 
                         //val size: Int = gdGameLayerList.size()
 
-                        lateinit var gameLayer: GDGameLayer
-                        lateinit var gameLayer2: GDGameLayer
+                        var gameLayer: GDGameLayer
+                        var gameLayer2: GDGameLayer
                         //for(index in 0 until <xsl:text disable-output-escaping="yes" ></xsl:text>size) {
-                        for(index in 0 until <xsl:text disable-output-escaping="yes" ></xsl:text>gdGameLayerList.size()) {
+                        var index: Int = 0
+                        while(index &lt; gdGameLayerList.size()) {
 
                         val initialSize: Int = gdGameLayerList.size()
                         gameLayer = gdGameLayerList.get(index) as GDGameLayer
 
                         //for(index2 in 0 until <xsl:text disable-output-escaping="yes" ></xsl:text>size2) {
-                        for(index2 in 0 until <xsl:text disable-output-escaping="yes" ></xsl:text>gdGameLayerList2.size()) {
+                        var index2: Int = 0
+                        while(index2 &lt; gdGameLayerList2.size()) {
 
                             val initialSize2: Int = gdGameLayerList2.size()
                             gameLayer2 = gdGameLayerList2.get(index2) as GDGameLayer
@@ -153,12 +155,14 @@ Created By: Travis Berthelot
                                 index2--
                             }
 
+                        index2++
                         }
 
                             if(initialSize <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> gdGameLayerList.size()) {
                                 index--
                             }
 
+                        index++
                         }
 
                         <xsl:if test="contains($hasObjectGroup2, 'found')" >
@@ -181,7 +185,7 @@ Created By: Travis Berthelot
                         }
 
                     @Throws(Exception::class)
-                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
                         try {
 
                         //Using Offset as Object/Group could be the same as the first param.
@@ -217,7 +221,7 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >
-                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                        override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
                             //Map from object array with action params
                             val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
@@ -227,12 +231,12 @@ Created By: Travis Berthelot
                         }
                         </xsl:if>
 
-                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                        override fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
                             val gdObject: GDObject = gameLayer.gdObject
                             this.process(gdObject, x, y)
                         }
 
-                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                        override fun process(gdObject: GDObject, x: Int, y: Int) {
                             throw RuntimeException()
                         }
 

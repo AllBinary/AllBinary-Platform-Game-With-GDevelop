@@ -53,27 +53,29 @@ Created By: Travis Berthelot
             //Animation Total: <xsl:value-of select="count(animations)" />
             public var <xsl:value-of select="name" />Rectangle: Rectangle
             <xsl:if test="type != 'TextObject::Text'" >
-            private var <xsl:value-of select="name" />ImageArray: Array&lt;Rectangle&gt;
+            private var <xsl:value-of select="name" />ImageArray: Array&lt;Rectangle?&gt;
             open public fun <xsl:value-of select="name" />Width(index: Int): Int {
-                return <xsl:value-of select="name" />ImageArray[index].getWidth()
+                var index = index
+                return <xsl:value-of select="name" />ImageArray[index]!!.getWidth()
             }
 
             open public fun <xsl:value-of select="name" />Height(index: Int): Int {
-                return <xsl:value-of select="name" />ImageArray[index].getHeight()
+                var index = index
+                return <xsl:value-of select="name" />ImageArray[index]!!.getHeight()
             }
             </xsl:if>
 
             <xsl:if test="type = 'Sprite'" >
-            public val <xsl:value-of select="$name" />ResourceArray: Array&lt;String&gt;
+            public val <xsl:value-of select="$name" />ResourceArray: Array&lt;String?&gt;
             </xsl:if>
 
                 <xsl:if test="type = 'PanelSpriteSlider::PanelSpriteSlider'" >
-            public val <xsl:value-of select="$name" />ResourceArray: Array&lt;String&gt;
+            public val <xsl:value-of select="$name" />ResourceArray: Array&lt;String?&gt;
                 </xsl:if>
 
                 <xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >
-            public val <xsl:value-of select="$name" />ResourceArray: Array&lt;String&gt;
-            public val <xsl:value-of select="name" />JSONResourceArray: Array&lt;String&gt;
+            public val <xsl:value-of select="$name" />ResourceArray: Array&lt;String?&gt;
+            public val <xsl:value-of select="name" />JSONResourceArray: Array&lt;String?&gt;
             </xsl:if>
 
             </xsl:if>
@@ -112,7 +114,7 @@ Created By: Travis Berthelot
 
         //objects - threed object - cache - START
         <xsl:if test="$useExclusionList != 'true'" >
-        var size: Int
+        var size: Int = 0
         </xsl:if>
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
@@ -137,10 +139,10 @@ Created By: Travis Berthelot
                 <xsl:text>&#10;</xsl:text>
 
                 <xsl:if test="type = 'Sprite' or type = 'ParticleSystem::ParticleEmitter' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >
-                this.<xsl:value-of select="$name" />ResourceArray = arrayOf&lt;String&gt;(
-                <xsl:for-each select="animations" >
+                this.<xsl:value-of select="$name" />ResourceArray = arrayOf(
+                <xsl:variable name="kotlinArrayItems142" >                <xsl:for-each select="animations" >
                     <!--
-                this.<xsl:value-of select="$name" /><xsl:value-of select="name" />ResourceArray = arrayOf&lt;String&gt;(
+                this.<xsl:value-of select="$name" /><xsl:value-of select="name" />ResourceArray = arrayOf(
                     <xsl:for-each select="directions/sprites/image" >
                     <xsl:variable name="imageWithExtension" select="text()" />
                     -->
@@ -210,12 +212,12 @@ Created By: Travis Berthelot
                     </xsl:if>
                     </xsl:for-each>
                 </xsl:for-each>
-
+</xsl:variable><xsl:call-template name="kotlinRemoveTrailingComma" ><xsl:with-param name="text" select="$kotlinArrayItems142" /></xsl:call-template>
                 )
                 </xsl:if>
 
                 <xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >
-                this.<xsl:value-of select="name" />ResourceArray = arrayOf&lt;String&gt;(
+                this.<xsl:value-of select="name" />ResourceArray = arrayOf(
                 <xsl:if test="content" >
                     //TileMap::TileMap:content
                     <xsl:variable name="imageWithExtension" select="content/tilemapAtlasImage" />
@@ -230,7 +232,7 @@ Created By: Travis Berthelot
 
                 //animationInterfaceFactoryInterfaceFactory.addRectangle(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME, <xsl:value-of select="name" />ImageArray[0])
                 //hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray)
-                this.<xsl:value-of select="$name" />Rectangle = Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />ImageArray[0].getWidth(), <xsl:value-of select="name" />ImageArray[0].getHeight())
+                this.<xsl:value-of select="$name" />Rectangle = Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />ImageArray[0]!!.getWidth(), <xsl:value-of select="name" />ImageArray[0]!!.getHeight())
                 </xsl:if>
 
             </xsl:if>
@@ -246,7 +248,7 @@ Created By: Travis Berthelot
 
             <xsl:if test="type = 'TileMap::CollisionMask'" >
                 //TileMap::CollisionMask
-                <xsl:value-of select="$name" />ImageArray = arrayOf&lt;Rectangle&gt;(
+                <xsl:value-of select="$name" />ImageArray = arrayOf(
                 )
                 //hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray)
                 this.<xsl:value-of select="$name" />Rectangle = Rectangle(pointFactory.ZERO_ZERO, 0, 0)
@@ -257,8 +259,8 @@ Created By: Travis Berthelot
                 <xsl:variable name="name" select="name" />
                 //TileMap::TileMap - JSON
 
-                this.<xsl:value-of select="name" />JSONResourceArray = arrayOf&lt;String&gt;(
-                <xsl:if test="content" >
+                this.<xsl:value-of select="name" />JSONResourceArray = arrayOf(
+                <xsl:variable name="kotlinArrayItems262" >                <xsl:if test="content" >
                     //TileMap::TileMap:content
                     <xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" />
                     <xsl:variable name="json" select="substring-before($jsonWithExtension, '.')" />
@@ -273,7 +275,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="tileSetJSON" select="substring-before(text(), '.')" />
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>,
                     </xsl:for-each>
-                </xsl:if>
+                </xsl:if></xsl:variable><xsl:call-template name="kotlinRemoveTrailingComma" ><xsl:with-param name="text" select="$kotlinArrayItems262" /></xsl:call-template>
                 )
 
                 size = this.<xsl:value-of select="name" />JSONResourceArray.size
@@ -312,7 +314,7 @@ Created By: Travis Berthelot
                 </xsl:variable>
 
                 //Duplicate logic of the AnimationFactory
-                open public fun get<xsl:value-of select="name" />RectangleArray(scale: Float): Array&lt;Rectangle&gt; {
+                open public fun get<xsl:value-of select="name" />RectangleArray(scale: Float): Array&lt;Rectangle?&gt; {
                 <xsl:if test="$name != 'Player'" >
                     //non Player
                     val hackScale: Float = 2.0f
@@ -322,7 +324,7 @@ Created By: Travis Berthelot
                     val hackScale: Float = 1.0f
                 </xsl:if>
 
-                    return arrayOf&lt;Rectangle&gt;(
+                    return arrayOf(
                 <xsl:if test="contains(type, 'TileMap::')" >
                     //TWB - temp solution for <xsl:value-of select="type" />
                     Rectangle(pointFactory.ZERO_ZERO,

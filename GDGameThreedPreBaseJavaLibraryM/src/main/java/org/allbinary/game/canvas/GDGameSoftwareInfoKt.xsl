@@ -1,5 +1,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
 
@@ -21,7 +22,7 @@ open class GDGameSoftwareInfo
     private val SINGLETON: SoftwareInformation =
         SoftwareInformation("<xsl:value-of select="properties/packageName" />.GDGameThreed", "1.2.0", <xsl:if test="string-length($shortName) > 8" >Short Name is to long</xsl:if><xsl:if test="string-length($shortName) = 0" >Short Name is to short</xsl:if> "<xsl:value-of select="$shortName" />")
 
-    fun getInstance(): SoftwareInformation
+    open fun getInstance(): SoftwareInformation
     {
         return SINGLETON
     }

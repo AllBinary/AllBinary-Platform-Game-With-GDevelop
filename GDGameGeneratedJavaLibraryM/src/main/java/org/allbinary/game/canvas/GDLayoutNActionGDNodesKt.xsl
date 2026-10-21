@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -77,6 +78,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.AndroidUtil
                 import org.allbinary.J2MEUtil
+                import org.allbinary.game.layout.GDConfig
                 import org.allbinary.animation.AnimationBehavior
                 import org.allbinary.animation.special.SpecialAnimation
                 import org.allbinary.canvas.GameGlobalsFactory
@@ -173,12 +175,16 @@ Created By: Travis Berthelot
                 open public class GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes
                 {
 
+                    companion object {
+
                     private val instance: GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes =
                         GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes()
 
                         open public fun getInstance(): GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes {
                             return GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes.instance
                         }
+
+                    }
 
                         private val nullUtil: NullUtil = NullUtil.getInstance()
                         private val arrayUtil: ArrayUtil = ArrayUtil.getInstance()
@@ -312,16 +318,16 @@ Created By: Travis Berthelot
                         return string
                     }
 
-                    open public fun VariableString(object: Object): String {
-                        return object.toString()
+                    open public fun VariableString(anyType: Any): String {
+                        return anyType.toString()
                     }
 
-                    open public fun VariableChildCount(array: Array&lt;String&gt;): Int {
-                        return array.length
+                    open public fun VariableChildCount(array: Array&lt;String?&gt;): Int {
+                        return array.size
                     }
 
                     open public fun VariableChildCount(array: IntArray): Int {
-                        return array.length
+                        return array.size
                     }
 
                     open public fun GlobalVariable(value: String): String {
@@ -344,16 +350,16 @@ Created By: Travis Berthelot
                         return value
                     }
 
-                    open public fun GlobalVariableChildCount(array: Array&lt;String&gt;): Int {
-                        return array.length
+                    open public fun GlobalVariableChildCount(array: Array&lt;String?&gt;): Int {
+                        return array.size
                     }
 
                     open public fun GlobalVariableChildCount(array: IntArray): Int {
-                        return array.length
+                        return array.size
                     }
 
                     open public fun GlobalVariableChildCount(array: LongArray): Int {
-                        return array.length
+                        return array.size
                     }
 
                     open public fun GlobalVarToJSON(value: String): String {
@@ -361,11 +367,11 @@ Created By: Travis Berthelot
                     }
 
                     open public fun GlobalVarToJSON(value: Int): String {
-                        return Integer.toString(value)
+                        return value.toString()
                     }
 
                     open public fun GlobalVarToJSON(value: Long): String {
-                        return Long.toString(value)
+                        return (value).toString()
                     }
 
                     open public fun ToJSONType(value: GDStructure): Int {
@@ -381,11 +387,11 @@ Created By: Travis Berthelot
                     }
 
                     open public fun ToJSON(value: Int): String {
-                        return Integer.toString(value)
+                        return value.toString()
                     }
 
                     open public fun ToJSON(value: Long): String {
-                        return Long.toString(value)
+                        return (value).toString()
                     }
 
                     open public fun SceneInstancesCount(size: Int): Int {
@@ -401,22 +407,27 @@ Created By: Travis Berthelot
                     }
 
                     open public fun MouseX(string: String, value: Int): Int {
+                        var value = value
                         return gameGlobalsFactory.point.getX()
                     }
 
                     open public fun MouseY(string: String, value: Int): Int {
+                        var value = value
                         return gameGlobalsFactory.point.getY()
                     }
 
                     open public fun CameraX(string: String, value: Int): Int {
+                        var value = value
                         return 0
                     }
 
                     open public fun CameraY(string: String, value: Int): Int {
+                        var value = value
                         return 0
                     }
 
                     open public fun CameraWidth(string: String, value: Int): Int {
+                        var value = value
                         return gameTickDisplayInfoSingleton.getLastWidth()
                     }
 
@@ -426,6 +437,10 @@ Created By: Travis Berthelot
 
                     open public fun floor(value: Int): Int {
                         return value
+                    }
+
+                    open public fun floor(value: Long): Float {
+                        return value.toFloat()
                     }
 
                     open public fun floor(value: Float): Float {
@@ -445,7 +460,7 @@ Created By: Travis Berthelot
                     }
 
                     open public fun round(value: Float): Float {
-                        return Math.round(value)
+                        return Math.round(value).toFloat()
                     }
 
                     open public fun abs(value: Int): Int {
@@ -457,7 +472,7 @@ Created By: Travis Berthelot
                     }
 
                     open public fun log2(value: Int): Double {
-                        return Math.log(value)
+                        return Math.log(value.toDouble())
                     }
 
                     open public fun sin(angle: Double): Double {
@@ -531,7 +546,7 @@ Created By: Travis Berthelot
 
                     open public fun ToString(value: Int): String {
                         if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
-                            return Integer.toString(value)
+                            return value.toString()
                         } else {
                             return smallIntegerSingletonFactory.getString(value)
                         }
@@ -539,21 +554,23 @@ Created By: Travis Berthelot
 
                     open public fun ToString(value: Long): String {
                         //this.primitiveLongUtil = PrimitiveLongUtil(max + 1)
-                        return Long.toString(value)
+                        return (value).toString()
                     }
 
                     open public fun LargeNumberToString(value: Long): String {
                         //this.primitiveLongUtil = PrimitiveLongUtil(max + 1)
-                        return Long.toString(value)
+                        return (value).toString()
                     }
 
                     open public fun LargeNumberToString(value: Float): String {
                         //this.primitiveLongUtil = PrimitiveLongUtil(max + 1)
-                        return Long.toString(value.toLong())
+                        return (value.toLong()).toString()
                     }
 
+                    private val fStringMaker: StringMaker = StringMaker()
                     open public fun ToString(value: Float): String {
-                        return Float.toString(value)
+                        fStringMaker.delete(0, fStringMaker.length())
+                        return fStringMaker.appendfloat(value).toString()
                     }
 
                     open public fun ToNotString(value: Int): Int {

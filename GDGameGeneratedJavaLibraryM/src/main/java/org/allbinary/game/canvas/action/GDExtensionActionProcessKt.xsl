@@ -73,7 +73,7 @@ Created By: Travis Berthelot
 
         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
 
-                    private val objectArray: Array&lt;Object?&gt; = arrayOfNulls&lt;Object&gt;(<xsl:value-of select="count(parameters) + 1" />)
+                    private val objectArray: Array&lt;Any?&gt; = arrayOfNulls(<xsl:value-of select="count(parameters) + 1" />)
                     private val intArray: IntArray = IntArray(<xsl:value-of select="count(parameters) + 1" />)
 
                     <xsl:if test="not(contains($forExtension, 'found'))" >
@@ -106,7 +106,7 @@ Created By: Travis Berthelot
                             val <xsl:value-of select="$name" />GDGameLayerList: BasicArrayList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList
                         </xsl:if>
                             val size: Int = <xsl:value-of select="$name" />GDGameLayerList.size()
-                            lateinit var <xsl:value-of select="$name" />GDGameLayer: GDGameLayer
+                            var <xsl:value-of select="$name" />GDGameLayer: GDGameLayer
                             //<xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /><xsl:text>&#10;</xsl:text>
                             for(index in 0 until<xsl:text disable-output-escaping="yes" ></xsl:text> size) {
 
@@ -169,7 +169,7 @@ Created By: Travis Berthelot
                             //val gdObjectList2: BasicArrayList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectListOfList.get(index) as BasicArrayList
                             val <xsl:value-of select="$name" />GDGameLayerList: BasicArrayList = (<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(index) as BasicArrayList)
                             val size: Int = <xsl:value-of select="$name" />GDGameLayerList.size()
-                            lateinit var <xsl:value-of select="$name" />GDGameLayer: GDGameLayer
+                            var <xsl:value-of select="$name" />GDGameLayer: GDGameLayer
                             <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /><xsl:text>&#10;</xsl:text>
 
                         for(index2 in 0 until<xsl:text disable-output-escaping="yes" ></xsl:text> size) {
@@ -217,7 +217,7 @@ Created By: Travis Berthelot
                     }
 
 
-                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
                         super.processGDStats(gameLayerArray)
                         try {
 
@@ -244,7 +244,7 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($forExtension, 'found')" >
                     //extension=<xsl:value-of select="$extensionNameAndExtensionFunction" /> - //Called from inside of Extension
 
-                    override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                    override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
                         //Map from object array with action params
                         <xsl:call-template name="extensionMapping" >

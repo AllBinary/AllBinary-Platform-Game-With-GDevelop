@@ -33,14 +33,14 @@
                             val scale: Float = GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale
                             //var scaleNominator: Int = scale
                             //var scaleDenominator: Int = 2
-                            //this.logUtil.putF(StringMaker().append("scale: ").append(scale).toString(), this, this.commonStrings.CONSTRUCTOR)
+                            //this.logUtil.putF(StringMaker().append("scale: ").appendfloat(scale).toString(), this, this.commonStrings.CONSTRUCTOR)
 
                             val scaleLayout: Int = <xsl:if test="not(contains($layoutName, 'Scaled')) or contains($layoutIndex, 'Global')" >1</xsl:if><xsl:if test="contains($layoutName, 'Scaled')" >2</xsl:if>
                             <xsl:variable name="name2" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template></xsl:variable>
 <!--                            number($layoutIndex) = 0 or contains($name2, 'options')  or contains($name2, 'about') or contains($name2, 'score') or contains($name2, 'over')-->
-                            val scaleTouchButtons: Float = if (<xsl:if test="not(number($layoutIndex) = 1)" >1.0f</xsl:if><xsl:if test="number($layoutIndex) = 1" >GDConfig.getInstance().getGameScale(<xsl:value-of select="/game/properties/scale/android" />, <xsl:value-of select="/game/properties/scale/html" />, <xsl:value-of select="/game/properties/scale/j2se" />)</xsl:if>
+                            val scaleTouchButtons: Float = <xsl:if test="not(number($layoutIndex) = 1)" >1.0f</xsl:if><xsl:if test="number($layoutIndex) = 1" >GDConfig.getInstance().getGameScale(<xsl:value-of select="/game/properties/scale/android" />, <xsl:value-of select="/game/properties/scale/html" />, <xsl:value-of select="/game/properties/scale/j2se" />)</xsl:if>
 <!--                            var scaleTouch: Int = if((scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight)) { scaleWidth * scaleTouchButtons } else { scaleHeight * scaleTouchButtons }-->
-                            //this.logUtil.putF(StringMaker().append("scaleTouchButtons - scale: ").append(scaleTouchButtons).toString(), this, this.commonStrings.CONSTRUCTOR)
+                            //this.logUtil.putF(StringMaker().append("scaleTouchButtons - scale: ").appendfloat(scaleTouchButtons).toString(), this, this.commonStrings.CONSTRUCTOR)
         </xsl:if>
 
     </xsl:template>
@@ -60,7 +60,7 @@
                             private val scale: Float = GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale
 
                             private val halfScale: Float = (scale.toFloat()) / 2
-                            private val scaleTouchButtons: Float = if (<xsl:if test="not(number($layoutIndex) = 1)" >1 //same as isAndroid() scale else if (scale / 2.0f</xsl:if><xsl:if test="number($layoutIndex) = 1" >GDConfig.getInstance().getGameScale(<xsl:value-of select="/game/properties/scale/android" />, <xsl:value-of select="/game/properties/scale/html" />, <xsl:value-of select="/game/properties/scale/j2se" />)</xsl:if>
+                            private val scaleTouchButtons: Float = <xsl:if test="not(number($layoutIndex) = 1)" >1f //same as AndroidUtil.isAndroid ? scale : scale / 2.0f</xsl:if><xsl:if test="number($layoutIndex) = 1" >GDConfig.getInstance().getGameScale(<xsl:value-of select="/game/properties/scale/android" />, <xsl:value-of select="/game/properties/scale/html" />, <xsl:value-of select="/game/properties/scale/j2se" />)</xsl:if>
         </xsl:if>
 
     </xsl:template>

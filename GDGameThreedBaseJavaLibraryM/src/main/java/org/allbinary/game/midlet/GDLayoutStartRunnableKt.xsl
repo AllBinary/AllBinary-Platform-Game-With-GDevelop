@@ -51,9 +51,9 @@ import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory
 import org.allbinary.graphics.displayable.command.MyCommandsFactory
 
-open class GDGameStart<xsl:value-of select="$layoutName" />CanvasRunnable, Runnable
+open class GDGameStart<xsl:value-of select="$layoutName" />CanvasRunnable : Runnable
 {
-    protected val logUtil: LogUtil = LogUtil.getInstance()
+    val logUtil: LogUtil = LogUtil.getInstance()
 
     private val commonStrings: CommonStrings = CommonStrings.getInstance()
 
@@ -61,8 +61,9 @@ open class GDGameStart<xsl:value-of select="$layoutName" />CanvasRunnable, Runna
 
     private val startDemoGameMidletEvent: DemoGameMidletEvent
 
-    constructor(DemoGameMidlet demoGameMidlet)
+    constructor(demoGameMidlet: DemoGameMidlet)
     {
+        var demoGameMidlet = demoGameMidlet
         this.demoGameMidlet = demoGameMidlet as GDGameMIDlet
 
         this.startDemoGameMidletEvent =
@@ -70,7 +71,7 @@ open class GDGameStart<xsl:value-of select="$layoutName" />CanvasRunnable, Runna
                 DemoGameMidletStateFactory.getInstance().START_DEMO)
     }
 
-    fun run()
+    open fun run()
     {
         try
         {

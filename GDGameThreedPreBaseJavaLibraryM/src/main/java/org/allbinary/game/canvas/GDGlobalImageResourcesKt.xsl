@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -79,29 +80,32 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ABHashtable
                 import org.allbinary.AndroidUtil
                 import org.allbinary.J2MEUtil
+                import org.allbinary.game.layout.GDConfig
 
                 //Game name=<xsl:value-of select="$gameName" />
                 open class GDGlobalSpecialAnimationImageResources : SpecialAnimation
                 {
 
-                    private var instance: GDGlobalSpecialAnimationImageResources = null
+                    companion object {
 
-                        fun getInstanceOrCreate(): GDGlobalSpecialAnimationImageResources
+                    private var instance: GDGlobalSpecialAnimationImageResources? = null
+
+                        open fun getInstanceOrCreate(): GDGlobalSpecialAnimationImageResources
                         {
                             if(instance == null) {
                                 instance = GDGlobalSpecialAnimationImageResources()
                             }
 
-                            return instance
+                            return instance!!
                         }
 
-                        fun getInstance(): GDGlobalSpecialAnimationImageResources
+                        open fun getInstance(): GDGlobalSpecialAnimationImageResources
                         {
-                            return GDGlobalSpecialAnimationImageResources.instance
+                            return GDGlobalSpecialAnimationImageResources.instance!!
                         }
 
-                        protected val logUtil: LogUtil = LogUtil.getInstance()
-                        private val commonStrings: CommonStrings = CommonStrings.getInstance()
+                    }
+
                         private val pointFactory: PointFactory = PointFactory.getInstance()
                         private val imageCopyUtil: ImageCopyUtil = ImageCopyUtil.getInstance()
                         private val imageScaleUtil: ImageScaleUtil = ImageScaleUtil.getInstance()
@@ -150,7 +154,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
                             <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />
 
-                            val hashTable: ABHashtable = imageCache.getHashtableP()
+                            val hashTable: ABHashtable&lt;Any, Any&gt; = imageCache.getHashtableP()
 
                     <xsl:call-template name="imageCache" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
@@ -224,14 +228,14 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                    fun validateSprites(name: String, resourceArray: Array&lt;String&gt;, imageArray: Array&lt;Image&gt;) {
+                    open fun validateSprites(name: String, resourceArray: Array&lt;String?&gt;, imageArray: Array&lt;Image?&gt;) {
                         val commonSeps: CommonSeps = CommonSeps.getInstance()
                         val size: Int = imageArray.size
-                        lateinit var image: Image
+                        var image: Image
                         for(index in 0 until size) {
                             image = imageArray[index]
                             if (image.getWidth() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> image.getHeight() <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> image.getWidth() % image.getHeight() != 0) {
-                                logUtil.put(StringMaker().appendint(index).append(name).appendint(image.getWidth()).append(commonSeps.COLON).appendint(image.getHeight()).toString(), this, commonStrings.PROCESS, Exception())
+                                logUtil.put(StringMaker().appendint(index).append(name).appendint(image.getWidth().toInt()).append(commonSeps.COLON).appendint(image.getHeight().toInt()).toString(), this, commonStrings.PROCESS, Exception())
                             }
                         }
                     }

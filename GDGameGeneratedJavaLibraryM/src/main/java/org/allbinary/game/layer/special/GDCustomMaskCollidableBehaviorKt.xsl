@@ -15,6 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/kotlin.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
 
@@ -44,6 +45,7 @@ import javax.microedition.lcdui.Graphics
 import org.allbinary.game.canvas.GDGameGlobals
 import org.allbinary.game.collision.CollidableBaseBehavior
 import org.allbinary.game.collision.CollidableInterfaceCompositeInterface
+import org.allbinary.game.identification.Group
 import org.allbinary.game.identification.GroupInterface
 import org.allbinary.game.layer.AllBinaryGameLayerManager
 import org.allbinary.game.layer.CollidableCompositeLayer
@@ -75,10 +77,8 @@ import org.allbinary.media.graphics.geography.map.SimpleGeographicMapCellPositio
  */
 open public class GDCustomMaskCollidableBehavior : CollidableBaseBehavior
 {
-    protected val logUtil: LogUtil = LogUtil.getInstance()
 
     private val stringUtil: StringUtil = StringUtil.getInstance()
-    private val commonStrings: CommonStrings = CommonStrings.getInstance()
 
     private val rectangleCollisionUtil: RectangleCollisionUtil = RectangleCollisionUtil.getInstance()
 
@@ -89,14 +89,14 @@ open public class GDCustomMaskCollidableBehavior : CollidableBaseBehavior
         this.conditionWIthGroupActions = collidableBehavior
     }
 
-    override public fun update() {
+    override fun update() {
         throw RuntimeException(this.commonStrings.NOT_IMPLEMENTED)
     }
 
     //private val IS_COLLISION: String = "isCollision"
     //private val B: String = "BatEnemy"
 
-    override public fun isCollision(ownerLayer: CollidableCompositeLayer, collisionLayer: CollidableCompositeLayer): Boolean {
+    override fun isCollision(ownerLayer: CollidableCompositeLayer, collisionLayer: CollidableCompositeLayer): Boolean {
         if(ownerLayer == collisionLayer) {
             return false
         }
@@ -166,8 +166,8 @@ open public class GDCustomMaskCollidableBehavior : CollidableBaseBehavior
 
             val geographicMapCompositeInterface: GeographicMapCompositeInterface = collisionMaskCustomGameLayer.allBinaryGameLayerManagerP as GeographicMapCompositeInterface
 
-            val geographicMapInterfaceArray: Array&lt;BasicGeographicMap&gt; = geographicMapCompositeInterface.getGeographicMapInterface()
-            val geographicMapCellTypeArray: Array&lt;GeographicMapCellType&gt; = geographicMapCompositeInterface.geographicMapCellTypeArray()
+            val geographicMapInterfaceArray: Array&lt;BasicGeographicMap?&gt; = geographicMapCompositeInterface.getGeographicMapInterface()
+            val geographicMapCellTypeArray: Array&lt;GeographicMapCellType?&gt; = geographicMapCompositeInterface.geographicMapCellTypeArray()
 
             if(geographicMapInterfaceArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
 
@@ -274,7 +274,7 @@ open public class GDCustomMaskCollidableBehavior : CollidableBaseBehavior
 
     // TODO TWB Special Super Efficient Collision Processing
     //open fun collide(collisionLayer: CollidableDestroyableDamageableTeamLayer)
-    override public fun collide(ownerLayer: CollidableCompositeLayer, collisionLayer: CollidableCompositeLayer) {
+    override fun collide(ownerLayer: CollidableCompositeLayer, collisionLayer: CollidableCompositeLayer) {
         if((collisionLayer as CollidableDestroyableDamageableLayer).isDestroyed()) {
             return
         }
@@ -287,8 +287,8 @@ open public class GDCustomMaskCollidableBehavior : CollidableBaseBehavior
             //var stringBuilder: StringMaker = StringMaker()
             //this.logUtil.put(stringBuilder.append.append(commonSeps.COLON).append(ownerLayer.getName()).append(commonSeps.COLON).append(collisionLayer.getName()).toString() as COLLIDE, this, COLLIDE)
 
-            val groupInterfaceArray: Array&lt;GroupInterface&gt; = collisionLayer.getGroupInterface()
-            //var groupInterfaceArray: Array&lt;GroupInterface&gt; = ownerLayer.getGroupInterface()
+            val groupInterfaceArray: Array&lt;GroupInterface?&gt; = collisionLayer.getGroupInterface()
+            //var groupInterfaceArray: Array&lt;GroupInterface?&gt; = ownerLayer.getGroupInterface()
 
             val size: Int = groupInterfaceArray.size
             var indexOfGroup: Int
@@ -322,21 +322,21 @@ open public class GDCustomMaskCollidableBehavior : CollidableBaseBehavior
                 //(collidableInterfaceCompositeInterface as CollidableDestroyableDamageableLayer).getDamage(0), 0)
     }
 
-    override public fun isCollisionInterface(ownerLayer: CollidableCompositeLayer, collidableInterfaceCompositeInterface: CollidableInterfaceCompositeInterface): Boolean {
+    override fun isCollisionInterface(ownerLayer: CollidableCompositeLayer, collidableInterfaceCompositeInterface: CollidableInterfaceCompositeInterface): Boolean {
         ForcedLogUtil.log("No Longer Used", this)
         return false
     }
 
-    override public fun collideInterface(ownerLayer: CollidableCompositeLayer, collidableInterfaceCompositeInterface: CollidableInterfaceCompositeInterface) {
+    override fun collideInterface(ownerLayer: CollidableCompositeLayer, collidableInterfaceCompositeInterface: CollidableInterfaceCompositeInterface) {
         ForcedLogUtil.log("No Longer Used", this)
     }
 
     private val COLLISION_MASK_COLOR: BasicColor = BasicColorFactory.getInstance().YELLOW
 
-    protected val basicColorUtil: BasicColorSetUtil =
+    val basicColorUtil: BasicColorSetUtil =
         BasicColorSetUtil.getInstance()
 
-    override public fun paint(ownerLayer: CollidableCompositeLayer, graphics: Graphics) {
+    override fun paint(ownerLayer: CollidableCompositeLayer, graphics: Graphics) {
         try {
 
             val customGameLayer: GDCustomGameLayer = ownerLayer as GDCustomGameLayer

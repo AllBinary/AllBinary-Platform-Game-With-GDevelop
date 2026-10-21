@@ -187,7 +187,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     <xsl:variable name="hasKnownParamsFromParent" ><xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >found</xsl:if></xsl:variable>
                     <xsl:if test="not(contains($hasKnownParamsFromParent, 'found'))" >
-                    fun processCreateGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                    override fun processCreateGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
 
                     </xsl:if>
 
@@ -266,7 +266,7 @@ Created By: Travis Berthelot
 
                     <xsl:if test="not(contains($hasObject, 'found') or contains($hasObjectGroup, 'found'))" >
                     //processCreateGD - without object or objectgroup
-                    fun processCreateGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                    override fun processCreateGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
 
                         return this.processCreate()
                     }
@@ -303,7 +303,7 @@ Created By: Travis Berthelot
                             //stringBuilder.delete(0, stringBuilder.length())
                             //val index: Int = <xsl:value-of select="text()" />GDGameLayerList.size()
 
-                            lateinit var <xsl:value-of select="text()" />GDGameLayer = null: GDGameLayer
+                            var <xsl:value-of select="text()" />GDGameLayer = null: GDGameLayer
 
                             <xsl:variable name="text" ><xsl:value-of select="text()" /></xsl:variable>
                             <xsl:variable name="id" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$text = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$text = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$text = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$text = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
@@ -317,11 +317,11 @@ Created By: Travis Berthelot
                                 //globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>
                                 <xsl:text>&#10;</xsl:text>
                                 <xsl:value-of select="text()" />GDGameLayer = <xsl:value-of select="text()" />GDGameLayerFactory.create(<xsl:value-of select="$layoutIndex" />, stringBuilder.append(createString).append(CommonSeps.getInstance().UNDERSCORE)
-                                .appendint(gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />]).toString(),
+                                .appendint(gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />].toInt()).toString(),
                                 gdObject,
                                 scale, scale,
-                                null) //<xsl:value-of select="text()" />GDConditionWithGroupActions)
-                                gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />]++
+                                GDConditionWithGroupActions.NULL_GD_CONDITION_WITH_GROUP_ACTIONS) //<xsl:value-of select="text()" />GDConditionWithGroupActions)
+                                gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] + 1
                                 <xsl:text>&#10;</xsl:text>
                                 //stringBuilder.delete(0, stringBuilder.length())
                             } else {
@@ -349,7 +349,7 @@ Created By: Travis Berthelot
                             //name=<xsl:value-of select="$name" />
                             //CreateByName - //Using param that is not from the first 2 GameLayers - set
                             gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = <xsl:value-of select="text()" />GDGameLayer
-                            //if(gameGlobals.tempGameLayerArray[1] != null) this.logUtil.put(gameGlobals.tempGameLayerArray[1].toString(), this, this.commonStrings.PROCESS)
+                            //if(gameGlobals.tempGameLayerArray[1] != null) this.logUtil.put(gameGlobals.tempGameLayerArray[1]!!.toString(), this, this.commonStrings.PROCESS)
                             <xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer)
                         </xsl:if>
                     </xsl:for-each>
@@ -360,7 +360,7 @@ Created By: Travis Berthelot
                     }
 
 
-                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
                         super.processGDStats(gameLayerArray)
                         try {
 
@@ -421,7 +421,7 @@ Created By: Travis Berthelot
 
                         <xsl:if test="contains($forExtension, 'found')" >
 
-                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                        override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
                             //Map from object array with action params
                             val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
@@ -431,12 +431,12 @@ Created By: Travis Berthelot
                         }
                         </xsl:if>
 
-                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                        override fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
                             val gdObject: GDObject = gameLayer.gdObject
                             this.process(gdObject, x, y)
                         }
 
-                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                        override fun process(gdObject: GDObject, x: Int, y: Int) {
                             throw RuntimeException()
                         }
 

@@ -47,7 +47,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
             open public fun get<xsl:value-of select="name" />(): GDStructure<xsl:value-of select="name" /> {
-                var <xsl:if test="number(name) = name" >n</xsl:if><xsl:value-of select="name" />: return
+                return <xsl:if test="number(name) = name" >n</xsl:if><xsl:value-of select="name" />
             }
 
             </xsl:if>
@@ -55,7 +55,7 @@ Created By: Travis Berthelot
             //type=<xsl:value-of select="type" />
             <xsl:if test="type = 'array'" >
             public var <xsl:value-of select="name" />Index: Int = 0
-            public var <xsl:value-of select="name" />: Array&lt;Object&gt; = arrayOfNulls&lt;Object&gt;(7)
+            public var <xsl:value-of select="name" />: Array&lt;Any?&gt; = arrayOfNulls(7)
             </xsl:if>
             <xsl:if test="type = 'boolean'" >
             public var <xsl:value-of select="name" />: Boolean = <xsl:value-of select="value" />

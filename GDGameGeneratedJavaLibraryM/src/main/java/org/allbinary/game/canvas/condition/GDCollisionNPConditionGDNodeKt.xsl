@@ -61,7 +61,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="id2" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$name = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$name = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$name = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$name = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
 
                         //CollisionNP - //collisionNPConditionGDNode
-                    <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>val NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = object : GDNode(<xsl:value-of select="$nodeList" />) {
+                    <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>val NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: GDNode = object : GDNode(<xsl:value-of select="$nodeList" />) {
 
                             <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                             private val CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />"
@@ -115,7 +115,8 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                     //for(index2 in 0 until <xsl:text disable-output-escaping="yes" ></xsl:text><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />Size</xsl:if></xsl:for-each>) {
-                    for(index2 in 0 until <xsl:text disable-output-escaping="yes" ></xsl:text>gdGameLayerList2.size()) {
+                    var index2: Int = 0
+                    while(index2 &lt; gdGameLayerList2.size()) {
                     val initialSize2: Int = gdGameLayerList2.size()
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
@@ -123,7 +124,8 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                     //for(index in 0 until <xsl:text disable-output-escaping="yes" ></xsl:text><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" />Size2</xsl:if></xsl:for-each>) {
-                    for(index in 0 until <xsl:text disable-output-escaping="yes" ></xsl:text>gdGameLayerList.size()) {
+                    var index: Int = 0
+                    while(index &lt; gdGameLayerList.size()) {
                     val initialSize: Int = gdGameLayerList.size()
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
@@ -148,7 +150,7 @@ Created By: Travis Berthelot
                             gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = gameLayer2 //<xsl:value-of select="$name2" />GDGameLayer
                             gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + (count(//objectsGroups) + count(//objects))" />] = gameLayer //<xsl:value-of select="$name" />GDGameLayer<xsl:value-of select="count(//objectsGroups) + count(//objects)" />
 
-                            //if(gameGlobals.tempGameLayerArray[1] != null) this.logUtil.put(gameGlobals.tempGameLayerArray[1].toString(), this, this.commonStrings.PROCESS)
+                            //if(gameGlobals.tempGameLayerArray[1] != null) this.logUtil.put(gameGlobals.tempGameLayerArray[1]!!.toString(), this, this.commonStrings.PROCESS)
 
                             //name=<xsl:value-of select="name()" />
 
@@ -161,12 +163,14 @@ Created By: Travis Berthelot
                             }
 
                     <xsl:text>&#10;</xsl:text>
+                    index++
                     }
 
                         if(initialSize2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> gdGameLayerList2.size()) {
                             index2--
                         }
 
+                    index2++
                     }
 
                     <xsl:if test="string-length($hasObjectGroup) > 0" >
@@ -232,7 +236,8 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                     //for(index in 0 until <xsl:text disable-output-escaping="yes" ></xsl:text><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" />Size2</xsl:if></xsl:for-each>) {
-                    for(index in 0 until <xsl:text disable-output-escaping="yes" ></xsl:text>gdGameLayerList.size()) {
+                    var index: Int = 0
+                    while(index &lt; gdGameLayerList.size()) {
                     val initialSize: Int = gdGameLayerList.size()
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
@@ -257,7 +262,7 @@ Created By: Travis Berthelot
                             gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = gameLayer2 //<xsl:value-of select="$name2" />GDGameLayer
                             gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + (count(//objectsGroups) + count(//objects))" />] = gameLayer //<xsl:value-of select="$name" />GDGameLayer<xsl:value-of select="count(//objectsGroups) + count(//objects)" />
 
-                            //if(gameGlobals.tempGameLayerArray[1] != null) this.logUtil.put(gameGlobals.tempGameLayerArray[1].toString(), this, this.commonStrings.PROCESS)
+                            //if(gameGlobals.tempGameLayerArray[1] != null) this.logUtil.put(gameGlobals.tempGameLayerArray[1]!!.toString(), this, this.commonStrings.PROCESS)
 
                             //name=<xsl:value-of select="name()" />
 
@@ -270,6 +275,7 @@ Created By: Travis Berthelot
                             }
 
                     <xsl:text>&#10;</xsl:text>
+                    index++
                     }
 
                     <xsl:if test="string-length($hasObjectGroup) > 0" >
@@ -293,7 +299,7 @@ Created By: Travis Berthelot
                             }
 
                     @Throws(Exception::class)
-                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer&gt;): Boolean {
+                    override fun processGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
 
                         var result: Boolean = false
 
@@ -346,7 +352,7 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >
-                        override fun process(objectArray: Array&lt;Object&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                        override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
                             //Map from object array with action params
                             val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
@@ -356,12 +362,12 @@ Created By: Travis Berthelot
                         }
                         </xsl:if>
 
-                        fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                        override fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
                             val gdObject: GDObject = gameLayer.gdObject
                             this.process(gdObject, x, y)
                         }
 
-                        fun process(gdObject: GDObject, x: Int, y: Int) {
+                        override fun process(gdObject: GDObject, x: Int, y: Int) {
                             throw RuntimeException()
                         }
 
