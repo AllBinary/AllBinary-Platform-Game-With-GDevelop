@@ -3,7 +3,7 @@
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobalKt.xsl" />
 
-    <xsl:output method="html" indent="yes" />
+    <xsl:output method="text" indent="yes" />
 
     <xsl:template match="/game">
 

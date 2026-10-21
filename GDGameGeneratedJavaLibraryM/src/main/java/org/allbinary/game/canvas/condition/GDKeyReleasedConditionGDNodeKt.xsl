@@ -17,7 +17,7 @@ Created By: Travis Berthelot
 
     <xsl:import href="./GDConditionUtilsKt.xsl" />
 
-    <xsl:output method="html" indent="yes" />
+    <xsl:output method="text" indent="yes" />
 
     <xsl:template name="keyReleasedConditionGDNode" >
         <xsl:param name="forExtension" />

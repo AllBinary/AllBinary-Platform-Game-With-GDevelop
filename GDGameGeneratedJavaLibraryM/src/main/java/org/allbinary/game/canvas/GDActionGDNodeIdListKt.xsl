@@ -40,7 +40,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstructionKt.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcessKt.xsl" />
     
-    <xsl:output method="html" indent="yes" />
+    <xsl:output method="text" indent="yes" />
 
     <!-- Kotlin output template; this file emits identifiers only. -->
 
@@ -50,7 +50,7 @@ Created By: Travis Berthelot
             <xsl:variable name="layoutIndex" select="position() - 1" />
 
             <xsl:if test="number($layoutIndex) =
-                &lt;GD_CURRENT_INDEX&gt;" >
+                <GD_CURRENT_INDEX>" >
                 <!-- Android images assets need to be enlarged if they are not setup to be inside the cirle area needed -->
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
                 <xsl:variable name="layoutName" select="name" />

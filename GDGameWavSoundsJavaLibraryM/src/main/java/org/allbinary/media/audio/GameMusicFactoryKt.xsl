@@ -32,7 +32,7 @@ Created By: Travis Berthelot
 
     <xsl:import href="../GDGameWavSoundsJavaLibraryM/src/main/java/org/allbinary/media/audio/PlaySoundKt.xsl" />
 
-    <xsl:output method="html" indent="yes" />
+    <xsl:output method="text" indent="yes" />
 
     <xsl:template match="/game">
         //game
