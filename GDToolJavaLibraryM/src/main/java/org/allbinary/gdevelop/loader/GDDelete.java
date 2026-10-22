@@ -35,8 +35,11 @@ public class GDDelete {
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDPaths gdPaths = GDPaths.getInstance();
 
+    private final String JAVA_EXTENSION = ".java";
+
     /**
-     * Gets the files of the selected language module directory with the selected language extension when the extension is java.
+     * Gets the files of the selected language module directory.
+     * When the extension is java all the source extensions of the selected language are used such as cpp and h for C++.
      */
     private BasicArrayList getFiles(final String javaPath, final String extension) throws Exception {
         final String path = this.gdPaths.getLanguagePath(javaPath);
@@ -44,16 +47,49 @@ public class GDDelete {
             this.logUtil.putF(new StringMaker().append("Skipping missing: ").append(path).toString(), this, this.commonStrings.PROCESS);
             return new BasicArrayListD();
         }
-        final String languageExtension = extension.equals(this.gdToolStrings.JAVA) ? this.gdPaths.language.extension.substring(1) : extension;
-        return FileListFetcher.getInstance().getFiles(path, languageExtension);
+        if (!extension.equals(this.gdToolStrings.JAVA)) {
+            return FileListFetcher.getInstance().getFiles(path, extension);
+        }
+        final String[] languageExtensionArray = this.gdPaths.language.extensionArray;
+        final int size = languageExtensionArray.length;
+        final String[] extensionArray = new String[size];
+        for (int index = 0; index < size; index++) {
+            extensionArray[index] = languageExtensionArray[index].substring(1);
+        }
+        return FileListFetcher.getInstance().getFiles(path, extensionArray);
     }
-    
+
+    /**
+     * Converts the exclusions to the selected language. A .java exclusion excludes every source extension of the language
+     * so GDGlobals.java excludes GDGlobals.cpp and GDGlobals.h for C++.
+     */
+    private BasicArrayList getLanguageExclusionList(final BasicArrayList exclusionList) {
+        final BasicArrayList languageExclusionList = new BasicArrayListD();
+        final String[] languageExtensionArray = this.gdPaths.language.extensionArray;
+        final int size = exclusionList.size();
+        final int size2 = languageExtensionArray.length;
+        String exclusion;
+        for (int index = 0; index < size; index++) {
+            exclusion = (String) exclusionList.get(index);
+            if (exclusion.endsWith(this.JAVA_EXTENSION)) {
+                final String base = exclusion.substring(0, exclusion.length() - this.JAVA_EXTENSION.length());
+                for (int index2 = 0; index2 < size2; index2++) {
+                    languageExclusionList.add(new StringMaker().append(base).append(languageExtensionArray[index2]).toString());
+                }
+            } else {
+                languageExclusionList.add(this.gdPaths.getLanguagePath(exclusion));
+            }
+        }
+        return languageExclusionList;
+    }
+
     public void process(final BasicArrayList fileBasicArrayList, final BasicArrayList exclusionList) throws Exception {
-        
+
         final StringMaker stringMaker = new StringMaker();
-        
+
+        final BasicArrayList languageExclusionList = this.getLanguageExclusionList(exclusionList);
         final int size = fileBasicArrayList.size();
-        final int size2 = exclusionList.size();
+        final int size2 = languageExclusionList.size();
         String exclusion;
         AbFile abFile;
         for(int index = 0; index < size; index++) {
@@ -61,7 +97,7 @@ public class GDDelete {
             if(!abFile.isDirectory()) {
                 boolean exclude = false;
                 for (int index2 = 0; index2 < size2; index2++) {
-                    exclusion = this.gdPaths.getLanguagePath((String) exclusionList.get(index2));
+                    exclusion = (String) languageExclusionList.get(index2);
                     if (abFile.getAbsolutePath().indexOf(exclusion) >= 0) {
                         exclude = true;
                         break;

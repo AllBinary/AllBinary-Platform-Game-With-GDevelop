@@ -27,12 +27,27 @@ public class GDLanguage {
     public final String shortName;
     public final String extension;
     public final String[] aliasArray;
+    /**
+     * All source extensions the language generates such as .cpp and .h for C++. The first is always extension.
+     */
+    public final String[] extensionArray;
 
     public GDLanguage(final String name, final String shortName, final String extension, final String[] aliasArray) {
+        this(name, shortName, extension, aliasArray, new String[] {});
+    }
+
+    public GDLanguage(final String name, final String shortName, final String extension, final String[] aliasArray, final String[] additionalExtensionArray) {
         this.name = name;
         this.shortName = shortName;
         this.extension = extension;
         this.aliasArray = aliasArray;
+
+        final int size = additionalExtensionArray.length;
+        this.extensionArray = new String[size + 1];
+        this.extensionArray[0] = extension;
+        for (int index = 0; index < size; index++) {
+            this.extensionArray[index + 1] = additionalExtensionArray[index];
+        }
     }
 
     public boolean isJava() {
