@@ -261,7 +261,7 @@ open public class GDCustomCollidableBehavior : CollidableBaseBehavior
         stringBuilder.append(" != ")
         size = collisionLayer.getGroupInterface().size
         for(index in 0 until size) {
-            stringBuilder.append(stringUtil.toString(collisionLayer.getGroupInterface()[index]))
+            stringBuilder.append(stringUtil.toString(collisionLayer.getGroupInterface()[index]!!))
         }
         return stringBuilder.toString()
     }
