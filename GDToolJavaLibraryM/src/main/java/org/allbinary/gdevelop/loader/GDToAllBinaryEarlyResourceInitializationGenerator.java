@@ -6,13 +6,10 @@
 
 package org.allbinary.gdevelop.loader;
 
-import java.io.FileInputStream;
 
 import org.allbinary.logic.io.BufferedWriterUtil;
-import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
-import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.logic.string.StringUtil;
@@ -44,8 +41,10 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
     public void process(final GDToAllBinarySoundsGenerator soundsGenerator) throws Exception
     {
         final String GD_KEY = "//GD";
+        //xsl template parameter for GD_KEY
+        final String GD_PARAMETER = "GD";
         
-        final String RESOURCE_INITIALIZATION_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.origin");
+        final String RESOURCE_INITIALIZATION_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.xsl");
         final String RESOURCE_INITIALIZATION = this.gdPaths.getOutputPath(this.gdPaths.GEN_PATH + "platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.java");
         
         final StringMaker stringMaker = new StringMaker();
@@ -53,16 +52,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
         this.appendSounds(soundsGenerator, stringMaker);
         this.appendMedia(stringMaker);
 
-        final StreamUtil streamUtil = StreamUtil.getInstance();
-        final SharedBytes sharedBytes = SharedBytes.getInstance();
-        sharedBytes.outputStream.reset();
-
-        final FileInputStream fileInputStream = new FileInputStream(RESOURCE_INITIALIZATION_ORIGINAL);
-        
-        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
-
-        final Replace replace = new Replace(GD_KEY, stringMaker.toString());
-        final String newFileAsString = replace.all(androidRFileAsString);
+        final String newFileAsString = GDTemplateUtil.getInstance().process(RESOURCE_INITIALIZATION_ORIGINAL, GD_KEY, GD_PARAMETER, stringMaker.toString());
 
         this.logUtil.putF(this.gdToolStrings.FILENAME + RESOURCE_INITIALIZATION, this, this.commonStrings.PROCESS);
 

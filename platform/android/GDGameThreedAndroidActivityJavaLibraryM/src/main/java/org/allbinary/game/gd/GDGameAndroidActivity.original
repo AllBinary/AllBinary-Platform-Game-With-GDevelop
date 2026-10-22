@@ -1,5 +1,0 @@
-package org.allbinary.game.gd.<name>.threed;
-
-public class GDGameAndroidActivity extends org.allbinary.game.GDGameBaseAndroidActivity {
-    
-}

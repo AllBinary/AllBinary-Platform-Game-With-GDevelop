@@ -155,7 +155,7 @@ public class GDPaths {
     }
 
     /**
-     * Uses the language version of a template (R.original -> RKt.original) when it exists, otherwise the Java template.
+     * Uses the language version of a template (R.xsl -> RKt.xsl) when it exists, otherwise the Java template.
      */
     public String getTemplatePath(final String javaTemplatePath) {
         if (this.language.isJava()) {

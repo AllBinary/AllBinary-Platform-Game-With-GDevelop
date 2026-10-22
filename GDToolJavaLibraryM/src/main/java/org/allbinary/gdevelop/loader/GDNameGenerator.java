@@ -26,6 +26,8 @@ public class GDNameGenerator extends Processor {
     protected final CommonStrings commonStrings = CommonStrings.getInstance();
 
     protected final String GD_KEY = "<name>";
+    //xsl template parameter for GD_KEY
+    protected final String NAME = "name";
     
     protected String packageName;
 

@@ -6,11 +6,8 @@
 
 package org.allbinary.gdevelop.loader;
 
-import java.io.FileInputStream;
 
 import org.allbinary.gdevelop.json.GDProject;
-import org.allbinary.logic.io.StreamUtil;
-import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogUtil;
 
 /**
@@ -24,7 +21,7 @@ public class GDToThreedAndroidResourceStringsXmlGradleGenerator extends GDNameFi
     private String name;
 
     public GDToThreedAndroidResourceStringsXmlGradleGenerator() {
-        super(GDPaths.getInstance().ROOT_PATH + "platformx\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\strings.xml.original",
+        super(GDPaths.getInstance().ROOT_PATH + "platformx\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\strings.xml.xsl",
                 GDPaths.getInstance().GEN_PATH + "platformx\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\app\\src\\main\\res\\values\\" + "strings.xml");
     }
 
@@ -36,14 +33,7 @@ public class GDToThreedAndroidResourceStringsXmlGradleGenerator extends GDNameFi
     @Override
     public void process() throws Exception {
                 
-        final StreamUtil streamUtil = StreamUtil.getInstance();
-        final SharedBytes sharedBytes = SharedBytes.getInstance();
-        sharedBytes.outputStream.reset();
-
-        final FileInputStream fileInputStream = new FileInputStream(this.originalFilePath);
-        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
-        final Replace replace = new Replace(this.GD_KEY, this.name);
-        final String newFileAsString = replace.all(androidRFileAsString);
+        final String newFileAsString = GDTemplateUtil.getInstance().process(this.originalFilePath, this.GD_KEY, this.NAME, this.name);
 
         this.logUtil.putF(this.gdToolStrings.FILENAME + this.newFilePath, this, this.commonStrings.PROCESS);
         

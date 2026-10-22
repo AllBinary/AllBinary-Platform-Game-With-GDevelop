@@ -6,13 +6,9 @@
 
 package org.allbinary.gdevelop.loader;
 
-import java.io.FileInputStream;
-
 import org.allbinary.data.CamelCaseUtil;
 import org.allbinary.logic.io.BufferedWriterUtil;
-import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.logic.string.StringMaker;
-import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogUtil;
 
 /**
@@ -37,19 +33,12 @@ public class GDToAndroidGameActivityGenerator extends GDNameGenerator
         final StringMaker stringMaker = new StringMaker();
         final String name = camelCaseUtil.getAsCamelCase(this.packageName, stringMaker).toLowerCase();
         
-        final String R_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\GDGameAndroidActivity.original");
+        final String R_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\GDGameAndroidActivity.xsl");
         stringMaker.delete(0, stringMaker.length());
         stringMaker.append(this.gdPaths.GEN_PATH + "platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\").append(name);
         final String R = this.gdPaths.getOutputPath(stringMaker.append("\\GDGameAndroidActivity.java").toString());
         
-        final StreamUtil streamUtil = StreamUtil.getInstance();
-        final SharedBytes sharedBytes = SharedBytes.getInstance();
-        sharedBytes.outputStream.reset();
-
-        final FileInputStream fileInputStream = new FileInputStream(R_ORIGINAL);        
-        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
-        final Replace replace = new Replace(this.GD_KEY, name);
-        final String newFileAsString = replace.all(androidRFileAsString);
+        final String newFileAsString = GDTemplateUtil.getInstance().process(R_ORIGINAL, this.GD_KEY, this.NAME, name);
 
         this.logUtil.putF(this.gdToolStrings.FILENAME + R, this, this.commonStrings.PROCESS);
         

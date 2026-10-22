@@ -6,12 +6,9 @@
 
 package org.allbinary.gdevelop.loader;
 
-import java.io.FileInputStream;
 import org.allbinary.data.CamelCaseUtil;
 import org.allbinary.logic.io.BufferedWriterUtil;
-import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.logic.string.StringMaker;
-import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogUtil;
 
 /**
@@ -39,14 +36,7 @@ public class GDNameFileGenerator extends GDNameGenerator
                 
         final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
         final StringMaker stringMaker = new StringMaker();
-        final StreamUtil streamUtil = StreamUtil.getInstance();
-        final SharedBytes sharedBytes = SharedBytes.getInstance();
-        sharedBytes.outputStream.reset();
-
-        final FileInputStream fileInputStream = new FileInputStream(this.originalFilePath);
-        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
-        final Replace replace = new Replace(this.GD_KEY, camelCaseUtil.getAsCamelCase(this.packageName, stringMaker).toLowerCase());
-        final String newFileAsString = replace.all(androidRFileAsString);
+        final String newFileAsString = GDTemplateUtil.getInstance().process(this.originalFilePath, this.GD_KEY, this.NAME, camelCaseUtil.getAsCamelCase(this.packageName, stringMaker).toLowerCase());
 
         stringMaker.delete(0, stringMaker.length());
         this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(this.newFilePath).toString(), this, this.commonStrings.PROCESS);

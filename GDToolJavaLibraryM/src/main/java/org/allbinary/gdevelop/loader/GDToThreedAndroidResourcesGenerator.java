@@ -13,7 +13,7 @@ package org.allbinary.gdevelop.loader;
 public class GDToThreedAndroidResourcesGenerator extends GDNameFileGenerator
 {
     public GDToThreedAndroidResourcesGenerator() {
-        super(GDPaths.getInstance().ROOT_PATH + "platform\\android\\GDGameThreedAndroidM\\src\\main\\other\\org\\allbinary\\AndroidResources.original",
+        super(GDPaths.getInstance().ROOT_PATH + "platform\\android\\GDGameThreedAndroidM\\src\\main\\other\\org\\allbinary\\AndroidResources.xsl",
                 GDPaths.getInstance().GEN_PATH + "platform\\android\\GDGameThreedAndroidM\\src\\main\\other\\org\\allbinary\\AndroidResources.java");
     }
 

@@ -7,7 +7,6 @@
 package org.allbinary.gdevelop.loader;
 
 import java.io.File;
-import java.io.FileInputStream;
 import javax.microedition.media.Player;
 
 import org.allbinary.data.CamelCaseUtil;
@@ -15,10 +14,8 @@ import org.allbinary.data.resource.ResourceUtil;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GameFeatureFactory;
 import org.allbinary.logic.io.BufferedWriterUtil;
-import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
-import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.media.audio.AllBinaryMediaManager;
 import org.allbinary.util.BasicArrayList;
@@ -44,8 +41,10 @@ public class GDToAllBinarySoundsGenerator
     private final String GD_NAME = "<GDNAME>";
     private final String GD_FILE_NAME = "<GD_FILE_NAME>";
     private final String GD_DURATION = "<GD_DURATION>";
+    //xsl template parameters for GD_NAME, GD_FILE_NAME and GD_DURATION
+    private final String[] PARAMETER_NAME_ARRAY = {"GDNAME", "GD_FILE_NAME", "GD_DURATION"};
     
-    private final String SOUND_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDSound.origin");
+    private final String SOUND_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDSound.xsl");
     private final String SOUND_PATH = this.gdPaths.GEN_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\";
     
     private final String GD = "GD";
@@ -98,14 +97,9 @@ public class GDToAllBinarySoundsGenerator
             ".wav");
         Features.getInstance().add(GameFeatureFactory.getInstance().SOUND);
 
-        final StreamUtil streamUtil = StreamUtil.getInstance();
-        final SharedBytes sharedBytes = SharedBytes.getInstance();
-        sharedBytes.outputStream.reset();
+
 
         final StringMaker stringMaker = new StringMaker();
-        
-        final FileInputStream fileInputStream = new FileInputStream(this.SOUND_ORIGINAL);
-        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
         
         final int size = this.gdResources.playSoundAndroidResourceNameList.size();
         
@@ -123,12 +117,8 @@ public class GDToAllBinarySoundsGenerator
             final long duration = player.getDuration();
             
             final String name = this.camelCaseUtil.getAsCamelCase(resource, stringMaker);
-            final Replace replace = new Replace(this.GD_NAME, name);
-            String newFileAsString = replace.all(androidRFileAsString);
-            final Replace replace2 = new Replace(this.GD_FILE_NAME, resource);
-            newFileAsString = replace2.all(newFileAsString);
-            final Replace replace3 = new Replace(this.GD_DURATION, Long.toString(duration));
-            newFileAsString = replace3.all(newFileAsString);
+            final String newFileAsString = GDTemplateUtil.getInstance().process(this.SOUND_ORIGINAL,
+                new String[] {this.GD_NAME, this.GD_FILE_NAME, this.GD_DURATION}, this.PARAMETER_NAME_ARRAY, new String[] {name, resource, Long.toString(duration)});
             
             stringMaker.delete(0, stringMaker.length());
             stringMaker.append(this.GD).append(name).append(this.SOUND);

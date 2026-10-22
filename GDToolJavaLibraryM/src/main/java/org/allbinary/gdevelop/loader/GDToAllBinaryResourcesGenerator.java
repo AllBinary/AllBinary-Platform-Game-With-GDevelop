@@ -12,7 +12,6 @@ import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
-import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonLabels;
 import org.allbinary.string.CommonSeps;
@@ -45,6 +44,8 @@ public class GDToAllBinaryResourcesGenerator
     private final GDResourceSelection gdResourceSelection = GDResourceSelection.getInstance();
     
     private final String GD_KEY = "//GD";
+    //xsl template parameter for GD_KEY
+    private final String GD_PARAMETER = "GD";
     private final String INDENT = "        ";
     private final String SPACING = "    ";
 
@@ -334,21 +335,13 @@ public class GDToAllBinaryResourcesGenerator
         
         this.timeDelayHelper.setStartTimeTNT();
         
-        final String RESOURCE_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.origin");
+        final String RESOURCE_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.xsl");
         final String RESOURCE = this.gdPaths.getOutputPath(this.gdPaths.GEN_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.java");
         
-        final StreamUtil streamUtil = StreamUtil.getInstance();
-        final SharedBytes sharedBytes = SharedBytes.getInstance();
-        sharedBytes.outputStream.reset();
-        
-        final FileInputStream fileInputStream = new FileInputStream(RESOURCE_ORIGINAL);        
-        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
         
         final BasicArrayList usedList = new BasicArrayListD();
         this.appendResourceStringArray(hasRotationImages, usedList);
-        
-        final Replace replace = new Replace(this.GD_KEY, this.resourceStringMaker.toString());
-        final String newFileAsString = replace.all(androidRFileAsString);
+        final String newFileAsString = GDTemplateUtil.getInstance().process(RESOURCE_ORIGINAL, this.GD_KEY, this.GD_PARAMETER, this.resourceStringMaker.toString());
 
         stringMaker.delete(0, stringMaker.length());
         this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(RESOURCE).toString(), this, this.commonStrings.PROCESS);
@@ -378,23 +371,15 @@ public class GDToAllBinaryResourcesGenerator
         
         this.timeDelayHelper.setStartTimeTNT();
         
-        final String LAZY_RESOURCE_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.origin");
+        final String LAZY_RESOURCE_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.xsl");
         final String LAZY_RESOURCE = this.gdPaths.getOutputPath(this.gdPaths.GEN_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.java");
         
         stringMaker.delete(0, stringMaker.length());
-        final StreamUtil streamUtil = StreamUtil.getInstance();
-        final SharedBytes sharedBytes = SharedBytes.getInstance();
-        sharedBytes.outputStream.reset();
-        
-        final FileInputStream fileInputStream = new FileInputStream(LAZY_RESOURCE_ORIGINAL);        
-        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
         
         this.appendResourceWidthArray(gdResourceList, usedList);
         this.appendResourceHeightArray(gdResourceList, usedList);
         this.appendImmediatelyLoadedImages();
-        
-        final Replace replace = new Replace(this.GD_KEY, this.resourceStringMaker.toString());
-        final String newFileAsString = replace.all(androidRFileAsString);
+        final String newFileAsString = GDTemplateUtil.getInstance().process(LAZY_RESOURCE_ORIGINAL, this.GD_KEY, this.GD_PARAMETER, this.resourceStringMaker.toString());
 
         stringMaker.delete(0, stringMaker.length());
         this.logUtil.putF(this.gdToolStrings.FILENAME + LAZY_RESOURCE, this, this.commonStrings.PROCESS);

@@ -6,15 +6,12 @@
 
 package org.allbinary.gdevelop.loader;
 
-import java.io.FileInputStream;
 
 import org.allbinary.data.CamelCaseUtil;
 import org.allbinary.gdevelop.json.GDProject;
 import org.allbinary.logic.io.BufferedWriterUtil;
-import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
-import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.string.CommonSeps;
@@ -38,12 +35,16 @@ public class GDToThreedAndroidResourcesGradleGenerator
     private final GDResources gdResources = GDResources.getInstance();
     
     private final String GD_KEY = "//GD";
+    //xsl template parameter for GD_KEY
+    private final String GD_PARAMETER = "GD";
             
     private final String PUBLIC_FINAL_STRING = "    public final int ";
     private final String VALUE_RESOURCE_START = " = R.raw.";
     private final String VALUE_RESOURCE_END = ";\n";
     
     private final String GD_KEY_NAME = "<name>";
+    //xsl template parameter for GD_KEY_NAME
+    private final String GD_KEY_NAME_PARAMETER = "name";
     
     private final String BLANK_LINE = "public final int blank = R.raw.blank;\n";
 
@@ -126,20 +127,13 @@ public class GDToThreedAndroidResourcesGradleGenerator
         
         this.processResource(threedFileList, resourceStringMaker);
 
-        final String RESOURCE_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.original");
+        final String RESOURCE_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.xsl");
         final String RESOURCE = this.gdPaths.getOutputPath(this.gdPaths.GEN_PATH + "platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java");
         
         final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
         final StringMaker stringMaker = new StringMaker();        
-        final StreamUtil streamUtil = StreamUtil.getInstance();
-        final SharedBytes sharedBytes = SharedBytes.getInstance();
-        sharedBytes.outputStream.reset();
-        
-        final FileInputStream fileInputStream = new FileInputStream(RESOURCE_ORIGINAL);        
-        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
-        final Replace replace2 = new Replace(this.GD_KEY_NAME, camelCaseUtil.getAsCamelCase(this.packageName, stringMaker).toLowerCase());
-        final String newFileAsString2 = replace2.all(androidRFileAsString);
+        final String name = camelCaseUtil.getAsCamelCase(this.packageName, stringMaker).toLowerCase();
 
         final int size = this.gdResources.playSoundAndroidResourceNameList.size();
         String resource;
@@ -160,8 +154,8 @@ public class GDToThreedAndroidResourcesGradleGenerator
             resourceStringMaker.append(this.BLANK_LINE);
         }
 
-        final Replace replace = new Replace(this.GD_KEY, resourceStringMaker.toString());
-        final String newFileAsString = replace.all(newFileAsString2);
+        final String newFileAsString = GDTemplateUtil.getInstance().process(RESOURCE_ORIGINAL,
+            new String[] {this.GD_KEY_NAME, this.GD_KEY}, new String[] {this.GD_KEY_NAME_PARAMETER, this.GD_PARAMETER}, new String[] {name, resourceStringMaker.toString()});
 
         this.logUtil.putF(this.gdToolStrings.FILENAME + RESOURCE, this, this.commonStrings.PROCESS);
         
