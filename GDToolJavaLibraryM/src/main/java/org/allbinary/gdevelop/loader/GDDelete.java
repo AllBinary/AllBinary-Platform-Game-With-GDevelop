@@ -84,6 +84,25 @@ public class GDDelete {
         return languageExclusionList;
     }
 
+    /**
+     * Deletes a single generated file for every source extension of the selected language
+     * so AndroidResources.java deletes AndroidResources.cpp and AndroidResources.h for C++.
+     */
+    private void deleteFile(final String javaFilePath) {
+        final String languagePath = this.gdPaths.getLanguagePath(javaFilePath);
+        final String base = languagePath.substring(0, languagePath.lastIndexOf('.'));
+        final String[] languageExtensionArray = this.gdPaths.outputExtensionArray;
+        final int size = languageExtensionArray.length;
+        File file;
+        for (int index = 0; index < size; index++) {
+            file = new File(new StringMaker().append(base).append(languageExtensionArray[index]).toString());
+            if (file.exists()) {
+                this.logUtil.putF(new StringMaker().append("Deleting: ").append(file.getAbsolutePath()).toString(), this, this.commonStrings.PROCESS);
+                file.delete();
+            }
+        }
+    }
+
     public void process(final BasicArrayList fileBasicArrayList, final BasicArrayList exclusionList) throws Exception {
 
         final StringMaker stringMaker = new StringMaker();
@@ -189,9 +208,7 @@ public class GDDelete {
         this.process(files3, exclusionList3);
 
         final BasicArrayList exclusionList3b = new BasicArrayListD();
-        
-        exclusionList3b.add("PlatformAssetManager.java");
-        
+
         final BasicArrayList files3b = this.getFiles(
               gdPaths.GEN_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java", this.gdToolStrings.JAVA);
         
@@ -343,6 +360,23 @@ public class GDDelete {
               gdPaths.GEN_PATH + "platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\", this.gdToolStrings.JAVA);
 
         this.process(files12, exclusionList12);
+
+        final BasicArrayList exclusionList13 = new BasicArrayListD();
+
+        final BasicArrayList files13 = this.getFiles(
+              gdPaths.GEN_PATH + "platform\\android\\GDGameThreedAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\", this.gdToolStrings.JAVA);
+
+        this.process(files13, exclusionList13);
+
+        this.deleteFile(gdPaths.GEN_PATH + "platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.java");
+
+        this.deleteFile(gdPaths.GEN_PATH + "platform\\android\\GDGameAndroidM\\src\\main\\other\\org\\allbinary\\AndroidResources.java");
+        this.deleteFile(gdPaths.GEN_PATH + "platform\\android\\GDGameThreedAndroidM\\src\\main\\other\\org\\allbinary\\AndroidResources.java");
+        this.deleteFile(gdPaths.GEN_PATH + "platform\\android\\GDGameAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java");
+        this.deleteFile(gdPaths.GEN_PATH + "platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java");
+
+        this.deleteFile(gdPaths.GEN_PATH + "platform\\android\\GDGameAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.java");
+        this.deleteFile(gdPaths.GEN_PATH + "platform\\android\\GDGameThreedAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.java");
 
     }
 
