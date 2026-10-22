@@ -40,6 +40,7 @@ public class GDDelete {
     /**
      * Gets the files of the selected language module directory.
      * When the extension is java all the source extensions of the selected language are used such as cpp and h for C++.
+     * With the test extension only the test files (.ktt) are deleted so the existing files remain for comparing.
      */
     private BasicArrayList getFiles(final String javaPath, final String extension) throws Exception {
         final String path = this.gdPaths.getLanguagePath(javaPath);
@@ -50,7 +51,7 @@ public class GDDelete {
         if (!extension.equals(this.gdToolStrings.JAVA)) {
             return FileListFetcher.getInstance().getFiles(path, extension);
         }
-        final String[] languageExtensionArray = this.gdPaths.language.extensionArray;
+        final String[] languageExtensionArray = this.gdPaths.outputExtensionArray;
         final int size = languageExtensionArray.length;
         final String[] extensionArray = new String[size];
         for (int index = 0; index < size; index++) {
@@ -65,7 +66,7 @@ public class GDDelete {
      */
     private BasicArrayList getLanguageExclusionList(final BasicArrayList exclusionList) {
         final BasicArrayList languageExclusionList = new BasicArrayListD();
-        final String[] languageExtensionArray = this.gdPaths.language.extensionArray;
+        final String[] languageExtensionArray = this.gdPaths.outputExtensionArray;
         final int size = exclusionList.size();
         final int size2 = languageExtensionArray.length;
         String exclusion;
@@ -349,7 +350,7 @@ public class GDDelete {
      * @param args the command line arguments
      */
     public static void main(String[] args)  throws Exception {
-        GDPaths.init(GDLanguageSelection.getInstance().select(args));
+        GDPaths.init(args);
         new GDDelete().process();
     }
     

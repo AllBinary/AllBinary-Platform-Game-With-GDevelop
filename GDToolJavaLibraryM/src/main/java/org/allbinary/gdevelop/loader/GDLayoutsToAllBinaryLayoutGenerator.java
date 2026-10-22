@@ -1378,7 +1378,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
     public static void main(String[] args) throws Exception {
         DomDocumentHelper.init();
-        GDPaths.init(GDLanguageSelection.getInstance().select(args));
+        GDPaths.init(args);
 
         //Generate Layout 1
         final boolean[] finished = new boolean[6];

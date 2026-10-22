@@ -41,7 +41,24 @@ public class GDPaths {
     }
 
     public static void init(final GDLanguage language) {
-        GDPaths.instance = new GDPaths(GDPaths.DEFAULT_PATH, GDPaths.DEFAULT_PATH, GDPaths.DEFAULT_PATH, "Resources\\", "Resources\\", "2d\\res\\raw\\", "3d\\res\\raw\\", language);
+        GDPaths.init(language, false);
+    }
+
+    /**
+     * Selects the language and the test extension option from the command line or by prompting.
+     */
+    public static void init(final String[] args) throws Exception {
+        final GDLanguageSelection gdLanguageSelection = GDLanguageSelection.getInstance();
+        final GDLanguage language = gdLanguageSelection.select(args);
+        final boolean testExtension = gdLanguageSelection.selectTestExtension(args);
+        GDPaths.init(language, testExtension);
+    }
+
+    /**
+     * @param testExtension when true generated files get a t added to the end of the extension for comparing with the existing files.
+     */
+    public static void init(final GDLanguage language, final boolean testExtension) {
+        GDPaths.instance = new GDPaths(GDPaths.DEFAULT_PATH, GDPaths.DEFAULT_PATH, GDPaths.DEFAULT_PATH, "Resources\\", "Resources\\", "2d\\res\\raw\\", "3d\\res\\raw\\", language, testExtension);
     }
 
     /**
@@ -61,6 +78,7 @@ public class GDPaths {
 
     private final String XSL_EXTENSION = ".xsl";
     private final String JAVA_EXTENSION = ".java";
+    private final String TEST_EXTENSION_SUFFIX = "t";
     private final String MODULE_PREFIX = "GDGame";
     private final String[] MODULE_SUFFIX_ARRAY = {"Gradle", "M"};
 
@@ -69,6 +87,11 @@ public class GDPaths {
     public String PROJECT_PATH;
 
     public final GDLanguage language;
+    public final boolean testExtension;
+    /**
+     * The language source extensions of generated files. With testExtension .kt is .ktt.
+     */
+    public final String[] outputExtensionArray;
 
     public final String GAME_XML_PATH;
 
@@ -87,8 +110,23 @@ public class GDPaths {
     }
 
     public GDPaths(final String xslPath, final String genPath, final String projectPath, final String soundResourcesDirectory, final String assetsDirectory, final String twodPath, final String threedPath, final GDLanguage language) {
+        this(xslPath, genPath, projectPath, soundResourcesDirectory, assetsDirectory, twodPath, threedPath, language, false);
+    }
+
+    public GDPaths(final String xslPath, final String genPath, final String projectPath, final String soundResourcesDirectory, final String assetsDirectory, final String twodPath, final String threedPath, final GDLanguage language, final boolean testExtension) {
 
         this.language = language;
+        this.testExtension = testExtension;
+
+        final int size = language.extensionArray.length;
+        this.outputExtensionArray = new String[size];
+        for (int index = 0; index < size; index++) {
+            this.outputExtensionArray[index] = testExtension ? language.extensionArray[index] + this.TEST_EXTENSION_SUFFIX : language.extensionArray[index];
+        }
+
+        if (testExtension) {
+            LogUtil.getInstance().putF(new StringBuilder().append("Test extension: generated files end with ").append(this.outputExtensionArray[0]).toString(), this, "GDPaths");
+        }
         this.ROOT_PATH = xslPath;
         this.GEN_PATH = genPath;
         this.PROJECT_PATH = projectPath;
@@ -143,9 +181,10 @@ public class GDPaths {
      * GDGameAndroidApplicationNoLicensingGradle -> GDGameAndroidApplicationNoLicensingKtGradle)
      * and .java files get the language extension.
      * Parent directories are created for non Java languages since the language modules may not exist yet.
+     * With testExtension a t is added to the end of the source extension (.kt -> .ktt) for comparing with the existing file.
      */
     public String getOutputPath(final String javaOutputPath) {
-        final String result = this.getLanguagePath(javaOutputPath);
+        final String result = this.getTestPath(this.getLanguagePath(javaOutputPath));
 
         if (!this.language.isJava()) {
             final File parentFile = new File(result).getParentFile();
@@ -158,7 +197,24 @@ public class GDPaths {
     }
 
     /**
-     * Same conversion as getOutputPath without creating directories.
+     * Adds a t to the end of a language source extension when testExtension is set.
+     */
+    public String getTestPath(final String languagePath) {
+        if (!this.testExtension) {
+            return languagePath;
+        }
+        final String[] extensionArray = this.language.extensionArray;
+        final int size = extensionArray.length;
+        for (int index = 0; index < size; index++) {
+            if (languagePath.endsWith(extensionArray[index])) {
+                return new StringBuilder().append(languagePath).append(this.TEST_EXTENSION_SUFFIX).toString();
+            }
+        }
+        return languagePath;
+    }
+
+    /**
+     * Same conversion as getOutputPath without creating directories or the test extension.
      */
     public String getLanguagePath(final String javaOutputPath) {
         if (this.language.isJava()) {

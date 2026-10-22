@@ -38,7 +38,52 @@ public class GDLanguageSelection {
     private final String[] ARG_PREFIX_ARRAY = {"-language=", "--language=", "-l="};
     private final String[] ARG_NAME_ARRAY = {"-language", "--language", "-l"};
 
+    private final String[] TEST_ARG_ARRAY = {"-test", "--test", "-t"};
+    private final String YES = "y";
+    private final String YES_LONG = "yes";
+
     private final GDLanguageFactory gdLanguageFactory = GDLanguageFactory.getInstance();
+
+    private BufferedReader bufferedReader;
+
+    private BufferedReader getBufferedReader() {
+        if (this.bufferedReader == null) {
+            this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        }
+        return this.bufferedReader;
+    }
+
+    /**
+     * @return true when generated files should get a t added to the end of the extension (GDGlobals.kt -> GDGlobals.ktt)
+     * so they can be compared with the existing files. Uses -test, --test, or -t. Only prompts when the language was also prompted.
+     */
+    public boolean selectTestExtension(final String[] args) throws Exception {
+        final int size = args.length;
+        for (int index = 0; index < size; index++) {
+            for (int index2 = 0; index2 < this.TEST_ARG_ARRAY.length; index2++) {
+                if (args[index].equalsIgnoreCase(this.TEST_ARG_ARRAY[index2])) {
+                    return true;
+                }
+            }
+        }
+
+        if (this.getFromArgs(args) != NullUtil.getInstance().NULL_OBJECT) {
+            return false;
+        }
+        return this.promptTestExtension();
+    }
+
+    public boolean promptTestExtension() throws Exception {
+        System.out.print("Add t to the end of the file extension for testing (y/N)?\n> ");
+        System.out.flush();
+
+        final String line = this.getBufferedReader().readLine();
+        if (line == null) {
+            return false;
+        }
+        final String trimmed = line.trim();
+        return trimmed.equalsIgnoreCase(this.YES) || trimmed.equalsIgnoreCase(this.YES_LONG);
+    }
 
     public GDLanguage select(final String[] args) throws Exception {
         final Object argLanguage = this.getFromArgs(args);
@@ -77,7 +122,7 @@ public class GDLanguageSelection {
     }
 
     public GDLanguage prompt() throws Exception {
-        final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        final BufferedReader bufferedReader = this.getBufferedReader();
         while (true) {
             System.out.print("Select the language to generate (Enter for Java):\n" + this.getLanguageListAsString() + "> ");
             System.out.flush();

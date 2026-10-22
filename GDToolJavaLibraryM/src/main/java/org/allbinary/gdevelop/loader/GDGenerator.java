@@ -47,7 +47,7 @@ public class GDGenerator {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
-        GDPaths.init(GDLanguageSelection.getInstance().select(args));
+        GDPaths.init(args);
         final boolean[] finished = new boolean[9];
         new GDGenerator().process(finished);
     }

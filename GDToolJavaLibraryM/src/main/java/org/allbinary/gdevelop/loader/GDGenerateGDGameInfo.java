@@ -104,7 +104,7 @@ public class GDGenerateGDGameInfo
     public static void main(String[] args) throws Exception
     {
         DomDocumentHelper.init();
-        GDPaths.init(GDLanguageSelection.getInstance().select(args));
+        GDPaths.init(args);
         new GDGenerateGDGameInfo().process();
     }
 
