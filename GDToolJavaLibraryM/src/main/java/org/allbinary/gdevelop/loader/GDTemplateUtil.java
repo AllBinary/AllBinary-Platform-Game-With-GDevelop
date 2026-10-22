@@ -10,7 +10,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.StringReader;
 import java.util.Hashtable;
+import javax.xml.transform.Source;
 import javax.xml.transform.Templates;
+import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.sax.SAXResult;
@@ -50,28 +52,7 @@ public class GDTemplateUtil
     public String process(final String templatePath, final String[] keyArray, final String[] parameterNameArray, final String[] valueArray) throws Exception {
 
         if (templatePath.endsWith(this.XSL_EXTENSION)) {
-            final Transformer transformer = this.getTemplates(templatePath).newTransformer();
-            final int size = parameterNameArray.length;
-            for (int index = 0; index < size; index++) {
-                transformer.setParameter(parameterNameArray[index], valueArray[index]);
-            }
-
-            //The text is collected from the character events since the stream serializer changes the line endings to the system line separator
-            final StringBuilder stringBuilder = new StringBuilder();
-            final DefaultHandler textHandler = new DefaultHandler() {
-
-                @Override
-                public void characters(final char[] charArray, final int start, final int length) {
-                    stringBuilder.append(charArray, start, length);
-                }
-
-                @Override
-                public void ignorableWhitespace(final char[] charArray, final int start, final int length) {
-                    stringBuilder.append(charArray, start, length);
-                }
-            };
-            transformer.transform(new StreamSource(new StringReader(this.EMPTY_DOCUMENT)), new SAXResult(textHandler));
-            return stringBuilder.toString();
+            return this.transform(templatePath, new StreamSource(new StringReader(this.EMPTY_DOCUMENT)), parameterNameArray, valueArray);
         }
 
         final StreamUtil streamUtil = StreamUtil.getInstance();
@@ -89,6 +70,42 @@ public class GDTemplateUtil
 
     public String process(final String templatePath, final String key, final String parameterName, final String value) throws Exception {
         return this.process(templatePath, new String[] {key}, new String[] {parameterName}, new String[] {value});
+    }
+
+    /**
+     * Fills a .xsl template with the generated data (and optional parameters).
+     */
+    public String process(final String templatePath, final GDTemplateData templateData, final String[] parameterNameArray, final String[] valueArray) throws Exception {
+        return this.transform(templatePath, new DOMSource(templateData.getDocument()), parameterNameArray, valueArray);
+    }
+
+    public String process(final String templatePath, final GDTemplateData templateData) throws Exception {
+        return this.process(templatePath, templateData, new String[0], new String[0]);
+    }
+
+    private String transform(final String templatePath, final Source source, final String[] parameterNameArray, final String[] valueArray) throws Exception {
+        final Transformer transformer = this.getTemplates(templatePath).newTransformer();
+        final int size = parameterNameArray.length;
+        for (int index = 0; index < size; index++) {
+            transformer.setParameter(parameterNameArray[index], valueArray[index]);
+        }
+
+        //The text is collected from the character events since the stream serializer changes the line endings to the system line separator
+        final StringBuilder stringBuilder = new StringBuilder();
+        final DefaultHandler textHandler = new DefaultHandler() {
+
+            @Override
+            public void characters(final char[] charArray, final int start, final int length) {
+                stringBuilder.append(charArray, start, length);
+            }
+
+            @Override
+            public void ignorableWhitespace(final char[] charArray, final int start, final int length) {
+                stringBuilder.append(charArray, start, length);
+            }
+        };
+        transformer.transform(source, new SAXResult(textHandler));
+        return stringBuilder.toString();
     }
 
     private synchronized Templates getTemplates(final String templatePath) throws Exception {

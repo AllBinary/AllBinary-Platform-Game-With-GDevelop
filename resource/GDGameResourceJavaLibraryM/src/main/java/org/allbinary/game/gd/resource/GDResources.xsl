@@ -19,7 +19,6 @@ Created By: Travis Berthelot
 
     <xsl:output method="text" encoding="UTF-8" />
 
-    <xsl:param name="GD" />
 
     <xsl:template match="/"><xsl:text>
 package org.allbinary.game.gd.resource;&#13;
@@ -49,8 +48,24 @@ public class GDResources&#13;
                 //resources=&lt;xsl:value-of select="file" /&gt;&lt;xsl:text&gt; &lt;/xsl:text&gt;&lt;xsl:value-of select="kind" /&gt;&lt;xsl:text&gt; &lt;/xsl:text&gt;&lt;xsl:value-of select="metadata" /&gt;&lt;xsl:text&gt; &lt;/xsl:text&gt;&lt;xsl:value-of select="name" /&gt;&lt;xsl:text&gt; &lt;/xsl:text&gt;&lt;xsl:value-of select="userAdded" /&gt;&#13;
                 //&lt;/xsl:for-each&gt;&#13;
             //&lt;/xsl:for-each&gt;&#13;
-    </xsl:text><xsl:value-of select="$GD" /><xsl:text>&#13;
+    </xsl:text><xsl:call-template name="resources" /><xsl:text>&#13;
 }&#13;
 </xsl:text></xsl:template>
+
+    <!-- The resources (icons only write the prefix) and the resource array from the generator -->
+    <xsl:template name="resources" >
+        <xsl:text>//GD&#10;</xsl:text>
+        <xsl:for-each select="/template/resource" >
+            <xsl:value-of select="@prefix" />
+            <xsl:if test="@icon != 'true'" >
+                <xsl:text>    public final String </xsl:text><xsl:value-of select="@name" /><xsl:text> = "</xsl:text><xsl:value-of select="@value" /><xsl:text>";&#10;</xsl:text>
+            </xsl:if>
+        </xsl:for-each>
+        <xsl:text>&#10;    public final String[] resourceStringArray = {&#10;BLANK,&#10;</xsl:text>
+        <xsl:for-each select="/template/arrayResource" >
+            <xsl:text>        </xsl:text><xsl:value-of select="@prefix" /><xsl:value-of select="@name" /><xsl:text>, //</xsl:text><xsl:value-of select="@index" /><xsl:text>&#10;</xsl:text>
+        </xsl:for-each>
+        <xsl:text>    };&#10;&#10;</xsl:text>
+    </xsl:template>
 
 </xsl:stylesheet>

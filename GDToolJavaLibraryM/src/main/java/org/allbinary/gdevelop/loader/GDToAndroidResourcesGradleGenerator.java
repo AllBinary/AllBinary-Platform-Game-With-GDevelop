@@ -33,28 +33,24 @@ public class GDToAndroidResourcesGradleGenerator
 
     private final GDResourceSelection gdResourceSelection = GDResourceSelection.getInstance();
 
-    private final StringMaker resourceStringMaker = new StringMaker();
+    //The template writes each resource, each sound and the blank resource when it is not one of the resources
+    private final GDTemplateData templateData = new GDTemplateData();
+    private final String RESOURCE = "resource";
+    private final String SOUND = "sound";
+    private final String BLANK_RESOURCE = "blank";
+    private final String[] NAME_ARRAY = {"name"};
+    private final String[] RESOURCE_ATTRIBUTE_NAME_ARRAY = {"name", "prefix"};
+    private final String[] NO_ATTRIBUTE_ARRAY = {};
     
-    private final String GD_KEY = "//GD";
-    //xsl template parameter for GD_KEY
-    private final String GD_PARAMETER = "GD";
-            
-    private final String PUBLIC_FINAL_STRING = "    public final int ";
-    private final String VALUE_RESOURCE_START = " = R.raw.";
-    private final String VALUE_RESOURCE_END = ";\n";
-    private final String BLANK_LINE = "public final int blank = R.raw.blank;\n";
     private final String BLANK = "blank";
 
-    private final String GD_KEY_NAME = "<name>";
-    //xsl template parameter for GD_KEY_NAME
-    private final String GD_KEY_NAME_PARAMETER = "name";
+    //xsl template parameter for the package name
+    private final String NAME = "name";
     
     private String packageName;
     private boolean isBlank;
 
     public GDToAndroidResourcesGradleGenerator() {
-        this.resourceStringMaker.append(this.GD_KEY);
-        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
     }
     
     public void process(final GDProject gdProject) {
@@ -74,13 +70,10 @@ public class GDToAndroidResourcesGradleGenerator
         
         final boolean hasRotationImages = this.gdResourceSelection.hasRotationImages();
         
-        this.gdResourceSelection.appendCommentIfNeeded2(resource.toUpperCase(), resource, this.resourceStringMaker, hasRotationImages);
+        final StringMaker prefixStringMaker = new StringMaker();
+        this.gdResourceSelection.appendCommentIfNeeded2(resource.toUpperCase(), resource, prefixStringMaker, hasRotationImages);
         
-        this.resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
-        this.resourceStringMaker.append(resource);
-        this.resourceStringMaker.append(this.VALUE_RESOURCE_START);
-        this.resourceStringMaker.append(resource);
-        this.resourceStringMaker.append(this.VALUE_RESOURCE_END);
+        this.templateData.add(this.RESOURCE, this.RESOURCE_ATTRIBUTE_NAME_ARRAY, new String[] {resource, prefixStringMaker.toString()});
     }
     
     public void process() throws Exception {
@@ -96,24 +89,15 @@ public class GDToAndroidResourcesGradleGenerator
         final int size = this.gdResources.playSoundAndroidResourceNameList.size();
         String resource;
         for(int index = 0; index < size; index++) {
-            
             resource = (String) this.gdResources.playSoundAndroidResourceNameList.get(index);
-            
-            this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
-            this.resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
-            this.resourceStringMaker.append(resource);
-            this.resourceStringMaker.append(this.VALUE_RESOURCE_START);
-            this.resourceStringMaker.append(resource);
-            this.resourceStringMaker.append(this.VALUE_RESOURCE_END);
+            this.templateData.add(this.SOUND, this.NAME_ARRAY, new String[] {resource});
         }
 
         if(!this.isBlank) {
-            this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
-            this.resourceStringMaker.append(this.BLANK_LINE);
+            this.templateData.add(this.BLANK_RESOURCE, this.NO_ATTRIBUTE_ARRAY, this.NO_ATTRIBUTE_ARRAY);
         }
         
-        final String newFileAsString = GDTemplateUtil.getInstance().process(RESOURCE_ORIGINAL,
-            new String[] {this.GD_KEY_NAME, this.GD_KEY}, new String[] {this.GD_KEY_NAME_PARAMETER, this.GD_PARAMETER}, new String[] {name, this.resourceStringMaker.toString()});
+        final String newFileAsString = GDTemplateUtil.getInstance().process(RESOURCE_ORIGINAL, this.templateData, new String[] {this.NAME}, new String[] {name});
 
         stringMaker.delete(0, stringMaker.length());
         this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(RESOURCE).toString(), this, this.commonStrings.PROCESS);

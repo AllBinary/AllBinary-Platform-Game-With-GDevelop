@@ -87,7 +87,6 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayList
                 import org.allbinary.util.BasicArrayListD
                 import org.allbinary.util.ABHashtable
-                import org.allbinary.AndroidUtil
                 import org.allbinary.J2MEUtil
                 import org.allbinary.game.layout.GDConfig
                 import org.allbinary.logic.NullUtil
@@ -198,7 +197,7 @@ Created By: Travis Berthelot
                         val size: Int = imageArray.size
                         var image: Image
                         for(index in 0 until size) {
-                            image = imageArray[index]
+                            image = imageArray[index]!!
                             if (image.getWidth() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> image.getHeight() <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> image.getWidth() % image.getHeight() != 0) {
                                 logUtil.put(StringMaker().appendint(index).append(name).appendint(image.getWidth().toInt()).append(commonSeps.COLON).appendint(image.getHeight().toInt()).toString(), this, commonStrings.PROCESS, Exception())
                             }

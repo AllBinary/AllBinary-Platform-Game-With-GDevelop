@@ -8,9 +8,7 @@ package org.allbinary.gdevelop.loader;
 
 import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.string.CommonSeps;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.util.BasicArrayList;
 
@@ -23,13 +21,16 @@ public class GDToThreedAllBinaryEarlyResourceInitializationGenerator
     protected final LogUtil logUtil = LogUtil.getInstance();
 
     private final CommonStrings commonStrings = CommonStrings.getInstance();
-    private final CommonSeps commonSeps = CommonSeps.getInstance();
 
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDPaths gdPaths = GDPaths.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
-        
+
+    //The template writes each sound
+    private final String SOUND = "sound";
+    private final String[] SOUND_ATTRIBUTE_NAME_ARRAY = {"className", "androidResource"};
+
     public GDToThreedAllBinaryEarlyResourceInitializationGenerator()
     {
 
@@ -37,43 +38,34 @@ public class GDToThreedAllBinaryEarlyResourceInitializationGenerator
 
     public void process(final GDToAllBinarySoundsGenerator soundsGenerator) throws Exception
     {
-        final String GD_KEY = "//GD";
-        //xsl template parameter for GD_KEY
-        final String GD_PARAMETER = "GD";
-        
         final String RESOURCE_INITIALIZATION_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.xsl");
         final String RESOURCE_INITIALIZATION = this.gdPaths.getOutputPath(this.gdPaths.GEN_PATH + "platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.java");
-        
-        final StringMaker stringMaker = new StringMaker();
 
-        this.appendSounds(soundsGenerator, stringMaker);
+        final GDTemplateData templateData = new GDTemplateData();
 
-        final String newFileAsString = GDTemplateUtil.getInstance().process(RESOURCE_INITIALIZATION_ORIGINAL, GD_KEY, GD_PARAMETER, stringMaker.toString());
+        this.appendSounds(soundsGenerator, templateData);
+
+        final String newFileAsString = GDTemplateUtil.getInstance().process(RESOURCE_INITIALIZATION_ORIGINAL, templateData);
 
         this.logUtil.putF(this.gdToolStrings.FILENAME + RESOURCE_INITIALIZATION, this, this.commonStrings.PROCESS);
 
         this.bufferedWriterUtil.overwrite(RESOURCE_INITIALIZATION, newFileAsString);
 
     }
-    
-    public void appendSounds(final GDToAllBinarySoundsGenerator soundsGenerator, final StringMaker stringMaker) {
-        
+
+    public void appendSounds(final GDToAllBinarySoundsGenerator soundsGenerator, final GDTemplateData templateData) {
+
         final StringUtil stringUtil = StringUtil.getInstance();
-        
+
         final BasicArrayList playSoundResourceClassNameList = soundsGenerator.playSoundResourceClassNameList;
         final BasicArrayList playSoundAndroidResourceNameList = this.gdResources.playSoundAndroidResourceNameList;
-        
+
         int size = playSoundResourceClassNameList.size();
         for(int index = 0; index < size; index++) {
-            stringMaker.append(this.commonSeps.NEW_LINE);
-            stringMaker.append(this.gdToolStrings.RESOURCE_0);
-            stringMaker.append(stringUtil.toString(playSoundResourceClassNameList.get(index)));
-            stringMaker.append(this.gdToolStrings.SOUND_RESOURCE);
-            stringMaker.append(this.gdToolStrings.RESOURCE_1);
-            stringMaker.append(stringUtil.toString(playSoundAndroidResourceNameList.get(index)));
-            stringMaker.append(this.gdToolStrings.RESOURCE_2);
-            stringMaker.append(this.commonSeps.NEW_LINE);
-        }        
+            templateData.add(this.SOUND, this.SOUND_ATTRIBUTE_NAME_ARRAY, new String[] {
+                stringUtil.toString(playSoundResourceClassNameList.get(index)),
+                stringUtil.toString(playSoundAndroidResourceNameList.get(index))});
+        }
     }
-    
+
 }

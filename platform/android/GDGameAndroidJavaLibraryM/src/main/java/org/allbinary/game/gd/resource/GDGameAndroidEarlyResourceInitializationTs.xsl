@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+AllBinary Open License Version 1
+Copyright (c) 2011 AllBinary
+
+By agreeing to this license you and any business entity you represent are
+legally bound to the AllBinary Open License Version 1 legal agreement.
+
+You may obtain the AllBinary Open License Version 1 legal agreement from
+AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+
+Created By: Travis Berthelot
+-->
+
+<!-- File generation template for TypeScript (made from the Java template that was GDGameAndroidEarlyResourceInitialization.origin). The text is output as is: &#13; keeps the windows line endings.
+     The generator fills the parameters. -->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+
+    <xsl:output method="text" encoding="UTF-8" />
+
+
+    <xsl:template match="/"><xsl:text>/*&#13;
+ *  Note that errors may occur even though your importing R correctly&#13;
+ *  This usually is caused by Duplicate R classes&#13;
+ *  Solution is usually to move the R class from the org.allbinary.game.game_name&#13;
+ *  package into the independent src directory not part of the multi process apk&#13;
+ *  Remark out for independent Activities&#13;
+ */&#13;
+&#13;
+import { Integer } from '../../../../../java/lang/Integer.js';&#13;
+import { AndroidResources } from '../../../../../org/allbinary/AndroidResources.js';&#13;
+&#13;
+const ResourceUtil = globalThis.org.allbinary.data.resource.ResourceUtil;&#13;
+import { ResourceInitialization } from '../../../../../org/allbinary/game/resource/ResourceInitialization.js';&#13;
+import { GDResources } from '../../../../../org/allbinary/game/gd/resource/GDResources.js';&#13;
+import { ErrorSound } from '../../../../../org/allbinary/media/audio/ErrorSound.js';&#13;
+import { SelectSound } from '../../../../../org/allbinary/media/audio/SelectSound.js';&#13;
+import { MidletIcon } from '../../../../../org/allbinary/midlet/MidletIcon.js';&#13;
+</xsl:text><xsl:call-template name="imports" /><xsl:text>&#13;
+export class GDGameAndroidEarlyResourceInitialization extends ResourceInitialization&#13;
+{&#13;
+&#13;
+    public init(): void&#13;
+    {&#13;
+        super.init();&#13;
+&#13;
+        const resourceUtil = ResourceUtil.getInstance();&#13;
+&#13;
+        const androidResources: AndroidResources = AndroidResources.getInstance();&#13;
+&#13;
+        //const gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance();&#13;
+&#13;
+        const gdResources: GDResources = GDResources.getInstance();&#13;
+&#13;
+        //resourceUtil.addResource(gdProjectStrings.GAME, Integer&#13;
+                //.valueOf(androidResources.raw.game));&#13;
+&#13;
+        //const gdProject: GDProject = new GDProject();&#13;
+&#13;
+        //const inputStream: InputStream = resourceUtil.getResourceAsStream(gdProjectStrings.GAME);&#13;
+        //const streamUtil: StreamUtil = StreamUtil.getInstance();&#13;
+        //const gdGameConfiguration: string = streamUtil.getAsString(inputStream);&#13;
+&#13;
+        //gdProject.load(gdGameConfiguration);&#13;
+&#13;
+        resourceUtil.addResource(MidletIcon.RESOURCE, Integer&#13;
+                .valueOf(androidResources.drawable.gd_icon));&#13;
+&#13;
+        resourceUtil.addResource(SelectSound.getInstance().getResource(), Integer&#13;
+                .valueOf(androidResources.raw.select));&#13;
+&#13;
+        resourceUtil.addResource(ErrorSound.getInstance().getResource(), Integer&#13;
+                .valueOf(androidResources.raw.error));&#13;
+&#13;
+        resourceUtil.addResource(gdResources.BLANK, Integer.valueOf(androidResources.raw.blank));&#13;
+&#13;
+        </xsl:text><xsl:call-template name="resources" /><xsl:text>&#13;
+&#13;
+        //resourceUtil.addResource(TestSound.getInstance().getResource(), Integer&#13;
+                //.valueOf(androidResources.raw.test));&#13;
+&#13;
+        //resourceUtil.addResource(ExplosionResources.getInstance().EXPLOSION_60_RESOURCE, Integer&#13;
+          //      .valueOf(AndroidResources.raw.explosion_sprite_60_by_60));&#13;
+    }&#13;
+&#13;
+}&#13;
+</xsl:text></xsl:template>
+
+    <!-- The imports for the sounds from the generator -->
+    <xsl:template name="imports" >
+        <xsl:for-each select="/template/sound" >
+            <xsl:text>import { </xsl:text><xsl:value-of select="@className" /><xsl:text> } from './</xsl:text><xsl:value-of select="@className" /><xsl:text>.js';&#13;&#10;</xsl:text>
+        </xsl:for-each>
+    </xsl:template>
+
+    <!-- The sounds and resources from the generator -->
+    <xsl:template name="resources" >
+        <xsl:for-each select="/template/sound" >
+            <xsl:text>        resourceUtil.addResource(</xsl:text><xsl:value-of select="@className" /><xsl:text>.getInstance().getResource(), Integer.valueOf(androidResources.raw.</xsl:text><xsl:value-of select="@androidResource" /><xsl:text>));&#13;&#10;</xsl:text>
+        </xsl:for-each>
+        <xsl:for-each select="/template/media" >
+            <xsl:text>&#13;&#10;</xsl:text><xsl:value-of select="@prefix" /><xsl:text>        resourceUtil.addResource(gdResources.</xsl:text><xsl:value-of select="@name" /><xsl:text>, Integer.valueOf(androidResources.raw.</xsl:text><xsl:value-of select="@androidResource" /><xsl:text>));&#13;&#10;</xsl:text>
+        </xsl:for-each>
+    </xsl:template>
+
+</xsl:stylesheet>

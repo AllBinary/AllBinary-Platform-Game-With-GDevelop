@@ -20,7 +20,6 @@ Created By: Travis Berthelot
     <xsl:output method="text" encoding="UTF-8" />
 
     <xsl:param name="name" />
-    <xsl:param name="GD" />
 
     <xsl:template match="/"><xsl:text>package org.allbinary;&#13;
 &#13;
@@ -84,7 +83,7 @@ public class AndroidResources&#13;
         public final int like2_fixed_pipeline_lighting_vertex_shader_glsl = R.raw.like2_fixed_pipeline_lighting_vertex_shader_glsl;&#13;
         public final int like2_fixed_pipeline_lighting_fragment_shader_glsl = R.raw.like2_fixed_pipeline_lighting_fragment_shader_glsl;&#13;
 &#13;
-        </xsl:text><xsl:value-of select="$GD" /><xsl:text>&#13;
+        </xsl:text><xsl:call-template name="resources" /><xsl:text>&#13;
     }&#13;
 &#13;
     public Rraw raw = new Rraw();&#13;
@@ -99,5 +98,19 @@ public class AndroidResources&#13;
 //    public Rstring string = new Rstring();&#13;
 }&#13;
 </xsl:text></xsl:template>
+
+    <!-- The resources, sounds and blank resource (when it is not one of the resources) from the generator -->
+    <xsl:template name="resources" >
+        <xsl:text>//GD&#10;</xsl:text>
+        <xsl:for-each select="/template/resource" >
+            <xsl:value-of select="@prefix" /><xsl:text>    public final int </xsl:text><xsl:value-of select="@name" /><xsl:text> = R.raw.</xsl:text><xsl:value-of select="@name" /><xsl:text>;&#10;</xsl:text>
+        </xsl:for-each>
+        <xsl:for-each select="/template/sound" >
+            <xsl:text>&#10;    public final int </xsl:text><xsl:value-of select="@name" /><xsl:text> = R.raw.</xsl:text><xsl:value-of select="@name" /><xsl:text>;&#10;</xsl:text>
+        </xsl:for-each>
+        <xsl:if test="/template/blank" >
+            <xsl:text>&#10;public final int blank = R.raw.blank;&#10;</xsl:text>
+        </xsl:if>
+    </xsl:template>
 
 </xsl:stylesheet>

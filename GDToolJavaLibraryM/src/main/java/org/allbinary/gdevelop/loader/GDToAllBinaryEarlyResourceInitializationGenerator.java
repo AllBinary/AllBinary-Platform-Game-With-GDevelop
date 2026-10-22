@@ -33,6 +33,13 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
 
     private final GDResourceSelection gdResourceSelection = GDResourceSelection.getInstance();
 
+
+    //The template writes the addResource for each sound and each resource
+    private final String SOUND = "sound";
+    private final String MEDIA = "media";
+    private final String[] SOUND_ATTRIBUTE_NAME_ARRAY = {"className", "androidResource"};
+    private final String[] MEDIA_ATTRIBUTE_NAME_ARRAY = {"name", "androidResource", "prefix"};
+
     public GDToAllBinaryEarlyResourceInitializationGenerator()
     {
 
@@ -40,19 +47,15 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
 
     public void process(final GDToAllBinarySoundsGenerator soundsGenerator) throws Exception
     {
-        final String GD_KEY = "//GD";
-        //xsl template parameter for GD_KEY
-        final String GD_PARAMETER = "GD";
-        
         final String RESOURCE_INITIALIZATION_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.xsl");
         final String RESOURCE_INITIALIZATION = this.gdPaths.getOutputPath(this.gdPaths.GEN_PATH + "platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.java");
         
-        final StringMaker stringMaker = new StringMaker();
+        final GDTemplateData templateData = new GDTemplateData();
 
-        this.appendSounds(soundsGenerator, stringMaker);
-        this.appendMedia(stringMaker);
+        this.appendSounds(soundsGenerator, templateData);
+        this.appendMedia(templateData);
 
-        final String newFileAsString = GDTemplateUtil.getInstance().process(RESOURCE_INITIALIZATION_ORIGINAL, GD_KEY, GD_PARAMETER, stringMaker.toString());
+        final String newFileAsString = GDTemplateUtil.getInstance().process(RESOURCE_INITIALIZATION_ORIGINAL, templateData);
 
         this.logUtil.putF(this.gdToolStrings.FILENAME + RESOURCE_INITIALIZATION, this, this.commonStrings.PROCESS);
 
@@ -60,7 +63,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
 
     }
     
-    public void appendSounds(final GDToAllBinarySoundsGenerator soundsGenerator, final StringMaker stringMaker) {
+    public void appendSounds(final GDToAllBinarySoundsGenerator soundsGenerator, final GDTemplateData templateData) {
         final StringUtil stringUtil = StringUtil.getInstance();
         
         final BasicArrayList playSoundResourceClassNameList = soundsGenerator.playSoundResourceClassNameList;
@@ -68,17 +71,12 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
         
         int size = playSoundResourceClassNameList.size();
         for(int index = 0; index < size; index++) {
-            stringMaker.append(this.gdToolStrings.RESOURCE_0);
-            stringMaker.append(stringUtil.toString(playSoundResourceClassNameList.get(index)));
-            stringMaker.append(this.gdToolStrings.SOUND_RESOURCE);
-            stringMaker.append(this.gdToolStrings.RESOURCE_1);
-            stringMaker.append(stringUtil.toString(playSoundAndroidResourceNameList.get(index)));
-            stringMaker.append(this.gdToolStrings.RESOURCE_2);
-            stringMaker.append(this.commonSeps.NEW_LINE);
+            templateData.add(this.SOUND, this.SOUND_ATTRIBUTE_NAME_ARRAY, new String[] {
+                stringUtil.toString(playSoundResourceClassNameList.get(index)), stringUtil.toString(playSoundAndroidResourceNameList.get(index))});
         }        
     }
 
-    public void appendMedia(final StringMaker stringMaker) {
+    public void appendMedia(final GDTemplateData templateData) {
         final CommonSeps commonSeps = CommonSeps.getInstance();
         final StringUtil stringUtil = StringUtil.getInstance();
 
@@ -87,6 +85,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
         final BasicArrayList resourceList = this.gdResources.resourceNameList;
         final BasicArrayList androidResourceList = this.gdResources.androidResourceList;
 
+        final StringMaker prefixStringMaker = new StringMaker();
         final int size = resourceList.size();
         final int size2 = 100;
         String resource;
@@ -94,30 +93,23 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
             
             resource = (String) resourceList.get(index);
 
-            stringMaker.append(this.commonSeps.NEW_LINE);
+            prefixStringMaker.delete(0, prefixStringMaker.length());
             
             if (resource.endsWith(this.gdToolStrings.UNDERSCORE_0) && resource.indexOf(this.gdToolStrings._TOUCH_) < 0) {
-                stringMaker.append(this.commonSeps.COMMENT);
+                prefixStringMaker.append(this.commonSeps.COMMENT);
             }
             
             //hasRotationImages?
             if (!hasRotationImages) {
                 for (int index2 = 2; index2 < size2; index2++) {
                     if (resource.endsWith(commonSeps.UNDERSCORE + index2) && resource.indexOf(this.gdToolStrings._TOUCH_) < 0) {
-                        stringMaker.append(this.commonSeps.COMMENT);
+                        prefixStringMaker.append(this.commonSeps.COMMENT);
                     }
                 }
             }
                         
-            stringMaker.append(this.gdToolStrings.RESOURCE_0);
-            
-            stringMaker.append(this.gdToolStrings.GD_RESOURCE);
-            stringMaker.append(resource);
-            stringMaker.append(this.gdToolStrings._RESOURCE);
-            stringMaker.append(this.gdToolStrings.RESOURCE_1);
-            stringMaker.append(stringUtil.toString(androidResourceList.get(index)));
-            stringMaker.append(this.gdToolStrings.RESOURCE_2);
-            stringMaker.append(this.commonSeps.NEW_LINE);
+            templateData.add(this.MEDIA, this.MEDIA_ATTRIBUTE_NAME_ARRAY, new String[] {
+                resource, stringUtil.toString(androidResourceList.get(index)), prefixStringMaker.toString()});
         }        
     }
     

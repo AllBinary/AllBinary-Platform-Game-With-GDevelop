@@ -19,7 +19,6 @@ Created By: Travis Berthelot
 
     <xsl:output method="text" encoding="UTF-8" />
 
-    <xsl:param name="GD" />
 
     <xsl:template match="/"><xsl:text>
 package org.allbinary.game.gd.resource;&#13;
@@ -40,8 +39,28 @@ public class GDLazyResources&#13;
         return instance;&#13;
     }&#13;
     &#13;
-    </xsl:text><xsl:value-of select="$GD" /><xsl:text>&#13;
+    </xsl:text><xsl:call-template name="resources" /><xsl:text>&#13;
 }&#13;
 </xsl:text></xsl:template>
+
+    <!-- The image widths, image heights and required resources from the generator -->
+    <xsl:template name="resources" >
+        <xsl:text>//GD&#10;final GDResources gdResources = GDResources.getInstance();&#10;&#10;</xsl:text>
+        <xsl:text>    public final int[] imageResourceWidthArray = {&#10;32,&#10;</xsl:text>
+        <xsl:for-each select="/template/width" >
+            <xsl:text>        </xsl:text><xsl:value-of select="@value" /><xsl:text>, //</xsl:text><xsl:value-of select="@name" /><xsl:text> </xsl:text><xsl:value-of select="@index" /><xsl:text>&#10;</xsl:text>
+        </xsl:for-each>
+        <xsl:text>    };&#10;&#10;</xsl:text>
+        <xsl:text>    public final int[] imageResourceHeightArray = {&#10;32,&#10;</xsl:text>
+        <xsl:for-each select="/template/height" >
+            <xsl:text>        </xsl:text><xsl:value-of select="@value" /><xsl:text>, //</xsl:text><xsl:value-of select="@name" /><xsl:text> </xsl:text><xsl:value-of select="@index" /><xsl:text>&#10;</xsl:text>
+        </xsl:for-each>
+        <xsl:text>    };&#10;&#10;</xsl:text>
+        <xsl:text>    public final String[] requiredResourcesBeforeLoadingArray = {&#10;</xsl:text>
+        <xsl:for-each select="/template/required" >
+            <xsl:text>gdResources.</xsl:text><xsl:value-of select="@name" /><xsl:text>,&#10;</xsl:text>
+        </xsl:for-each>
+        <xsl:text>    };&#10;</xsl:text>
+    </xsl:template>
 
 </xsl:stylesheet>

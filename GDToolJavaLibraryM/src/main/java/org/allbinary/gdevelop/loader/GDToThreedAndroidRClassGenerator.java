@@ -9,7 +9,7 @@ package org.allbinary.gdevelop.loader;
 
 import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.string.StringMaker;
+import org.w3c.dom.Element;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.string.CommonSeps;
@@ -30,18 +30,13 @@ public class GDToThreedAndroidRClassGenerator
     private final GDPaths gdPaths = GDPaths.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
-    private final String GD_KEY = "//GD";
-    //xsl template parameter for GD_KEY
-    private final String GD_PARAMETER = "GD";
-    
-    private final String PUBLIC_STATIC_FINAL_INT = "        public static final int ";
-    private final String VALUE = " = 0x7f060007;\n";
-    
-    private final String RESOURCE = "        //Resource - ";
-    private final String EXPRESSION_PARAM = "        //Expression Param\n";
-    
-    private final String FILE = "        //File - ";
-    
+    //The template writes each file with its resources (one for each extension) and each expression parameter
+    private final String FILE = "file";
+    private final String RESOURCE = "resource";
+    private final String EXPRESSION_PARAM = "expressionParam";
+    private final String[] NAME_ARRAY = {"name"};
+    private final String[] RESOURCE_ATTRIBUTE_NAME_ARRAY = {"extension", "prefix"};
+
     private final String SKIPPING = "Skipping: ";
     
     private final String SELECT = "select";
@@ -68,28 +63,21 @@ public class GDToThreedAndroidRClassGenerator
         }
     }
     
-    public void processResource(final BasicArrayList threedFileList, final StringMaker stringMaker) {
+    public void processResource(final BasicArrayList threedFileList, final GDTemplateData templateData) {
+        
+        final StringUtil stringUtil = StringUtil.getInstance();
         
         final int size = this.fileAsStringList.size();
         String fileAsString;
         for(int index = 0; index < size; index++) {
 
             fileAsString = (String ) this.fileAsStringList.get(index);
-            stringMaker.append(this.FILE);
-            stringMaker.append(this.commonSeps.QUOTE);
-            stringMaker.append(fileAsString);
-            stringMaker.append(this.commonSeps.QUOTE);
-            stringMaker.append(this.commonSeps.NEW_LINE);
+            final Element fileElement = templateData.add(this.FILE, this.NAME_ARRAY, new String[] {fileAsString});
             
             final BasicArrayList extensionList = this.gdToolStrings.getExtensions(threedFileList, fileAsString);
 
             final int size3 = extensionList.size();
             String extension;
-            
-//            stringMaker.append(this.PUBLIC_STATIC_FINAL_INT);
-//            stringMaker.append(fileAsString);
-//            stringMaker.append(this.VALUE);
-//            stringMaker.append(this.commonSeps.NEW_LINE);
             
             final BasicArrayList list = new BasicArrayListD();
             for(int index3 = 0; index3 < size3; index3++) {
@@ -98,53 +86,35 @@ public class GDToThreedAndroidRClassGenerator
                 if(!list.contains(extension)) {
                     list.add(extension);
 
-                    stringMaker.append(this.RESOURCE);
-                    stringMaker.append(this.commonSeps.QUOTE);
-                    stringMaker.append(extension);
-                    stringMaker.append(this.commonSeps.QUOTE);
-                    stringMaker.append(this.commonSeps.NEW_LINE);
-
-                    if (extension == StringUtil.getInstance().NULL_STRING) {
-                        stringMaker.append(this.commonSeps.COMMENT);
-                    }
-
-                    stringMaker.append(this.PUBLIC_STATIC_FINAL_INT);
-                    stringMaker.append(fileAsString);
-                    stringMaker.append(extension);
-                    stringMaker.append(this.VALUE);
+                    final String prefix = extension == stringUtil.NULL_STRING ? this.commonSeps.COMMENT : stringUtil.EMPTY_STRING;
+                    templateData.add(fileElement, this.RESOURCE, this.RESOURCE_ATTRIBUTE_NAME_ARRAY, new String[] {extension, prefix});
                 }
             }
 
         }
     }
     
-    public void processExpressionParam(final BasicArrayList threedFileList, final StringMaker stringMaker) {
+    public void processExpressionParam(final BasicArrayList threedFileList, final GDTemplateData templateData) {
         final int size = this.paramList.size();
         String param;
         for(int index = 0; index < size; index++) {
             param = (String) this.paramList.get(index);
-            stringMaker.append(this.EXPRESSION_PARAM);
-            stringMaker.append(this.PUBLIC_STATIC_FINAL_INT);
-            stringMaker.append(param);
-            stringMaker.append(this.VALUE);
+            templateData.add(this.EXPRESSION_PARAM, this.NAME_ARRAY, new String[] {param});
         }
     }
 
     public void process(final BasicArrayList threedFileList) throws Exception {
         
-        final StringMaker stringMaker = new StringMaker();
+        final GDTemplateData templateData = new GDTemplateData();
 
-        stringMaker.append(this.GD_KEY);
-        stringMaker.append(this.commonSeps.NEW_LINE);
-
-        this.processResource(threedFileList, stringMaker);
+        this.processResource(threedFileList, templateData);
         
-        this.processExpressionParam(threedFileList, stringMaker);
+        this.processExpressionParam(threedFileList, templateData);
 
         final String R_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "platform\\android\\GDGameThreedAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.xsl");
         final String R = this.gdPaths.getOutputPath(this.gdPaths.GEN_PATH + "platform\\android\\GDGameThreedAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.java");
         
-        final String newFileAsString = GDTemplateUtil.getInstance().process(R_ORIGINAL, this.GD_KEY, this.GD_PARAMETER, stringMaker.toString());
+        final String newFileAsString = GDTemplateUtil.getInstance().process(R_ORIGINAL, templateData);
 
         this.logUtil.putF(this.gdToolStrings.FILENAME + R, this, this.commonStrings.PROCESS);
         

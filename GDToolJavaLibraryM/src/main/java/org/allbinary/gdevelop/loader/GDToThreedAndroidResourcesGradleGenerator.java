@@ -34,19 +34,16 @@ public class GDToThreedAndroidResourcesGradleGenerator
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
     
-    private final String GD_KEY = "//GD";
-    //xsl template parameter for GD_KEY
-    private final String GD_PARAMETER = "GD";
-            
-    private final String PUBLIC_FINAL_STRING = "    public final int ";
-    private final String VALUE_RESOURCE_START = " = R.raw.";
-    private final String VALUE_RESOURCE_END = ";\n";
+    //The template writes each resource (one for each extension), each sound and the blank resource when it is not one of the resources
+    private final String RESOURCE = "resource";
+    private final String SOUND = "sound";
+    private final String BLANK_RESOURCE = "blank";
+    private final String[] NAME_ARRAY = {"name"};
+    private final String[] RESOURCE_ATTRIBUTE_NAME_ARRAY = {"name", "prefix"};
+    private final String[] NO_ATTRIBUTE_ARRAY = {};
     
-    private final String GD_KEY_NAME = "<name>";
-    //xsl template parameter for GD_KEY_NAME
-    private final String GD_KEY_NAME_PARAMETER = "name";
-    
-    private final String BLANK_LINE = "public final int blank = R.raw.blank;\n";
+    //xsl template parameter for the package name
+    private final String NAME = "name";
 
     private final BasicArrayList resourceList = new BasicArrayListD();
     
@@ -68,7 +65,7 @@ public class GDToThreedAndroidResourcesGradleGenerator
         this.resourceList.add(resourceString);
     }
 
-    public void processResource(final BasicArrayList threedFileList, final StringMaker stringMaker) {
+    public void processResource(final BasicArrayList threedFileList, final GDTemplateData templateData) {
         
         final StringUtil stringUtil = StringUtil.getInstance();
         
@@ -87,10 +84,7 @@ public class GDToThreedAndroidResourcesGradleGenerator
             for(int index3 = 0; index3 < size3; index3++) {
                 extension = (String) extensionList.get(index3);
 
-                if (extension == stringUtil.NULL_STRING) {
-                    stringMaker.append(this.commonSeps.COMMENT);
-                    stringMaker.append(this.gdToolStrings.NOT_USED_FOR_THREED_GAMES);
-                }
+                final String prefix = extension == stringUtil.NULL_STRING ? this.commonSeps.COMMENT + this.gdToolStrings.NOT_USED_FOR_THREED_GAMES : stringUtil.EMPTY_STRING;
             
 //            if (resource.indexOf(this.gdToolStrings.BUTTON) >= 0 || resource.indexOf(this.gdToolStrings.BLANK) >= 0) {
 //                extension = this.stringUtil.EMPTY_STRING;
@@ -103,29 +97,16 @@ public class GDToThreedAndroidResourcesGradleGenerator
                     this.isBlank = true;
                 }
 
-                stringMaker.append(this.PUBLIC_FINAL_STRING);
-                stringMaker.append(resource);
-
-                stringMaker.append(extension);
-
-                stringMaker.append(this.VALUE_RESOURCE_START);
-                stringMaker.append(resource);
-
-                stringMaker.append(extension);
-
-                stringMaker.append(this.VALUE_RESOURCE_END);
+                templateData.add(this.RESOURCE, this.RESOURCE_ATTRIBUTE_NAME_ARRAY, new String[] {resource + extension, prefix});
             }
         }
     }
     
     public void process(final BasicArrayList threedFileList) throws Exception {
 
-        final StringMaker resourceStringMaker = new StringMaker();
+        final GDTemplateData templateData = new GDTemplateData();
 
-        resourceStringMaker.append(this.GD_KEY);
-        resourceStringMaker.append(this.commonSeps.NEW_LINE);
-        
-        this.processResource(threedFileList, resourceStringMaker);
+        this.processResource(threedFileList, templateData);
 
         final String RESOURCE_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.xsl");
         final String RESOURCE = this.gdPaths.getOutputPath(this.gdPaths.GEN_PATH + "platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java");
@@ -138,24 +119,15 @@ public class GDToThreedAndroidResourcesGradleGenerator
         final int size = this.gdResources.playSoundAndroidResourceNameList.size();
         String resource;
         for(int index = 0; index < size; index++) {
-            
             resource = (String) this.gdResources.playSoundAndroidResourceNameList.get(index);
-            
-            resourceStringMaker.append(this.commonSeps.NEW_LINE);
-            resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
-            resourceStringMaker.append(resource);
-            resourceStringMaker.append(this.VALUE_RESOURCE_START);
-            resourceStringMaker.append(resource);
-            resourceStringMaker.append(this.VALUE_RESOURCE_END);
+            templateData.add(this.SOUND, this.NAME_ARRAY, new String[] {resource});
         }
 
         if(!this.isBlank) {
-            resourceStringMaker.append(this.commonSeps.NEW_LINE);
-            resourceStringMaker.append(this.BLANK_LINE);
+            templateData.add(this.BLANK_RESOURCE, this.NO_ATTRIBUTE_ARRAY, this.NO_ATTRIBUTE_ARRAY);
         }
 
-        final String newFileAsString = GDTemplateUtil.getInstance().process(RESOURCE_ORIGINAL,
-            new String[] {this.GD_KEY_NAME, this.GD_KEY}, new String[] {this.GD_KEY_NAME_PARAMETER, this.GD_PARAMETER}, new String[] {name, resourceStringMaker.toString()});
+        final String newFileAsString = GDTemplateUtil.getInstance().process(RESOURCE_ORIGINAL, templateData, new String[] {this.NAME}, new String[] {name});
 
         this.logUtil.putF(this.gdToolStrings.FILENAME + RESOURCE, this, this.commonStrings.PROCESS);
         

@@ -41,6 +41,11 @@ import org.allbinary.util.BasicArrayListD
 
 open class GDGameSounds : BaseSoundsFactory
 {
+    //Auto Generated
+    public constructor() : super()
+    {
+    }            
+
     private var soundInterfaceArray: Array&lt;Sound?&gt; = arrayOfNulls(0)
 
     override fun init()

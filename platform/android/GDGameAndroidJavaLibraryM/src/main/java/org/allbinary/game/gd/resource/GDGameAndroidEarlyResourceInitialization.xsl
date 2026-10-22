@@ -19,7 +19,6 @@ Created By: Travis Berthelot
 
     <xsl:output method="text" encoding="UTF-8" />
 
-    <xsl:param name="GD" />
 
     <xsl:template match="/"><xsl:text>package org.allbinary.game.gd.resource;&#13;
 &#13;
@@ -82,7 +81,7 @@ extends ResourceInitialization&#13;
         &#13;
         resourceUtil.addResource(gdResources.BLANK, Integer.valueOf(androidResources.raw.blank));&#13;
 &#13;
-        </xsl:text><xsl:value-of select="$GD" /><xsl:text>&#13;
+        </xsl:text><xsl:call-template name="resources" /><xsl:text>&#13;
         &#13;
         //resourceUtil.addResource(TestSound.getInstance().getResource(), Integer&#13;
                 //.valueOf(androidResources.raw.test));&#13;
@@ -93,5 +92,15 @@ extends ResourceInitialization&#13;
     &#13;
 }&#13;
 </xsl:text></xsl:template>
+
+    <!-- The sounds and resources from the generator -->
+    <xsl:template name="resources" >
+        <xsl:for-each select="/template/sound" >
+            <xsl:text>        resourceUtil.addResource(</xsl:text><xsl:value-of select="@className" /><xsl:text>.getInstance().getResource(), Integer.valueOf(androidResources.raw.</xsl:text><xsl:value-of select="@androidResource" /><xsl:text>));&#10;</xsl:text>
+        </xsl:for-each>
+        <xsl:for-each select="/template/media" >
+            <xsl:text>&#10;</xsl:text><xsl:value-of select="@prefix" /><xsl:text>        resourceUtil.addResource(gdResources.</xsl:text><xsl:value-of select="@name" /><xsl:text>, Integer.valueOf(androidResources.raw.</xsl:text><xsl:value-of select="@androidResource" /><xsl:text>));&#10;</xsl:text>
+        </xsl:for-each>
+    </xsl:template>
 
 </xsl:stylesheet>

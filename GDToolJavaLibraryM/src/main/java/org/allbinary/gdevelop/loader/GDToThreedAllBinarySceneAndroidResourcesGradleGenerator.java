@@ -25,16 +25,20 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
 
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final CommonSeps commonSeps = CommonSeps.getInstance();
-    
+
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDPaths gdPaths = GDPaths.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
 
     private final GDResourceSelection gdResourceSelection = GDResourceSelection.getInstance();
-    
+
     //private final String TOUCH = "touch";
-    
+
+    //The template writes each media resource with the prefix (comments) for it
+    private final String MEDIA = "media";
+    private final String[] MEDIA_ATTRIBUTE_NAME_ARRAY = {"name", "androidResource", "prefix"};
+
     public GDToThreedAllBinarySceneAndroidResourcesGradleGenerator()
     {
 
@@ -42,34 +46,30 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
 
     public void process(final BasicArrayList threedFileList) throws Exception
     {
-        final String GD_KEY = "//GD";
-        //xsl template parameter for GD_KEY
-        final String GD_PARAMETER = "GD";
-        
         final String RESOURCE_INITIALIZATION_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameThreedAndroidEarlyResourceInitialization.xsl");
         final String RESOURCE_INITIALIZATION = this.gdPaths.getOutputPath(this.gdPaths.GEN_PATH + "platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameThreedAndroidEarlyResourceInitialization.java");
-        
-        final StringMaker stringMaker = new StringMaker();
 
-        this.appendMedia(threedFileList, stringMaker);
+        final GDTemplateData templateData = new GDTemplateData();
 
-        final String newFileAsString = GDTemplateUtil.getInstance().process(RESOURCE_INITIALIZATION_ORIGINAL, GD_KEY, GD_PARAMETER, stringMaker.toString());
+        this.appendMedia(threedFileList, templateData);
+
+        final String newFileAsString = GDTemplateUtil.getInstance().process(RESOURCE_INITIALIZATION_ORIGINAL, templateData);
 
         this.logUtil.putF(this.gdToolStrings.FILENAME + RESOURCE_INITIALIZATION, this, this.commonStrings.PROCESS);
 
         this.bufferedWriterUtil.overwrite(RESOURCE_INITIALIZATION, newFileAsString);
 
     }
-    
-    public void appendMedia(final BasicArrayList threedFileList, final StringMaker stringMaker) {
-        
+
+    public void appendMedia(final BasicArrayList threedFileList, final GDTemplateData templateData) {
+
         final StringUtil stringUtil = StringUtil.getInstance();
-        
+
         final BasicArrayList resourceList = this.gdResources.resourceNameList;
         final BasicArrayList androidResourceList = this.gdResources.androidResourceList;
-        
+
         final boolean hasRotationImages = this.gdResourceSelection.hasRotationImages();
-        
+
         final int size = resourceList.size();
         final int size2 = 100;
         String resource;
@@ -84,17 +84,17 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
                 extension = (String) extensionList.get(index3);
                 //logUtil.putF(resource + " TWB ext: " + extension, this, commonStrings.PROCESS);
 
-                stringMaker.append(this.commonSeps.NEW_LINE);
+                final StringMaker prefixStringMaker = new StringMaker();
 
                 if (extension == stringUtil.NULL_STRING) {
-                    stringMaker.append(this.commonSeps.COMMENT);
-                    stringMaker.append(this.gdToolStrings.NOT_USED_FOR_THREED_GAMES);
+                    prefixStringMaker.append(this.commonSeps.COMMENT);
+                    prefixStringMaker.append(this.gdToolStrings.NOT_USED_FOR_THREED_GAMES);
                 }
 
-                if (resource.endsWith(this.gdToolStrings.UNDERSCORE_0) && 
-                    (resource.indexOf(this.gdToolStrings._TOUCH_) < 0 || 
+                if (resource.endsWith(this.gdToolStrings.UNDERSCORE_0) &&
+                    (resource.indexOf(this.gdToolStrings._TOUCH_) < 0 ||
                     resource.indexOf(this.gdToolStrings._BLANK_) < 0)) {
-                    stringMaker.append(this.commonSeps.COMMENT);
+                    prefixStringMaker.append(this.commonSeps.COMMENT);
                 }
 
                 //hasRotationImages?
@@ -102,22 +102,15 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
                     for (int index2 = 2; index2 < size2; index2++) {
                         if (resource.endsWith(this.commonSeps.UNDERSCORE + index2)
                             && (resource.indexOf(this.gdToolStrings._TOUCH_) < 0 || resource.indexOf(this.gdToolStrings._BLANK_) < 0)) {
-                            stringMaker.append(this.commonSeps.COMMENT);
+                            prefixStringMaker.append(this.commonSeps.COMMENT);
                         }
                     }
                 }
 
-                stringMaker.append(this.gdToolStrings.RESOURCE_0);
-                stringMaker.append(this.gdToolStrings.GD_RESOURCE);
-                stringMaker.append(resource);
-                stringMaker.append(this.gdToolStrings._RESOURCE);
-                stringMaker.append(this.gdToolStrings.RESOURCE_1);
                 final String androidResource = ((String) androidResourceList.get(index));
-                stringMaker.append(androidResource);
-                stringMaker.append(extension);
-                stringMaker.append(this.gdToolStrings.RESOURCE_2);
+                templateData.add(this.MEDIA, this.MEDIA_ATTRIBUTE_NAME_ARRAY, new String[] {resource, androidResource + extension, prefixStringMaker.toString()});
             }
-        }        
+        }
     }
-    
+
 }

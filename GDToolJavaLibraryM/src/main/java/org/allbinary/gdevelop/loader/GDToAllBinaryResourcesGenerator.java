@@ -12,6 +12,7 @@ import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonLabels;
 import org.allbinary.string.CommonSeps;
@@ -38,32 +39,32 @@ public class GDToAllBinaryResourcesGenerator
     private final GDResources gdResources = GDResources.getInstance();
 
     private final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(Integer.MAX_VALUE);
-    
-    private final StringMaker resourceStringMaker = new StringMaker();
-    
-    private final GDResourceSelection gdResourceSelection = GDResourceSelection.getInstance();
-    
-    private final String GD_KEY = "//GD";
-    //xsl template parameter for GD_KEY
-    private final String GD_PARAMETER = "GD";
-    private final String INDENT = "        ";
-    private final String SPACING = "    ";
 
-    private final String PUBLIC_FINAL_STRING = "    public final String ";
-    private final String VALUE_RESOURCE_START = " = \"";
-    private final String VALUE_RESOURCE_END = "\";\n";
+    private final GDResourceSelection gdResourceSelection = GDResourceSelection.getInstance();
+
+    //The GDResources template writes each resource and each resource in the array
+    private final String RESOURCE = "resource";
+    private final String[] RESOURCE_ATTRIBUTE_NAME_ARRAY = {"name", "value", "prefix", "icon"};
+    private final String TRUE = "true";
+    private final String ARRAY_RESOURCE = "arrayResource";
+    private final String[] ARRAY_RESOURCE_ATTRIBUTE_NAME_ARRAY = {"name", "prefix", "index"};
+
+    //The GDLazyResources template writes each image width, image height and required resource
+    private final String WIDTH = "width";
+    private final String HEIGHT = "height";
+    private final String[] SIZE_ATTRIBUTE_NAME_ARRAY = {"name", "value", "index"};
+    private final String REQUIRED = "required";
+    private final String[] NAME_ARRAY = {"name"};
 
     private final String TSJ = ".tsj";
     private final String IMAGE = "image";
 
     private final String DASH_ICON_DASH = "-icon-";
     private final String WINDOWS_ICON = "windowsplashscreenanimatedicon";
-    
+
     public GDToAllBinaryResourcesGenerator() {
-        this.resourceStringMaker.append(this.GD_KEY);
-        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
     }
-        
+
     public void processResource(final String nameAsString, final String resourceString) {
         this.gdResources.androidResourceList.add(nameAsString);
         final String name = nameAsString.toUpperCase();
@@ -72,33 +73,30 @@ public class GDToAllBinaryResourcesGenerator
         this.gdResources.resourceList.add(resource);
     }
 
-    public void appendResource(final boolean hasRotationImages, final String name, final String resource) {
-        
-        this.gdResourceSelection.appendCommentIfNeeded0(name, resource, this.resourceStringMaker, hasRotationImages);
-        
-        if(resource.indexOf(this.DASH_ICON_DASH) >= 0 || resource.indexOf(this.WINDOWS_ICON) >= 0) {
-        } else {
-            this.resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
-            this.resourceStringMaker.append(name);
-            this.resourceStringMaker.append(this.VALUE_RESOURCE_START);
-            this.resourceStringMaker.append(resource);
-            this.resourceStringMaker.append(this.VALUE_RESOURCE_END);
-        }
-        
+    private boolean isIcon(final String resource) {
+        return resource.indexOf(this.DASH_ICON_DASH) >= 0 || resource.indexOf(this.WINDOWS_ICON) >= 0;
     }
-    
-    public void appendResources(final boolean hasRotationImages) {
+
+    public void appendResource(final boolean hasRotationImages, final String name, final String resource, final GDTemplateData templateData) {
+
+        final StringMaker prefixStringMaker = new StringMaker();
+        this.gdResourceSelection.appendCommentIfNeeded0(name, resource, prefixStringMaker, hasRotationImages);
+
+        final String icon = this.isIcon(resource) ? this.TRUE : StringUtil.getInstance().EMPTY_STRING;
+        templateData.add(this.RESOURCE, this.RESOURCE_ATTRIBUTE_NAME_ARRAY, new String[] {name, resource, prefixStringMaker.toString(), icon});
+
+    }
+
+    public void appendResources(final boolean hasRotationImages, final GDTemplateData templateData) {
 
         final int size = this.gdResources.resourceNameList.size();
         for(int index = 0; index < size; index++) {
-            this.appendResource(hasRotationImages, (String) this.gdResources.resourceNameList.get(index), (String) this.gdResources.resourceList.get(index));
+            this.appendResource(hasRotationImages, (String) this.gdResources.resourceNameList.get(index), (String) this.gdResources.resourceList.get(index), templateData);
         }
 
     }
 
-    private void appendResourceStringArray(final boolean hasRotationImages, final BasicArrayList usedList) {
-        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
-        this.resourceStringMaker.append("    public final String[] resourceStringArray = {\nBLANK,\n");
+    private void appendResourceStringArray(final boolean hasRotationImages, final BasicArrayList usedList, final GDTemplateData templateData) {
         final int size = this.gdResources.resourceNameList.size();
         String name;
         String resource;
@@ -107,131 +105,77 @@ public class GDToAllBinaryResourcesGenerator
         for(int index = 0; index < size; index++) {
             name = (String) this.gdResources.resourceNameList.get(index);
             resource = (String) this.gdResources.resourceList.get(index);
-            
-            if(resource.indexOf(this.DASH_ICON_DASH) >= 0 || resource.indexOf(this.WINDOWS_ICON) >= 0) {    
+
+            if(this.isIcon(resource)) {
             } else {
-                this.resourceStringMaker.append(this.INDENT);
+                final StringMaker prefixStringMaker = new StringMaker();
+                used = this.gdResourceSelection.appendCommentIfNeeded(name, resource, prefixStringMaker, hasRotationImages);
 
-                used = this.gdResourceSelection.appendCommentIfNeeded(name, resource, this.resourceStringMaker, hasRotationImages);
+                templateData.add(this.ARRAY_RESOURCE, this.ARRAY_RESOURCE_ATTRIBUTE_NAME_ARRAY, new String[] {name, prefixStringMaker.toString(), Integer.toString(arrayIndex)});
 
-                this.resourceStringMaker.append(name);
-                this.resourceStringMaker.append(this.commonSeps.COMMA);
-
-                this.resourceStringMaker.append(this.commonSeps.SPACE);
-                this.resourceStringMaker.append(this.commonSeps.COMMENT);
-
-                this.resourceStringMaker.appendint(arrayIndex);
-
-                this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
                 if (used) {
                     usedList.add(name);
                     arrayIndex++;
                 }
             }
         }
-        
-        this.resourceStringMaker.append(this.SPACING);
-        this.resourceStringMaker.append(this.commonSeps.BRACE_CLOSE);
-        this.resourceStringMaker.append(this.commonSeps.SEMICOLON);
-        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
-        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
     }
 
-    private void appendResourceWidthArray(final BasicArrayList gdResourceList, final BasicArrayList usedList) {
-        this.resourceStringMaker.append("    public final int[] imageResourceWidthArray = {\n32,\n");
-        
+    private void appendResourceWidthArray(final BasicArrayList gdResourceList, final BasicArrayList usedList, final GDTemplateData templateData) {
+
         final int size = usedList.size();
         String name;
         GDResource gdResource;
-        
-        int arrayIndex = 1;
+
+        //The index does not increment for the width array
+        final int arrayIndex = 1;
         for(int index = 0; index < size; index++) {
             name = (String) usedList.get(index);
-                        
+
             gdResource = this.getGDResourceForName(name, gdResourceList);
-            
+
             if(gdResource != null) {
-                this.resourceStringMaker.append(this.INDENT);
-                this.resourceStringMaker.appendint(gdResource.width);
-                this.resourceStringMaker.append(this.commonSeps.COMMA);
-                this.resourceStringMaker.append(this.commonSeps.SPACE);
-                this.resourceStringMaker.append(this.commonSeps.COMMENT);
-                this.resourceStringMaker.append(name);                
-                this.resourceStringMaker.append(this.commonSeps.SPACE);
-                this.resourceStringMaker.appendint(arrayIndex);
-                this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
+                templateData.add(this.WIDTH, this.SIZE_ATTRIBUTE_NAME_ARRAY, new String[] {name, Integer.toString(gdResource.width), Integer.toString(arrayIndex)});
             } else {
                 throw new RuntimeException(name + " not in " + this.listGDResources(gdResourceList));
-//                resourceStringMaker.append(-1);
-//                resourceStringMaker.append(',');
-//                resourceStringMaker.append(this.commonSeps.COMMENT);
-//                resourceStringMaker.append(name);
-//                resourceStringMaker.append(this.commonSeps.NEW_LINE);
             }
-            
+
         }
-        
-        this.resourceStringMaker.append(this.SPACING);
-        this.resourceStringMaker.append(this.commonSeps.BRACE_CLOSE);
-        this.resourceStringMaker.append(this.commonSeps.SEMICOLON);
-        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
-        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
-        arrayIndex++;
     }
 
-    private void appendResourceHeightArray(final BasicArrayList gdResourceList, final BasicArrayList usedList) {
-        this.resourceStringMaker.append("    public final int[] imageResourceHeightArray = {\n32,\n");
-        
+    private void appendResourceHeightArray(final BasicArrayList gdResourceList, final BasicArrayList usedList, final GDTemplateData templateData) {
+
         final int size = usedList.size();
         String name;
         GDResource gdResource;
-        
+
         int arrayIndex = 1;
         for(int index = 0; index < size; index++) {
             name = (String) usedList.get(index);
-                        
+
             gdResource = this.getGDResourceForName(name, gdResourceList);
-            
+
             if(gdResource != null) {
-                this.resourceStringMaker.append(this.INDENT);
-                this.resourceStringMaker.appendint(gdResource.height);
-                this.resourceStringMaker.append(this.commonSeps.COMMA);
-                this.resourceStringMaker.append(this.commonSeps.SPACE);
-                this.resourceStringMaker.append(this.commonSeps.COMMENT);
-                this.resourceStringMaker.append(name);                
-                this.resourceStringMaker.append(this.commonSeps.SPACE);
-                this.resourceStringMaker.appendint(arrayIndex);
-                this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
+                templateData.add(this.HEIGHT, this.SIZE_ATTRIBUTE_NAME_ARRAY, new String[] {name, Integer.toString(gdResource.height), Integer.toString(arrayIndex)});
             } else {
                 throw new RuntimeException(name);
-//                resourceStringMaker.append(-1);
-//                resourceStringMaker.append(',');
-//                resourceStringMaker.append(this.commonSeps.COMMENT);
-//                resourceStringMaker.append(name);
-//                resourceStringMaker.append(this.commonSeps.NEW_LINE);
             }
-            
+
             arrayIndex++;
         }
-        
-        this.resourceStringMaker.append(this.SPACING);
-        this.resourceStringMaker.append(this.commonSeps.BRACE_CLOSE);
-        this.resourceStringMaker.append(this.commonSeps.SEMICOLON);
-        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
-        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
     }
-    
+
     private GDResource getGDResourceForName(final String name, final BasicArrayList gdResourceList) {
         final int size = gdResourceList.size();
         GDResource gdResource;
         for(int index = 0; index < size; index++) {
             gdResource = (GDResource) gdResourceList.get(index);
-            
+
             if(name.compareTo(gdResource.name) == 0) {
                 return gdResource;
             }
         }
-        
+
         return null;
     }
 
@@ -242,52 +186,48 @@ public class GDToAllBinaryResourcesGenerator
         GDResource gdResource;
         for(int index = 0; index < size; index++) {
             gdResource = (GDResource) gdResourceList.get(index);
-            
+
             stringMaker.append(gdResource.name).append(this.commonSeps.COMMA);
         }
-        
+
         return stringMaker.toString();
     }
-    
+
     private final String SLIDER = "_slider_";
     private final String BATTERY = "battery_";
     private final String HEART = "heart_";
     private final String _1 = "_1.";
     private final String BUTTON = "button";
-    private void appendImmediatelyLoadedImages() throws Exception {
-        
-        this.resourceStringMaker.append("    public final String[] requiredResourcesBeforeLoadingArray = {\n");
-        
+    private void appendImmediatelyLoadedImages(final GDTemplateData templateData) throws Exception {
+
         final int size = this.gdResources.resourceNameList.size();
         String resource;
         for(int index = 0; index < size; index++) {
             resource = (String) this.gdResources.resourceList.get(index);
             if(resource.endsWith(this.TSJ)) {
-                
+
                 this.logUtil.putF(new StringMaker().append(this.gdToolStrings.FILENAME).append(resource).toString(), this, this.commonStrings.PROCESS);
-                this.appendImmediatelyLoadedImages(resource);
-                
-            //PanelSpriteSlider::PanelSpriteSlider -> texture must not lazy load textures                
+                this.appendImmediatelyLoadedImages(resource, templateData);
+
+            //PanelSpriteSlider::PanelSpriteSlider -> texture must not lazy load textures
             } else if(resource.indexOf(this.BUTTON) >= 0) {
-                this.appendImmediatelyLoadedImage(resource);
+                this.appendImmediatelyLoadedImage(resource, templateData);
             } else if(resource.indexOf(this.SLIDER) >= 0) {
-                this.appendImmediatelyLoadedImage(resource);
+                this.appendImmediatelyLoadedImage(resource, templateData);
             } else if(resource.indexOf(this.BATTERY) >= 0 && resource.contains(this._1)) {
-                this.appendImmediatelyLoadedImage(resource);
+                this.appendImmediatelyLoadedImage(resource, templateData);
             } else if(resource.indexOf(this.HEART) >= 0 && resource.contains(this._1)) {
-                this.appendImmediatelyLoadedImage(resource);
+                this.appendImmediatelyLoadedImage(resource, templateData);
             }
         }
-        
-        this.resourceStringMaker.append("    };\n");
     }
-    
-    private void appendImmediatelyLoadedImages(final String path) throws Exception {
-        
+
+    private void appendImmediatelyLoadedImages(final String path, final GDTemplateData templateData) throws Exception {
+
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final SharedBytes sharedBytes = SharedBytes.getInstance();
         sharedBytes.outputStream.reset();
-        
+
         final FileInputStream inputStream = new FileInputStream(this.gdPaths.TWOD_RESOURCES_PATH + path);
         sharedBytes.outputStream.reset();
         final String gameAsConfiguration = new String(streamUtil.getByteArray(inputStream, sharedBytes.outputStream, sharedBytes.byteArray));
@@ -295,102 +235,82 @@ public class GDToAllBinaryResourcesGenerator
         final JSONTokener jsonTokener = new JSONTokener(gameAsConfiguration);
         final JSONObject jsonObject = (JSONObject) jsonTokener.nextValue();
         final String imagePath = jsonObject.getString(this.IMAGE);
-        
+
         this.logUtil.putF(new StringMaker().append(this.gdToolStrings.FILENAME).append(imagePath).toString(), this, this.commonStrings.PROCESS);
-        
-        this.appendImmediatelyLoadedImage(imagePath);
-        
-//        final PlatformAssetManager platformAssetManager = PlatformAssetManager.getInstance();
-//        final InputStream tileMapInputStream = platformAssetManager.getResourceAsStream(tmj);
-//        final int size = tileMapInputStream.available();
-//        final InputStream[] tileSetInputStreamArray = {
-//
-//            platformAssetManager.getResourceAsStream(tsj),
-//
-//        };
-//
-//        final int[] sizeArray2 = new int[tileSetInputStreamArray.length];
-//        
-//        final TiledMap map = TiledMapLoaderFromJSONFactory.getInstance().process(new GDJSONMapReader(), tileMapInputStream, tileSetInputStreamArray, size, sizeArray2, new Image[] {tileSetImage});
-//        ((TileSet) map.getTileSets().get(0)).getImageData().path
+
+        this.appendImmediatelyLoadedImage(imagePath, templateData);
 
     }
 
-    private void appendImmediatelyLoadedImage(final String imagePath) {
+    private void appendImmediatelyLoadedImage(final String imagePath, final GDTemplateData templateData) {
         final int endIndex = imagePath.lastIndexOf('.');
         final String imageName = imagePath.substring(0, endIndex);
         final String name = imageName.toUpperCase();
-        this.resourceStringMaker.append("gdResources.");
-        this.resourceStringMaker.append(name);
-        this.resourceStringMaker.append(this.commonSeps.COMMA);
-        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
+        templateData.add(this.REQUIRED, this.NAME_ARRAY, new String[] {name});
     }
-    
+
     public BasicArrayList process1() throws Exception {
-    
+
         final StringMaker stringMaker = new StringMaker();
-        
+
+        final GDTemplateData templateData = new GDTemplateData();
+
         final boolean hasRotationImages = this.gdResourceSelection.hasRotationImages();
-        this.appendResources(hasRotationImages);
-        
+        this.appendResources(hasRotationImages, templateData);
+
         this.timeDelayHelper.setStartTimeTNT();
-        
+
         final String RESOURCE_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.xsl");
         final String RESOURCE = this.gdPaths.getOutputPath(this.gdPaths.GEN_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.java");
-        
-        
+
+
         final BasicArrayList usedList = new BasicArrayListD();
-        this.appendResourceStringArray(hasRotationImages, usedList);
-        final String newFileAsString = GDTemplateUtil.getInstance().process(RESOURCE_ORIGINAL, this.GD_KEY, this.GD_PARAMETER, this.resourceStringMaker.toString());
+        this.appendResourceStringArray(hasRotationImages, usedList, templateData);
+        final String newFileAsString = GDTemplateUtil.getInstance().process(RESOURCE_ORIGINAL, templateData);
 
         stringMaker.delete(0, stringMaker.length());
         this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(RESOURCE).toString(), this, this.commonStrings.PROCESS);
-        
-        this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);        
-        
+
+        this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);
+
         stringMaker.delete(0, stringMaker.length());
         this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, this.commonStrings.PROCESS);
-        
+
         return usedList;
     }
 
     public void process2(final BasicArrayList files, final BasicArrayList usedList) throws Exception {
-    
+
         final StringMaker stringMaker = new StringMaker();
         //this.logUtil.putF(stringMaker.append(this.gdPaths.TWOD_RESOURCES_PATH).appendint(files.size()).toString(), this, this.commonStrings.PROCESS);
-        
-        this.resourceStringMaker.delete(0, this.resourceStringMaker.length());
-        this.resourceStringMaker.append(this.GD_KEY);
-        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
-        this.resourceStringMaker.append("final GDResources gdResources = GDResources.getInstance();");
-        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
-        this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
-        
+
+        final GDTemplateData templateData = new GDTemplateData();
+
         final GDImageSizeGenerator gdImageSizeGenerator = new GDImageSizeGenerator();
         final BasicArrayList gdResourceList = gdImageSizeGenerator.process(files);
-        
+
         this.timeDelayHelper.setStartTimeTNT();
-        
+
         final String LAZY_RESOURCE_ORIGINAL = this.gdPaths.getTemplatePath(this.gdPaths.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.xsl");
         final String LAZY_RESOURCE = this.gdPaths.getOutputPath(this.gdPaths.GEN_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.java");
-        
+
         stringMaker.delete(0, stringMaker.length());
-        
-        this.appendResourceWidthArray(gdResourceList, usedList);
-        this.appendResourceHeightArray(gdResourceList, usedList);
-        this.appendImmediatelyLoadedImages();
-        final String newFileAsString = GDTemplateUtil.getInstance().process(LAZY_RESOURCE_ORIGINAL, this.GD_KEY, this.GD_PARAMETER, this.resourceStringMaker.toString());
+
+        this.appendResourceWidthArray(gdResourceList, usedList, templateData);
+        this.appendResourceHeightArray(gdResourceList, usedList, templateData);
+        this.appendImmediatelyLoadedImages(templateData);
+        final String newFileAsString = GDTemplateUtil.getInstance().process(LAZY_RESOURCE_ORIGINAL, templateData);
 
         stringMaker.delete(0, stringMaker.length());
         this.logUtil.putF(this.gdToolStrings.FILENAME + LAZY_RESOURCE, this, this.commonStrings.PROCESS);
-        
-        this.bufferedWriterUtil.overwrite(LAZY_RESOURCE, newFileAsString);        
-        
+
+        this.bufferedWriterUtil.overwrite(LAZY_RESOURCE, newFileAsString);
+
         stringMaker.delete(0, stringMaker.length());
         this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).appendlong(this.timeDelayHelper.getElapsedTNT()).toString(), this, this.commonStrings.PROCESS);
-        
+
     }
-    
+
     public void process(final BasicArrayList twoDFileList) throws Exception {
         final BasicArrayList usedList = this.process1();
         this.process2(twoDFileList, usedList);

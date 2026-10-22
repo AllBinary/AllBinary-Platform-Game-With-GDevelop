@@ -19,7 +19,6 @@ Created By: Travis Berthelot
 
     <xsl:output method="text" encoding="UTF-8" />
 
-    <xsl:param name="GD" />
 
     <xsl:template match="/"><xsl:text>/* AUTO-GENERATED FILE.  DO NOT MODIFY.&#13;
  *&#13;
@@ -87,7 +86,7 @@ public final class R {&#13;
         &#13;
         public static final int blank = 0x7f060007;&#13;
 &#13;
-        </xsl:text><xsl:value-of select="$GD" /><xsl:text>&#13;
+        </xsl:text><xsl:call-template name="resources" /><xsl:text>&#13;
     }&#13;
     public static final class string {&#13;
         public static final int progressbar_in_title_string=0x7f050001;&#13;
@@ -95,5 +94,18 @@ public final class R {&#13;
     }&#13;
 }&#13;
 </xsl:text></xsl:template>
+
+    <!-- The resources and expression parameters from the generator -->
+    <xsl:template name="resources" >
+        <xsl:text>//GD&#10;</xsl:text>
+        <xsl:for-each select="/template/*" >
+            <xsl:if test="name() = 'resource'" >
+                <xsl:text>        //Resource&#10;        public static final int </xsl:text><xsl:value-of select="@name" /><xsl:text> = 0x7f060007;&#10;&#10;</xsl:text>
+            </xsl:if>
+            <xsl:if test="name() = 'expressionParam'" >
+                <xsl:text>        //Expression Param&#10;        public static final int </xsl:text><xsl:value-of select="@name" /><xsl:text> = 0x7f060007;&#10;</xsl:text>
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:template>
 
 </xsl:stylesheet>
