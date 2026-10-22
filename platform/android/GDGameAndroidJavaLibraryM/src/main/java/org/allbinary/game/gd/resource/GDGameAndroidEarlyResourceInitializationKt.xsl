@@ -62,8 +62,7 @@ open public class GDGameAndroidEarlyResourceInitialization : ResourceInitializat
 &#13;
         val gdResources: GDResources = GDResources.getInstance()&#13;
 &#13;
-        //resourceUtil.addResource(gdProjectStrings.GAME, Integer&#13;
-                //.valueOf(androidResources.raw.game))&#13;
+        //resourceUtil.addResource(gdProjectStrings.GAME, Integer(androidResources.raw.game))&#13;
 &#13;
         //val gdProject: GDProject = GDProject()&#13;
 &#13;
@@ -73,24 +72,19 @@ open public class GDGameAndroidEarlyResourceInitialization : ResourceInitializat
 &#13;
         //gdProject.load(gdGameConfiguration)&#13;
 &#13;
-        resourceUtil.addResource(MidletIcon.RESOURCE, Integer&#13;
-                .valueOf(androidResources.drawable.gd_icon))&#13;
+        resourceUtil.addResource(MidletIcon.RESOURCE, Integer(androidResources.drawable.gd_icon))&#13;
 &#13;
-        resourceUtil.addResource(SelectSound.getInstance()!!.getResource(), Integer&#13;
-                .valueOf(androidResources.raw.select))&#13;
+        resourceUtil.addResource(SelectSound.getInstance()!!.getResource(), Integer(androidResources.raw.select))&#13;
 &#13;
-        resourceUtil.addResource(ErrorSound.getInstance()!!.getResource(), Integer&#13;
-                .valueOf(androidResources.raw.error))&#13;
+        resourceUtil.addResource(ErrorSound.getInstance()!!.getResource(), Integer(androidResources.raw.error))&#13;
 &#13;
-        resourceUtil.addResource(gdResources.BLANK, Integer.valueOf(androidResources.raw.blank))&#13;
+        resourceUtil.addResource(gdResources.BLANK, Integer(androidResources.raw.blank))&#13;
 &#13;
         </xsl:text><xsl:call-template name="resources" /><xsl:text>&#13;
 &#13;
-        //resourceUtil.addResource(TestSound.getInstance()!!.getResource(), Integer&#13;
-                //.valueOf(androidResources.raw.test))&#13;
+        //resourceUtil.addResource(TestSound.getInstance()!!.getResource(), Integer(androidResources.raw.test))&#13;
 &#13;
-        //resourceUtil.addResource(ExplosionResources.getInstance().EXPLOSION_60_RESOURCE, Integer&#13;
-          //      .valueOf(AndroidResources.raw.explosion_sprite_60_by_60))&#13;
+        //resourceUtil.addResource(ExplosionResources.getInstance().EXPLOSION_60_RESOURCE, Integer(AndroidResources.raw.explosion_sprite_60_by_60))&#13;
     }&#13;
 &#13;
 }&#13;
@@ -99,10 +93,10 @@ open public class GDGameAndroidEarlyResourceInitialization : ResourceInitializat
     <!-- The sounds and resources from the generator -->
     <xsl:template name="resources" >
         <xsl:for-each select="/template/sound" >
-            <xsl:text>        resourceUtil.addResource(</xsl:text><xsl:value-of select="@className" /><xsl:text>.getInstance().getResource(), Integer.valueOf(androidResources.raw.</xsl:text><xsl:value-of select="@androidResource" /><xsl:text>))&#13;&#10;</xsl:text>
+            <xsl:text>        resourceUtil.addResource(</xsl:text><xsl:value-of select="@className" /><xsl:text>.getInstance().getResource(), Integer(androidResources.raw.</xsl:text><xsl:value-of select="@androidResource" /><xsl:text>))&#13;&#10;</xsl:text>
         </xsl:for-each>
         <xsl:for-each select="/template/media" >
-            <xsl:text>&#13;&#10;</xsl:text><xsl:value-of select="@prefix" /><xsl:text>        resourceUtil.addResource(gdResources.</xsl:text><xsl:value-of select="@name" /><xsl:text>, Integer.valueOf(androidResources.raw.</xsl:text><xsl:value-of select="@androidResource" /><xsl:text>))&#13;&#10;</xsl:text>
+            <xsl:text>&#13;&#10;</xsl:text><xsl:value-of select="@prefix" /><xsl:text>        resourceUtil.addResource(gdResources.</xsl:text><xsl:value-of select="@name" /><xsl:text>, Integer(androidResources.raw.</xsl:text><xsl:value-of select="@androidResource" /><xsl:text>))&#13;&#10;</xsl:text>
         </xsl:for-each>
     </xsl:template>
 

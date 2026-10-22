@@ -60,7 +60,7 @@ open public class GDGameThreedAndroidEarlyResourceInitialization : ResourceIniti
 &#13;
         val gdResources: GDResources = GDResources.getInstance()&#13;
 &#13;
-        //resourceUtil.addResource(gdResources.BLANK, Integer.valueOf(androidResources.raw.blank))&#13;
+        //resourceUtil.addResource(gdResources.BLANK, Integer(androidResources.raw.blank))&#13;
 &#13;
         </xsl:text><xsl:call-template name="resources" /><xsl:text>&#13;
 &#13;
@@ -72,7 +72,7 @@ open public class GDGameThreedAndroidEarlyResourceInitialization : ResourceIniti
     <!-- The media resources from the generator -->
     <xsl:template name="resources" >
         <xsl:for-each select="/template/media" >
-            <xsl:text>&#13;&#10;</xsl:text><xsl:value-of select="@prefix" /><xsl:text>        resourceUtil.addResource(gdResources.</xsl:text><xsl:value-of select="@name" /><xsl:text>, Integer.valueOf(androidResources.raw.</xsl:text><xsl:value-of select="@androidResource" /><xsl:text>))</xsl:text>
+            <xsl:text>&#13;&#10;</xsl:text><xsl:value-of select="@prefix" /><xsl:text>        resourceUtil.addResource(gdResources.</xsl:text><xsl:value-of select="@name" /><xsl:text>, Integer(androidResources.raw.</xsl:text><xsl:value-of select="@androidResource" /><xsl:text>))</xsl:text>
         </xsl:for-each>
     </xsl:template>
 
