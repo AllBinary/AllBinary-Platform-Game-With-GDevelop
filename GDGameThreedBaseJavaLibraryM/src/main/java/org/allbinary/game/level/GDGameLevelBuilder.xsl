@@ -100,7 +100,6 @@ import org.mapeditor.io.GDJSONMapReader;
 import org.mapeditor.io.TiledJSONUtil;
 import org.allbinary.util.ABHashtable;
 import org.allbinary.AndroidUtil;
-import org.allbinary.J2MEUtil;
 import org.allbinary.game.layout.GDConfig;
 
         <xsl:for-each select="layouts" >

@@ -103,7 +103,6 @@ import org.mapeditor.io.GDJSONMapReader
 import org.mapeditor.io.TiledJSONUtil
 import org.allbinary.util.ABHashtable
 import org.allbinary.AndroidUtil
-import org.allbinary.J2MEUtil
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
