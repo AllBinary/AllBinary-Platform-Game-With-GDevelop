@@ -215,7 +215,7 @@ open public class GDCustomCollidableBehavior : CollidableBaseBehavior
             var node: GDNode
             for(index in 0 until size) {
 
-                indexOfGroup = this.conditionWIthGroupActions.groupWithActionsList.indexOf(groupInterfaceArray[index])
+                indexOfGroup = this.conditionWIthGroupActions.groupWithActionsList.indexOf(groupInterfaceArray[index]!!)
 //                stringBuilder.delete(0, stringBuilder.length)
 //                stringBuilder.append("collide: ")
 //                this.conditionWIthGroupActions.append(stringBuilder)
@@ -256,7 +256,7 @@ open public class GDCustomCollidableBehavior : CollidableBaseBehavior
     open public fun toString(ownerLayer: CollidableCompositeLayer, collisionLayer: CollidableCompositeLayer, stringBuilder: StringMaker): String {
         var size: Int = ownerLayer.getGroupInterface().size
         for(index in 0 until size) {
-            stringBuilder.append(stringUtil.toString(ownerLayer.getGroupInterface()[index]))
+            stringBuilder.append(stringUtil.toString(ownerLayer.getGroupInterface()[index]!!))
         }
         stringBuilder.append(" != ")
         size = collisionLayer.getGroupInterface().size

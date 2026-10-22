@@ -67,7 +67,7 @@ open public class GDCustomGameLayerFactory : GDGameLayerFactory
     override fun create(layoutIndex: Int, name: String, gdObject: GDObject, scaleX: Float, scaleY: Float, collidableBehavior: GDConditionWithGroupActions): GDGameLayer {
         if(!name.startsWith(gdObject.name)) {
             val stringUtil: StringUtil = StringUtil.getInstance()
-            this.logUtil.put(StringMaker().append(name).append(" 0GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").appendint(this.animationInterfaceFactoryInterfaceArray.size).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(stringUtil.toString(this.animationInterfaceFactoryInterfaceArray[0])).toString(), this, "create", Exception())
+            this.logUtil.put(StringMaker().append(name).append(" 0GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").appendint(this.animationInterfaceFactoryInterfaceArray.size).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(stringUtil.toString(this.animationInterfaceFactoryInterfaceArray[0]!!)).toString(), this, "create", Exception())
         }
 
         val gdObjectWidth: Int = gdObject.Width(null)
@@ -87,17 +87,17 @@ open public class GDCustomGameLayerFactory : GDGameLayerFactory
 
         val gameLayer: GDCustomGameLayer = object : GDCustomGameLayer(
                 layoutIndex,
-                this.primitiveDrawingAnimationFactory.getInstance(0),
-                this.gameLayerList, this.gameLayerDestroyedList,
-                this.behaviorList,
+                this@GDCustomGameLayerFactory.primitiveDrawingAnimationFactory.getInstance(0),
+                this@GDCustomGameLayerFactory.gameLayerList, this@GDCustomGameLayerFactory.gameLayerDestroyedList,
+                this@GDCustomGameLayerFactory.behaviorList,
                 RemoteInfo.REMOTE_INFO,
-                this.groupInterface,
+                this@GDCustomGameLayerFactory.groupInterface,
                 name,
-                this.animationInterfaceFactoryInterfaceArray,
-                this.proceduralAnimationInterfaceFactoryInterfaceArray,
+                this@GDCustomGameLayerFactory.animationInterfaceFactoryInterfaceArray,
+                this@GDCustomGameLayerFactory.proceduralAnimationInterfaceFactoryInterfaceArray,
                 rectangle,
-                this.rectangleArrayOfArrays,
-                gdObject, this.animationBehaviorFactory.create(), this.resetAnimationBehavior) {
+                this@GDCustomGameLayerFactory.rectangleArrayOfArrays,
+                gdObject, this@GDCustomGameLayerFactory.animationBehaviorFactory.create(), this@GDCustomGameLayerFactory.resetAnimationBehavior) {
                     /*override fun updatePosition() {
                         var change: Boolean = false
                         if(this.gdObject.x != this.getXP() || this.gdObject.y != this.getYP()) {

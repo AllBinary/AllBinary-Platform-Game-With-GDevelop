@@ -92,7 +92,6 @@ import org.allbinary.graphics.color.BasicColor
 import org.allbinary.graphics.color.BasicColorFactory
 import org.allbinary.graphics.color.SmallBasicColorCacheFactory
 import org.allbinary.graphics.color.BasicColorUtil
-import org.allbinary.graphics.color.BasicColorFactory
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton
 import org.allbinary.graphics.displayable.command.MyCommandsFactory
 import org.allbinary.media.audio.music.MusicManagerFactory
@@ -102,7 +101,6 @@ import org.allbinary.graphics.opengles.OpenGLFeatureFactory
 import org.allbinary.graphics.paint.NullPaintable
 import org.allbinary.graphics.paint.InitUpdatePaintable
 import org.allbinary.graphics.paint.NullInitUpdatePaintable
-import org.allbinary.graphics.paint.NullPaintable
 import org.allbinary.graphics.paint.Paintable
 import org.allbinary.graphics.paint.PaintableInterface
 import org.allbinary.image.ImageCache

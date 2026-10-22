@@ -120,13 +120,13 @@ open public class GDCustomMaskCollidableBehavior : CollidableBaseBehavior
             //return this.isCollision2(collisionLayer)
             val collisionMaskCustomGameLayer2: GDCustomGameLayer = ownerLayer as GDCustomGameLayer
             val frame: Int = collisionMaskCustomGameLayer2.getIndexedAnimationInterface().getFrame()
-            val ownerMaskRectangle: Rectangle = collisionMaskCustomGameLayer2.rectangleArrayOfArrays[collisionMaskCustomGameLayer2.gdObject.animation][frame]
+            val ownerMaskRectangle: Rectangle = collisionMaskCustomGameLayer2.rectangleArrayOfArrays[collisionMaskCustomGameLayer2.gdObject.animation]!![frame]!!
             val ownerMaskPoint: GPoint = ownerMaskRectangle.getPoint()
             val ownerViewPosition: ViewPositionBase = ownerLayer.getViewPosition()
             val ownerViewX: Int = ownerViewPosition.getX()
             val ownerViewY: Int = ownerViewPosition.getY()
 
-//            var maskRectangle: Rectangle = collisionMaskCustomGameLayer.rectangleArrayOfArrays[.gdObject.animation][frame3]
+//            var maskRectangle: Rectangle = collisionMaskCustomGameLayer.rectangleArrayOfArrays[.gdObject.animation]!![frame3]!!
 //            var maskPoint: GPoint = maskRectangle.getPoint()
             val viewPosition: ViewPositionBase = customGameLayer.getViewPosition()
             val viewX: Int = viewPosition.getX()
@@ -135,7 +135,7 @@ open public class GDCustomMaskCollidableBehavior : CollidableBaseBehavior
             if(customGameLayer.hasCollisionMask()) {
 
                 val frame2: Int = customGameLayer.getIndexedAnimationInterface().getFrame()
-                val maskRectangle: Rectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame2]
+                val maskRectangle: Rectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation]!![frame2]!!
                 val maskPoint: GPoint = maskRectangle.getPoint()
 
                 return rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskPoint.getX() + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskPoint.getY( )+ ownerMaskRectangle.getHeight(),
@@ -231,13 +231,13 @@ open public class GDCustomMaskCollidableBehavior : CollidableBaseBehavior
                 //return super.isCollision(collisionLayer)
             val collisionMackCustomGameLayer: GDCustomGameLayer = ownerLayer as GDCustomGameLayer
             val frame: Int = collisionMackCustomGameLayer.getIndexedAnimationInterface().getFrame()
-            val ownerMaskRectangle: Rectangle = collisionMackCustomGameLayer.rectangleArrayOfArrays[collisionMackCustomGameLayer.gdObject.animation][frame]
+            val ownerMaskRectangle: Rectangle = collisionMackCustomGameLayer.rectangleArrayOfArrays[collisionMackCustomGameLayer.gdObject.animation]!![frame]!!
             val ownerMaskPoint: GPoint = ownerMaskRectangle.getPoint()
             val ownerViewPosition: ViewPositionBase = ownerLayer.getViewPosition()
             val ownerViewX: Int = ownerViewPosition.getX()
             val ownerViewY: Int = ownerViewPosition.getY()
 
-//            var maskRectangle: Rectangle = collisionMaskCustomGameLayer.rectangleArrayOfArrays[.gdObject.animation][frame3]
+//            var maskRectangle: Rectangle = collisionMaskCustomGameLayer.rectangleArrayOfArrays[.gdObject.animation]!![frame3]!!
 //            var maskPoint: GPoint = maskRectangle.getPoint()
             val viewPosition: ViewPositionBase = customGameLayer.getViewPosition()
             val viewX: Int = viewPosition.getX()
@@ -246,7 +246,7 @@ open public class GDCustomMaskCollidableBehavior : CollidableBaseBehavior
             if(customGameLayer.hasCollisionMask()) {
 
                 val frame2: Int = customGameLayer.getIndexedAnimationInterface().getFrame()
-                val maskRectangle: Rectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame2]
+                val maskRectangle: Rectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation]!![frame2]!!
                 val maskPoint: GPoint = maskRectangle.getPoint()
 
                 return rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskPoint.getX() + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskPoint.getY( )+ ownerMaskRectangle.getHeight(),
@@ -295,7 +295,7 @@ open public class GDCustomMaskCollidableBehavior : CollidableBaseBehavior
             var node: GDNode
             for(index in 0 until size) {
 
-                indexOfGroup = this.conditionWIthGroupActions.groupWithActionsList.indexOf(groupInterfaceArray[index])
+                indexOfGroup = this.conditionWIthGroupActions.groupWithActionsList.indexOf(groupInterfaceArray[index]!!)
 //                stringBuilder.delete(0, stringBuilder.length)
 //                stringBuilder.append("collide: ")
 //                this.conditionWIthGroupActions.append(stringBuilder)
@@ -342,7 +342,7 @@ open public class GDCustomMaskCollidableBehavior : CollidableBaseBehavior
 
             val customGameLayer: GDCustomGameLayer = ownerLayer as GDCustomGameLayer
             val frame: Int = customGameLayer.getIndexedAnimationInterface().getFrame()
-            val ownerMaskRectangle: Rectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame]
+            val ownerMaskRectangle: Rectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation]!![frame]!!
             val ownerMaskPoint: GPoint = ownerMaskRectangle.getPoint()
 
             val viewPosition: ViewPositionBase = ownerLayer.getViewPosition()
@@ -367,7 +367,7 @@ open public class GDCustomMaskCollidableBehavior : CollidableBaseBehavior
     open public fun toString(ownerLayer: CollidableCompositeLayer, collisionLayer: CollidableCompositeLayer, stringBuilder: StringMaker): String {
         var size: Int = ownerLayer.getGroupInterface().size
         for(index in 0 until size) {
-            stringBuilder.append(stringUtil.toString(ownerLayer.getGroupInterface()[index]))
+            stringBuilder.append(stringUtil.toString(ownerLayer.getGroupInterface()[index]!!))
         }
         stringBuilder.append(" != ")
         size = collisionLayer.getGroupInterface().size

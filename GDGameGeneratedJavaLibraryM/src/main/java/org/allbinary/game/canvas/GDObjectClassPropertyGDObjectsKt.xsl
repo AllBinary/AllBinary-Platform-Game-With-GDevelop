@@ -399,7 +399,7 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                         </xsl:variable>
                         <xsl:if test="contains($hasAnimationWithName, 'found')" >
-                        return this.ANIMATION_NAMES[index]
+                        return this.ANIMATION_NAMES[index]!!
                         </xsl:if>
                         <xsl:if test="not(contains($hasAnimationWithName, 'found'))" >
                         return stringUtil.EMPTY_STRING
@@ -411,15 +411,15 @@ Created By: Travis Berthelot
                         for(index in 0 until size) {
                             if(this.ANIMATION_NAMES[index] == animationName) {
                                 //this.logUtil.put(animationName, this, "getAnimation")
-                                return this.ANIMATION_NAMES[index]
+                                return this.ANIMATION_NAMES[index]!!
                             }
                         }
 
                         for(index in 0 until size) {
                             //TWB - This is slow please fix me.
-                            if(this.ANIMATION_NAMES[index].compareTo(animationName) == 0) {
+                            if(this.ANIMATION_NAMES[index]!!.compareTo(animationName) == 0) {
                                 //this.logUtil.put(animationName, this, "getAnimation")
-                                return this.ANIMATION_NAMES[index]
+                                return this.ANIMATION_NAMES[index]!!
                             }
                         }
 

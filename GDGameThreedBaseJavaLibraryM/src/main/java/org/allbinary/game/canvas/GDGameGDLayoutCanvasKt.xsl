@@ -101,11 +101,8 @@ import org.allbinary.graphics.displayable.command.MyCommandsFactory
 import org.allbinary.media.audio.music.MusicManagerFactory
 import org.allbinary.game.layer.hud.event.GameNotificationEventHandler
 import org.allbinary.game.gd.resource.GDResources
-import org.allbinary.graphics.opengles.CurrentDisplayableFactory
-import org.allbinary.graphics.opengles.OpenGLFeatureFactory
 import org.allbinary.graphics.paint.NullPaintable
 import org.allbinary.graphics.paint.InitUpdatePaintable
-import org.allbinary.graphics.paint.NullPaintable
 import org.allbinary.graphics.paint.NullInitUpdatePaintable
 import org.allbinary.graphics.paint.Paintable
 import org.allbinary.graphics.paint.PaintableInterface

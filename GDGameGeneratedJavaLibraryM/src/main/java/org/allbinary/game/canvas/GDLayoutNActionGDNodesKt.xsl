@@ -97,7 +97,6 @@ Created By: Travis Berthelot
                 import org.allbinary.game.commands.GameCommandsFactory
                 import org.allbinary.game.GDGameCommandFactory
                 import org.allbinary.game.GameInfo
-                import org.allbinary.game.canvas.GDExtensionGDNodes
                 import org.allbinary.game.configuration.persistance.GDStructure
                 import org.allbinary.game.configuration.persistance.JSONPersistance
                 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas

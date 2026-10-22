@@ -2038,10 +2038,10 @@ Created By: Travis Berthelot
             <xsl:for-each select="parameters" >
                 <xsl:if test="position() = 1 and text() != '' and not(contains(text(), $objectsAsString))" >
                     //TWBRemove - had once for
-                    //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />OnceGDNodeList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$nodeId" />])
+                    //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />OnceGDNodeList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$nodeId" />]!!)
                 </xsl:if>
                 <xsl:if test="position() = 1 and text() != '' and contains(text(), $objectsAsString)" >
-        <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />OnceGDNodeList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$nodeId" />])
+        <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />OnceGDNodeList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$nodeId" />]!!)
                 </xsl:if>
             </xsl:for-each>
 

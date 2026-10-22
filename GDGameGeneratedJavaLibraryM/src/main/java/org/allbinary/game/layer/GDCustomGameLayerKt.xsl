@@ -142,7 +142,6 @@ Created By: Travis Berthelot
         import org.allbinary.game.tracking.TrackingEvent
         import org.allbinary.game.tracking.TrackingEventHandler
         import org.allbinary.game.view.TileLayerPositionIntoViewPosition
-        import org.allbinary.game.view.TileLayerPositionIntoViewPosition
         import org.allbinary.graphics.GPoint
         import org.allbinary.media.audio.AttackSound
         import org.allbinary.media.graphics.geography.map.GeographicMapCellHistory

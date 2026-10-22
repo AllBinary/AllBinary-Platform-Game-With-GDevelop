@@ -95,11 +95,7 @@ import org.allbinary.util.ArrayUtil
 <!--import org.allbinary.game.configuration.persistance.JSONPersistance
 import org.allbinary.game.layer.GDGameLayerFactory
 import org.allbinary.game.layer.special.TempGameLayerUtil
-import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton
-import org.allbinary.game.layout.GDObject
-import org.allbinary.game.layout.GDObjectStrings
 import org.allbinary.game.layer.AllBinaryGameLayerManager
-import org.allbinary.game.layer.CollidableCompositeLayer
 import org.allbinary.game.layer.identification.GroupLayerManagerListener
 -->
 

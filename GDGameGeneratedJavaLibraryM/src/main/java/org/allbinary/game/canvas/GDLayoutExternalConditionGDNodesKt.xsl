@@ -118,7 +118,6 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayList
                 import org.allbinary.util.BasicArrayListD
                 import org.allbinary.thread.NullRunnable
-                import org.allbinary.time.GameTickTimeDelayHelperFactory
 
                 //LayoutExternalCondition name=<xsl:value-of select="$layoutName" />
                 open public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes : SpecialAnimation
