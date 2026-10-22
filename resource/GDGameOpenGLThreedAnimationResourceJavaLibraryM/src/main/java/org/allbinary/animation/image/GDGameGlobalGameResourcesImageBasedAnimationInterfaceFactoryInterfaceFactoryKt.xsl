@@ -118,7 +118,6 @@ import org.allbinary.logic.communication.log.LogFactory
 import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory
-import org.allbinary.logic.math.PrimitiveIntUtil
 import org.allbinary.logic.string.StringMaker
 import org.allbinary.util.BasicArrayList
 import org.allbinary.util.BasicArrayListD
@@ -126,7 +125,6 @@ import org.allbinary.logic.string.StringUtil
 import org.allbinary.game.canvas.GDGameThreedAnimationResources
 import org.allbinary.logic.StdUtil
 import org.allbinary.util.ABHashtable
-import org.allbinary.AndroidUtil
 import org.allbinary.J2MEUtil
 import org.allbinary.game.layout.GDConfig
 
