@@ -70,7 +70,7 @@ Created By: Travis Berthelot
                     LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>
                     AllBinary<xsl:value-of select="$platform" />ImageRotationAnimationFactory(
-                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />],
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]!!,
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]!!.getWidth(),
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]!!.getHeight(),
                     angleIncrement
@@ -197,7 +197,7 @@ Created By: Travis Berthelot
                     LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>
                     AllBinary<xsl:value-of select="$platform" />ImageRotationAnimationFactory(
-                        <xsl:value-of select="$name" />ImageArray[0],
+                        <xsl:value-of select="$name" />ImageArray[0]!!,
                         <xsl:value-of select="$name" />ImageArray[0]!!.getWidth(),
                         <xsl:value-of select="$name" />ImageArray[0]!!.getHeight(),
                         angleIncrement,
@@ -215,7 +215,7 @@ Created By: Travis Berthelot
                     LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>
                     object : AllBinary<xsl:value-of select="$platform" />ImageRotationAnimationFactory(
-                        <xsl:value-of select="$name" />ImageArray[1],
+                        <xsl:value-of select="$name" />ImageArray[1]!!,
                         <xsl:value-of select="$name" />ImageArray[1]!!.getWidth() / denominator,
                         <xsl:value-of select="$name" />ImageArray[1]!!.getHeight() / denominator,
                         angleIncrement,
@@ -375,7 +375,7 @@ Created By: Travis Berthelot
                     <xsl:if test="not(contains($hasMoreThanOneImage, 'found') and contains($hasCustomCollisionMask, 'found'))" >
                 for(index2 in 0 until <xsl:value-of select="$animationTotal" />) {
                     for(index in 0 until 360) {
-                        rectangleArrayOfArrays[index2][index] = <xsl:value-of select="$name" />RotationCollisionMask
+                        rectangleArrayOfArrays[index2]!![index] = <xsl:value-of select="$name" />RotationCollisionMask
                     }
                 }
                     </xsl:if>
@@ -431,7 +431,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
                 for(index2 in 0 until <xsl:value-of select="$animationTotal" />) {
                     for(index in 0 until 360) {
-                        rectangleArrayOfArrays[index2][index] = <xsl:value-of select="$animationName1" />CollisionMask
+                        rectangleArrayOfArrays[index2]!![index] = <xsl:value-of select="$animationName1" />CollisionMask
                     }
                 }
                                 </xsl:if>

@@ -139,7 +139,7 @@ Created By: Travis Berthelot
                     <xsl:if test="$name = 'Background'" >object : </xsl:if>LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>
                     <xsl:if test="$name = 'DialogBox' or ($name = 'Background' and not(contains($lazy, 'true')))" >object : </xsl:if>OneRowSpriteIndexedAnimationFactory(
-                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />],
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]!!,
                     PrimitiveIntUtil.getArrayInstance(),
                     //)
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]!!.getWidth() / <xsl:value-of select="count(directions/sprites)" />, <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]!!.getHeight()
@@ -180,7 +180,7 @@ Created By: Travis Berthelot
                     <xsl:if test="$name = 'Background'" >object : </xsl:if>LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>
                     <xsl:if test="$name = 'DialogBox' or ($name = 'Background' and not(contains($lazy, 'true')))" >object : </xsl:if>AllBinaryAndroidImageRotationAnimationFactory(
-                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />],
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]!!,
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]!!.getWidth(),
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]!!.getHeight(),
                     angleIncrement
@@ -333,7 +333,7 @@ Created By: Travis Berthelot
                                 )
                 for(index2 in 0 until <xsl:value-of select="$animationTotal" />) {
                     for(index in 0 until 360) {
-                        rectangleArrayOfArrays[index2][index] = <xsl:value-of select="$name" />RotationCollisionMask
+                        rectangleArrayOfArrays[index2]!![index] = <xsl:value-of select="$name" />RotationCollisionMask
                     }
                 }
                         </xsl:if>
@@ -400,7 +400,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="not(contains($hasMoreThanOneImageOrRotationDisabled, 'found'))" >
                 for(index2 in 0 until <xsl:value-of select="$animationTotal" />) {
                     for(index in 0 until 360) {
-                        rectangleArrayOfArrays[index2][index] = <xsl:value-of select="$animationName1" />CollisionMask
+                        rectangleArrayOfArrays[index2]!![index] = <xsl:value-of select="$animationName1" />CollisionMask
                     }
                 }
                                 </xsl:if>
@@ -498,7 +498,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="not(contains($hasMoreThanOneImageOrRotationDisabled, 'found'))" >
                 for(index2 in 0 until <xsl:value-of select="$animationTotal" />) {
                     for(index in 0 until 360) {
-                        rectangleArrayOfArrays[index2][index] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask
+                        rectangleArrayOfArrays[index2]!![index] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask
                     }
                 }
                                 </xsl:if>
@@ -609,7 +609,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="Background" >
                     //Background
                     AllBinaryAndroidImageRotationAnimationFactory(
-                        <xsl:value-of select="$name" />ImageArray[0],
+                        <xsl:value-of select="$name" />ImageArray[0]!!,
                         <xsl:value-of select="$name" />ImageArray[0]!!.getWidth(),
                         <xsl:value-of select="$name" />ImageArray[0]!!.getHeight(),
                         angleIncrement,
@@ -621,7 +621,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="FillBar" >
                     //FillBar
                     LeftToRightImageAnimationFactory(
-                        <xsl:value-of select="$name" />ImageArray[1],
+                        <xsl:value-of select="$name" />ImageArray[1]!!,
                         sequenceArray,
                         (<xsl:value-of select="$name" />ImageArray[0]!!.getWidth() - <xsl:value-of select="$name" />ImageArray[1]!!.getWidth()) / 2,
                         (<xsl:value-of select="$name" />ImageArray[0]!!.getHeight() - <xsl:value-of select="$name" />ImageArray[1]!!.getHeight()) / 2,
@@ -635,7 +635,7 @@ Created By: Travis Berthelot
                         <xsl:for-each select="../../behaviors" >
                             <xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >
                     RightToLeftImageAnimationFactory(
-                        <xsl:value-of select="$name" />ImageArray[2],
+                        <xsl:value-of select="$name" />ImageArray[2]!!,
                         (<xsl:value-of select="$name" />ImageArray[0]!!.getWidth() - <xsl:value-of select="$name" />ImageArray[2]!!.getWidth()) / 2,
                         (<xsl:value-of select="$name" />ImageArray[0]!!.getHeight() - <xsl:value-of select="$name" />ImageArray[2]!!.getHeight()) / 2,
                         AnimationBehaviorFactory.getInstance()
@@ -647,7 +647,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="Thumb" >
                     //Thumb
                     AllBinaryAndroidImageRotationAnimationFactory.createFactoryADXY(
-                        <xsl:value-of select="$name" />ImageArray[4],
+                        <xsl:value-of select="$name" />ImageArray[4]!!,
                         <xsl:value-of select="$name" />ImageArray[4]!!.getWidth(),
                         <xsl:value-of select="$name" />ImageArray[4]!!.getHeight(),
                         (<xsl:value-of select="$name" />ImageArray[0]!!.getWidth() - <xsl:value-of select="$name" />ImageArray[2]!!.getWidth()) / 2,

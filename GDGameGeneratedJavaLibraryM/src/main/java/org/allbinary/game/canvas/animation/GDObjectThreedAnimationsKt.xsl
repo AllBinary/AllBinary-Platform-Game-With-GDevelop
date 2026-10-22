@@ -365,7 +365,7 @@ Created By: Travis Berthelot
                     rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][<xsl:value-of select="$position - 1" />] = <xsl:value-of select="$animationName1" />CollisionMask
                     for(index2 in 0 until <xsl:value-of select="$animationTotal" />) {
                         for(index in 0 until 360) {
-                            rectangleArrayOfArrays[index2][index] = <xsl:value-of select="$animationName1" />CollisionMask
+                            rectangleArrayOfArrays[index2]!![index] = <xsl:value-of select="$animationName1" />CollisionMask
                         }
                     }
 
@@ -400,7 +400,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
                 for(index2 in 0 until <xsl:value-of select="$animationTotal" />) {
                     for(index in 0 until 360) {
-                        rectangleArrayOfArrays[index2][index] = <xsl:value-of select="$animationName1" />CollisionMask
+                        rectangleArrayOfArrays[index2]!![index] = <xsl:value-of select="$animationName1" />CollisionMask
                     }
                 }
                                 </xsl:if>
@@ -490,7 +490,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
                for(index2 in 0 until <xsl:value-of select="$animationTotal" />) {
                     for(index in 0 until 360) {
-                        rectangleArrayOfArrays[index2][index] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask
+                        rectangleArrayOfArrays[index2]!![index] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask
                     }
                 }
                                 </xsl:if>
@@ -911,7 +911,7 @@ Created By: Travis Berthelot
 
                     //<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray[<xsl:value-of select="position() - 1" />] =
                     AllBinaryAndroidImageRotationAnimationFactory(
-                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />],
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]!!,
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]!!.getWidth(),
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]!!.getHeight(),
                     angleIncrement
