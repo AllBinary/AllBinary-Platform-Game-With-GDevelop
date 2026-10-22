@@ -576,7 +576,8 @@ Created By: Travis Berthelot
 
                 <xsl:if test="not(type = 'TiledSpriteObject::TiledSprite')" >
                     <xsl:if test="not(/game/properties/tileMap/columns)" >
-                if(true) throw RuntimeException()
+                if(true)
+                    throw RuntimeException()
                 val columns: Int = -1
                 val rows: Int = -1
                     </xsl:if>
@@ -913,7 +914,7 @@ Created By: Travis Berthelot
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />],
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]!!.getWidth(),
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]!!.getHeight(),
-                    angleIncrement.toInt()
+                    angleIncrement
                     )<xsl:if test="position() != last()" >,</xsl:if>
                 </xsl:for-each>
                 )

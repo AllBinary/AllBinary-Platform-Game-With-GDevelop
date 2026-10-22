@@ -209,7 +209,8 @@ Created By: Travis Berthelot
                     </xsl:if>
                     <xsl:if test="not($paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != '' or contains($hasKnownParamsFromParent, 'found'))" >
 
-                            if(true) throw RuntimeException()
+                            if(true)
+                                throw RuntimeException()
 
                     </xsl:if>
 

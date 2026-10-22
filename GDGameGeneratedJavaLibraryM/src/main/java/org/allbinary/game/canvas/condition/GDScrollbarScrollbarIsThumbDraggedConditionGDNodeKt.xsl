@@ -190,7 +190,8 @@ Created By: Travis Berthelot
                     override fun processGD(gameLayerArray: Array&lt;GDGameLayer?&gt;): Boolean {
                         try {
 
-                            if(true) throw RuntimeException()
+                            if(true)
+                                throw RuntimeException()
 
                         } catch(e: Exception) {
                             this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e)

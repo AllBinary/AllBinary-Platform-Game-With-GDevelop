@@ -44,7 +44,8 @@ Created By: Travis Berthelot
                                 //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
                                 <xsl:if test="contains($hasBuiltinCommonInstructionsForEachToProcessGD, 'found')" >
-                                    if(true) throw RuntimeException()
+                                    if(true)
+                                        throw RuntimeException()
                                 </xsl:if>
                                 <xsl:if test="not(contains($hasBuiltinCommonInstructionsForEachToProcessGD, 'found'))" >
 

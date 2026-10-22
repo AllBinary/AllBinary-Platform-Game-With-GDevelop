@@ -225,7 +225,8 @@ open public class GDCustomCollidableBehavior : CollidableBaseBehavior
                     //this.logUtil.putF("groupIndex: " + indexOfGroup, this, COLLIDE)
                     node = (this.conditionWIthGroupActions.actionForGroupsList.get(indexOfGroup) as GDNode)
 
-                    if(true) throw RuntimeException()
+                    if(true)
+                        throw RuntimeException()
                     val tempGameLayerUtil: TempGameLayerUtil = TempGameLayerUtil.getInstance()
                     tempGameLayerUtil.clear()
                     tempGameLayerUtil.gameLayerArray[0] = ownerLayer

@@ -325,7 +325,7 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                     return arrayOf(
-                <xsl:if test="contains(type, 'TileMap::')" >
+                <xsl:variable name="kotlinArrayItems327" >                <xsl:if test="contains(type, 'TileMap::')" >
                     //TWB - temp solution for <xsl:value-of select="type" />
                     Rectangle(pointFactory.ZERO_ZERO,
                                 (384 * scale).toInt(),
@@ -362,7 +362,7 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                         </xsl:for-each>
                     </xsl:if>
-                </xsl:for-each>
+                </xsl:for-each></xsl:variable><xsl:call-template name="kotlinRemoveTrailingComma" ><xsl:with-param name="text" select="$kotlinArrayItems327" /></xsl:call-template>
                 )
 
                 }

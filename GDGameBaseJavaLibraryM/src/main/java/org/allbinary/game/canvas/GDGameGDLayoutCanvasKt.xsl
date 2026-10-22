@@ -179,7 +179,8 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
 
         <xsl:if test="number($layoutIndex) = 1" >
         this.imageCache.initProgress()
-        this.gdResources.currentLayoutRequiredTotal = this.gdResources.resourceStringArray.size
+        val resourceStringArray: Array&lt;String?&gt; = this.gdResources.resourceStringArray
+        this.gdResources.currentLayoutRequiredTotal = resourceStringArray.size
         </xsl:if>
         <xsl:if test="number($layoutIndex) != 1" >
         this.gdResources.currentLayoutRequiredTotal = 0

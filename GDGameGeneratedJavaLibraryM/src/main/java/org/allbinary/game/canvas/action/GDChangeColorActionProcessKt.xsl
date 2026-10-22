@@ -111,7 +111,8 @@ Created By: Travis Berthelot
 
                         } else {
                             //Needs Impl
-                            if(true) throw RuntimeException()
+                            if(true)
+                                throw RuntimeException()
                         }
 
                             /*

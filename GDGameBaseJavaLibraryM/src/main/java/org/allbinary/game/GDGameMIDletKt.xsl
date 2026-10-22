@@ -320,7 +320,8 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
 
             val displayable: Displayable = this.getCurrentDisplayable()
             if(displayable is RunnableCanvas) {
-                (displayable as RunnableCanvas).end2()
+                val runnableCanvas: RunnableCanvas = displayable as RunnableCanvas
+                runnableCanvas.end2()
             }
 
        <xsl:for-each select="layouts" >

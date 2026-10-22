@@ -183,7 +183,7 @@ open class GDGame<xsl:value-of select="$layoutName" />LevelBuilder : LayerInterf
 
     private val COLORS: Array&lt;BasicColor?&gt; = arrayOf(
         BasicColorFactory.getInstance().RED,
-        BasicColorFactory.getInstance().GREEN,
+        BasicColorFactory.getInstance().GREEN
     )
 
     private val gdResources: GDResources = GDResources.getInstance()
