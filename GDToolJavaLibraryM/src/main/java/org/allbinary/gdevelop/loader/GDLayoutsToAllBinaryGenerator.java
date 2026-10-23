@@ -5,12 +5,7 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import java.io.StringBufferInputStream;
-import javax.xml.transform.stream.StreamSource;
-
 import org.allbinary.data.CamelCaseUtil;
-import org.allbinary.data.tree.dom.BasicUriResolver;
-import org.allbinary.data.tree.dom.XslHelper;
 import org.allbinary.gdevelop.json.GDLayout;
 import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.string.CommonStrings;
@@ -41,7 +36,7 @@ public class GDLayoutsToAllBinaryGenerator
     
     private final StringMaker stringMaker = new StringMaker();
         
-    private final XslHelper xslHelper = XslHelper.getInstance();
+    private final GDXslTemplates gdXslTemplates = GDXslTemplates.getInstance();
 
     private final String xslPath;
     private final String start;
@@ -94,12 +89,8 @@ public class GDLayoutsToAllBinaryGenerator
             final int size = this.nameList.size();
             for (int index = 0; index < size; index++)
             {
-                final Replace replace = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, Integer.toString(index));
-                final String updatedXslDocumentStr = replace.all(xslDocumentStr);
-
-                String result = this.xslHelper.translate(new BasicUriResolver(),
-                        new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
-                        new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
+                String result = this.gdXslTemplates.translate(xslPath, xslDocumentStr,
+                        this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, Integer.toString(index), xmlDocumentStr);
 
                 final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
                 result = replaceLT.all(result);

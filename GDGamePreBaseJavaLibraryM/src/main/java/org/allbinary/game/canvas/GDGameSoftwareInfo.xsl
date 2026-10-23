@@ -11,11 +11,15 @@ package org.allbinary.game.canvas;
 
 import org.allbinary.logic.NullUtil;
 import org.allbinary.logic.system.SoftwareInformation;
-import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
+import org.allbinary.logic.system.security.licensing.ClientInformation;
 
 public class GDGameSoftwareInfo
 {
     public static Object TEMP_HACK_CLIENT_INFORMATION = NullUtil.getInstance().NULL_OBJECT;
+        
+    public static void setTempClientInformation(final ClientInformation clientInformation) {
+        GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = clientInformation;
+    }
 
     <xsl:variable name="shortName" ><xsl:value-of select="properties/shortName" /><xsl:if test="not(properties/shortName)" ><xsl:call-template name="after-lastIndexOf" ><xsl:with-param name="string" ><xsl:value-of select="properties/packageName" /></xsl:with-param><xsl:with-param name="char" select="'.'" /></xsl:call-template></xsl:if></xsl:variable>
     private static final SoftwareInformation SINGLETON = 
@@ -23,7 +27,7 @@ public class GDGameSoftwareInfo
 
     public static SoftwareInformation getInstance()
     {
-        return SINGLETON;
+        return GDGameSoftwareInfo.SINGLETON;
     }
 }
         

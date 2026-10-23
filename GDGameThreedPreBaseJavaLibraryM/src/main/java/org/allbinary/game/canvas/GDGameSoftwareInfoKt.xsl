@@ -10,14 +10,20 @@
 
 package org.allbinary.game.canvas
 
+import org.allbinary.logic.NullUtil
 import org.allbinary.logic.system.SoftwareInformation
-import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
+import org.allbinary.logic.system.security.licensing.ClientInformation
 
 open class GDGameSoftwareInfo
 {
     companion object {
 
-    lateinit var TEMP_HACK_CLIENT_INFORMATION: AbeClientInformationInterface
+    var TEMP_HACK_CLIENT_INFORMATION: Any = NullUtil.getInstance().NULL_OBJECT
+
+    public static void setTempClientInformation(clientInformation: ClientInformation) {
+        GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = clientInformation;
+    }
+
     <!--    <xsl:value-of select="properties/shortName" />-->
     <xsl:variable name="shortName" ><xsl:value-of select="properties/shortName" /><xsl:if test="not(properties/shortName)" ><xsl:call-template name="after-lastIndexOf" ><xsl:with-param name="string" ><xsl:value-of select="properties/packageName" /></xsl:with-param><xsl:with-param name="char" select="'.'" /></xsl:call-template></xsl:if></xsl:variable>
     private val SINGLETON: SoftwareInformation =
@@ -25,7 +31,7 @@ open class GDGameSoftwareInfo
 
     open fun getInstance(): SoftwareInformation
     {
-        return SINGLETON
+        return GDGameSoftwareInfo.SINGLETON
     }
 
     }

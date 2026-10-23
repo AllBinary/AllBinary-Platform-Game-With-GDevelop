@@ -626,4 +626,8 @@ open public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:va
 
     </xsl:template>
 
+    <xsl:key name="objectsByName" match="objects" use="name" />
+
+    <xsl:key name="objectsGroupsByName" match="objectsGroups" use="name" />
+
 </xsl:stylesheet>

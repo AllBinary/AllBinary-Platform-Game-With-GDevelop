@@ -39,13 +39,29 @@ public class GDTransformGenerator extends GDNameGenerator {
     protected final GDData gdData = GDData.getInstance();
     
     private final XslHelper xslHelper = XslHelper.getInstance();
-    
+    private final GDXslTemplates gdXslTemplates = GDXslTemplates.getInstance();
+
     public void process(final String updatedXslDocumentStr, final String javaOutputFile, final SharedBytes sharedBytes) throws Exception {
 
-        final String outputFile = this.gdPaths.getOutputPath(javaOutputFile);
         final String xmlDocumentStr = this.gdData.getAsString(this.gdPaths.GAME_XML_PATH, sharedBytes);
 
-        String result = this.process(updatedXslDocumentStr, xmlDocumentStr);
+        this.write(this.process(updatedXslDocumentStr, xmlDocumentStr), javaOutputFile);
+    }
+
+    /**
+     * Reuses the compiled xsl from xslPath for each placeholder value (see GDXslTemplates).
+     */
+    public void process(final String xslPath, final String xslDocumentStr, final String placeholder, final String value, final String javaOutputFile, final SharedBytes sharedBytes) throws Exception {
+
+        final String xmlDocumentStr = this.gdData.getAsString(this.gdPaths.GAME_XML_PATH, sharedBytes);
+
+        this.write(this.gdXslTemplates.translate(xslPath, xslDocumentStr, placeholder, value, xmlDocumentStr), javaOutputFile);
+    }
+
+    private void write(String result, final String javaOutputFile) throws Exception {
+
+        final String outputFile = this.gdPaths.getOutputPath(javaOutputFile);
+
         final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
         result = replaceLT.all(result);
         result = this.format(result);

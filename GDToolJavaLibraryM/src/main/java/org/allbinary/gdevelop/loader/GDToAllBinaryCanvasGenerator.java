@@ -9,7 +9,6 @@ package org.allbinary.gdevelop.loader;
 import org.allbinary.data.CamelCaseUtil;
 import org.allbinary.gdevelop.json.GDLayout;
 import org.allbinary.logic.string.StringMaker;
-import org.allbinary.logic.string.regex.replace.Replace;
 
 /**
  *
@@ -62,12 +61,8 @@ public class GDToAllBinaryCanvasGenerator extends GDTransformGenerator
         final SharedBytes sharedBytes = SharedBytes.getInstance();
         
         final String androidRFileAsString = this.gdData.getAsString(this.origXslPath, sharedBytes);
-        
-        final Replace replace2 = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, Integer.toString(this.index));
 
-        final String updatedXslDocumentStr = replace2.all(androidRFileAsString);
-
-        this.process(updatedXslDocumentStr, canvasJavaFile, sharedBytes);
+        this.process(this.origXslPath, androidRFileAsString, this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, Integer.toString(this.index), canvasJavaFile, sharedBytes);
         
     }
 

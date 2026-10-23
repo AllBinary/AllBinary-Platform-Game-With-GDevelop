@@ -268,4 +268,8 @@ Created By: Travis Berthelot
         </xsl:for-each>
     </xsl:template>
 
+    <xsl:key name="objectsByName" match="objects" use="name" />
+
+    <xsl:key name="objectsGroupsByName" match="objectsGroups" use="name" />
+
 </xsl:stylesheet>

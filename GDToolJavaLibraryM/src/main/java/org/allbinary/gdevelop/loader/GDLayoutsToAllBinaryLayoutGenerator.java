@@ -47,6 +47,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final XslHelper xslHelper = XslHelper.getInstance();
+    private final GDXslTemplates gdXslTemplates = GDXslTemplates.getInstance();
     private final GDPaths gdPaths = GDPaths.getInstance();
     private final GDData gdData = GDData.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
@@ -214,16 +215,13 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
             externalLayoutTotalForSceneLayout = gdGameInfo.getExternalLayoutTotal(index);
             indexAsString = Integer.toString(index);
-            
-            final Replace replace = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, indexAsString);
 
             for (int index2 = 0; index2 < xslTotal; index2++) {
 
                 for (int index4 = 0; index4 < externalLayoutTotalForSceneLayout; index4++) {
 
                 index4AsString = Integer.toString(index4);
-                final Replace replace3 = new Replace(this.gdToolStrings.GD_EXTERNAL_LAYOUT_INDEX, index4AsString);
-                
+
                 //stringMaker.delete(0, stringMaker.length());
                 //logUtil.put(stringMaker.append("xslt:").append(index2).toString(), this, commonStrings.PROCESS);
                 timeDelayHelper.setStartTimeTNT();
@@ -232,12 +230,10 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                 stringMaker.delete(0, stringMaker.length());
                 this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(xslPathInputArray[index2]).toString(), this, this.commonStrings.PROCESS);
 
-                String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
-                updatedXslDocumentAsString = replace3.all(updatedXslDocumentAsString);
-
-                String result = this.xslHelper.translate(new BasicUriResolver(),
-                    new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
-                    new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
+                String result = this.gdXslTemplates.translate(xslPathInputArray[index2], xslDocumentAsString[index2],
+                    new String[] {this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, this.gdToolStrings.GD_EXTERNAL_LAYOUT_INDEX},
+                    new String[] {indexAsString, index4AsString},
+                    xmlStringArray[index2]);
                  
                 stringMaker.delete(0, stringMaker.length());
                 final String fileName = this.gdPaths.getOutputPath(stringMaker.append(START[index2]).append(indexAsString).append(MID[index2]).appendint(index4).append(END[index2]).toString());
@@ -305,8 +301,6 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
             externalLayoutTotalForSceneLayout = gdGameInfo.getExternalLayoutTotal(index);
             indexAsString = Integer.toString(index);
-            
-            final Replace replace = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, indexAsString);
 
             for (int index2 = 0; index2 < xslTotal; index2++) {
 
@@ -314,12 +308,10 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
                 externalCreateInstanceTotal = gdGameInfo.getExternalLayoutInstanceTotal(index4);
                 index4AsString = Integer.toString(index4);
-                final Replace replace3 = new Replace(this.gdToolStrings.GD_EXTERNAL_LAYOUT_INDEX, index4AsString);
 
                 for (int index5 = 0; index5 < externalCreateInstanceTotal; index5++) {
 
                 createInstanceIndexAsString = Integer.toString(index5);
-                final Replace replace4 = new Replace(this.gdToolStrings.GD_CREATE_INSTANCE_INDEX, createInstanceIndexAsString);
 
                 //stringMaker.delete(0, stringMaker.length());
                 //logUtil.put(stringMaker.append("xslt:").append(index2).toString(), this, commonStrings.PROCESS);
@@ -329,13 +321,10 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                 stringMaker.delete(0, stringMaker.length());
                 this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(xslPathInputArray[index2]).toString(), this, this.commonStrings.PROCESS);
 
-                String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
-                updatedXslDocumentAsString = replace3.all(updatedXslDocumentAsString);
-                updatedXslDocumentAsString = replace4.all(updatedXslDocumentAsString);
-
-                String result = this.xslHelper.translate(new BasicUriResolver(),
-                    new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
-                    new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
+                String result = this.gdXslTemplates.translate(xslPathInputArray[index2], xslDocumentAsString[index2],
+                    new String[] {this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, this.gdToolStrings.GD_EXTERNAL_LAYOUT_INDEX, this.gdToolStrings.GD_CREATE_INSTANCE_INDEX},
+                    new String[] {indexAsString, index4AsString, createInstanceIndexAsString},
+                    xmlStringArray[index2]);
                  
                 stringMaker.delete(0, stringMaker.length());
                 final String fileName = this.gdPaths.getOutputPath(stringMaker.append(START[index2]).append(indexAsString).append(MID[index2]).appendint(index5).append(END[index2]).toString());
@@ -403,16 +392,13 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             
             createInstanceTotal = gdGameInfo.getLayoutInstanceTotal(index);
             indexAsString = Integer.toString(index);
-            
-            final Replace replace = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, indexAsString);
 
             for (int index2 = 0; index2 < xslTotal; index2++) {
 
                 for (int index4 = 0; index4 < createInstanceTotal; index4++) {
 
                 createInstanceIndexAsString = Integer.toString(index4);
-                final Replace replace3 = new Replace(this.gdToolStrings.GD_CREATE_INSTANCE_INDEX, createInstanceIndexAsString);
-                
+
                 //stringMaker.delete(0, stringMaker.length());
                 //logUtil.put(stringMaker.append("xslt:").append(index2).toString(), this, commonStrings.PROCESS);
                 timeDelayHelper.setStartTimeTNT();
@@ -421,14 +407,10 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                 stringMaker.delete(0, stringMaker.length());
                 this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(xslPathInputArray[index2]).toString(), this, this.commonStrings.PROCESS);
 
-                String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
-                updatedXslDocumentAsString = replace3.all(updatedXslDocumentAsString);
-                
-                //this.logUtil.putF(stringMaker.append("xslt:").append(updatedXslDocumentAsString).toString(), this, commonStrings.PROCESS);
-                
-                String result = this.xslHelper.translate(new BasicUriResolver(),
-                    new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
-                    new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
+                String result = this.gdXslTemplates.translate(xslPathInputArray[index2], xslDocumentAsString[index2],
+                    new String[] {this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, this.gdToolStrings.GD_CREATE_INSTANCE_INDEX},
+                    new String[] {indexAsString, createInstanceIndexAsString},
+                    xmlStringArray[index2]);
                  
                 stringMaker.delete(0, stringMaker.length());
                 final String fileName = this.gdPaths.getOutputPath(stringMaker.append(START[index2]).append(indexAsString).append(MID[index2]).appendint(index4).append(END[index2]).toString());
@@ -550,7 +532,6 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             //logUtil.put(stringMaker.append("layout:").appendint(index).toString(), this, commonStrings.PROCESS);
 
             indexAsString = Integer.toString(index);
-            final Replace replace = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, indexAsString);
 
             for (int index2 = 0; index2 < xslTotal; index2++) {
 
@@ -562,11 +543,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                 stringMaker.delete(0, stringMaker.length());
                 this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(xslPathInputArray[index2]).toString(), this, this.commonStrings.PROCESS);
 
-                final String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
-
-                String result = this.xslHelper.translate(new BasicUriResolver(),
-                    new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
-                    new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
+                String result = this.gdXslTemplates.translate(xslPathInputArray[index2], xslDocumentAsString[index2],
+                    this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, indexAsString, xmlStringArray[index2]);
                  
                 stringMaker.delete(0, stringMaker.length());
                 final String fileName = this.gdPaths.getOutputPath(stringMaker.append(START[index2]).append(indexAsString).append(END[index2]).toString());
@@ -643,7 +621,6 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
     private String getBuiltInGDNodeListAsString(final String gameXmlAsString, final int layoutIndex, final SharedBytes sharedBytes)
         throws Exception {
-        final Replace replace = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, this.smallIntegerSingletonFactory.getString(layoutIndex));
 
         final String[] xmlStringArray = {
             gameXmlAsString,};
@@ -652,15 +629,12 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
         final int xslTotal = gdNodeXSLPathInputArray.length;
         final String[] xslDocumentAsString = new String[xslTotal];
-        String updatedXslDocumentAsString = null;
         for (int index = 0; index < xslTotal; index++) {
             xslDocumentAsString[index] = this.gdData.getAsString(gdNodeXSLPathInputArray[index], sharedBytes);
-            updatedXslDocumentAsString = replace.all(xslDocumentAsString[index]);
         }
 
-        String result = this.xslHelper.translate(new BasicUriResolver(),
-            new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
-            new StreamSource(new StringBufferInputStream(xmlStringArray[0])));
+        String result = this.gdXslTemplates.translate(gdNodeXSLPathInputArray[0], xslDocumentAsString[0],
+            this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, this.smallIntegerSingletonFactory.getString(layoutIndex), xmlStringArray[0]);
 
         final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
         result = replaceLT.all(result);
@@ -720,8 +694,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     continue;
                 }
 
-                final Replace replace = new Replace(this.gdToolStrings.GD_NODE_IDS, indexAsString);
-                final Replace replace2 = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, this.smallIntegerSingletonFactory.getString(layoutIndex));
+                final String[] placeholderArray = {this.gdToolStrings.GD_NODE_IDS, this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX};
+                final String[] valueArray = {indexAsString, this.smallIntegerSingletonFactory.getString(layoutIndex)};
 
 //            stringMaker.delete(0, stringMaker.length());
 //            logUtil.put(stringMaker.append("indexAsString:").append(indexAsString).toString(), this, commonStrings.PROCESS);
@@ -732,13 +706,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     timeDelayHelper.setStartTimeTNT();
 
                     //logUtil.put("xsl index: " + index2, this, commonStrings.PROCESS);
-                    String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
-                    updatedXslDocumentAsString = replace2.all(updatedXslDocumentAsString);
-
-                    //logUtil.put("updated xsl: " + updatedXslDocumentAsString, this, commonStrings.PROCESS);
-                    String result = this.xslHelper.translate(new BasicUriResolver(),
-                        new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
-                        new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
+                    String result = this.gdXslTemplates.translate(gdNodeXSLPathInputArray[index2], xslDocumentAsString[index2],
+                        placeholderArray, valueArray, xmlStringArray[index2]);
 
                     final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
                     result = replaceLT.all(result);
@@ -777,8 +746,6 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
     private String getActionGDNodeListAsString(final String gameXmlAsString, final int layoutIndex, final SharedBytes sharedBytes)
         throws Exception {
 
-        final Replace replace = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, this.smallIntegerSingletonFactory.getString(layoutIndex));
-
         final String[] xmlStringArray = {
             gameXmlAsString,};
 
@@ -786,15 +753,12 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
         final int xslTotal = gdNodeXSLPathInputArray.length;
         final String[] xslDocumentAsString = new String[xslTotal];
-        String updatedXslDocumentAsString = null;
         for (int index = 0; index < xslTotal; index++) {
             xslDocumentAsString[index] = this.gdData.getAsString(gdNodeXSLPathInputArray[index], sharedBytes);
-            updatedXslDocumentAsString = replace.all(xslDocumentAsString[index]);
         }
 
-        String result = this.xslHelper.translate(new BasicUriResolver(),
-            new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
-            new StreamSource(new StringBufferInputStream(xmlStringArray[0])));
+        String result = this.gdXslTemplates.translate(gdNodeXSLPathInputArray[0], xslDocumentAsString[0],
+            this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, this.smallIntegerSingletonFactory.getString(layoutIndex), xmlStringArray[0]);
 
         final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
         result = replaceLT.all(result);
@@ -865,8 +829,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     continue;
                 }
 
-                final Replace replace = new Replace(this.gdToolStrings.GD_NODE_IDS, indexAsString);
-                final Replace replace2 = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, this.smallIntegerSingletonFactory.getString(layoutIndex));
+                final String[] placeholderArray = {this.gdToolStrings.GD_NODE_IDS, this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX};
+                final String[] valueArray = {indexAsString, this.smallIntegerSingletonFactory.getString(layoutIndex)};
 
 //            stringMaker.delete(0, stringMaker.length());
 //            logUtil.put(stringMaker.append("indexAsString:").append(indexAsString).toString(), this, commonStrings.PROCESS);
@@ -877,13 +841,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     timeDelayHelper.setStartTimeTNT();
 
                     //logUtil.put("xsl index: " + index2, this, commonStrings.PROCESS);
-                    String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
-                    updatedXslDocumentAsString = replace2.all(updatedXslDocumentAsString);
-
-                    //logUtil.put("updated xsl: " + updatedXslDocumentAsString, this, commonStrings.PROCESS);
-                    String result = this.xslHelper.translate(new BasicUriResolver(),
-                        new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
-                        new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
+                    String result = this.gdXslTemplates.translate(gdNodeXSLPathInputArray[index2], xslDocumentAsString[index2],
+                        placeholderArray, valueArray, xmlStringArray[index2]);
 
                     final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
                     result = replaceLT.all(result);
@@ -1081,16 +1040,12 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             timeDelayHelper.setStartTimeTNT();
 
             indexAsString = Integer.toString(index);
-            final Replace replace = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, indexAsString);
 
             for (int index2 = 0; index2 < xslTotal2; index2++) {
 
                 //logUtil.put("xsl2 index: " + index2, this, commonStrings.PROCESS);
-                final String updatedXslDocumentStr = replace.all(xslDocumentAsString2[index2]);
-
-                String result = this.xslHelper.translate(new BasicUriResolver(),
-                    new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
-                    new StreamSource(new StringBufferInputStream(gameXmlAsString)));
+                String result = this.gdXslTemplates.translate(xslPathInputArray2[index2], xslDocumentAsString2[index2],
+                    this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, indexAsString, gameXmlAsString);
 
                 final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
                 result = replaceLT.all(result);
