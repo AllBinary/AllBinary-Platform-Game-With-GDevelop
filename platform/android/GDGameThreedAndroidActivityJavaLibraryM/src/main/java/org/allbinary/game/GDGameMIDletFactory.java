@@ -14,7 +14,7 @@ public class GDGameMIDletFactory extends MidletFactoryInterface {
     public MIDlet getInstance() {
         if (GDGameMIDletFactory.SINGLETON == null) {
             GDGameMIDletFactory.SINGLETON = new GDGameMIDlet(GDGameClientInformationInterfaceFactory.getFactoryInstance());
-            GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance();
+            GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance());
         }
         return GDGameMIDletFactory.SINGLETON;
     }

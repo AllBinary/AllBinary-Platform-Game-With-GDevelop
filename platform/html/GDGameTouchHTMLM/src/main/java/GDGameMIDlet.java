@@ -1,3 +1,4 @@
+import org.allbinary.game.canvas.GDGameSoftwareInfo;
 import org.allbinary.game.configuration.GameConfigurationCentral;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GameFeatureFactory;
@@ -11,18 +12,18 @@ import org.allbinary.input.motion.gesture.observer.GDGameMotionGestureListener;
 import org.allbinary.input.motion.gesture.observer.MotionGestureReceiveInterfaceFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
 
 public class GDGameMIDlet
         extends org.allbinary.game.gd.GDGameMIDlet
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
 
     private AllMotionRecognizer motionRecognizer = new AllMotionRecognizer();
     
     public GDGameMIDlet()
     {
         super(GDGameClientInformationInterfaceFactory.getInstance());
-        GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getInstance();
+        GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance());
                 
         final BasicMotionGesturesHandler motionGesturesHandler =
             motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();

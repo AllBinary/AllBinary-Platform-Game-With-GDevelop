@@ -19,7 +19,6 @@ import org.allbinary.input.motion.AllMotionRecognizer;
 import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
 import org.allbinary.input.motion.gesture.observer.GDGameMotionGestureListener;
 import org.allbinary.input.motion.gesture.observer.MotionGestureReceiveInterfaceFactory;
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
@@ -36,7 +35,6 @@ public class GDGame
     extends org.allbinary.game.GDGameMIDlet
     implements MidletJOGLInterface
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
 
     private final int DEVICE_ID = 0;
     private AllMotionRecognizer motionRecognizer = new AllMotionRecognizer();
@@ -46,7 +44,7 @@ public class GDGame
     public GDGame()
     {
         super(GDGameClientInformationInterfaceFactory.getFactoryInstance());
-        GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance();
+        GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance());
         
         try
         {

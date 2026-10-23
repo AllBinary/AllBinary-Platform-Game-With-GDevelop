@@ -30,17 +30,16 @@ implements Keyboard.Listener,
 Mouse.Listener, 
 Pointer.Listener
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
 
     private final int DEVICE_ID = 0;
     private final PlayNToAllBinaryKeyInputUtil playNToAllBinaryKeyInputUtil = PlayNToAllBinaryKeyInputUtil.getInstance();
     private final RawKeyEventHandler rawKeyEventHandler = RawKeyEventHandler.getInstance();
-    private AllMotionRecognizer motionRecognizer = new AllMotionRecognizer();
+    private final AllMotionRecognizer motionRecognizer = new AllMotionRecognizer();
     
     public GDGame()
     {
         super(GDGameClientInformationInterfaceFactory.getFactoryInstance());
-        GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance();
+        GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance());
 
         final BasicMotionGesturesHandler motionGesturesHandler =
             this.motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();

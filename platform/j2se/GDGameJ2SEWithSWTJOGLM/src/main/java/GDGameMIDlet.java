@@ -31,17 +31,16 @@ public class GDGameMIDlet
     extends org.allbinary.game.GDGameMIDlet
     implements MidletJOGLInterface
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
 
     private final int DEVICE_ID = 0;
-    private AllMotionRecognizer motionRecognizer = new AllMotionRecognizer();
+    private final AllMotionRecognizer motionRecognizer = new AllMotionRecognizer();
 
     private OptimizedGLSurfaceView glSurfaceView;
     
     public GDGameMIDlet()
     {
         super(GDGameClientInformationInterfaceFactory.getFactoryInstance());
-        GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance();
+        GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance());
                 
         final BasicMotionGesturesHandler motionGesturesHandler =
             this.motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();
