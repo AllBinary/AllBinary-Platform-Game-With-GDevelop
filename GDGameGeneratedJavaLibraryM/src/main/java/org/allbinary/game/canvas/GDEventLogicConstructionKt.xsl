@@ -29,14 +29,10 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:variable>
         <xsl:variable name="hasObject1" >
-            <xsl:for-each select="//objects" >
-                <xsl:if test="name = $firstParam" >found</xsl:if>
-            </xsl:for-each>
+            <xsl:for-each select="key('objectsByName', $firstParam)" >found</xsl:for-each>
         </xsl:variable>
         <xsl:variable name="hasObjectGroup1" >
-            <xsl:for-each select="//objectsGroups" >
-                <xsl:if test="name = $firstParam" >found</xsl:if>
-            </xsl:for-each>
+            <xsl:for-each select="key('objectsGroupsByName', $firstParam)" >found</xsl:for-each>
         </xsl:variable>
         <xsl:variable name="isInObjectGroup" >
             <xsl:for-each select="//objectsGroups/objects" >
@@ -68,16 +64,7 @@ Created By: Travis Berthelot
     <xsl:template name="hasChildNode" >
         <xsl:param name="childNodeId" />
 
-        <xsl:for-each select="*" >
-            <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-
-            <xsl:if test="$childNodeId = $nodeId" >found</xsl:if>
-
-            <xsl:call-template name="hasChildNode" >
-                <xsl:with-param name="childNodeId" ><xsl:value-of select="$childNodeId" /></xsl:with-param>
-            </xsl:call-template>
-
-        </xsl:for-each>
+        <xsl:if test="descendant::*[string(number(substring(generate-id(), 2) - 65536)) = string($childNodeId)]" >found</xsl:if>
 
     </xsl:template>
 
@@ -95,12 +82,8 @@ Created By: Travis Berthelot
                     <xsl:variable name="hasObjectsGroupsOrObjectInParameters" >
                         <xsl:for-each select="parameters" >
                             <xsl:variable name="text" ><xsl:value-of select="text()" /></xsl:variable>
-                            <xsl:for-each select="//objectsGroups" >
-                                <xsl:if test="name = $text" >found</xsl:if>
-                            </xsl:for-each>
-                            <xsl:for-each select="//objects" >
-                                <xsl:if test="name = $text" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsGroupsByName', $text)" >found</xsl:for-each>
+                            <xsl:for-each select="key('objectsByName', $text)" >found</xsl:for-each>
                         </xsl:for-each>
                     </xsl:variable>
                     <xsl:if test="contains($hasObjectsGroupsOrObjectInParameters, 'found')" >

@@ -40,14 +40,10 @@ Created By: Travis Berthelot
                         //beforeSecondParam2=<xsl:value-of select="$beforeSecondParam2" />
 
                         <xsl:variable name="hasObject" >
-                            <xsl:for-each select="//objects" >
-                                <xsl:if test="name = $beforeSecondParam" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsByName', $beforeSecondParam)" >found</xsl:for-each>
                         </xsl:variable>
                         <xsl:variable name="hasObjectGroup" >
-                            <xsl:for-each select="//objectsGroups" >
-                                <xsl:if test="name = $beforeSecondParam" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsGroupsByName', $beforeSecondParam)" >found</xsl:for-each>
                         </xsl:variable>
 
                         <xsl:variable name="firstOrBeforeFourthParam" >

@@ -44,14 +44,10 @@ Created By: Travis Berthelot
 
                         <xsl:variable name="beforeThirdParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="substring-before(text(), '.')" /></xsl:if></xsl:for-each></xsl:variable>
                         <xsl:variable name="hasObject" >
-                            <xsl:for-each select="//objects" >
-                                <xsl:if test="name = $beforeThirdParam" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsByName', $beforeThirdParam)" >found</xsl:for-each>
                         </xsl:variable>
                         <xsl:variable name="hasObjectGroup" >
-                            <xsl:for-each select="//objectsGroups" >
-                                <xsl:if test="name = $beforeThirdParam" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsGroupsByName', $beforeThirdParam)" >found</xsl:for-each>
                         </xsl:variable>
 
                         <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>
@@ -450,14 +446,10 @@ Created By: Travis Berthelot
 
                         <xsl:variable name="beforeThirdParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="substring-before(text(), '.')" /></xsl:if></xsl:for-each></xsl:variable>
                         <xsl:variable name="hasObject" >
-                            <xsl:for-each select="//objects" >
-                                <xsl:if test="name = $beforeThirdParam" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsByName', $beforeThirdParam)" >found</xsl:for-each>
                         </xsl:variable>
                         <xsl:variable name="hasObjectGroup" >
-                            <xsl:for-each select="//objectsGroups" >
-                                <xsl:if test="name = $beforeThirdParam" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsGroupsByName', $beforeThirdParam)" >found</xsl:for-each>
                         </xsl:variable>
 
                     //CreateByName End

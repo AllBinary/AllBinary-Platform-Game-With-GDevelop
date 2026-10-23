@@ -47,14 +47,10 @@ Created By: Travis Berthelot
                         </xsl:variable>
                                                 
                         <xsl:variable name="hasObject" >
-                            <xsl:for-each select="//objects" >
-                                <xsl:if test="name = $param1g" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsByName', $param1g)" >found</xsl:for-each>
                         </xsl:variable>
                         <xsl:variable name="hasObjectGroup" >
-                            <xsl:for-each select="//objectsGroups" >
-                                <xsl:if test="name = $param1g" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsGroupsByName', $param1g)" >found</xsl:for-each>
                         </xsl:variable>
 
                         <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>

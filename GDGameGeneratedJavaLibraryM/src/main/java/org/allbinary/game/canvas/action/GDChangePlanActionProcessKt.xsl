@@ -35,14 +35,10 @@ Created By: Travis Berthelot
                         <xsl:variable name="gdObjectFactory2" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeSecondParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeSecondParam" /></xsl:variable>
 
                         <xsl:variable name="hasObject" >
-                            <xsl:for-each select="//objects" >
-                                <xsl:if test="name = $beforeSecondParam" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsByName', $beforeSecondParam)" >found</xsl:for-each>
                         </xsl:variable>
                         <xsl:variable name="hasObjectGroup" >
-                            <xsl:for-each select="//objectsGroups" >
-                                <xsl:if test="name = $beforeSecondParam" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsGroupsByName', $beforeSecondParam)" >found</xsl:for-each>
                         </xsl:variable>
 
                         <xsl:if test="contains($hasObject, 'found') or contains($hasObjectGroup, 'found')" >
@@ -117,9 +113,7 @@ Created By: Travis Berthelot
                         <xsl:if test="$paramOneNameObjectsGroups = ''" >
 
                                 <xsl:variable name="hasObjectGroup" >
-                                    <xsl:for-each select="//objectsGroups" >
-                                        <xsl:if test="name = $name" >found</xsl:if>
-                                    </xsl:for-each>
+                                    <xsl:for-each select="key('objectsGroupsByName', $name)" >found</xsl:for-each>
                                 </xsl:variable>
 
                                 <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" >
@@ -170,9 +164,7 @@ Created By: Travis Berthelot
                         //this.logUtil.putF(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, this.commonStrings.PROCESS)
 
                         <xsl:variable name="hasObjectGroup" >
-                            <xsl:for-each select="//objectsGroups" >
-                                <xsl:if test="name = $name" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsGroupsByName', $name)" >found</xsl:for-each>
                         </xsl:variable>
 
                         <xsl:if test="contains($hasObjectGroup, 'found')" >

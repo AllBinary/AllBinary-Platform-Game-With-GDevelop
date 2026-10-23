@@ -29,9 +29,7 @@ Created By: Travis Berthelot
                                 <xsl:variable name="paramFour" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /><xsl:if test="number(text()) = text()" >f</xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
                         <xsl:variable name="hasObject" >
-                            <xsl:for-each select="//objects" >
-                                <xsl:if test="name = $paramOne" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsByName', $paramOne)" >found</xsl:for-each>
                         </xsl:variable>
 
                             <xsl:variable name="hasObjectGroup" >

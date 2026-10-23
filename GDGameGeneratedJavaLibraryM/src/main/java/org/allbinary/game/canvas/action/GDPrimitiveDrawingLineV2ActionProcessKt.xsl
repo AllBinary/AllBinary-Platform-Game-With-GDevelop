@@ -57,9 +57,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="beforeSecondParam" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
 
                         <xsl:variable name="hasObject" >
-                            <xsl:for-each select="//objects" >
-                                <xsl:if test="name = $beforeSecondParam" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsByName', $beforeSecondParam)" >found</xsl:for-each>
                         </xsl:variable>
 
                             <xsl:variable name="hasObjectGroup" >

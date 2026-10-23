@@ -241,9 +241,7 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($hasGameLayer2, 'found')" >
 
                 <xsl:variable name="hasObjectGroup" >
-                    <xsl:for-each select="//objectsGroups" >
-                        <xsl:if test="name = $gameLayerName" >found</xsl:if>
-                    </xsl:for-each>
+                    <xsl:for-each select="key('objectsGroupsByName', $gameLayerName)" >found</xsl:for-each>
                 </xsl:variable>
 
                         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gameLayerName" /></xsl:variable>

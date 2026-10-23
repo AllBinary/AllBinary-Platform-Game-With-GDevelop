@@ -40,14 +40,10 @@ Created By: Travis Berthelot
                         <xsl:variable name="beforeFourthParam" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
 
                         <xsl:variable name="hasObject" >
-                            <xsl:for-each select="//objects" >
-                                <xsl:if test="name = $beforeFourthParam" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsByName', $beforeFourthParam)" >found</xsl:for-each>
                         </xsl:variable>
                         <xsl:variable name="hasObjectGroup" >
-                            <xsl:for-each select="//objectsGroups" >
-                                <xsl:if test="name = $beforeFourthParam" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsGroupsByName', $beforeFourthParam)" >found</xsl:for-each>
                         </xsl:variable>
 
                         <xsl:if test="contains($hasObject, 'found') or contains($hasObjectGroup, 'found')" >
@@ -73,14 +69,10 @@ Created By: Travis Berthelot
                         </xsl:variable>
 
                         <xsl:variable name="hasObject2" >
-                            <xsl:for-each select="//objects" >
-                                <xsl:if test="name = $firstOrBeforeFourthParam" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsByName', $firstOrBeforeFourthParam)" >found</xsl:for-each>
                         </xsl:variable>
                         <xsl:variable name="hasObjectGroup2" >
-                            <xsl:for-each select="//objectsGroups" >
-                                <xsl:if test="name = $firstOrBeforeFourthParam" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsGroupsByName', $firstOrBeforeFourthParam)" >found</xsl:for-each>
                         </xsl:variable>
                 
                     //BuiltinCommonInstructions::CompareNumbers - //CompareNumbers - //compareNumbersConditionGDNode - //Condition - GDNode

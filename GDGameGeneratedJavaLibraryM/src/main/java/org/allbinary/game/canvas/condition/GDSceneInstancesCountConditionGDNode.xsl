@@ -85,9 +85,7 @@ Created By: Travis Berthelot
                                             <xsl:value-of select="substring-before(text(), '.')" />
                                         </xsl:variable>
                                         <xsl:variable name="hasObject" >
-                                            <xsl:for-each select="//objects" >
-                                                <xsl:if test="name = $before" >found</xsl:if>
-                                            </xsl:for-each>
+                                            <xsl:for-each select="key('objectsByName', $before)" >found</xsl:for-each>
                                         </xsl:variable>
 
                                         <xsl:if test="$before != ''" >
@@ -229,9 +227,7 @@ Created By: Travis Berthelot
                                             <xsl:value-of select="substring-before(text(), '.')" />
                                         </xsl:variable>
                                         <xsl:variable name="hasObject" >
-                                            <xsl:for-each select="//objects" >
-                                                <xsl:if test="name = $before" >found</xsl:if>
-                                            </xsl:for-each>
+                                            <xsl:for-each select="key('objectsByName', $before)" >found</xsl:for-each>
                                         </xsl:variable>
 
                                         <xsl:if test="$before != ''" >

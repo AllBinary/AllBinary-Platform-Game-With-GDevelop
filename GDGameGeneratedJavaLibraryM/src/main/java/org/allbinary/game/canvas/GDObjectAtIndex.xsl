@@ -30,9 +30,8 @@ Created By: Travis Berthelot
                                         if(<xsl:value-of select="$name" />GDGameLayer2 != null) {
                                             //this.logUtil.put(new StringMaker().append(" GDGameLayer2 name: ").append(<xsl:value-of select="$name" />GDGameLayer2.getName()).append(" GD name: ").append(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>).toString(), this, "param");
                                             <xsl:variable name="hasObject" >
-                                                <xsl:for-each select="//objects" >
-                                                    <xsl:if test="$name = name" >found</xsl:if>
-                                                </xsl:for-each>
+<!--                                                <xsl:for-each select="//objects" ><xsl:if test="$name = name" >found</xsl:if></xsl:for-each>-->
+                                                <xsl:for-each select="key('objectsByName', $name)" >found</xsl:for-each>
                                             </xsl:variable>
                                             <xsl:variable name="NAME" >
                                                 <xsl:call-template name="upper-case" >

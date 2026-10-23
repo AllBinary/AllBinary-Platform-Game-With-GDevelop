@@ -41,9 +41,8 @@ Created By: Travis Berthelot
                 <xsl:text>&#10;</xsl:text>
 
                 <xsl:variable name="hasObjectGroup" >
-                    <xsl:for-each select="//objectsGroups" >
-                        <xsl:if test="name = $object" >found</xsl:if>
-                    </xsl:for-each>
+<!--                    <xsl:for-each select="//objectsGroups" ><xsl:if test="name = $object" >found</xsl:if></xsl:for-each>-->
+                    <xsl:for-each select="key('objectsGroupsByName', $object)" >found</xsl:for-each>
                 </xsl:variable>
 
 

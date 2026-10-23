@@ -58,20 +58,14 @@ Created By: Travis Berthelot
                         <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
                         <xsl:variable name="hasObjectGroup" >
-                            <xsl:for-each select="//objectsGroups" >
-                                <xsl:if test="name = $param1" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsGroupsByName', $param1)" >found</xsl:for-each>
                         </xsl:variable>
 
                         <xsl:variable name="hasObject3" >
-                            <xsl:for-each select="//objects" >
-                                <xsl:if test="name = $beforeSecondParam" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsByName', $beforeSecondParam)" >found</xsl:for-each>
                         </xsl:variable>
                         <xsl:variable name="hasObjectGroup3" >
-                            <xsl:for-each select="//objectsGroups" >
-                                <xsl:if test="name = $beforeSecondParam" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsGroupsByName', $beforeSecondParam)" >found</xsl:for-each>
                         </xsl:variable>
 
                         //param1=<xsl:value-of select="$param1" />

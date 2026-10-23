@@ -70,9 +70,8 @@ Created By: Travis Berthelot
                             <xsl:variable name="gameLayerName" ><xsl:value-of select="$name" /></xsl:variable>
 
                                 <xsl:variable name="hasObjectGroup" >
-                                    <xsl:for-each select="//objectsGroups" >
-                                        <xsl:if test="name = $gameLayerName" >found</xsl:if>
-                                    </xsl:for-each>
+<!--                                    <xsl:for-each select="//objectsGroups" ><xsl:if test="name = $gameLayerName" >found</xsl:if></xsl:for-each>-->
+                                    <xsl:for-each select="key('objectsGroupsByName', $gameLayerName)" >found</xsl:for-each>
                                 </xsl:variable>
 
                         <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:call-template name="addGlobalsForVariables" ><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if></xsl:for-each></xsl:variable>
@@ -80,14 +79,10 @@ Created By: Travis Berthelot
                         <xsl:variable name="beforeFourthParam" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
 
                         <xsl:variable name="hasObject" >
-                            <xsl:for-each select="//objects" >
-                                <xsl:if test="name = $beforeFourthParam" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsByName', $beforeFourthParam)" >found</xsl:for-each>
                         </xsl:variable>
                         <xsl:variable name="hasObjectGroup2" >
-                            <xsl:for-each select="//objectsGroups" >
-                                <xsl:if test="name = $beforeFourthParam" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsGroupsByName', $beforeFourthParam)" >found</xsl:for-each>
                         </xsl:variable>
 
                         <xsl:if test="contains($hasObject, 'found') or contains($hasObjectGroup2, 'found')" >
@@ -314,9 +309,7 @@ Created By: Travis Berthelot
                                             <xsl:value-of select="substring-before(text(), '.')" />
                                         </xsl:variable>
                                         <xsl:variable name="hasObject" >
-                                            <xsl:for-each select="//objects" >
-                                                <xsl:if test="name = $before" >found</xsl:if>
-                                            </xsl:for-each>
+                                            <xsl:for-each select="key('objectsByName', $before)" >found</xsl:for-each>
                                         </xsl:variable>
 
                                         <xsl:if test="$before != ''" >

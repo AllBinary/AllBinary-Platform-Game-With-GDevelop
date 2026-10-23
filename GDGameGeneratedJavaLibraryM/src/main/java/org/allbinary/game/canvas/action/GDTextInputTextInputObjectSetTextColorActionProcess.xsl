@@ -36,9 +36,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
                     <xsl:variable name="hasObjectGroup" >
-                        <xsl:for-each select="//objectsGroups" >
-                            <xsl:if test="name = $param" >found</xsl:if>
-                        </xsl:for-each>
+                        <xsl:for-each select="key('objectsGroupsByName', $param)" >found</xsl:for-each>
                     </xsl:variable>
 
                                     <xsl:variable name="variableName" ><xsl:for-each select="//variables" ><xsl:if test="contains($param2, name)" ><xsl:value-of select="name" /></xsl:if></xsl:for-each></xsl:variable>

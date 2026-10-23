@@ -29,9 +29,7 @@ Created By: Travis Berthelot
         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
 
         <xsl:variable name="hasObjectGroup" >
-            <xsl:for-each select="//objectsGroups" >
-                <xsl:if test="name = $name" >found</xsl:if>
-            </xsl:for-each>
+            <xsl:for-each select="key('objectsGroupsByName', $name)" >found</xsl:for-each>
         </xsl:variable>
 
         <xsl:variable name="params" ><xsl:for-each select="parameters" >//<xsl:value-of select="translate(translate(text(), '&#10;', ''), '\&#34;', '')" />,</xsl:for-each></xsl:variable>

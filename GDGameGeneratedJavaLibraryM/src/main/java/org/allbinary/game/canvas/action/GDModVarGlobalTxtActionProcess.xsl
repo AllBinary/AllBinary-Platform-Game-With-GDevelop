@@ -79,9 +79,7 @@ Created By: Travis Berthelot
                             //Found object in param 3
                             
                         <xsl:variable name="hasObjectGroup" >
-                            <xsl:for-each select="//objectsGroups" >
-                                <xsl:if test="name = $name" >found</xsl:if>
-                            </xsl:for-each>
+                            <xsl:for-each select="key('objectsGroupsByName', $name)" >found</xsl:for-each>
                         </xsl:variable>                        
                                        
                         <xsl:if test="not($name = 'gameTickTimeDelayHelper' or $name = number($name))" >
