@@ -58,6 +58,16 @@ public class GDTransformGenerator extends GDNameGenerator {
         this.write(this.gdXslTemplates.translate(xslPath, xslDocumentStr, placeholder, value, xmlDocumentStr), javaOutputFile);
     }
 
+    /**
+     * Reuses the compiled xsl from xslPath (see GDXslTemplates).
+     */
+    public void process(final String xslPath, final String xslDocumentStr, final String javaOutputFile, final SharedBytes sharedBytes) throws Exception {
+
+        final String xmlDocumentStr = this.gdData.getAsString(this.gdPaths.GAME_XML_PATH, sharedBytes);
+
+        this.write(this.gdXslTemplates.translate(xslPath, xslDocumentStr, xmlDocumentStr), javaOutputFile);
+    }
+
     private void write(String result, final String javaOutputFile) throws Exception {
 
         final String outputFile = this.gdPaths.getOutputPath(javaOutputFile);

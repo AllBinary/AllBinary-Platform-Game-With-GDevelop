@@ -39,7 +39,7 @@ public class GDSimpleTransformGenerator extends GDTransformGenerator {
         
         final String xslFileAsString = this.gdData.getAsString(this.xslFile, sharedBytes);
 
-        this.process(xslFileAsString, this.outputFile, sharedBytes);
+        this.process(this.xslFile, xslFileAsString, this.outputFile, sharedBytes);
         
     }
     

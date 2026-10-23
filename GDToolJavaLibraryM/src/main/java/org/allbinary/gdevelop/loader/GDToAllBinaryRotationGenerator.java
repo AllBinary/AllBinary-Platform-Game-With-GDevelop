@@ -5,12 +5,7 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import java.io.StringBufferInputStream;
-import javax.xml.transform.stream.StreamSource;
-
 import org.allbinary.data.CamelCaseUtil;
-import org.allbinary.data.tree.dom.BasicUriResolver;
-import org.allbinary.data.tree.dom.XslHelper;
 import org.allbinary.gdevelop.json.GDLayout;
 import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.string.CommonStrings;
@@ -31,7 +26,7 @@ public class GDToAllBinaryRotationGenerator
     protected final LogUtil logUtil = LogUtil.getInstance();
 
     private final CommonStrings commonStrings = CommonStrings.getInstance();
-    private final XslHelper xslHelper = XslHelper.getInstance();
+    private final GDXslTemplates gdXslTemplates = GDXslTemplates.getInstance();
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDPaths gdPaths = GDPaths.getInstance();
@@ -94,9 +89,7 @@ public class GDToAllBinaryRotationGenerator
 
             //logUtil.put(xmlDocumentStr, this, commonStrings.PROCESS);
             //this.bufferedWriterUtil.overwrite(MIDLET_XML, xmlDocumentStr);
-            String result = this.xslHelper.translate(new BasicUriResolver(),
-                    new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
-                    new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
+            String result = this.gdXslTemplates.translate(xslPathInputArray[index2], updatedXslDocumentStr, xmlDocumentStr);
 
             final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
             result = replaceLT.all(result);

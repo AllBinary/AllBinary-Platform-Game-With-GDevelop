@@ -5,11 +5,6 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import java.io.StringBufferInputStream;
-import javax.xml.transform.stream.StreamSource;
-
-import org.allbinary.data.tree.dom.BasicUriResolver;
-import org.allbinary.data.tree.dom.XslHelper;
 import org.allbinary.data.tree.dom.document.DomDocumentHelper;
 import org.allbinary.data.tree.dom.document.XmlDocumentHelper;
 import org.allbinary.logic.io.BufferedWriterUtil;
@@ -46,7 +41,6 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
     private final StreamUtil streamUtil = StreamUtil.getInstance();
 
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
-    private final XslHelper xslHelper = XslHelper.getInstance();
     private final GDXslTemplates gdXslTemplates = GDXslTemplates.getInstance();
     private final GDPaths gdPaths = GDPaths.getInstance();
     private final GDData gdData = GDData.getInstance();
@@ -147,10 +141,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
         final String updatedXslDocumentAsString = xslDocumentAsString0[index2];
 
-        String result = this.xslHelper.translate(new BasicUriResolver(),
-            new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
-            new StreamSource(new StringBufferInputStream(xmlStringArray0[index2])));
-        
+        String result = this.gdXslTemplates.translate(xslPathInputArray0[index2], updatedXslDocumentAsString, xmlStringArray0[index2]);
+
         stringMaker.delete(0, stringMaker.length());
         String fileName = fileName = this.gdPaths.getOutputPath(stringMaker.append(START0[index2]).append(END0[index2]).toString());
 
@@ -487,6 +479,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         for (int index = 0; index < xslTotal; index++) {
             xslDocumentAsString[index] = this.gdData.getAsString(xslPathInputArray[index], sharedBytes);
         }
+        this.gdXslTemplates.compile(xslPathInputArray, xslDocumentAsString);
 
         final String[] START = {
             this.GENERATED_START_WITH_PATH,
@@ -1033,6 +1026,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         for (int index = 0; index < xslTotal2; index++) {
             xslDocumentAsString2[index] = this.gdData.getAsString(xslPathInputArray2[index], sharedBytes);
         }
+        this.gdXslTemplates.compile(xslPathInputArray2, xslDocumentAsString2);
 
         //TWB - need to update to allow loading for every layout.
         String indexAsString;

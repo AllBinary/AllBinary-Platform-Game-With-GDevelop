@@ -5,11 +5,6 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import java.io.StringBufferInputStream;
-import javax.xml.transform.stream.StreamSource;
-
-import org.allbinary.data.tree.dom.BasicUriResolver;
-import org.allbinary.data.tree.dom.XslHelper;
 import org.allbinary.data.tree.dom.document.DomDocumentHelper;
 import org.allbinary.logic.string.tokens.Tokenizer;
 import org.allbinary.string.CommonSeps;
@@ -29,7 +24,7 @@ public class GDGenerateGDGameInfo
 
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final CommonSeps commonSeps = CommonSeps.getInstance();
-    private final XslHelper xslHelper = XslHelper.getInstance();
+    private final GDXslTemplates gdXslTemplates = GDXslTemplates.getInstance();
     private final GDPaths gdPaths = GDPaths.getInstance();
     private final GDData gdData = GDData.getInstance();
     
@@ -50,9 +45,7 @@ public class GDGenerateGDGameInfo
 
             final String xslAsString = this.gdData.getAsString(this.gdData.GD_GAME_INFO, sharedBytes);
 
-            final String result = this.xslHelper.translate(new BasicUriResolver(),
-                    new StreamSource(new StringBufferInputStream(xslAsString)),
-                    new StreamSource(new StringBufferInputStream(gameXmlAsString)));
+            final String result = this.gdXslTemplates.translate(this.gdData.GD_GAME_INFO, xslAsString, gameXmlAsString);
 
             final BasicArrayList resultPartList = new Tokenizer(this.commonSeps.SPACE).getTokensFromString(result, new BasicArrayListD());
 

@@ -9,9 +9,13 @@ package org.allbinary.gdevelop.loader;
 import java.io.ByteArrayOutputStream;
 import java.io.StringBufferInputStream;
 import java.util.Hashtable;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import javax.xml.transform.Templates;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
@@ -42,6 +46,7 @@ public class GDXslTemplates
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final XslHelper xslHelper = XslHelper.getInstance();
+    private final GDXslTemplatesCache gdXslTemplatesCache = GDXslTemplatesCache.getInstance();
 
     private final String[] PLACEHOLDER_ARRAY = {
         this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX,
@@ -126,6 +131,36 @@ public class GDXslTemplates
         return this.translate(xslPath, xslDocumentAsString, new String[0], new String[0], xmlDocumentAsString);
     }
 
+    /**
+     * Compiles the xsl in parallel before they are processed one at a time.
+     */
+    public void compile(final String[] xslPathArray, final String[] xslDocumentAsStringArray) throws Exception {
+
+        final int size = xslPathArray.length;
+        final ExecutorService executorService = Executors.newFixedThreadPool(Math.min(size, Runtime.getRuntime().availableProcessors()));
+        try {
+            final Future[] futureArray = new Future[size];
+            for (int index = 0; index < size; index++) {
+                final String xslPath = xslPathArray[index];
+                final String xslDocumentAsString = xslDocumentAsStringArray[index];
+                futureArray[index] = executorService.submit(new Callable() {
+                    public Object call() throws Exception {
+                        return getTemplates(xslPath, xslDocumentAsString);
+                    }
+                });
+            }
+            for (int index = 0; index < size; index++) {
+                try {
+                    futureArray[index].get();
+                } catch (ExecutionException e) {
+                    throw (Exception) e.getCause();
+                }
+            }
+        } finally {
+            executorService.shutdown();
+        }
+    }
+
     private Templates getTemplates(final String xslPath, final String xslDocumentAsString) throws Exception {
 
         TemplatesHolder templatesHolder;
@@ -145,10 +180,8 @@ public class GDXslTemplates
                     this.logUtil.putF(new StringMaker().append(this.NOT_PARAMETERIZED).append(xslPath).toString(), this, this.commonStrings.PROCESS);
                     templatesHolder.templates = null;
                 } else {
-                    final TransformerFactory transformerFactory = TransformerFactory.newInstance();
-                    transformerFactory.setURIResolver(new BasicUriResolver());
                     try {
-                        templatesHolder.templates = transformerFactory.newTemplates(new StreamSource(new StringBufferInputStream(parameterizedXslDocumentAsString)));
+                        templatesHolder.templates = this.gdXslTemplatesCache.newTemplates(parameterizedXslDocumentAsString);
                         this.logUtil.putF(new StringMaker().append(this.COMPILED).append(xslPath).toString(), this, this.commonStrings.PROCESS);
                     } catch (Exception e) {
                         this.logUtil.put(new StringMaker().append(this.NOT_PARAMETERIZED).append(xslPath).toString(), this, this.commonStrings.PROCESS, e);
