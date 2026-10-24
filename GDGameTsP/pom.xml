@@ -21,7 +21,6 @@
         <yarnVersion>v1.22.22</yarnVersion>
     </properties>
 
-
     <modules>
 
         <!--

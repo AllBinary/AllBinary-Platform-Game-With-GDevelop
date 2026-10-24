@@ -45,10 +45,7 @@
         <module>../resource/GDGameOpenGLTwoDJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>
 <!--        <module>../resource/GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>-->
         <module>../resource/GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>
-        
-<!--        <module>../resource/GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>-->
-<!--        <module>../resource/GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryKtM</module>-->
-        
+                
         <module>../platform/GDGamePlatformResourceJavaLibraryKtM</module>
         <module>../platform/j2se/GDGamePCClientInfoJavaLibraryKtM</module>
         <module>../platform/j2me/GDGameJ2MEJavaLibraryKtM</module>

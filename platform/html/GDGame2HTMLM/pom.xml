@@ -387,6 +387,7 @@
                             <!--
                             <outputDirectory>${project.build.directory}/sources</outputDirectory>
                             -->
+                            <includes>**/*.java</includes>
                         </configuration>
                     </execution>
                 </executions>

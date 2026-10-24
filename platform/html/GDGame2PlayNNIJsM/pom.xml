@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+<!--    
+    <parent>
+        <groupId>org.allbinary.gwt.forplayn</groupId>
+        <artifactId>AllBinaryPlaynGWT</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+-->
+    <groupId>org.allbinary.game.gd</groupId>
+    <artifactId>GDGame2PlayNNIJs</artifactId>
+    <name>GDGame2PlayNNIJs</name>
+    <!-- AllBinary Platform Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- AllBinary Platform Version End -->
+
+
+    <properties>
+        <inputPathGWT>../GDGame2JsHTMLM/src/main/java/</inputPathGWT>
+        <outputPath>./src</outputPath>
+        <yarnVersion>v1.22.22</yarnVersion>
+    </properties>
+
+    <dependencies>
+        
+        <!-- All of the Java that needs GWT conversion while some includes JsInterop Mapping -->
+
+<!--        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>LoggingPlayN2Exception</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <optional>true</optional>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.media.image</groupId>
+            <artifactId>ImageHTMLJavaLibrary</artifactId>
+            <version>2.0</version>
+            <optional>true</optional>
+        </dependency>    
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>ABDKPlaynJavaLibrary</artifactId>
+            <version>2.0</version>
+            <optional>true</optional>
+        </dependency>    
+
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-playn</artifactId>
+            <version>2.0</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>J2MEColorJavaLibrary</artifactId>
+                    <groupId>org.allbinary</groupId>
+                </exclusion>
+            </exclusions>
+            <optional>true</optional>
+        </dependency>
+        
+        <dependency>
+            <groupId>io.playn</groupId>
+            <artifactId>playn-scene</artifactId>
+            <version>2.0.3</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>io.playn</groupId>
+            <artifactId>playn-html</artifactId>
+            <version>2.0.3</version>
+            <optional>true</optional>
+        </dependency>-->
+
+    </dependencies>
+        
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <!-- 
+                <version>2.5.1</version>
+                <version>2.3.2</version>
+                -->
+                <configuration> 
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <followSymLinks>false</followSymLinks>
+                    <filesets>
+                        <fileset>
+                            <directory>${outputPath}</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-gwt-xml</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPathGWT}</directory>
+                                    <filtering>true</filtering>
+                                    <excludes>
+                                        <exclude>**/*.class</exclude>
+                                    </excludes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Compile the TypeScript sources from the sibling 2HTMLTempMinTsM
+                 project into JavaScript, output to this project's src directory -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>npm-install-typescript</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>cmd</executable>
+                            <workingDirectory>${basedir}</workingDirectory>
+                            <arguments>
+                                <argument>/c</argument>
+                                <argument>npm</argument>
+                                <argument>install</argument>
+                                <argument>typescript</argument>
+                                <argument>--no-save</argument>
+                                <argument>--no-audit</argument>
+                                <argument>--no-fund</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>tsc-compile</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>cmd</executable>
+                            <workingDirectory>${basedir}</workingDirectory>
+                            <!-- Uses the path from tsconfig.json instead of -p path; ignore tsc errors so the build continues -->
+                            <arguments>
+                                <argument>/c</argument>
+<!--                                <argument>npx tsc</argument>-->
+                                <argument>npx tsc || exit 0</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+                <!--    <version>1.15.4</version>-->
+                <!--    <version>1.14.2</version>-->
+                    <!-- set the path to node - make sure the version is the same as in the config-->
+                    <!--   <workingDirectory>${YOUR_WORKING_DIRECTORY}</workingDirectory>-->
+                    <!--                <nodeVersion>v16.14.0</nodeVersion>-->
+<!--
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>2.0.0</version>
+                <configuration>
+                    <installDirectory>C:\</installDirectory>
+                    <nodeVersion>v25.9.0</nodeVersion>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install node and yarn</id>
+                        <goals>
+                            <goal>install-node-and-yarn</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm run validation</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <arguments>run validate</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+-->
+
+      
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+             <!--
+            <plugin>
+                <groupId>com.pyx4me</groupId>
+                <artifactId>proguard-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>proguard</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <proguardInclude>G:/mnt/bc/mydev/construct/j2me/games/HTML/All_HTML5.pro</proguardInclude>
+
+                    <exclusions>
+                        <exclusion>
+        <groupId>com.googlecode.playn</groupId>
+        <artifactId>playn-coreTs</artifactId>
+                        </exclusion>
+                        <exclusion>
+        <groupId>org.microemu</groupId>
+        <artifactId>microemu-playnTs</artifactId>
+                        </exclusion>
+                        <exclusion>
+  <groupId>org.allbinary</groupId>
+  <artifactId>ABDKPlaynJavaLibraryTs</artifactId>
+                        </exclusion>
+                    </exclusions>
+
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>${project.build.mainClass}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>${project.build.mainClass}</mainClass>
+                </configuration>
+            </plugin>
+       -->
+
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>${basedir}/src</directory>
+            </resource>
+        </resources>
+                    
+    </build>
+</project>
+

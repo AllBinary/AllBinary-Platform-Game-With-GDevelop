@@ -887,3 +887,4 @@ AppShaderResources.xml
 **/org/allbinary/game/gd/resource/GDGameAndroidEarlyResourceInitialization.exs
 **/org/allbinary/logic/system/PlatformAssetManager.exs
 
+non_gwt_javascript.js

@@ -19,10 +19,6 @@
     <!-- Game Version Start -->
     <name>GDGame2PlayNNI</name>
 
-    <!-- 
-    playn.java.MiniSpaceWarVectorJ2SE
-    playn.core.MiniSpaceWarVectorGame
-    -->
     <properties>
         <exec.mainClass>playn.java.GDGameJ2SE</exec.mainClass>
         

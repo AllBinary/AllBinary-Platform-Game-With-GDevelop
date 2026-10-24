@@ -172,7 +172,7 @@
                 </executions>
             </plugin>
 
-            <plugin>
+<!--            <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
                     <execution>
@@ -187,7 +187,7 @@
                     </descriptors>
 
                 </configuration>
-            </plugin>
+            </plugin>-->
         </plugins>
 
     </build>
