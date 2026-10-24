@@ -216,8 +216,8 @@
         <!-- Dependencies that are not in Temp that are needed and connected to jsinterop - END -->
         
         <dependency>
-            <groupId>org.allbinary.game.minispacewars</groupId>
-            <artifactId>MiniSpaceWarMinimal2ForJsPlayN</artifactId>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGame2ForJsPlayN</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
