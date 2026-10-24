@@ -1,4 +1,4 @@
-META-INF
+**/META-INF/*
 node_modules
 gwt-tmp-dir
 **/app/release/
@@ -7,6 +7,7 @@ gd_xsl.7z
 .claude
 *.xml
 !pom.xml
+!context.xml
 *.txt
 *.old
 *.bak
