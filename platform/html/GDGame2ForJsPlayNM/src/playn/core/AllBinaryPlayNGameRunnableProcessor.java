@@ -41,14 +41,14 @@ public class AllBinaryPlayNGameRunnableProcessor extends Processor {
     private final BasicArrayList list;
     private final AllBinaryPlayNGame initInterface;
     
-    public final GDGameProcessor miniSpaceWarProcessor;
+    public final GDGameProcessor gdGameProcessor;
 
-    public AllBinaryPlayNGameRunnableProcessor(final HtmlPlatform platform, final GDGameProcessor miniSpaceWarProcessor, final BasicArrayList list)
+    public AllBinaryPlayNGameRunnableProcessor(final HtmlPlatform platform, final GDGameProcessor gdGameProcessor, final BasicArrayList list)
     {
         this.logUtil.putF(this.toString() + ":AllBinaryPlayNGameRunnableProcessor", this, this.commonStrings.CONSTRUCTOR);
         this.platform = platform;
         this.list = list;
-        this.miniSpaceWarProcessor = miniSpaceWarProcessor;
+        this.gdGameProcessor = gdGameProcessor;
         this.initInterface = new AllBinaryPlayNGame(this.platform, new GDGameMidletFactory(), this, true);
         this.initInterface.updateRate = this.initInterface.waitFrameRate;
     }
@@ -95,8 +95,8 @@ public class AllBinaryPlayNGameRunnableProcessor extends Processor {
         final Object gameRunnable = this.createGameRunnable(this.list);
         this.initInterface.setUsedRunnable(gameRunnable);
         this.logUtil.putF(this.commonStrings.INIT + this.list.size(), this, this.commonStrings.PROCESS);
-        this.miniSpaceWarProcessor.setInitInterface(this.initInterface);
-        this.initInterface.setLoadGameRunnableProcessor(this.miniSpaceWarProcessor);
+        this.gdGameProcessor.setInitInterface(this.initInterface);
+        this.initInterface.setLoadGameRunnableProcessor(this.gdGameProcessor);
     }
 
     private native boolean isDeviceFactoryLoaded()/*-{
