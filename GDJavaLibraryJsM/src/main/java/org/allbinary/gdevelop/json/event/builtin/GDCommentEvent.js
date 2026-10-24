@@ -7,6 +7,9 @@
 import { GDProjectStrings } from '../../../../../../org/allbinary/gdevelop/json/GDProjectStrings.js';
 //not GWT import const GDProjectStrings
 import { GDEvent } from '../../../../../../org/allbinary/gdevelop/json/event/GDEvent.js';
+//not GWT import const GDEvent
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
 //not GWT import const JSONObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 export class GDCommentEvent extends GDEvent {
@@ -28,8 +31,7 @@ export class GDCommentEvent extends GDEvent {
             this.comment2 = jsonObject.getString(gdProjectStrings.COMMENT2);
         }
         else {
-            this.comment2 =
-                null;
+            this.comment2 = StringUtil.getInstance().NULL_STRING;
         }
     }
 }

@@ -5,10 +5,15 @@
 */
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../../../java/lang/Object.js';
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
 //Current folder imports from return types, extended types, and scope (deduplicated)
 export class GDParameterMetadata extends Object {
     constructor(type, supplementaryInformation, optional, description, codeOnly) {
         super();
+        this.longDescription = StringUtil.getInstance().EMPTY_STRING;
+        this.defaultValue = StringUtil.getInstance().EMPTY_STRING;
+        this.name = StringUtil.getInstance().EMPTY_STRING;
         this.type = type;
         this.supplementaryInformation = supplementaryInformation;
         this.optional = optional;

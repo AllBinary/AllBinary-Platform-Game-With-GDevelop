@@ -6,6 +6,9 @@
 
             import { Exception } from 'java/lang/Exception.js';
         
+import { GDGameSoftwareInfo } from 'org/allbinary/game/canvas/GDGameSoftwareInfo.js';
+//not GWT import const GDGameSoftwareInfo
+
 import { GameConfigurationCentral } from 'org/allbinary/game/configuration/GameConfigurationCentral.js';
 //not GWT import const GameConfigurationCentral
 
@@ -45,6 +48,9 @@ const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 import { SmallIntegerSingletonFactory } from 'org/allbinary/logic/math/SmallIntegerSingletonFactory.js';
 //not GWT import const SmallIntegerSingletonFactory
 
+import { GDGameClientInformationInterfaceFactory } from 'org/allbinary/logic/system/security/licensing/GDGameClientInformationInterfaceFactory.js';
+//not GWT import const GDGameClientInformationInterfaceFactory
+
 
 
 
@@ -63,15 +69,9 @@ import { SmallIntegerSingletonFactory } from 'org/allbinary/logic/math/SmallInte
 
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
-        import { GDGameClientInformationInterfaceFactory } from './GDGameClientInformationInterfaceFactory.js';
-//not GWT import - same folder const GDGameClientInformationInterfaceFactory
-import { GDGameSoftwareInfo } from './GDGameSoftwareInfo.js';
-//not GWT import - same folder const GDGameSoftwareInfo
-
+        
 export class GDGameMIDlet extends org.allbinary.game.gd.GDGameMIDlet {
         
-
-    readonly logUtil: LogUtil = LogUtil.getInstance()!;
 
     private motionRecognizer: AllMotionRecognizer = new AllMotionRecognizer();
 
@@ -81,7 +81,7 @@ public constructor (){
 
                             //For kotlin this is before the body of the constructor.
                     
-GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION= GDGameClientInformationInterfaceFactory.getInstance();
+GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance()!.getInstance());
     
 
     var motionGesturesHandler: BasicMotionGesturesHandler = motionRecognizer!.getMotionGestureRecognizer()!.getMotionGesturesHandler()!;;

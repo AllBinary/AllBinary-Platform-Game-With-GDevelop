@@ -1,5 +1,6 @@
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../../java/lang/Object.js';
+import { RuntimeException } from '../../../../../java/lang/RuntimeException.js';
 //not GWT import - same folder const GDGameLayerItemStateListener
 export class GDForm extends Object {
     constructor() {
@@ -38,8 +39,7 @@ export class GDForm extends Object {
     deleteAll() {
     }
     get(itemNum) {
-        //if statement needs to be on the same line and ternary does not work the same way.
-        return null;
+        throw new RuntimeException();
     }
     getHeight() {
         //if statement needs to be on the same line and ternary does not work the same way.

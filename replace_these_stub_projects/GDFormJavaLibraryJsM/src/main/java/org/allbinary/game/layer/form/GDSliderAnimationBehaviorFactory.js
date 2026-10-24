@@ -20,7 +20,7 @@ import { GDSliderAnimationBehavior } from './GDSliderAnimationBehavior.js';
 export class GDSliderAnimationBehaviorFactory extends GDAnimationBehaviorBaseFactory {
     static getInstance() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return instance;
+        return GDSliderAnimationBehaviorFactory.instance;
     }
     create() {
         //if statement needs to be on the same line and ternary does not work the same way.

@@ -6,7 +6,7 @@
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../../../java/lang/Object.js';
 import { GDPlatformExtension } from '../../../../../../org/allbinary/gdevelop/extensions/GDPlatformExtension.js';
-//not GWT import const GDBehaviorsSharedData
+//not GWT import const GDProjectBehaviorsSharedData
 //not plain js import { CommonSeps } 
 const CommonSeps = globalThis.org.allbinary.string.CommonSeps;
 //not plain js import { ABHashMap } 
@@ -38,7 +38,7 @@ export class GDBehaviorMetadata extends Object {
         this.nameToExpressionMetadataMap = new ABHashMap();
         this.nameToStrExpressionMetadataMap = new ABHashMap();
         this.extensionNamespace = extensionNamespace;
-        this.name = name;
+        this.aname = name;
         this.fullname = fullname;
         this.defaultName = defaultName;
         this.description = description;

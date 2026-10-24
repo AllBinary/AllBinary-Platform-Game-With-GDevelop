@@ -44,7 +44,7 @@ export class AppShaderResources
          {
         
 
-    static readonly instance: AppShaderResources = new AppShaderResources();
+    private static readonly instance: AppShaderResources = new AppShaderResources();
 
     public static getInstance(): AppShaderResources{
 

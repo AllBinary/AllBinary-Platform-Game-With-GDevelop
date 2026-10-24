@@ -22,17 +22,11 @@
 
             import { Object } from '../../java/lang/Object.js';
         
-import { EntryPoint } from '../../com/google/gwt/core/client/EntryPoint.js';
-//not GWT import const EntryPoint
+//not plain js import { EntryPoint } 
+const EntryPoint = globalThis.com.google.gwt.core.client.EntryPoint;
 
-import { GWT } from '../../com/google/gwt/core/client/GWT.js';
-//not GWT import const GWT
-
-import { AllBinaryPlayNGame } from '../../org/allbinary/playn/AllBinaryPlayNGame.js';
-//not GWT import const AllBinaryPlayNGame
-
-import { AllBinaryPlayNGameRunnable } from '../../org/allbinary/playn/AllBinaryPlayNGameRunnable.js';
-//not GWT import const AllBinaryPlayNGameRunnable
+//not plain js import { GWT } 
+const GWT = globalThis.com.google.gwt.core.client.GWT;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
@@ -40,14 +34,14 @@ const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 
-//not plain js import { GDGameMidletFactory } 
-const GDGameMidletFactory = globalThis.playn.core.GDGameMidletFactory;
-
-//not plain js import { PlayN } 
-const PlayN = globalThis.playn.core.PlayN;
+//not plain js import { AllBinaryPlayNGameRunnableProcessor } 
+const AllBinaryPlayNGameRunnableProcessor = globalThis.playn.core.AllBinaryPlayNGameRunnableProcessor;
 
 //not plain js import { GDGameProcessor } 
 const GDGameProcessor = globalThis.playn.core.GDGameProcessor;
+
+//not plain js import { PlayN } 
+const PlayN = globalThis.playn.core.PlayN;
 
 
 
@@ -95,12 +89,15 @@ platform.assets()!.setPathPrefix(GWT.getModuleBaseForStaticFiles() +"res/");
 
     var list: BasicArrayList = new BasicArrayListD();;
     
-list.add(new GDGameProcessor(list));
+
+    var gdGameProcessor: GDGameProcessor = new GDGameProcessor(list);;
     
 
-    var gameRunnable: AllBinaryPlayNGameRunnable = new AllBinaryPlayNGameRunnable(list);;
+    var allBinaryPlayNGameRunnableProcessor: AllBinaryPlayNGameRunnableProcessor = new AllBinaryPlayNGameRunnableProcessor(platform, gdGameProcessor, list);;
     
-new AllBinaryPlayNGame(platform, new GDGameMidletFactory(), gameRunnable, false);
+list.add(allBinaryPlayNGameRunnableProcessor);
+    
+list.add(gdGameProcessor);
     
 platform.start();
     

@@ -53,7 +53,7 @@ export class GDGameMIDletFactory extends MidletFactoryInterface {
                                     {
                                     GDGameMIDletFactory.SINGLETON= new GDGameMIDlet(GDGameClientInformationInterfaceFactory.getFactoryInstance());
     
-GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION= GDGameClientInformationInterfaceFactory.getFactoryInstance()!.getInstance();
+GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance()!.getInstance());
     
 
                                     }

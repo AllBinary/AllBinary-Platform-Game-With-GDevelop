@@ -16,6 +16,9 @@ import { GDProjectStrings } from '../../../../../../org/allbinary/gdevelop/json/
 import { GDEvent } from '../../../../../../org/allbinary/gdevelop/json/event/GDEvent.js';
 //not GWT import const GDEvent
 
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+
 import { JSONObject } from '../../../../../../org/json/JSONObject.js';
 //not GWT import const JSONObject
 
@@ -93,9 +96,7 @@ this.comment1= jsonObject!.getString(gdProjectStrings!.COMMENT);
                                     }
                                 
                         else {
-                            this.comment2= 
-                                        null
-                                    ;
+                            this.comment2= StringUtil.getInstance()!.NULL_STRING;
     
 
                         }

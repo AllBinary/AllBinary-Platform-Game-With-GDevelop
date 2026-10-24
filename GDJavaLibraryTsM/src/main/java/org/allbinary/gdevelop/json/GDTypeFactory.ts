@@ -12,6 +12,9 @@
 
             import { Object } from '../../../../java/lang/Object.js';
         
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+
 
 
 
@@ -128,7 +131,7 @@ export class GDTypeFactory
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return null;
+                        return StringUtil.getInstance()!.NULL_STRING;
     
 }
 

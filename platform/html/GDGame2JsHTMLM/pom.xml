@@ -84,24 +84,17 @@
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>CommonJavaLibraryJs</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
                     <artifactId>BasicMathLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
                     <artifactId>J2MEColorJavaLibraryJs</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
-                </exclusion>
-                <exclusion>
+<!--                This is included 2 times - Once for microemu for playn and Once as a javascript module.-->
+<!--                <exclusion>
                     <groupId>org.allbinary</groupId>
                     <artifactId>J2MEWindowingJavaLibraryJs</artifactId>
-                </exclusion>
+                </exclusion>-->
             </exclusions>
         </dependency>
         
@@ -132,18 +125,6 @@
                     <groupId>org.allbinary</groupId>
                     <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
-                    <artifactId>CommonJavaLibraryJs</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
-                    <artifactId>BasicMathLibraryJs</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
-                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -169,10 +150,6 @@
                     <groupId>org.allbinary</groupId>
                     <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
-                </exclusion>
             </exclusions>
         </dependency>
 
@@ -193,15 +170,7 @@
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>BasicMathLibraryJs</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
                     <artifactId>J2MEColorJavaLibraryJs</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -213,10 +182,6 @@
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
             <exclusions>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
-                </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
                     <artifactId>J2MEUtilJavaLibraryJs</artifactId>
@@ -245,10 +210,6 @@
                 <exclusion>
                     <groupId>org.allbinary</groupId>
                     <artifactId>J2MEColorJavaLibraryJs</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -293,10 +254,6 @@
                 <exclusion>
                     <groupId>org.allbinary</groupId>
                     <artifactId>BaseMathLibraryJs</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
-                    <artifactId>BasicMathLibraryJs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>

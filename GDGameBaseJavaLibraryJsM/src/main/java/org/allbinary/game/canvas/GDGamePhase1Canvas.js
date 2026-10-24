@@ -101,7 +101,7 @@ import { OpenGLFeatureFactory } from '../../../../org/allbinary/graphics/opengle
 import { NullPaintable } from '../../../../org/allbinary/graphics/paint/NullPaintable.js';
 //not GWT import const InitUpdatePaintable
 import { NullInitUpdatePaintable } from '../../../../org/allbinary/graphics/paint/NullInitUpdatePaintable.js';
-//not GWT import const NullPaintable
+//not GWT import const NullInitUpdatePaintable
 import { Paintable } from '../../../../org/allbinary/graphics/paint/Paintable.js';
 //not GWT import const ImageCache
 import { ImageCacheFactory } from '../../../../org/allbinary/image/ImageCacheFactory.js';

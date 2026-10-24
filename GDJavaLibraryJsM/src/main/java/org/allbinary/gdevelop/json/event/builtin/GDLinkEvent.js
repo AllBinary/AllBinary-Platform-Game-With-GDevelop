@@ -13,6 +13,8 @@ import { GDEvent } from '../../../../../../org/allbinary/gdevelop/json/event/GDE
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
 //not GWT import const JSONObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDIncludeConfigFactory } from './GDIncludeConfigFactory.js';
@@ -31,15 +33,13 @@ export class GDLinkEvent extends GDEvent {
         this.includeConfig = includeJSONObject.getInt(gdProjectStrings.INCLUDE_CONFIG);
         this.target = jsonObject.getString(gdProjectStrings.TARGET);
         if (this.includeConfig == includeConfigFactory.INCLUDE_ALL) {
-            this.eventsGroupName =
-                null;
+            this.eventsGroupName = StringUtil.getInstance().NULL_STRING;
         }
         else if (this.includeConfig == includeConfigFactory.INCLUDE_EVENTS_GROUP) {
             this.eventsGroupName = includeJSONObject.getString(gdProjectStrings.EVENTS_GROUP);
         }
         else {
-            this.eventsGroupName =
-                null;
+            this.eventsGroupName = StringUtil.getInstance().NULL_STRING;
             var commonStrings = CommonStrings.getInstance();
             ;
             this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, new Exception());

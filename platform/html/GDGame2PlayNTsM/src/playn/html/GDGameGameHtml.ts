@@ -22,11 +22,11 @@
 
             import { Object } from '../../java/lang/Object.js';
         
-import { EntryPoint } from '../../com/google/gwt/core/client/EntryPoint.js';
-//not GWT import const EntryPoint
+//not plain js import { EntryPoint } 
+const EntryPoint = globalThis.com.google.gwt.core.client.EntryPoint;
 
-import { GWT } from '../../com/google/gwt/core/client/GWT.js';
-//not GWT import const GWT
+//not plain js import { GWT } 
+const GWT = globalThis.com.google.gwt.core.client.GWT;
 
 import { AllBinaryPlayNGame } from '../../org/allbinary/playn/AllBinaryPlayNGame.js';
 //not GWT import const AllBinaryPlayNGame

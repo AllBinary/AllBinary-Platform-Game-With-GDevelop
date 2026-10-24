@@ -24,6 +24,9 @@ const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+
 import { JSONObject } from '../../../../../../org/json/JSONObject.js';
 //not GWT import const JSONObject
 
@@ -88,9 +91,7 @@ this.target= jsonObject!.getString(gdProjectStrings!.TARGET);
                         if(this.includeConfig == includeConfigFactory!.INCLUDE_ALL)
                         
                                     {
-                                    this.eventsGroupName= 
-                                        null
-                                    ;
+                                    this.eventsGroupName= StringUtil.getInstance()!.NULL_STRING;
     
 
                                     }
@@ -105,9 +106,7 @@ this.target= jsonObject!.getString(gdProjectStrings!.TARGET);
                                     }
                                 
                         else {
-                            this.eventsGroupName= 
-                                        null
-                                    ;
+                            this.eventsGroupName= StringUtil.getInstance()!.NULL_STRING;
     
 
     var commonStrings: CommonStrings = CommonStrings.getInstance()!;;

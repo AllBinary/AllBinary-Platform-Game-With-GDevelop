@@ -259,9 +259,7 @@ size= eventJSONArray!.length();
 event= eventFactory!.create(eventJSONArray!.getJSONObject(index));
     
 
-                        if(event != 
-                                    null
-                                )
+                        if(event != GDEvent.NULL_GDEVENT)
                         
                                     {
                                     this.eventList!.add(event);

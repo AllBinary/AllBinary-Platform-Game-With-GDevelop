@@ -8,6 +8,8 @@
         
             import { Exception } from '../../../../../java/lang/Exception.js';
         
+            import { RuntimeException } from '../../../../../java/lang/RuntimeException.js';
+        
             import { Integer } from '../../../../../java/lang/Integer.js';
         
 import { DownKeyEventListenerInterface } from '../../../../../org/allbinary/game/input/event/DownKeyEventListenerInterface.js';
@@ -130,9 +132,8 @@ public constructor (){
 
 
 
-                        //if statement needs to be on the same line and ternary does not work the same way.
-                        return null;
-    
+                            throw new RuntimeException();
+                    
 }
 
 

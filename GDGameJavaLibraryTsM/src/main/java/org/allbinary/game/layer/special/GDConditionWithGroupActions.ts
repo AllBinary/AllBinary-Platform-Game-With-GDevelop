@@ -56,6 +56,8 @@ export class GDConditionWithGroupActions
          {
         
 
+    public static readonly NULL_GD_CONDITION_WITH_GROUP_ACTIONS: GDConditionWithGroupActions = new GDConditionWithGroupActions();
+
     public readonly groupWithActionsList: BasicArrayList = new BasicArrayListD();
 
     public readonly actionForGroupsList: BasicArrayList = new BasicArrayListD();

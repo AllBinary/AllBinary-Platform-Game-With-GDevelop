@@ -82,7 +82,7 @@ export class DestroyOutsideBehavior extends GDBehavior {
                                     }
                                 
 
-                        if(gdObject!.x > this.SceneWindowWidth() +gdObject!.Width(graphics))
+                        if(gdObject!.xP > this.SceneWindowWidth() +gdObject!.Width(graphics))
                         
                                     {
                                     
@@ -95,7 +95,7 @@ export class DestroyOutsideBehavior extends GDBehavior {
                                     }
                                 
 
-                        if(gdObject!.y > this.SceneWindowHeight() +gdObject!.Width(graphics))
+                        if(gdObject!.yP > this.SceneWindowHeight() +gdObject!.Width(graphics))
                         
                                     {
                                     
@@ -108,7 +108,7 @@ export class DestroyOutsideBehavior extends GDBehavior {
                                     }
                                 
 
-                        if(gdObject!.y <  -gdObject!.Width(graphics))
+                        if(gdObject!.yP <  -gdObject!.Width(graphics))
                         
                                     {
                                     
@@ -121,7 +121,7 @@ export class DestroyOutsideBehavior extends GDBehavior {
                                     }
                                 
 
-                        if(gdObject!.x <  -gdObject!.Height(graphics))
+                        if(gdObject!.xP <  -gdObject!.Height(graphics))
                         
                                     {
                                     

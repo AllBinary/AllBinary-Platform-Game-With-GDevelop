@@ -13,16 +13,20 @@
 */
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../java/lang/Object.js';
+import { Integer } from '../../../../java/lang/Integer.js';
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 //Current folder imports from return types, extended types, and scope (deduplicated)
+import { GDNode } from './GDNode.js';
+//not GWT import - same folder const GDNode
 import { GDNodes } from './GDNodes.js';
 //not GWT import - same folder const GDNodes
 export class GDNodeUtil extends Object {
     constructor() {
         super(...arguments);
+        this.NULL_GDNODE = new GDNode(Integer.MIN_VALUE);
         this.gdNodesList = new BasicArrayListD();
     }
     static getInstance() {

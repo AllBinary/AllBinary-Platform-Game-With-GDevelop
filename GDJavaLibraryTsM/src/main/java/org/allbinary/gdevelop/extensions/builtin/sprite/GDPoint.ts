@@ -49,7 +49,7 @@ export class GDPoint
 
     public readonly name: string;
 
-    public readonly automatic: boolean= false;
+    public readonly automatic: boolean;
 
     public readonly x: number;
 
@@ -64,20 +64,19 @@ public constructor (jsonObject: JSONObject){
 this.name= jsonObject!.getString(projectStrings!.NAME);
     
 
+    var automatic: boolean = false;;
+    
+
                         if(jsonObject!.has(projectStrings!.AUTOMATIC))
                         
                                     {
-                                    this.automatic= jsonObject!.getBoolean(projectStrings!.AUTOMATIC);
+                                    automatic= jsonObject!.getBoolean(projectStrings!.AUTOMATIC);
     
 
                                     }
                                 
-                        else {
-                            this.automatic= false;
+this.automatic= automatic;
     
-
-                        }
-                            
 this.x= jsonObject!.getInt(projectStrings!.X);
     
 this.y= jsonObject!.getInt(projectStrings!.Y);

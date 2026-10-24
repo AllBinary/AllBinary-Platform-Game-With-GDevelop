@@ -91,11 +91,9 @@ import { GDGameSoundsFactory } from 'org/allbinary/media/audio/GDGameSoundsFacto
 export class GDGameMIDlet extends org.allbinary.game.GDGameMIDlet {
         
 
-    readonly logUtil: LogUtil = LogUtil.getInstance()!;
-
     private readonly DEVICE_ID: number = 0;
 
-    private motionRecognizer: AllMotionRecognizer = new AllMotionRecognizer();
+    private readonly motionRecognizer: AllMotionRecognizer = new AllMotionRecognizer();
 
 public constructor (){
             super(GDGameClientInformationInterfaceFactory.getFactoryInstance());
@@ -103,7 +101,7 @@ public constructor (){
 
                             //For kotlin this is before the body of the constructor.
                     
-GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION= GDGameClientInformationInterfaceFactory.getFactoryInstance()!.getInstance();
+GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance()!.getInstance());
     
 
     var motionGesturesHandler: BasicMotionGesturesHandler = motionRecognizer!.getMotionGestureRecognizer()!.getMotionGesturesHandler()!;;

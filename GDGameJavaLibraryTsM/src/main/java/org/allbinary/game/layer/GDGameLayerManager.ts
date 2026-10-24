@@ -29,9 +29,6 @@ import { BasicColor } from '../../../../org/allbinary/graphics/color/BasicColor.
 import { AllBinaryLayer } from '../../../../org/allbinary/layer/AllBinaryLayer.js';
 //not GWT import const AllBinaryLayer
 
-//not plain js import { LogUtil } 
-const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
-
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
 
@@ -72,8 +69,6 @@ export class GDGameLayerManager extends AllBinaryGameLayerManager implements Geo
         
 
     public static MAX_LEVEL: number = 7;
-
-    readonly logUtil: LogUtil = LogUtil.getInstance()!;
 
     private geographicMapInterfaceArray: BasicGeographicMap[] = BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY;
 

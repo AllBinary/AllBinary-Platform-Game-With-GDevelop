@@ -26,6 +26,9 @@ import { CollidableBaseBehavior } from '../../../../../org/allbinary/game/collis
 import { CollidableInterfaceCompositeInterface } from '../../../../../org/allbinary/game/collision/CollidableInterfaceCompositeInterface.js';
 //not GWT import const CollidableInterfaceCompositeInterface
 
+import { Group } from '../../../../../org/allbinary/game/identification/Group.js';
+//not GWT import const Group
+
 import { GroupInterface } from '../../../../../org/allbinary/game/identification/GroupInterface.js';
 //not GWT import const GroupInterface
 
@@ -89,9 +92,10 @@ this.conditionWIthGroupActions= collidableBehavior;
 
     public isCollision(ownerLayer: CollidableCompositeLayer, collisionLayer: CollidableCompositeLayer): boolean{
 
-                        if(getCollidableInferface = collisionLayer!.getCollidableInferface()getCollidableInferface as GDWithAllBinaryCollidableBehavior
-getCollidableInferface.
-                    conditionWIthGroupActions!.groupWithActionsList!.size() > 0)
+    var gdWithAllBinaryCollidableBehavior: GDWithAllBinaryCollidableBehavior = (collisionLayer!.getCollidableInferface() as GDWithAllBinaryCollidableBehavior);;
+    
+
+                        if(gdWithAllBinaryCollidableBehavior!.conditionWIthGroupActions!.groupWithActionsList!.size() > 0)
                         
                                     {
                                     
@@ -164,7 +168,7 @@ getCollidableInferface.
                         
                                     {
                                     
-    var groupInterfaceArray: GroupInterface[] = collisionLayer!.getGroupInterface()!;;
+    var groupInterfaceArray: Group[] = collisionLayer!.getGroupInterface()!;;
     
 
     var size: number = groupInterfaceArray!.length

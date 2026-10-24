@@ -71,7 +71,7 @@ export class GDExpressionMetadata
 
     public shown: boolean;
 
-    public helpPath: string;
+    public helpPath: string = StringUtil.getInstance()!.EMPTY_STRING;
 
 public constructor (returnType: string, extensionNamespace: string, name: string, fullname: string, description: string, group: string, smallicon: string){
 

@@ -339,7 +339,7 @@ this.logUtil!.putF(this.commonStrings!.START, this, "setBackground");
     var bitmap: Bitmap = (drawable as BitmapDrawable).getBitmap()!;;
     
 
-    var hashtable: ABHashtable = ImageCacheFactory.getInstance()!.getHashtableP()!;;
+    var hashtable: ABHashtable<any, any> = ImageCacheFactory.getInstance()!.getHashtableP()!;;
     
 hashtable.put(AndroidBasicTitleProgressBar.RESOURCE, Image.createImageBitmap(bitmap));
     

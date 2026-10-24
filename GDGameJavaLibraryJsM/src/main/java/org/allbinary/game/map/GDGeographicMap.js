@@ -51,8 +51,6 @@ import { Animation } from '../../../../org/mapeditor/core/Animation.js';
 export class GDGeographicMap extends RaceTrackGeographicMap {
     constructor(tiledLayerFactoryInterface, tileLayer, cellTypeIdToGeographicMapCellType, map, tileSetImage, geographicMapCellTypeFactory, foregroundColor, backgroundColor, debugColor, customMapGeneratorBaseFactory) {
         super(new RaceTrackInfo(SmallIntegerSingletonFactory.getInstance().getAt(tileLayer.getId()), SmallIntegerSingletonFactory.getInstance().getAt(tileLayer.getId()).toString(), new RaceTrackFrictionProperties(0, 0), foregroundColor, backgroundColor, 0, 0, 0), new RaceTrackData(SmallIntegerSingletonFactory.getInstance().getAt(0), map.getTileWidth(), map.getTileHeight(), map.getTileWidth() / 4, map.getTileHeight() / 4, cellTypeIdToGeographicMapCellType, tileLayer.getMapArray()), tiledLayerFactoryInterface, new SimpleGeographicMapCellPositionFactory(), new GeographicMapCellPositionBaseFactory(), geographicMapCellTypeFactory, customMapGeneratorBaseFactory);
-        this.logUtil = LogUtil.getInstance();
-        this.commonStrings = CommonStrings.getInstance();
         //For kotlin this is before the body of the constructor.
         this.map = map;
         var tileList = new BasicArrayListD();

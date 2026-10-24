@@ -105,7 +105,7 @@ this.rotationRemainder= this.rotationRemainder +newPortion;
                         
                                     {
                                     
-    var adjustedAngle2: number = gdObject!.angle +angleAdjustment;;
+    var adjustedAngle2: number = gdObject!.angleP +angleAdjustment;;
     
 
         while(adjustedAngle2 > 359)
@@ -123,7 +123,7 @@ adjustedAngle2 += 360;
 
 gdObject!.setAngle(adjustedAngle2);
     
-gdObject!.angle= adjustedAngle2;
+gdObject!.angleP= adjustedAngle2;
     
 this.getAnimationBehavior()!.setRotation(gameLayer, angleAdjustment);
     

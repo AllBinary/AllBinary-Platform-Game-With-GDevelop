@@ -22,6 +22,7 @@ export class GDExpressionMetadata extends Object {
         this.stringUtil = StringUtil.getInstance();
         this.parameterFactory = GDParameterFactory.getInstance();
         this.parameterMetadataList = new BasicArrayListD();
+        this.helpPath = StringUtil.getInstance().EMPTY_STRING;
         this.returnType = returnType;
         this.extensionNamespace = extensionNamespace;
         this.fullname = fullname;

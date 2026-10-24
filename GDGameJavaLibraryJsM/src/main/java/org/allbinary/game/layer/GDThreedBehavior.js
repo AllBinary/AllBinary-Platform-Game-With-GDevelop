@@ -39,7 +39,7 @@ export class GDThreedBehavior extends GDTwodBehavior {
         var angleAdjustment = ();
         ;
         if (angleAdjustment != 0) {
-            gdObject.angle += angleAdjustment;
+            gdObject.angleP = (gdObject.angleP + angleAdjustment);
             this.setRotationZ(gdObject, angleAdjustment);
             this.rotationRemainderZ -= angleAdjustment;
         }

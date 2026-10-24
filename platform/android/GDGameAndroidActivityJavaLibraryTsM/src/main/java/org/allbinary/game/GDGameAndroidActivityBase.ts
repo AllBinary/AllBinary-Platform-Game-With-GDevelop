@@ -111,8 +111,6 @@ const ABHashtable = globalThis.org.allbinary.util.ABHashtable;
 export class GDGameAndroidActivityBase extends GameMidletActivity {
         
 
-    readonly logUtil: LogUtil = LogUtil.getInstance()!;
-
 public constructor (){
             super(ProgressHelper.NULL_PROGRESS_HELPER);
                     
@@ -294,7 +292,7 @@ logUtil!.putF(commonStrings!.START, this, "getBackground");
     var bitmap: Bitmap = (drawable as BitmapDrawable).getBitmap()!;;
     
 
-    var hashtable: ABHashtable = ImageCacheFactory.getInstance()!.getHashtableP()!;;
+    var hashtable: ABHashtable<any, any> = ImageCacheFactory.getInstance()!.getHashtableP()!;;
     
 hashtable.put(AndroidBasicTitleProgressBar.RESOURCE, Image.createImageBitmap(bitmap));
     

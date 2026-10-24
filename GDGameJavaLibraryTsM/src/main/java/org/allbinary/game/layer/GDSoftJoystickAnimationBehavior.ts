@@ -44,9 +44,6 @@ import { PointFactory } from '../../../../org/allbinary/graphics/PointFactory.js
 import { TouchMotionGestureFactory } from '../../../../org/allbinary/input/motion/gesture/TouchMotionGestureFactory.js';
 //not GWT import const TouchMotionGestureFactory
 
-//not plain js import { LogUtil } 
-const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
-
 
 
 
@@ -74,8 +71,6 @@ import { GDGameLayer } from './GDGameLayer.js';
 
 export class GDSoftJoystickAnimationBehavior extends GDAnimationBehaviorBase {
         
-
-    readonly logUtil: LogUtil = LogUtil.getInstance()!;
 
     private readonly touchMotionGestureFactory: TouchMotionGestureFactory = TouchMotionGestureFactory.getInstance()!;
 

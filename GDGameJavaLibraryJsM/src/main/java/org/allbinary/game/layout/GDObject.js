@@ -23,6 +23,8 @@ import { GDBehaviorUtil } from '../../../../org/allbinary/game/layer/behavior/GD
 //not GWT import const GPoint
 import { GraphicsStrings } from '../../../../org/allbinary/graphics/GraphicsStrings.js';
 //not GWT import const BasicColor
+import { BasicColorFactory } from '../../../../org/allbinary/graphics/color/BasicColorFactory.js';
+//not GWT import const BasicColorFactory
 import { OpenGLFeatureFactory } from '../../../../org/allbinary/graphics/opengles/OpenGLFeatureFactory.js';
 //not GWT import const OpenGLFeatureFactory
 //not plain js import { CommonSeps } 
@@ -57,12 +59,12 @@ export class GDObject extends Object {
         this.behaviorArray = new Array(GDBehaviorUtil.getInstance().MAX);
         this.isBehaviorEnabledArray = new Array(10);
         this.hasBehaviorArray = new Array(10);
-        this.x = 0;
-        this.y = 0;
+        this.xP = 0;
+        this.yP = 0;
         this.zOrder = 0;
         this.rotationP = 0.0;
         this.rotationZP = 0.0;
-        this.angle = 0;
+        this.angleP = 0;
         this.movement_angle = 0;
         this.scaleX = 1.0;
         this.scaleY = 1.0;
@@ -72,6 +74,7 @@ export class GDObject extends Object {
         this.animation = 0;
         this.timeScale = 1.0;
         this.opacity = 255;
+        this.basicColor = BasicColorFactory.getInstance().NULL_COLOR;
         this.widthAtInitialScale = 0;
         this.heightAtInitialScale = 0;
         this.width = 0;
@@ -101,8 +104,8 @@ export class GDObject extends Object {
         }
     }
     set(unknown, x, y, zOrder) {
-        this.x = x;
-        this.y = y;
+        this.xP = x;
+        this.yP = y;
         this.zOrder = zOrder;
     }
     updateScale(scaleX, scaleY) {
@@ -131,11 +134,11 @@ export class GDObject extends Object {
         //if statement needs to be on the same line and ternary does not work the same way.
         return false;
     }
-    Width(graphics) {
+    Width(graphicsCanBeNull) {
         //if statement needs to be on the same line and ternary does not work the same way.
         return this.width;
     }
-    Height(graphics) {
+    Height(graphicsCanBeNull) {
         //if statement needs to be on the same line and ternary does not work the same way.
         return this.height;
     }
@@ -143,33 +146,33 @@ export class GDObject extends Object {
         this.setX(Math.round(x));
     }
     setX(x) {
-        this.x = x;
+        this.xP = x;
     }
     setY(y) {
         this.setY(Math.round(y));
     }
     setY(y) {
-        this.y = y;
+        this.yP = y;
     }
     X() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return this.x;
+        return this.xP;
     }
     Y() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return this.y;
+        return this.yP;
     }
     X2() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return this.x + this.width;
+        return this.xP + this.width;
     }
     Y2() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return this.y + this.height;
+        return this.yP + this.height;
     }
     ;
     PointX(point) {
-        var adjustedAngle = this.angle;
+        var adjustedAngle = this.angleP;
         ;
         while (adjustedAngle > 359) {
             adjustedAngle -= 360;
@@ -180,10 +183,10 @@ export class GDObject extends Object {
         var x = Math.round((this.noDecimalTrigTable.cos(adjustedAngle) * (point.getX() - this.halfWidth - (this.halfWidth / 2)))) / this.noDecimalTrigTable.SCALE;
         ;
         //if statement needs to be on the same line and ternary does not work the same way.
-        return Math.round((this.x + (x * this.offsetX) + this.offsetBehavior.PointX(this.halfWidth)));
+        return Math.round((this.xP + (x * this.offsetX) + this.offsetBehavior.PointX(this.halfWidth)));
     }
     PointY(point) {
-        var adjustedAngle = this.angle;
+        var adjustedAngle = this.angleP;
         ;
         while (adjustedAngle > 359) {
             adjustedAngle -= 360;
@@ -195,17 +198,17 @@ export class GDObject extends Object {
             var y = Math.round((this.noDecimalTrigTable.sin(adjustedAngle) * (point.getY() - (this.halfHeight / 2)))) / this.noDecimalTrigTable.SCALE;
             ;
             //if statement needs to be on the same line and ternary does not work the same way.
-            return Math.round((this.y + (y * this.offsetY) + this.offsetBehavior.PointY(this.halfHeight)));
+            return Math.round((this.yP + (y * this.offsetY) + this.offsetBehavior.PointY(this.halfHeight)));
         }
         else {
             var y = Math.round((this.noDecimalTrigTable.sin(adjustedAngle) * -(point.getY() - (this.halfHeight / 2)))) / this.noDecimalTrigTable.SCALE;
             ;
             //if statement needs to be on the same line and ternary does not work the same way.
-            return Math.round((this.y + (y * this.offsetY) + this.offsetBehavior.PointY(this.halfHeight)));
+            return Math.round((this.yP + (y * this.offsetY) + this.offsetBehavior.PointY(this.halfHeight)));
         }
     }
     setAngle(angle) {
-        this.angle = angle;
+        this.angleP = angle;
     }
     setAngle(angle, gameLayer) {
         this.updateSinceSetAngle = false;
@@ -217,16 +220,16 @@ export class GDObject extends Object {
         while (adjustedAngle < 0) {
             adjustedAngle += 360;
         }
-        this.angle = adjustedAngle;
+        this.angleP = adjustedAngle;
         gameLayer.setRotation(adjustedAngle);
     }
     Angle(gameLayer) {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return this.angle;
+        return this.angleP;
     }
     Angle() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return this.angle;
+        return this.angleP;
     }
     Variable(value) {
         //if statement needs to be on the same line and ternary does not work the same way.
@@ -266,7 +269,7 @@ export class GDObject extends Object {
         var stringBuilder = new StringMaker();
         ;
         //if statement needs to be on the same line and ternary does not work the same way.
-        return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON).append(this.name).append(commonSeps.SPACE).append(positionStrings.X_LABEL).appendint(this.x).append(positionStrings.Y_LABEL).appendint(this.y).append(commonLabels.WIDTH_LABEL).appendint(this.width).append(commonLabels.HEIGHT_LABEL).appendint(this.height).toString();
+        return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON).append(this.name).append(commonSeps.SPACE).append(positionStrings.X_LABEL).appendint(this.xP).append(positionStrings.Y_LABEL).appendint(this.yP).append(commonLabels.WIDTH_LABEL).appendint(this.width).append(commonLabels.HEIGHT_LABEL).appendint(this.height).toString();
         ;
     }
     toString() {
@@ -283,7 +286,7 @@ export class GDObject extends Object {
         var stringBuilder = new StringMaker();
         ;
         //if statement needs to be on the same line and ternary does not work the same way.
-        return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON).append(this.name).appendint(this.hashCode()).append(commonSeps.SPACE).append(positionStrings.X_LABEL).appendint(this.x).append(positionStrings.Y_LABEL).appendint(this.y).append(commonSeps.SPACE).append(positionStrings.Z_LABEL).appendint(this.zOrder).append(commonSeps.SPACE).append(commonLabels.WIDTH_LABEL).appendint(this.width).append(commonSeps.SPACE).append(commonLabels.HEIGHT_LABEL).appendint(this.height).append(commonSeps.SPACE).append(commonLabels.WIDTH_LABEL).appendint(this.halfWidth).append(commonSeps.SPACE).append(commonLabels.HEIGHT_LABEL).appendint(this.halfHeight).append(commonSeps.SPACE).append(graphicsStrings.ANIMATION).appendint(this.animation).append(commonSeps.SPACE).append(graphicsStrings.ANGLE).append(commonSeps.COLON).appendint(this.angle).append(commonSeps.SPACE).append(graphicsStrings.MOVEMENT_ANGLE).append(commonSeps.COLON).appendint(this.movement_angle).append(commonSeps.SPACE).append(graphicsStrings.ROTATION).append(commonSeps.COLON).appendfloat(this.rotationP).append(commonSeps.SPACE).append(graphicsStrings.OPACITY).append(commonSeps.COLON).appendfloat(this.opacity).toString();
+        return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON).append(this.name).appendint(this.hashCode()).append(commonSeps.SPACE).append(positionStrings.X_LABEL).appendint(this.xP).append(positionStrings.Y_LABEL).appendint(this.yP).append(commonSeps.SPACE).append(positionStrings.Z_LABEL).appendint(this.zOrder).append(commonSeps.SPACE).append(commonLabels.WIDTH_LABEL).appendint(this.width).append(commonSeps.SPACE).append(commonLabels.HEIGHT_LABEL).appendint(this.height).append(commonSeps.SPACE).append(commonLabels.WIDTH_LABEL).appendint(this.halfWidth).append(commonSeps.SPACE).append(commonLabels.HEIGHT_LABEL).appendint(this.halfHeight).append(commonSeps.SPACE).append(graphicsStrings.ANIMATION).appendint(this.animation).append(commonSeps.SPACE).append(graphicsStrings.ANGLE).append(commonSeps.COLON).appendint(this.angleP).append(commonSeps.SPACE).append(graphicsStrings.MOVEMENT_ANGLE).append(commonSeps.COLON).appendint(this.movement_angle).append(commonSeps.SPACE).append(graphicsStrings.ROTATION).append(commonSeps.COLON).appendfloat(this.rotationP).append(commonSeps.SPACE).append(graphicsStrings.OPACITY).append(commonSeps.COLON).appendfloat(this.opacity).toString();
         ;
     }
 }

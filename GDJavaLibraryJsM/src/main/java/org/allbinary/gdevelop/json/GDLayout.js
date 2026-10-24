@@ -6,6 +6,7 @@
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../java/lang/Object.js';
 import { Exception } from '../../../../java/lang/Exception.js';
+import { GDEvent } from '../../../../org/allbinary/gdevelop/json/event/GDEvent.js';
 //not GWT import const GDEvent
 import { GDEventFactory } from '../../../../org/allbinary/gdevelop/json/event/builtin/GDEventFactory.js';
 //not GWT import const BasicColor
@@ -108,8 +109,7 @@ export class GDLayout extends Object {
         ;
         for (var index = 0; index < size; index++) {
             event = eventFactory.create(eventJSONArray.getJSONObject(index));
-            if (event !=
-                null) {
+            if (event != GDEvent.NULL_GDEVENT) {
                 this.eventList.add(event);
             }
             else {

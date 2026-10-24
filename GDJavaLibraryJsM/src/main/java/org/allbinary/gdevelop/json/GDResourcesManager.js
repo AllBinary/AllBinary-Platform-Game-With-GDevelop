@@ -15,6 +15,8 @@ const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+//not GWT import const JSONArray
+import { JSONObject } from '../../../../org/json/JSONObject.js';
 //not GWT import const JSONObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDProjectStrings } from './GDProjectStrings.js';
@@ -25,22 +27,27 @@ export class GDResourcesManager extends Object {
         this.logUtil = LogUtil.getInstance();
         this.RESOURCES = "GDResources: ";
         this.resourceList = new BasicArrayListD();
-        var commonStrings = CommonStrings.getInstance();
-        ;
-        var gdProjectStrings = GDProjectStrings.getInstance();
-        ;
-        var resourceFactory = GDResourceFactory.getInstance();
-        ;
-        var conditionJSONArray = jsonObject.getJSONArray(gdProjectStrings.RESOURCES);
-        ;
-        var size = conditionJSONArray.length();
-        ;
-        var nextJSONObject;
-        ;
-        for (var index = 0; index < size; index++) {
-            nextJSONObject = conditionJSONArray.getJSONObject(index);
-            this.resourceList.add(resourceFactory.create(nextJSONObject));
+        if (jsonObject == JSONObject.NULL_JSONOBJECT) {
         }
-        this.logUtil.putF(this.RESOURCES + this.resourceList.size(), this, commonStrings.CONSTRUCTOR);
+        else {
+            var commonStrings = CommonStrings.getInstance();
+            ;
+            var gdProjectStrings = GDProjectStrings.getInstance();
+            ;
+            var resourceFactory = GDResourceFactory.getInstance();
+            ;
+            var conditionJSONArray = jsonObject.getJSONArray(gdProjectStrings.RESOURCES);
+            ;
+            var size = conditionJSONArray.length();
+            ;
+            var nextJSONObject;
+            ;
+            for (var index = 0; index < size; index++) {
+                nextJSONObject = conditionJSONArray.getJSONObject(index);
+                this.resourceList.add(resourceFactory.create(nextJSONObject));
+            }
+            this.logUtil.putF(this.RESOURCES + this.resourceList.size(), this, commonStrings.CONSTRUCTOR);
+        }
     }
 }
+GDResourcesManager.NULL_GDRESOURCEMANAGER = new GDResourcesManager(JSONObject.NULL_JSONOBJECT);

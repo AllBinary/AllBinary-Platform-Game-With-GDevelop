@@ -39,3 +39,4 @@ export class GDConditionWithGroupActions extends Object {
         }
     }
 }
+GDConditionWithGroupActions.NULL_GD_CONDITION_WITH_GROUP_ACTIONS = new GDConditionWithGroupActions();

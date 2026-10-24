@@ -30,11 +30,9 @@ export class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior {
         this.conditionWIthGroupActions = collidableBehavior;
     }
     isCollision(ownerLayer, collisionLayer) {
-        if (getCollidableInferface = collisionLayer.getCollidableInferface())
-            getCollidableInferface;
-        getCollidableInferface.
-            conditionWIthGroupActions.groupWithActionsList.size() > 0;
-        {
+        var gdWithAllBinaryCollidableBehavior = collisionLayer.getCollidableInferface();
+        ;
+        if (gdWithAllBinaryCollidableBehavior.conditionWIthGroupActions.groupWithActionsList.size() > 0) {
             if (ownerLayer.getGroupInterface()[0] != collisionLayer.getGroupInterface()[0]) {
                 if (ownerLayer != collisionLayer) {
                     //if statement needs to be on the same line and ternary does not work the same way.
@@ -43,7 +41,7 @@ export class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior {
                 }
             }
         }
-        {
+        else {
         }
         //if statement needs to be on the same line and ternary does not work the same way.
         return false;

@@ -10,6 +10,9 @@ import { MIDlet } from '../../../javax/microedition/midlet/MIDlet.js';
 import { GDGameSoftwareInfo } from '../../../org/allbinary/game/canvas/GDGameSoftwareInfo.js';
 //not GWT import const GDGameSoftwareInfo
 
+//not plain js import { NullUtil } 
+const NullUtil = globalThis.org.allbinary.logic.NullUtil;
+
 import { GDGameClientInformationInterfaceFactory } from '../../../org/allbinary/logic/system/security/licensing/GDGameClientInformationInterfaceFactory.js';
 //not GWT import const GDGameClientInformationInterfaceFactory
 
@@ -40,20 +43,16 @@ import { MidletFactoryInterface } from '../../../org/allbinary/midlet/MidletFact
 export class GDGameMIDletFactory extends MidletFactoryInterface {
         
 
-    private static SINGLETON: MIDlet = 
-                null
-            ;
+    private static SINGLETON: any = NullUtil.getInstance()!.NULL_OBJECT;
 
     public getInstance(): MIDlet{
 
-                        if(GDGameMIDletFactory.SINGLETON == 
-                                    null
-                                )
+                        if(GDGameMIDletFactory.SINGLETON == NullUtil.getInstance()!.NULL_OBJECT)
                         
                                     {
                                     GDGameMIDletFactory.SINGLETON= new GDGameMIDlet(GDGameClientInformationInterfaceFactory.getFactoryInstance());
     
-GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION= GDGameClientInformationInterfaceFactory.getFactoryInstance()!.getInstance();
+GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance()!.getInstance());
     
 
                                     }
@@ -62,7 +61,7 @@ GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION= GDGameClientInformationInterfac
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return GDGameMIDletFactory.SINGLETON;
+                        return GDGameMIDletFactory.SINGLETON as MIDlet;
     
 }
 

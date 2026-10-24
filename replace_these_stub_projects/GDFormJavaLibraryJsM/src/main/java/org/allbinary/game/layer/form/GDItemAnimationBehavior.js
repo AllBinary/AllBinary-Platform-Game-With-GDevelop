@@ -28,7 +28,7 @@ export class GDItemAnimationBehavior extends GDAnimationBehaviorBase {
     }
     hasFocus() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return hasFocus;
+        return this.hasFocus;
     }
     traverse(gameKeyCode, top, bottom, action) {
         //if statement needs to be on the same line and ternary does not work the same way.

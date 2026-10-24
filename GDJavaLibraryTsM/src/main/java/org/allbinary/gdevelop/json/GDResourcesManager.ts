@@ -59,6 +59,8 @@ export class GDResourcesManager
          {
         
 
+    public static readonly NULL_GDRESOURCEMANAGER: GDResourcesManager = new GDResourcesManager(JSONObject.NULL_JSONOBJECT);
+
     readonly logUtil: LogUtil = LogUtil.getInstance()!;
 
     private readonly RESOURCES: string = "GDResources: ";
@@ -69,6 +71,14 @@ public constructor (jsonObject: JSONObject){
 
             super();
         
+                        if(jsonObject == JSONObject.NULL_JSONOBJECT)
+                        
+                                    {
+                                    
+                                    }
+                                
+                        else {
+                            
     var commonStrings: CommonStrings = CommonStrings.getInstance()!;;
     
 
@@ -101,6 +111,9 @@ this.resourceList!.add(resourceFactory!.create(nextJSONObject));
 
 this.logUtil!.putF(this.RESOURCES +this.resourceList!.size(), this, commonStrings!.CONSTRUCTOR);
     
+
+                        }
+                            
 }
 
 

@@ -14,17 +14,12 @@
 //not GWT import const GDObject
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
-//not plain js import { LogUtil } 
-const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
-//not plain js import { StringMaker } 
-const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDAnimationBehaviorBase } from './GDAnimationBehaviorBase.js';
 //not GWT import - same folder const GDAnimationBehaviorBase
 export class GDSingleAnimationBehavior extends GDAnimationBehaviorBase {
     constructor() {
         super(...arguments);
-        this.logUtil = LogUtil.getInstance();
         this.elapsedTime = 0;
     }
     static getInstance() {

@@ -30,23 +30,26 @@ import { GL } from '../../../../javax/microedition/khronos/opengles/GL.js';
 import { Graphics } from '../../../../javax/microedition/lcdui/Graphics.js';
 //not GWT import const Graphics
 
+import { NullGraphics } from '../../../../javax/microedition/lcdui/NullGraphics.js';
+//not GWT import const NullGraphics
+
 import { Animation } from '../../../../org/allbinary/animation/Animation.js';
 //not GWT import const Animation
 
 import { AnimationInterfaceFactoryInterface } from '../../../../org/allbinary/animation/AnimationInterfaceFactoryInterface.js';
 //not GWT import const AnimationInterfaceFactoryInterface
 
+import { BasicAnimationInterfaceFactoryInterface } from '../../../../org/allbinary/animation/BasicAnimationInterfaceFactoryInterface.js';
+//not GWT import const BasicAnimationInterfaceFactoryInterface
+
 import { IndexedAnimation } from '../../../../org/allbinary/animation/IndexedAnimation.js';
 //not GWT import const IndexedAnimation
 
-import { ProceduralAnimationInterfaceFactoryInterface } from '../../../../org/allbinary/animation/ProceduralAnimationInterfaceFactoryInterface.js';
-//not GWT import const ProceduralAnimationInterfaceFactoryInterface
+import { NullIndexedAnimationFactory } from '../../../../org/allbinary/animation/NullIndexedAnimationFactory.js';
+//not GWT import const NullIndexedAnimationFactory
 
 import { RotationAnimation } from '../../../../org/allbinary/animation/RotationAnimation.js';
 //not GWT import const RotationAnimation
-
-import { CustomTextAnimation } from '../../../../org/allbinary/animation/text/CustomTextAnimation.js';
-//not GWT import const CustomTextAnimation
 
 import { TextChangeListener } from '../../../../org/allbinary/animation/text/TextChangeListener.js';
 //not GWT import const TextChangeListener
@@ -96,9 +99,6 @@ import { OpenGLSurfaceChangedInterface } from '../../../../org/allbinary/image/o
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
 
-//not plain js import { LogUtil } 
-const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
-
 import { ScaleFactorFactory } from '../../../../org/allbinary/logic/math/ScaleFactorFactory.js';
 //not GWT import const ScaleFactorFactory
 
@@ -125,6 +125,9 @@ import { ViewPositionBase } from '../../../../org/allbinary/view/ViewPositionBas
 
 import { TextInterface } from '../../../../org/allbinary/animation/text/TextInterface.js';
 //not GWT import const TextInterface
+
+import { BasicColorFactory } from '../../../../org/allbinary/graphics/color/BasicColorFactory.js';
+//not GWT import const BasicColorFactory
 
 
 
@@ -166,8 +169,6 @@ export class GDGameLayer extends MultiPlayerGameLayer {
 
     private static readonly HACK_ANIMATION_NAME: string = "ttack";
 
-    readonly logUtil: LogUtil = LogUtil.getInstance()!;
-
     readonly stringUtil: StringUtil = StringUtil.getInstance()!;
 
     readonly frameUtil: FrameUtil = FrameUtil.getInstance()!;
@@ -182,11 +183,11 @@ export class GDGameLayer extends MultiPlayerGameLayer {
 
     readonly quarterHeight: number = (this.getHalfHeight()>>1) -1;
 
-    readonly combatBaseBehavior: CombatBaseBehavior;
+    readonly combatBaseBehaviorP: CombatBaseBehavior;
 
-    readonly initIndexedAnimationInterfaceArray: IndexedAnimation[];
+    readonly initIndexedAnimationInterfaceArrayP: IndexedAnimation[];
 
-    indexedAnimationInterfaceArray: IndexedAnimation[];
+    indexedAnimationInterfaceArrayP: IndexedAnimation[] = NullIndexedAnimationFactory.NULL_INDEXED_ANIMATION_ARRAY;
 
     private readonly resetAnimationBehavior: ResetAnimationBehavior;
 
@@ -258,7 +259,7 @@ this.gameLayer!.onMeasure();
 
     private textChangeListener: TextChangeListener = new this.GDTextChangeListener(this);
 
-public constructor (primitiveDrawing: Animation, gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, behaviorList: BasicArrayList, velocityInterface: VelocityProperties, remoteInfo: RemoteInfo, groupInterface: Group[], gdName: string, animationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[], proceduralAnimationInterfaceFactoryInterfaceArray: ProceduralAnimationInterfaceFactoryInterface[], layerInfo: Rectangle, rectangleArrayOfArrays: Rectangle[][], viewPosition: ViewPosition, gdObject: GDObject, animationBehavior: GDAnimationBehaviorBase, rotationAdjustment: boolean){
+public constructor (primitiveDrawing: Animation, gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, behaviorList: BasicArrayList, velocityInterface: VelocityProperties, remoteInfo: RemoteInfo, groupInterface: Group[], gdName: string, animationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[], proceduralAnimationInterfaceFactoryInterfaceArray: BasicAnimationInterfaceFactoryInterface[], layerInfo: Rectangle, rectangleArrayOfArrays: Rectangle[][], viewPosition: ViewPosition, gdObject: GDObject, animationBehavior: GDAnimationBehaviorBase, rotationAdjustment: boolean){
             super(remoteInfo, groupInterface, gdName, layerInfo, viewPosition);
                     
 
@@ -276,7 +277,7 @@ this.gdObject= gdObject;
     
 this.velocityInterface= velocityInterface;
     
-this.initPositionXYZ(this.gdObject!.x, this.gdObject!.y, this.gdObject!.zOrder);
+this.initPositionXYZ(this.gdObject!.xP, this.gdObject!.yP, this.gdObject!.zOrder);
     
 this.initPosition();
     
@@ -301,11 +302,9 @@ scaleProperties!.scaleX= this.gdObject!.initScaleX *this.gdObject!.customScale;
     
 scaleProperties!.scaleY= this.gdObject!.initScaleY *this.gdObject!.customScale;
     
-scaleProperties!.scaleWidth= this.gdObject!.Width(
-                            null);
+scaleProperties!.scaleWidth= this.gdObject!.Width(NullGraphics.NULL_GRAPHICS);
     
-scaleProperties!.scaleHeight= this.gdObject!.Height(
-                            null);
+scaleProperties!.scaleHeight= this.gdObject!.Height(NullGraphics.NULL_GRAPHICS);
     
 
                         if(animationName != StringUtil.getInstance()!.EMPTY_STRING && animationName!.indexOf(GDGameLayer.HACK_ANIMATION_NAME) >= 0)
@@ -320,12 +319,12 @@ animationInterfaceFactoryInterfaceArray[index]!.setInitialScale(scaleProperties)
     
 }
 
-this.initIndexedAnimationInterfaceArray= animationBehavior!.init(this.gdObject, animationInterfaceFactoryInterfaceArray);
+this.initIndexedAnimationInterfaceArrayP= animationBehavior!.init(this.gdObject, animationInterfaceFactoryInterfaceArray);
     
-this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray);
+this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArrayP);
     
 
-                        if(this.initIndexedAnimationInterfaceArray[0]!.getSize() >= 90 && rotationAdjustment)
+                        if(this.initIndexedAnimationInterfaceArrayP[0]!.getSize() >= 90 && rotationAdjustment)
                         
                                     {
                                     this.resetAnimationBehavior= ResetRotationAnimationBehavior.getInstance();
@@ -342,21 +341,26 @@ this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray);
 animationBehavior!.add(this);
     
 
-                        if(this.initIndexedAnimationInterfaceArray!.length > 0 && this.initIndexedAnimationInterfaceArray[0]!.isThreed())
+    var dimensionalBehavior: GDTwodBehavior;;
+    
+
+                        if(this.initIndexedAnimationInterfaceArrayP!.length > 0 && this.initIndexedAnimationInterfaceArrayP[0]!.isThreed())
                         
                                     {
-                                    this.dimensionalBehavior= new GDThreedBehavior(animationBehavior, this.initIndexedAnimationInterfaceArray as RotationAnimation[]);
+                                    dimensionalBehavior= new GDThreedBehavior(animationBehavior, this.initIndexedAnimationInterfaceArrayP as RotationAnimation[]);
     
 
                                     }
                                 
                         else {
-                            this.dimensionalBehavior= new GDTwodBehavior(animationBehavior);
+                            dimensionalBehavior= new GDTwodBehavior(animationBehavior);
     
 
                         }
                             
-this.combatBaseBehavior= new CombatBaseBehavior(DamageableBaseBehavior.getInstance(), new GDDestroyableSimpleBehavior(this));
+this.dimensionalBehavior= dimensionalBehavior;
+    
+this.combatBaseBehaviorP= new CombatBaseBehavior(DamageableBaseBehavior.getInstance(), new GDDestroyableSimpleBehavior(this));
     
 this.dimensionalBehavior!.reset(this, gdObject);
     
@@ -398,7 +402,7 @@ this.rectangleArrayOfArrays= rectangleArrayOfArrays;
             
     public setGDObject(gdObject: Object){
 
-    var size: number = this.initIndexedAnimationInterfaceArray!.length
+    var size: number = this.initIndexedAnimationInterfaceArrayP!.length
                 ;;
     
 
@@ -408,21 +412,21 @@ this.rectangleArrayOfArrays= rectangleArrayOfArrays;
                         for (
     var index: number = 0;index < size; index++)
         {
-this.initIndexedAnimationInterfaceArray[index]!.setFrame(this.frameUtil!.getFrameForAngle(0, 1));
+this.initIndexedAnimationInterfaceArrayP[index]!.setFrame(this.frameUtil!.getFrameForAngle(0, 1));
     
 }
 
-gdObject!.angle= this.gdObject!.angle;
+gdObject!.angleP= this.gdObject!.angleP;
     
-this.dimensionalBehavior!.getAnimationBehavior()!.setAnimationArray(this.initIndexedAnimationInterfaceArray);
+this.dimensionalBehavior!.getAnimationBehavior()!.setAnimationArray(this.initIndexedAnimationInterfaceArrayP);
     
-this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray);
+this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArrayP);
     
 this.dimensionalBehavior!.reset(this, gdObject);
     
 this.gdObject= gdObject;
     
-this.initPositionXYZ(this.gdObject!.x, this.gdObject!.y, this.gdObject!.zOrder);
+this.initPositionXYZ(this.gdObject!.xP, this.gdObject!.yP, this.gdObject!.zOrder);
     
 this.initPosition();
     
@@ -435,7 +439,7 @@ this.setDestroyed(false);
             
     public set(gl: GL){
 
-    var size: number = this.initIndexedAnimationInterfaceArray!.length
+    var size: number = this.initIndexedAnimationInterfaceArrayP!.length
                 ;;
     
 
@@ -448,7 +452,7 @@ this.setDestroyed(false);
                         for (
     var index: number = 0;index < size; index++)
         {
-openGLSurfaceChangedInterface= this.initIndexedAnimationInterfaceArray[index]! as OpenGLSurfaceChangedInterface;
+openGLSurfaceChangedInterface= this.initIndexedAnimationInterfaceArrayP[index]! as OpenGLSurfaceChangedInterface;
     
 openGLSurfaceChangedInterface!.set(gl);
     
@@ -478,13 +482,13 @@ this.dimensionalBehavior!.getAnimationBehavior()!.setRotation(this, angleAdjustm
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.initIndexedAnimationInterfaceArray;
+                        return this.initIndexedAnimationInterfaceArrayP;
     
 }
 
 
     setIndexedAnimationInterfaceArray(animationInterface: IndexedAnimation[]){
-this.indexedAnimationInterfaceArray= animationInterface;
+this.indexedAnimationInterfaceArrayP= animationInterface;
     
 }
 
@@ -494,7 +498,7 @@ this.indexedAnimationInterfaceArray= animationInterface;
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.indexedAnimationInterfaceArray;
+                        return this.indexedAnimationInterfaceArrayP;
     
 }
 
@@ -504,7 +508,7 @@ this.indexedAnimationInterfaceArray= animationInterface;
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.indexedAnimationInterfaceArray[this.gdObject!.animation]!;
+                        return this.indexedAnimationInterfaceArrayP[this.gdObject!.animation]!;
     
 }
 
@@ -514,7 +518,7 @@ this.indexedAnimationInterfaceArray= animationInterface;
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.combatBaseBehavior;
+                        return this.combatBaseBehaviorP;
     
 }
 
@@ -522,7 +526,7 @@ this.indexedAnimationInterfaceArray= animationInterface;
                 //@Throws(Exception.constructor)
             
     public damage(damage: number, damageType: number){
-this.combatBaseBehavior!.getDamageableBaseBehavior()!.damage(damage, damageType);
+this.combatBaseBehaviorP!.getDamageableBaseBehavior()!.damage(damage, damageType);
     
 }
 
@@ -534,7 +538,7 @@ this.combatBaseBehavior!.getDamageableBaseBehavior()!.damage(damage, damageType)
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.combatBaseBehavior!.getDamageableBaseBehavior()!.getDamage(damageType);;
+                        return this.combatBaseBehaviorP!.getDamageableBaseBehavior()!.getDamage(damageType);;
     
 }
 
@@ -546,7 +550,7 @@ this.combatBaseBehavior!.getDamageableBaseBehavior()!.damage(damage, damageType)
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.combatBaseBehavior!.getDestroyableBaseBehavior()!.isDestroyed();;
+                        return this.combatBaseBehaviorP!.getDestroyableBaseBehavior()!.isDestroyed();;
     
 }
 
@@ -558,7 +562,7 @@ this.gameLayerList!.remove(this);
     
 this.gameLayerDestroyedList!.add(this);
     
-this.combatBaseBehavior!.getDestroyableBaseBehavior()!.setDestroyed(destroyed);
+this.combatBaseBehaviorP!.getDestroyableBaseBehavior()!.setDestroyed(destroyed);
     
 }
 
@@ -639,9 +643,9 @@ adjustedAngle += 360;
     
 }
 
-this.gdObject!.forceAngle= adjustedAngle;
+this.gdObject!.forceAngle= Math.round(adjustedAngle);
     
-this.velocityInterface!.setVelocityi(length *this.SCALE_FACTOR2, adjustedAngle, 0);
+this.velocityInterface!.setVelocityi(length *this.SCALE_FACTOR2, Math.round(adjustedAngle), 0);
     
 
                         if(clearing == 1)
@@ -690,7 +694,7 @@ this.velocityInterface!.getVelocityYBasicDecimalP()!.setint(y *this.SCALE_FACTOR
 
 
     public updatePosition(){
-this.setPosition(this.gdObject!.x, this.gdObject!.y, this.gdObject!.zOrder);
+this.setPosition(this.gdObject!.xP, this.gdObject!.yP, this.gdObject!.zOrder);
     
 }
 
@@ -731,7 +735,7 @@ this.updateRotation(timeDelta);
                                     }
                                 
 
-    var size: number = this.initIndexedAnimationInterfaceArray!.length
+    var size: number = this.initIndexedAnimationInterfaceArrayP!.length
                 ;;
     
 
@@ -741,17 +745,15 @@ this.updateRotation(timeDelta);
                         for (
     var index: number = 0;index < size; index++)
         {
-this.initIndexedAnimationInterfaceArray[index]!.setAlpha(opacity);
+this.initIndexedAnimationInterfaceArrayP[index]!.setAlpha(opacity);
     
-this.scalableProcessor!.process(this, this.initIndexedAnimationInterfaceArray[index]!);
+this.scalableProcessor!.process(this, this.initIndexedAnimationInterfaceArrayP[index]!);
     
 
-                        if(this.gdObject!.basicColor != 
-                                    null
-                                )
+                        if(this.gdObject!.basicColor != BasicColorFactory.getInstance()!.NULL_COLOR)
                         
                                     {
-                                    this.initIndexedAnimationInterfaceArray[index]!.changeBasicColor(this.gdObject!.basicColor);
+                                    this.initIndexedAnimationInterfaceArrayP[index]!.changeBasicColor(this.gdObject!.basicColor);
     
 
                                     }
@@ -762,7 +764,7 @@ this.scalableProcessor!.process(this, this.initIndexedAnimationInterfaceArray[in
 
 
     public resetAnimation(){
-this.resetAnimationBehavior!.resetAnimation(this.indexedAnimationInterfaceArray, this.gdObject!.animation);
+this.resetAnimationBehavior!.resetAnimation(this.indexedAnimationInterfaceArrayP, this.gdObject!.animation);
     
 }
 
@@ -772,7 +774,7 @@ this.resetAnimationBehavior!.resetAnimation(this.indexedAnimationInterfaceArray,
     public animate(timeDelta: number){
 this.velocityBehavior!.reduce(this.velocityInterface, 30, 100);
     
-this.dimensionalBehavior!.getAnimationBehavior()!.animate(this.gdObject, this.initIndexedAnimationInterfaceArray, timeDelta);
+this.dimensionalBehavior!.getAnimationBehavior()!.animate(this.gdObject, this.initIndexedAnimationInterfaceArrayP, timeDelta);
     
 this.primitiveDrawing!.nextFrame();
     
@@ -791,7 +793,7 @@ this.dimensionalBehavior!.updateRotation(this, timeDelta);
                         
                                     {
                                     
-    var size: number = this.initIndexedAnimationInterfaceArray!.length
+    var size: number = this.initIndexedAnimationInterfaceArrayP!.length
                 ;;
     
 
@@ -801,7 +803,7 @@ this.dimensionalBehavior!.updateRotation(this, timeDelta);
                         for (
     var index: number = 0;index < size; index++)
         {
-this.initIndexedAnimationInterfaceArray[index]!.setMaxScale(5, 5);
+this.initIndexedAnimationInterfaceArrayP[index]!.setMaxScale(5.0, 5.0);
     
 }
 
@@ -850,7 +852,7 @@ this.scalableProcessor= ScalableProcessor.getInstance();
 
     var y: number = viewPosition!.getY()!;;
     
-this.indexedAnimationInterfaceArray[this.gdObject!.animation]!.paintXY(graphics, x, y);
+this.indexedAnimationInterfaceArrayP[this.gdObject!.animation]!.paintXY(graphics, x, y);
     
 this.primitiveDrawing!.paintXY(graphics, x, y);
     
@@ -882,7 +884,7 @@ this.logUtil!.put(this.commonStrings!.EXCEPTION, this, "paint", e);
 
     var z: number = viewPosition!.getZ()!;;
     
-this.indexedAnimationInterfaceArray[this.gdObject!.animation]!.paintThreedXYZ(graphics, x, y, z);
+this.indexedAnimationInterfaceArrayP[this.gdObject!.animation]!.paintThreedXYZ(graphics, x, y, z);
     
 this.primitiveDrawing!.paintThreedXYZ(graphics, x, y, z);
     
@@ -917,13 +919,13 @@ this.getCollidableInferface()!.paint(this, graphics);
 
 
     public setBasicColor(basicColor: BasicColor){
-this.initIndexedAnimationInterfaceArray[0]!.setBasicColorP(basicColor);
+this.initIndexedAnimationInterfaceArrayP[0]!.setBasicColorP(basicColor);
     
 }
 
 
     public setBackgroundBasicColor(basicColor: BasicColor){
-this.initIndexedAnimationInterfaceArray[0]!.setBackgroundBasicColorP(basicColor);
+this.initIndexedAnimationInterfaceArrayP[0]!.setBackgroundBasicColorP(basicColor);
     
 }
 
@@ -936,7 +938,7 @@ this.setText(value.toString());
 
     public setText(text: string){
 
-    var textInterface: TextInterface = (this.initIndexedAnimationInterfaceArray[0]! as TextInterface);;
+    var textInterface: TextInterface = (this.initIndexedAnimationInterfaceArrayP[0]! as TextInterface);;
     
 
                         if(text == 

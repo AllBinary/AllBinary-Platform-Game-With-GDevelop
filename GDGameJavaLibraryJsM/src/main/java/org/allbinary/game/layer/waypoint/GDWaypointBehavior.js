@@ -47,18 +47,18 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
         this.currentPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
         this.moving = false;
         this.movingFromStopped = false;
-        this.waypointPathsList = BasicArrayListUtil.getInstance().getImmutableInstance();
+        this.waypointPathsListP = BasicArrayListUtil.getInstance().getImmutableInstance();
         this.currentTargetDistance = Integer.MAX_VALUE;
-        this.currentTargetLayerInterface = CollidableDestroyableDamageableLayer.getNullInstance();
+        this.currentTargetLayerInterfaceP = CollidableDestroyableDamageableLayer.getNullInstance();
         this.currentTargetGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
         this.trackingWaypoint = false;
         this.repeatedToLong = new TimeDelayHelper(22000);
         this.associatedAdvancedRTSGameLayer = associatedAdvancedRTSGameLayer;
         this.completeTimeDelayHelper = new TimeDelayHelper(30000);
-        this.targetList = new BasicArrayListD();
+        this.targetListP = new BasicArrayListD();
         this.possibleTargetList = new BasicArrayListD();
         this.setWaypointPathsList(GDWaypointBehavior.DEFAULT);
-        this.currentGeographicMapCellHistory = new GeographicMapCellHistory();
+        this.currentGeographicMapCellHistoryP = new GeographicMapCellHistory();
         this.FAKE_WAYPOINT_LAYER = fakeWaypoint;
     }
     initRange(weaponRange) {
@@ -85,13 +85,13 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
     //@Throws(Exception.constructor)
     addWaypointFromBuilding(advancedRTSGameLayer) {
         if (advancedRTSGameLayer == PrimaryWaypointHelper.getInstance().getWaypointLayer() || advancedRTSGameLayer.getParentLayer() == this.associatedAdvancedRTSGameLayer.getParentLayer()) {
-            if (!this.targetList.contains(advancedRTSGameLayer)) {
+            if (!this.targetListP.contains(advancedRTSGameLayer)) {
                 this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().addWaypointFromBuilding(this.associatedAdvancedRTSGameLayer, advancedRTSGameLayer);
                 if (advancedRTSGameLayer.isDestroyed()) {
                     throw new Exception("Trying to add a dead: " + advancedRTSGameLayer);
                 }
-                this.targetList.add(advancedRTSGameLayer);
-                this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().addWaypointFromBuildingList(this.associatedAdvancedRTSGameLayer, advancedRTSGameLayer, this.targetList);
+                this.targetListP.add(advancedRTSGameLayer);
+                this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().addWaypointFromBuildingList(this.associatedAdvancedRTSGameLayer, advancedRTSGameLayer, this.targetListP);
             }
         }
     }
@@ -106,8 +106,8 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
             if (rtsLayer.isDestroyed()) {
                 throw new Exception("Trying to add a dead: " + rtsLayer);
             }
-            this.targetList.addAt(index, rtsLayer);
-            this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().insertWaypointList(this.associatedAdvancedRTSGameLayer, index, rtsLayer, this.getName(), this.targetList);
+            this.targetListP.addAt(index, rtsLayer);
+            this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().insertWaypointList(this.associatedAdvancedRTSGameLayer, index, rtsLayer, this.getName(), this.targetListP);
             //if statement needs to be on the same line and ternary does not work the same way.
             return true;
         }
@@ -145,15 +145,15 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
         if (this.associatedAdvancedRTSGameLayer.isShowMoreCaptionStates()) {
             this.associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(GDWaypointBehavior.PATHING, BasicColorFactory.getInstance().GREEN);
         }
-        this.currentGeographicMapCellHistory.init();
-        this.associatedAdvancedRTSGameLayer.init(this.currentGeographicMapCellHistory, geographicMapCellPositionBasicArrayList);
+        this.currentGeographicMapCellHistoryP.init();
+        this.associatedAdvancedRTSGameLayer.init(this.currentGeographicMapCellHistoryP, geographicMapCellPositionBasicArrayList);
         this.setTrackingWaypoint(true);
         this.getCompleteTimeDelayHelper().setStartTimeTNT();
     }
     canInsertWaypoint(index, rtsLayer) {
-        if (this.targetList.size() > 4) {
+        if (this.targetListP.size() > 4) {
         }
-        else if (this.targetList.contains(rtsLayer)) {
+        else if (this.targetListP.contains(rtsLayer)) {
         }
         else {
             //if statement needs to be on the same line and ternary does not work the same way.
@@ -187,7 +187,7 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
     }
     needToMove() {
         this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().needToMove(this.associatedAdvancedRTSGameLayer, this);
-        if (this.isTrackingWaypoint() || this.sensorAction == SensorActionFactory.getInstance().EVADE || (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance() && this.getCurrentTargetDistance() >= this.longWeaponRange + this.currentTargetLayerInterface.getHalfHeight())) {
+        if (this.isTrackingWaypoint() || this.sensorAction == SensorActionFactory.getInstance().EVADE || (this.currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance() && this.getCurrentTargetDistance() >= this.longWeaponRange + this.currentTargetLayerInterfaceP.getHalfHeight())) {
             this.repeatedToLong.setStartTimeTNT();
             //if statement needs to be on the same line and ternary does not work the same way.
             return true;
@@ -208,12 +208,12 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
         stringBuffer.append(" sensorAction: ");
         stringBuffer.append(this.sensorAction.name);
         stringBuffer.append(" getCurrentTargetLayerInterface: ");
-        stringBuffer.append(StringUtil.getInstance().toString(this.currentTargetLayerInterface));
-        if (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance()) {
+        stringBuffer.append(StringUtil.getInstance().toString(this.currentTargetLayerInterfaceP));
+        if (this.currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance()) {
             stringBuffer.append(" Target Range: ");
             stringBuffer.appendint(this.getCurrentTargetDistance());
             stringBuffer.append(" >= ");
-            stringBuffer.appendint(this.longWeaponRange + this.currentTargetLayerInterface.getHalfHeight());
+            stringBuffer.appendint(this.longWeaponRange + this.currentTargetLayerInterfaceP.getHalfHeight());
         }
         //if statement needs to be on the same line and ternary does not work the same way.
         return stringBuffer.toString();
@@ -227,11 +227,11 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
         this.movingFromStopped = movingFromStopped;
     }
     setWaypointPathsList(waypointPathsList) {
-        this.waypointPathsList = waypointPathsList;
+        this.waypointPathsListP = waypointPathsList;
     }
     getWaypointPathsList() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return this.waypointPathsList;
+        return this.waypointPathsListP;
     }
     isMoving() {
         //if statement needs to be on the same line and ternary does not work the same way.
@@ -272,13 +272,13 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
     }
     getTargetList() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return this.targetList;
+        return this.targetListP;
     }
     //@Throws(Exception.constructor)
     setCurrentTargetLayerInterface(currentTargetLayerInterface) {
-        this.currentTargetLayerInterface = currentTargetLayerInterface;
-        if (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance()) {
-            this.currentTargetGeographicMapCellPosition = currentTargetLayerInterface.getCurrentGeographicMapCellPosition();
+        this.currentTargetLayerInterfaceP = currentTargetLayerInterface;
+        if (this.currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance()) {
+            this.currentTargetGeographicMapCellPosition = currentTargetLayerInterfaceP.getCurrentGeographicMapCellPosition();
         }
         else {
             this.currentTargetGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
@@ -286,7 +286,7 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
     }
     getCurrentTargetLayerInterface() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return this.currentTargetLayerInterface;
+        return this.currentTargetLayerInterfaceP;
     }
     setCurrentTargetDistance(currentTargetDistance) {
         this.currentTargetDistance = currentTargetDistance;
@@ -301,7 +301,7 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
     }
     getCurrentGeographicMapCellHistory() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return this.currentGeographicMapCellHistory;
+        return this.currentGeographicMapCellHistoryP;
     }
     setTrackingWaypoint(trackingWaypoint) {
         this.trackingWaypoint = trackingWaypoint;

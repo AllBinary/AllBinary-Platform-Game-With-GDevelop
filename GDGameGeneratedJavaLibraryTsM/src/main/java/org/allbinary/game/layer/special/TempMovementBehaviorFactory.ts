@@ -58,9 +58,7 @@ export class TempMovementBehaviorFactory
 }
 
 
-    public movementBehavior: TempMovementBehavior = 
-                null
-            ;
+    public movementBehavior: TempMovementBehavior = TempMovementBehavior.NULL_TEMP_MOVEMENT_BEHAVIOR;
 
 }
 

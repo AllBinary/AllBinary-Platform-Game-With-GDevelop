@@ -20,8 +20,26 @@
 
             import { RuntimeException } from '../../../../java/lang/RuntimeException.js';
         
+import { AnimationInterfaceFactoryInterface } from '../../../../org/allbinary/animation/AnimationInterfaceFactoryInterface.js';
+//not GWT import const AnimationInterfaceFactoryInterface
+
+import { BasicAnimationInterfaceFactoryInterface } from '../../../../org/allbinary/animation/BasicAnimationInterfaceFactoryInterface.js';
+//not GWT import const BasicAnimationInterfaceFactoryInterface
+
+import { NullRotationAnimationFactory } from '../../../../org/allbinary/animation/NullRotationAnimationFactory.js';
+//not GWT import const NullRotationAnimationFactory
+
+import { GroupFactory } from '../../../../org/allbinary/game/identification/GroupFactory.js';
+//not GWT import const GroupFactory
+
 import { GDObject } from '../../../../org/allbinary/game/layout/GDObject.js';
 //not GWT import const GDObject
+
+import { RectangleFactory } from '../../../../org/allbinary/graphics/RectangleFactory.js';
+//not GWT import const RectangleFactory
+
+//not plain js import { BasicArrayListUtil } 
+const BasicArrayListUtil = globalThis.org.allbinary.util.BasicArrayListUtil;
 
 
 
@@ -49,16 +67,16 @@ import { GDGameLayer } from './GDGameLayer.js';
 export class NullGDGameLayerFactory extends GDGameLayerFactory {
         
 
-public constructor (){
-            super(
-                            null, 
-                            null, 
-                            null, 
-                            null, 
-                            null, 
-                            null, 
-                            null, 
-                            null, false);
+    public static readonly NULL_GD_GAME_LAYER_FACTORY: NullGDGameLayerFactory = new NullGDGameLayerFactory();
+
+private constructor (){
+            super(BasicArrayListUtil.getInstance()!.getImmutableInstance(), BasicArrayListUtil.getInstance()!.getImmutableInstance(), GroupFactory.getInstance()!.NULL_GROUP_ARRAY, BasicArrayListUtil.getInstance()!.getImmutableInstance(), 
+                                                [
+                                                    NullRotationAnimationFactory.getFactoryInstance()
+                                                ], 
+                                                [
+                                                    NullRotationAnimationFactory.getFactoryInstance()
+                                                ], RectangleFactory.SINGLETON, RectangleFactory.ARRAY_OF_ARRAYS, false);
                     
 
                             //For kotlin this is before the body of the constructor.

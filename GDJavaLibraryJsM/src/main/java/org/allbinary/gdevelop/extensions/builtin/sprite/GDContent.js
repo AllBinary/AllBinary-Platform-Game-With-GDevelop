@@ -15,7 +15,6 @@ const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 export class GDContent extends Object {
     constructor(jsonObject) {
         super();
-        this.levelIndex = 0;
         this.directionList = new BasicArrayListD();
         var projectStrings = GDProjectStrings.getInstance();
         ;
@@ -24,12 +23,12 @@ export class GDContent extends Object {
         this.tilemapAtlasImage = jsonObject.getString(projectStrings.TILEMAP_ATLAS_IMAGE);
         this.displayMode = jsonObject.getString(projectStrings.DISPLAY_MODE);
         this.layerIndex = jsonObject.getInt(projectStrings.LAYER_INDEX);
+        var levelIndex = 0;
+        ;
         if (jsonObject.has(projectStrings.LEVEL_INDEX)) {
-            this.levelIndex = jsonObject.getInt(projectStrings.LEVEL_INDEX);
+            jsonObject.getInt(projectStrings.LEVEL_INDEX);
         }
-        else {
-            this.levelIndex = 0;
-        }
+        this.levelIndex = levelIndex;
         this.animationSpeedScale = jsonObject.getNumber(projectStrings.ANIMATION_SPEED_SCALE);
         this.animationFps = jsonObject.getNumber(projectStrings.ANIMATION_FPS);
     }

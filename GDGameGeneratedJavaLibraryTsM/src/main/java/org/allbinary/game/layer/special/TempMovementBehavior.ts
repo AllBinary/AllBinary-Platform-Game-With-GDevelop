@@ -44,6 +44,8 @@ export class TempMovementBehavior
          {
         
 
+    public static readonly NULL_TEMP_MOVEMENT_BEHAVIOR: TempMovementBehavior = new TempMovementBehavior();
+
 }
 
 

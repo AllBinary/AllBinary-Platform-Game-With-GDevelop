@@ -9,8 +9,12 @@ import { PointFactory } from '../../../../org/allbinary/graphics/PointFactory.js
 //not GWT import const PointFactory
 import { Rectangle } from '../../../../org/allbinary/graphics/Rectangle.js';
 //not GWT import const Rectangle
+import { RectangleFactory } from '../../../../org/allbinary/graphics/RectangleFactory.js';
+//not GWT import const RectangleFactory
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 //not plain js import { BasicArrayListD } 
@@ -41,10 +45,18 @@ export class GDProject extends Object {
         this.LAYOUTS = "GDLayouts: ";
         this.EXTERNAL_LAYOUT = "GDExternalLayouts: ";
         this.gdIde = new GDIde();
+        this.packageName = StringUtil.getInstance().EMPTY_STRING;
+        this.name = StringUtil.getInstance().EMPTY_STRING;
+        this.version = StringUtil.getInstance().EMPTY_STRING;
+        this.gameResolutionSize = RectangleFactory.SINGLETON;
         this.maxFPS = 0;
         this.minFPS = 0;
         this.verticalSyncActivatedByDefault = false;
+        this.scaleMode = StringUtil.getInstance().EMPTY_STRING;
         this.adaptGameResolutionAtRuntime = false;
+        this.sizeOnStartupMode = StringUtil.getInstance().EMPTY_STRING;
+        this.projectUuid = StringUtil.getInstance().EMPTY_STRING;
+        this.resourcesManager = GDResourcesManager.NULL_GDRESOURCEMANAGER;
         this.objectList = new BasicArrayListD();
         this.variableList = new BasicArrayListD();
         this.layoutList = new BasicArrayListD();

@@ -18,8 +18,6 @@ import { IndexedAnimation } from '../../../../org/allbinary/animation/IndexedAni
 //not GWT import const CustomTextAnimation
 import { SWTUtil } from '../../../../org/allbinary/game/layer/SWTUtil.js';
 //not GWT import const SWTUtil
-//not plain js import { LogUtil } 
-const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 import { PrimitiveIntUtil } from '../../../../org/allbinary/logic/math/PrimitiveIntUtil.js';
 //not GWT import const PrimitiveIntUtil
 //Current folder imports from return types, extended types, and scope (deduplicated)
@@ -27,7 +25,6 @@ import { PrimitiveIntUtil } from '../../../../org/allbinary/logic/math/Primitive
 export class SliderAnimation extends IndexedAnimation {
     constructor(animationInterfaceArray, width, height, animationBehavior) {
         super(animationBehavior);
-        this.logUtil = LogUtil.getInstance();
         this.value = 0;
         this.hasFocus = false;
         //For kotlin this is before the body of the constructor.

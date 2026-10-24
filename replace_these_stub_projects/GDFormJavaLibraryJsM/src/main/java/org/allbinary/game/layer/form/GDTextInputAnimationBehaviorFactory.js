@@ -20,7 +20,7 @@ import { GDTextInputAnimationBehavior } from './GDTextInputAnimationBehavior.js'
 export class GDTextInputAnimationBehaviorFactory extends GDAnimationBehaviorBaseFactory {
     static getInstance() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return instance;
+        return GDTextInputAnimationBehaviorFactory.instance;
     }
     create() {
         //if statement needs to be on the same line and ternary does not work the same way.

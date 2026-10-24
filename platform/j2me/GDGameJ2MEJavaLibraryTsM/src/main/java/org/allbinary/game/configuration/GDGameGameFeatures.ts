@@ -26,12 +26,6 @@ const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 
-import { GameConfigurationCentral } from '../../../../org/allbinary/game/configuration/GameConfigurationCentral.js';
-//not GWT import const GameConfigurationCentral
-
-import { GameConfigurationSingleton } from '../../../../org/allbinary/game/configuration/GameConfigurationSingleton.js';
-//not GWT import const GameConfigurationSingleton
-
 import { GameFeatureChoiceGroups } from '../../../../org/allbinary/game/configuration/feature/GameFeatureChoiceGroups.js';
 //not GWT import const GameFeatureChoiceGroups
 
@@ -62,7 +56,11 @@ import { InitInterface } from '../../../../org/allbinary/init/InitInterface.js';
 
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
-        
+        import { GameConfigurationSingleton } from './GameConfigurationSingleton.js';
+//not GWT import - same folder const GameConfigurationSingleton
+import { GameConfigurationCentral } from './GameConfigurationCentral.js';
+//not GWT import - same folder const GameConfigurationCentral
+
 export class GDGameGameFeatures
             extends Object
          implements InitInterface {

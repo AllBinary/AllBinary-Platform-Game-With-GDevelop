@@ -72,14 +72,13 @@ export class GDInstructionMetadata extends Object {
     }
     useStandardRelationalOperatorParameters(type) {
         this.codeExtraInformation.setManipulatedType(type);
-        this.addParameter(this.parameterFactory.RELATIONAL_OPERATOR, "Sign of the test", null, false);
+        this.addParameter(this.parameterFactory.RELATIONAL_OPERATOR, "Sign of the test", StringUtil.getInstance().NULL_STRING, false);
         this.addParameter(type == this.parameterFactory.NUMBER
             ?
                 this.parameterFactory.EXPRESSION
             :
                 type);
-        "Value to compare",
-            null, false;
+        "Value to compare", StringUtil.getInstance().NULL_STRING, false;
         ;
         var operatorParamIndex = this.parameterList.size() - 2;
         ;
@@ -118,20 +117,18 @@ export class GDInstructionMetadata extends Object {
     }
     setParameterLongDescription(longDescription) {
         if (this.parameterList.size() > 0) {
-            get = this.parameterList.get(this.parameterList.size() - 1);
-            get;
-            get.
-                setLongDescription(longDescription);
+            var gdParameterMetadata = this.parameterList.get(this.parameterList.size() - 1);
+            ;
+            gdParameterMetadata.setLongDescription(longDescription);
         }
         //if statement needs to be on the same line and ternary does not work the same way.
         return this;
     }
     setDefaultValue(defaultValue) {
         if (this.parameterList.size() > 0) {
-            get = this.parameterList.get(this.parameterList.size() - 1);
-            get;
-            get.
-                setDefaultValue(defaultValue);
+            var gdParameterMetadata = this.parameterList.get(this.parameterList.size() - 1);
+            ;
+            gdParameterMetadata.setDefaultValue(defaultValue);
         }
         //if statement needs to be on the same line and ternary does not work the same way.
         return this;
@@ -143,14 +140,13 @@ export class GDInstructionMetadata extends Object {
     }
     useStandardOperatorParameters(type) {
         this.codeExtraInformation.setManipulatedType(type);
-        this.addParameter(this.parameterFactory.OPERATOR, "Modification's sign", null, false);
+        this.addParameter(this.parameterFactory.OPERATOR, "Modification's sign", StringUtil.getInstance().NULL_STRING, false);
         this.addParameter(type == this.parameterFactory.NUMBER
             ?
                 this.parameterFactory.EXPRESSION
             :
                 type);
-        "Value",
-            null, false;
+        "Value", StringUtil.getInstance().NULL_STRING, false;
         ;
         var operatorParamIndex = this.parameterList.size() - 2;
         ;

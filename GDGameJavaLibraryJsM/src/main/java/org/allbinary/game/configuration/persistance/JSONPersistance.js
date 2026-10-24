@@ -25,8 +25,6 @@ import { TsUtil } from '../../../../../org/allbinary/TsUtil.js';
 //not GWT import const TsUtil
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
-//not plain js import { LogUtil } 
-const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 import { SmallIntegerSingletonFactory } from '../../../../../org/allbinary/logic/math/SmallIntegerSingletonFactory.js';
 //not GWT import const SmallIntegerSingletonFactory
 //not plain js import { StringUtil } 
@@ -35,10 +33,13 @@ const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { BasicPersitance } from './BasicPersitance.js';
 //not GWT import - same folder const BasicPersitance
+import { NullRecordFilter } from './NullRecordFilter.js';
+//not GWT import - same folder const NullRecordFilter
+import { NullRecordComparator } from './NullRecordComparator.js';
+//not GWT import - same folder const NullRecordComparator
 export class JSONPersistance extends BasicPersitance {
     constructor(recordId) {
         super(recordId);
-        this.logUtil = LogUtil.getInstance();
         this.tsUtil = TsUtil.getInstance();
         //For kotlin this is before the body of the constructor.
     }
@@ -50,7 +51,7 @@ export class JSONPersistance extends BasicPersitance {
     loadAll(abeClientInformation, size) {
         var recordStore = RecordStore.openRecordStore(this.getRecordId(abeClientInformation), true);
         ;
-        var recordEnum = recordStore.enumerateRecords(null, null, true);
+        var recordEnum = recordStore.enumerateRecords(NullRecordFilter.NULL_RECORD_FILTER, NullRecordComparator.NULL_RECORD_COMPARATOR, true);
         ;
         this.logUtil.putF(new StringMaker().append(this.persistanceStrings.NUMBER_OF_RECORDS).appendint(recordEnum.numRecords()).toString(), this, this.persistanceStrings.LOAD_ALL);
         var smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();

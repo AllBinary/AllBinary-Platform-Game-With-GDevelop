@@ -26,6 +26,9 @@ import { AnimationInterfaceFactoryInterface } from '../../../../org/allbinary/an
 import { IndexedAnimation } from '../../../../org/allbinary/animation/IndexedAnimation.js';
 //not GWT import const IndexedAnimation
 
+import { NullRotationAnimationFactory } from '../../../../org/allbinary/animation/NullRotationAnimationFactory.js';
+//not GWT import const NullRotationAnimationFactory
+
 import { RotationAnimation } from '../../../../org/allbinary/animation/RotationAnimation.js';
 //not GWT import const RotationAnimation
 
@@ -40,9 +43,6 @@ const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
 
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
-
-//not plain js import { LogUtil } 
-const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 
 import { FrameUtil } from '../../../../org/allbinary/math/FrameUtil.js';
 //not GWT import const FrameUtil
@@ -73,11 +73,9 @@ import { GDGameLayer } from './GDGameLayer.js';
 export class GDRotationBehavior extends GDAnimationBehaviorBase {
         
 
-    readonly logUtil: LogUtil = LogUtil.getInstance()!;
-
     readonly frameUtil: FrameUtil = FrameUtil.getInstance()!;
 
-    public rotationAnimationInterfaceArray: RotationAnimation[];
+    public rotationAnimationInterfaceArrayP: RotationAnimation[] = NullRotationAnimationFactory.getFactoryInstance()!.NULL_ROTATION_ANIMATION_ARRAY;
 
     public init(gdObject: GDObject, animationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[]): IndexedAnimation[]{
 
@@ -113,7 +111,7 @@ this.logUtil!.put(gdObject!.toString(), this, commonStrings!.CONSTRUCTOR, e);
 
 }
 
-this.rotationAnimationInterfaceArray= initIndexedAnimationInterfaceArray;
+this.rotationAnimationInterfaceArrayP= initIndexedAnimationInterfaceArray;
     
 
 
@@ -125,7 +123,7 @@ this.rotationAnimationInterfaceArray= initIndexedAnimationInterfaceArray;
 
 
     public setAnimationArray(rotationAnimationInterfaceArray: IndexedAnimation[]){
-this.rotationAnimationInterfaceArray= rotationAnimationInterfaceArray as RotationAnimation[];
+this.rotationAnimationInterfaceArrayP= rotationAnimationInterfaceArray as RotationAnimation[];
     
 }
 
@@ -135,7 +133,7 @@ this.rotationAnimationInterfaceArray= rotationAnimationInterfaceArray as Rotatio
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.rotationAnimationInterfaceArray;
+                        return this.rotationAnimationInterfaceArrayP;
     
 }
 
@@ -144,7 +142,7 @@ this.rotationAnimationInterfaceArray= rotationAnimationInterfaceArray as Rotatio
             
     public set(gameLayer: GDGameLayer, gdObject: GDObject){
 
-    var size: number = this.rotationAnimationInterfaceArray!.length
+    var size: number = this.rotationAnimationInterfaceArrayP!.length
                 ;;
     
 
@@ -154,7 +152,7 @@ this.rotationAnimationInterfaceArray= rotationAnimationInterfaceArray as Rotatio
                         for (
     var index: number = 0;index < size; index++)
         {
-this.rotationAnimationInterfaceArray[index]!.setFrame(this.frameUtil!.getFrameForAngle(0, 1));
+this.rotationAnimationInterfaceArrayP[index]!.setFrame(this.frameUtil!.getFrameForAngle(0, 1));
     
 }
 
@@ -168,7 +166,7 @@ this.rotationAnimationInterfaceArray[index]!.setFrame(this.frameUtil!.getFrameFo
 
     var rotationAnimation: RotationAnimation;;
     
-rotationAnimation= this.rotationAnimationInterfaceArray[gdObject!.animation]!;
+rotationAnimation= this.rotationAnimationInterfaceArrayP[gdObject!.animation]!;
     
 
                         if(angleAdjustment > 0)
@@ -210,7 +208,7 @@ value++;
 
     public toString(gdObject: GDObject, stringBuffer: StringMaker){
 
-    var rotationAnimation: RotationAnimation = this.rotationAnimationInterfaceArray[gdObject!.animation]!;;
+    var rotationAnimation: RotationAnimation = this.rotationAnimationInterfaceArrayP[gdObject!.animation]!;;
     
 stringBuffer!.append(GraphicsStrings.getInstance()!.ANGLE)!.appendint(rotationAnimation!.getAngleInfoP()!.getAngle());
     

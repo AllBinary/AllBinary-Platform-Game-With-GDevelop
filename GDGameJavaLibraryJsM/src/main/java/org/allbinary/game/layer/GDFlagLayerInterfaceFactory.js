@@ -4,7 +4,7 @@
 */
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../java/lang/Object.js';
-//not GWT import const AnimationInterfaceFactoryInterface
+//not GWT import const BasicAnimationInterfaceFactoryInterface
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 import { NullRotationAnimationFactory } from '../../../../org/allbinary/animation/NullRotationAnimationFactory.js';
@@ -15,6 +15,8 @@ import { GDObject } from '../../../../org/allbinary/game/layout/GDObject.js';
 //not GWT import const Rectangle
 import { RectangleFactory } from '../../../../org/allbinary/graphics/RectangleFactory.js';
 //not GWT import const LayerInterfaceFactoryInterface
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
 //not plain js import { ABHashtable } 
 const ABHashtable = globalThis.org.allbinary.util.ABHashtable;
 //not plain js import { BasicArrayList } 
@@ -56,14 +58,14 @@ export class GDFlagLayerInterfaceFactory extends Object {
         ;
         var layerInfo = RectangleFactory.SINGLETON;
         ;
-        var rectangleArrayOfArrays = new Array(0).fill(null).map(() => new Array(0).fill(null));
+        var rectangleArrayOfArrays = RectangleFactory.ARRAY_OF_ARRAYS;
         ;
         var gameLayerFactory = new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, false);
         ;
-        var gdObject = new GDObject(0, 0, GDFlagLayerInterfaceFactory.NAME, null);
+        var gdObject = new GDObject(0, 0, GDFlagLayerInterfaceFactory.NAME, StringUtil.getInstance().EMPTY_STRING);
         ;
-        gdObject.set(null, x, y, z);
-        var layer = gameLayerFactory.create(-1, GDFlagLayerInterfaceFactory.NAME, gdObject, 0, 0, new GDConditionWithGroupActions());
+        gdObject.set(StringUtil.getInstance().EMPTY_STRING, x, y, z);
+        var layer = gameLayerFactory.create(-1, GDFlagLayerInterfaceFactory.NAME, gdObject, 0.0, 0.0, new GDConditionWithGroupActions());
         ;
         layer.setAllBinaryGameLayerManager(hashtable.get(AllBinaryGameLayerManager.ID));
         //if statement needs to be on the same line and ternary does not work the same way.

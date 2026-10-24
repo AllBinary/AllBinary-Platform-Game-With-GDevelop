@@ -20,12 +20,6 @@
 
             import { Object } from '../../../../../java/lang/Object.js';
         
-import { TouchScreenFactory } from '../../../../../org/allbinary/input/motion/button/TouchScreenFactory.js';
-//not GWT import const TouchScreenFactory
-
-import { BaseTouchInput } from '../../../../../org/allbinary/input/motion/button/BaseTouchInput.js';
-//not GWT import const BaseTouchInput
-
 import { SensorGameUpdateProcessor } from '../../../../../org/allbinary/input/gyro/SensorGameUpdateProcessor.js';
 //not GWT import const SensorGameUpdateProcessor
 
@@ -47,10 +41,14 @@ import { SensorGameUpdateProcessor } from '../../../../../org/allbinary/input/gy
 
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
-        import { GDGameNeededMultiTouchButtonsBuilder } from './GDGameNeededMultiTouchButtonsBuilder.js';
+        import { TouchScreenFactory } from './TouchScreenFactory.js';
+//not GWT import - same folder const TouchScreenFactory
+import { GDGameNeededMultiTouchButtonsBuilder } from './GDGameNeededMultiTouchButtonsBuilder.js';
 //not GWT import - same folder const GDGameNeededMultiTouchButtonsBuilder
 import { GDGameNeededWithSensorTouchButtonsBuilder } from './GDGameNeededWithSensorTouchButtonsBuilder.js';
 //not GWT import - same folder const GDGameNeededWithSensorTouchButtonsBuilder
+import { BaseTouchInput } from './BaseTouchInput.js';
+//not GWT import - same folder const BaseTouchInput
 
 export class GDGameNeededTouchButtonsBuilder
             extends Object

@@ -87,7 +87,7 @@ export class GDTiledLayerFactory
 
     private readonly debugColor: BasicColor;
 
-    private useAsMiniAllBinaryTiledLayer: AllBinaryTiledLayer;
+    private lateinit useAsMiniAllBinaryTiledLayerLateInit: AllBinaryTiledLayer;
 
 public constructor (tileLayer: TileLayer, cellTypeIdToGeographicMapCellType: number[], map: TiledMap, tileSetImage: Image, debugColor: BasicColor){
 
@@ -106,13 +106,13 @@ this.debugColor= debugColor;
                 //@Throws(Exception.constructor)
             
     public getInstance(raceTrackInfo: RaceTrackInfo, raceTrackData: RaceTrackData): AllBinaryTiledLayer{
-this.useAsMiniAllBinaryTiledLayer= new PlacementAllBinaryJ2METiledLayer(SmallIntegerSingletonFactory.getInstance()!.getAt( -1), new TiledLayer(this.map.getWidth(), this.map.getHeight(), this.tileSetImage, Math.round((this.map.getTileWidth())), Math.round((this.map.getTileHeight()))), this.tileLayer!.getMapArray(), this.debugColor!.intValue());
+this.useAsMiniAllBinaryTiledLayerLateInit= new PlacementAllBinaryJ2METiledLayer(SmallIntegerSingletonFactory.getInstance()!.getAt( -1), new TiledLayer(this.map.getWidth(), this.map.getHeight(), this.tileSetImage, Math.round((this.map.getTileWidth())), Math.round((this.map.getTileHeight()))), this.tileLayer!.getMapArray(), this.debugColor!.intValue());
     
 
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.useAsMiniAllBinaryTiledLayer;
+                        return this.useAsMiniAllBinaryTiledLayerLateInit;
     
 }
 
@@ -124,7 +124,7 @@ this.useAsMiniAllBinaryTiledLayer= new PlacementAllBinaryJ2METiledLayer(SmallInt
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.useAsMiniAllBinaryTiledLayer;
+                        return this.useAsMiniAllBinaryTiledLayerLateInit;
     
 }
 

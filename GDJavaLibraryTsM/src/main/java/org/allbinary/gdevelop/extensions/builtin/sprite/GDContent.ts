@@ -60,7 +60,7 @@ export class GDContent
 
     public readonly layerIndex: number;
 
-    public readonly levelIndex: number= 0;
+    public readonly levelIndex: number;
 
     public readonly animationSpeedScale: Number;
 
@@ -85,20 +85,19 @@ this.displayMode= jsonObject!.getString(projectStrings!.DISPLAY_MODE);
 this.layerIndex= jsonObject!.getInt(projectStrings!.LAYER_INDEX);
     
 
+    var levelIndex: number = 0;;
+    
+
                         if(jsonObject!.has(projectStrings!.LEVEL_INDEX))
                         
                                     {
-                                    this.levelIndex= jsonObject!.getInt(projectStrings!.LEVEL_INDEX);
+                                    jsonObject!.getInt(projectStrings!.LEVEL_INDEX);
     
 
                                     }
                                 
-                        else {
-                            this.levelIndex= 0;
+this.levelIndex= levelIndex;
     
-
-                        }
-                            
 this.animationSpeedScale= jsonObject!.getNumber(projectStrings!.ANIMATION_SPEED_SCALE);
     
 this.animationFps= jsonObject!.getNumber(projectStrings!.ANIMATION_FPS);

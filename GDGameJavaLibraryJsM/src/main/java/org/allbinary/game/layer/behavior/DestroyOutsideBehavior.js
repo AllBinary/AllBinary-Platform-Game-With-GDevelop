@@ -34,19 +34,19 @@ export class DestroyOutsideBehavior extends GDBehavior {
             //if statement needs to be on the same line and ternary does not work the same way.
             return false;
         }
-        if (gdObject.x > this.SceneWindowWidth() + gdObject.Width(graphics)) {
+        if (gdObject.xP > this.SceneWindowWidth() + gdObject.Width(graphics)) {
             //if statement needs to be on the same line and ternary does not work the same way.
             return true;
         }
-        if (gdObject.y > this.SceneWindowHeight() + gdObject.Width(graphics)) {
+        if (gdObject.yP > this.SceneWindowHeight() + gdObject.Width(graphics)) {
             //if statement needs to be on the same line and ternary does not work the same way.
             return true;
         }
-        if (gdObject.y < -gdObject.Width(graphics)) {
+        if (gdObject.yP < -gdObject.Width(graphics)) {
             //if statement needs to be on the same line and ternary does not work the same way.
             return true;
         }
-        if (gdObject.x < -gdObject.Height(graphics)) {
+        if (gdObject.xP < -gdObject.Height(graphics)) {
             //if statement needs to be on the same line and ternary does not work the same way.
             return true;
         }

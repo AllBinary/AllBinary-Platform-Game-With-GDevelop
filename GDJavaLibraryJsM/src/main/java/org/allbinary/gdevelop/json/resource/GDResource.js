@@ -6,6 +6,9 @@
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../../java/lang/Object.js';
 import { GDProjectStrings } from '../../../../../org/allbinary/gdevelop/json/GDProjectStrings.js';
+//not GWT import const GDProjectStrings
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
 //not GWT import const JSONObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 export class GDResource extends Object {
@@ -24,10 +27,8 @@ export class GDResource extends Object {
             this.originIdentifier = originJSONObject.getString(gdProjectStrings.IDENTIFIER);
         }
         else {
-            this.originName =
-                null;
-            this.originIdentifier =
-                null;
+            this.originName = StringUtil.getInstance().NULL_STRING;
+            this.originIdentifier = StringUtil.getInstance().NULL_STRING;
         }
         this.fileAsString = jsonObject.getString(gdProjectStrings.FILE);
     }

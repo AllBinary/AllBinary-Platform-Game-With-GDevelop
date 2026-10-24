@@ -25,6 +25,9 @@
 import { AnimationInterfaceFactoryInterface } from '../../../../org/allbinary/animation/AnimationInterfaceFactoryInterface.js';
 //not GWT import const AnimationInterfaceFactoryInterface
 
+import { BasicAnimationInterfaceFactoryInterface } from '../../../../org/allbinary/animation/BasicAnimationInterfaceFactoryInterface.js';
+//not GWT import const BasicAnimationInterfaceFactoryInterface
+
 import { NullAnimationFactory } from '../../../../org/allbinary/animation/NullAnimationFactory.js';
 //not GWT import const NullAnimationFactory
 
@@ -102,7 +105,7 @@ export class GDGameLayerFactory
 
     readonly animationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[];
 
-    readonly proceduralAnimationInterfaceFactoryInterfaceArray: ProceduralAnimationInterfaceFactoryInterface[];
+    readonly proceduralAnimationInterfaceFactoryInterfaceArray: BasicAnimationInterfaceFactoryInterface[];
 
     readonly layerInfo: Rectangle;
 
@@ -116,7 +119,7 @@ export class GDGameLayerFactory
 
     readonly resetAnimationBehavior: boolean;
 
-public constructor (gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, groupInterface: Group[], behaviorList: BasicArrayList, animationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[], proceduralAnimationInterfaceFactoryInterfaceArray: ProceduralAnimationInterfaceFactoryInterface[], layerInfo: Rectangle, rectangleArrayOfArrays: Rectangle[][], resetAnimationBehavior: boolean){
+public constructor (gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, groupInterface: Group[], behaviorList: BasicArrayList, animationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[], proceduralAnimationInterfaceFactoryInterfaceArray: BasicAnimationInterfaceFactoryInterface[], layerInfo: Rectangle, rectangleArrayOfArrays: Rectangle[][], resetAnimationBehavior: boolean){
             this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance(), resetAnimationBehavior);
                     
 
@@ -125,7 +128,7 @@ public constructor (gameLayerList: BasicArrayList, gameLayerDestroyedList: Basic
 }
 
 
-public constructor (gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, groupInterface: Group[], behaviorList: BasicArrayList, animationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[], proceduralAnimationInterfaceFactoryInterfaceArray: ProceduralAnimationInterfaceFactoryInterface[], layerInfo: Rectangle, rectangleArrayOfArrays: Rectangle[][], animationBehaviorFactory: GDAnimationBehaviorBaseFactory, resetAnimationBehavior: boolean){
+public constructor (gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, groupInterface: Group[], behaviorList: BasicArrayList, animationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[], proceduralAnimationInterfaceFactoryInterfaceArray: BasicAnimationInterfaceFactoryInterface[], layerInfo: Rectangle, rectangleArrayOfArrays: Rectangle[][], animationBehaviorFactory: GDAnimationBehaviorBaseFactory, resetAnimationBehavior: boolean){
 
             super();
         this.groupInterface= groupInterface;

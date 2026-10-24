@@ -160,6 +160,28 @@ export class GDNode extends Object {
     processGDStats(gameLayerArray) {
         this.nodeStatsFactory.push(14, this.name);
     }
+    process(gameLayer, x, y) {
+        throw new RuntimeException();
+    }
+    process(gdObject, x, y) {
+        throw new RuntimeException();
+    }
+    //@Throws(Exception.constructor)
+    processSub() {
+        throw new RuntimeException();
+    }
+    //@Throws(Exception.constructor)
+    processSub(motionGestureEvent, lastMotionGestureInput) {
+        throw new RuntimeException();
+    }
+    //@Throws(Exception.constructor)
+    processSub(gameLayerArray) {
+        throw new RuntimeException();
+    }
+    //@Throws(Exception.constructor)
+    processC() {
+        throw new RuntimeException();
+    }
     getReturnValue() {
         //if statement needs to be on the same line and ternary does not work the same way.
         return NullUtil.getInstance().NULL_OBJECT;

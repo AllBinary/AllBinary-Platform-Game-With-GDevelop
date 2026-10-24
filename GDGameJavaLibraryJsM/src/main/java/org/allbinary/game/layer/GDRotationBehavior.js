@@ -11,6 +11,8 @@
         *
         *  Created By: Travis Berthelot
 */
+//not GWT import const IndexedAnimation
+import { NullRotationAnimationFactory } from '../../../../org/allbinary/animation/NullRotationAnimationFactory.js';
 //not GWT import const GDObject
 import { GraphicsStrings } from '../../../../org/allbinary/graphics/GraphicsStrings.js';
 //not GWT import const GraphicsStrings
@@ -18,8 +20,6 @@ import { GraphicsStrings } from '../../../../org/allbinary/graphics/GraphicsStri
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
-//not plain js import { LogUtil } 
-const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 import { FrameUtil } from '../../../../org/allbinary/math/FrameUtil.js';
 //not GWT import const FrameUtil
 //Current folder imports from return types, extended types, and scope (deduplicated)
@@ -28,8 +28,8 @@ import { GDAnimationBehaviorBase } from './GDAnimationBehaviorBase.js';
 export class GDRotationBehavior extends GDAnimationBehaviorBase {
     constructor() {
         super(...arguments);
-        this.logUtil = LogUtil.getInstance();
         this.frameUtil = FrameUtil.getInstance();
+        this.rotationAnimationInterfaceArrayP = NullRotationAnimationFactory.getFactoryInstance().NULL_ROTATION_ANIMATION_ARRAY;
     }
     init(gdObject, animationInterfaceFactoryInterfaceArray) {
         var size = animationInterfaceFactoryInterfaceArray.length;
@@ -48,23 +48,23 @@ export class GDRotationBehavior extends GDAnimationBehaviorBase {
                 this.logUtil.put(gdObject.toString(), this, commonStrings.CONSTRUCTOR, e);
             }
         }
-        this.rotationAnimationInterfaceArray = initIndexedAnimationInterfaceArray;
+        this.rotationAnimationInterfaceArrayP = initIndexedAnimationInterfaceArray;
         //if statement needs to be on the same line and ternary does not work the same way.
         return initIndexedAnimationInterfaceArray;
     }
     setAnimationArray(rotationAnimationInterfaceArray) {
-        this.rotationAnimationInterfaceArray = rotationAnimationInterfaceArray;
+        this.rotationAnimationInterfaceArrayP = rotationAnimationInterfaceArray;
     }
     getRotationAnimationInterfaceArray() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return this.rotationAnimationInterfaceArray;
+        return this.rotationAnimationInterfaceArrayP;
     }
     //@Throws(Exception.constructor)
     set(gameLayer, gdObject) {
-        var size = this.rotationAnimationInterfaceArray.length;
+        var size = this.rotationAnimationInterfaceArrayP.length;
         ;
         for (var index = 0; index < size; index++) {
-            this.rotationAnimationInterfaceArray[index].setFrame(this.frameUtil.getFrameForAngle(0, 1));
+            this.rotationAnimationInterfaceArrayP[index].setFrame(this.frameUtil.getFrameForAngle(0, 1));
         }
     }
     setRotation(gameLayer, angleAdjustment) {
@@ -72,7 +72,7 @@ export class GDRotationBehavior extends GDAnimationBehaviorBase {
         ;
         var rotationAnimation;
         ;
-        rotationAnimation = this.rotationAnimationInterfaceArray[gdObject.animation];
+        rotationAnimation = this.rotationAnimationInterfaceArrayP[gdObject.animation];
         if (angleAdjustment > 0) {
             var value = angleAdjustment;
             ;
@@ -91,7 +91,7 @@ export class GDRotationBehavior extends GDAnimationBehaviorBase {
         }
     }
     toString(gdObject, stringBuffer) {
-        var rotationAnimation = this.rotationAnimationInterfaceArray[gdObject.animation];
+        var rotationAnimation = this.rotationAnimationInterfaceArrayP[gdObject.animation];
         ;
         stringBuffer.append(GraphicsStrings.getInstance().ANGLE).appendint(rotationAnimation.getAngleInfoP().getAngle());
     }

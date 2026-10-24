@@ -12,6 +12,9 @@
 
             import { Object } from '../../../../../../java/lang/Object.js';
         
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+
 
 
 
@@ -36,7 +39,7 @@ export class GDExtraInformation
          {
         
 
-    public type: string;
+    public type: string = StringUtil.getInstance()!.NULL_STRING;
 
     public setManipulatedType(type: string){
 this.type= type;

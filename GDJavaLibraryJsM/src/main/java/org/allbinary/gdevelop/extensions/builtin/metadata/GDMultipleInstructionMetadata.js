@@ -14,30 +14,15 @@ export class GDMultipleInstructionMetadata extends Object {
         this.actionInstructionMetadata = actionInstructionMetadata;
     }
     addParameter(type, label, optionalObjectType, parameterIsOptional) {
-        if (this.expression !=
-            null) {
-            this.expression.addParameter(type, label, optionalObjectType, parameterIsOptional);
-        }
-        if (this.conditionInstructionMetadata !=
-            null) {
-            this.conditionInstructionMetadata.addParameter(type, label, optionalObjectType, parameterIsOptional);
-        }
-        if (this.actionInstructionMetadata !=
-            null) {
-            this.actionInstructionMetadata.addParameter(type, label, optionalObjectType, parameterIsOptional);
-        }
+        this.expression.addParameter(type, label, optionalObjectType, parameterIsOptional);
+        this.conditionInstructionMetadata.addParameter(type, label, optionalObjectType, parameterIsOptional);
+        this.actionInstructionMetadata.addParameter(type, label, optionalObjectType, parameterIsOptional);
         //if statement needs to be on the same line and ternary does not work the same way.
         return this;
     }
     useStandardParameters(type) {
-        if (this.conditionInstructionMetadata !=
-            null) {
-            this.conditionInstructionMetadata.useStandardRelationalOperatorParameters(type);
-        }
-        if (this.actionInstructionMetadata !=
-            null) {
-            this.actionInstructionMetadata.useStandardOperatorParameters(type);
-        }
+        this.conditionInstructionMetadata.useStandardRelationalOperatorParameters(type);
+        this.actionInstructionMetadata.useStandardOperatorParameters(type);
         //if statement needs to be on the same line and ternary does not work the same way.
         return this;
     }

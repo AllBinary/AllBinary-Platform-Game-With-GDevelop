@@ -29,10 +29,10 @@ export class GDGameTouchButtonsBuilder extends BaseTouchInput {
     }
     static getInstance(sensorGameUpdateProcessor) {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return instance;
+        return GDGameTouchButtonsBuilder.instance;
     }
     build() {
-        logUtil.putF(commonStrings.START, this, "build");
+        this.logUtil.putF(this.commonStrings.START, this, "build");
     }
 }
 GDGameTouchButtonsBuilder.instance = new GDGameTouchButtonsBuilder();

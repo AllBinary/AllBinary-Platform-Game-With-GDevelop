@@ -11,6 +11,10 @@ import { GDBehaviorMetadata } from '../../../../../org/allbinary/gdevelop/extens
 //not GWT import const GDBehaviorMetadata
 import { GDParameterFactory } from '../../../../../org/allbinary/gdevelop/extensions/builtin/metadata/GDParameterFactory.js';
 //not GWT import const GDParameterFactory
+import { GDProjectBehavior } from '../../../../../org/allbinary/gdevelop/project/GDProjectBehavior.js';
+//not GWT import const GDProjectBehavior
+import { GDProjectBehaviorsSharedData } from '../../../../../org/allbinary/gdevelop/project/GDProjectBehaviorsSharedData.js';
+//not GWT import const GDProjectBehaviorsSharedData
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
 //Current folder imports from return types, extended types, and scope (deduplicated)
@@ -20,7 +24,7 @@ export class GDIdeBaseObjectExtension extends Object {
         this.parameterFactory = GDParameterFactory.getInstance();
         this.stringUtil = StringUtil.getInstance();
         this.platformExtension = GDPlatformExtension.getInstance();
-        this.behaviorMetadata = new GDBehaviorMetadata(this.stringUtil.EMPTY_STRING, this.stringUtil.EMPTY_STRING, this.stringUtil.EMPTY_STRING, this.stringUtil.EMPTY_STRING, this.stringUtil.EMPTY_STRING, this.stringUtil.EMPTY_STRING, this.stringUtil.EMPTY_STRING, this.stringUtil.EMPTY_STRING, null, null);
+        this.behaviorMetadata = new GDBehaviorMetadata(this.stringUtil.EMPTY_STRING, this.stringUtil.EMPTY_STRING, this.stringUtil.EMPTY_STRING, this.stringUtil.EMPTY_STRING, this.stringUtil.EMPTY_STRING, this.stringUtil.EMPTY_STRING, this.stringUtil.EMPTY_STRING, this.stringUtil.EMPTY_STRING, GDProjectBehavior.NULL_GDBEHAVIOR, GDProjectBehaviorsSharedData.NULL_GDBEHAVIORSHAREDDATA);
         this.behaviorMetadata.addCondition("PosX", "X position", "Compare the X position of the object.", "the X position", "Position", "res/conditions/position24.png", "res/conditions/position.png").addParameter(this.parameterFactory.OBJECT, GDIdeBaseObjectExtension.OBJECT, this.stringUtil.EMPTY_STRING, false).useStandardRelationalOperatorParameters(this.parameterFactory.NUMBER).markAsSimple();
         this.behaviorMetadata.addAction("MettreX", "X position", "Change the X position of an object.", "the X position", "Position", "res/actions/position24.png", "res/actions/position.png").addParameter(this.parameterFactory.OBJECT, GDIdeBaseObjectExtension.OBJECT, this.stringUtil.EMPTY_STRING, false).useStandardOperatorParameters(this.parameterFactory.NUMBER).markAsSimple();
         this.behaviorMetadata.addCondition("PosY", "Y position", "Compare the Y position of an object.", "the Y position", "Position", "res/conditions/position24.png", "res/conditions/position.png").addParameter(this.parameterFactory.OBJECT, GDIdeBaseObjectExtension.OBJECT, this.stringUtil.EMPTY_STRING, false).useStandardRelationalOperatorParameters(this.parameterFactory.NUMBER).markAsSimple();

@@ -15,11 +15,11 @@
 import { GDPlatformExtension } from '../../../../../../org/allbinary/gdevelop/extensions/GDPlatformExtension.js';
 //not GWT import const GDPlatformExtension
 
-import { GDBehavior } from '../../../../../../org/allbinary/gdevelop/project/GDBehavior.js';
-//not GWT import const GDBehavior
+import { GDProjectBehavior } from '../../../../../../org/allbinary/gdevelop/project/GDProjectBehavior.js';
+//not GWT import const GDProjectBehavior
 
-import { GDBehaviorsSharedData } from '../../../../../../org/allbinary/gdevelop/project/GDBehaviorsSharedData.js';
-//not GWT import const GDBehaviorsSharedData
+import { GDProjectBehaviorsSharedData } from '../../../../../../org/allbinary/gdevelop/project/GDProjectBehaviorsSharedData.js';
+//not GWT import const GDProjectBehaviorsSharedData
 
 //not plain js import { CommonSeps } 
 const CommonSeps = globalThis.org.allbinary.string.CommonSeps;
@@ -67,9 +67,9 @@ export class GDBehaviorMetadata
          {
         
 
-    private static RETURN_: string = "Return ";
+    private static readonly RETURN_: string = "Return ";
 
-    private static COMPARE_: string = "Compare ";
+    private static readonly COMPARE_: string = "Compare ";
 
     private readonly commonSeps: CommonSeps = CommonSeps.getInstance()!;
 
@@ -77,7 +77,7 @@ export class GDBehaviorMetadata
 
     public readonly extensionNamespace: string;
 
-    public readonly name: string;
+    public readonly aname: string;
 
     public readonly fullname: string;
 
@@ -91,9 +91,9 @@ export class GDBehaviorMetadata
 
     public readonly className: string;
 
-    public readonly behavior: GDBehavior;
+    public readonly behavior: GDProjectBehavior;
 
-    public readonly behaviorsSharedData: GDBehaviorsSharedData;
+    public readonly behaviorsSharedData: GDProjectBehaviorsSharedData;
 
     public readonly conditionInstructionMetadataList: BasicArrayList = new BasicArrayListD();
 
@@ -107,12 +107,12 @@ export class GDBehaviorMetadata
 
     private readonly nameToStrExpressionMetadataMap: ABHashMap<string, GDExpressionMetadata> = new ABHashMap<string, GDExpressionMetadata>();
 
-public constructor (extensionNamespace: string, name: string, fullname: string, defaultName: string, description: string, group: string, icon24x24: string, className: string, behavior: GDBehavior, behaviorsSharedData: GDBehaviorsSharedData){
+public constructor (extensionNamespace: string, name: string, fullname: string, defaultName: string, description: string, group: string, icon24x24: string, className: string, behavior: GDProjectBehavior, behaviorsSharedData: GDProjectBehaviorsSharedData){
 
             super();
         this.extensionNamespace= extensionNamespace;
     
-this.name= name;
+this.aname= name;
     
 this.fullname= fullname;
     

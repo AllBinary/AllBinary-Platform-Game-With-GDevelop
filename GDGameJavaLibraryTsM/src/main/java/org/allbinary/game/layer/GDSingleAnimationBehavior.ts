@@ -29,12 +29,6 @@ import { GDObject } from '../../../../org/allbinary/game/layout/GDObject.js';
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
 
-//not plain js import { LogUtil } 
-const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
-
-//not plain js import { StringMaker } 
-const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
-
 
 
 
@@ -70,8 +64,6 @@ export class GDSingleAnimationBehavior extends GDAnimationBehaviorBase {
     
 }
 
-
-    readonly logUtil: LogUtil = LogUtil.getInstance()!;
 
     private elapsedTime: number = 0;
 

@@ -12,6 +12,9 @@
 
             import { Object } from '../../../../java/lang/Object.js';
         
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+
 //not plain js import { ABHashMap } 
 const ABHashMap = globalThis.org.allbinary.util.ABHashMap;
 
@@ -59,9 +62,9 @@ export class GDVariable
 
     public readonly string: string;
 
-    public readonly value: number= 0.0;
+    public readonly value: number;
 
-    public readonly boolValue: boolean= false;
+    public readonly boolValue: boolean;
 
     public readonly childVariableMap: ABHashMap<string, GDVariable> = new ABHashMap<string, GDVariable>();
 
@@ -79,6 +82,15 @@ public constructor (jsonObject: JSONObject){
 this.type= typeFactory!.get(jsonObject!.getString(gdProjectStrings!.TYPE));
     
 
+    var string: string;;
+    
+
+    var value: number;;
+    
+
+    var boolValue: boolean;;
+    
+
                         if(typeFactory!.isPrimitive(this.type))
                         
                                     {
@@ -86,11 +98,11 @@ this.type= typeFactory!.get(jsonObject!.getString(gdProjectStrings!.TYPE));
                         if(this.type == typeFactory!.STRING)
                         
                                     {
-                                    this.string= jsonObject!.getString(gdProjectStrings!.VALUE);
+                                    string= jsonObject!.getString(gdProjectStrings!.VALUE);
     
-this.value= 0;
+value= 0;
     
-this.boolValue= false;
+boolValue= false;
     
 
                                     }
@@ -99,13 +111,11 @@ this.boolValue= false;
                         if(this.type == typeFactory!.NUMBER)
                         
                                     {
-                                    this.string= 
-                                        null
-                                    ;
+                                    string= StringUtil.getInstance()!.EMPTY_STRING;
     
-this.value= jsonObject!.getDouble(gdProjectStrings!.VALUE);
+value= jsonObject!.getDouble(gdProjectStrings!.VALUE);
     
-this.boolValue= false;
+boolValue= false;
     
 
                                     }
@@ -114,25 +124,21 @@ this.boolValue= false;
                         if(this.type == typeFactory!.BOOLEAN)
                         
                                     {
-                                    this.string= 
-                                        null
-                                    ;
+                                    string= StringUtil.getInstance()!.EMPTY_STRING;
     
-this.value= 0;
+value= 0;
     
-this.boolValue= jsonObject!.getBoolean(gdProjectStrings!.VALUE);
+boolValue= jsonObject!.getBoolean(gdProjectStrings!.VALUE);
     
 
                                     }
                                 
                         else {
-                            this.string= 
-                                        null
-                                    ;
+                            string= StringUtil.getInstance()!.EMPTY_STRING;
     
-this.value= 0;
+value= 0;
     
-this.boolValue= false;
+boolValue= false;
     
 
                         }
@@ -141,13 +147,11 @@ this.boolValue= false;
                                     }
                                 
                         else {
-                            this.string= 
-                                        null
-                                    ;
+                            string= StringUtil.getInstance()!.EMPTY_STRING;
     
-this.value= 0;
+value= 0;
     
-this.boolValue= false;
+boolValue= false;
     
 
                         if(jsonObject!.has(gdProjectStrings!.CHILDREN))
@@ -197,6 +201,12 @@ childJSONObject= variableJSONArray!.getJSONObject(index);
 
                         }
                             
+this.string= string;
+    
+this.value= value;
+    
+this.boolValue= boolValue;
+    
 }
 
 

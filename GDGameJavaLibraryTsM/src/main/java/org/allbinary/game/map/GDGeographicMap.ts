@@ -135,10 +135,6 @@ import { TiledMap } from '../../../../org/mapeditor/core/TiledMap.js';
 export class GDGeographicMap extends RaceTrackGeographicMap {
         
 
-    readonly logUtil: LogUtil = LogUtil.getInstance()!;
-
-    readonly commonStrings: CommonStrings = CommonStrings.getInstance()!;
-
     private readonly map: TiledMap;
 
     private readonly animationTileIndexArray: number[];

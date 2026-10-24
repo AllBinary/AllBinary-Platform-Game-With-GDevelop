@@ -6,6 +6,8 @@
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../../../java/lang/Object.js';
 import { GDProjectStrings } from '../../../../../../org/allbinary/gdevelop/json/GDProjectStrings.js';
+//not GWT import const GDProjectStrings
+import { GDEvent } from '../../../../../../org/allbinary/gdevelop/json/event/GDEvent.js';
 //not GWT import const JSONObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDEventTypeFactory } from './GDEventTypeFactory.js';
@@ -72,7 +74,7 @@ export class GDEventFactory extends Object {
             return new GDWhileEvent(type, jsonObject);
         }
         //if statement needs to be on the same line and ternary does not work the same way.
-        return null;
+        return GDEvent.NULL_GDEVENT;
     }
 }
 GDEventFactory.instance = new GDEventFactory();

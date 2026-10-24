@@ -16,8 +16,6 @@ import { J2MEUtil } from '../../../../org/allbinary/J2MEUtil.js';
 //not GWT import const AnimationBehavior
 import { IndexedAnimation } from '../../../../org/allbinary/animation/IndexedAnimation.js';
 //not GWT import const IndexedAnimation
-//not plain js import { LogUtil } 
-const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 import { PrimitiveIntUtil } from '../../../../org/allbinary/logic/math/PrimitiveIntUtil.js';
 //not GWT import const PrimitiveIntUtil
 //Current folder imports from return types, extended types, and scope (deduplicated)
@@ -25,7 +23,6 @@ import { PrimitiveIntUtil } from '../../../../org/allbinary/logic/math/Primitive
 export class ScrollBarAnimation extends IndexedAnimation {
     constructor(animationInterfaceArray, width, height, animationBehavior) {
         super(animationBehavior);
-        this.logUtil = LogUtil.getInstance();
         this.value = 0;
         this.hasFocus = false;
         //For kotlin this is before the body of the constructor.

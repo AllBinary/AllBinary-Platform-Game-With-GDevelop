@@ -18,12 +18,6 @@
         
 
 
-import { BasicBuildGameInitializerFactory } from '../../../../org/allbinary/game/init/BasicBuildGameInitializerFactory.js';
-//not GWT import const BasicBuildGameInitializerFactory
-
-import { GameInitializationInterface } from '../../../../org/allbinary/game/init/GameInitializationInterface.js';
-//not GWT import const GameInitializationInterface
-
 import { ResourceInitialization } from '../../../../org/allbinary/game/resource/ResourceInitialization.js';
 //not GWT import const ResourceInitialization
 
@@ -48,7 +42,9 @@ import { GDGameJ2MEEarlyResourceInitialization } from '../../../../org/allbinary
 
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
-        import { J2MEGDGameStaticInitializer } from './J2MEGDGameStaticInitializer.js';
+        import { BasicBuildGameInitializerFactory } from './BasicBuildGameInitializerFactory.js';
+//not GWT import - same folder const BasicBuildGameInitializerFactory
+import { J2MEGDGameStaticInitializer } from './J2MEGDGameStaticInitializer.js';
 //not GWT import - same folder const J2MEGDGameStaticInitializer
 import { GDGameResourceInitialization } from './GDGameResourceInitialization.js';
 //not GWT import - same folder const GDGameResourceInitialization
@@ -56,6 +52,8 @@ import { GDGameJ2MEAnimationInterfaceFactoryEarlyResourceInitialization } from '
 //not GWT import - same folder const GDGameJ2MEAnimationInterfaceFactoryEarlyResourceInitialization
 import { GDGameJ2MEAnimationInterfaceFactoryResourceInitialization } from './GDGameJ2MEAnimationInterfaceFactoryResourceInitialization.js';
 //not GWT import - same folder const GDGameJ2MEAnimationInterfaceFactoryResourceInitialization
+import { GameInitializationInterface } from './GameInitializationInterface.js';
+//not GWT import - same folder const GameInitializationInterface
 
 export class GDGameStaticInitializerFactory extends BasicBuildGameInitializerFactory {
         

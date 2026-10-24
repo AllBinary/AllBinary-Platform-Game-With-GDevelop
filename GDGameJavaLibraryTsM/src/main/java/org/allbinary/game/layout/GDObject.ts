@@ -49,6 +49,9 @@ import { GraphicsStrings } from '../../../../org/allbinary/graphics/GraphicsStri
 import { BasicColor } from '../../../../org/allbinary/graphics/color/BasicColor.js';
 //not GWT import const BasicColor
 
+import { BasicColorFactory } from '../../../../org/allbinary/graphics/color/BasicColorFactory.js';
+//not GWT import const BasicColorFactory
+
 import { OpenGLFeatureFactory } from '../../../../org/allbinary/graphics/opengles/OpenGLFeatureFactory.js';
 //not GWT import const OpenGLFeatureFactory
 
@@ -123,9 +126,9 @@ export class GDObject
 
     private readonly offsetBehavior: BaseOffsetBehavior;
 
-    public x: number= 0;
+    public xP: number= 0;
 
-    public y: number= 0;
+    public yP: number= 0;
 
     public zOrder: number= 0;
 
@@ -133,7 +136,7 @@ export class GDObject
 
     public rotationZP: number= 0.0;
 
-    public angle: number= 0;
+    public angleP: number= 0;
 
     public movement_angle: number= 0;
 
@@ -153,7 +156,7 @@ export class GDObject
 
     public opacity: number = 255;
 
-    public basicColor: BasicColor;
+    public basicColor: BasicColor = BasicColorFactory.getInstance()!.NULL_COLOR;
 
     public widthAtInitialScale: number= 0;
 
@@ -205,9 +208,9 @@ this.updateSize(width, height);
 
 
     public set(unknown: string, x: number, y: number, zOrder: number){
-this.x= x;
+this.xP= x;
     
-this.y= y;
+this.yP= y;
     
 this.zOrder= zOrder;
     
@@ -275,7 +278,7 @@ this.halfHeight= height /2;
 }
 
 
-    public Width(graphics: Graphics): number{
+    public Width(graphicsCanBeNull: Graphics): number{
 
 
 
@@ -285,7 +288,7 @@ this.halfHeight= height /2;
 }
 
 
-    public Height(graphics: Graphics): number{
+    public Height(graphicsCanBeNull: Graphics): number{
 
 
 
@@ -302,7 +305,7 @@ this.setX(Math.round(x));
 
 
     public setX(x: number){
-this.x= x;
+this.xP= x;
     
 }
 
@@ -314,7 +317,7 @@ this.setY(Math.round(y));
 
 
     public setY(y: number){
-this.y= y;
+this.yP= y;
     
 }
 
@@ -324,7 +327,7 @@ this.y= y;
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.x;
+                        return this.xP;
     
 }
 
@@ -334,7 +337,7 @@ this.y= y;
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.y;
+                        return this.yP;
     
 }
 
@@ -344,7 +347,7 @@ this.y= y;
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.x +this.width;
+                        return this.xP +this.width;
     
 }
 
@@ -354,7 +357,7 @@ this.y= y;
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.y +this.height;
+                        return this.yP +this.height;
     
 }
 
@@ -376,7 +379,7 @@ this.y= y;
 
     public PointX(point: GPoint): number{
 
-    var adjustedAngle: number = this.angle;;
+    var adjustedAngle: number = this.angleP;;
     
 
         while(adjustedAngle > 359)
@@ -399,14 +402,14 @@ adjustedAngle += 360;
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return Math.round((this.x +(x *this.offsetX) +this.offsetBehavior!.PointX(this.halfWidth)));
+                        return Math.round((this.xP +(x *this.offsetX) +this.offsetBehavior!.PointX(this.halfWidth)));
     
 }
 
 
     public PointY(point: GPoint): number{
 
-    var adjustedAngle: number = this.angle;;
+    var adjustedAngle: number = this.angleP;;
     
 
         while(adjustedAngle > 359)
@@ -433,7 +436,7 @@ adjustedAngle += 360;
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return Math.round((this.y +(y *this.offsetY) +this.offsetBehavior!.PointY(this.halfHeight)));
+                        return Math.round((this.yP +(y *this.offsetY) +this.offsetBehavior!.PointY(this.halfHeight)));
     
 
                                     }
@@ -446,7 +449,7 @@ adjustedAngle += 360;
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return Math.round((this.y +(y *this.offsetY) +this.offsetBehavior!.PointY(this.halfHeight)));
+                        return Math.round((this.yP +(y *this.offsetY) +this.offsetBehavior!.PointY(this.halfHeight)));
     
 
                         }
@@ -455,7 +458,7 @@ adjustedAngle += 360;
 
 
     public setAngle(angle: number){
-this.angle= angle;
+this.angleP= angle;
     
 }
 
@@ -480,7 +483,7 @@ adjustedAngle += 360;
     
 }
 
-this.angle= adjustedAngle;
+this.angleP= adjustedAngle;
     
 gameLayer!.setRotation(adjustedAngle);
     
@@ -492,7 +495,7 @@ gameLayer!.setRotation(adjustedAngle);
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.angle;
+                        return this.angleP;
     
 }
 
@@ -502,7 +505,7 @@ gameLayer!.setRotation(adjustedAngle);
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.angle;
+                        return this.angleP;
     
 }
 
@@ -591,7 +594,7 @@ gameLayer!.setRotation(adjustedAngle);
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return stringBuilder!.append(gdObjectStrings!.GDOBJECT)!.append(CommonSeps.getInstance()!.COLON)!.append(this.name)!.append(commonSeps!.SPACE)!.append(positionStrings!.X_LABEL)!.appendint(this.x)!.append(positionStrings!.Y_LABEL)!.appendint(this.y)!.append(commonLabels!.WIDTH_LABEL)!.appendint(this.width)!.append(commonLabels!.HEIGHT_LABEL)!.appendint(this.height)!.toString();;
+                        return stringBuilder!.append(gdObjectStrings!.GDOBJECT)!.append(CommonSeps.getInstance()!.COLON)!.append(this.name)!.append(commonSeps!.SPACE)!.append(positionStrings!.X_LABEL)!.appendint(this.xP)!.append(positionStrings!.Y_LABEL)!.appendint(this.yP)!.append(commonLabels!.WIDTH_LABEL)!.appendint(this.width)!.append(commonLabels!.HEIGHT_LABEL)!.appendint(this.height)!.toString();;
     
 }
 
@@ -619,7 +622,7 @@ gameLayer!.setRotation(adjustedAngle);
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return stringBuilder!.append(gdObjectStrings!.GDOBJECT)!.append(CommonSeps.getInstance()!.COLON)!.append(this.name)!.appendint(this.hashCode())!.append(commonSeps!.SPACE)!.append(positionStrings!.X_LABEL)!.appendint(this.x)!.append(positionStrings!.Y_LABEL)!.appendint(this.y)!.append(commonSeps!.SPACE)!.append(positionStrings!.Z_LABEL)!.appendint(this.zOrder)!.append(commonSeps!.SPACE)!.append(commonLabels!.WIDTH_LABEL)!.appendint(this.width)!.append(commonSeps!.SPACE)!.append(commonLabels!.HEIGHT_LABEL)!.appendint(this.height)!.append(commonSeps!.SPACE)!.append(commonLabels!.WIDTH_LABEL)!.appendint(this.halfWidth)!.append(commonSeps!.SPACE)!.append(commonLabels!.HEIGHT_LABEL)!.appendint(this.halfHeight)!.append(commonSeps!.SPACE)!.append(graphicsStrings!.ANIMATION)!.appendint(this.animation)!.append(commonSeps!.SPACE)!.append(graphicsStrings!.ANGLE)!.append(commonSeps!.COLON)!.appendint(this.angle)!.append(commonSeps!.SPACE)!.append(graphicsStrings!.MOVEMENT_ANGLE)!.append(commonSeps!.COLON)!.appendint(this.movement_angle)!.append(commonSeps!.SPACE)!.append(graphicsStrings!.ROTATION)!.append(commonSeps!.COLON)!.appendfloat(this.rotationP)!.append(commonSeps!.SPACE)!.append(graphicsStrings!.OPACITY)!.append(commonSeps!.COLON)!.appendfloat(this.opacity)!.toString();;
+                        return stringBuilder!.append(gdObjectStrings!.GDOBJECT)!.append(CommonSeps.getInstance()!.COLON)!.append(this.name)!.appendint(this.hashCode())!.append(commonSeps!.SPACE)!.append(positionStrings!.X_LABEL)!.appendint(this.xP)!.append(positionStrings!.Y_LABEL)!.appendint(this.yP)!.append(commonSeps!.SPACE)!.append(positionStrings!.Z_LABEL)!.appendint(this.zOrder)!.append(commonSeps!.SPACE)!.append(commonLabels!.WIDTH_LABEL)!.appendint(this.width)!.append(commonSeps!.SPACE)!.append(commonLabels!.HEIGHT_LABEL)!.appendint(this.height)!.append(commonSeps!.SPACE)!.append(commonLabels!.WIDTH_LABEL)!.appendint(this.halfWidth)!.append(commonSeps!.SPACE)!.append(commonLabels!.HEIGHT_LABEL)!.appendint(this.halfHeight)!.append(commonSeps!.SPACE)!.append(graphicsStrings!.ANIMATION)!.appendint(this.animation)!.append(commonSeps!.SPACE)!.append(graphicsStrings!.ANGLE)!.append(commonSeps!.COLON)!.appendint(this.angleP)!.append(commonSeps!.SPACE)!.append(graphicsStrings!.MOVEMENT_ANGLE)!.append(commonSeps!.COLON)!.appendint(this.movement_angle)!.append(commonSeps!.SPACE)!.append(graphicsStrings!.ROTATION)!.append(commonSeps!.COLON)!.appendfloat(this.rotationP)!.append(commonSeps!.SPACE)!.append(graphicsStrings!.OPACITY)!.append(commonSeps!.COLON)!.appendfloat(this.opacity)!.toString();;
     
 }
 

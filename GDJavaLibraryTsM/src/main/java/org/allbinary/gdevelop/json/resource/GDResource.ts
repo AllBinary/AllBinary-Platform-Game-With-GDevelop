@@ -15,6 +15,9 @@
 import { GDProjectStrings } from '../../../../../org/allbinary/gdevelop/json/GDProjectStrings.js';
 //not GWT import const GDProjectStrings
 
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+
 import { JSONObject } from '../../../../../org/json/JSONObject.js';
 //not GWT import const JSONObject
 
@@ -85,13 +88,9 @@ this.originIdentifier= originJSONObject!.getString(gdProjectStrings!.IDENTIFIER)
                                     }
                                 
                         else {
-                            this.originName= 
-                                        null
-                                    ;
+                            this.originName= StringUtil.getInstance()!.NULL_STRING;
     
-this.originIdentifier= 
-                                        null
-                                    ;
+this.originIdentifier= StringUtil.getInstance()!.NULL_STRING;
     
 
                         }

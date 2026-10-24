@@ -69,6 +69,7 @@
             <!-- Game Version Start -->
             <version>${gd.version}</version>
             <!-- Game Version Start -->
+            <classifier>sources</classifier>
         </dependency>
 
         <dependency>
@@ -358,7 +359,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            
+                        
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
@@ -371,6 +372,41 @@
                         </fileset>
                     </filesets>
                 </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.8.1</version>
+                <executions>
+                    <execution>
+                        <id>unpack-dependency-javascript</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeScope>runtime</includeScope>
+                            <includes>**/*.js</includes>
+                            <outputDirectory>${project.build.directory}/dependency-javascript</outputDirectory>
+                            <markersDirectory>${project.build.directory}/dependency-maven-plugin-markers/javascript</markersDirectory>
+                        </configuration>
+                    </execution>
+<!--                    <execution>
+                        <id>unpack-dependency-typescript</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeScope>runtime</includeScope>
+                            <includes>**/*.ts</includes>
+                            <outputDirectory>${project.build.directory}/dependency-typescript</outputDirectory>
+                            <markersDirectory>${project.build.directory}/dependency-maven-plugin-markers/typescript</markersDirectory>
+                        </configuration>
+                    </execution>
+-->
+                </executions>
             </plugin>
 <!--            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -420,6 +456,14 @@
                         WEB-INF/lib/pythagoras-1.4.3.jar
                     </packagingExcludes>
                     <warSourceDirectory>war</warSourceDirectory>
+                    <webResources>
+                        <resource>
+                            <directory>${project.build.directory}/dependency-javascript</directory>
+                            <includes>
+                                <include>**/*.js</include>
+                            </includes>
+                        </resource>
+                    </webResources>
                 </configuration>
             </plugin>
       

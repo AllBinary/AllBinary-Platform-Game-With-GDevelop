@@ -32,6 +32,8 @@ import { PlayerTypesFactory } from '../../../../org/allbinary/game/PlayerTypesFa
 import { GameSpeed } from '../../../../org/allbinary/game/configuration/GameSpeed.js';
 //not GWT import const GameSpeed
 import { DemoCanvas } from '../../../../org/allbinary/game/displayable/canvas/DemoCanvas.js';
+//not GWT import const GameCanvasRunnableInterface
+import { AllBinaryGameLayerManager } from '../../../../org/allbinary/game/layer/AllBinaryGameLayerManager.js';
 //not GWT import const AllBinaryGameLayerManager
 import { ColorFillPaintableFactory } from '../../../../org/allbinary/game/paint/ColorFillPaintableFactory.js';
 //not GWT import const ColorFillPaintableFactory
@@ -56,7 +58,7 @@ export class GDGameStartCanvas extends DemoCanvas {
         this.WAIT = ((GameSpeed.getInstance().getDelay() * 3) >> 1);
         //For kotlin this is before the body of the constructor.
         this.setWait(this.WAIT);
-        GD0SpecialAnimation.getInstance(this, null);
+        GD0SpecialAnimation.getInstance(this, AllBinaryGameLayerManager.getNullInstance());
     }
     //@Throws(Exception.constructor)
     initPostPaint() {
@@ -73,8 +75,10 @@ export class GDGameStartCanvas extends DemoCanvas {
     createGameLayerManager(randomValue) {
         var gameInfo = new GameInfo(GameTypeFactory.getInstance().BOT, GameMode.SERVER, PlayerTypesFactory.getInstance().PLAYER_TYPE_ONE, GDGameLayerManager.MAX_LEVEL, randomValue);
         ;
+        var basicColorFactory = BasicColorFactory.getInstance();
+        ;
         //if statement needs to be on the same line and ternary does not work the same way.
-        return new GDGameLayerManager(null, null, gameInfo);
+        return new GDGameLayerManager(basicColorFactory.NULL_COLOR, basicColorFactory.NULL_COLOR, gameInfo);
     }
     //@Throws(Exception.constructor)
     createRunnable(randomValue) {

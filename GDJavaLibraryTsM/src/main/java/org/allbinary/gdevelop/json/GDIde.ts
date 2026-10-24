@@ -12,6 +12,9 @@
 
             import { Object } from '../../../../java/lang/Object.js';
         
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+
 import { JSONArray } from '../../../../org/json/JSONArray.js';
 //not GWT import const JSONArray
 
@@ -55,31 +58,31 @@ export class GDIde
 
     public revision: number= 0;
 
-    public author: string;
+    public author: string = StringUtil.getInstance()!.EMPTY_STRING;
 
-    public packageName: string;
+    public packageName: string = StringUtil.getInstance()!.EMPTY_STRING;
 
-    public orientation: string;
+    public orientation: string = StringUtil.getInstance()!.EMPTY_STRING;
 
     public folderProject: boolean= false;
 
-    public latestCompilationDirectory: string;
+    public latestCompilationDirectory: string = StringUtil.getInstance()!.EMPTY_STRING;
 
-    public platformSpecificAssets: JSONObject;
+    public platformSpecificAssets: JSONObject = JSONObject.NULL_JSONOBJECT;
 
-    public loadingScreen: JSONObject;
+    public loadingScreen: JSONObject = JSONObject.NULL_JSONOBJECT;
 
-    public extensionProperties: JSONArray;
+    public extensionProperties: JSONArray = JSONArray.NULL_JSONARRAY;
 
-    public currentPlatformName: string;
+    public currentPlatformName: string = StringUtil.getInstance()!.EMPTY_STRING;
 
-    public platforms: JSONArray;
+    public platforms: JSONArray = JSONArray.NULL_JSONARRAY;
 
-    public objectsGroups: JSONArray;
+    public objectsGroups: JSONArray = JSONArray.NULL_JSONARRAY;
 
-    public externalEvents: JSONArray;
+    public externalEvents: JSONArray = JSONArray.NULL_JSONARRAY;
 
-    public eventsFunctionsExtensions: JSONArray;
+    public eventsFunctionsExtensions: JSONArray = JSONArray.NULL_JSONARRAY;
 
                 //@Throws(JSONException.constructor)
             

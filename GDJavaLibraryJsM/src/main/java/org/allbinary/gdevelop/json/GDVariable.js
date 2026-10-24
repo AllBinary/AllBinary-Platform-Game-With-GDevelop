@@ -5,6 +5,8 @@
 */
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../java/lang/Object.js';
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
 //not plain js import { ABHashMap } 
 const ABHashMap = globalThis.org.allbinary.util.ABHashMap;
 //not plain js import { BasicArrayList } 
@@ -20,8 +22,6 @@ import { GDTypeFactory } from './GDTypeFactory.js';
 export class GDVariable extends Object {
     constructor(jsonObject) {
         super();
-        this.value = 0.0;
-        this.boolValue = false;
         this.childVariableMap = new ABHashMap();
         this.childVariableList = new BasicArrayListD();
         var gdProjectStrings = GDProjectStrings.getInstance();
@@ -29,36 +29,38 @@ export class GDVariable extends Object {
         var typeFactory = GDTypeFactory.getInstance();
         ;
         this.type = typeFactory.get(jsonObject.getString(gdProjectStrings.TYPE));
+        var string;
+        ;
+        var value;
+        ;
+        var boolValue;
+        ;
         if (typeFactory.isPrimitive(this.type)) {
             if (this.type == typeFactory.STRING) {
-                this.string = jsonObject.getString(gdProjectStrings.VALUE);
-                this.value = 0;
-                this.boolValue = false;
+                string = jsonObject.getString(gdProjectStrings.VALUE);
+                value = 0;
+                boolValue = false;
             }
             else if (this.type == typeFactory.NUMBER) {
-                this.string =
-                    null;
-                this.value = jsonObject.getDouble(gdProjectStrings.VALUE);
-                this.boolValue = false;
+                string = StringUtil.getInstance().EMPTY_STRING;
+                value = jsonObject.getDouble(gdProjectStrings.VALUE);
+                boolValue = false;
             }
             else if (this.type == typeFactory.BOOLEAN) {
-                this.string =
-                    null;
-                this.value = 0;
-                this.boolValue = jsonObject.getBoolean(gdProjectStrings.VALUE);
+                string = StringUtil.getInstance().EMPTY_STRING;
+                value = 0;
+                boolValue = jsonObject.getBoolean(gdProjectStrings.VALUE);
             }
             else {
-                this.string =
-                    null;
-                this.value = 0;
-                this.boolValue = false;
+                string = StringUtil.getInstance().EMPTY_STRING;
+                value = 0;
+                boolValue = false;
             }
         }
         else {
-            this.string =
-                null;
-            this.value = 0;
-            this.boolValue = false;
+            string = StringUtil.getInstance().EMPTY_STRING;
+            value = 0;
+            boolValue = false;
             if (jsonObject.has(gdProjectStrings.CHILDREN)) {
                 var variableJSONArray = jsonObject.getJSONArray(gdProjectStrings.CHILDREN);
                 ;
@@ -77,5 +79,8 @@ export class GDVariable extends Object {
                 }
             }
         }
+        this.string = string;
+        this.value = value;
+        this.boolValue = boolValue;
     }
 }

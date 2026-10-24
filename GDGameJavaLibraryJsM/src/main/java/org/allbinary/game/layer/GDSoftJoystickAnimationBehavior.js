@@ -16,15 +16,12 @@ import { PointFactory } from '../../../../org/allbinary/graphics/PointFactory.js
 //not GWT import const PointFactory
 import { TouchMotionGestureFactory } from '../../../../org/allbinary/input/motion/gesture/TouchMotionGestureFactory.js';
 //not GWT import const TouchMotionGestureFactory
-//not plain js import { LogUtil } 
-const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDAnimationBehaviorBase } from './GDAnimationBehaviorBase.js';
 //not GWT import - same folder const GDGameLayer
 export class GDSoftJoystickAnimationBehavior extends GDAnimationBehaviorBase {
     constructor() {
         super(...arguments);
-        this.logUtil = LogUtil.getInstance();
         this.touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
         this.initialX = 0;
         this.initialY = 0;

@@ -56,8 +56,6 @@ const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 export class PlayerInput extends PlayerGameInput implements DownKeyEventListenerInterface, UpKeyEventListenerInterface {
         
 
-    readonly logUtil: LogUtil = LogUtil.getInstance()!;
-
     private readonly keyEventList: BasicArrayList;
 
     private readonly removalKeyEventList: BasicArrayList;

@@ -16,14 +16,14 @@
 import { AnimationInterfaceFactoryInterface } from '../../../../org/allbinary/animation/AnimationInterfaceFactoryInterface.js';
 //not GWT import const AnimationInterfaceFactoryInterface
 
+import { BasicAnimationInterfaceFactoryInterface } from '../../../../org/allbinary/animation/BasicAnimationInterfaceFactoryInterface.js';
+//not GWT import const BasicAnimationInterfaceFactoryInterface
+
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 
 import { NullRotationAnimationFactory } from '../../../../org/allbinary/animation/NullRotationAnimationFactory.js';
 //not GWT import const NullRotationAnimationFactory
-
-import { ProceduralAnimationInterfaceFactoryInterface } from '../../../../org/allbinary/animation/ProceduralAnimationInterfaceFactoryInterface.js';
-//not GWT import const ProceduralAnimationInterfaceFactoryInterface
 
 import { Group } from '../../../../org/allbinary/game/identification/Group.js';
 //not GWT import const Group
@@ -45,6 +45,9 @@ import { AllBinaryLayer } from '../../../../org/allbinary/layer/AllBinaryLayer.j
 
 import { LayerInterfaceFactoryInterface } from '../../../../org/allbinary/layer/LayerInterfaceFactoryInterface.js';
 //not GWT import const LayerInterfaceFactoryInterface
+
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
 
 //not plain js import { ABHashtable } 
 const ABHashtable = globalThis.org.allbinary.util.ABHashtable;
@@ -111,7 +114,7 @@ private constructor (){
 
                 //@Throws(Exception.constructor)
             
-    public getNextInstance(hashtable: ABHashtable, x: number, y: number, z: number): AllBinaryLayer{
+    public getNextInstance(hashtable: ABHashtable<any, any>, x: number, y: number, z: number): AllBinaryLayer{
 
     var gameLayerList: BasicArrayList = new BasicArrayListD();;
     
@@ -134,7 +137,7 @@ private constructor (){
                                                         ];;
     
 
-    var proceduralAnimationInterfaceFactoryInterfaceArray: ProceduralAnimationInterfaceFactoryInterface[] = 
+    var proceduralAnimationInterfaceFactoryInterfaceArray: BasicAnimationInterfaceFactoryInterface[] = 
                                                         [
                                                             NullRotationAnimationFactory.getFactoryInstance()
                                                         ];;
@@ -143,21 +146,18 @@ private constructor (){
     var layerInfo: Rectangle = RectangleFactory.SINGLETON;;
     
 
-    var rectangleArrayOfArrays: Rectangle[][] = new Array(0).fill(null).map(() => new Array(0).fill(null))
-                                                            ;;
+    var rectangleArrayOfArrays: Rectangle[][] = RectangleFactory.ARRAY_OF_ARRAYS;;
     
 
     var gameLayerFactory: GDGameLayerFactory = new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, false);;
     
 
-    var gdObject: GDObject = new GDObject(0, 0, GDFlagLayerInterfaceFactory.NAME, 
-                            null);;
+    var gdObject: GDObject = new GDObject(0, 0, GDFlagLayerInterfaceFactory.NAME, StringUtil.getInstance()!.EMPTY_STRING);;
     
-gdObject!.set(
-                            null, x, y, z);
+gdObject!.set(StringUtil.getInstance()!.EMPTY_STRING, x, y, z);
     
 
-    var layer: GDGameLayer = gameLayerFactory!.create( -1, GDFlagLayerInterfaceFactory.NAME, gdObject, 0, 0, new GDConditionWithGroupActions())!;;
+    var layer: GDGameLayer = gameLayerFactory!.create( -1, GDFlagLayerInterfaceFactory.NAME, gdObject, 0.0, 0.0, new GDConditionWithGroupActions())!;;
     
 layer.setAllBinaryGameLayerManager(hashtable.get(AllBinaryGameLayerManager.ID) as AllBinaryGameLayerManager);
     

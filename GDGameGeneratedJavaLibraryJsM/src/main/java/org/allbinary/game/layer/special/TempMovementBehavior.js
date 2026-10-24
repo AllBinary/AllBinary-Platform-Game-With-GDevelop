@@ -16,3 +16,4 @@ import { Object } from '../../../../../java/lang/Object.js';
 //Current folder imports from return types, extended types, and scope (deduplicated)
 export class TempMovementBehavior extends Object {
 }
+TempMovementBehavior.NULL_TEMP_MOVEMENT_BEHAVIOR = new TempMovementBehavior();

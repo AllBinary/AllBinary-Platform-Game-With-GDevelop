@@ -420,9 +420,10 @@ this.unsafePossibleGeographicMapCellPositionList!.clear();
                         if(geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION)
                         
                                     {
-                                    layer = layerlayer as TopViewCharacterInterface
-layer.
-                    terrainMove(geographicMapInterfaceArray, geographicMapCellTypeArray, x, y);
+                                    
+    var topViewCharacterInterface: TopViewCharacterInterface = (layer as TopViewCharacterInterface);;
+    
+topViewCharacterInterface!.terrainMove(geographicMapInterfaceArray, geographicMapCellTypeArray, x, y);
     
 
                                     }
@@ -487,6 +488,9 @@ this.geographicMapBehavior!.getCellTypeAt(geographicMapInterfaceArray, geographi
     var hasSolidBlock: boolean = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray)!;;
     
 
+    var topViewCharacterInterface: TopViewCharacterInterface = (layer as TopViewCharacterInterface);;
+    
+
                         if(hasSolidBlock)
                         
                                     {
@@ -494,9 +498,7 @@ this.geographicMapBehavior!.getCellTypeAt(geographicMapInterfaceArray, geographi
                         if(this.autoStepBlocks)
                         
                                     {
-                                    layer = layerlayer as TopViewCharacterInterface
-layer.
-                    leftp();
+                                    topViewCharacterInterface!.leftp();
     
 
                                     }
@@ -511,9 +513,7 @@ layer.
                                     }
                                 
                         else {
-                            layer = layerlayer as TopViewCharacterInterface
-layer.
-                    leftp();
+                            topViewCharacterInterface!.leftp();
     
 
                         }
@@ -543,6 +543,9 @@ this.geographicMapBehavior!.getCellTypeAt(geographicMapInterfaceArray, geographi
     var hasSolidBlock: boolean = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray)!;;
     
 
+    var topViewCharacterInterface: TopViewCharacterInterface = (layer as TopViewCharacterInterface);;
+    
+
                         if(hasSolidBlock)
                         
                                     {
@@ -550,9 +553,7 @@ this.geographicMapBehavior!.getCellTypeAt(geographicMapInterfaceArray, geographi
                         if(this.autoStepBlocks)
                         
                                     {
-                                    layer = layerlayer as TopViewCharacterInterface
-layer.
-                    rightp();
+                                    topViewCharacterInterface!.rightp();
     
 
                                     }
@@ -567,9 +568,7 @@ layer.
                                     }
                                 
                         else {
-                            layer = layerlayer as TopViewCharacterInterface
-layer.
-                    rightp();
+                            topViewCharacterInterface!.rightp();
     
 
                         }

@@ -18,8 +18,14 @@ import { PointFactory } from '../../../../org/allbinary/graphics/PointFactory.js
 import { Rectangle } from '../../../../org/allbinary/graphics/Rectangle.js';
 //not GWT import const Rectangle
 
+import { RectangleFactory } from '../../../../org/allbinary/graphics/RectangleFactory.js';
+//not GWT import const RectangleFactory
+
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
@@ -88,13 +94,13 @@ export class GDProject
 
     public readonly gdIde: GDIde = new GDIde();
 
-    public packageName: string;
+    public packageName: string = StringUtil.getInstance()!.EMPTY_STRING;
 
-    public name: string;
+    public name: string = StringUtil.getInstance()!.EMPTY_STRING;
 
-    public version: string;
+    public version: string = StringUtil.getInstance()!.EMPTY_STRING;
 
-    public gameResolutionSize: Rectangle;
+    public gameResolutionSize: Rectangle = RectangleFactory.SINGLETON;
 
     public maxFPS: number= 0;
 
@@ -102,15 +108,15 @@ export class GDProject
 
     public verticalSyncActivatedByDefault: boolean= false;
 
-    public scaleMode: string;
+    public scaleMode: string = StringUtil.getInstance()!.EMPTY_STRING;
 
     public adaptGameResolutionAtRuntime: boolean= false;
 
-    public sizeOnStartupMode: string;
+    public sizeOnStartupMode: string = StringUtil.getInstance()!.EMPTY_STRING;
 
-    public projectUuid: string;
+    public projectUuid: string = StringUtil.getInstance()!.EMPTY_STRING;
 
-    public resourcesManager: GDResourcesManager;
+    public resourcesManager: GDResourcesManager = GDResourcesManager.NULL_GDRESOURCEMANAGER;
 
     public readonly objectList: BasicArrayList = new BasicArrayListD();
 

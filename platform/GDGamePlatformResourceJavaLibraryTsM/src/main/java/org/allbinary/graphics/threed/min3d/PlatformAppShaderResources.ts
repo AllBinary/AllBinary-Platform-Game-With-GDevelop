@@ -44,14 +44,14 @@ export class PlatformAppShaderResources
          {
         
 
-    static readonly instance: PlatformAppShaderResources = new PlatformAppShaderResources();
+    private static readonly instance: PlatformAppShaderResources = new PlatformAppShaderResources();
 
     public static getInstance(): PlatformAppShaderResources{
 
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return instance;
+                        return PlatformAppShaderResources.instance;
     
 }
 

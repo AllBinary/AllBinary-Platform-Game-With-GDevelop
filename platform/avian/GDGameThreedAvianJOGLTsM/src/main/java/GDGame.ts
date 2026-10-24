@@ -65,9 +65,6 @@ import { GDGameMotionGestureListener } from 'org/allbinary/input/motion/gesture/
 import { MotionGestureReceiveInterfaceFactory } from 'org/allbinary/input/motion/gesture/observer/MotionGestureReceiveInterfaceFactory.js';
 //not GWT import const MotionGestureReceiveInterfaceFactory
 
-//not plain js import { LogFactory } 
-const LogFactory = globalThis.org.allbinary.logic.communication.log.LogFactory;
-
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 
@@ -125,8 +122,6 @@ import { MidletJOGLInterface } from 'org/microemu/app/MidletJOGLInterface.js';
 export class GDGame extends org.allbinary.game.GDGameMIDlet implements MidletJOGLInterface {
         
 
-    readonly logUtil: LogUtil = LogUtil.getInstance()!;
-
     private readonly DEVICE_ID: number = 0;
 
     private motionRecognizer: AllMotionRecognizer = new AllMotionRecognizer();
@@ -139,7 +134,7 @@ public constructor (){
 
                             //For kotlin this is before the body of the constructor.
                     
-GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION= GDGameClientInformationInterfaceFactory.getFactoryInstance()!.getInstance();
+GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance()!.getInstance());
     
 
         try {

@@ -52,7 +52,7 @@ export class GDBehaviorUtil
          {
         
 
-    static readonly instance: GDBehaviorUtil = new GDBehaviorUtil();
+    private static readonly instance: GDBehaviorUtil = new GDBehaviorUtil();
 
     public static getInstance(): GDBehaviorUtil{
 

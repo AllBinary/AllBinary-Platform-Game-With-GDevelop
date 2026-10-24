@@ -18,6 +18,8 @@
         
 
 
+            import { RuntimeException } from '../../../../../java/lang/RuntimeException.js';
+        
 import { AnimationInterfaceFactoryInterface } from '../../../../../org/allbinary/animation/AnimationInterfaceFactoryInterface.js';
 //not GWT import const AnimationInterfaceFactoryInterface
 
@@ -69,9 +71,8 @@ public constructor (){
 
 
 
-                        //if statement needs to be on the same line and ternary does not work the same way.
-                        return null;
-    
+                            throw new RuntimeException();
+                    
 }
 
 

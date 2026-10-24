@@ -22,8 +22,7 @@ export class GDSliderAnimationBehavior extends GDItemAnimationBehavior {
         super();
     }
     init(gdObject, animationInterfaceFactoryInterfaceArray) {
-        //if statement needs to be on the same line and ternary does not work the same way.
-        return null;
+        throw new RuntimeException();
     }
     setAnimationArray(animationArray) {
     }

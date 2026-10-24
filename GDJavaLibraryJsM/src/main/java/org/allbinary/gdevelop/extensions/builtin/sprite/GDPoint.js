@@ -15,16 +15,15 @@ export class GDPoint extends Object {
     constructor(jsonObject) {
         super();
         this.logUtil = LogUtil.getInstance();
-        this.automatic = false;
         var projectStrings = GDProjectStrings.getInstance();
         ;
         this.name = jsonObject.getString(projectStrings.NAME);
+        var automatic = false;
+        ;
         if (jsonObject.has(projectStrings.AUTOMATIC)) {
-            this.automatic = jsonObject.getBoolean(projectStrings.AUTOMATIC);
+            automatic = jsonObject.getBoolean(projectStrings.AUTOMATIC);
         }
-        else {
-            this.automatic = false;
-        }
+        this.automatic = automatic;
         this.x = jsonObject.getInt(projectStrings.X);
         this.y = jsonObject.getInt(projectStrings.Y);
     }

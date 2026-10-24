@@ -61,15 +61,13 @@ import { GDGameClientInformationInterfaceFactory } from 'org/allbinary/logic/sys
 export class GDGameMIDlet extends org.allbinary.game.GDGameMIDlet {
         
 
-    readonly logUtil: LogUtil = LogUtil.getInstance()!;
-
 public constructor (){
             super(GDGameClientInformationInterfaceFactory.getFactoryInstance());
                     
 
                             //For kotlin this is before the body of the constructor.
                     
-GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION= GDGameClientInformationInterfaceFactory.getFactoryInstance()!.getInstance();
+GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance()!.getInstance());
     
 new DefaultGameInitializationListener();
     

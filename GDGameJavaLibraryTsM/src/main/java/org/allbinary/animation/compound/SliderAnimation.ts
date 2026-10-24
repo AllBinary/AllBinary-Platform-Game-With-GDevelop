@@ -43,9 +43,6 @@ import { CustomTextAnimation } from '../../../../org/allbinary/animation/text/Cu
 import { SWTUtil } from '../../../../org/allbinary/game/layer/SWTUtil.js';
 //not GWT import const SWTUtil
 
-//not plain js import { LogUtil } 
-const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
-
 import { PrimitiveIntUtil } from '../../../../org/allbinary/logic/math/PrimitiveIntUtil.js';
 //not GWT import const PrimitiveIntUtil
 
@@ -70,8 +67,6 @@ import { PrimitiveIntUtil } from '../../../../org/allbinary/logic/math/Primitive
         //Similar to ScollBar
 export class SliderAnimation extends IndexedAnimation {
         
-
-    readonly logUtil: LogUtil = LogUtil.getInstance()!;
 
     private animationInterfaceArray: IndexedAnimation[];
 

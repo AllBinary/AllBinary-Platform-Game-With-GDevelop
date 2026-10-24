@@ -21,6 +21,12 @@ import { GDBehaviorMetadata } from '../../../../../org/allbinary/gdevelop/extens
 import { GDParameterFactory } from '../../../../../org/allbinary/gdevelop/extensions/builtin/metadata/GDParameterFactory.js';
 //not GWT import const GDParameterFactory
 
+import { GDProjectBehavior } from '../../../../../org/allbinary/gdevelop/project/GDProjectBehavior.js';
+//not GWT import const GDProjectBehavior
+
+import { GDProjectBehaviorsSharedData } from '../../../../../org/allbinary/gdevelop/project/GDProjectBehaviorsSharedData.js';
+//not GWT import const GDProjectBehaviorsSharedData
+
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
 
@@ -56,9 +62,7 @@ export class GDIdeBaseObjectExtension
 
     public readonly platformExtension: GDPlatformExtension = GDPlatformExtension.getInstance()!;
 
-    public readonly behaviorMetadata: GDBehaviorMetadata = new GDBehaviorMetadata(this.stringUtil!.EMPTY_STRING, this.stringUtil!.EMPTY_STRING, this.stringUtil!.EMPTY_STRING, this.stringUtil!.EMPTY_STRING, this.stringUtil!.EMPTY_STRING, this.stringUtil!.EMPTY_STRING, this.stringUtil!.EMPTY_STRING, this.stringUtil!.EMPTY_STRING, 
-                            null, 
-                            null);
+    public readonly behaviorMetadata: GDBehaviorMetadata = new GDBehaviorMetadata(this.stringUtil!.EMPTY_STRING, this.stringUtil!.EMPTY_STRING, this.stringUtil!.EMPTY_STRING, this.stringUtil!.EMPTY_STRING, this.stringUtil!.EMPTY_STRING, this.stringUtil!.EMPTY_STRING, this.stringUtil!.EMPTY_STRING, this.stringUtil!.EMPTY_STRING, GDProjectBehavior.NULL_GDBEHAVIOR, GDProjectBehaviorsSharedData.NULL_GDBEHAVIORSHAREDDATA);
 
 public constructor (){
 

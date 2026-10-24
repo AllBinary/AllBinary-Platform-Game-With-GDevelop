@@ -12,6 +12,9 @@
 
             import { Object } from '../../../../../../java/lang/Object.js';
         
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+
 
 
 
@@ -46,11 +49,11 @@ export class GDParameterMetadata
 
     public readonly codeOnly: boolean;
 
-    private longDescription: string;
+    private longDescription: string = StringUtil.getInstance()!.EMPTY_STRING;
 
-    private defaultValue: string;
+    private defaultValue: string = StringUtil.getInstance()!.EMPTY_STRING;
 
-    private name: string;
+    private name: string = StringUtil.getInstance()!.EMPTY_STRING;
 
 public constructor (type: string, supplementaryInformation: string, optional: boolean, description: string, codeOnly: boolean){
 

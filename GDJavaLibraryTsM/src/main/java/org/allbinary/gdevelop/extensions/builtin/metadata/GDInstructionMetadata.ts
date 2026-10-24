@@ -184,8 +184,7 @@ this.parameterList!.add(parameterMetadata);
     public useStandardRelationalOperatorParameters(type: string): GDInstructionMetadata{
 this.codeExtraInformation!.setManipulatedType(type);
     
-this.addParameter(this.parameterFactory!.RELATIONAL_OPERATOR, "Sign of the test", 
-                            null, false);
+this.addParameter(this.parameterFactory!.RELATIONAL_OPERATOR, "Sign of the test", StringUtil.getInstance()!.NULL_STRING, false);
     
 this.addParameter(type == this.parameterFactory!.NUMBER
                         ?       
@@ -194,8 +193,7 @@ this.addParameter(type == this.parameterFactory!.NUMBER
 
                             type;
 
-    , "Value to compare", 
-                            null, false);
+    , "Value to compare", StringUtil.getInstance()!.NULL_STRING, false);
     
 
     var operatorParamIndex: number = this.parameterList!.size() -2;;
@@ -274,9 +272,10 @@ this.sentence= stringBuilder!.toString();
                         if(this.parameterList!.size() > 0)
                         
                                     {
-                                    get = this.parameterList!.get(this.parameterList!.size() -1)get as GDParameterMetadata
-get.
-                    setLongDescription(longDescription);
+                                    
+    var gdParameterMetadata: GDParameterMetadata = this.parameterList!.get(this.parameterList!.size() -1) as GDParameterMetadata;;
+    
+gdParameterMetadata!.setLongDescription(longDescription);
     
 
                                     }
@@ -295,9 +294,10 @@ get.
                         if(this.parameterList!.size() > 0)
                         
                                     {
-                                    get = this.parameterList!.get(this.parameterList!.size() -1)get as GDParameterMetadata
-get.
-                    setDefaultValue(defaultValue);
+                                    
+    var gdParameterMetadata: GDParameterMetadata = this.parameterList!.get(this.parameterList!.size() -1) as GDParameterMetadata;;
+    
+gdParameterMetadata!.setDefaultValue(defaultValue);
     
 
                                     }
@@ -326,8 +326,7 @@ this.hidden= true;
     public useStandardOperatorParameters(type: string): GDInstructionMetadata{
 this.codeExtraInformation!.setManipulatedType(type);
     
-this.addParameter(this.parameterFactory!.OPERATOR, "Modification's sign", 
-                            null, false);
+this.addParameter(this.parameterFactory!.OPERATOR, "Modification's sign", StringUtil.getInstance()!.NULL_STRING, false);
     
 this.addParameter(type == this.parameterFactory!.NUMBER
                         ?       
@@ -336,8 +335,7 @@ this.addParameter(type == this.parameterFactory!.NUMBER
 
                             type;
 
-    , "Value", 
-                            null, false);
+    , "Value", StringUtil.getInstance()!.NULL_STRING, false);
     
 
     var operatorParamIndex: number = this.parameterList!.size() -2;;

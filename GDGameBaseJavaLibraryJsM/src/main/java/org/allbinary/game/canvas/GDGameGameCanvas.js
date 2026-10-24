@@ -14,6 +14,8 @@
 //not GWT import const CommandListener
 import { Font } from '../../../../javax/microedition/lcdui/Font.js';
 //not GWT import const Graphics
+import { NullCommandListener } from '../../../../javax/microedition/lcdui/NullCommandListener.js';
+//not GWT import const NullCommandListener
 import { GDGameStaticInitializerFactory } from '../../../../org/allbinary/game/init/GDGameStaticInitializerFactory.js';
 //not GWT import const GameStateFactory
 import { AccelerometerSensorFactory } from '../../../../org/allbinary/input/accelerometer/AccelerometerSensorFactory.js';
@@ -114,7 +116,7 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
         this.secondaryPlayerQueue = SecondaryPlayerQueueFactory.getInstance();
         this.features = Features.getInstance();
         this.soundGameFeature = GameFeatureFactory.getInstance().SOUND;
-        this(abeClientInformation, null, allBinaryGameLayerManager);
+        this(abeClientInformation, NullCommandListener.NULL_COMMAND_LISTENER, allBinaryGameLayerManager);
         //For kotlin this is before the body of the constructor.
     }
     initSpecialPaint() {
@@ -134,7 +136,7 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
     }
     //@Throws(Exception.constructor)
     mediaInit() {
-        logUtil.putF(commonStrings.START, this, "mediaInit");
+        this.logUtil.putF(this.commonStrings.START, this, "mediaInit");
         AllBinaryMediaManager.init(GDGameSoundsFactory.getInstance());
     }
     //@Throws(Exception.constructor)
@@ -145,7 +147,7 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
             var nextTouchInputFactory = GDGameTouchButtonsBuilder.getInstance(this.getSensorGameUpdateProcessor());
             ;
             if (Features.getInstance().isFeature(TouchFeatureFactory.getInstance().AUTO_HIDE_SHOW_SCREEN_BUTTONS)) {
-                if (gameInfo.getCurrentLevel() - getStartLevel() >= 1) {
+                if (gameInfo.getCurrentLevel() - this.getStartLevel() >= 1) {
                     nextTouchInputFactory = GDGameNeededTouchButtonsBuilder.getInstance(this.getSensorGameUpdateProcessor());
                 }
             }
@@ -160,7 +162,7 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
             ;
             if (ChangedGameFeatureListener.getInstance().isChanged()) {
                 super.initConfigurable(abeClientInformation);
-                progressCanvas.addNormalPortion(portion, "Group Manager");
+                progressCanvas.addNormalPortion(this.portion, "Group Manager");
                 GroupLayerManagerListener.getInstance().init(3);
                 AllBinaryVibration.init();
                 ChangedGameFeatureListener.getInstance().setChanged(false);
@@ -175,7 +177,7 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
             //: 
         }
         catch (e) {
-            logUtil.put(commonStrings.EXCEPTION, this, "initConfigurable", e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, "initConfigurable", e);
         }
     }
     //@Throws(Exception.constructor)
@@ -183,7 +185,7 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
         try {
             var portion = 60;
             ;
-            super.initApp(abeClientInformation);
+            super.initApp(this.abeClientInformation);
             if (!this.isRunning()) {
                 //if statement needs to be on the same line and ternary does not work the same way.
                 return;
@@ -196,7 +198,7 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
                 var progressCanvas = ProgressCanvasFactory.getInstance();
                 ;
                 progressCanvas.addNormalPortion(portion, "Main Processors");
-                this.setWait(WAIT);
+                this.setWait(this.WAIT);
                 this.loadState();
                 var list = new BasicArrayListD();
                 ;
@@ -216,19 +218,19 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
                 if (features.isFeature(gameFeatureFactory.TICKABLE_LAYER_PROCESSOR)) {
                     list.add(new OptimizedTickableLayerProcessor());
                 }
-                gameLayerManager.setLayerProcessorList(list);
+                this.gameLayerManager.setLayerProcessorList(list);
                 progressCanvas.addNormalPortion(portion, "Initializing Game");
             }
             this.buildGameInit(false);
             //: 
         }
         catch (e) {
-            logUtil.put(commonStrings.EXCEPTION, this, "_init", e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, "_init", e);
         }
     }
     //@Throws(Exception.constructor)
     buildGameInit(isProgress) {
-        this.loadResources(gameLayerManager.getGameInfo().getCurrentLevel());
+        this.loadResources(this.gameLayerManager.getGameInfo().getCurrentLevel());
         var progressCanvas = ProgressCanvasFactory.getInstance();
         ;
         var portion = 30;
@@ -240,7 +242,7 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
         }
         PrimaryPlayerQueueFactory.getInstance().clear();
         SecondaryPlayerQueueFactory.getInstance().clear();
-        gameLayerManager.cleanup();
+        this.gameLayerManager.cleanup();
         if (!this.isRunning()) {
             //if statement needs to be on the same line and ternary does not work the same way.
             return;
@@ -251,9 +253,9 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
             //if statement needs to be on the same line and ternary does not work the same way.
             return;
         }
-        gameLayerManager.append(new PlayerGameInputGameLayer(0));
+        this.gameLayerManager.append(new PlayerGameInputGameLayer(0));
         progressCanvas.addNormalPortion(portion, "Ending Custom Build");
-        if (gameLayerManager.getGameInfo().getGameType() != GameTypeFactory.getInstance().BOT) {
+        if (this.gameLayerManager.getGameInfo().getGameType() != GameTypeFactory.getInstance().BOT) {
         }
         super.buildGame(portion);
         this.getStartIntermissionInterface().setEnabled(true);
@@ -276,13 +278,13 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
     }
     draw(graphics) {
         this.clear(graphics);
-        this.basicSetColorUtil.setBasicColorP(graphics, gameLayerManager.getForegroundBasicColor());
-        gameLayerManager.paint(graphics, 0, 0);
-        nonBotPaintable.paint(graphics);
-        gameSpecificPaintable.paint(graphics);
-        gamePerformanceInitUpdatePaintable.paint(graphics);
-        touchPaintable.paint(graphics);
-        screenCapture.saveFrame();
+        this.basicSetColorUtil.setBasicColorP(graphics, this.gameLayerManager.getForegroundBasicColor());
+        this.gameLayerManager.paint(graphics, 0, 0);
+        this.nonBotPaintable.paint(graphics);
+        this.gameSpecificPaintable.paint(graphics);
+        this.gamePerformanceInitUpdatePaintable.paint(graphics);
+        this.touchPaintable.paint(graphics);
+        this.screenCapture.saveFrame();
         var halfHeight = GameTickDisplayInfoSingleton.getInstance().getLastHalfHeight();
         ;
         graphics.drawString(this.gyroOrientationSensor.toString(), 0, halfHeight + 30 + 60, 0);
@@ -291,8 +293,8 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
     }
     //@Throws(Exception.constructor)
     processGame() {
-        if (playerTimeDelayHelper.isTimeTNT()) {
-            if (this.features.isFeature(soundGameFeature)) {
+        if (this.playerTimeDelayHelper.isTimeTNT()) {
+            if (this.features.isFeature(this.soundGameFeature)) {
             }
         }
         super.processGame();

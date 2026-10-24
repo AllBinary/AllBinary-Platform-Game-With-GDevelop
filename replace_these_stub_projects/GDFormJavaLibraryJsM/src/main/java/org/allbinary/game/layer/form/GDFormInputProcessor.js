@@ -17,7 +17,7 @@ import { Object } from '../../../../../java/lang/Object.js';
 export class GDFormInputProcessor extends Object {
     static getInstance() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return instance;
+        return GDFormInputProcessor.instance;
     }
     append(gdFormInput) {
     }

@@ -5,6 +5,11 @@
 */
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../java/lang/Object.js';
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+import { JSONArray } from '../../../../org/json/JSONArray.js';
+//not GWT import const JSONException
+import { JSONObject } from '../../../../org/json/JSONObject.js';
 //not GWT import const JSONObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDProjectStrings } from './GDProjectStrings.js';
@@ -16,7 +21,19 @@ export class GDIde extends Object {
         this.minor = 0;
         this.build = 0;
         this.revision = 0;
+        this.author = StringUtil.getInstance().EMPTY_STRING;
+        this.packageName = StringUtil.getInstance().EMPTY_STRING;
+        this.orientation = StringUtil.getInstance().EMPTY_STRING;
         this.folderProject = false;
+        this.latestCompilationDirectory = StringUtil.getInstance().EMPTY_STRING;
+        this.platformSpecificAssets = JSONObject.NULL_JSONOBJECT;
+        this.loadingScreen = JSONObject.NULL_JSONOBJECT;
+        this.extensionProperties = JSONArray.NULL_JSONARRAY;
+        this.currentPlatformName = StringUtil.getInstance().EMPTY_STRING;
+        this.platforms = JSONArray.NULL_JSONARRAY;
+        this.objectsGroups = JSONArray.NULL_JSONARRAY;
+        this.externalEvents = JSONArray.NULL_JSONARRAY;
+        this.eventsFunctionsExtensions = JSONArray.NULL_JSONARRAY;
     }
     //@Throws(JSONException.constructor)
     load(gameAsConfiguration) {

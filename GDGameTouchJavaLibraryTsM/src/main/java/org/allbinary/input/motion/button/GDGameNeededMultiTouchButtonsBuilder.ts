@@ -20,27 +20,6 @@
 
             import { Exception } from '../../../../../java/lang/Exception.js';
         
-import { TouchButtonGenericActionResource } from '../../../../../org/allbinary/input/motion/button/TouchButtonGenericActionResource.js';
-//not GWT import const TouchButtonGenericActionResource
-
-import { BaseTouchInput } from '../../../../../org/allbinary/input/motion/button/BaseTouchInput.js';
-//not GWT import const BaseTouchInput
-
-import { BasicTouchButtonCellPositionFactory } from '../../../../../org/allbinary/input/motion/button/BasicTouchButtonCellPositionFactory.js';
-//not GWT import const BasicTouchButtonCellPositionFactory
-
-import { TouchButtonLocationHelper } from '../../../../../org/allbinary/input/motion/button/TouchButtonLocationHelper.js';
-//not GWT import const TouchButtonLocationHelper
-
-import { BasicTouchInputFactory } from '../../../../../org/allbinary/input/motion/button/BasicTouchInputFactory.js';
-//not GWT import const BasicTouchInputFactory
-
-import { TouchButton } from '../../../../../org/allbinary/input/motion/button/TouchButton.js';
-//not GWT import const TouchButton
-
-import { CommonButtons } from '../../../../../org/allbinary/input/motion/button/CommonButtons.js';
-//not GWT import const CommonButtons
-
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 
@@ -50,20 +29,11 @@ const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 //not plain js import { BasicArrayListUtil } 
 const BasicArrayListUtil = globalThis.org.allbinary.util.BasicArrayListUtil;
 
-//not plain js import { CommonStrings } 
-const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
-
-//not plain js import { LogFactory } 
-const LogFactory = globalThis.org.allbinary.logic.communication.log.LogFactory;
-
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 
 import { Animation } from '../../../../../org/allbinary/animation/Animation.js';
 //not GWT import const Animation
-
-import { FeaturedAnimationInterfaceFactoryInterfaceFactory } from '../../../../../org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory.js';
-//not GWT import const FeaturedAnimationInterfaceFactoryInterfaceFactory
 
 import { NullAnimationFactory } from '../../../../../org/allbinary/animation/NullAnimationFactory.js';
 //not GWT import const NullAnimationFactory
@@ -89,7 +59,21 @@ import { CellPositionFactory } from '../../../../../org/allbinary/graphics/CellP
 
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
-        
+        import { BaseTouchInput } from './BaseTouchInput.js';
+//not GWT import - same folder const BaseTouchInput
+import { TouchButtonLocationHelper } from './TouchButtonLocationHelper.js';
+//not GWT import - same folder const TouchButtonLocationHelper
+import { BasicTouchButtonCellPositionFactory } from './BasicTouchButtonCellPositionFactory.js';
+//not GWT import - same folder const BasicTouchButtonCellPositionFactory
+import { CommonButtons } from './CommonButtons.js';
+//not GWT import - same folder const CommonButtons
+import { BasicTouchInputFactory } from './BasicTouchInputFactory.js';
+//not GWT import - same folder const BasicTouchInputFactory
+import { TouchButton } from './TouchButton.js';
+//not GWT import - same folder const TouchButton
+import { TouchButtonGenericActionResource } from './TouchButtonGenericActionResource.js';
+//not GWT import - same folder const TouchButtonGenericActionResource
+
 export class GDGameNeededMultiTouchButtonsBuilder extends BaseTouchInput {
         
 
@@ -98,7 +82,7 @@ export class GDGameNeededMultiTouchButtonsBuilder extends BaseTouchInput {
     public getList(): BasicArrayList{
 
         try {
-            logUtil!.putF(commonStrings!.START, this, commonStrings!.CONSTRUCTOR);
+            this.logUtil!.putF(this.commonStrings!.START, this, this.commonStrings!.CONSTRUCTOR);
     
 
     var list: BasicArrayList = new BasicArrayListD();;
@@ -193,7 +177,7 @@ list.add(SPECIAL4);
                 //: 
 } catch(e) 
             {
-logUtil!.put(commonStrings!.EXCEPTION, this, commonStrings!.GET_LIST, e);
+this.logUtil!.put(this.commonStrings!.EXCEPTION, this, this.commonStrings!.GET_LIST, e);
     
 
 

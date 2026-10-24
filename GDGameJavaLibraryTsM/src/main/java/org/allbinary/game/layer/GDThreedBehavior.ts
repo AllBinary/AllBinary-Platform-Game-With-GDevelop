@@ -100,7 +100,7 @@ this.rotationRemainderZ= this.rotationRemainderZ +newPortion;
                         if(angleAdjustment != 0)
                         
                                     {
-                                    gdObject!.angle += angleAdjustment;
+                                    gdObject!.angleP= (gdObject!.angleP +angleAdjustment);
     
 this.setRotationZ(gdObject, angleAdjustment);
     

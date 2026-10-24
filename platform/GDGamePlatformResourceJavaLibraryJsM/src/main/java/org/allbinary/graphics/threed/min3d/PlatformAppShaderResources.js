@@ -17,7 +17,7 @@ import { Object } from '../../../../../java/lang/Object.js';
 export class PlatformAppShaderResources extends Object {
     static getInstance() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return instance;
+        return PlatformAppShaderResources.instance;
     }
     add() {
     }

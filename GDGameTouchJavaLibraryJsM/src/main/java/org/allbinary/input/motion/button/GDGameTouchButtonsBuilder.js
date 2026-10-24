@@ -13,13 +13,14 @@
 */
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../../java/lang/Object.js';
-import { TouchScreenFactory } from '../../../../../org/allbinary/input/motion/button/TouchScreenFactory.js';
 //not GWT import const SensorGameUpdateProcessor
 //Current folder imports from return types, extended types, and scope (deduplicated)
+import { TouchScreenFactory } from './TouchScreenFactory.js';
+//not GWT import - same folder const TouchScreenFactory
 import { GDGameMultiTouchButtonsBuilder } from './GDGameMultiTouchButtonsBuilder.js';
 //not GWT import - same folder const GDGameMultiTouchButtonsBuilder
 import { GDGameWithSensorTouchButtonsBuilder } from './GDGameWithSensorTouchButtonsBuilder.js';
-//not GWT import - same folder const GDGameWithSensorTouchButtonsBuilder
+//not GWT import - same folder const BaseTouchInput
 //
 export class GDGameTouchButtonsBuilder extends Object {
     static getInstance(sensorGameUpdateProcessor) {

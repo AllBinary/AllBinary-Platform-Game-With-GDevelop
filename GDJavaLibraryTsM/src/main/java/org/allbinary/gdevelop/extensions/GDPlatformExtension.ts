@@ -13,6 +13,12 @@
 import { GDBehaviorMetadata } from '../../../../org/allbinary/gdevelop/extensions/builtin/metadata/GDBehaviorMetadata.js';
 //not GWT import const GDBehaviorMetadata
 
+import { GDProjectBehavior } from '../../../../org/allbinary/gdevelop/project/GDProjectBehavior.js';
+//not GWT import const GDProjectBehavior
+
+import { GDProjectBehaviorsSharedData } from '../../../../org/allbinary/gdevelop/project/GDProjectBehaviorsSharedData.js';
+//not GWT import const GDProjectBehaviorsSharedData
+
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
 
@@ -53,9 +59,7 @@ export class GDPlatformExtension extends GDBehaviorMetadata {
     public readonly NAMESPACE_SEP: string = "::";
 
 private constructor (){
-            super(StringUtil.getInstance()!.EMPTY_STRING, StringUtil.getInstance()!.EMPTY_STRING, StringUtil.getInstance()!.EMPTY_STRING, StringUtil.getInstance()!.EMPTY_STRING, StringUtil.getInstance()!.EMPTY_STRING, StringUtil.getInstance()!.EMPTY_STRING, StringUtil.getInstance()!.EMPTY_STRING, StringUtil.getInstance()!.EMPTY_STRING, 
-                            null, 
-                            null);
+            super(StringUtil.getInstance()!.EMPTY_STRING, StringUtil.getInstance()!.EMPTY_STRING, StringUtil.getInstance()!.EMPTY_STRING, StringUtil.getInstance()!.EMPTY_STRING, StringUtil.getInstance()!.EMPTY_STRING, StringUtil.getInstance()!.EMPTY_STRING, StringUtil.getInstance()!.EMPTY_STRING, StringUtil.getInstance()!.EMPTY_STRING, GDProjectBehavior.NULL_GDBEHAVIOR, GDProjectBehaviorsSharedData.NULL_GDBEHAVIORSHAREDDATA);
                     
 
                             //For kotlin this is before the body of the constructor.

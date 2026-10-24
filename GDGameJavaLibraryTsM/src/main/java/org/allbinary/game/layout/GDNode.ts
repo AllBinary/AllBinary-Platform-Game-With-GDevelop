@@ -384,6 +384,68 @@ this.nodeStatsFactory!.push(14, this.name);
 }
 
 
+    public process(gameLayer: GDGameLayer, x: number, y: number){
+
+
+
+                            throw new RuntimeException();
+                    
+}
+
+
+    public process(gdObject: GDObject, x: number, y: number){
+
+
+
+                            throw new RuntimeException();
+                    
+}
+
+
+                //@Throws(Exception.constructor)
+            
+    public processSub(){
+
+
+
+                            throw new RuntimeException();
+                    
+}
+
+
+                //@Throws(Exception.constructor)
+            
+    public processSub(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput){
+
+
+
+                            throw new RuntimeException();
+                    
+}
+
+
+                //@Throws(Exception.constructor)
+            
+    public processSub(gameLayerArray: GDGameLayer[]){
+
+
+
+                            throw new RuntimeException();
+                    
+}
+
+
+                //@Throws(Exception.constructor)
+            
+    public processC(): boolean{
+
+
+
+                            throw new RuntimeException();
+                    
+}
+
+
     public getReturnValue(): any{
 
 

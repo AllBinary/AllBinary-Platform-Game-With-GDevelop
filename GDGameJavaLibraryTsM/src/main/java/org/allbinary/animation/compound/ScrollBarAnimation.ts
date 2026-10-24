@@ -32,9 +32,6 @@ import { AnimationBehavior } from '../../../../org/allbinary/animation/Animation
 import { IndexedAnimation } from '../../../../org/allbinary/animation/IndexedAnimation.js';
 //not GWT import const IndexedAnimation
 
-//not plain js import { LogUtil } 
-const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
-
 import { PrimitiveIntUtil } from '../../../../org/allbinary/logic/math/PrimitiveIntUtil.js';
 //not GWT import const PrimitiveIntUtil
 
@@ -59,8 +56,6 @@ import { PrimitiveIntUtil } from '../../../../org/allbinary/logic/math/Primitive
         //Similar to Slider
 export class ScrollBarAnimation extends IndexedAnimation {
         
-
-    readonly logUtil: LogUtil = LogUtil.getInstance()!;
 
     private animationInterfaceArray: IndexedAnimation[];
 

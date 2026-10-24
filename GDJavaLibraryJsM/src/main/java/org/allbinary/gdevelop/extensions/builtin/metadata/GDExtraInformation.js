@@ -5,8 +5,14 @@
 */
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../../../java/lang/Object.js';
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
 //Current folder imports from return types, extended types, and scope (deduplicated)
 export class GDExtraInformation extends Object {
+    constructor() {
+        super(...arguments);
+        this.type = StringUtil.getInstance().NULL_STRING;
+    }
     setManipulatedType(type) {
         this.type = type;
     }

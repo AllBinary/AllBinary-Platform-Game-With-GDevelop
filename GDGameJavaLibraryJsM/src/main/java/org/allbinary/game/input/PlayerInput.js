@@ -22,7 +22,6 @@ import { PlayerGameInput } from './PlayerGameInput.js';
 export class PlayerInput extends PlayerGameInput {
     constructor(keyEventList, removalKeyEventList, gameKeyEventList, removalGameKeyEventList, playerInputId) {
         super(gameKeyEventList, removalGameKeyEventList, playerInputId);
-        this.logUtil = LogUtil.getInstance();
         //For kotlin this is before the body of the constructor.
         this.keyEventList = keyEventList;
         this.removalKeyEventList = removalKeyEventList;

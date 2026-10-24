@@ -15,6 +15,9 @@
 import { GDProjectStrings } from '../../../../../org/allbinary/gdevelop/json/GDProjectStrings.js';
 //not GWT import const GDProjectStrings
 
+//not plain js import { StringUtil } 
+const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+
 import { JSONObject } from '../../../../../org/json/JSONObject.js';
 //not GWT import const JSONObject
 
@@ -41,6 +44,8 @@ export class GDEvent
             extends Object
          {
         
+
+    public static readonly NULL_GDEVENT: GDEvent = new GDEvent(StringUtil.getInstance()!.NULL_STRING, JSONObject.NULL_JSONOBJECT);
 
     public readonly type: string;
 

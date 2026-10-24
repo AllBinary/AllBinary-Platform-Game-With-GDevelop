@@ -20,6 +20,8 @@
 
             import { Object } from '../../../../java/lang/Object.js';
         
+            import { Integer } from '../../../../java/lang/Integer.js';
+        
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 
@@ -44,7 +46,9 @@ const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
-        import { GDNodes } from './GDNodes.js';
+        import { GDNode } from './GDNode.js';
+//not GWT import - same folder const GDNode
+import { GDNodes } from './GDNodes.js';
 //not GWT import - same folder const GDNodes
 
 export class GDNodeUtil
@@ -63,6 +67,8 @@ export class GDNodeUtil
     
 }
 
+
+    public readonly NULL_GDNODE: GDNode = new GDNode(Integer.MIN_VALUE);
 
     public readonly gdNodesList: BasicArrayList = new BasicArrayListD();
 

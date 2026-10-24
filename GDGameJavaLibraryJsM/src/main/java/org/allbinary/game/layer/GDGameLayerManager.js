@@ -12,8 +12,6 @@
         *  Created By: Travis Berthelot
 */
 //not GWT import const AllBinaryLayer
-//not plain js import { LogUtil } 
-const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
 import { BasicGeographicMap } from '../../../../org/allbinary/media/graphics/geography/map/BasicGeographicMap.js';
@@ -28,7 +26,6 @@ import { AllBinaryGameLayerManager } from './AllBinaryGameLayerManager.js';
 export class GDGameLayerManager extends AllBinaryGameLayerManager {
     constructor(backgroundBasicColor, foregroundBasicColor, gameInfo) {
         super(backgroundBasicColor, foregroundBasicColor, gameInfo);
-        this.logUtil = LogUtil.getInstance();
         this.geographicMapInterfaceArray = BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY;
         this.geographicMapCellTypeArray = GeographicMapCellType.NULL_GEOGRAPHIC_MAP_CELL_TYPE_ARRAY;
         this.layout = 0;

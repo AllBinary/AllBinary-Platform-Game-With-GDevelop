@@ -62,7 +62,7 @@ export class GDGameNeededTouchButtonsBuilder extends BaseTouchInput {
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return instance;
+                        return GDGameNeededTouchButtonsBuilder.instance;
     
 }
 
@@ -70,7 +70,7 @@ export class GDGameNeededTouchButtonsBuilder extends BaseTouchInput {
     readonly logUtil: LogUtil = LogUtil.getInstance()!;
 
     public build(){
-logUtil!.putF(commonStrings!.START, this, "build");
+this.logUtil!.putF(this.commonStrings!.START, this, "build");
     
 }
 

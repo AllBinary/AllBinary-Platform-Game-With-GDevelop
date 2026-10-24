@@ -13,11 +13,13 @@
 */
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../../java/lang/Object.js';
+//Current folder imports from return types, extended types, and scope (deduplicated)
+import { TempMovementBehavior } from './TempMovementBehavior.js';
 //not GWT import - same folder const TempMovementBehavior
 export class TempMovementBehaviorFactory extends Object {
     constructor() {
         super(...arguments);
-        this.movementBehavior = null;
+        this.movementBehavior = TempMovementBehavior.NULL_TEMP_MOVEMENT_BEHAVIOR;
     }
     static getInstance() {
         //if statement needs to be on the same line and ternary does not work the same way.
