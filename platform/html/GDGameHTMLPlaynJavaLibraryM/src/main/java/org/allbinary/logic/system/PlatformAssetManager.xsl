@@ -25,14 +25,12 @@ package org.allbinary.logic.system;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.google.gwt.resources.client.TextResource;
+import org.allbinary.gwt.TextResource;
 
 import org.allbinary.data.resource.ResourceUtil;
-import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.StdUtil;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.util.ABHashMap;
         <xsl:for-each select="layouts" >
             <xsl:variable name="index" select="position() - 1" />
 import gd.res.GD<xsl:value-of select="$index" />GamePlaynResources;
