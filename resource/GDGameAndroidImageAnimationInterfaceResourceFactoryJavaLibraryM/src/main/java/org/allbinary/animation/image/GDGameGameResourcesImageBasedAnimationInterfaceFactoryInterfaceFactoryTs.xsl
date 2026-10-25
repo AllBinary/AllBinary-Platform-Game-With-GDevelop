@@ -159,10 +159,10 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
         super("Game Image Animations", new ABHashtable(), new ABHashtable(), new ABHashtable());
     }
 
-    public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
+<!--    public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
         super(name, new ABHashtable(), new ABHashtable(), new ABHashtable());
-    }
+    }-->
     
     @Override
     public void init(int level)

@@ -685,7 +685,8 @@ Created By: Travis Berthelot
                     new SliderAnimationInterfaceFactory(
                         <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray0,
                         <xsl:value-of select="$name" />ImageArray[1].getWidth(),
-                        <xsl:value-of select="$name" />ImageArray[1].getHeight()
+                        <xsl:value-of select="$name" />ImageArray[1].getHeight(),
+                        AnimationBehaviorFactory.getInstance()
                     ) {
                         public void setInitialScale(final ScaleProperties scaleProperties) {
                             final ScaleProperties scaleProperties1 = new ScaleProperties();

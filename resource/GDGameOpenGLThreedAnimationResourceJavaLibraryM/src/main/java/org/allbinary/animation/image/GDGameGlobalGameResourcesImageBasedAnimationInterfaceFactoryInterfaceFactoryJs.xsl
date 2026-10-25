@@ -180,10 +180,24 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
 
     }
 
-    public GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
+<!--    public GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
         super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
-    }
+
+        <xsl:for-each select="/game/properties/threedAnimationAdjustment" >
+            <xsl:if test="position" >
+        this.positionNumber3d.x = <xsl:value-of select="position/x" />;
+        this.positionNumber3d.y = <xsl:value-of select="position/y" />;
+        this.positionNumber3d.z = <xsl:value-of select="position/z" />;
+            </xsl:if>
+            <xsl:if test="rotation" >
+        this.rotationNumber3d.x = <xsl:value-of select="rotation/x" />f;
+        this.rotationNumber3d.y = <xsl:value-of select="rotation/y" />f;
+        this.rotationNumber3d.z = <xsl:value-of select="rotation/z" />f;
+            </xsl:if>
+        </xsl:for-each>
+
+    }-->
     
     public void loadDayTrack(final String loadingString) throws Exception
     {

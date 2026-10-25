@@ -183,6 +183,24 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
     public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
         super("GDGame OpenGL ImageArray Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
+        
+        <xsl:for-each select="/game/properties/threedAnimationAdjustment" >
+            <xsl:if test="position" >
+        this.positionNumber3d.x = <xsl:value-of select="position/x" />;
+        this.positionNumber3d.y = <xsl:value-of select="position/y" />;
+        this.positionNumber3d.z = <xsl:value-of select="position/z" />;
+            </xsl:if>
+            <xsl:if test="rotation" >
+        this.rotationNumber3d.x = <xsl:value-of select="rotation/x" />f;
+        this.rotationNumber3d.y = <xsl:value-of select="rotation/y" />f;
+        this.rotationNumber3d.z = <xsl:value-of select="rotation/z" />f;
+            </xsl:if>
+        </xsl:for-each>
+    }
+
+<!--    public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
+    {
+        super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     
         <xsl:for-each select="/game/properties/threedAnimationAdjustment" >
             <xsl:if test="position" >
@@ -197,12 +215,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
             </xsl:if>
         </xsl:for-each>
     
-    }
-
-    public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
-    {
-        super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
-    }
+    }-->
     
     public void loadDayTrack(final String loadingString) throws Exception
     {

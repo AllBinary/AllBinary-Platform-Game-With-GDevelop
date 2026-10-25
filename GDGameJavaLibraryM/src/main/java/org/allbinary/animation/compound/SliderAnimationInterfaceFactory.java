@@ -27,12 +27,12 @@ public class SliderAnimationInterfaceFactory
 
     public ScaleProperties scaleProperties = ScaleProperties.instance;
 
-    public SliderAnimationInterfaceFactory(
-        final AnimationInterfaceFactoryInterface[] basicAnimationInterfaceFactoryInterfaceArray,
-        final int width, final int height)
-    {
-        this(basicAnimationInterfaceFactoryInterfaceArray, width, height, AnimationBehaviorFactory.getInstance());
-    }
+//    public SliderAnimationInterfaceFactory(
+//        final AnimationInterfaceFactoryInterface[] basicAnimationInterfaceFactoryInterfaceArray,
+//        final int width, final int height)
+//    {
+//        this(basicAnimationInterfaceFactoryInterfaceArray, width, height, AnimationBehaviorFactory.getInstance());
+//    }
     
     public SliderAnimationInterfaceFactory(
         final AnimationInterfaceFactoryInterface[] basicAnimationInterfaceFactoryInterfaceArray, 

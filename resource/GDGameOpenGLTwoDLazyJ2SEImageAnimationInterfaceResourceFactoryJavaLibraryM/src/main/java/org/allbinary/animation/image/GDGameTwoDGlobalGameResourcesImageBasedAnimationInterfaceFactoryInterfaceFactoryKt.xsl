@@ -151,14 +151,14 @@ open class GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInter
     {
     }
 
-    constructor() : super("Game Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable())
+<!--    constructor() : super("Game Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable())
     {
-    }
+    }-->
 
-    constructor(name: String) : super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable())
+<!--    constructor(name: String) : super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable())
     {
         var name = name
-    }
+    }-->
 
     open fun init(level: Int)
 

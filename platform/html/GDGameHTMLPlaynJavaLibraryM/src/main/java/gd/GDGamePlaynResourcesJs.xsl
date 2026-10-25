@@ -9,10 +9,10 @@
 
 package gd.res;
 
-import com.google.gwt.core.shared.GWT;
-import com.google.gwt.resources.client.ClientBundle;
-import com.google.gwt.resources.client.ClientBundle.Source;
-import com.google.gwt.resources.client.TextResource;
+import org.allbinary.gwt.GWT;
+import org.allbinary.gwt.ClientBundle;
+import org.allbinary.gwt.ClientBundle.Source;
+import org.allbinary.gwt.TextResource;
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="index" select="position() - 1" />

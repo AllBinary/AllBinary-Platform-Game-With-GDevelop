@@ -27,12 +27,12 @@ public class ScrollBarAnimationInterfaceFactory
 
     public ScaleProperties scaleProperties = ScaleProperties.instance;
 
-    public ScrollBarAnimationInterfaceFactory(
-        final AnimationInterfaceFactoryInterface[] basicAnimationInterfaceFactoryInterfaceArray,
-        final int width, final int height)
-    {
-        this(basicAnimationInterfaceFactoryInterfaceArray, width, height, AnimationBehaviorFactory.getInstance());
-    }
+//    public ScrollBarAnimationInterfaceFactory(
+//        final AnimationInterfaceFactoryInterface[] basicAnimationInterfaceFactoryInterfaceArray,
+//        final int width, final int height)
+//    {
+//        this(basicAnimationInterfaceFactoryInterfaceArray, width, height, AnimationBehaviorFactory.getInstance());
+//    }
     
     public ScrollBarAnimationInterfaceFactory(
         final AnimationInterfaceFactoryInterface[] basicAnimationInterfaceFactoryInterfaceArray, 

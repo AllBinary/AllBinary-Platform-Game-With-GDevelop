@@ -159,10 +159,10 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
         super("Game Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
 
-    public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
+<!--    public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
         super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
-    }
+    }-->
     
     @Override
     public void init(int level)

@@ -159,10 +159,10 @@ open class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAn
     {
     }
 
-    constructor(name: String) : super(name, ABHashtable(), ABHashtable(), ABHashtable())
+<!--    constructor(name: String) : super(name, ABHashtable(), ABHashtable(), ABHashtable())
     {
         var name = name
-    }
+    }-->
 
     override fun init(level: Int)
 

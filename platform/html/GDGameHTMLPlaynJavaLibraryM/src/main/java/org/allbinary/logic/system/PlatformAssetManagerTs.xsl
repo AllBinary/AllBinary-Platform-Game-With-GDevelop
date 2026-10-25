@@ -28,7 +28,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.google.gwt.resources.client.TextResource;
+import org.allbinary.gwt.TextResource;
 
 import org.allbinary.data.resource.ResourceUtil;
 import org.allbinary.logic.communication.log.LogFactory;

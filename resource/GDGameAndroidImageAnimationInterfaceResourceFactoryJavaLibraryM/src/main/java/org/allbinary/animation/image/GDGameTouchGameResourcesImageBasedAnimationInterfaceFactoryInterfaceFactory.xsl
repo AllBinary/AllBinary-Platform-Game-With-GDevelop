@@ -139,15 +139,15 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
         super("Game Image Animations", hashtable, rectangleHashtable, rectangleArrayHashtable);
     }
             
-    public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
+<!--    public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
         super("Game Image Animations", new ABHashtable(), new ABHashtable(), new ABHashtable());
-    }
+    }-->
 
-    public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
+<!--    public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
         super(name, new ABHashtable(), new ABHashtable(), new ABHashtable());
-    }
+    }-->
     
     @Override
     public void init(int level)

@@ -158,15 +158,15 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageB
         super("Game Image Animations", hashtable, rectangleHashtable, rectangleArrayHashtable);
     }
 
-    public GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
+<!--    public GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
         super("Game Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
-    }
+    }-->
 
-    public GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
+<!--    public GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
         super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
-    }
+    }-->
     
     public void init(int level)
     throws Exception

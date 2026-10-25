@@ -138,9 +138,9 @@ open class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBa
     {
     }
 
-    constructor() : super("Game Image Animations", ABHashtable(), ABHashtable(), ABHashtable())
+<!--    constructor() : super("Game Image Animations", ABHashtable(), ABHashtable(), ABHashtable())
     {
-    }
+    }-->
 
     constructor(name: String) : super(name, ABHashtable(), ABHashtable(), ABHashtable())
     {

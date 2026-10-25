@@ -38,12 +38,12 @@
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
                     <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
+<!--                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
+                </exclusion>-->
             </exclusions>
         </dependency>
                         
@@ -86,10 +86,10 @@
                     <groupId>org.allbinary</groupId>
                     <artifactId>BasicMathLibraryJs</artifactId>
                 </exclusion>
-                <exclusion>
+<!--                <exclusion>
                     <groupId>org.allbinary</groupId>
                     <artifactId>J2MEColorJavaLibraryJs</artifactId>
-                </exclusion>
+                </exclusion>-->
 <!--                This is included 2 times - Once for microemu for playn and Once as a javascript module.-->
 <!--                <exclusion>
                     <groupId>org.allbinary</groupId>
@@ -168,10 +168,10 @@
                     <groupId>org.allbinary</groupId>
                     <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
-                <exclusion>
+<!--                <exclusion>
                     <groupId>org.allbinary</groupId>
                     <artifactId>J2MEColorJavaLibraryJs</artifactId>
-                </exclusion>
+                </exclusion>-->
             </exclusions>
         </dependency>
         
@@ -207,10 +207,10 @@
                     <groupId>org.allbinary</groupId>
                     <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
-                <exclusion>
+<!--                <exclusion>
                     <groupId>org.allbinary</groupId>
                     <artifactId>J2MEColorJavaLibraryJs</artifactId>
-                </exclusion>
+                </exclusion>-->
             </exclusions>
         </dependency>
         <dependency>
@@ -224,10 +224,10 @@
                     <groupId>org.allbinary</groupId>
                     <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
-                <exclusion>
+<!--                <exclusion>
                     <groupId>org.allbinary</groupId>
                     <artifactId>J2MEColorJavaLibraryJs</artifactId>
-                </exclusion>
+                </exclusion>-->
             </exclusions>
         </dependency>
         <dependency>
@@ -237,10 +237,10 @@
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
             <exclusions>
-                <exclusion>
+<!--                <exclusion>
                     <groupId>org.allbinary</groupId>
                     <artifactId>J2MEColorJavaLibraryJs</artifactId>
-                </exclusion>
+                </exclusion>-->
             </exclusions>
         </dependency>
 
@@ -298,12 +298,12 @@
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
                     <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
+<!--                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
+                </exclusion>-->
             </exclusions>
         </dependency>
 
@@ -342,12 +342,12 @@
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
                     <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
+<!--                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
+                </exclusion>-->
             </exclusions>
         </dependency>
 <!--
@@ -409,12 +409,12 @@
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
                     <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
+<!--                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
+                </exclusion>-->
             </exclusions>
         </dependency>
 
@@ -531,12 +531,12 @@
             <exclusions>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
                     <artifactId>J2MEUtilJavaLibraryJs</artifactId>
                 </exclusion>
+<!--                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
+                </exclusion>-->
             </exclusions>
         </dependency>
 
@@ -577,13 +577,13 @@
             <version>2.0</version>
             <exclusions>
                 <exclusion>
-                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
-                    <groupId>org.allbinary</groupId>
-                </exclusion>
-                <exclusion>
                     <groupId>org.allbinary</groupId>
                     <artifactId>J2SEForUnkTsLibraryJs</artifactId>
                 </exclusion>
+<!--                <exclusion>
+                    <artifactId>J2MEColorJavaLibraryJs</artifactId>
+                    <groupId>org.allbinary</groupId>
+                </exclusion>-->
             </exclusions>
         </dependency>
 

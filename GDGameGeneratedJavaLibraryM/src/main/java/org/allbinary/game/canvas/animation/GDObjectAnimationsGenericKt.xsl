@@ -625,7 +625,8 @@ Created By: Travis Berthelot
                     object : SliderAnimationInterfaceFactory(
                         <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray0,
                         <xsl:value-of select="$name" />ImageArray[1]!!.getWidth(),
-                        <xsl:value-of select="$name" />ImageArray[1]!!.getHeight()
+                        <xsl:value-of select="$name" />ImageArray[1]!!.getHeight(),
+                        AnimationBehaviorFactory.getInstance()
                     ) {
                         open public override fun setInitialScale(scaleProperties: ScaleProperties) {
                             val scaleProperties1: ScaleProperties = ScaleProperties()

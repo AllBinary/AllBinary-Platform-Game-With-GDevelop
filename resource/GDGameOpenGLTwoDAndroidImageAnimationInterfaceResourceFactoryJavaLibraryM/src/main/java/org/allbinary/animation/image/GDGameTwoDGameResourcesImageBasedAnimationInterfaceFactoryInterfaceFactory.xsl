@@ -157,10 +157,10 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageB
     private final int animationScale = 1;
         </xsl:if>
 
-    public GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(final ABHashtable&lt;Object, Object<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> hashtable, final ABHashtable&lt;Object, Object<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> rectangleHashtable, final ABHashtable&lt;Object, Object<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> rectangleArrayHashtable)
+<!--    public GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(final ABHashtable&lt;Object, Object<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> hashtable, final ABHashtable&lt;Object, Object<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> rectangleHashtable, final ABHashtable&lt;Object, Object<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> rectangleArrayHashtable)
     {
         super("Game Image Animations", hashtable, rectangleHashtable, rectangleArrayHashtable);
-    }
+    }-->
 
     public GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {

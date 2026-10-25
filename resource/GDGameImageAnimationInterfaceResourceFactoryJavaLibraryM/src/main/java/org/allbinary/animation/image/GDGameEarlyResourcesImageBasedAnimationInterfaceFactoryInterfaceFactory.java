@@ -31,10 +31,10 @@ public class GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFac
         super("Early Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
     }
 
-    public GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
-    {
-        super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
-    }
+//    public GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
+//    {
+//        super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
+//    }
     
     @Override
     public void init(int level)

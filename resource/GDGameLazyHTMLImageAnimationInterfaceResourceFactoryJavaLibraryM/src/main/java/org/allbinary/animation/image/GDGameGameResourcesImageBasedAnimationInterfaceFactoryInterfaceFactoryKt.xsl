@@ -161,10 +161,10 @@ open class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAn
     {
     }
 
-    constructor(name: String) : super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable())
+<!--    constructor(name: String) : super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable())
     {
         var name = name
-    }
+    }-->
 
     open fun init(level: Int)
 

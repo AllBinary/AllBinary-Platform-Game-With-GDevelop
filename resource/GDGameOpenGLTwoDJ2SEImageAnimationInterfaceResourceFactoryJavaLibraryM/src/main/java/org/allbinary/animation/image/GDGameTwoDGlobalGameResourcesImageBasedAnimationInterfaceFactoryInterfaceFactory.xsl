@@ -152,15 +152,15 @@ public class GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInt
         super("Game Image Animations", hashtable, rectangleHashtable, rectangleArrayHashtable);
     }
     
-    public GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
+<!--    public GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
         super("Game Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
-    }
+    }-->
 
-    public GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
+<!--    public GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
         super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
-    }
+    }-->
     
     @Override
     public void init(int level)
