@@ -324,7 +324,7 @@ Created By: Travis Berthelot
                         </xsl:call-template>
                                         </xsl:when>
                                         <xsl:otherwise>
-                                            //Otherwise - <xsl:value-of select="type" />
+                                            //Otherwise - variableJSONMapping - <xsl:value-of select="type" />
                                         </xsl:otherwise>
                                     </xsl:choose>
 

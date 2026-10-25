@@ -47,7 +47,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
     private final int width;
     private final int height;
 
-    public GDCustomGameLayerFactory(
+<!--    public GDCustomGameLayerFactory(
             final AnimationInterfaceFactoryInterface primitiveDrawingAnimationFactory,
             final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
             final Group[] groupInterface,
@@ -57,7 +57,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             final Rectangle layerInfo,
             final Rectangle[][] rectangleArrayOfArrays) {
         this(primitiveDrawingAnimationFactory, gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance());
-    }
+    }-->
     
     public GDCustomGameLayerFactory(
             final AnimationInterfaceFactoryInterface primitiveDrawingAnimationFactory,

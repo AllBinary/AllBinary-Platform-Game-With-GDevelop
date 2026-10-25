@@ -153,7 +153,7 @@ Created By: Travis Berthelot
                         //}
                                         </xsl:when>
                                         <xsl:otherwise>
-                                            //Otherwise - <xsl:value-of select="type" />
+                                            //Otherwise - ForEachChildVariable - <xsl:value-of select="type" />
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:for-each>

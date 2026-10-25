@@ -148,7 +148,7 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
         }
          
         final long startTime = GameTickTimeDelayHelperFactory.getInstance().startTime;
-        final int size = this.animationArray.length;;
+        final int size = this.animationArray.length;
         Animation animation;
         Frame frame;
         final TiledLayer tiledLayer = ((AllBinaryJ2METiledLayer) this.getAllBinaryTiledLayer()).getTiledLayer();

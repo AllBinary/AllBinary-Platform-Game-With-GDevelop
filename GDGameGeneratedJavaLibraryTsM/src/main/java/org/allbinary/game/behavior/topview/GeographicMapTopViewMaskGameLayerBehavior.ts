@@ -106,17 +106,6 @@ export class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
 
     private readonly autoStepBlocks: boolean;
 
-public constructor (){
-            super(16);
-                    
-
-                            //For kotlin this is before the body of the constructor.
-                    
-this.autoStepBlocks= true;
-    
-}
-
-
 public constructor (maxGravityActionIndex: number, autoStepBlocks: boolean, offsetY: number){
             super(maxGravityActionIndex);
                     

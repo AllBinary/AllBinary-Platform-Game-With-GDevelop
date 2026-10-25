@@ -220,7 +220,7 @@ public class GDObject
         return this.yP + this.height;
     }
     
-    private final float offsetX = AndroidUtil.isAndroid() ? 1.00f : 0.75f;
+    private final float offsetX = GDConfig.getInstance().getInverseScale();
     private final float offsetY = 1.00f;
     
     //private final StringMaker stringBuilder = new StringMaker();

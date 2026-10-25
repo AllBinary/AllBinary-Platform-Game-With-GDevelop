@@ -53,12 +53,12 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
 
     //private GeographicMapCellPosition previousGeographicMapCellPosition;
 
-    public GeographicMapTopViewMaskGameLayerBehavior() {
-        super(16 //32
-        );
-        this.autoStepBlocks = true;
-        //this.offsetY = 0;
-    }
+//    public GeographicMapTopViewMaskGameLayerBehavior() {
+//        super(16 //32
+//        );
+//        this.autoStepBlocks = true;
+//        //this.offsetY = 0;
+//    }
     
     public GeographicMapTopViewMaskGameLayerBehavior(final int maxGravityActionIndex, final boolean autoStepBlocks, final int offsetY) {
         super(maxGravityActionIndex);

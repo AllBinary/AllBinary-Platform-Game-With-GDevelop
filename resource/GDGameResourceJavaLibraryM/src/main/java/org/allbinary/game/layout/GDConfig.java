@@ -50,6 +50,14 @@ public class GDConfig {
         }
     }
 
+    public float getInverseScale() {
+        if (AndroidUtil.isAndroid()) {
+            return 1.0f;
+        } else {
+            return 0.75f;
+        }
+    }
+    
     public int getScaleHack() {
         if (SWTUtil.isSWT || AndroidUtil.isAndroid()) {
             return 2;

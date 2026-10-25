@@ -125,6 +125,33 @@ export class GDConfig
 }
 
 
+    public getInverseScale(): number{
+
+                        if(AndroidUtil.isAndroid())
+                        
+                                    {
+                                    
+
+
+                        //if statement needs to be on the same line and ternary does not work the same way.
+                        return 1.0;
+    
+
+                                    }
+                                
+                        else {
+                            
+
+
+                        //if statement needs to be on the same line and ternary does not work the same way.
+                        return 0.75;
+    
+
+                        }
+                            
+}
+
+
     public getScaleHack(): number{
 
                         if(SWTUtil.isSWT || AndroidUtil.isAndroid())

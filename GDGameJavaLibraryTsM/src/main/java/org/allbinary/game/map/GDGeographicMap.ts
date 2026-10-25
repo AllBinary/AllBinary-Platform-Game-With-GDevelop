@@ -341,9 +341,6 @@ allBinaryJ2METiledLayer!.updateCells((getLayer as TileLayer).getMapArray(), (get
                 ;;
     
 
-                    //Otherwise - statement - EmptyStmt
-
-
     var animation: Animation;;
     
 

@@ -100,6 +100,8 @@ import { BaseOffsetBehavior } from './BaseOffsetBehavior.js';
 //not GWT import - same folder const BaseOffsetBehavior
 import { OffsetBehavior } from './OffsetBehavior.js';
 //not GWT import - same folder const OffsetBehavior
+import { GDConfig } from './GDConfig.js';
+//not GWT import - same folder const GDConfig
 import { GDObjectStrings } from './GDObjectStrings.js';
 //not GWT import - same folder const GDObjectStrings
 
@@ -362,18 +364,7 @@ this.yP= y;
 }
 
 
-    private readonly offsetX: number = AndroidUtil.isAndroid()
-                        ?       
-                                
-                                        //Otherwise - thenExpr - DoubleLiteralExpr
-
-                                :
-
-                            
-                                        //Otherwise - expression - elseExpr - DoubleLiteralExpr
-;
-
-    ;
+    private readonly offsetX: number = GDConfig.getInstance()!.getInverseScale()!;
 
     private readonly offsetY: number = 1.00;
 
