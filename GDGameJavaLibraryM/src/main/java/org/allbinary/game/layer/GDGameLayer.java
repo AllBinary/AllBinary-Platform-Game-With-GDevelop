@@ -889,7 +889,8 @@ public class GDGameLayer
     }
 
     public String Text() {
-        return ((TextInterface) this.initIndexedAnimationInterfaceArrayP[0]).getText();
+        final TextInterface textInterface = ((TextInterface) this.initIndexedAnimationInterfaceArrayP[0]);
+        return textInterface.getText();
     }
 
     public GDTwodBehavior getDimensionalBehavior() {

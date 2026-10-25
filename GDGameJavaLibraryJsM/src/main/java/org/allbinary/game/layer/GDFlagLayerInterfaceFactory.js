@@ -25,6 +25,8 @@ const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDGameLayerFactory } from './GDGameLayerFactory.js';
+//not GWT import - same folder const GDGameLayerFactory
+import { GDRotationBehaviorFactory } from './GDRotationBehaviorFactory.js';
 //not GWT import - same folder const GDGameLayer
 import { AllBinaryGameLayerManager } from './AllBinaryGameLayerManager.js';
 //not GWT import - same folder const AllBinaryGameLayerManager
@@ -60,7 +62,7 @@ export class GDFlagLayerInterfaceFactory extends Object {
         ;
         var rectangleArrayOfArrays = RectangleFactory.ARRAY_OF_ARRAYS;
         ;
-        var gameLayerFactory = new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, false);
+        var gameLayerFactory = new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance(), false);
         ;
         var gdObject = new GDObject(0, 0, GDFlagLayerInterfaceFactory.NAME, StringUtil.getInstance().EMPTY_STRING);
         ;

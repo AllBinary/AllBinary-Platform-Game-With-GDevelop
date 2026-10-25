@@ -55,6 +55,9 @@ import { AllBinaryGameLayerManager } from '../../../../org/allbinary/game/layer/
 import { GDGameLayerFactory } from '../../../../org/allbinary/game/layer/GDGameLayerFactory.js';
 //not GWT import const GDGameLayerFactory
 
+import { GDRotationBehaviorFactory } from '../../../../org/allbinary/game/layer/GDRotationBehaviorFactory.js';
+//not GWT import const GDRotationBehaviorFactory
+
 import { PointFactory } from '../../../../org/allbinary/graphics/PointFactory.js';
 //not GWT import const PointFactory
 
@@ -166,7 +169,7 @@ this.boxGDGameLayerFactory1= new GDGameLayerFactory(gameLayerList, gameLayerDest
                                                 [
                                                     btn_rotate_leftGroupInterface
                                                 ], behaviorList, boxAnimationInterfaceFactoryInterfaceArray, boxProceduralAnimationInterfaceFactoryInterfaceArray, boxLayerInfo1, 
-                            null, false);
+                            null, GDRotationBehaviorFactory.getInstance(), false);
     
 
     var boxLayerInfo2: Rectangle = animationInterfaceFactoryInterfaceFactory!.getRectangle(this.BOX_RECTANGLE_NAME_1)!;;
@@ -175,7 +178,7 @@ this.boxGDGameLayerFactory2= new GDGameLayerFactory(gameLayerList, gameLayerDest
                                                 [
                                                     btn_rotate_leftGroupInterface
                                                 ], behaviorList, boxAnimationInterfaceFactoryInterfaceArray, boxProceduralAnimationInterfaceFactoryInterfaceArray, boxLayerInfo2, 
-                            null, false);
+                            null, GDRotationBehaviorFactory.getInstance(), false);
     
 
     var boxLayerInfo3: Rectangle = animationInterfaceFactoryInterfaceFactory!.getRectangle(this.BOX_RECTANGLE_NAME_1)!;;
@@ -184,7 +187,7 @@ this.boxGDGameLayerFactory3= new GDGameLayerFactory(gameLayerList, gameLayerDest
                                                 [
                                                     btn_rotate_leftGroupInterface
                                                 ], behaviorList, boxAnimationInterfaceFactoryInterfaceArray, boxProceduralAnimationInterfaceFactoryInterfaceArray, boxLayerInfo3, 
-                            null, false);
+                            null, GDRotationBehaviorFactory.getInstance(), false);
     
 
     var boxLayerInfo4: Rectangle = animationInterfaceFactoryInterfaceFactory!.getRectangle(this.BOX_RECTANGLE_NAME_1)!;;
@@ -193,7 +196,7 @@ this.boxGDGameLayerFactory4= new GDGameLayerFactory(gameLayerList, gameLayerDest
                                                 [
                                                     btn_rotate_leftGroupInterface
                                                 ], behaviorList, boxAnimationInterfaceFactoryInterfaceArray, boxProceduralAnimationInterfaceFactoryInterfaceArray, boxLayerInfo4, 
-                            null, false);
+                            null, GDRotationBehaviorFactory.getInstance(), false);
     
 }
 

@@ -91,7 +91,8 @@ public class GDFlagLayerInterfaceFactory
             animationInterfaceFactoryInterfaceArray,
             proceduralAnimationInterfaceFactoryInterfaceArray,
             layerInfo,
-            rectangleArrayOfArrays, false);
+            rectangleArrayOfArrays, 
+            GDRotationBehaviorFactory.getInstance(), false);
         
         final GDObject gdObject = new GDObject(0, 0, GDFlagLayerInterfaceFactory.NAME, StringUtil.getInstance().EMPTY_STRING);
         gdObject.set(StringUtil.getInstance().EMPTY_STRING, x, y, z);

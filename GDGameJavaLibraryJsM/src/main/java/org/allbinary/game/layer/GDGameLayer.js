@@ -45,8 +45,6 @@ import { ScaleProperties } from '../../../../org/allbinary/media/ScaleProperties
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
-//not GWT import const ViewPositionBase
-import { TextInterface } from '../../../../org/allbinary/animation/text/TextInterface.js';
 //not GWT import const TextInterface
 import { BasicColorFactory } from '../../../../org/allbinary/graphics/color/BasicColorFactory.js';
 //not GWT import const BasicColorFactory
@@ -426,10 +424,10 @@ export class GDGameLayer extends MultiPlayerGameLayer {
         throw new RuntimeException();
     }
     Text() {
+        var textInterface = this.initIndexedAnimationInterfaceArrayP[0];
+        ;
         //if statement needs to be on the same line and ternary does not work the same way.
-        return (as);
-        TextInterface;
-        getText();
+        return textInterface.getText();
         ;
     }
     getDimensionalBehavior() {

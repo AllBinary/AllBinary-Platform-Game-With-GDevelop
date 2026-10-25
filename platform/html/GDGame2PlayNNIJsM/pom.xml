@@ -83,6 +83,31 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>clean-js-files</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                        <configuration>
+                            <excludeDefaultDirectories>true</excludeDefaultDirectories>
+                            <filesets>
+                                <fileset>
+                                    <directory>${basedir}/src</directory>
+                                    <includes>
+                                        <include>**/*.js</include>
+                                    </includes>
+                                </fileset>
+                            </filesets>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <!-- 
@@ -98,19 +123,6 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>3.5.0</version>
-                <configuration>
-                    <followSymLinks>false</followSymLinks>
-                    <filesets>
-                        <fileset>
-                            <directory>${outputPath}</directory>
-                        </fileset>
-                    </filesets>
-                </configuration>
-            </plugin>
 
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>

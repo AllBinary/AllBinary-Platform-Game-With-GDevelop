@@ -68,7 +68,7 @@ open class PlatformAssetManager {
     //private val DONE: String = "ResourceCallback:done"
     //private val ERROR: String = "ResourceCallback:error"
 
-    private var textToResource: Map = HashMap&lt;Any, Any&gt;()
+    private textToResource: ABHashMap&lt;Object, Object<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> = StdUtil.getInstance().createHashMap();
     //private var requestToResource: Map = HashMap()
 
     open inner class RequestedText {

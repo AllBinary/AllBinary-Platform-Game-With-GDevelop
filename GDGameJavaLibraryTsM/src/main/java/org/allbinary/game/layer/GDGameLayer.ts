@@ -971,10 +971,13 @@ this.setText(value.toString());
 
     public Text(): string{
 
+    var textInterface: TextInterface = (this.initIndexedAnimationInterfaceArrayP[0]! as TextInterface);;
+    
+
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return ( as TextInterface).getText();;
+                        return textInterface!.getText();;
     
 }
 

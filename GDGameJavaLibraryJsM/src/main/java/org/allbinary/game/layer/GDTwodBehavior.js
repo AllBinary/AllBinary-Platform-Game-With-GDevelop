@@ -38,7 +38,7 @@ export class GDTwodBehavior extends Object {
         var newPortion = (gdObject.rotationP * timeDelta / 1000);
         ;
         this.rotationRemainder = this.rotationRemainder + newPortion;
-        var angleAdjustment = ();
+        var angleAdjustment = this.rotationRemainder;
         ;
         if (angleAdjustment != 0) {
             var adjustedAngle2 = gdObject.angleP + angleAdjustment;

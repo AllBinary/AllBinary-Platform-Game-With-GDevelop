@@ -49,16 +49,16 @@ public class GDGameLayerFactory
     protected final BasicArrayList gameLayerDestroyedList;
     protected final boolean resetAnimationBehavior;
 
-    public GDGameLayerFactory(final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
-            final Group[] groupInterface,
-            final BasicArrayList behaviorList,
-            final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
-            final BasicAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
-            final Rectangle layerInfo,
-            final Rectangle[][] rectangleArrayOfArrays,
-            final boolean resetAnimationBehavior) {
-        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance(), resetAnimationBehavior);
-    }
+//    public GDGameLayerFactory(final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
+//            final Group[] groupInterface,
+//            final BasicArrayList behaviorList,
+//            final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
+//            final BasicAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
+//            final Rectangle layerInfo,
+//            final Rectangle[][] rectangleArrayOfArrays,
+//            final boolean resetAnimationBehavior) {
+//        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance(), resetAnimationBehavior);
+//    }
     
     public GDGameLayerFactory(final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
             final Group[] groupInterface,

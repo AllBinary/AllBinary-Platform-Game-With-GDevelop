@@ -61,6 +61,8 @@ const BasicArrayListUtil = globalThis.org.allbinary.util.BasicArrayListUtil;
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDGameLayerFactory } from './GDGameLayerFactory.js';
 //not GWT import - same folder const GDGameLayerFactory
+import { GDRotationBehaviorFactory } from './GDRotationBehaviorFactory.js';
+//not GWT import - same folder const GDRotationBehaviorFactory
 import { GDGameLayer } from './GDGameLayer.js';
 //not GWT import - same folder const GDGameLayer
 
@@ -76,7 +78,7 @@ private constructor (){
                                                 ], 
                                                 [
                                                     NullRotationAnimationFactory.getFactoryInstance()
-                                                ], RectangleFactory.SINGLETON, RectangleFactory.ARRAY_OF_ARRAYS, false);
+                                                ], RectangleFactory.SINGLETON, RectangleFactory.ARRAY_OF_ARRAYS, GDRotationBehaviorFactory.getInstance(), false);
                     
 
                             //For kotlin this is before the body of the constructor.

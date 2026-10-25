@@ -33,16 +33,9 @@ const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 import { ViewPosition } from '../../../../org/allbinary/view/ViewPosition.js';
 //not GWT import - same folder const GDAnimationBehaviorBaseFactory
-import { GDRotationBehaviorFactory } from './GDRotationBehaviorFactory.js';
-//not GWT import - same folder const GDRotationBehaviorFactory
 import { GDGameLayer } from './GDGameLayer.js';
 //not GWT import - same folder const GDGameLayer
 export class GDGameLayerFactory extends Object {
-    constructor(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, resetAnimationBehavior) {
-        this.logUtil = LogUtil.getInstance();
-        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance(), resetAnimationBehavior);
-        //For kotlin this is before the body of the constructor.
-    }
     constructor(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, animationBehaviorFactory, resetAnimationBehavior) {
         super();
         this.logUtil = LogUtil.getInstance();

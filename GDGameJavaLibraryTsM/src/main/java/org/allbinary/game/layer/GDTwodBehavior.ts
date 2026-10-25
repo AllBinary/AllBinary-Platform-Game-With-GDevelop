@@ -98,7 +98,7 @@ this.animationBehavior!.set(gameLayer, gdObject);
 this.rotationRemainder= this.rotationRemainder +newPortion;
     
 
-    var angleAdjustment: number = ();;
+    var angleAdjustment: number = this.rotationRemainder;;
     
 
                         if(angleAdjustment != 0)

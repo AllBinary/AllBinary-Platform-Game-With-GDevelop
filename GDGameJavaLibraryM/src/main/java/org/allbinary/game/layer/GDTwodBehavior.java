@@ -58,7 +58,7 @@ public class GDTwodBehavior {
         this.rotationRemainder = this.rotationRemainder + newPortion;
 //        stringBuilder.delete(0, stringBuilder.length());
 //        logUtil.putF(stringBuilder.append("rotationRemainder: ").appendfloat(rotationRemainder).toString(), this, UPDATE_ROTATION);
-        final short angleAdjustment = (short) (this.rotationRemainder);
+        final short angleAdjustment = (short) this.rotationRemainder;
         if(angleAdjustment != 0) {
 //            stringBuilder.delete(0, stringBuilder.length());
 //            logUtil.putF(stringBuilder.append("angleAdjustment: ").appendint(angleAdjustment).toString(), this, UPDATE_ROTATION);

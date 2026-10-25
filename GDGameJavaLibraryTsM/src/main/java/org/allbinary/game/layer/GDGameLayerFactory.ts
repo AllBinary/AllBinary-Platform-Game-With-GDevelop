@@ -87,8 +87,6 @@ import { ViewPosition } from '../../../../org/allbinary/view/ViewPosition.js';
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDAnimationBehaviorBaseFactory } from './GDAnimationBehaviorBaseFactory.js';
 //not GWT import - same folder const GDAnimationBehaviorBaseFactory
-import { GDRotationBehaviorFactory } from './GDRotationBehaviorFactory.js';
-//not GWT import - same folder const GDRotationBehaviorFactory
 import { GDGameLayer } from './GDGameLayer.js';
 //not GWT import - same folder const GDGameLayer
 
@@ -118,15 +116,6 @@ export class GDGameLayerFactory
     readonly gameLayerDestroyedList: BasicArrayList;
 
     readonly resetAnimationBehavior: boolean;
-
-public constructor (gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, groupInterface: Group[], behaviorList: BasicArrayList, animationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[], proceduralAnimationInterfaceFactoryInterfaceArray: BasicAnimationInterfaceFactoryInterface[], layerInfo: Rectangle, rectangleArrayOfArrays: Rectangle[][], resetAnimationBehavior: boolean){
-            this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance(), resetAnimationBehavior);
-                    
-
-                            //For kotlin this is before the body of the constructor.
-                    
-}
-
 
 public constructor (gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, groupInterface: Group[], behaviorList: BasicArrayList, animationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[], proceduralAnimationInterfaceFactoryInterfaceArray: BasicAnimationInterfaceFactoryInterface[], layerInfo: Rectangle, rectangleArrayOfArrays: Rectangle[][], animationBehaviorFactory: GDAnimationBehaviorBaseFactory, resetAnimationBehavior: boolean){
 

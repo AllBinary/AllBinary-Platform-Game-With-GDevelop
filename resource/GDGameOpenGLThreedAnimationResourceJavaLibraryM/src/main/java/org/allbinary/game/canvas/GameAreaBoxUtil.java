@@ -24,6 +24,7 @@ import org.allbinary.game.identification.Group;
 import org.allbinary.game.identification.GroupFactory;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.game.layer.GDGameLayerFactory;
+import org.allbinary.game.layer.GDRotationBehaviorFactory;
 import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.graphics.threed.min3d.Min3dSceneResourcesFactory;
@@ -96,7 +97,7 @@ public class GameAreaBoxUtil {
                 boxProceduralAnimationInterfaceFactoryInterfaceArray,
                 boxLayerInfo1,
                 null,
-                false
+                GDRotationBehaviorFactory.getInstance(), false
         );
         final Rectangle boxLayerInfo2 = animationInterfaceFactoryInterfaceFactory.getRectangle(this.BOX_RECTANGLE_NAME_1);
 
@@ -108,7 +109,7 @@ public class GameAreaBoxUtil {
                 boxProceduralAnimationInterfaceFactoryInterfaceArray,
                 boxLayerInfo2,
                 null,
-                false
+                GDRotationBehaviorFactory.getInstance(), false
         );
         final Rectangle boxLayerInfo3 = animationInterfaceFactoryInterfaceFactory.getRectangle(this.BOX_RECTANGLE_NAME_1);
 
@@ -120,7 +121,7 @@ public class GameAreaBoxUtil {
                 boxProceduralAnimationInterfaceFactoryInterfaceArray,
                 boxLayerInfo3,
                 null,
-                false
+                GDRotationBehaviorFactory.getInstance(), false
         );
         final Rectangle boxLayerInfo4 = animationInterfaceFactoryInterfaceFactory.getRectangle(this.BOX_RECTANGLE_NAME_1);
 
@@ -132,7 +133,7 @@ public class GameAreaBoxUtil {
                 boxProceduralAnimationInterfaceFactoryInterfaceArray,
                 boxLayerInfo4,
                 null,
-                false
+                GDRotationBehaviorFactory.getInstance(), false
         );
     }
 

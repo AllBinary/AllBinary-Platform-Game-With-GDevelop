@@ -63,7 +63,7 @@ public class PlatformAssetManager {
     //private final String DONE = "ResourceCallback:done";
     //private final String ERROR = "ResourceCallback:error";
     
-    private Map textToResource = new HashMap();
+    private ABHashMap&lt;Object, Object<xsl:text disable-output-escaping="yes" >&gt;</xsl:text> textToResource = StdUtil.getInstance().createHashMap();
     //private Map requestToResource = new HashMap();
 
     class RequestedText {

@@ -31,7 +31,7 @@ public class NullGDGameLayerFactory extends GDGameLayerFactory
     
     private NullGDGameLayerFactory() {
         
-        super(BasicArrayListUtil.getInstance().getImmutableInstance(), BasicArrayListUtil.getInstance().getImmutableInstance(), GroupFactory.getInstance().NULL_GROUP_ARRAY, BasicArrayListUtil.getInstance().getImmutableInstance(), new AnimationInterfaceFactoryInterface[] {NullRotationAnimationFactory.getFactoryInstance()}, new BasicAnimationInterfaceFactoryInterface[] {NullRotationAnimationFactory.getFactoryInstance()}, RectangleFactory.SINGLETON, RectangleFactory.ARRAY_OF_ARRAYS, false);
+        super(BasicArrayListUtil.getInstance().getImmutableInstance(), BasicArrayListUtil.getInstance().getImmutableInstance(), GroupFactory.getInstance().NULL_GROUP_ARRAY, BasicArrayListUtil.getInstance().getImmutableInstance(), new AnimationInterfaceFactoryInterface[] {NullRotationAnimationFactory.getFactoryInstance()}, new BasicAnimationInterfaceFactoryInterface[] {NullRotationAnimationFactory.getFactoryInstance()}, RectangleFactory.SINGLETON, RectangleFactory.ARRAY_OF_ARRAYS, GDRotationBehaviorFactory.getInstance(), false);
     }
     
     public GDGameLayer create(final GDObject gdObject) {
