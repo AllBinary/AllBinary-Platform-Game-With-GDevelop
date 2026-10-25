@@ -115,7 +115,7 @@ Created By: Travis Berthelot
                                 try {
                                     //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "run", this, this.commonStrings.PROCESS);
 
-                                    gdNodeStatsFactory.push(0, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
+                                    this.gdNodeStatsFactory.push(0, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
 
                                         <xsl:for-each select=".." >
 
