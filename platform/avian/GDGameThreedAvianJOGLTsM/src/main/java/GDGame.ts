@@ -149,7 +149,7 @@ logUtil!.put(CommonStrings.getInstance()!.EXCEPTION, this, CommonStrings.getInst
 }
 
 
-    var motionGesturesHandler: BasicMotionGesturesHandler = motionRecognizer!.getMotionGestureRecognizer()!.getMotionGesturesHandler()!;;
+    var motionGesturesHandler: BasicMotionGesturesHandler = this.motionRecognizer!.getMotionGestureRecognizer()!.getMotionGesturesHandler()!;;
     
 motionGesturesHandler!.addListener(new GDGameMotionGestureListener(MotionGestureReceiveInterfaceFactory.getInstance()));
     

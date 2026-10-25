@@ -73,33 +73,33 @@ super.setHandlesInput(true);
 
     var gameTickDisplayInfoSingleton: GameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance()!;;
     
-slider.initComponent();
+this.slider.initComponent();
     
-slider.setX(gameTickDisplayInfoSingleton!.getLastWidth() /4);
+this.slider.setX(gameTickDisplayInfoSingleton!.getLastWidth() /4);
     
-slider.setMinValue(0);
+this.slider.setMinValue(0);
     
-slider.setMaxValue(100);
+this.slider.setMaxValue(100);
     
-slider.setEditable(true);
+this.slider.setEditable(true);
     
-slider.setWidth(gameTickDisplayInfoSingleton!.getLastWidth() /2);
+this.slider.setWidth(gameTickDisplayInfoSingleton!.getLastWidth() /2);
     
-slider.setHeight(gameTickDisplayInfoSingleton!.getLastHeight() /24);
+this.slider.setHeight(gameTickDisplayInfoSingleton!.getLastHeight() /24);
     
-slider.setIncrements(gameTickDisplayInfoSingleton!.getLastWidth() /2 /100);
+this.slider.setIncrements(gameTickDisplayInfoSingleton!.getLastWidth() /2 /100);
     
-slider.setText("Audio");
+this.slider.setText("Audio");
     
-slider.setTextPosition(Label.LEFT);
+this.slider.setTextPosition(Label.LEFT);
     
-slider.setHandlesInput(true);
+this.slider.setHandlesInput(true);
     
-slider.setRenderPercentageOnTop(true);
+this.slider.setRenderPercentageOnTop(true);
     
-slider.setProgress(50);
+this.slider.setProgress(50);
     
-slider.getStyle()!.setBgColor(0x000000);
+this.slider.getStyle()!.setBgColor(0x000000);
     
 }
 
@@ -107,7 +107,7 @@ slider.getStyle()!.setBgColor(0x000000);
                 //@Throws(Exception.constructor)
             
     public animate(timeDelta: number){
-slider.animate();
+this.slider.animate();
     
 }
 
@@ -115,31 +115,31 @@ slider.animate();
     public paint(graphics: Graphics){
 com.sun.lwuit.Display.getInstance()!.lwuitGraphics!.setGraphics(graphics);
     
-slider.paintComponent(com.sun.lwuit.Display.getInstance()!.lwuitGraphics);
+this.slider.paintComponent(com.sun.lwuit.Display.getInstance()!.lwuitGraphics);
     
 }
 
 
     public keyPressed(code: number){
-slider.keyPressed(code);
+this.slider.keyPressed(code);
     
 }
 
 
     pointerDragged(x: number, y: number){
-slider.pointerDragged(x, y);
+this.slider.pointerDragged(x, y);
     
 }
 
 
     pointerPressed(x: number, y: number){
-slider.pointerPressed(x, y);
+this.slider.pointerPressed(x, y);
     
 }
 
 
     pointerReleased(x: number, y: number){
-slider.pointerReleased(x, y);
+this.slider.pointerReleased(x, y);
     
 }
 

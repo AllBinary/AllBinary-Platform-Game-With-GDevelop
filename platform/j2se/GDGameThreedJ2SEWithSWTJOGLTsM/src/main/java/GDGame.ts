@@ -149,12 +149,12 @@ GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFact
                 //: 
 } catch(e) 
             {
-logUtil!.put(CommonStrings.getInstance()!.EXCEPTION, this, CommonStrings.getInstance()!.CONSTRUCTOR, e);
+this.logUtil!.put(CommonStrings.getInstance()!.EXCEPTION, this, CommonStrings.getInstance()!.CONSTRUCTOR, e);
     
 }
 
 
-    var motionGesturesHandler: BasicMotionGesturesHandler = motionRecognizer!.getMotionGestureRecognizer()!.getMotionGesturesHandler()!;;
+    var motionGesturesHandler: BasicMotionGesturesHandler = this.motionRecognizer!.getMotionGestureRecognizer()!.getMotionGesturesHandler()!;;
     
 motionGesturesHandler!.addListenerInterface(new GameMotionGestureListener(MotionGestureReceiveInterfaceFactory.getInstance()));
     
@@ -328,7 +328,7 @@ new Sounds(GDGameSoundsFactory.getInstance()).stopAll();
                 //: 
 } catch(e) 
             {
-logUtil!.put(commonStrings!.EXCEPTION, this, "stopAll", e);
+this.logUtil!.put(commonStrings!.EXCEPTION, this, "stopAll", e);
     
 }
 
@@ -348,7 +348,7 @@ logUtil!.put(commonStrings!.EXCEPTION, this, "stopAll", e);
                 //: 
 } catch(e) 
             {
-logUtil!.put(commonStrings!.EXCEPTION, this, "mousePressed", e);
+this.logUtil!.put(commonStrings!.EXCEPTION, this, "mousePressed", e);
     
 }
 
@@ -366,7 +366,7 @@ this.motionRecognizer!.processEndMotionEvent(x, y, this.DEVICE_ID, button);
                 //: 
 } catch(e) 
             {
-logUtil!.put(commonStrings!.EXCEPTION, this, "mouseReleased", e);
+this.logUtil!.put(commonStrings!.EXCEPTION, this, "mouseReleased", e);
     
 }
 
@@ -395,7 +395,7 @@ logUtil!.put(commonStrings!.EXCEPTION, this, "mouseReleased", e);
                 //: 
 } catch(e) 
             {
-logUtil!.put(commonStrings!.EXCEPTION, this, "mouseMoved", e);
+this.logUtil!.put(commonStrings!.EXCEPTION, this, "mouseMoved", e);
     
 }
 
@@ -415,7 +415,7 @@ this.motionRecognizer!.processDraggedMotionEvent(x, y, this.DEVICE_ID, button);
                 //: 
 } catch(e) 
             {
-logUtil!.put(commonStrings!.EXCEPTION, this, "mouseDragged", e);
+this.logUtil!.put(commonStrings!.EXCEPTION, this, "mouseDragged", e);
     
 }
 
