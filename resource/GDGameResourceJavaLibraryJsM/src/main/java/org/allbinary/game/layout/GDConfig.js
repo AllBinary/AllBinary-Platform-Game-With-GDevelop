@@ -49,6 +49,16 @@ export class GDConfig extends Object {
             return 2.0;
         }
     }
+    getInverseScale() {
+        if (AndroidUtil.isAndroid()) {
+            //if statement needs to be on the same line and ternary does not work the same way.
+            return 1.0;
+        }
+        else {
+            //if statement needs to be on the same line and ternary does not work the same way.
+            return 0.75;
+        }
+    }
     getScaleHack() {
         if (SWTUtil.isSWT || AndroidUtil.isAndroid()) {
             //if statement needs to be on the same line and ternary does not work the same way.

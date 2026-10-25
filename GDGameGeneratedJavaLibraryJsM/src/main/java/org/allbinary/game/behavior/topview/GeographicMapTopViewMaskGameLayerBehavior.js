@@ -29,16 +29,6 @@ const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 import { GeographicMapTopViewLayerBehavior } from './GeographicMapTopViewLayerBehavior.js';
 //not GWT import - same folder const TopViewCharacterInterface
 export class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopViewLayerBehavior {
-    constructor() {
-        super(16);
-        this.logUtil = LogUtil.getInstance();
-        this.gravityUtil = GravityUtil.getInstance();
-        this.geographicMapBehavior = new MultiGeographicMapBehavior();
-        this.unsafeGeographicMapCellPositionList = new BasicArrayListD();
-        this.unsafePossibleGeographicMapCellPositionList = new BasicArrayListD();
-        //For kotlin this is before the body of the constructor.
-        this.autoStepBlocks = true;
-    }
     constructor(maxGravityActionIndex, autoStepBlocks, offsetY) {
         super(maxGravityActionIndex);
         this.logUtil = LogUtil.getInstance();

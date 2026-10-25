@@ -140,7 +140,6 @@ export class GDGeographicMap extends RaceTrackGeographicMap {
         ;
         var size = this.animationArray.length;
         ;
-        //Otherwise - statement - EmptyStmt
         var animation;
         ;
         var frame;

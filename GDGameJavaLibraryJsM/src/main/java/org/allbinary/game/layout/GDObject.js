@@ -14,8 +14,6 @@
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../java/lang/Object.js';
 import { RuntimeException } from '../../../../java/lang/RuntimeException.js';
-//not GWT import const Graphics
-import { AndroidUtil } from '../../../../org/allbinary/AndroidUtil.js';
 //not GWT import const AndroidUtil
 import { Features } from '../../../../org/allbinary/game/configuration/feature/Features.js';
 //not GWT import const GDBehavior
@@ -48,6 +46,8 @@ import { BaseOffsetBehavior } from './BaseOffsetBehavior.js';
 //not GWT import - same folder const BaseOffsetBehavior
 import { OffsetBehavior } from './OffsetBehavior.js';
 //not GWT import - same folder const OffsetBehavior
+import { GDConfig } from './GDConfig.js';
+//not GWT import - same folder const GDConfig
 import { GDObjectStrings } from './GDObjectStrings.js';
 //not GWT import - same folder const GDObjectStrings
 export class GDObject extends Object {
@@ -83,11 +83,7 @@ export class GDObject extends Object {
         this.halfHeight = 0;
         this.updateSinceSetAngle = false;
         this.forceAngle = 0;
-        this.offsetX = AndroidUtil.isAndroid()
-            ?
-            //Otherwise - thenExpr - DoubleLiteralExpr
-            :
-        ;
+        this.offsetX = GDConfig.getInstance().getInverseScale();
         this.offsetY = 1.00;
         this.name = name;
         this.type = type;
@@ -170,7 +166,6 @@ export class GDObject extends Object {
         //if statement needs to be on the same line and ternary does not work the same way.
         return this.yP + this.height;
     }
-    ;
     PointX(point) {
         var adjustedAngle = this.angleP;
         ;
