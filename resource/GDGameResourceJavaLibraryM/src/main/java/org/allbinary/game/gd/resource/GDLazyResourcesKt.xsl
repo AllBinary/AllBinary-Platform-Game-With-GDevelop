@@ -52,7 +52,7 @@ open public class GDLazyResources : Object&#13;
          */&#13;
         fun getInstance(): GDLazyResources&#13;
         {&#13;
-            return instance&#13;
+            return GDLazyResources.instance&#13;
         }&#13;
 &#13;
     }&#13;

@@ -36,7 +36,7 @@ public class GDResources&#13;
      */&#13;
     public static GDResources getInstance()&#13;
     {&#13;
-        return instance;&#13;
+        return GDResources.instance;&#13;
     }&#13;
 &#13;
     public int currentLayoutRequiredTotal;&#13;

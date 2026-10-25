@@ -17,6 +17,7 @@ import org.allbinary.animation.image.GDGameImageBasedAnimationInterfaceFactoryIn
 import org.allbinary.animation.image.GDGameOpenGLESImageBasedAnimationInterfaceFactoryInterfaceFactory;
 
 import org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory;
+import org.allbinary.animation.image.GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.input.motion.button.TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.input.motion.button.TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory;
@@ -40,7 +41,7 @@ extends ResourceInitialization
                 TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.createFactory());
         
         FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance().add(
-                new GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory());
+                new GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory(GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.DEFAULT_EARLY_IMAGE_ANIMATIONS));
 
         FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance().add(
                 new TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory());

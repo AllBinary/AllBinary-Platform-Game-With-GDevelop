@@ -26,15 +26,17 @@ import org.allbinary.logic.StdUtil;
 public class GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
         extends BaseResourceAnimationInterfaceFactoryInterfaceFactory
 {
-    public GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
-    {
-        super("Early Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
-    }
-
-//    public GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
+    public static final String DEFAULT_EARLY_IMAGE_ANIMATIONS = "Early Image Animations";
+    
+//    public GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
 //    {
-//        super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
+//        super("Early Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
 //    }
+
+    public GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
+    {
+        super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
+    }
     
     @Override
     public void init(int level)

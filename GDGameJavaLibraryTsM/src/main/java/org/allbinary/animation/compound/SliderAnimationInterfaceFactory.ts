@@ -65,15 +65,6 @@ export class SliderAnimationInterfaceFactory extends CompoundAnimationInterfaceF
 
     public scaleProperties: ScaleProperties = ScaleProperties.instance;
 
-public constructor (basicAnimationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[], width: number, height: number){
-            this(basicAnimationInterfaceFactoryInterfaceArray, width, height, AnimationBehaviorFactory.getInstance());
-                    
-
-                            //For kotlin this is before the body of the constructor.
-                    
-}
-
-
 public constructor (basicAnimationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[], width: number, height: number, animationBehaviorFactory: AnimationBehaviorFactory){
             super(basicAnimationInterfaceFactoryInterfaceArray, animationBehaviorFactory);
                     

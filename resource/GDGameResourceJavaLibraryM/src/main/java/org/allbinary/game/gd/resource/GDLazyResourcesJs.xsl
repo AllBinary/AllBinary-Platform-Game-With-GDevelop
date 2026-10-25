@@ -51,7 +51,7 @@ export class GDLazyResources extends Object&#13;
     }&#13;
 &#13;
     /**&#13;
-     * @return the instance&#13;
+     * @return the GDLazyResources.instance&#13;
      */&#13;
     static getInstance()&#13;
     {&#13;

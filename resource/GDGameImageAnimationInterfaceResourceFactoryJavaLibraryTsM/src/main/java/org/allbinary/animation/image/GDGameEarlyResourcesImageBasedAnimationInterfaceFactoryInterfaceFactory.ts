@@ -75,15 +75,6 @@ public constructor (){
 }
 
 
-public constructor (name: string){
-            super(name, StdUtil.getInstance()!.createHashtable(), StdUtil.getInstance()!.createHashtable(), StdUtil.getInstance()!.createHashtable());
-                    
-
-                            //For kotlin this is before the body of the constructor.
-                    
-}
-
-
                 //@Throws(Exception.constructor)
             
     public init(level: number){

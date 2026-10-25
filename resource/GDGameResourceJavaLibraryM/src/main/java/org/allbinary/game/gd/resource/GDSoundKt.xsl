@@ -50,7 +50,7 @@ open public class GD</xsl:text><xsl:value-of select="$GDNAME" /><xsl:text>Sound 
 &#13;
       fun getInstance(): Sound&#13;
       {&#13;
-         return soundInterface&#13;
+         return GD</xsl:text><xsl:value-of select="$GDNAME" /><xsl:text>Sound.soundInterface&#13;
       }&#13;
 &#13;
    }&#13;

@@ -28,10 +28,10 @@ public class GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory
         extends BaseResourceAnimationInterfaceFactoryInterfaceFactory
 {
 
-    public GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory()
-    {
-        super("Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
-    }
+//    public GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory()
+//    {
+//        super("Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
+//    }
 
     public GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {

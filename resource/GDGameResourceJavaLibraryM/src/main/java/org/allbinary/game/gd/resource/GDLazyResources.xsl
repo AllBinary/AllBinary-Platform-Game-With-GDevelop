@@ -36,7 +36,7 @@ public class GDLazyResources&#13;
      */&#13;
     public static GDLazyResources getInstance()&#13;
     {&#13;
-        return instance;&#13;
+        return GDLazyResources.instance;&#13;
     }&#13;
     &#13;
     </xsl:text><xsl:call-template name="resources" /><xsl:text>&#13;

@@ -31,10 +31,6 @@ export class GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFac
         super("Early Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
         //For kotlin this is before the body of the constructor.
     }
-    constructor(name) {
-        super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
-        //For kotlin this is before the body of the constructor.
-    }
     //@Throws(Exception.constructor)
     init(level) {
         this.initImageCache(ImageCacheFactory.getInstance(), level);

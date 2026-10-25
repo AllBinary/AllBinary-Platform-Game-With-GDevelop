@@ -52,7 +52,7 @@ open public class GDResources : Object&#13;
          */&#13;
         fun getInstance(): GDResources&#13;
         {&#13;
-            return instance&#13;
+            return GDResources.instance&#13;
         }&#13;
 &#13;
     }&#13;

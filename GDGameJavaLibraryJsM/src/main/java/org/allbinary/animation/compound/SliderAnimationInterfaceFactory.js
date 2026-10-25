@@ -11,8 +11,6 @@
         *
         *  Created By: Travis Berthelot
 */
-//not GWT import const Animation
-import { AnimationBehaviorFactory } from '../../../../org/allbinary/animation/AnimationBehaviorFactory.js';
 //not GWT import const IndexedAnimation
 import { ScaleProperties } from '../../../../org/allbinary/media/ScaleProperties.js';
 //not GWT import const ScaleProperties
@@ -22,11 +20,6 @@ import { CompoundAnimationInterfaceFactory } from './CompoundAnimationInterfaceF
 import { SliderAnimation } from './SliderAnimation.js';
 //not GWT import - same folder const SliderAnimation
 export class SliderAnimationInterfaceFactory extends CompoundAnimationInterfaceFactory {
-    constructor(basicAnimationInterfaceFactoryInterfaceArray, width, height) {
-        this.scaleProperties = ScaleProperties.instance;
-        this(basicAnimationInterfaceFactoryInterfaceArray, width, height, AnimationBehaviorFactory.getInstance());
-        //For kotlin this is before the body of the constructor.
-    }
     constructor(basicAnimationInterfaceFactoryInterfaceArray, width, height, animationBehaviorFactory) {
         super(basicAnimationInterfaceFactoryInterfaceArray, animationBehaviorFactory);
         this.scaleProperties = ScaleProperties.instance;
