@@ -61,9 +61,9 @@ public class GDResources&#13;
                 <xsl:text>    public final String </xsl:text><xsl:value-of select="@name" /><xsl:text> = "</xsl:text><xsl:value-of select="@value" /><xsl:text>";&#10;</xsl:text>
             </xsl:if>
         </xsl:for-each>
-        <xsl:text>&#10;    public final String[] resourceStringArray = {&#10;BLANK,&#10;</xsl:text>
+        <xsl:text>&#10;    public final String[] resourceStringArray = {&#10;        this.BLANK,&#10;</xsl:text>
         <xsl:for-each select="/template/arrayResource" >
-            <xsl:text>        </xsl:text><xsl:value-of select="@prefix" /><xsl:value-of select="@name" /><xsl:text>, //</xsl:text><xsl:value-of select="@index" /><xsl:text>&#10;</xsl:text>
+            <xsl:text>        this.</xsl:text><xsl:value-of select="@prefix" /><xsl:value-of select="@name" /><xsl:text>, //</xsl:text><xsl:value-of select="@index" /><xsl:text>&#10;</xsl:text>
         </xsl:for-each>
         <xsl:text>    };&#10;&#10;</xsl:text>
     </xsl:template>

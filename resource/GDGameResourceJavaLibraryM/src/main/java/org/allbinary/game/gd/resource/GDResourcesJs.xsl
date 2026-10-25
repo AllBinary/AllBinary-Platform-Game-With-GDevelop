@@ -74,9 +74,9 @@ GDResources.instance = new GDResources();&#13;
                 <xsl:text>        this.</xsl:text><xsl:value-of select="@name" /><xsl:text> = "</xsl:text><xsl:value-of select="@value" /><xsl:text>";&#13;&#10;</xsl:text>
             </xsl:if>
         </xsl:for-each>
-        <xsl:text>&#13;&#10;        this.resourceStringArray = [&#13;&#10;this.BLANK,&#13;&#10;</xsl:text>
+        <xsl:text>&#13;&#10;        this.resourceStringArray = [&#13;&#10;        this.BLANK,&#13;&#10;</xsl:text>
         <xsl:for-each select="/template/arrayResource" >
-            <xsl:text>            </xsl:text><xsl:value-of select="@prefix" /><xsl:text>this.</xsl:text><xsl:value-of select="@name" /><xsl:text>, //</xsl:text><xsl:value-of select="@index" /><xsl:text>&#13;&#10;</xsl:text>
+            <xsl:text>        this.</xsl:text><xsl:value-of select="@prefix" /><xsl:value-of select="@name" /><xsl:text>, //</xsl:text><xsl:value-of select="@index" /><xsl:text>&#13;&#10;</xsl:text>
         </xsl:for-each>
         <xsl:text>        ];&#13;&#10;&#13;&#10;</xsl:text>
     </xsl:template>

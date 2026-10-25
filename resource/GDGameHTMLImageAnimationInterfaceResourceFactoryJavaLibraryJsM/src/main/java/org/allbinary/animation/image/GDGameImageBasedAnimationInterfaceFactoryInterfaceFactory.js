@@ -28,10 +28,6 @@ import { ImageCacheFactory } from '../../../../org/allbinary/image/ImageCacheFac
 const StdUtil = globalThis.org.allbinary.logic.StdUtil;
 //Current folder imports from return types, extended types, and scope (deduplicated)
 export class GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
-    constructor() {
-        super("Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
-        //For kotlin this is before the body of the constructor.
-    }
     constructor(name) {
         super(name, StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());
         //For kotlin this is before the body of the constructor.

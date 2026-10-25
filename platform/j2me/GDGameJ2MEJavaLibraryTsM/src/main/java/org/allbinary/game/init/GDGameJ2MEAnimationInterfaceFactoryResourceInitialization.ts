@@ -29,6 +29,9 @@ import { GDGameOpenGLESImageBasedAnimationInterfaceFactoryInterfaceFactory } fro
 import { FeaturedAnimationInterfaceFactoryInterfaceFactory } from '../../../../org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory.js';
 //not GWT import const FeaturedAnimationInterfaceFactoryInterfaceFactory
 
+import { GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory } from '../../../../org/allbinary/animation/image/GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.js';
+//not GWT import const GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
+
 import { ResourceInitialization } from '../../../../org/allbinary/game/resource/ResourceInitialization.js';
 //not GWT import const ResourceInitialization
 
@@ -71,7 +74,7 @@ public constructor (){
     public init(){
 FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!.add(TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.createFactory());
     
-FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!.add(new GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory());
+FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!.add(new GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory(GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.DEFAULT_EARLY_IMAGE_ANIMATIONS));
     
 FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!.add(new TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory());
     

@@ -66,8 +66,10 @@ const StdUtil = globalThis.org.allbinary.logic.StdUtil;
 export class GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
         
 
-public constructor (){
-            super("Early Image Animations", StdUtil.getInstance()!.createHashtable(), StdUtil.getInstance()!.createHashtable(), StdUtil.getInstance()!.createHashtable());
+    public static readonly DEFAULT_EARLY_IMAGE_ANIMATIONS: string = "Early Image Animations";
+
+public constructor (name: string){
+            super(name, StdUtil.getInstance()!.createHashtable(), StdUtil.getInstance()!.createHashtable(), StdUtil.getInstance()!.createHashtable());
                     
 
                             //For kotlin this is before the body of the constructor.

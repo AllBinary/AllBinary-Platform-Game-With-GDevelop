@@ -78,9 +78,9 @@ open public class GDResources : Object&#13;
                 <xsl:text>    val </xsl:text><xsl:value-of select="@name" /><xsl:text>: String = "</xsl:text><xsl:value-of select="@value" /><xsl:text>"&#13;&#10;</xsl:text>
             </xsl:if>
         </xsl:for-each>
-        <xsl:text>&#13;&#10;    val resourceStringArray: Array&lt;String?&gt; = arrayOf(&#13;&#10;BLANK,&#13;&#10;</xsl:text>
+        <xsl:text>&#13;&#10;    val resourceStringArray: Array&lt;String?&gt; = arrayOf(&#13;&#10;        this.BLANK,&#13;&#10;</xsl:text>
         <xsl:for-each select="/template/arrayResource" >
-            <xsl:text>        </xsl:text><xsl:value-of select="@prefix" /><xsl:value-of select="@name" /><xsl:text>, //</xsl:text><xsl:value-of select="@index" /><xsl:text>&#13;&#10;</xsl:text>
+            <xsl:text>        this.</xsl:text><xsl:value-of select="@prefix" /><xsl:value-of select="@name" /><xsl:text>, //</xsl:text><xsl:value-of select="@index" /><xsl:text>&#13;&#10;</xsl:text>
         </xsl:for-each>
         <xsl:text>    )&#13;&#10;&#13;&#10;</xsl:text>
     </xsl:template>
