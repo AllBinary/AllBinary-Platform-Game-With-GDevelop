@@ -124,7 +124,7 @@ this.currentRunnable= NullRunnable.getInstance();
 }
 
 
-    public process(objecArray: any[], intArray: number[], longArray: number[], floatArray: number[]): boolean{
+    public processExtensionParams(objecArray: any[], intArray: number[], longArray: number[], floatArray: number[]): boolean{
 
 
 
@@ -216,7 +216,7 @@ this.nodeStatsFactory!.push(4, this.name);
 
                 //@Throws(Exception.constructor)
             
-    public process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): boolean{
+    public processMotion(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): boolean{
 
 
 
@@ -238,7 +238,7 @@ this.nodeStatsFactory!.push(4, this.name);
 }
 
 
-    processStats(motionGestureEvent: MotionGestureEvent){
+    processMotionStats(motionGestureEvent: MotionGestureEvent){
 this.nodeStatsFactory!.push(5, this.name);
     
 }
@@ -246,7 +246,7 @@ this.nodeStatsFactory!.push(5, this.name);
 
                 //@Throws(Exception.constructor)
             
-    public process(index: number): boolean{
+    public processIndex(index: number): boolean{
 
 
 
@@ -258,7 +258,7 @@ this.nodeStatsFactory!.push(5, this.name);
 
                 //@Throws(Exception.constructor)
             
-    processStats(index: number){
+    processIndexStats(index: number){
 this.nodeStatsFactory!.push(6, this.name);
     
 }
@@ -272,7 +272,7 @@ this.nodeStatsFactory!.push(6, this.name);
 
                 //@Throws(Exception.constructor)
             
-    public processEnd(index: number, createIndex: number){
+    public processIndexEnd(index: number, createIndex: number){
 }
 
 
@@ -384,7 +384,7 @@ this.nodeStatsFactory!.push(14, this.name);
 }
 
 
-    public process(gameLayer: GDGameLayer, x: number, y: number){
+    public processGDGameLayer(gameLayer: GDGameLayer, x: number, y: number){
 
 
 
@@ -393,7 +393,7 @@ this.nodeStatsFactory!.push(14, this.name);
 }
 
 
-    public process(gdObject: GDObject, x: number, y: number){
+    public processGDObject(gdObject: Object, x: number, y: number){
 
 
 
@@ -415,7 +415,7 @@ this.nodeStatsFactory!.push(14, this.name);
 
                 //@Throws(Exception.constructor)
             
-    public processSub(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput){
+    public processMotionSub(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput){
 
 
 
@@ -426,7 +426,7 @@ this.nodeStatsFactory!.push(14, this.name);
 
                 //@Throws(Exception.constructor)
             
-    public processSub(gameLayerArray: GDGameLayer[]){
+    public processArraySub(gameLayerArray: GDGameLayer[]){
 
 
 

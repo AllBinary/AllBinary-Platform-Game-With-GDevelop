@@ -46,7 +46,7 @@ export class GDNode extends Object {
         //if statement needs to be on the same line and ternary does not work the same way.
         return true;
     }
-    process(objecArray, intArray, longArray, floatArray) {
+    processExtensionParams(objecArray, intArray, longArray, floatArray) {
         //if statement needs to be on the same line and ternary does not work the same way.
         return true;
     }
@@ -86,7 +86,7 @@ export class GDNode extends Object {
         return false;
     }
     //@Throws(Exception.constructor)
-    process(motionGestureEvent, lastMotionGestureInput) {
+    processMotion(motionGestureEvent, lastMotionGestureInput) {
         //if statement needs to be on the same line and ternary does not work the same way.
         return false;
     }
@@ -95,23 +95,23 @@ export class GDNode extends Object {
         //if statement needs to be on the same line and ternary does not work the same way.
         return false;
     }
-    processStats(motionGestureEvent) {
+    processMotionStats(motionGestureEvent) {
         this.nodeStatsFactory.push(5, this.name);
     }
     //@Throws(Exception.constructor)
-    process(index) {
+    processIndex(index) {
         //if statement needs to be on the same line and ternary does not work the same way.
         return false;
     }
     //@Throws(Exception.constructor)
-    processStats(index) {
+    processIndexStats(index) {
         this.nodeStatsFactory.push(6, this.name);
     }
     //@Throws(Exception.constructor)
     processEnd() {
     }
     //@Throws(Exception.constructor)
-    processEnd(index, createIndex) {
+    processIndexEnd(index, createIndex) {
     }
     //@Throws(Exception.constructor)
     processEndStats() {
@@ -160,10 +160,10 @@ export class GDNode extends Object {
     processGDStats(gameLayerArray) {
         this.nodeStatsFactory.push(14, this.name);
     }
-    process(gameLayer, x, y) {
+    processGDGameLayer(gameLayer, x, y) {
         throw new RuntimeException();
     }
-    process(gdObject, x, y) {
+    processGDObject(gdObject, x, y) {
         throw new RuntimeException();
     }
     //@Throws(Exception.constructor)
@@ -171,11 +171,11 @@ export class GDNode extends Object {
         throw new RuntimeException();
     }
     //@Throws(Exception.constructor)
-    processSub(motionGestureEvent, lastMotionGestureInput) {
+    processMotionSub(motionGestureEvent, lastMotionGestureInput) {
         throw new RuntimeException();
     }
     //@Throws(Exception.constructor)
-    processSub(gameLayerArray) {
+    processArraySub(gameLayerArray) {
         throw new RuntimeException();
     }
     //@Throws(Exception.constructor)
