@@ -183,7 +183,7 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="total" ><xsl:call-template name="generateGDNodeTotal" ></xsl:call-template></xsl:variable>
                         private val MAX_NODES: Int = <xsl:value-of select="$total" />
-                        public val nodeArray: Array&lt;GDNode?&gt; = arrayOfNulls(MAX_NODES)
+                        public val nodeArray: Array&lt;GDNode?&gt; = arrayOfNulls(this.MAX_NODES)
 
                         public val channelSoundArray: Array&lt;BasicArrayList?&gt; = arrayOfNulls(16)
 
@@ -316,9 +316,9 @@ Created By: Travis Berthelot
 
                         this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR)
 
-                        val size: Int = channelSoundArray.size
+                        val size: Int = this.channelSoundArray.size
                         for(index in 0 until size) {
-                            channelSoundArray[index] = BasicArrayListD()
+                            this.channelSoundArray[index] = BasicArrayListD()
                         }
 
 <!--

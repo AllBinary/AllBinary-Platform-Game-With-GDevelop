@@ -94,7 +94,7 @@ super.updateRotation(gameLayer, timeDelta);
 this.rotationRemainderZ= this.rotationRemainderZ +newPortion;
     
 
-    var angleAdjustment: number = ();;
+    var angleAdjustment: number = this.rotationRemainderZ;;
     
 
                         if(angleAdjustment != 0)

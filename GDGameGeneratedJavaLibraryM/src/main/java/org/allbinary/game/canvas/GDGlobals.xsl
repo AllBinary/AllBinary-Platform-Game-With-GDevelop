@@ -174,7 +174,7 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="total" ><xsl:call-template name="generateGDNodeTotal" ></xsl:call-template></xsl:variable>
                         private final int MAX_NODES = <xsl:value-of select="$total" />;
-                        public final GDNode[] nodeArray = new GDNode[MAX_NODES];
+                        public final GDNode[] nodeArray = new GDNode[this.MAX_NODES];
 
                         public final BasicArrayList[] channelSoundArray = new BasicArrayList[16];
 
@@ -307,9 +307,9 @@ Created By: Travis Berthelot
                     
                         this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR);
 
-                        final int size = channelSoundArray.length;
+                        final int size = this.channelSoundArray.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                            channelSoundArray[index] = new BasicArrayListD();
+                            this.channelSoundArray[index] = new BasicArrayListD();
                         }
 
 <!--

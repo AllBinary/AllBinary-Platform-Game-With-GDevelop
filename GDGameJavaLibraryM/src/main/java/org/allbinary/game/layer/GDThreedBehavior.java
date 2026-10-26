@@ -54,7 +54,7 @@ public class GDThreedBehavior extends GDTwodBehavior {
         this.rotationRemainderZ = this.rotationRemainderZ + newPortion;
         //stringBuilder.delete(0, stringBuilder.length());
         //logUtil.put(stringBuilder.append("rotationRemainder: ").append(rotationRemainder).toString(), this, "updateRotation");
-        final short angleAdjustment = (short) (this.rotationRemainderZ);
+        final short angleAdjustment = (short) this.rotationRemainderZ;
         if(angleAdjustment != 0) {
             //stringBuilder.delete(0, stringBuilder.length());
             //logUtil.put(stringBuilder.append("angleAdjustment: ").append(angleAdjustment).toString(), this, "updateRotation");

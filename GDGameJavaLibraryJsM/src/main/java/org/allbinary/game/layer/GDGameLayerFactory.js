@@ -53,13 +53,14 @@ export class GDGameLayerFactory extends Object {
     //@Throws(Exception.constructor)
     create(layoutIndex, name, gdObject, scaleX, scaleY, collidableBehavior) {
         if (!name.startsWith(gdObject.name)) {
-            this.logUtil.put(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").appendint(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(this.animationInterfaceFactoryInterfaceArray.length > 0
+            var animationName = this.animationInterfaceFactoryInterfaceArray.length > 0
                 ?
                     this.animationInterfaceFactoryInterfaceArray[0].toString()
                 :
-                    "empty"));
-            !.toString(), this, "create", new Exception();
+                    "empty";
             ;
+            ;
+            this.logUtil.put(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").appendint(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(animationName).toString(), this, "create", new Exception());
         }
         var rectangle = new Rectangle(PointFactory.getInstance().ZERO_ZERO, Math.round((this.layerInfo.getWidth() * scaleX)), Math.round((this.layerInfo.getHeight() * scaleY)));
         ;

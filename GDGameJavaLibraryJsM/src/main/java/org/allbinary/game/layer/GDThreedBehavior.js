@@ -36,7 +36,7 @@ export class GDThreedBehavior extends GDTwodBehavior {
         var newPortion = (gdObject.rotationZP * timeDelta / 1000);
         ;
         this.rotationRemainderZ = this.rotationRemainderZ + newPortion;
-        var angleAdjustment = ();
+        var angleAdjustment = this.rotationRemainderZ;
         ;
         if (angleAdjustment != 0) {
             gdObject.angleP = (gdObject.angleP + angleAdjustment);
