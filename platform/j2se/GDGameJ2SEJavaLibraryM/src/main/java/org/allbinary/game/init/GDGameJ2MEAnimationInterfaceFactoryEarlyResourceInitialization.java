@@ -36,7 +36,7 @@ extends ResourceInitialization
 
         //Early Loading Here
         featuredAnimationInterfaceFactoryInterfaceFactory.add(
-                new GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory());
+                new GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.DEFAULT_EARLY_IMAGE_ANIMATIONS));
 
         featuredAnimationInterfaceFactoryInterfaceFactory.add(
                 new GDGameEarlyResourcesOpenGLESImageBasedAnimationInterfaceFactoryInterfaceFactory());

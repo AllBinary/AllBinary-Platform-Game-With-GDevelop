@@ -168,7 +168,7 @@ this.nodeStatsFactory!.push(4, this.name);
 
                 //@Throws(Exception.constructor)
             
-    public process(gameKeyEvent: GameKeyEvent): boolean{
+    public processGameKey(gameKeyEvent: GameKeyEvent): boolean{
 
 
 
@@ -192,7 +192,7 @@ this.nodeStatsFactory!.push(4, this.name);
 
                 //@Throws(Exception.constructor)
             
-    public process(keyAsInteger: Integer): boolean{
+    public processKeyAsInteger(keyAsInteger: Integer): boolean{
 
 
 

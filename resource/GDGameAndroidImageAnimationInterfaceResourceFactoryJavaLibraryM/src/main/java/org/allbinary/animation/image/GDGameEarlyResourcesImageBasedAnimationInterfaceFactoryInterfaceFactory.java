@@ -25,6 +25,8 @@ import org.allbinary.logic.StdUtil;
 public class GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
         extends BaseResourceAnimationInterfaceFactoryInterfaceFactory
 {
+    public static final String DEFAULT_EARLY_IMAGE_ANIMATIONS = "Early Image Animations";
+    
 //    public GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
 //    {
 //        super("Early Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());

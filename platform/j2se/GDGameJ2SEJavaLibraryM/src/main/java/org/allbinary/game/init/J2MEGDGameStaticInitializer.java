@@ -32,6 +32,6 @@ public class J2MEGDGameStaticInitializer
     throws Exception
     {
         FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance().add(
-                new GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory());
+                new GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory(GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.DEFAULT_IMAGE_ANIMATIONS));
     }
 }

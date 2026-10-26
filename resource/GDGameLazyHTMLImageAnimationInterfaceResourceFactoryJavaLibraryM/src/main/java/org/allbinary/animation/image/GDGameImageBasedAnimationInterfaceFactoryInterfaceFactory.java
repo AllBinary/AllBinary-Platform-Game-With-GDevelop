@@ -29,6 +29,8 @@ public class GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory
         extends BaseResourceAnimationInterfaceFactoryInterfaceFactory
 {
 
+    public static final String DEFAULT_IMAGE_ANIMATIONS = "Image Animations";
+
 //    public GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory()
 //    {
 //        super("Image Animations", StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable(), StdUtil.getInstance().createHashtable());

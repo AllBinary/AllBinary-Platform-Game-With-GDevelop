@@ -28,6 +28,8 @@ import org.allbinary.logic.StdUtil;
 public class GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory
         extends BaseResourceAnimationInterfaceFactoryInterfaceFactory
 {
+    
+    public static final String DEFAULT_IMAGE_ANIMATIONS = "Image Animations";
 
 //    public GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory()
 //    {

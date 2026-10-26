@@ -43,7 +43,7 @@ extends ResourceInitialization
           //      new TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory());
         
         featuredAnimationInterfaceFactoryInterfaceFactory.add(
-                new GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory());
+                new GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory(GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.DEFAULT_IMAGE_ANIMATIONS));
 
         //featuredAnimationInterfaceFactoryInterfaceFactory.add(
           //      new TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory());

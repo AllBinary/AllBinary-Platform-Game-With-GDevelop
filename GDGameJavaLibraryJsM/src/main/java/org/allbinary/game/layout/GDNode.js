@@ -66,7 +66,7 @@ export class GDNode extends Object {
         this.nodeStatsFactory.push(4, this.name);
     }
     //@Throws(Exception.constructor)
-    process(gameKeyEvent) {
+    processGameKey(gameKeyEvent) {
         //if statement needs to be on the same line and ternary does not work the same way.
         return false;
     }
@@ -76,7 +76,7 @@ export class GDNode extends Object {
         return false;
     }
     //@Throws(Exception.constructor)
-    process(keyAsInteger) {
+    processKeyAsInteger(keyAsInteger) {
         //if statement needs to be on the same line and ternary does not work the same way.
         return false;
     }
