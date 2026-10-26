@@ -80,13 +80,13 @@ public class GDNode
         this.nodeStatsFactory.push(4, this.name);
     }
 
-    public boolean process(final GameKeyEvent gameKeyEvent) throws Exception {
+    public boolean processGameKey(final GameKeyEvent gameKeyEvent) throws Exception {
         return false;
     }
     public boolean processReleased(final GameKeyEvent gameKeyEvent) throws Exception {
         return false;
     }
-    public boolean process(final Integer keyAsInteger) throws Exception {
+    public boolean processKeyAsInteger(final Integer keyAsInteger) throws Exception {
         return false;
     }
     public boolean processReleased(final Integer keyAsInteger) throws Exception {

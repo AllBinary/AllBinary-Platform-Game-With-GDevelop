@@ -23,7 +23,7 @@ open public class GDToAndroidBuildGradleGenerator : GDNameFileGenerator {
         
 public constructor ()                        
 
-                            : super(GDPaths.getInstance()!!.ROOT_PATH +"platformx\\android\\GDGameAndroidApplicationNoLicensingGradle\\app\\build.gradle.original", GDPaths.getInstance()!!.GEN_PATH +"platformx\\android\\GDGameAndroidApplicationNoLicensingGradle\\app\\build.gradle"){
+                            : super(GDPaths.getInstance()!!.ROOT_PATH +"platformx\\android\\GDGameAndroidApplicationNoLicensingGradle\\app\\build.gradle.xsl", GDPaths.getInstance()!!.GEN_PATH +"platformx\\android\\GDGameAndroidApplicationNoLicensingGradle\\app\\build.gradle"){
 
 
                             //For kotlin this is before the body of the constructor.

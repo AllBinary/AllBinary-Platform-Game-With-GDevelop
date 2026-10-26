@@ -42,6 +42,8 @@ open public class GDNameGenerator : Processor {
 
     val GD_KEY: String = "<name>"
 
+    val NAME: String = "name"
+
     var packageName: String
 
     open fun process(gdProject: GDProject)

@@ -43,7 +43,7 @@ companion object {
         //nullable = true from not(false or (false and false)) = true
 {
 var args = args
-GDPaths.init()
+GDPaths.init(args)
 
     var finished: BooleanArray = BooleanArray(9)
 

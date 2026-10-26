@@ -223,7 +223,7 @@ Created By: Travis Berthelot
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processIndex(index3)
                             </xsl:when>
                             <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
-                        //LinkedObjects::PickObjectsLinkedTo does not have process(index3) logic
+                        //LinkedObjects::PickObjectsLinkedTo does not have processIndex(index3) logic
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processIndex(index3)
                             </xsl:when>
                             <xsl:otherwise>
@@ -236,7 +236,7 @@ Created By: Travis Berthelot
 
                         <xsl:call-template name="actionsProcessing" >
                             <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
-                            <xsl:with-param name="methodCall" >process(index3)</xsl:with-param>
+                            <xsl:with-param name="methodCall" >processIndex(index3)</xsl:with-param>
                         </xsl:call-template>
 
                     <xsl:for-each select="events" >

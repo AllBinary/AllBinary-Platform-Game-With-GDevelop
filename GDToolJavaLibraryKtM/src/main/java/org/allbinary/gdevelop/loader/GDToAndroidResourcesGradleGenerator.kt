@@ -18,14 +18,11 @@
         import kotlin.reflect.KClass
                     
         
-import java.io.FileInputStream
 import org.allbinary.data.CamelCaseUtil
 import org.allbinary.gdevelop.json.GDProject
 import org.allbinary.logic.io.BufferedWriterUtil
-import org.allbinary.logic.io.StreamUtil
 import org.allbinary.string.CommonStrings
 import org.allbinary.logic.string.StringMaker
-import org.allbinary.logic.string.regex.replace.Replace
 import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.string.CommonSeps
 
@@ -50,21 +47,23 @@ open public class GDToAndroidResourcesGradleGenerator
 
     private val gdResourceSelection: GDResourceSelection = GDResourceSelection.getInstance()!!
 
-    private val resourceStringMaker: StringMaker = StringMaker()
+    private val templateData: GDTemplateData = GDTemplateData()
 
-    private val GD_KEY: String = "//GD"
+    private val RESOURCE: String = "resource"
 
-    private val PUBLIC_FINAL_STRING: String = "    public final int "
+    private val SOUND: String = "sound"
 
-    private val VALUE_RESOURCE_START: String = " = R.raw."
+    private val BLANK_RESOURCE: String = "blank"
 
-    private val VALUE_RESOURCE_END: String = ";\n"
+    private val NAME_ARRAY: Array<String?> = arrayOf("name")
 
-    private val BLANK_LINE: String = "public final int blank = R.raw.blank;\n"
+    private val RESOURCE_ATTRIBUTE_NAME_ARRAY: Array<String?> = arrayOf("name","prefix")
+
+    private val NO_ATTRIBUTE_ARRAY: Array<String?> = arrayOf()
 
     private val BLANK: String = "blank"
 
-    private val GD_KEY_NAME: String = "<name>"
+    private val NAME: String = "name"
 
     private var packageName: String
 
@@ -72,8 +71,6 @@ open public class GDToAndroidResourcesGradleGenerator
 public constructor ()
             : super()
         {
-this.resourceStringMaker!!.append(this.GD_KEY)
-this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
 }
 
 
@@ -120,12 +117,11 @@ this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
 
     var hasRotationImages: Boolean = this.gdResourceSelection!!.hasRotationImages()
 
-this.gdResourceSelection!!.appendCommentIfNeeded2(resource.uppercase(), resource, this.resourceStringMaker, hasRotationImages)
-this.resourceStringMaker!!.append(this.PUBLIC_FINAL_STRING)
-this.resourceStringMaker!!.append(resource)
-this.resourceStringMaker!!.append(this.VALUE_RESOURCE_START)
-this.resourceStringMaker!!.append(resource)
-this.resourceStringMaker!!.append(this.VALUE_RESOURCE_END)
+
+    var prefixStringMaker: StringMaker = StringMaker()
+
+this.gdResourceSelection!!.appendCommentIfNeeded2(resource.uppercase(), resource, prefixStringMaker, hasRotationImages)
+this.templateData!!.add(this.RESOURCE, this.RESOURCE_ATTRIBUTE_NAME_ARRAY, arrayOf(resource,prefixStringMaker!!.toString()))
 }
 
 
@@ -135,10 +131,10 @@ this.resourceStringMaker!!.append(this.VALUE_RESOURCE_END)
         //nullable = true from not(false or (false and true)) = true
 {
 
-    var RESOURCE_ORIGINAL: String = this.gdPaths!!.ROOT_PATH +"platform\\android\\GDGameAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.original"
+    var RESOURCE_ORIGINAL: String = this.gdPaths!!.getTemplatePath(this.gdPaths!!.ROOT_PATH +"platform\\android\\GDGameAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.xsl")!!
 
 
-    var RESOURCE: String = this.gdPaths!!.GEN_PATH +"platform\\android\\GDGameAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java"
+    var RESOURCE: String = this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"platform\\android\\GDGameAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java")!!
 
 
     var camelCaseUtil: CamelCaseUtil = CamelCaseUtil.getInstance()!!
@@ -147,23 +143,7 @@ this.resourceStringMaker!!.append(this.VALUE_RESOURCE_END)
     var stringMaker: StringMaker = StringMaker()
 
 
-    var streamUtil: StreamUtil = StreamUtil.getInstance()!!
-
-
-    var sharedBytes: SharedBytes = SharedBytes.getInstance()!!
-
-sharedBytes!!.outputStream!!.reset()
-
-    var fileInputStream: FileInputStream = FileInputStream(RESOURCE_ORIGINAL)
-
-
-    var androidRFileAsString: String = streamUtil!!.getByteArray.toCharArray()
-
-
-    var replace2: Replace = Replace(this.GD_KEY_NAME, camelCaseUtil!!.getAsCamelCase(this.packageName, stringMaker)!!.lowercase())
-
-
-    var newFileAsString2: String = replace2.all(androidRFileAsString)!!
+    var name: String = camelCaseUtil!!.getAsCamelCase(this.packageName, stringMaker)!!.lowercase()!!
 
 
     var size: Int = this.gdResources!!.playSoundAndroidResourceNameList!!.size()
@@ -179,12 +159,7 @@ sharedBytes!!.outputStream!!.reset()
 
         {
 resource= this.gdResources!!.playSoundAndroidResourceNameList!!.get(index) as String
-this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
-this.resourceStringMaker!!.append(this.PUBLIC_FINAL_STRING)
-this.resourceStringMaker!!.append(resource)
-this.resourceStringMaker!!.append(this.VALUE_RESOURCE_START)
-this.resourceStringMaker!!.append(resource)
-this.resourceStringMaker!!.append(this.VALUE_RESOURCE_END)
+this.templateData!!.add(this.SOUND, this.NAME_ARRAY, arrayOf(resource))
 }
 
 
@@ -192,16 +167,12 @@ this.resourceStringMaker!!.append(this.VALUE_RESOURCE_END)
                         if(!this.isBlank)
                         
                                     {
-                                    this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
-this.resourceStringMaker!!.append(this.BLANK_LINE)
+                                    this.templateData!!.add(this.BLANK_RESOURCE, this.NO_ATTRIBUTE_ARRAY, this.NO_ATTRIBUTE_ARRAY)
 
                                     }
                                 
 
-    var replace: Replace = Replace(this.GD_KEY, this.resourceStringMaker!!.toString())
-
-
-    var newFileAsString: String = replace.all(newFileAsString2)!!
+    var newFileAsString: String = GDTemplateUtil.getInstance()!!.process(RESOURCE_ORIGINAL, this.templateData, arrayOf(this.NAME), arrayOf(name))!!
 
 stringMaker!!.delete(0, stringMaker!!.length())
 this.logUtil!!.putF(stringMaker!!.append(this.gdToolStrings!!.FILENAME)!!.append(RESOURCE)!!.toString(), this, this.commonStrings!!.PROCESS)

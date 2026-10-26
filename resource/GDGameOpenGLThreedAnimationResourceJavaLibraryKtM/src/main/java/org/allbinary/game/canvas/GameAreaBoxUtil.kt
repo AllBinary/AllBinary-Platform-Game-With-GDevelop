@@ -37,6 +37,7 @@ import org.allbinary.game.identification.Group
 import org.allbinary.game.identification.GroupFactory
 import org.allbinary.game.layer.AllBinaryGameLayerManager
 import org.allbinary.game.layer.GDGameLayerFactory
+import org.allbinary.game.layer.GDRotationBehaviorFactory
 import org.allbinary.graphics.PointFactory
 import org.allbinary.graphics.Rectangle
 import org.allbinary.graphics.threed.min3d.Min3dSceneResourcesFactory
@@ -127,22 +128,22 @@ companion object {
     var boxLayerInfo1: Rectangle = animationInterfaceFactoryInterfaceFactory!!.getRectangle(this.BOX_RECTANGLE_NAME_1)!!
 
 this.boxGDGameLayerFactory1= GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, arrayOf(btn_rotate_leftGroupInterface), behaviorList, boxAnimationInterfaceFactoryInterfaceArray, boxProceduralAnimationInterfaceFactoryInterfaceArray, boxLayerInfo1, 
-                            null, false)
+                            null, GDRotationBehaviorFactory.getInstance(), false)
 
     var boxLayerInfo2: Rectangle = animationInterfaceFactoryInterfaceFactory!!.getRectangle(this.BOX_RECTANGLE_NAME_1)!!
 
 this.boxGDGameLayerFactory2= GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, arrayOf(btn_rotate_leftGroupInterface), behaviorList, boxAnimationInterfaceFactoryInterfaceArray, boxProceduralAnimationInterfaceFactoryInterfaceArray, boxLayerInfo2, 
-                            null, false)
+                            null, GDRotationBehaviorFactory.getInstance(), false)
 
     var boxLayerInfo3: Rectangle = animationInterfaceFactoryInterfaceFactory!!.getRectangle(this.BOX_RECTANGLE_NAME_1)!!
 
 this.boxGDGameLayerFactory3= GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, arrayOf(btn_rotate_leftGroupInterface), behaviorList, boxAnimationInterfaceFactoryInterfaceArray, boxProceduralAnimationInterfaceFactoryInterfaceArray, boxLayerInfo3, 
-                            null, false)
+                            null, GDRotationBehaviorFactory.getInstance(), false)
 
     var boxLayerInfo4: Rectangle = animationInterfaceFactoryInterfaceFactory!!.getRectangle(this.BOX_RECTANGLE_NAME_1)!!
 
 this.boxGDGameLayerFactory4= GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, arrayOf(btn_rotate_leftGroupInterface), behaviorList, boxAnimationInterfaceFactoryInterfaceArray, boxProceduralAnimationInterfaceFactoryInterfaceArray, boxLayerInfo4, 
-                            null, false)
+                            null, GDRotationBehaviorFactory.getInstance(), false)
 }
 
 

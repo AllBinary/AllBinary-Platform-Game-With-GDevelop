@@ -104,6 +104,30 @@ companion object {
 }
 
 
+    open fun getInverseScale()
+        //nullable = true from not(false or (false and true)) = true
+: Float{
+
+    
+                        if(AndroidUtil.isAndroid())
+                        
+                                    {
+                                    
+                        //if statement needs to be on the same line and ternary does not work the same way.
+                        return 1.0f
+
+                                    }
+                                
+                        else {
+                            
+                        //if statement needs to be on the same line and ternary does not work the same way.
+                        return 0.75f
+
+                        }
+                            
+}
+
+
     open fun getScaleHack()
         //nullable = true from not(false or (false and true)) = true
 : Int{

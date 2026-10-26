@@ -72,7 +72,7 @@ Created By: Travis Berthelot
                     }
 
 
-                        override fun process(keyAsInteger: Integer): Boolean {
+                        override fun processKeyAsInteger(keyAsInteger: Integer): Boolean {
                             super.processStats()
                             //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
                             //<xsl:value-of select="parameters[2]" />

@@ -37,16 +37,12 @@ import org.allbinary.logic.StdUtil
 
 open public class GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory : BaseResourceAnimationInterfaceFactoryInterfaceFactory {
         
-public constructor ()                        
+companion object {
+            
+    val DEFAULT_EARLY_IMAGE_ANIMATIONS: String = "Early Image Animations"
 
-                            : super("Early Image Animations", StdUtil.getInstance()!!.createHashtable(), StdUtil.getInstance()!!.createHashtable(), StdUtil.getInstance()!!.createHashtable()){
-
-
-                            //For kotlin this is before the body of the constructor.
-                    
-}
-
-public constructor (name: String)                        
+        }
+            public constructor (name: String)                        
 
                             : super(name, StdUtil.getInstance()!!.createHashtable(), StdUtil.getInstance()!!.createHashtable(), StdUtil.getInstance()!!.createHashtable()){
 var name = name

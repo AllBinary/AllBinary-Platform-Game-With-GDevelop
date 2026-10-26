@@ -485,7 +485,7 @@ Created By: Travis Berthelot
 
                             <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /></xsl:variable>
 
-                                val <xsl:value-of select="name" />GDGameLayer: GDGameLayer = (()<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0)) as GDGameLayer;
+                                val <xsl:value-of select="name" />GDGameLayer: GDGameLayer = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0) as GDGameLayer;
                                 var <xsl:value-of select="name" />GDobject: <xsl:value-of select="$gdObjectFactory" /> = <xsl:value-of select="name" />GDGameLayer.gdObject as <xsl:value-of select="$gdObjectFactory" />
                                 val <xsl:value-of select="name" />X: Int = x + <xsl:value-of select="name" />GDobject.xP
                                 val <xsl:value-of select="name" />Y: Int = y + <xsl:value-of select="name" />GDobject.yP

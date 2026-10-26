@@ -20,11 +20,7 @@
         import kotlin.reflect.KClass
                     
         
-import java.io.StringBufferInputStream
-import javax.xml.transform.stream.StreamSource
 import org.allbinary.data.CamelCaseUtil
-import org.allbinary.data.tree.dom.BasicUriResolver
-import org.allbinary.data.tree.dom.XslHelper
 import org.allbinary.gdevelop.json.GDLayout
 import org.allbinary.logic.io.BufferedWriterUtil
 import org.allbinary.string.CommonStrings
@@ -58,7 +54,7 @@ open public class GDLayoutsToAllBinaryGenerator
 
     private val stringMaker: StringMaker = StringMaker()
 
-    private val xslHelper: XslHelper = XslHelper.getInstance()!!
+    private val gdXslTemplates: GDXslTemplates = GDXslTemplates.getInstance()!!
 
     private val xslPath: String
 
@@ -141,13 +137,7 @@ this.nameList!!.add(name)
 
         {
 
-    var replace: Replace = Replace(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, index.toString())
-
-
-    var updatedXslDocumentStr: String = replace.all(xslDocumentStr)!!
-
-
-    var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentStr)), StreamSource(StringBufferInputStream(xmlDocumentStr)))!!
+    var result: String = this.gdXslTemplates!!.translate(xslPath, xslDocumentStr, this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, index.toString(), xmlDocumentStr)!!
 
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
@@ -155,7 +145,7 @@ this.nameList!!.add(name)
 result= replaceLT!!.all(result)!!
 stringMaker!!.delete(0, stringMaker!!.length())
 
-    var fileName: String = stringMaker!!.append(START)!!.append(stringUtil!!.toString(this.nameList!!.get(index)))!!.append(END)!!.toString()!!
+    var fileName: String = gdPaths!!.getOutputPath(stringMaker!!.append(START)!!.append(stringUtil!!.toString(this.nameList!!.get(index)))!!.append(END)!!.toString())!!
 
 this.logUtil!!.putF(this.gdToolStrings!!.FILENAME +fileName, this, this.commonStrings!!.PROCESS)
 this.bufferedWriterUtil!!.overwrite(fileName, result)

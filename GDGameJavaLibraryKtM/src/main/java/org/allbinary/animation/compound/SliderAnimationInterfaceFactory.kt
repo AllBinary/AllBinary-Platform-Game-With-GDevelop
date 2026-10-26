@@ -40,18 +40,6 @@ open public class SliderAnimationInterfaceFactory : CompoundAnimationInterfaceFa
     private var height: Int
 
     var scaleProperties: ScaleProperties = ScaleProperties.instance
-public constructor (basicAnimationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?>, width: Int, height: Int)                        
-
-                            : this(basicAnimationInterfaceFactoryInterfaceArray, width, height, AnimationBehaviorFactory.getInstance()){
-    //var basicAnimationInterfaceFactoryInterfaceArray = basicAnimationInterfaceFactoryInterfaceArray
-    //var width = width
-    //var height = height
-
-
-                            //For kotlin this is before the body of the constructor.
-                    
-}
-
 public constructor (basicAnimationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?>, width: Int, height: Int, animationBehaviorFactory: AnimationBehaviorFactory)                        
 
                             : super(basicAnimationInterfaceFactoryInterfaceArray, animationBehaviorFactory){

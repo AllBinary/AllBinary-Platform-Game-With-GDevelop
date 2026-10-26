@@ -30,13 +30,11 @@
         
 import com.google.gwt.core.client.EntryPoint
 import com.google.gwt.core.client.GWT
-import org.allbinary.playn.AllBinaryPlayNGame
-import org.allbinary.playn.AllBinaryPlayNGameRunnable
 import org.allbinary.util.BasicArrayList
 import org.allbinary.util.BasicArrayListD
-import playn.core.GDGameMidletFactory
-import playn.core.PlayN
+import playn.core.AllBinaryPlayNGameRunnableProcessor
 import playn.core.GDGameProcessor
+import playn.core.PlayN
 
 open public class GDGameGameHtml
             : Object
@@ -65,11 +63,14 @@ platform.assets()!!.setPathPrefix(GWT.getModuleBaseForStaticFiles() +"res/")
 
     var list: BasicArrayList = BasicArrayListD()
 
-list.add(GDGameProcessor(list))
 
-    var gameRunnable: AllBinaryPlayNGameRunnable = AllBinaryPlayNGameRunnable(list)
+    var gdGameProcessor: GDGameProcessor = GDGameProcessor(list)
 
-AllBinaryPlayNGame(platform, GDGameMidletFactory(), gameRunnable, false)
+
+    var allBinaryPlayNGameRunnableProcessor: AllBinaryPlayNGameRunnableProcessor = AllBinaryPlayNGameRunnableProcessor(platform, gdGameProcessor, list)
+
+list.add(allBinaryPlayNGameRunnableProcessor)
+list.add(gdGameProcessor)
 platform.start()
 }
 

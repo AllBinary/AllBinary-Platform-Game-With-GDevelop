@@ -18,14 +18,9 @@
         import kotlin.reflect.KClass
                     
         
-import java.io.FileInputStream
 import org.allbinary.logic.io.BufferedWriterUtil
-import org.allbinary.logic.io.StreamUtil
 import org.allbinary.string.CommonStrings
-import org.allbinary.logic.string.StringMaker
-import org.allbinary.logic.string.regex.replace.Replace
 import org.allbinary.logic.communication.log.LogUtil
-import org.allbinary.string.CommonSeps
 
 open public class GDToAndroidRClassGenerator
             : Object
@@ -36,25 +31,19 @@ open public class GDToAndroidRClassGenerator
 
     private val commonStrings: CommonStrings = CommonStrings.getInstance()!!
 
-    private val commonSeps: CommonSeps = CommonSeps.getInstance()!!
-
     private val bufferedWriterUtil: BufferedWriterUtil = BufferedWriterUtil.getInstance()!!
 
     private val gdPaths: GDPaths = GDPaths.getInstance()!!
 
     private val gdToolStrings: GDToolStrings = GDToolStrings.getInstance()!!
 
-    private val androidRFileStringMaker: StringMaker = StringMaker()
+    private val templateData: GDTemplateData = GDTemplateData()
 
-    val GD_KEY: String = "//GD"
+    private val RESOURCE: String = "resource"
 
-    private val PUBLIC_STATIC_FINAL_INT: String = "        public static final int "
+    private val EXPRESSION_PARAM: String = "expressionParam"
 
-    private val VALUE: String = " = 0x7f060007;\n"
-
-    private val RESOURCE: String = "        //Resource\n"
-
-    private val EXPRESSION_PARAM: String = "        //Expression Param\n"
+    private val NAME_ARRAY: Array<String?> = arrayOf("name")
 
     private val BLANK: String = "blank"
 
@@ -62,8 +51,6 @@ open public class GDToAndroidRClassGenerator
 public constructor ()
             : super()
         {
-this.androidRFileStringMaker!!.append(this.GD_KEY)
-this.androidRFileStringMaker!!.append(this.commonSeps!!.NEW_LINE)
 }
 
 
@@ -83,11 +70,7 @@ this.androidRFileStringMaker!!.append(this.commonSeps!!.NEW_LINE)
 
                                     }
                                 
-this.androidRFileStringMaker!!.append(this.RESOURCE)
-this.androidRFileStringMaker!!.append(this.PUBLIC_STATIC_FINAL_INT)
-this.androidRFileStringMaker!!.append(fileAsString)
-this.androidRFileStringMaker!!.append(this.VALUE)
-this.androidRFileStringMaker!!.append(this.commonSeps!!.NEW_LINE)
+this.templateData!!.add(this.RESOURCE, this.NAME_ARRAY, arrayOf(fileAsString))
 }
 
 
@@ -102,10 +85,7 @@ this.androidRFileStringMaker!!.append(this.commonSeps!!.NEW_LINE)
                         if(param.compareTo(this.SELECT) != 0)
                         
                                     {
-                                    this.androidRFileStringMaker!!.append(this.EXPRESSION_PARAM)
-this.androidRFileStringMaker!!.append(this.PUBLIC_STATIC_FINAL_INT)
-this.androidRFileStringMaker!!.append(param)
-this.androidRFileStringMaker!!.append(this.VALUE)
+                                    this.templateData!!.add(this.EXPRESSION_PARAM, this.NAME_ARRAY, arrayOf(param))
 
                                     }
                                 
@@ -118,29 +98,13 @@ this.androidRFileStringMaker!!.append(this.VALUE)
         //nullable = true from not(false or (false and true)) = true
 {
 
-    var R_ORIGINAL: String = this.gdPaths!!.ROOT_PATH +"platform\\android\\GDGameAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.original"
+    var R_ORIGINAL: String = this.gdPaths!!.getTemplatePath(this.gdPaths!!.ROOT_PATH +"platform\\android\\GDGameAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.xsl")!!
 
 
-    var R: String = this.gdPaths!!.GEN_PATH +"platform\\android\\GDGameAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.java"
+    var R: String = this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"platform\\android\\GDGameAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.java")!!
 
 
-    var streamUtil: StreamUtil = StreamUtil.getInstance()!!
-
-
-    var sharedBytes: SharedBytes = SharedBytes.getInstance()!!
-
-sharedBytes!!.outputStream!!.reset()
-
-    var fileInputStream: FileInputStream = FileInputStream(R_ORIGINAL)
-
-
-    var androidRFileAsString: String = streamUtil!!.getByteArray.toCharArray()
-
-
-    var replace: Replace = Replace(this.GD_KEY, this.androidRFileStringMaker!!.toString())
-
-
-    var newFileAsString: String = replace.all(androidRFileAsString)!!
+    var newFileAsString: String = GDTemplateUtil.getInstance()!!.process(R_ORIGINAL, this.templateData)!!
 
 this.logUtil!!.putF(this.gdToolStrings!!.FILENAME +R, this, this.commonStrings!!.PROCESS)
 this.bufferedWriterUtil!!.overwrite(R, newFileAsString)

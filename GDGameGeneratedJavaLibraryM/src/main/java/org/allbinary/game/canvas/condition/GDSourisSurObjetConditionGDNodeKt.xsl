@@ -103,10 +103,8 @@ Created By: Travis Berthelot
 
                         //IsCursorOnObject - runnable
                         <xsl:if test="not(contains($forExtension, 'found'))" >
-                        open inner class IsCursorOnObjectABRunnable : ABRunnable {
+                        private val runnable: Runnable = object : ABRunnable() {
 
-                            constructor() {
-                            }
 
                             private val logUtil: LogUtil = LogUtil.getInstance()
                             private val commonStrings: CommonStrings = CommonStrings.getInstance()
@@ -166,7 +164,7 @@ Created By: Travis Berthelot
                                 }
                             }
                         }
-                        private val runnable: Runnable = IsCursorOnObjectABRunnable()
+
                         </xsl:if>
 
                         //IsCursorOnObject - was //SourisSurObjet - condition - //forExtension=<xsl:value-of select="$forExtension" />

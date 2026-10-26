@@ -43,8 +43,6 @@ open public class GDGameMIDlet : org.allbinary.game.GDGameMIDlet
                 , MidletJOGLInterface {
         
 
-    val logUtil: LogUtil = LogUtil.getInstance()!!
-
     private val DEVICE_ID: Int = 0
 
     private var motionRecognizer: AllMotionRecognizer = AllMotionRecognizer()
@@ -57,7 +55,7 @@ public constructor ()
 
                             //For kotlin this is before the body of the constructor.
                     
-GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION= GDGameClientInformationInterfaceFactory.getFactoryInstance()!!.getInstance()
+GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance()!!.getInstance())
 
     var motionGesturesHandler: BasicMotionGesturesHandler = motionRecognizer!!.getMotionGestureRecognizer()!!.getMotionGesturesHandler()!!
 

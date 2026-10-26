@@ -18,12 +18,9 @@
         import kotlin.reflect.KClass
                     
         
-import java.io.FileInputStream
 import org.allbinary.logic.io.BufferedWriterUtil
-import org.allbinary.logic.io.StreamUtil
 import org.allbinary.string.CommonStrings
 import org.allbinary.logic.string.StringMaker
-import org.allbinary.logic.string.regex.replace.Replace
 import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.string.CommonSeps
 import org.allbinary.logic.string.StringUtil
@@ -49,6 +46,14 @@ open public class GDToAllBinaryEarlyResourceInitializationGenerator
     private val gdResources: GDResources = GDResources.getInstance()!!
 
     private val gdResourceSelection: GDResourceSelection = GDResourceSelection.getInstance()!!
+
+    private val SOUND: String = "sound"
+
+    private val MEDIA: String = "media"
+
+    private val SOUND_ATTRIBUTE_NAME_ARRAY: Array<String?> = arrayOf("className","androidResource")
+
+    private val MEDIA_ATTRIBUTE_NAME_ARRAY: Array<String?> = arrayOf("name","androidResource","prefix")
 public constructor ()
             : super()
         {
@@ -62,48 +67,29 @@ public constructor ()
 {
     //var soundsGenerator = soundsGenerator
 
-    var GD_KEY: String = "//GD"
+    var RESOURCE_INITIALIZATION_ORIGINAL: String = this.gdPaths!!.getTemplatePath(this.gdPaths!!.ROOT_PATH +"platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.xsl")!!
 
 
-    var RESOURCE_INITIALIZATION_ORIGINAL: String = this.gdPaths!!.ROOT_PATH +"platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.origin"
+    var RESOURCE_INITIALIZATION: String = this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.java")!!
 
 
-    var RESOURCE_INITIALIZATION: String = this.gdPaths!!.GEN_PATH +"platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDGameAndroidEarlyResourceInitialization.java"
+    var templateData: GDTemplateData = GDTemplateData()
 
+this.appendSounds(soundsGenerator, templateData)
+this.appendMedia(templateData)
 
-    var stringMaker: StringMaker = StringMaker()
-
-this.appendSounds(soundsGenerator, stringMaker)
-this.appendMedia(stringMaker)
-
-    var streamUtil: StreamUtil = StreamUtil.getInstance()!!
-
-
-    var sharedBytes: SharedBytes = SharedBytes.getInstance()!!
-
-sharedBytes!!.outputStream!!.reset()
-
-    var fileInputStream: FileInputStream = FileInputStream(RESOURCE_INITIALIZATION_ORIGINAL)
-
-
-    var androidRFileAsString: String = streamUtil!!.getByteArray.toCharArray()
-
-
-    var replace: Replace = Replace(GD_KEY, stringMaker!!.toString())
-
-
-    var newFileAsString: String = replace.all(androidRFileAsString)!!
+    var newFileAsString: String = GDTemplateUtil.getInstance()!!.process(RESOURCE_INITIALIZATION_ORIGINAL, templateData)!!
 
 this.logUtil!!.putF(this.gdToolStrings!!.FILENAME +RESOURCE_INITIALIZATION, this, this.commonStrings!!.PROCESS)
 this.bufferedWriterUtil!!.overwrite(RESOURCE_INITIALIZATION, newFileAsString)
 }
 
 
-    open fun appendSounds(soundsGenerator: GDToAllBinarySoundsGenerator, stringMaker: StringMaker)
+    open fun appendSounds(soundsGenerator: GDToAllBinarySoundsGenerator, templateData: GDTemplateData)
         //nullable = true from not(false or (false and false)) = true
 {
     //var soundsGenerator = soundsGenerator
-    //var stringMaker = stringMaker
+    //var templateData = templateData
 
     var stringUtil: StringUtil = StringUtil.getInstance()!!
 
@@ -123,22 +109,16 @@ this.bufferedWriterUtil!!.overwrite(RESOURCE_INITIALIZATION, newFileAsString)
                         for (index in 0 until size)
 
         {
-stringMaker!!.append(this.gdToolStrings!!.RESOURCE_0)
-stringMaker!!.append(stringUtil!!.toString(playSoundResourceClassNameList!!.get(index)))
-stringMaker!!.append(this.gdToolStrings!!.SOUND_RESOURCE)
-stringMaker!!.append(this.gdToolStrings!!.RESOURCE_1)
-stringMaker!!.append(stringUtil!!.toString(playSoundAndroidResourceNameList!!.get(index)))
-stringMaker!!.append(this.gdToolStrings!!.RESOURCE_2)
-stringMaker!!.append(this.commonSeps!!.NEW_LINE)
+templateData!!.add(this.SOUND, this.SOUND_ATTRIBUTE_NAME_ARRAY, arrayOf(stringUtil!!.toString(playSoundResourceClassNameList!!.get(index)), stringUtil!!.toString(playSoundAndroidResourceNameList!!.get(index))))
 }
 
 }
 
 
-    open fun appendMedia(stringMaker: StringMaker)
+    open fun appendMedia(templateData: GDTemplateData)
         //nullable = true from not(false or (false and false)) = true
 {
-    //var stringMaker = stringMaker
+    //var templateData = templateData
 
     var commonSeps: CommonSeps = CommonSeps.getInstance()!!
 
@@ -153,6 +133,9 @@ stringMaker!!.append(this.commonSeps!!.NEW_LINE)
 
 
     var androidResourceList: BasicArrayList = this.gdResources!!.androidResourceList
+
+
+    var prefixStringMaker: StringMaker = StringMaker()
 
 
     var size: Int = resourceList!!.size()
@@ -171,13 +154,13 @@ stringMaker!!.append(this.commonSeps!!.NEW_LINE)
 
         {
 resource= resourceList!!.get(index) as String
-stringMaker!!.append(this.commonSeps!!.NEW_LINE)
+prefixStringMaker!!.delete(0, prefixStringMaker!!.length())
 
     
                         if(resource.endsWith(this.gdToolStrings!!.UNDERSCORE_0) && resource.indexOf(this.gdToolStrings!!._TOUCH_) < 0)
                         
                                     {
-                                    stringMaker!!.append(this.commonSeps!!.COMMENT)
+                                    prefixStringMaker!!.append(this.commonSeps!!.COMMENT)
 
                                     }
                                 
@@ -198,7 +181,7 @@ stringMaker!!.append(this.commonSeps!!.NEW_LINE)
                         if(resource.endsWith(commonSeps!!.UNDERSCORE +index2) && resource.indexOf(this.gdToolStrings!!._TOUCH_) < 0)
                         
                                     {
-                                    stringMaker!!.append(this.commonSeps!!.COMMENT)
+                                    prefixStringMaker!!.append(this.commonSeps!!.COMMENT)
 
                                     }
                                 
@@ -207,14 +190,7 @@ stringMaker!!.append(this.commonSeps!!.NEW_LINE)
 
                                     }
                                 
-stringMaker!!.append(this.gdToolStrings!!.RESOURCE_0)
-stringMaker!!.append(this.gdToolStrings!!.GD_RESOURCE)
-stringMaker!!.append(resource)
-stringMaker!!.append(this.gdToolStrings!!._RESOURCE)
-stringMaker!!.append(this.gdToolStrings!!.RESOURCE_1)
-stringMaker!!.append(stringUtil!!.toString(androidResourceList!!.get(index)))
-stringMaker!!.append(this.gdToolStrings!!.RESOURCE_2)
-stringMaker!!.append(this.commonSeps!!.NEW_LINE)
+templateData!!.add(this.MEDIA, this.MEDIA_ATTRIBUTE_NAME_ARRAY, arrayOf(resource,stringUtil!!.toString(androidResourceList!!.get(index)), prefixStringMaker!!.toString()))
 }
 
 }

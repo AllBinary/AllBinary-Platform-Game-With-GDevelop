@@ -20,7 +20,7 @@ open class GDGameSoftwareInfo
 
     var TEMP_HACK_CLIENT_INFORMATION: Any = NullUtil.getInstance().NULL_OBJECT
 
-    public static void setTempClientInformation(clientInformation: ClientInformation) {
+    open fun setTempClientInformation(clientInformation: ClientInformation) {
         GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = clientInformation;
     }
         

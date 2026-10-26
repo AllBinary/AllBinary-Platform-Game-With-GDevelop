@@ -53,7 +53,7 @@ this.outputFile= outputFile
 
     var xslFileAsString: String = this.gdData!!.getAsString(this.xslFile, sharedBytes)!!
 
-this.process(xslFileAsString, this.outputFile, sharedBytes)
+this.process(this.xslFile, xslFileAsString, this.outputFile, sharedBytes)
 }
 
 

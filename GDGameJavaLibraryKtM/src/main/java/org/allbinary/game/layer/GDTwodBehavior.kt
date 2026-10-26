@@ -80,7 +80,7 @@ this.animationBehavior!!.set(gameLayer, gdObject)
 
 this.rotationRemainder= this.rotationRemainder +newPortion
 
-    var angleAdjustment: Short = (this.rotationRemainder).toInt().toShort()
+    var angleAdjustment: Short = this.rotationRemainder.toInt().toShort()
 
 
     

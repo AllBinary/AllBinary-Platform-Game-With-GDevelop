@@ -73,7 +73,7 @@ Created By: Travis Berthelot
                     }
 
                         @Override
-                        public boolean process(final Integer keyAsInteger) throws Exception {
+                        public boolean processKeyAsInteger(final Integer keyAsInteger) throws Exception {
                             super.processStats();
                             //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
                             //<xsl:value-of select="parameters[2]" />

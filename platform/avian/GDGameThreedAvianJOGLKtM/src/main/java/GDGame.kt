@@ -30,7 +30,6 @@ import org.allbinary.input.motion.AllMotionRecognizer
 import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler
 import org.allbinary.input.motion.gesture.observer.GDGameMotionGestureListener
 import org.allbinary.input.motion.gesture.observer.MotionGestureReceiveInterfaceFactory
-import org.allbinary.logic.communication.log.LogFactory
 import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.logic.math.SmallIntegerSingletonFactory
 import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory
@@ -47,8 +46,6 @@ open public class GDGame : org.allbinary.game.GDGameMIDlet
                 , MidletJOGLInterface {
         
 
-    val logUtil: LogUtil = LogUtil.getInstance()!!
-
     private val DEVICE_ID: Int = 0
 
     private var motionRecognizer: AllMotionRecognizer = AllMotionRecognizer()
@@ -61,7 +58,7 @@ public constructor ()
 
                             //For kotlin this is before the body of the constructor.
                     
-GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION= GDGameClientInformationInterfaceFactory.getFactoryInstance()!!.getInstance()
+GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance()!!.getInstance())
 
         try {
             GameAdStateFactory.getInstance()!!.getInstance(GDGameSoftwareInfo.getInstance())

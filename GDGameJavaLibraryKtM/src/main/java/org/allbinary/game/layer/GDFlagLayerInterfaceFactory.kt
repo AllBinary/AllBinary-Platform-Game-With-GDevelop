@@ -98,7 +98,7 @@ private constructor ()
     var rectangleArrayOfArrays: Array<Array<Rectangle?>?> = RectangleFactory.ARRAY_OF_ARRAYS
 
 
-    var gameLayerFactory: GDGameLayerFactory = GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, false)
+    var gameLayerFactory: GDGameLayerFactory = GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance(), false)
 
 
     var gdObject: GDObject = GDObject(0, 0, GDFlagLayerInterfaceFactory.NAME, StringUtil.getInstance()!!.EMPTY_STRING)

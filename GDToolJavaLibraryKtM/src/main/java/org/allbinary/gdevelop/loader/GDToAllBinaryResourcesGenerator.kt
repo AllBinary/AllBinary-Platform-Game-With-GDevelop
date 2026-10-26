@@ -25,7 +25,7 @@ import org.allbinary.logic.io.BufferedWriterUtil
 import org.allbinary.logic.io.StreamUtil
 import org.allbinary.string.CommonStrings
 import org.allbinary.logic.string.StringMaker
-import org.allbinary.logic.string.regex.replace.Replace
+import org.allbinary.logic.string.StringUtil
 import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.string.CommonLabels
 import org.allbinary.string.CommonSeps
@@ -56,21 +56,27 @@ open public class GDToAllBinaryResourcesGenerator
 
     private val timeDelayHelper: TimeDelayHelper = TimeDelayHelper(Integer.MAX_VALUE)
 
-    private val resourceStringMaker: StringMaker = StringMaker()
-
     private val gdResourceSelection: GDResourceSelection = GDResourceSelection.getInstance()!!
 
-    private val GD_KEY: String = "//GD"
+    private val RESOURCE: String = "resource"
 
-    private val INDENT: String = "        "
+    private val RESOURCE_ATTRIBUTE_NAME_ARRAY: Array<String?> = arrayOf("name","value","prefix","icon")
 
-    private val SPACING: String = "    "
+    private val TRUE: String = "true"
 
-    private val PUBLIC_FINAL_STRING: String = "    public final String "
+    private val ARRAY_RESOURCE: String = "arrayResource"
 
-    private val VALUE_RESOURCE_START: String = " = \""
+    private val ARRAY_RESOURCE_ATTRIBUTE_NAME_ARRAY: Array<String?> = arrayOf("name","prefix","index")
 
-    private val VALUE_RESOURCE_END: String = "\";\n"
+    private val WIDTH: String = "width"
+
+    private val HEIGHT: String = "height"
+
+    private val SIZE_ATTRIBUTE_NAME_ARRAY: Array<String?> = arrayOf("name","value","index")
+
+    private val REQUIRED: String = "required"
+
+    private val NAME_ARRAY: Array<String?> = arrayOf("name")
 
     private val TSJ: String = ".tsj"
 
@@ -82,8 +88,6 @@ open public class GDToAllBinaryResourcesGenerator
 public constructor ()
             : super()
         {
-this.resourceStringMaker!!.append(this.GD_KEY)
-this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
 }
 
 
@@ -104,37 +108,46 @@ this.gdResources!!.resourceList!!.add(resource)
 }
 
 
-    open fun appendResource(hasRotationImages: Boolean, name: String, resource: String)
+    open fun isIcon(resource: String)
+        //nullable = true from not(false or (false and false)) = true
+: Boolean{
+    //var resource = resource
+
+                        //if statement needs to be on the same line and ternary does not work the same way.
+                        return resource.indexOf(this.DASH_ICON_DASH) >= 0 || resource.indexOf(this.WINDOWS_ICON) >= 0
+}
+
+
+    open fun appendResource(hasRotationImages: Boolean, name: String, resource: String, templateData: GDTemplateData)
         //nullable = true from not(false or (false and false)) = true
 {
     //var hasRotationImages = hasRotationImages
     //var name = name
     //var resource = resource
-this.gdResourceSelection!!.appendCommentIfNeeded0(name, resource, this.resourceStringMaker, hasRotationImages)
+    //var templateData = templateData
 
-    
-                        if(resource.indexOf(this.DASH_ICON_DASH) >= 0 || resource.indexOf(this.WINDOWS_ICON) >= 0)
-                        
-                                    {
-                                    
-                                    }
-                                
-                        else {
-                            this.resourceStringMaker!!.append(this.PUBLIC_FINAL_STRING)
-this.resourceStringMaker!!.append(name)
-this.resourceStringMaker!!.append(this.VALUE_RESOURCE_START)
-this.resourceStringMaker!!.append(resource)
-this.resourceStringMaker!!.append(this.VALUE_RESOURCE_END)
+    var prefixStringMaker: StringMaker = StringMaker()
 
-                        }
+this.gdResourceSelection!!.appendCommentIfNeeded0(name, resource, prefixStringMaker, hasRotationImages)
+
+    var icon: String = if(this.isIcon(resource)) {
                             
+                            this.TRUE
+                        
+                            } else {
+                            StringUtil.getInstance()!!.EMPTY_STRING
+                            }
+    
+
+templateData!!.add(this.RESOURCE, this.RESOURCE_ATTRIBUTE_NAME_ARRAY, arrayOf(name,resource,prefixStringMaker!!.toString(), icon))
 }
 
 
-    open fun appendResources(hasRotationImages: Boolean)
+    open fun appendResources(hasRotationImages: Boolean, templateData: GDTemplateData)
         //nullable = true from not(false or (false and false)) = true
 {
     //var hasRotationImages = hasRotationImages
+    //var templateData = templateData
 
     var size: Int = this.gdResources!!.resourceNameList!!.size()
 
@@ -145,19 +158,18 @@ this.resourceStringMaker!!.append(this.VALUE_RESOURCE_END)
                         for (index in 0 until size)
 
         {
-this.appendResource(hasRotationImages, this.gdResources!!.resourceNameList!!.get(index) as String, this.gdResources!!.resourceList!!.get(index) as String)
+this.appendResource(hasRotationImages, this.gdResources!!.resourceNameList!!.get(index) as String, this.gdResources!!.resourceList!!.get(index) as String, templateData)
 }
 
 }
 
 
-    open fun appendResourceStringArray(hasRotationImages: Boolean, usedList: BasicArrayList)
+    open fun appendResourceStringArray(hasRotationImages: Boolean, usedList: BasicArrayList, templateData: GDTemplateData)
         //nullable = true from not(false or (false and false)) = true
 {
     //var hasRotationImages = hasRotationImages
     //var usedList = usedList
-this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
-this.resourceStringMaker!!.append("    public final String[] resourceStringArray = {\nBLANK,\n")
+    //var templateData = templateData
 
     var size: Int = this.gdResources!!.resourceNameList!!.size()
 
@@ -184,21 +196,18 @@ name= this.gdResources!!.resourceNameList!!.get(index) as String
 resource= this.gdResources!!.resourceList!!.get(index) as String
 
     
-                        if(resource.indexOf(this.DASH_ICON_DASH) >= 0 || resource.indexOf(this.WINDOWS_ICON) >= 0)
+                        if(this.isIcon(resource))
                         
                                     {
                                     
                                     }
                                 
                         else {
-                            this.resourceStringMaker!!.append(this.INDENT)
-used= this.gdResourceSelection!!.appendCommentIfNeeded(name, resource, this.resourceStringMaker, hasRotationImages)
-this.resourceStringMaker!!.append(name)
-this.resourceStringMaker!!.append(this.commonSeps!!.COMMA)
-this.resourceStringMaker!!.append(this.commonSeps!!.SPACE)
-this.resourceStringMaker!!.append(this.commonSeps!!.COMMENT)
-this.resourceStringMaker!!.appendint(arrayIndex)
-this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
+                            
+    var prefixStringMaker: StringMaker = StringMaker()
+
+used= this.gdResourceSelection!!.appendCommentIfNeeded(name, resource, prefixStringMaker, hasRotationImages)
+templateData!!.add(this.ARRAY_RESOURCE, this.ARRAY_RESOURCE_ATTRIBUTE_NAME_ARRAY, arrayOf(name,prefixStringMaker!!.toString(), arrayIndex.toString()))
 
     
                         if(used)
@@ -214,20 +223,15 @@ arrayIndex++
                             
 }
 
-this.resourceStringMaker!!.append(this.SPACING)
-this.resourceStringMaker!!.append(this.commonSeps!!.BRACE_CLOSE)
-this.resourceStringMaker!!.append(this.commonSeps!!.SEMICOLON)
-this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
-this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
 }
 
 
-    open fun appendResourceWidthArray(gdResourceList: BasicArrayList, usedList: BasicArrayList)
+    open fun appendResourceWidthArray(gdResourceList: BasicArrayList, usedList: BasicArrayList, templateData: GDTemplateData)
         //nullable = true from not(false or (false and false)) = true
 {
     //var gdResourceList = gdResourceList
     //var usedList = usedList
-this.resourceStringMaker!!.append("    public final int[] imageResourceWidthArray = {\n32,\n")
+    //var templateData = templateData
 
     var size: Int = usedList!!.size()
 
@@ -256,15 +260,7 @@ gdResource= this.getGDResourceForName(name, gdResourceList)!!
                                 )
                         
                                     {
-                                    this.resourceStringMaker!!.append(this.INDENT)
-this.resourceStringMaker!!.appendint(gdResource!!.width.toInt())
-this.resourceStringMaker!!.append(this.commonSeps!!.COMMA)
-this.resourceStringMaker!!.append(this.commonSeps!!.SPACE)
-this.resourceStringMaker!!.append(this.commonSeps!!.COMMENT)
-this.resourceStringMaker!!.append(name)
-this.resourceStringMaker!!.append(this.commonSeps!!.SPACE)
-this.resourceStringMaker!!.appendint(arrayIndex)
-this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
+                                    templateData!!.add(this.WIDTH, this.SIZE_ATTRIBUTE_NAME_ARRAY, arrayOf(name,Integer.toString(gdResource!!.width), arrayIndex.toString()))
 
                                     }
                                 
@@ -278,21 +274,15 @@ this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
                             
 }
 
-this.resourceStringMaker!!.append(this.SPACING)
-this.resourceStringMaker!!.append(this.commonSeps!!.BRACE_CLOSE)
-this.resourceStringMaker!!.append(this.commonSeps!!.SEMICOLON)
-this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
-this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
-arrayIndex++
 }
 
 
-    open fun appendResourceHeightArray(gdResourceList: BasicArrayList, usedList: BasicArrayList)
+    open fun appendResourceHeightArray(gdResourceList: BasicArrayList, usedList: BasicArrayList, templateData: GDTemplateData)
         //nullable = true from not(false or (false and false)) = true
 {
     //var gdResourceList = gdResourceList
     //var usedList = usedList
-this.resourceStringMaker!!.append("    public final int[] imageResourceHeightArray = {\n32,\n")
+    //var templateData = templateData
 
     var size: Int = usedList!!.size()
 
@@ -321,15 +311,7 @@ gdResource= this.getGDResourceForName(name, gdResourceList)!!
                                 )
                         
                                     {
-                                    this.resourceStringMaker!!.append(this.INDENT)
-this.resourceStringMaker!!.appendint(gdResource!!.height.toInt())
-this.resourceStringMaker!!.append(this.commonSeps!!.COMMA)
-this.resourceStringMaker!!.append(this.commonSeps!!.SPACE)
-this.resourceStringMaker!!.append(this.commonSeps!!.COMMENT)
-this.resourceStringMaker!!.append(name)
-this.resourceStringMaker!!.append(this.commonSeps!!.SPACE)
-this.resourceStringMaker!!.appendint(arrayIndex)
-this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
+                                    templateData!!.add(this.HEIGHT, this.SIZE_ATTRIBUTE_NAME_ARRAY, arrayOf(name,Integer.toString(gdResource!!.height), arrayIndex.toString()))
 
                                     }
                                 
@@ -344,11 +326,6 @@ this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
 arrayIndex++
 }
 
-this.resourceStringMaker!!.append(this.SPACING)
-this.resourceStringMaker!!.append(this.commonSeps!!.BRACE_CLOSE)
-this.resourceStringMaker!!.append(this.commonSeps!!.SEMICOLON)
-this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
-this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
 }
 
 
@@ -433,10 +410,10 @@ stringMaker!!.append(gdResource!!.name)!!.append(this.commonSeps!!.COMMA)
 
                 @Throws(Exception::class)
             
-    open fun appendImmediatelyLoadedImages()
-        //nullable = true from not(false or (false and true)) = true
+    open fun appendImmediatelyLoadedImages(templateData: GDTemplateData)
+        //nullable = true from not(false or (false and false)) = true
 {
-this.resourceStringMaker!!.append("    public final String[] requiredResourcesBeforeLoadingArray = {\n")
+    //var templateData = templateData
 
     var size: Int = this.gdResources!!.resourceNameList!!.size()
 
@@ -458,7 +435,7 @@ resource= this.gdResources!!.resourceList!!.get(index) as String
                                     {
                                     this.logUtil!!.putF(StringMaker().
                             append(this.gdToolStrings!!.FILENAME)!!.append(resource)!!.toString(), this, this.commonStrings!!.PROCESS)
-this.appendImmediatelyLoadedImages(resource)
+this.appendImmediatelyLoadedImages(resource, templateData)
 
                                     }
                                 
@@ -467,7 +444,7 @@ this.appendImmediatelyLoadedImages(resource)
                         if(resource.indexOf(this.BUTTON) >= 0)
                         
                                     {
-                                    this.appendImmediatelyLoadedImage(resource)
+                                    this.appendImmediatelyLoadedImage(resource, templateData)
 
                                     }
                                 
@@ -476,7 +453,7 @@ this.appendImmediatelyLoadedImages(resource)
                         if(resource.indexOf(this.SLIDER) >= 0)
                         
                                     {
-                                    this.appendImmediatelyLoadedImage(resource)
+                                    this.appendImmediatelyLoadedImage(resource, templateData)
 
                                     }
                                 
@@ -485,7 +462,7 @@ this.appendImmediatelyLoadedImages(resource)
                         if(resource.indexOf(this.BATTERY) >= 0 && resource.contains(this._1))
                         
                                     {
-                                    this.appendImmediatelyLoadedImage(resource)
+                                    this.appendImmediatelyLoadedImage(resource, templateData)
 
                                     }
                                 
@@ -494,22 +471,22 @@ this.appendImmediatelyLoadedImages(resource)
                         if(resource.indexOf(this.HEART) >= 0 && resource.contains(this._1))
                         
                                     {
-                                    this.appendImmediatelyLoadedImage(resource)
+                                    this.appendImmediatelyLoadedImage(resource, templateData)
 
                                     }
                                 
 }
 
-this.resourceStringMaker!!.append("    };\n")
 }
 
 
                 @Throws(Exception::class)
             
-    open fun appendImmediatelyLoadedImages(path: String)
+    open fun appendImmediatelyLoadedImages(path: String, templateData: GDTemplateData)
         //nullable = true from not(false or (false and false)) = true
 {
     //var path = path
+    //var templateData = templateData
 
     var streamUtil: StreamUtil = StreamUtil.getInstance()!!
 
@@ -535,14 +512,15 @@ sharedBytes!!.outputStream!!.reset()
 
 this.logUtil!!.putF(StringMaker().
                             append(this.gdToolStrings!!.FILENAME)!!.append(imagePath)!!.toString(), this, this.commonStrings!!.PROCESS)
-this.appendImmediatelyLoadedImage(imagePath)
+this.appendImmediatelyLoadedImage(imagePath, templateData)
 }
 
 
-    open fun appendImmediatelyLoadedImage(imagePath: String)
+    open fun appendImmediatelyLoadedImage(imagePath: String, templateData: GDTemplateData)
         //nullable = true from not(false or (false and false)) = true
 {
     //var imagePath = imagePath
+    //var templateData = templateData
 
     var endIndex: Int = imagePath!!.lastIndexOf('.')
 
@@ -552,10 +530,7 @@ this.appendImmediatelyLoadedImage(imagePath)
 
     var name: String = imageName!!.uppercase()!!
 
-this.resourceStringMaker!!.append("gdResources.")
-this.resourceStringMaker!!.append(name)
-this.resourceStringMaker!!.append(this.commonSeps!!.COMMA)
-this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
+templateData!!.add(this.REQUIRED, this.NAME_ARRAY, arrayOf(name))
 }
 
 
@@ -568,38 +543,25 @@ this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
     var stringMaker: StringMaker = StringMaker()
 
 
+    var templateData: GDTemplateData = GDTemplateData()
+
+
     var hasRotationImages: Boolean = this.gdResourceSelection!!.hasRotationImages()
 
-this.appendResources(hasRotationImages)
+this.appendResources(hasRotationImages, templateData)
 this.timeDelayHelper!!.setStartTimeTNT()
 
-    var RESOURCE_ORIGINAL: String = this.gdPaths!!.ROOT_PATH +"resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.origin"
+    var RESOURCE_ORIGINAL: String = this.gdPaths!!.getTemplatePath(this.gdPaths!!.ROOT_PATH +"resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.xsl")!!
 
 
-    var RESOURCE: String = this.gdPaths!!.GEN_PATH +"resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.java"
-
-
-    var streamUtil: StreamUtil = StreamUtil.getInstance()!!
-
-
-    var sharedBytes: SharedBytes = SharedBytes.getInstance()!!
-
-sharedBytes!!.outputStream!!.reset()
-
-    var fileInputStream: FileInputStream = FileInputStream(RESOURCE_ORIGINAL)
-
-
-    var androidRFileAsString: String = streamUtil!!.getByteArray.toCharArray()
+    var RESOURCE: String = this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.java")!!
 
 
     var usedList: BasicArrayList = BasicArrayListD()
 
-this.appendResourceStringArray(hasRotationImages, usedList)
+this.appendResourceStringArray(hasRotationImages, usedList, templateData)
 
-    var replace: Replace = Replace(this.GD_KEY, this.resourceStringMaker!!.toString())
-
-
-    var newFileAsString: String = replace.all(androidRFileAsString)!!
+    var newFileAsString: String = GDTemplateUtil.getInstance()!!.process(RESOURCE_ORIGINAL, templateData)!!
 
 stringMaker!!.delete(0, stringMaker!!.length())
 this.logUtil!!.putF(stringMaker!!.append(this.gdToolStrings!!.FILENAME)!!.append(RESOURCE)!!.toString(), this, this.commonStrings!!.PROCESS)
@@ -622,12 +584,9 @@ this.logUtil!!.putF(stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!
 
     var stringMaker: StringMaker = StringMaker()
 
-this.resourceStringMaker!!.delete(0, this.resourceStringMaker!!.length())
-this.resourceStringMaker!!.append(this.GD_KEY)
-this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
-this.resourceStringMaker!!.append("final GDResources gdResources = GDResources.getInstance();")
-this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
-this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
+
+    var templateData: GDTemplateData = GDTemplateData()
+
 
     var gdImageSizeGenerator: GDImageSizeGenerator = GDImageSizeGenerator()
 
@@ -636,33 +595,17 @@ this.resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
 
 this.timeDelayHelper!!.setStartTimeTNT()
 
-    var LAZY_RESOURCE_ORIGINAL: String = this.gdPaths!!.ROOT_PATH +"resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.origin"
+    var LAZY_RESOURCE_ORIGINAL: String = this.gdPaths!!.getTemplatePath(this.gdPaths!!.ROOT_PATH +"resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.xsl")!!
 
 
-    var LAZY_RESOURCE: String = this.gdPaths!!.GEN_PATH +"resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.java"
+    var LAZY_RESOURCE: String = this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.java")!!
 
 stringMaker!!.delete(0, stringMaker!!.length())
+this.appendResourceWidthArray(gdResourceList, usedList, templateData)
+this.appendResourceHeightArray(gdResourceList, usedList, templateData)
+this.appendImmediatelyLoadedImages(templateData)
 
-    var streamUtil: StreamUtil = StreamUtil.getInstance()!!
-
-
-    var sharedBytes: SharedBytes = SharedBytes.getInstance()!!
-
-sharedBytes!!.outputStream!!.reset()
-
-    var fileInputStream: FileInputStream = FileInputStream(LAZY_RESOURCE_ORIGINAL)
-
-
-    var androidRFileAsString: String = streamUtil!!.getByteArray.toCharArray()
-
-this.appendResourceWidthArray(gdResourceList, usedList)
-this.appendResourceHeightArray(gdResourceList, usedList)
-this.appendImmediatelyLoadedImages()
-
-    var replace: Replace = Replace(this.GD_KEY, this.resourceStringMaker!!.toString())
-
-
-    var newFileAsString: String = replace.all(androidRFileAsString)!!
+    var newFileAsString: String = GDTemplateUtil.getInstance()!!.process(LAZY_RESOURCE_ORIGINAL, templateData)!!
 
 stringMaker!!.delete(0, stringMaker!!.length())
 this.logUtil!!.putF(this.gdToolStrings!!.FILENAME +LAZY_RESOURCE, this, this.commonStrings!!.PROCESS)

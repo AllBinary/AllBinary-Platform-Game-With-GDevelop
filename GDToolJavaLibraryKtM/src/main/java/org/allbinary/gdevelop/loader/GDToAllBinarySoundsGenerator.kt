@@ -19,17 +19,14 @@
                     
         
 import java.io.File
-import java.io.FileInputStream
 import javax.microedition.media.Player
 import org.allbinary.data.CamelCaseUtil
 import org.allbinary.data.resource.ResourceUtil
 import org.allbinary.game.configuration.feature.Features
 import org.allbinary.game.configuration.feature.GameFeatureFactory
 import org.allbinary.logic.io.BufferedWriterUtil
-import org.allbinary.logic.io.StreamUtil
 import org.allbinary.string.CommonStrings
 import org.allbinary.logic.string.StringMaker
-import org.allbinary.logic.string.regex.replace.Replace
 import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.media.audio.AllBinaryMediaManager
 import org.allbinary.util.BasicArrayList
@@ -67,7 +64,9 @@ open public class GDToAllBinarySoundsGenerator
 
     private val GD_DURATION: String = "<GD_DURATION>"
 
-    private val SOUND_ORIGINAL: String = this.gdPaths!!.ROOT_PATH +"resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDSound.origin"
+    private val PARAMETER_NAME_ARRAY: Array<String?> = arrayOf("GDNAME","GD_FILE_NAME","GD_DURATION")
+
+    private val SOUND_ORIGINAL: String = this.gdPaths!!.getTemplatePath(this.gdPaths!!.ROOT_PATH +"resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDSound.xsl")!!
 
     private val SOUND_PATH: String = this.gdPaths!!.GEN_PATH +"resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\"
 
@@ -159,20 +158,7 @@ this.gdResources!!.playSoundResourcePathList!!.add(resourceString)
 ResourceUtil.getInstance()!!.setLoadingPaths(file.getAbsolutePath() +this.gdPaths!!.SOUND_RESOURCES_ROOT_PATH +"sounds\\release\\wav\\", ".wav")
 Features.getInstance()!!.add(GameFeatureFactory.getInstance()!!.SOUND)
 
-    var streamUtil: StreamUtil = StreamUtil.getInstance()!!
-
-
-    var sharedBytes: SharedBytes = SharedBytes.getInstance()!!
-
-sharedBytes!!.outputStream!!.reset()
-
     var stringMaker: StringMaker = StringMaker()
-
-
-    var fileInputStream: FileInputStream = FileInputStream(this.SOUND_ORIGINAL)
-
-
-    var androidRFileAsString: String = streamUtil!!.getByteArray.toCharArray()
 
 
     var size: Int = this.gdResources!!.playSoundAndroidResourceNameList!!.size()
@@ -201,19 +187,8 @@ this.logUtil!!.putF(resource, this, this.commonStrings!!.PROCESS)
     var name: String = this.camelCaseUtil!!.getAsCamelCase(resource, stringMaker)!!
 
 
-    var replace: Replace = Replace(this.GD_NAME, name)
+    var newFileAsString: String = GDTemplateUtil.getInstance()!!.process(this.SOUND_ORIGINAL, arrayOf(this.GD_NAME,this.GD_FILE_NAME,this.GD_DURATION), this.PARAMETER_NAME_ARRAY, arrayOf(name,resource,(duration).toString()))!!
 
-
-    var newFileAsString: String = replace.all(androidRFileAsString)!!
-
-
-    var replace2: Replace = Replace(this.GD_FILE_NAME, resource)
-
-newFileAsString= replace2.all(newFileAsString)!!
-
-    var replace3: Replace = Replace(this.GD_DURATION, (duration).toString())
-
-newFileAsString= replace3.all(newFileAsString)!!
 stringMaker!!.delete(0, stringMaker!!.length())
 stringMaker!!.append(this.GD)!!.append(name)!!.append(this.SOUND)
 this.playSoundResourceClassNameList!!.add(stringMaker!!.toString())
@@ -223,7 +198,7 @@ stringMaker!!.append(this._JAVA)
 
 stringMaker!!.delete(0, stringMaker!!.length())
 
-    var fileName2: String = stringMaker!!.append(this.SOUND_PATH)!!.append(fileName)!!.toString()!!
+    var fileName2: String = this.gdPaths!!.getOutputPath(stringMaker!!.append(this.SOUND_PATH)!!.append(fileName)!!.toString())!!
 
 this.logUtil!!.putF(this.gdToolStrings!!.FILENAME +fileName2, this, this.commonStrings!!.PROCESS)
 this.bufferedWriterUtil!!.overwrite(fileName2, newFileAsString)

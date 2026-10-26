@@ -68,24 +68,6 @@ open public class GDGameLayerFactory
     val gameLayerDestroyedList: BasicArrayList
 
     val resetAnimationBehavior: Boolean
-public constructor (gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, groupInterface: Array<Group?>, behaviorList: BasicArrayList, animationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?>, proceduralAnimationInterfaceFactoryInterfaceArray: Array<BasicAnimationInterfaceFactoryInterface?>, layerInfo: Rectangle, rectangleArrayOfArrays: Array<Array<Rectangle?>?>, resetAnimationBehavior: Boolean)                        
-
-                            : this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance(), resetAnimationBehavior){
-    //var gameLayerList = gameLayerList
-    //var gameLayerDestroyedList = gameLayerDestroyedList
-    //var groupInterface = groupInterface
-    //var behaviorList = behaviorList
-    //var animationInterfaceFactoryInterfaceArray = animationInterfaceFactoryInterfaceArray
-    //var proceduralAnimationInterfaceFactoryInterfaceArray = proceduralAnimationInterfaceFactoryInterfaceArray
-    //var layerInfo = layerInfo
-    //var rectangleArrayOfArrays = rectangleArrayOfArrays
-    //var resetAnimationBehavior = resetAnimationBehavior
-
-
-                            //For kotlin this is before the body of the constructor.
-                    
-}
-
 public constructor (gameLayerList: BasicArrayList, gameLayerDestroyedList: BasicArrayList, groupInterface: Array<Group?>, behaviorList: BasicArrayList, animationInterfaceFactoryInterfaceArray: Array<AnimationInterfaceFactoryInterface?>, proceduralAnimationInterfaceFactoryInterfaceArray: Array<BasicAnimationInterfaceFactoryInterface?>, layerInfo: Rectangle, rectangleArrayOfArrays: Array<Array<Rectangle?>?>, animationBehaviorFactory: GDAnimationBehaviorBaseFactory, resetAnimationBehavior: Boolean)
             : super()
         {
@@ -128,15 +110,18 @@ this.resetAnimationBehavior= resetAnimationBehavior
                         if(!name.startsWith(gdObject!!.name))
                         
                                     {
-                                    this.logUtil!!.put(StringMaker().
-                            append(name)!!.append(" GDObject name: ")!!.append(gdObject!!.name)!!.append(" animationInterfaceFactoryInterfaceArray size: ")!!.appendint(this.animationInterfaceFactoryInterfaceArray!!.size)!!.append(" animationInterfaceFactoryInterfaceArray[0]: ")!!.append(if(this.animationInterfaceFactoryInterfaceArray!!.size > 0) {
+                                    
+    var animationName: String = if(this.animationInterfaceFactoryInterfaceArray!!.size > 0) {
                             
                             this.animationInterfaceFactoryInterfaceArray[0]!!.toString()
                         
                             } else {
                             "empty"
                             }
-    )!!.toString(), this, "create", Exception())
+    
+
+this.logUtil!!.put(StringMaker().
+                            append(name)!!.append(" GDObject name: ")!!.append(gdObject!!.name)!!.append(" animationInterfaceFactoryInterfaceArray size: ")!!.appendint(this.animationInterfaceFactoryInterfaceArray!!.size)!!.append(" animationInterfaceFactoryInterfaceArray[0]: ")!!.append(animationName)!!.toString(), this, "create", Exception())
 
                                     }
                                 

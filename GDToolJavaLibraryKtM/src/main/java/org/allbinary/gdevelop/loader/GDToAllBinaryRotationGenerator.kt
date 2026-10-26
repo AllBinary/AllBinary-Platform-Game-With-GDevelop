@@ -20,11 +20,7 @@
         import kotlin.reflect.KClass
                     
         
-import java.io.StringBufferInputStream
-import javax.xml.transform.stream.StreamSource
 import org.allbinary.data.CamelCaseUtil
-import org.allbinary.data.tree.dom.BasicUriResolver
-import org.allbinary.data.tree.dom.XslHelper
 import org.allbinary.gdevelop.json.GDLayout
 import org.allbinary.logic.io.BufferedWriterUtil
 import org.allbinary.string.CommonStrings
@@ -50,7 +46,7 @@ open public class GDToAllBinaryRotationGenerator
 
     private val commonStrings: CommonStrings = CommonStrings.getInstance()!!
 
-    private val xslHelper: XslHelper = XslHelper.getInstance()!!
+    private val gdXslTemplates: GDXslTemplates = GDXslTemplates.getInstance()!!
 
     private val camelCaseUtil: CamelCaseUtil = CamelCaseUtil.getInstance()!!
 
@@ -111,7 +107,7 @@ this.timeDelayHelper!!.setStartTimeTNT()
     var xslPathInputArray: Array<String?> = arrayOf(this.gdData!!.GD_ROTATION_ANIMATION)
 
 
-    var outputArray: Array<String?> = arrayOf(this.gdPaths!!.ROTATION_ANIMATION_FILE_PATH)
+    var outputArray: Array<String?> = arrayOf(this.gdPaths!!.getOutputPath(this.gdPaths!!.ROTATION_ANIMATION_FILE_PATH))
 
 
     var size2: Int = xslPathInputArray!!.size
@@ -135,7 +131,7 @@ this.timeDelayHelper!!.setStartTimeTNT()
 
 this.logUtil!!.putF(updatedXslDocumentStr, this, this.commonStrings!!.PROCESS)
 
-    var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentStr)), StreamSource(StringBufferInputStream(xmlDocumentStr)))!!
+    var result: String = this.gdXslTemplates!!.translate(xslPathInputArray[index2]!!, updatedXslDocumentStr, xmlDocumentStr)!!
 
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)

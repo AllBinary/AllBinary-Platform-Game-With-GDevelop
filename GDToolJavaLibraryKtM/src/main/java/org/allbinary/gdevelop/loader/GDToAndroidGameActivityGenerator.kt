@@ -18,12 +18,9 @@
         import kotlin.reflect.KClass
                     
         
-import java.io.FileInputStream
 import org.allbinary.data.CamelCaseUtil
 import org.allbinary.logic.io.BufferedWriterUtil
-import org.allbinary.logic.io.StreamUtil
 import org.allbinary.logic.string.StringMaker
-import org.allbinary.logic.string.regex.replace.Replace
 import org.allbinary.logic.communication.log.LogUtil
 
 open public class GDToAndroidGameActivityGenerator : GDNameGenerator {
@@ -55,31 +52,15 @@ public constructor (){
     var name: String = camelCaseUtil!!.getAsCamelCase(this.packageName, stringMaker)!!.lowercase()!!
 
 
-    var R_ORIGINAL: String = this.gdPaths!!.ROOT_PATH +"platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\GDGameAndroidActivity.original"
+    var R_ORIGINAL: String = this.gdPaths!!.getTemplatePath(this.gdPaths!!.ROOT_PATH +"platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\GDGameAndroidActivity.xsl")!!
 
 stringMaker!!.delete(0, stringMaker!!.length())
 stringMaker!!.append(this.gdPaths!!.GEN_PATH +"platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\")!!.append(name)
 
-    var R: String = stringMaker!!.append("\\GDGameAndroidActivity.java")!!.toString()!!
+    var R: String = this.gdPaths!!.getOutputPath(stringMaker!!.append("\\GDGameAndroidActivity.java")!!.toString())!!
 
 
-    var streamUtil: StreamUtil = StreamUtil.getInstance()!!
-
-
-    var sharedBytes: SharedBytes = SharedBytes.getInstance()!!
-
-sharedBytes!!.outputStream!!.reset()
-
-    var fileInputStream: FileInputStream = FileInputStream(R_ORIGINAL)
-
-
-    var androidRFileAsString: String = streamUtil!!.getByteArray.toCharArray()
-
-
-    var replace: Replace = Replace(this.GD_KEY, name)
-
-
-    var newFileAsString: String = replace.all(androidRFileAsString)!!
+    var newFileAsString: String = GDTemplateUtil.getInstance()!!.process(R_ORIGINAL, this.GD_KEY, this.NAME, name)!!
 
 this.logUtil!!.putF(this.gdToolStrings!!.FILENAME +R, this, this.commonStrings!!.PROCESS)
 this.bufferedWriterUtil!!.overwrite(R, newFileAsString)

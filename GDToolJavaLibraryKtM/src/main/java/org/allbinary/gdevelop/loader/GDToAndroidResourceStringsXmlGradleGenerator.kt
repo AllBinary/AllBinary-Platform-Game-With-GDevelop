@@ -18,10 +18,7 @@
         import kotlin.reflect.KClass
                     
         
-import java.io.FileInputStream
 import org.allbinary.gdevelop.json.GDProject
-import org.allbinary.logic.io.StreamUtil
-import org.allbinary.logic.string.regex.replace.Replace
 import org.allbinary.logic.communication.log.LogUtil
 
 open public class GDToAndroidResourceStringsXmlGradleGenerator : GDNameFileGenerator {
@@ -32,7 +29,7 @@ open public class GDToAndroidResourceStringsXmlGradleGenerator : GDNameFileGener
     private var name: String
 public constructor ()                        
 
-                            : super(GDPaths.getInstance()!!.ROOT_PATH +"platformx\\android\\GDGameAndroidApplicationNoLicensingGradle\\strings.xml.original", GDPaths.getInstance()!!.GEN_PATH +"platformx\\android\\GDGameAndroidApplicationNoLicensingGradle\\app\\src\\main\\res\\values\\" +"strings.xml"){
+                            : super(GDPaths.getInstance()!!.ROOT_PATH +"platformx\\android\\GDGameAndroidApplicationNoLicensingGradle\\strings.xml.xsl", GDPaths.getInstance()!!.GEN_PATH +"platformx\\android\\GDGameAndroidApplicationNoLicensingGradle\\app\\src\\main\\res\\values\\" +"strings.xml"){
 
 
                             //For kotlin this is before the body of the constructor.
@@ -54,23 +51,7 @@ this.name= gdProject!!.name
         //nullable = true from not(false or (false and true)) = true
 {
 
-    var streamUtil: StreamUtil = StreamUtil.getInstance()!!
-
-
-    var sharedBytes: SharedBytes = SharedBytes.getInstance()!!
-
-sharedBytes!!.outputStream!!.reset()
-
-    var fileInputStream: FileInputStream = FileInputStream(this.originalFilePath)
-
-
-    var androidRFileAsString: String = streamUtil!!.getByteArray.toCharArray()
-
-
-    var replace: Replace = Replace(this.GD_KEY, this.name)
-
-
-    var newFileAsString: String = replace.all(androidRFileAsString)!!
+    var newFileAsString: String = GDTemplateUtil.getInstance()!!.process(this.originalFilePath, this.GD_KEY, this.NAME, this.name)!!
 
 this.logUtil!!.putF(this.gdToolStrings!!.FILENAME +this.newFilePath, this, this.commonStrings!!.PROCESS)
 this.bufferedWriterUtil!!.overwrite(this.newFilePath, newFileAsString)

@@ -43,7 +43,7 @@ companion object {
         }
             private constructor ()                        
 
-                            : super(BasicArrayListUtil.getInstance()!!.getImmutableInstance(), BasicArrayListUtil.getInstance()!!.getImmutableInstance(), GroupFactory.getInstance()!!.NULL_GROUP_ARRAY, BasicArrayListUtil.getInstance()!!.getImmutableInstance(), arrayOf(NullRotationAnimationFactory.getFactoryInstance()), arrayOf(NullRotationAnimationFactory.getFactoryInstance()), RectangleFactory.SINGLETON, RectangleFactory.ARRAY_OF_ARRAYS, false){
+                            : super(BasicArrayListUtil.getInstance()!!.getImmutableInstance(), BasicArrayListUtil.getInstance()!!.getImmutableInstance(), GroupFactory.getInstance()!!.NULL_GROUP_ARRAY, BasicArrayListUtil.getInstance()!!.getImmutableInstance(), arrayOf(NullRotationAnimationFactory.getFactoryInstance()), arrayOf(NullRotationAnimationFactory.getFactoryInstance()), RectangleFactory.SINGLETON, RectangleFactory.ARRAY_OF_ARRAYS, GDRotationBehaviorFactory.getInstance(), false){
 
 
                             //For kotlin this is before the body of the constructor.

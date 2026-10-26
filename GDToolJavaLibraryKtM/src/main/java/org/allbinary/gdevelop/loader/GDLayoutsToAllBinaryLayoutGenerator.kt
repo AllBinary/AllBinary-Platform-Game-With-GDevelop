@@ -26,10 +26,6 @@
         import kotlin.reflect.KClass
                     
         
-import java.io.StringBufferInputStream
-import javax.xml.transform.stream.StreamSource
-import org.allbinary.data.tree.dom.BasicUriResolver
-import org.allbinary.data.tree.dom.XslHelper
 import org.allbinary.data.tree.dom.document.DomDocumentHelper
 import org.allbinary.data.tree.dom.document.XmlDocumentHelper
 import org.allbinary.logic.io.BufferedWriterUtil
@@ -63,7 +59,7 @@ companion object {
 {
 var args = args
 DomDocumentHelper.init()
-GDPaths.init()
+GDPaths.init(args)
 
     var finished: BooleanArray = BooleanArray(6)
 
@@ -92,7 +88,7 @@ GDLayoutsToAllBinaryLayoutGenerator().
 
     private val bufferedWriterUtil: BufferedWriterUtil = BufferedWriterUtil.getInstance()!!
 
-    private val xslHelper: XslHelper = XslHelper.getInstance()!!
+    private val gdXslTemplates: GDXslTemplates = GDXslTemplates.getInstance()!!
 
     private val gdPaths: GDPaths = GDPaths.getInstance()!!
 
@@ -226,7 +222,7 @@ this.logUtil!!.putF(stringMaker!!.append(this.gdToolStrings!!.FILENAME)!!.append
     var updatedXslDocumentAsString: String = xslDocumentAsString0[index2]!!
 
 
-    var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentAsString)), StreamSource(StringBufferInputStream(xmlStringArray0[index2]!!)))!!
+    var result: String = this.gdXslTemplates!!.translate(xslPathInputArray0[index2]!!, updatedXslDocumentAsString, xmlStringArray0[index2]!!)!!
 
 stringMaker!!.delete(0, stringMaker!!.length())
 
@@ -241,27 +237,36 @@ stringMaker!!.delete(0, stringMaker!!.length())
                                                     
                                                         
                                                         
+                                                    
+                                                    
+                                                        
                                                             
                                                             
                                                                 
-                                                            
-                                                            
                                                                 
+                                                                    
                                                                     
                                                                         
                                                                     
                                                                     
                                                                         
+                                                                            
+                                                                                
+                                                                            
+                                                                            
+                                                                                
+                                                                            
+                                                                        
                                                                     
                                                                 
-                                                            
-                                                        
-                                                        
-                                                            
                                                                 
                                                                     
-                                                                
-                                                                
+                                                                        
+                                                                            
+                                                                        
+                                                                        
+                                                                            
+                                                                        
                                                                     
                                                                 
                                                             
@@ -372,9 +377,6 @@ xslDocumentAsString[index]= this.gdData!!.getAsString(xslPathInputArray[index]!!
 externalLayoutTotalForSceneLayout= gdGameInfo!!.getExternalLayoutTotal(index)
 indexAsString= index.toString()!!
 
-    var replace: Replace = Replace(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, indexAsString)
-
-
 
 
 
@@ -389,22 +391,15 @@ indexAsString= index.toString()!!
 
         {
 index4AsString= index4.toString()!!
-
-    var replace3: Replace = Replace(this.gdToolStrings!!.GD_EXTERNAL_LAYOUT_INDEX, index4AsString)
-
 timeDelayHelper!!.setStartTimeTNT()
 stringMaker!!.delete(0, stringMaker!!.length())
 this.logUtil!!.putF(stringMaker!!.append(this.gdToolStrings!!.FILENAME)!!.append(xslPathInputArray[index2]!!)!!.toString(), this, this.commonStrings!!.PROCESS)
 
-    var updatedXslDocumentAsString: String = replace.all(xslDocumentAsString[index2]!!)!!
-
-updatedXslDocumentAsString= replace3.all(updatedXslDocumentAsString)!!
-
-    var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentAsString)), StreamSource(StringBufferInputStream(xmlStringArray[index2]!!)))!!
+    var result: String = this.gdXslTemplates!!.translate(xslPathInputArray[index2]!!, xslDocumentAsString[index2]!!, arrayOf(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX,this.gdToolStrings!!.GD_EXTERNAL_LAYOUT_INDEX), arrayOf(indexAsString,index4AsString), xmlStringArray[index2]!!)!!
 
 stringMaker!!.delete(0, stringMaker!!.length())
 
-    var fileName: String = stringMaker!!.append(START[index2]!!)!!.append(indexAsString)!!.append(MID[index2]!!)!!.appendint(index4)!!.append(END[index2]!!)!!.toString()!!
+    var fileName: String = this.gdPaths!!.getOutputPath(stringMaker!!.append(START[index2]!!)!!.append(indexAsString)!!.append(MID[index2]!!)!!.appendint(index4)!!.append(END[index2]!!)!!.toString())!!
 
 this.directory.create(AbFilePath(fileName))
 stringMaker!!.delete(0, stringMaker!!.length())
@@ -501,9 +496,6 @@ xslDocumentAsString[index]= this.gdData!!.getAsString(xslPathInputArray[index]!!
 externalLayoutTotalForSceneLayout= gdGameInfo!!.getExternalLayoutTotal(index)
 indexAsString= index.toString()!!
 
-    var replace: Replace = Replace(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, indexAsString)
-
-
 
 
 
@@ -520,9 +512,6 @@ indexAsString= index.toString()!!
 externalCreateInstanceTotal= gdGameInfo!!.getExternalLayoutInstanceTotal(index4)
 index4AsString= index4.toString()!!
 
-    var replace3: Replace = Replace(this.gdToolStrings!!.GD_EXTERNAL_LAYOUT_INDEX, index4AsString)
-
-
 
 
 
@@ -530,23 +519,15 @@ index4AsString= index4.toString()!!
 
         {
 createInstanceIndexAsString= index5.toString()!!
-
-    var replace4: Replace = Replace(this.gdToolStrings!!.GD_CREATE_INSTANCE_INDEX, createInstanceIndexAsString)
-
 timeDelayHelper!!.setStartTimeTNT()
 stringMaker!!.delete(0, stringMaker!!.length())
 this.logUtil!!.putF(stringMaker!!.append(this.gdToolStrings!!.FILENAME)!!.append(xslPathInputArray[index2]!!)!!.toString(), this, this.commonStrings!!.PROCESS)
 
-    var updatedXslDocumentAsString: String = replace.all(xslDocumentAsString[index2]!!)!!
-
-updatedXslDocumentAsString= replace3.all(updatedXslDocumentAsString)!!
-updatedXslDocumentAsString= replace4.all(updatedXslDocumentAsString)!!
-
-    var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentAsString)), StreamSource(StringBufferInputStream(xmlStringArray[index2]!!)))!!
+    var result: String = this.gdXslTemplates!!.translate(xslPathInputArray[index2]!!, xslDocumentAsString[index2]!!, arrayOf(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX,this.gdToolStrings!!.GD_EXTERNAL_LAYOUT_INDEX,this.gdToolStrings!!.GD_CREATE_INSTANCE_INDEX), arrayOf(indexAsString,index4AsString,createInstanceIndexAsString), xmlStringArray[index2]!!)!!
 
 stringMaker!!.delete(0, stringMaker!!.length())
 
-    var fileName: String = stringMaker!!.append(START[index2]!!)!!.append(indexAsString)!!.append(MID[index2]!!)!!.appendint(index5)!!.append(END[index2]!!)!!.toString()!!
+    var fileName: String = this.gdPaths!!.getOutputPath(stringMaker!!.append(START[index2]!!)!!.append(indexAsString)!!.append(MID[index2]!!)!!.appendint(index5)!!.append(END[index2]!!)!!.toString())!!
 
 this.directory.create(AbFilePath(fileName))
 stringMaker!!.delete(0, stringMaker!!.length())
@@ -639,9 +620,6 @@ xslDocumentAsString[index]= this.gdData!!.getAsString(xslPathInputArray[index]!!
 createInstanceTotal= gdGameInfo!!.getLayoutInstanceTotal(index)
 indexAsString= index.toString()!!
 
-    var replace: Replace = Replace(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, indexAsString)
-
-
 
 
 
@@ -656,22 +634,15 @@ indexAsString= index.toString()!!
 
         {
 createInstanceIndexAsString= index4.toString()!!
-
-    var replace3: Replace = Replace(this.gdToolStrings!!.GD_CREATE_INSTANCE_INDEX, createInstanceIndexAsString)
-
 timeDelayHelper!!.setStartTimeTNT()
 stringMaker!!.delete(0, stringMaker!!.length())
 this.logUtil!!.putF(stringMaker!!.append(this.gdToolStrings!!.FILENAME)!!.append(xslPathInputArray[index2]!!)!!.toString(), this, this.commonStrings!!.PROCESS)
 
-    var updatedXslDocumentAsString: String = replace.all(xslDocumentAsString[index2]!!)!!
-
-updatedXslDocumentAsString= replace3.all(updatedXslDocumentAsString)!!
-
-    var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentAsString)), StreamSource(StringBufferInputStream(xmlStringArray[index2]!!)))!!
+    var result: String = this.gdXslTemplates!!.translate(xslPathInputArray[index2]!!, xslDocumentAsString[index2]!!, arrayOf(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX,this.gdToolStrings!!.GD_CREATE_INSTANCE_INDEX), arrayOf(indexAsString,createInstanceIndexAsString), xmlStringArray[index2]!!)!!
 
 stringMaker!!.delete(0, stringMaker!!.length())
 
-    var fileName: String = stringMaker!!.append(START[index2]!!)!!.append(indexAsString)!!.append(MID[index2]!!)!!.appendint(index4)!!.append(END[index2]!!)!!.toString()!!
+    var fileName: String = this.gdPaths!!.getOutputPath(stringMaker!!.append(START[index2]!!)!!.append(indexAsString)!!.append(MID[index2]!!)!!.appendint(index4)!!.append(END[index2]!!)!!.toString())!!
 
 this.directory.create(AbFilePath(fileName))
 stringMaker!!.delete(0, stringMaker!!.length())
@@ -733,6 +704,7 @@ this.logUtil!!.putF(stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!
 xslDocumentAsString[index]= this.gdData!!.getAsString(xslPathInputArray[index]!!, sharedBytes)!!
 }
 
+this.gdXslTemplates!!.compile(xslPathInputArray, xslDocumentAsString)
 
     var START: Array<String?> = arrayOf(this.GENERATED_START_WITH_PATH,this.GENERATED_START_WITH_PATH,this.GENERATED_START_WITH_PATH,this.GENERATED_START_WITH_PATH,this.GENERATED_START_WITH_PATH,this.GENERATED_START_WITH_PATH,this.GENERATED_START_WITH_PATH,this.GENERATED_START_WITH_PATH,this.GENERATED_START_WITH_PATH,this.GENERATED_START_WITH_PATH,this.GENERATED_START_WITH_PATH,this.GENERATED_START_WITH_PATH,this.GENERATED_START_WITH_PATH,this.GENERATED_START_WITH_PATH,this.GENERATED_START_WITH_PATH,this.GENERATED_START_WITH_PATH,this.gdPaths!!.GEN_PATH +"platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\GD")
 
@@ -751,9 +723,6 @@ xslDocumentAsString[index]= this.gdData!!.getAsString(xslPathInputArray[index]!!
         {
 indexAsString= index.toString()!!
 
-    var replace: Replace = Replace(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, indexAsString)
-
-
 
 
 
@@ -764,14 +733,11 @@ timeDelayHelper!!.setStartTimeTNT()
 stringMaker!!.delete(0, stringMaker!!.length())
 this.logUtil!!.putF(stringMaker!!.append(this.gdToolStrings!!.FILENAME)!!.append(xslPathInputArray[index2]!!)!!.toString(), this, this.commonStrings!!.PROCESS)
 
-    var updatedXslDocumentAsString: String = replace.all(xslDocumentAsString[index2]!!)!!
-
-
-    var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentAsString)), StreamSource(StringBufferInputStream(xmlStringArray[index2]!!)))!!
+    var result: String = this.gdXslTemplates!!.translate(xslPathInputArray[index2]!!, xslDocumentAsString[index2]!!, this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, indexAsString, xmlStringArray[index2]!!)!!
 
 stringMaker!!.delete(0, stringMaker!!.length())
 
-    var fileName: String = stringMaker!!.append(START[index2]!!)!!.append(indexAsString)!!.append(END[index2]!!)!!.toString()!!
+    var fileName: String = this.gdPaths!!.getOutputPath(stringMaker!!.append(START[index2]!!)!!.append(indexAsString)!!.append(END[index2]!!)!!.toString())!!
 
 this.directory.create(AbFilePath(fileName))
 stringMaker!!.delete(0, stringMaker!!.length())
@@ -910,9 +876,6 @@ charIndex++
     //var layoutIndex = layoutIndex
     //var sharedBytes = sharedBytes
 
-    var replace: Replace = Replace(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, this.smallIntegerSingletonFactory!!.getString(layoutIndex))
-
-
     var xmlStringArray: Array<String?> = arrayOf(gameXmlAsString)
 
 
@@ -926,11 +889,6 @@ charIndex++
     var xslDocumentAsString: Array<String?> = arrayOfNulls(xslTotal)
 
 
-    var updatedXslDocumentAsString: String = 
-                null
-            
-
-
 
 
 
@@ -938,11 +896,10 @@ charIndex++
 
         {
 xslDocumentAsString[index]= this.gdData!!.getAsString(gdNodeXSLPathInputArray[index]!!, sharedBytes)!!
-updatedXslDocumentAsString= replace.all(xslDocumentAsString[index]!!)!!
 }
 
 
-    var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentAsString)), StreamSource(StringBufferInputStream(xmlStringArray[0]!!)))!!
+    var result: String = this.gdXslTemplates!!.translate(gdNodeXSLPathInputArray[0]!!, xslDocumentAsString[0]!!, this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, this.smallIntegerSingletonFactory!!.getString(layoutIndex), xmlStringArray[0]!!)!!
 
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
@@ -1057,10 +1014,10 @@ this.logUtil!!.putF(stringMaker!!.append("skipping indexAsString:")!!.append(ind
                                     }
                                 
 
-    var replace: Replace = Replace(this.gdToolStrings!!.GD_NODE_IDS, indexAsString)
+    var placeholderArray: Array<String?> = arrayOf(this.gdToolStrings!!.GD_NODE_IDS,this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX)
 
 
-    var replace2: Replace = Replace(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, this.smallIntegerSingletonFactory!!.getString(layoutIndex))
+    var valueArray: Array<String?> = arrayOf(indexAsString,this.smallIntegerSingletonFactory!!.getString(layoutIndex))
 
 
 
@@ -1071,11 +1028,7 @@ this.logUtil!!.putF(stringMaker!!.append("skipping indexAsString:")!!.append(ind
         {
 timeDelayHelper!!.setStartTimeTNT()
 
-    var updatedXslDocumentAsString: String = replace.all(xslDocumentAsString[index2]!!)!!
-
-updatedXslDocumentAsString= replace2.all(updatedXslDocumentAsString)!!
-
-    var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentAsString)), StreamSource(StringBufferInputStream(xmlStringArray[index2]!!)))!!
+    var result: String = this.gdXslTemplates!!.translate(gdNodeXSLPathInputArray[index2]!!, xslDocumentAsString[index2]!!, placeholderArray, valueArray, xmlStringArray[index2]!!)!!
 
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
@@ -1083,7 +1036,7 @@ updatedXslDocumentAsString= replace2.all(updatedXslDocumentAsString)!!
 result= replaceLT!!.all(result)!!
 stringMaker!!.delete(0, stringMaker!!.length())
 
-    var fileName: String = stringMaker!!.append(START[index2]!!)!!.appendint(layoutIndex)!!.append(MIDDLE[index2]!!)!!.appendint(fileIndex)!!.append(END[index2]!!)!!.toString()!!
+    var fileName: String = this.gdPaths!!.getOutputPath(stringMaker!!.append(START[index2]!!)!!.appendint(layoutIndex)!!.append(MIDDLE[index2]!!)!!.appendint(fileIndex)!!.append(END[index2]!!)!!.toString())!!
 
 
     
@@ -1126,9 +1079,6 @@ this.logUtil!!.putF(stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!
     //var layoutIndex = layoutIndex
     //var sharedBytes = sharedBytes
 
-    var replace: Replace = Replace(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, this.smallIntegerSingletonFactory!!.getString(layoutIndex))
-
-
     var xmlStringArray: Array<String?> = arrayOf(gameXmlAsString)
 
 
@@ -1142,11 +1092,6 @@ this.logUtil!!.putF(stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!
     var xslDocumentAsString: Array<String?> = arrayOfNulls(xslTotal)
 
 
-    var updatedXslDocumentAsString: String = 
-                null
-            
-
-
 
 
 
@@ -1154,11 +1099,10 @@ this.logUtil!!.putF(stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!
 
         {
 xslDocumentAsString[index]= this.gdData!!.getAsString(gdNodeXSLPathInputArray[index]!!, sharedBytes)!!
-updatedXslDocumentAsString= replace.all(xslDocumentAsString[index]!!)!!
 }
 
 
-    var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentAsString)), StreamSource(StringBufferInputStream(xmlStringArray[0]!!)))!!
+    var result: String = this.gdXslTemplates!!.translate(gdNodeXSLPathInputArray[0]!!, xslDocumentAsString[0]!!, this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, this.smallIntegerSingletonFactory!!.getString(layoutIndex), xmlStringArray[0]!!)!!
 
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
@@ -1278,10 +1222,10 @@ this.logUtil!!.putF(stringMaker!!.append("skipping indexAsString:")!!.append(ind
                                     }
                                 
 
-    var replace: Replace = Replace(this.gdToolStrings!!.GD_NODE_IDS, indexAsString)
+    var placeholderArray: Array<String?> = arrayOf(this.gdToolStrings!!.GD_NODE_IDS,this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX)
 
 
-    var replace2: Replace = Replace(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, this.smallIntegerSingletonFactory!!.getString(layoutIndex))
+    var valueArray: Array<String?> = arrayOf(indexAsString,this.smallIntegerSingletonFactory!!.getString(layoutIndex))
 
 
 
@@ -1292,11 +1236,7 @@ this.logUtil!!.putF(stringMaker!!.append("skipping indexAsString:")!!.append(ind
         {
 timeDelayHelper!!.setStartTimeTNT()
 
-    var updatedXslDocumentAsString: String = replace.all(xslDocumentAsString[index2]!!)!!
-
-updatedXslDocumentAsString= replace2.all(updatedXslDocumentAsString)!!
-
-    var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentAsString)), StreamSource(StringBufferInputStream(xmlStringArray[index2]!!)))!!
+    var result: String = this.gdXslTemplates!!.translate(gdNodeXSLPathInputArray[index2]!!, xslDocumentAsString[index2]!!, placeholderArray, valueArray, xmlStringArray[index2]!!)!!
 
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
@@ -1304,7 +1244,7 @@ updatedXslDocumentAsString= replace2.all(updatedXslDocumentAsString)!!
 result= replaceLT!!.all(result)!!
 stringMaker!!.delete(0, stringMaker!!.length())
 
-    var fileName: String = stringMaker!!.append(START[index2]!!)!!.appendint(layoutIndex)!!.append(MIDDLE[index2]!!)!!.appendint(fileIndex)!!.append(END[index2]!!)!!.toString()!!
+    var fileName: String = this.gdPaths!!.getOutputPath(stringMaker!!.append(START[index2]!!)!!.appendint(layoutIndex)!!.append(MIDDLE[index2]!!)!!.appendint(fileIndex)!!.append(END[index2]!!)!!.toString())!!
 
 
     
@@ -1379,6 +1319,7 @@ this.logUtil!!.putF(stringMaker!!.append(CommonLabels.getInstance()!!.ELAPSED)!!
 xslDocumentAsString2[index]= this.gdData!!.getAsString(xslPathInputArray2[index]!!, sharedBytes)!!
 }
 
+this.gdXslTemplates!!.compile(xslPathInputArray2, xslDocumentAsString2)
 
     var indexAsString: String
 
@@ -1392,9 +1333,6 @@ xslDocumentAsString2[index]= this.gdData!!.getAsString(xslPathInputArray2[index]
 timeDelayHelper!!.setStartTimeTNT()
 indexAsString= index.toString()!!
 
-    var replace: Replace = Replace(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, indexAsString)
-
-
 
 
 
@@ -1402,10 +1340,7 @@ indexAsString= index.toString()!!
 
         {
 
-    var updatedXslDocumentStr: String = replace.all(xslDocumentAsString2[index2]!!)!!
-
-
-    var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentStr)), StreamSource(StringBufferInputStream(gameXmlAsString)))!!
+    var result: String = this.gdXslTemplates!!.translate(xslPathInputArray2[index2]!!, xslDocumentAsString2[index2]!!, this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, indexAsString, gameXmlAsString)!!
 
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)
@@ -1413,7 +1348,7 @@ indexAsString= index.toString()!!
 result= replaceLT!!.all(result)!!
 stringMaker!!.delete(0, stringMaker!!.length())
 
-    var outputFilePath: String = stringMaker!!.append(OUTPUT_FILE_PATHS[index2]!!)!!.appendint(index)!!.append(OUTPUT_FILE_PATH_END_ARRAY[index2]!!)!!.toString()!!
+    var outputFilePath: String = this.gdPaths!!.getOutputPath(stringMaker!!.append(OUTPUT_FILE_PATHS[index2]!!)!!.appendint(index)!!.append(OUTPUT_FILE_PATH_END_ARRAY[index2]!!)!!.toString())!!
 
 
     
@@ -1421,7 +1356,7 @@ stringMaker!!.delete(0, stringMaker!!.length())
                         
                                     {
                                     stringMaker!!.delete(0, stringMaker!!.length())
-outputFilePath= stringMaker!!.append(OUTPUT_FILE_PATHS[index2]!!)!!.append(OUTPUT_FILE_PATH_END_ARRAY[index2]!!)!!.toString()!!
+outputFilePath= this.gdPaths!!.getOutputPath(stringMaker!!.append(OUTPUT_FILE_PATHS[index2]!!)!!.append(OUTPUT_FILE_PATH_END_ARRAY[index2]!!)!!.toString())!!
 
                                     }
                                 

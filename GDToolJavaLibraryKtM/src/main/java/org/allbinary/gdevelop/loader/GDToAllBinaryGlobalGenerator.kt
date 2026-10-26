@@ -20,11 +20,7 @@
         import kotlin.reflect.KClass
                     
         
-import java.io.StringBufferInputStream
-import javax.xml.transform.stream.StreamSource
 import org.allbinary.data.CamelCaseUtil
-import org.allbinary.data.tree.dom.BasicUriResolver
-import org.allbinary.data.tree.dom.XslHelper
 import org.allbinary.gdevelop.json.GDLayout
 import org.allbinary.logic.io.BufferedWriterUtil
 import org.allbinary.string.CommonStrings
@@ -50,7 +46,7 @@ open public class GDToAllBinaryGlobalGenerator
 
     private val commonStrings: CommonStrings = CommonStrings.getInstance()!!
 
-    private val xslHelper: XslHelper = XslHelper.getInstance()!!
+    private val gdXslTemplates: GDXslTemplates = GDXslTemplates.getInstance()!!
 
     private val camelCaseUtil: CamelCaseUtil = CamelCaseUtil.getInstance()!!
 
@@ -111,7 +107,7 @@ this.timeDelayHelper!!.setStartTimeTNT()
     var xslPathInputArray: Array<String?> = arrayOf(this.gdData!!.GD_BASE_GAME_MIDLET,this.gdData!!.GD_THREED_GAME_MIDLET,this.gdData!!.GD_GAME_COMMAND_FACTORY,this.gdData!!.GD_THREED_LEVEL_BUILDER_FACTORY,this.gdData!!.GD_GAME_SOUNDS,this.gdData!!.GD_PLATFORM_ASSET_MANAGER,this.gdData!!.GD_CUSTOM_GAME_LAYER_FACTORY,this.gdData!!.GD_CUSTOM_GAME_LAYER,this.gdData!!.GD_CUSTOM_COLLIDABLE_BEHAVIOR,this.gdData!!.GD_CUSTOM_MASK_COLLIDABLE_BEHAVIOR,this.gdData!!.GD_PREBASE_GAME_SOFTWARE_INFO,this.gdData!!.GD_THREED_PREBASE_GAME_SOFTWARE_INFO,this.gdData!!.GD_THREED_ANIMATION_RESOURCES)
 
 
-    var outputArray: Array<String?> = arrayOf(this.gdPaths!!.GEN_PATH +"GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.java",this.gdPaths!!.GEN_PATH +"GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.java",this.gdPaths!!.GEN_PATH +"GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameCommandFactory.java",this.gdPaths!!.GEN_PATH +"GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\graphics\\threed\\min3d\\GDGameThreedLevelBuilderFactory.java",this.gdPaths!!.GEN_PATH +"GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio\\GDGameSounds.java",this.gdPaths!!.GEN_PATH +"platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\org\\allbinary\\logic\\system\\PlatformAssetManager.java",this.gdPaths!!.GEN_PATH +"GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\layer\\GDCustomGameLayerFactory.java",this.gdPaths!!.GEN_PATH +"GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\layer\\GDCustomGameLayer.java",this.gdPaths!!.GEN_PATH +"GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\layer\\special\\GDCustomCollidableBehavior.java",this.gdPaths!!.GEN_PATH +"GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\layer\\special\\GDCustomMaskCollidableBehavior.java",this.gdPaths!!.GEN_PATH +"GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameSoftwareInfo.java",this.gdPaths!!.GEN_PATH +"GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameSoftwareInfo.java",this.gdPaths!!.GEN_PATH +"GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameThreedAnimationResources.java")
+    var outputArray: Array<String?> = arrayOf(this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.java"), this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.java"), this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameCommandFactory.java"), this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\graphics\\threed\\min3d\\GDGameThreedLevelBuilderFactory.java"), this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio\\GDGameSounds.java"), this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\org\\allbinary\\logic\\system\\PlatformAssetManager.java"), this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\layer\\GDCustomGameLayerFactory.java"), this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\layer\\GDCustomGameLayer.java"), this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\layer\\special\\GDCustomCollidableBehavior.java"), this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\layer\\special\\GDCustomMaskCollidableBehavior.java"), this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameSoftwareInfo.java"), this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameSoftwareInfo.java"), this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameThreedAnimationResources.java"))
 
 
     var size2: Int = xslPathInputArray!!.size
@@ -135,7 +131,7 @@ this.timeDelayHelper!!.setStartTimeTNT()
 
 this.logUtil!!.putF(updatedXslDocumentStr, this, this.commonStrings!!.PROCESS)
 
-    var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(updatedXslDocumentStr)), StreamSource(StringBufferInputStream(xmlDocumentStr)))!!
+    var result: String = this.gdXslTemplates!!.translate(xslPathInputArray[index2]!!, updatedXslDocumentStr, xmlDocumentStr)!!
 
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)

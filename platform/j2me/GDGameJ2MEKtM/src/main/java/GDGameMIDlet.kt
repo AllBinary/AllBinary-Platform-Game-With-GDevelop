@@ -25,8 +25,6 @@ import org.allbinary.logic.system.security.licensing.GDGameClientInformationInte
 
 open public class GDGameMIDlet : org.allbinary.game.GDGameMIDlet {
         
-
-    val logUtil: LogUtil = LogUtil.getInstance()!!
 public constructor ()                        
 
                             : super(GDGameClientInformationInterfaceFactory.getFactoryInstance()){
@@ -34,7 +32,7 @@ public constructor ()
 
                             //For kotlin this is before the body of the constructor.
                     
-GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION= GDGameClientInformationInterfaceFactory.getFactoryInstance()!!.getInstance()
+GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance()!!.getInstance())
 DefaultGameInitializationListener()
 }
 

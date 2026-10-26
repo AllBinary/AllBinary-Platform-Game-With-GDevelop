@@ -23,7 +23,7 @@ open public class GDToAndroidResourcesGenerator : GDNameFileGenerator {
         
 public constructor ()                        
 
-                            : super(GDPaths.getInstance()!!.ROOT_PATH +"platform\\android\\GDGameAndroidM\\src\\main\\other\\org\\allbinary\\AndroidResources.original", GDPaths.getInstance()!!.GEN_PATH +"platform\\android\\GDGameAndroidM\\src\\main\\other\\org\\allbinary\\AndroidResources.java"){
+                            : super(GDPaths.getInstance()!!.ROOT_PATH +"platform\\android\\GDGameAndroidM\\src\\main\\other\\org\\allbinary\\AndroidResources.xsl", GDPaths.getInstance()!!.GEN_PATH +"platform\\android\\GDGameAndroidM\\src\\main\\other\\org\\allbinary\\AndroidResources.java"){
 
 
                             //For kotlin this is before the body of the constructor.

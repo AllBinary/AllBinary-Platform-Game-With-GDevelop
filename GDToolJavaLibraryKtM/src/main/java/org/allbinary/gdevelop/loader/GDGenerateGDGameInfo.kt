@@ -20,10 +20,6 @@
         import kotlin.reflect.KClass
                     
         
-import java.io.StringBufferInputStream
-import javax.xml.transform.stream.StreamSource
-import org.allbinary.data.tree.dom.BasicUriResolver
-import org.allbinary.data.tree.dom.XslHelper
 import org.allbinary.data.tree.dom.document.DomDocumentHelper
 import org.allbinary.logic.string.tokens.Tokenizer
 import org.allbinary.string.CommonSeps
@@ -46,7 +42,7 @@ companion object {
 {
 var args = args
 DomDocumentHelper.init()
-GDPaths.init()
+GDPaths.init(args)
 GDGenerateGDGameInfo().
                             process()
 }
@@ -60,7 +56,7 @@ GDGenerateGDGameInfo().
 
     private val commonSeps: CommonSeps = CommonSeps.getInstance()!!
 
-    private val xslHelper: XslHelper = XslHelper.getInstance()!!
+    private val gdXslTemplates: GDXslTemplates = GDXslTemplates.getInstance()!!
 
     private val gdPaths: GDPaths = GDPaths.getInstance()!!
 
@@ -92,7 +88,7 @@ public constructor ()
     var xslAsString: String = this.gdData!!.getAsString(this.gdData!!.GD_GAME_INFO, sharedBytes)!!
 
 
-    var result: String = this.xslHelper!!.translate(BasicUriResolver(), StreamSource(StringBufferInputStream(xslAsString)), StreamSource(StringBufferInputStream(gameXmlAsString)))!!
+    var result: String = this.gdXslTemplates!!.translate(this.gdData!!.GD_GAME_INFO, xslAsString, gameXmlAsString)!!
 
 
     var resultPartList: BasicArrayList = Tokenizer(this.commonSeps!!.SPACE).

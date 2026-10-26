@@ -29,6 +29,7 @@
 import org.allbinary.animation.image.GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory
 import org.allbinary.animation.image.GDGameOpenGLESImageBasedAnimationInterfaceFactoryInterfaceFactory
 import org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory
+import org.allbinary.animation.image.GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 import org.allbinary.game.resource.ResourceInitialization
 import org.allbinary.input.motion.button.TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory
 import org.allbinary.input.motion.button.TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory
@@ -45,7 +46,7 @@ public constructor (){
         //nullable = true from not(false or (false and true)) = true
 {
 FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!!.add(TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.createFactory())
-FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!!.add(GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory())
+FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!!.add(GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory(GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.DEFAULT_EARLY_IMAGE_ANIMATIONS))
 FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!!.add(TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory())
 FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!!.add(GDGameOpenGLESImageBasedAnimationInterfaceFactoryInterfaceFactory())
 }

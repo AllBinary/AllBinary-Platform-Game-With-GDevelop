@@ -312,14 +312,7 @@ this.yP= y
 }
 
 
-    private val offsetX: Float = if(AndroidUtil.isAndroid()) {
-                            
-                            1.00f
-                        
-                            } else {
-                            0.75f
-                            }
-    
+    private val offsetX: Float = GDConfig.getInstance()!!.getInverseScale()
 
     private val offsetY: Float = 1.00f
 

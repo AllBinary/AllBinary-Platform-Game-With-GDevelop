@@ -61,7 +61,7 @@ public constructor ()
 
                             //For kotlin this is before the body of the constructor.
                     
-GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION= GDGameClientInformationInterfaceFactory.getFactoryInstance()!!.getInstance()
+GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance()!!.getInstance())
 
         try {
             GameAdStateFactory.getInstance()!!.getInstanceForApp(GDGameSoftwareInfo.getInstance())

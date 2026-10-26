@@ -103,7 +103,7 @@ Created By: Travis Berthelot
 
                         //IsCursorOnObject - runnable
                         <xsl:if test="not(contains($forExtension, 'found'))" >
-                        class IsCursorOnObjectABRunnable extends ABRunnable {
+                        private final Runnable runnable = new ABRunnable() {
                         
                             private final LogUtil logUtil = LogUtil.getInstance();
                             private final CommonStrings commonStrings = CommonStrings.getInstance();
@@ -164,7 +164,7 @@ Created By: Travis Berthelot
                                 }
                             }
                         };
-                        private final Runnable runnable = new IsCursorOnObjectABRunnable();
+
                         </xsl:if>
                         
                         //IsCursorOnObject - was //SourisSurObjet - condition - //forExtension=<xsl:value-of select="$forExtension" />

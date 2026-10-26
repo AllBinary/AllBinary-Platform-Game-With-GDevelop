@@ -138,7 +138,7 @@ Created By: Travis Berthelot
                             <xsl:for-each select=".." >
                                 <xsl:call-template name="actionsProcessing" >
                                     <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
-                                    <xsl:with-param name="methodCall" >process(gameKeyEvent)</xsl:with-param>
+                                    <xsl:with-param name="methodCall" >processGameKey(gameKeyEvent)</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
                                 }
@@ -160,7 +160,7 @@ Created By: Travis Berthelot
                             <xsl:for-each select=".." >
                                 <xsl:call-template name="actionsProcessing" >
                                     <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
-                                    <xsl:with-param name="methodCall" >process(keyAsInteger)</xsl:with-param>
+                                    <xsl:with-param name="methodCall" >processKeyAsInteger(keyAsInteger)</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
                                 }

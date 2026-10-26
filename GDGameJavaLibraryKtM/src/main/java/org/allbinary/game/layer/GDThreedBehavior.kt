@@ -75,7 +75,7 @@ super.updateRotation(gameLayer, timeDelta)
 
 this.rotationRemainderZ= this.rotationRemainderZ +newPortion
 
-    var angleAdjustment: Short = (this.rotationRemainderZ).toInt().toShort()
+    var angleAdjustment: Short = this.rotationRemainderZ.toInt().toShort()
 
 
     

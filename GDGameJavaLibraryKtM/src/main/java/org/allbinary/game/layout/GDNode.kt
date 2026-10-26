@@ -86,7 +86,7 @@ this.currentRunnable= NullRunnable.getInstance()!!
 }
 
 
-    open fun process(objecArray: Array<Any?>, intArray: IntArray, longArray: LongArray, floatArray: FloatArray)
+    open fun processExtensionParams(objecArray: Array<Any?>, intArray: IntArray, longArray: LongArray, floatArray: FloatArray)
         //nullable = true from not(false or (false and false)) = true
 : Boolean{
     //var objecArray = objecArray
@@ -182,7 +182,7 @@ this.nodeStatsFactory!!.push(4, this.name)
 
                 @Throws(Exception::class)
             
-    open fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
+    open fun processMotion(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
         //nullable = true from not(false or (false and false)) = true
 : Boolean{
     //var motionGestureEvent = motionGestureEvent
@@ -206,7 +206,7 @@ this.nodeStatsFactory!!.push(4, this.name)
 }
 
 
-    open fun processStats(motionGestureEvent: MotionGestureEvent)
+    open fun processMotionStats(motionGestureEvent: MotionGestureEvent)
         //nullable = true from not(false or (false and false)) = true
 {
     //var motionGestureEvent = motionGestureEvent
@@ -216,7 +216,7 @@ this.nodeStatsFactory!!.push(5, this.name)
 
                 @Throws(Exception::class)
             
-    open fun process(index: Int)
+    open fun processIndex(index: Int)
         //nullable = true from not(false or (false and false)) = true
 : Boolean{
     //var index = index
@@ -228,7 +228,7 @@ this.nodeStatsFactory!!.push(5, this.name)
 
                 @Throws(Exception::class)
             
-    open fun processStats(index: Int)
+    open fun processIndexStats(index: Int)
         //nullable = true from not(false or (false and false)) = true
 {
     //var index = index
@@ -246,7 +246,7 @@ this.nodeStatsFactory!!.push(6, this.name)
 
                 @Throws(Exception::class)
             
-    open fun processEnd(index: Int, createIndex: Int)
+    open fun processIndexEnd(index: Int, createIndex: Int)
         //nullable = true from not(false or (false and false)) = true
 {
     //var index = index
@@ -369,7 +369,7 @@ this.nodeStatsFactory!!.push(14, this.name)
 }
 
 
-    open fun process(gameLayer: GDGameLayer, x: Int, y: Int)
+    open fun processGDGameLayer(gameLayer: GDGameLayer, x: Int, y: Int)
         //nullable = true from not(false or (false and false)) = true
 {
     //var gameLayer = gameLayer
@@ -382,7 +382,7 @@ this.nodeStatsFactory!!.push(14, this.name)
 }
 
 
-    open fun process(gdObject: GDObject, x: Int, y: Int)
+    open fun processGDObject(gdObject: GDObject, x: Int, y: Int)
         //nullable = true from not(false or (false and false)) = true
 {
     //var gdObject = gdObject
@@ -409,7 +409,7 @@ this.nodeStatsFactory!!.push(14, this.name)
 
                 @Throws(Exception::class)
             
-    open fun processSub(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
+    open fun processMotionSub(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
         //nullable = true from not(false or (false and false)) = true
 {
     //var motionGestureEvent = motionGestureEvent
@@ -423,7 +423,7 @@ this.nodeStatsFactory!!.push(14, this.name)
 
                 @Throws(Exception::class)
             
-    open fun processSub(gameLayerArray: Array<GDGameLayer?>)
+    open fun processArraySub(gameLayerArray: Array<GDGameLayer?>)
         //nullable = true from not(false or (false and false)) = true
 {
     //var gameLayerArray = gameLayerArray

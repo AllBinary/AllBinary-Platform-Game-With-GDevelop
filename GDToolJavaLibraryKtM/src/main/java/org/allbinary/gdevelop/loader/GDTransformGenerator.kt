@@ -60,19 +60,66 @@ open public class GDTransformGenerator : GDNameGenerator {
 
     private val xslHelper: XslHelper = XslHelper.getInstance()!!
 
+    private val gdXslTemplates: GDXslTemplates = GDXslTemplates.getInstance()!!
+
                 @Throws(Exception::class)
             
-    open fun process(updatedXslDocumentStr: String, outputFile: String, sharedBytes: SharedBytes)
+    open fun process(updatedXslDocumentStr: String, javaOutputFile: String, sharedBytes: SharedBytes)
         //nullable = true from not(false or (false and false)) = true
 {
     //var updatedXslDocumentStr = updatedXslDocumentStr
-    //var outputFile = outputFile
+    //var javaOutputFile = javaOutputFile
     //var sharedBytes = sharedBytes
 
     var xmlDocumentStr: String = this.gdData!!.getAsString(this.gdPaths!!.GAME_XML_PATH, sharedBytes)!!
 
+this.write(this.process(updatedXslDocumentStr, xmlDocumentStr), javaOutputFile)
+}
 
-    var result: String = this.process(updatedXslDocumentStr, xmlDocumentStr)!!
+
+                @Throws(Exception::class)
+            
+    open fun process(xslPath: String, xslDocumentStr: String, placeholder: String, value: String, javaOutputFile: String, sharedBytes: SharedBytes)
+        //nullable = true from not(false or (false and false)) = true
+{
+    //var xslPath = xslPath
+    //var xslDocumentStr = xslDocumentStr
+    //var placeholder = placeholder
+    //var value = value
+    //var javaOutputFile = javaOutputFile
+    //var sharedBytes = sharedBytes
+
+    var xmlDocumentStr: String = this.gdData!!.getAsString(this.gdPaths!!.GAME_XML_PATH, sharedBytes)!!
+
+this.write(this.gdXslTemplates!!.translate(xslPath, xslDocumentStr, placeholder, value, xmlDocumentStr), javaOutputFile)
+}
+
+
+                @Throws(Exception::class)
+            
+    open fun process(xslPath: String, xslDocumentStr: String, javaOutputFile: String, sharedBytes: SharedBytes)
+        //nullable = true from not(false or (false and false)) = true
+{
+    //var xslPath = xslPath
+    //var xslDocumentStr = xslDocumentStr
+    //var javaOutputFile = javaOutputFile
+    //var sharedBytes = sharedBytes
+
+    var xmlDocumentStr: String = this.gdData!!.getAsString(this.gdPaths!!.GAME_XML_PATH, sharedBytes)!!
+
+this.write(this.gdXslTemplates!!.translate(xslPath, xslDocumentStr, xmlDocumentStr), javaOutputFile)
+}
+
+
+                @Throws(Exception::class)
+            
+    open fun write(result: String, javaOutputFile: String)
+        //nullable = true from not(false or (false and false)) = true
+{
+var result = result
+    //var javaOutputFile = javaOutputFile
+
+    var outputFile: String = this.gdPaths!!.getOutputPath(javaOutputFile)!!
 
 
     var replaceLT: Replace = Replace(this.gdToolStrings!!.LESS_THAN_ESCAPE_CODE, this.gdToolStrings!!.LESS_THAN)

@@ -57,16 +57,6 @@ open public class GeographicMapTopViewMaskGameLayerBehavior : GeographicMapTopVi
     val unsafePossibleGeographicMapCellPositionList: BasicArrayList = BasicArrayListD()
 
     private val autoStepBlocks: Boolean
-public constructor ()                        
-
-                            : super(16){
-
-
-                            //For kotlin this is before the body of the constructor.
-                    
-this.autoStepBlocks= true
-}
-
 public constructor (maxGravityActionIndex: Int, autoStepBlocks: Boolean, offsetY: Int)                        
 
                             : super(maxGravityActionIndex){

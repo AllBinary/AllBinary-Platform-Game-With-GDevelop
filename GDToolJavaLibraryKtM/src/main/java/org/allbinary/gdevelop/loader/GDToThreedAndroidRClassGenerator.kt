@@ -18,12 +18,9 @@
         import kotlin.reflect.KClass
                     
         
-import java.io.FileInputStream
 import org.allbinary.logic.io.BufferedWriterUtil
-import org.allbinary.logic.io.StreamUtil
 import org.allbinary.string.CommonStrings
-import org.allbinary.logic.string.StringMaker
-import org.allbinary.logic.string.regex.replace.Replace
+import org.w3c.dom.Element
 import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.logic.string.StringUtil
 import org.allbinary.string.CommonSeps
@@ -47,17 +44,15 @@ open public class GDToThreedAndroidRClassGenerator
 
     private val gdToolStrings: GDToolStrings = GDToolStrings.getInstance()!!
 
-    private val GD_KEY: String = "//GD"
+    private val FILE: String = "file"
 
-    private val PUBLIC_STATIC_FINAL_INT: String = "        public static final int "
+    private val RESOURCE: String = "resource"
 
-    private val VALUE: String = " = 0x7f060007;\n"
+    private val EXPRESSION_PARAM: String = "expressionParam"
 
-    private val RESOURCE: String = "        //Resource - "
+    private val NAME_ARRAY: Array<String?> = arrayOf("name")
 
-    private val EXPRESSION_PARAM: String = "        //Expression Param\n"
-
-    private val FILE: String = "        //File - "
+    private val RESOURCE_ATTRIBUTE_NAME_ARRAY: Array<String?> = arrayOf("extension","prefix")
 
     private val SKIPPING: String = "Skipping: "
 
@@ -108,11 +103,14 @@ this.fileAsStringList!!.add(fileAsString)
 }
 
 
-    open fun processResource(threedFileList: BasicArrayList, stringMaker: StringMaker)
+    open fun processResource(threedFileList: BasicArrayList, templateData: GDTemplateData)
         //nullable = true from not(false or (false and false)) = true
 {
     //var threedFileList = threedFileList
-    //var stringMaker = stringMaker
+    //var templateData = templateData
+
+    var stringUtil: StringUtil = StringUtil.getInstance()!!
+
 
     var size: Int = this.fileAsStringList!!.size()
 
@@ -127,11 +125,9 @@ this.fileAsStringList!!.add(fileAsString)
 
         {
 fileAsString= this.fileAsStringList!!.get(index) as String
-stringMaker!!.append(this.FILE)
-stringMaker!!.append(this.commonSeps!!.QUOTE)
-stringMaker!!.append(fileAsString)
-stringMaker!!.append(this.commonSeps!!.QUOTE)
-stringMaker!!.append(this.commonSeps!!.NEW_LINE)
+
+    var fileElement: Element = templateData!!.add(this.FILE, this.NAME_ARRAY, arrayOf(fileAsString))!!
+
 
     var extensionList: BasicArrayList = this.gdToolStrings!!.getExtensions(threedFileList, fileAsString)!!
 
@@ -158,27 +154,20 @@ extension= extensionList!!.get(index3) as String
                         
                                     {
                                     list.add(extension)
-stringMaker!!.append(this.RESOURCE)
-stringMaker!!.append(this.commonSeps!!.QUOTE)
-stringMaker!!.append(extension)
-stringMaker!!.append(this.commonSeps!!.QUOTE)
-stringMaker!!.append(this.commonSeps!!.NEW_LINE)
 
-    
-                        if(extension == StringUtil.getInstance()!!.NULL_STRING)
+    var prefix: String = if(extension == stringUtil!!.NULL_STRING) {
+                            
+                            this.commonSeps!!.COMMENT
                         
-                                    {
-                                    stringMaker!!.append(this.commonSeps!!.COMMENT)
+                            } else {
+                            stringUtil!!.EMPTY_STRING
+                            }
+    
+
+templateData!!.add(fileElement, this.RESOURCE, this.RESOURCE_ATTRIBUTE_NAME_ARRAY, arrayOf(extension,prefix))
 
                                     }
                                 
-stringMaker!!.append(this.PUBLIC_STATIC_FINAL_INT)
-stringMaker!!.append(fileAsString)
-stringMaker!!.append(extension)
-stringMaker!!.append(this.VALUE)
-
-                                    }
-                                
 }
 
 }
@@ -186,11 +175,11 @@ stringMaker!!.append(this.VALUE)
 }
 
 
-    open fun processExpressionParam(threedFileList: BasicArrayList, stringMaker: StringMaker)
+    open fun processExpressionParam(threedFileList: BasicArrayList, templateData: GDTemplateData)
         //nullable = true from not(false or (false and false)) = true
 {
     //var threedFileList = threedFileList
-    //var stringMaker = stringMaker
+    //var templateData = templateData
 
     var size: Int = this.paramList!!.size()
 
@@ -205,10 +194,7 @@ stringMaker!!.append(this.VALUE)
 
         {
 param= this.paramList!!.get(index) as String
-stringMaker!!.append(this.EXPRESSION_PARAM)
-stringMaker!!.append(this.PUBLIC_STATIC_FINAL_INT)
-stringMaker!!.append(param)
-stringMaker!!.append(this.VALUE)
+templateData!!.add(this.EXPRESSION_PARAM, this.NAME_ARRAY, arrayOf(param))
 }
 
 }
@@ -221,36 +207,18 @@ stringMaker!!.append(this.VALUE)
 {
     //var threedFileList = threedFileList
 
-    var stringMaker: StringMaker = StringMaker()
+    var templateData: GDTemplateData = GDTemplateData()
 
-stringMaker!!.append(this.GD_KEY)
-stringMaker!!.append(this.commonSeps!!.NEW_LINE)
-this.processResource(threedFileList, stringMaker)
-this.processExpressionParam(threedFileList, stringMaker)
+this.processResource(threedFileList, templateData)
+this.processExpressionParam(threedFileList, templateData)
 
-    var R_ORIGINAL: String = this.gdPaths!!.ROOT_PATH +"platform\\android\\GDGameThreedAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.original"
+    var R_ORIGINAL: String = this.gdPaths!!.getTemplatePath(this.gdPaths!!.ROOT_PATH +"platform\\android\\GDGameThreedAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.xsl")!!
 
 
-    var R: String = this.gdPaths!!.GEN_PATH +"platform\\android\\GDGameThreedAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.java"
+    var R: String = this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"platform\\android\\GDGameThreedAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.java")!!
 
 
-    var streamUtil: StreamUtil = StreamUtil.getInstance()!!
-
-
-    var sharedBytes: SharedBytes = SharedBytes.getInstance()!!
-
-sharedBytes!!.outputStream!!.reset()
-
-    var fileInputStream: FileInputStream = FileInputStream(R_ORIGINAL)
-
-
-    var androidRFileAsString: String = streamUtil!!.getByteArray.toCharArray()
-
-
-    var replace: Replace = Replace(this.GD_KEY, stringMaker!!.toString())
-
-
-    var newFileAsString: String = replace.all(androidRFileAsString)!!
+    var newFileAsString: String = GDTemplateUtil.getInstance()!!.process(R_ORIGINAL, templateData)!!
 
 this.logUtil!!.putF(this.gdToolStrings!!.FILENAME +R, this, this.commonStrings!!.PROCESS)
 this.bufferedWriterUtil!!.overwrite(R, newFileAsString)

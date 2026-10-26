@@ -18,14 +18,11 @@
         import kotlin.reflect.KClass
                     
         
-import java.io.FileInputStream
 import org.allbinary.data.CamelCaseUtil
 import org.allbinary.gdevelop.json.GDProject
 import org.allbinary.logic.io.BufferedWriterUtil
-import org.allbinary.logic.io.StreamUtil
 import org.allbinary.string.CommonStrings
 import org.allbinary.logic.string.StringMaker
-import org.allbinary.logic.string.regex.replace.Replace
 import org.allbinary.logic.communication.log.LogUtil
 import org.allbinary.logic.string.StringUtil
 import org.allbinary.string.CommonSeps
@@ -51,17 +48,19 @@ open public class GDToThreedAndroidResourcesGradleGenerator
 
     private val gdResources: GDResources = GDResources.getInstance()!!
 
-    private val GD_KEY: String = "//GD"
+    private val RESOURCE: String = "resource"
 
-    private val PUBLIC_FINAL_STRING: String = "    public final int "
+    private val SOUND: String = "sound"
 
-    private val VALUE_RESOURCE_START: String = " = R.raw."
+    private val BLANK_RESOURCE: String = "blank"
 
-    private val VALUE_RESOURCE_END: String = ";\n"
+    private val NAME_ARRAY: Array<String?> = arrayOf("name")
 
-    private val GD_KEY_NAME: String = "<name>"
+    private val RESOURCE_ATTRIBUTE_NAME_ARRAY: Array<String?> = arrayOf("name","prefix")
 
-    private val BLANK_LINE: String = "public final int blank = R.raw.blank;\n"
+    private val NO_ATTRIBUTE_ARRAY: Array<String?> = arrayOf()
+
+    private val NAME: String = "name"
 
     private val resourceList: BasicArrayList = BasicArrayListD()
 
@@ -106,11 +105,11 @@ this.resourceList!!.add(resourceString)
 }
 
 
-    open fun processResource(threedFileList: BasicArrayList, stringMaker: StringMaker)
+    open fun processResource(threedFileList: BasicArrayList, templateData: GDTemplateData)
         //nullable = true from not(false or (false and false)) = true
 {
     //var threedFileList = threedFileList
-    //var stringMaker = stringMaker
+    //var templateData = templateData
 
     var stringUtil: StringUtil = StringUtil.getInstance()!!
 
@@ -159,15 +158,15 @@ resourceString= this.resourceList!!.get(index) as String
         {
 extension= extensionList!!.get(index3) as String
 
-    
-                        if(extension == stringUtil!!.NULL_STRING)
+    var prefix: String = if(extension == stringUtil!!.NULL_STRING) {
+                            
+                            this.commonSeps!!.COMMENT +this.gdToolStrings!!.NOT_USED_FOR_THREED_GAMES
                         
-                                    {
-                                    stringMaker!!.append(this.commonSeps!!.COMMENT)
-stringMaker!!.append(this.gdToolStrings!!.NOT_USED_FOR_THREED_GAMES)
+                            } else {
+                            stringUtil!!.EMPTY_STRING
+                            }
+    
 
-                                    }
-                                
 
     
                         if(resource.indexOf(this.gdToolStrings!!.BLANK) >= 0)
@@ -177,13 +176,7 @@ stringMaker!!.append(this.gdToolStrings!!.NOT_USED_FOR_THREED_GAMES)
 
                                     }
                                 
-stringMaker!!.append(this.PUBLIC_FINAL_STRING)
-stringMaker!!.append(resource)
-stringMaker!!.append(extension)
-stringMaker!!.append(this.VALUE_RESOURCE_START)
-stringMaker!!.append(resource)
-stringMaker!!.append(extension)
-stringMaker!!.append(this.VALUE_RESOURCE_END)
+templateData!!.add(this.RESOURCE, this.RESOURCE_ATTRIBUTE_NAME_ARRAY, arrayOf(resource +extension,prefix))
 }
 
 }
@@ -198,16 +191,14 @@ stringMaker!!.append(this.VALUE_RESOURCE_END)
 {
     //var threedFileList = threedFileList
 
-    var resourceStringMaker: StringMaker = StringMaker()
+    var templateData: GDTemplateData = GDTemplateData()
 
-resourceStringMaker!!.append(this.GD_KEY)
-resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
-this.processResource(threedFileList, resourceStringMaker)
+this.processResource(threedFileList, templateData)
 
-    var RESOURCE_ORIGINAL: String = this.gdPaths!!.ROOT_PATH +"platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.original"
+    var RESOURCE_ORIGINAL: String = this.gdPaths!!.getTemplatePath(this.gdPaths!!.ROOT_PATH +"platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.xsl")!!
 
 
-    var RESOURCE: String = this.gdPaths!!.GEN_PATH +"platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java"
+    var RESOURCE: String = this.gdPaths!!.getOutputPath(this.gdPaths!!.GEN_PATH +"platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java")!!
 
 
     var camelCaseUtil: CamelCaseUtil = CamelCaseUtil.getInstance()!!
@@ -216,23 +207,7 @@ this.processResource(threedFileList, resourceStringMaker)
     var stringMaker: StringMaker = StringMaker()
 
 
-    var streamUtil: StreamUtil = StreamUtil.getInstance()!!
-
-
-    var sharedBytes: SharedBytes = SharedBytes.getInstance()!!
-
-sharedBytes!!.outputStream!!.reset()
-
-    var fileInputStream: FileInputStream = FileInputStream(RESOURCE_ORIGINAL)
-
-
-    var androidRFileAsString: String = streamUtil!!.getByteArray.toCharArray()
-
-
-    var replace2: Replace = Replace(this.GD_KEY_NAME, camelCaseUtil!!.getAsCamelCase(this.packageName, stringMaker)!!.lowercase())
-
-
-    var newFileAsString2: String = replace2.all(androidRFileAsString)!!
+    var name: String = camelCaseUtil!!.getAsCamelCase(this.packageName, stringMaker)!!.lowercase()!!
 
 
     var size: Int = this.gdResources!!.playSoundAndroidResourceNameList!!.size()
@@ -248,12 +223,7 @@ sharedBytes!!.outputStream!!.reset()
 
         {
 resource= this.gdResources!!.playSoundAndroidResourceNameList!!.get(index) as String
-resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
-resourceStringMaker!!.append(this.PUBLIC_FINAL_STRING)
-resourceStringMaker!!.append(resource)
-resourceStringMaker!!.append(this.VALUE_RESOURCE_START)
-resourceStringMaker!!.append(resource)
-resourceStringMaker!!.append(this.VALUE_RESOURCE_END)
+templateData!!.add(this.SOUND, this.NAME_ARRAY, arrayOf(resource))
 }
 
 
@@ -261,16 +231,12 @@ resourceStringMaker!!.append(this.VALUE_RESOURCE_END)
                         if(!this.isBlank)
                         
                                     {
-                                    resourceStringMaker!!.append(this.commonSeps!!.NEW_LINE)
-resourceStringMaker!!.append(this.BLANK_LINE)
+                                    templateData!!.add(this.BLANK_RESOURCE, this.NO_ATTRIBUTE_ARRAY, this.NO_ATTRIBUTE_ARRAY)
 
                                     }
                                 
 
-    var replace: Replace = Replace(this.GD_KEY, resourceStringMaker!!.toString())
-
-
-    var newFileAsString: String = replace.all(newFileAsString2)!!
+    var newFileAsString: String = GDTemplateUtil.getInstance()!!.process(RESOURCE_ORIGINAL, templateData, arrayOf(this.NAME), arrayOf(name))!!
 
 this.logUtil!!.putF(this.gdToolStrings!!.FILENAME +RESOURCE, this, this.commonStrings!!.PROCESS)
 this.bufferedWriterUtil!!.overwrite(RESOURCE, newFileAsString)

@@ -23,7 +23,6 @@
 import org.allbinary.data.CamelCaseUtil
 import org.allbinary.gdevelop.json.GDLayout
 import org.allbinary.logic.string.StringMaker
-import org.allbinary.logic.string.regex.replace.Replace
 
 open public class GDToAllBinaryCanvasGenerator : GDTransformGenerator {
         
@@ -82,13 +81,7 @@ this.stringMaker!!.delete(0, this.stringMaker!!.length())
 
     var androidRFileAsString: String = this.gdData!!.getAsString(this.origXslPath, sharedBytes)!!
 
-
-    var replace2: Replace = Replace(this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, this.index.toString())
-
-
-    var updatedXslDocumentStr: String = replace2.all(androidRFileAsString)!!
-
-this.process(updatedXslDocumentStr, canvasJavaFile, sharedBytes)
+this.process(this.origXslPath, androidRFileAsString, this.gdToolStrings!!.GD_CURRENT_LAYOUT_INDEX, this.index.toString(), canvasJavaFile, sharedBytes)
 }
 
 

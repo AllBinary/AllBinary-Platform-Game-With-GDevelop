@@ -42,15 +42,13 @@ open public class GDGame : org.allbinary.game.GDGameMIDlet
                 , Pointer.Listener {
         
 
-    val logUtil: LogUtil = LogUtil.getInstance()!!
-
     private val DEVICE_ID: Int = 0
 
     private val playNToAllBinaryKeyInputUtil: PlayNToAllBinaryKeyInputUtil = PlayNToAllBinaryKeyInputUtil.getInstance()!!
 
     private val rawKeyEventHandler: RawKeyEventHandler = RawKeyEventHandler.getInstance()!!
 
-    private var motionRecognizer: AllMotionRecognizer = AllMotionRecognizer()
+    private val motionRecognizer: AllMotionRecognizer = AllMotionRecognizer()
 public constructor ()                        
 
                             : super(GDGameClientInformationInterfaceFactory.getFactoryInstance()){
@@ -58,7 +56,7 @@ public constructor ()
 
                             //For kotlin this is before the body of the constructor.
                     
-GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION= GDGameClientInformationInterfaceFactory.getFactoryInstance()!!.getInstance()
+GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance()!!.getInstance())
 
     var motionGesturesHandler: BasicMotionGesturesHandler = this.motionRecognizer!!.getMotionGestureRecognizer()!!.getMotionGesturesHandler()!!
 
