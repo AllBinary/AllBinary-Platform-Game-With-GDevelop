@@ -289,7 +289,7 @@ Created By: Travis Berthelot
                         </xsl:for-each>
 
                             //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
-                            globals.lastPointGDNode.process(motionGestureEvent, globals.lastMotionGestureInput);
+                            globals.lastPointGDNode.processMotion(motionGestureEvent, globals.lastMotionGestureInput);
 
                             //MouseButton
                         <xsl:call-template name="processNodesForMotionGestureEvent" >

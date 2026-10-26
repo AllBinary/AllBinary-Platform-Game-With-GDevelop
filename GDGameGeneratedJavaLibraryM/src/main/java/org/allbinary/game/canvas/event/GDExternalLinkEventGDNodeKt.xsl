@@ -67,8 +67,8 @@ Created By: Travis Berthelot
                                     return true
                                 }
 
-                                override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
-                                    super.processStats(motionGestureEvent)
+                                override fun processMotion(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                                    super.processMotionStats(motionGestureEvent)
 
                                     var result: Boolean = true
 
@@ -82,13 +82,13 @@ Created By: Travis Berthelot
                                                 <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if>
                                                 <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                                                 //Event - //BuiltinCommonInstructions::Link - call - start
-                                                <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process(motionGestureEvent, lastMotionGestureInput)
+                                                <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processMotion(motionGestureEvent, lastMotionGestureInput)
                                             </xsl:if>
                                         </xsl:if>
 
                                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                                     //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process(motionGestureEvent, lastMotionGestureInput)
+                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
                                         </xsl:if>
 
                                         <xsl:if test="position() = last()" >
@@ -97,7 +97,7 @@ Created By: Travis Berthelot
                                                 <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if>
                                                 <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                                                 //Event - //BuiltinCommonInstructions::Link - call - end
-                                                <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process(motionGestureEvent, lastMotionGestureInput)
+                                                <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processMotion(motionGestureEvent, lastMotionGestureInput)
                                             </xsl:if>
                                         </xsl:if>
 

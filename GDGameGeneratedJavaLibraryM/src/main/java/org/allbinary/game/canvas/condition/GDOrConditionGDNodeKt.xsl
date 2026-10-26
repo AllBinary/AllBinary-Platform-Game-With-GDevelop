@@ -79,9 +79,9 @@ Created By: Travis Berthelot
                         }
 
                         @Throws(Exception::class)
-                        override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                        override fun processMotion(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
 
-                            super.processStats(motionGestureEvent)
+                            super.processMotionStats(motionGestureEvent)
 
                             //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, this.commonStrings.PROCESS)
 
@@ -90,8 +90,8 @@ Created By: Travis Berthelot
                             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                             //subInstructions - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                             //subInstructions - //Condition - //<xsl:value-of select="type/value" /> - call
-                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process(motionGestureEvent, lastMotionGestureInput)) {
-                                this.processSub(motionGestureEvent, lastMotionGestureInput)
+                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)) {
+                                this.processMotionSub(motionGestureEvent, lastMotionGestureInput)
                                 return true
                             }
                             </xsl:for-each>
@@ -111,7 +111,7 @@ Created By: Travis Berthelot
                             //subInstructions - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                             //subInstructions - //Condition - //<xsl:value-of select="type/value" /> - call
                             if(<xsl:if test="$inverted = 'true'" >!</xsl:if>gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(gameLayerArray)) {
-                                this.processSub(gameLayerArray)
+                                this.processArraySub(gameLayerArray)
                                 return true
                             }
                             </xsl:for-each>
@@ -146,25 +146,25 @@ Created By: Travis Berthelot
                         }
 
                         @Throws(Exception::class)
-                        override fun processSub(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput) {
+                        override fun processMotionSub(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput) {
                             <xsl:for-each select=".." >
 
                                 <xsl:call-template name="actionsProcessing" >
                                     <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
-                                    <xsl:with-param name="methodCall" >process(motionGestureEvent, lastMotionGestureInput)</xsl:with-param>
+                                    <xsl:with-param name="methodCall" >processMotion(motionGestureEvent, lastMotionGestureInput)</xsl:with-param>
                                 </xsl:call-template>
 
                                 <xsl:for-each select="events" >
                                     <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             //var nodeId: Event = <xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" />
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process(motionGestureEvent, lastMotionGestureInput)
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
                                     </xsl:if>
                                     <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                             //var nodeId: Event = <xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" />
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process(motionGestureEvent, lastMotionGestureInput)
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processMotion(motionGestureEvent, lastMotionGestureInput)
                                     </xsl:if>
                                 </xsl:for-each>
 
@@ -172,7 +172,7 @@ Created By: Travis Berthelot
                         }
 
                         @Throws(Exception::class)
-                        override fun processSub(gameLayerArray: Array&lt;GDGameLayer?&gt;) {
+                        override fun processArraySub(gameLayerArray: Array&lt;GDGameLayer?&gt;) {
                             <xsl:for-each select=".." >
 
                                 <xsl:call-template name="actionsProcessing" >
@@ -201,22 +201,22 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >
-                        override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                        override fun processExtensionParams(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
                             //Map from object array with action params
                             val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
-                            this.process(gameLayer, intArray[3], intArray[5])
+                            this.processGDGameLayer(gameLayer, intArray[3], intArray[5])
 
                             return true
                         }
                         </xsl:if>
 
-                        override fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                        override fun processGDGameLayer(gameLayer: GDGameLayer, x: Int, y: Int) {
                             val gdObject: GDObject = gameLayer.gdObject
-                            this.process(gdObject, x, y)
+                            this.processGDObject(gdObject, x, y)
                         }
 
-                        override fun process(gdObject: GDObject, x: Int, y: Int) {
+                        override fun processGDObject(gdObject: GDObject, x: Int, y: Int) {
                             throw RuntimeException()
                         }
 

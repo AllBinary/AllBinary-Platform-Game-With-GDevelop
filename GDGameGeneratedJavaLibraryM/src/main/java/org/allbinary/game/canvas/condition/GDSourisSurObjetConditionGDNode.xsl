@@ -189,8 +189,8 @@ Created By: Travis Berthelot
 
                         //lastPointGDNode
                         @Override
-                        public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
-                            super.processStats(motionGestureEvent);
+                        public boolean processMotion(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+                            super.processMotionStats(motionGestureEvent);
 
                             //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, this.commonStrings.PROCESS);
                                 <xsl:for-each select="parameters" >
@@ -217,7 +217,7 @@ Created By: Travis Berthelot
                             
                                 //<xsl:value-of select="text()" />Rectangle = (Rectangle) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RectangleList.get(index);
                                 //this.logUtil.putF("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle - Not Null", this, this.commonStrings.PROCESS);
-                                //final GPoint point = displayPointScalar.process(motionGestureEvent.getCurrentPoint());
+                                //final GPoint point = displayPointScalar.processMotion(motionGestureEvent.getCurrentPoint());
                                 //final GPoint rectangePoint = <xsl:value-of select="text()" />Rectangle.getPoint();
                                 
                                 gameLayer = (GDGameLayer) <xsl:if test="not(contains($hasObjectGroup, 'found'))" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:value-of select="text()" />GDGameLayerList.get(index);
@@ -365,24 +365,24 @@ Created By: Travis Berthelot
 
                         <xsl:if test="contains($forExtension, 'found')" >
                         @Override
-                        public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
+                        public boolean processExtensionParams(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
                             
                             //Map from object array with action params
                             final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
-                            this.process(gameLayer, intArray[3], intArray[5]);
+                            this.processGDGameLayer(gameLayer, intArray[3], intArray[5]);
 
                             return true;
                         }
                         </xsl:if>
 
                         @Override
-                        public void process(final GDGameLayer gameLayer, final int x, final int y) {
+                        public void processGDGameLayer(final GDGameLayer gameLayer, final int x, final int y) {
                             final GDObject gdObject = gameLayer.gdObject;
-                            this.process(gdObject, x, y);
+                            this.processGDObject(gdObject, x, y);
                         }
 
                         @Override
-                        public void process(final GDObject gdObject, final int x, final int y) {
+                        public void processGDObject(final GDObject gdObject, final int x, final int y) {
                             throw new RuntimeException();
                         }
                                                 

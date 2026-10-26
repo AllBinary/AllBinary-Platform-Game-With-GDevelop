@@ -171,7 +171,7 @@ Created By: Travis Berthelot
                 }                
 
                 @Override
-                public boolean process(final int index3) throws Exception {
+                public boolean processIndex(final int index3) throws Exception {
                     super.processStats();
                     
                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
@@ -181,8 +181,8 @@ Created By: Travis Berthelot
                 }                
 
                 @Override
-                public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
-                    super.processStats(motionGestureEvent);
+                public boolean processMotion(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+                    super.processMotionStats(motionGestureEvent);
 
                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, this.commonStrings.PROCESS);
 

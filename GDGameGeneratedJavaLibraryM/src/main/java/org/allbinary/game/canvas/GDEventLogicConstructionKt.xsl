@@ -2428,7 +2428,7 @@ Created By: Travis Berthelot
 
                             globals.motionEventListOfList[globals.inUseMotionEventListIndex]!!.add(motionGestureEvent)
 
-                            //globals.lastPointGDNode.process(motionGestureEvent, lastMotionGestureInput)
+                            //globals.lastPointGDNode.processMotion(motionGestureEvent, lastMotionGestureInput)
 
         <xsl:for-each select="events" >
 
@@ -2436,23 +2436,23 @@ Created By: Travis Berthelot
 
                 <xsl:if test="type/value = 'MouseButtonReleased'" >
                     ////MouseButtonReleased - eventListener
-                    //globals.mouseButtonReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput)
+                    //globals.mouseButtonReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processMotion(motionGestureEvent, lastMotionGestureInput)
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonFromTextReleased'" >
                     ////MouseButtonFromTextReleased - //MouseButtonReleased - eventListener
-                    //globals.mouseButtonFromTextReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput)
+                    //globals.mouseButtonFromTextReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processMotion(motionGestureEvent, lastMotionGestureInput)
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonPressed'" >
                     ////MouseButtonPressed - eventListener
-                    //globals.mouseButtonPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput)
+                    //globals.mouseButtonPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processMotion(motionGestureEvent, lastMotionGestureInput)
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonFromTextPressed'" >
                     ////MouseButtonFromTextPressed - //MouseButtonPressed - eventListener
-                    //globals.mouseButtonFromTextPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput)
+                    //globals.mouseButtonFromTextPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processMotion(motionGestureEvent, lastMotionGestureInput)
                 </xsl:if>
                 <xsl:if test="type/value = 'SourisBouton'" >
                     ////MouseButton - //SourisBouton - eventListener
-                    //globals.mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput)
+                    //globals.mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processMotion(motionGestureEvent, lastMotionGestureInput)
                 </xsl:if>
 
             </xsl:for-each>
@@ -2480,7 +2480,7 @@ Created By: Travis Berthelot
 
                     private val touchMotionGestureFactory: TouchMotionGestureFactory = TouchMotionGestureFactory.getInstance()
 
-                    open public override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                    open public override fun processMotion(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
                 <xsl:call-template name="actionIdsMovedMotionGestureEvent" >
                     <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                 </xsl:call-template>
@@ -2553,8 +2553,8 @@ Created By: Travis Berthelot
                     globals.spriteMultitouchJoystickGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = object : GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
 
-                    open public override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
-                        return gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process(motionGestureEvent, lastMotionGestureInput)
+                    open public override fun processMotion(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                        return gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
 
                     }
 
@@ -2579,7 +2579,7 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                     open public override fun processScrolling(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
-                        return gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process(motionGestureEvent, lastMotionGestureInput)
+                        return gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
 
                     }
                 }

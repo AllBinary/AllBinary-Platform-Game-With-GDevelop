@@ -117,7 +117,7 @@ Created By: Travis Berthelot
                                 private val mappedFloatArray: FloatArray = FloatArray(<xsl:value-of select="count(../parameters) + 1" />)
 
                                 //eventsFunctionsGDNode - event - <xsl:value-of select="position()" /> - //extension
-                                override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                                override fun processExtensionParams(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
                                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
                 <xsl:for-each select="../objectGroups" >
@@ -245,14 +245,14 @@ Created By: Travis Berthelot
                                 <xsl:text>&#10;</xsl:text>
 
                                 //eventsFunctionsGDNode - //extension
-                                override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                                override fun processExtensionParams(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
                                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "mapping", this, this.commonStrings.PROCESS)
 
                         <xsl:for-each select="events" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             <xsl:text>&#10;</xsl:text><xsl:text>
-                            </xsl:text><xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />_GDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(objectArray, intArray, longArray, floatArray)
+                            </xsl:text><xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />_GDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processExtensionParams(objectArray, intArray, longArray, floatArray)
                             </xsl:if>
                         </xsl:for-each>
 

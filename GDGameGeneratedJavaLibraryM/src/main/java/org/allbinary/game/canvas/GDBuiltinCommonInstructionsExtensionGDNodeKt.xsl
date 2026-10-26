@@ -163,7 +163,7 @@ Created By: Travis Berthelot
 
                 }
 
-                override fun process(index3: Int): Boolean {
+                override fun processIndex(index3: Int): Boolean {
                     super.processStats()
 
                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
@@ -172,8 +172,8 @@ Created By: Travis Berthelot
 
                 }
 
-                override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
-                    super.processStats(motionGestureEvent)
+                override fun processMotion(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                    super.processMotionStats(motionGestureEvent)
 
                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, this.commonStrings.PROCESS)
 

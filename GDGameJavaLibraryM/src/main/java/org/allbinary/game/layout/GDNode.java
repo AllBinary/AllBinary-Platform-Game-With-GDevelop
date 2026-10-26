@@ -59,7 +59,7 @@ public class GDNode
     }
     
     //This call is for mapping extension params to normal params - currently for each event/condition/action type
-    public boolean process(final Object[] objecArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
+    public boolean processExtensionParams(final Object[] objecArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
         return true;
     }
 
@@ -93,7 +93,7 @@ public class GDNode
         return false;
     }
     
-    public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+    public boolean processMotion(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
         return false;
     }
 
@@ -101,22 +101,22 @@ public class GDNode
         return false;
     }
     
-    protected void processStats(final MotionGestureEvent motionGestureEvent) {
+    protected void processMotionStats(final MotionGestureEvent motionGestureEvent) {
         this.nodeStatsFactory.push(5, this.name);
     }
 
-    public boolean process(final int index) throws Exception {
+    public boolean processIndex(final int index) throws Exception {
         return false;
     }
     
-    protected void processStats(final int index) throws Exception {
+    protected void processIndexStats(final int index) throws Exception {
         this.nodeStatsFactory.push(6, this.name);
     }
 
     public void processEnd() throws Exception {
     }
     
-    public void processEnd(final int index, final int createIndex) throws Exception {
+    public void processIndexEnd(final int index, final int createIndex) throws Exception {
         
     }
 
@@ -162,11 +162,11 @@ public class GDNode
     }
 
     //Overridden by generated nodes so Kotlin has a method to override
-    public void process(final GDGameLayer gameLayer, final int x, final int y) {
+    public void processGDGameLayer(final GDGameLayer gameLayer, final int x, final int y) {
         throw new RuntimeException();
     }
 
-    public void process(final GDObject gdObject, final int x, final int y) {
+    public void processGDObject(final GDObject gdObject, final int x, final int y) {
         throw new RuntimeException();
     }
 
@@ -174,11 +174,11 @@ public class GDNode
         throw new RuntimeException();
     }
 
-    public void processSub(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+    public void processMotionSub(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
         throw new RuntimeException();
     }
 
-    public void processSub(final GDGameLayer[] gameLayerArray) throws Exception {
+    public void processArraySub(final GDGameLayer[] gameLayerArray) throws Exception {
         throw new RuntimeException();
     }
 

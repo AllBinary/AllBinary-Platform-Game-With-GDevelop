@@ -123,7 +123,7 @@ Created By: Travis Berthelot
                                     <xsl:with-param name="objectOverride" ><xsl:value-of select="$name" />GDGameLayer</xsl:with-param>
                                 </xsl:call-template>
 
-                                <xsl:if test="not(contains($forExtension, 'found'))" >gdExtensionGDNodes.</xsl:if><xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null)
+                                <xsl:if test="not(contains($forExtension, 'found'))" >gdExtensionGDNodes.</xsl:if><xsl:value-of select="translate(type/value, ':', '_')" />GDNode.processExtensionParams(objectArray, intArray, null, null)
 
                             }
                         <xsl:if test="contains($hasObjectGroup2, 'found')" >
@@ -139,8 +139,8 @@ Created By: Travis Berthelot
                     }
 
 
-                    override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
-                        super.processStats(motionGestureEvent)
+                    override fun processMotion(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                        super.processMotionStats(motionGestureEvent)
 
                         //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
@@ -148,8 +148,8 @@ Created By: Travis Berthelot
                     }
 
 
-                    override fun process(index: Int): Boolean {
-                        super.processStats(index)
+                    override fun processIndex(index: Int): Boolean {
+                        super.processIndexStats(index)
 
                         //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, this.commonStrings.PROCESS)
 
@@ -189,7 +189,7 @@ Created By: Travis Berthelot
                                 <xsl:with-param name="objectOverride" ><xsl:value-of select="$name" />GDGameLayer</xsl:with-param>
                             </xsl:call-template>
 
-                            <xsl:if test="not(contains($forExtension, 'found'))" >gdExtensionGDNodes.</xsl:if><xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null)
+                            <xsl:if test="not(contains($forExtension, 'found'))" >gdExtensionGDNodes.</xsl:if><xsl:value-of select="translate(type/value, ':', '_')" />GDNode.processExtensionParams(objectArray, intArray, null, null)
 
 
                         }
@@ -207,7 +207,7 @@ Created By: Travis Berthelot
                             <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
                         </xsl:call-template>
 
-                        <xsl:if test="not(contains($forExtension, 'found'))" >gdExtensionGDNodes.</xsl:if><xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null)
+                        <xsl:if test="not(contains($forExtension, 'found'))" >gdExtensionGDNodes.</xsl:if><xsl:value-of select="translate(type/value, ':', '_')" />GDNode.processExtensionParams(objectArray, intArray, null, null)
 
                         </xsl:if>
 
@@ -229,7 +229,7 @@ Created By: Travis Berthelot
                             <xsl:with-param name="objectOverride" ><xsl:value-of select="$name" />GDGameLayer</xsl:with-param>
                         </xsl:call-template>
 
-                        <xsl:if test="not(contains($forExtension, 'found'))" >gdExtensionGDNodes.</xsl:if><xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null)
+                        <xsl:if test="not(contains($forExtension, 'found'))" >gdExtensionGDNodes.</xsl:if><xsl:value-of select="translate(type/value, ':', '_')" />GDNode.processExtensionParams(objectArray, intArray, null, null)
 
                         <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
@@ -244,14 +244,14 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($forExtension, 'found')" >
                     //extension=<xsl:value-of select="$extensionNameAndExtensionFunction" /> - //Called from inside of Extension
 
-                    override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                    override fun processExtensionParams(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
                         //Map from object array with action params
                         <xsl:call-template name="extensionMapping" >
                             <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
                         </xsl:call-template>
 
-                        return <xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null)
+                        return <xsl:value-of select="translate(type/value, ':', '_')" />GDNode.processExtensionParams(objectArray, intArray, null, null)
 
                     }
                     </xsl:if>

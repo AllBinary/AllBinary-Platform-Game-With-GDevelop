@@ -95,7 +95,7 @@ Created By: Travis Berthelot
                         //createByNameActionProcess - //CreateByName - call
                         this.processCreateByName(<xsl:value-of select="$name" />, createString, createIndex);
                         
-                        this.processEnd(((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(createIndex)).size() - 1, createIndex);
+                        this.processIndexEnd(((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(createIndex)).size() - 1, createIndex);
 
                         return true;
                         </xsl:if>
@@ -212,7 +212,7 @@ Created By: Travis Berthelot
                         //createByNameActionProcess - //CreateByName - call
                         this.processCreateByName(<xsl:value-of select="$name" />, createString, createIndex);
                         
-                        this.processEnd(((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(createIndex)).size() - 1, createIndex);
+                        this.processIndexEnd(((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(createIndex)).size() - 1, createIndex);
 
                         <xsl:if test="contains($hasObjectGroup, 'found')" >
                             }
@@ -272,8 +272,8 @@ Created By: Travis Berthelot
                     </xsl:if>
                     
                     @Override
-                    public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
-                        super.processStats(motionGestureEvent);
+                    public boolean processMotion(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+                        super.processMotionStats(motionGestureEvent);
                         
                         //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
                         
@@ -420,24 +420,24 @@ Created By: Travis Berthelot
 
                         <xsl:if test="contains($forExtension, 'found')" >
                         @Override
-                        public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
+                        public boolean processExtensionParams(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
                             
                             //Map from object array with action params
                             final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
-                            this.process(gameLayer, intArray[3], intArray[5]);
+                            this.processGDGameLayer(gameLayer, intArray[3], intArray[5]);
 
                             return true;
                         }
                         </xsl:if>
 
                         @Override
-                        public void process(final GDGameLayer gameLayer, final int x, final int y) {
+                        public void processGDGameLayer(final GDGameLayer gameLayer, final int x, final int y) {
                             final GDObject gdObject = gameLayer.gdObject;
-                            this.process(gdObject, x, y);
+                            this.processGDObject(gdObject, x, y);
                         }
 
                         @Override
-                        public void process(final GDObject gdObject, final int x, final int y) {
+                        public void processGDObject(final GDObject gdObject, final int x, final int y) {
                             throw new RuntimeException();
                         }
         
@@ -464,12 +464,12 @@ Created By: Travis Berthelot
                         
                         super.processEndStats();
 
-                        this.processEnd(((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(createIndex)).size() - 1, createIndex);
+                        this.processIndexEnd(((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(createIndex)).size() - 1, createIndex);
                         </xsl:if>
                     }
 
                     @Override
-                    public void processEnd(final int index, final int createIndex) throws Exception {
+                    public void processIndexEnd(final int index, final int createIndex) throws Exception {
                         super.processEndStats();
 
                         //this.logUtil.putF(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, this.commonStrings.END);

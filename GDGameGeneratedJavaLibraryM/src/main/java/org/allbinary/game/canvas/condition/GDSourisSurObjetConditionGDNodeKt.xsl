@@ -191,8 +191,8 @@ Created By: Travis Berthelot
 
                         //lastPointGDNode
                         @Throws(Exception::class)
-                        override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
-                            super.processStats(motionGestureEvent)
+                        override fun processMotion(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                            super.processMotionStats(motionGestureEvent)
 
                             //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, this.commonStrings.PROCESS)
                                 <xsl:for-each select="parameters" >
@@ -219,7 +219,7 @@ Created By: Travis Berthelot
 
                                 //<xsl:value-of select="text()" />Rectangle = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RectangleList.get(index) as Rectangle
                                 //this.logUtil.putF("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle - Not Null", this, this.commonStrings.PROCESS)
-                                //val point: GPoint = displayPointScalar.process(motionGestureEvent.getCurrentPoint())
+                                //val point: GPoint = displayPointScalar.processMotion(motionGestureEvent.getCurrentPoint())
                                 //val rectangePoint: GPoint = <xsl:value-of select="text()" />Rectangle.getPoint()
 
                                 gameLayer = <xsl:if test="not(contains($hasObjectGroup, 'found'))" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:value-of select="text()" />GDGameLayerList.get(index) as GDGameLayer
@@ -366,22 +366,22 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                         <xsl:if test="contains($forExtension, 'found')" >
-                        override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                        override fun processExtensionParams(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
                             //Map from object array with action params
                             val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
-                            this.process(gameLayer, intArray[3], intArray[5])
+                            this.processGDGameLayer(gameLayer, intArray[3], intArray[5])
 
                             return true
                         }
                         </xsl:if>
 
-                        override fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                        override fun processGDGameLayer(gameLayer: GDGameLayer, x: Int, y: Int) {
                             val gdObject: GDObject = gameLayer.gdObject
-                            this.process(gdObject, x, y)
+                            this.processGDObject(gdObject, x, y)
                         }
 
-                        override fun process(gdObject: GDObject, x: Int, y: Int) {
+                        override fun processGDObject(gdObject: GDObject, x: Int, y: Int) {
                             throw RuntimeException()
                         }
 

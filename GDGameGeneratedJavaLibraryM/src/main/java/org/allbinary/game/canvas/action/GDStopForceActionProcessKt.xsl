@@ -69,8 +69,8 @@ Created By: Travis Berthelot
                     }
 
 
-                    override fun process(index: Int): Boolean {
-                        super.processStats(index)
+                    override fun processIndex(index: Int): Boolean {
+                        super.processIndexStats(index)
 
                         //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
@@ -104,8 +104,8 @@ Created By: Travis Berthelot
                     }
 
 
-                    override fun process(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
-                        super.processStats(motionGestureEvent)
+                    override fun processMotion(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
+                        super.processMotionStats(motionGestureEvent)
 
                         //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
@@ -142,22 +142,22 @@ Created By: Travis Berthelot
 
                         <xsl:if test="contains($forExtension, 'found')" >
 
-                        override fun process(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
+                        override fun processExtensionParams(objectArray: Array&lt;Any?&gt;, intArray: IntArray, longArray: LongArray, floatArray: FloatArray): Boolean {
 
                             //Map from object array with action params
                             val gameLayer: GDGameLayer = objectArray[1] as GDGameLayer
-                            this.process(gameLayer, intArray[3], intArray[5])
+                            this.processGDGameLayer(gameLayer, intArray[3], intArray[5])
 
                             return true
                         }
                         </xsl:if>
 
-                        override fun process(gameLayer: GDGameLayer, x: Int, y: Int) {
+                        override fun processGDGameLayer(gameLayer: GDGameLayer, x: Int, y: Int) {
                             val gdObject: GDObject = gameLayer.gdObject
-                            this.process(gdObject, x, y)
+                            this.processGDObject(gdObject, x, y)
                         }
 
-                        override fun process(gdObject: GDObject, x: Int, y: Int) {
+                        override fun processGDObject(gdObject: GDObject, x: Int, y: Int) {
                             throw RuntimeException()
                         }
     </xsl:template>
