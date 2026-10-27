@@ -82,3 +82,4 @@ export class GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory extends B
     addRectangles() {
     }
 }
+GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.DEFAULT_IMAGE_ANIMATIONS = "Image Animations";

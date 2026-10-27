@@ -383,8 +383,8 @@ Created By: Travis Berthelot
 
                         };
                                         
-                        layerManagerEventListener = new GlobalsLayerManagerEventListener(this);
-                        layerManagerEventHandler.addListener(layerManagerEventListener);
+                        this.layerManagerEventListener = new GlobalsLayerManagerEventListener(this);
+                        layerManagerEventHandler.addListener(this.layerManagerEventListener);
                         
                         this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR);
                     }

@@ -66,6 +66,13 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
 
+                    <xsl:call-template name="playsoundImports" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="musicOrSound" >sound</xsl:with-param>
+                    </xsl:call-template>
+                
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />GameSoundsFactory
                 {
@@ -86,7 +93,7 @@ Created By: Travis Berthelot
 
                         try {
                         
-                            logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
+                            this.logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
 
 <!--
                     <xsl:call-template name="playsound" >
@@ -115,7 +122,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                         } catch(Exception e) {
-                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                            this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
                         }
 
                     }

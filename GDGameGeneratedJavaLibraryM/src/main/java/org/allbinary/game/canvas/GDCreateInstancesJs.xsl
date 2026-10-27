@@ -68,14 +68,18 @@ Created By: Travis Berthelot
                         //final int width = (int) (touchImageResources.<xsl:value-of select="name" />Width(0) / 1.44f);
                         //final int height = (int) (touchImageResources.<xsl:value-of select="name" />Height(0) / 1.44f);
                         <xsl:if test="contains(name, 'joystick_')" >final float joystickScale = GDConfig.getInstance().getScale();</xsl:if>
-                        final int width = (int) (touchImageResources.<xsl:value-of select="name" />Width(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>);
-                        final int height = (int) (touchImageResources.<xsl:value-of select="name" />Height(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>);
+                        final float tempJoystickX = touchImageResources.<xsl:value-of select="name" />Width(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>;
+                        final float tempJoystickY = touchImageResources.<xsl:value-of select="name" />Height(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>;
+                        final int width = (int) tempJoystickX;
+                        final int height = (int) tempJoystickY;
                                 </xsl:if>
                                 <xsl:if test="height != 0 and width != 0" >
                         //final int width = (int) (<xsl:value-of select="width" /> * 1.44f);
                         //final int height = (int) (<xsl:value-of select="height" /> * 1.44f);
-                        final int width = (int) (<xsl:value-of select="width" /> * scaleTouchButtons);
-                        final int height = (int) (<xsl:value-of select="height" /> * scaleTouchButtons);
+                        final float tempNotZeroX = <xsl:value-of select="width" /> * scaleTouchButtons;
+                        final float tempNotZeroY = <xsl:value-of select="height" /> * scaleTouchButtons;
+                        final int width = (int) tempNotZeroX;
+                        final int height = (int) tempNotZeroY;
                                 </xsl:if>
                         final float customScale = scaleTouchButtons;
                             </xsl:if>                            
@@ -84,14 +88,14 @@ Created By: Travis Berthelot
                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
                         //final int width = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth() / 1.44f);
                         //final int height = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight() / 1.44f);
-                        final int width = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth());
-                        final int height = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight());
+                        final int width = (int) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth();
+                        final int height = (int) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight();
                                 </xsl:if>
                                 <xsl:if test="height != 0 and width != 0" >
                         //final int width = (int) (<xsl:value-of select="width" /> * 1.44f);
                         //final int height = (int) (<xsl:value-of select="height" /> * 1.44f);
-                        final int width = (int) (<xsl:value-of select="width" />);
-                        final int height = (int) (<xsl:value-of select="height" />);
+                        final int width = (int) <xsl:value-of select="width" />;
+                        final int height = (int) <xsl:value-of select="height" />;
                                 </xsl:if>
                         final float customScale = 1.0f;
 
@@ -112,8 +116,10 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                         <xsl:if test="not(contains($hasCentreCamera, 'found'))" >
-                        final int <xsl:value-of select="name" />X = (int) (<xsl:value-of select="x" /> * baseLayerScale);
-                        final int <xsl:value-of select="name" />Y = (int) (<xsl:value-of select="y" /> * baseLayerScale);
+                        final float tempX = <xsl:value-of select="x" /> * baseLayerScale;
+                        final float tempY = <xsl:value-of select="y" /> * baseLayerScale;
+                        final int <xsl:value-of select="name" />X = (int) tempX;
+                        final int <xsl:value-of select="name" />Y = (int) tempY;
                         </xsl:if>
 
                         if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.objectArray == nullUtil.NULL_OBJECT_ARRAY) {

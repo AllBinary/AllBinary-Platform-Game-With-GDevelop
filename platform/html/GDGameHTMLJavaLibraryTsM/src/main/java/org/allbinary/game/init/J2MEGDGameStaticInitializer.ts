@@ -66,7 +66,7 @@ public constructor (resourceInitializationArray: ResourceInitialization[], porti
                 //@Throws(Exception.constructor)
             
     initFeatureResources(){
-FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!.add(new GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory());
+FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!.add(new GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory(GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.DEFAULT_IMAGE_ANIMATIONS));
     
 }
 

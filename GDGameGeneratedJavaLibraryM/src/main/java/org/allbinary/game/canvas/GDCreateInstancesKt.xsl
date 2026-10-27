@@ -68,14 +68,18 @@ Created By: Travis Berthelot
                         //var width: Int = (touchImageResources.<xsl:value-of select="name" />Width(0) / 1.44f).toInt()
                         //var height: Int = (touchImageResources.<xsl:value-of select="name" />Height(0) / 1.44f).toInt()
                         <xsl:if test="contains(name, 'joystick_')" >val joystickScale: Float = GDConfig.getInstance().getScale()</xsl:if>
-                        val width: Int = (touchImageResources.<xsl:value-of select="name" />Width(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>).toInt()
-                        val height: Int = (touchImageResources.<xsl:value-of select="name" />Height(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>).toInt()
+                        val tempJoystickX = touchImageResources.<xsl:value-of select="name" />Width(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>;
+                        val tempJoystickY = touchImageResources.<xsl:value-of select="name" />Height(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>;
+                        val width: Int = tempJoystickX.toInt()
+                        val height: Int = tempJoystickY.toInt()
                                 </xsl:if>
                                 <xsl:if test="height != 0 and width != 0" >
                         //var width: Int = (<xsl:value-of select="width" /> * 1.44f).toInt()
                         //var height: Int = (<xsl:value-of select="height" /> * 1.44f).toInt()
-                        val width: Int = (<xsl:value-of select="width" /> * scaleTouchButtons).toInt()
-                        val height: Int = (<xsl:value-of select="height" /> * scaleTouchButtons).toInt()
+                        val tempNotZeroX = <xsl:value-of select="width" /> * scaleTouchButtons;
+                        val tempNotZeroY = <xsl:value-of select="height" /> * scaleTouchButtons;
+                        val width: Int = tempNotZeroX.toInt()
+                        val height: Int = tempNotZeroY.toInt()
                                 </xsl:if>
                         val customScale: Float = scaleTouchButtons
                             </xsl:if>
@@ -90,8 +94,8 @@ Created By: Travis Berthelot
                                 <xsl:if test="height != 0 and width != 0" >
                         //var width: Int = (<xsl:value-of select="width" /> * 1.44f).toInt()
                         //var height: Int = (<xsl:value-of select="height" /> * 1.44f).toInt()
-                        val width: Int = (<xsl:value-of select="width" />).toInt()
-                        val height: Int = (<xsl:value-of select="height" />).toInt()
+                        val width: Int = <xsl:value-of select="width" />.toInt()
+                        val height: Int = <xsl:value-of select="height" />.toInt()
                                 </xsl:if>
                         val customScale: Float = 1.0f
 
@@ -113,8 +117,10 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                         <xsl:if test="not(contains($hasCentreCamera, 'found'))" >
-                        val <xsl:value-of select="name" />X: Int = (<xsl:value-of select="x" /> * baseLayerScale).toInt()
-                        val <xsl:value-of select="name" />Y: Int = (<xsl:value-of select="y" /> * baseLayerScale).toInt()
+                        val tempX = <xsl:value-of select="x" /> * baseLayerScale;
+                        val tempY = <xsl:value-of select="y" /> * baseLayerScale;
+                        val <xsl:value-of select="name" />X: Int = tempX.toInt()
+                        val <xsl:value-of select="name" />Y: Int = tempY.toInt()
                         </xsl:if>
 
                         if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.objectArray == nullUtil.NULL_OBJECT_ARRAY) {

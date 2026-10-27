@@ -70,3 +70,4 @@ export class GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFac
     addRectangles() {
     }
 }
+GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.DEFAULT_EARLY_IMAGE_ANIMATIONS = "Early Image Animations";

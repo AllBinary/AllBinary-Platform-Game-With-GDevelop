@@ -66,6 +66,8 @@ const StdUtil = globalThis.org.allbinary.logic.StdUtil;
 export class GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
         
 
+    public static readonly DEFAULT_EARLY_IMAGE_ANIMATIONS: string = "Early Image Animations";
+
 public constructor (name: string){
             super(name, StdUtil.getInstance()!.createHashtable(), StdUtil.getInstance()!.createHashtable(), StdUtil.getInstance()!.createHashtable());
                     

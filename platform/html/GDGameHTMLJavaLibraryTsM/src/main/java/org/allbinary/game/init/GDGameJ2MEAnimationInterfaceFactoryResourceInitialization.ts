@@ -71,7 +71,7 @@ public constructor (){
     public init(){
 FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!.add(TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.createFactory());
     
-FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!.add(new GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory());
+FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!.add(new GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory(GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.DEFAULT_IMAGE_ANIMATIONS));
     
 FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!.add(new TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory());
     

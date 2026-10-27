@@ -130,15 +130,20 @@ Created By: Travis Berthelot
 
                     companion object {
 
-                    private val instance: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals =
-                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals()
+                    private val instance: Object = NullUtil.getInstance().NULL_OBJECT;
 
                     open public fun getInstanceOrCreate(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals {
-                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance
+                    {
+                        if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance == NullUtil.getInstance().NULL_OBJECT) {
+                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals();
+                        }
+
+                        return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance;
                     }
 
                     open public fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals {
-                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance
+                    {
+                        return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance;
                     }
 
                     }

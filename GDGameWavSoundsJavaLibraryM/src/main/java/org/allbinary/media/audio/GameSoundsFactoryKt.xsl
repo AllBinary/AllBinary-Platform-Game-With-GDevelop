@@ -67,6 +67,13 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayList
                 import org.allbinary.util.BasicArrayListD
 
+                    <xsl:call-template name="playsoundImports" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="musicOrSound" >sound</xsl:with-param>
+                    </xsl:call-template>
+                
                 //Layout name=<xsl:value-of select="$layoutName" />
                 open class GD<xsl:value-of select="$layoutIndex" />GameSoundsFactory
                 {

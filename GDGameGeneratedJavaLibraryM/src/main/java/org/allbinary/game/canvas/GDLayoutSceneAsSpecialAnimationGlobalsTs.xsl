@@ -125,17 +125,20 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals extends GDSceneGlobals
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals instance = 
-                        new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals();
+                    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
 
                     public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals getInstanceOrCreate()
                     {
-                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance;
+                        if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance == NullUtil.getInstance().NULL_OBJECT) {
+                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals();
+                        }
+
+                        return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance;
                     }
 
                     public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals getInstance()
                     {
-                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance;
+                        return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.instance;
                     }
 
                         protected final LogUtil logUtil = LogUtil.getInstance();
