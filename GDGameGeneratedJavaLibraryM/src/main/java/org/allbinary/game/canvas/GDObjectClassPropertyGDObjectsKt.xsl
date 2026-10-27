@@ -551,7 +551,7 @@ Created By: Travis Berthelot
                     }
 
                     override fun get(width: Int, height: Int, name: String): GDObject {
-                        return <xsl:value-of select="name" />(width, height, name)
+                        return this.<xsl:value-of select="name" />(width, height, name)
                     }
 
                 }
@@ -592,7 +592,7 @@ Created By: Travis Berthelot
                     }
 
                     override fun get(width: Int, height: Int, name: String): GDObject {
-                        return <xsl:value-of select="name" />(width, height, name)
+                        return this.<xsl:value-of select="name" />(width, height, name)
                     }
 
                 }

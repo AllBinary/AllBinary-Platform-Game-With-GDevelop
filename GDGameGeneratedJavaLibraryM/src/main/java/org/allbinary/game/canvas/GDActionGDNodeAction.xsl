@@ -196,6 +196,29 @@ Created By: Travis Berthelot
 
                     //Action - GDNode - for Condition totalRecursions=<xsl:value-of select="$totalRecursions" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" /> 
                     public class GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode extends GDNode {
+                        private final NullUtil nullUtil = NullUtil.getInstance();
+                        private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+                        private final StringUtil stringUtil = StringUtil.getInstance();
+                        private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
+                        private final VirtualKeyboardEventHandler virtualKeyboardEventHandler = VirtualKeyboardEventHandler.getInstance();
+                        private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
+                        private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
+                        private final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
+                        private final GDStrings gdStrings = GDStrings.getInstance();
+                        private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
+                        private final AbeClientInformationInterface abeClientInformation = (AbeClientInformationInterface) GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION;
+                        private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                        <xsl:if test="string(number($layoutIndex)) != 'NaN'" >
+                        private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
+                        private final GDGlobalsGDResources globalResources = GDGlobalsGDResources.getInstance();
+                        private final GDGlobalsGDObjectsFactory gdGlobalsObjectsFactory = GDGlobalsGDObjectsFactory.getInstance();
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+                        private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
+                        private final float scale = GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale;
+                        </xsl:if>
+
                     
                     public GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode() {
                         super(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);

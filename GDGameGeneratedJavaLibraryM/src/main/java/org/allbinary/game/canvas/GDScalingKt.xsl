@@ -59,7 +59,7 @@
         <xsl:if test="not(contains($layoutIndex, 'Global'))" >
                             private val scale: Float = GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale
 
-                            private val halfScale: Float = (scale.toFloat()) / 2
+                            private val halfScale: Float = (this.scale.toFloat()) / 2
                             private val scaleTouchButtons: Float = <xsl:if test="not(number($layoutIndex) = 1)" >1f //same as AndroidUtil.isAndroid ? scale : scale / 2.0f</xsl:if><xsl:if test="number($layoutIndex) = 1" >GDConfig.getInstance().getGameScale(<xsl:value-of select="/game/properties/scale/android" />, <xsl:value-of select="/game/properties/scale/html" />, <xsl:value-of select="/game/properties/scale/j2se" />)</xsl:if>
         </xsl:if>
 

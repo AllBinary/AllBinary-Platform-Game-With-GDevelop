@@ -88,8 +88,8 @@ Created By: Travis Berthelot
                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
                         //final int width = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth() / 1.44f);
                         //final int height = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight() / 1.44f);
-                        final int width = (int) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth());
-                        final int height = (int) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight());
+                        final int width = (int) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth();
+                        final int height = (int) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight();
                                 </xsl:if>
                                 <xsl:if test="height != 0 and width != 0" >
                         //final int width = (int) (<xsl:value-of select="width" /> * 1.44f);

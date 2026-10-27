@@ -20,7 +20,7 @@ Created By: Travis Berthelot
         <xsl:param name="totalRecursions" />
 
                             //BuiltinCommonInstructions::JsCode
-                            if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
+                            if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                                 throw RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />")
                             }
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = object : GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {

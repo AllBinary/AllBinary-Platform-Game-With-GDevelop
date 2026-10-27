@@ -47,7 +47,7 @@ Created By: Travis Berthelot
             </xsl:if>
             
             public GDStructure<xsl:value-of select="name" /> get<xsl:value-of select="name" />() {
-                return <xsl:if test="number(name) = name" >n</xsl:if><xsl:value-of select="name" />;
+                return this.<xsl:if test="number(name) = name" >n</xsl:if><xsl:value-of select="name" />;
             }
             
             </xsl:if>
@@ -123,12 +123,12 @@ Created By: Travis Berthelot
 
         public String toJSONAsString() {
             if(<xsl:value-of select="$name" />JSONArray != nullUtil.NULL_OBJECT) {
-                return <xsl:value-of select="$name" />JSONArray.toString();
+                return this.<xsl:value-of select="$name" />JSONArray.toString();
             } else if(<xsl:value-of select="$name" />JSONObject != nullUtil.NULL_OBJECT) {
-                return <xsl:value-of select="$name" />JSONObject.toString();
+                return this.<xsl:value-of select="$name" />JSONObject.toString();
             } else {
                 this.logUtil.putF("Not JSONArray or JSONObject", this, "toJSONAsString");
-                return <xsl:value-of select="$name" />JSONObject.toString();
+                return this.<xsl:value-of select="$name" />JSONObject.toString();
             }    
         }
         </xsl:if>

@@ -97,7 +97,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="whileConditions" >
                     //whileConditions - //<xsl:value-of select="type/value" /> - call
                     this.iterationTotal = 0;
-                    while(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                    while(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
 
                     this.iterationTotal++;
                     if(this.iterationTotal % 10000 == 0) {
@@ -133,7 +133,7 @@ Created By: Travis Berthelot
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                             </xsl:when>
                             <xsl:otherwise>
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
@@ -205,7 +205,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="whileConditions" >
                     //whileConditions - //<xsl:value-of select="type/value" /> - call
                     this.iterationTotal = 0;
-                    while(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processIndex(index3)) {
+                    while(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processIndex(index3)) {
 
                     this.iterationTotal++;
                     if(this.iterationTotal % 10000 == 0) {
@@ -241,7 +241,7 @@ Created By: Travis Berthelot
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processIndex(index3);
                             </xsl:when>
                             <xsl:otherwise>
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processIndex(index3)) {
+                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processIndex(index3)) {
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
@@ -314,7 +314,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="whileConditions" >
                     //whileConditions - //<xsl:value-of select="type/value" /> - call
                     this.iterationTotal = 0;
-                    while(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processMotion(motionGestureEvent, lastMotionGestureInput)) {
+                    while(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processMotion(motionGestureEvent, lastMotionGestureInput)) {
 
                     this.iterationTotal++;
                     if(this.iterationTotal % 10000 == 0) {
@@ -338,7 +338,7 @@ Created By: Travis Berthelot
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processIndex(index3);
                             </xsl:when>
                             <xsl:otherwise>
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processMotion(motionGestureEvent, lastMotionGestureInput)) {
+                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processMotion(motionGestureEvent, lastMotionGestureInput)) {
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
@@ -402,7 +402,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="whileConditions" >
                     //whileConditions - //<xsl:value-of select="type/value" /> - call
                     this.iterationTotal = 0;
-                    while(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray)) {
+                    while(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray)) {
                     
                     this.iterationTotal++;
                     if(this.iterationTotal % 10000 == 0) {
@@ -425,7 +425,7 @@ Created By: Travis Berthelot
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray);
                             </xsl:when>
                             <xsl:otherwise>
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray)) {
+                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray)) {
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>

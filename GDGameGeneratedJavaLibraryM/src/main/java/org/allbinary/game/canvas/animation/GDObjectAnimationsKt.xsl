@@ -367,7 +367,7 @@ Created By: Travis Berthelot
                 val newX: Float = (<xsl:value-of select="$name" />LayerInfo.getWidth() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getWidth()) / 2
                 val newY: Float = (<xsl:value-of select="$name" />LayerInfo.getHeight() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getHeight()) / 2
                 val <xsl:value-of select="$name" />RotationCollisionMask: Rectangle = Rectangle(
-                                pointFactory.createXY((newX * 3 * halfScale).toInt(), (newY * 3 * halfScale).toInt()), (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * halfScale).toInt(), (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * halfScale).toInt()
+                                pointFactory.createXY((newX * 3 * this.halfScale).toInt(), (newY * 3 * this.halfScale).toInt()), (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * this.halfScale).toInt(), (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * this.halfScale).toInt()
                                 )
                         </xsl:if>
                     </xsl:if>

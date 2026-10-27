@@ -516,7 +516,7 @@ Created By: Travis Berthelot
         try {
             //this.logUtil.putF("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move")
 
-//            if(gameGlobals.PlayerGDGameLayerList.size() >= 0) {
+//            if(this.gameGlobals.PlayerGDGameLayerList.size() >= 0) {
 //                var player: GDGameLayer = gameGlobals.PlayerGDGameLayerList.get(0) as GDGameLayer
 //                if(this == player) {
 //                    var layerManagerAsString: String = this.allBinaryGameLayerManagerP.toString()

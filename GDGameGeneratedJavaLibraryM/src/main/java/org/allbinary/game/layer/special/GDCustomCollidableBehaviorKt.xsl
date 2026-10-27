@@ -142,7 +142,7 @@ open public class GDCustomCollidableBehavior : CollidableBaseBehavior
 
                 if(geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
                     //var gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
-                    //this.logUtil.put(gameGlobals.TILEMAP__COLLISIONMASK, this, this.commonStrings.PROCESS)
+                    //this.logUtil.put(this.gameGlobals.TILEMAP__COLLISIONMASK, this, this.commonStrings.PROCESS)
                     //this.logUtil.put(gdObject.toShortString(), this, this.commonStrings.PROCESS)
                     return true
                 }

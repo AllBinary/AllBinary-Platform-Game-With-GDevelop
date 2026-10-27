@@ -159,7 +159,7 @@ Created By: Travis Berthelot
 
                         //try {
                         
-                            logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
+                            this.logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
                     
                             final PointFactory pointFactory = PointFactory.getInstance();
 
@@ -223,7 +223,7 @@ Created By: Travis Berthelot
                     //layout - objectsGroups - LayoutImageResources - END
 
                         //} catch(Exception e) {
-                            //logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                            //this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
                         //}
 
                     }
@@ -254,7 +254,7 @@ Created By: Travis Berthelot
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             image = imageArray[index];
                             if (image.getWidth() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> image.getHeight() <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> image.getWidth() % image.getHeight() != 0) {
-                                logUtil.put(new StringMaker().appendint(index).append(name).appendint(image.getWidth()).append(commonSeps.COLON).appendint(image.getHeight()).toString(), this, commonStrings.PROCESS, new Exception());
+                                this.logUtil.put(new StringMaker().appendint(index).append(name).appendint(image.getWidth()).append(commonSeps.COLON).appendint(image.getHeight()).toString(), this, commonStrings.PROCESS, new Exception());
                             }
                         }
                     }

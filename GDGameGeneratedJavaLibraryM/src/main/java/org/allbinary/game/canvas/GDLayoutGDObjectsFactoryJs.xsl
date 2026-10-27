@@ -82,22 +82,26 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.behavior.GDBehaviorUtil;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
+                import org.allbinary.logic.NullUtil;
                 
                 //LayoutGDObjects name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory instance = 
-                        new GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory();
+                    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
                     
                     public static GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory getInstanceOrCreate()
                     {
-                        return GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.instance;
+                        if(GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.instance == NullUtil.getInstance().NULL_OBJECT) {
+                            GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.instance = new GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory();
+                        }
+
+                        return (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory) GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.instance;
                     }
                                         
                     public static GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory getInstance()
                     {
-                        return GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.instance;
+                        return (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory) GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.instance;
                     }
 
                     protected final LogUtil logUtil = LogUtil.getInstance();

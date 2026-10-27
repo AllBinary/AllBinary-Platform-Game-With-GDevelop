@@ -58,10 +58,10 @@
                 </xsl:variable>
 
 <!--                result4=<xsl:value-of select="$result4" />-->
-                <xsl:if test="not(contains($result4, 'SceneInstancesCount(') and not(contains($result4, 'SceneInstancesCount(globals.') or contains($result4, 'SceneInstancesCount(gameGlobals.')))" >
+                <xsl:if test="not(contains($result4, 'SceneInstancesCount(') and not(contains($result4, 'SceneInstancesCount(globals.') or contains($result4, 'SceneInstancesCount(this.gameGlobals.')))" >
                     <xsl:value-of select="$result4" />
                 </xsl:if>
-                <xsl:if test="contains($result4, 'SceneInstancesCount(') and not(contains($result4, 'SceneInstancesCount(globals.') or contains($result4, 'SceneInstancesCount(gameGlobals.'))" >
+                <xsl:if test="contains($result4, 'SceneInstancesCount(') and not(contains($result4, 'SceneInstancesCount(globals.') or contains($result4, 'SceneInstancesCount(this.gameGlobals.'))" >
                     <xsl:variable name="objectName" >
                         <xsl:value-of select="substring-before(substring-after($result4, 'SceneInstancesCount('), ')')" />
                     </xsl:variable>
@@ -109,10 +109,10 @@
                 </xsl:call-template>
                 </xsl:variable>
 
-                <xsl:if test="not(contains($result4, 'SceneInstancesCount(') and not(contains($result4, 'SceneInstancesCount(globals.') or contains($result4, 'SceneInstancesCount(gameGlobals.')))" >
+                <xsl:if test="not(contains($result4, 'SceneInstancesCount(') and not(contains($result4, 'SceneInstancesCount(globals.') or contains($result4, 'SceneInstancesCount(this.gameGlobals.')))" >
                     <xsl:value-of select="$result4" />
                 </xsl:if>
-                <xsl:if test="contains($result4, 'SceneInstancesCount(') and not(contains($result4, 'SceneInstancesCount(globals.') or contains($result4, 'SceneInstancesCount(gameGlobals.'))" >
+                <xsl:if test="contains($result4, 'SceneInstancesCount(') and not(contains($result4, 'SceneInstancesCount(globals.') or contains($result4, 'SceneInstancesCount(this.gameGlobals.'))" >
                     <xsl:variable name="objectName" >
                         <xsl:value-of select="substring-before(substring-after($result4, 'SceneInstancesCount('), ')')" />
                     </xsl:variable>

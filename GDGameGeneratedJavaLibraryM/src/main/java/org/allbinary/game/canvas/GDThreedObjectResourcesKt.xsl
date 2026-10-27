@@ -56,12 +56,12 @@ Created By: Travis Berthelot
             private var <xsl:value-of select="name" />ImageArray: Array&lt;Rectangle?&gt;
             open public fun <xsl:value-of select="name" />Width(index: Int): Int {
                 var index = index
-                return <xsl:value-of select="name" />ImageArray[index]!!.getWidth()
+                return this.<xsl:value-of select="name" />ImageArray[index]!!.getWidth()
             }
 
             open public fun <xsl:value-of select="name" />Height(index: Int): Int {
                 var index = index
-                return <xsl:value-of select="name" />ImageArray[index]!!.getHeight()
+                return this.<xsl:value-of select="name" />ImageArray[index]!!.getHeight()
             }
             </xsl:if>
 

@@ -83,6 +83,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.behavior.GDBehaviorUtil
                 import org.allbinary.graphics.GPoint
                 import org.allbinary.graphics.PointFactory
+                import org.allbinary.logic.NullUtil
 
                 //LayoutGDObjects name=<xsl:value-of select="$layoutName" />
                 open public class GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory
@@ -90,15 +91,20 @@ Created By: Travis Berthelot
 
                     companion object {
 
-                    private val instance: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory =
-                        GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory()
-
+                    private val instance: Object = NullUtil.getInstance().NULL_OBJECT;
+                    
                     open public fun getInstanceOrCreate(): GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory {
-                        return GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.instance
-                    }
+                    {
+                        if(GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.instance == NullUtil.getInstance().NULL_OBJECT) {
+                            GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.instance = new GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory();
+                        }
 
-                    open public fun getInstance(): GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory {
-                        return GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.instance
+                        return (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory) GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.instance;
+                    }
+                                        
+                    open public fun getInstanceOrCreate(): GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory {
+                    {
+                        return (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory) GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.instance;
                     }
 
                     }

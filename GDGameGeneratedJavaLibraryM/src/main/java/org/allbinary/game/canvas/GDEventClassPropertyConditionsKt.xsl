@@ -142,7 +142,7 @@ Created By: Travis Berthelot
                             }
                         }
 
-                        return <xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index]
+                        return this.<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index]
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >

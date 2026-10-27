@@ -55,11 +55,11 @@ Created By: Travis Berthelot
             <xsl:if test="type != 'TextObject::Text'" >
             private Rectangle[] <xsl:value-of select="name" />ImageArray;
             public int <xsl:value-of select="name" />Width(int index) {
-                return <xsl:value-of select="name" />ImageArray[index].getWidth();
+                return this.<xsl:value-of select="name" />ImageArray[index].getWidth();
             }
 
             public int <xsl:value-of select="name" />Height(int index) {
-                return <xsl:value-of select="name" />ImageArray[index].getHeight();
+                return this.<xsl:value-of select="name" />ImageArray[index].getHeight();
             }
             </xsl:if>
             

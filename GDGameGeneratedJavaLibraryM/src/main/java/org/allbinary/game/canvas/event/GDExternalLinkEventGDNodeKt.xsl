@@ -22,7 +22,7 @@ Created By: Travis Berthelot
         <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
 
                             //externalLinkEventGDNode
-                            if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
+                            if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                                 throw RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />")
                             }
                             val NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: GDNode = object : GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
@@ -162,7 +162,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
 
                             //externalLinkLayoutGDNode
-                            if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
+                            if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                                 throw RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />")
                             }
 

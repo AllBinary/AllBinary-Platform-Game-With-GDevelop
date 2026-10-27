@@ -59,7 +59,7 @@
         <xsl:if test="not(contains($layoutIndex, 'Global'))" >
                             private final float scale = GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale;
                             
-                            private final float halfScale = ((float) scale) / 2;
+                            private final float halfScale = ((float) this.scale) / 2;
                             private final float scaleTouchButtons = <xsl:if test="not(number($layoutIndex) = 1)" >1; //same as .AndroidUtil.isAndroid ? scale : scale / 2.0f</xsl:if><xsl:if test="number($layoutIndex) = 1" >GDConfig.getInstance().getGameScale(<xsl:value-of select="/game/properties/scale/android" />, <xsl:value-of select="/game/properties/scale/html" />, <xsl:value-of select="/game/properties/scale/j2se" />)</xsl:if>;
         </xsl:if>
                             

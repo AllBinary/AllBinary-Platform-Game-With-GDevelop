@@ -553,7 +553,7 @@ Created By: Travis Berthelot
         try {
             //this.logUtil.putF("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move");
 
-//            if(gameGlobals.PlayerGDGameLayerList.size() >= 0) {
+//            if(this.gameGlobals.PlayerGDGameLayerList.size() >= 0) {
 //                final GDGameLayer player = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
 //                if(this == player) {
 //                    String layerManagerAsString = this.allBinaryGameLayerManagerP.toString();

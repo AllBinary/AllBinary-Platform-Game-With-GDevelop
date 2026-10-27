@@ -43,6 +43,8 @@ Created By: Travis Berthelot
         //nodeId=<xsl:value-of select="$selectedNodeId" /> - //extension - childevents
         public class GD<xsl:value-of select="$selectedNodeId" />GDNode extends GDNode
         {
+            private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+
             public GD<xsl:value-of select="$selectedNodeId" />GDNode() {
 
                 super(<xsl:value-of select="$selectedNodeId" />);
@@ -66,6 +68,7 @@ Created By: Travis Berthelot
             <xsl:when test="type = 'BuiltinCommonInstructions::JsCode'" >
                 <xsl:call-template name="javascriptCodeEventGDNode" >
                     <xsl:param name="totalRecursions" ><xsl:value-of select="$totalRecursions" /></xsl:param>
+                    <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
             <xsl:when test="type = 'BuiltinCommonInstructions::Else'" >

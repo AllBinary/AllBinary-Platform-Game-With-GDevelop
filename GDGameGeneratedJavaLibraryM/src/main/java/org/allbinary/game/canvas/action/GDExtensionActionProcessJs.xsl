@@ -251,7 +251,7 @@ Created By: Travis Berthelot
                             <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
                         </xsl:call-template>
 
-                        return <xsl:value-of select="translate(type/value, ':', '_')" />GDNode.processExtensionParams(objectArray, intArray, null, null);
+                        return this.<xsl:value-of select="translate(type/value, ':', '_')" />GDNode.processExtensionParams(objectArray, intArray, null, null);
 
                     }
                     </xsl:if>

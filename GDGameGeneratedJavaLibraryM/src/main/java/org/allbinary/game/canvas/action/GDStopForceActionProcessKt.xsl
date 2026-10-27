@@ -52,7 +52,7 @@ Created By: Travis Berthelot
                 </xsl:call-template>
 
                             gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = <xsl:value-of select="$name" />GDGameLayer
-                            this.processGD(gameGlobals.tempGameLayerArray)
+                            this.processGD(this.gameGlobals.tempGameLayerArray)
 
             <xsl:if test="../actions" >
                                 }
@@ -88,7 +88,7 @@ Created By: Travis Berthelot
                 </xsl:call-template>
 
                             gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = <xsl:value-of select="$name" />GDGameLayer
-                            this.processGD(gameGlobals.tempGameLayerArray)
+                            this.processGD(this.gameGlobals.tempGameLayerArray)
 
                             return true
 

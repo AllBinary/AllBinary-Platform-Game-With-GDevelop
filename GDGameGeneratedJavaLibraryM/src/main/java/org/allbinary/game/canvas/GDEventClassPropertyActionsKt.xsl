@@ -123,12 +123,12 @@ Created By: Travis Berthelot
 
         open public fun toJSONAsString(): String {
             if(<xsl:value-of select="$name" />JSONArray != nullUtil.NULL_OBJECT) {
-                return <xsl:value-of select="$name" />JSONArray.toString()
+                return this.<xsl:value-of select="$name" />JSONArray.toString()
             } else if(<xsl:value-of select="$name" />JSONObject != nullUtil.NULL_OBJECT) {
-                return <xsl:value-of select="$name" />JSONObject.toString()
+                return this.<xsl:value-of select="$name" />JSONObject.toString()
             } else {
                 this.logUtil.putF("Not JSONArray or JSONObject", this, "toJSONAsString")
-                return <xsl:value-of select="$name" />JSONObject.toString()
+                return this.<xsl:value-of select="$name" />JSONObject.toString()
             }
         }
         </xsl:if>

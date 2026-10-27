@@ -116,7 +116,7 @@ Created By: Travis Berthelot
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
                             </xsl:when>
                             <xsl:otherwise>
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()) {
+                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()) {
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
@@ -209,7 +209,7 @@ Created By: Travis Berthelot
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processIndex(index3)
                             </xsl:when>
                             <xsl:otherwise>
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processIndex(index3)) {
+                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processIndex(index3)) {
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
@@ -290,7 +290,7 @@ Created By: Travis Berthelot
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processIndex(index3)
                             </xsl:when>
                             <xsl:otherwise>
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)) {
+                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)) {
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
@@ -361,7 +361,7 @@ Created By: Travis Berthelot
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(gameLayerArray)
                             </xsl:when>
                             <xsl:otherwise>
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(gameLayerArray)) {
+                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(gameLayerArray)) {
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
@@ -434,7 +434,7 @@ Created By: Travis Berthelot
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()
                             </xsl:when>
                             <xsl:otherwise>
-                        //if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()) {
+                        //if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()) {
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()
                         //throw RuntimeException()
                             </xsl:otherwise>

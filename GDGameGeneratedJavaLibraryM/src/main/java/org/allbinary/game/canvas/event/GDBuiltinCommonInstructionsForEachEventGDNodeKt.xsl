@@ -182,12 +182,12 @@ Created By: Travis Berthelot
                         <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                         <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                         //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(gameGlobals.tempGameLayerArray)) {
+                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(this.gameGlobals.tempGameLayerArray)) {
                     </xsl:for-each>
 
                         <xsl:call-template name="actionsProcessing" >
                             <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
-                            <xsl:with-param name="methodCall" >processGD(gameGlobals.tempGameLayerArray)</xsl:with-param>
+                            <xsl:with-param name="methodCall" >processGD(this.gameGlobals.tempGameLayerArray)</xsl:with-param>
                             <xsl:with-param name="parentParam" >gameGlobals.tempGameLayerArray</xsl:with-param>
                         </xsl:call-template>
 
@@ -202,7 +202,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                             <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                         //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> totalRecursions=<xsl:value-of select="$totalRecursions" />
-                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(gameGlobals.tempGameLayerArray)
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(this.gameGlobals.tempGameLayerArray)
                             </xsl:if>
                         </xsl:for-each>
 

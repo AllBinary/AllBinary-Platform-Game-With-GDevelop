@@ -50,6 +50,13 @@ Created By: Travis Berthelot
         //<xsl:value-of select="type" /> - //nodeId=<xsl:value-of select="$selectedNodeId" /> - //BuiltinCommonInstructions - //Event - //repeatExpression=<xsl:value-of select="repeatExpression" />
         public class GD<xsl:value-of select="$selectedNodeId" />GDNode extends GDNode
         {
+            private final NullUtil nullUtil = NullUtil.getInstance();
+            private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+            <xsl:if test="string(number($layoutIndex)) != 'NaN'" >
+            private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
+            private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+            </xsl:if>
+
             public GD<xsl:value-of select="$selectedNodeId" />GDNode() {
 
                 super(<xsl:value-of select="$selectedNodeId" />);
@@ -73,6 +80,7 @@ Created By: Travis Berthelot
             <xsl:when test="type = 'BuiltinCommonInstructions::JsCode'" >
                 <xsl:call-template name="javascriptCodeEventGDNode" >
                     <xsl:param name="totalRecursions" ><xsl:value-of select="$totalRecursions" /></xsl:param>
+                    <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
             <xsl:when test="type = 'BuiltinCommonInstructions::Else'" >

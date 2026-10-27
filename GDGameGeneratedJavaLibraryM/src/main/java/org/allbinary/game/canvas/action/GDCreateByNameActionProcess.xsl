@@ -308,14 +308,14 @@ Created By: Travis Berthelot
                             
                             if(<xsl:value-of select="text()" />CacheGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 1) {
                                 <xsl:text>&#10;</xsl:text>
-                                if(gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] == Integer.MAX_VALUE) { 
+                                if(this.gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] == Integer.MAX_VALUE) { 
                                     gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = 0; 
                                 }
                                 <xsl:text>&#10;</xsl:text>
                                 //globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>
                                 <xsl:text>&#10;</xsl:text>
                                 <xsl:value-of select="text()" />GDGameLayer = <xsl:value-of select="text()" />GDGameLayerFactory.create(<xsl:value-of select="$layoutIndex" />, stringBuilder.append(createString).append(CommonSeps.getInstance().UNDERSCORE)
-                                .appendint(gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />]).toString(), 
+                                .appendint(this.gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />]).toString(), 
                                 gdObject, 
                                 scale, scale,
                                 GDConditionWithGroupActions.NULL_GD_CONDITION_WITH_GROUP_ACTIONS); //<xsl:value-of select="text()" />GDConditionWithGroupActions);
@@ -348,7 +348,7 @@ Created By: Travis Berthelot
                             //name=<xsl:value-of select="$name" />
                             //CreateByName - //Using param that is not from the first 2 GameLayers - set
                             gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = <xsl:value-of select="text()" />GDGameLayer;
-                            //if(gameGlobals.tempGameLayerArray[1] != null) this.logUtil.put(gameGlobals.tempGameLayerArray[1].toString(), this, this.commonStrings.PROCESS);
+                            //if(this.gameGlobals.tempGameLayerArray[1] != null) this.logUtil.put(this.gameGlobals.tempGameLayerArray[1].toString(), this, this.commonStrings.PROCESS);
                             <xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer);
                         </xsl:if>
                     </xsl:for-each>

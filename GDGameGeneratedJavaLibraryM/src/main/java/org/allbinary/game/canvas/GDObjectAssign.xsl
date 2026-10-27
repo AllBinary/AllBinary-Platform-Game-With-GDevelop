@@ -192,6 +192,8 @@ Created By: Travis Berthelot
                     <xsl:if test="type = 'TextObject::Text'" >
                     {
 
+                        private final PointFactory pointFactory = PointFactory.getInstance();
+
                         @Override
                         public Rectangle init(final GDObject gdObject, final float scaleX, final float scaleY) {
                             //text animation sizing

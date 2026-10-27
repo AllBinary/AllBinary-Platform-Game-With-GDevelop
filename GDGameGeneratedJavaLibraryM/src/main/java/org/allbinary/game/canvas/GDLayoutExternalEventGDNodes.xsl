@@ -128,7 +128,11 @@ Created By: Travis Berthelot
                             <xsl:for-each select="../externalEvents" >
                                 <xsl:if test="$layoutName = associatedLayout" >
                                     //externalEvents - externalLinkEventGDNodes
-                                    <xsl:call-template name="externalLinkEventGDNode" />
+                                    <xsl:call-template name="externalLinkEventGDNode" >
+                                        <xsl:with-param name="layoutIndex" >
+                                            <xsl:value-of select="$layoutIndex" />
+                                        </xsl:with-param>
+                                    </xsl:call-template>
                                 </xsl:if>
                             </xsl:for-each>
                             

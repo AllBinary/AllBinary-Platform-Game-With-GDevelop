@@ -88,7 +88,7 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="hasDistance" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'Distance'" >found</xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="hasCollisionNP" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >found</xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:variable name="process" ><xsl:choose><xsl:when test="contains($hasDistance, 'found')" >processGD(gameGlobals.tempGameLayerArray)</xsl:when><xsl:when test="contains($hasCollisionNP, 'found')" >processGD(gameGlobals.tempGameLayerArray)</xsl:when><xsl:otherwise>process()</xsl:otherwise></xsl:choose></xsl:variable>
+                    <xsl:variable name="process" ><xsl:choose><xsl:when test="contains($hasDistance, 'found')" >processGD(this.gameGlobals.tempGameLayerArray)</xsl:when><xsl:when test="contains($hasCollisionNP, 'found')" >processGD(this.gameGlobals.tempGameLayerArray)</xsl:when><xsl:otherwise>process()</xsl:otherwise></xsl:choose></xsl:variable>
 
                     <xsl:for-each select="conditions" >
                         <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -119,7 +119,7 @@ Created By: Travis Berthelot
                             </xsl:when>
                             <xsl:when test="type/value = 'Distance'" >
                         //Distance - include params
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                             <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             <xsl:variable name="id" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
@@ -130,7 +130,7 @@ Created By: Travis Berthelot
                             </xsl:when>
                             <xsl:when test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                         //CollisionNP - include params
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                             <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             <xsl:variable name="id" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
@@ -140,7 +140,7 @@ Created By: Travis Berthelot
                             //final GDGameLayer gameLayer2 = gameGlobals.tempGameLayerArray[1];
                             </xsl:when>
                             <xsl:otherwise>
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
@@ -229,7 +229,7 @@ Created By: Travis Berthelot
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processIndex(index3);
                             </xsl:when>
                             <xsl:otherwise>
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processIndex(index3)) {
+                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processIndex(index3)) {
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
@@ -306,7 +306,7 @@ Created By: Travis Berthelot
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processIndex(index3);
                             </xsl:when>
                             <xsl:otherwise>
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processMotion(motionGestureEvent, lastMotionGestureInput)) {
+                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processMotion(motionGestureEvent, lastMotionGestureInput)) {
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
@@ -373,7 +373,7 @@ Created By: Travis Berthelot
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray);
                             </xsl:when>
                             <xsl:otherwise>
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray)) {
+                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayerArray)) {
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
@@ -442,7 +442,7 @@ Created By: Travis Berthelot
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                             </xsl:when>
                             <xsl:otherwise>
-                        if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased()) {
+                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased()) {
                         //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                         //throw new RuntimeException();
                             </xsl:otherwise>

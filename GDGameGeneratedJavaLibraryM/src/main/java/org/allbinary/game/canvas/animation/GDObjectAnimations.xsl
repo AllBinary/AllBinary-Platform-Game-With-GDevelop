@@ -368,7 +368,7 @@ Created By: Travis Berthelot
                 final float newX = (<xsl:value-of select="$name" />LayerInfo.getWidth() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getWidth()) / 2;
                 final float newY = (<xsl:value-of select="$name" />LayerInfo.getHeight() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getHeight()) / 2;
                 final Rectangle <xsl:value-of select="$name" />RotationCollisionMask = new Rectangle(
-                                pointFactory.createXY((int) (newX * 3 * halfScale), (int) (newY * 3 * halfScale)), (int) (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * halfScale), (int) (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * halfScale)
+                                pointFactory.createXY((int) (newX * 3 * this.halfScale), (int) (newY * 3 * this.halfScale)), (int) (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * this.halfScale), (int) (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * this.halfScale)
                                 );
                         </xsl:if>
                     </xsl:if>
