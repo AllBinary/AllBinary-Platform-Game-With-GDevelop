@@ -66,6 +66,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogUtil
                 import org.allbinary.logic.string.StringMaker
                 import org.allbinary.string.CommonStrings
+                import org.allbinary.logic.NullUtil
                 import org.allbinary.util.BasicArrayList
                 import org.allbinary.util.BasicArrayListD
 
@@ -75,13 +76,14 @@ Created By: Travis Berthelot
 
                     companion object {
 
-                    private val instance: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes =
-                       GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes()
+                    private val instance: Object = NullUtil.getInstance().NULL_OBJECT;
 
                     open public fun getInstance(): GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes {
-                        return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes.instance
-                    }
-
+                    {
+                        if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes.instance == NullUtil.getInstance().NULL_OBJECT) {
+                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes.instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes();
+                        }
+                        return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes.instance;
                     }
 
 <!--                private val stringUtil: StringUtil = StringUtil.getInstance()

@@ -33,17 +33,17 @@ Created By: Travis Berthelot
             <xsl:variable name="eventPosition" select="position()" />
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
 
-            <xsl:variable name="eventAsString" >
+<!--            <xsl:variable name="eventAsString" >
             //1
             private val EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />"
             <xsl:text>&#10;</xsl:text>
-            </xsl:variable>
+            </xsl:variable>-->
 
-            <xsl:variable name="logString" >EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+<!--            <xsl:variable name="logString" >EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>-->
 
             <xsl:variable name="actionTypesAsString" ><xsl:for-each select="actions" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="type/value" />,</xsl:for-each></xsl:variable>
 
-            <xsl:variable name="actionAsStringsStrings" >
+<!--            <xsl:variable name="actionAsStringsStrings" >
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -57,7 +57,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                 <xsl:text>&#10;</xsl:text>
             </xsl:for-each>
-            </xsl:variable>
+            </xsl:variable>-->
 
             <!-- actions - START -->
             <xsl:for-each select="actions" >
@@ -79,12 +79,82 @@ Created By: Travis Berthelot
                     <xsl:variable name="selectedNodeId" select="number(substring(generate-id(), 2) - 65536)" />
                     <xsl:variable name="lastDigit" ><xsl:value-of select="substring($selectedNodeId, string-length($selectedNodeId))" /></xsl:variable>
                     <xsl:variable name="lastDigit2" ><xsl:if test="4 >= $lastDigit" >0</xsl:if><xsl:if test="$lastDigit > 4" >1</xsl:if></xsl:variable>
-                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = org.allbinary.game.canvas.node.action.GD<xsl:value-of select="$layoutIndex" /><xsl:if test="$caller = 'externalEventsCreateAssignGDObject'" >External</xsl:if>Action<xsl:value-of select="$lastDigit2" />GDNodes.getInstance().NODE_<xsl:value-of select="$selectedNodeId" />
+                    this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = GD<xsl:value-of select="$layoutIndex" /><xsl:if test="$caller = 'externalEventsCreateAssignGDObject'" >External</xsl:if>Action<xsl:value-of select="$lastDigit2" />GDNodes.getInstance().NODE_<xsl:value-of select="$selectedNodeId" />
 
             </xsl:for-each>
             <!-- actions - END -->
 
             <xsl:call-template name="eventsCreateAssignGDObjectGDNodesAction" >
+                <xsl:with-param name="caller" >
+                    <xsl:value-of select="$caller" />
+                </xsl:with-param>
+                <xsl:with-param name="layoutIndex" >
+                    <xsl:value-of select="$layoutIndex" />
+                </xsl:with-param>
+                <xsl:with-param name="thisNodeIndex" >
+                    <xsl:value-of select="$thisNodeIndex" />
+                </xsl:with-param>
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="number($totalRecursions) + 1" />
+                </xsl:with-param>
+                <xsl:with-param name="instancesAsString" >
+                    <xsl:value-of select="$instancesAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="objectsAsString" >
+                    <xsl:value-of select="$objectsAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="objectsGroupsAsString" >
+                    <xsl:value-of select="$objectsGroupsAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="createdObjectsAsString" >
+                    <xsl:value-of select="$createdObjectsAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="conditionEventPosition" >
+                    <xsl:value-of select="$eventPosition" />
+                </xsl:with-param>
+
+            </xsl:call-template>
+
+        </xsl:for-each>
+
+    </xsl:template>
+
+    <xsl:template name="eventsCreateAssignGDObjectGDNodesActionImports" >
+        <xsl:param name="caller" />
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="thisNodeIndex" />
+        <xsl:param name="instancesAsString" />
+        <xsl:param name="objectsAsString" />
+        <xsl:param name="objectsGroupsAsString" />
+        <xsl:param name="createdObjectsAsString" />
+        <xsl:param name="conditionEventPosition" />
+         
+        <xsl:variable name="quote" >"</xsl:variable>
+        
+        <xsl:for-each select="events" >
+            <xsl:variable name="eventPosition" select="position()" />
+
+            <xsl:variable name="actionTypesAsString" ><xsl:for-each select="actions" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="type/value" />,</xsl:for-each></xsl:variable>
+
+            <!-- actions - START -->
+            <xsl:for-each select="actions" >
+                <xsl:variable name="nodeIdAsString" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
+                <xsl:variable name="typeValue" select="type/value" />
+                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+                <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+
+                <xsl:text>&#10;</xsl:text>
+                    <xsl:variable name="selectedNodeId" select="number(substring(generate-id(), 2) - 65536)" />
+                    <xsl:variable name="lastDigit" ><xsl:value-of select="substring($selectedNodeId, string-length($selectedNodeId))" /></xsl:variable>
+                    <xsl:variable name="lastDigit2" ><xsl:if test="4 >= $lastDigit" >0</xsl:if><xsl:if test="$lastDigit > 4" >1</xsl:if></xsl:variable>
+                    import org.allbinary.game.canvas.node.action.GD<xsl:value-of select="$layoutIndex" /><xsl:if test="$caller = 'externalEventsCreateAssignGDObject'" >External</xsl:if>Action<xsl:value-of select="$lastDigit2" />GDNodes;
+
+            </xsl:for-each>
+
+            <xsl:call-template name="eventsCreateAssignGDObjectGDNodesActionImports" >
                 <xsl:with-param name="caller" >
                     <xsl:value-of select="$caller" />
                 </xsl:with-param>

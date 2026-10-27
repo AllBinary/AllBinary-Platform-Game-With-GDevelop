@@ -65,7 +65,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
                                     //../Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> 
                                     //Event - //BuiltinCommonInstructions::Standard - call
-                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                                    this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                                 </xsl:if>
                                 <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
                                     //Event - //BuiltinCommonInstructions::ForEach
@@ -84,7 +84,7 @@ Created By: Travis Berthelot
                                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />,</xsl:for-each>
                                     //Condition - //<xsl:value-of select="type/value" /> - call
-                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                                    this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                             </xsl:for-each>
 
                             <xsl:for-each select=".." >
@@ -103,7 +103,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
                                     //...Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> 
                                     //Event - //BuiltinCommonInstructions::Standard - call
-                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                                    this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                                 </xsl:if>
                                 <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
                                     //Event - //BuiltinCommonInstructions::ForEach
@@ -122,7 +122,7 @@ Created By: Travis Berthelot
                                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />,</xsl:for-each>
                                     //Condition - //<xsl:value-of select="type/value" /> - call
-                                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                                    this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                                     //TWB - I don't think conditions occur here remove after more testing
                                     throw new RuntmeException();
                             </xsl:for-each>
@@ -141,7 +141,7 @@ Created By: Travis Berthelot
                             };
                             
                             //Make sure we only call this 1 time
-                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
+                            this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
                             return true;
                         }
 
@@ -199,7 +199,7 @@ Created By: Travis Berthelot
                     if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
-                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
+                    this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
                     </xsl:if>
 
     </xsl:template>

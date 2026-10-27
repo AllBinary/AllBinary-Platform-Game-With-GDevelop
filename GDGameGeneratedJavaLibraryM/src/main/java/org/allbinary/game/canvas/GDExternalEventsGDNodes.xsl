@@ -290,4 +290,76 @@
 
     </xsl:template>
 
+    <xsl:template name="externalEventsCreateAssignGDObjectOtherEventImports" >
+        <xsl:param name="layoutName" />
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="thisNodeIndex" />
+        <xsl:param name="createdObjectsAsString" />
+        <xsl:param name="objectsGroupsAsString" />
+        <xsl:param name="objectsAsString" />
+
+        //externalEventsCreateAssignGDObjectOtherEvent - START
+        <xsl:for-each select="../externalEvents" >
+            <xsl:if test="$layoutName = associatedLayout" >
+                //externalEventsCreateAssignGDObjectOtherEvent - //eventsCreateAssignGDObjectGDNodeOtherEvent - START
+                <xsl:call-template name="eventsCreateAssignGDObjectGDNodesOtherEventImports" >
+                    <xsl:with-param name="caller" >externalEventsCreateAssignGDObject</xsl:with-param>
+                    <xsl:with-param name="totalRecursions" >
+                        <xsl:value-of select="0" />
+                    </xsl:with-param>
+                    <xsl:with-param name="layoutIndex" >
+                        <xsl:value-of select="$layoutIndex" />
+                    </xsl:with-param>
+                    <xsl:with-param name="thisNodeIndex" >
+                        <xsl:value-of select="$thisNodeIndex" />
+                    </xsl:with-param>
+                    <xsl:with-param name="createdObjectsAsString" >
+                        <xsl:value-of select="$createdObjectsAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="objectsGroupsAsString" >
+                        <xsl:value-of select="$objectsGroupsAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="objectsAsString" >
+                        <xsl:value-of select="$objectsAsString" />
+                    </xsl:with-param>
+
+                </xsl:call-template>
+                //externalEventsCreateAssignGDObjectOtherEvent - //eventsCreateAssignGDObjectGDNodeOtherEvent - END
+            </xsl:if>
+        </xsl:for-each>
+        //externalEventsCreateAssignGDObjectOtherEvent - END
+        //externalLayoutsCreateAssignGDObjectOtherEvent - START
+        <xsl:for-each select="../externalLayouts" >
+            <xsl:if test="$layoutName = associatedLayout" >
+                //externalLayoutsCreateAssignGDObjectOtherEvent - //eventsCreateAssignGDObjectGDNodeOtherEvent - START
+                <xsl:call-template name="eventsCreateAssignGDObjectGDNodesOtherEventImports" >
+                    <xsl:with-param name="caller" >externalEventsCreateAssignGDObject</xsl:with-param>
+                    <xsl:with-param name="totalRecursions" >
+                        <xsl:value-of select="0" />
+                    </xsl:with-param>
+                    <xsl:with-param name="layoutIndex" >
+                        <xsl:value-of select="$layoutIndex" />
+                    </xsl:with-param>
+                    <xsl:with-param name="thisNodeIndex" >
+                        <xsl:value-of select="$thisNodeIndex" />
+                    </xsl:with-param>
+                    <xsl:with-param name="createdObjectsAsString" >
+                        <xsl:value-of select="$createdObjectsAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="objectsGroupsAsString" >
+                        <xsl:value-of select="$objectsGroupsAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="objectsAsString" >
+                        <xsl:value-of select="$objectsAsString" />
+                    </xsl:with-param>
+
+                </xsl:call-template>
+                //externalLayoutsCreateAssignGDObjectOtherEvent - //eventsCreateAssignGDObjectGDNodeOtherEvent - END
+            </xsl:if>
+        </xsl:for-each>
+        //externalLayoutsCreateAssignGDObjectOtherEvent - END
+
+    </xsl:template>
+
 </xsl:stylesheet>

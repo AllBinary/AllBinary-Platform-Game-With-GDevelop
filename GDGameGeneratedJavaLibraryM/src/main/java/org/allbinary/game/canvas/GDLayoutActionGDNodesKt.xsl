@@ -150,6 +150,32 @@ Created By: Travis Berthelot
                 import org.allbinary.thread.PathFindingThreadPool
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory
 
+                    <xsl:call-template name="eventsCreateAssignGDObjectGDNodesActionImports" >
+                        <xsl:with-param name="caller" >actionLayout</xsl:with-param>
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="thisNodeIndex" >
+                            <xsl:value-of select="-1" />
+                        </xsl:with-param>
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsAsString" >
+                            <xsl:value-of select="$objectsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+
+                    </xsl:call-template>
+
                 //LayoutAction name=<xsl:value-of select="$layoutName" />
                 open public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes : SpecialAnimation
                 {

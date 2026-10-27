@@ -241,7 +241,7 @@ Created By: Travis Berthelot
                         <!--
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             final int currentIndex = index;
-                            gameGlobals.nodeArray[index2][index] = new GDNode() {
+                            this.gameGlobals.nodeArray[index2][index] = new GDNode() {
 
                                 @Override
                                 public boolean process() throws Exception {

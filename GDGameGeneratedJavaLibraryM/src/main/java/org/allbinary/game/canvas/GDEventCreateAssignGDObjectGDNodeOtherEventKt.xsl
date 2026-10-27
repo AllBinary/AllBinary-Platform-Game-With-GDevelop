@@ -78,7 +78,7 @@ Created By: Travis Berthelot
                 throw RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />")
             }
 
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = org.allbinary.game.canvas.node.builtin.GD<xsl:value-of select="$layoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes.getInstance().NODE_<xsl:value-of select="$selectedNodeId" />
+            this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = GD<xsl:value-of select="$layoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes.getInstance().NODE_<xsl:value-of select="$selectedNodeId" />
 
             </xsl:when>
             <xsl:when test="type = 'BuiltinCommonInstructions::Standard' or
@@ -92,7 +92,7 @@ Created By: Travis Berthelot
             if(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                 throw RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />")
             }
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = org.allbinary.game.canvas.node.builtin.GD<xsl:value-of select="$layoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes.getInstance().NODE_<xsl:value-of select="$selectedNodeId" />
+            this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = GD<xsl:value-of select="$layoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes.getInstance().NODE_<xsl:value-of select="$selectedNodeId" />
 
             </xsl:when>
 
@@ -106,6 +106,92 @@ Created By: Travis Berthelot
             <!-- other events - END -->
 
             <xsl:call-template name="eventsCreateAssignGDObjectGDNodesOtherEvent" >
+                <xsl:with-param name="caller" >
+                    <xsl:value-of select="$caller" />
+                </xsl:with-param>
+                <xsl:with-param name="layoutIndex" >
+                    <xsl:value-of select="$layoutIndex" />
+                </xsl:with-param>
+                <xsl:with-param name="thisNodeIndex" >
+                    <xsl:value-of select="$thisNodeIndex" />
+                </xsl:with-param>
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="number($totalRecursions) + 1" />
+                </xsl:with-param>
+                <xsl:with-param name="instancesAsString" >
+                    <xsl:value-of select="$instancesAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="objectsGroupsAsString" >
+                    <xsl:value-of select="$objectsGroupsAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="objectsAsString" >
+                    <xsl:value-of select="$objectsAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="createdObjectsAsString" >
+                    <xsl:value-of select="$createdObjectsAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="conditionEventPosition" >
+                    <xsl:value-of select="$eventPosition" />
+                </xsl:with-param>
+
+            </xsl:call-template>
+
+        </xsl:for-each>
+
+    </xsl:template>
+
+    <xsl:template name="eventsCreateAssignGDObjectGDNodesOtherEventImports" >
+        <xsl:param name="caller" />
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="thisNodeIndex" />
+        <xsl:param name="instancesAsString" />
+        <xsl:param name="objectsGroupsAsString" />
+        <xsl:param name="objectsAsString" />
+        <xsl:param name="createdObjectsAsString" />
+        <xsl:param name="conditionEventPosition" />
+         
+        <xsl:variable name="quote" >"</xsl:variable>
+        
+        <xsl:for-each select="events" >
+            <xsl:variable name="eventPosition" select="position()" />
+
+            <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+
+            <xsl:variable name="foundOtherCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'BuiltinCommonInstructions::Always' or type/value = 'DepartScene' or type/value = 'SceneJustBegins' or type/value = 'ObjectVariableChildCount' or type/value = 'NumberObjectVariable' or type/value = 'VarScene' or type/value = 'NbObjet' or type/value = 'BooleanObjectVariable' or type/value = 'SourisSurObjet' or type/value = 'IsCursorOnObject' or type/value = 'BooleanVariable'" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="foundVarSceneCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'VarScene'" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="foundLinkEvent" ><xsl:for-each select="events" ><xsl:if test="type = 'BuiltinCommonInstructions::Link'" >found</xsl:if></xsl:for-each></xsl:variable>
+
+            <xsl:variable name="selectedNodeId" select="number(substring(generate-id(), 2) - 65536)" />
+            <xsl:variable name="lastDigit" ><xsl:value-of select="substring($selectedNodeId, string-length($selectedNodeId))" /></xsl:variable>
+            <xsl:variable name="lastDigit2" ><xsl:if test="4 >= $lastDigit" >0</xsl:if><xsl:if test="$lastDigit > 4" >1</xsl:if></xsl:variable>
+
+            <!-- other events - START -->
+            <xsl:choose>
+            <xsl:when test="type = 'BuiltinCommonInstructions::ForEach'" >
+
+                <xsl:variable name="object" ><xsl:value-of select="object" /></xsl:variable>
+
+            import org.allbinary.game.canvas.node.builtin.GD<xsl:value-of select="$layoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes
+
+            </xsl:when>
+            <xsl:when test="type = 'BuiltinCommonInstructions::Standard' or 
+                          type = 'BuiltinCommonInstructions::ForEachChildVariable' or 
+                          type = 'BuiltinCommonInstructions::While' or 
+                          type = 'BuiltinCommonInstructions::Group' or 
+                          type = 'BuiltinCommonInstructions::Repeat' or 
+                          type = 'BuiltinExternalLayouts::CreateObjectsFromExternalLayout'" >
+
+            import org.allbinary.game.canvas.node.builtin.GD<xsl:value-of select="$layoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes
+
+            </xsl:when>
+
+            <xsl:otherwise>
+            </xsl:otherwise>
+            </xsl:choose>
+            <!-- other events - END -->
+
+            <xsl:call-template name="eventsCreateAssignGDObjectGDNodesOtherEventImports" >
                 <xsl:with-param name="caller" >
                     <xsl:value-of select="$caller" />
                 </xsl:with-param>

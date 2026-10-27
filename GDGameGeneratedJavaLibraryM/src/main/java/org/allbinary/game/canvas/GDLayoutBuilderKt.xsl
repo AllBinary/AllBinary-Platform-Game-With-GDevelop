@@ -238,7 +238,7 @@ Created By: Travis Berthelot
                         <!--
                         for(index in 0 until size) {
                             var currentIndex: Int = index
-                            gameGlobals.nodeArray[index2]!![index] = object: GDNode() {
+                            this.gameGlobals.nodeArray[index2]!![index] = object: GDNode() {
 
                                 @Throws(Exception::class)
                                 override fun process(): Boolean {
