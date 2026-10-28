@@ -2554,12 +2554,12 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                     open public override fun processMotion(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
-                        return this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
+                        return this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
 
                     }
 
                     open public override fun processReleased(): Boolean {
-                        return this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()
+                        return this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()
                     }
 
                 }
@@ -2579,7 +2579,7 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                     open public override fun processScrolling(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput): Boolean {
-                        return this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
+                        return this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
 
                     }
                 }
@@ -2621,12 +2621,12 @@ Created By: Travis Berthelot
                     //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
             <xsl:for-each select="whileConditions" >
                     //whileConditions - //<xsl:value-of select="type/value" /> - call
-                    //while(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()) {
+                    //while(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()) {
                 <xsl:for-each select="../conditions" >
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                     //whileConditions - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
-                    //this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
+                    //this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
                 </xsl:for-each>
                     //}
                     //for now add a parent condition to a whileConditions that hits this logic
@@ -2656,7 +2656,7 @@ Created By: Travis Berthelot
                         <xsl:for-each select="../events" >
                             <xsl:if test="actions" >
                         //1
-                        nodeList<xsl:value-of select="$nodeList" />.add(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!)
+                        nodeList<xsl:value-of select="$nodeList" />.add(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!)
                             </xsl:if>
                         </xsl:for-each>
 
@@ -2724,10 +2724,10 @@ Created By: Travis Berthelot
         //<xsl:variable name="nameGDConditionWithGroupActions1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name1" />GDConditionWithGroupActions</xsl:variable>
 
 //<xsl:text>                        </xsl:text><xsl:value-of select="$nameGDConditionWithGroupActions"/>.groupWithActionsList.add(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name1" />GroupInterface)
-//                        <xsl:value-of select="$nameGDConditionWithGroupActions"/>.actionForGroupsList.add(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$nodeList" />]!!)
+//                        <xsl:value-of select="$nameGDConditionWithGroupActions"/>.actionForGroupsList.add(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="$nodeList" />]!!)
 
 //<xsl:text>                        </xsl:text><xsl:value-of select="$nameGDConditionWithGroupActions1"/>.groupWithActionsList.add(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GroupInterface)
-//                        <xsl:value-of select="$nameGDConditionWithGroupActions1"/>.actionForGroupsList.add(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$nodeList" />]!!)
+//                        <xsl:value-of select="$nameGDConditionWithGroupActions1"/>.actionForGroupsList.add(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="$nodeList" />]!!)
     </xsl:template>
 
     <xsl:template name="splitCollisionNP">

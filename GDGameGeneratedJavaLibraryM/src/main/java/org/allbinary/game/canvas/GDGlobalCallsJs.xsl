@@ -447,7 +447,7 @@
         <!--
         (not($layoutIndex) and not(contains($isGlobal, 'found'))) and ($layoutIndex and contains($isLayoutGlobal, 'found'))
         -->
-        <xsl:if test="contains($isGlobal, 'found')" >gameGlobals</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" >globals<xsl:value-of select="$layoutIndex" /></xsl:if>
+        <xsl:if test="contains($isGlobal, 'found')" >this.gameGlobals</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" >this.globals<xsl:value-of select="$layoutIndex" /></xsl:if>
     </xsl:template>
 
     <xsl:template name="isGlobalsSep" >

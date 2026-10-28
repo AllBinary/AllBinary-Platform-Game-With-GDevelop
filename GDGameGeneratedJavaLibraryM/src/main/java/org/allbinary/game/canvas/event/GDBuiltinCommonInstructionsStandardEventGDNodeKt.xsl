@@ -107,18 +107,18 @@ Created By: Travis Berthelot
                         //Skip - IsMouseWheelScrollingDown for process() as it can only be called from processMotion(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
                             </xsl:when>
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
-                        this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
+                        this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
                             </xsl:when>
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
-                        this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
+                        this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
                             </xsl:when>
                             <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
                         //LinkedObjects::PickObjectsLinkedTo does not have process() logic
-                        this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
+                        this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
                             </xsl:when>
                             <xsl:when test="type/value = 'Distance'" >
                         //Distance - include params
-                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()) {
+                        if(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()) {
                             <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             <xsl:variable name="id" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
@@ -129,7 +129,7 @@ Created By: Travis Berthelot
                             </xsl:when>
                             <xsl:when test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                         //CollisionNP - include params
-                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()) {
+                        if(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()) {
                             <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             <xsl:variable name="id" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
@@ -139,7 +139,7 @@ Created By: Travis Berthelot
                             //var gameLayer2: GDGameLayer = gameGlobals.tempGameLayerArray[1]
                             </xsl:when>
                             <xsl:otherwise>
-                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()) {
+                        if(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()) {
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
@@ -155,7 +155,7 @@ Created By: Travis Berthelot
                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
                             //Events only - //Event - //<xsl:value-of select="type" /> - call
-                            this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.<xsl:value-of select="$process" />
+                            this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.<xsl:value-of select="$process" />
                         </xsl:if>
                         <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" />
@@ -217,17 +217,17 @@ Created By: Travis Berthelot
                         //Skip - IsMouseWheelScrollingDown for process() as it can only be called from processMotion(motionGestureEvent: MotionGestureEvent, lastMotionGestureInput: MotionGestureInput)
                             </xsl:when>
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
-                        this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processIndex(index3)
+                        this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processIndex(index3)
                             </xsl:when>
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
-                        this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processIndex(index3)
+                        this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processIndex(index3)
                             </xsl:when>
                             <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
                         //LinkedObjects::PickObjectsLinkedTo does not have processIndex(index3) logic
-                        this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processIndex(index3)
+                        this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processIndex(index3)
                             </xsl:when>
                             <xsl:otherwise>
-                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processIndex(index3)) {
+                        if(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processIndex(index3)) {
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
@@ -243,7 +243,7 @@ Created By: Travis Berthelot
                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
                             //Events only - //Event - //<xsl:value-of select="type" /> - call
-                            this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processIndex(index3)
+                            this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processIndex(index3)
                         </xsl:if>
                         <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" />
@@ -293,17 +293,17 @@ Created By: Travis Berthelot
                         //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                         <xsl:choose>
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
-                        this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
+                        this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
                             </xsl:when>
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
-                        this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
+                        this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
                             </xsl:when>
                             <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
                         //LinkedObjects::PickObjectsLinkedTo does not have processMotion(motionGestureEvent, lastMotionGestureInput) logic
-                        this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processIndex(index3)
+                        this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processIndex(index3)
                             </xsl:when>
                             <xsl:otherwise>
-                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)) {
+                        if(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)) {
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
@@ -319,7 +319,7 @@ Created By: Travis Berthelot
                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
                             //Events only - //Event - //<xsl:value-of select="type" /> - call
-                            this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
+                            this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
                         </xsl:if>
                         <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" />
@@ -360,16 +360,16 @@ Created By: Travis Berthelot
                         //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                         <xsl:choose>
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
-                        this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(gameLayerArray)
+                        this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(gameLayerArray)
                             </xsl:when>
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
-                        this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(gameLayerArray)
+                        this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(gameLayerArray)
                             </xsl:when>
                             <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
-                        this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(gameLayerArray)
+                        this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(gameLayerArray)
                             </xsl:when>
                             <xsl:otherwise>
-                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(gameLayerArray)) {
+                        if(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(gameLayerArray)) {
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
@@ -386,7 +386,7 @@ Created By: Travis Berthelot
                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
                             //Events only - //Event - //<xsl:value-of select="type" /> - call
-                            this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(gameLayerArray)
+                            this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(gameLayerArray)
                         </xsl:if>
                         <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" />
@@ -427,18 +427,18 @@ Created By: Travis Berthelot
                         //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                         <xsl:choose>
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::And'" >
-                        this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()
+                        this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()
                             </xsl:when>
                             <xsl:when test="type/value = 'BuiltinCommonInstructions::Or'" >
-                        this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()
+                        this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()
                             </xsl:when>
                             <xsl:when test="type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
                         //LinkedObjects::PickObjectsLinkedTo does not have processReleased() logic
-                        this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()
+                        this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()
                             </xsl:when>
                             <xsl:otherwise>
-                        if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()) {
-                        //this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()
+                        if(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()) {
+                        //this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()
                         //throw RuntimeException()
                             </xsl:otherwise>
                         </xsl:choose>
@@ -455,7 +455,7 @@ Created By: Travis Berthelot
                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
                             //Events only - //Event - //<xsl:value-of select="type" /> - call
-                            this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()
+                            this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processReleased()
                         </xsl:if>
                         <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" />

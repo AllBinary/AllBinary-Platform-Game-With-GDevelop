@@ -2031,17 +2031,17 @@ Created By: Travis Berthelot
             <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                 //TWBRemove - events that were not handled before
                 //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                //this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
+                //this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
             </xsl:if>
         </xsl:for-each>
         <xsl:for-each select="actions" >
             <xsl:for-each select="parameters" >
                 <xsl:if test="position() = 1 and text() != '' and not(contains(text(), $objectsAsString))" >
                     //TWBRemove - had once for
-                    //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />OnceGDNodeList.add(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$nodeId" />]!!)
+                    //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />OnceGDNodeList.add(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="$nodeId" />]!!)
                 </xsl:if>
                 <xsl:if test="position() = 1 and text() != '' and contains(text(), $objectsAsString)" >
-        <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />OnceGDNodeList.add(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$nodeId" />]!!)
+        <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />OnceGDNodeList.add(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="$nodeId" />]!!)
                 </xsl:if>
             </xsl:for-each>
 

@@ -2711,7 +2711,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="$typeValue = 'SourisSurObjet' or $typeValue = 'IsCursorOnObject'" >
                             //Condition - //IsCursorOnObject - call - motionGestureEvent
                             //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
-                            this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processMotion(motionGestureEvent, lastMotionGestureInput);
+                            this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processMotion(motionGestureEvent, lastMotionGestureInput);
                                 </xsl:if>
                             </xsl:for-each>
                             //Conditions - END

@@ -200,7 +200,7 @@
             <xsl:text>&#10;</xsl:text>
             //caller=<xsl:value-of select="$caller" /> - //eventIdsDoNotCallRecursions
             //eventIdsDoNotCallRecursions - //Events - //<xsl:value-of select="type" /> - //<xsl:value-of select="name" /> - call
-            <xsl:if test="$totalRecursions > 0" >//TWB not called anymore <xsl:value-of select="$caller" />//</xsl:if>this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
+            <xsl:if test="$totalRecursions > 0" >//TWB not called anymore <xsl:value-of select="$caller" />//</xsl:if>this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
         </xsl:if>
         <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
@@ -258,7 +258,7 @@
             <xsl:text>&#10;</xsl:text>
             //actionIdsGDObject - //<xsl:value-of select="type/value" />
             <xsl:if test="type/value = 'Delete'" >
-            this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(this.gameGlobals.tempGameLayerArray)
+            this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(this.gameGlobals.tempGameLayerArray)
             </xsl:if>
             <xsl:if test="type/value != 'Delete'" >
                 <xsl:if test="(contains($parametersHasGDObjectName, 'found') and contains($hasCreate, 'found')) or contains($parametersAsString0, $gdObjectName)" >
@@ -271,16 +271,16 @@
                     <xsl:if test="$hasCreateOrCreateByName &lt; number(substring(generate-id(), 2) - 65536)" >
             //Using specific param2 - <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
             //Using param that is not from the first 2 GameLayers - get
-            this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(this.gameGlobals.tempGameLayerArray)
+            this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(this.gameGlobals.tempGameLayerArray)
                     </xsl:if>
                     <xsl:if test="not($hasCreateOrCreateByName &lt; number(substring(generate-id(), 2) - 65536))" >
             //Using newly created layer as param2
-            this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(this.gameGlobals.tempGameLayerArray)
+            this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(this.gameGlobals.tempGameLayerArray)
                     </xsl:if>
                 </xsl:if>
                 <xsl:if test="not(string-length($hasCreateOrCreateByName) > 0)" >
             //Using null param
-            this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(this.gameGlobals.tempGameLayerArray)
+            this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processGD(this.gameGlobals.tempGameLayerArray)
                 </xsl:if>
             <!--
             if(globals.<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
@@ -292,7 +292,7 @@
 
                 <xsl:if test="not((contains($parametersHasGDObjectName, 'found') and contains($hasCreate, 'found')) or contains($parametersAsString0, $gdObjectName))" >
             //Action - //<xsl:value-of select="type/value" /> - call //Not processing the on the same GDGameLayer2
-            this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
+            this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
                 </xsl:if>
 
             </xsl:if>
@@ -332,7 +332,7 @@
                     //var EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: String = "Events nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:value-of select="$parametersAsString" />"
                     //this.logUtil.put(EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
                     //actionIdsMotionGestureEvent - //Event - //<xsl:value-of select="type" /> - call
-                    //this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
+                    //this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
                         </xsl:for-each>
                     //Events - END
                     </xsl:if>
@@ -363,7 +363,7 @@
                 <xsl:if test="contains($press, 'found') or contains($release, 'found')" >
             //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
             //Condition - //IsCursorOnObject - call - //release=<xsl:value-of select="$release" /> - //press=<xsl:value-of select="$press" /> //inverted=<xsl:value-of select="$inverted" /> - GDNode
-            this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
+            this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
                 </xsl:if>
 
                 </xsl:if>
@@ -402,7 +402,7 @@
             //Condition - //GlobalVariableAsBoolean - call - //release=<xsl:value-of select="$release" /> - //press=<xsl:value-of select="$press" /> //inverted=<xsl:value-of select="$inverted" /> - GDNode
                             //var motionGestureInput: MotionGestureInput = motionGestureEvent.getMotionGesture()
                             if (lastMotionGestureInput == touchMotionGestureFactory.PRESSED) {
-            this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
+            this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()
                             }
                         </xsl:if>
                     </xsl:if>
@@ -421,7 +421,7 @@
                         <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
             //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
             //Condition - //IsCursorOnObject - call - //release=<xsl:value-of select="$release" /> - //press=<xsl:value-of select="$press" /> //inverted=<xsl:value-of select="$inverted" /> - GDNode
-            this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
+            this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
                         </xsl:if>
             </xsl:if>
 -->
@@ -463,7 +463,7 @@
                 </xsl:for-each>
 
                 //Event with motion condition
-                <xsl:if test="contains(disabled, 'true')" >//</xsl:if>this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
+                <xsl:if test="contains(disabled, 'true')" >//</xsl:if>this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.processMotion(motionGestureEvent, lastMotionGestureInput)
             </xsl:if>
 
             <xsl:call-template name="actionIdsMovedMotionGestureEvent" >

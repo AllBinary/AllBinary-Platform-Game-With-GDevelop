@@ -31,7 +31,7 @@ Created By: Travis Berthelot
 
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                 //spriteMultitouchJoystickIsPressedActionProcess - //Condition - //SpriteMultitouchJoystick::SpriteMultitouchJoystick - GDNode
-                if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
+                if(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                     throw RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />")
                 }
                 <xsl:if test="contains($forExtension, 'found')" >public </xsl:if>val NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />: GDNode = object : GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
@@ -108,10 +108,10 @@ Created By: Travis Berthelot
                     }
 
                     <xsl:if test="not(contains($forExtension, 'found'))" >
-                    if(this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
+                    if(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />")
                     }
-                    this.gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />
+                    this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />
                     </xsl:if>
 
     </xsl:template>
