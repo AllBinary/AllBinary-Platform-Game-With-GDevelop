@@ -89,11 +89,11 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
         this.abeClientInformation = abeClientInformation;
     }
 
-    public GDGameGameCanvas(final AbeClientInformationInterface abeClientInformation, final AllBinaryGameLayerManager allBinaryGameLayerManager)
-    throws Exception
-    {
-        this(abeClientInformation, NullCommandListener.NULL_COMMAND_LISTENER, allBinaryGameLayerManager);
-    }
+//    public GDGameGameCanvas(final AbeClientInformationInterface abeClientInformation, final AllBinaryGameLayerManager allBinaryGameLayerManager)
+//    throws Exception
+//    {
+//        this(abeClientInformation, NullCommandListener.NULL_COMMAND_LISTENER, allBinaryGameLayerManager);
+//    }
     
     @Override
     protected void initSpecialPaint()

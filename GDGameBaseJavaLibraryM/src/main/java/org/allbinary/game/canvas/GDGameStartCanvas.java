@@ -16,6 +16,7 @@ package org.allbinary.game.canvas;
 import org.allbinary.game.canvas.GDGameSoftwareInfo;
 import org.allbinary.game.canvas.GDGameMenuPaintable;
 import javax.microedition.lcdui.CommandListener;
+import javax.microedition.lcdui.NullCommandListener;
 
 import org.allbinary.game.init.GDGameStaticInitializerFactory;
 import org.allbinary.game.layer.GDGameLayerManager;
@@ -90,6 +91,6 @@ public class GDGameStartCanvas extends DemoCanvas
     @Override
     public GameCanvasRunnableInterface createRunnable(int randomValue) throws Exception
     {
-        return new GDGameGameCanvas(this.abeClientInformation, this.createGameLayerManager(this.getNextRandom()));
+        return new GDGameGameCanvas(this.abeClientInformation, NullCommandListener.NULL_COMMAND_LISTENER, this.createGameLayerManager(this.getNextRandom()));
     }
 }
