@@ -48,7 +48,7 @@ public constructor (){
 
             super();
         
-    var sceneController: SceneController = GDGameAllBinarySceneControllerFactory.getInstance()!;;
+    let sceneController: SceneController = GDGameAllBinarySceneControllerFactory.getInstance()!;;
     
 this.setRenderer(sceneController!.getRenderer() as Renderer);
     
@@ -60,6 +60,4 @@ OpenGLThreadUtil.getInstance()!.set(this);
 
 
 }
-
-
 

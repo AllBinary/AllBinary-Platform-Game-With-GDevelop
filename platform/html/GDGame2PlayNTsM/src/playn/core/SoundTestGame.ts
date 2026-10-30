@@ -24,12 +24,15 @@
         
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { LogFactory } 
 const LogFactory = globalThis.org.allbinary.logic.communication.log.LogFactory;
+type LogFactory<T = any, U = any> = typeof LogFactory extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogFactory;
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 import { SecondaryThreadPool } from '../../org/allbinary/thread/SecondaryThreadPool.js';
 //not GWT import const SecondaryThreadPool
@@ -73,6 +76,4 @@ export class SoundTestGame
     readonly logUtil: LogUtil = LogUtil.getInstance()!;
 
 }
-
-
 

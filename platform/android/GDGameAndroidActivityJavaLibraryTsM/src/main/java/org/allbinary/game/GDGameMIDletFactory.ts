@@ -12,6 +12,7 @@ import { GDGameSoftwareInfo } from '../../../org/allbinary/game/canvas/GDGameSof
 
 //not plain js import { NullUtil } 
 const NullUtil = globalThis.org.allbinary.logic.NullUtil;
+type NullUtil<T = any, U = any> = typeof NullUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof NullUtil;
 
 import { GDGameClientInformationInterfaceFactory } from '../../../org/allbinary/logic/system/security/licensing/GDGameClientInformationInterfaceFactory.js';
 //not GWT import const GDGameClientInformationInterfaceFactory
@@ -67,6 +68,4 @@ GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFact
 
 
 }
-
-
 

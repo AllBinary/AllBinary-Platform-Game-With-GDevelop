@@ -51,5 +51,3 @@ public constructor (kind: string, jsonObject: JSONObject){
 
 }
 
-
-

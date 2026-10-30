@@ -22,15 +22,19 @@
         
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
+type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringMaker;
 
 //not plain js import { CommonSeps } 
 const CommonSeps = globalThis.org.allbinary.string.CommonSeps;
+type CommonSeps<T = any, U = any> = typeof CommonSeps extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonSeps;
 
 
 
@@ -70,14 +74,14 @@ export class CallStackGDNodeStats
 
 
                         for (
-    var index2: number = 0;index2 < this.SIZE; index2++)
+    let index2: number = 0;index2 < this.SIZE; index2++)
         {
 
 
 
 
                         for (
-    var index: number = 0;index < this.total; index++)
+    let index: number = 0;index < this.total; index++)
         {
 this.callStack[index2]![index]= 0;
     
@@ -96,12 +100,12 @@ this.callStack[index]![this.total++]= name;
 }
 
 
-    public log(stringBuilder: StringMaker, anyType: any = {}){
+    public log(stringBuilder: StringMaker, anyType: any){
 
-    var commonStrings: CommonStrings = CommonStrings.getInstance()!;;
+    let commonStrings: CommonStrings = CommonStrings.getInstance()!;;
     
 
-    var commonSeps: CommonSeps = CommonSeps.getInstance()!;;
+    let commonSeps: CommonSeps = CommonSeps.getInstance()!;;
     
 stringBuilder!.delete(0, stringBuilder!.length());
     
@@ -110,14 +114,14 @@ stringBuilder!.delete(0, stringBuilder!.length());
 
 
                         for (
-    var index2: number = 0;index2 < this.total; index2++)
+    let index2: number = 0;index2 < this.total; index2++)
         {
 
 
 
 
                         for (
-    var index: number = 0;index < this.SIZE; index++)
+    let index: number = 0;index < this.SIZE; index++)
         {
 
                         if(this.callStack[index]![index2] != 0)
@@ -166,6 +170,4 @@ stringBuilder!.delete(0, stringBuilder!.length());
 
 
 }
-
-
 

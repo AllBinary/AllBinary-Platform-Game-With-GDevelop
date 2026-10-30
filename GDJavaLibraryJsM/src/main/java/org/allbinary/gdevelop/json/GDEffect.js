@@ -17,7 +17,7 @@ export class GDEffect extends Object {
         this.doubleParameterMap = new ABHashMap();
         this.stringParameterMap = new ABHashMap();
         this.booleanParameterMap = new ABHashMap();
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
         this.name = jsonObject.getString(gdProjectStrings.NAME);
         this.effectType = jsonObject.getString(gdProjectStrings.EFFECT_TYPE);

@@ -14,15 +14,19 @@
         
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { JSONArray } from '../../../../org/json/JSONArray.js';
 //not GWT import const JSONArray
@@ -68,25 +72,25 @@ public constructor (jsonObject: JSONObject){
 
             super();
         
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 this.name= jsonObject!.getString(gdProjectStrings!.NAME);
     
 
-    var jsonArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.RESOURCES)!;;
+    let jsonArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.RESOURCES)!;;
     
 
-    var size: number = jsonArray!.length()!;;
+    let size: number = jsonArray!.length()!;;
     
 
-    var nextJSONObject: JSONObject;;
+    let nextJSONObject: JSONObject;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 nextJSONObject= jsonArray!.getJSONObject(index);
     
@@ -95,7 +99,7 @@ this.resourceList!.add(nextJSONObject!.getString(gdProjectStrings!.NAME));
 }
 
 
-    var commonStrings: CommonStrings = CommonStrings.getInstance()!;;
+    let commonStrings: CommonStrings = CommonStrings.getInstance()!;;
     
 this.logUtil!.putF(GDResourceFolder.RESOURCES +this.resourceList!.size(), this, commonStrings!.CONSTRUCTOR);
     
@@ -103,6 +107,4 @@ this.logUtil!.putF(GDResourceFolder.RESOURCES +this.resourceList!.size(), this, 
 
 
 }
-
-
 

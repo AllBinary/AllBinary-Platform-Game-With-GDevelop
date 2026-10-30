@@ -74,17 +74,17 @@ export class GDGameMotionGestureListener extends Object {
     onScrolledMotionGestureEvent(motionGestureEvent) {
     }
     onPressedMotionGestureEvent(ev) {
-        var abToGBUtil = ABToGBUtil.getInstance();
+        let abToGBUtil = ABToGBUtil.getInstance();
         ;
-        var allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
+        let allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
         ;
-        var point = ev.getCurrentPoint();
+        let point = ev.getCurrentPoint();
         ;
-        var size = allBinaryGameLayerManager.getSize();
+        let size = allBinaryGameLayerManager.getSize();
         ;
-        var draggableGameLayer;
+        let draggableGameLayer;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             draggableGameLayer = allBinaryGameLayerManager.getLayerAt(index);
             if (this.gameLayerDraggedList.size() == 0) {
                 if (draggableGameLayer.isDraggable) {
@@ -99,29 +99,31 @@ export class GDGameMotionGestureListener extends Object {
     }
     released(ev) {
         try {
-            var size = this.gameLayerDraggedList.size();
+            let size = this.gameLayerDraggedList.size();
             ;
-            var draggableGameLayer;
+            let draggableGameLayer;
             ;
-            for (var index = 0; index < size; index++) {
+            for (let index = 0; index < size; index++) {
                 draggableGameLayer = this.gameLayerDraggedList.get(index);
                 draggableGameLayer.isDragged = false;
                 draggableGameLayer.isDropped = true;
             }
             this.gameLayerDraggedList.clear();
-            //: 
         }
-        catch (e) {
-            var stringBuffer = new StringMaker();
-            ;
-            stringBuffer.append(this.commonStrings.EXCEPTION_LABEL);
-            stringBuffer.append(StringUtil.getInstance().toString(ev.getMotionGesture()));
-            this.logUtil.put(stringBuffer.toString(), this, "release", e);
+        catch (caught) {
+            {
+                const e = caught;
+                let stringBuffer = new StringMaker();
+                ;
+                stringBuffer.append(this.commonStrings.EXCEPTION_LABEL);
+                stringBuffer.append(StringUtil.getInstance().toString(ev.getMotionGesture()));
+                this.logUtil.put(stringBuffer.toString(), this, "release", e);
+            }
         }
     }
     onMotionGestureEvent(ev) {
         try {
-            var motionGestureInput = ev.getMotionGesture();
+            let motionGestureInput = ev.getMotionGesture();
             ;
             if (motionGestureInput == TouchMotionGestureFactory.getInstance().PRESSED) {
                 this.onPressedMotionGestureEvent(ev);
@@ -129,14 +131,16 @@ export class GDGameMotionGestureListener extends Object {
             else if (motionGestureInput == TouchMotionGestureFactory.getInstance().RELEASED) {
                 this.released(ev);
             }
-            //: 
         }
-        catch (e) {
-            var stringBuffer = new StringMaker();
-            ;
-            stringBuffer.append(this.commonStrings.EXCEPTION_LABEL);
-            stringBuffer.append(StringUtil.getInstance().toString(ev.getMotionGesture()));
-            this.logUtil.put(stringBuffer.toString(), this, "onMotionGestureEvent", e);
+        catch (caught) {
+            {
+                const e = caught;
+                let stringBuffer = new StringMaker();
+                ;
+                stringBuffer.append(this.commonStrings.EXCEPTION_LABEL);
+                stringBuffer.append(StringUtil.getInstance().toString(ev.getMotionGesture()));
+                this.logUtil.put(stringBuffer.toString(), this, "onMotionGestureEvent", e);
+            }
         }
     }
 }

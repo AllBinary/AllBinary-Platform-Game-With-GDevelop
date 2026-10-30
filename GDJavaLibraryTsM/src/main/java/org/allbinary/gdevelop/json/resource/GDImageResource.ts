@@ -49,7 +49,7 @@ public constructor (kind: string, jsonObject: JSONObject){
                             //For kotlin this is before the body of the constructor.
                     
 
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 this.smooth= jsonObject!.getBoolean(gdProjectStrings!.SMOOTHED);
     
@@ -57,6 +57,4 @@ this.smooth= jsonObject!.getBoolean(gdProjectStrings!.SMOOTHED);
 
 
 }
-
-
 

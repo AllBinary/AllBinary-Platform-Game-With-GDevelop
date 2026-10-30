@@ -24,16 +24,16 @@ export class GDVariable extends Object {
         super();
         this.childVariableMap = new ABHashMap();
         this.childVariableList = new BasicArrayListD();
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
-        var typeFactory = GDTypeFactory.getInstance();
+        let typeFactory = GDTypeFactory.getInstance();
         ;
         this.type = typeFactory.get(jsonObject.getString(gdProjectStrings.TYPE));
-        var string;
+        let string;
         ;
-        var value;
+        let value;
         ;
-        var boolValue;
+        let boolValue;
         ;
         if (typeFactory.isPrimitive(this.type)) {
             if (this.type == typeFactory.STRING) {
@@ -62,13 +62,13 @@ export class GDVariable extends Object {
             value = 0;
             boolValue = false;
             if (jsonObject.has(gdProjectStrings.CHILDREN)) {
-                var variableJSONArray = jsonObject.getJSONArray(gdProjectStrings.CHILDREN);
+                let variableJSONArray = jsonObject.getJSONArray(gdProjectStrings.CHILDREN);
                 ;
-                var size = variableJSONArray.length();
+                let size = variableJSONArray.length();
                 ;
-                var childJSONObject;
+                let childJSONObject;
                 ;
-                for (var index = 0; index < size; index++) {
+                for (let index = 0; index < size; index++) {
                     childJSONObject = variableJSONArray.getJSONObject(index);
                     if (this.type == typeFactory.STRUCTURE) {
                         this.childVariableMap.put(childJSONObject.getString(gdProjectStrings.NAME), new GDVariable(childJSONObject));

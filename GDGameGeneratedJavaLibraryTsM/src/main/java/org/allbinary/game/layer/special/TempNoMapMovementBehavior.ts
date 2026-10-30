@@ -56,5 +56,3 @@ export class TempNoMapMovementBehavior extends TempMovementBehavior {
 
 }
 
-
-

@@ -26,9 +26,9 @@ export class PathFindingBehavior extends GDBehavior {
         super();
     }
     process(gameLayerList, index, graphics) {
-        var gameLayer = gameLayerList.get(index);
+        let gameLayer = gameLayerList.get(index);
         ;
-        var gdObject = gameLayer.gdObject;
+        let gdObject = gameLayer.gdObject;
         ;
         if (gdObject ==
             null) {
@@ -41,7 +41,7 @@ export class PathFindingBehavior extends GDBehavior {
     //@Throws(Exception.constructor)
     setTarget(sourceGameLayer, targetGameLayer, x, y) {
         targetGameLayer.setAllBinaryGameLayerManager(sourceGameLayer.allBinaryGameLayerManagerP);
-        var pathFindingLayerInterface = sourceGameLayer;
+        let pathFindingLayerInterface = sourceGameLayer;
         ;
         pathFindingLayerInterface.setTarget(targetGameLayer);
     }

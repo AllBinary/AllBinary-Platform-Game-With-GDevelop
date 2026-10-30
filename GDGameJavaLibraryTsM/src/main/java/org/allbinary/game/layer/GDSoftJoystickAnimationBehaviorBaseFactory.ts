@@ -70,5 +70,3 @@ export class GDSoftJoystickAnimationBehaviorBaseFactory extends GDAnimationBehav
 
 }
 
-
-

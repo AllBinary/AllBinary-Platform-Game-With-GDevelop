@@ -49,5 +49,3 @@ export class TouchButtonAndroidResources extends Init {
 
 }
 
-
-

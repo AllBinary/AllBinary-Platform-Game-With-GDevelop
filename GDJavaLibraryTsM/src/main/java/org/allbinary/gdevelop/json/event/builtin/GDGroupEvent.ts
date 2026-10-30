@@ -21,9 +21,11 @@ import { GDExpression } from '../../../../../../org/allbinary/gdevelop/json/even
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { JSONArray } from '../../../../../../org/json/JSONArray.js';
 //not GWT import const JSONArray
@@ -78,10 +80,10 @@ public constructor (type: string, jsonObject: JSONObject){
                             //For kotlin this is before the body of the constructor.
                     
 
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 
-    var eventFactory: GDEventFactory = GDEventFactory.getInstance()!;;
+    let eventFactory: GDEventFactory = GDEventFactory.getInstance()!;;
     
 this.name= jsonObject!.getString(gdProjectStrings!.NAME);
     
@@ -96,27 +98,27 @@ this.colorG= jsonObject!.getInt(gdProjectStrings!.COLOR_G);
 this.colorB= jsonObject!.getInt(gdProjectStrings!.COLOR_B);
     
 
-    var expressionJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.PARAMETERS)!;;
+    let expressionJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.PARAMETERS)!;;
     
 
-    var size: number = expressionJSONArray!.length()!;;
+    let size: number = expressionJSONArray!.length()!;;
     
 
-    var nextJSONObject: JSONObject;;
+    let nextJSONObject: JSONObject;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.parametersExpressionList!.add(new GDExpression(expressionJSONArray!.getString(index)));
     
 }
 
 
-    var eventJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.EVENTS)!;;
+    let eventJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.EVENTS)!;;
     
 size= eventJSONArray!.length();
     
@@ -125,7 +127,7 @@ size= eventJSONArray!.length();
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 nextJSONObject= eventJSONArray!.getJSONObject(index);
     
@@ -137,6 +139,4 @@ this.eventList!.add(eventFactory!.create(nextJSONObject));
 
 
 }
-
-
 

@@ -42,15 +42,19 @@ import { MotionGestureEvent } from '../../../../org/allbinary/input/motion/gestu
 
 //not plain js import { NullUtil } 
 const NullUtil = globalThis.org.allbinary.logic.NullUtil;
+type NullUtil<T = any, U = any> = typeof NullUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof NullUtil;
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { NullRunnable } 
 const NullRunnable = globalThis.org.allbinary.thread.NullRunnable;
+type NullRunnable<T = any, U = any> = typeof NullRunnable extends abstract new (...args: any[]) => infer Instance ? Instance : typeof NullRunnable;
 
 
 
@@ -145,10 +149,19 @@ this.nodeStatsFactory!.push(3, this.name);
     
 }
 
-
+processReleased(...args: any[]): any {
+   
+    if (args.length === 0) return this.processReleased$overload1();
+   
+    if (args.length === 1) return this.processReleased$overload2(args[0]);
+   
+    if (args.length === 1) return this.processReleased$overload3(args[0]);
+   
+   throw new TypeError('No matching overload: processReleased'); }
+  
                 //@Throws(Exception.constructor)
             
-    public processReleased(): boolean{
+    public processReleased$overload1(): boolean{
 this.processReleasedStats();
     
 
@@ -159,8 +172,15 @@ this.processReleasedStats();
     
 }
 
-
-    processReleasedStats(){
+processReleasedStats(...args: any[]): any {
+   
+    if (args.length === 0) return this.processReleasedStats$overload1();
+   
+    if (args.length === 1) return this.processReleasedStats$overload2(args[0]);
+   
+   throw new TypeError('No matching overload: processReleasedStats'); }
+  
+    processReleasedStats$overload1(){
 this.nodeStatsFactory!.push(4, this.name);
     
 }
@@ -180,7 +200,7 @@ this.nodeStatsFactory!.push(4, this.name);
 
                 //@Throws(Exception.constructor)
             
-    public processReleased(gameKeyEvent: GameKeyEvent): boolean{
+    public processReleased$overload2(gameKeyEvent: GameKeyEvent): boolean{
 
 
 
@@ -204,7 +224,7 @@ this.nodeStatsFactory!.push(4, this.name);
 
                 //@Throws(Exception.constructor)
             
-    public processReleased(keyAsInteger: Integer): boolean{
+    public processReleased$overload3(keyAsInteger: Integer): boolean{
 
 
 
@@ -358,7 +378,7 @@ this.nodeStatsFactory!.push(10, this.name);
 }
 
 
-    processReleasedStats(gdObject: GDObject){
+    processReleasedStats$overload2(gdObject: GDObject){
 this.nodeStatsFactory!.push(11, this.name);
     
 }
@@ -467,6 +487,4 @@ this.nodeStatsFactory!.push(14, this.name);
 
 
 }
-
-
 

@@ -25,12 +25,15 @@ import { GroupFactory } from '../../../../org/allbinary/game/identification/Grou
 
 //not plain js import { NullUtil } 
 const NullUtil = globalThis.org.allbinary.logic.NullUtil;
+type NullUtil<T = any, U = any> = typeof NullUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof NullUtil;
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { ArrayUtil } 
 const ArrayUtil = globalThis.org.allbinary.util.ArrayUtil;
+type ArrayUtil<T = any, U = any> = typeof ArrayUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ArrayUtil;
 
 
 
@@ -65,6 +68,4 @@ export class GDGlobals
     readonly commonStrings: CommonStrings = CommonStrings.getInstance()!;
 
 }
-
-
 

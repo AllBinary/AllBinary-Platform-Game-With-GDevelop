@@ -24,11 +24,11 @@ export class GDLinkEvent extends GDEvent {
         super(type, jsonObject);
         this.logUtil = LogUtil.getInstance();
         //For kotlin this is before the body of the constructor.
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
-        var includeConfigFactory = GDIncludeConfigFactory.getInstance();
+        let includeConfigFactory = GDIncludeConfigFactory.getInstance();
         ;
-        var includeJSONObject = jsonObject.getJSONObject(gdProjectStrings.INCLUDE);
+        let includeJSONObject = jsonObject.getJSONObject(gdProjectStrings.INCLUDE);
         ;
         this.includeConfig = includeJSONObject.getInt(gdProjectStrings.INCLUDE_CONFIG);
         this.target = jsonObject.getString(gdProjectStrings.TARGET);
@@ -40,7 +40,7 @@ export class GDLinkEvent extends GDEvent {
         }
         else {
             this.eventsGroupName = StringUtil.getInstance().NULL_STRING;
-            var commonStrings = CommonStrings.getInstance();
+            let commonStrings = CommonStrings.getInstance();
             ;
             this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, new Exception());
         }

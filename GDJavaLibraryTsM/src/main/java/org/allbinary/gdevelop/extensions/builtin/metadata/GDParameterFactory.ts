@@ -479,5 +479,3 @@ export class GDParameterFactory
 
 }
 
-
-

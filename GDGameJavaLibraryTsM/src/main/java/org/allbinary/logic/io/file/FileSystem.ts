@@ -22,24 +22,31 @@
         
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { AbPathData } 
 const AbPathData = globalThis.org.allbinary.logic.io.path.AbPathData;
+type AbPathData<T = any, U = any> = typeof AbPathData extends abstract new (...args: any[]) => infer Instance ? Instance : typeof AbPathData;
 
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
+type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringMaker;
 
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 //not plain js import { SystemProperties } 
 const SystemProperties = globalThis.org.allbinary.logic.system.os.SystemProperties;
+type SystemProperties<T = any, U = any> = typeof SystemProperties extends abstract new (...args: any[]) => infer Instance ? Instance : typeof SystemProperties;
 
 //not plain js import { CommonSeps } 
 const CommonSeps = globalThis.org.allbinary.string.CommonSeps;
+type CommonSeps<T = any, U = any> = typeof CommonSeps extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonSeps;
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 
 
@@ -81,10 +88,10 @@ export class FileSystem
 
     public static LoadStringFromFileSync(path: string): string{
 
-    var logUtil: LogUtil = LogUtil.getInstance()!;;
+    let logUtil: LogUtil = LogUtil.getInstance()!;;
     
 
-    var commonStrings: CommonStrings = CommonStrings.getInstance()!;;
+    let commonStrings: CommonStrings = CommonStrings.getInstance()!;;
     
 logUtil!.putF(path, commonStrings, commonStrings!.PROCESS);
     
@@ -99,7 +106,7 @@ logUtil!.putF(path, commonStrings, commonStrings!.PROCESS);
 
     public static DirectoryName(currentDirPath: string): string{
 
-    var name: string = AbPathData.getInstance()!.removeNameFromPath(currentDirPath)!;;
+    let name: string = AbPathData.getInstance()!.removeNameFromPath(currentDirPath)!;;
     
 
 
@@ -112,22 +119,22 @@ logUtil!.putF(path, commonStrings, commonStrings!.PROCESS);
 
     public static ReadDirectory(currentDirPath: string, fileList: string[]): string[]{
 
-    var PAGE_SIZE: number = 15;;
+    let PAGE_SIZE: number = 15;;
     
 
-    var logUtil: LogUtil = LogUtil.getInstance()!;;
+    let logUtil: LogUtil = LogUtil.getInstance()!;;
     
 
-    var commonStrings: CommonStrings = CommonStrings.getInstance()!;;
+    let commonStrings: CommonStrings = CommonStrings.getInstance()!;;
     
 
-    var stringUtil: StringUtil = StringUtil.getInstance()!;;
+    let stringUtil: StringUtil = StringUtil.getInstance()!;;
     
 
-    var path: string = FileSystem.FixPath(currentDirPath)!;;
+    let path: string = FileSystem.FixPath(currentDirPath)!;;
     
 
-    var realFilePathAsStringArray: string[] = AbFileSystem.getInstance()!.getFilesAsStringArrayForPath(path)!;;
+    let realFilePathAsStringArray: string[] = AbFileSystem.getInstance()!.getFilesAsStringArrayForPath(path)!;;
     
 
                         if(realFilePathAsStringArray == 
@@ -145,25 +152,25 @@ logUtil!.putF(path, commonStrings, commonStrings!.PROCESS);
                                     }
                                 
 
-    var totalPages: number = (realFilePathAsStringArray!.length /PAGE_SIZE) +1;;
+    let totalPages: number = (globalThis.Math.trunc(realFilePathAsStringArray!.length /PAGE_SIZE)) +1;;
     
 fileList= new Array(totalPages *PAGE_SIZE);
     
 
-    var size: number = realFilePathAsStringArray!.length
+    let size: number = realFilePathAsStringArray!.length
                 ;;
     
 logUtil!.putF(new StringMaker().append("FileSystem::ReadDirectory - total files: ")!.appendint(size)!.toString(), currentDirPath, commonStrings!.PROCESS);
     
 
-    var remainingPageSize: number = fileList!.length -realFilePathAsStringArray!.length;;
+    let remainingPageSize: number = fileList!.length -realFilePathAsStringArray!.length;;
     
 
 
 
 
                         for (
-    var index: number = size;index < remainingPageSize; index++)
+    let index: number = size;index < remainingPageSize; index++)
         {
 fileList[index]= stringUtil!.EMPTY_STRING;
     
@@ -174,7 +181,7 @@ fileList[index]= stringUtil!.EMPTY_STRING;
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 fileList[index]= realFilePathAsStringArray[index]!;
     
@@ -224,7 +231,7 @@ fileList[index]= realFilePathAsStringArray[index]!;
 
     public static PathDelimiter(): string{
 
-    var SEPARATOR: string = FilePathData.getInstance()!.SEPARATORCHAR;;
+    let SEPARATOR: string = FilePathData.getInstance()!.SEPARATORCHAR;;
     
 
 
@@ -237,10 +244,10 @@ fileList[index]= realFilePathAsStringArray[index]!;
 
     public static ExtensionName(fullPath: string): string{
 
-    var pathData: AbPathData = AbPathData.getInstance()!;;
+    let pathData: AbPathData = AbPathData.getInstance()!;;
     
 
-    var name: string = pathData!.getNameFromPath(fullPath)!;;
+    let name: string = pathData!.getNameFromPath(fullPath)!;;
     
 
                         if(name.startsWith(pathData!.EXTENSION_SEP))
@@ -273,6 +280,4 @@ fileList[index]= realFilePathAsStringArray[index]!;
 
 
 }
-
-
 

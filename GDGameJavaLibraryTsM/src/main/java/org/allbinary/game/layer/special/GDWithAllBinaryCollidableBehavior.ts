@@ -40,12 +40,15 @@ import { GDNode } from '../../../../../org/allbinary/game/layout/GDNode.js';
 
 //not plain js import { ForcedLogUtil } 
 const ForcedLogUtil = globalThis.org.allbinary.logic.communication.log.ForcedLogUtil;
+type ForcedLogUtil<T = any, U = any> = typeof ForcedLogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ForcedLogUtil;
 
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
+type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringMaker;
 
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 
 
@@ -92,7 +95,7 @@ this.conditionWIthGroupActions= collidableBehavior;
 
     public isCollision(ownerLayer: CollidableCompositeLayer, collisionLayer: CollidableCompositeLayer): boolean{
 
-    var gdWithAllBinaryCollidableBehavior: GDWithAllBinaryCollidableBehavior = (collisionLayer!.getCollidableInferface() as GDWithAllBinaryCollidableBehavior);;
+    let gdWithAllBinaryCollidableBehavior: GDWithAllBinaryCollidableBehavior = (collisionLayer!.getCollidableInferface() as GDWithAllBinaryCollidableBehavior);;
     
 
                         if(gdWithAllBinaryCollidableBehavior!.conditionWIthGroupActions!.groupWithActionsList!.size() > 0)
@@ -168,24 +171,24 @@ this.conditionWIthGroupActions= collidableBehavior;
                         
                                     {
                                     
-    var groupInterfaceArray: Group[] = collisionLayer!.getGroupInterface()!;;
+    let groupInterfaceArray: Group[] = collisionLayer!.getGroupInterface()!;;
     
 
-    var size: number = groupInterfaceArray!.length
+    let size: number = groupInterfaceArray!.length
                 ;;
     
 
-    var indexOfGroup: number= 0;;
+    let indexOfGroup: number= 0;;
     
 
-    var node: GDNode;;
+    let node: GDNode;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 indexOfGroup= this.conditionWIthGroupActions!.groupWithActionsList!.indexOf(groupInterfaceArray[index]!);
     
@@ -196,7 +199,7 @@ indexOfGroup= this.conditionWIthGroupActions!.groupWithActionsList!.indexOf(grou
                                     node= (this.conditionWIthGroupActions!.actionForGroupsList!.get(indexOfGroup) as GDNode);
     
 
-    var tempGameLayerUtil: TempGameLayerUtil = TempGameLayerUtil.getInstance()!;;
+    let tempGameLayerUtil: TempGameLayerUtil = TempGameLayerUtil.getInstance()!;;
     
 tempGameLayerUtil!.clear();
     
@@ -243,17 +246,17 @@ ForcedLogUtil.log("No Longer Used", this);
 
     public toString(ownerLayer: CollidableCompositeLayer, collisionLayer: CollidableCompositeLayer, stringBuilder: StringMaker): string{
 
-    var stringUtil: StringUtil = StringUtil.getInstance()!;;
+    let stringUtil: StringUtil = StringUtil.getInstance()!;;
     
 
-    var size: number = ownerLayer!.getGroupInterface()!.length;;
+    let size: number = ownerLayer!.getGroupInterface()!.length;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 stringBuilder!.append(stringUtil!.toString(ownerLayer!.getGroupInterface()[index]!));
     
@@ -268,7 +271,7 @@ size= collisionLayer!.getGroupInterface()!.length;
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 stringBuilder!.append(stringUtil!.toString(collisionLayer!.getGroupInterface()[index]!));
     
@@ -284,6 +287,4 @@ stringBuilder!.append(stringUtil!.toString(collisionLayer!.getGroupInterface()[i
 
 
 }
-
-
 

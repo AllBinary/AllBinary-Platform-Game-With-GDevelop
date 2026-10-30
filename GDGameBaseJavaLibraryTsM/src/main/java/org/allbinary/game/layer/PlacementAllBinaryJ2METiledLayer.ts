@@ -82,5 +82,3 @@ super.paint(graphics);
 
 }
 
-
-

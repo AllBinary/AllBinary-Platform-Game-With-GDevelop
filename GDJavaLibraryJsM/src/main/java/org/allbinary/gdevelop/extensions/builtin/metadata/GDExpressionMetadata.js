@@ -33,24 +33,16 @@ export class GDExpressionMetadata extends Object {
         this.isPrivate = false;
     }
     addParameter(type, description, optionalObjectType, parameterIsOptional) {
-        var supplementaryInformation = (this.parameterFactory.isObject(type) || this.parameterFactory.isBehavior(type))
-            ?
-                (optionalObjectType.isEmpty()
-                    ?
-                        this.stringUtil.EMPTY_STRING
-                    :
-                        this.extensionNamespace + optionalObjectType) : ;
-        optionalObjectType;
+        let supplementaryInformation = ((this.parameterFactory.isObject(type) || this.parameterFactory.isBehavior(type)) ? ((optionalObjectType.isEmpty() ? this.stringUtil.EMPTY_STRING : this.extensionNamespace + optionalObjectType)) : optionalObjectType);
         ;
-        ;
-        var parameterMetadata = new GDParameterMetadata(type, supplementaryInformation, parameterIsOptional, description, false);
+        let parameterMetadata = new GDParameterMetadata(type, supplementaryInformation, parameterIsOptional, description, false);
         ;
         this.parameterMetadataList.add(parameterMetadata);
         //if statement needs to be on the same line and ternary does not work the same way.
         return this;
     }
     addCodeOnlyParameter(type, supplementaryInformation) {
-        var parameterMetadata = new GDParameterMetadata(type, supplementaryInformation, false, this.stringUtil.EMPTY_STRING, true);
+        let parameterMetadata = new GDParameterMetadata(type, supplementaryInformation, false, this.stringUtil.EMPTY_STRING, true);
         ;
         this.parameterMetadataList.add(parameterMetadata);
         //if statement needs to be on the same line and ternary does not work the same way.

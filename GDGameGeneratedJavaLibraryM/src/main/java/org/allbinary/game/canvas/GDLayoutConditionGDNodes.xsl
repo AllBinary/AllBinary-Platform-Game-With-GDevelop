@@ -155,7 +155,7 @@ Created By: Travis Berthelot
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
                         private final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
                         
-                        private final GDNodes gdNodes = GDNodeUtil.getInstance().getInstance(<xsl:value-of select="$layoutIndex" />);
+                        private final GDNodes gdNodes = GDNodeUtil.getInstance().getOrCreateInstance(<xsl:value-of select="$layoutIndex" />);
 
                         private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();

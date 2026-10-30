@@ -20,6 +20,7 @@
 
 //not plain js import { CommonSeps } 
 const CommonSeps = globalThis.org.allbinary.string.CommonSeps;
+type CommonSeps<T = any, U = any> = typeof CommonSeps extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonSeps;
 
 import { GDGameSoftwareInfo } from '../../../../../../org/allbinary/game/canvas/GDGameSoftwareInfo.js';
 //not GWT import const GDGameSoftwareInfo
@@ -62,6 +63,4 @@ public constructor (){
 
 
 }
-
-
 

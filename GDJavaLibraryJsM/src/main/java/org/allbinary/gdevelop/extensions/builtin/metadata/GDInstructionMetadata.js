@@ -47,24 +47,16 @@ export class GDInstructionMetadata extends Object {
         this.behaviorInstruction = false;
     }
     addParameter(type, description, optionalObjectType, parameterIsOptional) {
-        var supplementaryInformation = (this.parameterFactory.isObject(type) || this.parameterFactory.isBehavior(type))
-            ?
-                (optionalObjectType.isEmpty()
-                    ?
-                        this.stringUtil.EMPTY_STRING
-                    :
-                        this.extensionNamespace + optionalObjectType) : ;
-        optionalObjectType;
+        let supplementaryInformation = ((this.parameterFactory.isObject(type) || this.parameterFactory.isBehavior(type)) ? ((optionalObjectType.isEmpty() ? this.stringUtil.EMPTY_STRING : this.extensionNamespace + optionalObjectType)) : optionalObjectType);
         ;
-        ;
-        var parameterMetadata = new GDParameterMetadata(type, supplementaryInformation, parameterIsOptional, description, false);
+        let parameterMetadata = new GDParameterMetadata(type, supplementaryInformation, parameterIsOptional, description, false);
         ;
         this.parameterList.add(parameterMetadata);
         //if statement needs to be on the same line and ternary does not work the same way.
         return this;
     }
     addCodeOnlyParameter(type, supplementaryInformation) {
-        var parameterMetadata = new GDParameterMetadata(type, supplementaryInformation, false, this.stringUtil.EMPTY_STRING, false);
+        let parameterMetadata = new GDParameterMetadata(type, supplementaryInformation, false, this.stringUtil.EMPTY_STRING, false);
         ;
         this.parameterList.add(parameterMetadata);
         //if statement needs to be on the same line and ternary does not work the same way.
@@ -73,19 +65,13 @@ export class GDInstructionMetadata extends Object {
     useStandardRelationalOperatorParameters(type) {
         this.codeExtraInformation.setManipulatedType(type);
         this.addParameter(this.parameterFactory.RELATIONAL_OPERATOR, "Sign of the test", StringUtil.getInstance().NULL_STRING, false);
-        this.addParameter(type == this.parameterFactory.NUMBER
-            ?
-                this.parameterFactory.EXPRESSION
-            :
-                type);
-        "Value to compare", StringUtil.getInstance().NULL_STRING, false;
+        this.addParameter((type == this.parameterFactory.NUMBER ? this.parameterFactory.EXPRESSION : type), "Value to compare", StringUtil.getInstance().NULL_STRING, false);
+        let operatorParamIndex = this.parameterList.size() - 2;
         ;
-        var operatorParamIndex = this.parameterList.size() - 2;
-        ;
-        var valueParamIndex = this.parameterList.size() - 1;
+        let valueParamIndex = this.parameterList.size() - 1;
         ;
         if (this.objectInstruction || this.behaviorInstruction) {
-            var stringBuilder = new StringBuilder();
+            let stringBuilder = new StringBuilder();
             ;
             stringBuilder.append(this.sentence);
             stringBuilder.append(GDInstructionMetadata._OF_PARAM0_);
@@ -99,7 +85,7 @@ export class GDInstructionMetadata extends Object {
             this.sentence = stringBuilder.toString();
         }
         else {
-            var stringBuilder = new StringBuilder();
+            let stringBuilder = new StringBuilder();
             ;
             stringBuilder.append(this.sentence);
             stringBuilder.append(this.commonSeps.SPACE);
@@ -117,7 +103,7 @@ export class GDInstructionMetadata extends Object {
     }
     setParameterLongDescription(longDescription) {
         if (this.parameterList.size() > 0) {
-            var gdParameterMetadata = this.parameterList.get(this.parameterList.size() - 1);
+            let gdParameterMetadata = this.parameterList.get(this.parameterList.size() - 1);
             ;
             gdParameterMetadata.setLongDescription(longDescription);
         }
@@ -126,7 +112,7 @@ export class GDInstructionMetadata extends Object {
     }
     setDefaultValue(defaultValue) {
         if (this.parameterList.size() > 0) {
-            var gdParameterMetadata = this.parameterList.get(this.parameterList.size() - 1);
+            let gdParameterMetadata = this.parameterList.get(this.parameterList.size() - 1);
             ;
             gdParameterMetadata.setDefaultValue(defaultValue);
         }
@@ -141,19 +127,13 @@ export class GDInstructionMetadata extends Object {
     useStandardOperatorParameters(type) {
         this.codeExtraInformation.setManipulatedType(type);
         this.addParameter(this.parameterFactory.OPERATOR, "Modification's sign", StringUtil.getInstance().NULL_STRING, false);
-        this.addParameter(type == this.parameterFactory.NUMBER
-            ?
-                this.parameterFactory.EXPRESSION
-            :
-                type);
-        "Value", StringUtil.getInstance().NULL_STRING, false;
+        this.addParameter((type == this.parameterFactory.NUMBER ? this.parameterFactory.EXPRESSION : type), "Value", StringUtil.getInstance().NULL_STRING, false);
+        let operatorParamIndex = this.parameterList.size() - 2;
         ;
-        var operatorParamIndex = this.parameterList.size() - 2;
-        ;
-        var valueParamIndex = this.parameterList.size() - 1;
+        let valueParamIndex = this.parameterList.size() - 1;
         ;
         if (this.objectInstruction || this.behaviorInstruction) {
-            var stringBuilder = new StringBuilder();
+            let stringBuilder = new StringBuilder();
             ;
             stringBuilder.append("Change ");
             stringBuilder.append(this.sentence);
@@ -168,7 +148,7 @@ export class GDInstructionMetadata extends Object {
             this.sentence = stringBuilder.toString();
         }
         else {
-            var stringBuilder = new StringBuilder();
+            let stringBuilder = new StringBuilder();
             ;
             stringBuilder.append("Change ");
             stringBuilder.append(this.sentence);

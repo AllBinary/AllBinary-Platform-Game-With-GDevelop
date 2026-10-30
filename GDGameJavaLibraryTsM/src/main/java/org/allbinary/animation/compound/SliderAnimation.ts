@@ -95,25 +95,25 @@ this.width= width;
 this.height= height;
     
 
-    var animation: Animation = this.animationInterfaceArray[4]!;;
+    let animation: Animation = this.animationInterfaceArray[4]!;;
     
 
                         if(SWTUtil.isSWT)
                         
                                     {
                                     
-    var h: number = this.dxhack()!;;
+    let h: number = this.dxhack()!;;
     
-animation.setDy( -h /3 *2);
+animation.setDy(globalThis.Math.trunc( -h /3) *2);
     
 
                                     }
                                 
                         else {
                             
-    var h: number = this.dxhack()!;;
+    let h: number = this.dxhack()!;;
     
-animation.setDy( -h +(h /10));
+animation.setDy( -h +(globalThis.Math.trunc(h /10)));
     
 
                         }
@@ -130,7 +130,7 @@ animation.setDy( -h +(h /10));
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.height *2 /3;
+                        return globalThis.Math.trunc(this.height *2 /3);
     
 
                                     }
@@ -154,7 +154,7 @@ animation.setDy( -h +(h /10));
 
 
                         for (
-    var index: number = this.animationInterfaceArray!.length
+    let index: number = this.animationInterfaceArray!.length
                 ;--index >= 0; )
         {
 this.animationInterfaceArray[index]!.setFrame(frameIndex);
@@ -190,7 +190,7 @@ this.animationInterfaceArray[index]!.setFrame(frameIndex);
 
 
                         for (
-    var index: number = this.animationInterfaceArray!.length
+    let index: number = this.animationInterfaceArray!.length
                 ;--index >= 0; )
         {
 this.animationInterfaceArray[index]!.previousFrame();
@@ -222,7 +222,7 @@ this.animationInterfaceArray[index]!.previousFrame();
 
 
                         for (
-    var index: number = this.animationInterfaceArray!.length
+    let index: number = this.animationInterfaceArray!.length
                 ;--index >= 0; )
         {
 this.animationInterfaceArray[index]!.nextFrame();
@@ -234,7 +234,7 @@ this.animationInterfaceArray[index]!.nextFrame();
 
     public paintXY(graphics: Graphics, x: number, y: number){
 
-    var size: number = this.animationInterfaceArray!.length
+    let size: number = this.animationInterfaceArray!.length
                 ;;
     
 
@@ -242,7 +242,7 @@ this.animationInterfaceArray[index]!.nextFrame();
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.animationInterfaceArray[index]!.paintXY(graphics, x, y);
     
@@ -253,7 +253,7 @@ this.animationInterfaceArray[index]!.paintXY(graphics, x, y);
 
     public paintThreedXYZ(graphics: Graphics, x: number, y: number, z: number){
 
-    var size: number = this.animationInterfaceArray!.length
+    let size: number = this.animationInterfaceArray!.length
                 ;;
     
 
@@ -261,7 +261,7 @@ this.animationInterfaceArray[index]!.paintXY(graphics, x, y);
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.animationInterfaceArray[index]!.paintThreedXYZ(graphics, x, y, z);
     
@@ -294,12 +294,12 @@ this.animationInterfaceArray= animationInterfaceArray;
                                     this.value= value;
     
 
-    var newDx: number = this.dx +(value *this.width /100);;
+    let newDx: number = this.dx +(globalThis.Math.trunc(value *this.width /100));;
     
 this.animationInterfaceArray[3]!.setDx(newDx);
     
 
-    var customTextAnimation: CustomTextAnimation = (this.animationInterfaceArray[4]! as CustomTextAnimation);;
+    let customTextAnimation: CustomTextAnimation = (this.animationInterfaceArray[4]! as CustomTextAnimation);;
     
 customTextAnimation!.setText(this.value.toString());
     
@@ -313,10 +313,10 @@ customTextAnimation!.setDx(newDx +(this.getThumbWidth() /2) -(customTextAnimatio
 
     public setValue2(thumbX: number){
 
-    var usedThumbX: number = thumbX;;
+    let usedThumbX: number = thumbX;;
     
 
-    var maxX: number = this.width;;
+    let maxX: number = this.width;;
     
 
                         if(thumbX >= this.dx && thumbX < this.dx +this.width)
@@ -344,7 +344,7 @@ customTextAnimation!.setDx(newDx +(this.getThumbWidth() /2) -(customTextAnimatio
                                     }
                                 
 
-    var value: number = (100 *usedThumbX /this.width);;
+    let value: number = (globalThis.Math.trunc(100 *usedThumbX /this.width));;
     
 
                         if(value > 100)
@@ -397,6 +397,4 @@ this.hasFocus= hasFocus;
 
 
 }
-
-
 

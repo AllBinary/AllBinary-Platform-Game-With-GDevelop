@@ -37,15 +37,15 @@ export class GDIde extends Object {
     }
     //@Throws(JSONException.constructor)
     load(gameAsConfiguration) {
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
-        var versionJSONObject = gameAsConfiguration.getJSONObject(gdProjectStrings.GD_VERSION);
+        let versionJSONObject = gameAsConfiguration.getJSONObject(gdProjectStrings.GD_VERSION);
         ;
         this.major = versionJSONObject.getInt(gdProjectStrings.MAJOR);
         this.minor = versionJSONObject.getInt(gdProjectStrings.MINOR);
         this.build = versionJSONObject.getInt(gdProjectStrings.BUILD);
         this.revision = versionJSONObject.getInt(gdProjectStrings.REVISION);
-        var propertiesJSONObject = gameAsConfiguration.getJSONObject(gdProjectStrings.PROPERTIES);
+        let propertiesJSONObject = gameAsConfiguration.getJSONObject(gdProjectStrings.PROPERTIES);
         ;
         this.author = propertiesJSONObject.getString(gdProjectStrings.AUTHOR);
         this.packageName = propertiesJSONObject.getString(gdProjectStrings.PACKAGE_NAME);

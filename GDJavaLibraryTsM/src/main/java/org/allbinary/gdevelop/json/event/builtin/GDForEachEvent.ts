@@ -15,6 +15,7 @@ import { GDExpression } from '../../../../../../org/allbinary/gdevelop/json/even
 
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 import { JSONObject } from '../../../../../../org/json/JSONObject.js';
 //not GWT import const JSONObject
@@ -61,6 +62,4 @@ this.objectsToPickSelected= false;
 
 
 }
-
-
 

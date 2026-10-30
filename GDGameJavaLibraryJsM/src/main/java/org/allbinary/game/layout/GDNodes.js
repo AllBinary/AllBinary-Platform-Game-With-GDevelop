@@ -32,21 +32,21 @@ export class GDNodes extends Object {
         this.runnableList = new BasicArrayListD();
     }
     process() {
-        var gdNode;
+        let gdNode;
         ;
-        var size2 = this.runnableList.size();
+        let size2 = this.runnableList.size();
         ;
-        for (var index = 0; index < size2; index++) {
+        for (let index = 0; index < size2; index++) {
             gdNode = this.runnableList.get(index);
             gdNode.currentRunnable.run();
         }
     }
     clear() {
-        var gdNode;
+        let gdNode;
         ;
-        var size2 = this.runnableList.size();
+        let size2 = this.runnableList.size();
         ;
-        for (var index = 0; index < size2; index++) {
+        for (let index = 0; index < size2; index++) {
             gdNode = this.runnableList.get(index);
             gdNode.currentRunnable = NullRunnable.getInstance();
         }

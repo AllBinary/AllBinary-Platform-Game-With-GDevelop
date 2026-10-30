@@ -69,9 +69,11 @@ import { Min3dSceneResourcesFactory } from '../../../../org/allbinary/graphics/t
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 
 
@@ -145,25 +147,25 @@ export class GameAreaBoxUtil
             
     public addGameLayerFactories(animationInterfaceFactoryInterfaceFactory: BaseResourceAnimationInterfaceFactoryInterfaceFactory){
 
-    var gameLayerList: BasicArrayList = new BasicArrayListD();;
+    let gameLayerList: BasicArrayList = new BasicArrayListD();;
     
 
-    var gameLayerDestroyedList: BasicArrayList = new BasicArrayListD();;
+    let gameLayerDestroyedList: BasicArrayList = new BasicArrayListD();;
     
 
-    var behaviorList: BasicArrayList = new BasicArrayListD();;
+    let behaviorList: BasicArrayList = new BasicArrayListD();;
     
 
-    var btn_rotate_leftGroupInterface: Group = GroupFactory.getInstance()!.getNextGroupByName(this.BOX)!;;
+    let btn_rotate_leftGroupInterface: Group = GroupFactory.getInstance()!.getNextGroupByName(this.BOX)!;;
     
 
-    var boxAnimationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[] = (getBasicAnimationInterfaceFactoryInstance as AnimationInterfaceFactoryInterfaceComposite).getAnimationInterfaceFactoryInterfaceArray() as AnimationInterfaceFactoryInterface[];;
+    let boxAnimationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[] = (getBasicAnimationInterfaceFactoryInstance as AnimationInterfaceFactoryInterfaceComposite).getAnimationInterfaceFactoryInterfaceArray() as AnimationInterfaceFactoryInterface[];;
     
 
-    var boxProceduralAnimationInterfaceFactoryInterfaceArray: ProceduralAnimationInterfaceFactoryInterface[] = (getBasicAnimationInterfaceFactoryInstance as BaseAnimationInterfaceFactoryInterfaceComposite).getBasicAnimationInterfaceFactoryInterfaceArray() as ProceduralAnimationInterfaceFactoryInterface[];;
+    let boxProceduralAnimationInterfaceFactoryInterfaceArray: ProceduralAnimationInterfaceFactoryInterface[] = (getBasicAnimationInterfaceFactoryInstance as BaseAnimationInterfaceFactoryInterfaceComposite).getBasicAnimationInterfaceFactoryInterfaceArray() as ProceduralAnimationInterfaceFactoryInterface[];;
     
 
-    var boxLayerInfo1: Rectangle = animationInterfaceFactoryInterfaceFactory!.getRectangle(this.BOX_RECTANGLE_NAME_1)!;;
+    let boxLayerInfo1: Rectangle = animationInterfaceFactoryInterfaceFactory!.getRectangle(this.BOX_RECTANGLE_NAME_1)!;;
     
 this.boxGDGameLayerFactory1= new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, 
                                                 [
@@ -172,7 +174,7 @@ this.boxGDGameLayerFactory1= new GDGameLayerFactory(gameLayerList, gameLayerDest
                             null, GDRotationBehaviorFactory.getInstance(), false);
     
 
-    var boxLayerInfo2: Rectangle = animationInterfaceFactoryInterfaceFactory!.getRectangle(this.BOX_RECTANGLE_NAME_1)!;;
+    let boxLayerInfo2: Rectangle = animationInterfaceFactoryInterfaceFactory!.getRectangle(this.BOX_RECTANGLE_NAME_1)!;;
     
 this.boxGDGameLayerFactory2= new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, 
                                                 [
@@ -181,7 +183,7 @@ this.boxGDGameLayerFactory2= new GDGameLayerFactory(gameLayerList, gameLayerDest
                             null, GDRotationBehaviorFactory.getInstance(), false);
     
 
-    var boxLayerInfo3: Rectangle = animationInterfaceFactoryInterfaceFactory!.getRectangle(this.BOX_RECTANGLE_NAME_1)!;;
+    let boxLayerInfo3: Rectangle = animationInterfaceFactoryInterfaceFactory!.getRectangle(this.BOX_RECTANGLE_NAME_1)!;;
     
 this.boxGDGameLayerFactory3= new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, 
                                                 [
@@ -190,7 +192,7 @@ this.boxGDGameLayerFactory3= new GDGameLayerFactory(gameLayerList, gameLayerDest
                             null, GDRotationBehaviorFactory.getInstance(), false);
     
 
-    var boxLayerInfo4: Rectangle = animationInterfaceFactoryInterfaceFactory!.getRectangle(this.BOX_RECTANGLE_NAME_1)!;;
+    let boxLayerInfo4: Rectangle = animationInterfaceFactoryInterfaceFactory!.getRectangle(this.BOX_RECTANGLE_NAME_1)!;;
     
 this.boxGDGameLayerFactory4= new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, 
                                                 [
@@ -205,13 +207,13 @@ this.boxGDGameLayerFactory4= new GDGameLayerFactory(gameLayerList, gameLayerDest
             
     public addAnimations(baseResourceAnimationInterfaceFactoryInterfaceFactory: BaseResourceAnimationInterfaceFactoryInterfaceFactory){
 
-    var boxList: BasicArrayList = new BasicArrayListD();;
+    let boxList: BasicArrayList = new BasicArrayListD();;
     
 
-    var boxObject3dArray: Object3d[] = this.min3dSceneResourcesFactory!.get(this.BOX_ANIMATION_NAME)!;;
+    let boxObject3dArray: Object3d[] = this.min3dSceneResourcesFactory!.get(this.BOX_ANIMATION_NAME)!;;
     
 
-    var boxSize: number = boxObject3dArray!.length
+    let boxSize: number = boxObject3dArray!.length
                 ;;
     
 
@@ -219,39 +221,39 @@ this.boxGDGameLayerFactory4= new GDGameLayerFactory(gameLayerList, gameLayerDest
 
 
                         for (
-    var index: number = 0;index < boxSize; index++)
+    let index: number = 0;index < boxSize; index++)
         {
 boxList!.add(new ThreedAnimationSingletonFactory(boxObject3dArray[index]!));
     
 }
 
 
-    var boxAnimationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[] = boxList!.toArrayType(new Array(boxSize)) as AnimationInterfaceFactoryInterface[];;
+    let boxAnimationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[] = boxList!.toArrayType(new Array(boxSize)) as AnimationInterfaceFactoryInterface[];;
     
 
-    var boxProceduralAnimationInterfaceFactoryInterfaceArray: ProceduralAnimationInterfaceFactoryInterface[] = [];;
+    let boxProceduralAnimationInterfaceFactoryInterfaceArray: ProceduralAnimationInterfaceFactoryInterface[] = [];;
     
 baseResourceAnimationInterfaceFactoryInterfaceFactory!.add(this.BOX_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(boxAnimationInterfaceFactoryInterfaceArray));
     
 baseResourceAnimationInterfaceFactoryInterfaceFactory!.add(this.BOX_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(boxProceduralAnimationInterfaceFactoryInterfaceArray));
     
 
-    var boxLayerInfo: Rectangle = new Rectangle(PointFactory.getInstance()!.createXY(0, 0), 0, 0);;
+    let boxLayerInfo: Rectangle = new Rectangle(PointFactory.getInstance()!.createXY(0, 0), 0, 0);;
     
 baseResourceAnimationInterfaceFactoryInterfaceFactory!.addRectangle(this.BOX_RECTANGLE_NAME_2, boxLayerInfo);
     
 
-    var boxLayerInfo2: Rectangle = new Rectangle(PointFactory.getInstance()!.createXY(192, 320), 0, 0);;
+    let boxLayerInfo2: Rectangle = new Rectangle(PointFactory.getInstance()!.createXY(192, 320), 0, 0);;
     
 baseResourceAnimationInterfaceFactoryInterfaceFactory!.addRectangle(this.BOX_RECTANGLE_NAME_2, boxLayerInfo2);
     
 
-    var boxLayerInfo3: Rectangle = new Rectangle(PointFactory.getInstance()!.createXY(0, 320), 0, 0);;
+    let boxLayerInfo3: Rectangle = new Rectangle(PointFactory.getInstance()!.createXY(0, 320), 0, 0);;
     
 baseResourceAnimationInterfaceFactoryInterfaceFactory!.addRectangle(this.BOX_RECTANGLE_NAME_3, boxLayerInfo3);
     
 
-    var boxLayerInfo4: Rectangle = new Rectangle(PointFactory.getInstance()!.createXY(192, 0), 0, 0);;
+    let boxLayerInfo4: Rectangle = new Rectangle(PointFactory.getInstance()!.createXY(192, 0), 0, 0);;
     
 baseResourceAnimationInterfaceFactoryInterfaceFactory!.addRectangle(this.BOX_RECTANGLE_NAME_4, boxLayerInfo4);
     
@@ -265,6 +267,4 @@ baseResourceAnimationInterfaceFactoryInterfaceFactory!.addRectangle(this.BOX_REC
 
 
 }
-
-
 

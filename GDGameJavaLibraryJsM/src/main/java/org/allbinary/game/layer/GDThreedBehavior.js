@@ -31,12 +31,12 @@ export class GDThreedBehavior extends GDTwodBehavior {
     }
     updateRotation(gameLayer, timeDelta) {
         super.updateRotation(gameLayer, timeDelta);
-        var gdObject = gameLayer.gdObject;
+        let gdObject = gameLayer.gdObject;
         ;
-        var newPortion = (gdObject.rotationZP * timeDelta / 1000);
+        let newPortion = (gdObject.rotationZP * timeDelta / 1000);
         ;
         this.rotationRemainderZ = this.rotationRemainderZ + newPortion;
-        var angleAdjustment = this.rotationRemainderZ;
+        let angleAdjustment = this.rotationRemainderZ;
         ;
         if (angleAdjustment != 0) {
             gdObject.angleP = (gdObject.angleP + angleAdjustment);
@@ -47,10 +47,10 @@ export class GDThreedBehavior extends GDTwodBehavior {
         }
     }
     setRotationZ(gdObject, angleAdjustment) {
-        var rotationAnimation = this.rotationAnimationInterfaceArray[gdObject.animation];
+        let rotationAnimation = this.rotationAnimationInterfaceArray[gdObject.animation];
         ;
         if (angleAdjustment > 0) {
-            var value = angleAdjustment;
+            let value = angleAdjustment;
             ;
             while (value > 0) {
                 rotationAnimation.nextRotationZ();
@@ -58,7 +58,7 @@ export class GDThreedBehavior extends GDTwodBehavior {
             }
         }
         else {
-            var value = angleAdjustment;
+            let value = angleAdjustment;
             ;
             while (value < 0) {
                 rotationAnimation.previousRotationZ();

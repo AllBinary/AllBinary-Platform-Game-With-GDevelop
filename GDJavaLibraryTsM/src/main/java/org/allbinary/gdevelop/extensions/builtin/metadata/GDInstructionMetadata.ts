@@ -14,15 +14,19 @@
         
 //not plain js import { CommonSeps } 
 const CommonSeps = globalThis.org.allbinary.string.CommonSeps;
+type CommonSeps<T = any, U = any> = typeof CommonSeps extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonSeps;
 
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 
 
@@ -136,24 +140,10 @@ this.behaviorInstruction= false;
 
     public addParameter(type: string, description: string, optionalObjectType: string, parameterIsOptional: boolean): GDInstructionMetadata{
 
-    var supplementaryInformation: string = (this.parameterFactory!.isObject(type) || this.parameterFactory!.isBehavior(type))
-                        ?       
-                                (optionalObjectType!.isEmpty()
-                        ?       
-                                this.stringUtil!.EMPTY_STRING
-                                :
-
-                            this.extensionNamespace +optionalObjectType;
-
-    )
-                                :
-
-                            optionalObjectType;
-
-    ;;
+    let supplementaryInformation: string = ((this.parameterFactory!.isObject(type) || this.parameterFactory!.isBehavior(type)) ? ((optionalObjectType!.isEmpty() ? this.stringUtil!.EMPTY_STRING : this.extensionNamespace +optionalObjectType)) : optionalObjectType);;
     
 
-    var parameterMetadata: GDParameterMetadata = new GDParameterMetadata(type, supplementaryInformation, parameterIsOptional, description, false);;
+    let parameterMetadata: GDParameterMetadata = new GDParameterMetadata(type, supplementaryInformation, parameterIsOptional, description, false);;
     
 this.parameterList!.add(parameterMetadata);
     
@@ -168,7 +158,7 @@ this.parameterList!.add(parameterMetadata);
 
     public addCodeOnlyParameter(type: string, supplementaryInformation: string): GDInstructionMetadata{
 
-    var parameterMetadata: GDParameterMetadata = new GDParameterMetadata(type, supplementaryInformation, false, this.stringUtil!.EMPTY_STRING, false);;
+    let parameterMetadata: GDParameterMetadata = new GDParameterMetadata(type, supplementaryInformation, false, this.stringUtil!.EMPTY_STRING, false);;
     
 this.parameterList!.add(parameterMetadata);
     
@@ -186,27 +176,20 @@ this.codeExtraInformation!.setManipulatedType(type);
     
 this.addParameter(this.parameterFactory!.RELATIONAL_OPERATOR, "Sign of the test", StringUtil.getInstance()!.NULL_STRING, false);
     
-this.addParameter(type == this.parameterFactory!.NUMBER
-                        ?       
-                                this.parameterFactory!.EXPRESSION
-                                :
-
-                            type;
-
-    , "Value to compare", StringUtil.getInstance()!.NULL_STRING, false);
+this.addParameter((type == this.parameterFactory!.NUMBER ? this.parameterFactory!.EXPRESSION : type), "Value to compare", StringUtil.getInstance()!.NULL_STRING, false);
     
 
-    var operatorParamIndex: number = this.parameterList!.size() -2;;
+    let operatorParamIndex: number = this.parameterList!.size() -2;;
     
 
-    var valueParamIndex: number = this.parameterList!.size() -1;;
+    let valueParamIndex: number = this.parameterList!.size() -1;;
     
 
                         if(this.objectInstruction || this.behaviorInstruction)
                         
                                     {
                                     
-    var stringBuilder: StringBuilder = new StringBuilder();;
+    let stringBuilder: StringBuilder = new StringBuilder();;
     
 stringBuilder!.append(this.sentence);
     
@@ -233,7 +216,7 @@ this.sentence= stringBuilder!.toString();
                                 
                         else {
                             
-    var stringBuilder: StringBuilder = new StringBuilder();;
+    let stringBuilder: StringBuilder = new StringBuilder();;
     
 stringBuilder!.append(this.sentence);
     
@@ -273,7 +256,7 @@ this.sentence= stringBuilder!.toString();
                         
                                     {
                                     
-    var gdParameterMetadata: GDParameterMetadata = this.parameterList!.get(this.parameterList!.size() -1) as GDParameterMetadata;;
+    let gdParameterMetadata: GDParameterMetadata = this.parameterList!.get(this.parameterList!.size() -1) as GDParameterMetadata;;
     
 gdParameterMetadata!.setLongDescription(longDescription);
     
@@ -295,7 +278,7 @@ gdParameterMetadata!.setLongDescription(longDescription);
                         
                                     {
                                     
-    var gdParameterMetadata: GDParameterMetadata = this.parameterList!.get(this.parameterList!.size() -1) as GDParameterMetadata;;
+    let gdParameterMetadata: GDParameterMetadata = this.parameterList!.get(this.parameterList!.size() -1) as GDParameterMetadata;;
     
 gdParameterMetadata!.setDefaultValue(defaultValue);
     
@@ -328,27 +311,20 @@ this.codeExtraInformation!.setManipulatedType(type);
     
 this.addParameter(this.parameterFactory!.OPERATOR, "Modification's sign", StringUtil.getInstance()!.NULL_STRING, false);
     
-this.addParameter(type == this.parameterFactory!.NUMBER
-                        ?       
-                                this.parameterFactory!.EXPRESSION
-                                :
-
-                            type;
-
-    , "Value", StringUtil.getInstance()!.NULL_STRING, false);
+this.addParameter((type == this.parameterFactory!.NUMBER ? this.parameterFactory!.EXPRESSION : type), "Value", StringUtil.getInstance()!.NULL_STRING, false);
     
 
-    var operatorParamIndex: number = this.parameterList!.size() -2;;
+    let operatorParamIndex: number = this.parameterList!.size() -2;;
     
 
-    var valueParamIndex: number = this.parameterList!.size() -1;;
+    let valueParamIndex: number = this.parameterList!.size() -1;;
     
 
                         if(this.objectInstruction || this.behaviorInstruction)
                         
                                     {
                                     
-    var stringBuilder: StringBuilder = new StringBuilder();;
+    let stringBuilder: StringBuilder = new StringBuilder();;
     
 stringBuilder!.append("Change ");
     
@@ -377,7 +353,7 @@ this.sentence= stringBuilder!.toString();
                                 
                         else {
                             
-    var stringBuilder: StringBuilder = new StringBuilder();;
+    let stringBuilder: StringBuilder = new StringBuilder();;
     
 stringBuilder!.append("Change ");
     
@@ -450,6 +426,4 @@ this.usageComplexity= 9;
 
 
 }
-
-
 

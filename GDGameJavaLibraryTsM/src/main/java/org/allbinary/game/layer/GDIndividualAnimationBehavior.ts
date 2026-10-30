@@ -33,6 +33,7 @@ import { GDObject } from '../../../../org/allbinary/game/layout/GDObject.js';
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 
 
@@ -72,12 +73,11 @@ export class GDIndividualAnimationBehavior extends GDAnimationBehaviorBase {
 
     public animate(gdObject: GDObject, initIndexedAnimationInterfaceArray: IndexedAnimation[], timeDelta: number){
 
-        try {
-            
-    var indexedAnimation: IndexedAnimation = initIndexedAnimationInterfaceArray[gdObject!.animation]!;;
+ try { 
+    let indexedAnimation: IndexedAnimation = initIndexedAnimationInterfaceArray[gdObject!.animation]!;;
     
 
-    var indexedAnimationBehavior: IndexedAnimationBehavior = indexedAnimation!.getAnimationBehavior() as IndexedAnimationBehavior;;
+    let indexedAnimationBehavior: IndexedAnimationBehavior = indexedAnimation!.getAnimationBehavior() as IndexedAnimationBehavior;;
     
 
                         if(indexedAnimationBehavior!.loopTotal < 0 || !indexedAnimation!.isLastFrame())
@@ -112,21 +112,22 @@ export class GDIndividualAnimationBehavior extends GDAnimationBehaviorBase {
 
                                     }
                                 
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 
-                //: 
-} catch(e) 
-            {
-
-    var commonStrings: CommonStrings = CommonStrings.getInstance()!;;
+    let commonStrings: CommonStrings = CommonStrings.getInstance()!;;
     
 this.logUtil!.put(commonStrings!.EXCEPTION, this, "animate", e);
     
+
+ }
+   }
+ 
 }
 
-}
-
 
 }
-
-
 

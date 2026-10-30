@@ -16,9 +16,9 @@ export class GDCommentEvent extends GDEvent {
     constructor(type, jsonObject) {
         super(type, jsonObject);
         //For kotlin this is before the body of the constructor.
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
-        var colorJSONObject = jsonObject.getJSONObject(gdProjectStrings.COLOR);
+        let colorJSONObject = jsonObject.getJSONObject(gdProjectStrings.COLOR);
         ;
         this.r = colorJSONObject.getInt(gdProjectStrings.R);
         this.g = colorJSONObject.getInt(gdProjectStrings.G);

@@ -15,6 +15,7 @@ import { AndroidResources } from '../../../../org/allbinary/AndroidResources.js'
 
 //not plain js import { ResourceUtil } 
 const ResourceUtil = globalThis.org.allbinary.data.resource.ResourceUtil;
+type ResourceUtil<T = any, U = any> = typeof ResourceUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ResourceUtil;
 
 import { GameYouLoseSound } from '../../../../org/allbinary/media/audio/GameYouLoseSound.js';
 //not GWT import const GameYouLoseSound
@@ -51,15 +52,22 @@ protected constructor (){
             super();
         }
 
-
+init(...args: any[]): any {
+   
+    if (args.length === 0) return this.init$overload1();
+   
+    if (args.length === 2) return this.init$overload2(args[0], args[1]);
+   
+   throw new TypeError('No matching overload: init'); }
+  
                 //@Throws(Exception.constructor)
             
-    public init(){
+    public init$overload1(){
 
-    var resourceUtil: ResourceUtil = ResourceUtil.getInstance()!;;
+    let resourceUtil: ResourceUtil = ResourceUtil.getInstance()!;;
     
 
-    var androidResources: AndroidResources = AndroidResources.getInstance()!;;
+    let androidResources: AndroidResources = AndroidResources.getInstance()!;;
     
 }
 
@@ -75,16 +83,16 @@ protected constructor (){
 }
 
 
-    init(RESOURCES: string[], ANDROID_RESOURCES: number[]){
+    init$overload2(RESOURCES: string[], ANDROID_RESOURCES: number[]){
 
-    var resourceUtil: ResourceUtil = ResourceUtil.getInstance()!;;
+    let resourceUtil: ResourceUtil = ResourceUtil.getInstance()!;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < RESOURCES.length; index++)
+    let index: number = 0;index < RESOURCES.length; index++)
         {
 resourceUtil!.addResource(RESOURCES[index]!, Integer.valueOf(ANDROID_RESOURCES[index]!));
     
@@ -94,6 +102,4 @@ resourceUtil!.addResource(RESOURCES[index]!, Integer.valueOf(ANDROID_RESOURCES[i
 
 
 }
-
-
 

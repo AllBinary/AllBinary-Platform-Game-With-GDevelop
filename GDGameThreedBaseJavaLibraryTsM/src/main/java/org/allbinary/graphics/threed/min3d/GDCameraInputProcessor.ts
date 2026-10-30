@@ -52,5 +52,3 @@ export class GDCameraInputProcessor
 
 }
 
-
-

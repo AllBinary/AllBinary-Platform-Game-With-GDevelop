@@ -16,7 +16,7 @@ export class GDRepeatEvent extends GDStandardEvent {
         super(type, jsonObject);
         this.repeatNumberExpressionSelected = false;
         //For kotlin this is before the body of the constructor.
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
         this.repeatNumberExpression = new GDExpression(jsonObject.getString(gdProjectStrings.REPEAT_EXPRESSION));
     }

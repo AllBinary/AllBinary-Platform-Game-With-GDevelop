@@ -34,6 +34,7 @@ import { TouchScreenFactory } from '../../org/allbinary/input/motion/button/Touc
 
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 import { GameHtmlHasLoadedResourcesProcessor } from '../../org/allbinary/playn/processors/GameHtmlHasLoadedResourcesProcessor.js';
 //not GWT import const GameHtmlHasLoadedResourcesProcessor
@@ -49,6 +50,7 @@ import { StringArrayFactory } from '../../org/allbinary/playn/processors/StringA
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 
 
@@ -102,16 +104,16 @@ class GDGameStringArrayFactory extends StringArrayFactory {
                         
                                     {
                                     
-    var imageCache: ImageCache = ImageCacheFactory.getInstance()!;;
+    let imageCache: ImageCache = ImageCacheFactory.getInstance()!;;
     
 
-    var gdResources: GDResources = GDResources.getInstance()!;;
+    let gdResources: GDResources = GDResources.getInstance()!;;
     
 
-    var gdLazyResources: GDLazyResources = GDLazyResources.getInstance()!;;
+    let gdLazyResources: GDLazyResources = GDLazyResources.getInstance()!;;
     
 
-    var gdGameResourceStringArray: string[] = gdLazyResources!.requiredResourcesBeforeLoadingArray;;
+    let gdGameResourceStringArray: string[] = gdLazyResources!.requiredResourcesBeforeLoadingArray;;
     
 
                         if(imageCache!.isLazy())
@@ -142,17 +144,15 @@ this.resourceStringArray= gdGameResourceStringArray;
 
 }
 
-
-
                     //Otherwise - statement - EmptyStmt
 
 
-    var gdGameStringArrayFactory: GDGameStringArrayFactory = new GDGameStringArrayFactory();;
+    let gdGameStringArrayFactory: GDGameStringArrayFactory = new GDGameStringArrayFactory();;
     
 this.list.add(new GameHtmlLoadResourcesProcessor(this.list, gdGameStringArrayFactory));
     
 
-    var gameHtmlHasLoadedResourcesProcessor: Processor = new GameHtmlHasLoadedResourcesProcessor(this.list, gdGameStringArrayFactory);;
+    let gameHtmlHasLoadedResourcesProcessor: Processor = new GameHtmlHasLoadedResourcesProcessor(this.list, gdGameStringArrayFactory);;
     
 this.list.add(gameHtmlHasLoadedResourcesProcessor);
     
@@ -167,6 +167,4 @@ ProgressCanvasFactory.getInstance()!.addNormalPortion(10, "Loading");
 
 
 }
-
-
 

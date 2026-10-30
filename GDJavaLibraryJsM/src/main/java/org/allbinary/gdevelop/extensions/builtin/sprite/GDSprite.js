@@ -22,24 +22,24 @@ export class GDSprite extends Object {
         super();
         this.pointList = new BasicArrayListD();
         this.polygon2dList = new BasicArrayListD();
-        var projectStrings = GDProjectStrings.getInstance();
+        let projectStrings = GDProjectStrings.getInstance();
         ;
         this.hasCustomCollisionMask = jsonObject.getBoolean(projectStrings.HAS_CUSTOM_COLLISION_MASK);
         this.imageAsString = jsonObject.getString(projectStrings.IMAGE);
-        var jsonArray = jsonObject.getJSONArray(projectStrings.POINTS);
+        let jsonArray = jsonObject.getJSONArray(projectStrings.POINTS);
         ;
-        var size = jsonArray.length();
+        let size = jsonArray.length();
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             this.pointList.add(new GDPoint(jsonArray.getJSONObject(index)));
         }
         this.originPoint = new GDPoint(jsonObject.getJSONObject(projectStrings.ORIGIN_POINTS));
         this.centerPoint = new GDPoint(jsonObject.getJSONObject(projectStrings.CENTER_POINTS));
-        var polygon2dJSONArray = jsonObject.getJSONArray(projectStrings.CUSTOM_COLLISION_MASK);
+        let polygon2dJSONArray = jsonObject.getJSONArray(projectStrings.CUSTOM_COLLISION_MASK);
         ;
-        var size2 = polygon2dJSONArray.length();
+        let size2 = polygon2dJSONArray.length();
         ;
-        for (var index = 0; index < size2; index++) {
+        for (let index = 0; index < size2; index++) {
             this.polygon2dList.add(new GDPolygon2d(polygon2dJSONArray.getJSONArray(index)));
         }
     }

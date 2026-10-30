@@ -16,12 +16,15 @@
         
 //not plain js import { ABHashMap } 
 const ABHashMap = globalThis.org.allbinary.util.ABHashMap;
+type ABHashMap<T = any, U = any> = typeof ABHashMap extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ABHashMap;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { JSONArray } from '../../../../org/json/JSONArray.js';
 //not GWT import const JSONArray
@@ -87,7 +90,7 @@ public constructor (jsonObject: JSONObject){
 
             super();
         
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 this.name= jsonObject!.getString(gdProjectStrings!.NAME);
     
@@ -110,26 +113,26 @@ this.height= jsonObject!.getDouble(gdProjectStrings!.HEIGHT);
 this.persistentUuid= jsonObject!.getString(gdProjectStrings!.PERSISTED_UUID);
     
 
-    var numberPropertiesJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.NUMBER_PROPERTIES)!;;
+    let numberPropertiesJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.NUMBER_PROPERTIES)!;;
     
 
-    var size: number = numberPropertiesJSONArray!.length()!;;
+    let size: number = numberPropertiesJSONArray!.length()!;;
     
 
-    var nextJSONObject: JSONObject;;
+    let nextJSONObject: JSONObject;;
     
 
-    var name: string;;
+    let name: string;;
     
 
-    var valueAsDouble: number;;
+    let valueAsDouble: number;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 nextJSONObject= numberPropertiesJSONArray!.getJSONObject(index);
     
@@ -142,19 +145,19 @@ this.numberPropertiesMap!.put(name, valueAsDouble);
 }
 
 
-    var stringPropertiesJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.STRING_PROPERTIES)!;;
+    let stringPropertiesJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.STRING_PROPERTIES)!;;
     
 size= stringPropertiesJSONArray!.length();
     
 
-    var value: string;;
+    let value: string;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 nextJSONObject= stringPropertiesJSONArray!.getJSONObject(index);
     
@@ -167,7 +170,7 @@ this.stringPropertiesMap!.put(name, value);
 }
 
 
-    var variableJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.INITIAL_VARIABLE)!;;
+    let variableJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.INITIAL_VARIABLE)!;;
     
 size= variableJSONArray!.length();
     
@@ -176,7 +179,7 @@ size= variableJSONArray!.length();
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.initialVariableList!.add(new GDVariable(variableJSONArray!.getJSONObject(index)));
     
@@ -186,6 +189,4 @@ this.initialVariableList!.add(new GDVariable(variableJSONArray!.getJSONObject(in
 
 
 }
-
-
 

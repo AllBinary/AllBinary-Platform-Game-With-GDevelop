@@ -146,7 +146,7 @@ Created By: Travis Berthelot
 
                         private final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
 
-                        private final GDNodes gdNodes = GDNodeUtil.getInstance().getInstance(<xsl:value-of select="$layoutIndex" />);
+                        private final GDNodes gdNodes = GDNodeUtil.getInstance().getOrCreateInstance(<xsl:value-of select="$layoutIndex" />);
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();

@@ -72,10 +72,10 @@ export class GDObjectFactory
 
     public create(jsonObject: JSONObject): GDObject{
 
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 
-    var type: string = jsonObject!.getString(gdProjectStrings!.TYPE)!;;
+    let type: string = jsonObject!.getString(gdProjectStrings!.TYPE)!;;
     
 
                         if(type.compareTo(this.SPRITE) == 0)
@@ -130,6 +130,4 @@ export class GDObjectFactory
 
 
 }
-
-
 

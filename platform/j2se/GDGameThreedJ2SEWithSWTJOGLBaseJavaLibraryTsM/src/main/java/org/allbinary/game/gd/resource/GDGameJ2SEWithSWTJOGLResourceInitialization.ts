@@ -46,5 +46,3 @@ new TouchButtonAndroidResources().init();
 
 }
 
-
-

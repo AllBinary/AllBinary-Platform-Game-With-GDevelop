@@ -68,7 +68,7 @@ public constructor (){
 
             super();
         
-    var gameKeyFactory: GameKeyFactory = GameKeyFactory.getInstance()!;;
+    let gameKeyFactory: GameKeyFactory = GameKeyFactory.getInstance()!;;
     
 this.gameInputMappingArray[0]= new GameInputMapping("Fire", gameKeyFactory!.KEY_NUM1);
     
@@ -98,6 +98,4 @@ this.gameInputMappingArray[6]= new GameInputMapping("Zoom In", gameKeyFactory!.K
 
 
 }
-
-
 

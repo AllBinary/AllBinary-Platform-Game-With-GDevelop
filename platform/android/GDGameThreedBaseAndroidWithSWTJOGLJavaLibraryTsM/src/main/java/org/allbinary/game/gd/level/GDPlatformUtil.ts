@@ -30,6 +30,7 @@ import { AndroidInfoFactory } from '../../../../../org/allbinary/android/Android
 
 //not plain js import { ResourceUtil } 
 const ResourceUtil = globalThis.org.allbinary.data.resource.ResourceUtil;
+type ResourceUtil<T = any, U = any> = typeof ResourceUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ResourceUtil;
 
 import { Features } from '../../../../../org/allbinary/game/configuration/feature/Features.js';
 //not GWT import const Features
@@ -90,10 +91,10 @@ export class GDPlatformUtil
 
     public getRange(): number{
 
-    var operatingSystem: OperatingSystemInterface = OperatingSystemFactory.getInstance()!.getOperatingSystemInstance()!;;
+    let operatingSystem: OperatingSystemInterface = OperatingSystemFactory.getInstance()!.getOperatingSystemInstance()!;;
     
 
-    var range: number = 3;;
+    let range: number = 3;;
     
 
                         if(operatingSystem!.isOverScan())
@@ -111,17 +112,17 @@ export class GDPlatformUtil
                         }
                             
 
-    var features: Features = Features.getInstance()!;;
+    let features: Features = Features.getInstance()!;;
     
 
-    var openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()!;;
+    let openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()!;;
     
 
                         if(features.isFeature(openGLFeatureFactory!.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory!.OPENGL_3D))
                         
                                     {
                                     
-    var SDK_VERSION: number = AndroidInfoFactory.getInstance()!.getVersion()!;;
+    let SDK_VERSION: number = AndroidInfoFactory.getInstance()!.getVersion()!;;
     
 
                         if(SDK_VERSION > 21)
@@ -181,7 +182,7 @@ export class GDPlatformUtil
 
     public updateCamera(cameraLayer: CameraLayer){
 
-    var SDK_VERSION: number = AndroidInfoFactory.getInstance()!.getVersion()!;;
+    let SDK_VERSION: number = AndroidInfoFactory.getInstance()!.getVersion()!;;
     
 
                         if(SDK_VERSION > 7)
@@ -192,7 +193,7 @@ export class GDPlatformUtil
                         
                                     {
                                     
-    var operatingSystem: OperatingSystemInterface = OperatingSystemFactory.getInstance()!.getOperatingSystemInstance()!;;
+    let operatingSystem: OperatingSystemInterface = OperatingSystemFactory.getInstance()!.getOperatingSystemInstance()!;;
     
 
                         if(operatingSystem!.isOverScan())
@@ -214,7 +215,7 @@ export class GDPlatformUtil
                                 
                         else {
                             
-    var operatingSystem: OperatingSystemInterface = OperatingSystemFactory.getInstance()!.getOperatingSystemInstance()!;;
+    let operatingSystem: OperatingSystemInterface = OperatingSystemFactory.getInstance()!.getOperatingSystemInstance()!;;
     
 
                         if(operatingSystem!.isOverScan())
@@ -248,7 +249,7 @@ export class GDPlatformUtil
 
     public updateResource(imageCache: ImageCache, image: Image, resource: string){
 
-    var resourceId: Integer = ResourceUtil.getInstance()!.getResourceId(resource)!;;
+    let resourceId: Integer = ResourceUtil.getInstance()!.getResourceId(resource)!;;
     
 imageCache!.getHashtableP()!.put(resourceId, image);
     
@@ -256,6 +257,4 @@ imageCache!.getHashtableP()!.put(resourceId, image);
 
 
 }
-
-
 

@@ -74,5 +74,3 @@ export class GDGameAndroidResources extends GDGameBaseAndroidResources {
 
 }
 
-
-

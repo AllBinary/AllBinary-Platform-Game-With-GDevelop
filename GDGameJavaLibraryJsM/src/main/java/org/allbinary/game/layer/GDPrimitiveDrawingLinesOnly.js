@@ -51,13 +51,13 @@ export class GDPrimitiveDrawingLinesOnly extends Animation {
     }
     paintXY(graphics, x, y) {
         this.colorAnimation.paintXY(graphics, x, y);
-        var size = this.pointList.size();
+        let size = this.pointList.size();
         ;
-        var point;
+        let point;
         ;
-        var nextPoint;
+        let nextPoint;
         ;
-        for (var index = 1; index < size;) {
+        for (let index = 1; index < size;) {
             point = this.pointList.get(index - 1);
             nextPoint = this.pointList.get(index);
             this.linePathAnimation.paint(graphics, point, nextPoint, this.NULL_ALLBINARY_LAYER);

@@ -25,7 +25,7 @@ export class TempGameLayerUtil extends Object {
         return TempGameLayerUtil.instance;
     }
     clear() {
-        for (var index = 0; index < 5; index++) {
+        for (let index = 0; index < 5; index++) {
             this.gameLayerArray[index] =
                 null;
         }

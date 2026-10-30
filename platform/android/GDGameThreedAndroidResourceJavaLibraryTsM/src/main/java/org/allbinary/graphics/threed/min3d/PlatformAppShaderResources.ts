@@ -27,6 +27,7 @@ import { AndroidResources } from '../../../../../org/allbinary/AndroidResources.
 
 //not plain js import { ResourceUtil } 
 const ResourceUtil = globalThis.org.allbinary.data.resource.ResourceUtil;
+type ResourceUtil<T = any, U = any> = typeof ResourceUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ResourceUtil;
 
 import { AppShaderResources } from '../../../../../org/allbinary/game/gd/layer/resources/AppShaderResources.js';
 //not GWT import const AppShaderResources
@@ -69,13 +70,13 @@ export class PlatformAppShaderResources
 
     public add(){
 
-    var resourceUtil: ResourceUtil = ResourceUtil.getInstance()!;;
+    let resourceUtil: ResourceUtil = ResourceUtil.getInstance()!;;
     
 
-    var androidResources: AndroidResources = AndroidResources.getInstance()!;;
+    let androidResources: AndroidResources = AndroidResources.getInstance()!;;
     
 
-    var appShaderResources: AppShaderResources = AppShaderResources.getInstance()!;;
+    let appShaderResources: AppShaderResources = AppShaderResources.getInstance()!;;
     
 resourceUtil!.addResource(appShaderResources!.LIKE2_FIXED_PIPLINE_LIGHTING_VERTEX_SHADER, Integer.valueOf(androidResources!.raw.like2_fixed_pipeline_lighting_vertex_shader_glsl));
     
@@ -85,6 +86,4 @@ resourceUtil!.addResource(appShaderResources!.LIKE2_FIXED_PIPLINE_LIGHTING_FRAGM
 
 
 }
-
-
 

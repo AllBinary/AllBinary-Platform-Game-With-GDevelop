@@ -23,15 +23,19 @@ import { GDProjectBehaviorsSharedData } from '../../../../../../org/allbinary/gd
 
 //not plain js import { CommonSeps } 
 const CommonSeps = globalThis.org.allbinary.string.CommonSeps;
+type CommonSeps<T = any, U = any> = typeof CommonSeps extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonSeps;
 
 //not plain js import { ABHashMap } 
 const ABHashMap = globalThis.org.allbinary.util.ABHashMap;
+type ABHashMap<T = any, U = any> = typeof ABHashMap extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ABHashMap;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 
 
@@ -135,17 +139,10 @@ this.behaviorsSharedData= behaviorsSharedData;
 
     public addCondition(name: string, fullname: string, description: string, sentence: string, group: string, icon: string, smallicon: string): GDInstructionMetadata{
 
-    var nameWithNamespace: string = this.extensionNamespace!.isEmpty()
-                        ?       
-                                name
-                                :
-
-                            this.extensionNamespace +name;
-
-    ;;
+    let nameWithNamespace: string = (this.extensionNamespace!.isEmpty() ? name : this.extensionNamespace +name);;
     
 
-    var instructionMetadata: GDInstructionMetadata = new GDInstructionMetadata(this.extensionNamespace, nameWithNamespace, fullname, description, sentence, group, icon, smallicon);;
+    let instructionMetadata: GDInstructionMetadata = new GDInstructionMetadata(this.extensionNamespace, nameWithNamespace, fullname, description, sentence, group, icon, smallicon);;
     
 this.conditionInstructionMetadataList!.add(instructionMetadata);
     
@@ -160,17 +157,10 @@ this.conditionInstructionMetadataList!.add(instructionMetadata);
 
     public addAction(name: string, fullname: string, description: string, sentence: string, group: string, icon: string, smallicon: string): GDInstructionMetadata{
 
-    var nameWithNamespace: string = this.extensionNamespace!.isEmpty()
-                        ?       
-                                name
-                                :
-
-                            this.extensionNamespace +name;
-
-    ;;
+    let nameWithNamespace: string = (this.extensionNamespace!.isEmpty() ? name : this.extensionNamespace +name);;
     
 
-    var instructionMetadata: GDInstructionMetadata = new GDInstructionMetadata(this.extensionNamespace, nameWithNamespace, fullname, description, sentence, group, icon, smallicon);;
+    let instructionMetadata: GDInstructionMetadata = new GDInstructionMetadata(this.extensionNamespace, nameWithNamespace, fullname, description, sentence, group, icon, smallicon);;
     
 this.actionInstructionMetadataList!.add(instructionMetadata);
     
@@ -185,10 +175,10 @@ this.actionInstructionMetadataList!.add(instructionMetadata);
 
     public addScopedCondition(name: string, fullname: string, description: string, sentence: string, group: string, icon: string, smallicon: string): GDInstructionMetadata{
 
-    var nameWithNamespace: string = new StringBuilder().append(this.getName())!.append(GDPlatformExtension.getInstance()!.NAMESPACE_SEP)!.append(name)!.toString()!;;
+    let nameWithNamespace: string = new StringBuilder().append(this.getName())!.append(GDPlatformExtension.getInstance()!.NAMESPACE_SEP)!.append(name)!.toString()!;;
     
 
-    var instructionMetadata: GDInstructionMetadata = new GDInstructionMetadata(this.extensionNamespace, nameWithNamespace, fullname, description, sentence, group, icon, smallicon);;
+    let instructionMetadata: GDInstructionMetadata = new GDInstructionMetadata(this.extensionNamespace, nameWithNamespace, fullname, description, sentence, group, icon, smallicon);;
     
 this.nameToConditionInstructionMetadataMap!.put(nameWithNamespace, instructionMetadata);
     
@@ -203,10 +193,10 @@ this.nameToConditionInstructionMetadataMap!.put(nameWithNamespace, instructionMe
 
     public addScopedAction(name: string, fullname: string, description: string, sentence: string, group: string, icon: string, smallicon: string): GDInstructionMetadata{
 
-    var nameWithNamespace: string = new StringBuilder().append(this.getName())!.append(GDPlatformExtension.getInstance()!.NAMESPACE_SEP)!.append(name)!.toString()!;;
+    let nameWithNamespace: string = new StringBuilder().append(this.getName())!.append(GDPlatformExtension.getInstance()!.NAMESPACE_SEP)!.append(name)!.toString()!;;
     
 
-    var instructionMetadata: GDInstructionMetadata = new GDInstructionMetadata(this.extensionNamespace, nameWithNamespace, fullname, description, sentence, group, icon, smallicon);;
+    let instructionMetadata: GDInstructionMetadata = new GDInstructionMetadata(this.extensionNamespace, nameWithNamespace, fullname, description, sentence, group, icon, smallicon);;
     
 this.nameToActionInstructionMetadataMap!.put(nameWithNamespace, instructionMetadata);
     
@@ -221,7 +211,7 @@ this.nameToActionInstructionMetadataMap!.put(nameWithNamespace, instructionMetad
 
     public addExpression(name: string, fullname: string, description: string, group: string, smallicon: string): GDExpressionMetadata{
 
-    var expressionMetadata: GDExpressionMetadata = new GDExpressionMetadata(this.parameterFactory!.NUMBER, this.extensionNamespace, name, fullname, description, group, smallicon);;
+    let expressionMetadata: GDExpressionMetadata = new GDExpressionMetadata(this.parameterFactory!.NUMBER, this.extensionNamespace, name, fullname, description, group, smallicon);;
     
 this.nameToExpressionMetadataMap!.put(name, expressionMetadata);
     
@@ -236,7 +226,7 @@ this.nameToExpressionMetadataMap!.put(name, expressionMetadata);
 
     public addStrExpression(name: string, fullname: string, description: string, group: string, smallicon: string): GDExpressionMetadata{
 
-    var expressionMetadata: GDExpressionMetadata = new GDExpressionMetadata(this.parameterFactory!.STRING, this.extensionNamespace, name, fullname, description, group, smallicon);;
+    let expressionMetadata: GDExpressionMetadata = new GDExpressionMetadata(this.parameterFactory!.STRING, this.extensionNamespace, name, fullname, description, group, smallicon);;
     
 this.nameToStrExpressionMetadataMap!.put(name, expressionMetadata);
     
@@ -251,20 +241,13 @@ this.nameToStrExpressionMetadataMap!.put(name, expressionMetadata);
 
     public addExpressionAndConditionAndAction(type: string, name: string, fullname: string, descriptionSubject: string, sentenceName: string, group: string, icon: string): GDMultipleInstructionMetadata{
 
-    var expression: GDExpressionMetadata = (type == this.parameterFactory!.NUMBER)
-                        ?       
-                                this.addExpression(name, fullname, new StringBuilder().append(GDBehaviorMetadata.RETURN_)!.append(descriptionSubject)!.append(this.commonSeps!.PERIOD)!.toString(), group, icon)
-                                :
-
-                            this.addStrExpression(name, fullname, new StringBuilder().append(GDBehaviorMetadata.RETURN_)!.append(descriptionSubject)!.append(this.commonSeps!.PERIOD)!.toString(), group, icon);
-
-    ;;
+    let expression: GDExpressionMetadata = ((type == this.parameterFactory!.NUMBER) ? this.addExpression(name, fullname, new StringBuilder().append(GDBehaviorMetadata.RETURN_)!.append(descriptionSubject)!.append(this.commonSeps!.PERIOD)!.toString(), group, icon) : this.addStrExpression(name, fullname, new StringBuilder().append(GDBehaviorMetadata.RETURN_)!.append(descriptionSubject)!.append(this.commonSeps!.PERIOD)!.toString(), group, icon));;
     
 
-    var conditionInstructionMetadata: GDInstructionMetadata = this.addScopedCondition(name, fullname, new StringBuilder().append(GDBehaviorMetadata.COMPARE_)!.append(descriptionSubject)!.append(this.commonSeps!.PERIOD)!.toString(), sentenceName, group, icon, icon)!;;
+    let conditionInstructionMetadata: GDInstructionMetadata = this.addScopedCondition(name, fullname, new StringBuilder().append(GDBehaviorMetadata.COMPARE_)!.append(descriptionSubject)!.append(this.commonSeps!.PERIOD)!.toString(), sentenceName, group, icon, icon)!;;
     
 
-    var actionInstructionMetadata: GDInstructionMetadata = this.addScopedAction("Set" +name, fullname, new StringBuilder().append(GDBehaviorMetadata.COMPARE_)!.append(descriptionSubject)!.append(this.commonSeps!.PERIOD)!.toString(), sentenceName, group, icon, icon)!;;
+    let actionInstructionMetadata: GDInstructionMetadata = this.addScopedAction("Set" +name, fullname, new StringBuilder().append(GDBehaviorMetadata.COMPARE_)!.append(descriptionSubject)!.append(this.commonSeps!.PERIOD)!.toString(), sentenceName, group, icon, icon)!;;
     
 
 
@@ -286,6 +269,4 @@ this.nameToStrExpressionMetadataMap!.put(name, expressionMetadata);
 
 
 }
-
-
 

@@ -28,9 +28,9 @@ export class GDObjectFactory extends Object {
         return GDObjectFactory.instance;
     }
     create(jsonObject) {
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
-        var type = jsonObject.getString(gdProjectStrings.TYPE);
+        let type = jsonObject.getString(gdProjectStrings.TYPE);
         ;
         if (type.compareTo(this.SPRITE) == 0) {
             //if statement needs to be on the same line and ternary does not work the same way.

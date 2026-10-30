@@ -17,12 +17,15 @@ import { GDProjectStrings } from '../../../../../../org/allbinary/gdevelop/json/
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { JSONArray } from '../../../../../../org/json/JSONArray.js';
 //not GWT import const JSONArray
@@ -68,24 +71,24 @@ public constructor (jsonObject: JSONObject){
 
             super();
         
-    var projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 this.looping= jsonObject!.getBoolean(projectStrings!.LOOPING);
     
 this.timeBetweenFrames= jsonObject!.getInt(projectStrings!.TIME_BETWEEN_FRAMES);
     
 
-    var jsonArray: JSONArray = jsonObject!.getJSONArray(projectStrings!.SPRITES)!;;
+    let jsonArray: JSONArray = jsonObject!.getJSONArray(projectStrings!.SPRITES)!;;
     
 
-    var size: number = jsonArray!.length()!;;
+    let size: number = jsonArray!.length()!;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.spriteList!.add(new GDSprite(jsonArray!.getJSONObject(index)));
     
@@ -95,6 +98,4 @@ this.spriteList!.add(new GDSprite(jsonArray!.getJSONObject(index)));
 
 
 }
-
-
 

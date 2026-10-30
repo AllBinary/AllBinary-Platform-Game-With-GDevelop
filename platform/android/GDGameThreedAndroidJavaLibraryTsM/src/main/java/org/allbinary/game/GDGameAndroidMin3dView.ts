@@ -21,9 +21,11 @@ import { OpenGLThreadUtil } from '../../../org/allbinary/graphics/opengles/OpenG
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { PreLogUtil } 
 const PreLogUtil = globalThis.org.allbinary.logic.communication.log.PreLogUtil;
+type PreLogUtil<T = any, U = any> = typeof PreLogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof PreLogUtil;
 
 import { AllBinaryMidletMin3dSurfaceView } from '../../../org/allbinary/view/AllBinaryMidletMin3dSurfaceView.js';
 //not GWT import const AllBinaryMidletMin3dSurfaceView
@@ -65,7 +67,7 @@ public constructor (context: Context, attrs: AttributeSet){
 PreLogUtil.put(this.commonStrings!.START, this.TAG, this.commonStrings!.CONSTRUCTOR);
     
 
-    var sceneController: SceneController = GDGameAllBinarySceneControllerFactory.getInstance()!;;
+    let sceneController: SceneController = GDGameAllBinarySceneControllerFactory.getInstance()!;;
     
 this.setRenderer(sceneController!.getRenderer() as GLSurfaceView.Renderer);
     
@@ -77,6 +79,4 @@ OpenGLThreadUtil.getInstance()!.set(this);
 
 
 }
-
-
 

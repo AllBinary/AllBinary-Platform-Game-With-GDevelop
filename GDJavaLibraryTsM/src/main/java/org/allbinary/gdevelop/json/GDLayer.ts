@@ -25,9 +25,11 @@ import { BasicColorUtil } from '../../../../org/allbinary/graphics/color/BasicCo
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { JSONArray } from '../../../../org/json/JSONArray.js';
 //not GWT import const JSONArray
@@ -79,10 +81,10 @@ public constructor (jsonObject: JSONObject){
 
             super();
         
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 
-    var name: string;;
+    let name: string;;
     
 
                         if(jsonObject!.has(gdProjectStrings!.NAME))
@@ -102,7 +104,7 @@ public constructor (jsonObject: JSONObject){
 this.name= name;
     
 
-    var isVisible: boolean;;
+    let isVisible: boolean;;
     
 
                         if(jsonObject!.has(gdProjectStrings!.VISIBILITY))
@@ -122,7 +124,7 @@ this.name= name;
 this.isVisible= isVisible;
     
 
-    var isLightingLayer: boolean;;
+    let isLightingLayer: boolean;;
     
 
                         if(jsonObject!.has(gdProjectStrings!.VISIBILITY))
@@ -142,7 +144,7 @@ this.isVisible= isVisible;
 this.isLightingLayer= isLightingLayer;
     
 
-    var followBaseLayerCamera: boolean;;
+    let followBaseLayerCamera: boolean;;
     
 
                         if(jsonObject!.has(gdProjectStrings!.FOLLOW_BASE_LAYER_CAMERA))
@@ -162,7 +164,7 @@ this.isLightingLayer= isLightingLayer;
 this.followBaseLayerCamera= followBaseLayerCamera;
     
 
-    var ambientLightBasicColor: BasicColor;;
+    let ambientLightBasicColor: BasicColor;;
     
 
                         if(jsonObject!.has(gdProjectStrings!.AMBIENT_LIGHT_COLOR_R))
@@ -186,20 +188,20 @@ this.ambientLightBasicColor= ambientLightBasicColor;
                         
                                     {
                                     
-    var camerasJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.CAMERAS)!;;
+    let camerasJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.CAMERAS)!;;
     
 
-    var size: number = camerasJSONArray!.length()!;;
+    let size: number = camerasJSONArray!.length()!;;
     
 
-    var nextJSONObject: JSONObject;;
+    let nextJSONObject: JSONObject;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 nextJSONObject= camerasJSONArray!.getJSONObject(index);
     
@@ -214,6 +216,4 @@ this.cameraList!.add(new GDLayer(nextJSONObject));
 
 
 }
-
-
 

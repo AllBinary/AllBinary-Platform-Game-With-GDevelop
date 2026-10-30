@@ -157,7 +157,7 @@ Created By: Travis Berthelot
                         
                         public final String PROCESS_RELEASE = "processReleased";
                         
-                        //private final GDNodes gdNodes = this.gdNodeUtil.getInstance(<xsl:value-of select="$layoutIndex" />);
+                        //private final GDNodes gdNodes = this.gdNodeUtil.getOrCreateInstance(<xsl:value-of select="$layoutIndex" />);<xsl:value-of select="$layoutIndex" />);
 
                         <xsl:variable name="hasHighscoreSubmissionComplete" >
                             <xsl:for-each select="variables" >

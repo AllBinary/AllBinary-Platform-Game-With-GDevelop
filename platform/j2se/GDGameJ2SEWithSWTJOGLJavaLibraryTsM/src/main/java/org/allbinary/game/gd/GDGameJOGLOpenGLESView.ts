@@ -9,12 +9,14 @@ import { OpenGLThreadUtil } from '../../../../org/allbinary/graphics/opengles/Op
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 import { AllBinaryMidletOpenGLSurfaceView } from '../../../../org/allbinary/view/AllBinaryMidletOpenGLSurfaceView.js';
 //not GWT import const AllBinaryMidletOpenGLSurfaceView
 
 //not plain js import { PreLogUtil } 
 const PreLogUtil = globalThis.org.allbinary.logic.communication.log.PreLogUtil;
+type PreLogUtil<T = any, U = any> = typeof PreLogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof PreLogUtil;
 
 import { OptimizedGLSurfaceView } from '../../../../org/allbinary/view/OptimizedGLSurfaceView.js';
 //not GWT import const OptimizedGLSurfaceView
@@ -58,6 +60,4 @@ OpenGLThreadUtil.getInstance()!.set(this);
 
 
 }
-
-
 

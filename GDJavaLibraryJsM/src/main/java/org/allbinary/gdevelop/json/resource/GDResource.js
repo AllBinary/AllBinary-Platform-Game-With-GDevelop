@@ -14,14 +14,14 @@ const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
 export class GDResource extends Object {
     constructor(kind, jsonObject) {
         super();
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
         this.kind = kind;
         this.name = jsonObject.getString(gdProjectStrings.NAME);
         this.metadata = jsonObject.getString(gdProjectStrings.METADATA);
         this.userAdded = jsonObject.getBoolean(gdProjectStrings.USER_ADDED);
         if (jsonObject.has(gdProjectStrings.ORIGIN)) {
-            var originJSONObject = jsonObject.getJSONObject(gdProjectStrings.ORIGIN);
+            let originJSONObject = jsonObject.getJSONObject(gdProjectStrings.ORIGIN);
             ;
             this.originName = originJSONObject.getString(gdProjectStrings.NAME);
             this.originIdentifier = originJSONObject.getString(gdProjectStrings.IDENTIFIER);

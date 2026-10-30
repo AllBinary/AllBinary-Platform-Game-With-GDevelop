@@ -64,17 +64,17 @@ export class GDProject extends Object {
     }
     //@Throws(JSONException.constructor)
     load(gameAsConfiguration) {
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
         this.gdIde.load(gameAsConfiguration);
-        var properties = gameAsConfiguration.getJSONObject(gdProjectStrings.PROPERTIES);
+        let properties = gameAsConfiguration.getJSONObject(gdProjectStrings.PROPERTIES);
         ;
         this.packageName = properties.getString(gdProjectStrings.PACKAGE_NAME);
         this.name = properties.getString(gdProjectStrings.NAME);
         this.version = properties.getString(gdProjectStrings.VERSION);
-        var width = properties.getInt(gdProjectStrings.WINDOW_WIDTH);
+        let width = properties.getInt(gdProjectStrings.WINDOW_WIDTH);
         ;
-        var height = properties.getInt(gdProjectStrings.WINDOW_HEIGHT);
+        let height = properties.getInt(gdProjectStrings.WINDOW_HEIGHT);
         ;
         this.gameResolutionSize = new Rectangle(PointFactory.getInstance().ZERO_ZERO, width, height);
         this.maxFPS = properties.getInt(gdProjectStrings.MAX_FPS);
@@ -84,41 +84,41 @@ export class GDProject extends Object {
         this.adaptGameResolutionAtRuntime = properties.getBoolean(gdProjectStrings.ADAPT_GAME_RESOLUTION_AT_RUNTIME);
         this.sizeOnStartupMode = properties.getString(gdProjectStrings.SIZE_ON_STARTUP_MODE);
         this.projectUuid = properties.getString(gdProjectStrings.PROJECT_UUID);
-        var resourceJSONObject = gameAsConfiguration.getJSONObject(gdProjectStrings.RESOURCES);
+        let resourceJSONObject = gameAsConfiguration.getJSONObject(gdProjectStrings.RESOURCES);
         ;
         this.resourcesManager = new GDResourcesManager(resourceJSONObject);
-        var objectFactory = GDObjectFactory.getInstance();
+        let objectFactory = GDObjectFactory.getInstance();
         ;
-        var objectJSONArray = gameAsConfiguration.getJSONArray(gdProjectStrings.OBJECTS);
+        let objectJSONArray = gameAsConfiguration.getJSONArray(gdProjectStrings.OBJECTS);
         ;
-        var size = objectJSONArray.length();
+        let size = objectJSONArray.length();
         ;
-        var objectJSONObject;
+        let objectJSONObject;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             objectJSONObject = objectJSONArray.getJSONObject(index);
             this.objectList.add(objectFactory.create(objectJSONObject));
         }
         this.logUtil.putF(this.OBJECTS + this.objectList.size(), this, this.LOAD);
-        var variableJSONArray = gameAsConfiguration.getJSONArray(gdProjectStrings.VARIABLES);
+        let variableJSONArray = gameAsConfiguration.getJSONArray(gdProjectStrings.VARIABLES);
         ;
         size = variableJSONArray.length();
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             this.variableList.add(new GDVariable(variableJSONArray.getJSONObject(index)));
         }
         this.logUtil.putF(this.VARIABLES + this.variableList.size(), this, this.LOAD);
-        var layoutsJSONArray = gameAsConfiguration.getJSONArray(gdProjectStrings.LAYOUTS);
+        let layoutsJSONArray = gameAsConfiguration.getJSONArray(gdProjectStrings.LAYOUTS);
         ;
         size = layoutsJSONArray.length();
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             objectJSONObject = layoutsJSONArray.getJSONObject(index);
             this.layoutList.add(new GDLayout(objectJSONObject));
         }
         this.logUtil.putF(this.LAYOUTS + this.layoutList.size(), this, this.LOAD);
-        var externalLayoutsJSONArray = gameAsConfiguration.getJSONArray(gdProjectStrings.EXTERNAL_LAYOUTS);
+        let externalLayoutsJSONArray = gameAsConfiguration.getJSONArray(gdProjectStrings.EXTERNAL_LAYOUTS);
         ;
         size = externalLayoutsJSONArray.length();
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             objectJSONObject = externalLayoutsJSONArray.getJSONObject(index);
             this.externalLayoutList.add(new GDExternalLayout(objectJSONObject));
         }

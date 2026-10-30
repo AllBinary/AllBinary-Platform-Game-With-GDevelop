@@ -106,5 +106,3 @@ this.scaleProperties= scaleProperties;
 
 }
 
-
-

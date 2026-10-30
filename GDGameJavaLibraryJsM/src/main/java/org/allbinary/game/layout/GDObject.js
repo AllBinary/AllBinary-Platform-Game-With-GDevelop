@@ -88,9 +88,9 @@ export class GDObject extends Object {
         this.name = name;
         this.type = type;
         this.updateSize(width, height);
-        var features = Features.getInstance();
+        let features = Features.getInstance();
         ;
-        var openGLFeatureFactory = OpenGLFeatureFactory.getInstance();
+        let openGLFeatureFactory = OpenGLFeatureFactory.getInstance();
         ;
         if (features.isFeature(openGLFeatureFactory.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory.OPENGL_3D)) {
             this.offsetBehavior = BaseOffsetBehavior.getInstance();
@@ -107,13 +107,13 @@ export class GDObject extends Object {
     updateScale(scaleX, scaleY) {
         this.initScaleX = scaleX;
         this.initScaleY = scaleY;
-        this.updateSize(Math.round((this.width * scaleX)), Math.round((this.height * scaleY)));
+        this.updateSize(globalThis.Math.trunc((this.width * scaleX)), globalThis.Math.trunc((this.height * scaleY)));
     }
     updateSize(width, height) {
         this.width = width;
         this.height = height;
-        this.halfWidth = width / 2;
-        this.halfHeight = height / 2;
+        this.halfWidth = globalThis.Math.trunc(width / 2);
+        this.halfHeight = globalThis.Math.trunc(height / 2);
     }
     ForceAngle() {
         //if statement needs to be on the same line and ternary does not work the same way.
@@ -138,16 +138,30 @@ export class GDObject extends Object {
         //if statement needs to be on the same line and ternary does not work the same way.
         return this.height;
     }
-    setX(x) {
-        this.setX(Math.round(x));
+    setX(...args) {
+        if (args.length === 1 && typeof args[0] === 'number')
+            return this.setX$overload1(args[0]);
+        if (args.length === 1 && typeof args[0] === 'number')
+            return this.setX$overload2(args[0]);
+        throw new TypeError('No matching overload: setX');
     }
-    setX(x) {
+    setX$overload1(x) {
+        this.setX(globalThis.Math.trunc(x));
+    }
+    setX$overload2(x) {
         this.xP = x;
     }
-    setY(y) {
-        this.setY(Math.round(y));
+    setY(...args) {
+        if (args.length === 1 && typeof args[0] === 'number')
+            return this.setY$overload1(args[0]);
+        if (args.length === 1 && typeof args[0] === 'number')
+            return this.setY$overload2(args[0]);
+        throw new TypeError('No matching overload: setY');
     }
-    setY(y) {
+    setY$overload1(y) {
+        this.setY(globalThis.Math.trunc(y));
+    }
+    setY$overload2(y) {
         this.yP = y;
     }
     X() {
@@ -167,7 +181,7 @@ export class GDObject extends Object {
         return this.yP + this.height;
     }
     PointX(point) {
-        var adjustedAngle = this.angleP;
+        let adjustedAngle = this.angleP;
         ;
         while (adjustedAngle > 359) {
             adjustedAngle -= 360;
@@ -175,13 +189,13 @@ export class GDObject extends Object {
         while (adjustedAngle < 0) {
             adjustedAngle += 360;
         }
-        var x = Math.round((this.noDecimalTrigTable.cos(adjustedAngle) * (point.getX() - this.halfWidth - (this.halfWidth / 2)))) / this.noDecimalTrigTable.SCALE;
+        let x = globalThis.Math.trunc((this.noDecimalTrigTable.cos(adjustedAngle) * (point.getX() - this.halfWidth - (globalThis.Math.trunc(this.halfWidth / 2))))) / this.noDecimalTrigTable.SCALE;
         ;
         //if statement needs to be on the same line and ternary does not work the same way.
-        return Math.round((this.xP + (x * this.offsetX) + this.offsetBehavior.PointX(this.halfWidth)));
+        return globalThis.Math.trunc((this.xP + (x * this.offsetX) + this.offsetBehavior.PointX(this.halfWidth)));
     }
     PointY(point) {
-        var adjustedAngle = this.angleP;
+        let adjustedAngle = this.angleP;
         ;
         while (adjustedAngle > 359) {
             adjustedAngle -= 360;
@@ -190,24 +204,31 @@ export class GDObject extends Object {
             adjustedAngle += 360;
         }
         if (point.getX() > this.halfWidth) {
-            var y = Math.round((this.noDecimalTrigTable.sin(adjustedAngle) * (point.getY() - (this.halfHeight / 2)))) / this.noDecimalTrigTable.SCALE;
+            let y = globalThis.Math.trunc((this.noDecimalTrigTable.sin(adjustedAngle) * (point.getY() - (globalThis.Math.trunc(this.halfHeight / 2))))) / this.noDecimalTrigTable.SCALE;
             ;
             //if statement needs to be on the same line and ternary does not work the same way.
-            return Math.round((this.yP + (y * this.offsetY) + this.offsetBehavior.PointY(this.halfHeight)));
+            return globalThis.Math.trunc((this.yP + (y * this.offsetY) + this.offsetBehavior.PointY(this.halfHeight)));
         }
         else {
-            var y = Math.round((this.noDecimalTrigTable.sin(adjustedAngle) * -(point.getY() - (this.halfHeight / 2)))) / this.noDecimalTrigTable.SCALE;
+            let y = globalThis.Math.trunc((this.noDecimalTrigTable.sin(adjustedAngle) * -(point.getY() - (globalThis.Math.trunc(this.halfHeight / 2))))) / this.noDecimalTrigTable.SCALE;
             ;
             //if statement needs to be on the same line and ternary does not work the same way.
-            return Math.round((this.yP + (y * this.offsetY) + this.offsetBehavior.PointY(this.halfHeight)));
+            return globalThis.Math.trunc((this.yP + (y * this.offsetY) + this.offsetBehavior.PointY(this.halfHeight)));
         }
     }
-    setAngle(angle) {
+    setAngle(...args) {
+        if (args.length === 1 && typeof args[0] === 'number')
+            return this.setAngle$overload1(args[0]);
+        if (args.length === 2 && typeof args[0] === 'number')
+            return this.setAngle$overload2(args[0], args[1]);
+        throw new TypeError('No matching overload: setAngle');
+    }
+    setAngle$overload1(angle) {
         this.angleP = angle;
     }
-    setAngle(angle, gameLayer) {
+    setAngle$overload2(angle, gameLayer) {
         this.updateSinceSetAngle = false;
-        var adjustedAngle = angle;
+        let adjustedAngle = angle;
         ;
         while (adjustedAngle > 359) {
             adjustedAngle -= 360;
@@ -218,27 +239,48 @@ export class GDObject extends Object {
         this.angleP = adjustedAngle;
         gameLayer.setRotation(adjustedAngle);
     }
-    Angle(gameLayer) {
+    Angle(...args) {
+        if (args.length === 1)
+            return this.Angle$overload1(args[0]);
+        if (args.length === 0)
+            return this.Angle$overload2();
+        throw new TypeError('No matching overload: Angle');
+    }
+    Angle$overload1(gameLayer) {
         //if statement needs to be on the same line and ternary does not work the same way.
         return this.angleP;
     }
-    Angle() {
+    Angle$overload2() {
         //if statement needs to be on the same line and ternary does not work the same way.
         return this.angleP;
     }
-    Variable(value) {
+    Variable(...args) {
+        if (args.length === 1 && typeof args[0] === 'number')
+            return this.Variable$overload1(args[0]);
+        if (args.length === 1 && typeof args[0] === 'number')
+            return this.Variable$overload2(args[0]);
+        throw new TypeError('No matching overload: Variable');
+    }
+    Variable$overload1(value) {
         //if statement needs to be on the same line and ternary does not work the same way.
         return value;
     }
-    Variable(value) {
+    Variable$overload2(value) {
         //if statement needs to be on the same line and ternary does not work the same way.
         return value;
     }
-    VariableChildCount(array) {
+    VariableChildCount(...args) {
+        if (args.length === 1)
+            return this.VariableChildCount$overload1(args[0]);
+        if (args.length === 1)
+            return this.VariableChildCount$overload2(args[0]);
+        throw new TypeError('No matching overload: VariableChildCount');
+    }
+    VariableChildCount$overload1(array) {
         //if statement needs to be on the same line and ternary does not work the same way.
         return array.length;
     }
-    VariableChildCount(array) {
+    VariableChildCount$overload2(array) {
         //if statement needs to be on the same line and ternary does not work the same way.
         return array.length;
     }
@@ -253,32 +295,32 @@ export class GDObject extends Object {
         return this.behaviorArray[index];
     }
     toShortString() {
-        var commonSeps = CommonSeps.getInstance();
+        let commonSeps = CommonSeps.getInstance();
         ;
-        var gdObjectStrings = GDObjectStrings.getInstance();
+        let gdObjectStrings = GDObjectStrings.getInstance();
         ;
-        var positionStrings = PositionStrings.getInstance();
+        let positionStrings = PositionStrings.getInstance();
         ;
-        var commonLabels = CommonLabels.getInstance();
+        let commonLabels = CommonLabels.getInstance();
         ;
-        var stringBuilder = new StringMaker();
+        let stringBuilder = new StringMaker();
         ;
         //if statement needs to be on the same line and ternary does not work the same way.
         return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON).append(this.name).append(commonSeps.SPACE).append(positionStrings.X_LABEL).appendint(this.xP).append(positionStrings.Y_LABEL).appendint(this.yP).append(commonLabels.WIDTH_LABEL).appendint(this.width).append(commonLabels.HEIGHT_LABEL).appendint(this.height).toString();
         ;
     }
     toString() {
-        var commonSeps = CommonSeps.getInstance();
+        let commonSeps = CommonSeps.getInstance();
         ;
-        var graphicsStrings = GraphicsStrings.getInstance();
+        let graphicsStrings = GraphicsStrings.getInstance();
         ;
-        var positionStrings = PositionStrings.getInstance();
+        let positionStrings = PositionStrings.getInstance();
         ;
-        var commonLabels = CommonLabels.getInstance();
+        let commonLabels = CommonLabels.getInstance();
         ;
-        var gdObjectStrings = GDObjectStrings.getInstance();
+        let gdObjectStrings = GDObjectStrings.getInstance();
         ;
-        var stringBuilder = new StringMaker();
+        let stringBuilder = new StringMaker();
         ;
         //if statement needs to be on the same line and ternary does not work the same way.
         return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON).append(this.name).appendint(this.hashCode()).append(commonSeps.SPACE).append(positionStrings.X_LABEL).appendint(this.xP).append(positionStrings.Y_LABEL).appendint(this.yP).append(commonSeps.SPACE).append(positionStrings.Z_LABEL).appendint(this.zOrder).append(commonSeps.SPACE).append(commonLabels.WIDTH_LABEL).appendint(this.width).append(commonSeps.SPACE).append(commonLabels.HEIGHT_LABEL).appendint(this.height).append(commonSeps.SPACE).append(commonLabels.WIDTH_LABEL).appendint(this.halfWidth).append(commonSeps.SPACE).append(commonLabels.HEIGHT_LABEL).appendint(this.halfHeight).append(commonSeps.SPACE).append(graphicsStrings.ANIMATION).appendint(this.animation).append(commonSeps.SPACE).append(graphicsStrings.ANGLE).append(commonSeps.COLON).appendint(this.angleP).append(commonSeps.SPACE).append(graphicsStrings.MOVEMENT_ANGLE).append(commonSeps.COLON).appendint(this.movement_angle).append(commonSeps.SPACE).append(graphicsStrings.ROTATION).append(commonSeps.COLON).appendfloat(this.rotationP).append(commonSeps.SPACE).append(graphicsStrings.OPACITY).append(commonSeps.COLON).appendfloat(this.opacity).toString();

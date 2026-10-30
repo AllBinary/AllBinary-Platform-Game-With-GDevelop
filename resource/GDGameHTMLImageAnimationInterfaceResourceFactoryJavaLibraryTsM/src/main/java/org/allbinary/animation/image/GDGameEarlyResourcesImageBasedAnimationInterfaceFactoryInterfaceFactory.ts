@@ -43,6 +43,7 @@ import { ImageCacheFactory } from '../../../../org/allbinary/image/ImageCacheFac
 
 //not plain js import { StdUtil } 
 const StdUtil = globalThis.org.allbinary.logic.StdUtil;
+type StdUtil<T = any, U = any> = typeof StdUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StdUtil;
 
 
 
@@ -108,7 +109,7 @@ super.init(level);
 
     public isFeature(): boolean{
 
-    var features: Features = Features.getInstance()!;;
+    let features: Features = Features.getInstance()!;;
     
 
                         if(features.isFeature(GraphicsFeatureFactory.getInstance()!.IMAGE_GRAPHICS) && features.isFeature(GraphicsFeatureFactory.getInstance()!.IMAGE_TO_ARRAY_GRAPHICS) && !features.isDefault(OpenGLFeatureFactory.getInstance()!.OPENGL))
@@ -170,6 +171,4 @@ super.init(level);
 
 
 }
-
-
 

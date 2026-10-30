@@ -32,6 +32,7 @@ import { AndroidResources } from '../../../org/allbinary/AndroidResources.js';
 
 //not plain js import { CommonStateStrings } 
 const CommonStateStrings = globalThis.org.allbinary.string.CommonStateStrings;
+type CommonStateStrings<T = any, U = any> = typeof CommonStateStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStateStrings;
 
 import { GameMidletActivity } from '../../../org/allbinary/android/activity/game/GameMidletActivity.js';
 //not GWT import const GameMidletActivity
@@ -50,6 +51,7 @@ import { ApplicationConfiguration } from '../../../org/allbinary/configuration/A
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 import { GameConfigurationCentral } from '../../../org/allbinary/game/configuration/GameConfigurationCentral.js';
 //not GWT import const GameConfigurationCentral
@@ -101,6 +103,7 @@ import { GDThreedEarlyResourceInitializationFactory } from '../../../org/allbina
 
 //not plain js import { ABHashtable } 
 const ABHashtable = globalThis.org.allbinary.util.ABHashtable;
+type ABHashtable<T = any, U = any> = typeof ABHashtable extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ABHashtable;
 
 import { PlatformOpenGLESGraphicsFactory } from '../../../org/microemu/opengles/device/PlatformOpenGLESGraphicsFactory.js';
 //not GWT import const PlatformOpenGLESGraphicsFactory
@@ -138,20 +141,22 @@ public constructor (){
                             //For kotlin this is before the body of the constructor.
                     
 
-        try {
-            
-    var gameAdState: GameAdStateBase = GameAdStateFactory.getInstance()!.getInstanceForApp(GDGameSoftwareInfo.getInstance())!;;
+ try { 
+    let gameAdState: GameAdStateBase = GameAdStateFactory.getInstance()!.getInstanceForApp(GDGameSoftwareInfo.getInstance())!;;
     
 gameAdState!.setOkayToShowAds(true);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 this.logUtil!.put(this.commonStrings!.EXCEPTION, this, this.commonStrings!.CONSTRUCTOR, e);
     
-}
 
+ }
+   }
+ 
 }
 
 
@@ -159,7 +164,7 @@ this.logUtil!.put(this.commonStrings!.EXCEPTION, this, this.commonStrings!.CONST
             
     initOpenGL(){
 
-    var openGLConfiguration: OpenGLConfiguration = OpenGLConfiguration.getInstance()!;;
+    let openGLConfiguration: OpenGLConfiguration = OpenGLConfiguration.getInstance()!;;
     
 openGLConfiguration!.setOpenGL(true);
     
@@ -182,10 +187,10 @@ AllBinaryAndroidGameInitializationUtil.init();
 this.initOpenGL();
     
 
-    var features: Features = Features.getInstance()!;;
+    let features: Features = Features.getInstance()!;;
     
 
-    var openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()!;;
+    let openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()!;;
     
 features.addDefault(openGLFeatureFactory!.OPENGL_2D_AND_3D);
     
@@ -194,7 +199,7 @@ OpenGLESGraphicsCompositeFactory.getInstance()!.set(new PlatformOpenGLESGraphics
 GDThreedEarlyResourceInitializationFactory.getInstance()!.list.add(new GDGameThreedAndroidEarlyResourceInitialization());
     
 
-    var androidResources: AndroidResources = AndroidResources.getInstance()!;;
+    let androidResources: AndroidResources = AndroidResources.getInstance()!;;
     
 this.initViewIdsFromArrays([androidResources!.id.gd,androidResources!.id.gd_gl], [androidResources!.layout.gd_layout,androidResources!.layout.gd_ad_overlay_layout], [androidResources!.layout.gd_gl_layout,androidResources!.layout.gd_min3d_layout,androidResources!.layout.gd_gl_ad_overlay_layout,androidResources!.layout.gd_min3d_ad_overlay_layout], false);
     
@@ -205,8 +210,7 @@ this.setRootViewId(this.getViewId());
 
     public onCreate(icicle: Bundle){
 
-        try {
-            this.logUtil!.putF(this.commonStrings!.START, this, CommonStateStrings.getInstance()!.CREATE);
+ try { this.logUtil!.putF(this.commonStrings!.START, this, CommonStateStrings.getInstance()!.CREATE);
     
 super.onCreate(icicle);
     
@@ -221,21 +225,23 @@ super.onCreate(icicle);
                                 
 this.logUtil!.putF(this.commonStrings!.END, this, CommonStateStrings.getInstance()!.CREATE);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 this.logUtil!.put(this.commonStrings!.EXCEPTION, this, CommonStateStrings.getInstance()!.CREATE, e);
     
-}
 
+ }
+   }
+ 
 }
 
 
     public onStart(){
 
-        try {
-            this.logUtil!.putF(this.commonStrings!.START, this, CommonStateStrings.getInstance()!.START);
+ try { this.logUtil!.putF(this.commonStrings!.START, this, CommonStateStrings.getInstance()!.START);
     
 super.onStart();
     
@@ -243,14 +249,17 @@ super.onStartMidlet(new GDGameMIDletFactory());
     
 this.logUtil!.putF(this.commonStrings!.END, this, CommonStateStrings.getInstance()!.START);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 this.logUtil!.put(this.commonStrings!.EXCEPTION, this, CommonStateStrings.getInstance()!.START, e);
     
-}
 
+ }
+   }
+ 
 }
 
 
@@ -266,10 +275,10 @@ super.initEmulator();
                                     this.logUtil!.putF("Init Base GameFeatures", this, "initEmulator");
     
 
-    var features: Features = Features.getInstance()!;;
+    let features: Features = Features.getInstance()!;;
     
 
-    var gameConfigurationCentral: GameConfigurationCentral = GameConfigurationCentral.getInstance()!;;
+    let gameConfigurationCentral: GameConfigurationCentral = GameConfigurationCentral.getInstance()!;;
     
 gameConfigurationCentral!.VIBRATION.setDefaultValue(SmallIntegerSingletonFactory.getInstance()!.getAt(1));
     
@@ -280,7 +289,7 @@ gameConfigurationCentral!.SPEED.setDefaultValue(SmallIntegerSingletonFactory.get
 gameConfigurationCentral!.SPEED.setDefault();
     
 
-    var graphicsFeatureFactory: GraphicsFeatureFactory = GraphicsFeatureFactory.getInstance()!;;
+    let graphicsFeatureFactory: GraphicsFeatureFactory = GraphicsFeatureFactory.getInstance()!;;
     
 features.addDefault(graphicsFeatureFactory!.TRANSPARENT_IMAGE_CREATION);
     
@@ -291,7 +300,7 @@ features.addDefault(graphicsFeatureFactory!.IMAGE_TO_ARRAY_GRAPHICS);
 features.addDefault(GameFeatureFactory.getInstance()!.SOUND);
     
 
-    var sensorFeatureFactory: SensorFeatureFactory = SensorFeatureFactory.getInstance()!;;
+    let sensorFeatureFactory: SensorFeatureFactory = SensorFeatureFactory.getInstance()!;;
     
 features.removeDefault(sensorFeatureFactory!.ORIENTATION_SENSORS);
     
@@ -311,13 +320,13 @@ InitEmulatorFactory.getInstance()!.setInitEmulator(true);
 this.logUtil!.putF(this.commonStrings!.START, this, "setBackground");
     
 
-    var androidResources: AndroidResources = AndroidResources.getInstance()!;;
+    let androidResources: AndroidResources = AndroidResources.getInstance()!;;
     
 
-    var reloadConfiguration: ApplicationConfiguration = ApplicationConfiguration.getInstance()!;;
+    let reloadConfiguration: ApplicationConfiguration = ApplicationConfiguration.getInstance()!;;
     
 
-    var drawable: Drawable = this.getResources()!.getDrawable(androidResources!.drawable.gd_wait_256_by_256)!;;
+    let drawable: Drawable = this.getResources()!.getDrawable(androidResources!.drawable.gd_wait_256_by_256)!;;
     
 
                         if(reloadConfiguration!.isProgressBarView())
@@ -330,16 +339,16 @@ this.logUtil!.putF(this.commonStrings!.START, this, "setBackground");
                                 
                         else {
                             
-    var displayInfo: DisplayInfoSingleton = DisplayInfoSingleton.getInstance()!;;
+    let displayInfo: DisplayInfoSingleton = DisplayInfoSingleton.getInstance()!;;
     
 
-    var view: View = this.getRootView()!;;
+    let view: View = this.getRootView()!;;
     
 
-    var bitmap: Bitmap = (drawable as BitmapDrawable).getBitmap()!;;
+    let bitmap: Bitmap = (drawable as BitmapDrawable).getBitmap()!;;
     
 
-    var hashtable: ABHashtable<any, any> = ImageCacheFactory.getInstance()!.getHashtableP()!;;
+    let hashtable: ABHashtable<any, any> = ImageCacheFactory.getInstance()!.getHashtableP()!;;
     
 hashtable.put(AndroidBasicTitleProgressBar.RESOURCE, Image.createImageBitmap(bitmap));
     
@@ -352,6 +361,4 @@ AndroidBasicTitleProgressBar.setBackgroundResource(androidResources!.drawable.gd
 
 
 }
-
-
 

@@ -69,5 +69,3 @@ GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFact
 
 }
 
-
-

@@ -17,6 +17,7 @@ import { GDProjectStrings } from '../../../../../org/allbinary/gdevelop/json/GDP
 
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 import { JSONObject } from '../../../../../org/json/JSONObject.js';
 //not GWT import const JSONObject
@@ -53,7 +54,7 @@ public constructor (type: string, jsonObject: JSONObject){
 
             super();
         
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 this.type= type;
     
@@ -61,6 +62,4 @@ this.type= type;
 
 
 }
-
-
 

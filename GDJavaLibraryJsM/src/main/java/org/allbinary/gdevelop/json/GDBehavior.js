@@ -12,7 +12,7 @@ import { GDProjectStrings } from './GDProjectStrings.js';
 export class GDBehavior extends Object {
     constructor(jsonObject) {
         super();
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
         this.type = jsonObject.getString(gdProjectStrings.TYPE);
         this.name = jsonObject.getString(gdProjectStrings.NAME);

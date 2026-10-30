@@ -70,5 +70,3 @@ indexedAnimationInterfaceArray[animationIndex]!.setFrame(this.frameUtil!.getFram
 
 }
 
-
-

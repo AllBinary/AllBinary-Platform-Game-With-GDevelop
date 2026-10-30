@@ -27,11 +27,11 @@ export class GDSoftJoystickAnimationBehavior extends GDAnimationBehaviorBase {
         this.initialY = 0;
     }
     init(gdObject, animationInterfaceFactoryInterfaceArray) {
-        var indexedAnimationArray = super.init(gdObject, animationInterfaceFactoryInterfaceArray);
+        let indexedAnimationArray = super.init(gdObject, animationInterfaceFactoryInterfaceArray);
         ;
-        var simultaneousCompoundIndexedAnimation = indexedAnimationArray[0];
+        let simultaneousCompoundIndexedAnimation = indexedAnimationArray[0];
         ;
-        var animation = simultaneousCompoundIndexedAnimation.getAnimationInterfaceArray()[1];
+        let animation = simultaneousCompoundIndexedAnimation.getAnimationInterfaceArray()[1];
         ;
         this.initialX = animation.getDx();
         this.initialY = animation.getDy();
@@ -40,13 +40,13 @@ export class GDSoftJoystickAnimationBehavior extends GDAnimationBehaviorBase {
     }
     //@Throws(Exception.constructor)
     set(gameLayer, gdObject) {
-        var simultaneousCompoundIndexedAnimation = gameLayer.getIndexedAnimationInterfaceArray()[0];
+        let simultaneousCompoundIndexedAnimation = gameLayer.getIndexedAnimationInterfaceArray()[0];
         ;
-        var animation = simultaneousCompoundIndexedAnimation.getAnimationInterfaceArray()[1];
+        let animation = simultaneousCompoundIndexedAnimation.getAnimationInterfaceArray()[1];
         ;
-        var softJoystickInterface = gdObject;
+        let softJoystickInterface = gdObject;
         ;
-        var point = softJoystickInterface.getPoint();
+        let point = softJoystickInterface.getPoint();
         ;
         if (point == PointFactory.getInstance().ZERO_ZERO) {
             animation.setDx(this.initialX);

@@ -11,9 +11,11 @@ import { OrientationData } from '../../../../../org/allbinary/input/gyro/Orienta
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { DebugFactory } from '../../../../../org/allbinary/debug/DebugFactory.js';
 //not GWT import const DebugFactory
@@ -70,16 +72,16 @@ export class GDGameGameFeatures
 
     public init(){
 
-    var gameConfigurationSingleton: GameConfigurationSingleton = GameConfigurationSingleton.getInstance()!;;
+    let gameConfigurationSingleton: GameConfigurationSingleton = GameConfigurationSingleton.getInstance()!;;
     
 
-    var gameConfigurationCentral: GameConfigurationCentral = GameConfigurationCentral.getInstance()!;;
+    let gameConfigurationCentral: GameConfigurationCentral = GameConfigurationCentral.getInstance()!;;
     
 
-    var sensorFeatureFactory: SensorFeatureFactory = SensorFeatureFactory.getInstance()!;;
+    let sensorFeatureFactory: SensorFeatureFactory = SensorFeatureFactory.getInstance()!;;
     
 
-    var exclusiveOrientationSensorBasicArrayList: BasicArrayList = new BasicArrayListD();;
+    let exclusiveOrientationSensorBasicArrayList: BasicArrayList = new BasicArrayListD();;
     
 exclusiveOrientationSensorBasicArrayList!.add(sensorFeatureFactory!.ORIENTATION_SENSORS);
     
@@ -105,10 +107,10 @@ gameConfigurationSingleton!.add(gameConfigurationCentral!.SPEED);
                                     }
                                 
 
-    var multipleBasicArrayList: BasicArrayList = new BasicArrayListD();;
+    let multipleBasicArrayList: BasicArrayList = new BasicArrayListD();;
     
 
-    var gameFeatureFactory: GameFeatureFactory = GameFeatureFactory.getInstance()!;;
+    let gameFeatureFactory: GameFeatureFactory = GameFeatureFactory.getInstance()!;;
     
 multipleBasicArrayList!.add(gameFeatureFactory!.SOUND);
     
@@ -128,6 +130,4 @@ GameFeatureChoiceGroups.getExclusiveInstance()!.add(OrientationData.getInstance(
 
 
 }
-
-
 

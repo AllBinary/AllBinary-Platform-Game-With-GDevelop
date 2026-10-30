@@ -165,7 +165,7 @@ Created By: Travis Berthelot
 
                         public val PROCESS_RELEASE: String = "processReleased"
 
-                        //private val gdNodes: GDNodes = this.gdNodeUtil.getInstance(<xsl:value-of select="$layoutIndex" />)
+                        //private val gdNodes: GDNodes = this.gdNodeUtil.getOrCreateInstance(<xsl:value-of select="$layoutIndex" />);<xsl:value-of select="$layoutIndex" />)
 
                         <xsl:variable name="hasHighscoreSubmissionComplete" >
                             <xsl:for-each select="variables" >

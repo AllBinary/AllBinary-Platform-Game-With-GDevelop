@@ -20,9 +20,11 @@ import { PointFactory } from '../../../../../../org/allbinary/graphics/PointFact
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { JSONArray } from '../../../../../../org/json/JSONArray.js';
 //not GWT import const JSONArray
@@ -60,23 +62,23 @@ public constructor (jsonArray: JSONArray){
 
             super();
         
-    var pointFactory: PointFactory = PointFactory.getInstance()!;;
+    let pointFactory: PointFactory = PointFactory.getInstance()!;;
     
 
-    var projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 
-    var size: number = jsonArray!.length()!;;
+    let size: number = jsonArray!.length()!;;
     
 
-    var jsonObject: JSONObject;;
+    let jsonObject: JSONObject;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 jsonObject= jsonArray!.getJSONObject(index);
     
@@ -88,6 +90,4 @@ this.pointList!.add(pointFactory!.createXY(jsonObject!.getInt(projectStrings!.X)
 
 
 }
-
-
 

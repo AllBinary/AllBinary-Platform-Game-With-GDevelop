@@ -46,37 +46,37 @@ export class GDGameInputProcessor extends Object {
             //if statement needs to be on the same line and ternary does not work the same way.
             return;
         }
-        var globals = specialAnimation.getGlobals();
+        let globals = specialAnimation.getGlobals();
         ;
-        var gameKeyEvent;
+        let gameKeyEvent;
         ;
-        var size = this.gameKeyEventList.size();
+        let size = this.gameKeyEventList.size();
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             gameKeyEvent = this.gameKeyEventList.get(index);
             globals.inputProcessorArray[gameKeyEvent.getKey()].processEvent(allbinaryLayerManager, gameKeyEvent);
         }
-        var size2 = this.removalGameKeyEventList.size();
+        let size2 = this.removalGameKeyEventList.size();
         ;
-        for (var index = 0; index < size2; index++) {
+        for (let index = 0; index < size2; index++) {
             gameKeyEvent = this.removalGameKeyEventList.get(index);
             globals.inputProcessorArray[gameKeyEvent.getKey()].processReleasedEvent(allbinaryLayerManager, gameKeyEvent);
         }
-        var keyAsInteger;
+        let keyAsInteger;
         ;
-        var size3 = this.keyEventList.size();
+        let size3 = this.keyEventList.size();
         ;
         if (size3 > 0) {
             keyAsInteger = this.keyEventList.get(0);
             globals.anyKeyProcessorArray[0].process(allbinaryLayerManager, keyAsInteger);
         }
-        for (var index = 0; index < size3; index++) {
+        for (let index = 0; index < size3; index++) {
             keyAsInteger = this.keyEventList.get(index);
             globals.unmappedInputProcessorArray[keyAsInteger.intValue()].process(allbinaryLayerManager, keyAsInteger);
         }
-        var size4 = this.removalKeyEventList.size();
+        let size4 = this.removalKeyEventList.size();
         ;
-        for (var index = 0; index < size4; index++) {
+        for (let index = 0; index < size4; index++) {
             keyAsInteger = this.removalKeyEventList.get(index);
             globals.unmappedInputProcessorArray[keyAsInteger.intValue()].processReleased(allbinaryLayerManager, keyAsInteger);
         }
@@ -86,12 +86,14 @@ export class GDGameInputProcessor extends Object {
     processInput(allbinaryLayerManager) {
         try {
             this.playerGameInput.update();
-            //: 
         }
-        catch (e) {
-            var commonStrings = CommonStrings.getInstance();
-            ;
-            this.logUtil.putF(commonStrings.EXCEPTION, this, this.gameInputStrings.PROCESS_INPUT);
+        catch (caught) {
+            {
+                const e = caught;
+                let commonStrings = CommonStrings.getInstance();
+                ;
+                this.logUtil.putF(commonStrings.EXCEPTION, this, this.gameInputStrings.PROCESS_INPUT);
+            }
         }
     }
     getPlayerGameInput() {

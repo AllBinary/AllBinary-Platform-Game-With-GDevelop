@@ -23,18 +23,22 @@ import { Processor } from '../../org/allbinary/canvas/Processor.js';
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 import { AllBinaryPlayNGame } from '../../org/allbinary/playn/AllBinaryPlayNGame.js';
 //not GWT import const AllBinaryPlayNGame
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { HtmlPlatform } 
 const HtmlPlatform = globalThis.playn.html.HtmlPlatform;
+type HtmlPlatform<T = any, U = any> = typeof HtmlPlatform extends abstract new (...args: any[]) => infer Instance ? Instance : typeof HtmlPlatform;
 
 
 
@@ -190,7 +194,7 @@ this.logUtil!.putF(this.commonStrings!.START +this.list.size(), this, this.commo
                                     }
                                 
 
-    var gameRunnable: any = this.createGameRunnable(this.list)!;;
+    let gameRunnable: any = this.createGameRunnable(this.list)!;;
     
 this.initInterface!.setUsedRunnable(gameRunnable);
     
@@ -203,7 +207,7 @@ this.initInterface!.setLoadGameRunnableProcessor(this.gdGameProcessor);
 }
 
 
-    isDeviceFactoryLoaded(): boolean
+    isDeviceFactoryLoaded(): boolean;
                 //native - START
                 {
                     
@@ -214,7 +218,7 @@ this.initInterface!.setLoadGameRunnableProcessor(this.gdGameProcessor);
                 //native - END
                 
 
-    isMIDletBridgeLoaded(): boolean
+    isMIDletBridgeLoaded(): boolean;
                 //native - START
                 {
                     
@@ -225,7 +229,7 @@ this.initInterface!.setLoadGameRunnableProcessor(this.gdGameProcessor);
                 //native - END
                 
 
-    isPlaynCanvasDisplayGraphicsLoaded(): boolean
+    isPlaynCanvasDisplayGraphicsLoaded(): boolean;
                 //native - START
                 {
                     
@@ -236,7 +240,7 @@ this.initInterface!.setLoadGameRunnableProcessor(this.gdGameProcessor);
                 //native - END
                 
 
-    isAllBinaryPlayNGameRunnableReady(): boolean
+    isAllBinaryPlayNGameRunnableReady(): boolean;
                 //native - START
                 {
                     
@@ -247,7 +251,7 @@ this.initInterface!.setLoadGameRunnableProcessor(this.gdGameProcessor);
                 //native - END
                 
 
-    isOpenGLESPackageLoaded(): boolean
+    isOpenGLESPackageLoaded(): boolean;
                 //native - START
                 {
                     
@@ -258,7 +262,7 @@ this.initInterface!.setLoadGameRunnableProcessor(this.gdGameProcessor);
                 //native - END
                 
 
-    createGameRunnable(list: BasicArrayList): any
+    createGameRunnable(list: BasicArrayList): any;
                 //native - START
                 {
                     
@@ -270,6 +274,4 @@ this.initInterface!.setLoadGameRunnableProcessor(this.gdGameProcessor);
                 
 
 }
-
-
 

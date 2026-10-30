@@ -46,6 +46,7 @@ import { AllBinaryLayer } from '../../../../../org/allbinary/layer/AllBinaryLaye
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 import { BasicGeographicMap } from '../../../../../org/allbinary/media/graphics/geography/map/BasicGeographicMap.js';
 //not GWT import const BasicGeographicMap
@@ -61,9 +62,11 @@ import { SimpleGeographicMapCellPositionFactory } from '../../../../../org/allbi
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { ViewPositionBase } from '../../../../../org/allbinary/view/ViewPositionBase.js';
 //not GWT import const ViewPositionBase
@@ -127,7 +130,7 @@ this.autoStepBlocks= autoStepBlocks;
                                     this.geographicMapBehavior!.getCellTypeAt(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPosition);
     
 
-    var hasSolidBlock: boolean = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray)!;;
+    let hasSolidBlock: boolean = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray)!;;
     
 
                         if(!hasSolidBlock)
@@ -156,37 +159,37 @@ this.gravity();
             
     get(geographicMapInterfaceArray: BasicGeographicMap[], geographicMapCellPositionList: BasicArrayList, layer: AllBinaryLayer, x: number, y: number): BasicArrayList{
 
-    var customGameLayer: GDCustomGameLayer = layer as GDCustomGameLayer;;
+    let customGameLayer: GDCustomGameLayer = layer as GDCustomGameLayer;;
     
 
-    var frame: number = customGameLayer!.getIndexedAnimationInterface()!.getFrame()!;;
+    let frame: number = customGameLayer!.getIndexedAnimationInterface()!.getFrame()!;;
     
 
-    var maskRectangle: Rectangle = customGameLayer!.rectangleArrayOfArrays[customGameLayer!.gdObject!.animation]![frame]!;;
+    let maskRectangle: Rectangle = customGameLayer!.rectangleArrayOfArrays[customGameLayer!.gdObject!.animation]![frame]!;;
     
 
-    var maskPoint: GPoint = maskRectangle!.getPoint()!;;
+    let maskPoint: GPoint = maskRectangle!.getPoint()!;;
     
 
-    var viewPosition: ViewPositionBase = customGameLayer!.getViewPosition()!;;
+    let viewPosition: ViewPositionBase = customGameLayer!.getViewPosition()!;;
     
 
-    var viewX: number = viewPosition!.getX()!;;
+    let viewX: number = viewPosition!.getX()!;;
     
 
-    var viewY: number = viewPosition!.getY()!;;
+    let viewY: number = viewPosition!.getY()!;;
     
 
-    var xCellPosition: number = viewX +maskPoint!.getX() + -x;;
+    let xCellPosition: number = viewX +maskPoint!.getX() + -x;;
     
 
-    var yCellPosition: number = viewY +maskPoint!.getY() + -y;;
+    let yCellPosition: number = viewY +maskPoint!.getY() + -y;;
     
 
-    var x2CellPosition: number = viewX +maskPoint!.getX() + -x +maskRectangle!.getWidth();;
+    let x2CellPosition: number = viewX +maskPoint!.getX() + -x +maskRectangle!.getWidth();;
     
 
-    var y2CellPosition: number = viewY +maskPoint!.getY() + -y +maskRectangle!.getHeight();;
+    let y2CellPosition: number = viewY +maskPoint!.getY() + -y +maskRectangle!.getHeight();;
     
 
 
@@ -201,31 +204,31 @@ this.gravity();
             
     getLeftPosition(geographicMapInterfaceArray: BasicGeographicMap[], layer: AllBinaryLayer): GeographicMapCellPosition{
 
-    var customGameLayer: GDCustomGameLayer = layer as GDCustomGameLayer;;
+    let customGameLayer: GDCustomGameLayer = layer as GDCustomGameLayer;;
     
 
-    var frame: number = customGameLayer!.getIndexedAnimationInterface()!.getFrame()!;;
+    let frame: number = customGameLayer!.getIndexedAnimationInterface()!.getFrame()!;;
     
 
-    var maskRectangle: Rectangle = customGameLayer!.rectangleArrayOfArrays[customGameLayer!.gdObject!.animation]![frame]!;;
+    let maskRectangle: Rectangle = customGameLayer!.rectangleArrayOfArrays[customGameLayer!.gdObject!.animation]![frame]!;;
     
 
-    var maskPoint: GPoint = maskRectangle!.getPoint()!;;
+    let maskPoint: GPoint = maskRectangle!.getPoint()!;;
     
 
-    var viewPosition: ViewPositionBase = customGameLayer!.getViewPosition()!;;
+    let viewPosition: ViewPositionBase = customGameLayer!.getViewPosition()!;;
     
 
-    var viewX: number = viewPosition!.getX()!;;
+    let viewX: number = viewPosition!.getX()!;;
     
 
-    var viewY: number = viewPosition!.getY()!;;
+    let viewY: number = viewPosition!.getY()!;;
     
 
-    var xCellPosition: number = viewX +maskPoint!.getX();;
+    let xCellPosition: number = viewX +maskPoint!.getX();;
     
 
-    var yCellPosition: number = viewY +maskPoint!.getY() +maskRectangle!.getHeight();;
+    let yCellPosition: number = viewY +maskPoint!.getY() +maskRectangle!.getHeight();;
     
 
 
@@ -240,31 +243,31 @@ this.gravity();
             
     getRightPosition(geographicMapInterfaceArray: BasicGeographicMap[], layer: AllBinaryLayer): GeographicMapCellPosition{
 
-    var customGameLayer: GDCustomGameLayer = layer as GDCustomGameLayer;;
+    let customGameLayer: GDCustomGameLayer = layer as GDCustomGameLayer;;
     
 
-    var frame: number = customGameLayer!.getIndexedAnimationInterface()!.getFrame()!;;
+    let frame: number = customGameLayer!.getIndexedAnimationInterface()!.getFrame()!;;
     
 
-    var maskRectangle: Rectangle = customGameLayer!.rectangleArrayOfArrays[customGameLayer!.gdObject!.animation]![frame]!;;
+    let maskRectangle: Rectangle = customGameLayer!.rectangleArrayOfArrays[customGameLayer!.gdObject!.animation]![frame]!;;
     
 
-    var maskPoint: GPoint = maskRectangle!.getPoint()!;;
+    let maskPoint: GPoint = maskRectangle!.getPoint()!;;
     
 
-    var viewPosition: ViewPositionBase = customGameLayer!.getViewPosition()!;;
+    let viewPosition: ViewPositionBase = customGameLayer!.getViewPosition()!;;
     
 
-    var viewX: number = viewPosition!.getX()!;;
+    let viewX: number = viewPosition!.getX()!;;
     
 
-    var viewY: number = viewPosition!.getY()!;;
+    let viewY: number = viewPosition!.getY()!;;
     
 
-    var xCellPosition: number = viewX +maskPoint!.getX() +maskRectangle!.getWidth();;
+    let xCellPosition: number = viewX +maskPoint!.getX() +maskRectangle!.getWidth();;
     
 
-    var yCellPosition: number = viewY +maskPoint!.getY() +maskRectangle!.getHeight();;
+    let yCellPosition: number = viewY +maskPoint!.getY() +maskRectangle!.getHeight();;
     
 
 
@@ -279,12 +282,12 @@ this.gravity();
             
     public getGeographicMapCellPositionIfNotSolidBlockOrOffMapLocation(geographicMapInterfaceArray: BasicGeographicMap[], geographicMapCellTypeArray: GeographicMapCellType[], velocityProperties: VelocityProperties, layer: AllBinaryLayer, x: number, y: number): GeographicMapCellPosition{
 
-    var geographicMapCellPositionList: BasicArrayList = this.unsafeGeographicMapCellPositionList;;
+    let geographicMapCellPositionList: BasicArrayList = this.unsafeGeographicMapCellPositionList;;
     
 this.get(geographicMapInterfaceArray, geographicMapCellPositionList, layer, x, y);
     
 
-    var geographicMapCellPosition: GeographicMapCellPosition = this.getGeographicMapCellPositionFromListIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPositionList, velocityProperties, layer)!;;
+    let geographicMapCellPosition: GeographicMapCellPosition = this.getGeographicMapCellPositionFromListIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPositionList, velocityProperties, layer)!;;
     
 
                         if(geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION)
@@ -322,20 +325,20 @@ this.unsafePossibleGeographicMapCellPositionList!.clear();
                         
                                     {
                                     
-    var size: number = geographicMapCellPositionList!.size()!;;
+    let size: number = geographicMapCellPositionList!.size()!;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 
-    var possibleStepGeographicMapCellPosition: GeographicMapCellPosition = geographicMapCellPositionList!.get(index) as GeographicMapCellPosition;;
+    let possibleStepGeographicMapCellPosition: GeographicMapCellPosition = geographicMapCellPositionList!.get(index) as GeographicMapCellPosition;;
     
 
-    var tiledLayer: AllBinaryTiledLayer = geographicMapInterfaceArray[0]!.getAllBinaryTiledLayer()!;;
+    let tiledLayer: AllBinaryTiledLayer = geographicMapInterfaceArray[0]!.getAllBinaryTiledLayer()!;;
     
 
                         if(possibleStepGeographicMapCellPosition!.getColumn() > 0 && possibleStepGeographicMapCellPosition!.getRow() > 0 && possibleStepGeographicMapCellPosition!.getColumn() < tiledLayer!.getColumns() && possibleStepGeographicMapCellPosition!.getRow() < tiledLayer!.getRows())
@@ -344,10 +347,10 @@ this.unsafePossibleGeographicMapCellPositionList!.clear();
                                     this.geographicMapBehavior!.getCellTypeAt(geographicMapInterfaceArray, geographicMapCellTypeArray, possibleStepGeographicMapCellPosition);
     
 
-    var hasSolidBlock: boolean = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray)!;;
+    let hasSolidBlock: boolean = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray)!;;
     
 
-    var hasOffMap: boolean = this.isOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray)!;;
+    let hasOffMap: boolean = this.isOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray)!;;
     
 
                         if(hasSolidBlock || hasOffMap)
@@ -410,7 +413,7 @@ this.unsafePossibleGeographicMapCellPositionList!.clear();
                         
                                     {
                                     
-    var topViewCharacterInterface: TopViewCharacterInterface = (layer as TopViewCharacterInterface);;
+    let topViewCharacterInterface: TopViewCharacterInterface = (layer as TopViewCharacterInterface);;
     
 topViewCharacterInterface!.terrainMove(geographicMapInterfaceArray, geographicMapCellTypeArray, x, y);
     
@@ -428,7 +431,7 @@ topViewCharacterInterface!.terrainMove(geographicMapInterfaceArray, geographicMa
             
     public move(geographicMapInterfaceArray: BasicGeographicMap[], geographicMapCellTypeArray: GeographicMapCellType[], velocityProperties: VelocityProperties, layer: AllBinaryLayer, x: number, y: number): boolean{
 
-    var geographicMapCellPosition: GeographicMapCellPosition = this.getGeographicMapCellPositionIfNotSolidBlockOrOffMapLocation(geographicMapInterfaceArray, geographicMapCellTypeArray, velocityProperties, layer, x, y)!;;
+    let geographicMapCellPosition: GeographicMapCellPosition = this.getGeographicMapCellPositionIfNotSolidBlockOrOffMapLocation(geographicMapInterfaceArray, geographicMapCellTypeArray, velocityProperties, layer, x, y)!;;
     
 this.moveAndLand(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPosition, velocityProperties, layer, x, y);
     
@@ -462,22 +465,22 @@ this.moveAndLand(geographicMapInterfaceArray, geographicMapCellTypeArray, geogra
             
     public left(geographicMapInterfaceArray: BasicGeographicMap[], geographicMapCellTypeArray: GeographicMapCellType[], velocityProperties: VelocityProperties, layer: AllBinaryLayer){
 
-    var geographicMapCellPosition: GeographicMapCellPosition = this.getLeftPosition(geographicMapInterfaceArray, layer)!;;
+    let geographicMapCellPosition: GeographicMapCellPosition = this.getLeftPosition(geographicMapInterfaceArray, layer)!;;
     
 
                         if(geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION)
                         
                                     {
                                     
-    var possibleStepGeographicMapCellPosition: GeographicMapCellPosition = geographicMapInterfaceArray[0]!.getGeographicMapCellPositionFactory()!.getAt(geographicMapCellPosition!.getColumn(), geographicMapCellPosition!.getRow() -1)!;;
+    let possibleStepGeographicMapCellPosition: GeographicMapCellPosition = geographicMapInterfaceArray[0]!.getGeographicMapCellPositionFactory()!.getAt(geographicMapCellPosition!.getColumn(), geographicMapCellPosition!.getRow() -1)!;;
     
 this.geographicMapBehavior!.getCellTypeAt(geographicMapInterfaceArray, geographicMapCellTypeArray, possibleStepGeographicMapCellPosition);
     
 
-    var hasSolidBlock: boolean = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray)!;;
+    let hasSolidBlock: boolean = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray)!;;
     
 
-    var topViewCharacterInterface: TopViewCharacterInterface = (layer as TopViewCharacterInterface);;
+    let topViewCharacterInterface: TopViewCharacterInterface = (layer as TopViewCharacterInterface);;
     
 
                         if(hasSolidBlock)
@@ -517,22 +520,22 @@ this.geographicMapBehavior!.getCellTypeAt(geographicMapInterfaceArray, geographi
             
     public right(geographicMapInterfaceArray: BasicGeographicMap[], geographicMapCellTypeArray: GeographicMapCellType[], velocityProperties: VelocityProperties, layer: AllBinaryLayer){
 
-    var geographicMapCellPosition: GeographicMapCellPosition = this.getRightPosition(geographicMapInterfaceArray, layer)!;;
+    let geographicMapCellPosition: GeographicMapCellPosition = this.getRightPosition(geographicMapInterfaceArray, layer)!;;
     
 
                         if(geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION)
                         
                                     {
                                     
-    var possibleStepGeographicMapCellPosition: GeographicMapCellPosition = geographicMapInterfaceArray[0]!.getGeographicMapCellPositionFactory()!.getAt(geographicMapCellPosition!.getColumn(), geographicMapCellPosition!.getRow() -1)!;;
+    let possibleStepGeographicMapCellPosition: GeographicMapCellPosition = geographicMapInterfaceArray[0]!.getGeographicMapCellPositionFactory()!.getAt(geographicMapCellPosition!.getColumn(), geographicMapCellPosition!.getRow() -1)!;;
     
 this.geographicMapBehavior!.getCellTypeAt(geographicMapInterfaceArray, geographicMapCellTypeArray, possibleStepGeographicMapCellPosition);
     
 
-    var hasSolidBlock: boolean = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray)!;;
+    let hasSolidBlock: boolean = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray)!;;
     
 
-    var topViewCharacterInterface: TopViewCharacterInterface = (layer as TopViewCharacterInterface);;
+    let topViewCharacterInterface: TopViewCharacterInterface = (layer as TopViewCharacterInterface);;
     
 
                         if(hasSolidBlock)
@@ -569,6 +572,4 @@ this.geographicMapBehavior!.getCellTypeAt(geographicMapInterfaceArray, geographi
 
 
 }
-
-
 

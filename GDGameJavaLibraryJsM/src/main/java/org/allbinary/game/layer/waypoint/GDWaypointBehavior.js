@@ -65,14 +65,14 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
         this.FAKE_WAYPOINT_LAYER = fakeWaypoint;
     }
     initRange(weaponRange) {
-        this.longWeaponRange = weaponRange / 2;
+        this.longWeaponRange = globalThis.Math.trunc(weaponRange / 2);
     }
     onEvent(eventObject) {
         ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, this);
     }
     //@Throws(Exception.constructor)
     onWaypointEvent(event) {
-        var advancedRTSGameLayer = event.getRtsLayer();
+        let advancedRTSGameLayer = event.getRtsLayer();
         ;
         this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().onWaypointEvent(this.associatedAdvancedRTSGameLayer, advancedRTSGameLayer);
         if (this.associatedAdvancedRTSGameLayer.isSelected()) {
@@ -133,11 +133,11 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
             //if statement needs to be on the same line and ternary does not work the same way.
             return;
         }
-        var size = pathsList.size();
+        let size = pathsList.size();
         ;
         this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().setRandomGeographicMapCellHistoryList(this.associatedAdvancedRTSGameLayer, pathsList);
         if (size > 0) {
-            var geographicMapCellPositionBasicArrayList = BasicArrayListUtil.getInstance().getRandom(pathsList);
+            let geographicMapCellPositionBasicArrayList = BasicArrayListUtil.getInstance().getRandom(pathsList);
             ;
             this.setGeographicMapCellHistoryPath(geographicMapCellPositionBasicArrayList);
         }
@@ -170,19 +170,19 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
     }
     //@Throws(Exception.constructor)
     moveAwayFromBuilding(buildingLayer) {
-        var geographicMapCellPosition = this.associatedAdvancedRTSGameLayer.getCurrentGeographicMapCellPosition();
+        let geographicMapCellPosition = this.associatedAdvancedRTSGameLayer.getCurrentGeographicMapCellPosition();
         ;
         if (geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
             //if statement needs to be on the same line and ternary does not work the same way.
             return;
         }
-        var list = buildingLayer.getGeographicMapCellPositionArea().getOccupyingGeographicMapCellPositionList();
+        let list = buildingLayer.getGeographicMapCellPositionArea().getOccupyingGeographicMapCellPositionList();
         ;
         if (list.contains(geographicMapCellPosition)) {
             if (this.insertWaypoint(0, this.FAKE_WAYPOINT_LAYER)) {
                 this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().moveAwayFromBuilding(this.associatedAdvancedRTSGameLayer);
                 this.setCurrentTargetLayerInterface(this.FAKE_WAYPOINT_LAYER);
-                var pathsList = buildingLayer.getMoveOutOfBuildAreaPath(geographicMapCellPosition);
+                let pathsList = buildingLayer.getMoveOutOfBuildAreaPath(geographicMapCellPosition);
                 ;
                 this.associatedAdvancedRTSGameLayer.setClosestGeographicMapCellHistory(pathsList);
             }
@@ -196,7 +196,7 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
             return true;
         }
         if (this.repeatedToLong.isTimeTNT()) {
-            var message = "Repeating too long: " + this.getMovementLogicAsString();
+            let message = "Repeating too long: " + this.getMovementLogicAsString();
             ;
             ForcedLogUtil.log(message, this.associatedAdvancedRTSGameLayer);
         }
@@ -204,7 +204,7 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
         return false;
     }
     getMovementLogicAsString() {
-        var stringBuffer = new StringMaker();
+        let stringBuffer = new StringMaker();
         ;
         stringBuffer.append("isTrackingWaypoint: ");
         stringBuffer.appendboolean(this.isTrackingWaypoint());

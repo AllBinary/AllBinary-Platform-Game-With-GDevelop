@@ -19,9 +19,11 @@ import { GDProjectStrings } from '../../../../../org/allbinary/gdevelop/json/GDP
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 import { JSONObject } from '../../../../../org/json/JSONObject.js';
 //not GWT import const JSONObject
@@ -203,7 +205,7 @@ export class GDResourceFactory
                                 
                         else {
                             
-    var commonStrings: CommonStrings = CommonStrings.getInstance()!;;
+    let commonStrings: CommonStrings = CommonStrings.getInstance()!;;
     
 this.logUtil!.putF(kind, this, commonStrings!.CONSTRUCTOR);
     
@@ -220,7 +222,7 @@ this.logUtil!.putF(kind, this, commonStrings!.CONSTRUCTOR);
 
     public create(jsonObject: JSONObject): GDResource{
 
-    var kind: string = this.get(jsonObject!.getString(this.KIND))!;;
+    let kind: string = this.get(jsonObject!.getString(this.KIND))!;;
     
 
                         if(kind == this.IMAGE)
@@ -339,6 +341,4 @@ this.logUtil!.putF(kind, this, commonStrings!.CONSTRUCTOR);
 
 
 }
-
-
 

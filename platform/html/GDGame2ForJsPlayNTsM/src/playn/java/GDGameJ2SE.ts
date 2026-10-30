@@ -52,5 +52,3 @@ export class GDGameJ2SE
 
 }
 
-
-

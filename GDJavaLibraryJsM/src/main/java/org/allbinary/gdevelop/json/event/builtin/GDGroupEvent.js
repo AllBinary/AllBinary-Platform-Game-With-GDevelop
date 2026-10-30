@@ -24,9 +24,9 @@ export class GDGroupEvent extends GDEvent {
         this.parametersExpressionList = new BasicArrayListD();
         this.eventList = new BasicArrayListD();
         //For kotlin this is before the body of the constructor.
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
-        var eventFactory = GDEventFactory.getInstance();
+        let eventFactory = GDEventFactory.getInstance();
         ;
         this.name = jsonObject.getString(gdProjectStrings.NAME);
         this.source = jsonObject.getString(gdProjectStrings.SOURCE);
@@ -34,19 +34,19 @@ export class GDGroupEvent extends GDEvent {
         this.colorR = jsonObject.getInt(gdProjectStrings.COLOR_R);
         this.colorG = jsonObject.getInt(gdProjectStrings.COLOR_G);
         this.colorB = jsonObject.getInt(gdProjectStrings.COLOR_B);
-        var expressionJSONArray = jsonObject.getJSONArray(gdProjectStrings.PARAMETERS);
+        let expressionJSONArray = jsonObject.getJSONArray(gdProjectStrings.PARAMETERS);
         ;
-        var size = expressionJSONArray.length();
+        let size = expressionJSONArray.length();
         ;
-        var nextJSONObject;
+        let nextJSONObject;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             this.parametersExpressionList.add(new GDExpression(expressionJSONArray.getString(index)));
         }
-        var eventJSONArray = jsonObject.getJSONArray(gdProjectStrings.EVENTS);
+        let eventJSONArray = jsonObject.getJSONArray(gdProjectStrings.EVENTS);
         ;
         size = eventJSONArray.length();
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             nextJSONObject = eventJSONArray.getJSONObject(index);
             this.eventList.add(eventFactory.create(nextJSONObject));
         }

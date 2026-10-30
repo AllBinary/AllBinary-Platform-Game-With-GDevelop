@@ -16,7 +16,7 @@ export class GDForEachChildVariableEvent extends GDStandardEvent {
     constructor(type, jsonObject) {
         super(type, jsonObject);
         //For kotlin this is before the body of the constructor.
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
         this.valueIteratorVariableName = jsonObject.getString(gdProjectStrings.VALUE_ITERATOR_VARIABLE_NAME);
         this.keyIteratorVariableName = jsonObject.getString(gdProjectStrings.KEY_ITERATOR_VARIABLE_NAME);

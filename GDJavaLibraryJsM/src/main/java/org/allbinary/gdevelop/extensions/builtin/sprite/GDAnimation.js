@@ -19,15 +19,15 @@ export class GDAnimation extends Object {
     constructor(jsonObject) {
         super();
         this.directionList = new BasicArrayListD();
-        var projectStrings = GDProjectStrings.getInstance();
+        let projectStrings = GDProjectStrings.getInstance();
         ;
         this.name = jsonObject.getString(projectStrings.NAME);
         this.useMultipleDirections = jsonObject.getBoolean(projectStrings.USE_MULTIPLE_DIRECTIONS);
-        var jsonArray = jsonObject.getJSONArray(projectStrings.DIRECTIONS);
+        let jsonArray = jsonObject.getJSONArray(projectStrings.DIRECTIONS);
         ;
-        var size = jsonArray.length();
+        let size = jsonArray.length();
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             this.directionList.add(new GDDirection(jsonArray.getJSONObject(index)));
         }
     }

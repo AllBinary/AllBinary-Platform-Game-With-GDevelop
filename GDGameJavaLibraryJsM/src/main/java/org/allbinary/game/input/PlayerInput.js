@@ -74,25 +74,25 @@ export class PlayerInput extends PlayerGameInput {
     //@Synchronized //TWB - This is not allowed for TypeScript native. Instead use Coroutine logic instead.
     removeNonAIInputGameKeyEvents() {
         super.removeNonAIInputGameKeyEvents();
-        var list = this.keyEventList;
+        let list = this.keyEventList;
         ;
-        for (var index = list.size(); --index >= 0;) {
+        for (let index = list.size(); --index >= 0;) {
             list.removeAt(index);
         }
     }
     //@Synchronized //TWB - This is not allowed for TypeScript native. Instead use Coroutine logic instead.
     update() {
         super.update();
-        var removeList = this.removalKeyEventList;
+        let removeList = this.removalKeyEventList;
         ;
-        var list = this.keyEventList;
+        let list = this.keyEventList;
         ;
-        var size = removeList.size();
+        let size = removeList.size();
         ;
-        for (var index = 0; index < size; index++) {
-            var anyType = removeList.objectArray[index];
+        for (let index = 0; index < size; index++) {
+            let anyType = removeList.objectArray[index];
             ;
-            for (var index2 = list.size(); --index2 >= 0;) {
+            for (let index2 = list.size(); --index2 >= 0;) {
                 if (list.objectArray[index2] == anyType) {
                     list.removeAt(index2);
                 }

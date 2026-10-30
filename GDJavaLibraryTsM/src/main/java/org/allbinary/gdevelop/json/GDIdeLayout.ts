@@ -54,7 +54,7 @@ public constructor (jsonObject: JSONObject){
 
             super();
         
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 this.editorSettings= new GDEditorSettings(jsonObject!.getJSONObject(gdProjectStrings!.EDITOR_SETTINGS));
     
@@ -64,6 +64,4 @@ this.objectsGroups= jsonObject!.getJSONArray(gdProjectStrings!.OBJECT_GROUPS);
 
 
 }
-
-
 

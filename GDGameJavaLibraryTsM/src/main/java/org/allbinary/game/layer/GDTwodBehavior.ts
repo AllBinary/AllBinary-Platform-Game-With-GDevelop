@@ -30,9 +30,11 @@ import { GDObject } from '../../../../org/allbinary/game/layout/GDObject.js';
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
+type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringMaker;
 
 
 
@@ -90,22 +92,22 @@ this.animationBehavior!.set(gameLayer, gdObject);
 
     public updateRotation(gameLayer: GDGameLayer, timeDelta: number){
 
-    var gdObject: GDObject = gameLayer!.gdObject;;
+    let gdObject: GDObject = gameLayer!.gdObject;;
     
 
-    var newPortion: number = (gdObject!.rotationP *timeDelta /1000);;
+    let newPortion: number = (gdObject!.rotationP *timeDelta /1000);;
     
 this.rotationRemainder= this.rotationRemainder +newPortion;
     
 
-    var angleAdjustment: number = this.rotationRemainder;;
+    let angleAdjustment: number = this.rotationRemainder;;
     
 
                         if(angleAdjustment != 0)
                         
                                     {
                                     
-    var adjustedAngle2: number = gdObject!.angleP +angleAdjustment;;
+    let adjustedAngle2: number = gdObject!.angleP +angleAdjustment;;
     
 
         while(adjustedAngle2 > 359)
@@ -150,6 +152,4 @@ this.rotationRemainder -= angleAdjustment;
 
 
 }
-
-
 

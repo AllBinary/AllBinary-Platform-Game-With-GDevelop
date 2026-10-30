@@ -14,9 +14,11 @@
         
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { JSONArray } from '../../../../org/json/JSONArray.js';
 //not GWT import const JSONArray
@@ -62,25 +64,25 @@ public constructor (jsonObject: JSONObject){
 
             super();
         
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 this.name= jsonObject!.getString(gdProjectStrings!.NAME);
     
 
-    var initialInstancesJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.INSTANCES)!;;
+    let initialInstancesJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.INSTANCES)!;;
     
 
-    var size: number = initialInstancesJSONArray!.length()!;;
+    let size: number = initialInstancesJSONArray!.length()!;;
     
 
-    var nextJSONObject: JSONObject;;
+    let nextJSONObject: JSONObject;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 nextJSONObject= initialInstancesJSONArray!.getJSONObject(index);
     
@@ -94,6 +96,4 @@ this.associatedLayout= jsonObject!.getString(gdProjectStrings!.ASSOCIATED_LAYOUT
 
 
 }
-
-
 

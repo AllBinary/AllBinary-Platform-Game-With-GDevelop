@@ -43,23 +43,21 @@ import { GPoint } from '../../../../org/allbinary/graphics/GPoint.js';
 export interface SoftJoystickInterface {
         
 
-    setId(id: number)
+    setId(id: number): void;
 
-    getId(): number
+    getId(): number;
 
-    setPoint(point: GPoint)
+    setPoint(point: GPoint): void;
 
-    getPoint(): GPoint
+    getPoint(): GPoint;
 
-    setStickForceX(stickForceX: number)
+    setStickForceX(stickForceX: number): void;
 
-    setStickForceY(stickForceY: number)
+    setStickForceY(stickForceY: number): void;
 
-    StickForceX(): number
+    StickForceX(): number;
 
-    StickForceY(): number
+    StickForceY(): number;
 
 }
-
-
 

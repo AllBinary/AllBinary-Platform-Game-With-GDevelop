@@ -11,9 +11,11 @@ import { GDGameSoftwareInfo } from '../../org/allbinary/game/canvas/GDGameSoftwa
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 import { GameConfigurationCentral } from '../../org/allbinary/game/configuration/GameConfigurationCentral.js';
 //not GWT import const GameConfigurationCentral
@@ -65,6 +67,7 @@ import { GDGameMotionGestureListener } from '../../org/allbinary/input/motion/ge
 
 //not plain js import { CommonLabels } 
 const CommonLabels = globalThis.org.allbinary.string.CommonLabels;
+type CommonLabels<T = any, U = any> = typeof CommonLabels extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonLabels;
 
 import { GDGameClientInformationInterfaceFactory } from '../../org/allbinary/logic/system/security/licensing/GDGameClientInformationInterfaceFactory.js';
 //not GWT import const GDGameClientInformationInterfaceFactory
@@ -74,6 +77,7 @@ import { GDGameSoundsFactory } from '../../org/allbinary/media/audio/GDGameSound
 
 //not plain js import { PlayNToAllBinaryKeyInputUtil } 
 const PlayNToAllBinaryKeyInputUtil = globalThis.org.allbinary.playn.input.PlayNToAllBinaryKeyInputUtil;
+type PlayNToAllBinaryKeyInputUtil<T = any, U = any> = typeof PlayNToAllBinaryKeyInputUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof PlayNToAllBinaryKeyInputUtil;
 
 
 
@@ -138,7 +142,7 @@ public constructor (){
 GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance()!.getInstance());
     
 
-    var motionGesturesHandler: BasicMotionGesturesHandler = this.motionRecognizer!.getMotionGestureRecognizer()!.getMotionGesturesHandler()!;;
+    let motionGesturesHandler: BasicMotionGesturesHandler = this.motionRecognizer!.getMotionGestureRecognizer()!.getMotionGesturesHandler()!;;
     
 motionGesturesHandler!.addListenerInterface(new GameMotionGestureListener(MotionGestureReceiveInterfaceFactory.getInstance()));
     
@@ -157,23 +161,22 @@ new DefaultGameInitializationListener();
 
     init(){
 
-        try {
-            this.logUtil!.putF(CommonStrings.getInstance()!.START, this, CommonStrings.getInstance()!.INIT);
+ try { this.logUtil!.putF(CommonStrings.getInstance()!.START, this, CommonStrings.getInstance()!.INIT);
     
 
-    var features: Features = Features.getInstance()!;;
+    let features: Features = Features.getInstance()!;;
     
 
-    var gameFeatureFactory: GameFeatureFactory = GameFeatureFactory.getInstance()!;;
+    let gameFeatureFactory: GameFeatureFactory = GameFeatureFactory.getInstance()!;;
     
 
-    var inputFeatureFactory: InputFeatureFactory = InputFeatureFactory.getInstance()!;;
+    let inputFeatureFactory: InputFeatureFactory = InputFeatureFactory.getInstance()!;;
     
 
-    var graphicsFeatureFactory: GraphicsFeatureFactory = GraphicsFeatureFactory.getInstance()!;;
+    let graphicsFeatureFactory: GraphicsFeatureFactory = GraphicsFeatureFactory.getInstance()!;;
     
 
-    var sensorFeatureFactory: SensorFeatureFactory = SensorFeatureFactory.getInstance()!;;
+    let sensorFeatureFactory: SensorFeatureFactory = SensorFeatureFactory.getInstance()!;;
     
 features.removeDefault(sensorFeatureFactory!.ORIENTATION_SENSORS);
     
@@ -196,10 +199,10 @@ features.addDefault(inputFeatureFactory!.MULTI_KEY_PRESS);
 features.addDefault(inputFeatureFactory!.REMOVE_DUPLICATE_KEY_PRESSES);
     
 
-    var gameConfigurationCentral: GameConfigurationCentral = GameConfigurationCentral.getInstance()!;;
+    let gameConfigurationCentral: GameConfigurationCentral = GameConfigurationCentral.getInstance()!;;
     
 
-    var smallIntegerSingletonFactory: SmallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()!;;
+    let smallIntegerSingletonFactory: SmallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()!;;
     
 gameConfigurationCentral!.VIBRATION.setDefaultValue(smallIntegerSingletonFactory!.getAt(0));
     
@@ -225,32 +228,37 @@ features.removeDefault(sensorFeatureFactory!.ORIENTATION_SENSORS);
     
 features.addDefault(sensorFeatureFactory!.NO_ORIENTATION);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 this.logUtil!.put(CommonStrings.getInstance()!.EXCEPTION, this, CommonStrings.getInstance()!.CONSTRUCTOR, e);
     
-}
 
+ }
+   }
+ 
 }
 
 
     public stopAll(){
 
-        try {
-            new Sounds(EarlySoundsFactory.getInstance()).stopAll();
+ try { new Sounds(EarlySoundsFactory.getInstance()).stopAll();
     
 new Sounds(GDGameSoundsFactory.getInstance()).stopAll();
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 this.logUtil!.put(CommonStrings.getInstance()!.EXCEPTION, this, "stopAll", e);
     
-}
 
+ }
+   }
+ 
 }
 
 
@@ -260,22 +268,24 @@ this.logUtil!.put(CommonStrings.getInstance()!.EXCEPTION, this, "stopAll", e);
 
     public onKeyDown(event: Keyboard.Event){
 
-        try {
-            this.rawKeyEventHandler!.fireEvent(event.keyCode(), this.DEVICE_ID, true);
+ try { this.rawKeyEventHandler!.fireEvent(event.keyCode(), this.DEVICE_ID, true);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 this.logUtil!.put(CommonLabels.getInstance()!.START_LABEL +event.key(), this, "onKeyDown", e);
     
-}
 
+ }
+   }
+ 
 
-    var key: Key = event.key()!;;
+    let key: Key = event.key()!;;
     
 
-    var abKey: number = this.playNToAllBinaryKeyInputUtil!.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[key.ordinal()]!;;
+    let abKey: number = this.playNToAllBinaryKeyInputUtil!.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[key.ordinal()]!;;
     
 
                         if(abKey !=  -1)
@@ -291,10 +301,10 @@ this.logUtil!.put(CommonLabels.getInstance()!.START_LABEL +event.key(), this, "o
 
     public onKeyUp(event: Keyboard.Event){
 
-    var key: Key = event.key()!;;
+    let key: Key = event.key()!;;
     
 
-    var abKey: number = this.playNToAllBinaryKeyInputUtil!.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[key.ordinal()]!;;
+    let abKey: number = this.playNToAllBinaryKeyInputUtil!.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[key.ordinal()]!;;
     
 
                         if(abKey !=  -1)
@@ -310,49 +320,55 @@ this.logUtil!.put(CommonLabels.getInstance()!.START_LABEL +event.key(), this, "o
 
     public onPointerStart(mouseEvent: Pointer.Event){
 
-        try {
-            this.motionRecognizer!.processStartMotionEvent(Math.round(mouseEvent!.x()), Math.round(mouseEvent!.y()), this.DEVICE_ID, 0);
+ try { this.motionRecognizer!.processStartMotionEvent(globalThis.Math.trunc(mouseEvent!.x()), globalThis.Math.trunc(mouseEvent!.y()), this.DEVICE_ID, 0);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 this.logUtil!.put(CommonStrings.getInstance()!.EXCEPTION, this, "onPointerStart", e);
     
-}
 
+ }
+   }
+ 
 }
 
 
     public onPointerEnd(mouseEvent: Pointer.Event){
 
-        try {
-            this.motionRecognizer!.processEndMotionEvent(Math.round(mouseEvent!.x()), Math.round(mouseEvent!.y()), this.DEVICE_ID, 0);
+ try { this.motionRecognizer!.processEndMotionEvent(globalThis.Math.trunc(mouseEvent!.x()), globalThis.Math.trunc(mouseEvent!.y()), this.DEVICE_ID, 0);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 this.logUtil!.put(CommonStrings.getInstance()!.EXCEPTION, this, "onPointerEnd", e);
     
-}
 
+ }
+   }
+ 
 }
 
 
     public onPointerDrag(mouseEvent: Pointer.Event){
 
-        try {
-            this.motionRecognizer!.processDraggedMotionEvent(Math.round(mouseEvent!.x()), Math.round(mouseEvent!.y()), this.DEVICE_ID, 0);
+ try { this.motionRecognizer!.processDraggedMotionEvent(globalThis.Math.trunc(mouseEvent!.x()), globalThis.Math.trunc(mouseEvent!.y()), this.DEVICE_ID, 0);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 this.logUtil!.put(CommonStrings.getInstance()!.EXCEPTION, this, "onPointerDrag", e);
     
-}
 
+ }
+   }
+ 
 }
 
 
@@ -366,17 +382,19 @@ this.logUtil!.put(CommonStrings.getInstance()!.EXCEPTION, this, "onPointerDrag",
 
     public onMouseMove(mouseEvent: Mouse.MotionEvent){
 
-        try {
-            this.motionRecognizer!.processMovedMotionEvent(Math.round(mouseEvent!.x()), Math.round(mouseEvent!.y()), this.DEVICE_ID, 0);
+ try { this.motionRecognizer!.processMovedMotionEvent(globalThis.Math.trunc(mouseEvent!.x()), globalThis.Math.trunc(mouseEvent!.y()), this.DEVICE_ID, 0);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 this.logUtil!.put(CommonStrings.getInstance()!.EXCEPTION, this, "onMouseMove", e);
     
-}
 
+ }
+   }
+ 
 }
 
 
@@ -385,6 +403,4 @@ this.logUtil!.put(CommonStrings.getInstance()!.EXCEPTION, this, "onMouseMove", e
 
 
 }
-
-
 

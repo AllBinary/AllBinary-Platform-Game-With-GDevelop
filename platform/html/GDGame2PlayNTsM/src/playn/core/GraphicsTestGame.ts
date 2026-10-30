@@ -27,9 +27,11 @@ import { InputStream } from '../../java/io/InputStream.js';
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { ResourceUtil } 
 const ResourceUtil = globalThis.org.allbinary.data.resource.ResourceUtil;
+type ResourceUtil<T = any, U = any> = typeof ResourceUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ResourceUtil;
 
 import { BasicColorFactory } from '../../org/allbinary/graphics/color/BasicColorFactory.js';
 //not GWT import const BasicColorFactory
@@ -71,6 +73,4 @@ export class GraphicsTestGame
         
 
 }
-
-
 

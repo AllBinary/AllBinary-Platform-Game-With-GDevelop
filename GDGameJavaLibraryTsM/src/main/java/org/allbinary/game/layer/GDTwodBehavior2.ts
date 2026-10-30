@@ -57,5 +57,3 @@ public constructor (animationBehavior: GDAnimationBehaviorBase){
 
 }
 
-
-

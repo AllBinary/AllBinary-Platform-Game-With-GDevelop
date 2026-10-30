@@ -31,6 +31,7 @@ import { AllBinaryLayer } from '../../../../org/allbinary/layer/AllBinaryLayer.j
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 import { BasicGeographicMap } from '../../../../org/allbinary/media/graphics/geography/map/BasicGeographicMap.js';
 //not GWT import const BasicGeographicMap
@@ -122,7 +123,7 @@ super.remove(layerInterface);
 
     public setGeographicMapInterface(geographicMapInterfaceArray: BasicGeographicMap[]){
 
-    var commonStrings: CommonStrings = CommonStrings.getInstance()!;;
+    let commonStrings: CommonStrings = CommonStrings.getInstance()!;;
     
 this.logUtil!.putF(commonStrings!.START +this, this, commonStrings!.PROCESS);
     
@@ -131,7 +132,7 @@ this.geographicMapInterfaceArray= geographicMapInterfaceArray;
 this.geographicMapCellTypeArray= new Array(this.geographicMapInterfaceArray!.length);
     
 
-    var geographicMapEventHandler: GeographicMapEventHandler = GeographicMapEventHandler.getInstance()!;;
+    let geographicMapEventHandler: GeographicMapEventHandler = GeographicMapEventHandler.getInstance()!;;
     
 geographicMapEventHandler!.fireEvent();
     
@@ -151,6 +152,4 @@ geographicMapEventHandler!.removeAllListeners();
 
 
 }
-
-
 

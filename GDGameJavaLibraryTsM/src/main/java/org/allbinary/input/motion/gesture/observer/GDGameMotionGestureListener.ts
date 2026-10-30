@@ -42,15 +42,19 @@ import { TouchMotionGestureFactory } from '../../../../../../org/allbinary/input
 
 //not plain js import { ForcedLogUtil } 
 const ForcedLogUtil = globalThis.org.allbinary.logic.communication.log.ForcedLogUtil;
+type ForcedLogUtil<T = any, U = any> = typeof ForcedLogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ForcedLogUtil;
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
+type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringMaker;
 
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 import { AllBinaryEventObject } from '../../../../../../org/allbinary/logic/util/event/AllBinaryEventObject.js';
 //not GWT import const AllBinaryEventObject
@@ -60,12 +64,15 @@ import { RectangleCollisionUtil } from '../../../../../../org/allbinary/math/Rec
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 
 
@@ -171,26 +178,26 @@ this.onMotionGestureEvent(ev);
 
     public onPressedMotionGestureEvent(ev: MotionGestureEvent){
 
-    var abToGBUtil: ABToGBUtil = ABToGBUtil.getInstance()!;;
+    let abToGBUtil: ABToGBUtil = ABToGBUtil.getInstance()!;;
     
 
-    var allBinaryGameLayerManager: AllBinaryGameLayerManager = abToGBUtil!.allBinaryGameLayerManager;;
+    let allBinaryGameLayerManager: AllBinaryGameLayerManager = abToGBUtil!.allBinaryGameLayerManager;;
     
 
-    var point: GPoint = ev.getCurrentPoint()!;;
+    let point: GPoint = ev.getCurrentPoint()!;;
     
 
-    var size: number = allBinaryGameLayerManager!.getSize()!;;
+    let size: number = allBinaryGameLayerManager!.getSize()!;;
     
 
-    var draggableGameLayer: CollidableDestroyableDamageableLayer;;
+    let draggableGameLayer: CollidableDestroyableDamageableLayer;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 draggableGameLayer= allBinaryGameLayerManager!.getLayerAt(index) as CollidableDestroyableDamageableLayer;
     
@@ -228,19 +235,18 @@ this.gameLayerDraggedList!.add(draggableGameLayer);
 
     public released(ev: MotionGestureEvent){
 
-        try {
-            
-    var size: number = this.gameLayerDraggedList!.size()!;;
+ try { 
+    let size: number = this.gameLayerDraggedList!.size()!;;
     
 
-    var draggableGameLayer: CollidableDestroyableDamageableLayer;;
+    let draggableGameLayer: CollidableDestroyableDamageableLayer;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 draggableGameLayer= this.gameLayerDraggedList!.get(index) as CollidableDestroyableDamageableLayer;
     
@@ -252,12 +258,13 @@ draggableGameLayer!.isDropped= true;
 
 this.gameLayerDraggedList!.clear();
     
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 
-                //: 
-} catch(e) 
-            {
-
-    var stringBuffer: StringMaker = new StringMaker();;
+    let stringBuffer: StringMaker = new StringMaker();;
     
 stringBuffer!.append(this.commonStrings!.EXCEPTION_LABEL);
     
@@ -265,16 +272,17 @@ stringBuffer!.append(StringUtil.getInstance()!.toString(ev.getMotionGesture()));
     
 this.logUtil!.put(stringBuffer!.toString(), this, "release", e);
     
-}
 
+ }
+   }
+ 
 }
 
 
     public onMotionGestureEvent(ev: MotionGestureEvent){
 
-        try {
-            
-    var motionGestureInput: MotionGestureInput = ev.getMotionGesture()!;;
+ try { 
+    let motionGestureInput: MotionGestureInput = ev.getMotionGesture()!;;
     
 
                         if(motionGestureInput == TouchMotionGestureFactory.getInstance()!.PRESSED)
@@ -294,12 +302,13 @@ this.logUtil!.put(stringBuffer!.toString(), this, "release", e);
 
                                     }
                                 
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 
-                //: 
-} catch(e) 
-            {
-
-    var stringBuffer: StringMaker = new StringMaker();;
+    let stringBuffer: StringMaker = new StringMaker();;
     
 stringBuffer!.append(this.commonStrings!.EXCEPTION_LABEL);
     
@@ -307,12 +316,12 @@ stringBuffer!.append(StringUtil.getInstance()!.toString(ev.getMotionGesture()));
     
 this.logUtil!.put(stringBuffer!.toString(), this, "onMotionGestureEvent", e);
     
+
+ }
+   }
+ 
 }
 
-}
-
 
 }
-
-
 

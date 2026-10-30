@@ -376,5 +376,3 @@ export class GDProjectStrings
 
 }
 
-
-

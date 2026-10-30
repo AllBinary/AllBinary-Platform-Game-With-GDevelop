@@ -28,9 +28,11 @@ import { UpKeyEventListenerInterface } from '../../../../org/allbinary/game/inpu
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 
 
@@ -176,14 +178,14 @@ this.keyEventList!.clear();
 super.removeNonAIInputGameKeyEvents();
     
 
-    var list: BasicArrayList = this.keyEventList;;
+    let list: BasicArrayList = this.keyEventList;;
     
 
 
 
 
                         for (
-    var index: number = list.size()!;--index >= 0; )
+    let index: number = list.size()!;--index >= 0; )
         {
 list.removeAt(index);
     
@@ -197,30 +199,30 @@ list.removeAt(index);
 super.update();
     
 
-    var removeList: BasicArrayList = this.removalKeyEventList;;
+    let removeList: BasicArrayList = this.removalKeyEventList;;
     
 
-    var list: BasicArrayList = this.keyEventList;;
+    let list: BasicArrayList = this.keyEventList;;
     
 
-    var size: number = removeList!.size()!;;
+    let size: number = removeList!.size()!;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 
-    var anyType: any = removeList!.objectArray[index]!;;
+    let anyType: any = removeList!.objectArray[index]!;;
     
 
 
 
 
                         for (
-    var index2: number = list.size()!;--index2 >= 0; )
+    let index2: number = list.size()!;--index2 >= 0; )
         {
 
                         if(list.objectArray[index2] == anyType)
@@ -241,6 +243,4 @@ removeList!.clear();
 
 
 }
-
-
 

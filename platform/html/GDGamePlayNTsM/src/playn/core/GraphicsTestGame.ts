@@ -28,9 +28,11 @@
         
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { ResourceUtil } 
 const ResourceUtil = globalThis.org.allbinary.data.resource.ResourceUtil;
+type ResourceUtil<T = any, U = any> = typeof ResourceUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ResourceUtil;
 
 import { BasicColorFactory } from '../../org/allbinary/graphics/color/BasicColorFactory.js';
 //not GWT import const BasicColorFactory
@@ -55,18 +57,23 @@ import { PlaynSurfaceDisplayGraphics } from '../../org/microemu/device/playn/Pla
 
 //not plain js import { graphics } 
 const graphics = globalThis.playn.core.PlayN.graphics;
+type graphics<T = any, U = any> = typeof graphics extends abstract new (...args: any[]) => infer Instance ? Instance : typeof graphics;
 
 //not plain js import { keyboard } 
 const keyboard = globalThis.playn.core.PlayN.keyboard;
+type keyboard<T = any, U = any> = typeof keyboard extends abstract new (...args: any[]) => infer Instance ? Instance : typeof keyboard;
 
 //not plain js import { net } 
 const net = globalThis.playn.core.PlayN.net;
+type net<T = any, U = any> = typeof net extends abstract new (...args: any[]) => infer Instance ? Instance : typeof net;
 
 //not plain js import { pointer } 
 const pointer = globalThis.playn.core.PlayN.pointer;
+type pointer<T = any, U = any> = typeof pointer extends abstract new (...args: any[]) => infer Instance ? Instance : typeof pointer;
 
 //not plain js import { Callback } 
 const Callback = globalThis.playn.core.util.Callback;
+type Callback<T = any, U = any> = typeof Callback extends abstract new (...args: any[]) => infer Instance ? Instance : typeof Callback;
 
 
 
@@ -130,7 +137,7 @@ export class GraphicsTestGame
 
     public init(){
 
-    var graphics: Graphics = PlayN.graphics()!;;
+    let graphics: Graphics = PlayN.graphics()!;;
     
 graphics.setSize(800, 600);
     
@@ -170,25 +177,27 @@ this.graphics= new PlaynSurfaceDisplayGraphics(this.gameLayer!.surface());
 this.graphics.setColor(BasicColorFactory.getInstance()!.WHITE.intValue());
     
 
-        try {
-            
-    var inputStream: InputStream = ResourceUtil.getInstance()!.getResourceAsStream("/locked_demo_game_feature_64_by_64.png")!;;
+ try { 
+    let inputStream: InputStream = ResourceUtil.getInstance()!.getResourceAsStream("/locked_demo_game_feature_64_by_64.png")!;;
     
 
-    var image: javax.microedition.lcdui.Image = javax.microedition.lcdui.Image.createImage(inputStream)!;;
+    let image: javax.microedition.lcdui.Image = javax.microedition.lcdui.Image.createImage(inputStream)!;;
     
 this.originalImage= this.imageArray[0]= image;
     
 ImageModifierUtil.getInstanceOrCreate()!.handleImage(this.imageArray, 0, image);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 PlayN.log()!.error(CommonStrings.getInstance()!.EXCEPTION, e);
     
-}
 
+ }
+   }
+ 
 }
 
 
@@ -220,7 +229,7 @@ PlayN.log()!.error(CommonStrings.getInstance()!.EXCEPTION, e);
 
     public paint(alpha: number){
 
-    var surface: Surface = this.gameLayer!.surface()!;;
+    let surface: Surface = this.gameLayer!.surface()!;;
     
 surface.clear();
     
@@ -271,17 +280,17 @@ this.graphics.drawImage(this.imageArray[0]!, 20, 50, 0);
 
                                     }
                                 
-ImageModifierUtil.getInstanceOrCreate()!.setAlpha(this.originalImage, this.imageArray[0]!, 0, Math.round((alpha *255)));
+ImageModifierUtil.getInstanceOrCreate()!.setAlpha(this.originalImage, this.imageArray[0]!, 0, globalThis.Math.trunc((alpha *255)));
     
 }
 
 
     touchMove(x: number, y: number){
 
-    var cx: number = PlayN.graphics()!.screenWidth() /2;;
+    let cx: number = PlayN.graphics()!.screenWidth() /2;;
     
 
-    var cy: number = PlayN.graphics()!.screenHeight() /2;;
+    let cy: number = PlayN.graphics()!.screenHeight() /2;;
     
 touchVectorX= (x -cx) *1.0 /cx;
     
@@ -317,6 +326,4 @@ PlayN.net()!.post("/rpc", payload, new class extends Callback<string>
 
 
 }
-
-
 

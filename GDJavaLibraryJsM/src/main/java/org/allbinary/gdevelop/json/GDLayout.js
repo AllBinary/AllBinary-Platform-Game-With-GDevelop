@@ -48,7 +48,7 @@ export class GDLayout extends Object {
         this.variableList = new BasicArrayListD();
         this.behaviorContentList = new BasicArrayListD();
         this.eventList = new BasicArrayListD();
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
         this.name = jsonObject.getString(gdProjectStrings.NAME);
         this.basicColor = BasicColorFactory.getInstance().createInstanceARGB(BasicColorUtil.getInstance().ALPHA, jsonObject.getInt(gdProjectStrings.R), jsonObject.getInt(gdProjectStrings.G_V), jsonObject.getInt(gdProjectStrings.B), this.name);
@@ -61,59 +61,59 @@ export class GDLayout extends Object {
         this.standardSortMethod = jsonObject.getBoolean(gdProjectStrings.STANDARD_SORT_METHOD);
         this.stopSoundsOnStartup = jsonObject.getBoolean(gdProjectStrings.STOP_SOUNDS_ON_STARTUP);
         this.disableInputWhenNotFocused = jsonObject.getBoolean(gdProjectStrings.DISABLE_INPUT_WHEN_NOT_FOCUSED);
-        var objectFactory = GDObjectFactory.getInstance();
+        let objectFactory = GDObjectFactory.getInstance();
         ;
-        var objectJSONArray = jsonObject.getJSONArray(gdProjectStrings.OBJECTS);
+        let objectJSONArray = jsonObject.getJSONArray(gdProjectStrings.OBJECTS);
         ;
-        var size = objectJSONArray.length();
+        let size = objectJSONArray.length();
         ;
-        var nextJSONObject;
+        let nextJSONObject;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             nextJSONObject = objectJSONArray.getJSONObject(index);
             this.objectList.add(objectFactory.create(nextJSONObject));
         }
-        var initialInstancesJSONArray = jsonObject.getJSONArray(gdProjectStrings.INSTANCES);
+        let initialInstancesJSONArray = jsonObject.getJSONArray(gdProjectStrings.INSTANCES);
         ;
         size = initialInstancesJSONArray.length();
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             nextJSONObject = initialInstancesJSONArray.getJSONObject(index);
             this.initialInstanceList.add(new GDInitialInstance(nextJSONObject));
         }
-        var variableJSONArray = jsonObject.getJSONArray(gdProjectStrings.VARIABLES);
+        let variableJSONArray = jsonObject.getJSONArray(gdProjectStrings.VARIABLES);
         ;
         size = variableJSONArray.length();
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             this.variableList.add(new GDVariable(variableJSONArray.getJSONObject(index)));
         }
-        var layersJSONArray = jsonObject.getJSONArray(gdProjectStrings.LAYERS);
+        let layersJSONArray = jsonObject.getJSONArray(gdProjectStrings.LAYERS);
         ;
         size = layersJSONArray.length();
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             nextJSONObject = layersJSONArray.getJSONObject(index);
             this.layerList.add(new GDLayer(nextJSONObject));
         }
-        var behaviorsJSONArray = jsonObject.getJSONArray(gdProjectStrings.BEHAVIORS_SHARED_DATA);
+        let behaviorsJSONArray = jsonObject.getJSONArray(gdProjectStrings.BEHAVIORS_SHARED_DATA);
         ;
         size = behaviorsJSONArray.length();
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             nextJSONObject = behaviorsJSONArray.getJSONObject(index);
             this.behaviorContentList.add(new GDBehavior(nextJSONObject));
         }
-        var eventFactory = GDEventFactory.getInstance();
+        let eventFactory = GDEventFactory.getInstance();
         ;
-        var eventJSONArray = jsonObject.getJSONArray(gdProjectStrings.EVENTS);
+        let eventJSONArray = jsonObject.getJSONArray(gdProjectStrings.EVENTS);
         ;
         size = eventJSONArray.length();
-        var event;
+        let event;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             event = eventFactory.create(eventJSONArray.getJSONObject(index));
             if (event != GDEvent.NULL_GDEVENT) {
                 this.eventList.add(event);
             }
             else {
-                var commonStrings = CommonStrings.getInstance();
+                let commonStrings = CommonStrings.getInstance();
                 ;
                 this.logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, new Exception());
             }

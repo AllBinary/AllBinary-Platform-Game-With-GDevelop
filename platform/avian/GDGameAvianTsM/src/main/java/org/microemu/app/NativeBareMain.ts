@@ -54,5 +54,3 @@ BareMain.main2(args, "GDGameMIDlet", "/gd_icon.ico", 1366, 768, false, false);
 
 }
 
-
-

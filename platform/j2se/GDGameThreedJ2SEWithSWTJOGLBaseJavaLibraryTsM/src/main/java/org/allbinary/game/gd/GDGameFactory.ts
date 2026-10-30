@@ -65,5 +65,3 @@ export class GDGameFactory extends MidletFactoryInterface {
 
 }
 
-
-

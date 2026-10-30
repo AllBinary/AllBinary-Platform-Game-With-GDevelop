@@ -32,6 +32,7 @@ import { GameTickDisplayInfoSingleton } from '../../../../../org/allbinary/graph
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 
 
@@ -61,10 +62,10 @@ export class DestroyOutsideBehavior extends GDBehavior {
 
     public process(gameLayerList: BasicArrayList, index: number, graphics: Graphics): boolean{
 
-    var gameLayer: GDGameLayer = gameLayerList!.get(index) as GDGameLayer;;
+    let gameLayer: GDGameLayer = gameLayerList!.get(index) as GDGameLayer;;
     
 
-    var gdObject: GDObject = gameLayer!.gdObject;;
+    let gdObject: GDObject = gameLayer!.gdObject;;
     
 
                         if(gdObject == 
@@ -163,6 +164,4 @@ export class DestroyOutsideBehavior extends GDBehavior {
 
 
 }
-
-
 

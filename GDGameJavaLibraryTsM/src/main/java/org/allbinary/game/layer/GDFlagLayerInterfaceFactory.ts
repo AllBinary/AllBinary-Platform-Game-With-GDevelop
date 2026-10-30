@@ -21,6 +21,7 @@ import { BasicAnimationInterfaceFactoryInterface } from '../../../../org/allbina
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 import { NullRotationAnimationFactory } from '../../../../org/allbinary/animation/NullRotationAnimationFactory.js';
 //not GWT import const NullRotationAnimationFactory
@@ -48,15 +49,19 @@ import { LayerInterfaceFactoryInterface } from '../../../../org/allbinary/layer/
 
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 //not plain js import { ABHashtable } 
 const ABHashtable = globalThis.org.allbinary.util.ABHashtable;
+type ABHashtable<T = any, U = any> = typeof ABHashtable extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ABHashtable;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 
 
@@ -118,48 +123,48 @@ private constructor (){
             
     public getNextInstance(hashtable: ABHashtable<any, any>, x: number, y: number, z: number): AllBinaryLayer{
 
-    var gameLayerList: BasicArrayList = new BasicArrayListD();;
+    let gameLayerList: BasicArrayList = new BasicArrayListD();;
     
 
-    var gameLayerDestroyedList: BasicArrayList = new BasicArrayListD();;
+    let gameLayerDestroyedList: BasicArrayList = new BasicArrayListD();;
     
 
-    var behaviorList: BasicArrayList = new BasicArrayListD();;
+    let behaviorList: BasicArrayList = new BasicArrayListD();;
     
 
-    var groupInterface: Group[] = 
+    let groupInterface: Group[] = 
                                                         [
                                                             
                                                         ];;
     
 
-    var animationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[] = 
+    let animationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[] = 
                                                         [
                                                             NullRotationAnimationFactory.getFactoryInstance()
                                                         ];;
     
 
-    var proceduralAnimationInterfaceFactoryInterfaceArray: BasicAnimationInterfaceFactoryInterface[] = 
+    let proceduralAnimationInterfaceFactoryInterfaceArray: BasicAnimationInterfaceFactoryInterface[] = 
                                                         [
                                                             NullRotationAnimationFactory.getFactoryInstance()
                                                         ];;
     
 
-    var layerInfo: Rectangle = RectangleFactory.SINGLETON;;
+    let layerInfo: Rectangle = RectangleFactory.SINGLETON;;
     
 
-    var rectangleArrayOfArrays: Rectangle[][] = RectangleFactory.ARRAY_OF_ARRAYS;;
+    let rectangleArrayOfArrays: Rectangle[][] = RectangleFactory.ARRAY_OF_ARRAYS;;
     
 
-    var gameLayerFactory: GDGameLayerFactory = new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance(), false);;
+    let gameLayerFactory: GDGameLayerFactory = new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance(), false);;
     
 
-    var gdObject: GDObject = new GDObject(0, 0, GDFlagLayerInterfaceFactory.NAME, StringUtil.getInstance()!.EMPTY_STRING);;
+    let gdObject: GDObject = new GDObject(0, 0, GDFlagLayerInterfaceFactory.NAME, StringUtil.getInstance()!.EMPTY_STRING);;
     
 gdObject!.set(StringUtil.getInstance()!.EMPTY_STRING, x, y, z);
     
 
-    var layer: GDGameLayer = gameLayerFactory!.create( -1, GDFlagLayerInterfaceFactory.NAME, gdObject, 0.0, 0.0, new GDConditionWithGroupActions())!;;
+    let layer: GDGameLayer = gameLayerFactory!.create( -1, GDFlagLayerInterfaceFactory.NAME, gdObject, 0.0, 0.0, new GDConditionWithGroupActions())!;;
     
 layer.setAllBinaryGameLayerManager(hashtable.get(AllBinaryGameLayerManager.ID) as AllBinaryGameLayerManager);
     
@@ -173,6 +178,4 @@ layer.setAllBinaryGameLayerManager(hashtable.get(AllBinaryGameLayerManager.ID) a
 
 
 }
-
-
 

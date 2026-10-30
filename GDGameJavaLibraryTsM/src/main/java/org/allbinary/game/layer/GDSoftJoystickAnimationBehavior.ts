@@ -80,13 +80,13 @@ export class GDSoftJoystickAnimationBehavior extends GDAnimationBehaviorBase {
 
     public init(gdObject: GDObject, animationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[]): IndexedAnimation[]{
 
-    var indexedAnimationArray: IndexedAnimation[] = super.init(gdObject, animationInterfaceFactoryInterfaceArray)!;;
+    let indexedAnimationArray: IndexedAnimation[] = super.init(gdObject, animationInterfaceFactoryInterfaceArray)!;;
     
 
-    var simultaneousCompoundIndexedAnimation: SimultaneousCompoundIndexedAnimation = indexedAnimationArray[0]! as SimultaneousCompoundIndexedAnimation;;
+    let simultaneousCompoundIndexedAnimation: SimultaneousCompoundIndexedAnimation = indexedAnimationArray[0]! as SimultaneousCompoundIndexedAnimation;;
     
 
-    var animation: Animation = simultaneousCompoundIndexedAnimation!.getAnimationInterfaceArray()[1]!;;
+    let animation: Animation = simultaneousCompoundIndexedAnimation!.getAnimationInterfaceArray()[1]!;;
     
 this.initialX= animation.getDx();
     
@@ -105,16 +105,16 @@ this.initialY= animation.getDy();
             
     public set(gameLayer: GDGameLayer, gdObject: GDObject){
 
-    var simultaneousCompoundIndexedAnimation: SimultaneousCompoundIndexedAnimation = gameLayer!.getIndexedAnimationInterfaceArray()[0]! as SimultaneousCompoundIndexedAnimation;;
+    let simultaneousCompoundIndexedAnimation: SimultaneousCompoundIndexedAnimation = gameLayer!.getIndexedAnimationInterfaceArray()[0]! as SimultaneousCompoundIndexedAnimation;;
     
 
-    var animation: Animation = simultaneousCompoundIndexedAnimation!.getAnimationInterfaceArray()[1]!;;
+    let animation: Animation = simultaneousCompoundIndexedAnimation!.getAnimationInterfaceArray()[1]!;;
     
 
-    var softJoystickInterface: SoftJoystickInterface = gdObject as SoftJoystickInterface;;
+    let softJoystickInterface: SoftJoystickInterface = gdObject as SoftJoystickInterface;;
     
 
-    var point: GPoint = softJoystickInterface!.getPoint()!;;
+    let point: GPoint = softJoystickInterface!.getPoint()!;;
     
 
                         if(point == PointFactory.getInstance()!.ZERO_ZERO)
@@ -139,6 +139,4 @@ animation.setDy(point.getY() -gameLayer!.getYP() -(gameLayer!.getHeight()>>2));
 
 
 }
-
-
 

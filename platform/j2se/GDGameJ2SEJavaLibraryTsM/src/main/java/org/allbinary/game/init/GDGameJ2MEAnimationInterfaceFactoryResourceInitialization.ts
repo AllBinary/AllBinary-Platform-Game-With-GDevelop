@@ -70,7 +70,7 @@ public constructor (){
             
     public init(){
 
-    var featuredAnimationInterfaceFactoryInterfaceFactory: FeaturedAnimationInterfaceFactoryInterfaceFactory = FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!;;
+    let featuredAnimationInterfaceFactoryInterfaceFactory: FeaturedAnimationInterfaceFactoryInterfaceFactory = FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!;;
     
 featuredAnimationInterfaceFactoryInterfaceFactory!.add(new GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory(GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.DEFAULT_IMAGE_ANIMATIONS));
     
@@ -80,6 +80,4 @@ featuredAnimationInterfaceFactoryInterfaceFactory!.add(new GDGameOpenGLESImageBa
 
 
 }
-
-
 

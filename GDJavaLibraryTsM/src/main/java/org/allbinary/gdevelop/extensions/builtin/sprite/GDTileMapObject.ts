@@ -52,10 +52,10 @@ public constructor (type: string, jsonObject: Object){
                             //For kotlin this is before the body of the constructor.
                     
 
-    var projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 
-    var contentJSONObject: JSONObject = jsonObject!.getJSONObject(projectStrings!.CONTENT)!;;
+    let contentJSONObject: JSONObject = jsonObject!.getJSONObject(projectStrings!.CONTENT)!;;
     
 this.content= new GDContent(contentJSONObject);
     
@@ -63,6 +63,4 @@ this.content= new GDContent(contentJSONObject);
 
 
 }
-
-
 

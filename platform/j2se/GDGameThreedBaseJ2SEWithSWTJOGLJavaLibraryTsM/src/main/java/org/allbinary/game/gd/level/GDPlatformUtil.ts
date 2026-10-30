@@ -87,5 +87,3 @@ cameraLayer!.setRotationY(18);
 
 }
 
-
-

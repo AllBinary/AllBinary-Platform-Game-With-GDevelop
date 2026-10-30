@@ -8,9 +8,11 @@
         
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { ResourceUtil } 
 const ResourceUtil = globalThis.org.allbinary.data.resource.ResourceUtil;
+type ResourceUtil<T = any, U = any> = typeof ResourceUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ResourceUtil;
 
 import { GDGameSoftwareInfo } from 'org/allbinary/game/canvas/GDGameSoftwareInfo.js';
 //not GWT import const GDGameSoftwareInfo
@@ -104,7 +106,7 @@ public constructor (){
 GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance()!.getInstance());
     
 
-    var motionGesturesHandler: BasicMotionGesturesHandler = this.motionRecognizer!.getMotionGestureRecognizer()!.getMotionGesturesHandler()!;;
+    let motionGesturesHandler: BasicMotionGesturesHandler = this.motionRecognizer!.getMotionGestureRecognizer()!.getMotionGesturesHandler()!;;
     
 motionGesturesHandler!.addListenerInterface(new GameMotionGestureListener(MotionGestureReceiveInterfaceFactory.getInstance()));
     
@@ -117,25 +119,24 @@ new DefaultGameInitializationListener();
 
     init(){
 
-        try {
-            logUtil!.putF(commonStrings!.START, this, commonStrings!.INIT);
+ try { logUtil!.putF(commonStrings!.START, this, commonStrings!.INIT);
     
 ResourceUtil.getInstance()!.setClassLoader(this.constructor.namegetClassLoader());
     
 
-    var features: Features = Features.getInstance()!;;
+    let features: Features = Features.getInstance()!;;
     
 
-    var gameFeatureFactory: GameFeatureFactory = GameFeatureFactory.getInstance()!;;
+    let gameFeatureFactory: GameFeatureFactory = GameFeatureFactory.getInstance()!;;
     
 
-    var inputFeatureFactory: InputFeatureFactory = InputFeatureFactory.getInstance()!;;
+    let inputFeatureFactory: InputFeatureFactory = InputFeatureFactory.getInstance()!;;
     
 
-    var graphicsFeatureFactory: GraphicsFeatureFactory = GraphicsFeatureFactory.getInstance()!;;
+    let graphicsFeatureFactory: GraphicsFeatureFactory = GraphicsFeatureFactory.getInstance()!;;
     
 
-    var sensorFeatureFactory: SensorFeatureFactory = SensorFeatureFactory.getInstance()!;;
+    let sensorFeatureFactory: SensorFeatureFactory = SensorFeatureFactory.getInstance()!;;
     
 features.removeDefault(sensorFeatureFactory!.ORIENTATION_SENSORS);
     
@@ -158,10 +159,10 @@ features.addDefault(inputFeatureFactory!.MULTI_KEY_PRESS);
 features.addDefault(inputFeatureFactory!.REMOVE_DUPLICATE_KEY_PRESSES);
     
 
-    var gameConfigurationCentral: GameConfigurationCentral = GameConfigurationCentral.getInstance()!;;
+    let gameConfigurationCentral: GameConfigurationCentral = GameConfigurationCentral.getInstance()!;;
     
 
-    var smallIntegerSingletonFactory: SmallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()!;;
+    let smallIntegerSingletonFactory: SmallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()!;;
     
 gameConfigurationCentral!.VIBRATION.setDefaultValue(smallIntegerSingletonFactory!.getAt(0));
     
@@ -183,32 +184,37 @@ gameConfigurationCentral!.SCALE.setDefaultValue(smallIntegerSingletonFactory!.ge
     
 gameConfigurationCentral!.SCALE.setDefault();
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 logUtil!.put(commonStrings!.EXCEPTION, this, commonStrings!.CONSTRUCTOR, e);
     
-}
 
+ }
+   }
+ 
 }
 
 
     public stopAll(){
 
-        try {
-            new Sounds(EarlySoundsFactory.getInstance()).stopAll();
+ try { new Sounds(EarlySoundsFactory.getInstance()).stopAll();
     
 new Sounds(GDGameSoundsFactory.getInstance()).stopAll();
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 logUtil!.put(commonStrings!.EXCEPTION, this, "stopAll", e);
     
-}
 
+ }
+   }
+ 
 }
 
 
@@ -218,42 +224,45 @@ logUtil!.put(commonStrings!.EXCEPTION, this, "stopAll", e);
 
     public mousePressed(x: number, y: number, button: number){
 
-        try {
-            this.motionRecognizer!.processStartMotionEvent(x, y, this.DEVICE_ID, button);
+ try { this.motionRecognizer!.processStartMotionEvent(x, y, this.DEVICE_ID, button);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 logUtil!.put(commonStrings!.EXCEPTION, this, "mousePressed", e);
     
-}
 
+ }
+   }
+ 
 }
 
 
     public mouseReleased(x: number, y: number, button: number){
 
-        try {
-            this.dragged= false;
+ try { this.dragged= false;
     
 this.motionRecognizer!.processEndMotionEvent(x, y, this.DEVICE_ID, button);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 logUtil!.put(commonStrings!.EXCEPTION, this, "mouseReleased", e);
     
-}
 
+ }
+   }
+ 
 }
 
 
     public mouseMoved(x: number, y: number, button: number){
 
-        try {
-            
+ try { 
                         if(this.dragged)
                         
                                     {
@@ -268,14 +277,17 @@ logUtil!.put(commonStrings!.EXCEPTION, this, "mouseReleased", e);
 
                         }
                             
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 logUtil!.put(commonStrings!.EXCEPTION, this, "mouseMoved", e);
     
-}
 
+ }
+   }
+ 
 }
 
 
@@ -283,39 +295,41 @@ logUtil!.put(commonStrings!.EXCEPTION, this, "mouseMoved", e);
 
     public mouseDragged(x: number, y: number, button: number){
 
-        try {
-            this.dragged= true;
+ try { this.dragged= true;
     
 this.motionRecognizer!.processDraggedMotionEvent(x, y, this.DEVICE_ID, button);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 logUtil!.put(commonStrings!.EXCEPTION, this, "mouseDragged", e);
     
-}
 
+ }
+   }
+ 
 }
 
 
     public mouseWheelMoved(x: number, y: number, button: number){
 
-        try {
-            this.motionRecognizer!.processScrolledMotionEvent(x, y, this.DEVICE_ID, button);
+ try { this.motionRecognizer!.processScrolledMotionEvent(x, y, this.DEVICE_ID, button);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 logUtil!.put(commonStrings!.EXCEPTION, this, "mouseWheelMoved", e);
     
+
+ }
+   }
+ 
 }
 
-}
-
 
 }
-
-
 

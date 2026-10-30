@@ -15,7 +15,7 @@ import { JSONObject } from '../../../../../org/json/JSONObject.js';
 export class GDEvent extends Object {
     constructor(type, jsonObject) {
         super();
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
         this.type = type;
     }

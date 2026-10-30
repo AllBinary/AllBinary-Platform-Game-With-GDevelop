@@ -69,5 +69,3 @@ export class GDGameStaticInitializerFactory extends BasicBuildGameInitializerFac
 
 }
 
-
-

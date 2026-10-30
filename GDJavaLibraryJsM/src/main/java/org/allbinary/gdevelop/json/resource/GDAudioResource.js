@@ -13,7 +13,7 @@ export class GDAudioResource extends GDResource {
     constructor(kind, jsonObject) {
         super(kind, jsonObject);
         //For kotlin this is before the body of the constructor.
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
         this.preloadAsSound = jsonObject.getBoolean(gdProjectStrings.PRELOAD_AS_SOUND);
         this.preloadAsMusic = jsonObject.getBoolean(gdProjectStrings.PRELOAD_AS_MUSIC);

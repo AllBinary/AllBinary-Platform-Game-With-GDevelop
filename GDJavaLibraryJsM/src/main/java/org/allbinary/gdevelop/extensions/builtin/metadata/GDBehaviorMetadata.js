@@ -49,76 +49,61 @@ export class GDBehaviorMetadata extends Object {
         this.behaviorsSharedData = behaviorsSharedData;
     }
     addCondition(name, fullname, description, sentence, group, icon, smallicon) {
-        var nameWithNamespace = this.extensionNamespace.isEmpty()
-            ?
-                name
-            :
-                this.extensionNamespace + name;
+        let nameWithNamespace = (this.extensionNamespace.isEmpty() ? name : this.extensionNamespace + name);
         ;
-        ;
-        var instructionMetadata = new GDInstructionMetadata(this.extensionNamespace, nameWithNamespace, fullname, description, sentence, group, icon, smallicon);
+        let instructionMetadata = new GDInstructionMetadata(this.extensionNamespace, nameWithNamespace, fullname, description, sentence, group, icon, smallicon);
         ;
         this.conditionInstructionMetadataList.add(instructionMetadata);
         //if statement needs to be on the same line and ternary does not work the same way.
         return instructionMetadata;
     }
     addAction(name, fullname, description, sentence, group, icon, smallicon) {
-        var nameWithNamespace = this.extensionNamespace.isEmpty()
-            ?
-                name
-            :
-                this.extensionNamespace + name;
+        let nameWithNamespace = (this.extensionNamespace.isEmpty() ? name : this.extensionNamespace + name);
         ;
-        ;
-        var instructionMetadata = new GDInstructionMetadata(this.extensionNamespace, nameWithNamespace, fullname, description, sentence, group, icon, smallicon);
+        let instructionMetadata = new GDInstructionMetadata(this.extensionNamespace, nameWithNamespace, fullname, description, sentence, group, icon, smallicon);
         ;
         this.actionInstructionMetadataList.add(instructionMetadata);
         //if statement needs to be on the same line and ternary does not work the same way.
         return instructionMetadata;
     }
     addScopedCondition(name, fullname, description, sentence, group, icon, smallicon) {
-        var nameWithNamespace = new StringBuilder().append(this.getName()).append(GDPlatformExtension.getInstance().NAMESPACE_SEP).append(name).toString();
+        let nameWithNamespace = new StringBuilder().append(this.getName()).append(GDPlatformExtension.getInstance().NAMESPACE_SEP).append(name).toString();
         ;
-        var instructionMetadata = new GDInstructionMetadata(this.extensionNamespace, nameWithNamespace, fullname, description, sentence, group, icon, smallicon);
+        let instructionMetadata = new GDInstructionMetadata(this.extensionNamespace, nameWithNamespace, fullname, description, sentence, group, icon, smallicon);
         ;
         this.nameToConditionInstructionMetadataMap.put(nameWithNamespace, instructionMetadata);
         //if statement needs to be on the same line and ternary does not work the same way.
         return instructionMetadata;
     }
     addScopedAction(name, fullname, description, sentence, group, icon, smallicon) {
-        var nameWithNamespace = new StringBuilder().append(this.getName()).append(GDPlatformExtension.getInstance().NAMESPACE_SEP).append(name).toString();
+        let nameWithNamespace = new StringBuilder().append(this.getName()).append(GDPlatformExtension.getInstance().NAMESPACE_SEP).append(name).toString();
         ;
-        var instructionMetadata = new GDInstructionMetadata(this.extensionNamespace, nameWithNamespace, fullname, description, sentence, group, icon, smallicon);
+        let instructionMetadata = new GDInstructionMetadata(this.extensionNamespace, nameWithNamespace, fullname, description, sentence, group, icon, smallicon);
         ;
         this.nameToActionInstructionMetadataMap.put(nameWithNamespace, instructionMetadata);
         //if statement needs to be on the same line and ternary does not work the same way.
         return instructionMetadata;
     }
     addExpression(name, fullname, description, group, smallicon) {
-        var expressionMetadata = new GDExpressionMetadata(this.parameterFactory.NUMBER, this.extensionNamespace, name, fullname, description, group, smallicon);
+        let expressionMetadata = new GDExpressionMetadata(this.parameterFactory.NUMBER, this.extensionNamespace, name, fullname, description, group, smallicon);
         ;
         this.nameToExpressionMetadataMap.put(name, expressionMetadata);
         //if statement needs to be on the same line and ternary does not work the same way.
         return expressionMetadata;
     }
     addStrExpression(name, fullname, description, group, smallicon) {
-        var expressionMetadata = new GDExpressionMetadata(this.parameterFactory.STRING, this.extensionNamespace, name, fullname, description, group, smallicon);
+        let expressionMetadata = new GDExpressionMetadata(this.parameterFactory.STRING, this.extensionNamespace, name, fullname, description, group, smallicon);
         ;
         this.nameToStrExpressionMetadataMap.put(name, expressionMetadata);
         //if statement needs to be on the same line and ternary does not work the same way.
         return expressionMetadata;
     }
     addExpressionAndConditionAndAction(type, name, fullname, descriptionSubject, sentenceName, group, icon) {
-        var expression = (type == this.parameterFactory.NUMBER)
-            ?
-                this.addExpression(name, fullname, new StringBuilder().append(GDBehaviorMetadata.RETURN_).append(descriptionSubject).append(this.commonSeps.PERIOD).toString(), group, icon)
-            :
-                this.addStrExpression(name, fullname, new StringBuilder().append(GDBehaviorMetadata.RETURN_).append(descriptionSubject).append(this.commonSeps.PERIOD).toString(), group, icon);
+        let expression = ((type == this.parameterFactory.NUMBER) ? this.addExpression(name, fullname, new StringBuilder().append(GDBehaviorMetadata.RETURN_).append(descriptionSubject).append(this.commonSeps.PERIOD).toString(), group, icon) : this.addStrExpression(name, fullname, new StringBuilder().append(GDBehaviorMetadata.RETURN_).append(descriptionSubject).append(this.commonSeps.PERIOD).toString(), group, icon));
         ;
+        let conditionInstructionMetadata = this.addScopedCondition(name, fullname, new StringBuilder().append(GDBehaviorMetadata.COMPARE_).append(descriptionSubject).append(this.commonSeps.PERIOD).toString(), sentenceName, group, icon, icon);
         ;
-        var conditionInstructionMetadata = this.addScopedCondition(name, fullname, new StringBuilder().append(GDBehaviorMetadata.COMPARE_).append(descriptionSubject).append(this.commonSeps.PERIOD).toString(), sentenceName, group, icon, icon);
-        ;
-        var actionInstructionMetadata = this.addScopedAction("Set" + name, fullname, new StringBuilder().append(GDBehaviorMetadata.COMPARE_).append(descriptionSubject).append(this.commonSeps.PERIOD).toString(), sentenceName, group, icon, icon);
+        let actionInstructionMetadata = this.addScopedAction("Set" + name, fullname, new StringBuilder().append(GDBehaviorMetadata.COMPARE_).append(descriptionSubject).append(this.commonSeps.PERIOD).toString(), sentenceName, group, icon, icon);
         ;
         //if statement needs to be on the same line and ternary does not work the same way.
         return new GDMultipleInstructionMetadata(expression, conditionInstructionMetadata, actionInstructionMetadata);

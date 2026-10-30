@@ -74,5 +74,3 @@ export class GDGameJOGLResources extends GDGameBaseJOGLResources {
 
 }
 
-
-

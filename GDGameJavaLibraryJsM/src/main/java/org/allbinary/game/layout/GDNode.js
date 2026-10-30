@@ -56,13 +56,29 @@ export class GDNode extends Object {
     processStatsE() {
         this.nodeStatsFactory.push(3, this.name);
     }
+    processReleased(...args) {
+        if (args.length === 0)
+            return this.processReleased$overload1();
+        if (args.length === 1)
+            return this.processReleased$overload2(args[0]);
+        if (args.length === 1)
+            return this.processReleased$overload3(args[0]);
+        throw new TypeError('No matching overload: processReleased');
+    }
     //@Throws(Exception.constructor)
-    processReleased() {
+    processReleased$overload1() {
         this.processReleasedStats();
         //if statement needs to be on the same line and ternary does not work the same way.
         return true;
     }
-    processReleasedStats() {
+    processReleasedStats(...args) {
+        if (args.length === 0)
+            return this.processReleasedStats$overload1();
+        if (args.length === 1)
+            return this.processReleasedStats$overload2(args[0]);
+        throw new TypeError('No matching overload: processReleasedStats');
+    }
+    processReleasedStats$overload1() {
         this.nodeStatsFactory.push(4, this.name);
     }
     //@Throws(Exception.constructor)
@@ -71,7 +87,7 @@ export class GDNode extends Object {
         return false;
     }
     //@Throws(Exception.constructor)
-    processReleased(gameKeyEvent) {
+    processReleased$overload2(gameKeyEvent) {
         //if statement needs to be on the same line and ternary does not work the same way.
         return false;
     }
@@ -81,7 +97,7 @@ export class GDNode extends Object {
         return false;
     }
     //@Throws(Exception.constructor)
-    processReleased(keyAsInteger) {
+    processReleased$overload3(keyAsInteger) {
         //if statement needs to be on the same line and ternary does not work the same way.
         return false;
     }
@@ -148,7 +164,7 @@ export class GDNode extends Object {
     processCreateStats(gdObject) {
         this.nodeStatsFactory.push(10, this.name);
     }
-    processReleasedStats(gdObject) {
+    processReleasedStats$overload2(gdObject) {
         this.nodeStatsFactory.push(11, this.name);
     }
     //@Throws(Exception.constructor)

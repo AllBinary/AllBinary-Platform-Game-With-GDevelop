@@ -24,9 +24,9 @@ export class GDLayer extends Object {
         super();
         this.cameraList = new BasicArrayListD();
         this.effectsList = new BasicArrayListD();
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
-        var name;
+        let name;
         ;
         if (jsonObject.has(gdProjectStrings.NAME)) {
             name = jsonObject.getString(gdProjectStrings.NAME);
@@ -35,7 +35,7 @@ export class GDLayer extends Object {
             name = Integer.toHexString(this.hashCode());
         }
         this.name = name;
-        var isVisible;
+        let isVisible;
         ;
         if (jsonObject.has(gdProjectStrings.VISIBILITY)) {
             isVisible = jsonObject.getBoolean(gdProjectStrings.VISIBILITY);
@@ -44,7 +44,7 @@ export class GDLayer extends Object {
             isVisible = false;
         }
         this.isVisible = isVisible;
-        var isLightingLayer;
+        let isLightingLayer;
         ;
         if (jsonObject.has(gdProjectStrings.VISIBILITY)) {
             isLightingLayer = jsonObject.getBoolean(gdProjectStrings.IS_LIGHTING_LAYER);
@@ -53,7 +53,7 @@ export class GDLayer extends Object {
             isLightingLayer = false;
         }
         this.isLightingLayer = isLightingLayer;
-        var followBaseLayerCamera;
+        let followBaseLayerCamera;
         ;
         if (jsonObject.has(gdProjectStrings.FOLLOW_BASE_LAYER_CAMERA)) {
             followBaseLayerCamera = jsonObject.getBoolean(gdProjectStrings.FOLLOW_BASE_LAYER_CAMERA);
@@ -62,7 +62,7 @@ export class GDLayer extends Object {
             followBaseLayerCamera = false;
         }
         this.followBaseLayerCamera = followBaseLayerCamera;
-        var ambientLightBasicColor;
+        let ambientLightBasicColor;
         ;
         if (jsonObject.has(gdProjectStrings.AMBIENT_LIGHT_COLOR_R)) {
             ambientLightBasicColor = BasicColorFactory.getInstance().createInstanceARGB(BasicColorUtil.getInstance().ALPHA, jsonObject.getInt(gdProjectStrings.AMBIENT_LIGHT_COLOR_R), jsonObject.getInt(gdProjectStrings.AMBIENT_LIGHT_COLOR_G), jsonObject.getInt(gdProjectStrings.AMBIENT_LIGHT_COLOR_B), this.name);
@@ -72,13 +72,13 @@ export class GDLayer extends Object {
         }
         this.ambientLightBasicColor = ambientLightBasicColor;
         if (jsonObject.has(gdProjectStrings.CAMERAS)) {
-            var camerasJSONArray = jsonObject.getJSONArray(gdProjectStrings.CAMERAS);
+            let camerasJSONArray = jsonObject.getJSONArray(gdProjectStrings.CAMERAS);
             ;
-            var size = camerasJSONArray.length();
+            let size = camerasJSONArray.length();
             ;
-            var nextJSONObject;
+            let nextJSONObject;
             ;
-            for (var index = 0; index < size; index++) {
+            for (let index = 0; index < size; index++) {
                 nextJSONObject = camerasJSONArray.getJSONObject(index);
                 this.cameraList.add(new GDLayer(nextJSONObject));
             }

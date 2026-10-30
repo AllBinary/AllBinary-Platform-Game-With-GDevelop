@@ -15,9 +15,11 @@ import { AttributeSet } from '../../../android/util/AttributeSet.js';
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { PreLogUtil } 
 const PreLogUtil = globalThis.org.allbinary.logic.communication.log.PreLogUtil;
+type PreLogUtil<T = any, U = any> = typeof PreLogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof PreLogUtil;
 
 
 
@@ -55,6 +57,4 @@ PreLogUtil.put(this.commonStrings!.START, this.TAG, this.commonStrings!.CONSTRUC
 
 
 }
-
-
 

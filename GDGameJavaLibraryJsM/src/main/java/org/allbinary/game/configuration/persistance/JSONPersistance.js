@@ -43,28 +43,35 @@ export class JSONPersistance extends BasicPersitance {
         this.tsUtil = TsUtil.getInstance();
         //For kotlin this is before the body of the constructor.
     }
+    loadAll(...args) {
+        if (args.length === 1)
+            return this.loadAll$overload1(args[0]);
+        if (args.length === 2 && typeof args[1] === 'number')
+            return this.loadAll$overload2(args[0], args[1]);
+        throw new TypeError('No matching overload: loadAll');
+    }
     //@Throws(Exception.constructor)
-    loadAll(abeClientInformation) {
+    loadAll$overload1(abeClientInformation) {
         this.loadAll(abeClientInformation, 1);
     }
     //@Throws(Exception.constructor)
-    loadAll(abeClientInformation, size) {
-        var recordStore = RecordStore.openRecordStore(this.getRecordId(abeClientInformation), true);
+    loadAll$overload2(abeClientInformation, size) {
+        let recordStore = RecordStore.openRecordStore(this.getRecordId(abeClientInformation), true);
         ;
-        var recordEnum = recordStore.enumerateRecords(NullRecordFilter.NULL_RECORD_FILTER, NullRecordComparator.NULL_RECORD_COMPARATOR, true);
+        let recordEnum = recordStore.enumerateRecords(NullRecordFilter.NULL_RECORD_FILTER, NullRecordComparator.NULL_RECORD_COMPARATOR, true);
         ;
         this.logUtil.putF(new StringMaker().append(this.persistanceStrings.NUMBER_OF_RECORDS).appendint(recordEnum.numRecords()).toString(), this, this.persistanceStrings.LOAD_ALL);
-        var smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
+        let smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
         ;
-        var stringBuffer = new StringMaker();
+        let stringBuffer = new StringMaker();
         ;
-        var byteArrayInputStream;
+        let byteArrayInputStream;
         ;
-        var inputStream;
+        let inputStream;
         ;
-        var value;
+        let value;
         ;
-        var id = 0;
+        let id = 0;
         ;
         while (recordEnum.hasNextElement()) {
             id = recordEnum.nextRecordId();
@@ -72,7 +79,7 @@ export class JSONPersistance extends BasicPersitance {
             this.logUtil.putF(stringBuffer.append(JSONPersistance.JSON_).append(this.persistanceStrings.LOADING_ID).appendint(id).toString(), this, this.persistanceStrings.LOAD_ALL);
             byteArrayInputStream = new ByteArrayInputStream(this.tsUtil.getRecord(recordStore, id));
             inputStream = new DataInputStream(byteArrayInputStream);
-            for (var index = 0; index < size; index++) {
+            for (let index = 0; index < size; index++) {
                 value = inputStream.readUTF();
                 this.logUtil.putF(value, this, this.persistanceStrings.LOAD_ALL);
                 this.valueList.add(value);
@@ -84,14 +91,14 @@ export class JSONPersistance extends BasicPersitance {
     //@Throws(Exception.constructor)
     save(abeClientInformation, stringAsJSON) {
         this.logUtil.putF(new StringMaker().append(JSONPersistance.JSON_).append(this.persistanceStrings.SAVING).append(stringAsJSON).toString(), this, this.commonStrings.SAVE);
-        var recordStore = RecordStore.openRecordStore(this.getRecordId(abeClientInformation), true);
+        let recordStore = RecordStore.openRecordStore(this.getRecordId(abeClientInformation), true);
         ;
-        var byteArrayOutputStream = new ByteArrayOutputStream();
+        let byteArrayOutputStream = new ByteArrayOutputStream();
         ;
-        var outputStream = new DataOutputStream(byteArrayOutputStream);
+        let outputStream = new DataOutputStream(byteArrayOutputStream);
         ;
         outputStream.writeUTF(stringAsJSON);
-        var savedGameBytes = byteArrayOutputStream.toByteArray();
+        let savedGameBytes = byteArrayOutputStream.toByteArray();
         ;
         recordStore.addRecord(savedGameBytes, 0, savedGameBytes.length);
         recordStore.closeRecordStore();

@@ -62,10 +62,23 @@ import { ResetRotationAnimationBehavior } from './ResetRotationAnimationBehavior
 import { GDThreedBehavior } from './GDThreedBehavior.js';
 //not GWT import - same folder const GDAnimationBehaviorBase
 import { ScalableProcessor } from './ScalableProcessor.js';
-//not GWT import - same folder const ScalableProcessor
 export class GDGameLayer extends MultiPlayerGameLayer {
     constructor(primitiveDrawing, gameLayerList, gameLayerDestroyedList, behaviorList, velocityInterface, remoteInfo, groupInterface, gdName, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, viewPosition, gdObject, animationBehavior, rotationAdjustment) {
         super(remoteInfo, groupInterface, gdName, layerInfo, viewPosition);
+        //    private float lastScaleY = 1;
+        //inner= member=true isStatic=
+        this.GDTextChangeListener = (() => {
+            const outer$GDGameLayer = this;
+            return class extends TextChangeListener {
+                constructor(gameLayer) {
+                    super();
+                    this.gameLayer = gameLayer;
+                }
+                onMeasure() {
+                    this.gameLayer.onMeasure();
+                }
+            };
+        })();
         this.stringUtil = StringUtil.getInstance();
         this.frameUtil = FrameUtil.getInstance();
         this.scaleFactorFactory = ScaleFactorFactory.getInstance();
@@ -86,17 +99,6 @@ export class GDGameLayer extends MultiPlayerGameLayer {
         };
         this.processor = this.moveProcessor;
         this.velocityBehavior = DragVelocityBehavior.instance;
-        //    private float lastScaleY = 1;
-        //inner= member=true isStatic=
-        this.GDTextChangeListener = class extends TextChangeListener {
-            constructor(gameLayer) {
-                super();
-                this.gameLayer = gameLayer;
-            }
-            onMeasure() {
-                this.gameLayer.onMeasure();
-            }
-        };
         this.textChangeListener = new this.GDTextChangeListener(this);
         //For kotlin this is before the body of the constructor.
         this.primitiveDrawing = primitiveDrawing;
@@ -107,12 +109,12 @@ export class GDGameLayer extends MultiPlayerGameLayer {
         this.velocityInterface = velocityInterface;
         this.initPositionXYZ(this.gdObject.xP, this.gdObject.yP, this.gdObject.zOrder);
         this.initPosition();
-        var size = animationInterfaceFactoryInterfaceArray.length;
+        let size = animationInterfaceFactoryInterfaceArray.length;
         ;
-        for (var index = 0; index < size; index++) {
-            var animationName = this.gdObject.getAnimationFromIndex(index);
+        for (let index = 0; index < size; index++) {
+            let animationName = this.gdObject.getAnimationFromIndex(index);
             ;
-            var scaleProperties = new ScaleProperties();
+            let scaleProperties = new ScaleProperties();
             ;
             scaleProperties.scaleX = this.gdObject.initScaleX * this.gdObject.customScale;
             scaleProperties.scaleY = this.gdObject.initScaleY * this.gdObject.customScale;
@@ -132,7 +134,7 @@ export class GDGameLayer extends MultiPlayerGameLayer {
             this.resetAnimationBehavior = ResetAnimationBehavior.getInstance();
         }
         animationBehavior.add(this);
-        var dimensionalBehavior;
+        let dimensionalBehavior;
         ;
         if (this.initIndexedAnimationInterfaceArrayP.length > 0 && this.initIndexedAnimationInterfaceArrayP[0].isThreed()) {
             dimensionalBehavior = new GDThreedBehavior(animationBehavior, this.initIndexedAnimationInterfaceArrayP);
@@ -159,9 +161,9 @@ export class GDGameLayer extends MultiPlayerGameLayer {
     }
     //@Throws(Exception.constructor)
     setGDObject(gdObject) {
-        var size = this.initIndexedAnimationInterfaceArrayP.length;
+        let size = this.initIndexedAnimationInterfaceArrayP.length;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             this.initIndexedAnimationInterfaceArrayP[index].setFrame(this.frameUtil.getFrameForAngle(0, 1));
         }
         gdObject.angleP = this.gdObject.angleP;
@@ -175,11 +177,11 @@ export class GDGameLayer extends MultiPlayerGameLayer {
     }
     //@Throws(Exception.constructor)
     set(gl) {
-        var size = this.initIndexedAnimationInterfaceArrayP.length;
+        let size = this.initIndexedAnimationInterfaceArrayP.length;
         ;
-        var openGLSurfaceChangedInterface;
+        let openGLSurfaceChangedInterface;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             openGLSurfaceChangedInterface = this.initIndexedAnimationInterfaceArrayP[index];
             openGLSurfaceChangedInterface.set(gl);
         }
@@ -233,37 +235,37 @@ export class GDGameLayer extends MultiPlayerGameLayer {
         this.combatBaseBehaviorP.getDestroyableBaseBehavior().setDestroyed(destroyed);
     }
     move() {
-        var velocityX = this.velocityInterface.getVelocityXBasicDecimalP().getUnscaled();
+        let velocityX = this.velocityInterface.getVelocityXBasicDecimalP().getUnscaled();
         ;
-        var velocityY = this.velocityInterface.getVelocityYBasicDecimalP().getUnscaled();
+        let velocityY = this.velocityInterface.getVelocityYBasicDecimalP().getUnscaled();
         ;
         this.realX = this.realX + velocityX;
         this.realY = this.realY + velocityY;
-        var scaleFactorValue = this.scaleFactorFactory.DEFAULT_SCALE_VALUE;
+        let scaleFactorValue = this.scaleFactorFactory.DEFAULT_SCALE_VALUE;
         ;
-        var x = Math.round((this.realX / scaleFactorValue));
+        let x = globalThis.Math.trunc((globalThis.Math.trunc(this.realX / scaleFactorValue)));
         ;
-        var y = Math.round((this.realY / scaleFactorValue));
+        let y = globalThis.Math.trunc((globalThis.Math.trunc(this.realY / scaleFactorValue)));
         ;
         super.setPosition(x, y, this.z);
     }
     isMovingX() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return Math.round((this.velocityInterface.getVelocityXBasicDecimalP().getScaled() / this.SCALE_FACTOR));
+        return globalThis.Math.trunc((this.velocityInterface.getVelocityXBasicDecimalP().getScaled() / this.SCALE_FACTOR));
     }
     isMovingY() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return Math.round((this.velocityInterface.getVelocityYBasicDecimalP().getScaled() / this.SCALE_FACTOR));
+        return globalThis.Math.trunc((this.velocityInterface.getVelocityYBasicDecimalP().getScaled() / this.SCALE_FACTOR));
     }
     setPosition(x, y, z) {
         super.setPosition(x, y, z);
-        var scaleFactorValue = ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE;
+        let scaleFactorValue = ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE;
         ;
         this.realX = x * scaleFactorValue;
         this.realY = y * scaleFactorValue;
     }
     AddForceUsingPolarCoordinates(angle, length, clearing) {
-        var adjustedAngle = angle;
+        let adjustedAngle = angle;
         ;
         while (adjustedAngle > 359) {
             adjustedAngle -= 360;
@@ -271,8 +273,8 @@ export class GDGameLayer extends MultiPlayerGameLayer {
         while (adjustedAngle < 0) {
             adjustedAngle += 360;
         }
-        this.gdObject.forceAngle = Math.round(adjustedAngle);
-        this.velocityInterface.setVelocityi(length * this.SCALE_FACTOR2, Math.round(adjustedAngle), 0);
+        this.gdObject.forceAngle = globalThis.Math.trunc(adjustedAngle);
+        this.velocityInterface.setVelocityi(length * this.SCALE_FACTOR2, globalThis.Math.trunc(adjustedAngle), 0);
         if (clearing == 1) {
             if (this.processor == this.moveProcessor) {
                 this.processor = new class extends Processor {
@@ -307,14 +309,14 @@ export class GDGameLayer extends MultiPlayerGameLayer {
         this.gdObject.setX(this.x);
         this.gdObject.setY(this.y);
         this.updateRotation(timeDelta);
-        var opacity = Math.round(this.gdObject.opacity);
+        let opacity = globalThis.Math.trunc(this.gdObject.opacity);
         ;
         if (opacity < 0) {
             opacity = 0;
         }
-        var size = this.initIndexedAnimationInterfaceArrayP.length;
+        let size = this.initIndexedAnimationInterfaceArrayP.length;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             this.initIndexedAnimationInterfaceArrayP[index].setAlpha(opacity);
             this.scalableProcessor.process(this, this.initIndexedAnimationInterfaceArrayP[index]);
             if (this.gdObject.basicColor != BasicColorFactory.getInstance().NULL_COLOR) {
@@ -336,9 +338,9 @@ export class GDGameLayer extends MultiPlayerGameLayer {
     }
     setScalable() {
         if (this.scalableProcessor == ScalableBaseProcessor.getInstance()) {
-            var size = this.initIndexedAnimationInterfaceArrayP.length;
+            let size = this.initIndexedAnimationInterfaceArrayP.length;
             ;
-            for (var index = 0; index < size; index++) {
+            for (let index = 0; index < size; index++) {
                 this.initIndexedAnimationInterfaceArrayP[index].setMaxScale(5.0, 5.0);
             }
         }
@@ -357,43 +359,47 @@ export class GDGameLayer extends MultiPlayerGameLayer {
     paint(graphics) {
         try {
             super.paintFirst(graphics);
-            var viewPosition = this.getViewPosition();
+            let viewPosition = this.getViewPosition();
             ;
-            var x = viewPosition.getX();
+            let x = viewPosition.getX();
             ;
-            var y = viewPosition.getY();
+            let y = viewPosition.getY();
             ;
             this.indexedAnimationInterfaceArrayP[this.gdObject.animation].paintXY(graphics, x, y);
             this.primitiveDrawing.paintXY(graphics, x, y);
             this.paintDebug(graphics);
-            //: 
         }
-        catch (e) {
-            this.logUtil.put(this.commonStrings.EXCEPTION, this, "paint", e);
+        catch (caught) {
+            {
+                const e = caught;
+                this.logUtil.put(this.commonStrings.EXCEPTION, this, "paint", e);
+            }
         }
     }
     paintThreed(graphics) {
         try {
-            var viewPosition = this.getViewPosition();
+            let viewPosition = this.getViewPosition();
             ;
-            var x = viewPosition.getX();
+            let x = viewPosition.getX();
             ;
-            var y = viewPosition.getY();
+            let y = viewPosition.getY();
             ;
-            var z = viewPosition.getZ();
+            let z = viewPosition.getZ();
             ;
             this.indexedAnimationInterfaceArrayP[this.gdObject.animation].paintThreedXYZ(graphics, x, y, z);
             this.primitiveDrawing.paintThreedXYZ(graphics, x, y, z);
-            //: 
         }
-        catch (e) {
-            this.logUtil.put(this.commonStrings.EXCEPTION, this, "paintThreed", e);
+        catch (caught) {
+            {
+                const e = caught;
+                this.logUtil.put(this.commonStrings.EXCEPTION, this, "paintThreed", e);
+            }
         }
     }
     paintPoints(graphics) {
     }
     paintAngle(angle, graphics) {
-        var adjustedAngle = angle;
+        let adjustedAngle = angle;
         ;
     }
     paintDebug(graphics) {
@@ -406,11 +412,18 @@ export class GDGameLayer extends MultiPlayerGameLayer {
     setBackgroundBasicColor(basicColor) {
         this.initIndexedAnimationInterfaceArrayP[0].setBackgroundBasicColorP(basicColor);
     }
-    setText(value) {
+    setText(...args) {
+        if (args.length === 1 && typeof args[0] === 'number')
+            return this.setText$overload1(args[0]);
+        if (args.length === 1 && typeof args[0] === 'string')
+            return this.setText$overload2(args[0]);
+        throw new TypeError('No matching overload: setText');
+    }
+    setText$overload1(value) {
         this.setText(value.toString());
     }
-    setText(text) {
-        var textInterface = this.initIndexedAnimationInterfaceArrayP[0];
+    setText$overload2(text) {
+        let textInterface = this.initIndexedAnimationInterfaceArrayP[0];
         ;
         if (text ==
             null) {
@@ -424,7 +437,7 @@ export class GDGameLayer extends MultiPlayerGameLayer {
         throw new RuntimeException();
     }
     Text() {
-        var textInterface = this.initIndexedAnimationInterfaceArrayP[0];
+        let textInterface = this.initIndexedAnimationInterfaceArrayP[0];
         ;
         //if statement needs to be on the same line and ternary does not work the same way.
         return textInterface.getText();
@@ -449,7 +462,7 @@ export class GDGameLayer extends MultiPlayerGameLayer {
         stringBuffer.append(this.gdObject.toString());
     }
     toString() {
-        var stringBuffer = new StringMaker();
+        let stringBuffer = new StringMaker();
         ;
         this.toStringAppend(stringBuffer);
         //if statement needs to be on the same line and ternary does not work the same way.

@@ -33,15 +33,19 @@ import { MidletStartupProcessor } from '../../org/allbinary/playn/processors/Mid
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 //not plain js import { PlayN } 
 const PlayN = globalThis.playn.core.PlayN;
+type PlayN<T = any, U = any> = typeof PlayN extends abstract new (...args: any[]) => infer Instance ? Instance : typeof PlayN;
 
 //not plain js import { GDGameMidletFactory } 
 const GDGameMidletFactory = globalThis.playn.core.GDGameMidletFactory;
+type GDGameMidletFactory<T = any, U = any> = typeof GDGameMidletFactory extends abstract new (...args: any[]) => infer Instance ? Instance : typeof GDGameMidletFactory;
 
 
 
@@ -71,17 +75,17 @@ export class GDGameJ2SE
 
     public static main(args: string[]){
 
-    var platform: JavaPlatform = JavaPlatform.register()!;;
+    let platform: JavaPlatform = JavaPlatform.register()!;;
     
 platform.assetManager()!.setPathPrefix("gd/res/");
     
 
-    var list: BasicArrayList = new BasicArrayListD();;
+    let list: BasicArrayList = new BasicArrayListD();;
     
 list.add(new MidletStartupProcessor(list));
     
 
-    var gameRunnable: AllBinaryPlayNGameRunnable = new AllBinaryPlayNGameRunnable(list);;
+    let gameRunnable: AllBinaryPlayNGameRunnable = new AllBinaryPlayNGameRunnable(list);;
     
 PlayN.run(new AllBinaryPlayNGame(new GDGameMidletFactory(), gameRunnable, 960, 600));
     
@@ -89,6 +93,4 @@ PlayN.run(new AllBinaryPlayNGame(new GDGameMidletFactory(), gameRunnable, 960, 6
 
 
 }
-
-
 

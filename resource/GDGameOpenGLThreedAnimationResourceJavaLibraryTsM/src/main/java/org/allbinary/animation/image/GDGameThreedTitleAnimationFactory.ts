@@ -62,10 +62,10 @@ export class GDGameThreedTitleAnimationFactory
             
     public getInstance(animationInterfaceArray: IndexedAnimation[]): TitleAnimation{
 
-    var basicColorFactory: BasicColorFactory = BasicColorFactory.getInstance()!;;
+    let basicColorFactory: BasicColorFactory = BasicColorFactory.getInstance()!;;
     
 
-    var basicColorArray: BasicColor[] = new Array(3);;
+    let basicColorArray: BasicColor[] = new Array(3);;
     
 basicColorArray[0]= basicColorFactory!.CLEAR_COLOR;
     
@@ -74,7 +74,7 @@ basicColorArray[1]= basicColorFactory!.CLEAR_COLOR;
 basicColorArray[2]= basicColorFactory!.CLEAR_COLOR;
     
 
-    var deltaXArray: number[] = new Array(3);;
+    let deltaXArray: number[] = new Array(3);;
     
 deltaXArray[0]= 0;
     
@@ -83,7 +83,7 @@ deltaXArray[1]= 52;
 deltaXArray[2]= 0;
     
 
-    var deltaYArray: number[] = new Array(3);;
+    let deltaYArray: number[] = new Array(3);;
     
 deltaYArray[0]= 0;
     
@@ -101,6 +101,4 @@ deltaYArray[2]= 37;
 
 
 }
-
-
 

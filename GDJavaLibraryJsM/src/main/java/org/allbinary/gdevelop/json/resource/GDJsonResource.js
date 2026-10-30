@@ -13,7 +13,7 @@ export class GDJsonResource extends GDResource {
     constructor(kind, jsonObject) {
         super(kind, jsonObject);
         //For kotlin this is before the body of the constructor.
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
         this.disablePreload = jsonObject.getBoolean(gdProjectStrings.DISABLE_PRELOAD);
     }

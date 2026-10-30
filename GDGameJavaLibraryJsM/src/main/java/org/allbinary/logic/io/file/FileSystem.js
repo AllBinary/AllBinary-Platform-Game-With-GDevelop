@@ -39,9 +39,9 @@ export class FileSystem extends Object {
         ;
     }
     static LoadStringFromFileSync(path) {
-        var logUtil = LogUtil.getInstance();
+        let logUtil = LogUtil.getInstance();
         ;
-        var commonStrings = CommonStrings.getInstance();
+        let commonStrings = CommonStrings.getInstance();
         ;
         logUtil.putF(path, commonStrings, commonStrings.PROCESS);
         //if statement needs to be on the same line and ternary does not work the same way.
@@ -49,41 +49,41 @@ export class FileSystem extends Object {
         ;
     }
     static DirectoryName(currentDirPath) {
-        var name = AbPathData.getInstance().removeNameFromPath(currentDirPath);
+        let name = AbPathData.getInstance().removeNameFromPath(currentDirPath);
         ;
         //if statement needs to be on the same line and ternary does not work the same way.
         return name;
     }
     static ReadDirectory(currentDirPath, fileList) {
-        var PAGE_SIZE = 15;
+        let PAGE_SIZE = 15;
         ;
-        var logUtil = LogUtil.getInstance();
+        let logUtil = LogUtil.getInstance();
         ;
-        var commonStrings = CommonStrings.getInstance();
+        let commonStrings = CommonStrings.getInstance();
         ;
-        var stringUtil = StringUtil.getInstance();
+        let stringUtil = StringUtil.getInstance();
         ;
-        var path = FileSystem.FixPath(currentDirPath);
+        let path = FileSystem.FixPath(currentDirPath);
         ;
-        var realFilePathAsStringArray = AbFileSystem.getInstance().getFilesAsStringArrayForPath(path);
+        let realFilePathAsStringArray = AbFileSystem.getInstance().getFilesAsStringArrayForPath(path);
         ;
         if (realFilePathAsStringArray ==
             null) {
             //if statement needs to be on the same line and ternary does not work the same way.
             return new Array(PAGE_SIZE);
         }
-        var totalPages = (realFilePathAsStringArray.length / PAGE_SIZE) + 1;
+        let totalPages = (globalThis.Math.trunc(realFilePathAsStringArray.length / PAGE_SIZE)) + 1;
         ;
         fileList = new Array(totalPages * PAGE_SIZE);
-        var size = realFilePathAsStringArray.length;
+        let size = realFilePathAsStringArray.length;
         ;
         logUtil.putF(new StringMaker().append("FileSystem::ReadDirectory - total files: ").appendint(size).toString(), currentDirPath, commonStrings.PROCESS);
-        var remainingPageSize = fileList.length - realFilePathAsStringArray.length;
+        let remainingPageSize = fileList.length - realFilePathAsStringArray.length;
         ;
-        for (var index = size; index < remainingPageSize; index++) {
+        for (let index = size; index < remainingPageSize; index++) {
             fileList[index] = stringUtil.EMPTY_STRING;
         }
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             fileList[index] = realFilePathAsStringArray[index];
         }
         //if statement needs to be on the same line and ternary does not work the same way.
@@ -103,15 +103,15 @@ export class FileSystem extends Object {
         ;
     }
     static PathDelimiter() {
-        var SEPARATOR = FilePathData.getInstance().SEPARATORCHAR;
+        let SEPARATOR = FilePathData.getInstance().SEPARATORCHAR;
         ;
         //if statement needs to be on the same line and ternary does not work the same way.
         return SEPARATOR;
     }
     static ExtensionName(fullPath) {
-        var pathData = AbPathData.getInstance();
+        let pathData = AbPathData.getInstance();
         ;
-        var name = pathData.getNameFromPath(fullPath);
+        let name = pathData.getNameFromPath(fullPath);
         ;
         if (name.startsWith(pathData.EXTENSION_SEP)) {
             //if statement needs to be on the same line and ternary does not work the same way.

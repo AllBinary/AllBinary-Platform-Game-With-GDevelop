@@ -50,14 +50,14 @@ export class GDPrimitiveDrawing extends Animation {
     }
     addFillColor(basicColor) {
         if (this.colorAnimationCacheList.size() == 0) {
-            var colorAnimation = new Animation();
+            let colorAnimation = new Animation();
             ;
             colorAnimation.setBasicColorP(basicColor);
             this.animationListArray[this.circularIndexUtil.getIndex()].add(colorAnimation);
             this.colorAnimationInUseList.add(colorAnimation);
         }
         else {
-            var colorAnimation = this.colorAnimationCacheList.removeAt(this.colorAnimationCacheList.size() - 1);
+            let colorAnimation = this.colorAnimationCacheList.removeAt(this.colorAnimationCacheList.size() - 1);
             ;
             colorAnimation.setBasicColorP(basicColor);
             this.animationListArray[this.circularIndexUtil.getIndex()].add(colorAnimation);
@@ -66,7 +66,7 @@ export class GDPrimitiveDrawing extends Animation {
     }
     addFillRectangle(x, y, x2, y2) {
         if (this.aRetangleFilledAnimationCacheList.size() == 0) {
-            var rectangleFilledAnimation = new ARectangleFilledAnimation();
+            let rectangleFilledAnimation = new ARectangleFilledAnimation();
             ;
             rectangleFilledAnimation.x = x;
             rectangleFilledAnimation.y = y;
@@ -76,7 +76,7 @@ export class GDPrimitiveDrawing extends Animation {
             this.aRetangleFilledAnimationInUseList.add(rectangleFilledAnimation);
         }
         else {
-            var rectangleFilledAnimation = this.aRetangleFilledAnimationCacheList.removeAt(this.aRetangleFilledAnimationCacheList.size() - 1);
+            let rectangleFilledAnimation = this.aRetangleFilledAnimationCacheList.removeAt(this.aRetangleFilledAnimationCacheList.size() - 1);
             ;
             rectangleFilledAnimation.x = x;
             rectangleFilledAnimation.y = y;
@@ -87,11 +87,11 @@ export class GDPrimitiveDrawing extends Animation {
         }
     }
     paintXY(graphics, x, y) {
-        var animationList = this.animationList;
+        let animationList = this.animationList;
         ;
-        var size = animationList.size();
+        let size = animationList.size();
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             get = animationList.get(index);
             get;
             get.
@@ -99,13 +99,13 @@ export class GDPrimitiveDrawing extends Animation {
         }
     }
     paintThreedXYZ(graphics, x, y, z) {
-        var animationList = this.animationList;
+        let animationList = this.animationList;
         ;
-        var size = animationList.size();
+        let size = animationList.size();
         ;
-        var animation;
+        let animation;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             animation = animationList.get(index);
             animation.paintThreedXYZ(graphics, x, y, z);
         }

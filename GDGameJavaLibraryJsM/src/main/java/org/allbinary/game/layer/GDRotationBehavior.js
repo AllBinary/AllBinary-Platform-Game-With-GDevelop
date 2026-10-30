@@ -32,20 +32,22 @@ export class GDRotationBehavior extends GDAnimationBehaviorBase {
         this.rotationAnimationInterfaceArrayP = NullRotationAnimationFactory.getFactoryInstance().NULL_ROTATION_ANIMATION_ARRAY;
     }
     init(gdObject, animationInterfaceFactoryInterfaceArray) {
-        var size = animationInterfaceFactoryInterfaceArray.length;
+        let size = animationInterfaceFactoryInterfaceArray.length;
         ;
-        var initIndexedAnimationInterfaceArray = new Array(size);
+        let initIndexedAnimationInterfaceArray = new Array(size);
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             try {
                 initIndexedAnimationInterfaceArray[index] = animationInterfaceFactoryInterfaceArray[index].getInstance(0);
-                //: 
             }
-            catch (e) {
-                var commonStrings = CommonStrings.getInstance();
-                ;
-                this.logUtil.put(new StringMaker().append(animationInterfaceFactoryInterfaceArray[index].toString()).append(" index: ").appendint(index).toString(), this, commonStrings.CONSTRUCTOR, e);
-                this.logUtil.put(gdObject.toString(), this, commonStrings.CONSTRUCTOR, e);
+            catch (caught) {
+                {
+                    const e = caught;
+                    let commonStrings = CommonStrings.getInstance();
+                    ;
+                    this.logUtil.put(new StringMaker().append(animationInterfaceFactoryInterfaceArray[index].toString()).append(" index: ").appendint(index).toString(), this, commonStrings.CONSTRUCTOR, e);
+                    this.logUtil.put(gdObject.toString(), this, commonStrings.CONSTRUCTOR, e);
+                }
             }
         }
         this.rotationAnimationInterfaceArrayP = initIndexedAnimationInterfaceArray;
@@ -61,20 +63,20 @@ export class GDRotationBehavior extends GDAnimationBehaviorBase {
     }
     //@Throws(Exception.constructor)
     set(gameLayer, gdObject) {
-        var size = this.rotationAnimationInterfaceArrayP.length;
+        let size = this.rotationAnimationInterfaceArrayP.length;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             this.rotationAnimationInterfaceArrayP[index].setFrame(this.frameUtil.getFrameForAngle(0, 1));
         }
     }
     setRotation(gameLayer, angleAdjustment) {
-        var gdObject = gameLayer.gdObject;
+        let gdObject = gameLayer.gdObject;
         ;
-        var rotationAnimation;
+        let rotationAnimation;
         ;
         rotationAnimation = this.rotationAnimationInterfaceArrayP[gdObject.animation];
         if (angleAdjustment > 0) {
-            var value = angleAdjustment;
+            let value = angleAdjustment;
             ;
             while (value > 0) {
                 rotationAnimation.nextRotation();
@@ -82,7 +84,7 @@ export class GDRotationBehavior extends GDAnimationBehaviorBase {
             }
         }
         else {
-            var value = angleAdjustment;
+            let value = angleAdjustment;
             ;
             while (value < 0) {
                 rotationAnimation.previousRotation();
@@ -91,7 +93,7 @@ export class GDRotationBehavior extends GDAnimationBehaviorBase {
         }
     }
     toString(gdObject, stringBuffer) {
-        var rotationAnimation = this.rotationAnimationInterfaceArrayP[gdObject.animation];
+        let rotationAnimation = this.rotationAnimationInterfaceArrayP[gdObject.animation];
         ;
         stringBuffer.append(GraphicsStrings.getInstance().ANGLE).appendint(rotationAnimation.getAngleInfoP().getAngle());
     }

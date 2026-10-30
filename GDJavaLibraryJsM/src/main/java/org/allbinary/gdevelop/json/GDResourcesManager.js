@@ -30,19 +30,19 @@ export class GDResourcesManager extends Object {
         if (jsonObject == JSONObject.NULL_JSONOBJECT) {
         }
         else {
-            var commonStrings = CommonStrings.getInstance();
+            let commonStrings = CommonStrings.getInstance();
             ;
-            var gdProjectStrings = GDProjectStrings.getInstance();
+            let gdProjectStrings = GDProjectStrings.getInstance();
             ;
-            var resourceFactory = GDResourceFactory.getInstance();
+            let resourceFactory = GDResourceFactory.getInstance();
             ;
-            var conditionJSONArray = jsonObject.getJSONArray(gdProjectStrings.RESOURCES);
+            let conditionJSONArray = jsonObject.getJSONArray(gdProjectStrings.RESOURCES);
             ;
-            var size = conditionJSONArray.length();
+            let size = conditionJSONArray.length();
             ;
-            var nextJSONObject;
+            let nextJSONObject;
             ;
-            for (var index = 0; index < size; index++) {
+            for (let index = 0; index < size; index++) {
                 nextJSONObject = conditionJSONArray.getJSONObject(index);
                 this.resourceList.add(resourceFactory.create(nextJSONObject));
             }

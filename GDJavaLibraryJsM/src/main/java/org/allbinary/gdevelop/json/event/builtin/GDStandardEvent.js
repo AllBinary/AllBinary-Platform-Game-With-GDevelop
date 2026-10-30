@@ -29,32 +29,32 @@ export class GDStandardEvent extends GDEvent {
         this.actionList = new BasicArrayListD();
         this.eventList = new BasicArrayListD();
         //For kotlin this is before the body of the constructor.
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
-        var eventFactory = GDEventFactory.getInstance();
+        let eventFactory = GDEventFactory.getInstance();
         ;
-        var conditionJSONArray = jsonObject.getJSONArray(gdProjectStrings.CONDITIIONS);
+        let conditionJSONArray = jsonObject.getJSONArray(gdProjectStrings.CONDITIIONS);
         ;
-        var size = conditionJSONArray.length();
+        let size = conditionJSONArray.length();
         ;
-        var nextJSONObject;
+        let nextJSONObject;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             nextJSONObject = conditionJSONArray.getJSONObject(index);
             this.conditionList.add(new GDInstruction(nextJSONObject));
         }
-        var actionJSONArray = jsonObject.getJSONArray(gdProjectStrings.ACTIONS);
+        let actionJSONArray = jsonObject.getJSONArray(gdProjectStrings.ACTIONS);
         ;
         size = actionJSONArray.length();
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             nextJSONObject = actionJSONArray.getJSONObject(index);
             this.actionList.add(new GDInstruction(nextJSONObject));
         }
         if (jsonObject.has(gdProjectStrings.EVENTS)) {
-            var eventJSONArray = jsonObject.getJSONArray(gdProjectStrings.EVENTS);
+            let eventJSONArray = jsonObject.getJSONArray(gdProjectStrings.EVENTS);
             ;
             size = eventJSONArray.length();
-            for (var index = 0; index < size; index++) {
+            for (let index = 0; index < size; index++) {
                 nextJSONObject = eventJSONArray.getJSONObject(index);
                 this.eventList.add(eventFactory.create(nextJSONObject));
             }

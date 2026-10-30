@@ -43,6 +43,7 @@ import { MidletStartupProcessor } from '../../org/allbinary/playn/processors/Mid
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 
 
@@ -86,16 +87,16 @@ this.list.removeAt(0);
                         
                                     {
                                     
-    var imageCache: ImageCache = ImageCacheFactory.getInstance()!;;
+    let imageCache: ImageCache = ImageCacheFactory.getInstance()!;;
     
 
-    var gdResources: GDResources = GDResources.getInstance()!;;
+    let gdResources: GDResources = GDResources.getInstance()!;;
     
 
-    var gdLazyResources: GDLazyResources = GDLazyResources.getInstance()!;;
+    let gdLazyResources: GDLazyResources = GDLazyResources.getInstance()!;;
     
 
-    var resourceStringArray: string[] = gdLazyResources!.requiredResourcesBeforeLoadingArray;;
+    let resourceStringArray: string[] = gdLazyResources!.requiredResourcesBeforeLoadingArray;;
     
 
                         if(imageCache!.isLazy())
@@ -113,7 +114,7 @@ this.list.removeAt(0);
 this.list.add(new GameHtmlLoadResourcesProcessor(this.list, resourceStringArray));
     
 
-    var gameHtmlHasLoadedResourcesProcessor: Processor = new GameHtmlHasLoadedResourcesProcessor(this.list, resourceStringArray);;
+    let gameHtmlHasLoadedResourcesProcessor: Processor = new GameHtmlHasLoadedResourcesProcessor(this.list, resourceStringArray);;
     
 this.list.add(gameHtmlHasLoadedResourcesProcessor);
     
@@ -128,6 +129,4 @@ ProgressCanvasFactory.getInstance()!.addNormalPortion(10, "Loading");
 
 
 }
-
-
 

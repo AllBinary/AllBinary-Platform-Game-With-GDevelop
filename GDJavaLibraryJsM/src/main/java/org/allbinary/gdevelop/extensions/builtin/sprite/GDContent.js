@@ -16,14 +16,14 @@ export class GDContent extends Object {
     constructor(jsonObject) {
         super();
         this.directionList = new BasicArrayListD();
-        var projectStrings = GDProjectStrings.getInstance();
+        let projectStrings = GDProjectStrings.getInstance();
         ;
         this.tilemapJsonFile = jsonObject.getString(projectStrings.TILEMAP_JSON_FILE);
         this.tilesetJsonFile = jsonObject.getString(projectStrings.TILESET_JSON_FILE);
         this.tilemapAtlasImage = jsonObject.getString(projectStrings.TILEMAP_ATLAS_IMAGE);
         this.displayMode = jsonObject.getString(projectStrings.DISPLAY_MODE);
         this.layerIndex = jsonObject.getInt(projectStrings.LAYER_INDEX);
-        var levelIndex = 0;
+        let levelIndex = 0;
         ;
         if (jsonObject.has(projectStrings.LEVEL_INDEX)) {
             jsonObject.getInt(projectStrings.LEVEL_INDEX);

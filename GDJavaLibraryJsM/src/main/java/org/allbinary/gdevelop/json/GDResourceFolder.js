@@ -22,20 +22,20 @@ export class GDResourceFolder extends Object {
         super();
         this.logUtil = LogUtil.getInstance();
         this.resourceList = new BasicArrayListD();
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
         this.name = jsonObject.getString(gdProjectStrings.NAME);
-        var jsonArray = jsonObject.getJSONArray(gdProjectStrings.RESOURCES);
+        let jsonArray = jsonObject.getJSONArray(gdProjectStrings.RESOURCES);
         ;
-        var size = jsonArray.length();
+        let size = jsonArray.length();
         ;
-        var nextJSONObject;
+        let nextJSONObject;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             nextJSONObject = jsonArray.getJSONObject(index);
             this.resourceList.add(nextJSONObject.getString(gdProjectStrings.NAME));
         }
-        var commonStrings = CommonStrings.getInstance();
+        let commonStrings = CommonStrings.getInstance();
         ;
         this.logUtil.putF(GDResourceFolder.RESOURCES + this.resourceList.size(), this, commonStrings.CONSTRUCTOR);
     }

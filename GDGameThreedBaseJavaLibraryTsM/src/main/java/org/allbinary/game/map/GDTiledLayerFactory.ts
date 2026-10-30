@@ -82,22 +82,22 @@ public constructor (){
             
     public getInstance(raceTrackInfo: RaceTrackInfo, raceTrackData: RaceTrackData): AllBinaryTiledLayer{
 
-    var raceTrackThreedData: RaceTrackThreedData = ThreedTiledLayerResourcesFactory.getInstance()!.getInstance(raceTrackInfo!.getId())!;;
+    let raceTrackThreedData: RaceTrackThreedData = ThreedTiledLayerResourcesFactory.getInstance()!.getInstance(raceTrackInfo!.getId())!;;
     
 
-    var animationInterfaceArray: Animation[] = raceTrackThreedData!.getAnimationArray()!;;
+    let animationInterfaceArray: Animation[] = raceTrackThreedData!.getAnimationArray()!;;
     
 
-    var columns: number = raceTrackData!.getMapArray()[0]!.length;;
+    let columns: number = raceTrackData!.getMapArray()[0]!.length;;
     
 
-    var rows: number = raceTrackData!.getMapArray()!.length;;
+    let rows: number = raceTrackData!.getMapArray()!.length;;
     
 
-    var width: number = columns *raceTrackData!.getCellWidth();;
+    let width: number = columns *raceTrackData!.getCellWidth();;
     
 
-    var height: number = rows *raceTrackData!.getCellHeight();;
+    let height: number = rows *raceTrackData!.getCellHeight();;
     
 this.useAsMiniAllBinaryTiledLayer= new AllBinaryThreedVisibleTiledLayer(raceTrackData!.getId(), raceTrackData!.getMapArray(), animationInterfaceArray, columns, rows, width, height, raceTrackData!.getCellWidth(), raceTrackData!.getCellHeight(), 9);
     
@@ -123,6 +123,4 @@ this.useAsMiniAllBinaryTiledLayer= new AllBinaryThreedVisibleTiledLayer(raceTrac
 
 
 }
-
-
 

@@ -34,11 +34,11 @@ export class GDEventFactory extends Object {
         return GDEventFactory.instance;
     }
     create(jsonObject) {
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
-        var eventTypeFactory = GDEventTypeFactory.getInstance();
+        let eventTypeFactory = GDEventTypeFactory.getInstance();
         ;
-        var type = jsonObject.getString(gdProjectStrings.TYPE);
+        let type = jsonObject.getString(gdProjectStrings.TYPE);
         ;
         type = eventTypeFactory.get(type);
         if (type == eventTypeFactory.COMMENT) {

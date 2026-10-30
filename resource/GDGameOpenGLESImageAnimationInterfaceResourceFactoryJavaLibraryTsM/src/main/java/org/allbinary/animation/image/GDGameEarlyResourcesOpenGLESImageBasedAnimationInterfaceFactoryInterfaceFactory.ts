@@ -75,7 +75,7 @@ super.initImageCache(OpenGLImageCacheFactory.getInstance(), level);
 
     public isFeature(): boolean{
 
-    var features: Features = Features.getInstance()!;;
+    let features: Features = Features.getInstance()!;;
     
 
                         if(features.isFeature(GraphicsFeatureFactory.getInstance()!.IMAGE_GRAPHICS) && features.isFeature(GraphicsFeatureFactory.getInstance()!.IMAGE_TO_ARRAY_GRAPHICS) && features.isDefault(OpenGLFeatureFactory.getInstance()!.OPENGL))
@@ -104,6 +104,4 @@ super.initImageCache(OpenGLImageCacheFactory.getInstance(), level);
 
 
 }
-
-
 

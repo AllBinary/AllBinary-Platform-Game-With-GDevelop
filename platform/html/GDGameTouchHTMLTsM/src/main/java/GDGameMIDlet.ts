@@ -44,6 +44,7 @@ import { MotionGestureReceiveInterfaceFactory } from 'org/allbinary/input/motion
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 import { SmallIntegerSingletonFactory } from 'org/allbinary/logic/math/SmallIntegerSingletonFactory.js';
 //not GWT import const SmallIntegerSingletonFactory
@@ -84,7 +85,7 @@ public constructor (){
 GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance()!.getInstance());
     
 
-    var motionGesturesHandler: BasicMotionGesturesHandler = this.motionRecognizer!.getMotionGestureRecognizer()!.getMotionGesturesHandler()!;;
+    let motionGesturesHandler: BasicMotionGesturesHandler = this.motionRecognizer!.getMotionGestureRecognizer()!.getMotionGesturesHandler()!;;
     
 motionGesturesHandler!.addListener(new GDGameMotionGestureListener(MotionGestureReceiveInterfaceFactory.getInstance()));
     
@@ -97,26 +98,25 @@ new DefaultGameInitializationListener();
 
     init(){
 
-        try {
-            
-    var logUtil: LogUtil = LogUtil.getInstance()!;;
+ try { 
+    let logUtil: LogUtil = LogUtil.getInstance()!;;
     
 logUtil!.put(this.commonStrings!.START, this, this.commonStrings!.INIT);
     
 
-    var features: Features = Features.getInstance()!;;
+    let features: Features = Features.getInstance()!;;
     
 
-    var gameFeatureFactory: GameFeatureFactory = GameFeatureFactory.getInstance()!;;
+    let gameFeatureFactory: GameFeatureFactory = GameFeatureFactory.getInstance()!;;
     
 
-    var inputFeatureFactory: InputFeatureFactory = InputFeatureFactory.getInstance()!;;
+    let inputFeatureFactory: InputFeatureFactory = InputFeatureFactory.getInstance()!;;
     
 
-    var graphicsFeatureFactory: GraphicsFeatureFactory = GraphicsFeatureFactory.getInstance()!;;
+    let graphicsFeatureFactory: GraphicsFeatureFactory = GraphicsFeatureFactory.getInstance()!;;
     
 
-    var sensorFeatureFactory: SensorFeatureFactory = SensorFeatureFactory.getInstance()!;;
+    let sensorFeatureFactory: SensorFeatureFactory = SensorFeatureFactory.getInstance()!;;
     
 features.removeDefault(sensorFeatureFactory!.ORIENTATION_SENSORS);
     
@@ -139,10 +139,10 @@ features.addDefault(inputFeatureFactory!.MULTI_KEY_PRESS);
 features.addDefault(inputFeatureFactory!.REMOVE_DUPLICATE_KEY_PRESSES);
     
 
-    var gameConfigurationCentral: GameConfigurationCentral = GameConfigurationCentral.getInstance()!;;
+    let gameConfigurationCentral: GameConfigurationCentral = GameConfigurationCentral.getInstance()!;;
     
 
-    var smallIntegerSingletonFactory: SmallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()!;;
+    let smallIntegerSingletonFactory: SmallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()!;;
     
 gameConfigurationCentral!.VIBRATION.setDefaultValue(smallIntegerSingletonFactory!.getAt(0));
     
@@ -164,18 +164,19 @@ gameConfigurationCentral!.SCALE.setDefaultValue(smallIntegerSingletonFactory!.ge
     
 gameConfigurationCentral!.SCALE.setDefault();
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 logUtil!.put(commonStrings!.EXCEPTION, this, commonStrings!.CONSTRUCTOR, e);
     
+
+ }
+   }
+ 
 }
 
-}
-
 
 }
-
-
 

@@ -31,8 +31,8 @@ export class CallCountGDNodeStats extends Object {
         this.totalCalls = new Array(this.SIZE).fill(null).map(() => new Array(15000).fill(null));
     }
     reset() {
-        for (var index2 = 0; index2 < this.SIZE; index2++) {
-            for (var index = 0; index < 15000; index++) {
+        for (let index2 = 0; index2 < this.SIZE; index2++) {
+            for (let index = 0; index < 15000; index++) {
                 this.totalCalls[index2][index] = 0;
             }
         }
@@ -41,14 +41,14 @@ export class CallCountGDNodeStats extends Object {
         this.totalCalls[index][name]++;
     }
     log(stringBuilder) {
-        var commonStrings = CommonStrings.getInstance();
+        let commonStrings = CommonStrings.getInstance();
         ;
-        var commonSeps = CommonSeps.getInstance();
+        let commonSeps = CommonSeps.getInstance();
         ;
         stringBuilder.delete(0, stringBuilder.length());
         stringBuilder.append(this.TOTAL_CALLS);
-        for (var index = 0; index < this.SIZE; index++) {
-            for (var index2 = 0; index2 < 15000; index2++) {
+        for (let index = 0; index < this.SIZE; index++) {
+            for (let index2 = 0; index2 < 15000; index2++) {
                 if (this.totalCalls[index][index2] > 20) {
                     stringBuilder.appendint(index);
                     stringBuilder.append(commonSeps.COLON);

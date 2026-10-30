@@ -46,12 +46,12 @@ export class GDGameLayerManager extends AllBinaryGameLayerManager {
         return this.geographicMapInterfaceArray;
     }
     setGeographicMapInterface(geographicMapInterfaceArray) {
-        var commonStrings = CommonStrings.getInstance();
+        let commonStrings = CommonStrings.getInstance();
         ;
         this.logUtil.putF(commonStrings.START + this, this, commonStrings.PROCESS);
         this.geographicMapInterfaceArray = geographicMapInterfaceArray;
         this.geographicMapCellTypeArray = new Array(this.geographicMapInterfaceArray.length);
-        var geographicMapEventHandler = GeographicMapEventHandler.getInstance();
+        let geographicMapEventHandler = GeographicMapEventHandler.getInstance();
         ;
         geographicMapEventHandler.fireEvent();
         geographicMapEventHandler.removeAllListeners();

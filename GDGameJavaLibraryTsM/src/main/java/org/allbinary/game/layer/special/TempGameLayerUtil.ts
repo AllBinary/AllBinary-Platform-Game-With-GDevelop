@@ -67,7 +67,7 @@ export class TempGameLayerUtil
 
 
                         for (
-    var index: number = 0;index < 5; index++)
+    let index: number = 0;index < 5; index++)
         {
 this.gameLayerArray[index]= 
                                         null
@@ -85,6 +85,4 @@ this.clear();
 
 
 }
-
-
 

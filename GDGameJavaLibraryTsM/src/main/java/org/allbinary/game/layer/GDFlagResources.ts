@@ -14,6 +14,7 @@ import { FlagGameResources } from '../../../../org/allbinary/game/layer/waypoint
 
 //not plain js import { NullUtil } 
 const NullUtil = globalThis.org.allbinary.logic.NullUtil;
+type NullUtil<T = any, U = any> = typeof NullUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof NullUtil;
 
 
 
@@ -62,25 +63,25 @@ private constructor (){
 
             super();
         
-    var ROOT: string = "/gd_flag";;
+    let ROOT: string = "/gd_flag";;
     
 
-    var SMALL: string = "_64_by_64.png";;
+    let SMALL: string = "_64_by_64.png";;
     
 
-    var MEDIUM: string = SMALL;;
+    let MEDIUM: string = SMALL;;
     
 
-    var SIZE_FOUR: string = SMALL;;
+    let SIZE_FOUR: string = SMALL;;
     
 
-    var SIZE_FIVE: string = SMALL;;
+    let SIZE_FIVE: string = SMALL;;
     
 
-    var SIZE_SIX: string = SMALL;;
+    let SIZE_SIX: string = SMALL;;
     
 
-    var SIZE: string[] = 
+    let SIZE: string[] = 
                                                         [
                                                             SMALL,MEDIUM,SIZE_FOUR,SIZE_FIVE,SIZE_SIX
                                                         ];;
@@ -93,6 +94,4 @@ this.NAME= "Player Waypoint";
 
 
 }
-
-
 

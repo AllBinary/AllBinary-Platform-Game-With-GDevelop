@@ -47,5 +47,3 @@ public constructor (jsonObject: JSONObject){
 
 }
 
-
-

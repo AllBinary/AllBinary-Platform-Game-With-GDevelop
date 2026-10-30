@@ -14,7 +14,7 @@ import { GDProjectStrings } from './GDProjectStrings.js';
 export class GDIdeLayout extends Object {
     constructor(jsonObject) {
         super();
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
         this.editorSettings = new GDEditorSettings(jsonObject.getJSONObject(gdProjectStrings.EDITOR_SETTINGS));
         this.objectsGroups = jsonObject.getJSONArray(gdProjectStrings.OBJECT_GROUPS);

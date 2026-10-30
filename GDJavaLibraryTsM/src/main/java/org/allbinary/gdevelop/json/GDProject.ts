@@ -23,15 +23,19 @@ import { RectangleFactory } from '../../../../org/allbinary/graphics/RectangleFa
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { JSONArray } from '../../../../org/json/JSONArray.js';
 //not GWT import const JSONArray
@@ -130,12 +134,12 @@ export class GDProject
             
     public load(gameAsConfiguration: JSONObject){
 
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 this.gdIde!.load(gameAsConfiguration);
     
 
-    var properties: JSONObject = gameAsConfiguration!.getJSONObject(gdProjectStrings!.PROPERTIES)!;;
+    let properties: JSONObject = gameAsConfiguration!.getJSONObject(gdProjectStrings!.PROPERTIES)!;;
     
 this.packageName= properties.getString(gdProjectStrings!.PACKAGE_NAME);
     
@@ -144,10 +148,10 @@ this.name= properties.getString(gdProjectStrings!.NAME);
 this.version= properties.getString(gdProjectStrings!.VERSION);
     
 
-    var width: number = properties.getInt(gdProjectStrings!.WINDOW_WIDTH)!;;
+    let width: number = properties.getInt(gdProjectStrings!.WINDOW_WIDTH)!;;
     
 
-    var height: number = properties.getInt(gdProjectStrings!.WINDOW_HEIGHT)!;;
+    let height: number = properties.getInt(gdProjectStrings!.WINDOW_HEIGHT)!;;
     
 this.gameResolutionSize= new Rectangle(PointFactory.getInstance()!.ZERO_ZERO, width, height);
     
@@ -166,28 +170,28 @@ this.sizeOnStartupMode= properties.getString(gdProjectStrings!.SIZE_ON_STARTUP_M
 this.projectUuid= properties.getString(gdProjectStrings!.PROJECT_UUID);
     
 
-    var resourceJSONObject: JSONObject = gameAsConfiguration!.getJSONObject(gdProjectStrings!.RESOURCES)!;;
+    let resourceJSONObject: JSONObject = gameAsConfiguration!.getJSONObject(gdProjectStrings!.RESOURCES)!;;
     
 this.resourcesManager= new GDResourcesManager(resourceJSONObject);
     
 
-    var objectFactory: GDObjectFactory = GDObjectFactory.getInstance()!;;
+    let objectFactory: GDObjectFactory = GDObjectFactory.getInstance()!;;
     
 
-    var objectJSONArray: JSONArray = gameAsConfiguration!.getJSONArray(gdProjectStrings!.OBJECTS)!;;
+    let objectJSONArray: JSONArray = gameAsConfiguration!.getJSONArray(gdProjectStrings!.OBJECTS)!;;
     
 
-    var size: number = objectJSONArray!.length()!;;
+    let size: number = objectJSONArray!.length()!;;
     
 
-    var objectJSONObject: JSONObject;;
+    let objectJSONObject: JSONObject;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 objectJSONObject= objectJSONArray!.getJSONObject(index);
     
@@ -198,7 +202,7 @@ this.objectList!.add(objectFactory!.create(objectJSONObject));
 this.logUtil!.putF(this.OBJECTS +this.objectList!.size(), this, this.LOAD);
     
 
-    var variableJSONArray: JSONArray = gameAsConfiguration!.getJSONArray(gdProjectStrings!.VARIABLES)!;;
+    let variableJSONArray: JSONArray = gameAsConfiguration!.getJSONArray(gdProjectStrings!.VARIABLES)!;;
     
 size= variableJSONArray!.length();
     
@@ -207,7 +211,7 @@ size= variableJSONArray!.length();
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.variableList!.add(new GDVariable(variableJSONArray!.getJSONObject(index)));
     
@@ -216,7 +220,7 @@ this.variableList!.add(new GDVariable(variableJSONArray!.getJSONObject(index)));
 this.logUtil!.putF(this.VARIABLES +this.variableList!.size(), this, this.LOAD);
     
 
-    var layoutsJSONArray: JSONArray = gameAsConfiguration!.getJSONArray(gdProjectStrings!.LAYOUTS)!;;
+    let layoutsJSONArray: JSONArray = gameAsConfiguration!.getJSONArray(gdProjectStrings!.LAYOUTS)!;;
     
 size= layoutsJSONArray!.length();
     
@@ -225,7 +229,7 @@ size= layoutsJSONArray!.length();
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 objectJSONObject= layoutsJSONArray!.getJSONObject(index);
     
@@ -236,7 +240,7 @@ this.layoutList!.add(new GDLayout(objectJSONObject));
 this.logUtil!.putF(this.LAYOUTS +this.layoutList!.size(), this, this.LOAD);
     
 
-    var externalLayoutsJSONArray: JSONArray = gameAsConfiguration!.getJSONArray(gdProjectStrings!.EXTERNAL_LAYOUTS)!;;
+    let externalLayoutsJSONArray: JSONArray = gameAsConfiguration!.getJSONArray(gdProjectStrings!.EXTERNAL_LAYOUTS)!;;
     
 size= externalLayoutsJSONArray!.length();
     
@@ -245,7 +249,7 @@ size= externalLayoutsJSONArray!.length();
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 objectJSONObject= externalLayoutsJSONArray!.getJSONObject(index);
     
@@ -259,6 +263,4 @@ this.logUtil!.putF(this.EXTERNAL_LAYOUT +this.externalLayoutList!.size(), this, 
 
 
 }
-
-
 

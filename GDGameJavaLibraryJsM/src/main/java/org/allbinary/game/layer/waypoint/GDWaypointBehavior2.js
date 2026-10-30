@@ -38,12 +38,56 @@ const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 const BasicArrayListUtil = globalThis.org.allbinary.util.BasicArrayListUtil;
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDWaypointBehavior } from './GDWaypointBehavior.js';
-//not GWT import - same folder const WaypointBase
-//import { BuildingSteeringVisitor } from './BuildingSteeringVisitor.js';
-//not GWT import - same folder const BuildingSteeringVisitor
 export class GDWaypointBehavior2 extends GDWaypointBehavior {
     constructor(ownerAdvancedRTSGameLayer, fakeWaypoint) {
         super(ownerAdvancedRTSGameLayer, fakeWaypoint);
+        //inner= member=true isStatic=
+        this.BuildingSteeringVisitor = (() => {
+            const outer$GDWaypointBehavior2 = this;
+            return class extends SteeringVisitor {
+                constructor() {
+                    /*Static stuff is not allowed for TypeScript inner classes*/ /**/
+                    super(...arguments);
+                    this.positionList = new BasicArrayListD();
+                }
+                visit(anyType) {
+                    try {
+                        if (this.getList().size() > 0) {
+                            let allbinaryLayer = this.getList().get(0);
+                            ;
+                            let cellPosition = this.getPositionList().get(0);
+                            ;
+                            let clear = outer$GDWaypointBehavior2.buildingChase(allbinaryLayer, cellPosition);
+                            ;
+                            if (clear) {
+                                this.getList().clear();
+                                this.positionList.clear();
+                                //if statement needs to be on the same line and ternary does not work the same way.
+                                return NullUtil.getInstance().NULL_OBJECT;
+                            }
+                            //if statement needs to be on the same line and ternary does not work the same way.
+                            return false;
+                        }
+                        //if statement needs to be on the same line and ternary does not work the same way.
+                        return NullUtil.getInstance().NULL_OBJECT;
+                    }
+                    catch (caught) {
+                        {
+                            const e = caught;
+                            let commonStrings = CommonStrings.getInstance();
+                            ;
+                            logUtil.put(commonStrings.EXCEPTION, this, "visit", e);
+                            //if statement needs to be on the same line and ternary does not work the same way.
+                            return NullUtil.getInstance().NULL_OBJECT;
+                        }
+                    }
+                }
+                getPositionList() {
+                    //if statement needs to be on the same line and ternary does not work the same way.
+                    return this.positionList;
+                }
+            };
+        })();
         this.unitWaypointStrings = UnitWaypointStrings.getInstance();
         this.layerDistanceUtil = LayerDistanceUtil.getInstance();
         this.pathFindingThreadPool = PathFindingThreadPool.getInstance();
@@ -55,48 +99,6 @@ export class GDWaypointBehavior2 extends GDWaypointBehavior {
         this.waitingOnTargetPath = false;
         this.waitingOnWaypointPath = false;
         this.targetWithoutCachedPathLayerInterface = CollidableDestroyableDamageableLayer.getNullInstance();
-        //inner= member=true isStatic=
-        this.BuildingSteeringVisitor = class extends SteeringVisitor {
-            constructor() {
-                /*Static stuff is not allowed for TypeScript inner classes*/ /**/
-                super(...arguments);
-                this.positionList = new BasicArrayListD();
-            }
-            visit(anyType = {}) {
-                try {
-                    if (this.getList().size() > 0) {
-                        var allbinaryLayer = this.getList().get(0);
-                        ;
-                        var cellPosition = this.getPositionList().get(0);
-                        ;
-                        var clear = GDWaypointBehavior2.prototype.buildingChase(allbinaryLayer, cellPosition);
-                        ;
-                        if (clear) {
-                            this.getList().clear();
-                            this.positionList.clear();
-                            //if statement needs to be on the same line and ternary does not work the same way.
-                            return NullUtil.getInstance().NULL_OBJECT;
-                        }
-                        //if statement needs to be on the same line and ternary does not work the same way.
-                        return Boolean.FALSE;
-                    }
-                    //if statement needs to be on the same line and ternary does not work the same way.
-                    return NullUtil.getInstance().NULL_OBJECT;
-                    //: 
-                }
-                catch (e) {
-                    var commonStrings = CommonStrings.getInstance();
-                    ;
-                    logUtil.put(commonStrings.EXCEPTION, this, "visit", e);
-                    //if statement needs to be on the same line and ternary does not work the same way.
-                    return NullUtil.getInstance().NULL_OBJECT;
-                }
-            }
-            getPositionList() {
-                //if statement needs to be on the same line and ternary does not work the same way.
-                return this.positionList;
-            }
-        };
         this.buildingSteeringVisitor = new this.BuildingSteeringVisitor();
         //For kotlin this is before the body of the constructor.
         this.progressTimeDelayHelper = new TimeDelayHelper(5000);
@@ -172,7 +174,7 @@ export class GDWaypointBehavior2 extends GDWaypointBehavior {
     }
     //@Throws(Exception.constructor)
     onEnemyMovement(layerInterface) {
-        var anotherTargetDistance = this.layerDistanceUtil.getDistance(this.associatedAdvancedRTSGameLayer, layerInterface);
+        let anotherTargetDistance = this.layerDistanceUtil.getDistance(this.associatedAdvancedRTSGameLayer, layerInterface);
         ;
         if (layerInterface == this.currentTargetLayerInterfaceP) {
             this.setCurrentTargetDistance(anotherTargetDistance);
@@ -183,9 +185,9 @@ export class GDWaypointBehavior2 extends GDWaypointBehavior {
     }
     //@Throws(Exception.constructor)
     processPossibleTarget(layerInterface, anotherTargetDistance) {
-        var isShorterThanCurrentTargetDistance = this.getCurrentTargetDistance() > anotherTargetDistance;
+        let isShorterThanCurrentTargetDistance = this.getCurrentTargetDistance() > anotherTargetDistance;
         ;
-        var isCurrentTargetDestroyed = this.currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance() && this.currentTargetLayerInterfaceP.isDestroyed();
+        let isCurrentTargetDestroyed = this.currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance() && this.currentTargetLayerInterfaceP.isDestroyed();
         ;
         this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processPossibleTarget(this.associatedAdvancedRTSGameLayer, this, layerInterface, anotherTargetDistance, isShorterThanCurrentTargetDistance, isCurrentTargetDestroyed);
         if (this.isWaypointListEmptyOrOnlyTargets() && this.isInSensorRange(layerInterface, anotherTargetDistance) && (isShorterThanCurrentTargetDistance || isCurrentTargetDestroyed)) {
@@ -204,7 +206,7 @@ export class GDWaypointBehavior2 extends GDWaypointBehavior {
                 this.associatedAdvancedRTSGameLayer.teleportTo(this.nextUnvisitedPathGeographicMapCellPositionP);
             }
             if (this.getCompleteTimeDelayHelper().isTimeTNT()) {
-                var geographicMapCellPosition = this.currentGeographicMapCellHistoryP.getTracked().get(this.currentGeographicMapCellHistoryP.getSize() - 1);
+                let geographicMapCellPosition = this.currentGeographicMapCellHistoryP.getTracked().get(this.currentGeographicMapCellHistoryP.getSize() - 1);
                 ;
                 this.associatedAdvancedRTSGameLayer.teleportTo(geographicMapCellPosition);
             }
@@ -212,10 +214,10 @@ export class GDWaypointBehavior2 extends GDWaypointBehavior {
     }
     //@Throws(Exception.constructor)
     updatePathOnTargetMove(reason) {
-        var currentTargetLayerInterface = this.currentTargetLayerInterfaceP;
+        let currentTargetLayerInterface = this.currentTargetLayerInterfaceP;
         ;
         if (currentTargetLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance()) {
-            var geographicMapCellPosition = currentTargetLayerInterface.getCurrentGeographicMapCellPosition();
+            let geographicMapCellPosition = currentTargetLayerInterface.getCurrentGeographicMapCellPosition();
             ;
             if (geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
                 //if statement needs to be on the same line and ternary does not work the same way.
@@ -235,7 +237,7 @@ export class GDWaypointBehavior2 extends GDWaypointBehavior {
     }
     //@Throws(Exception.constructor)
     setTarget(layerInterface) {
-        var anotherTargetDistance = this.layerDistanceUtil.getDistance(this.associatedAdvancedRTSGameLayer, layerInterface);
+        let anotherTargetDistance = this.layerDistanceUtil.getDistance(this.associatedAdvancedRTSGameLayer, layerInterface);
         ;
         this.setTargetWithDistance(layerInterface, anotherTargetDistance);
     }
@@ -249,17 +251,17 @@ export class GDWaypointBehavior2 extends GDWaypointBehavior {
         this.setTrackingWaypoint(false);
         this.targetListP.clear();
         if (!this.isCloseRange(layerInterface, anotherTargetDistance) && this.canInsertWaypoint(0, this.currentTargetLayerInterfaceP)) {
-            var geographicMapCellPosition = this.associatedAdvancedRTSGameLayer.getCurrentGeographicMapCellPosition();
+            let geographicMapCellPosition = this.associatedAdvancedRTSGameLayer.getCurrentGeographicMapCellPosition();
             ;
             if (geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
                 //if statement needs to be on the same line and ternary does not work the same way.
                 return;
             }
-            var pathFindingLayerInterface = this.currentTargetLayerInterfaceP;
+            let pathFindingLayerInterface = this.currentTargetLayerInterfaceP;
             ;
-            var waypoint = pathFindingLayerInterface.getWaypointBehavior().getWaypoint();
+            let waypoint = pathFindingLayerInterface.getWaypointBehavior().getWaypoint();
             ;
-            var list = waypoint.getPathsListFromCacheOnly(geographicMapCellPosition);
+            let list = waypoint.getPathsListFromCacheOnly(geographicMapCellPosition);
             ;
             this.setWaypointPathsList(list);
             if (this.waypointPathsListP == BasicArrayListUtil.getInstance().getImmutableInstance()) {
@@ -295,10 +297,10 @@ export class GDWaypointBehavior2 extends GDWaypointBehavior {
     }
     //@Throws(Exception.constructor)
     processWaypoint() {
-        var size = this.targetListP.size();
+        let size = this.targetListP.size();
         ;
         if (size > 0) {
-            var targetLayer = this.targetListP.get(0);
+            let targetLayer = this.targetListP.get(0);
             ;
             this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processWaypoint(this.associatedAdvancedRTSGameLayer, this, targetLayer, size);
             if (targetLayer.isDestroyed()) {
@@ -306,7 +308,7 @@ export class GDWaypointBehavior2 extends GDWaypointBehavior {
                 this.removeWaypoint(targetLayer, this.unitWaypointStrings.WAYPOINT_DESTROYED);
             }
             else {
-                var geographicMapCellPosition = this.associatedAdvancedRTSGameLayer.getCurrentGeographicMapCellPosition();
+                let geographicMapCellPosition = this.associatedAdvancedRTSGameLayer.getCurrentGeographicMapCellPosition();
                 ;
                 if (geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
                     //if statement needs to be on the same line and ternary does not work the same way.
@@ -318,7 +320,7 @@ export class GDWaypointBehavior2 extends GDWaypointBehavior {
                         this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processWaypointTrackedVisit(this.associatedAdvancedRTSGameLayer, geographicMapCellPosition);
                     }
                     if (this.currentGeographicMapCellHistoryP.isAllVisited2() && this.currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance()) {
-                        var oldWaypointLayer = this.currentTargetLayerInterfaceP;
+                        let oldWaypointLayer = this.currentTargetLayerInterfaceP;
                         ;
                         oldWaypointLayer.getWaypointBehavior().getWaypoint().visit(this.associatedAdvancedRTSGameLayer);
                         this.associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(this.unitWaypointStrings.ALL_VISITED_SHORT, BasicColorFactory.getInstance().GREEN);
@@ -326,7 +328,7 @@ export class GDWaypointBehavior2 extends GDWaypointBehavior {
                     }
                 }
                 else if (this.currentTargetLayerInterfaceP == CollidableDestroyableDamageableLayer.getNullInstance() || this.waypointOverridesAttacking) {
-                    var list = targetLayer.getWaypointBehavior().getWaypoint().getPathsListFromCacheOnly(geographicMapCellPosition);
+                    let list = targetLayer.getWaypointBehavior().getWaypoint().getPathsListFromCacheOnly(geographicMapCellPosition);
                     ;
                     this.setWaypointPathsList(list);
                     if (this.waypointPathsListP == BasicArrayListUtil.getInstance().getImmutableInstance()) {
@@ -355,14 +357,14 @@ export class GDWaypointBehavior2 extends GDWaypointBehavior {
         this.associatedAdvancedRTSGameLayer.trackTo(this.unitWaypointStrings.NEXT_PATH_NODE);
     }
     visitIfAtMidPoint(geographicMapCellPosition) {
-        var unitLayer = this.associatedAdvancedRTSGameLayer;
+        let unitLayer = this.associatedAdvancedRTSGameLayer;
         ;
         if (geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION && this.nextUnvisitedPathGeographicMapCellPositionP == geographicMapCellPosition) {
-            var point = geographicMapCellPosition.getMidPoint();
+            let point = geographicMapCellPosition.getMidPoint();
             ;
-            var afterNextPoint = this.afterNextUnvisitedPathGeographicMapCellPosition.getMidPoint();
+            let afterNextPoint = this.afterNextUnvisitedPathGeographicMapCellPosition.getMidPoint();
             ;
-            var beyondMidPoint = true;
+            let beyondMidPoint = true;
             ;
             if (geographicMapCellPosition.getColumn() == this.afterNextUnvisitedPathGeographicMapCellPosition.getColumn()) {
             }
@@ -399,8 +401,8 @@ export class GDWaypointBehavior2 extends GDWaypointBehavior {
     }
     //@Throws(Exception.constructor)
     processTargetList() {
-        for (var index = this.getPossibleTargetList().size() - 1; index >= 0; index--) {
-            var layerInterface = this.getPossibleTargetList().get(index);
+        for (let index = this.getPossibleTargetList().size() - 1; index >= 0; index--) {
+            let layerInterface = this.getPossibleTargetList().get(index);
             ;
             if (layerInterface.isDestroyed()) {
                 this.getPossibleTargetList().remove(layerInterface);
@@ -427,21 +429,21 @@ export class GDWaypointBehavior2 extends GDWaypointBehavior {
                 //if statement needs to be on the same line and ternary does not work the same way.
                 return;
             }
-            var dx = 0;
+            let dx = 0;
             ;
-            var dy = 0;
+            let dy = 0;
             ;
-            var associatedAdvancedRTSGameLayer2 = this.associatedAdvancedRTSGameLayer;
+            let associatedAdvancedRTSGameLayer2 = this.associatedAdvancedRTSGameLayer;
             ;
             if (this.isTrackingWaypoint()) {
                 this.updateCurrentPathGeographicMapCellPosition();
-                var point = this.nextUnvisitedPathGeographicMapCellPositionP.getMidPoint();
+                let point = this.nextUnvisitedPathGeographicMapCellPositionP.getMidPoint();
                 ;
-                var geographicMapCompositeInterface = associatedAdvancedRTSGameLayer2.allBinaryGameLayerManagerP;
+                let geographicMapCompositeInterface = associatedAdvancedRTSGameLayer2.allBinaryGameLayerManagerP;
                 ;
-                var geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0];
+                let geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0];
                 ;
-                var tiledLayer = geographicMapInterface.getAllBinaryTiledLayer();
+                let tiledLayer = geographicMapInterface.getAllBinaryTiledLayer();
                 ;
                 dx = associatedAdvancedRTSGameLayer2.getXP() + associatedAdvancedRTSGameLayer2.getHalfWidth() - point.getX() + tiledLayer.getXP();
                 dy = associatedAdvancedRTSGameLayer2.getYP() + associatedAdvancedRTSGameLayer2.getHalfHeight() - point.getY() + tiledLayer.getYP();
@@ -514,14 +516,14 @@ export class GDWaypointBehavior2 extends GDWaypointBehavior {
         TrackingEventHandler.getInstance().fireEvent(this.associatedAdvancedRTSGameLayer.getTrackingEvent());
     }
     isWaypointListEmptyOrOnlyTargets() {
-        var list = this.targetListP;
+        let list = this.targetListP;
         ;
         if (list.size() == 0) {
             //if statement needs to be on the same line and ternary does not work the same way.
             return true;
         }
-        for (var index = list.size() - 1; index >= 0; index--) {
-            var layerInterface = list.get(index);
+        for (let index = list.size() - 1; index >= 0; index--) {
+            let layerInterface = list.get(index);
             ;
             if (layerInterface.isWaypointListEmptyOrOnlyTargets()) {
                 //if statement needs to be on the same line and ternary does not work the same way.
@@ -540,7 +542,7 @@ export class GDWaypointBehavior2 extends GDWaypointBehavior {
         return targetDistance < this.sensorRange + layerInterface.getHalfHeight();
     }
     getCurrentTargetingStateString() {
-        var stringBuffer = new StringMaker();
+        let stringBuffer = new StringMaker();
         ;
         if (this.currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance()) {
             stringBuffer.append(GDWaypointBehavior2.TARGET_LAYER);

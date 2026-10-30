@@ -57,12 +57,15 @@ import { Rectangle } from '../../../../org/allbinary/graphics/Rectangle.js';
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
+type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringMaker;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 import { ViewPosition } from '../../../../org/allbinary/view/ViewPosition.js';
 //not GWT import const ViewPosition
@@ -151,14 +154,7 @@ this.resetAnimationBehavior= resetAnimationBehavior;
                         
                                     {
                                     
-    var animationName: string = this.animationInterfaceFactoryInterfaceArray!.length > 0
-                        ?       
-                                this.animationInterfaceFactoryInterfaceArray[0]!.toString()
-                                :
-
-                            "empty";
-
-    ;;
+    let animationName: string = (this.animationInterfaceFactoryInterfaceArray!.length > 0 ? this.animationInterfaceFactoryInterfaceArray[0]!.toString() : "empty");;
     
 this.logUtil!.put(new StringMaker().append(name)!.append(" GDObject name: ")!.append(gdObject!.name)!.append(" animationInterfaceFactoryInterfaceArray size: ")!.appendint(this.animationInterfaceFactoryInterfaceArray!.length)!.append(" animationInterfaceFactoryInterfaceArray[0]: ")!.append(animationName)!.toString(), this, "create", new Exception());
     
@@ -166,12 +162,12 @@ this.logUtil!.put(new StringMaker().append(name)!.append(" GDObject name: ")!.ap
                                     }
                                 
 
-    var rectangle: Rectangle = new Rectangle(PointFactory.getInstance()!.ZERO_ZERO, Math.round((this.layerInfo!.getWidth() *scaleX)), Math.round((this.layerInfo!.getHeight() *scaleY)));;
+    let rectangle: Rectangle = new Rectangle(PointFactory.getInstance()!.ZERO_ZERO, globalThis.Math.trunc((this.layerInfo!.getWidth() *scaleX)), globalThis.Math.trunc((this.layerInfo!.getHeight() *scaleY)));;
     
 gdObject!.updateScale(scaleX, scaleY);
     
 
-    var gameLayer: GDGameLayer = new GDGameLayer(NullAnimationFactory.getFactoryInstance()!.getInstance(0), this.gameLayerList, this.gameLayerDestroyedList, this.behaviorList, new VelocityProperties(9600, 9600), RemoteInfo.REMOTE_INFO, this.groupInterface, name, this.animationInterfaceFactoryInterfaceArray, this.proceduralAnimationInterfaceFactoryInterfaceArray, rectangle, this.rectangleArrayOfArrays, ViewPosition.getInstanceD(), gdObject, this.animationBehaviorFactory!.create(), this.resetAnimationBehavior);;
+    let gameLayer: GDGameLayer = new GDGameLayer(NullAnimationFactory.getFactoryInstance()!.getInstance(0), this.gameLayerList, this.gameLayerDestroyedList, this.behaviorList, new VelocityProperties(9600, 9600), RemoteInfo.REMOTE_INFO, this.groupInterface, name, this.animationInterfaceFactoryInterfaceArray, this.proceduralAnimationInterfaceFactoryInterfaceArray, rectangle, this.rectangleArrayOfArrays, ViewPosition.getInstanceD(), gdObject, this.animationBehaviorFactory!.create(), this.resetAnimationBehavior);;
     
 
 
@@ -183,6 +179,4 @@ gdObject!.updateScale(scaleX, scaleY);
 
 
 }
-
-
 

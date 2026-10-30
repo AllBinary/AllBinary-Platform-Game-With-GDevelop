@@ -14,8 +14,6 @@
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../../java/lang/Object.js';
 import { MusicManager } from '../../../../../org/allbinary/media/audio/music/MusicManager.js';
-//not GWT import const MusicManager
-import { MusicService } from '../../../../../org/allbinary/media/audio/music/MusicService.js';
 //not GWT import const MusicService
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
@@ -23,6 +21,6 @@ const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 export class MusicManagerFactory extends Object {
     static createMusicManager(list) {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return new MusicManager(MusicService.constructor, list);
+        return new MusicManager(MusicServicelist);
     }
 }

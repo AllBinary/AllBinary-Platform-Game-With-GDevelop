@@ -25,9 +25,9 @@ export class GDIndividualAnimationBehavior extends GDAnimationBehaviorBase {
     }
     animate(gdObject, initIndexedAnimationInterfaceArray, timeDelta) {
         try {
-            var indexedAnimation = initIndexedAnimationInterfaceArray[gdObject.animation];
+            let indexedAnimation = initIndexedAnimationInterfaceArray[gdObject.animation];
             ;
-            var indexedAnimationBehavior = indexedAnimation.getAnimationBehavior();
+            let indexedAnimationBehavior = indexedAnimation.getAnimationBehavior();
             ;
             if (indexedAnimationBehavior.loopTotal < 0 || !indexedAnimation.isLastFrame()) {
                 indexedAnimationBehavior.elapsedTime += timeDelta;
@@ -41,12 +41,14 @@ export class GDIndividualAnimationBehavior extends GDAnimationBehaviorBase {
                     }
                 }
             }
-            //: 
         }
-        catch (e) {
-            var commonStrings = CommonStrings.getInstance();
-            ;
-            this.logUtil.put(commonStrings.EXCEPTION, this, "animate", e);
+        catch (caught) {
+            {
+                const e = caught;
+                let commonStrings = CommonStrings.getInstance();
+                ;
+                this.logUtil.put(commonStrings.EXCEPTION, this, "animate", e);
+            }
         }
     }
 }

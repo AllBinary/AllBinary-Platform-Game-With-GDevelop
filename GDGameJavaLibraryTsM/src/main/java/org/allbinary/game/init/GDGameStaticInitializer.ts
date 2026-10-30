@@ -64,5 +64,3 @@ public constructor (resourceInitializationArray: ResourceInitialization[], porti
 
 }
 
-
-

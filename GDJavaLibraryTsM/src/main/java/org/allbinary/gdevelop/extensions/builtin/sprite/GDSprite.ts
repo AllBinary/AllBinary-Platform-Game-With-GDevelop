@@ -17,9 +17,11 @@ import { GDProjectStrings } from '../../../../../../org/allbinary/gdevelop/json/
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { JSONArray } from '../../../../../../org/json/JSONArray.js';
 //not GWT import const JSONArray
@@ -71,24 +73,24 @@ public constructor (jsonObject: JSONObject){
 
             super();
         
-    var projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 this.hasCustomCollisionMask= jsonObject!.getBoolean(projectStrings!.HAS_CUSTOM_COLLISION_MASK);
     
 this.imageAsString= jsonObject!.getString(projectStrings!.IMAGE);
     
 
-    var jsonArray: JSONArray = jsonObject!.getJSONArray(projectStrings!.POINTS)!;;
+    let jsonArray: JSONArray = jsonObject!.getJSONArray(projectStrings!.POINTS)!;;
     
 
-    var size: number = jsonArray!.length()!;;
+    let size: number = jsonArray!.length()!;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.pointList!.add(new GDPoint(jsonArray!.getJSONObject(index)));
     
@@ -99,17 +101,17 @@ this.originPoint= new GDPoint(jsonObject!.getJSONObject(projectStrings!.ORIGIN_P
 this.centerPoint= new GDPoint(jsonObject!.getJSONObject(projectStrings!.CENTER_POINTS));
     
 
-    var polygon2dJSONArray: JSONArray = jsonObject!.getJSONArray(projectStrings!.CUSTOM_COLLISION_MASK)!;;
+    let polygon2dJSONArray: JSONArray = jsonObject!.getJSONArray(projectStrings!.CUSTOM_COLLISION_MASK)!;;
     
 
-    var size2: number = polygon2dJSONArray!.length()!;;
+    let size2: number = polygon2dJSONArray!.length()!;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size2; index++)
+    let index: number = 0;index < size2; index++)
         {
 this.polygon2dList!.add(new GDPolygon2d(polygon2dJSONArray!.getJSONArray(index)));
     
@@ -119,6 +121,4 @@ this.polygon2dList!.add(new GDPolygon2d(polygon2dJSONArray!.getJSONArray(index))
 
 
 }
-
-
 

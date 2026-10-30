@@ -19,15 +19,15 @@ export class GDPolygon2d extends Object {
     constructor(jsonArray) {
         super();
         this.pointList = new BasicArrayListD();
-        var pointFactory = PointFactory.getInstance();
+        let pointFactory = PointFactory.getInstance();
         ;
-        var projectStrings = GDProjectStrings.getInstance();
+        let projectStrings = GDProjectStrings.getInstance();
         ;
-        var size = jsonArray.length();
+        let size = jsonArray.length();
         ;
-        var jsonObject;
+        let jsonObject;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             jsonObject = jsonArray.getJSONObject(index);
             this.pointList.add(pointFactory.createXY(jsonObject.getInt(projectStrings.X), jsonObject.getInt(projectStrings.Y)));
         }

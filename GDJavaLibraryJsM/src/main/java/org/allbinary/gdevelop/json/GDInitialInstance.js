@@ -23,7 +23,7 @@ export class GDInitialInstance extends Object {
         this.numberPropertiesMap = new ABHashMap();
         this.stringPropertiesMap = new ABHashMap();
         this.initialVariableList = new BasicArrayListD();
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
         this.name = jsonObject.getString(gdProjectStrings.NAME);
         this.x = jsonObject.getDouble(gdProjectStrings.X);
@@ -35,37 +35,37 @@ export class GDInitialInstance extends Object {
         this.width = jsonObject.getDouble(gdProjectStrings.WIDTH);
         this.height = jsonObject.getDouble(gdProjectStrings.HEIGHT);
         this.persistentUuid = jsonObject.getString(gdProjectStrings.PERSISTED_UUID);
-        var numberPropertiesJSONArray = jsonObject.getJSONArray(gdProjectStrings.NUMBER_PROPERTIES);
+        let numberPropertiesJSONArray = jsonObject.getJSONArray(gdProjectStrings.NUMBER_PROPERTIES);
         ;
-        var size = numberPropertiesJSONArray.length();
+        let size = numberPropertiesJSONArray.length();
         ;
-        var nextJSONObject;
+        let nextJSONObject;
         ;
-        var name;
+        let name;
         ;
-        var valueAsDouble;
+        let valueAsDouble;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             nextJSONObject = numberPropertiesJSONArray.getJSONObject(index);
             name = nextJSONObject.getString(gdProjectStrings.NAME);
             valueAsDouble = nextJSONObject.getDouble(gdProjectStrings.VALUE);
             this.numberPropertiesMap.put(name, valueAsDouble);
         }
-        var stringPropertiesJSONArray = jsonObject.getJSONArray(gdProjectStrings.STRING_PROPERTIES);
+        let stringPropertiesJSONArray = jsonObject.getJSONArray(gdProjectStrings.STRING_PROPERTIES);
         ;
         size = stringPropertiesJSONArray.length();
-        var value;
+        let value;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             nextJSONObject = stringPropertiesJSONArray.getJSONObject(index);
             name = nextJSONObject.getString(gdProjectStrings.NAME);
             value = nextJSONObject.getString(gdProjectStrings.VALUE);
             this.stringPropertiesMap.put(name, value);
         }
-        var variableJSONArray = jsonObject.getJSONArray(gdProjectStrings.INITIAL_VARIABLE);
+        let variableJSONArray = jsonObject.getJSONArray(gdProjectStrings.INITIAL_VARIABLE);
         ;
         size = variableJSONArray.length();
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             this.initialVariableList.add(new GDVariable(variableJSONArray.getJSONObject(index)));
         }
     }

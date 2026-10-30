@@ -30,7 +30,7 @@ export class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior {
         this.conditionWIthGroupActions = collidableBehavior;
     }
     isCollision(ownerLayer, collisionLayer) {
-        var gdWithAllBinaryCollidableBehavior = collisionLayer.getCollidableInferface();
+        let gdWithAllBinaryCollidableBehavior = collisionLayer.getCollidableInferface();
         ;
         if (gdWithAllBinaryCollidableBehavior.conditionWIthGroupActions.groupWithActionsList.size() > 0) {
             if (ownerLayer.getGroupInterface()[0] != collisionLayer.getGroupInterface()[0]) {
@@ -57,19 +57,19 @@ export class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior {
             return;
         }
         if (this.conditionWIthGroupActions.groupWithActionsList.size() > 0) {
-            var groupInterfaceArray = collisionLayer.getGroupInterface();
+            let groupInterfaceArray = collisionLayer.getGroupInterface();
             ;
-            var size = groupInterfaceArray.length;
+            let size = groupInterfaceArray.length;
             ;
-            var indexOfGroup = 0;
+            let indexOfGroup = 0;
             ;
-            var node;
+            let node;
             ;
-            for (var index = 0; index < size; index++) {
+            for (let index = 0; index < size; index++) {
                 indexOfGroup = this.conditionWIthGroupActions.groupWithActionsList.indexOf(groupInterfaceArray[index]);
                 if (indexOfGroup >= 0) {
                     node = this.conditionWIthGroupActions.actionForGroupsList.get(indexOfGroup);
-                    var tempGameLayerUtil = TempGameLayerUtil.getInstance();
+                    let tempGameLayerUtil = TempGameLayerUtil.getInstance();
                     ;
                     tempGameLayerUtil.clear();
                     tempGameLayerUtil.gameLayerArray[0] = ownerLayer;
@@ -91,16 +91,16 @@ export class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior {
         ForcedLogUtil.log("No Longer Used", this);
     }
     toString(ownerLayer, collisionLayer, stringBuilder) {
-        var stringUtil = StringUtil.getInstance();
+        let stringUtil = StringUtil.getInstance();
         ;
-        var size = ownerLayer.getGroupInterface().length;
+        let size = ownerLayer.getGroupInterface().length;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             stringBuilder.append(stringUtil.toString(ownerLayer.getGroupInterface()[index]));
         }
         stringBuilder.append(" != ");
         size = collisionLayer.getGroupInterface().length;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             stringBuilder.append(stringUtil.toString(collisionLayer.getGroupInterface()[index]));
         }
         //if statement needs to be on the same line and ternary does not work the same way.

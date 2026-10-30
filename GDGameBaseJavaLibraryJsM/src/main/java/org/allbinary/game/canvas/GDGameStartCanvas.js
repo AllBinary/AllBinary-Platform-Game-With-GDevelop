@@ -75,9 +75,9 @@ export class GDGameStartCanvas extends DemoCanvas {
     }
     //@Throws(Exception.constructor)
     createGameLayerManager(randomValue) {
-        var gameInfo = new GameInfo(GameTypeFactory.getInstance().BOT, GameMode.SERVER, PlayerTypesFactory.getInstance().PLAYER_TYPE_ONE, GDGameLayerManager.MAX_LEVEL, randomValue);
+        let gameInfo = new GameInfo(GameTypeFactory.getInstance().BOT, GameMode.SERVER, PlayerTypesFactory.getInstance().PLAYER_TYPE_ONE, GDGameLayerManager.MAX_LEVEL, randomValue);
         ;
-        var basicColorFactory = BasicColorFactory.getInstance();
+        let basicColorFactory = BasicColorFactory.getInstance();
         ;
         //if statement needs to be on the same line and ternary does not work the same way.
         return new GDGameLayerManager(basicColorFactory.NULL_COLOR, basicColorFactory.NULL_COLOR, gameInfo);

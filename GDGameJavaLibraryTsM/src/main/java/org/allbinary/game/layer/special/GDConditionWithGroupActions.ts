@@ -22,15 +22,19 @@
         
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
+type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringMaker;
 
 //not plain js import { CommonSeps } 
 const CommonSeps = globalThis.org.allbinary.string.CommonSeps;
+type CommonSeps<T = any, U = any> = typeof CommonSeps extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonSeps;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 
 
@@ -72,7 +76,7 @@ public constructor (){
 stringBuilder!.append("GDConditionWithGroupActions: ");
     
 
-    var size: number = this.groupWithActionsList!.size()!;;
+    let size: number = this.groupWithActionsList!.size()!;;
     
 stringBuilder!.appendint(size);
     
@@ -83,7 +87,7 @@ stringBuilder!.append(CommonSeps.getInstance()!.SPACE);
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 stringBuilder!.append(this.groupWithActionsList!.get(index)!.toString());
     
@@ -93,6 +97,4 @@ stringBuilder!.append(this.groupWithActionsList!.get(index)!.toString());
 
 
 }
-
-
 

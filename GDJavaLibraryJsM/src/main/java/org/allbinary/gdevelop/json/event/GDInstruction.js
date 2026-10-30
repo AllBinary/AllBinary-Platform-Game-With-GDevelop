@@ -19,16 +19,16 @@ export class GDInstruction extends Object {
     constructor(jsonObject) {
         super();
         this.parametersExpressionList = new BasicArrayListD();
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
-        var typeJSONObject = jsonObject.getJSONObject(gdProjectStrings.TYPE);
+        let typeJSONObject = jsonObject.getJSONObject(gdProjectStrings.TYPE);
         ;
         this.typeValue = typeJSONObject.getString(gdProjectStrings.VALUE);
-        var expressionJSONArray = jsonObject.getJSONArray(gdProjectStrings.PARAMETERS);
+        let expressionJSONArray = jsonObject.getJSONArray(gdProjectStrings.PARAMETERS);
         ;
-        var size = expressionJSONArray.length();
+        let size = expressionJSONArray.length();
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             this.parametersExpressionList.add(new GDExpression(expressionJSONArray.getString(index)));
         }
     }

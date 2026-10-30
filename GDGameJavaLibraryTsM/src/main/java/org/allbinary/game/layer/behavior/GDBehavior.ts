@@ -25,6 +25,7 @@ import { Graphics } from '../../../../../javax/microedition/lcdui/Graphics.js';
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 
 
@@ -61,6 +62,4 @@ export class GDBehavior
 
 
 }
-
-
 

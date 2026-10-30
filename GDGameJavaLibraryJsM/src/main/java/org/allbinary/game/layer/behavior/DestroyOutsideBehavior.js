@@ -25,9 +25,9 @@ export class DestroyOutsideBehavior extends GDBehavior {
         this.gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
     }
     process(gameLayerList, index, graphics) {
-        var gameLayer = gameLayerList.get(index);
+        let gameLayer = gameLayerList.get(index);
         ;
-        var gdObject = gameLayer.gdObject;
+        let gdObject = gameLayer.gdObject;
         ;
         if (gdObject ==
             null) {

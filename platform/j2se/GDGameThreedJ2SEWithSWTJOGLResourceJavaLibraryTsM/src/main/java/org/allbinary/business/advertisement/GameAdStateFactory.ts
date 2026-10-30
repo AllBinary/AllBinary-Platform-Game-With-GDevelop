@@ -108,5 +108,3 @@ export class GameAdStateFactory
 
 }
 
-
-

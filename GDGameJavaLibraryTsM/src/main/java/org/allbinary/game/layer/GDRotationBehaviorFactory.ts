@@ -70,5 +70,3 @@ export class GDRotationBehaviorFactory extends GDAnimationBehaviorBaseFactory {
 
 }
 
-
-

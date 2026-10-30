@@ -252,13 +252,13 @@ export class GDConfig
 
     public getScaleThreed(layoutScale: number): number{
 
-    var features: Features = Features.getInstance()!;;
+    let features: Features = Features.getInstance()!;;
     
 
-    var openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()!;;
+    let openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()!;;
     
 
-    var isThreed: boolean = false;;
+    let isThreed: boolean = false;;
     
 
                         if(features.isFeature(openGLFeatureFactory!.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory!.OPENGL_3D))
@@ -296,6 +296,4 @@ export class GDConfig
 
 
 }
-
-
 

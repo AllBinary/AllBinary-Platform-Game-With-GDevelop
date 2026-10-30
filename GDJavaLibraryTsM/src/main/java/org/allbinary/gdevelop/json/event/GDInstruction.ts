@@ -17,9 +17,11 @@ import { GDProjectStrings } from '../../../../../org/allbinary/gdevelop/json/GDP
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { JSONArray } from '../../../../../org/json/JSONArray.js';
 //not GWT import const JSONArray
@@ -61,25 +63,25 @@ public constructor (jsonObject: JSONObject){
 
             super();
         
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 
-    var typeJSONObject: JSONObject = jsonObject!.getJSONObject(gdProjectStrings!.TYPE)!;;
+    let typeJSONObject: JSONObject = jsonObject!.getJSONObject(gdProjectStrings!.TYPE)!;;
     
 this.typeValue= typeJSONObject!.getString(gdProjectStrings!.VALUE);
     
 
-    var expressionJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.PARAMETERS)!;;
+    let expressionJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.PARAMETERS)!;;
     
 
-    var size: number = expressionJSONArray!.length()!;;
+    let size: number = expressionJSONArray!.length()!;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.parametersExpressionList!.add(new GDExpression(expressionJSONArray!.getString(index)));
     
@@ -89,6 +91,4 @@ this.parametersExpressionList!.add(new GDExpression(expressionJSONArray!.getStri
 
 
 }
-
-
 

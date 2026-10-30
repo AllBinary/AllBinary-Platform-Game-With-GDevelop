@@ -11,9 +11,11 @@ import { OrientationData } from '../../../../org/allbinary/input/gyro/Orientatio
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { GameConfigurationCentral } from '../../../../org/allbinary/game/configuration/GameConfigurationCentral.js';
 //not GWT import const GameConfigurationCentral
@@ -65,23 +67,23 @@ public constructor (){
             
     public init(){
 
-    var GRAPHICS_OPTIONS: string = "Graphics Options";;
+    let GRAPHICS_OPTIONS: string = "Graphics Options";;
     
 
-    var exclusiveOrientationSensorList: BasicArrayList = new BasicArrayListD();;
+    let exclusiveOrientationSensorList: BasicArrayList = new BasicArrayListD();;
     
 
-    var sensorFeatureFactory: SensorFeatureFactory = SensorFeatureFactory.getInstance()!;;
+    let sensorFeatureFactory: SensorFeatureFactory = SensorFeatureFactory.getInstance()!;;
     
 exclusiveOrientationSensorList!.add(sensorFeatureFactory!.ORIENTATION_SENSORS);
     
 exclusiveOrientationSensorList!.add(sensorFeatureFactory!.NO_ORIENTATION);
     
 
-    var gameConfigurationSingleton: GameConfigurationSingleton = GameConfigurationSingleton.getInstance()!;;
+    let gameConfigurationSingleton: GameConfigurationSingleton = GameConfigurationSingleton.getInstance()!;;
     
 
-    var gameConfigurationCentral: GameConfigurationCentral = GameConfigurationCentral.getInstance()!;;
+    let gameConfigurationCentral: GameConfigurationCentral = GameConfigurationCentral.getInstance()!;;
     
 gameConfigurationSingleton!.add(gameConfigurationCentral!.VIBRATION);
     
@@ -90,7 +92,7 @@ gameConfigurationSingleton!.add(gameConfigurationCentral!.ORIENTATION);
 gameConfigurationSingleton!.add(gameConfigurationCentral!.SPEED);
     
 
-    var multipleList: BasicArrayList = new BasicArrayListD();;
+    let multipleList: BasicArrayList = new BasicArrayListD();;
     
 multipleList!.add(GameFeatureFactory.getInstance()!.SOUND);
     
@@ -104,6 +106,4 @@ GameFeatureChoiceGroups.getExclusiveInstance()!.add(OrientationData.getInstance(
 
 
 }
-
-
 

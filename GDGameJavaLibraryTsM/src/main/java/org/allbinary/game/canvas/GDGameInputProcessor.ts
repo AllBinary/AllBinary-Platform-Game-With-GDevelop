@@ -47,15 +47,19 @@ import { AllBinaryLayerManager } from '../../../../org/allbinary/layer/AllBinary
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 
 
@@ -116,20 +120,20 @@ export class GDGameInputProcessor
                                     }
                                 
 
-    var globals: GDSceneGlobals = (specialAnimation as GDSpecialAnimation).getGlobals()!;;
+    let globals: GDSceneGlobals = (specialAnimation as GDSpecialAnimation).getGlobals()!;;
     
 
-    var gameKeyEvent: GameKeyEvent;;
+    let gameKeyEvent: GameKeyEvent;;
     
 
-    var size: number = this.gameKeyEventList!.size()!;;
+    let size: number = this.gameKeyEventList!.size()!;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 gameKeyEvent= this.gameKeyEventList!.get(index) as GameKeyEvent;
     
@@ -138,14 +142,14 @@ globals.inputProcessorArray[gameKeyEvent!.getKey()]!.processEvent(allbinaryLayer
 }
 
 
-    var size2: number = this.removalGameKeyEventList!.size()!;;
+    let size2: number = this.removalGameKeyEventList!.size()!;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size2; index++)
+    let index: number = 0;index < size2; index++)
         {
 gameKeyEvent= this.removalGameKeyEventList!.get(index) as GameKeyEvent;
     
@@ -154,10 +158,10 @@ globals.inputProcessorArray[gameKeyEvent!.getKey()]!.processReleasedEvent(allbin
 }
 
 
-    var keyAsInteger: Integer;;
+    let keyAsInteger: Integer;;
     
 
-    var size3: number = this.keyEventList!.size()!;;
+    let size3: number = this.keyEventList!.size()!;;
     
 
                         if(size3 > 0)
@@ -175,7 +179,7 @@ globals.anyKeyProcessorArray[0]!.process(allbinaryLayerManager, keyAsInteger);
 
 
                         for (
-    var index: number = 0;index < size3; index++)
+    let index: number = 0;index < size3; index++)
         {
 keyAsInteger= this.keyEventList!.get(index) as Integer;
     
@@ -184,14 +188,14 @@ globals.unmappedInputProcessorArray[keyAsInteger!.intValue()]!.process(allbinary
 }
 
 
-    var size4: number = this.removalKeyEventList!.size()!;;
+    let size4: number = this.removalKeyEventList!.size()!;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size4; index++)
+    let index: number = 0;index < size4; index++)
         {
 keyAsInteger= this.removalKeyEventList!.get(index) as Integer;
     
@@ -208,20 +212,22 @@ this.processInput(allbinaryLayerManager);
             
     public processInput(allbinaryLayerManager: AllBinaryLayerManager){
 
-        try {
-            this.playerGameInput!.update();
+ try { this.playerGameInput!.update();
     
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 
-                //: 
-} catch(e) 
-            {
-
-    var commonStrings: CommonStrings = CommonStrings.getInstance()!;;
+    let commonStrings: CommonStrings = CommonStrings.getInstance()!;;
     
 this.logUtil!.putF(commonStrings!.EXCEPTION, this, this.gameInputStrings!.PROCESS_INPUT);
     
-}
 
+ }
+   }
+ 
 }
 
 
@@ -246,6 +252,4 @@ this.logUtil!.putF(commonStrings!.EXCEPTION, this, this.gameInputStrings!.PROCES
 
 
 }
-
-
 

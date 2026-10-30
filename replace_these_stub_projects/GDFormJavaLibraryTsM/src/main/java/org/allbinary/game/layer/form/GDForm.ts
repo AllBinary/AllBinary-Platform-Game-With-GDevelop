@@ -178,12 +178,19 @@ public constructor (){
     
 }
 
-
-    fireItemStateListener(gameLayerAsItem: GDGameLayer){
+fireItemStateListener(...args: any[]): any {
+   
+    if (args.length === 1) return this.fireItemStateListener$overload1(args[0]);
+   
+    if (args.length === 0) return this.fireItemStateListener$overload2();
+   
+   throw new TypeError('No matching overload: fireItemStateListener'); }
+  
+    fireItemStateListener$overload1(gameLayerAsItem: GDGameLayer){
 }
 
 
-    fireItemStateListener(){
+    fireItemStateListener$overload2(){
 }
 
 
@@ -260,6 +267,4 @@ public constructor (){
 
 
 }
-
-
 

@@ -13,7 +13,7 @@ export class GDParticleSystemParticleEmitterObject extends GDObject {
     constructor(type, jsonObject) {
         super(type, jsonObject);
         //For kotlin this is before the body of the constructor.
-        var projectStrings = GDProjectStrings.getInstance();
+        let projectStrings = GDProjectStrings.getInstance();
         ;
     }
 }

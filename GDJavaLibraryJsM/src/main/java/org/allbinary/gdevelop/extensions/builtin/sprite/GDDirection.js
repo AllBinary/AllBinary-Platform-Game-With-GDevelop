@@ -22,15 +22,15 @@ export class GDDirection extends Object {
         super();
         this.logUtil = LogUtil.getInstance();
         this.spriteList = new BasicArrayListD();
-        var projectStrings = GDProjectStrings.getInstance();
+        let projectStrings = GDProjectStrings.getInstance();
         ;
         this.looping = jsonObject.getBoolean(projectStrings.LOOPING);
         this.timeBetweenFrames = jsonObject.getInt(projectStrings.TIME_BETWEEN_FRAMES);
-        var jsonArray = jsonObject.getJSONArray(projectStrings.SPRITES);
+        let jsonArray = jsonObject.getJSONArray(projectStrings.SPRITES);
         ;
-        var size = jsonArray.length();
+        let size = jsonArray.length();
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             this.spriteList.add(new GDSprite(jsonArray.getJSONObject(index)));
         }
     }

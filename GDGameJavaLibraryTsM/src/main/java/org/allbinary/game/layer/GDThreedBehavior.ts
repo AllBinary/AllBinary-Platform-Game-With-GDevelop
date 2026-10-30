@@ -28,6 +28,7 @@ import { GDObject } from '../../../../org/allbinary/game/layout/GDObject.js';
 
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
+type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringMaker;
 
 
 
@@ -86,15 +87,15 @@ this.rotationRemainderZ= 0;
 super.updateRotation(gameLayer, timeDelta);
     
 
-    var gdObject: GDObject = gameLayer!.gdObject;;
+    let gdObject: GDObject = gameLayer!.gdObject;;
     
 
-    var newPortion: number = (gdObject!.rotationZP *timeDelta /1000);;
+    let newPortion: number = (gdObject!.rotationZP *timeDelta /1000);;
     
 this.rotationRemainderZ= this.rotationRemainderZ +newPortion;
     
 
-    var angleAdjustment: number = this.rotationRemainderZ;;
+    let angleAdjustment: number = this.rotationRemainderZ;;
     
 
                         if(angleAdjustment != 0)
@@ -118,14 +119,14 @@ this.rotationRemainderZ -= angleAdjustment;
 
     public setRotationZ(gdObject: GDObject, angleAdjustment: number){
 
-    var rotationAnimation: RotationAnimation = this.rotationAnimationInterfaceArray[gdObject!.animation]!;;
+    let rotationAnimation: RotationAnimation = this.rotationAnimationInterfaceArray[gdObject!.animation]!;;
     
 
                         if(angleAdjustment > 0)
                         
                                     {
                                     
-    var value: number = angleAdjustment;;
+    let value: number = angleAdjustment;;
     
 
         while(value > 0)
@@ -141,7 +142,7 @@ value--;
                                 
                         else {
                             
-    var value: number = angleAdjustment;;
+    let value: number = angleAdjustment;;
     
 
         while(value < 0)
@@ -159,6 +160,4 @@ value++;
 
 
 }
-
-
 

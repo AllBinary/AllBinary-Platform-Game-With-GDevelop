@@ -56,5 +56,3 @@ export class TempMapMovementBehavior extends TempMovementBehavior {
 
 }
 
-
-

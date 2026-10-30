@@ -54,7 +54,7 @@ public constructor (type: string, jsonObject: JSONObject){
                             //For kotlin this is before the body of the constructor.
                     
 
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 this.repeatNumberExpression= new GDExpression(jsonObject!.getString(gdProjectStrings!.REPEAT_EXPRESSION));
     
@@ -62,6 +62,4 @@ this.repeatNumberExpression= new GDExpression(jsonObject!.getString(gdProjectStr
 
 
 }
-
-
 

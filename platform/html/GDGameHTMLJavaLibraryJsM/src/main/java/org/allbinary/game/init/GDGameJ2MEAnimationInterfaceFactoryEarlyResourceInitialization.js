@@ -26,7 +26,7 @@ export class GDGameJ2MEAnimationInterfaceFactoryEarlyResourceInitialization exte
     }
     //@Throws(Exception.constructor)
     init() {
-        var featuredAnimationInterfaceFactoryInterfaceFactory = FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance();
+        let featuredAnimationInterfaceFactoryInterfaceFactory = FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance();
         ;
         featuredAnimationInterfaceFactoryInterfaceFactory.add(new GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.DEFAULT_EARLY_IMAGE_ANIMATIONS));
         featuredAnimationInterfaceFactoryInterfaceFactory.add(new GDGameEarlyResourcesOpenGLESImageBasedAnimationInterfaceFactoryInterfaceFactory());

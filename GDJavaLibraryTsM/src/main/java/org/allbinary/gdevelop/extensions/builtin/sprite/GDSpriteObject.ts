@@ -18,9 +18,11 @@ import { GDProjectStrings } from '../../../../../../org/allbinary/gdevelop/json/
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { JSONArray } from '../../../../../../org/json/JSONArray.js';
 //not GWT import const JSONArray
@@ -61,20 +63,20 @@ public constructor (type: string, jsonObject: Object){
                             //For kotlin this is before the body of the constructor.
                     
 
-    var projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 
-    var jsonArray: JSONArray = jsonObject!.getJSONArray(projectStrings!.ANIMATIONS)!;;
+    let jsonArray: JSONArray = jsonObject!.getJSONArray(projectStrings!.ANIMATIONS)!;;
     
 
-    var size: number = jsonArray!.length()!;;
+    let size: number = jsonArray!.length()!;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.animationList!.add(new GDAnimation(jsonArray!.getJSONObject(index)));
     
@@ -84,6 +86,4 @@ this.animationList!.add(new GDAnimation(jsonArray!.getJSONObject(index)));
 
 
 }
-
-
 

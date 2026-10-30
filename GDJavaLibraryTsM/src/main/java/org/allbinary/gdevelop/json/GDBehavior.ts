@@ -51,7 +51,7 @@ public constructor (jsonObject: JSONObject){
 
             super();
         
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 this.type= jsonObject!.getString(gdProjectStrings!.TYPE);
     
@@ -63,6 +63,4 @@ this.jsonObject= jsonObject;
 
 
 }
-
-
 

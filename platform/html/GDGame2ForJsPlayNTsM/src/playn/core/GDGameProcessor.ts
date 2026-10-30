@@ -22,6 +22,7 @@ import { InitInterface } from '../../org/allbinary/init/InitInterface.js';
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 import { AllBinaryPlayNGame } from '../../org/allbinary/playn/AllBinaryPlayNGame.js';
 //not GWT import const AllBinaryPlayNGame
@@ -40,9 +41,11 @@ import { StringArrayFactory } from '../../org/allbinary/playn/processors/StringA
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 
 
@@ -149,7 +152,7 @@ this.logUtil!.putF("GDGamesModuleReadyProcessor - setDevice", this, this.commonS
 this.setDevice();
     
 
-    var miniSpaceWarsModuleReadyProcessor: GDGameModuleReadyProcessor = new GDGameModuleReadyProcessor(this.initInterface, this.list);;
+    let miniSpaceWarsModuleReadyProcessor: GDGameModuleReadyProcessor = new GDGameModuleReadyProcessor(this.initInterface, this.list);;
     
 this.list.add(miniSpaceWarsModuleReadyProcessor);
     
@@ -168,14 +171,14 @@ this.initInterface= this.NULL_INIT;
                         
                                     {
                                     
-    var stringArrayFactory: StringArrayFactory = GDGameHtmlLoadResourcesProcessorFactory.getInstance()!;;
+    let stringArrayFactory: StringArrayFactory = GDGameHtmlLoadResourcesProcessorFactory.getInstance()!;;
     
 this.list.add(new GameHtmlLoadResourcesProcessor(this.list, stringArrayFactory));
     
 this.logUtil!.putF(this.commonStrings!.ADD +"GameHtmlLoadResourcesProcessor" +this.list.size(), this, this.commonStrings!.PROCESS);
     
 
-    var gameHtmlHasLoadedResourcesProcessor: Processor = new GameHtmlHasLoadedResourcesProcessor(this.list, stringArrayFactory);;
+    let gameHtmlHasLoadedResourcesProcessor: Processor = new GameHtmlHasLoadedResourcesProcessor(this.list, stringArrayFactory);;
     
 this.list.add(gameHtmlHasLoadedResourcesProcessor);
     
@@ -193,7 +196,7 @@ GDGameHtmlLoadResourcesProcessorFactory.loading();
 }
 
 
-    setDevice()
+    setDevice(): void;
                 //native - START
                 {
                     
@@ -205,6 +208,4 @@ GDGameHtmlLoadResourcesProcessorFactory.loading();
                 
 
 }
-
-
 

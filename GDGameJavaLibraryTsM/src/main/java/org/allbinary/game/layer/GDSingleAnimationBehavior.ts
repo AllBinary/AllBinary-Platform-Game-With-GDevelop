@@ -28,6 +28,7 @@ import { GDObject } from '../../../../org/allbinary/game/layout/GDObject.js';
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 
 
@@ -69,8 +70,7 @@ export class GDSingleAnimationBehavior extends GDAnimationBehaviorBase {
 
     public animate(gdObject: GDObject, initIndexedAnimationInterfaceArray: IndexedAnimation[], timeDelta: number){
 
-        try {
-            this.elapsedTime += timeDelta;
+ try { this.elapsedTime += timeDelta;
     
 
                         if(this.elapsedTime > 200)
@@ -83,21 +83,22 @@ initIndexedAnimationInterfaceArray[gdObject!.animation]!.nextFrame();
 
                                     }
                                 
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 
-                //: 
-} catch(e) 
-            {
-
-    var commonStrings: CommonStrings = CommonStrings.getInstance()!;;
+    let commonStrings: CommonStrings = CommonStrings.getInstance()!;;
     
 this.logUtil!.put(commonStrings!.EXCEPTION, this, "animate", e);
     
+
+ }
+   }
+ 
 }
 
-}
-
 
 }
-
-
 

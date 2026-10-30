@@ -31,18 +31,23 @@ import { BasicColorUtil } from '../../../../org/allbinary/graphics/color/BasicCo
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { JSONArray } from '../../../../org/json/JSONArray.js';
 //not GWT import const JSONArray
@@ -116,7 +121,7 @@ public constructor (jsonObject: JSONObject){
 
             super();
         
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 this.name= jsonObject!.getString(gdProjectStrings!.NAME);
     
@@ -144,23 +149,23 @@ this.stopSoundsOnStartup= jsonObject!.getBoolean(gdProjectStrings!.STOP_SOUNDS_O
 this.disableInputWhenNotFocused= jsonObject!.getBoolean(gdProjectStrings!.DISABLE_INPUT_WHEN_NOT_FOCUSED);
     
 
-    var objectFactory: GDObjectFactory = GDObjectFactory.getInstance()!;;
+    let objectFactory: GDObjectFactory = GDObjectFactory.getInstance()!;;
     
 
-    var objectJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.OBJECTS)!;;
+    let objectJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.OBJECTS)!;;
     
 
-    var size: number = objectJSONArray!.length()!;;
+    let size: number = objectJSONArray!.length()!;;
     
 
-    var nextJSONObject: JSONObject;;
+    let nextJSONObject: JSONObject;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 nextJSONObject= objectJSONArray!.getJSONObject(index);
     
@@ -169,7 +174,7 @@ this.objectList!.add(objectFactory!.create(nextJSONObject));
 }
 
 
-    var initialInstancesJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.INSTANCES)!;;
+    let initialInstancesJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.INSTANCES)!;;
     
 size= initialInstancesJSONArray!.length();
     
@@ -178,7 +183,7 @@ size= initialInstancesJSONArray!.length();
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 nextJSONObject= initialInstancesJSONArray!.getJSONObject(index);
     
@@ -187,7 +192,7 @@ this.initialInstanceList!.add(new GDInitialInstance(nextJSONObject));
 }
 
 
-    var variableJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.VARIABLES)!;;
+    let variableJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.VARIABLES)!;;
     
 size= variableJSONArray!.length();
     
@@ -196,14 +201,14 @@ size= variableJSONArray!.length();
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.variableList!.add(new GDVariable(variableJSONArray!.getJSONObject(index)));
     
 }
 
 
-    var layersJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.LAYERS)!;;
+    let layersJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.LAYERS)!;;
     
 size= layersJSONArray!.length();
     
@@ -212,7 +217,7 @@ size= layersJSONArray!.length();
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 nextJSONObject= layersJSONArray!.getJSONObject(index);
     
@@ -221,7 +226,7 @@ this.layerList!.add(new GDLayer(nextJSONObject));
 }
 
 
-    var behaviorsJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.BEHAVIORS_SHARED_DATA)!;;
+    let behaviorsJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.BEHAVIORS_SHARED_DATA)!;;
     
 size= behaviorsJSONArray!.length();
     
@@ -230,7 +235,7 @@ size= behaviorsJSONArray!.length();
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 nextJSONObject= behaviorsJSONArray!.getJSONObject(index);
     
@@ -239,22 +244,22 @@ this.behaviorContentList!.add(new GDBehavior(nextJSONObject));
 }
 
 
-    var eventFactory: GDEventFactory = GDEventFactory.getInstance()!;;
+    let eventFactory: GDEventFactory = GDEventFactory.getInstance()!;;
     
 
-    var eventJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.EVENTS)!;;
+    let eventJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.EVENTS)!;;
     
 size= eventJSONArray!.length();
     
 
-    var event: GDEvent;;
+    let event: GDEvent;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 event= eventFactory!.create(eventJSONArray!.getJSONObject(index));
     
@@ -269,7 +274,7 @@ event= eventFactory!.create(eventJSONArray!.getJSONObject(index));
                                 
                         else {
                             
-    var commonStrings: CommonStrings = CommonStrings.getInstance()!;;
+    let commonStrings: CommonStrings = CommonStrings.getInstance()!;;
     
 this.logUtil!.put(commonStrings!.EXCEPTION, this, commonStrings!.CONSTRUCTOR, new Exception());
     
@@ -282,6 +287,4 @@ this.logUtil!.put(commonStrings!.EXCEPTION, this, commonStrings!.CONSTRUCTOR, ne
 
 
 }
-
-
 

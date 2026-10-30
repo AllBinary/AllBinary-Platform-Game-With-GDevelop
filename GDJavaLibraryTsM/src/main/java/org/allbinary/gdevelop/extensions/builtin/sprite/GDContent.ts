@@ -17,9 +17,11 @@ import { GDProjectStrings } from '../../../../../../org/allbinary/gdevelop/json/
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { JSONObject } from '../../../../../../org/json/JSONObject.js';
 //not GWT import const JSONObject
@@ -72,7 +74,7 @@ public constructor (jsonObject: JSONObject){
 
             super();
         
-    var projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 this.tilemapJsonFile= jsonObject!.getString(projectStrings!.TILEMAP_JSON_FILE);
     
@@ -85,7 +87,7 @@ this.displayMode= jsonObject!.getString(projectStrings!.DISPLAY_MODE);
 this.layerIndex= jsonObject!.getInt(projectStrings!.LAYER_INDEX);
     
 
-    var levelIndex: number = 0;;
+    let levelIndex: number = 0;;
     
 
                         if(jsonObject!.has(projectStrings!.LEVEL_INDEX))
@@ -106,6 +108,4 @@ this.animationFps= jsonObject!.getNumber(projectStrings!.ANIMATION_FPS);
 
 
 }
-
-
 

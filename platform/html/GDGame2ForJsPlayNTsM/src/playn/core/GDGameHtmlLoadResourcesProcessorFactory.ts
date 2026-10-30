@@ -47,7 +47,7 @@ export class GDGameHtmlLoadResourcesProcessorFactory
          {
         
 
-    public static loading()
+    public static loading(): void;
                 //native - START
                 {
                     
@@ -58,7 +58,7 @@ export class GDGameHtmlLoadResourcesProcessorFactory
                 //native - END
                 
 
-    public static isTouch(): boolean
+    public static isTouch(): boolean;
                 //native - START
                 {
                     
@@ -69,7 +69,7 @@ export class GDGameHtmlLoadResourcesProcessorFactory
                 //native - END
                 
 
-    public static getInstance(): StringArrayFactory
+    public static getInstance(): StringArrayFactory;
                 //native - START
                 {
                     
@@ -81,6 +81,4 @@ export class GDGameHtmlLoadResourcesProcessorFactory
                 
 
 }
-
-
 

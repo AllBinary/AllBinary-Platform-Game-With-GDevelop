@@ -125,10 +125,10 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
     }
     //@Throws(Exception.constructor)
     updateTouch() {
-        var gameInfo = this.gameLayerManager.getGameInfo();
+        let gameInfo = this.gameLayerManager.getGameInfo();
         ;
         if (gameInfo.getGameType() != GameTypeFactory.getInstance().BOT) {
-            var nextTouchInputFactory = GDGameTouchButtonsBuilder.getInstance(this.getSensorGameUpdateProcessor());
+            let nextTouchInputFactory = GDGameTouchButtonsBuilder.getInstance(this.getSensorGameUpdateProcessor());
             ;
             if (Features.getInstance().isFeature(TouchFeatureFactory.getInstance().AUTO_HIDE_SHOW_SCREEN_BUTTONS)) {
                 if (gameInfo.getCurrentLevel() - this.getStartLevel() >= 1) {
@@ -142,7 +142,7 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
     //@Synchronized //TWB - This is not allowed for TypeScript native. Instead use Coroutine logic instead.
     initConfigurable(abeClientInformation) {
         try {
-            var progressCanvas = ProgressCanvasFactory.getInstance();
+            let progressCanvas = ProgressCanvasFactory.getInstance();
             ;
             if (ChangedGameFeatureListener.getInstance().isChanged()) {
                 super.initConfigurable(abeClientInformation);
@@ -158,16 +158,18 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
             else {
                 progressCanvas.addNormalPortion(4, "Skipping Configurable");
             }
-            //: 
         }
-        catch (e) {
-            this.logUtil.put(this.commonStrings.EXCEPTION, this, "initConfigurable", e);
+        catch (caught) {
+            {
+                const e = caught;
+                this.logUtil.put(this.commonStrings.EXCEPTION, this, "initConfigurable", e);
+            }
         }
     }
     //@Throws(Exception.constructor)
     threadInit() {
         try {
-            var portion = 60;
+            let portion = 60;
             ;
             super.initApp(this.abeClientInformation);
             if (!this.isRunning()) {
@@ -179,16 +181,16 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
                     //if statement needs to be on the same line and ternary does not work the same way.
                     return;
                 }
-                var progressCanvas = ProgressCanvasFactory.getInstance();
+                let progressCanvas = ProgressCanvasFactory.getInstance();
                 ;
                 progressCanvas.addNormalPortion(portion, "Main Processors");
                 this.setWait(this.WAIT);
                 this.loadState();
-                var list = new BasicArrayListD();
+                let list = new BasicArrayListD();
                 ;
-                var features = Features.getInstance();
+                let features = Features.getInstance();
                 ;
-                var gameFeatureFactory = GameFeatureFactory.getInstance();
+                let gameFeatureFactory = GameFeatureFactory.getInstance();
                 ;
                 if (features.isFeature(gameFeatureFactory.ARTIFICIAL_INTELLEGENCE_PROCESSOR)) {
                     list.add(new OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer());
@@ -206,18 +208,20 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
                 progressCanvas.addNormalPortion(portion, "Initializing Game");
             }
             this.buildGameInit(false);
-            //: 
         }
-        catch (e) {
-            this.logUtil.put(this.commonStrings.EXCEPTION, this, "_init", e);
+        catch (caught) {
+            {
+                const e = caught;
+                this.logUtil.put(this.commonStrings.EXCEPTION, this, "_init", e);
+            }
         }
     }
     //@Throws(Exception.constructor)
     buildGameInit(isProgress) {
         this.loadResources(this.gameLayerManager.getGameInfo().getCurrentLevel());
-        var progressCanvas = ProgressCanvasFactory.getInstance();
+        let progressCanvas = ProgressCanvasFactory.getInstance();
         ;
-        var portion = 30;
+        let portion = 30;
         ;
         if (isProgress && this.isMainCanvas()) {
             progressCanvas.start();
@@ -249,7 +253,7 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
     //@Throws(Exception.constructor)
     setGameState(gameState) {
         super.setGameState(gameState);
-        var intermissionFactory = IntermissionFactory.getInstance();
+        let intermissionFactory = IntermissionFactory.getInstance();
         ;
         if (this.getGameState() == this.gameStateFactory.PLAYING_GAME_STATE) {
             this.setMainStateProcessor(this.getProcessGameProcessor());
@@ -269,7 +273,7 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
         this.gamePerformanceInitUpdatePaintable.paint(graphics);
         this.touchPaintable.paint(graphics);
         this.screenCapture.saveFrame();
-        var halfHeight = GameTickDisplayInfoSingleton.getInstance().getLastHalfHeight();
+        let halfHeight = GameTickDisplayInfoSingleton.getInstance().getLastHalfHeight();
         ;
         graphics.drawString(this.gyroOrientationSensor.toString(), 0, halfHeight + 30 + 60, 0);
         graphics.drawString(this.accelerometerOrientationSensor.toString(), 0, halfHeight + 30 + 75, 0);

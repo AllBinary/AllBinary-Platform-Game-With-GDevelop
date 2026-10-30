@@ -23,9 +23,11 @@ import { AndroidResources } from '../../../../../org/allbinary/AndroidResources.
 
 //not plain js import { CommonStateStrings } 
 const CommonStateStrings = globalThis.org.allbinary.string.CommonStateStrings;
+type CommonStateStrings<T = any, U = any> = typeof CommonStateStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStateStrings;
 
 //not plain js import { ResourceUtil } 
 const ResourceUtil = globalThis.org.allbinary.data.resource.ResourceUtil;
+type ResourceUtil<T = any, U = any> = typeof ResourceUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ResourceUtil;
 
 import { OpenGLESGraphicsCompositeFactory } from '../../../../../org/allbinary/device/OpenGLESGraphicsCompositeFactory.js';
 //not GWT import const OpenGLESGraphicsCompositeFactory
@@ -41,9 +43,11 @@ import { OpenGLFeatureFactory } from '../../../../../org/allbinary/graphics/open
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 import { OptimizedGLSurfaceView } from '../../../../../org/allbinary/view/OptimizedGLSurfaceView.js';
 //not GWT import const OptimizedGLSurfaceView
@@ -87,18 +91,17 @@ export class RendererActivity extends Activity {
 
     onCreate(savedInstanceState: Bundle){
 
-        try {
-            super.onCreate(savedInstanceState);
+ try { super.onCreate(savedInstanceState);
     
 ResourceUtil.getInstance()!.setContextFromActivity(this);
     
 ResourceUtil.getInstance()!.setResources(this.getResources());
     
 
-    var features: Features = Features.getInstance()!;;
+    let features: Features = Features.getInstance()!;;
     
 
-    var openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()!;;
+    let openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()!;;
     
 features.addDefault(openGLFeatureFactory!.OPENGL_3D);
     
@@ -109,20 +112,23 @@ this.setContentView(this.androidResources!.layout.gd_min3d_layout);
 this._glSurfaceView= this.findViewById(this.androidResources!.id.gd_gl) as OptimizedGLSurfaceView;
     
 
-    var displayInfo: DisplayInfoSingleton = DisplayInfoSingleton.getInstance()!;;
+    let displayInfo: DisplayInfoSingleton = DisplayInfoSingleton.getInstance()!;;
     
 displayInfo!.setLastSize(this._glSurfaceView.getWidth(), this._glSurfaceView.getHeight(), CommonStateStrings.getInstance()!.CREATE);
     
 this.setContentView(this._glSurfaceView);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 this.logUtil!.put(this.commonStrings!.EXCEPTION, this, CommonStateStrings.getInstance()!.CREATE, e);
     
-}
 
+ }
+   }
+ 
 }
 
 
@@ -155,6 +161,4 @@ this._renderContinuously= $b;
 
 
 }
-
-
 

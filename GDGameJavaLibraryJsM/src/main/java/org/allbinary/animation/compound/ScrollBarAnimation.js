@@ -34,7 +34,7 @@ export class ScrollBarAnimation extends IndexedAnimation {
     dxhack() {
         if (J2MEUtil.isHTML()) {
             //if statement needs to be on the same line and ternary does not work the same way.
-            return this.height * 2 / 3;
+            return globalThis.Math.trunc(this.height * 2 / 3);
         }
         else {
             //if statement needs to be on the same line and ternary does not work the same way.
@@ -42,7 +42,7 @@ export class ScrollBarAnimation extends IndexedAnimation {
         }
     }
     setFrame(frameIndex) {
-        for (var index = this.animationInterfaceArray.length; --index >= 0;) {
+        for (let index = this.animationInterfaceArray.length; --index >= 0;) {
             this.animationInterfaceArray[index].setFrame(frameIndex);
         }
     }
@@ -57,7 +57,7 @@ export class ScrollBarAnimation extends IndexedAnimation {
         ;
     }
     previousFrame() {
-        for (var index = this.animationInterfaceArray.length; --index >= 0;) {
+        for (let index = this.animationInterfaceArray.length; --index >= 0;) {
             this.animationInterfaceArray[index].previousFrame();
         }
     }
@@ -70,21 +70,21 @@ export class ScrollBarAnimation extends IndexedAnimation {
     }
     //@Throws(Exception.constructor)
     nextFrame() {
-        for (var index = this.animationInterfaceArray.length; --index >= 0;) {
+        for (let index = this.animationInterfaceArray.length; --index >= 0;) {
             this.animationInterfaceArray[index].nextFrame();
         }
     }
     paintXY(graphics, x, y) {
-        var size = this.animationInterfaceArray.length;
+        let size = this.animationInterfaceArray.length;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             this.animationInterfaceArray[index].paintXY(graphics, x, y);
         }
     }
     paintThreedXYZ(graphics, x, y, z) {
-        var size = this.animationInterfaceArray.length;
+        let size = this.animationInterfaceArray.length;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             this.animationInterfaceArray[index].paintThreedXYZ(graphics, x, y, z);
         }
     }
@@ -98,15 +98,15 @@ export class ScrollBarAnimation extends IndexedAnimation {
     setValue(value) {
         if (value >= 0 && value < 101) {
             this.value = value;
-            var newDy = this.dy + (value * this.height / 100);
+            let newDy = this.dy + (globalThis.Math.trunc(value * this.height / 100));
             ;
             this.animationInterfaceArray[3].setDy(newDy);
         }
     }
     setValue2(thumbY) {
-        var usedThumbX = thumbY;
+        let usedThumbX = thumbY;
         ;
-        var maxY = this.height;
+        let maxY = this.height;
         ;
         if (thumbY >= this.dy && thumbY < this.dy + this.height) {
         }
@@ -116,7 +116,7 @@ export class ScrollBarAnimation extends IndexedAnimation {
         else if (thumbY > maxY) {
             usedThumbX = maxY;
         }
-        var value = (100 * usedThumbX / this.height);
+        let value = (globalThis.Math.trunc(100 * usedThumbX / this.height));
         ;
         if (value > 100) {
             value = 100;

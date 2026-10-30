@@ -30,11 +30,11 @@ export class GDConditionWithGroupActions extends Object {
     }
     append(stringBuilder) {
         stringBuilder.append("GDConditionWithGroupActions: ");
-        var size = this.groupWithActionsList.size();
+        let size = this.groupWithActionsList.size();
         ;
         stringBuilder.appendint(size);
         stringBuilder.append(CommonSeps.getInstance().SPACE);
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             stringBuilder.append(this.groupWithActionsList.get(index).toString());
         }
     }

@@ -28,9 +28,11 @@ import { MainFeatureFactory } from '../../../org/allbinary/game/configuration/fe
 
 //not plain js import { NullUtil } 
 const NullUtil = globalThis.org.allbinary.logic.NullUtil;
+type NullUtil<T = any, U = any> = typeof NullUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof NullUtil;
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 import { AbDataInputStream } from '../../../org/allbinary/logic/io/AbDataInputStream.js';
 //not GWT import const AbDataInputStream
@@ -52,12 +54,15 @@ import { FileFactory } from '../../../org/allbinary/logic/io/file/FileFactory.js
 
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
+type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringMaker;
 
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 
 
@@ -118,8 +123,7 @@ private constructor (){
 
             super();
         
-        try {
-            
+ try { 
                         if(FileFactory.getInstance()!.isFile(this.FILE))
                         
                                     {
@@ -134,17 +138,20 @@ private constructor (){
 
                         }
                             
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 
-                //: 
-} catch(e) 
-            {
-
-    var commonStrings: CommonStrings = CommonStrings.getInstance()!;;
+    let commonStrings: CommonStrings = CommonStrings.getInstance()!;;
     
 this.logUtil!.put(commonStrings!.EXCEPTION, this, commonStrings!.CONSTRUCTOR, e);
     
-}
 
+ }
+   }
+ 
 }
 
 
@@ -152,16 +159,16 @@ this.logUtil!.put(commonStrings!.EXCEPTION, this, commonStrings!.CONSTRUCTOR, e)
             
     read(){
 
-    var fileInputStreamFactory: FileStreamFactory = FileStreamFactory.getInstance()!;;
+    let fileInputStreamFactory: FileStreamFactory = FileStreamFactory.getInstance()!;;
     
 
-    var fileInputStream: InputStream = fileInputStreamFactory!.getFileInputStreamInstance(StringUtil.getInstance()!.EMPTY_STRING, this.FILE)!;;
+    let fileInputStream: InputStream = fileInputStreamFactory!.getFileInputStreamInstance(StringUtil.getInstance()!.EMPTY_STRING, this.FILE)!;;
     
 
-    var dataInputStream: AbDataInputStream = new AbDataInputStream(fileInputStream);;
+    let dataInputStream: AbDataInputStream = new AbDataInputStream(fileInputStream);;
     
 
-    var fullScreen: number = dataInputStream!.readInt()!;;
+    let fullScreen: number = dataInputStream!.readInt()!;;
     
 
                         if(fullScreen == 0)
@@ -191,7 +198,7 @@ this.logUtil!.put(commonStrings!.EXCEPTION, this, commonStrings!.CONSTRUCTOR, e)
                         }
                             
 
-    var progressBarView: number = dataInputStream!.readInt()!;;
+    let progressBarView: number = dataInputStream!.readInt()!;;
     
 
                         if(progressBarView == 0)
@@ -221,7 +228,7 @@ this.logUtil!.put(commonStrings!.EXCEPTION, this, commonStrings!.CONSTRUCTOR, e)
                         }
                             
 
-    var showTitleBar: number = dataInputStream!.readInt()!;;
+    let showTitleBar: number = dataInputStream!.readInt()!;;
     
 
                         if(showTitleBar == 0)
@@ -259,20 +266,19 @@ this.logUtil!.putF("Read Configuration: " +this.toString(), this, "read");
             
     public write(){
 
-    var closeable: Closeable = NullCloseable.NULL_CLOSEABLE;;
+    let closeable: Closeable = NullCloseable.NULL_CLOSEABLE;;
     
 
-        try {
-            this.logUtil!.putF("Write Configuration: " +this.toString(), this, "write");
+ try { this.logUtil!.putF("Write Configuration: " +this.toString(), this, "write");
     
 
-    var fileInputStreamFactory: FileStreamFactory = FileStreamFactory.getInstance()!;;
+    let fileInputStreamFactory: FileStreamFactory = FileStreamFactory.getInstance()!;;
     
 
-    var fileOutputStream: OutputStream = fileInputStreamFactory!.getFileOutputStreamInstance(StringUtil.getInstance()!.EMPTY_STRING, this.FILE)!;;
+    let fileOutputStream: OutputStream = fileInputStreamFactory!.getFileOutputStreamInstance(StringUtil.getInstance()!.EMPTY_STRING, this.FILE)!;;
     
 
-    var dataOutputStream: AbDataOutputStream = new AbDataOutputStream(fileOutputStream);;
+    let dataOutputStream: AbDataOutputStream = new AbDataOutputStream(fileOutputStream);;
     
 closeable= dataOutputStream;
     
@@ -323,23 +329,22 @@ closeable= dataOutputStream;
                             
 dataOutputStream!.flush();
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 
 
 
                             throw e;
                     
-}
 
-         finally {
-            StreamUtil.getInstance()!.close(closeable);
+ }
+   }
+ finally { StreamUtil.getInstance()!.close(closeable);
     
-
-         }
-        
+ }
 }
 
 
@@ -351,7 +356,7 @@ dataOutputStream!.flush();
                         
                                     {
                                     
-    var features: Features = Features.getInstance()!;;
+    let features: Features = Features.getInstance()!;;
     
 
                         if(features.isFeature(gameFeature))
@@ -442,7 +447,7 @@ this.progressBarView= progressBarView;
 
     public toString(): string{
 
-    var stringBuffer: StringMaker = new StringMaker();;
+    let stringBuffer: StringMaker = new StringMaker();;
     
 stringBuffer!.append("isFullscreen: ");
     
@@ -466,6 +471,4 @@ stringBuffer!.appendboolean(this.isShowTitleBar());
 
 
 }
-
-
 

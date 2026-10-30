@@ -35,15 +35,19 @@ import { BasicColorFactory } from '../../../../org/allbinary/graphics/color/Basi
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 //not plain js import { CircularIndexUtil } 
 const CircularIndexUtil = globalThis.org.allbinary.util.CircularIndexUtil;
+type CircularIndexUtil<T = any, U = any> = typeof CircularIndexUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CircularIndexUtil;
 
 
 
@@ -110,7 +114,7 @@ this.aRetangleFilledAnimationInUseList!.clear();
                         
                                     {
                                     
-    var colorAnimation: Animation = new Animation();;
+    let colorAnimation: Animation = new Animation();;
     
 colorAnimation!.setBasicColorP(basicColor);
     
@@ -123,7 +127,7 @@ this.colorAnimationInUseList!.add(colorAnimation);
                                 
                         else {
                             
-    var colorAnimation: Animation = this.colorAnimationCacheList!.removeAt(this.colorAnimationCacheList!.size() -1) as Animation;;
+    let colorAnimation: Animation = this.colorAnimationCacheList!.removeAt(this.colorAnimationCacheList!.size() -1) as Animation;;
     
 colorAnimation!.setBasicColorP(basicColor);
     
@@ -143,7 +147,7 @@ this.colorAnimationInUseList!.add(colorAnimation);
                         
                                     {
                                     
-    var rectangleFilledAnimation: ARectangleFilledAnimation = new ARectangleFilledAnimation();;
+    let rectangleFilledAnimation: ARectangleFilledAnimation = new ARectangleFilledAnimation();;
     
 rectangleFilledAnimation!.x= x;
     
@@ -162,7 +166,7 @@ this.aRetangleFilledAnimationInUseList!.add(rectangleFilledAnimation);
                                 
                         else {
                             
-    var rectangleFilledAnimation: ARectangleFilledAnimation = this.aRetangleFilledAnimationCacheList!.removeAt(this.aRetangleFilledAnimationCacheList!.size() -1) as ARectangleFilledAnimation;;
+    let rectangleFilledAnimation: ARectangleFilledAnimation = this.aRetangleFilledAnimationCacheList!.removeAt(this.aRetangleFilledAnimationCacheList!.size() -1) as ARectangleFilledAnimation;;
     
 rectangleFilledAnimation!.x= x;
     
@@ -184,17 +188,17 @@ this.aRetangleFilledAnimationInUseList!.add(rectangleFilledAnimation);
 
     public paintXY(graphics: Graphics, x: number, y: number){
 
-    var animationList: BasicArrayList = this.animationList;;
+    let animationList: BasicArrayList = this.animationList;;
     
 
-    var size: number = animationList!.size()!;;
+    let size: number = animationList!.size()!;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 get = animationList!.get(index)get as Animation
 get.
@@ -207,20 +211,20 @@ get.
 
     public paintThreedXYZ(graphics: Graphics, x: number, y: number, z: number){
 
-    var animationList: BasicArrayList = this.animationList;;
+    let animationList: BasicArrayList = this.animationList;;
     
 
-    var size: number = animationList!.size()!;;
+    let size: number = animationList!.size()!;;
     
 
-    var animation: Animation;;
+    let animation: Animation;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 animation= animationList!.get(index) as Animation;
     
@@ -232,6 +236,4 @@ animation.paintThreedXYZ(graphics, x, y, z);
 
 
 }
-
-
 

@@ -96,11 +96,11 @@ export class GDConfig extends Object {
         }
     }
     getScaleThreed(layoutScale) {
-        var features = Features.getInstance();
+        let features = Features.getInstance();
         ;
-        var openGLFeatureFactory = OpenGLFeatureFactory.getInstance();
+        let openGLFeatureFactory = OpenGLFeatureFactory.getInstance();
         ;
-        var isThreed = false;
+        let isThreed = false;
         ;
         if (features.isFeature(openGLFeatureFactory.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory.OPENGL_3D)) {
             isThreed = true;

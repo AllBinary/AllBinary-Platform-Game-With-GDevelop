@@ -95,7 +95,7 @@ this.height= height;
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.height *2 /3;
+                        return globalThis.Math.trunc(this.height *2 /3);
     
 
                                     }
@@ -119,7 +119,7 @@ this.height= height;
 
 
                         for (
-    var index: number = this.animationInterfaceArray!.length
+    let index: number = this.animationInterfaceArray!.length
                 ;--index >= 0; )
         {
 this.animationInterfaceArray[index]!.setFrame(frameIndex);
@@ -155,7 +155,7 @@ this.animationInterfaceArray[index]!.setFrame(frameIndex);
 
 
                         for (
-    var index: number = this.animationInterfaceArray!.length
+    let index: number = this.animationInterfaceArray!.length
                 ;--index >= 0; )
         {
 this.animationInterfaceArray[index]!.previousFrame();
@@ -187,7 +187,7 @@ this.animationInterfaceArray[index]!.previousFrame();
 
 
                         for (
-    var index: number = this.animationInterfaceArray!.length
+    let index: number = this.animationInterfaceArray!.length
                 ;--index >= 0; )
         {
 this.animationInterfaceArray[index]!.nextFrame();
@@ -199,7 +199,7 @@ this.animationInterfaceArray[index]!.nextFrame();
 
     public paintXY(graphics: Graphics, x: number, y: number){
 
-    var size: number = this.animationInterfaceArray!.length
+    let size: number = this.animationInterfaceArray!.length
                 ;;
     
 
@@ -207,7 +207,7 @@ this.animationInterfaceArray[index]!.nextFrame();
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.animationInterfaceArray[index]!.paintXY(graphics, x, y);
     
@@ -218,7 +218,7 @@ this.animationInterfaceArray[index]!.paintXY(graphics, x, y);
 
     public paintThreedXYZ(graphics: Graphics, x: number, y: number, z: number){
 
-    var size: number = this.animationInterfaceArray!.length
+    let size: number = this.animationInterfaceArray!.length
                 ;;
     
 
@@ -226,7 +226,7 @@ this.animationInterfaceArray[index]!.paintXY(graphics, x, y);
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.animationInterfaceArray[index]!.paintThreedXYZ(graphics, x, y, z);
     
@@ -259,7 +259,7 @@ this.animationInterfaceArray= animationInterfaceArray;
                                     this.value= value;
     
 
-    var newDy: number = this.dy +(value *this.height /100);;
+    let newDy: number = this.dy +(globalThis.Math.trunc(value *this.height /100));;
     
 this.animationInterfaceArray[3]!.setDy(newDy);
     
@@ -271,10 +271,10 @@ this.animationInterfaceArray[3]!.setDy(newDy);
 
     public setValue2(thumbY: number){
 
-    var usedThumbX: number = thumbY;;
+    let usedThumbX: number = thumbY;;
     
 
-    var maxY: number = this.height;;
+    let maxY: number = this.height;;
     
 
                         if(thumbY >= this.dy && thumbY < this.dy +this.height)
@@ -302,7 +302,7 @@ this.animationInterfaceArray[3]!.setDy(newDy);
                                     }
                                 
 
-    var value: number = (100 *usedThumbX /this.height);;
+    let value: number = (globalThis.Math.trunc(100 *usedThumbX /this.height));;
     
 
                         if(value > 100)
@@ -355,6 +355,4 @@ this.hasFocus= hasFocus;
 
 
 }
-
-
 

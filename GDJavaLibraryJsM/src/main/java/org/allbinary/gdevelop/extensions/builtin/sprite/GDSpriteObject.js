@@ -21,13 +21,13 @@ export class GDSpriteObject extends GDObject {
         super(type, jsonObject);
         this.animationList = new BasicArrayListD();
         //For kotlin this is before the body of the constructor.
-        var projectStrings = GDProjectStrings.getInstance();
+        let projectStrings = GDProjectStrings.getInstance();
         ;
-        var jsonArray = jsonObject.getJSONArray(projectStrings.ANIMATIONS);
+        let jsonArray = jsonObject.getJSONArray(projectStrings.ANIMATIONS);
         ;
-        var size = jsonArray.length();
+        let size = jsonArray.length();
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             this.animationList.add(new GDAnimation(jsonArray.getJSONObject(index)));
         }
     }

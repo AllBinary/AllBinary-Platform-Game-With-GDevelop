@@ -21,7 +21,7 @@ export class ScalableProcessor extends ScalableBaseProcessor {
         return ScalableProcessor.instance;
     }
     process(gameLayer, initIndexedAnimationInterface) {
-        var gdObject = gameLayer.gdObject;
+        let gdObject = gameLayer.gdObject;
         ;
         initIndexedAnimationInterface.setScale(gdObject.scaleX, gdObject.scaleY);
     }

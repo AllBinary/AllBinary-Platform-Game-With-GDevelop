@@ -23,6 +23,7 @@ import { CollidableCompositeLayer } from '../../../../../org/allbinary/game/laye
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 
 
@@ -66,6 +67,4 @@ super.setDestroyed(destroyed);
 
 
 }
-
-
 

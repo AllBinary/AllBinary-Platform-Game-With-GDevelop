@@ -12,7 +12,7 @@ import { GDProjectStrings } from './GDProjectStrings.js';
 export class GDCamera extends Object {
     constructor(jsonObject) {
         super();
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
         this.defaultSize = jsonObject.getBoolean(gdProjectStrings.DEFAULT_SIZE);
         this.defaultViewport = jsonObject.getBoolean(gdProjectStrings.DEFAULT_VIEWPORT);

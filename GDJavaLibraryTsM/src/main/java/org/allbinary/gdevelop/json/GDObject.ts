@@ -14,12 +14,15 @@
         
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { JSONArray } from '../../../../org/json/JSONArray.js';
 //not GWT import const JSONArray
@@ -79,7 +82,7 @@ public constructor (type: string, jsonObject: Object){
         this.jsonObject= jsonObject;
     
 
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 this.type= type;
     
@@ -101,17 +104,17 @@ this.name= jsonObject!.getString(gdProjectStrings!.NAME);
                         }
                             
 
-    var variableJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.VARIABLES)!;;
+    let variableJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.VARIABLES)!;;
     
 
-    var size: number = variableJSONArray!.length()!;;
+    let size: number = variableJSONArray!.length()!;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.variableList!.add(new GDVariable(variableJSONArray!.getJSONObject(index)));
     
@@ -122,7 +125,7 @@ this.variableList!.add(new GDVariable(variableJSONArray!.getJSONObject(index)));
                         
                                     {
                                     
-    var effectsJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.EFFECTS)!;;
+    let effectsJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.EFFECTS)!;;
     
 size= effectsJSONArray!.length();
     
@@ -131,7 +134,7 @@ size= effectsJSONArray!.length();
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.effectsList!.add(new GDEffect(effectsJSONArray!.getJSONObject(index)));
     
@@ -141,7 +144,7 @@ this.effectsList!.add(new GDEffect(effectsJSONArray!.getJSONObject(index)));
                                     }
                                 
 
-    var behaviorsJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.BEHAVIORS)!;;
+    let behaviorsJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.BEHAVIORS)!;;
     
 size= behaviorsJSONArray!.length();
     
@@ -150,7 +153,7 @@ size= behaviorsJSONArray!.length();
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.behaviorContentList!.add(new GDBehavior(behaviorsJSONArray!.getJSONObject(index)));
     
@@ -160,6 +163,4 @@ this.behaviorContentList!.add(new GDBehavior(behaviorsJSONArray!.getJSONObject(i
 
 
 }
-
-
 

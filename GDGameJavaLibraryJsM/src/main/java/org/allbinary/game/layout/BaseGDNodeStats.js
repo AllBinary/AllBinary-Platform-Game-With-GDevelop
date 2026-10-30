@@ -21,6 +21,6 @@ export class BaseGDNodeStats extends Object {
     }
     push(index, name) {
     }
-    log(stringBuilder, anyType = {}) {
+    log(stringBuilder, anyType) {
     }
 }

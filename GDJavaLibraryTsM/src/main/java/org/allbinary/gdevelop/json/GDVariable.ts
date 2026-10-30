@@ -14,15 +14,19 @@
         
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 //not plain js import { ABHashMap } 
 const ABHashMap = globalThis.org.allbinary.util.ABHashMap;
+type ABHashMap<T = any, U = any> = typeof ABHashMap extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ABHashMap;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { JSONArray } from '../../../../org/json/JSONArray.js';
 //not GWT import const JSONArray
@@ -74,21 +78,21 @@ public constructor (jsonObject: JSONObject){
 
             super();
         
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 
-    var typeFactory: GDTypeFactory = GDTypeFactory.getInstance()!;;
+    let typeFactory: GDTypeFactory = GDTypeFactory.getInstance()!;;
     
 this.type= typeFactory!.get(jsonObject!.getString(gdProjectStrings!.TYPE));
     
 
-    var string: string;;
+    let string: string;;
     
 
-    var value: number;;
+    let value: number;;
     
 
-    var boolValue: boolean;;
+    let boolValue: boolean;;
     
 
                         if(typeFactory!.isPrimitive(this.type))
@@ -158,20 +162,20 @@ boolValue= false;
                         
                                     {
                                     
-    var variableJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.CHILDREN)!;;
+    let variableJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.CHILDREN)!;;
     
 
-    var size: number = variableJSONArray!.length()!;;
+    let size: number = variableJSONArray!.length()!;;
     
 
-    var childJSONObject: JSONObject;;
+    let childJSONObject: JSONObject;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 childJSONObject= variableJSONArray!.getJSONObject(index);
     
@@ -211,6 +215,4 @@ this.boolValue= boolValue;
 
 
 }
-
-
 

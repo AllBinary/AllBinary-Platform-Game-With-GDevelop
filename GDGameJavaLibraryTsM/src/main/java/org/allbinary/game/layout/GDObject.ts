@@ -57,24 +57,30 @@ import { OpenGLFeatureFactory } from '../../../../org/allbinary/graphics/opengle
 
 //not plain js import { CommonSeps } 
 const CommonSeps = globalThis.org.allbinary.string.CommonSeps;
+type CommonSeps<T = any, U = any> = typeof CommonSeps extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonSeps;
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
+type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringMaker;
 
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 import { NoDecimalTrigTable } from '../../../../org/allbinary/math/NoDecimalTrigTable.js';
 //not GWT import const NoDecimalTrigTable
 
 //not plain js import { PositionStrings } 
 const PositionStrings = globalThis.org.allbinary.math.PositionStrings;
+type PositionStrings<T = any, U = any> = typeof PositionStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof PositionStrings;
 
 //not plain js import { CommonLabels } 
 const CommonLabels = globalThis.org.allbinary.string.CommonLabels;
+type CommonLabels<T = any, U = any> = typeof CommonLabels extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonLabels;
 
 
 
@@ -186,10 +192,10 @@ this.type= type;
 this.updateSize(width, height);
     
 
-    var features: Features = Features.getInstance()!;;
+    let features: Features = Features.getInstance()!;;
     
 
-    var openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()!;;
+    let openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()!;;
     
 
                         if(features.isFeature(openGLFeatureFactory!.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory!.OPENGL_3D))
@@ -224,7 +230,7 @@ this.initScaleX= scaleX;
     
 this.initScaleY= scaleY;
     
-this.updateSize(Math.round((this.width *scaleX)), Math.round((this.height *scaleY)));
+this.updateSize(globalThis.Math.trunc((this.width *scaleX)), globalThis.Math.trunc((this.height *scaleY)));
     
 }
 
@@ -234,9 +240,9 @@ this.width= width;
     
 this.height= height;
     
-this.halfWidth= width /2;
+this.halfWidth= globalThis.Math.trunc(width /2);
     
-this.halfHeight= height /2;
+this.halfHeight= globalThis.Math.trunc(height /2);
     
 }
 
@@ -299,26 +305,40 @@ this.halfHeight= height /2;
     
 }
 
-
-    public setX(x: number){
-this.setX(Math.round(x));
+setX(...args: any[]): any {
+   
+    if (args.length === 1 && typeof args[0] === 'number') return this.setX$overload1(args[0]);
+   
+    if (args.length === 1 && typeof args[0] === 'number') return this.setX$overload2(args[0]);
+   
+   throw new TypeError('No matching overload: setX'); }
+  
+    public setX$overload1(x: number){
+this.setX(globalThis.Math.trunc(x));
     
 }
 
 
-    public setX(x: number){
+    public setX$overload2(x: number){
 this.xP= x;
     
 }
 
-
-    public setY(y: number){
-this.setY(Math.round(y));
+setY(...args: any[]): any {
+   
+    if (args.length === 1 && typeof args[0] === 'number') return this.setY$overload1(args[0]);
+   
+    if (args.length === 1 && typeof args[0] === 'number') return this.setY$overload2(args[0]);
+   
+   throw new TypeError('No matching overload: setY'); }
+  
+    public setY$overload1(y: number){
+this.setY(globalThis.Math.trunc(y));
     
 }
 
 
-    public setY(y: number){
+    public setY$overload2(y: number){
 this.yP= y;
     
 }
@@ -370,7 +390,7 @@ this.yP= y;
 
     public PointX(point: GPoint): number{
 
-    var adjustedAngle: number = this.angleP;;
+    let adjustedAngle: number = this.angleP;;
     
 
         while(adjustedAngle > 359)
@@ -387,20 +407,20 @@ adjustedAngle += 360;
 }
 
 
-    var x: number = Math.round((this.noDecimalTrigTable!.cos(adjustedAngle) *(point.getX() -this.halfWidth -(this.halfWidth /2)))) /this.noDecimalTrigTable!.SCALE;;
+    let x: number = globalThis.Math.trunc((this.noDecimalTrigTable!.cos(adjustedAngle) *(point.getX() -this.halfWidth -(globalThis.Math.trunc(this.halfWidth /2))))) /this.noDecimalTrigTable!.SCALE;;
     
 
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return Math.round((this.xP +(x *this.offsetX) +this.offsetBehavior!.PointX(this.halfWidth)));
+                        return globalThis.Math.trunc((this.xP +(x *this.offsetX) +this.offsetBehavior!.PointX(this.halfWidth)));
     
 }
 
 
     public PointY(point: GPoint): number{
 
-    var adjustedAngle: number = this.angleP;;
+    let adjustedAngle: number = this.angleP;;
     
 
         while(adjustedAngle > 359)
@@ -421,44 +441,51 @@ adjustedAngle += 360;
                         
                                     {
                                     
-    var y: number = Math.round((this.noDecimalTrigTable!.sin(adjustedAngle) *(point.getY() -(this.halfHeight /2)))) /this.noDecimalTrigTable!.SCALE;;
+    let y: number = globalThis.Math.trunc((this.noDecimalTrigTable!.sin(adjustedAngle) *(point.getY() -(globalThis.Math.trunc(this.halfHeight /2))))) /this.noDecimalTrigTable!.SCALE;;
     
 
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return Math.round((this.yP +(y *this.offsetY) +this.offsetBehavior!.PointY(this.halfHeight)));
+                        return globalThis.Math.trunc((this.yP +(y *this.offsetY) +this.offsetBehavior!.PointY(this.halfHeight)));
     
 
                                     }
                                 
                         else {
                             
-    var y: number = Math.round((this.noDecimalTrigTable!.sin(adjustedAngle) * -(point.getY() -(this.halfHeight /2)))) /this.noDecimalTrigTable!.SCALE;;
+    let y: number = globalThis.Math.trunc((this.noDecimalTrigTable!.sin(adjustedAngle) * -(point.getY() -(globalThis.Math.trunc(this.halfHeight /2))))) /this.noDecimalTrigTable!.SCALE;;
     
 
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return Math.round((this.yP +(y *this.offsetY) +this.offsetBehavior!.PointY(this.halfHeight)));
+                        return globalThis.Math.trunc((this.yP +(y *this.offsetY) +this.offsetBehavior!.PointY(this.halfHeight)));
     
 
                         }
                             
 }
 
-
-    public setAngle(angle: number){
+setAngle(...args: any[]): any {
+   
+    if (args.length === 1 && typeof args[0] === 'number') return this.setAngle$overload1(args[0]);
+   
+    if (args.length === 2 && typeof args[0] === 'number') return this.setAngle$overload2(args[0], args[1]);
+   
+   throw new TypeError('No matching overload: setAngle'); }
+  
+    public setAngle$overload1(angle: number){
 this.angleP= angle;
     
 }
 
 
-    public setAngle(angle: number, gameLayer: GDGameLayer){
+    public setAngle$overload2(angle: number, gameLayer: GDGameLayer){
 this.updateSinceSetAngle= false;
     
 
-    var adjustedAngle: number = angle;;
+    let adjustedAngle: number = angle;;
     
 
         while(adjustedAngle > 359)
@@ -480,18 +507,15 @@ gameLayer!.setRotation(adjustedAngle);
     
 }
 
-
-    public Angle(gameLayer: GDGameLayer): number{
-
-
-
-                        //if statement needs to be on the same line and ternary does not work the same way.
-                        return this.angleP;
-    
-}
-
-
-    public Angle(): number{
+Angle(...args: any[]): any {
+   
+    if (args.length === 1) return this.Angle$overload1(args[0]);
+   
+    if (args.length === 0) return this.Angle$overload2();
+   
+   throw new TypeError('No matching overload: Angle'); }
+  
+    public Angle$overload1(gameLayer: GDGameLayer): number{
 
 
 
@@ -501,7 +525,24 @@ gameLayer!.setRotation(adjustedAngle);
 }
 
 
-    public Variable(value: number): number{
+    public Angle$overload2(): number{
+
+
+
+                        //if statement needs to be on the same line and ternary does not work the same way.
+                        return this.angleP;
+    
+}
+
+Variable(...args: any[]): any {
+   
+    if (args.length === 1 && typeof args[0] === 'number') return this.Variable$overload1(args[0]);
+   
+    if (args.length === 1 && typeof args[0] === 'number') return this.Variable$overload2(args[0]);
+   
+   throw new TypeError('No matching overload: Variable'); }
+  
+    public Variable$overload1(value: number): number{
 
 
 
@@ -511,7 +552,7 @@ gameLayer!.setRotation(adjustedAngle);
 }
 
 
-    public Variable(value: number): number{
+    public Variable$overload2(value: number): number{
 
 
 
@@ -520,8 +561,15 @@ gameLayer!.setRotation(adjustedAngle);
     
 }
 
-
-    public VariableChildCount(array: number[]): number{
+VariableChildCount(...args: any[]): any {
+   
+    if (args.length === 1) return this.VariableChildCount$overload1(args[0]);
+   
+    if (args.length === 1) return this.VariableChildCount$overload2(args[0]);
+   
+   throw new TypeError('No matching overload: VariableChildCount'); }
+  
+    public VariableChildCount$overload1(array: number[]): number{
 
 
 
@@ -531,7 +579,7 @@ gameLayer!.setRotation(adjustedAngle);
 }
 
 
-    public VariableChildCount(array: string[]): number{
+    public VariableChildCount$overload2(array: string[]): number{
 
 
 
@@ -567,19 +615,19 @@ gameLayer!.setRotation(adjustedAngle);
 
     public toShortString(): string{
 
-    var commonSeps: CommonSeps = CommonSeps.getInstance()!;;
+    let commonSeps: CommonSeps = CommonSeps.getInstance()!;;
     
 
-    var gdObjectStrings: GDObjectStrings = GDObjectStrings.getInstance()!;;
+    let gdObjectStrings: GDObjectStrings = GDObjectStrings.getInstance()!;;
     
 
-    var positionStrings: PositionStrings = PositionStrings.getInstance()!;;
+    let positionStrings: PositionStrings = PositionStrings.getInstance()!;;
     
 
-    var commonLabels: CommonLabels = CommonLabels.getInstance()!;;
+    let commonLabels: CommonLabels = CommonLabels.getInstance()!;;
     
 
-    var stringBuilder: StringMaker = new StringMaker();;
+    let stringBuilder: StringMaker = new StringMaker();;
     
 
 
@@ -592,22 +640,22 @@ gameLayer!.setRotation(adjustedAngle);
 
     public toString(): string{
 
-    var commonSeps: CommonSeps = CommonSeps.getInstance()!;;
+    let commonSeps: CommonSeps = CommonSeps.getInstance()!;;
     
 
-    var graphicsStrings: GraphicsStrings = GraphicsStrings.getInstance()!;;
+    let graphicsStrings: GraphicsStrings = GraphicsStrings.getInstance()!;;
     
 
-    var positionStrings: PositionStrings = PositionStrings.getInstance()!;;
+    let positionStrings: PositionStrings = PositionStrings.getInstance()!;;
     
 
-    var commonLabels: CommonLabels = CommonLabels.getInstance()!;;
+    let commonLabels: CommonLabels = CommonLabels.getInstance()!;;
     
 
-    var gdObjectStrings: GDObjectStrings = GDObjectStrings.getInstance()!;;
+    let gdObjectStrings: GDObjectStrings = GDObjectStrings.getInstance()!;;
     
 
-    var stringBuilder: StringMaker = new StringMaker();;
+    let stringBuilder: StringMaker = new StringMaker();;
     
 
 
@@ -619,6 +667,4 @@ gameLayer!.setRotation(adjustedAngle);
 
 
 }
-
-
 

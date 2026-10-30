@@ -32,9 +32,11 @@ import { GameTypeFactory } from '../../../../../org/allbinary/game/GameTypeFacto
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { PreLogUtil } 
 const PreLogUtil = globalThis.org.allbinary.logic.communication.log.PreLogUtil;
+type PreLogUtil<T = any, U = any> = typeof PreLogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof PreLogUtil;
 
 import { AllBinaryGameLayerManager } from '../../../../../org/allbinary/game/layer/AllBinaryGameLayerManager.js';
 //not GWT import const AllBinaryGameLayerManager
@@ -74,9 +76,11 @@ import { AllBinaryToMin3dRendererFactory } from '../../../../../org/allbinary/gr
 
 //not plain js import { MathData } 
 const MathData = globalThis.org.allbinary.logic.math.MathData;
+type MathData<T = any, U = any> = typeof MathData extends abstract new (...args: any[]) => infer Instance ? Instance : typeof MathData;
 
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
+type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringMaker;
 
 import { OperatingSystemFactory } from '../../../../../org/allbinary/logic/system/os/OperatingSystemFactory.js';
 //not GWT import const OperatingSystemFactory
@@ -86,6 +90,7 @@ import { OperatingSystemInterface } from '../../../../../org/allbinary/logic/sys
 
 //not plain js import { CommonSeps } 
 const CommonSeps = globalThis.org.allbinary.string.CommonSeps;
+type CommonSeps<T = any, U = any> = typeof CommonSeps extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonSeps;
 
 import { ViewPosition } from '../../../../../org/allbinary/view/ViewPosition.js';
 //not GWT import const ViewPosition
@@ -160,16 +165,15 @@ PreLogUtil.put(this.commonStrings!.START, this.TAG, this.commonStrings!.CONSTRUC
 
     public initScene(gl: GL10){
 
-        try {
-            PreLogUtil.put(this.commonStrings!.START, this, this.sceneStrings!.INIT_SCENE);
+ try { PreLogUtil.put(this.commonStrings!.START, this, this.sceneStrings!.INIT_SCENE);
     
 this.index= 1;
     
 
-    var glInstanceVersion: string = this.openGLCapabilities!.glInstanceVersion;;
+    let glInstanceVersion: string = this.openGLCapabilities!.glInstanceVersion;;
     
 
-    var progressCanvas: ProgressCanvas = ProgressCanvasFactory.getInstance()!;;
+    let progressCanvas: ProgressCanvas = ProgressCanvasFactory.getInstance()!;;
     
 progressCanvas!.addEarlyPortion(this.portion, this.loadingString, this.index++);
     
@@ -178,7 +182,7 @@ progressCanvas!.addEarlyPortion(this.portion, this.loadingString, this.index++);
                         
                                     {
                                     
-    var resourceInitialization: ResourceInitialization = (GDThreedEarlyResourceInitializationFactory.getInstance()!.list.get(0) as ResourceInitialization);;
+    let resourceInitialization: ResourceInitialization = (GDThreedEarlyResourceInitializationFactory.getInstance()!.list.get(0) as ResourceInitialization);;
     
 resourceInitialization!.init();
     
@@ -187,7 +191,7 @@ progressCanvas!.addEarlyPortion(this.portion, this.loadingString, this.index++);
 this.processLighting();
     
 
-    var camera: Camera = this.scene.getCamera()!;;
+    let camera: Camera = this.scene.getCamera()!;;
     
 camera.frustum.horizontalCenter(0.5);
     
@@ -207,17 +211,17 @@ this.initialized= true;
 progressCanvas!.addEarlyPortion(this.portion, this.loadingString, this.index++);
     
 
-    var gdGameThreedLevelBuilder: GDGameThreedLevelBuilder;;
+    let gdGameThreedLevelBuilder: GDGameThreedLevelBuilder;;
     
 
-    var size: number = this.gameThreedLevelBuilderFactory!.list.size()!;;
+    let size: number = this.gameThreedLevelBuilderFactory!.list.size()!;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 gdGameThreedLevelBuilder= (this.gameThreedLevelBuilderFactory!.list.get(index) as GDGameThreedLevelBuilder);
     
@@ -229,14 +233,17 @@ progressCanvas!.addEarlyPortion(this.portion, this.loadingString, this.index++);
     
 PreLogUtil.put(this.commonStrings!.END, this, this.sceneStrings!.INIT_SCENE);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 this.logUtil!.put(this.commonStrings!.EXCEPTION, this, this.sceneStrings!.INIT_SCENE, e);
     
-}
 
+ }
+   }
+ 
 }
 
 
@@ -246,17 +253,16 @@ this.logUtil!.put(this.commonStrings!.EXCEPTION, this, this.sceneStrings!.INIT_S
             
     public buildScene(layerManager: AllBinaryGameLayerManager){
 
-        try {
-            PreLogUtil.put(this.commonStrings!.START, this, this.sceneStrings!.BUILD_SCENE);
+ try { PreLogUtil.put(this.commonStrings!.START, this, this.sceneStrings!.BUILD_SCENE);
     
 
-    var gdLayerManager: GDGameLayerManager = layerManager as GDGameLayerManager;;
+    let gdLayerManager: GDGameLayerManager = layerManager as GDGameLayerManager;;
     
 
-    var gdGameCameraSetup: GDGameCameraSetup = (this.gameThreedLevelBuilderFactory!.cameraList!.get(gdLayerManager!.layout) as GDGameCameraSetup);;
+    let gdGameCameraSetup: GDGameCameraSetup = (this.gameThreedLevelBuilderFactory!.cameraList!.get(gdLayerManager!.layout) as GDGameCameraSetup);;
     
 
-    var camera: Camera = this.scene.getCamera()!;;
+    let camera: Camera = this.scene.getCamera()!;;
     
 
                         if(gdGameCameraSetup!.type == GDGameCameraSetup.FOLLOW)
@@ -265,29 +271,13 @@ this.logUtil!.put(this.commonStrings!.EXCEPTION, this, this.sceneStrings!.INIT_S
                                     this.scene.reset();
     
 
-    var vehicleCamera: OffsetTargetXCamera = this.scene.getCamera() as OffsetTargetXCamera;;
+    let vehicleCamera: OffsetTargetXCamera = this.scene.getCamera() as OffsetTargetXCamera;;
     
 
-    var operatingSystem: OperatingSystemInterface = OperatingSystemFactory.getInstance()!.getOperatingSystemInstance()!;;
+    let operatingSystem: OperatingSystemInterface = OperatingSystemFactory.getInstance()!.getOperatingSystemInstance()!;;
     
 
-    var distance: number = operatingSystem!.isOverScan()
-                        ?       
-                                (AndroidUtil.isAndroid()
-                        ?       
-                                550
-                                :
-
-                            650;
-
-    )
-                                :
-
-                            
-                                        //Otherwise - expression - elseExpr - EnclosedExpr
-;
-
-    ;;
+    let distance: number = (operatingSystem!.isOverScan() ? ((AndroidUtil.isAndroid() ? 550 : 650)) : ((AndroidUtil.isAndroid() ? 200 : 300)));;
     
 this.cameraLayer= new SimpleUserFollowCameraLayer(vehicleCamera, RectangleFactory.SINGLETON, ViewPosition.getInstanceD(), distance, distance, distance);
     
@@ -312,7 +302,7 @@ this.cameraLayer!.updateCamera();
                                     }
                                 
 
-    var stringMaker: StringMaker = new StringMaker();;
+    let stringMaker: StringMaker = new StringMaker();;
     
 gdGameCameraSetup!.processTarget(this.cameraLayer, camera);
     
@@ -343,20 +333,23 @@ camera.target.getPosition()!.append(stringMaker);
     
 PreLogUtil.put(stringMaker!.toString(), this, this.sceneStrings!.BUILD_SCENE);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 this.logUtil!.put(this.commonStrings!.EXCEPTION, this, this.sceneStrings!.BUILD_SCENE, e);
     
-}
 
+ }
+   }
+ 
 }
 
 
     processLighting(){
 
-    var light: Light = new Light();;
+    let light: Light = new Light();;
     
 
                         if(this.scene.getLights()!.size() > 0)
@@ -393,6 +386,4 @@ this.scene.getLights()!.add(light);
 
 
 }
-
-
 

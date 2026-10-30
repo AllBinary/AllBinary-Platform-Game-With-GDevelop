@@ -34,7 +34,7 @@ import { MidletFactoryInterface } from '../../org/allbinary/midlet/MidletFactory
 export class GDGameMidletFactory extends MidletFactoryInterface {
         
 
-    public getInstance(): any
+    public getInstance(): any;
                 //native - START
                 {
                     
@@ -46,6 +46,4 @@ export class GDGameMidletFactory extends MidletFactoryInterface {
                 
 
 }
-
-
 

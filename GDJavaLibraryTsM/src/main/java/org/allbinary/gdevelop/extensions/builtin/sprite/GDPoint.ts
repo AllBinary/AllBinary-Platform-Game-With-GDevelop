@@ -17,6 +17,7 @@ import { GDProjectStrings } from '../../../../../../org/allbinary/gdevelop/json/
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 import { JSONObject } from '../../../../../../org/json/JSONObject.js';
 //not GWT import const JSONObject
@@ -59,12 +60,12 @@ public constructor (jsonObject: JSONObject){
 
             super();
         
-    var projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let projectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 this.name= jsonObject!.getString(projectStrings!.NAME);
     
 
-    var automatic: boolean = false;;
+    let automatic: boolean = false;;
     
 
                         if(jsonObject!.has(projectStrings!.AUTOMATIC))
@@ -85,6 +86,4 @@ this.y= jsonObject!.getInt(projectStrings!.Y);
 
 
 }
-
-
 

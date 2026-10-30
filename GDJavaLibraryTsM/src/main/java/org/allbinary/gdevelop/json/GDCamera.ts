@@ -61,7 +61,7 @@ public constructor (jsonObject: JSONObject){
 
             super();
         
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 this.defaultSize= jsonObject!.getBoolean(gdProjectStrings!.DEFAULT_SIZE);
     
@@ -83,6 +83,4 @@ this.y2= jsonObject!.getDouble(gdProjectStrings!.VIEWPORT_BOTTOM);
 
 
 }
-
-
 

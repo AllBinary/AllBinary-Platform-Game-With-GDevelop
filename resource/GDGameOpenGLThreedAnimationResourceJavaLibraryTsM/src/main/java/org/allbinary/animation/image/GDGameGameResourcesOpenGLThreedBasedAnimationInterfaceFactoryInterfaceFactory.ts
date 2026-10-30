@@ -26,6 +26,7 @@ import { ProgressCanvasFactory } from '../../../../org/allbinary/graphics/canvas
 
 //not plain js import { StdUtil } 
 const StdUtil = globalThis.org.allbinary.logic.StdUtil;
+type StdUtil<T = any, U = any> = typeof StdUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StdUtil;
 
 
 
@@ -77,15 +78,15 @@ public constructor (){
                                     }
                                 
 
-    var portion: number = 120;;
+    let portion: number = 120;;
     
 
-    var loadingString: string = this.toString() +" Loading: ";;
+    let loadingString: string = this.toString() +" Loading: ";;
     
 this.index= 1;
     
 
-    var progressCanvas: ProgressCanvas = ProgressCanvasFactory.getInstance()!;;
+    let progressCanvas: ProgressCanvas = ProgressCanvasFactory.getInstance()!;;
     
 progressCanvas!.addPortion(portion, loadingString, this.index++);
     
@@ -96,13 +97,13 @@ super.init(level);
 
     public isFeature(): boolean{
 
-    var features: Features = Features.getInstance()!;;
+    let features: Features = Features.getInstance()!;;
     
 
-    var graphicsFeatureFactory: GraphicsFeatureFactory = GraphicsFeatureFactory.getInstance()!;;
+    let graphicsFeatureFactory: GraphicsFeatureFactory = GraphicsFeatureFactory.getInstance()!;;
     
 
-    var openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()!;;
+    let openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()!;;
     
 
                         if(features.isFeature(graphicsFeatureFactory!.IMAGE_GRAPHICS) && features.isFeature(graphicsFeatureFactory!.IMAGE_TO_ARRAY_GRAPHICS) && features.isDefault(openGLFeatureFactory!.OPENGL) && (features.isFeature(openGLFeatureFactory!.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory!.OPENGL_3D)))
@@ -131,6 +132,4 @@ super.init(level);
 
 
 }
-
-
 

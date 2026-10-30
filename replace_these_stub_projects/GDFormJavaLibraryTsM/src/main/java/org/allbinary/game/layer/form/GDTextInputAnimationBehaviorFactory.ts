@@ -72,5 +72,3 @@ export class GDTextInputAnimationBehaviorFactory extends GDAnimationBehaviorBase
 
 }
 
-
-

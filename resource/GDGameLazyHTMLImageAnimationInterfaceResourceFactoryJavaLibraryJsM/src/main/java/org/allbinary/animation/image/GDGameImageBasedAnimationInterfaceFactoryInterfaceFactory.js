@@ -42,13 +42,13 @@ export class GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory extends B
             //if statement needs to be on the same line and ternary does not work the same way.
             return;
         }
-        var portion = 120;
+        let portion = 120;
         ;
-        var loadingString = this.toString() + " Loading: ";
+        let loadingString = this.toString() + " Loading: ";
         ;
-        var index = 0;
+        let index = 0;
         ;
-        var progressCanvas = ProgressCanvasFactory.getInstance();
+        let progressCanvas = ProgressCanvasFactory.getInstance();
         ;
         progressCanvas.addNormalPortion(portion, loadingString + index++);
         this.addRectangles();
@@ -67,7 +67,7 @@ export class GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory extends B
         }
     }
     isFeature() {
-        var features = Features.getInstance();
+        let features = Features.getInstance();
         ;
         if (features.isFeature(GraphicsFeatureFactory.getInstance().IMAGE_GRAPHICS) && features.isFeature(GraphicsFeatureFactory.getInstance().IMAGE_TO_ARRAY_GRAPHICS) && !features.isDefault(OpenGLFeatureFactory.getInstance().OPENGL)) {
             //if statement needs to be on the same line and ternary does not work the same way.

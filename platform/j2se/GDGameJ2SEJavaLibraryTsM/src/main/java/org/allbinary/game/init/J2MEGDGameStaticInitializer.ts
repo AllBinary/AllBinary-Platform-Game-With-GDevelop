@@ -73,5 +73,3 @@ FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!.add(new GDGameI
 
 }
 
-
-

@@ -44,12 +44,15 @@ import { OpenGLFeatureFactory } from '../../../org/allbinary/graphics/opengles/O
 
 //not plain js import { LogFactory } 
 const LogFactory = globalThis.org.allbinary.logic.communication.log.LogFactory;
+type LogFactory<T = any, U = any> = typeof LogFactory extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogFactory;
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 import { PlatformOpenGLESGraphicsFactory } from '../../../org/microemu/opengles/device/PlatformOpenGLESGraphicsFactory.js';
 //not GWT import const PlatformOpenGLESGraphicsFactory
@@ -97,39 +100,39 @@ export class NativeBareMain
                         }
                             
 
-    var features: Features = Features.getInstance()!;;
+    let features: Features = Features.getInstance()!;;
     
 
-    var openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()!;;
+    let openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()!;;
     
 
-        try {
-            features.addDefault(openGLFeatureFactory!.OPENGL_2D_AND_3D);
+ try { features.addDefault(openGLFeatureFactory!.OPENGL_2D_AND_3D);
     
 OpenGLESGraphicsCompositeFactory.getInstance()!.set(new PlatformOpenGLESGraphicsFactory());
     
 GDThreedEarlyResourceInitializationFactory.getInstance()!.list.add(new GDGameThreedJ2SEWithSWTJOGLEarlyResourceInitialization());
     
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 
-                //: 
-} catch(e) 
-            {
-
-    var logUtil: LogUtil = LogUtil.getInstance()!;;
+    let logUtil: LogUtil = LogUtil.getInstance()!;;
     
 
-    var commonStrings: CommonStrings = CommonStrings.getInstance()!;;
+    let commonStrings: CommonStrings = CommonStrings.getInstance()!;;
     
 logUtil!.put(commonStrings!.EXCEPTION, features, commonStrings!.PROCESS, e);
     
-}
 
+ }
+   }
+ 
 BareMain.main2(args, "GDGame", "/gd_icon.ico");
     
 }
 
 
 }
-
-
 

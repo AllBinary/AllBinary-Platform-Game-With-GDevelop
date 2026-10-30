@@ -11,6 +11,7 @@ import { InputStream } from '../../../../../java/io/InputStream.js';
 
 //not plain js import { ResourceUtil } 
 const ResourceUtil = globalThis.org.allbinary.data.resource.ResourceUtil;
+type ResourceUtil<T = any, U = any> = typeof ResourceUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ResourceUtil;
 
 import { ResourceInitialization } from '../../../../../org/allbinary/game/resource/ResourceInitialization.js';
 //not GWT import const ResourceInitialization
@@ -32,6 +33,7 @@ import { MidletIcon } from '../../../../../org/allbinary/midlet/MidletIcon.js';
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 
 
@@ -63,15 +65,13 @@ export class GDGameJ2SEWithSWTJOGLEarlyResourceInitialization extends ResourceIn
 super.init();
     
 
-    var resourceUtil: ResourceUtil = ResourceUtil.getInstance()!;;
+    let resourceUtil: ResourceUtil = ResourceUtil.getInstance()!;;
     
 
-    var gdResources: GDResources = GDResources.getInstance()!;;
+    let gdResources: GDResources = GDResources.getInstance()!;;
     
 }
 
 
 }
-
-
 

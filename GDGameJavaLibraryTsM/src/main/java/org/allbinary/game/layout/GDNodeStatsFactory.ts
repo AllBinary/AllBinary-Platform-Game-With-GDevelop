@@ -20,6 +20,7 @@
 
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
+type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringMaker;
 
 
 
@@ -81,7 +82,7 @@ this.callStackGDNodeStats!.push(index, name);
 }
 
 
-    public log(stringBuilder: StringMaker, anyType: any = {}){
+    public log(stringBuilder: StringMaker, anyType: any){
 this.callCountGDNodeStats!.log(stringBuilder);
     
 this.callStackGDNodeStats!.log(stringBuilder, anyType);
@@ -90,6 +91,4 @@ this.callStackGDNodeStats!.log(stringBuilder, anyType);
 
 
 }
-
-
 

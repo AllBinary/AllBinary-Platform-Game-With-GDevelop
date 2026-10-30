@@ -70,5 +70,3 @@ export class GDIndividualAnimationBehaviorFactory extends GDAnimationBehaviorBas
 
 }
 
-
-

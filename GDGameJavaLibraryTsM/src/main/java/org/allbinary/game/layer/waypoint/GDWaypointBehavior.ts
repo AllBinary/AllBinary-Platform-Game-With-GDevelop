@@ -43,15 +43,19 @@ import { AllBinaryLayer } from '../../../../../org/allbinary/layer/AllBinaryLaye
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { ForcedLogUtil } 
 const ForcedLogUtil = globalThis.org.allbinary.logic.communication.log.ForcedLogUtil;
+type ForcedLogUtil<T = any, U = any> = typeof ForcedLogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ForcedLogUtil;
 
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
+type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringMaker;
 
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 import { AllBinaryEventObject } from '../../../../../org/allbinary/logic/util/event/AllBinaryEventObject.js';
 //not GWT import const AllBinaryEventObject
@@ -73,15 +77,19 @@ import { TimeDelayHelper } from '../../../../../org/allbinary/time/TimeDelayHelp
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 //not plain js import { BasicArrayListUtil } 
 const BasicArrayListUtil = globalThis.org.allbinary.util.BasicArrayListUtil;
+type BasicArrayListUtil<T = any, U = any> = typeof BasicArrayListUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListUtil;
 
 //not plain js import { ImmutableBasicArrayList } 
 const ImmutableBasicArrayList = globalThis.org.allbinary.util.ImmutableBasicArrayList;
+type ImmutableBasicArrayList<T = any, U = any> = typeof ImmutableBasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ImmutableBasicArrayList;
 
 
 
@@ -166,7 +174,7 @@ this.FAKE_WAYPOINT_LAYER= fakeWaypoint;
 
 
     initRange(weaponRange: number){
-this.longWeaponRange= weaponRange /2;
+this.longWeaponRange= globalThis.Math.trunc(weaponRange /2);
     
 }
 
@@ -181,7 +189,7 @@ ForcedLogUtil.log(EventStrings.getInstance()!.PERFORMANCE_MESSAGE, this);
             
     public onWaypointEvent(event: RTSLayerEvent){
 
-    var advancedRTSGameLayer: PathFindingLayerInterface = event.getRtsLayer() as PathFindingLayerInterface;;
+    let advancedRTSGameLayer: PathFindingLayerInterface = event.getRtsLayer() as PathFindingLayerInterface;;
     
 this.associatedAdvancedRTSGameLayer!.getWaypointLogHelper()!.onWaypointEvent(this.associatedAdvancedRTSGameLayer, advancedRTSGameLayer);
     
@@ -343,7 +351,7 @@ this.setMoving(false);
                                     }
                                 
 
-    var size: number = pathsList!.size()!;;
+    let size: number = pathsList!.size()!;;
     
 this.associatedAdvancedRTSGameLayer!.getWaypointLogHelper()!.setRandomGeographicMapCellHistoryList(this.associatedAdvancedRTSGameLayer, pathsList);
     
@@ -352,7 +360,7 @@ this.associatedAdvancedRTSGameLayer!.getWaypointLogHelper()!.setRandomGeographic
                         
                                     {
                                     
-    var geographicMapCellPositionBasicArrayList: BasicArrayList = BasicArrayListUtil.getInstance()!.getRandom(pathsList) as BasicArrayList;;
+    let geographicMapCellPositionBasicArrayList: BasicArrayList = BasicArrayListUtil.getInstance()!.getRandom(pathsList) as BasicArrayList;;
     
 this.setGeographicMapCellHistoryPath(geographicMapCellPositionBasicArrayList);
     
@@ -431,7 +439,7 @@ this.getCompleteTimeDelayHelper()!.setStartTimeTNT();
             
     moveAwayFromBuilding(buildingLayer: PathFindingLayerInterface){
 
-    var geographicMapCellPosition: GeographicMapCellPosition = this.associatedAdvancedRTSGameLayer!.getCurrentGeographicMapCellPosition()!;;
+    let geographicMapCellPosition: GeographicMapCellPosition = this.associatedAdvancedRTSGameLayer!.getCurrentGeographicMapCellPosition()!;;
     
 
                         if(geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION)
@@ -447,7 +455,7 @@ this.getCompleteTimeDelayHelper()!.setStartTimeTNT();
                                     }
                                 
 
-    var list: BasicArrayList = buildingLayer!.getGeographicMapCellPositionArea()!.getOccupyingGeographicMapCellPositionList()!;;
+    let list: BasicArrayList = buildingLayer!.getGeographicMapCellPositionArea()!.getOccupyingGeographicMapCellPositionList()!;;
     
 
                         if(list.contains(geographicMapCellPosition))
@@ -462,7 +470,7 @@ this.getCompleteTimeDelayHelper()!.setStartTimeTNT();
 this.setCurrentTargetLayerInterface(this.FAKE_WAYPOINT_LAYER as CollidableDestroyableDamageableLayer);
     
 
-    var pathsList: BasicArrayList = buildingLayer!.getMoveOutOfBuildAreaPath(geographicMapCellPosition)!;;
+    let pathsList: BasicArrayList = buildingLayer!.getMoveOutOfBuildAreaPath(geographicMapCellPosition)!;;
     
 this.associatedAdvancedRTSGameLayer!.setClosestGeographicMapCellHistory(pathsList);
     
@@ -500,7 +508,7 @@ this.associatedAdvancedRTSGameLayer!.getWaypointLogHelper()!.needToMove(this.ass
                         
                                     {
                                     
-    var message: string = "Repeating too long: " +this.getMovementLogicAsString();;
+    let message: string = "Repeating too long: " +this.getMovementLogicAsString();;
     
 ForcedLogUtil.log(message, this.associatedAdvancedRTSGameLayer);
     
@@ -518,7 +526,7 @@ ForcedLogUtil.log(message, this.associatedAdvancedRTSGameLayer);
 
     public getMovementLogicAsString(): string{
 
-    var stringBuffer: StringMaker = new StringMaker();;
+    let stringBuffer: StringMaker = new StringMaker();;
     
 stringBuffer!.append("isTrackingWaypoint: ");
     
@@ -760,6 +768,4 @@ this.trackingWaypoint= trackingWaypoint;
 
 
 }
-
-
 

@@ -35,7 +35,7 @@ public class GDNodeUtil {
 
     public final BasicArrayList gdNodesList = new BasicArrayListD();    
     
-    public GDNodes getInstance(final int index) {
+    public GDNodes getOrCreateInstance(final int index) {
         while(index > this.gdNodesList.size() - 1) {
             this.gdNodesList.add(new GDNodes());
         }

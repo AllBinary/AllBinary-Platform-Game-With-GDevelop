@@ -43,12 +43,14 @@ import { TsUtil } from '../../../../../org/allbinary/TsUtil.js';
 
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
+type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringMaker;
 
 import { SmallIntegerSingletonFactory } from '../../../../../org/allbinary/logic/math/SmallIntegerSingletonFactory.js';
 //not GWT import const SmallIntegerSingletonFactory
 
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 import { AbeClientInformationInterface } from '../../../../../org/allbinary/logic/system/security/licensing/AbeClientInformationInterface.js';
 //not GWT import const AbeClientInformationInterface
@@ -93,10 +95,17 @@ public constructor (recordId: string){
                     
 }
 
-
+loadAll(...args: any[]): any {
+   
+    if (args.length === 1) return this.loadAll$overload1(args[0]);
+   
+    if (args.length === 2 && typeof args[1] === 'number') return this.loadAll$overload2(args[0], args[1]);
+   
+   throw new TypeError('No matching overload: loadAll'); }
+  
                 //@Throws(Exception.constructor)
             
-    public loadAll(abeClientInformation: AbeClientInformationInterface){
+    public loadAll$overload1(abeClientInformation: AbeClientInformationInterface){
 this.loadAll(abeClientInformation, 1);
     
 }
@@ -104,32 +113,32 @@ this.loadAll(abeClientInformation, 1);
 
                 //@Throws(Exception.constructor)
             
-    public loadAll(abeClientInformation: AbeClientInformationInterface, size: number){
+    public loadAll$overload2(abeClientInformation: AbeClientInformationInterface, size: number){
 
-    var recordStore: RecordStore = RecordStore.openRecordStore(this.getRecordId(abeClientInformation), true)!;;
+    let recordStore: RecordStore = RecordStore.openRecordStore(this.getRecordId(abeClientInformation), true)!;;
     
 
-    var recordEnum: RecordEnumeration = recordStore!.enumerateRecords(NullRecordFilter.NULL_RECORD_FILTER, NullRecordComparator.NULL_RECORD_COMPARATOR, true)!;;
+    let recordEnum: RecordEnumeration = recordStore!.enumerateRecords(NullRecordFilter.NULL_RECORD_FILTER, NullRecordComparator.NULL_RECORD_COMPARATOR, true)!;;
     
 this.logUtil!.putF(new StringMaker().append(this.persistanceStrings!.NUMBER_OF_RECORDS)!.appendint(recordEnum!.numRecords())!.toString(), this, this.persistanceStrings!.LOAD_ALL);
     
 
-    var smallIntegerSingletonFactory: SmallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()!;;
+    let smallIntegerSingletonFactory: SmallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()!;;
     
 
-    var stringBuffer: StringMaker = new StringMaker();;
+    let stringBuffer: StringMaker = new StringMaker();;
     
 
-    var byteArrayInputStream: ByteArrayInputStream;;
+    let byteArrayInputStream: ByteArrayInputStream;;
     
 
-    var inputStream: DataInputStream;;
+    let inputStream: DataInputStream;;
     
 
-    var value: string;;
+    let value: string;;
     
 
-    var id: number= 0;;
+    let id: number= 0;;
     
 
         while(recordEnum!.hasNextElement())
@@ -149,7 +158,7 @@ inputStream= new DataInputStream(byteArrayInputStream);
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 value= inputStream!.readUTF();
     
@@ -174,18 +183,18 @@ recordStore!.closeRecordStore();
 this.logUtil!.putF(new StringMaker().append(JSONPersistance.JSON_)!.append(this.persistanceStrings!.SAVING)!.append(stringAsJSON)!.toString(), this, this.commonStrings!.SAVE);
     
 
-    var recordStore: RecordStore = RecordStore.openRecordStore(this.getRecordId(abeClientInformation), true)!;;
+    let recordStore: RecordStore = RecordStore.openRecordStore(this.getRecordId(abeClientInformation), true)!;;
     
 
-    var byteArrayOutputStream: ByteArrayOutputStream = new ByteArrayOutputStream();;
+    let byteArrayOutputStream: ByteArrayOutputStream = new ByteArrayOutputStream();;
     
 
-    var outputStream: DataOutputStream = new DataOutputStream(byteArrayOutputStream);;
+    let outputStream: DataOutputStream = new DataOutputStream(byteArrayOutputStream);;
     
 outputStream!.writeUTF(stringAsJSON as string);
     
 
-    var savedGameBytes: number[] = byteArrayOutputStream!.toByteArray()!;;
+    let savedGameBytes: number[] = byteArrayOutputStream!.toByteArray()!;;
     
 recordStore!.addRecord(savedGameBytes, 0, savedGameBytes!.length);
     
@@ -218,6 +227,4 @@ recordStore!.closeRecordStore();
 
 
 }
-
-
 

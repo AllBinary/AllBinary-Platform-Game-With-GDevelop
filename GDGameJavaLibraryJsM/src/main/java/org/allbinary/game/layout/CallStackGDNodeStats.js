@@ -31,8 +31,8 @@ export class CallStackGDNodeStats extends Object {
         this.total = 0;
     }
     reset() {
-        for (var index2 = 0; index2 < this.SIZE; index2++) {
-            for (var index = 0; index < this.total; index++) {
+        for (let index2 = 0; index2 < this.SIZE; index2++) {
+            for (let index = 0; index < this.total; index++) {
                 this.callStack[index2][index] = 0;
             }
         }
@@ -41,14 +41,14 @@ export class CallStackGDNodeStats extends Object {
     push(index, name) {
         this.callStack[index][this.total++] = name;
     }
-    log(stringBuilder, anyType = {}) {
-        var commonStrings = CommonStrings.getInstance();
+    log(stringBuilder, anyType) {
+        let commonStrings = CommonStrings.getInstance();
         ;
-        var commonSeps = CommonSeps.getInstance();
+        let commonSeps = CommonSeps.getInstance();
         ;
         stringBuilder.delete(0, stringBuilder.length());
-        for (var index2 = 0; index2 < this.total; index2++) {
-            for (var index = 0; index < this.SIZE; index++) {
+        for (let index2 = 0; index2 < this.total; index2++) {
+            for (let index = 0; index < this.SIZE; index++) {
                 if (this.callStack[index][index2] != 0) {
                     stringBuilder.appendint(index2);
                     stringBuilder.append(commonSeps.COLON);

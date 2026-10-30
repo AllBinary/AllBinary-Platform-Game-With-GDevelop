@@ -26,11 +26,18 @@ export class GDBehaviorUtil extends Object {
         this.DRAGGABLE_BEHAVIOR_INDEX = 1;
         this.MAX = this.DRAGGABLE_BEHAVIOR_INDEX + 1;
     }
-    static getInstance() {
+    static getInstance(...args) {
+        if (args.length === 0)
+            return this.getInstance$overload1();
+        if (args.length === 1 && typeof args[0] === 'number')
+            return this.getInstance$overload2(args[0]);
+        throw new TypeError('No matching overload: getInstance');
+    }
+    static getInstance$overload1() {
         //if statement needs to be on the same line and ternary does not work the same way.
         return GDBehaviorUtil.instance;
     }
-    getInstance(index) {
+    getInstance$overload2(index) {
         if (index == this.PATHFINDING_BEHAVIOR_INDEX) {
             //if statement needs to be on the same line and ternary does not work the same way.
             return PathFindingBehavior.getInstance();

@@ -33,15 +33,15 @@ export class GDTwodBehavior extends Object {
         this.animationBehavior.set(gameLayer, gdObject);
     }
     updateRotation(gameLayer, timeDelta) {
-        var gdObject = gameLayer.gdObject;
+        let gdObject = gameLayer.gdObject;
         ;
-        var newPortion = (gdObject.rotationP * timeDelta / 1000);
+        let newPortion = (gdObject.rotationP * timeDelta / 1000);
         ;
         this.rotationRemainder = this.rotationRemainder + newPortion;
-        var angleAdjustment = this.rotationRemainder;
+        let angleAdjustment = this.rotationRemainder;
         ;
         if (angleAdjustment != 0) {
-            var adjustedAngle2 = gdObject.angleP + angleAdjustment;
+            let adjustedAngle2 = gdObject.angleP + angleAdjustment;
             ;
             while (adjustedAngle2 > 359) {
                 adjustedAngle2 -= 360;

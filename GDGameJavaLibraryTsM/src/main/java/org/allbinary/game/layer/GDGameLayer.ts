@@ -98,12 +98,14 @@ import { OpenGLSurfaceChangedInterface } from '../../../../org/allbinary/image/o
 
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
+type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringMaker;
 
 import { ScaleFactorFactory } from '../../../../org/allbinary/logic/math/ScaleFactorFactory.js';
 //not GWT import const ScaleFactorFactory
 
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 import { FrameUtil } from '../../../../org/allbinary/math/FrameUtil.js';
 //not GWT import const FrameUtil
@@ -113,9 +115,11 @@ import { ScaleProperties } from '../../../../org/allbinary/media/ScaleProperties
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { ViewPosition } from '../../../../org/allbinary/view/ViewPosition.js';
 //not GWT import const ViewPosition
@@ -163,12 +167,36 @@ import { GDAnimationBehaviorBase } from './GDAnimationBehaviorBase.js';
 //not GWT import - same folder const GDAnimationBehaviorBase
 import { ScalableProcessor } from './ScalableProcessor.js';
 //not GWT import - same folder const ScalableProcessor
+type GDTextChangeListener = InstanceType<GDGameLayer['GDTextChangeListener']>;
 
 export class GDGameLayer extends MultiPlayerGameLayer {
         
 
     private static readonly HACK_ANIMATION_NAME: string = "ttack";
+//    private float lastScaleY = 1;
+//inner= member=true isStatic=
+GDTextChangeListener = (() => { const outer$GDGameLayer = this; return class extends TextChangeListener {
+        
+/*Static stuff is not allowed for TypeScript inner classes*//**/
 
+
+    private readonly gameLayer: GDGameLayer;
+
+ constructor (gameLayer: GDGameLayer){
+
+            super();
+        this.gameLayer= gameLayer;
+    
+}
+
+
+    public onMeasure(){
+this.gameLayer!.onMeasure();
+    
+}
+
+
+}; })();
     readonly stringUtil: StringUtil = StringUtil.getInstance()!;
 
     readonly frameUtil: FrameUtil = FrameUtil.getInstance()!;
@@ -231,31 +259,6 @@ move();
     processor: Processor = this.moveProcessor;
 
     public velocityBehavior: VelocityBehaviorBase = DragVelocityBehavior.instance;
-//    private float lastScaleY = 1;
-//inner= member=true isStatic=
-GDTextChangeListener = class extends TextChangeListener {
-        
-/*Static stuff is not allowed for TypeScript inner classes*//**/
-
-
-    private readonly gameLayer: GDGameLayer;
-
- constructor (gameLayer: GDGameLayer){
-
-            super();
-        this.gameLayer= gameLayer;
-    
-}
-
-
-    public onMeasure(){
-this.gameLayer!.onMeasure();
-    
-}
-
-
-}
-
 
     private textChangeListener: TextChangeListener = new this.GDTextChangeListener(this);
 
@@ -282,7 +285,7 @@ this.initPositionXYZ(this.gdObject!.xP, this.gdObject!.yP, this.gdObject!.zOrder
 this.initPosition();
     
 
-    var size: number = animationInterfaceFactoryInterfaceArray!.length
+    let size: number = animationInterfaceFactoryInterfaceArray!.length
                 ;;
     
 
@@ -290,13 +293,13 @@ this.initPosition();
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 
-    var animationName: string = this.gdObject!.getAnimationFromIndex(index)!;;
+    let animationName: string = this.gdObject!.getAnimationFromIndex(index)!;;
     
 
-    var scaleProperties: ScaleProperties = new ScaleProperties();;
+    let scaleProperties: ScaleProperties = new ScaleProperties();;
     
 scaleProperties!.scaleX= this.gdObject!.initScaleX *this.gdObject!.customScale;
     
@@ -341,7 +344,7 @@ this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArrayP)
 animationBehavior!.add(this);
     
 
-    var dimensionalBehavior: GDTwodBehavior;;
+    let dimensionalBehavior: GDTwodBehavior;;
     
 
                         if(this.initIndexedAnimationInterfaceArrayP!.length > 0 && this.initIndexedAnimationInterfaceArrayP[0]!.isThreed())
@@ -402,7 +405,7 @@ this.rectangleArrayOfArrays= rectangleArrayOfArrays;
             
     public setGDObject(gdObject: Object){
 
-    var size: number = this.initIndexedAnimationInterfaceArrayP!.length
+    let size: number = this.initIndexedAnimationInterfaceArrayP!.length
                 ;;
     
 
@@ -410,7 +413,7 @@ this.rectangleArrayOfArrays= rectangleArrayOfArrays;
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.initIndexedAnimationInterfaceArrayP[index]!.setFrame(this.frameUtil!.getFrameForAngle(0, 1));
     
@@ -439,18 +442,18 @@ this.setDestroyed(false);
             
     public set(gl: GL){
 
-    var size: number = this.initIndexedAnimationInterfaceArrayP!.length
+    let size: number = this.initIndexedAnimationInterfaceArrayP!.length
                 ;;
     
 
-    var openGLSurfaceChangedInterface: OpenGLSurfaceChangedInterface;;
+    let openGLSurfaceChangedInterface: OpenGLSurfaceChangedInterface;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 openGLSurfaceChangedInterface= this.initIndexedAnimationInterfaceArrayP[index]! as OpenGLSurfaceChangedInterface;
     
@@ -569,23 +572,23 @@ this.combatBaseBehaviorP!.getDestroyableBaseBehavior()!.setDestroyed(destroyed);
 
     public move(){
 
-    var velocityX: number = this.velocityInterface!.getVelocityXBasicDecimalP()!.getUnscaled()!;;
+    let velocityX: number = this.velocityInterface!.getVelocityXBasicDecimalP()!.getUnscaled()!;;
     
 
-    var velocityY: number = this.velocityInterface!.getVelocityYBasicDecimalP()!.getUnscaled()!;;
+    let velocityY: number = this.velocityInterface!.getVelocityYBasicDecimalP()!.getUnscaled()!;;
     
 this.realX= this.realX +velocityX;
     
 this.realY= this.realY +velocityY;
     
 
-    var scaleFactorValue: number = this.scaleFactorFactory!.DEFAULT_SCALE_VALUE;;
+    let scaleFactorValue: number = this.scaleFactorFactory!.DEFAULT_SCALE_VALUE;;
     
 
-    var x: number = Math.round((this.realX /scaleFactorValue));;
+    let x: number = globalThis.Math.trunc((globalThis.Math.trunc(this.realX /scaleFactorValue)));;
     
 
-    var y: number = Math.round((this.realY /scaleFactorValue));;
+    let y: number = globalThis.Math.trunc((globalThis.Math.trunc(this.realY /scaleFactorValue)));;
     
 super.setPosition(x, y, this.z);
     
@@ -597,7 +600,7 @@ super.setPosition(x, y, this.z);
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return Math.round((this.velocityInterface!.getVelocityXBasicDecimalP()!.getScaled() /this.SCALE_FACTOR));
+                        return globalThis.Math.trunc((this.velocityInterface!.getVelocityXBasicDecimalP()!.getScaled() /this.SCALE_FACTOR));
     
 }
 
@@ -607,7 +610,7 @@ super.setPosition(x, y, this.z);
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return Math.round((this.velocityInterface!.getVelocityYBasicDecimalP()!.getScaled() /this.SCALE_FACTOR));
+                        return globalThis.Math.trunc((this.velocityInterface!.getVelocityYBasicDecimalP()!.getScaled() /this.SCALE_FACTOR));
     
 }
 
@@ -616,7 +619,7 @@ super.setPosition(x, y, this.z);
 super.setPosition(x, y, z);
     
 
-    var scaleFactorValue: number = ScaleFactorFactory.getInstance()!.DEFAULT_SCALE_VALUE;;
+    let scaleFactorValue: number = ScaleFactorFactory.getInstance()!.DEFAULT_SCALE_VALUE;;
     
 this.realX= x *scaleFactorValue;
     
@@ -627,7 +630,7 @@ this.realY= y *scaleFactorValue;
 
     public AddForceUsingPolarCoordinates(angle: number, length: number, clearing: number){
 
-    var adjustedAngle: number = angle;;
+    let adjustedAngle: number = angle;;
     
 
         while(adjustedAngle > 359)
@@ -643,9 +646,9 @@ adjustedAngle += 360;
     
 }
 
-this.gdObject!.forceAngle= Math.round(adjustedAngle);
+this.gdObject!.forceAngle= globalThis.Math.trunc(adjustedAngle);
     
-this.velocityInterface!.setVelocityi(length *this.SCALE_FACTOR2, Math.round(adjustedAngle), 0);
+this.velocityInterface!.setVelocityi(length *this.SCALE_FACTOR2, globalThis.Math.trunc(adjustedAngle), 0);
     
 
                         if(clearing == 1)
@@ -723,7 +726,7 @@ this.gdObject!.setY(this.y);
 this.updateRotation(timeDelta);
     
 
-    var opacity: number = Math.round(this.gdObject!.opacity);;
+    let opacity: number = globalThis.Math.trunc(this.gdObject!.opacity);;
     
 
                         if(opacity < 0)
@@ -735,7 +738,7 @@ this.updateRotation(timeDelta);
                                     }
                                 
 
-    var size: number = this.initIndexedAnimationInterfaceArrayP!.length
+    let size: number = this.initIndexedAnimationInterfaceArrayP!.length
                 ;;
     
 
@@ -743,7 +746,7 @@ this.updateRotation(timeDelta);
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.initIndexedAnimationInterfaceArrayP[index]!.setAlpha(opacity);
     
@@ -793,7 +796,7 @@ this.dimensionalBehavior!.updateRotation(this, timeDelta);
                         
                                     {
                                     
-    var size: number = this.initIndexedAnimationInterfaceArrayP!.length
+    let size: number = this.initIndexedAnimationInterfaceArrayP!.length
                 ;;
     
 
@@ -801,7 +804,7 @@ this.dimensionalBehavior!.updateRotation(this, timeDelta);
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.initIndexedAnimationInterfaceArrayP[index]!.setMaxScale(5.0, 5.0);
     
@@ -840,17 +843,16 @@ this.scalableProcessor= ScalableProcessor.getInstance();
 
     public paint(graphics: Graphics){
 
-        try {
-            super.paintFirst(graphics);
+ try { super.paintFirst(graphics);
     
 
-    var viewPosition: ViewPositionBase = this.getViewPosition()!;;
+    let viewPosition: ViewPositionBase = this.getViewPosition()!;;
     
 
-    var x: number = viewPosition!.getX()!;;
+    let x: number = viewPosition!.getX()!;;
     
 
-    var y: number = viewPosition!.getY()!;;
+    let y: number = viewPosition!.getY()!;;
     
 this.indexedAnimationInterfaceArrayP[this.gdObject!.animation]!.paintXY(graphics, x, y);
     
@@ -858,44 +860,49 @@ this.primitiveDrawing!.paintXY(graphics, x, y);
     
 this.paintDebug(graphics);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 this.logUtil!.put(this.commonStrings!.EXCEPTION, this, "paint", e);
     
-}
 
+ }
+   }
+ 
 }
 
 
     public paintThreed(graphics: Graphics){
 
-        try {
-            
-    var viewPosition: ViewPositionBase = this.getViewPosition()!;;
+ try { 
+    let viewPosition: ViewPositionBase = this.getViewPosition()!;;
     
 
-    var x: number = viewPosition!.getX()!;;
+    let x: number = viewPosition!.getX()!;;
     
 
-    var y: number = viewPosition!.getY()!;;
+    let y: number = viewPosition!.getY()!;;
     
 
-    var z: number = viewPosition!.getZ()!;;
+    let z: number = viewPosition!.getZ()!;;
     
 this.indexedAnimationInterfaceArrayP[this.gdObject!.animation]!.paintThreedXYZ(graphics, x, y, z);
     
 this.primitiveDrawing!.paintThreedXYZ(graphics, x, y, z);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 this.logUtil!.put(this.commonStrings!.EXCEPTION, this, "paintThreed", e);
     
-}
 
+ }
+   }
+ 
 }
 
 
@@ -905,7 +912,7 @@ this.logUtil!.put(this.commonStrings!.EXCEPTION, this, "paintThreed", e);
 
     public paintAngle(angle: number, graphics: Graphics){
 
-    var adjustedAngle: number = angle;;
+    let adjustedAngle: number = angle;;
     
 }
 
@@ -929,16 +936,23 @@ this.initIndexedAnimationInterfaceArrayP[0]!.setBackgroundBasicColorP(basicColor
     
 }
 
-
-    public setText(value: number){
+setText(...args: any[]): any {
+   
+    if (args.length === 1 && typeof args[0] === 'number') return this.setText$overload1(args[0]);
+   
+    if (args.length === 1 && typeof args[0] === 'string') return this.setText$overload2(args[0]);
+   
+   throw new TypeError('No matching overload: setText'); }
+  
+    public setText$overload1(value: number){
 this.setText(value.toString());
     
 }
 
 
-    public setText(text: string){
+    public setText$overload2(text: string){
 
-    var textInterface: TextInterface = (this.initIndexedAnimationInterfaceArrayP[0]! as TextInterface);;
+    let textInterface: TextInterface = (this.initIndexedAnimationInterfaceArrayP[0]! as TextInterface);;
     
 
                         if(text == 
@@ -971,7 +985,7 @@ this.setText(value.toString());
 
     public Text(): string{
 
-    var textInterface: TextInterface = (this.initIndexedAnimationInterfaceArrayP[0]! as TextInterface);;
+    let textInterface: TextInterface = (this.initIndexedAnimationInterfaceArrayP[0]! as TextInterface);;
     
 
 
@@ -1031,7 +1045,7 @@ stringBuffer!.append(this.gdObject!.toString());
 
     public toString(): string{
 
-    var stringBuffer: StringMaker = new StringMaker();;
+    let stringBuffer: StringMaker = new StringMaker();;
     
 this.toStringAppend(stringBuffer);
     
@@ -1045,6 +1059,4 @@ this.toStringAppend(stringBuffer);
 
 
 }
-
-
 

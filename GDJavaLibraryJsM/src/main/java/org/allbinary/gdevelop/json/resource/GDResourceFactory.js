@@ -77,14 +77,14 @@ export class GDResourceFactory extends Object {
             return this.BITMAP_FONT;
         }
         else {
-            var commonStrings = CommonStrings.getInstance();
+            let commonStrings = CommonStrings.getInstance();
             ;
             this.logUtil.putF(kind, this, commonStrings.CONSTRUCTOR);
             throw new RuntimeException(kind);
         }
     }
     create(jsonObject) {
-        var kind = this.get(jsonObject.getString(this.KIND));
+        let kind = this.get(jsonObject.getString(this.KIND));
         ;
         if (kind == this.IMAGE) {
             //if statement needs to be on the same line and ternary does not work the same way.

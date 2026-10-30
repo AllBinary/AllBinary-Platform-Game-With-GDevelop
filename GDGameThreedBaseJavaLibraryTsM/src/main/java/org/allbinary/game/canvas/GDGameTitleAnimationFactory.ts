@@ -70,8 +70,15 @@ export class GDGameTitleAnimationFactory
         
 
     private static readonly instance: GDGameTitleAnimationFactory = new GDGameTitleAnimationFactory();
-
-    public static getInstance(): GDGameTitleAnimationFactory{
+static getInstance(...args: any[]): any {
+   
+    if (args.length === 0) return this.getInstance$overload1();
+   
+    if (args.length === 1) return this.getInstance$overload2(args[0]);
+   
+   throw new TypeError('No matching overload: getInstance'); }
+  
+    public static getInstance$overload1(): GDGameTitleAnimationFactory{
 
 
 
@@ -83,23 +90,23 @@ export class GDGameTitleAnimationFactory
 
                 //@Throws(Exception.constructor)
             
-    public getInstance(animationInterfaceArray: IndexedAnimation[]): TitleAnimation{
+    public getInstance$overload2(animationInterfaceArray: IndexedAnimation[]): TitleAnimation{
 
-    var basicColorArray: BasicColor[] = new Array(2);;
+    let basicColorArray: BasicColor[] = new Array(2);;
     
 basicColorArray[0]= BasicColorFactory.getInstance()!.PURPLE;
     
 basicColorArray[1]= BasicColorFactory.getInstance()!.BLACK;
     
 
-    var deltaXArray: number[] = new Array(2);;
+    let deltaXArray: number[] = new Array(2);;
     
 deltaXArray[0]= 0;
     
 deltaXArray[1]= 52;
     
 
-    var deltaYArray: number[] = new Array(2);;
+    let deltaYArray: number[] = new Array(2);;
     
 deltaYArray[0]= 0;
     
@@ -118,16 +125,16 @@ deltaYArray[1]= 30;
             
     public getArrayInstance(): IndexedAnimation[]{
 
-    var animationInterfaceArray: IndexedAnimation[] = new Array(2);;
+    let animationInterfaceArray: IndexedAnimation[] = new Array(2);;
     
 
-    var titleVectorData: TitleVectorData = new TitleVectorData();;
+    let titleVectorData: TitleVectorData = new TitleVectorData();;
     
 
-    var vectorExplosionGenerator: VectorExplosionGenerator = VectorExplosionGenerator.getInstance()!;;
+    let vectorExplosionGenerator: VectorExplosionGenerator = VectorExplosionGenerator.getInstance()!;;
     
 
-    var points: number[][][] = vectorExplosionGenerator!.getInstance(titleVectorData!.testPoints, 6, vectorExplosionGenerator!.RANDOM)!;;
+    let points: number[][][] = vectorExplosionGenerator!.getInstance(titleVectorData!.testPoints, 6, vectorExplosionGenerator!.RANDOM)!;;
     
 animationInterfaceArray[0]= new ColorLessVectorAnimation(points, AnimationBehavior.getInstance());
     
@@ -145,6 +152,4 @@ animationInterfaceArray[1]= new ColorLessVectorAnimation(points, AnimationBehavi
 
 
 }
-
-
 

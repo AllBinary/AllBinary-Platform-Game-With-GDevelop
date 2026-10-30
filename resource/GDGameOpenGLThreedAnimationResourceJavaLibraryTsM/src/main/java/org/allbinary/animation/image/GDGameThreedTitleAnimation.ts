@@ -54,6 +54,7 @@ import { AllBinaryEventObject } from '../../../../org/allbinary/logic/util/event
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 import { ColorFromEventUtil } from '../../../../org/allbinary/media/graphics/geography/map/ColorFromEventUtil.js';
 //not GWT import const ColorFromEventUtil
@@ -103,7 +104,7 @@ this.logUtil!.putF("Constructor", this, this.constructor.name.toString()!);
 
     public onEvent(eventObject: AllBinaryEventObject){
 
-    var basicColor: BasicColor = (eventObject as ColorChangeEvent).getBasicColorP()!;;
+    let basicColor: BasicColor = (eventObject as ColorChangeEvent).getBasicColorP()!;;
     
 this.color= basicColor!.intValue();
     
@@ -114,7 +115,7 @@ this.color= basicColor!.intValue();
 graphics.setColor(this.color);
     
 
-    var x: number = 0;;
+    let x: number = 0;;
     
 
                         if(this.widthP != Integer.MIN_VALUE)
@@ -126,17 +127,17 @@ graphics.setColor(this.color);
                                     }
                                 
 
-    var deltaX: number= 0;;
+    let deltaX: number= 0;;
     
 
-    var deltaY: number= 0;;
+    let deltaY: number= 0;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < this.sizeP -1; index++)
+    let index: number = 0;index < this.sizeP -1; index++)
         {
 deltaX= this.dxArray[index] +x;
     
@@ -162,25 +163,25 @@ this.animationInterfaceArray[index]!.paintXY(graphics, deltaX, deltaY);
 
     public paintThreed(graphics: Graphics, x: number, y: number, z: number){
 
-    var deltaY: number= 0;;
+    let deltaY: number= 0;;
     
 
-    var index: number = this.sizeP -1;;
+    let index: number = this.sizeP -1;;
     
 
-    var halfHeight: number = (graphics.getClipHeight()>>3) /3 *2;;
+    let halfHeight: number = (graphics.getClipHeight()>>3) /3 *2;;
     
 deltaY= this.dyArray[index] +y;
     
 
-    var threedAnimation: ThreedAnimation = this.animationInterfaceArray[index]! as ThreedAnimation;;
+    let threedAnimation: ThreedAnimation = this.animationInterfaceArray[index]! as ThreedAnimation;;
     
 threedAnimation!.nextRotation();
     
 deltaY= (deltaY>>2);
     
 
-    var az: number = ();;
+    let az: number = ();;
     
 this.animationInterfaceArray[index]!.paintThreedXYZ(graphics, this.viewPosition!.getX(), this.viewPosition!.getY(), az);
     
@@ -188,6 +189,4 @@ this.animationInterfaceArray[index]!.paintThreedXYZ(graphics, this.viewPosition!
 
 
 }
-
-
 

@@ -56,7 +56,7 @@ public constructor (){
             
     public init(){
 
-    var featuredAnimationInterfaceFactoryInterfaceFactory: FeaturedAnimationInterfaceFactoryInterfaceFactory = FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!;;
+    let featuredAnimationInterfaceFactoryInterfaceFactory: FeaturedAnimationInterfaceFactoryInterfaceFactory = FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!;;
     
 featuredAnimationInterfaceFactoryInterfaceFactory!.add(TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.createFactory());
     
@@ -70,6 +70,4 @@ featuredAnimationInterfaceFactoryInterfaceFactory!.add(new GDGameOpenGLESImageBa
 
 
 }
-
-
 

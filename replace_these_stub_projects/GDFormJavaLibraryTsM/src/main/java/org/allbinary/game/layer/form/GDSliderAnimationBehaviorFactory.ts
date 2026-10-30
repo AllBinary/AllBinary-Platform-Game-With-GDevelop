@@ -72,5 +72,3 @@ export class GDSliderAnimationBehaviorFactory extends GDAnimationBehaviorBaseFac
 
 }
 
-
-

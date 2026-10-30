@@ -21,17 +21,17 @@ export class GDWhileEvent extends GDStandardEvent {
         super(type, jsonObject);
         this.whileConditionInstructionList = new BasicArrayListD();
         //For kotlin this is before the body of the constructor.
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
         this.justCreatedByTheUser = false;
         this.infiniteLoopWarning = jsonObject.getBoolean(gdProjectStrings.INFINITE_LOOP_WARNING);
-        var whileConditionJSONArray = jsonObject.getJSONArray(gdProjectStrings.WHILE_CONDITIONS);
+        let whileConditionJSONArray = jsonObject.getJSONArray(gdProjectStrings.WHILE_CONDITIONS);
         ;
-        var size = whileConditionJSONArray.length();
+        let size = whileConditionJSONArray.length();
         ;
-        var nextJSONObject;
+        let nextJSONObject;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             nextJSONObject = whileConditionJSONArray.getJSONObject(index);
             this.whileConditionInstructionList.add(new GDInstruction(nextJSONObject));
         }

@@ -25,6 +25,7 @@ import { MusicManager } from '../../../../org/allbinary/media/audio/music/MusicM
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 
 
@@ -57,12 +58,10 @@ export class MusicManagerFactory
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return new MusicManager(MusicService.constructor, soundList);
+                        return new MusicManager(MusicServicesoundList);
     
 }
 
 
 }
-
-
 

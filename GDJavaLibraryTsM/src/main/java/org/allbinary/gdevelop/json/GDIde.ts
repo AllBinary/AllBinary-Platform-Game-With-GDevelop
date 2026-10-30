@@ -14,6 +14,7 @@
         
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 import { JSONArray } from '../../../../org/json/JSONArray.js';
 //not GWT import const JSONArray
@@ -88,10 +89,10 @@ export class GDIde
             
     public load(gameAsConfiguration: JSONObject){
 
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 
-    var versionJSONObject: JSONObject = gameAsConfiguration!.getJSONObject(gdProjectStrings!.GD_VERSION)!;;
+    let versionJSONObject: JSONObject = gameAsConfiguration!.getJSONObject(gdProjectStrings!.GD_VERSION)!;;
     
 this.major= versionJSONObject!.getInt(gdProjectStrings!.MAJOR);
     
@@ -102,7 +103,7 @@ this.build= versionJSONObject!.getInt(gdProjectStrings!.BUILD);
 this.revision= versionJSONObject!.getInt(gdProjectStrings!.REVISION);
     
 
-    var propertiesJSONObject: JSONObject = gameAsConfiguration!.getJSONObject(gdProjectStrings!.PROPERTIES)!;;
+    let propertiesJSONObject: JSONObject = gameAsConfiguration!.getJSONObject(gdProjectStrings!.PROPERTIES)!;;
     
 this.author= propertiesJSONObject!.getString(gdProjectStrings!.AUTHOR);
     
@@ -134,6 +135,4 @@ this.eventsFunctionsExtensions= gameAsConfiguration!.getJSONArray(gdProjectStrin
 
 
 }
-
-
 

@@ -14,12 +14,15 @@
         
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 
 
@@ -97,24 +100,10 @@ this.isPrivate= false;
 
     public addParameter(type: string, description: string, optionalObjectType: string, parameterIsOptional: boolean): GDExpressionMetadata{
 
-    var supplementaryInformation: string = (this.parameterFactory!.isObject(type) || this.parameterFactory!.isBehavior(type))
-                        ?       
-                                (optionalObjectType!.isEmpty()
-                        ?       
-                                this.stringUtil!.EMPTY_STRING
-                                :
-
-                            this.extensionNamespace +optionalObjectType;
-
-    )
-                                :
-
-                            optionalObjectType;
-
-    ;;
+    let supplementaryInformation: string = ((this.parameterFactory!.isObject(type) || this.parameterFactory!.isBehavior(type)) ? ((optionalObjectType!.isEmpty() ? this.stringUtil!.EMPTY_STRING : this.extensionNamespace +optionalObjectType)) : optionalObjectType);;
     
 
-    var parameterMetadata: GDParameterMetadata = new GDParameterMetadata(type, supplementaryInformation, parameterIsOptional, description, false);;
+    let parameterMetadata: GDParameterMetadata = new GDParameterMetadata(type, supplementaryInformation, parameterIsOptional, description, false);;
     
 this.parameterMetadataList!.add(parameterMetadata);
     
@@ -129,7 +118,7 @@ this.parameterMetadataList!.add(parameterMetadata);
 
     public addCodeOnlyParameter(type: string, supplementaryInformation: string): GDExpressionMetadata{
 
-    var parameterMetadata: GDParameterMetadata = new GDParameterMetadata(type, supplementaryInformation, false, this.stringUtil!.EMPTY_STRING, true);;
+    let parameterMetadata: GDParameterMetadata = new GDParameterMetadata(type, supplementaryInformation, false, this.stringUtil!.EMPTY_STRING, true);;
     
 this.parameterMetadataList!.add(parameterMetadata);
     
@@ -155,6 +144,4 @@ this.shown= false;
 
 
 }
-
-
 

@@ -19,16 +19,16 @@ export class GDExternalLayout extends Object {
     constructor(jsonObject) {
         super();
         this.initialInstanceList = new BasicArrayListD();
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
         this.name = jsonObject.getString(gdProjectStrings.NAME);
-        var initialInstancesJSONArray = jsonObject.getJSONArray(gdProjectStrings.INSTANCES);
+        let initialInstancesJSONArray = jsonObject.getJSONArray(gdProjectStrings.INSTANCES);
         ;
-        var size = initialInstancesJSONArray.length();
+        let size = initialInstancesJSONArray.length();
         ;
-        var nextJSONObject;
+        let nextJSONObject;
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             nextJSONObject = initialInstancesJSONArray.getJSONObject(index);
             this.initialInstanceList.add(new GDInitialInstance(nextJSONObject));
         }

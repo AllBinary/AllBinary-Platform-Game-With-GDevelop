@@ -26,7 +26,7 @@ export class GDGameGameInputMappingFactory extends Object {
     constructor() {
         super();
         this.gameInputMappingArray = new Array(7);
-        var gameKeyFactory = GameKeyFactory.getInstance();
+        let gameKeyFactory = GameKeyFactory.getInstance();
         ;
         this.gameInputMappingArray[0] = new GameInputMapping("Fire", gameKeyFactory.KEY_NUM1);
         this.gameInputMappingArray[1] = new GameInputMapping("Up", gameKeyFactory.UP);

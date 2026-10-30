@@ -30,18 +30,23 @@ import { GWT } from '../../com/google/gwt/core/client/GWT.js';
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 //not plain js import { AllBinaryPlayNGameRunnableProcessor } 
 const AllBinaryPlayNGameRunnableProcessor = globalThis.playn.core.AllBinaryPlayNGameRunnableProcessor;
+type AllBinaryPlayNGameRunnableProcessor<T = any, U = any> = typeof AllBinaryPlayNGameRunnableProcessor extends abstract new (...args: any[]) => infer Instance ? Instance : typeof AllBinaryPlayNGameRunnableProcessor;
 
 //not plain js import { GDGameProcessor } 
 const GDGameProcessor = globalThis.playn.core.GDGameProcessor;
+type GDGameProcessor<T = any, U = any> = typeof GDGameProcessor extends abstract new (...args: any[]) => infer Instance ? Instance : typeof GDGameProcessor;
 
 //not plain js import { PlayN } 
 const PlayN = globalThis.playn.core.PlayN;
+type PlayN<T = any, U = any> = typeof PlayN extends abstract new (...args: any[]) => infer Instance ? Instance : typeof PlayN;
 
 
 
@@ -73,27 +78,27 @@ export class GDGameGameHtml
 
     public onModuleLoad(){
 
-    var config: HtmlPlatform.Config = new HtmlPlatform.Config();;
+    let config: HtmlPlatform.Config = new HtmlPlatform.Config();;
     
 config.scaleFactor= 1;
     
 config.frameBufferPixelRatio= 1;
     
 
-    var platform: HtmlPlatform = new HtmlPlatform(config);;
+    let platform: HtmlPlatform = new HtmlPlatform(config);;
     
 PlayN.create(platform);
     
 platform.assets()!.setPathPrefix(GWT.getModuleBaseForStaticFiles() +"res/");
     
 
-    var list: BasicArrayList = new BasicArrayListD();;
+    let list: BasicArrayList = new BasicArrayListD();;
     
 
-    var gdGameProcessor: GDGameProcessor = new GDGameProcessor(list);;
+    let gdGameProcessor: GDGameProcessor = new GDGameProcessor(list);;
     
 
-    var allBinaryPlayNGameRunnableProcessor: AllBinaryPlayNGameRunnableProcessor = new AllBinaryPlayNGameRunnableProcessor(platform, gdGameProcessor, list);;
+    let allBinaryPlayNGameRunnableProcessor: AllBinaryPlayNGameRunnableProcessor = new AllBinaryPlayNGameRunnableProcessor(platform, gdGameProcessor, list);;
     
 list.add(allBinaryPlayNGameRunnableProcessor);
     
@@ -105,6 +110,4 @@ platform.start();
 
 
 }
-
-
 

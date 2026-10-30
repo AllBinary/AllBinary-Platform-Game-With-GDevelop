@@ -66,5 +66,3 @@ export class GDObjectStrings
 
 }
 
-
-

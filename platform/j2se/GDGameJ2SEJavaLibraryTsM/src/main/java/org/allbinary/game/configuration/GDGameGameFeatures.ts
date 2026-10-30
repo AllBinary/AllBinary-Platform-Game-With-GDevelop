@@ -22,9 +22,11 @@
         
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { GameConfigurationCentral } from '../../../../org/allbinary/game/configuration/GameConfigurationCentral.js';
 //not GWT import const GameConfigurationCentral
@@ -78,16 +80,16 @@ public constructor (){
 
     public init(){
 
-    var sensorFeatureFactory: SensorFeatureFactory = SensorFeatureFactory.getInstance()!;;
+    let sensorFeatureFactory: SensorFeatureFactory = SensorFeatureFactory.getInstance()!;;
     
 
-    var gameFeatureFactory: GameFeatureFactory = GameFeatureFactory.getInstance()!;;
+    let gameFeatureFactory: GameFeatureFactory = GameFeatureFactory.getInstance()!;;
     
 
-    var gameConfigurationSingleton: GameConfigurationSingleton = GameConfigurationSingleton.getInstance()!;;
+    let gameConfigurationSingleton: GameConfigurationSingleton = GameConfigurationSingleton.getInstance()!;;
     
 
-    var gameConfigurationCentral: GameConfigurationCentral = GameConfigurationCentral.getInstance()!;;
+    let gameConfigurationCentral: GameConfigurationCentral = GameConfigurationCentral.getInstance()!;;
     
 gameConfigurationSingleton!.add(gameConfigurationCentral!.VIBRATION);
     
@@ -96,7 +98,7 @@ gameConfigurationSingleton!.add(gameConfigurationCentral!.ORIENTATION);
 gameConfigurationSingleton!.add(gameConfigurationCentral!.SPEED);
     
 
-    var multipleList: BasicArrayList = new BasicArrayListD();;
+    let multipleList: BasicArrayList = new BasicArrayListD();;
     
 multipleList!.add(gameFeatureFactory!.SOUND);
     
@@ -108,6 +110,4 @@ GameFeatureChoiceGroups.getMultipleInstance()!.add(this.GRAPHICS_OPTIONS, multip
 
 
 }
-
-
 

@@ -28,12 +28,15 @@
         
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { LogFactory } 
 const LogFactory = globalThis.org.allbinary.logic.communication.log.LogFactory;
+type LogFactory<T = any, U = any> = typeof LogFactory extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogFactory;
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 import { DisplayThreadPool } from '../../org/allbinary/thread/DisplayThreadPool.js';
 //not GWT import const DisplayThreadPool
@@ -58,9 +61,11 @@ import { PlaynDevice } from '../../org/microemu/device/playn/PlaynDevice.js';
 
 //not plain js import { PlayN } 
 const PlayN = globalThis.playn.core.PlayN;
+type PlayN<T = any, U = any> = typeof PlayN extends abstract new (...args: any[]) => infer Instance ? Instance : typeof PlayN;
 
 //not plain js import { Callback } 
 const Callback = globalThis.playn.core.util.Callback;
+type Callback<T = any, U = any> = typeof Callback extends abstract new (...args: any[]) => infer Instance ? Instance : typeof Callback;
 
 
 
@@ -118,7 +123,7 @@ export class SoundTestGame
 
     public init(){
 
-    var graphics: Graphics = PlayN.graphics()!;;
+    let graphics: Graphics = PlayN.graphics()!;;
     
 graphics.setSize(800, 600);
     
@@ -170,8 +175,7 @@ PlayN.log()!.debug("key down");
 PlayN.log()!.debug("key up");
     
 
-        try {
-            
+ try { 
                         if(this.sound == 
                                     null
                                 )
@@ -182,14 +186,17 @@ PlayN.log()!.debug("key up");
 
                                     }
                                 
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 PlayN.log()!.error(CommonStrings.getInstance()!.EXCEPTION, e);
     
-}
 
+ }
+   }
+ 
 
                         if(!this.sound.isPlaying())
                         
@@ -214,23 +221,25 @@ this.sound.play();
 
     public update(delta: number){
 
-        try {
-            
-                //: 
-} catch(e) 
-            {
+ try {  }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 this.isCrashed= true;
     
 this.logUtil!.put(CommonStrings.getInstance()!.EXCEPTION, this, CommonStrings.getInstance()!.UPDATE, e);
     
-}
 
+ }
+   }
+ 
 }
 
 
     public paint(alpha: number){
 
-    var surface: Surface = this.gameLayer!.surface()!;;
+    let surface: Surface = this.gameLayer!.surface()!;;
     
 surface.clear();
     
@@ -239,10 +248,10 @@ surface.clear();
 
     touchMove(x: number, y: number){
 
-    var cx: number = PlayN.graphics()!.screenWidth() /2;;
+    let cx: number = PlayN.graphics()!.screenWidth() /2;;
     
 
-    var cy: number = PlayN.graphics()!.screenHeight() /2;;
+    let cy: number = PlayN.graphics()!.screenHeight() /2;;
     
 this.touchVectorX= (x -cx) *1.0 /cx;
     
@@ -278,6 +287,4 @@ PlayN.net()!.post("/rpc", payload, new class extends Callback<string>
 
 
 }
-
-
 

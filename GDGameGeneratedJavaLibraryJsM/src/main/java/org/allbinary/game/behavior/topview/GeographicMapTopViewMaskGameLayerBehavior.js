@@ -43,7 +43,7 @@ export class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     gravity(velocityProperties, geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPosition) {
         if (geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
             this.geographicMapBehavior.getCellTypeAt(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPosition);
-            var hasSolidBlock = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray);
+            let hasSolidBlock = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray);
             ;
             if (!hasSolidBlock) {
                 this.gravityUtil.process(velocityProperties, this.gravityUtil.GAME_GRAVITY_VELOCITY);
@@ -56,27 +56,27 @@ export class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     }
     //@Throws(Exception.constructor)
     get(geographicMapInterfaceArray, geographicMapCellPositionList, layer, x, y) {
-        var customGameLayer = layer;
+        let customGameLayer = layer;
         ;
-        var frame = customGameLayer.getIndexedAnimationInterface().getFrame();
+        let frame = customGameLayer.getIndexedAnimationInterface().getFrame();
         ;
-        var maskRectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame];
+        let maskRectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame];
         ;
-        var maskPoint = maskRectangle.getPoint();
+        let maskPoint = maskRectangle.getPoint();
         ;
-        var viewPosition = customGameLayer.getViewPosition();
+        let viewPosition = customGameLayer.getViewPosition();
         ;
-        var viewX = viewPosition.getX();
+        let viewX = viewPosition.getX();
         ;
-        var viewY = viewPosition.getY();
+        let viewY = viewPosition.getY();
         ;
-        var xCellPosition = viewX + maskPoint.getX() + -x;
+        let xCellPosition = viewX + maskPoint.getX() + -x;
         ;
-        var yCellPosition = viewY + maskPoint.getY() + -y;
+        let yCellPosition = viewY + maskPoint.getY() + -y;
         ;
-        var x2CellPosition = viewX + maskPoint.getX() + -x + maskRectangle.getWidth();
+        let x2CellPosition = viewX + maskPoint.getX() + -x + maskRectangle.getWidth();
         ;
-        var y2CellPosition = viewY + maskPoint.getY() + -y + maskRectangle.getHeight();
+        let y2CellPosition = viewY + maskPoint.getY() + -y + maskRectangle.getHeight();
         ;
         //if statement needs to be on the same line and ternary does not work the same way.
         return geographicMapInterfaceArray[0].getCellPositionAtNoThrow(xCellPosition, yCellPosition, x2CellPosition, y2CellPosition, geographicMapCellPositionList);
@@ -84,23 +84,23 @@ export class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     }
     //@Throws(Exception.constructor)
     getLeftPosition(geographicMapInterfaceArray, layer) {
-        var customGameLayer = layer;
+        let customGameLayer = layer;
         ;
-        var frame = customGameLayer.getIndexedAnimationInterface().getFrame();
+        let frame = customGameLayer.getIndexedAnimationInterface().getFrame();
         ;
-        var maskRectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame];
+        let maskRectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame];
         ;
-        var maskPoint = maskRectangle.getPoint();
+        let maskPoint = maskRectangle.getPoint();
         ;
-        var viewPosition = customGameLayer.getViewPosition();
+        let viewPosition = customGameLayer.getViewPosition();
         ;
-        var viewX = viewPosition.getX();
+        let viewX = viewPosition.getX();
         ;
-        var viewY = viewPosition.getY();
+        let viewY = viewPosition.getY();
         ;
-        var xCellPosition = viewX + maskPoint.getX();
+        let xCellPosition = viewX + maskPoint.getX();
         ;
-        var yCellPosition = viewY + maskPoint.getY() + maskRectangle.getHeight();
+        let yCellPosition = viewY + maskPoint.getY() + maskRectangle.getHeight();
         ;
         //if statement needs to be on the same line and ternary does not work the same way.
         return geographicMapInterfaceArray[0].getCellPositionAtXYNoThrow(xCellPosition, yCellPosition);
@@ -108,23 +108,23 @@ export class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     }
     //@Throws(Exception.constructor)
     getRightPosition(geographicMapInterfaceArray, layer) {
-        var customGameLayer = layer;
+        let customGameLayer = layer;
         ;
-        var frame = customGameLayer.getIndexedAnimationInterface().getFrame();
+        let frame = customGameLayer.getIndexedAnimationInterface().getFrame();
         ;
-        var maskRectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame];
+        let maskRectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame];
         ;
-        var maskPoint = maskRectangle.getPoint();
+        let maskPoint = maskRectangle.getPoint();
         ;
-        var viewPosition = customGameLayer.getViewPosition();
+        let viewPosition = customGameLayer.getViewPosition();
         ;
-        var viewX = viewPosition.getX();
+        let viewX = viewPosition.getX();
         ;
-        var viewY = viewPosition.getY();
+        let viewY = viewPosition.getY();
         ;
-        var xCellPosition = viewX + maskPoint.getX() + maskRectangle.getWidth();
+        let xCellPosition = viewX + maskPoint.getX() + maskRectangle.getWidth();
         ;
-        var yCellPosition = viewY + maskPoint.getY() + maskRectangle.getHeight();
+        let yCellPosition = viewY + maskPoint.getY() + maskRectangle.getHeight();
         ;
         //if statement needs to be on the same line and ternary does not work the same way.
         return geographicMapInterfaceArray[0].getCellPositionAtXYNoThrow(xCellPosition, yCellPosition);
@@ -132,10 +132,10 @@ export class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     }
     //@Throws(Exception.constructor)
     getGeographicMapCellPositionIfNotSolidBlockOrOffMapLocation(geographicMapInterfaceArray, geographicMapCellTypeArray, velocityProperties, layer, x, y) {
-        var geographicMapCellPositionList = this.unsafeGeographicMapCellPositionList;
+        let geographicMapCellPositionList = this.unsafeGeographicMapCellPositionList;
         ;
         this.get(geographicMapInterfaceArray, geographicMapCellPositionList, layer, x, y);
-        var geographicMapCellPosition = this.getGeographicMapCellPositionFromListIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPositionList, velocityProperties, layer);
+        let geographicMapCellPosition = this.getGeographicMapCellPositionFromListIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPositionList, velocityProperties, layer);
         ;
         if (geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
             //if statement needs to be on the same line and ternary does not work the same way.
@@ -150,18 +150,18 @@ export class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     getGeographicMapCellPositionFromListIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPositionList, velocityProperties, layer) {
         this.unsafePossibleGeographicMapCellPositionList.clear();
         if (geographicMapCellPositionList.size() > 0) {
-            var size = geographicMapCellPositionList.size();
+            let size = geographicMapCellPositionList.size();
             ;
-            for (var index = 0; index < size; index++) {
-                var possibleStepGeographicMapCellPosition = geographicMapCellPositionList.get(index);
+            for (let index = 0; index < size; index++) {
+                let possibleStepGeographicMapCellPosition = geographicMapCellPositionList.get(index);
                 ;
-                var tiledLayer = geographicMapInterfaceArray[0].getAllBinaryTiledLayer();
+                let tiledLayer = geographicMapInterfaceArray[0].getAllBinaryTiledLayer();
                 ;
                 if (possibleStepGeographicMapCellPosition.getColumn() > 0 && possibleStepGeographicMapCellPosition.getRow() > 0 && possibleStepGeographicMapCellPosition.getColumn() < tiledLayer.getColumns() && possibleStepGeographicMapCellPosition.getRow() < tiledLayer.getRows()) {
                     this.geographicMapBehavior.getCellTypeAt(geographicMapInterfaceArray, geographicMapCellTypeArray, possibleStepGeographicMapCellPosition);
-                    var hasSolidBlock = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray);
+                    let hasSolidBlock = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray);
                     ;
-                    var hasOffMap = this.isOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray);
+                    let hasOffMap = this.isOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray);
                     ;
                     if (hasSolidBlock || hasOffMap) {
                         //if statement needs to be on the same line and ternary does not work the same way.
@@ -185,7 +185,7 @@ export class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     //@Throws(Exception.constructor)
     moveAndLand(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPosition, velocityProperties, layer, x, y) {
         if (geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
-            var topViewCharacterInterface = layer;
+            let topViewCharacterInterface = layer;
             ;
             topViewCharacterInterface.terrainMove(geographicMapInterfaceArray, geographicMapCellTypeArray, x, y);
         }
@@ -194,7 +194,7 @@ export class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     }
     //@Throws(Exception.constructor)
     move(geographicMapInterfaceArray, geographicMapCellTypeArray, velocityProperties, layer, x, y) {
-        var geographicMapCellPosition = this.getGeographicMapCellPositionIfNotSolidBlockOrOffMapLocation(geographicMapInterfaceArray, geographicMapCellTypeArray, velocityProperties, layer, x, y);
+        let geographicMapCellPosition = this.getGeographicMapCellPositionIfNotSolidBlockOrOffMapLocation(geographicMapInterfaceArray, geographicMapCellTypeArray, velocityProperties, layer, x, y);
         ;
         this.moveAndLand(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPosition, velocityProperties, layer, x, y);
         if (geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
@@ -208,15 +208,15 @@ export class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     }
     //@Throws(Exception.constructor)
     left(geographicMapInterfaceArray, geographicMapCellTypeArray, velocityProperties, layer) {
-        var geographicMapCellPosition = this.getLeftPosition(geographicMapInterfaceArray, layer);
+        let geographicMapCellPosition = this.getLeftPosition(geographicMapInterfaceArray, layer);
         ;
         if (geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
-            var possibleStepGeographicMapCellPosition = geographicMapInterfaceArray[0].getGeographicMapCellPositionFactory().getAt(geographicMapCellPosition.getColumn(), geographicMapCellPosition.getRow() - 1);
+            let possibleStepGeographicMapCellPosition = geographicMapInterfaceArray[0].getGeographicMapCellPositionFactory().getAt(geographicMapCellPosition.getColumn(), geographicMapCellPosition.getRow() - 1);
             ;
             this.geographicMapBehavior.getCellTypeAt(geographicMapInterfaceArray, geographicMapCellTypeArray, possibleStepGeographicMapCellPosition);
-            var hasSolidBlock = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray);
+            let hasSolidBlock = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray);
             ;
-            var topViewCharacterInterface = layer;
+            let topViewCharacterInterface = layer;
             ;
             if (hasSolidBlock) {
                 if (this.autoStepBlocks) {
@@ -233,15 +233,15 @@ export class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     }
     //@Throws(Exception.constructor)
     right(geographicMapInterfaceArray, geographicMapCellTypeArray, velocityProperties, layer) {
-        var geographicMapCellPosition = this.getRightPosition(geographicMapInterfaceArray, layer);
+        let geographicMapCellPosition = this.getRightPosition(geographicMapInterfaceArray, layer);
         ;
         if (geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
-            var possibleStepGeographicMapCellPosition = geographicMapInterfaceArray[0].getGeographicMapCellPositionFactory().getAt(geographicMapCellPosition.getColumn(), geographicMapCellPosition.getRow() - 1);
+            let possibleStepGeographicMapCellPosition = geographicMapInterfaceArray[0].getGeographicMapCellPositionFactory().getAt(geographicMapCellPosition.getColumn(), geographicMapCellPosition.getRow() - 1);
             ;
             this.geographicMapBehavior.getCellTypeAt(geographicMapInterfaceArray, geographicMapCellTypeArray, possibleStepGeographicMapCellPosition);
-            var hasSolidBlock = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray);
+            let hasSolidBlock = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray);
             ;
-            var topViewCharacterInterface = layer;
+            let topViewCharacterInterface = layer;
             ;
             if (hasSolidBlock) {
                 if (this.autoStepBlocks) {

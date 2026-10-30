@@ -56,5 +56,3 @@ export class GDGameClientInformationInterfaceFactory extends ClientInformationFa
 
 }
 
-
-

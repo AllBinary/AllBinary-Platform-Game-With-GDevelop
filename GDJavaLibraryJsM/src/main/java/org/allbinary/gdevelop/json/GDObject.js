@@ -28,7 +28,7 @@ export class GDObject extends Object {
         this.effectsList = new BasicArrayListD();
         this.behaviorContentList = new BasicArrayListD();
         this.jsonObject = jsonObject;
-        var gdProjectStrings = GDProjectStrings.getInstance();
+        let gdProjectStrings = GDProjectStrings.getInstance();
         ;
         this.type = type;
         this.name = jsonObject.getString(gdProjectStrings.NAME);
@@ -38,25 +38,25 @@ export class GDObject extends Object {
         else {
             this.tags = StringUtil.getInstance().EMPTY_STRING;
         }
-        var variableJSONArray = jsonObject.getJSONArray(gdProjectStrings.VARIABLES);
+        let variableJSONArray = jsonObject.getJSONArray(gdProjectStrings.VARIABLES);
         ;
-        var size = variableJSONArray.length();
+        let size = variableJSONArray.length();
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             this.variableList.add(new GDVariable(variableJSONArray.getJSONObject(index)));
         }
         if (jsonObject.has(gdProjectStrings.EFFECTS)) {
-            var effectsJSONArray = jsonObject.getJSONArray(gdProjectStrings.EFFECTS);
+            let effectsJSONArray = jsonObject.getJSONArray(gdProjectStrings.EFFECTS);
             ;
             size = effectsJSONArray.length();
-            for (var index = 0; index < size; index++) {
+            for (let index = 0; index < size; index++) {
                 this.effectsList.add(new GDEffect(effectsJSONArray.getJSONObject(index)));
             }
         }
-        var behaviorsJSONArray = jsonObject.getJSONArray(gdProjectStrings.BEHAVIORS);
+        let behaviorsJSONArray = jsonObject.getJSONArray(gdProjectStrings.BEHAVIORS);
         ;
         size = behaviorsJSONArray.length();
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             this.behaviorContentList.add(new GDBehavior(behaviorsJSONArray.getJSONObject(index)));
         }
     }

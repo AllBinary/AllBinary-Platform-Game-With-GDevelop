@@ -21,15 +21,19 @@ import { GDInstruction } from '../../../../../../org/allbinary/gdevelop/json/eve
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { JSONArray } from '../../../../../../org/json/JSONArray.js';
 //not GWT import const JSONArray
@@ -74,26 +78,26 @@ public constructor (type: string, jsonObject: JSONObject){
                             //For kotlin this is before the body of the constructor.
                     
 
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 
-    var eventFactory: GDEventFactory = GDEventFactory.getInstance()!;;
+    let eventFactory: GDEventFactory = GDEventFactory.getInstance()!;;
     
 
-    var conditionJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.CONDITIIONS)!;;
+    let conditionJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.CONDITIIONS)!;;
     
 
-    var size: number = conditionJSONArray!.length()!;;
+    let size: number = conditionJSONArray!.length()!;;
     
 
-    var nextJSONObject: JSONObject;;
+    let nextJSONObject: JSONObject;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 nextJSONObject= conditionJSONArray!.getJSONObject(index);
     
@@ -102,7 +106,7 @@ this.conditionList!.add(new GDInstruction(nextJSONObject));
 }
 
 
-    var actionJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.ACTIONS)!;;
+    let actionJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.ACTIONS)!;;
     
 size= actionJSONArray!.length();
     
@@ -111,7 +115,7 @@ size= actionJSONArray!.length();
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 nextJSONObject= actionJSONArray!.getJSONObject(index);
     
@@ -124,7 +128,7 @@ this.actionList!.add(new GDInstruction(nextJSONObject));
                         
                                     {
                                     
-    var eventJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.EVENTS)!;;
+    let eventJSONArray: JSONArray = jsonObject!.getJSONArray(gdProjectStrings!.EVENTS)!;;
     
 size= eventJSONArray!.length();
     
@@ -133,7 +137,7 @@ size= eventJSONArray!.length();
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 nextJSONObject= eventJSONArray!.getJSONObject(index);
     
@@ -148,6 +152,4 @@ this.eventList!.add(eventFactory!.create(nextJSONObject));
 
 
 }
-
-
 

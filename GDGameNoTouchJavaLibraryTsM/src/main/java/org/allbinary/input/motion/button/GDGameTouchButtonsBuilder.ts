@@ -23,12 +23,15 @@ import { BaseTouchInput } from '../../../../../org/allbinary/input/motion/button
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { LogFactory } 
 const LogFactory = globalThis.org.allbinary.logic.communication.log.LogFactory;
+type LogFactory<T = any, U = any> = typeof LogFactory extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogFactory;
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 import { SensorGameUpdateProcessor } from '../../../../../org/allbinary/input/gyro/SensorGameUpdateProcessor.js';
 //not GWT import const SensorGameUpdateProcessor
@@ -76,6 +79,4 @@ this.logUtil!.putF(this.commonStrings!.START, this, "build");
 
 
 }
-
-
 

@@ -33,7 +33,7 @@ export class GDNodeUtil extends Object {
         //if statement needs to be on the same line and ternary does not work the same way.
         return GDNodeUtil.instance;
     }
-    getInstance(index) {
+    getOrCreateInstance(index) {
         while (index > this.gdNodesList.size() - 1) {
             this.gdNodesList.add(new GDNodes());
         }

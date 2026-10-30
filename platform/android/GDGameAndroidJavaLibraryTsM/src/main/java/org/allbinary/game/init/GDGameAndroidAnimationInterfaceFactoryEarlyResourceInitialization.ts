@@ -50,7 +50,7 @@ public constructor (){
             
     public init(){
 
-    var featuredAnimationInterfaceFactoryInterfaceFactory: FeaturedAnimationInterfaceFactoryInterfaceFactory = FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!;;
+    let featuredAnimationInterfaceFactoryInterfaceFactory: FeaturedAnimationInterfaceFactoryInterfaceFactory = FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()!;;
     
 featuredAnimationInterfaceFactoryInterfaceFactory!.add(new GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory());
     
@@ -60,6 +60,4 @@ featuredAnimationInterfaceFactoryInterfaceFactory!.add(new GDGameEarlyResourcesO
 
 
 }
-
-
 

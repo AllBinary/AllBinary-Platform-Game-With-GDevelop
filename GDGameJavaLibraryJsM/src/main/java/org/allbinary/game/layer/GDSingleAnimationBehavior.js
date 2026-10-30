@@ -33,12 +33,14 @@ export class GDSingleAnimationBehavior extends GDAnimationBehaviorBase {
                 this.elapsedTime = this.elapsedTime - 200;
                 initIndexedAnimationInterfaceArray[gdObject.animation].nextFrame();
             }
-            //: 
         }
-        catch (e) {
-            var commonStrings = CommonStrings.getInstance();
-            ;
-            this.logUtil.put(commonStrings.EXCEPTION, this, "animate", e);
+        catch (caught) {
+            {
+                const e = caught;
+                let commonStrings = CommonStrings.getInstance();
+                ;
+                this.logUtil.put(commonStrings.EXCEPTION, this, "animate", e);
+            }
         }
     }
 }

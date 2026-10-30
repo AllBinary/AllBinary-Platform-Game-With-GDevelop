@@ -60,5 +60,3 @@ export class GDRGameInputProcessor extends GameInputProcessor {
 
 }
 
-
-

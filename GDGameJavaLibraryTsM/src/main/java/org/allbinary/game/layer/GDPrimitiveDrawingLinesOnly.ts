@@ -38,12 +38,15 @@ import { AllBinaryLayer } from '../../../../org/allbinary/layer/AllBinaryLayer.j
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 
 
@@ -109,20 +112,20 @@ this.pointList!.add(this.pointFactory!.createXY(x2, y2));
 this.colorAnimation!.paintXY(graphics, x, y);
     
 
-    var size: number = this.pointList!.size()!;;
+    let size: number = this.pointList!.size()!;;
     
 
-    var point: GPoint;;
+    let point: GPoint;;
     
 
-    var nextPoint: GPoint;;
+    let nextPoint: GPoint;;
     
 
 
 
 
                         for (
-    var index: number = 1;index < size; )
+    let index: number = 1;index < size; )
         {
 point= this.pointList!.get(index -1) as GPoint;
     
@@ -140,6 +143,4 @@ this.linePathAnimation!.paint(graphics, point, nextPoint, this.NULL_ALLBINARY_LA
 
 
 }
-
-
 

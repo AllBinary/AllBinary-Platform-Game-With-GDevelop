@@ -34,6 +34,7 @@ import { GDObject } from '../../../../../org/allbinary/game/layout/GDObject.js';
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 
 
@@ -79,10 +80,10 @@ private constructor (){
 
     public process(gameLayerList: BasicArrayList, index: number, graphics: Graphics): boolean{
 
-    var gameLayer: GDGameLayer = gameLayerList!.get(index) as GDGameLayer;;
+    let gameLayer: GDGameLayer = gameLayerList!.get(index) as GDGameLayer;;
     
 
-    var gdObject: GDObject = gameLayer!.gdObject;;
+    let gdObject: GDObject = gameLayer!.gdObject;;
     
 
                         if(gdObject == 
@@ -114,7 +115,7 @@ private constructor (){
 targetGameLayer!.setAllBinaryGameLayerManager(sourceGameLayer!.allBinaryGameLayerManagerP);
     
 
-    var pathFindingLayerInterface: PathFindingLayerInterface = (sourceGameLayer as PathFindingLayerInterface);;
+    let pathFindingLayerInterface: PathFindingLayerInterface = (sourceGameLayer as PathFindingLayerInterface);;
     
 pathFindingLayerInterface!.setTarget(targetGameLayer as PathFindingLayerInterface);
     
@@ -122,6 +123,4 @@ pathFindingLayerInterface!.setTarget(targetGameLayer as PathFindingLayerInterfac
 
 
 }
-
-
 

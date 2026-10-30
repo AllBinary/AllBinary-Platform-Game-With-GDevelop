@@ -42,32 +42,32 @@ export class GDFlagLayerInterfaceFactory extends Object {
     }
     //@Throws(Exception.constructor)
     getNextInstance(hashtable, x, y, z) {
-        var gameLayerList = new BasicArrayListD();
+        let gameLayerList = new BasicArrayListD();
         ;
-        var gameLayerDestroyedList = new BasicArrayListD();
+        let gameLayerDestroyedList = new BasicArrayListD();
         ;
-        var behaviorList = new BasicArrayListD();
+        let behaviorList = new BasicArrayListD();
         ;
-        var groupInterface = [];
+        let groupInterface = [];
         ;
-        var animationInterfaceFactoryInterfaceArray = [
+        let animationInterfaceFactoryInterfaceArray = [
             NullRotationAnimationFactory.getFactoryInstance()
         ];
         ;
-        var proceduralAnimationInterfaceFactoryInterfaceArray = [
+        let proceduralAnimationInterfaceFactoryInterfaceArray = [
             NullRotationAnimationFactory.getFactoryInstance()
         ];
         ;
-        var layerInfo = RectangleFactory.SINGLETON;
+        let layerInfo = RectangleFactory.SINGLETON;
         ;
-        var rectangleArrayOfArrays = RectangleFactory.ARRAY_OF_ARRAYS;
+        let rectangleArrayOfArrays = RectangleFactory.ARRAY_OF_ARRAYS;
         ;
-        var gameLayerFactory = new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance(), false);
+        let gameLayerFactory = new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance(), false);
         ;
-        var gdObject = new GDObject(0, 0, GDFlagLayerInterfaceFactory.NAME, StringUtil.getInstance().EMPTY_STRING);
+        let gdObject = new GDObject(0, 0, GDFlagLayerInterfaceFactory.NAME, StringUtil.getInstance().EMPTY_STRING);
         ;
         gdObject.set(StringUtil.getInstance().EMPTY_STRING, x, y, z);
-        var layer = gameLayerFactory.create(-1, GDFlagLayerInterfaceFactory.NAME, gdObject, 0.0, 0.0, new GDConditionWithGroupActions());
+        let layer = gameLayerFactory.create(-1, GDFlagLayerInterfaceFactory.NAME, gdObject, 0.0, 0.0, new GDConditionWithGroupActions());
         ;
         layer.setAllBinaryGameLayerManager(hashtable.get(AllBinaryGameLayerManager.ID));
         //if statement needs to be on the same line and ternary does not work the same way.

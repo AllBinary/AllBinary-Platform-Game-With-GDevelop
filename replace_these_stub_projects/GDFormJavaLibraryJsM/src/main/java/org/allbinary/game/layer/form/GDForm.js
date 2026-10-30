@@ -59,9 +59,16 @@ export class GDForm extends Object {
         //if statement needs to be on the same line and ternary does not work the same way.
         return 0;
     }
-    fireItemStateListener(gameLayerAsItem) {
+    fireItemStateListener(...args) {
+        if (args.length === 1)
+            return this.fireItemStateListener$overload1(args[0]);
+        if (args.length === 0)
+            return this.fireItemStateListener$overload2();
+        throw new TypeError('No matching overload: fireItemStateListener');
     }
-    fireItemStateListener() {
+    fireItemStateListener$overload1(gameLayerAsItem) {
+    }
+    fireItemStateListener$overload2() {
     }
     hideNotify() {
     }

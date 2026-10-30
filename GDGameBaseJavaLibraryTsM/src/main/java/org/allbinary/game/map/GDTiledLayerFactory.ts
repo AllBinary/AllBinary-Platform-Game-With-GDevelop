@@ -106,7 +106,7 @@ this.debugColor= debugColor;
                 //@Throws(Exception.constructor)
             
     public getInstance(raceTrackInfo: RaceTrackInfo, raceTrackData: RaceTrackData): AllBinaryTiledLayer{
-this.useAsMiniAllBinaryTiledLayerLateInit= new PlacementAllBinaryJ2METiledLayer(SmallIntegerSingletonFactory.getInstance()!.getAt( -1), new TiledLayer(this.map.getWidth(), this.map.getHeight(), this.tileSetImage, Math.round((this.map.getTileWidth())), Math.round((this.map.getTileHeight()))), this.tileLayer!.getMapArray(), this.debugColor!.intValue());
+this.useAsMiniAllBinaryTiledLayerLateInit= new PlacementAllBinaryJ2METiledLayer(SmallIntegerSingletonFactory.getInstance()!.getAt( -1), new TiledLayer(this.map.getWidth(), this.map.getHeight(), this.tileSetImage, globalThis.Math.trunc((this.map.getTileWidth())), globalThis.Math.trunc((this.map.getTileHeight()))), this.tileLayer!.getMapArray(), this.debugColor!.intValue());
     
 
 
@@ -130,6 +130,4 @@ this.useAsMiniAllBinaryTiledLayerLateInit= new PlacementAllBinaryJ2METiledLayer(
 
 
 }
-
-
 

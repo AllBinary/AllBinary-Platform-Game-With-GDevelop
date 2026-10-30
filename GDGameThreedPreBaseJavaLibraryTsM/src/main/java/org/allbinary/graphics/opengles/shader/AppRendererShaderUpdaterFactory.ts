@@ -37,6 +37,7 @@ import { SemanticStrings } from '../../../../../opengles/SemanticStrings.js';
 
 //not plain js import { ResourceUtil } 
 const ResourceUtil = globalThis.org.allbinary.data.resource.ResourceUtil;
+type ResourceUtil<T = any, U = any> = typeof ResourceUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ResourceUtil;
 
 import { AppShaderResources } from '../../../../../org/allbinary/game/gd/layer/resources/AppShaderResources.js';
 //not GWT import const AppShaderResources
@@ -58,15 +59,18 @@ import { PlatformAppShaderResources } from '../../../../../org/allbinary/graphic
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 import { SimpleFileUtil } from '../../../../../org/allbinary/logic/io/file/SimpleFileUtil.js';
 //not GWT import const SimpleFileUtil
 
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
+type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringUtil;
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 
 
@@ -166,17 +170,17 @@ export class AppRendererShaderUpdaterFactory extends ShaderUpdater {
 PlatformAppShaderResources.getInstance()!.add();
     
 
-    var max: number = 1024 *32;;
+    let max: number = 1024 *32;;
     
 
-    var byteArray1: number[] = new Array(max);;
+    let byteArray1: number[] = new Array(max);;
     
 
-    var size: number = this.shaderCompositeArray!.length
+    let size: number = this.shaderCompositeArray!.length
                 ;;
     
 
-    var shaderComposite: ShaderComposite = this.shaderCompositeArray[0]!;;
+    let shaderComposite: ShaderComposite = this.shaderCompositeArray[0]!;;
     
 shaderComposite!.colorEnableVertexAttribArrayOpenGLProcessor= NullOpenGLProcessorFactory.getInstance();
     
@@ -201,14 +205,14 @@ shaderComposite!.uniformTextureUnitOpenGLProcessor= new UniformTextureOpenGLProc
                                 
                         else {
                             
-    var openGLVersionValidator: OpenGLVersionValidator = OpenGLVersionValidator.getInstance()!;;
+    let openGLVersionValidator: OpenGLVersionValidator = OpenGLVersionValidator.getInstance()!;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 shaderComposite= this.shaderCompositeArray[index]!;
     
@@ -217,7 +221,7 @@ shaderComposite= this.shaderCompositeArray[index]!;
                         
                                     {
                                     
-    var shader: Shader = shaderComposite!.shaderArray[0]!;;
+    let shader: Shader = shaderComposite!.shaderArray[0]!;;
     
 shader.shaderName= this.appShaderResources!.getVertexShader(index);
     
@@ -256,17 +260,16 @@ this.shaderManager= ShaderManager.getInstance();
 
     loadShader(gl: GL10, shader: Shader, shaderType: number, max: number, byteArray1: number[]){
 
-    var resource: string = shader.shaderName;;
+    let resource: string = shader.shaderName;;
     
 
-        try {
-            this.logUtil!.putF(resource, this, this.rendererStrings!.ON_SURFACE_CREATED);
+ try { this.logUtil!.putF(resource, this, this.rendererStrings!.ON_SURFACE_CREATED);
     
 
-    var inputStream: InputStream = this.resourceUtil!.getResourceAsStream(resource)!;;
+    let inputStream: InputStream = this.resourceUtil!.getResourceAsStream(resource)!;;
     
 
-    var stringList: BasicArrayList = 
+    let stringList: BasicArrayList = 
                 //Otherwise - initializer - AssignExpr
 
                                                             
@@ -297,7 +300,7 @@ this.shaderManager= ShaderManager.getInstance();
                                                         ;;
     
 
-    var shaderAsStringArray: string[] = stringList!.toArrayType(new Array(stringList!.size())) as string[];;
+    let shaderAsStringArray: string[] = stringList!.toArrayType(new Array(stringList!.size())) as string[];;
     
 shader.shaderAsString= this.simpleFileUtil!.createStringFromArrayOfStrings(shaderAsStringArray);
     
@@ -305,20 +308,23 @@ shader.shaderHandle= this.shaderManager!.loadShader(gl, resource, shader.shaderS
     
 this.logUtil!.putF("shaderHandle: " +shader.shaderHandle, this, this.rendererStrings!.ON_SURFACE_CREATED);
     
-
-                //: 
-} catch(e) 
-            {
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 this.logUtil!.put(this.commonStrings!.EXCEPTION +resource, this, this.rendererStrings!.ON_SURFACE_CREATED, e);
     
-}
 
+ }
+   }
+ 
 }
 
 
     public getTestShaders(): ShaderOpenGLProcessor[]{
 
-    var shaderOpenGLProcessorArray: ShaderOpenGLProcessor[] = 
+    let shaderOpenGLProcessorArray: ShaderOpenGLProcessor[] = 
                                                 [
                                                     
                                                 ];;
@@ -332,9 +338,9 @@ this.logUtil!.put(this.commonStrings!.EXCEPTION +resource, this, this.rendererSt
 }
 
 
-    public setShaderComposite(anyType: any = {}){
+    public setShaderComposite(anyType: any){
 
-    var object3d: Object3d = anyType as Object3d;;
+    let object3d: Object3d = anyType as Object3d;;
     
 OpenGLVersionValidator.getInstance()!.setShaderComposite(this.shaderCompositeArray[0]!, object3d);
     
@@ -342,6 +348,4 @@ OpenGLVersionValidator.getInstance()!.setShaderComposite(this.shaderCompositeArr
 
 
 }
-
-
 

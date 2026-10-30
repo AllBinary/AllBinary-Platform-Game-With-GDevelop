@@ -18,19 +18,19 @@ export class GDFlagResources extends FlagGameResources {
     }
     constructor() {
         super();
-        var ROOT = "/gd_flag";
+        let ROOT = "/gd_flag";
         ;
-        var SMALL = "_64_by_64.png";
+        let SMALL = "_64_by_64.png";
         ;
-        var MEDIUM = SMALL;
+        let MEDIUM = SMALL;
         ;
-        var SIZE_FOUR = SMALL;
+        let SIZE_FOUR = SMALL;
         ;
-        var SIZE_FIVE = SMALL;
+        let SIZE_FIVE = SMALL;
         ;
-        var SIZE_SIX = SMALL;
+        let SIZE_SIX = SMALL;
         ;
-        var SIZE = [
+        let SIZE = [
             SMALL, MEDIUM, SIZE_FOUR, SIZE_FIVE, SIZE_SIX
         ];
         ;

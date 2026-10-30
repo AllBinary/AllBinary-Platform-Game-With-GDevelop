@@ -50,10 +50,12 @@ export class StartRunnable extends Object {
             this.demoGameMidlet.startGameCanvasRunnableInterface();
             this.demoGameMidlet.postDemoSetup();
             this.logUtil.putF(this.commonStrings.END_RUNNABLE, this, this.commonStrings.RUN);
-            //: 
         }
-        catch (e) {
-            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.RUN, e);
+        catch (caught) {
+            {
+                const e = caught;
+                this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.RUN, e);
+            }
         }
     }
 }

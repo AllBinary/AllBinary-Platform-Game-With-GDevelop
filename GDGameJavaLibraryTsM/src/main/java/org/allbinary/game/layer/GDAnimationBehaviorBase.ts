@@ -33,12 +33,15 @@ import { GDObject } from '../../../../org/allbinary/game/layout/GDObject.js';
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
+type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringMaker;
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 
 
@@ -82,36 +85,38 @@ export class GDAnimationBehaviorBase
 
     public init(gdObject: GDObject, animationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[]): IndexedAnimation[]{
 
-    var size: number = animationInterfaceFactoryInterfaceArray!.length
+    let size: number = animationInterfaceFactoryInterfaceArray!.length
                 ;;
     
 
-    var initIndexedAnimationInterfaceArray: IndexedAnimation[] = new Array(size);;
+    let initIndexedAnimationInterfaceArray: IndexedAnimation[] = new Array(size);;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 
-        try {
-            initIndexedAnimationInterfaceArray[index]= animationInterfaceFactoryInterfaceArray[index]!.getInstance(gdObject!.hashCode()) as IndexedAnimation;
+ try { initIndexedAnimationInterfaceArray[index]= animationInterfaceFactoryInterfaceArray[index]!.getInstance(gdObject!.hashCode()) as IndexedAnimation;
     
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 
-                //: 
-} catch(e) 
-            {
-
-    var commonStrings: CommonStrings = CommonStrings.getInstance()!;;
+    let commonStrings: CommonStrings = CommonStrings.getInstance()!;;
     
 this.logUtil!.put(new StringMaker().append(animationInterfaceFactoryInterfaceArray[index]!.toString())!.append(" index: ")!.appendint(index)!.toString(), this, commonStrings!.CONSTRUCTOR, e);
     
 this.logUtil!.put(gdObject!.toString(), this, commonStrings!.CONSTRUCTOR, e);
     
-}
 
+ }
+   }
+ 
 }
 
 
@@ -150,6 +155,4 @@ this.logUtil!.put(gdObject!.toString(), this, commonStrings!.CONSTRUCTOR, e);
 
 
 }
-
-
 

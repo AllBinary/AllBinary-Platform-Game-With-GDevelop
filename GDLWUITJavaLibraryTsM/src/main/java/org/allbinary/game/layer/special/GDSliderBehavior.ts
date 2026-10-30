@@ -71,7 +71,7 @@ super.setHandlesInput(true);
 
     public build(){
 
-    var gameTickDisplayInfoSingleton: GameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance()!;;
+    let gameTickDisplayInfoSingleton: GameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance()!;;
     
 this.slider.initComponent();
     
@@ -145,6 +145,4 @@ this.slider.pointerReleased(x, y);
 
 
 }
-
-
 

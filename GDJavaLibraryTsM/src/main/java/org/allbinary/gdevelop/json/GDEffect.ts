@@ -16,6 +16,7 @@
         
 //not plain js import { ABHashMap } 
 const ABHashMap = globalThis.org.allbinary.util.ABHashMap;
+type ABHashMap<T = any, U = any> = typeof ABHashMap extends abstract new (...args: any[]) => infer Instance ? Instance : typeof ABHashMap;
 
 import { JSONObject } from '../../../../org/json/JSONObject.js';
 //not GWT import const JSONObject
@@ -60,7 +61,7 @@ public constructor (jsonObject: JSONObject){
 
             super();
         
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 this.name= jsonObject!.getString(gdProjectStrings!.NAME);
     
@@ -70,6 +71,4 @@ this.effectType= jsonObject!.getString(gdProjectStrings!.EFFECT_TYPE);
 
 
 }
-
-
 

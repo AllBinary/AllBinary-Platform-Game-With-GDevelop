@@ -40,9 +40,11 @@ import { GraphicsStrings } from '../../../../org/allbinary/graphics/GraphicsStri
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
+type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (...args: any[]) => infer Instance ? Instance : typeof StringMaker;
 
 import { FrameUtil } from '../../../../org/allbinary/math/FrameUtil.js';
 //not GWT import const FrameUtil
@@ -79,36 +81,38 @@ export class GDRotationBehavior extends GDAnimationBehaviorBase {
 
     public init(gdObject: GDObject, animationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[]): IndexedAnimation[]{
 
-    var size: number = animationInterfaceFactoryInterfaceArray!.length
+    let size: number = animationInterfaceFactoryInterfaceArray!.length
                 ;;
     
 
-    var initIndexedAnimationInterfaceArray: RotationAnimation[] = new Array(size);;
+    let initIndexedAnimationInterfaceArray: RotationAnimation[] = new Array(size);;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 
-        try {
-            initIndexedAnimationInterfaceArray[index]= animationInterfaceFactoryInterfaceArray[index]!.getInstance(0) as RotationAnimation;
+ try { initIndexedAnimationInterfaceArray[index]= animationInterfaceFactoryInterfaceArray[index]!.getInstance(0) as RotationAnimation;
     
+ }
+ catch (caught: any) {
+ {
+  const e = caught;
+  
 
-                //: 
-} catch(e) 
-            {
-
-    var commonStrings: CommonStrings = CommonStrings.getInstance()!;;
+    let commonStrings: CommonStrings = CommonStrings.getInstance()!;;
     
 this.logUtil!.put(new StringMaker().append(animationInterfaceFactoryInterfaceArray[index]!.toString())!.append(" index: ")!.appendint(index)!.toString(), this, commonStrings!.CONSTRUCTOR, e);
     
 this.logUtil!.put(gdObject!.toString(), this, commonStrings!.CONSTRUCTOR, e);
     
-}
 
+ }
+   }
+ 
 }
 
 this.rotationAnimationInterfaceArrayP= initIndexedAnimationInterfaceArray;
@@ -142,7 +146,7 @@ this.rotationAnimationInterfaceArrayP= rotationAnimationInterfaceArray as Rotati
             
     public set(gameLayer: GDGameLayer, gdObject: GDObject){
 
-    var size: number = this.rotationAnimationInterfaceArrayP!.length
+    let size: number = this.rotationAnimationInterfaceArrayP!.length
                 ;;
     
 
@@ -150,7 +154,7 @@ this.rotationAnimationInterfaceArrayP= rotationAnimationInterfaceArray as Rotati
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 this.rotationAnimationInterfaceArrayP[index]!.setFrame(this.frameUtil!.getFrameForAngle(0, 1));
     
@@ -161,10 +165,10 @@ this.rotationAnimationInterfaceArrayP[index]!.setFrame(this.frameUtil!.getFrameF
 
     public setRotation(gameLayer: GDGameLayer, angleAdjustment: number){
 
-    var gdObject: GDObject = gameLayer!.gdObject;;
+    let gdObject: GDObject = gameLayer!.gdObject;;
     
 
-    var rotationAnimation: RotationAnimation;;
+    let rotationAnimation: RotationAnimation;;
     
 rotationAnimation= this.rotationAnimationInterfaceArrayP[gdObject!.animation]!;
     
@@ -173,7 +177,7 @@ rotationAnimation= this.rotationAnimationInterfaceArrayP[gdObject!.animation]!;
                         
                                     {
                                     
-    var value: number = angleAdjustment;;
+    let value: number = angleAdjustment;;
     
 
         while(value > 0)
@@ -189,7 +193,7 @@ value--;
                                 
                         else {
                             
-    var value: number = angleAdjustment;;
+    let value: number = angleAdjustment;;
     
 
         while(value < 0)
@@ -208,7 +212,7 @@ value++;
 
     public toString(gdObject: GDObject, stringBuffer: StringMaker){
 
-    var rotationAnimation: RotationAnimation = this.rotationAnimationInterfaceArrayP[gdObject!.animation]!;;
+    let rotationAnimation: RotationAnimation = this.rotationAnimationInterfaceArrayP[gdObject!.animation]!;;
     
 stringBuffer!.append(GraphicsStrings.getInstance()!.ANGLE)!.appendint(rotationAnimation!.getAngleInfoP()!.getAngle());
     
@@ -216,6 +220,4 @@ stringBuffer!.append(GraphicsStrings.getInstance()!.ANGLE)!.appendint(rotationAn
 
 
 }
-
-
 

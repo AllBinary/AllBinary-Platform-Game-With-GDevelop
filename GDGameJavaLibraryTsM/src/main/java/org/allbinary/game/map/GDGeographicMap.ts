@@ -49,9 +49,11 @@ import { OpenGLFeatureFactory } from '../../../../org/allbinary/graphics/opengle
 
 //not plain js import { CommonStrings } 
 const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
+type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonStrings;
 
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
 
 import { SmallIntegerSingletonFactory } from '../../../../org/allbinary/logic/math/SmallIntegerSingletonFactory.js';
 //not GWT import const SmallIntegerSingletonFactory
@@ -91,9 +93,11 @@ import { GameTickTimeDelayHelperFactory } from '../../../../org/allbinary/time/G
 
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
+type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayList;
 
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
+type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract new (...args: any[]) => infer Instance ? Instance : typeof BasicArrayListD;
 
 import { Animation } from '../../../../org/mapeditor/core/Animation.js';
 //not GWT import const Animation
@@ -154,12 +158,12 @@ public constructor (tiledLayerFactoryInterface: AllBinaryTiledLayerFactoryInterf
 this.map= map;
     
 
-    var tileList: BasicArrayList = new BasicArrayListD();;
+    let tileList: BasicArrayList = new BasicArrayListD();;
     
 this.createAnimationTiles(tileList);
     
 
-    var size: number = tileList!.size()!;;
+    let size: number = tileList!.size()!;;
     
 this.animationTileIndexArray= new Array(size);
     
@@ -186,33 +190,33 @@ this.setAnimations(tileList);
 
     public createAnimationTiles(tileList: BasicArrayList){
 
-    var tileSetList: BasicArrayList = this.map.getTileSets()!;;
+    let tileSetList: BasicArrayList = this.map.getTileSets()!;;
     
 
-    var size: number = tileSetList!.size()!;;
+    let size: number = tileSetList!.size()!;;
     
 
                         if(size > 0)
                         
                                     {
                                     
-    var tileSet: TileSet;;
+    let tileSet: TileSet;;
     
 
-    var tile: Tile;;
+    let tile: Tile;;
     
 
-    var animation: Animation;;
+    let animation: Animation;;
     
 
-    var tileCount: number= 0;;
+    let tileCount: number= 0;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 tileSet= tileSetList!.get(index) as TileSet;
     
@@ -223,7 +227,7 @@ tileCount= tileSet!.getTilecount();
 
 
                         for (
-    var index2: number = 0;index2 < tileCount; index2++)
+    let index2: number = 0;index2 < tileCount; index2++)
         {
 tile= tileSet!.getTile(index2);
     
@@ -250,10 +254,10 @@ animation= tile.getAnimation();
 
     public setAnimations(tileList: BasicArrayList){
 
-    var features: Features = Features.getInstance()!;;
+    let features: Features = Features.getInstance()!;;
     
 
-    var openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()!;;
+    let openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()!;;
     
 
                         if(features.isFeature(openGLFeatureFactory!.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory!.OPENGL_3D))
@@ -269,32 +273,32 @@ animation= tile.getAnimation();
                                     }
                                 
 
-    var size: number = tileList!.size()!;;
+    let size: number = tileList!.size()!;;
     
 
-    var animationTileIndex: number= 0;;
+    let animationTileIndex: number= 0;;
     
 
-    var CREATING_ANIMATION_TILE: string = "Creating AnimationTile: ";;
+    let CREATING_ANIMATION_TILE: string = "Creating AnimationTile: ";;
     
 
-    var tile: Tile;;
+    let tile: Tile;;
     
 
-    var animation: Animation;;
+    let animation: Animation;;
     
 
-    var allBinaryJ2METiledLayer: AllBinaryJ2METiledLayer = this.getAllBinaryTiledLayer() as AllBinaryJ2METiledLayer;;
+    let allBinaryJ2METiledLayer: AllBinaryJ2METiledLayer = this.getAllBinaryTiledLayer() as AllBinaryJ2METiledLayer;;
     
 
-    var tiledLayer: TiledLayer = allBinaryJ2METiledLayer!.getTiledLayer()!;;
+    let tiledLayer: TiledLayer = allBinaryJ2METiledLayer!.getTiledLayer()!;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 tile= tileList!.get(index) as Tile;
     
@@ -315,10 +319,10 @@ allBinaryJ2METiledLayer!.updateCells((getLayer as TileLayer).getMapArray(), (get
 
     public update(){
 
-    var features: Features = Features.getInstance()!;;
+    let features: Features = Features.getInstance()!;;
     
 
-    var openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()!;;
+    let openGLFeatureFactory: OpenGLFeatureFactory = OpenGLFeatureFactory.getInstance()!;;
     
 
                         if(features.isFeature(openGLFeatureFactory!.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory!.OPENGL_3D))
@@ -334,27 +338,27 @@ allBinaryJ2METiledLayer!.updateCells((getLayer as TileLayer).getMapArray(), (get
                                     }
                                 
 
-    var startTime: number = GameTickTimeDelayHelperFactory.getInstance()!.startTime;;
+    let startTime: number = GameTickTimeDelayHelperFactory.getInstance()!.startTime;;
     
 
-    var size: number = this.animationArray!.length
+    let size: number = this.animationArray!.length
                 ;;
     
 
-    var animation: Animation;;
+    let animation: Animation;;
     
 
-    var frame: Frame;;
+    let frame: Frame;;
     
 
-    var tiledLayer: TiledLayer = (getAllBinaryTiledLayer as AllBinaryJ2METiledLayer).getTiledLayer()!;;
+    let tiledLayer: TiledLayer = (getAllBinaryTiledLayer as AllBinaryJ2METiledLayer).getTiledLayer()!;;
     
 
 
 
 
                         for (
-    var index: number = 0;index < size; index++)
+    let index: number = 0;index < size; index++)
         {
 animation= this.animationArray[index]! as Animation;
     
@@ -393,13 +397,13 @@ tiledLayer!.setAnimatedTile(this.animationTileIndexArray[index]!, frame.getTilei
 
     public reset(){
 
-    var allBinaryTiledLayer: AllBinaryTiledLayer = this.getAllBinaryTiledLayer()!;;
+    let allBinaryTiledLayer: AllBinaryTiledLayer = this.getAllBinaryTiledLayer()!;;
     
 
-    var lastHeight: number = GameTickDisplayInfoSingleton.getInstance()!.getLastHeight()!;;
+    let lastHeight: number = GameTickDisplayInfoSingleton.getInstance()!.getLastHeight()!;;
     
 
-    var y: number =  -lastHeight +allBinaryTiledLayer!.getHeight();;
+    let y: number =  -lastHeight +allBinaryTiledLayer!.getHeight();;
     
 allBinaryTiledLayer!.setPosition(0,  -y, allBinaryTiledLayer!.getZP());
     
@@ -410,7 +414,7 @@ allBinaryTiledLayer!.setPosition(0,  -y, allBinaryTiledLayer!.getZP());
             
     public getCellPositionAtXY(x: number, y: number): GeographicMapCellPosition{
 
-    var allBinaryTiledLayer: AllBinaryTiledLayer = this.getAllBinaryTiledLayer()!;;
+    let allBinaryTiledLayer: AllBinaryTiledLayer = this.getAllBinaryTiledLayer()!;;
     
 
 
@@ -423,7 +427,7 @@ allBinaryTiledLayer!.setPosition(0,  -y, allBinaryTiledLayer!.getZP());
 
     public getCellPositionAtXYNoThrow(x: number, y: number): GeographicMapCellPosition{
 
-    var allBinaryTiledLayer: AllBinaryTiledLayer = this.getAllBinaryTiledLayer()!;;
+    let allBinaryTiledLayer: AllBinaryTiledLayer = this.getAllBinaryTiledLayer()!;;
     
 
 
@@ -435,6 +439,4 @@ allBinaryTiledLayer!.setPosition(0,  -y, allBinaryTiledLayer!.getZP());
 
 
 }
-
-
 

@@ -32,7 +32,7 @@ export class GDGameOpenGLESImageBasedAnimationInterfaceFactoryInterfaceFactory e
         super.initImageCache(OpenGLImageCacheFactory.getInstance(), level);
     }
     isFeature() {
-        var features = Features.getInstance();
+        let features = Features.getInstance();
         ;
         if (features.isFeature(GraphicsFeatureFactory.getInstance().IMAGE_GRAPHICS) && features.isFeature(GraphicsFeatureFactory.getInstance().IMAGE_TO_ARRAY_GRAPHICS) && features.isDefault(OpenGLFeatureFactory.getInstance().OPENGL)) {
             //if statement needs to be on the same line and ternary does not work the same way.

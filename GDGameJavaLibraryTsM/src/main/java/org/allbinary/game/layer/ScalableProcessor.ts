@@ -64,7 +64,7 @@ export class ScalableProcessor extends ScalableBaseProcessor {
 
     public process(gameLayer: GDGameLayer, initIndexedAnimationInterface: IndexedAnimation){
 
-    var gdObject: GDObject = gameLayer!.gdObject;;
+    let gdObject: GDObject = gameLayer!.gdObject;;
     
 initIndexedAnimationInterface!.setScale(gdObject!.scaleX, gdObject!.scaleY);
     
@@ -72,6 +72,4 @@ initIndexedAnimationInterface!.setScale(gdObject!.scaleX, gdObject!.scaleY);
 
 
 }
-
-
 

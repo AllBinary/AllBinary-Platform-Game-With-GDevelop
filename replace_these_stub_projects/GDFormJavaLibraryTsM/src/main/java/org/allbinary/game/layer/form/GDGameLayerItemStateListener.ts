@@ -29,9 +29,7 @@ import { GDGameLayer } from '../../../../../org/allbinary/game/layer/GDGameLayer
 export interface GDGameLayerItemStateListener {
         
 
-    itemStateChanged(gameLayerAsItem: GDGameLayer)
+    itemStateChanged(gameLayerAsItem: GDGameLayer): void;
 
 }
-
-
 

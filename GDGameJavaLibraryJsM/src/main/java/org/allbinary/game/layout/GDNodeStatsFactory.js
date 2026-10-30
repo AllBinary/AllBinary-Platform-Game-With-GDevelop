@@ -39,7 +39,7 @@ export class GDNodeStatsFactory extends BaseGDNodeStats {
         this.callCountGDNodeStats.push(index, name);
         this.callStackGDNodeStats.push(index, name);
     }
-    log(stringBuilder, anyType = {}) {
+    log(stringBuilder, anyType) {
         this.callCountGDNodeStats.log(stringBuilder);
         this.callStackGDNodeStats.log(stringBuilder, anyType);
     }

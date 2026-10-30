@@ -77,13 +77,13 @@ export class GDEventFactory
 
     public create(jsonObject: JSONObject): GDEvent{
 
-    var gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
+    let gdProjectStrings: GDProjectStrings = GDProjectStrings.getInstance()!;;
     
 
-    var eventTypeFactory: GDEventTypeFactory = GDEventTypeFactory.getInstance()!;;
+    let eventTypeFactory: GDEventTypeFactory = GDEventTypeFactory.getInstance()!;;
     
 
-    var type: string = jsonObject!.getString(gdProjectStrings!.TYPE)!;;
+    let type: string = jsonObject!.getString(gdProjectStrings!.TYPE)!;;
     
 type= eventTypeFactory!.get(type);
     
@@ -201,6 +201,4 @@ type= eventTypeFactory!.get(type);
 
 
 }
-
-
 

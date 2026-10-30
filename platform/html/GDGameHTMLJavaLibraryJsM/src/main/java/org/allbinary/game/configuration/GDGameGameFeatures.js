@@ -34,18 +34,18 @@ export class GDGameGameFeatures extends Object {
         this.GRAPHICS_OPTIONS = "Graphics Options";
     }
     init() {
-        var sensorFeatureFactory = SensorFeatureFactory.getInstance();
+        let sensorFeatureFactory = SensorFeatureFactory.getInstance();
         ;
-        var gameFeatureFactory = GameFeatureFactory.getInstance();
+        let gameFeatureFactory = GameFeatureFactory.getInstance();
         ;
-        var gameConfigurationSingleton = GameConfigurationSingleton.getInstance();
+        let gameConfigurationSingleton = GameConfigurationSingleton.getInstance();
         ;
-        var gameConfigurationCentral = GameConfigurationCentral.getInstance();
+        let gameConfigurationCentral = GameConfigurationCentral.getInstance();
         ;
         gameConfigurationSingleton.add(gameConfigurationCentral.VIBRATION);
         gameConfigurationSingleton.add(gameConfigurationCentral.ORIENTATION);
         gameConfigurationSingleton.add(gameConfigurationCentral.SPEED);
-        var multipleList = new BasicArrayListD();
+        let multipleList = new BasicArrayListD();
         ;
         multipleList.add(gameFeatureFactory.SOUND);
         multipleList.add(gameFeatureFactory.SCREEN_SHAKE);

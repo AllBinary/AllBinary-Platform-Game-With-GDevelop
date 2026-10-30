@@ -49,35 +49,35 @@ export class GDGameNeededWithSensorTouchButtonsBuilder extends BaseTouchInput {
     getList() {
         try {
             this.logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR);
-            var list = new BasicArrayListD();
+            let list = new BasicArrayListD();
             ;
-            var touchButtonLocationHelper = new TouchButtonLocationHelper();
+            let touchButtonLocationHelper = new TouchButtonLocationHelper();
             ;
-            var basicTouchButtonCellPositionFactory = new BasicTouchButtonCellPositionFactory();
+            let basicTouchButtonCellPositionFactory = new BasicTouchButtonCellPositionFactory();
             ;
-            var commonButtons = CommonButtons.getInstance();
+            let commonButtons = CommonButtons.getInstance();
             ;
-            var animationInterface = NullAnimationFactory.getFactoryInstance().getInstance(0);
+            let animationInterface = NullAnimationFactory.getFactoryInstance().getInstance(0);
             ;
-            var hintAnimationInterface = animationInterface;
+            let hintAnimationInterface = animationInterface;
             ;
-            var basicTouchInputFactory = BasicTouchInputFactory.getInstance();
+            let basicTouchInputFactory = BasicTouchInputFactory.getInstance();
             ;
-            var LEFT = new FullTouchButton(basicTouchInputFactory.LEFT, animationInterface, hintAnimationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.BOTTOM_LEFT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
+            let LEFT = new FullTouchButton(basicTouchInputFactory.LEFT, animationInterface, hintAnimationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.BOTTOM_LEFT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
             ;
-            var LEFT2 = new FullTouchButton(basicTouchInputFactory.LEFT, animationInterface, hintAnimationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.BOTTOM_SECOND_FROM_LEFT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
+            let LEFT2 = new FullTouchButton(basicTouchInputFactory.LEFT, animationInterface, hintAnimationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.BOTTOM_SECOND_FROM_LEFT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
             ;
-            var LEFT3 = new FullTouchButton(basicTouchInputFactory.LEFT, animationInterface, hintAnimationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.SECOND_FROM_BOTTOM_LEFT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
+            let LEFT3 = new FullTouchButton(basicTouchInputFactory.LEFT, animationInterface, hintAnimationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.SECOND_FROM_BOTTOM_LEFT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
             ;
-            var LEFT4 = new FullTouchButton(basicTouchInputFactory.LEFT, animationInterface, hintAnimationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.SECOND_FROM_BOTTOM_SECOND_FROM_LEFT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
+            let LEFT4 = new FullTouchButton(basicTouchInputFactory.LEFT, animationInterface, hintAnimationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.SECOND_FROM_BOTTOM_SECOND_FROM_LEFT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
             ;
-            var RIGHT = new FullTouchButton(basicTouchInputFactory.RIGHT, animationInterface, hintAnimationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.BOTTOM_RIGHT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
+            let RIGHT = new FullTouchButton(basicTouchInputFactory.RIGHT, animationInterface, hintAnimationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.BOTTOM_RIGHT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
             ;
-            var RIGHT2 = new FullTouchButton(basicTouchInputFactory.RIGHT, animationInterface, hintAnimationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.BOTTOM_SECOND_FROM_RIGHT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
+            let RIGHT2 = new FullTouchButton(basicTouchInputFactory.RIGHT, animationInterface, hintAnimationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.BOTTOM_SECOND_FROM_RIGHT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
             ;
-            var RIGHT3 = new FullTouchButton(basicTouchInputFactory.RIGHT, animationInterface, hintAnimationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.SECOND_FROM_BOTTOM_RIGHT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
+            let RIGHT3 = new FullTouchButton(basicTouchInputFactory.RIGHT, animationInterface, hintAnimationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.SECOND_FROM_BOTTOM_RIGHT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
             ;
-            var RIGHT4 = new FullTouchButton(basicTouchInputFactory.RIGHT, animationInterface, hintAnimationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.SECOND_FROM_BOTTOM_SECOND_FROM_RIGHT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
+            let RIGHT4 = new FullTouchButton(basicTouchInputFactory.RIGHT, animationInterface, hintAnimationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.SECOND_FROM_BOTTOM_SECOND_FROM_RIGHT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
             ;
             list.add(LEFT);
             list.add(LEFT2);
@@ -88,25 +88,27 @@ export class GDGameNeededWithSensorTouchButtonsBuilder extends BaseTouchInput {
             list.add(RIGHT3);
             list.add(RIGHT4);
             if (basicTouchButtonCellPositionFactory.THIRD_FROM_BOTTOM_RIGHT != CellPositionFactory.getInstance().NONE) {
-                var WEAPON = TouchButton.createButton(basicTouchInputFactory.SPECIAL_BUTTON_FIVE, TouchButtonGenericActionResource.getInstance(), commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.THIRD_FROM_BOTTOM_RIGHT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
+                let WEAPON = TouchButton.createButton(basicTouchInputFactory.SPECIAL_BUTTON_FIVE, TouchButtonGenericActionResource.getInstance(), commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.THIRD_FROM_BOTTOM_RIGHT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
                 ;
                 list.add(WEAPON);
             }
-            var SPECIAL3 = TouchButton.createButton(basicTouchInputFactory.SPECIAL_BUTTON_SIX, TouchButtonGenericActionResource.getInstance(), commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.TOP_LEFT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
+            let SPECIAL3 = TouchButton.createButton(basicTouchInputFactory.SPECIAL_BUTTON_SIX, TouchButtonGenericActionResource.getInstance(), commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.TOP_LEFT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
             ;
-            var SPECIAL4 = TouchButton.createButton(basicTouchInputFactory.SPECIAL_BUTTON_SEVEN_TESTING_ONLY, TouchButtonGenericActionResource.getInstance(), commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.TOP_SECOND_FROM_LEFT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
+            let SPECIAL4 = TouchButton.createButton(basicTouchInputFactory.SPECIAL_BUTTON_SEVEN_TESTING_ONLY, TouchButtonGenericActionResource.getInstance(), commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.TOP_SECOND_FROM_LEFT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf());
             ;
             list.add(SPECIAL3);
             list.add(SPECIAL4);
             //if statement needs to be on the same line and ternary does not work the same way.
             return list;
-            //: 
         }
-        catch (e) {
-            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.GET_LIST, e);
-            //if statement needs to be on the same line and ternary does not work the same way.
-            return BasicArrayListUtil.getInstance().getImmutableInstance();
-            ;
+        catch (caught) {
+            {
+                const e = caught;
+                this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.GET_LIST, e);
+                //if statement needs to be on the same line and ternary does not work the same way.
+                return BasicArrayListUtil.getInstance().getImmutableInstance();
+                ;
+            }
         }
     }
 }

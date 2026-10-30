@@ -53,10 +53,10 @@ export class GDGeographicMap extends RaceTrackGeographicMap {
         super(new RaceTrackInfo(SmallIntegerSingletonFactory.getInstance().getAt(tileLayer.getId()), SmallIntegerSingletonFactory.getInstance().getAt(tileLayer.getId()).toString(), new RaceTrackFrictionProperties(0, 0), foregroundColor, backgroundColor, 0, 0, 0), new RaceTrackData(SmallIntegerSingletonFactory.getInstance().getAt(0), map.getTileWidth(), map.getTileHeight(), map.getTileWidth() / 4, map.getTileHeight() / 4, cellTypeIdToGeographicMapCellType, tileLayer.getMapArray()), tiledLayerFactoryInterface, new SimpleGeographicMapCellPositionFactory(), new GeographicMapCellPositionBaseFactory(), geographicMapCellTypeFactory, customMapGeneratorBaseFactory);
         //For kotlin this is before the body of the constructor.
         this.map = map;
-        var tileList = new BasicArrayListD();
+        let tileList = new BasicArrayListD();
         ;
         this.createAnimationTiles(tileList);
-        var size = tileList.size();
+        let size = tileList.size();
         ;
         this.animationTileIndexArray = new Array(size);
         this.startTimeFrameArray = new Array(size);
@@ -69,23 +69,23 @@ export class GDGeographicMap extends RaceTrackGeographicMap {
         return this.map;
     }
     createAnimationTiles(tileList) {
-        var tileSetList = this.map.getTileSets();
+        let tileSetList = this.map.getTileSets();
         ;
-        var size = tileSetList.size();
+        let size = tileSetList.size();
         ;
         if (size > 0) {
-            var tileSet;
+            let tileSet;
             ;
-            var tile;
+            let tile;
             ;
-            var animation;
+            let animation;
             ;
-            var tileCount = 0;
+            let tileCount = 0;
             ;
-            for (var index = 0; index < size; index++) {
+            for (let index = 0; index < size; index++) {
                 tileSet = tileSetList.get(index);
                 tileCount = tileSet.getTilecount();
-                for (var index2 = 0; index2 < tileCount; index2++) {
+                for (let index2 = 0; index2 < tileCount; index2++) {
                     tile = tileSet.getTile(index2);
                     animation = tile.getAnimation();
                     if (animation != Animation.NULL_ANIMATION) {
@@ -96,29 +96,29 @@ export class GDGeographicMap extends RaceTrackGeographicMap {
         }
     }
     setAnimations(tileList) {
-        var features = Features.getInstance();
+        let features = Features.getInstance();
         ;
-        var openGLFeatureFactory = OpenGLFeatureFactory.getInstance();
+        let openGLFeatureFactory = OpenGLFeatureFactory.getInstance();
         ;
         if (features.isFeature(openGLFeatureFactory.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory.OPENGL_3D)) {
             //if statement needs to be on the same line and ternary does not work the same way.
             return;
         }
-        var size = tileList.size();
+        let size = tileList.size();
         ;
-        var animationTileIndex = 0;
+        let animationTileIndex = 0;
         ;
-        var CREATING_ANIMATION_TILE = "Creating AnimationTile: ";
+        let CREATING_ANIMATION_TILE = "Creating AnimationTile: ";
         ;
-        var tile;
+        let tile;
         ;
-        var animation;
+        let animation;
         ;
-        var allBinaryJ2METiledLayer = this.getAllBinaryTiledLayer();
+        let allBinaryJ2METiledLayer = this.getAllBinaryTiledLayer();
         ;
-        var tiledLayer = allBinaryJ2METiledLayer.getTiledLayer();
+        let tiledLayer = allBinaryJ2METiledLayer.getTiledLayer();
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             tile = tileList.get(index);
             animationTileIndex = tiledLayer.createAnimatedTile(tile.getId());
             this.logUtil.putF(CREATING_ANIMATION_TILE + animationTileIndex, this, this.commonStrings.PROCESS);
@@ -128,25 +128,25 @@ export class GDGeographicMap extends RaceTrackGeographicMap {
         }
     }
     update() {
-        var features = Features.getInstance();
+        let features = Features.getInstance();
         ;
-        var openGLFeatureFactory = OpenGLFeatureFactory.getInstance();
+        let openGLFeatureFactory = OpenGLFeatureFactory.getInstance();
         ;
         if (features.isFeature(openGLFeatureFactory.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory.OPENGL_3D)) {
             //if statement needs to be on the same line and ternary does not work the same way.
             return;
         }
-        var startTime = GameTickTimeDelayHelperFactory.getInstance().startTime;
+        let startTime = GameTickTimeDelayHelperFactory.getInstance().startTime;
         ;
-        var size = this.animationArray.length;
+        let size = this.animationArray.length;
         ;
-        var animation;
+        let animation;
         ;
-        var frame;
+        let frame;
         ;
-        var tiledLayer = getAllBinaryTiledLayer.getTiledLayer();
+        let tiledLayer = getAllBinaryTiledLayer.getTiledLayer();
         ;
-        for (var index = 0; index < size; index++) {
+        for (let index = 0; index < size; index++) {
             animation = this.animationArray[index];
             frame = animation.getFrame().get(this.currentFrameArray[index]);
             if (startTime - this.startTimeFrameArray[index] > frame.getDuration()) {
@@ -162,24 +162,24 @@ export class GDGeographicMap extends RaceTrackGeographicMap {
         }
     }
     reset() {
-        var allBinaryTiledLayer = this.getAllBinaryTiledLayer();
+        let allBinaryTiledLayer = this.getAllBinaryTiledLayer();
         ;
-        var lastHeight = GameTickDisplayInfoSingleton.getInstance().getLastHeight();
+        let lastHeight = GameTickDisplayInfoSingleton.getInstance().getLastHeight();
         ;
-        var y = -lastHeight + allBinaryTiledLayer.getHeight();
+        let y = -lastHeight + allBinaryTiledLayer.getHeight();
         ;
         allBinaryTiledLayer.setPosition(0, -y, allBinaryTiledLayer.getZP());
     }
     //@Throws(Exception.constructor)
     getCellPositionAtXY(x, y) {
-        var allBinaryTiledLayer = this.getAllBinaryTiledLayer();
+        let allBinaryTiledLayer = this.getAllBinaryTiledLayer();
         ;
         //if statement needs to be on the same line and ternary does not work the same way.
         return super.getCellPositionAtXY(x + allBinaryTiledLayer.getXP(), y + allBinaryTiledLayer.getYP());
         ;
     }
     getCellPositionAtXYNoThrow(x, y) {
-        var allBinaryTiledLayer = this.getAllBinaryTiledLayer();
+        let allBinaryTiledLayer = this.getAllBinaryTiledLayer();
         ;
         //if statement needs to be on the same line and ternary does not work the same way.
         return super.getCellPositionAtXYNoThrow(x + allBinaryTiledLayer.getXP(), y + allBinaryTiledLayer.getYP());
