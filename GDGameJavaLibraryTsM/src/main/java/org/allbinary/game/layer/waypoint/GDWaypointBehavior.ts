@@ -29,6 +29,9 @@ import { WaypointBehaviorBase } from '../../../../../org/allbinary/game/layer/Wa
 import { CollidableDestroyableDamageableLayer } from '../../../../../org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer.js';
 //not GWT import const CollidableDestroyableDamageableLayer
 
+import { UnitWaypointStrings } from '../../../../../org/allbinary/game/layer/unit/UnitWaypointStrings.js';
+//not GWT import const UnitWaypointStrings
+
 import { WaypointEventListenerInterface } from '../../../../../org/allbinary/game/layer/waypoint/event/WaypointEventListenerInterface.js';
 //not GWT import const WaypointEventListenerInterface
 
@@ -104,9 +107,9 @@ export class GDWaypointBehavior extends WaypointBehaviorBase implements Waypoint
 
     static readonly DEFAULT: BasicArrayList = new ImmutableBasicArrayList("DefaultAndImmutable", 0);
 
-    private static readonly PATHING: string = "Pathing";
-
     readonly logUtil: LogUtil = LogUtil.getInstance()!;
+
+    private readonly unitWaypointStrings: UnitWaypointStrings = UnitWaypointStrings.getInstance()!;
 
     private longWeaponRange: number = 0;
 
@@ -368,7 +371,7 @@ this.lastPathGeographicMapCellPosition= SimpleGeographicMapCellPositionFactory.N
                         if(this.associatedAdvancedRTSGameLayer!.isShowMoreCaptionStates())
                         
                                     {
-                                    this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(GDWaypointBehavior.PATHING, BasicColorFactory.getInstance()!.GREEN);
+                                    this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(this.unitWaypointStrings!.PATHING, BasicColorFactory.getInstance()!.GREEN);
     
 
                                     }

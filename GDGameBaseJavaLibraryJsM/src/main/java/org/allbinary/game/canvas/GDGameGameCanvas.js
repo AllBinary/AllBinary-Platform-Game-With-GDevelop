@@ -13,8 +13,6 @@
 */
 //not GWT import const CommandListener
 import { Font } from '../../../../javax/microedition/lcdui/Font.js';
-//not GWT import const Graphics
-import { NullCommandListener } from '../../../../javax/microedition/lcdui/NullCommandListener.js';
 //not GWT import const NullCommandListener
 import { GDGameStaticInitializerFactory } from '../../../../org/allbinary/game/init/GDGameStaticInitializerFactory.js';
 //not GWT import const GameStateFactory
@@ -104,20 +102,6 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
         this.soundGameFeature = GameFeatureFactory.getInstance().SOUND;
         //For kotlin this is before the body of the constructor.
         this.abeClientInformation = abeClientInformation;
-    }
-    constructor(abeClientInformation, allBinaryGameLayerManager) {
-        this.WAIT = GameSpeed.getInstance().getDelay();
-        this.portion = 4;
-        this.gamePerformanceInitUpdatePaintable = new GamePerformanceInitUpdatePaintable();
-        this.gyroOrientationSensor = GyroSensorFactory.getInstance();
-        this.accelerometerOrientationSensor = AccelerometerSensorFactory.getInstance();
-        this.playerTimeDelayHelper = new TimeDelayHelper(2000);
-        this.primaryPlayerQueue = PrimaryPlayerQueueFactory.getInstance();
-        this.secondaryPlayerQueue = SecondaryPlayerQueueFactory.getInstance();
-        this.features = Features.getInstance();
-        this.soundGameFeature = GameFeatureFactory.getInstance().SOUND;
-        this(abeClientInformation, NullCommandListener.NULL_COMMAND_LISTENER, allBinaryGameLayerManager);
-        //For kotlin this is before the body of the constructor.
     }
     initSpecialPaint() {
         super.initSpecialPaint();

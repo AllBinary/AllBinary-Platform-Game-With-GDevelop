@@ -8,6 +8,8 @@ import { SensorActionFactory } from '../../../../../org/allbinary/game/layer/Sen
 import { WaypointBehaviorBase } from '../../../../../org/allbinary/game/layer/WaypointBehaviorBase.js';
 //not GWT import const WaypointBehaviorBase
 import { CollidableDestroyableDamageableLayer } from '../../../../../org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer.js';
+//not GWT import const CollidableDestroyableDamageableLayer
+import { UnitWaypointStrings } from '../../../../../org/allbinary/game/layer/unit/UnitWaypointStrings.js';
 //not GWT import const WaypointEventListenerInterface
 import { BasicColorFactory } from '../../../../../org/allbinary/graphics/color/BasicColorFactory.js';
 //not GWT import const AllBinaryLayer
@@ -41,6 +43,7 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
     constructor(associatedAdvancedRTSGameLayer, fakeWaypoint) {
         super();
         this.logUtil = LogUtil.getInstance();
+        this.unitWaypointStrings = UnitWaypointStrings.getInstance();
         this.longWeaponRange = 0;
         this.sensorAction = SensorActionFactory.getInstance().ATTACK;
         this.lastPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
@@ -143,7 +146,7 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
     setGeographicMapCellHistoryPath(geographicMapCellPositionBasicArrayList) {
         this.lastPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
         if (this.associatedAdvancedRTSGameLayer.isShowMoreCaptionStates()) {
-            this.associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(GDWaypointBehavior.PATHING, BasicColorFactory.getInstance().GREEN);
+            this.associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(this.unitWaypointStrings.PATHING, BasicColorFactory.getInstance().GREEN);
         }
         this.currentGeographicMapCellHistoryP.init();
         this.associatedAdvancedRTSGameLayer.init(this.currentGeographicMapCellHistoryP, geographicMapCellPositionBasicArrayList);
@@ -308,4 +311,3 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
     }
 }
 GDWaypointBehavior.DEFAULT = new ImmutableBasicArrayList("DefaultAndImmutable", 0);
-GDWaypointBehavior.PATHING = "Pathing";

@@ -12,6 +12,9 @@
 import { FlagGameResources } from '../../../../org/allbinary/game/layer/waypoint/FlagGameResources.js';
 //not GWT import const FlagGameResources
 
+//not plain js import { NullUtil } 
+const NullUtil = globalThis.org.allbinary.logic.NullUtil;
+
 
 
 
@@ -34,14 +37,23 @@ import { FlagGameResources } from '../../../../org/allbinary/game/layer/waypoint
 export class GDFlagResources extends FlagGameResources {
         
 
-    private static readonly SINGLETON: FlagGameResources = new GDFlagResources();
+    private static instance: any = NullUtil.getInstance()!.NULL_OBJECT;
 
     public static getInstance(): FlagGameResources{
+
+                        if(GDFlagResources.instance == NullUtil.getInstance()!.NULL_OBJECT)
+                        
+                                    {
+                                    GDFlagResources.instance= new GDFlagResources();
+    
+
+                                    }
+                                
 
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return GDFlagResources.SINGLETON;
+                        return GDFlagResources.instance as GDFlagResources;
     
 }
 

@@ -15,6 +15,8 @@ import { GDGameSoftwareInfo } from '../../../../org/allbinary/game/canvas/GDGame
 //not GWT import const GDGameSoftwareInfo
 import { GDGameMenuPaintable } from '../../../../org/allbinary/game/canvas/GDGameMenuPaintable.js';
 //not GWT import const CommandListener
+import { NullCommandListener } from '../../../../javax/microedition/lcdui/NullCommandListener.js';
+//not GWT import const NullCommandListener
 import { GDGameStaticInitializerFactory } from '../../../../org/allbinary/game/init/GDGameStaticInitializerFactory.js';
 //not GWT import const GDGameStaticInitializerFactory
 import { GDGameLayerManager } from '../../../../org/allbinary/game/layer/GDGameLayerManager.js';
@@ -83,6 +85,6 @@ export class GDGameStartCanvas extends DemoCanvas {
     //@Throws(Exception.constructor)
     createRunnable(randomValue) {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return new GDGameGameCanvas(this.abeClientInformation, this.createGameLayerManager(this.getNextRandom()));
+        return new GDGameGameCanvas(this.abeClientInformation, NullCommandListener.NULL_COMMAND_LISTENER, this.createGameLayerManager(this.getNextRandom()));
     }
 }

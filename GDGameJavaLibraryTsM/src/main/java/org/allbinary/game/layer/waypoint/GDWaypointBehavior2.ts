@@ -28,6 +28,9 @@ import { WaypointPathRunnableBase } from '../../../../../org/allbinary/game/laye
 import { CollidableDestroyableDamageableLayer } from '../../../../../org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer.js';
 //not GWT import const CollidableDestroyableDamageableLayer
 
+import { UnitWaypointStrings } from '../../../../../org/allbinary/game/layer/unit/UnitWaypointStrings.js';
+//not GWT import const UnitWaypointStrings
+
 import { TrackingEventHandler } from '../../../../../org/allbinary/game/tracking/TrackingEventHandler.js';
 //not GWT import const TrackingEventHandler
 
@@ -116,41 +119,13 @@ import { WaypointBase } from './WaypointBase.js';
 export class GDWaypointBehavior2 extends GDWaypointBehavior {
         
 
-    private static readonly WANDERING: string = "Order?";
-
-    private static readonly THINKING: string = "Thinking";
-
-    private static readonly THINKING_ABOUT_TARGET: string = "Hmmm";
-
-    private static readonly TARGET: string = "Target";
-
-    private static readonly KILL: string = "Kill!";
-
-    private static readonly STOP: string = "Stop";
-
-    private static readonly WAYPOINT_DESTROYED_SHORT: string = "Uh Oh";
-
-    private static readonly WAYPOINT_DESTROYED: string = "Waypoint Destroyed";
-
-    private static readonly ALL_VISITED_SHORT: string = "Arrived";
-
-    private static readonly _ALL_VISITED_SHORT: string = " Arrived";
-
-    private static readonly ALREADY_THERE_SHORT: string = "Again?";
-
-    private static readonly _ALREADY_THERE_SHORT: string = " Again?";
-
-    private static readonly NEXT_PATH_NODE: string = "Next Path Node";
-
-    private static readonly VISITED_MOST_OF_THE_PATH: string = " visited most of the path";
-
-    private static readonly RETURNING_AS_WAYPOINT_PATH_LIST: string = " returning as waypointPathsList was runningWaypointPathList";
-
-    private static readonly runningWaypointPathList: BasicArrayList = new BasicArrayListD();
-
     private static readonly TARGET_DISTANCE: string = "Target Distance";
 
     private static readonly TARGET_LAYER: string = "Target Layer";
+
+    private static readonly runningWaypointPathList: BasicArrayList = new BasicArrayListD();
+
+    private readonly unitWaypointStrings: UnitWaypointStrings = UnitWaypointStrings.getInstance()!;
 
     private readonly layerDistanceUtil: LayerDistanceUtil = LayerDistanceUtil.getInstance()!;
 
@@ -252,7 +227,7 @@ this.associatedAdvancedRTSGameLayer!.getWaypoint2LogHelper()!.initRange(this.ass
                         if(this.currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance() && this.getCurrentGeographicMapCellHistory()!.getTotalVisited() > this.getCurrentGeographicMapCellHistory()!.getTotalNotVisited())
                         
                                     {
-                                    this.updatePathOnTargetMove(GDWaypointBehavior2.VISITED_MOST_OF_THE_PATH);
+                                    this.updatePathOnTargetMove(this.unitWaypointStrings!.VISITED_MOST_OF_THE_PATH);
     
 
                                     }
@@ -298,7 +273,7 @@ this.associatedAdvancedRTSGameLayer!.getWaypoint2LogHelper()!.initRange(this.ass
                                     }
                                 
                         else {
-                            this.updatePathOnTargetMove(GDWaypointBehavior2.RETURNING_AS_WAYPOINT_PATH_LIST);
+                            this.updatePathOnTargetMove(this.unitWaypointStrings!.RETURNING_AS_WAYPOINT_PATH_LIST);
     
 
 
@@ -542,7 +517,7 @@ this.setTargetWithDistance(layerInterface, anotherTargetDistance);
     public setTargetWithDistance(layerInterface: PathFindingLayerInterface, anotherTargetDistance: number){
 this.associatedAdvancedRTSGameLayer!.getWaypoint2LogHelper()!.setTarget(this.associatedAdvancedRTSGameLayer, this, layerInterface, anotherTargetDistance);
     
-this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(GDWaypointBehavior2.TARGET, BasicColorFactory.getInstance()!.GREEN);
+this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(this.unitWaypointStrings!.TARGET, BasicColorFactory.getInstance()!.GREEN);
     
 this.associatedAdvancedRTSGameLayer!.setLoad(0);
     
@@ -622,7 +597,7 @@ this.setWaypointPathsList(list);
                                     {
                                     this.associatedAdvancedRTSGameLayer!.getWaypoint2LogHelper()!.setTargetPath(this.associatedAdvancedRTSGameLayer);
     
-this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(GDWaypointBehavior2.KILL, BasicColorFactory.getInstance()!.ORANGE);
+this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(this.unitWaypointStrings!.KILL, BasicColorFactory.getInstance()!.ORANGE);
     
 this.clearTarget();
     
@@ -685,9 +660,9 @@ this.associatedAdvancedRTSGameLayer!.getWaypoint2LogHelper()!.processWaypoint(th
                         if(targetLayer!.isDestroyed())
                         
                                     {
-                                    this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(GDWaypointBehavior2.WAYPOINT_DESTROYED_SHORT, BasicColorFactory.getInstance()!.YELLOW);
+                                    this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(this.unitWaypointStrings!.WAYPOINT_DESTROYED_SHORT, BasicColorFactory.getInstance()!.YELLOW);
     
-this.removeWaypoint(targetLayer, GDWaypointBehavior2.WAYPOINT_DESTROYED);
+this.removeWaypoint(targetLayer, this.unitWaypointStrings!.WAYPOINT_DESTROYED);
     
 
                                     }
@@ -733,9 +708,9 @@ this.removeWaypoint(targetLayer, GDWaypointBehavior2.WAYPOINT_DESTROYED);
     
 oldWaypointLayer!.getWaypointBehavior()!.getWaypoint()!.visit(this.associatedAdvancedRTSGameLayer);
     
-this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(GDWaypointBehavior2.ALL_VISITED_SHORT, BasicColorFactory.getInstance()!.GREEN);
+this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(this.unitWaypointStrings!.ALL_VISITED_SHORT, BasicColorFactory.getInstance()!.GREEN);
     
-this.updatePathOnTargetMove(GDWaypointBehavior2._ALL_VISITED_SHORT);
+this.updatePathOnTargetMove(this.unitWaypointStrings!._ALL_VISITED_SHORT);
     
 
                                     }
@@ -758,7 +733,7 @@ this.setWaypointPathsList(list);
                                     {
                                     this.waitingOnWaypointPath= true;
     
-this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(GDWaypointBehavior2.THINKING, BasicColorFactory.getInstance()!.GREEN);
+this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(this.unitWaypointStrings!.THINKING, BasicColorFactory.getInstance()!.GREEN);
     
 this.runWaypointPathTask(targetLayer);
     
@@ -794,7 +769,7 @@ this.setWaypointPath(targetLayer);
                                     {
                                     this.associatedAdvancedRTSGameLayer!.getWaypoint2LogHelper()!.wander(this.associatedAdvancedRTSGameLayer);
     
-this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(GDWaypointBehavior2.WANDERING, BasicColorFactory.getInstance()!.RED);
+this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(this.unitWaypointStrings!.WANDERING, BasicColorFactory.getInstance()!.RED);
     
 this.wanderPathsList!.clear();
     
@@ -809,7 +784,7 @@ this.visitIfAtMidPoint(this.getCurrentPathGeographicMapCellPosition());
     
 this.updateCurrentPathGeographicMapCellPosition();
     
-this.associatedAdvancedRTSGameLayer!.trackTo(GDWaypointBehavior2.NEXT_PATH_NODE);
+this.associatedAdvancedRTSGameLayer!.trackTo(this.unitWaypointStrings!.NEXT_PATH_NODE);
     
 }
 
@@ -964,7 +939,7 @@ this.associatedAdvancedRTSGameLayer!.trackTo(GDWaypointBehavior2.NEXT_PATH_NODE)
                                     {
                                     this.waitingOnTargetPath= true;
     
-this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(GDWaypointBehavior2.THINKING_ABOUT_TARGET, BasicColorFactory.getInstance()!.GREEN);
+this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(this.unitWaypointStrings!.THINKING_ABOUT_TARGET, BasicColorFactory.getInstance()!.GREEN);
     
 this.runWaypointPathTask(this.currentTargetLayerInterfaceP as PathFindingLayerInterface);
     
@@ -991,7 +966,7 @@ this.getPossibleTargetList()!.clear();
                                     {
                                     this.associatedAdvancedRTSGameLayer!.getWaypoint2LogHelper()!.targetDestroyed(this.associatedAdvancedRTSGameLayer);
     
-this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(GDWaypointBehavior2.KILL, BasicColorFactory.getInstance()!.ORANGE);
+this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(this.unitWaypointStrings!.KILL, BasicColorFactory.getInstance()!.ORANGE);
     
 this.clearTarget();
     
@@ -1060,7 +1035,7 @@ this.associatedAdvancedRTSGameLayer!.trackToDXY(dx, dy);
                         if(this.associatedAdvancedRTSGameLayer!.isShowMoreCaptionStates())
                         
                                     {
-                                    this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(GDWaypointBehavior2.STOP, BasicColorFactory.getInstance()!.YELLOW);
+                                    this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(this.unitWaypointStrings!.STOP, BasicColorFactory.getInstance()!.YELLOW);
     
 
                                     }
@@ -1115,9 +1090,9 @@ this.setRandomGeographicMapCellHistory(this.waypointPathsListP);
                         else {
                             waypointLayer!.getWaypointBehavior()!.getWaypoint()!.visit(this.associatedAdvancedRTSGameLayer);
     
-this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(GDWaypointBehavior2.ALREADY_THERE_SHORT, BasicColorFactory.getInstance()!.YELLOW);
+this.associatedAdvancedRTSGameLayer!.getCaptionAnimationHelper()!.update(this.unitWaypointStrings!.ALREADY_THERE_SHORT, BasicColorFactory.getInstance()!.YELLOW);
     
-this.updatePathOnTargetMove(GDWaypointBehavior2._ALREADY_THERE_SHORT);
+this.updatePathOnTargetMove(this.unitWaypointStrings!._ALREADY_THERE_SHORT);
     
 
                         }

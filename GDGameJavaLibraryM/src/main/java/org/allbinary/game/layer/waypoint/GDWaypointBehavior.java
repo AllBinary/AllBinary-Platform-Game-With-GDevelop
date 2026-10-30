@@ -7,6 +7,7 @@ import org.allbinary.game.layer.SensorAction;
 import org.allbinary.game.layer.SensorActionFactory;
 import org.allbinary.game.layer.WaypointBehaviorBase;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
+import org.allbinary.game.layer.unit.UnitWaypointStrings;
 import org.allbinary.game.layer.waypoint.event.WaypointEventListenerInterface;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.layer.AllBinaryLayer;
@@ -33,6 +34,8 @@ public class GDWaypointBehavior
     protected static final BasicArrayList DEFAULT = new ImmutableBasicArrayList("DefaultAndImmutable", 0);
 
     protected final LogUtil logUtil = LogUtil.getInstance();
+    
+    private final UnitWaypointStrings unitWaypointStrings = UnitWaypointStrings.getInstance();
     
     private int longWeaponRange = 0;
     
@@ -62,8 +65,6 @@ public class GDWaypointBehavior
     private boolean trackingWaypoint;
     
     protected final PathFindingLayerInterface associatedAdvancedRTSGameLayer;
-    
-    private static final String PATHING = "Pathing";
     
     protected GDWaypointBehavior(
             final PathFindingLayerInterface associatedAdvancedRTSGameLayer,
@@ -215,7 +216,7 @@ public class GDWaypointBehavior
         if(this.associatedAdvancedRTSGameLayer.isShowMoreCaptionStates())
         {
             this.associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(
-                    GDWaypointBehavior.PATHING, BasicColorFactory.getInstance().GREEN);
+                    this.unitWaypointStrings.PATHING, BasicColorFactory.getInstance().GREEN);
         }
         
         this.currentGeographicMapCellHistoryP.init();

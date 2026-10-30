@@ -6,6 +6,7 @@
 package org.allbinary.game.layer;
 
 import org.allbinary.game.layer.waypoint.FlagGameResources;
+import org.allbinary.logic.NullUtil;
 
 /**
  *
@@ -13,8 +14,17 @@ import org.allbinary.game.layer.waypoint.FlagGameResources;
  */
 public class GDFlagResources extends FlagGameResources
 {
-    private static final FlagGameResources SINGLETON = new GDFlagResources();
+    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
 
+    public static FlagGameResources getInstance()
+    {
+        if(GDFlagResources.instance == NullUtil.getInstance().NULL_OBJECT) {
+            GDFlagResources.instance = new GDFlagResources();
+        }
+        
+        return (GDFlagResources) GDFlagResources.instance;
+    }
+    
     private GDFlagResources()
     {
         final String ROOT = "/gd_flag";
@@ -31,8 +41,4 @@ public class GDFlagResources extends FlagGameResources
         this.NAME = "Player Waypoint";
     }
 
-    public static FlagGameResources getInstance()
-    {
-        return GDFlagResources.SINGLETON;
-    }
 }
