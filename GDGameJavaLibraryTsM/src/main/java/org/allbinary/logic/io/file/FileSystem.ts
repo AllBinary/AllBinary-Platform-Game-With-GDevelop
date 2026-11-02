@@ -67,7 +67,7 @@ type CommonStrings<T = any, U = any> = typeof CommonStrings extends abstract new
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { AbFileSystem } from './AbFileSystem.js';
-//not GWT import - same folder const AbFileSystem
+//sameFolderImports - not GWT import - same folder const AbFileSystem
 //not plain js - same folder import { FilePathData } 
 const FilePathData = globalThis.org.allbinary.logic.io.file.FilePathData;
 

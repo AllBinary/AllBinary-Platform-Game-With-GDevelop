@@ -43,7 +43,7 @@ import { GDAnimationBehaviorBaseFactory } from '../../../../../org/allbinary/gam
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDTextInputAnimationBehavior } from './GDTextInputAnimationBehavior.js';
-//not GWT import - same folder const GDTextInputAnimationBehavior
+//sameFolderImports - not GWT import - same folder const GDTextInputAnimationBehavior
 
 export class GDTextInputAnimationBehaviorFactory extends GDAnimationBehaviorBaseFactory {
         

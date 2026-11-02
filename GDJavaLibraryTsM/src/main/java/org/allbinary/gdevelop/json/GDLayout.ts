@@ -74,17 +74,17 @@ import { JSONObject } from '../../../../org/json/JSONObject.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDProjectStrings } from './GDProjectStrings.js';
-//not GWT import - same folder const GDProjectStrings
+//sameFolderImports - not GWT import - same folder const GDProjectStrings
 import { GDObjectFactory } from './GDObjectFactory.js';
-//not GWT import - same folder const GDObjectFactory
+//sameFolderImports - not GWT import - same folder const GDObjectFactory
 import { GDInitialInstance } from './GDInitialInstance.js';
-//not GWT import - same folder const GDInitialInstance
+//sameFolderImports - not GWT import - same folder const GDInitialInstance
 import { GDVariable } from './GDVariable.js';
-//not GWT import - same folder const GDVariable
+//sameFolderImports - not GWT import - same folder const GDVariable
 import { GDLayer } from './GDLayer.js';
-//not GWT import - same folder const GDLayer
+//sameFolderImports - not GWT import - same folder const GDLayer
 import { GDBehavior } from './GDBehavior.js';
-//not GWT import - same folder const GDBehavior
+//sameFolderImports - not GWT import - same folder const GDBehavior
 
 export class GDLayout
             extends Object

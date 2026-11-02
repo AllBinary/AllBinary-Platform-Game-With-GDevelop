@@ -64,7 +64,7 @@ export class CallStackGDNodeStats
 
     private readonly SIZE: number = 16;
 
-    private readonly callStack: number[][] = new Array(this.SIZE).fill(null).map(() => new Array(6000).fill(null));
+    private readonly callStack: number[][] = new Array(this.SIZE).fill(null).map(() => new Array(6000).fill(0));
 
     private total: number = 0;
 

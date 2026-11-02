@@ -63,7 +63,7 @@ type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDNode } from './GDNode.js';
-//not GWT import - same folder const GDNode
+//sameFolderImports - not GWT import - same folder const GDNode
 
 export class GDNodes
             extends Object

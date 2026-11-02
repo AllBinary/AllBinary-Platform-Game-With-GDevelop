@@ -41,11 +41,11 @@ type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (..
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { BaseGDNodeStats } from './BaseGDNodeStats.js';
-//not GWT import - same folder const BaseGDNodeStats
+//sameFolderImports - not GWT import - same folder const BaseGDNodeStats
 import { CallCountGDNodeStats } from './CallCountGDNodeStats.js';
-//not GWT import - same folder const CallCountGDNodeStats
+//sameFolderImports - not GWT import - same folder const CallCountGDNodeStats
 import { CallStackGDNodeStats } from './CallStackGDNodeStats.js';
-//not GWT import - same folder const CallStackGDNodeStats
+//sameFolderImports - not GWT import - same folder const CallStackGDNodeStats
 
 export class GDNodeStatsFactory extends BaseGDNodeStats {
         

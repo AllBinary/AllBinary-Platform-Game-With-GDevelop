@@ -67,7 +67,7 @@ type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { LinePathAnimation } from './LinePathAnimation.js';
-//not GWT import - same folder const LinePathAnimation
+//sameFolderImports - not GWT import - same folder const LinePathAnimation
 
 export class GDPrimitiveDrawingLinesOnly extends Animation {
         
@@ -125,7 +125,7 @@ this.colorAnimation!.paintXY(graphics, x, y);
 
 
                         for (
-    let index: number = 1;index < size; )
+    let index: number = 1;index < size; index += 2)
         {
 point= this.pointList!.get(index -1) as GPoint;
     

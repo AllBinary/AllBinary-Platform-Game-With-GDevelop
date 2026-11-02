@@ -54,7 +54,7 @@ type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract n
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDResources } from './GDResources.js';
-//not GWT import - same folder const GDResources
+//sameFolderImports - not GWT import - same folder const GDResources
 
 export class GDGameThreedJ2SEWithSWTJOGLEarlyResourceInitialization extends ResourceInitialization {
         

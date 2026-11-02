@@ -31,9 +31,9 @@
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDExpressionMetadata } from './GDExpressionMetadata.js';
-//not GWT import - same folder const GDExpressionMetadata
+//sameFolderImports - not GWT import - same folder const GDExpressionMetadata
 import { GDInstructionMetadata } from './GDInstructionMetadata.js';
-//not GWT import - same folder const GDInstructionMetadata
+//sameFolderImports - not GWT import - same folder const GDInstructionMetadata
 
 export class GDMultipleInstructionMetadata
             extends Object

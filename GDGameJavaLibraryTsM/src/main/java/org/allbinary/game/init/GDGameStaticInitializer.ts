@@ -42,7 +42,7 @@ import { ResourceInitialization } from '../../../../org/allbinary/game/resource/
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { CommonGameInitialization } from './CommonGameInitialization.js';
-//not GWT import - same folder const CommonGameInitialization
+//sameFolderImports - not GWT import - same folder const CommonGameInitialization
 
 export class GDGameStaticInitializer extends CommonGameInitialization {
         

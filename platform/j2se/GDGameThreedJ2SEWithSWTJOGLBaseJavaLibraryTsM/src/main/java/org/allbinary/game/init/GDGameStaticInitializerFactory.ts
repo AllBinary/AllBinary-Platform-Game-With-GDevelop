@@ -38,18 +38,17 @@ import { ResourceInitialization } from '../../../../org/allbinary/game/resource/
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDGameThreedBaseJ2SEWithSWTJOGLStaticInitializer } from './GDGameThreedBaseJ2SEWithSWTJOGLStaticInitializer.js';
-//not GWT import - same folder const GDGameThreedBaseJ2SEWithSWTJOGLStaticInitializer
+//sameFolderImports - not GWT import - same folder const GDGameThreedBaseJ2SEWithSWTJOGLStaticInitializer
 import { GDGameThreedJ2SEWithSWTJOGLAnimationInterfaceFactoryEarlyResourceInitialization } from './GDGameThreedJ2SEWithSWTJOGLAnimationInterfaceFactoryEarlyResourceInitialization.js';
-//not GWT import - same folder const GDGameThreedJ2SEWithSWTJOGLAnimationInterfaceFactoryEarlyResourceInitialization
+//sameFolderImports - not GWT import - same folder const GDGameThreedJ2SEWithSWTJOGLAnimationInterfaceFactoryEarlyResourceInitialization
 import { GDGameThreedJ2SEWithSWTJOGLAnimationInterfaceFactoryResourceInitialization } from './GDGameThreedJ2SEWithSWTJOGLAnimationInterfaceFactoryResourceInitialization.js';
-//not GWT import - same folder const GDGameThreedJ2SEWithSWTJOGLAnimationInterfaceFactoryResourceInitialization
+//sameFolderImports - not GWT import - same folder const GDGameThreedJ2SEWithSWTJOGLAnimationInterfaceFactoryResourceInitialization
 
 export class GDGameStaticInitializerFactory extends BasicBuildGameInitializerFactory {
         
 
-    private static STATIC: GameInitializationInterface = new GDGameThreedBaseJ2SEWithSWTJOGLStaticInitializer(
-                                                [
-                                                    new GDGameJ2SEWithSWTJOGLEarlyResourceInitialization(),new GDGameJ2SEWithSWTJOGLResourceInitialization(),new GDGameThreedJ2SEWithSWTJOGLAnimationInterfaceFactoryEarlyResourceInitialization(),new GDGameThreedJ2SEWithSWTJOGLAnimationInterfaceFactoryResourceInitialization()
+    private static STATIC: GameInitializationInterface = new GDGameThreedBaseJ2SEWithSWTJOGLStaticInitializer([
+new GDGameJ2SEWithSWTJOGLEarlyResourceInitialization(),new GDGameJ2SEWithSWTJOGLResourceInitialization(),new GDGameThreedJ2SEWithSWTJOGLAnimationInterfaceFactoryEarlyResourceInitialization(),new GDGameThreedJ2SEWithSWTJOGLAnimationInterfaceFactoryResourceInitialization()
                                                 ], 15);
 
     public getInstance(): GameInitializationInterface{

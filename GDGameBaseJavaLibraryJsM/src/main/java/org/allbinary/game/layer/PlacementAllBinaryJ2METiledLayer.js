@@ -16,7 +16,7 @@ import { BasicColorFactory } from '../../../../org/allbinary/graphics/color/Basi
 //not GWT import const BasicColorFactory
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { AllBinaryJ2METiledLayer } from './AllBinaryJ2METiledLayer.js';
-//not GWT import - same folder const AllBinaryJ2METiledLayer
+//sameFolderImports - not GWT import - same folder const AllBinaryJ2METiledLayer
 export class PlacementAllBinaryJ2METiledLayer extends AllBinaryJ2METiledLayer {
     constructor(dataId, tiledLayer, i_Map2DArray, debugColor) {
         super(dataId, tiledLayer, i_Map2DArray, debugColor);

@@ -48,7 +48,7 @@ import { BasicColorFactory } from '../../../../org/allbinary/graphics/color/Basi
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { AllBinaryJ2METiledLayer } from './AllBinaryJ2METiledLayer.js';
-//not GWT import - same folder const AllBinaryJ2METiledLayer
+//sameFolderImports - not GWT import - same folder const AllBinaryJ2METiledLayer
 
 export class PlacementAllBinaryJ2METiledLayer extends AllBinaryJ2METiledLayer {
         

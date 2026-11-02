@@ -65,19 +65,19 @@ import { JSONObject } from '../../../../org/json/JSONObject.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDIde } from './GDIde.js';
-//not GWT import - same folder const GDIde
+//sameFolderImports - not GWT import - same folder const GDIde
 import { GDResourcesManager } from './GDResourcesManager.js';
-//not GWT import - same folder const GDResourcesManager
+//sameFolderImports - not GWT import - same folder const GDResourcesManager
 import { GDProjectStrings } from './GDProjectStrings.js';
-//not GWT import - same folder const GDProjectStrings
+//sameFolderImports - not GWT import - same folder const GDProjectStrings
 import { GDObjectFactory } from './GDObjectFactory.js';
-//not GWT import - same folder const GDObjectFactory
+//sameFolderImports - not GWT import - same folder const GDObjectFactory
 import { GDVariable } from './GDVariable.js';
-//not GWT import - same folder const GDVariable
+//sameFolderImports - not GWT import - same folder const GDVariable
 import { GDLayout } from './GDLayout.js';
-//not GWT import - same folder const GDLayout
+//sameFolderImports - not GWT import - same folder const GDLayout
 import { GDExternalLayout } from './GDExternalLayout.js';
-//not GWT import - same folder const GDExternalLayout
+//sameFolderImports - not GWT import - same folder const GDExternalLayout
 
 export class GDProject
             extends Object

@@ -13,9 +13,9 @@ import { GDTileMapObject } from '../../../../org/allbinary/gdevelop/extensions/b
 //not GWT import const JSONObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDProjectStrings } from './GDProjectStrings.js';
-//not GWT import - same folder const GDProjectStrings
+//sameFolderImports - not GWT import - same folder const GDProjectStrings
 import { GDObject } from './GDObject.js';
-//not GWT import - same folder const GDObject
+//sameFolderImports - not GWT import - same folder const GDObject
 export class GDObjectFactory extends Object {
     constructor() {
         super(...arguments);

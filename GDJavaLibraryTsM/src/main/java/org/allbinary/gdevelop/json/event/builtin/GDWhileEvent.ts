@@ -52,7 +52,7 @@ import { JSONArray } from '../../../../../../org/json/JSONArray.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDStandardEvent } from './GDStandardEvent.js';
-//not GWT import - same folder const GDStandardEvent
+//sameFolderImports - not GWT import - same folder const GDStandardEvent
 
 export class GDWhileEvent extends GDStandardEvent {
         

@@ -25,31 +25,31 @@ import { CellPositionFactory } from '../../../../../org/allbinary/graphics/CellP
 //not GWT import const CellPositionFactory
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { BaseTouchInput } from './BaseTouchInput.js';
-//not GWT import - same folder const BaseTouchInput
+//sameFolderImports - not GWT import - same folder const BaseTouchInput
 import { TouchButtonLocationHelper } from './TouchButtonLocationHelper.js';
-//not GWT import - same folder const TouchButtonLocationHelper
+//sameFolderImports - not GWT import - same folder const TouchButtonLocationHelper
 import { BasicTouchButtonCellPositionFactory } from './BasicTouchButtonCellPositionFactory.js';
-//not GWT import - same folder const BasicTouchButtonCellPositionFactory
+//sameFolderImports - not GWT import - same folder const BasicTouchButtonCellPositionFactory
 import { CommonButtons } from './CommonButtons.js';
-//not GWT import - same folder const CommonButtons
+//sameFolderImports - not GWT import - same folder const CommonButtons
 import { BasicTouchInputFactory } from './BasicTouchInputFactory.js';
-//not GWT import - same folder const BasicTouchInputFactory
+//sameFolderImports - not GWT import - same folder const BasicTouchInputFactory
 import { TouchButton } from './TouchButton.js';
-//not GWT import - same folder const TouchButton
+//sameFolderImports - not GWT import - same folder const TouchButton
 import { TouchButtonUpResource } from './TouchButtonUpResource.js';
-//not GWT import - same folder const TouchButtonUpResource
+//sameFolderImports - not GWT import - same folder const TouchButtonUpResource
 import { TouchButtonDownResource } from './TouchButtonDownResource.js';
-//not GWT import - same folder const TouchButtonDownResource
+//sameFolderImports - not GWT import - same folder const TouchButtonDownResource
 import { TouchButtonTurnLeftResource } from './TouchButtonTurnLeftResource.js';
-//not GWT import - same folder const TouchButtonTurnLeftResource
+//sameFolderImports - not GWT import - same folder const TouchButtonTurnLeftResource
 import { TouchButtonTurnRightResource } from './TouchButtonTurnRightResource.js';
-//not GWT import - same folder const TouchButtonTurnRightResource
+//sameFolderImports - not GWT import - same folder const TouchButtonTurnRightResource
 import { TouchButtonStrafeLeftResource } from './TouchButtonStrafeLeftResource.js';
-//not GWT import - same folder const TouchButtonStrafeLeftResource
+//sameFolderImports - not GWT import - same folder const TouchButtonStrafeLeftResource
 import { TouchButtonStrafeRightResource } from './TouchButtonStrafeRightResource.js';
-//not GWT import - same folder const TouchButtonStrafeRightResource
+//sameFolderImports - not GWT import - same folder const TouchButtonStrafeRightResource
 import { TouchButtonGenericActionResource } from './TouchButtonGenericActionResource.js';
-//not GWT import - same folder const TouchButtonGenericActionResource
+//sameFolderImports - not GWT import - same folder const TouchButtonGenericActionResource
 export class GDGameMultiTouchButtonsBuilder extends BaseTouchInput {
     constructor() {
         super(...arguments);

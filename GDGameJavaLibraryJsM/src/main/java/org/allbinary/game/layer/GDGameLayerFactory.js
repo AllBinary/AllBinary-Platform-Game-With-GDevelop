@@ -32,9 +32,9 @@ const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
 //not plain js import { BasicArrayList } 
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 import { ViewPosition } from '../../../../org/allbinary/view/ViewPosition.js';
-//not GWT import - same folder const GDAnimationBehaviorBaseFactory
+//sameFolderImports - not GWT import - same folder const GDAnimationBehaviorBaseFactory
 import { GDGameLayer } from './GDGameLayer.js';
-//not GWT import - same folder const GDGameLayer
+//sameFolderImports - not GWT import - same folder const GDGameLayer
 export class GDGameLayerFactory extends Object {
     constructor(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, animationBehaviorFactory, resetAnimationBehavior) {
         super();

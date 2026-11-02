@@ -18,7 +18,7 @@ import { Object } from '../../../../java/lang/Object.js';
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 //not plain js import { StringMaker } 
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
-//not GWT import - same folder const GDGameLayer
+//sameFolderImports - not GWT import - same folder const GDGameLayer
 export class GDTwodBehavior extends Object {
     constructor(animationBehavior) {
         super();

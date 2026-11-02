@@ -165,11 +165,11 @@ this.createAnimationTiles(tileList);
 
     let size: number = tileList!.size()!;;
     
-this.animationTileIndexArray= new Array(size);
+this.animationTileIndexArray= new Array(size).fill(0);
     
-this.startTimeFrameArray= new Array(size);
+this.startTimeFrameArray= new Array(size).fill(0);
     
-this.currentFrameArray= new Array(size);
+this.currentFrameArray= new Array(size).fill(0);
     
 this.animationArray= new Array(size);
     

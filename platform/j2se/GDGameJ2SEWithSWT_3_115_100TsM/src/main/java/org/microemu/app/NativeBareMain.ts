@@ -39,7 +39,7 @@
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { BareMain } from './BareMain.js';
-//not GWT import - same folder const BareMain
+//sameFolderImports - not GWT import - same folder const BareMain
 
 export class NativeBareMain
             extends Object

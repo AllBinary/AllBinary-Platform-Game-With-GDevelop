@@ -26,7 +26,7 @@ const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { LinePathAnimation } from './LinePathAnimation.js';
-//not GWT import - same folder const LinePathAnimation
+//sameFolderImports - not GWT import - same folder const LinePathAnimation
 export class GDPrimitiveDrawingLinesOnly extends Animation {
     constructor() {
         super(...arguments);

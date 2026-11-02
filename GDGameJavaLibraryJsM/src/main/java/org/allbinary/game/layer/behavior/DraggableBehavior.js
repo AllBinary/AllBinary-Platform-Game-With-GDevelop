@@ -16,7 +16,7 @@
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDBehavior } from './GDBehavior.js';
-//not GWT import - same folder const GDBehavior
+//sameFolderImports - not GWT import - same folder const GDBehavior
 export class DraggableBehavior extends GDBehavior {
     static getInstance() {
         //if statement needs to be on the same line and ternary does not work the same way.

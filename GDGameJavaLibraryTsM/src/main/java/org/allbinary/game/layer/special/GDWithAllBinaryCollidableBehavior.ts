@@ -69,11 +69,11 @@ type StringUtil<T = any, U = any> = typeof StringUtil extends abstract new (...a
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDConditionWithGroupActions } from './GDConditionWithGroupActions.js';
-//not GWT import - same folder const GDConditionWithGroupActions
+//sameFolderImports - not GWT import - same folder const GDConditionWithGroupActions
 import { CollidableDestroyableDamageableLayer } from './CollidableDestroyableDamageableLayer.js';
-//not GWT import - same folder const CollidableDestroyableDamageableLayer
+//sameFolderImports - not GWT import - same folder const CollidableDestroyableDamageableLayer
 import { TempGameLayerUtil } from './TempGameLayerUtil.js';
-//not GWT import - same folder const TempGameLayerUtil
+//sameFolderImports - not GWT import - same folder const TempGameLayerUtil
 
 export class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior {
         

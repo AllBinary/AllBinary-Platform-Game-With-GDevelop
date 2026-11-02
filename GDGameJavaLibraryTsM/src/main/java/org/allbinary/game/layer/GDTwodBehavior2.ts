@@ -37,9 +37,9 @@
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDTwodBehavior } from './GDTwodBehavior.js';
-//not GWT import - same folder const GDTwodBehavior
+//sameFolderImports - not GWT import - same folder const GDTwodBehavior
 import { GDAnimationBehaviorBase } from './GDAnimationBehaviorBase.js';
-//not GWT import - same folder const GDAnimationBehaviorBase
+//sameFolderImports - not GWT import - same folder const GDAnimationBehaviorBase
 
 export class GDTwodBehavior2 extends GDTwodBehavior {
         

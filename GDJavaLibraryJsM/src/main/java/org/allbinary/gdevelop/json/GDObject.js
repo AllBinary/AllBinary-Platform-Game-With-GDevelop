@@ -14,13 +14,13 @@ const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 //not GWT import const JSONObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDProjectStrings } from './GDProjectStrings.js';
-//not GWT import - same folder const GDProjectStrings
+//sameFolderImports - not GWT import - same folder const GDProjectStrings
 import { GDVariable } from './GDVariable.js';
-//not GWT import - same folder const GDVariable
+//sameFolderImports - not GWT import - same folder const GDVariable
 import { GDEffect } from './GDEffect.js';
-//not GWT import - same folder const GDEffect
+//sameFolderImports - not GWT import - same folder const GDEffect
 import { GDBehavior } from './GDBehavior.js';
-//not GWT import - same folder const GDBehavior
+//sameFolderImports - not GWT import - same folder const GDBehavior
 export class GDObject extends Object {
     constructor(type, jsonObject) {
         super();

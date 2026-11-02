@@ -21,7 +21,7 @@ import { BasicColorFactory } from '../../../../org/allbinary/graphics/color/Basi
 //not GWT import const Paintable
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDGameHelpPaintable } from './GDGameHelpPaintable.js';
-//not GWT import - same folder const GDGameHelpPaintable
+//sameFolderImports - not GWT import - same folder const GDGameHelpPaintable
 export class GDGameMenuPaintable extends GameScrollMenuPaintable {
     constructor(paintable) {
         super(new MainGameDemoStatePaintable(OwnershipPaintable.getInstance(), paintable), OwnershipPaintable.getInstance(), GDGameHelpPaintable.getInstance(), BasicColorFactory.getInstance().YELLOW);

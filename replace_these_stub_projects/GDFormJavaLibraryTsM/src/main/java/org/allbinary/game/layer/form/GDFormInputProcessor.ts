@@ -39,7 +39,7 @@
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDFormInput } from './GDFormInput.js';
-//not GWT import - same folder const GDFormInput
+//sameFolderImports - not GWT import - same folder const GDFormInput
 
 export class GDFormInputProcessor
             extends Object

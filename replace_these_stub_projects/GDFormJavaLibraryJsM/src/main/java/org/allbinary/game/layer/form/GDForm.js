@@ -1,7 +1,7 @@
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../../java/lang/Object.js';
 import { RuntimeException } from '../../../../../java/lang/RuntimeException.js';
-//not GWT import - same folder const GDGameLayerItemStateListener
+//sameFolderImports - not GWT import - same folder const GDGameLayerItemStateListener
 export class GDForm extends Object {
     constructor() {
         super();

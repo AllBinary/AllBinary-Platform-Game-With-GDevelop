@@ -16,7 +16,7 @@ import { Object } from '../../../../java/lang/Object.js';
 //not GWT import const ScaleProperties
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDPrimitiveDrawing } from './GDPrimitiveDrawing.js';
-//not GWT import - same folder const GDPrimitiveDrawing
+//sameFolderImports - not GWT import - same folder const GDPrimitiveDrawing
 export class GDPrimitiveDrawingAnimationFactory extends Object {
     //@Throws(Exception.constructor)
     getInstance(instanceId) {

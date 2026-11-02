@@ -5,7 +5,7 @@
 */
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../../../java/lang/Object.js';
-//not GWT import - same folder const GDInstructionMetadata
+//sameFolderImports - not GWT import - same folder const GDInstructionMetadata
 export class GDMultipleInstructionMetadata extends Object {
     constructor(expression, conditionInstructionMetadata, actionInstructionMetadata) {
         super();

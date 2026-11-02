@@ -42,13 +42,13 @@ import { SensorGameUpdateProcessor } from '../../../../../org/allbinary/input/gy
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { TouchScreenFactory } from './TouchScreenFactory.js';
-//not GWT import - same folder const TouchScreenFactory
+//sameFolderImports - not GWT import - same folder const TouchScreenFactory
 import { GDGameNeededMultiTouchButtonsBuilder } from './GDGameNeededMultiTouchButtonsBuilder.js';
-//not GWT import - same folder const GDGameNeededMultiTouchButtonsBuilder
+//sameFolderImports - not GWT import - same folder const GDGameNeededMultiTouchButtonsBuilder
 import { GDGameNeededWithSensorTouchButtonsBuilder } from './GDGameNeededWithSensorTouchButtonsBuilder.js';
-//not GWT import - same folder const GDGameNeededWithSensorTouchButtonsBuilder
+//sameFolderImports - not GWT import - same folder const GDGameNeededWithSensorTouchButtonsBuilder
 import { BaseTouchInput } from './BaseTouchInput.js';
-//not GWT import - same folder const BaseTouchInput
+//sameFolderImports - not GWT import - same folder const BaseTouchInput
 
 export class GDGameNeededTouchButtonsBuilder
             extends Object

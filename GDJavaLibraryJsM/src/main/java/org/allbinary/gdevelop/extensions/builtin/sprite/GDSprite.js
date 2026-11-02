@@ -14,9 +14,9 @@ const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 //not GWT import const JSONObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDPoint } from './GDPoint.js';
-//not GWT import - same folder const GDPoint
+//sameFolderImports - not GWT import - same folder const GDPoint
 import { GDPolygon2d } from './GDPolygon2d.js';
-//not GWT import - same folder const GDPolygon2d
+//sameFolderImports - not GWT import - same folder const GDPolygon2d
 export class GDSprite extends Object {
     constructor(jsonObject) {
         super();

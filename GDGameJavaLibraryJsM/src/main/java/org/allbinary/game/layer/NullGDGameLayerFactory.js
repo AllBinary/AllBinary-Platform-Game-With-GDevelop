@@ -24,9 +24,9 @@ import { RectangleFactory } from '../../../../org/allbinary/graphics/RectangleFa
 const BasicArrayListUtil = globalThis.org.allbinary.util.BasicArrayListUtil;
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDGameLayerFactory } from './GDGameLayerFactory.js';
-//not GWT import - same folder const GDGameLayerFactory
+//sameFolderImports - not GWT import - same folder const GDGameLayerFactory
 import { GDRotationBehaviorFactory } from './GDRotationBehaviorFactory.js';
-//not GWT import - same folder const GDGameLayer
+//sameFolderImports - not GWT import - same folder const GDGameLayer
 export class NullGDGameLayerFactory extends GDGameLayerFactory {
     constructor() {
         super(BasicArrayListUtil.getInstance().getImmutableInstance(), BasicArrayListUtil.getInstance().getImmutableInstance(), GroupFactory.getInstance().NULL_GROUP_ARRAY, BasicArrayListUtil.getInstance().getImmutableInstance(), [

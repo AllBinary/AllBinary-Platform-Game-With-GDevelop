@@ -117,11 +117,11 @@ type BasicArrayListUtil<T = any, U = any> = typeof BasicArrayListUtil extends ab
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDWaypointBehavior } from './GDWaypointBehavior.js';
-//not GWT import - same folder const GDWaypointBehavior
+//sameFolderImports - not GWT import - same folder const GDWaypointBehavior
 import { WaypointBase } from './WaypointBase.js';
-//not GWT import - same folder const WaypointBase
+//sameFolderImports - not GWT import - same folder const WaypointBase
 //import { BuildingSteeringVisitor } from './BuildingSteeringVisitor.js';
-//not GWT import - same folder const BuildingSteeringVisitor
+//sameFolderImports - not GWT import - same folder const BuildingSteeringVisitor
 type BuildingSteeringVisitor = InstanceType<GDWaypointBehavior2['BuildingSteeringVisitor']>;
 
 export class GDWaypointBehavior2 extends GDWaypointBehavior {

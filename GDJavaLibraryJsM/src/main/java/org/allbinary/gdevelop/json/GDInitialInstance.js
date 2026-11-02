@@ -3,8 +3,13 @@
         *  GDevelop to AllBinary Core
         *  Copyright 2021 Travis Berthelot (travisberthelot@allbinary.com). All rights  reserved. This project is released under the MIT License.
 */
+var _a, _b;
+var _c;
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../java/lang/Object.js';
+//import { Double } from '../../../../java/lang/Double.js';
+const Double = ((_c = (_b = (_a = globalThis.java) === null || _a === void 0 ? void 0 : _a.lang) === null || _b === void 0 ? void 0 : _b.Double) !== null && _c !== void 0 ? _c : class {
+});
 //not plain js import { ABHashMap } 
 const ABHashMap = globalThis.org.allbinary.util.ABHashMap;
 //not plain js import { BasicArrayList } 
@@ -14,9 +19,9 @@ const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 //not GWT import const JSONObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDProjectStrings } from './GDProjectStrings.js';
-//not GWT import - same folder const GDProjectStrings
+//sameFolderImports - not GWT import - same folder const GDProjectStrings
 import { GDVariable } from './GDVariable.js';
-//not GWT import - same folder const GDVariable
+//sameFolderImports - not GWT import - same folder const GDVariable
 export class GDInitialInstance extends Object {
     constructor(jsonObject) {
         super();

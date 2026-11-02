@@ -101,15 +101,15 @@ type CommonLabels<T = any, U = any> = typeof CommonLabels extends abstract new (
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDInitialVariables } from './GDInitialVariables.js';
-//not GWT import - same folder const GDInitialVariables
+//sameFolderImports - not GWT import - same folder const GDInitialVariables
 import { BaseOffsetBehavior } from './BaseOffsetBehavior.js';
-//not GWT import - same folder const BaseOffsetBehavior
+//sameFolderImports - not GWT import - same folder const BaseOffsetBehavior
 import { OffsetBehavior } from './OffsetBehavior.js';
-//not GWT import - same folder const OffsetBehavior
+//sameFolderImports - not GWT import - same folder const OffsetBehavior
 import { GDConfig } from './GDConfig.js';
-//not GWT import - same folder const GDConfig
+//sameFolderImports - not GWT import - same folder const GDConfig
 import { GDObjectStrings } from './GDObjectStrings.js';
-//not GWT import - same folder const GDObjectStrings
+//sameFolderImports - not GWT import - same folder const GDObjectStrings
 
 export class GDObject
             extends Object
@@ -128,9 +128,9 @@ export class GDObject
 
     public readonly behaviorArray: GDBehavior[] = new Array(GDBehaviorUtil.getInstance()!.MAX);
 
-    public readonly isBehaviorEnabledArray: boolean[] = new Array(10);
+    public readonly isBehaviorEnabledArray: boolean[] = new Array(10).fill(false);
 
-    public readonly hasBehaviorArray: boolean[] = new Array(10);
+    public readonly hasBehaviorArray: boolean[] = new Array(10).fill(false);
 
     private readonly offsetBehavior: BaseOffsetBehavior;
 

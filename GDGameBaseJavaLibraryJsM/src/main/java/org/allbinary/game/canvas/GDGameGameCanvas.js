@@ -86,7 +86,7 @@ import { TimeDelayHelper } from '../../../../org/allbinary/time/TimeDelayHelper.
 //not GWT import const TimeDelayHelper
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDGameSoftwareInfo } from './GDGameSoftwareInfo.js';
-//not GWT import - same folder const GDGameSoftwareInfo
+//sameFolderImports - not GWT import - same folder const GDGameSoftwareInfo
 export class GDGameGameCanvas extends AllBinaryGameCanvas {
     constructor(abeClientInformation, commandListener, allBinaryGameLayerManager) {
         super(commandListener, allBinaryGameLayerManager, new BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance()), new GDGameStaticInitializerFactory(), false);

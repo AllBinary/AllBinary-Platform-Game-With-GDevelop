@@ -14,9 +14,9 @@
 /* Generated Code Do Not Modify */
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { ClientInformationFactory } from './ClientInformationFactory.js';
-//not GWT import - same folder const ClientInformationFactory
+//sameFolderImports - not GWT import - same folder const ClientInformationFactory
 import { GDGamePCClientInformation } from './GDGamePCClientInformation.js';
-//not GWT import - same folder const ClientInformation
+//sameFolderImports - not GWT import - same folder const ClientInformation
 export class GDGameClientInformationInterfaceFactory extends ClientInformationFactory {
     static getFactoryInstance() {
         //if statement needs to be on the same line and ternary does not work the same way.

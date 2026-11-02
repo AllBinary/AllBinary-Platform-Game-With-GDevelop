@@ -14,9 +14,9 @@
 /* Generated Code Do Not Modify */
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDAnimationBehaviorBaseFactory } from './GDAnimationBehaviorBaseFactory.js';
-//not GWT import - same folder const GDAnimationBehaviorBaseFactory
+//sameFolderImports - not GWT import - same folder const GDAnimationBehaviorBaseFactory
 import { GDRotationBehavior } from './GDRotationBehavior.js';
-//not GWT import - same folder const GDAnimationBehaviorBase
+//sameFolderImports - not GWT import - same folder const GDAnimationBehaviorBase
 export class GDRotationBehaviorFactory extends GDAnimationBehaviorBaseFactory {
     static getInstance() {
         //if statement needs to be on the same line and ternary does not work the same way.

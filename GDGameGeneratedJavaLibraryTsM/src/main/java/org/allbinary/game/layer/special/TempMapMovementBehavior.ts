@@ -37,7 +37,7 @@
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { TempMovementBehavior } from './TempMovementBehavior.js';
-//not GWT import - same folder const TempMovementBehavior
+//sameFolderImports - not GWT import - same folder const TempMovementBehavior
 
 export class TempMapMovementBehavior extends TempMovementBehavior {
         

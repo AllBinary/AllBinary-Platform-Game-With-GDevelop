@@ -43,7 +43,7 @@ import { GDAnimationBehaviorBaseFactory } from '../../../../../org/allbinary/gam
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDSliderAnimationBehavior } from './GDSliderAnimationBehavior.js';
-//not GWT import - same folder const GDSliderAnimationBehavior
+//sameFolderImports - not GWT import - same folder const GDSliderAnimationBehavior
 
 export class GDSliderAnimationBehaviorFactory extends GDAnimationBehaviorBaseFactory {
         

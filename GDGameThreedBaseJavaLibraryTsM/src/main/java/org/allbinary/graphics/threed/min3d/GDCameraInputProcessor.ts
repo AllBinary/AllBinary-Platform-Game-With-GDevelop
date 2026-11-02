@@ -39,7 +39,7 @@
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDGameCameraSetup } from './GDGameCameraSetup.js';
-//not GWT import - same folder const GDGameCameraSetup
+//sameFolderImports - not GWT import - same folder const GDGameCameraSetup
 
 export class GDCameraInputProcessor
             extends Object

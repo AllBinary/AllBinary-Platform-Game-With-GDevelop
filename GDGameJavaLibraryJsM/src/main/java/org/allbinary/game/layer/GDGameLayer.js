@@ -50,17 +50,17 @@ import { BasicColorFactory } from '../../../../org/allbinary/graphics/color/Basi
 //not GWT import const BasicColorFactory
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { ResetAnimationBehavior } from './ResetAnimationBehavior.js';
-//not GWT import - same folder const ResetAnimationBehavior
+//sameFolderImports - not GWT import - same folder const ResetAnimationBehavior
 import { GDTwodBehavior } from './GDTwodBehavior.js';
-//not GWT import - same folder const GDTwodBehavior
+//sameFolderImports - not GWT import - same folder const GDTwodBehavior
 import { ScalableBaseProcessor } from './ScalableBaseProcessor.js';
-//not GWT import - same folder const ScalableBaseProcessor
+//sameFolderImports - not GWT import - same folder const ScalableBaseProcessor
 //import { GDTextChangeListener } from './GDTextChangeListener.js';
-//not GWT import - same folder const GDTextChangeListener
+//sameFolderImports - not GWT import - same folder const GDTextChangeListener
 import { ResetRotationAnimationBehavior } from './ResetRotationAnimationBehavior.js';
-//not GWT import - same folder const ResetRotationAnimationBehavior
+//sameFolderImports - not GWT import - same folder const ResetRotationAnimationBehavior
 import { GDThreedBehavior } from './GDThreedBehavior.js';
-//not GWT import - same folder const GDAnimationBehaviorBase
+//sameFolderImports - not GWT import - same folder const GDAnimationBehaviorBase
 import { ScalableProcessor } from './ScalableProcessor.js';
 export class GDGameLayer extends MultiPlayerGameLayer {
     constructor(primitiveDrawing, gameLayerList, gameLayerDestroyedList, behaviorList, velocityInterface, remoteInfo, groupInterface, gdName, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, viewPosition, gdObject, animationBehavior, rotationAdjustment) {

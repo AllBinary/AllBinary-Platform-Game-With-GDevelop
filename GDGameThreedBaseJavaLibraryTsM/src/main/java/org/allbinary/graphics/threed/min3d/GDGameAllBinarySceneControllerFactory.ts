@@ -39,9 +39,9 @@
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDGameSceneController } from './GDGameSceneController.js';
-//not GWT import - same folder const GDGameSceneController
+//sameFolderImports - not GWT import - same folder const GDGameSceneController
 import { AllBinarySceneController } from './AllBinarySceneController.js';
-//not GWT import - same folder const AllBinarySceneController
+//sameFolderImports - not GWT import - same folder const AllBinarySceneController
 
 export class GDGameAllBinarySceneControllerFactory
             extends Object

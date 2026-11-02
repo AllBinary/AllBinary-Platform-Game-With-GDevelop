@@ -49,11 +49,11 @@ type StringMaker<T = any, U = any> = typeof StringMaker extends abstract new (..
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDTwodBehavior } from './GDTwodBehavior.js';
-//not GWT import - same folder const GDTwodBehavior
+//sameFolderImports - not GWT import - same folder const GDTwodBehavior
 import { GDAnimationBehaviorBase } from './GDAnimationBehaviorBase.js';
-//not GWT import - same folder const GDAnimationBehaviorBase
+//sameFolderImports - not GWT import - same folder const GDAnimationBehaviorBase
 import { GDGameLayer } from './GDGameLayer.js';
-//not GWT import - same folder const GDGameLayer
+//sameFolderImports - not GWT import - same folder const GDGameLayer
 
 export class GDThreedBehavior extends GDTwodBehavior {
         

@@ -93,9 +93,9 @@ type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { MotionGestureEventListener } from './MotionGestureEventListener.js';
-//not GWT import - same folder const MotionGestureEventListener
+//sameFolderImports - not GWT import - same folder const MotionGestureEventListener
 import { MotionGestureEvent } from './MotionGestureEvent.js';
-//not GWT import - same folder const MotionGestureEvent
+//sameFolderImports - not GWT import - same folder const MotionGestureEvent
 
 export class GDGameMotionGestureListener
             extends Object

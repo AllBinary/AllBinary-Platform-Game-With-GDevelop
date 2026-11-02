@@ -52,7 +52,7 @@ import { JSONObject } from '../../../../../../org/json/JSONObject.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDIncludeConfigFactory } from './GDIncludeConfigFactory.js';
-//not GWT import - same folder const GDIncludeConfigFactory
+//sameFolderImports - not GWT import - same folder const GDIncludeConfigFactory
 
 export class GDLinkEvent extends GDEvent {
         

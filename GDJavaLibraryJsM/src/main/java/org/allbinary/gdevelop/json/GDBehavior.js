@@ -8,7 +8,7 @@ import { Object } from '../../../../java/lang/Object.js';
 //not GWT import const JSONObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDProjectStrings } from './GDProjectStrings.js';
-//not GWT import - same folder const GDProjectStrings
+//sameFolderImports - not GWT import - same folder const GDProjectStrings
 export class GDBehavior extends Object {
     constructor(jsonObject) {
         super();

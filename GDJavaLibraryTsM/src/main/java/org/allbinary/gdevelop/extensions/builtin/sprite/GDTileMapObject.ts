@@ -38,7 +38,7 @@ import { JSONObject } from '../../../../../../org/json/JSONObject.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDContent } from './GDContent.js';
-//not GWT import - same folder const GDContent
+//sameFolderImports - not GWT import - same folder const GDContent
 
 export class GDTileMapObject extends GDObject {
         

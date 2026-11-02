@@ -43,18 +43,17 @@ import { ResourceInitialization } from '../../../../org/allbinary/game/resource/
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDGameAndroidStaticInitializer } from './GDGameAndroidStaticInitializer.js';
-//not GWT import - same folder const GDGameAndroidStaticInitializer
+//sameFolderImports - not GWT import - same folder const GDGameAndroidStaticInitializer
 import { GDGameAndroidAnimationInterfaceFactoryEarlyResourceInitialization } from './GDGameAndroidAnimationInterfaceFactoryEarlyResourceInitialization.js';
-//not GWT import - same folder const GDGameAndroidAnimationInterfaceFactoryEarlyResourceInitialization
+//sameFolderImports - not GWT import - same folder const GDGameAndroidAnimationInterfaceFactoryEarlyResourceInitialization
 import { GDGameAndroidAnimationInterfaceFactoryResourceInitialization } from './GDGameAndroidAnimationInterfaceFactoryResourceInitialization.js';
-//not GWT import - same folder const GDGameAndroidAnimationInterfaceFactoryResourceInitialization
+//sameFolderImports - not GWT import - same folder const GDGameAndroidAnimationInterfaceFactoryResourceInitialization
 
 export class GDGameStaticInitializerFactory extends BasicBuildGameInitializerFactory {
         
 
-    private static STATIC: GameInitializationInterface = new GDGameAndroidStaticInitializer(
-                                                [
-                                                    new GDGameAndroidEarlyResourceInitialization(),new GDGameAndroidResourceInitialization(),new GDGameAndroidAnimationInterfaceFactoryEarlyResourceInitialization(),new GDGameAndroidAnimationInterfaceFactoryResourceInitialization()
+    private static STATIC: GameInitializationInterface = new GDGameAndroidStaticInitializer([
+new GDGameAndroidEarlyResourceInitialization(),new GDGameAndroidResourceInitialization(),new GDGameAndroidAnimationInterfaceFactoryEarlyResourceInitialization(),new GDGameAndroidAnimationInterfaceFactoryResourceInitialization()
                                                 ], 15);
 
     public getInstance(): GameInitializationInterface{

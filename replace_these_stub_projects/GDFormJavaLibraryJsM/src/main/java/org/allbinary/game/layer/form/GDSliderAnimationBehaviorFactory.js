@@ -16,7 +16,7 @@ import { GDAnimationBehaviorBaseFactory } from '../../../../../org/allbinary/gam
 //not GWT import const GDAnimationBehaviorBaseFactory
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDSliderAnimationBehavior } from './GDSliderAnimationBehavior.js';
-//not GWT import - same folder const GDSliderAnimationBehavior
+//sameFolderImports - not GWT import - same folder const GDSliderAnimationBehavior
 export class GDSliderAnimationBehaviorFactory extends GDAnimationBehaviorBaseFactory {
     static getInstance() {
         //if statement needs to be on the same line and ternary does not work the same way.

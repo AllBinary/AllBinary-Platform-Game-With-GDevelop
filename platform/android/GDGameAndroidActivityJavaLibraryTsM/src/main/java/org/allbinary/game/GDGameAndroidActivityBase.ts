@@ -109,7 +109,7 @@ type ABHashtable<T = any, U = any> = typeof ABHashtable extends abstract new (..
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDGameMIDletFactory } from './GDGameMIDletFactory.js';
-//not GWT import - same folder const GDGameMIDletFactory
+//sameFolderImports - not GWT import - same folder const GDGameMIDletFactory
 
 export class GDGameAndroidActivityBase extends GameMidletActivity {
         

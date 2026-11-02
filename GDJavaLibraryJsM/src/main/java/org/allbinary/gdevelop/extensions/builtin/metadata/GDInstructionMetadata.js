@@ -15,13 +15,13 @@ const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDParameterFactory } from './GDParameterFactory.js';
-//not GWT import - same folder const GDParameterFactory
+//sameFolderImports - not GWT import - same folder const GDParameterFactory
 import { GDExtraInformation } from './GDExtraInformation.js';
-//not GWT import - same folder const GDExtraInformation
+//sameFolderImports - not GWT import - same folder const GDExtraInformation
 import { GDParameterMetadata } from './GDParameterMetadata.js';
-//not GWT import - same folder const GDParameterMetadata
+//sameFolderImports - not GWT import - same folder const GDParameterMetadata
 import { StringBuilder } from './StringBuilder.js';
-//not GWT import - same folder const StringBuilder
+//sameFolderImports - not GWT import - same folder const StringBuilder
 export class GDInstructionMetadata extends Object {
     constructor(extensionNamespace, name, fullname, description, sentence, group, icon, smallIcon) {
         super();

@@ -40,13 +40,13 @@ export class GDGameProcessor extends Processor {
             class GDGameStringArrayFactory extends StringArrayFactory {
                 getOrCreate() {
                     if (this.resourceStringArray == StringUtil.getInstance().ONE_EMPTY_STRING_ARRAY) {
-                        var imageCache = ImageCacheFactory.getInstance();
+                        let imageCache = ImageCacheFactory.getInstance();
                         ;
-                        var gdResources = GDResources.getInstance();
+                        let gdResources = GDResources.getInstance();
                         ;
-                        var gdLazyResources = GDLazyResources.getInstance();
+                        let gdLazyResources = GDLazyResources.getInstance();
                         ;
-                        var gdGameResourceStringArray = gdLazyResources.requiredResourcesBeforeLoadingArray;
+                        let gdGameResourceStringArray = gdLazyResources.requiredResourcesBeforeLoadingArray;
                         ;
                         if (imageCache.isLazy()) {
                         }
@@ -60,10 +60,10 @@ export class GDGameProcessor extends Processor {
                 }
             }
             //Otherwise - statement - EmptyStmt
-            var gdGameStringArrayFactory = new GDGameStringArrayFactory();
+            let gdGameStringArrayFactory = new GDGameStringArrayFactory();
             ;
             this.list.add(new GameHtmlLoadResourcesProcessor(this.list, gdGameStringArrayFactory));
-            var gameHtmlHasLoadedResourcesProcessor = new GameHtmlHasLoadedResourcesProcessor(this.list, gdGameStringArrayFactory);
+            let gameHtmlHasLoadedResourcesProcessor = new GameHtmlHasLoadedResourcesProcessor(this.list, gdGameStringArrayFactory);
             ;
             this.list.add(gameHtmlHasLoadedResourcesProcessor);
         }

@@ -38,18 +38,17 @@ import { ResourceInitialization } from '../../../../org/allbinary/game/resource/
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDGameThreedBaseAndroidStaticInitializer } from './GDGameThreedBaseAndroidStaticInitializer.js';
-//not GWT import - same folder const GDGameThreedBaseAndroidStaticInitializer
+//sameFolderImports - not GWT import - same folder const GDGameThreedBaseAndroidStaticInitializer
 import { GDGameThreedAndroidAnimationInterfaceFactoryEarlyResourceInitialization } from './GDGameThreedAndroidAnimationInterfaceFactoryEarlyResourceInitialization.js';
-//not GWT import - same folder const GDGameThreedAndroidAnimationInterfaceFactoryEarlyResourceInitialization
+//sameFolderImports - not GWT import - same folder const GDGameThreedAndroidAnimationInterfaceFactoryEarlyResourceInitialization
 import { GDGameThreedAndroidAnimationInterfaceFactoryResourceInitialization } from './GDGameThreedAndroidAnimationInterfaceFactoryResourceInitialization.js';
-//not GWT import - same folder const GDGameThreedAndroidAnimationInterfaceFactoryResourceInitialization
+//sameFolderImports - not GWT import - same folder const GDGameThreedAndroidAnimationInterfaceFactoryResourceInitialization
 
 export class GDGameStaticInitializerFactory extends BasicBuildGameInitializerFactory {
         
 
-    private static STATIC: GameInitializationInterface = new GDGameThreedBaseAndroidStaticInitializer(
-                                                [
-                                                    new GDGameAndroidEarlyResourceInitialization(),new GDGameAndroidResourceInitialization(),new GDGameThreedAndroidAnimationInterfaceFactoryEarlyResourceInitialization(),new GDGameThreedAndroidAnimationInterfaceFactoryResourceInitialization()
+    private static STATIC: GameInitializationInterface = new GDGameThreedBaseAndroidStaticInitializer([
+new GDGameAndroidEarlyResourceInitialization(),new GDGameAndroidResourceInitialization(),new GDGameThreedAndroidAnimationInterfaceFactoryEarlyResourceInitialization(),new GDGameThreedAndroidAnimationInterfaceFactoryResourceInitialization()
                                                 ], 15);
 
     public getInstance(): GameInitializationInterface{

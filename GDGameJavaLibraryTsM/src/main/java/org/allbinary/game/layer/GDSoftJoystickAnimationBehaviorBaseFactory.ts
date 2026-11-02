@@ -37,11 +37,11 @@
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDAnimationBehaviorBaseFactory } from './GDAnimationBehaviorBaseFactory.js';
-//not GWT import - same folder const GDAnimationBehaviorBaseFactory
+//sameFolderImports - not GWT import - same folder const GDAnimationBehaviorBaseFactory
 import { GDSoftJoystickAnimationBehavior } from './GDSoftJoystickAnimationBehavior.js';
-//not GWT import - same folder const GDSoftJoystickAnimationBehavior
+//sameFolderImports - not GWT import - same folder const GDSoftJoystickAnimationBehavior
 import { GDAnimationBehaviorBase } from './GDAnimationBehaviorBase.js';
-//not GWT import - same folder const GDAnimationBehaviorBase
+//sameFolderImports - not GWT import - same folder const GDAnimationBehaviorBase
 
 export class GDSoftJoystickAnimationBehaviorBaseFactory extends GDAnimationBehaviorBaseFactory {
         

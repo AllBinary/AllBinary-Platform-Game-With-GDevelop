@@ -53,7 +53,7 @@ type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract n
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { PlayerGameInput } from './PlayerGameInput.js';
-//not GWT import - same folder const PlayerGameInput
+//sameFolderImports - not GWT import - same folder const PlayerGameInput
 
 export class PlayerInput extends PlayerGameInput implements DownKeyEventListenerInterface, UpKeyEventListenerInterface {
         

@@ -89,9 +89,9 @@ import { ViewPosition } from '../../../../org/allbinary/view/ViewPosition.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDAnimationBehaviorBaseFactory } from './GDAnimationBehaviorBaseFactory.js';
-//not GWT import - same folder const GDAnimationBehaviorBaseFactory
+//sameFolderImports - not GWT import - same folder const GDAnimationBehaviorBaseFactory
 import { GDGameLayer } from './GDGameLayer.js';
-//not GWT import - same folder const GDGameLayer
+//sameFolderImports - not GWT import - same folder const GDGameLayer
 
 export class GDGameLayerFactory
             extends Object

@@ -53,7 +53,7 @@ import { ScaleProperties } from '../../../../org/allbinary/media/ScaleProperties
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDRectOnlyPrimitiveDrawing } from './GDRectOnlyPrimitiveDrawing.js';
-//not GWT import - same folder const GDRectOnlyPrimitiveDrawing
+//sameFolderImports - not GWT import - same folder const GDRectOnlyPrimitiveDrawing
 
 export class GDRectOnlyPrimitiveDrawingAnimationFactory
             extends Object

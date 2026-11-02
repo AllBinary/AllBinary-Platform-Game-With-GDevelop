@@ -43,9 +43,9 @@ import { GDObject } from '../../../../org/allbinary/game/layout/GDObject.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { ScalableBaseProcessor } from './ScalableBaseProcessor.js';
-//not GWT import - same folder const ScalableBaseProcessor
+//sameFolderImports - not GWT import - same folder const ScalableBaseProcessor
 import { GDGameLayer } from './GDGameLayer.js';
-//not GWT import - same folder const GDGameLayer
+//sameFolderImports - not GWT import - same folder const GDGameLayer
 
 export class ScalableProcessor extends ScalableBaseProcessor {
         

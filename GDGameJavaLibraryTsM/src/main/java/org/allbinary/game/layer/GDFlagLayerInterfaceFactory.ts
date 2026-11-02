@@ -82,13 +82,13 @@ type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDGameLayerFactory } from './GDGameLayerFactory.js';
-//not GWT import - same folder const GDGameLayerFactory
+//sameFolderImports - not GWT import - same folder const GDGameLayerFactory
 import { GDRotationBehaviorFactory } from './GDRotationBehaviorFactory.js';
-//not GWT import - same folder const GDRotationBehaviorFactory
+//sameFolderImports - not GWT import - same folder const GDRotationBehaviorFactory
 import { GDGameLayer } from './GDGameLayer.js';
-//not GWT import - same folder const GDGameLayer
+//sameFolderImports - not GWT import - same folder const GDGameLayer
 import { AllBinaryGameLayerManager } from './AllBinaryGameLayerManager.js';
-//not GWT import - same folder const AllBinaryGameLayerManager
+//sameFolderImports - not GWT import - same folder const AllBinaryGameLayerManager
 
 export class GDFlagLayerInterfaceFactory
             extends Object

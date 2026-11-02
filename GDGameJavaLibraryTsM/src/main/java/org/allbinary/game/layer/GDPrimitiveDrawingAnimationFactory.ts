@@ -53,7 +53,7 @@ import { ScaleProperties } from '../../../../org/allbinary/media/ScaleProperties
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDPrimitiveDrawing } from './GDPrimitiveDrawing.js';
-//not GWT import - same folder const GDPrimitiveDrawing
+//sameFolderImports - not GWT import - same folder const GDPrimitiveDrawing
 
 export class GDPrimitiveDrawingAnimationFactory
             extends Object

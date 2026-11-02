@@ -12,9 +12,9 @@ const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 //not GWT import const JSONObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDProjectStrings } from './GDProjectStrings.js';
-//not GWT import - same folder const GDProjectStrings
+//sameFolderImports - not GWT import - same folder const GDProjectStrings
 import { GDInitialInstance } from './GDInitialInstance.js';
-//not GWT import - same folder const GDInitialInstance
+//sameFolderImports - not GWT import - same folder const GDInitialInstance
 export class GDExternalLayout extends Object {
     constructor(jsonObject) {
         super();

@@ -44,7 +44,7 @@ import { GDGameSoftwareInfo } from '../../../../../../org/allbinary/game/canvas/
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { AbeClientInformation } from './AbeClientInformation.js';
-//not GWT import - same folder const AbeClientInformation
+//sameFolderImports - not GWT import - same folder const AbeClientInformation
 
 export class GDGamePCClientInformation extends AbeClientInformation {
         

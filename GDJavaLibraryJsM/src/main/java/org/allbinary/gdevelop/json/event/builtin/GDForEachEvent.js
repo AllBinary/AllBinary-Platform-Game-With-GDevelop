@@ -11,7 +11,7 @@ const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
 //not GWT import const JSONObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDStandardEvent } from './GDStandardEvent.js';
-//not GWT import - same folder const GDStandardEvent
+//sameFolderImports - not GWT import - same folder const GDStandardEvent
 export class GDForEachEvent extends GDStandardEvent {
     constructor(type, jsonObject) {
         super(type, jsonObject);

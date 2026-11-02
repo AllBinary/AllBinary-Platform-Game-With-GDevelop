@@ -49,7 +49,7 @@ import { JSONObject } from '../../../../../../org/json/JSONObject.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDAnimation } from './GDAnimation.js';
-//not GWT import - same folder const GDAnimation
+//sameFolderImports - not GWT import - same folder const GDAnimation
 
 export class GDSpriteObject extends GDObject {
         

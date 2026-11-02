@@ -1,4 +1,6 @@
 /* Generated Code Do Not Modify */
+import { GDGameMIDlet } from '../../org/allbinary/game/GDGameMIDlet.js';
+//not GWT import const GDGameMIDlet
 import { GDGameSoftwareInfo } from '../../org/allbinary/game/canvas/GDGameSoftwareInfo.js';
 //not GWT import const GDGameSoftwareInfo
 //not plain js import { CommonStrings } 
@@ -46,8 +48,6 @@ const PlayN2InputConnector = globalThis.org.allbinary.playn.PlayN2InputConnector
 //not plain js import { PlayNToAllBinaryKeyInputUtil } 
 const PlayNToAllBinaryKeyInputUtil = globalThis.org.allbinary.playn.input.PlayNToAllBinaryKeyInputUtil;
 //Current folder imports from return types, extended types, and scope (deduplicated)
-//not plain js - same folder import { GDGameMIDlet } 
-const GDGameMIDlet = globalThis.playn.core.GDGameMIDlet;
 //not plain js - same folder import { PlayN2InputInterface } 
 const PlayN2InputInterface = globalThis.playn.core.PlayN2InputInterface;
 //not plain js - same folder import { TypedEvent } 
@@ -70,17 +70,16 @@ const Mouse = globalThis.playn.core.Mouse;
 const MotionEvent = globalThis.playn.core.MotionEvent;
 //not plain js - same folder import { WheelEvent } 
 const WheelEvent = globalThis.playn.core.WheelEvent;
-export class GDGame extends org.allbinary.game.GDGameMIDlet {
+export class GDGame extends GDGameMIDlet {
     constructor() {
         super(GDGameClientInformationInterfaceFactory.getFactoryInstance());
-        this.logUtil = LogUtil.getInstance();
         this.DEVICE_ID = 0;
         this.playNToAllBinaryKeyInputUtil = PlayNToAllBinaryKeyInputUtil.getInstance();
         this.rawKeyEventHandler = RawKeyEventHandler.getInstance();
         this.motionRecognizer = new AllMotionRecognizer();
         //For kotlin this is before the body of the constructor.
-        GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance();
-        var motionGesturesHandler = this.motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();
+        GDGameSoftwareInfo.setTempClientInformation(GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance());
+        let motionGesturesHandler = this.motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();
         ;
         motionGesturesHandler.addListenerInterface(new GameMotionGestureListener(MotionGestureReceiveInterfaceFactory.getInstance()));
         motionGesturesHandler.addListenerInterface(new GDGameMotionGestureListener());
@@ -88,21 +87,21 @@ export class GDGame extends org.allbinary.game.GDGameMIDlet {
         new DefaultGameInitializationListener();
     }
     init() {
-        var logUtil = LogUtil.getInstance();
+        let logUtil = LogUtil.getInstance();
         ;
-        var commonStrings = CommonStrings.getInstance();
+        let commonStrings = CommonStrings.getInstance();
         ;
         try {
             logUtil.putF(commonStrings.START, this, commonStrings.INIT);
-            var features = Features.getInstance();
+            let features = Features.getInstance();
             ;
-            var gameFeatureFactory = GameFeatureFactory.getInstance();
+            let gameFeatureFactory = GameFeatureFactory.getInstance();
             ;
-            var inputFeatureFactory = InputFeatureFactory.getInstance();
+            let inputFeatureFactory = InputFeatureFactory.getInstance();
             ;
-            var graphicsFeatureFactory = GraphicsFeatureFactory.getInstance();
+            let graphicsFeatureFactory = GraphicsFeatureFactory.getInstance();
             ;
-            var sensorFeatureFactory = SensorFeatureFactory.getInstance();
+            let sensorFeatureFactory = SensorFeatureFactory.getInstance();
             ;
             features.removeDefault(sensorFeatureFactory.ORIENTATION_SENSORS);
             features.addDefault(sensorFeatureFactory.NO_ORIENTATION);
@@ -114,9 +113,9 @@ export class GDGame extends org.allbinary.game.GDGameMIDlet {
             features.addDefault(gameFeatureFactory.SOUND);
             features.addDefault(inputFeatureFactory.MULTI_KEY_PRESS);
             features.addDefault(inputFeatureFactory.REMOVE_DUPLICATE_KEY_PRESSES);
-            var gameConfigurationCentral = GameConfigurationCentral.getInstance();
+            let gameConfigurationCentral = GameConfigurationCentral.getInstance();
             ;
-            var smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
+            let smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
             ;
             gameConfigurationCentral.VIBRATION.setDefaultValue(smallIntegerSingletonFactory.getAt(0));
             gameConfigurationCentral.VIBRATION.setDefault();
@@ -130,20 +129,24 @@ export class GDGame extends org.allbinary.game.GDGameMIDlet {
             gameConfigurationCentral.SCALE.setDefault();
             features.removeDefault(sensorFeatureFactory.ORIENTATION_SENSORS);
             features.addDefault(sensorFeatureFactory.NO_ORIENTATION);
-            //: 
         }
-        catch (e) {
-            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+        catch (caught) {
+            {
+                const e = caught;
+                logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+            }
         }
     }
     stopAll() {
         try {
             new Sounds(EarlySoundsFactory.getInstance()).stopAll();
             new Sounds(GDGameSoundsFactory.getInstance()).stopAll();
-            //: 
         }
-        catch (e) {
-            this.logUtil.put(this.commonStrings.EXCEPTION, this, "stopAll", e);
+        catch (caught) {
+            {
+                const e = caught;
+                this.logUtil.put(this.commonStrings.EXCEPTION, this, "stopAll", e);
+            }
         }
     }
     onKeyTyped(event) {
@@ -151,23 +154,25 @@ export class GDGame extends org.allbinary.game.GDGameMIDlet {
     onKeyDown(event) {
         try {
             this.rawKeyEventHandler.fireEvent(event.key.ordinal(), this.DEVICE_ID, true);
-            //: 
         }
-        catch (e) {
-            this.logUtil.put(CommonLabels.getInstance().START_LABEL + event.key.ordinal(), this, "onKeyDown", e);
+        catch (caught) {
+            {
+                const e = caught;
+                this.logUtil.put(CommonLabels.getInstance().START_LABEL + event.key.ordinal(), this, "onKeyDown", e);
+            }
         }
-        var key = event.key;
+        let key = event.key;
         ;
-        var abKey = this.playNToAllBinaryKeyInputUtil.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[key.ordinal()];
+        let abKey = this.playNToAllBinaryKeyInputUtil.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[key.ordinal()];
         ;
         if (abKey != -1) {
             this.getCurrentDisplayable().keyPressed(abKey);
         }
     }
     onKeyUp(event) {
-        var key = event.key;
+        let key = event.key;
         ;
-        var abKey = this.playNToAllBinaryKeyInputUtil.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[key.ordinal()];
+        let abKey = this.playNToAllBinaryKeyInputUtil.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[key.ordinal()];
         ;
         if (abKey != -1) {
             this.getCurrentDisplayable().keyReleased(abKey);
@@ -175,67 +180,81 @@ export class GDGame extends org.allbinary.game.GDGameMIDlet {
     }
     onPointerStart(mouseEvent) {
         try {
-            this.motionRecognizer.processStartMotionEvent(Math.round(mouseEvent.x()), Math.round(mouseEvent.y()), this.DEVICE_ID, 0);
-            //: 
+            this.motionRecognizer.processStartMotionEvent(globalThis.Math.trunc(mouseEvent.x()), globalThis.Math.trunc(mouseEvent.y()), this.DEVICE_ID, 0);
         }
-        catch (e) {
-            this.logUtil.put(this.commonStrings.EXCEPTION, this, "onPointerStart", e);
+        catch (caught) {
+            {
+                const e = caught;
+                this.logUtil.put(this.commonStrings.EXCEPTION, this, "onPointerStart", e);
+            }
         }
     }
     onPointerEnd(mouseEvent) {
         try {
-            this.motionRecognizer.processEndMotionEvent(Math.round(mouseEvent.x()), Math.round(mouseEvent.y()), this.DEVICE_ID, 0);
-            //: 
+            this.motionRecognizer.processEndMotionEvent(globalThis.Math.trunc(mouseEvent.x()), globalThis.Math.trunc(mouseEvent.y()), this.DEVICE_ID, 0);
         }
-        catch (e) {
-            this.logUtil.put(this.commonStrings.EXCEPTION, this, "onPointerEnd", e);
+        catch (caught) {
+            {
+                const e = caught;
+                this.logUtil.put(this.commonStrings.EXCEPTION, this, "onPointerEnd", e);
+            }
         }
     }
     onPointerDrag(mouseEvent) {
         try {
-            this.motionRecognizer.processDraggedMotionEvent(Math.round(mouseEvent.x()), Math.round(mouseEvent.y()), this.DEVICE_ID, 0);
-            //: 
+            this.motionRecognizer.processDraggedMotionEvent(globalThis.Math.trunc(mouseEvent.x()), globalThis.Math.trunc(mouseEvent.y()), this.DEVICE_ID, 0);
         }
-        catch (e) {
-            this.logUtil.put(this.commonStrings.EXCEPTION, this, "onPointerDrag", e);
+        catch (caught) {
+            {
+                const e = caught;
+                this.logUtil.put(this.commonStrings.EXCEPTION, this, "onPointerDrag", e);
+            }
         }
     }
     onPointerCancel(event) {
     }
     onMouseDown(mouseEvent) {
         try {
-            this.motionRecognizer.processStartMotionEvent(Math.round(mouseEvent.x()), Math.round(mouseEvent.y()), this.DEVICE_ID, mouseEvent.button.ordinal());
-            //: 
+            this.motionRecognizer.processStartMotionEvent(globalThis.Math.trunc(mouseEvent.x()), globalThis.Math.trunc(mouseEvent.y()), this.DEVICE_ID, mouseEvent.button.ordinal());
         }
-        catch (e) {
-            logUtil.put(commonStrings.EXCEPTION, this, "onMouseDown", e);
+        catch (caught) {
+            {
+                const e = caught;
+                logUtil.put(commonStrings.EXCEPTION, this, "onMouseDown", e);
+            }
         }
     }
     onMouseUp(mouseEvent) {
         try {
-            this.motionRecognizer.processEndMotionEvent(Math.round(mouseEvent.x()), Math.round(mouseEvent.y()), this.DEVICE_ID, mouseEvent.button.ordinal());
-            //: 
+            this.motionRecognizer.processEndMotionEvent(globalThis.Math.trunc(mouseEvent.x()), globalThis.Math.trunc(mouseEvent.y()), this.DEVICE_ID, mouseEvent.button.ordinal());
         }
-        catch (e) {
-            this.logUtil.put(this.commonStrings.EXCEPTION, this, "onMouseUp", e);
+        catch (caught) {
+            {
+                const e = caught;
+                this.logUtil.put(this.commonStrings.EXCEPTION, this, "onMouseUp", e);
+            }
         }
     }
     onMouseMove(mouseEvent) {
         try {
-            this.motionRecognizer.processMovedMotionEvent(Math.round(mouseEvent.x()), Math.round(mouseEvent.y()), this.DEVICE_ID, 0);
-            //: 
+            this.motionRecognizer.processMovedMotionEvent(globalThis.Math.trunc(mouseEvent.x()), globalThis.Math.trunc(mouseEvent.y()), this.DEVICE_ID, 0);
         }
-        catch (e) {
-            this.logUtil.put(this.commonStrings.EXCEPTION, this, "onMouseMove", e);
+        catch (caught) {
+            {
+                const e = caught;
+                this.logUtil.put(this.commonStrings.EXCEPTION, this, "onMouseMove", e);
+            }
         }
     }
     onMouseWheelScroll(event) {
         try {
-            this.motionRecognizer.processScrolledMotionEvent(Math.round(event.x()), Math.round(event.y()), this.DEVICE_ID, 0);
-            //: 
+            this.motionRecognizer.processScrolledMotionEvent(globalThis.Math.trunc(event.x()), globalThis.Math.trunc(event.y()), this.DEVICE_ID, 0);
         }
-        catch (e) {
-            this.logUtil.put(this.commonStrings.EXCEPTION, this, "onMouseWheelScroll", e);
+        catch (caught) {
+            {
+                const e = caught;
+                this.logUtil.put(this.commonStrings.EXCEPTION, this, "onMouseWheelScroll", e);
+            }
         }
     }
 }

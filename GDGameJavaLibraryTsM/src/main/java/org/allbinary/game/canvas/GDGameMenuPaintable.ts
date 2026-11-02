@@ -54,7 +54,7 @@ import { Paintable } from '../../../../org/allbinary/graphics/paint/Paintable.js
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDGameHelpPaintable } from './GDGameHelpPaintable.js';
-//not GWT import - same folder const GDGameHelpPaintable
+//sameFolderImports - not GWT import - same folder const GDGameHelpPaintable
 
 export class GDGameMenuPaintable extends GameScrollMenuPaintable {
         

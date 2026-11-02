@@ -1,5 +1,6 @@
 package playn.core;
 
+import org.allbinary.game.GDGameMIDlet;
 import org.allbinary.game.canvas.GDGameSoftwareInfo;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -26,7 +27,7 @@ import org.allbinary.playn.PlayN2InputConnector;
 import org.allbinary.playn.input.PlayNToAllBinaryKeyInputUtil;
 
 public class GDGame
-    extends org.allbinary.game.GDGameMIDlet
+    extends GDGameMIDlet
     implements PlayN2InputInterface
 {
 

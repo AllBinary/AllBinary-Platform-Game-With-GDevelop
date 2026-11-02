@@ -40,7 +40,7 @@ import { AbeClientInformationInterface } from '../../../../org/allbinary/logic/s
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDGameStaticInitializer } from './GDGameStaticInitializer.js';
-//not GWT import - same folder const GDGameStaticInitializer
+//sameFolderImports - not GWT import - same folder const GDGameStaticInitializer
 
 export class GDGameThreedBaseJ2SEWithSWTJOGLStaticInitializer extends GDGameStaticInitializer {
         

@@ -41,7 +41,7 @@
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDObject } from './GDObject.js';
-//not GWT import - same folder const GDObject
+//sameFolderImports - not GWT import - same folder const GDObject
 
 export class GDObjectFactory
             extends Object

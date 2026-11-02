@@ -51,7 +51,7 @@ import { GraphicsFeatureFactory } from '../../../../org/allbinary/game/configura
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory } from './GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.js';
-//not GWT import - same folder const GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
+//sameFolderImports - not GWT import - same folder const GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 
 export class GDGameEarlyResourcesOpenGLESImageBasedAnimationInterfaceFactoryInterfaceFactory extends GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory {
         

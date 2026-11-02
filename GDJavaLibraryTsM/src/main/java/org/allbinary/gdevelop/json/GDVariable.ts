@@ -53,9 +53,9 @@ import { JSONObject } from '../../../../org/json/JSONObject.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDProjectStrings } from './GDProjectStrings.js';
-//not GWT import - same folder const GDProjectStrings
+//sameFolderImports - not GWT import - same folder const GDProjectStrings
 import { GDTypeFactory } from './GDTypeFactory.js';
-//not GWT import - same folder const GDTypeFactory
+//sameFolderImports - not GWT import - same folder const GDTypeFactory
 
 export class GDVariable
             extends Object

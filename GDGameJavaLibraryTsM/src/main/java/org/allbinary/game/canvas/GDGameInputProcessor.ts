@@ -80,9 +80,9 @@ type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDSpecialAnimation } from './GDSpecialAnimation.js';
-//not GWT import - same folder const GDSpecialAnimation
+//sameFolderImports - not GWT import - same folder const GDSpecialAnimation
 import { GDSceneGlobals } from './GDSceneGlobals.js';
-//not GWT import - same folder const GDSceneGlobals
+//sameFolderImports - not GWT import - same folder const GDSceneGlobals
 
 export class GDGameInputProcessor
             extends Object

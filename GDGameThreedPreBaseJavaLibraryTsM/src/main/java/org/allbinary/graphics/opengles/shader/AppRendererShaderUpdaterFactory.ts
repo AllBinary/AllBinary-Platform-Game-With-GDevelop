@@ -91,33 +91,33 @@ type BasicArrayList<T = any, U = any> = typeof BasicArrayList extends abstract n
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { ShaderUpdater } from './ShaderUpdater.js';
-//not GWT import - same folder const ShaderUpdater
+//sameFolderImports - not GWT import - same folder const ShaderUpdater
 import { ShaderManagerFactory } from './ShaderManagerFactory.js';
-//not GWT import - same folder const ShaderManagerFactory
+//sameFolderImports - not GWT import - same folder const ShaderManagerFactory
 import { ShaderManager } from './ShaderManager.js';
-//not GWT import - same folder const ShaderManager
+//sameFolderImports - not GWT import - same folder const ShaderManager
 import { PlatformShaderComposite } from './PlatformShaderComposite.js';
-//not GWT import - same folder const PlatformShaderComposite
+//sameFolderImports - not GWT import - same folder const PlatformShaderComposite
 import { Shader } from './Shader.js';
-//not GWT import - same folder const Shader
+//sameFolderImports - not GWT import - same folder const Shader
 import { SimpleCompositeShaderUpdater } from './SimpleCompositeShaderUpdater.js';
-//not GWT import - same folder const SimpleCompositeShaderUpdater
+//sameFolderImports - not GWT import - same folder const SimpleCompositeShaderUpdater
 import { SimpleShaderInitializer } from './SimpleShaderInitializer.js';
-//not GWT import - same folder const SimpleShaderInitializer
+//sameFolderImports - not GWT import - same folder const SimpleShaderInitializer
 import { ModelViewProjection } from './ModelViewProjection.js';
-//not GWT import - same folder const ModelViewProjection
+//sameFolderImports - not GWT import - same folder const ModelViewProjection
 import { ShaderComposite } from './ShaderComposite.js';
-//not GWT import - same folder const ShaderComposite
+//sameFolderImports - not GWT import - same folder const ShaderComposite
 import { UniformLightPositionOpenGLProcessor } from './UniformLightPositionOpenGLProcessor.js';
-//not GWT import - same folder const UniformLightPositionOpenGLProcessor
+//sameFolderImports - not GWT import - same folder const UniformLightPositionOpenGLProcessor
 import { UniformLightColorOpenGLProcessor } from './UniformLightColorOpenGLProcessor.js';
-//not GWT import - same folder const UniformLightColorOpenGLProcessor
+//sameFolderImports - not GWT import - same folder const UniformLightColorOpenGLProcessor
 import { UniformCameraPositionOpenGLProcessor } from './UniformCameraPositionOpenGLProcessor.js';
-//not GWT import - same folder const UniformCameraPositionOpenGLProcessor
+//sameFolderImports - not GWT import - same folder const UniformCameraPositionOpenGLProcessor
 import { UniformTextureOpenGLProcessor } from './UniformTextureOpenGLProcessor.js';
-//not GWT import - same folder const UniformTextureOpenGLProcessor
+//sameFolderImports - not GWT import - same folder const UniformTextureOpenGLProcessor
 import { ShaderOpenGLProcessor } from './ShaderOpenGLProcessor.js';
-//not GWT import - same folder const ShaderOpenGLProcessor
+//sameFolderImports - not GWT import - same folder const ShaderOpenGLProcessor
 
 export class AppRendererShaderUpdaterFactory extends ShaderUpdater {
         
@@ -152,16 +152,13 @@ export class AppRendererShaderUpdaterFactory extends ShaderUpdater {
 
     public readonly shaderCompositeArray: ShaderComposite[] = 
                                                         [
-                                                            new PlatformShaderComposite(this.openGLCapabilities!.VERSION_3_0, 
-                                                [
-                                                    new Shader(),new Shader()
-                                                ], new SimpleCompositeShaderUpdater(StringUtil.getInstance()!.getArrayInstance(), 
-                                                [
-                                                    "lightPos","lightColor","cameraPos","myTexture"
-                                                ], 
-                                                [
-                                                    this.semanticStrings!.POSITION,this.semanticStrings!.COLOR,this.semanticStrings!.NORMAL,this.semanticStrings!.TEXCOORD
-                                                ], new Array(4)), SimpleShaderInitializer.getInstance(), ModelViewProjection.getInstance(), 
+                                                            new PlatformShaderComposite(this.openGLCapabilities!.VERSION_3_0, [
+new Shader(),new Shader()
+                                                ], new SimpleCompositeShaderUpdater(StringUtil.getInstance()!.getArrayInstance(), [
+"lightPos","lightColor","cameraPos","myTexture"
+                                                ], [
+this.semanticStrings!.POSITION,this.semanticStrings!.COLOR,this.semanticStrings!.NORMAL,this.semanticStrings!.TEXCOORD
+                                                ], new Array(4).fill(0)), SimpleShaderInitializer.getInstance(), ModelViewProjection.getInstance(), 
                             null, 
                             null)
                                                         ];
@@ -173,7 +170,7 @@ PlatformAppShaderResources.getInstance()!.add();
     let max: number = 1024 *32;;
     
 
-    let byteArray1: number[] = new Array(max);;
+    let byteArray1: number[] = new Array(max).fill(0);;
     
 
     let size: number = this.shaderCompositeArray!.length
@@ -324,9 +321,8 @@ this.logUtil!.put(this.commonStrings!.EXCEPTION +resource, this, this.rendererSt
 
     public getTestShaders(): ShaderOpenGLProcessor[]{
 
-    let shaderOpenGLProcessorArray: ShaderOpenGLProcessor[] = 
-                                                [
-                                                    
+    let shaderOpenGLProcessorArray: ShaderOpenGLProcessor[] = [
+
                                                 ];;
     
 

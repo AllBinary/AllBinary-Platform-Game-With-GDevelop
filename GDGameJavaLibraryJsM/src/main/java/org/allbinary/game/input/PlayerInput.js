@@ -18,7 +18,7 @@ const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { PlayerGameInput } from './PlayerGameInput.js';
-//not GWT import - same folder const PlayerGameInput
+//sameFolderImports - not GWT import - same folder const PlayerGameInput
 export class PlayerInput extends PlayerGameInput {
     constructor(keyEventList, removalKeyEventList, gameKeyEventList, removalGameKeyEventList, playerInputId) {
         super(gameKeyEventList, removalGameKeyEventList, playerInputId);

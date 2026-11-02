@@ -39,7 +39,7 @@ import { BasicColorFactory } from '../../../../org/allbinary/graphics/color/Basi
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDGameThreedTitleAnimation } from './GDGameThreedTitleAnimation.js';
-//not GWT import - same folder const GDGameThreedTitleAnimation
+//sameFolderImports - not GWT import - same folder const GDGameThreedTitleAnimation
 
 export class GDGameThreedTitleAnimationFactory
             extends Object
@@ -74,7 +74,7 @@ basicColorArray[1]= basicColorFactory!.CLEAR_COLOR;
 basicColorArray[2]= basicColorFactory!.CLEAR_COLOR;
     
 
-    let deltaXArray: number[] = new Array(3);;
+    let deltaXArray: number[] = new Array(3).fill(0);;
     
 deltaXArray[0]= 0;
     
@@ -83,7 +83,7 @@ deltaXArray[1]= 52;
 deltaXArray[2]= 0;
     
 
-    let deltaYArray: number[] = new Array(3);;
+    let deltaYArray: number[] = new Array(3).fill(0);;
     
 deltaYArray[0]= 0;
     

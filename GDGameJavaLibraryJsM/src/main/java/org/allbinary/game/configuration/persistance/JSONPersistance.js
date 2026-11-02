@@ -32,11 +32,11 @@ const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
 //not GWT import const AbeClientInformationInterface
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { BasicPersitance } from './BasicPersitance.js';
-//not GWT import - same folder const BasicPersitance
+//sameFolderImports - not GWT import - same folder const BasicPersitance
 import { NullRecordFilter } from './NullRecordFilter.js';
-//not GWT import - same folder const NullRecordFilter
+//sameFolderImports - not GWT import - same folder const NullRecordFilter
 import { NullRecordComparator } from './NullRecordComparator.js';
-//not GWT import - same folder const NullRecordComparator
+//sameFolderImports - not GWT import - same folder const NullRecordComparator
 export class JSONPersistance extends BasicPersitance {
     constructor(recordId) {
         super(recordId);

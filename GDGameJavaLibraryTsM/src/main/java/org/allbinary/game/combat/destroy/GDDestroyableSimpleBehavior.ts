@@ -44,7 +44,7 @@ type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: a
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { DestroyableSimpleBehavior } from './DestroyableSimpleBehavior.js';
-//not GWT import - same folder const DestroyableSimpleBehavior
+//sameFolderImports - not GWT import - same folder const DestroyableSimpleBehavior
 
 export class GDDestroyableSimpleBehavior extends DestroyableSimpleBehavior {
         

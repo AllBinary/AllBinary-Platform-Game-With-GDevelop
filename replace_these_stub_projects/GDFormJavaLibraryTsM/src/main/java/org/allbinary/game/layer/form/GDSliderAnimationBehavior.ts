@@ -51,9 +51,9 @@ import { GDObject } from '../../../../../org/allbinary/game/layout/GDObject.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDItemAnimationBehavior } from './GDItemAnimationBehavior.js';
-//not GWT import - same folder const GDItemAnimationBehavior
+//sameFolderImports - not GWT import - same folder const GDItemAnimationBehavior
 import { GDGameLayerItemStateListener } from './GDGameLayerItemStateListener.js';
-//not GWT import - same folder const GDGameLayerItemStateListener
+//sameFolderImports - not GWT import - same folder const GDGameLayerItemStateListener
 
 export class GDSliderAnimationBehavior extends GDItemAnimationBehavior implements GDGameLayerItemStateListener {
         

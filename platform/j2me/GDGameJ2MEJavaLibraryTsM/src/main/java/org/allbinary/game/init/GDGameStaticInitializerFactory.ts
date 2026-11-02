@@ -43,24 +43,23 @@ import { GDGameJ2MEEarlyResourceInitialization } from '../../../../org/allbinary
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { BasicBuildGameInitializerFactory } from './BasicBuildGameInitializerFactory.js';
-//not GWT import - same folder const BasicBuildGameInitializerFactory
+//sameFolderImports - not GWT import - same folder const BasicBuildGameInitializerFactory
 import { J2MEGDGameStaticInitializer } from './J2MEGDGameStaticInitializer.js';
-//not GWT import - same folder const J2MEGDGameStaticInitializer
+//sameFolderImports - not GWT import - same folder const J2MEGDGameStaticInitializer
 import { GDGameResourceInitialization } from './GDGameResourceInitialization.js';
-//not GWT import - same folder const GDGameResourceInitialization
+//sameFolderImports - not GWT import - same folder const GDGameResourceInitialization
 import { GDGameJ2MEAnimationInterfaceFactoryEarlyResourceInitialization } from './GDGameJ2MEAnimationInterfaceFactoryEarlyResourceInitialization.js';
-//not GWT import - same folder const GDGameJ2MEAnimationInterfaceFactoryEarlyResourceInitialization
+//sameFolderImports - not GWT import - same folder const GDGameJ2MEAnimationInterfaceFactoryEarlyResourceInitialization
 import { GDGameJ2MEAnimationInterfaceFactoryResourceInitialization } from './GDGameJ2MEAnimationInterfaceFactoryResourceInitialization.js';
-//not GWT import - same folder const GDGameJ2MEAnimationInterfaceFactoryResourceInitialization
+//sameFolderImports - not GWT import - same folder const GDGameJ2MEAnimationInterfaceFactoryResourceInitialization
 import { GameInitializationInterface } from './GameInitializationInterface.js';
-//not GWT import - same folder const GameInitializationInterface
+//sameFolderImports - not GWT import - same folder const GameInitializationInterface
 
 export class GDGameStaticInitializerFactory extends BasicBuildGameInitializerFactory {
         
 
-    private static STATIC: GameInitializationInterface = new J2MEGDGameStaticInitializer(
-                                                [
-                                                    new GDGameJ2MEEarlyResourceInitialization(),new GDGameResourceInitialization(),new GDGameJ2MEAnimationInterfaceFactoryEarlyResourceInitialization(),new GDGameJ2MEAnimationInterfaceFactoryResourceInitialization()
+    private static STATIC: GameInitializationInterface = new J2MEGDGameStaticInitializer([
+new GDGameJ2MEEarlyResourceInitialization(),new GDGameResourceInitialization(),new GDGameJ2MEAnimationInterfaceFactoryEarlyResourceInitialization(),new GDGameJ2MEAnimationInterfaceFactoryResourceInitialization()
                                                 ], 15);
 
     public getInstance(): GameInitializationInterface{

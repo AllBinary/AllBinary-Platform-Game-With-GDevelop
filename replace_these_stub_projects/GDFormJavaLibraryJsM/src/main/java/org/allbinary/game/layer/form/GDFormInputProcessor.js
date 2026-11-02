@@ -13,7 +13,7 @@
 */
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../../java/lang/Object.js';
-//not GWT import - same folder const GDFormInput
+//sameFolderImports - not GWT import - same folder const GDFormInput
 export class GDFormInputProcessor extends Object {
     static getInstance() {
         //if statement needs to be on the same line and ternary does not work the same way.

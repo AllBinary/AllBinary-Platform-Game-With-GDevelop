@@ -12,7 +12,8 @@
 
             import { Object } from '../../../../java/lang/Object.js';
         
-            import { Double } from '../../../../java/lang/Double.js';
+            //import { Double } from '../../../../java/lang/Double.js';
+            const Double = (globalThis.java?.lang?.Double ?? class {}) as typeof globalThis.java.lang.Double;
         
 //not plain js import { ABHashMap } 
 const ABHashMap = globalThis.org.allbinary.util.ABHashMap;
@@ -51,9 +52,9 @@ import { JSONObject } from '../../../../org/json/JSONObject.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDProjectStrings } from './GDProjectStrings.js';
-//not GWT import - same folder const GDProjectStrings
+//sameFolderImports - not GWT import - same folder const GDProjectStrings
 import { GDVariable } from './GDVariable.js';
-//not GWT import - same folder const GDVariable
+//sameFolderImports - not GWT import - same folder const GDVariable
 
 export class GDInitialInstance
             extends Object

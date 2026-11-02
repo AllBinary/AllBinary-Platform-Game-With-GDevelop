@@ -10,7 +10,7 @@ import { GDExpression } from '../../../../../../org/allbinary/gdevelop/json/even
 //not GWT import const JSONObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDStandardEvent } from './GDStandardEvent.js';
-//not GWT import - same folder const GDStandardEvent
+//sameFolderImports - not GWT import - same folder const GDStandardEvent
 export class GDRepeatEvent extends GDStandardEvent {
     constructor(type, jsonObject) {
         super(type, jsonObject);

@@ -18,13 +18,13 @@ import { GDGameJ2MEEarlyResourceInitialization } from '../../../../org/allbinary
 //not GWT import const GDGameJ2MEEarlyResourceInitialization
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { J2MEGDGameStaticInitializer } from './J2MEGDGameStaticInitializer.js';
-//not GWT import - same folder const J2MEGDGameStaticInitializer
+//sameFolderImports - not GWT import - same folder const J2MEGDGameStaticInitializer
 import { GDGameResourceInitialization } from './GDGameResourceInitialization.js';
-//not GWT import - same folder const GDGameResourceInitialization
+//sameFolderImports - not GWT import - same folder const GDGameResourceInitialization
 import { GDGameJ2MEAnimationInterfaceFactoryEarlyResourceInitialization } from './GDGameJ2MEAnimationInterfaceFactoryEarlyResourceInitialization.js';
-//not GWT import - same folder const GDGameJ2MEAnimationInterfaceFactoryEarlyResourceInitialization
+//sameFolderImports - not GWT import - same folder const GDGameJ2MEAnimationInterfaceFactoryEarlyResourceInitialization
 import { GDGameJ2MEAnimationInterfaceFactoryResourceInitialization } from './GDGameJ2MEAnimationInterfaceFactoryResourceInitialization.js';
-//not GWT import - same folder const GDGameJ2MEAnimationInterfaceFactoryResourceInitialization
+//sameFolderImports - not GWT import - same folder const GDGameJ2MEAnimationInterfaceFactoryResourceInitialization
 export class GDGameStaticInitializerFactory extends BasicBuildGameInitializerFactory {
     getInstance() {
         //if statement needs to be on the same line and ternary does not work the same way.

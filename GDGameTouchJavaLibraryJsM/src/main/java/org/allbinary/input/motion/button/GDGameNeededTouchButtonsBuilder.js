@@ -16,11 +16,11 @@ import { Object } from '../../../../../java/lang/Object.js';
 //not GWT import const SensorGameUpdateProcessor
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { TouchScreenFactory } from './TouchScreenFactory.js';
-//not GWT import - same folder const TouchScreenFactory
+//sameFolderImports - not GWT import - same folder const TouchScreenFactory
 import { GDGameNeededMultiTouchButtonsBuilder } from './GDGameNeededMultiTouchButtonsBuilder.js';
-//not GWT import - same folder const GDGameNeededMultiTouchButtonsBuilder
+//sameFolderImports - not GWT import - same folder const GDGameNeededMultiTouchButtonsBuilder
 import { GDGameNeededWithSensorTouchButtonsBuilder } from './GDGameNeededWithSensorTouchButtonsBuilder.js';
-//not GWT import - same folder const BaseTouchInput
+//sameFolderImports - not GWT import - same folder const BaseTouchInput
 export class GDGameNeededTouchButtonsBuilder extends Object {
     static getInstance(sensorGameUpdateProcessor) {
         if (sensorGameUpdateProcessor.isAnySensor()) {

@@ -62,7 +62,7 @@ import { BasicColorFactory } from '../../../../org/allbinary/graphics/color/Basi
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { TitleVectorData } from './TitleVectorData.js';
-//not GWT import - same folder const TitleVectorData
+//sameFolderImports - not GWT import - same folder const TitleVectorData
 
 export class GDGameTitleAnimationFactory
             extends Object
@@ -99,14 +99,14 @@ basicColorArray[0]= BasicColorFactory.getInstance()!.PURPLE;
 basicColorArray[1]= BasicColorFactory.getInstance()!.BLACK;
     
 
-    let deltaXArray: number[] = new Array(2);;
+    let deltaXArray: number[] = new Array(2).fill(0);;
     
 deltaXArray[0]= 0;
     
 deltaXArray[1]= 52;
     
 
-    let deltaYArray: number[] = new Array(2);;
+    let deltaYArray: number[] = new Array(2).fill(0);;
     
 deltaYArray[0]= 0;
     

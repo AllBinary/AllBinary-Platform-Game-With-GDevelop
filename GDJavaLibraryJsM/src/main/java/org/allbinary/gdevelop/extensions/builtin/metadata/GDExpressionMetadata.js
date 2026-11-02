@@ -13,9 +13,9 @@ const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDParameterFactory } from './GDParameterFactory.js';
-//not GWT import - same folder const GDParameterFactory
+//sameFolderImports - not GWT import - same folder const GDParameterFactory
 import { GDParameterMetadata } from './GDParameterMetadata.js';
-//not GWT import - same folder const GDParameterMetadata
+//sameFolderImports - not GWT import - same folder const GDParameterMetadata
 export class GDExpressionMetadata extends Object {
     constructor(returnType, extensionNamespace, name, fullname, description, group, smallicon) {
         super();

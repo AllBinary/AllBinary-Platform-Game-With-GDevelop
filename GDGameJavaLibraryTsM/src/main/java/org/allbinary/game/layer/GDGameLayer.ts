@@ -152,21 +152,21 @@ import { BasicColorFactory } from '../../../../org/allbinary/graphics/color/Basi
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { ResetAnimationBehavior } from './ResetAnimationBehavior.js';
-//not GWT import - same folder const ResetAnimationBehavior
+//sameFolderImports - not GWT import - same folder const ResetAnimationBehavior
 import { GDTwodBehavior } from './GDTwodBehavior.js';
-//not GWT import - same folder const GDTwodBehavior
+//sameFolderImports - not GWT import - same folder const GDTwodBehavior
 import { ScalableBaseProcessor } from './ScalableBaseProcessor.js';
-//not GWT import - same folder const ScalableBaseProcessor
+//sameFolderImports - not GWT import - same folder const ScalableBaseProcessor
 //import { GDTextChangeListener } from './GDTextChangeListener.js';
-//not GWT import - same folder const GDTextChangeListener
+//sameFolderImports - not GWT import - same folder const GDTextChangeListener
 import { ResetRotationAnimationBehavior } from './ResetRotationAnimationBehavior.js';
-//not GWT import - same folder const ResetRotationAnimationBehavior
+//sameFolderImports - not GWT import - same folder const ResetRotationAnimationBehavior
 import { GDThreedBehavior } from './GDThreedBehavior.js';
-//not GWT import - same folder const GDThreedBehavior
+//sameFolderImports - not GWT import - same folder const GDThreedBehavior
 import { GDAnimationBehaviorBase } from './GDAnimationBehaviorBase.js';
-//not GWT import - same folder const GDAnimationBehaviorBase
+//sameFolderImports - not GWT import - same folder const GDAnimationBehaviorBase
 import { ScalableProcessor } from './ScalableProcessor.js';
-//not GWT import - same folder const ScalableProcessor
+//sameFolderImports - not GWT import - same folder const ScalableProcessor
 type GDTextChangeListener = InstanceType<GDGameLayer['GDTextChangeListener']>;
 
 export class GDGameLayer extends MultiPlayerGameLayer {

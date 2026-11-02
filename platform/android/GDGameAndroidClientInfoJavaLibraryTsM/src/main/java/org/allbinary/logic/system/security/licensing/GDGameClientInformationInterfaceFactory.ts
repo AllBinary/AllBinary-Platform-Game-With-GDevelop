@@ -23,11 +23,11 @@
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { ClientInformationFactory } from './ClientInformationFactory.js';
-//not GWT import - same folder const ClientInformationFactory
+//sameFolderImports - not GWT import - same folder const ClientInformationFactory
 import { GDGameAndroidMobileClientInformation } from './GDGameAndroidMobileClientInformation.js';
-//not GWT import - same folder const GDGameAndroidMobileClientInformation
+//sameFolderImports - not GWT import - same folder const GDGameAndroidMobileClientInformation
 import { ClientInformation } from './ClientInformation.js';
-//not GWT import - same folder const ClientInformation
+//sameFolderImports - not GWT import - same folder const ClientInformation
 
 export class GDGameClientInformationInterfaceFactory extends ClientInformationFactory {
         

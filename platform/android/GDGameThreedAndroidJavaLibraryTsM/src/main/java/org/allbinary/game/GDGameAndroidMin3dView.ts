@@ -49,9 +49,9 @@ import { AllBinaryMidletMin3dSurfaceView } from '../../../org/allbinary/view/All
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDGameAllBinarySceneControllerFactory } from './GDGameAllBinarySceneControllerFactory.js';
-//not GWT import - same folder const GDGameAllBinarySceneControllerFactory
+//sameFolderImports - not GWT import - same folder const GDGameAllBinarySceneControllerFactory
 import { Renderer } from './Renderer.js';
-//not GWT import - same folder const Renderer
+//sameFolderImports - not GWT import - same folder const Renderer
 
 export class GDGameAndroidMin3dView extends AllBinaryMidletMin3dSurfaceView {
         

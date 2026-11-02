@@ -64,9 +64,8 @@ private constructor (){
 
                             //For kotlin this is before the body of the constructor.
                     
-this.setInputInfoP(
-                                                [
-                                                    "Line 1","Line 2"
+this.setInputInfoP([
+"Line 1","Line 2"
                                                 ]);
     
 }

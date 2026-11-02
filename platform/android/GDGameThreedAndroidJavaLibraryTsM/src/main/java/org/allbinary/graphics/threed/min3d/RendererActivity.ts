@@ -154,9 +154,12 @@ this._renderContinuously= $b;
 
                         if(this._renderContinuously)
                         this._glSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY)
-                             else 
-                        if()
-                        
+                        else {
+                            this._glSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+    
+
+                        }
+                            
 }
 
 

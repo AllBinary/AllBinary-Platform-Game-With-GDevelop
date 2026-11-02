@@ -34,7 +34,7 @@ const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
-//not GWT import - same folder const MotionGestureEvent
+//sameFolderImports - not GWT import - same folder const MotionGestureEvent
 export class GDGameMotionGestureListener extends Object {
     constructor() {
         super();

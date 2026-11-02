@@ -120,7 +120,7 @@ import { MidletJOGLInterface } from 'org/microemu/app/MidletJOGLInterface.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDGameMIDlet } from './GDGameMIDlet.js';
-//not GWT import - same folder const GDGameMIDlet
+//sameFolderImports - not GWT import - same folder const GDGameMIDlet
 
 export class GDGame extends org.allbinary.game.GDGameMIDlet implements MidletJOGLInterface {
         

@@ -16,7 +16,7 @@ import { RuntimeException } from '../../../../../java/lang/RuntimeException.js';
 //not GWT import const GDObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDItemAnimationBehavior } from './GDItemAnimationBehavior.js';
-//not GWT import - same folder const GDGameLayerItemStateListener
+//sameFolderImports - not GWT import - same folder const GDGameLayerItemStateListener
 export class GDSliderAnimationBehavior extends GDItemAnimationBehavior {
     constructor() {
         super();

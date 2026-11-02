@@ -42,7 +42,7 @@ import { IndexedAnimation } from '../../../../org/allbinary/animation/IndexedAni
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDGameLayer } from './GDGameLayer.js';
-//not GWT import - same folder const GDGameLayer
+//sameFolderImports - not GWT import - same folder const GDGameLayer
 
 export class ScalableBaseProcessor
             extends Object

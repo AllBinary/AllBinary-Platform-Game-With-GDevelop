@@ -28,7 +28,7 @@ const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
-//not GWT import - same folder const GDSceneGlobals
+//sameFolderImports - not GWT import - same folder const GDSceneGlobals
 export class GDGameInputProcessor extends Object {
     constructor() {
         super(...arguments);

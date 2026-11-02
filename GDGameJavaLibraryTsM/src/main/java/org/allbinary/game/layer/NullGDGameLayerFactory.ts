@@ -61,11 +61,11 @@ type BasicArrayListUtil<T = any, U = any> = typeof BasicArrayListUtil extends ab
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDGameLayerFactory } from './GDGameLayerFactory.js';
-//not GWT import - same folder const GDGameLayerFactory
+//sameFolderImports - not GWT import - same folder const GDGameLayerFactory
 import { GDRotationBehaviorFactory } from './GDRotationBehaviorFactory.js';
-//not GWT import - same folder const GDRotationBehaviorFactory
+//sameFolderImports - not GWT import - same folder const GDRotationBehaviorFactory
 import { GDGameLayer } from './GDGameLayer.js';
-//not GWT import - same folder const GDGameLayer
+//sameFolderImports - not GWT import - same folder const GDGameLayer
 
 export class NullGDGameLayerFactory extends GDGameLayerFactory {
         
@@ -73,12 +73,10 @@ export class NullGDGameLayerFactory extends GDGameLayerFactory {
     public static readonly NULL_GD_GAME_LAYER_FACTORY: NullGDGameLayerFactory = new NullGDGameLayerFactory();
 
 private constructor (){
-            super(BasicArrayListUtil.getInstance()!.getImmutableInstance(), BasicArrayListUtil.getInstance()!.getImmutableInstance(), GroupFactory.getInstance()!.NULL_GROUP_ARRAY, BasicArrayListUtil.getInstance()!.getImmutableInstance(), 
-                                                [
-                                                    NullRotationAnimationFactory.getFactoryInstance()
-                                                ], 
-                                                [
-                                                    NullRotationAnimationFactory.getFactoryInstance()
+            super(BasicArrayListUtil.getInstance()!.getImmutableInstance(), BasicArrayListUtil.getInstance()!.getImmutableInstance(), GroupFactory.getInstance()!.NULL_GROUP_ARRAY, BasicArrayListUtil.getInstance()!.getImmutableInstance(), [
+NullRotationAnimationFactory.getFactoryInstance()
+                                                ], [
+NullRotationAnimationFactory.getFactoryInstance()
                                                 ], RectangleFactory.SINGLETON, RectangleFactory.ARRAY_OF_ARRAYS, GDRotationBehaviorFactory.getInstance(), false);
                     
 

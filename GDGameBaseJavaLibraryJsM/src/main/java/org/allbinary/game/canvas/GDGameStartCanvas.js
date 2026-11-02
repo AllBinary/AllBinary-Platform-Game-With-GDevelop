@@ -51,9 +51,9 @@ import { NullPaintable } from '../../../../org/allbinary/graphics/paint/NullPain
 //not GWT import const AbeClientInformationInterface
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GD0SpecialAnimation } from './GD0SpecialAnimation.js';
-//not GWT import - same folder const GD0SpecialAnimation
+//sameFolderImports - not GWT import - same folder const GD0SpecialAnimation
 import { GDGameGameCanvas } from './GDGameGameCanvas.js';
-//not GWT import - same folder const GDGameGameCanvas
+//sameFolderImports - not GWT import - same folder const GDGameGameCanvas
 export class GDGameStartCanvas extends DemoCanvas {
     constructor(abeClientInformation, commandListener) {
         super(abeClientInformation, commandListener, new BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance()), NullPaintable.getInstance(), NullInitUpdatePaintable.getInstance(), new GDGameStaticInitializerFactory(), false);

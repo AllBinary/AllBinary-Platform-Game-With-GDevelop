@@ -45,7 +45,7 @@ import { JSONObject } from '../../../../../../org/json/JSONObject.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { Number } from './Number.js';
-//not GWT import - same folder const Number
+//sameFolderImports - not GWT import - same folder const Number
 
 export class GDContent
             extends Object

@@ -14,7 +14,7 @@
 /* Generated Code Do Not Modify */
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { TempMovementBehavior } from './TempMovementBehavior.js';
-//not GWT import - same folder const TempMovementBehavior
+//sameFolderImports - not GWT import - same folder const TempMovementBehavior
 export class TempNoMapMovementBehavior extends TempMovementBehavior {
     static getInstance() {
         //if statement needs to be on the same line and ternary does not work the same way.

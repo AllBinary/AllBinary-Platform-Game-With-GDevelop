@@ -37,7 +37,7 @@
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { BaseOffsetBehavior } from './BaseOffsetBehavior.js';
-//not GWT import - same folder const BaseOffsetBehavior
+//sameFolderImports - not GWT import - same folder const BaseOffsetBehavior
 
 export class OffsetBehavior extends BaseOffsetBehavior {
         

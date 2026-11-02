@@ -18,7 +18,7 @@ import { TouchMotionGestureFactory } from '../../../../org/allbinary/input/motio
 //not GWT import const TouchMotionGestureFactory
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDAnimationBehaviorBase } from './GDAnimationBehaviorBase.js';
-//not GWT import - same folder const GDGameLayer
+//sameFolderImports - not GWT import - same folder const GDGameLayer
 export class GDSoftJoystickAnimationBehavior extends GDAnimationBehaviorBase {
     constructor() {
         super(...arguments);

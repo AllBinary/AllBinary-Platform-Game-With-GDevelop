@@ -14,7 +14,7 @@
 //not GWT import const AllBinaryLayerManager
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GameInputProcessor } from './GameInputProcessor.js';
-//not GWT import - same folder const GameInputProcessor
+//sameFolderImports - not GWT import - same folder const GameInputProcessor
 export class GDRGameInputProcessor extends GameInputProcessor {
     constructor() {
         super(...arguments);

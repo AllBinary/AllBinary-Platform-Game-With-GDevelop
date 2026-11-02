@@ -25,7 +25,7 @@ const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
 const NullRunnable = globalThis.org.allbinary.thread.NullRunnable;
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDNodeStatsFactory } from './GDNodeStatsFactory.js';
-//not GWT import - same folder const GDObject
+//sameFolderImports - not GWT import - same folder const GDObject
 export class GDNode extends Object {
     constructor(name) {
         super();

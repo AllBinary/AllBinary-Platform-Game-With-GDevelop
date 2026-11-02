@@ -167,36 +167,32 @@ export class GameAreaBoxUtil
 
     let boxLayerInfo1: Rectangle = animationInterfaceFactoryInterfaceFactory!.getRectangle(this.BOX_RECTANGLE_NAME_1)!;;
     
-this.boxGDGameLayerFactory1= new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, 
-                                                [
-                                                    btn_rotate_leftGroupInterface
+this.boxGDGameLayerFactory1= new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, [
+btn_rotate_leftGroupInterface
                                                 ], behaviorList, boxAnimationInterfaceFactoryInterfaceArray, boxProceduralAnimationInterfaceFactoryInterfaceArray, boxLayerInfo1, 
                             null, GDRotationBehaviorFactory.getInstance(), false);
     
 
     let boxLayerInfo2: Rectangle = animationInterfaceFactoryInterfaceFactory!.getRectangle(this.BOX_RECTANGLE_NAME_1)!;;
     
-this.boxGDGameLayerFactory2= new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, 
-                                                [
-                                                    btn_rotate_leftGroupInterface
+this.boxGDGameLayerFactory2= new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, [
+btn_rotate_leftGroupInterface
                                                 ], behaviorList, boxAnimationInterfaceFactoryInterfaceArray, boxProceduralAnimationInterfaceFactoryInterfaceArray, boxLayerInfo2, 
                             null, GDRotationBehaviorFactory.getInstance(), false);
     
 
     let boxLayerInfo3: Rectangle = animationInterfaceFactoryInterfaceFactory!.getRectangle(this.BOX_RECTANGLE_NAME_1)!;;
     
-this.boxGDGameLayerFactory3= new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, 
-                                                [
-                                                    btn_rotate_leftGroupInterface
+this.boxGDGameLayerFactory3= new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, [
+btn_rotate_leftGroupInterface
                                                 ], behaviorList, boxAnimationInterfaceFactoryInterfaceArray, boxProceduralAnimationInterfaceFactoryInterfaceArray, boxLayerInfo3, 
                             null, GDRotationBehaviorFactory.getInstance(), false);
     
 
     let boxLayerInfo4: Rectangle = animationInterfaceFactoryInterfaceFactory!.getRectangle(this.BOX_RECTANGLE_NAME_1)!;;
     
-this.boxGDGameLayerFactory4= new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, 
-                                                [
-                                                    btn_rotate_leftGroupInterface
+this.boxGDGameLayerFactory4= new GDGameLayerFactory(gameLayerList, gameLayerDestroyedList, [
+btn_rotate_leftGroupInterface
                                                 ], behaviorList, boxAnimationInterfaceFactoryInterfaceArray, boxProceduralAnimationInterfaceFactoryInterfaceArray, boxLayerInfo4, 
                             null, GDRotationBehaviorFactory.getInstance(), false);
     

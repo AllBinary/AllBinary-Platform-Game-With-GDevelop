@@ -59,9 +59,9 @@ import { InitInterface } from '../../../../org/allbinary/init/InitInterface.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GameConfigurationSingleton } from './GameConfigurationSingleton.js';
-//not GWT import - same folder const GameConfigurationSingleton
+//sameFolderImports - not GWT import - same folder const GameConfigurationSingleton
 import { GameConfigurationCentral } from './GameConfigurationCentral.js';
-//not GWT import - same folder const GameConfigurationCentral
+//sameFolderImports - not GWT import - same folder const GameConfigurationCentral
 
 export class GDGameGameFeatures
             extends Object

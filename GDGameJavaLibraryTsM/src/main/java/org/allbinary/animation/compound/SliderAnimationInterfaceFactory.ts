@@ -52,9 +52,9 @@ import { ScaleProperties } from '../../../../org/allbinary/media/ScaleProperties
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { CompoundAnimationInterfaceFactory } from './CompoundAnimationInterfaceFactory.js';
-//not GWT import - same folder const CompoundAnimationInterfaceFactory
+//sameFolderImports - not GWT import - same folder const CompoundAnimationInterfaceFactory
 import { SliderAnimation } from './SliderAnimation.js';
-//not GWT import - same folder const SliderAnimation
+//sameFolderImports - not GWT import - same folder const SliderAnimation
 
 export class SliderAnimationInterfaceFactory extends CompoundAnimationInterfaceFactory {
         

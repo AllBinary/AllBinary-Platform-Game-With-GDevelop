@@ -31,7 +31,7 @@ import { GraphicsFeatureFactory } from '../../../../org/allbinary/game/configura
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDGameBaseAndroidResources } from './GDGameBaseAndroidResources.js';
-//not GWT import - same folder const GDGameBaseAndroidResources
+//sameFolderImports - not GWT import - same folder const GDGameBaseAndroidResources
 
 export class GDGameAndroidResources extends GDGameBaseAndroidResources {
         

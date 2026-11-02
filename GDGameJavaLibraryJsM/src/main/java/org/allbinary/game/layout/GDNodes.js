@@ -25,7 +25,7 @@ const NullRunnable = globalThis.org.allbinary.thread.NullRunnable;
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
-//not GWT import - same folder const GDNode
+//sameFolderImports - not GWT import - same folder const GDNode
 export class GDNodes extends Object {
     constructor() {
         super(...arguments);

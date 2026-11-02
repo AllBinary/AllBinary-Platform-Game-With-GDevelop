@@ -16,9 +16,9 @@ import { Object } from '../../../../../java/lang/Object.js';
 import { RuntimeException } from '../../../../../java/lang/RuntimeException.js';
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { DraggableBehavior } from './DraggableBehavior.js';
-//not GWT import - same folder const DraggableBehavior
+//sameFolderImports - not GWT import - same folder const DraggableBehavior
 import { PathFindingBehavior } from './PathFindingBehavior.js';
-//not GWT import - same folder const GDBehavior
+//sameFolderImports - not GWT import - same folder const GDBehavior
 export class GDBehaviorUtil extends Object {
     constructor() {
         super(...arguments);

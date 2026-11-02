@@ -16,7 +16,7 @@ import { Object } from '../../../../java/lang/Object.js';
 //not GWT import const ScaleProperties
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDRectOnlyPrimitiveDrawing } from './GDRectOnlyPrimitiveDrawing.js';
-//not GWT import - same folder const GDRectOnlyPrimitiveDrawing
+//sameFolderImports - not GWT import - same folder const GDRectOnlyPrimitiveDrawing
 export class GDRectOnlyPrimitiveDrawingAnimationFactory extends Object {
     //@Throws(Exception.constructor)
     getInstance(instanceId) {

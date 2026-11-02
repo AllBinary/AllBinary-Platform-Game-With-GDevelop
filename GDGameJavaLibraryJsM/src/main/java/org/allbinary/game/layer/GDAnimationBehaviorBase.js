@@ -20,7 +20,7 @@ const CommonStrings = globalThis.org.allbinary.string.CommonStrings;
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
 //not plain js import { LogUtil } 
 const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
-//not GWT import - same folder const GDGameLayer
+//sameFolderImports - not GWT import - same folder const GDGameLayer
 export class GDAnimationBehaviorBase extends Object {
     constructor() {
         super(...arguments);

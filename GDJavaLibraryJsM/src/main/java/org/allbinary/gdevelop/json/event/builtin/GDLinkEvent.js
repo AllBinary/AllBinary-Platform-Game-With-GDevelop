@@ -18,7 +18,7 @@ const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
 //not GWT import const JSONObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDIncludeConfigFactory } from './GDIncludeConfigFactory.js';
-//not GWT import - same folder const GDIncludeConfigFactory
+//sameFolderImports - not GWT import - same folder const GDIncludeConfigFactory
 export class GDLinkEvent extends GDEvent {
     constructor(type, jsonObject) {
         super(type, jsonObject);

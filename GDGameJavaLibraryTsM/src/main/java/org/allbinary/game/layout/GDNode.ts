@@ -75,11 +75,11 @@ type NullRunnable<T = any, U = any> = typeof NullRunnable extends abstract new (
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDNodeStatsFactory } from './GDNodeStatsFactory.js';
-//not GWT import - same folder const GDNodeStatsFactory
+//sameFolderImports - not GWT import - same folder const GDNodeStatsFactory
 import { BaseGDNodeStats } from './BaseGDNodeStats.js';
-//not GWT import - same folder const BaseGDNodeStats
+//sameFolderImports - not GWT import - same folder const BaseGDNodeStats
 import { GDObject } from './GDObject.js';
-//not GWT import - same folder const GDObject
+//sameFolderImports - not GWT import - same folder const GDObject
 
 export class GDNode
             extends Object

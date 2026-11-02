@@ -16,7 +16,7 @@
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDTwodBehavior } from './GDTwodBehavior.js';
-//not GWT import - same folder const GDGameLayer
+//sameFolderImports - not GWT import - same folder const GDGameLayer
 export class GDThreedBehavior extends GDTwodBehavior {
     constructor(animationBehavior, rotationAnimationInterfaceArray) {
         super(animationBehavior);

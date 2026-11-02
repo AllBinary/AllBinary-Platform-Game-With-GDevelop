@@ -114,15 +114,15 @@ import { ViewPosition } from '../../../../../org/allbinary/view/ViewPosition.js'
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { AllBinaryGameSceneController } from './AllBinaryGameSceneController.js';
-//not GWT import - same folder const AllBinaryGameSceneController
+//sameFolderImports - not GWT import - same folder const AllBinaryGameSceneController
 import { GDGameThreedLevelBuilderFactory } from './GDGameThreedLevelBuilderFactory.js';
-//not GWT import - same folder const GDGameThreedLevelBuilderFactory
+//sameFolderImports - not GWT import - same folder const GDGameThreedLevelBuilderFactory
 import { GDCameraInputProcessor } from './GDCameraInputProcessor.js';
-//not GWT import - same folder const GDCameraInputProcessor
+//sameFolderImports - not GWT import - same folder const GDCameraInputProcessor
 import { GDGameCameraSetup } from './GDGameCameraSetup.js';
-//not GWT import - same folder const GDGameCameraSetup
+//sameFolderImports - not GWT import - same folder const GDGameCameraSetup
 import { AllBinarySceneFactory } from './AllBinarySceneFactory.js';
-//not GWT import - same folder const AllBinarySceneFactory
+//sameFolderImports - not GWT import - same folder const AllBinarySceneFactory
 
 export class GDGameSceneController extends AllBinaryGameSceneController {
         

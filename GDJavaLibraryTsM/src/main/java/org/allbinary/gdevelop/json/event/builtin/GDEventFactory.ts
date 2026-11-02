@@ -40,23 +40,23 @@ import { JSONObject } from '../../../../../../org/json/JSONObject.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDEventTypeFactory } from './GDEventTypeFactory.js';
-//not GWT import - same folder const GDEventTypeFactory
+//sameFolderImports - not GWT import - same folder const GDEventTypeFactory
 import { GDWhileEvent } from './GDWhileEvent.js';
-//not GWT import - same folder const GDWhileEvent
+//sameFolderImports - not GWT import - same folder const GDWhileEvent
 import { GDStandardEvent } from './GDStandardEvent.js';
-//not GWT import - same folder const GDStandardEvent
+//sameFolderImports - not GWT import - same folder const GDStandardEvent
 import { GDRepeatEvent } from './GDRepeatEvent.js';
-//not GWT import - same folder const GDRepeatEvent
+//sameFolderImports - not GWT import - same folder const GDRepeatEvent
 import { GDLinkEvent } from './GDLinkEvent.js';
-//not GWT import - same folder const GDLinkEvent
+//sameFolderImports - not GWT import - same folder const GDLinkEvent
 import { GDGroupEvent } from './GDGroupEvent.js';
-//not GWT import - same folder const GDGroupEvent
+//sameFolderImports - not GWT import - same folder const GDGroupEvent
 import { GDForEachChildVariableEvent } from './GDForEachChildVariableEvent.js';
-//not GWT import - same folder const GDForEachChildVariableEvent
+//sameFolderImports - not GWT import - same folder const GDForEachChildVariableEvent
 import { GDForEachEvent } from './GDForEachEvent.js';
-//not GWT import - same folder const GDForEachEvent
+//sameFolderImports - not GWT import - same folder const GDForEachEvent
 import { GDCommentEvent } from './GDCommentEvent.js';
-//not GWT import - same folder const GDCommentEvent
+//sameFolderImports - not GWT import - same folder const GDCommentEvent
 
 export class GDEventFactory
             extends Object

@@ -20,7 +20,7 @@ import { JSONObject } from '../../../../org/json/JSONObject.js';
 //not GWT import const JSONObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDProjectStrings } from './GDProjectStrings.js';
-//not GWT import - same folder const GDProjectStrings
+//sameFolderImports - not GWT import - same folder const GDProjectStrings
 export class GDResourcesManager extends Object {
     constructor(jsonObject) {
         super();

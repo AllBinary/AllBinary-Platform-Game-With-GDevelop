@@ -6,6 +6,9 @@
 
             import { Exception } from '../../java/lang/Exception.js';
         
+import { GDGameMIDlet } from '../../org/allbinary/game/GDGameMIDlet.js';
+//not GWT import const GDGameMIDlet
+
 import { GDGameSoftwareInfo } from '../../org/allbinary/game/canvas/GDGameSoftwareInfo.js';
 //not GWT import const GDGameSoftwareInfo
 
@@ -101,9 +104,7 @@ type PlayNToAllBinaryKeyInputUtil<T = any, U = any> = typeof PlayNToAllBinaryKey
 
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
-        //not plain js - same folder import { GDGameMIDlet } 
-const GDGameMIDlet = globalThis.playn.core.GDGameMIDlet;
-//not plain js - same folder import { PlayN2InputInterface } 
+        //not plain js - same folder import { PlayN2InputInterface } 
 const PlayN2InputInterface = globalThis.playn.core.PlayN2InputInterface;
 //not plain js - same folder import { TypedEvent } 
 const TypedEvent = globalThis.playn.core.TypedEvent;
@@ -126,7 +127,7 @@ const MotionEvent = globalThis.playn.core.MotionEvent;
 //not plain js - same folder import { WheelEvent } 
 const WheelEvent = globalThis.playn.core.WheelEvent;
 
-export class GDGame extends org.allbinary.game.GDGameMIDlet implements PlayN2InputInterface {
+export class GDGame extends GDGameMIDlet implements PlayN2InputInterface {
         
 
     private readonly DEVICE_ID: number = 0;

@@ -11,7 +11,7 @@ import { GDProjectStrings } from '../../../../../../org/allbinary/gdevelop/json/
 const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 //not plain js import { BasicArrayListD } 
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
-//not GWT import - same folder const Number
+//sameFolderImports - not GWT import - same folder const Number
 export class GDContent extends Object {
     constructor(jsonObject) {
         super();

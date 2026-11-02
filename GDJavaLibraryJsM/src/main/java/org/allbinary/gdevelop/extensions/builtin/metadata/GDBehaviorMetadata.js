@@ -17,15 +17,15 @@ const BasicArrayList = globalThis.org.allbinary.util.BasicArrayList;
 const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDParameterFactory } from './GDParameterFactory.js';
-//not GWT import - same folder const GDParameterFactory
+//sameFolderImports - not GWT import - same folder const GDParameterFactory
 import { GDInstructionMetadata } from './GDInstructionMetadata.js';
-//not GWT import - same folder const GDInstructionMetadata
+//sameFolderImports - not GWT import - same folder const GDInstructionMetadata
 import { StringBuilder } from './StringBuilder.js';
-//not GWT import - same folder const StringBuilder
+//sameFolderImports - not GWT import - same folder const StringBuilder
 import { GDExpressionMetadata } from './GDExpressionMetadata.js';
-//not GWT import - same folder const GDExpressionMetadata
+//sameFolderImports - not GWT import - same folder const GDExpressionMetadata
 import { GDMultipleInstructionMetadata } from './GDMultipleInstructionMetadata.js';
-//not GWT import - same folder const GDMultipleInstructionMetadata
+//sameFolderImports - not GWT import - same folder const GDMultipleInstructionMetadata
 export class GDBehaviorMetadata extends Object {
     constructor(extensionNamespace, name, fullname, defaultName, description, group, icon24x24, className, behavior, behaviorsSharedData) {
         super();

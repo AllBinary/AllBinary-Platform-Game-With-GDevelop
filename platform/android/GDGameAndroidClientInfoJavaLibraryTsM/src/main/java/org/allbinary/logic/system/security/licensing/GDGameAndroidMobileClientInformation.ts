@@ -30,7 +30,7 @@ type CommonSeps<T = any, U = any> = typeof CommonSeps extends abstract new (...a
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { MobileClientInformation } from './MobileClientInformation.js';
-//not GWT import - same folder const MobileClientInformation
+//sameFolderImports - not GWT import - same folder const MobileClientInformation
 
 export class GDGameAndroidMobileClientInformation extends MobileClientInformation {
         

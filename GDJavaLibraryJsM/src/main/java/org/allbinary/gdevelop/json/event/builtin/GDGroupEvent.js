@@ -17,7 +17,7 @@ const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 //not GWT import const JSONObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDEventFactory } from './GDEventFactory.js';
-//not GWT import - same folder const GDEventFactory
+//sameFolderImports - not GWT import - same folder const GDEventFactory
 export class GDGroupEvent extends GDEvent {
     constructor(type, jsonObject) {
         super(type, jsonObject);

@@ -41,15 +41,15 @@ const PositionStrings = globalThis.org.allbinary.math.PositionStrings;
 const CommonLabels = globalThis.org.allbinary.string.CommonLabels;
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDInitialVariables } from './GDInitialVariables.js';
-//not GWT import - same folder const GDInitialVariables
+//sameFolderImports - not GWT import - same folder const GDInitialVariables
 import { BaseOffsetBehavior } from './BaseOffsetBehavior.js';
-//not GWT import - same folder const BaseOffsetBehavior
+//sameFolderImports - not GWT import - same folder const BaseOffsetBehavior
 import { OffsetBehavior } from './OffsetBehavior.js';
-//not GWT import - same folder const OffsetBehavior
+//sameFolderImports - not GWT import - same folder const OffsetBehavior
 import { GDConfig } from './GDConfig.js';
-//not GWT import - same folder const GDConfig
+//sameFolderImports - not GWT import - same folder const GDConfig
 import { GDObjectStrings } from './GDObjectStrings.js';
-//not GWT import - same folder const GDObjectStrings
+//sameFolderImports - not GWT import - same folder const GDObjectStrings
 export class GDObject extends Object {
     constructor(width, height, name, type) {
         super();

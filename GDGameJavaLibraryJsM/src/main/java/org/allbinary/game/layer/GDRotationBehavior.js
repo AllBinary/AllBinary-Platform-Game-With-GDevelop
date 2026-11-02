@@ -24,7 +24,7 @@ import { FrameUtil } from '../../../../org/allbinary/math/FrameUtil.js';
 //not GWT import const FrameUtil
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDAnimationBehaviorBase } from './GDAnimationBehaviorBase.js';
-//not GWT import - same folder const GDGameLayer
+//sameFolderImports - not GWT import - same folder const GDGameLayer
 export class GDRotationBehavior extends GDAnimationBehaviorBase {
     constructor() {
         super(...arguments);

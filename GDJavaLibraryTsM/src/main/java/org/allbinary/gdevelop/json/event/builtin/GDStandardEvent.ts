@@ -60,7 +60,7 @@ import { JSONObject } from '../../../../../../org/json/JSONObject.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDEventFactory } from './GDEventFactory.js';
-//not GWT import - same folder const GDEventFactory
+//sameFolderImports - not GWT import - same folder const GDEventFactory
 
 export class GDStandardEvent extends GDEvent {
         

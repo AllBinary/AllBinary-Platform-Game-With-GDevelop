@@ -48,7 +48,7 @@ import { JSONObject } from '../../../../../../org/json/JSONObject.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDDirection } from './GDDirection.js';
-//not GWT import - same folder const GDDirection
+//sameFolderImports - not GWT import - same folder const GDDirection
 
 export class GDAnimation
             extends Object

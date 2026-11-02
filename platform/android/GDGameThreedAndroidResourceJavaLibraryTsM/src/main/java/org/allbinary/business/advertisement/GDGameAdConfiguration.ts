@@ -33,7 +33,7 @@ import { DirectionFactory } from '../../../../org/allbinary/direction/DirectionF
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { AdConfiguration } from './AdConfiguration.js';
-//not GWT import - same folder const AdConfiguration
+//sameFolderImports - not GWT import - same folder const AdConfiguration
 
 export class GDGameAdConfiguration extends AdConfiguration {
         
@@ -44,9 +44,8 @@ export class GDGameAdConfiguration extends AdConfiguration {
                                                         ];
 
 public constructor (){
-            super(
-                                                [
-                                                    "AllBinary_GDGame_Threed_Android","",StringUtil.getInstance()!.EMPTY_STRING
+            super([
+"AllBinary_GDGame_Threed_Android","",StringUtil.getInstance()!.EMPTY_STRING
                                                 ]);
                     
 

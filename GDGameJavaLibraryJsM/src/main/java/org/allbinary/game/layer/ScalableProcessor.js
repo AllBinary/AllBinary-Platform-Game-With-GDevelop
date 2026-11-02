@@ -14,7 +14,7 @@
 //not GWT import const GDObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { ScalableBaseProcessor } from './ScalableBaseProcessor.js';
-//not GWT import - same folder const GDGameLayer
+//sameFolderImports - not GWT import - same folder const GDGameLayer
 export class ScalableProcessor extends ScalableBaseProcessor {
     static getInstance() {
         //if statement needs to be on the same line and ternary does not work the same way.

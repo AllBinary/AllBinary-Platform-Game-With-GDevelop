@@ -47,19 +47,19 @@ import { JSONObject } from '../../../../../org/json/JSONObject.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDBitmapFontResource } from './GDBitmapFontResource.js';
-//not GWT import - same folder const GDBitmapFontResource
+//sameFolderImports - not GWT import - same folder const GDBitmapFontResource
 import { GDJsonResource } from './GDJsonResource.js';
-//not GWT import - same folder const GDJsonResource
+//sameFolderImports - not GWT import - same folder const GDJsonResource
 import { GDVideoResource } from './GDVideoResource.js';
-//not GWT import - same folder const GDVideoResource
+//sameFolderImports - not GWT import - same folder const GDVideoResource
 import { GDFontResource } from './GDFontResource.js';
-//not GWT import - same folder const GDFontResource
+//sameFolderImports - not GWT import - same folder const GDFontResource
 import { GDAudioResource } from './GDAudioResource.js';
-//not GWT import - same folder const GDAudioResource
+//sameFolderImports - not GWT import - same folder const GDAudioResource
 import { GDImageResource } from './GDImageResource.js';
-//not GWT import - same folder const GDImageResource
+//sameFolderImports - not GWT import - same folder const GDImageResource
 import { GDResource } from './GDResource.js';
-//not GWT import - same folder const GDResource
+//sameFolderImports - not GWT import - same folder const GDResource
 
 export class GDResourceFactory
             extends Object

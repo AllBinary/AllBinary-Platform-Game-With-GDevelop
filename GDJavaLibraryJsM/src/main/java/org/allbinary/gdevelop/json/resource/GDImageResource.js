@@ -8,7 +8,7 @@ import { GDProjectStrings } from '../../../../../org/allbinary/gdevelop/json/GDP
 //not GWT import const JSONObject
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDResource } from './GDResource.js';
-//not GWT import - same folder const GDResource
+//sameFolderImports - not GWT import - same folder const GDResource
 export class GDImageResource extends GDResource {
     constructor(kind, jsonObject) {
         super(kind, jsonObject);

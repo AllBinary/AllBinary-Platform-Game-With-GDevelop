@@ -43,9 +43,9 @@ type BasicArrayListD<T = any, U = any> = typeof BasicArrayListD extends abstract
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDParameterFactory } from './GDParameterFactory.js';
-//not GWT import - same folder const GDParameterFactory
+//sameFolderImports - not GWT import - same folder const GDParameterFactory
 import { GDParameterMetadata } from './GDParameterMetadata.js';
-//not GWT import - same folder const GDParameterMetadata
+//sameFolderImports - not GWT import - same folder const GDParameterMetadata
 
 export class GDExpressionMetadata
             extends Object

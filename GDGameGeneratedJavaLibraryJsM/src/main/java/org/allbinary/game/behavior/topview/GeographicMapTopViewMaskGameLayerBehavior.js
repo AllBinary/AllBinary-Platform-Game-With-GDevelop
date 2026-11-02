@@ -27,7 +27,7 @@ const BasicArrayListD = globalThis.org.allbinary.util.BasicArrayListD;
 //not GWT import const ViewPositionBase
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GeographicMapTopViewLayerBehavior } from './GeographicMapTopViewLayerBehavior.js';
-//not GWT import - same folder const TopViewCharacterInterface
+//sameFolderImports - not GWT import - same folder const TopViewCharacterInterface
 export class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopViewLayerBehavior {
     constructor(maxGravityActionIndex, autoStepBlocks, offsetY) {
         super(maxGravityActionIndex);

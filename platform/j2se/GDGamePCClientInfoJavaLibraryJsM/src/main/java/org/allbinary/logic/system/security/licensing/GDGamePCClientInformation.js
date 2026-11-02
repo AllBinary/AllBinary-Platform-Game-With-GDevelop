@@ -18,7 +18,7 @@ import { GDGameSoftwareInfo } from '../../../../../../org/allbinary/game/canvas/
 //not GWT import const GDGameSoftwareInfo
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { AbeClientInformation } from './AbeClientInformation.js';
-//not GWT import - same folder const AbeClientInformation
+//sameFolderImports - not GWT import - same folder const AbeClientInformation
 export class GDGamePCClientInformation extends AbeClientInformation {
     constructor() {
         super(GDGameSoftwareInfo.getInstance().getName() + GDGamePCClientInformation.PC_DESC, GDGameSoftwareInfo.getInstance().getVersion(), GDGameSoftwareInfo.getInstance().getName() + GDGamePCClientInformation.PC_DESC + CommonSeps.getInstance().SPACE + GDGameSoftwareInfo.getInstance().getVersion(), GDGameSoftwareInfo.getInstance().toShortString());

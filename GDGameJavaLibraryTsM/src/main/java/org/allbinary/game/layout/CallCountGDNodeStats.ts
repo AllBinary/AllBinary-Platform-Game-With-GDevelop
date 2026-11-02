@@ -66,7 +66,7 @@ export class CallCountGDNodeStats
 
     private readonly SIZE: number = 16;
 
-    private readonly totalCalls: number[][] = new Array(this.SIZE).fill(null).map(() => new Array(15000).fill(null));
+    private readonly totalCalls: number[][] = new Array(this.SIZE).fill(null).map(() => new Array(15000).fill(0));
 
     public reset(){
 

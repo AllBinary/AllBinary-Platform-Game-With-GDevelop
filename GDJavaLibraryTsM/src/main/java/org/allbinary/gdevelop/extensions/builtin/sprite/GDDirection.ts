@@ -52,7 +52,7 @@ import { JSONObject } from '../../../../../../org/json/JSONObject.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDSprite } from './GDSprite.js';
-//not GWT import - same folder const GDSprite
+//sameFolderImports - not GWT import - same folder const GDSprite
 
 export class GDDirection
             extends Object

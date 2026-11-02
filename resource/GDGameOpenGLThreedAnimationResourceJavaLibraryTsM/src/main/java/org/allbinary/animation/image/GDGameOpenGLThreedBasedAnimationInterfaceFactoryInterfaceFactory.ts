@@ -81,7 +81,7 @@ public constructor (){
 }
 
 
-    private isInitialized: boolean[] = new Array(11);
+    private isInitialized: boolean[] = new Array(11).fill(false);
 
                 //@Throws(Exception.constructor)
             

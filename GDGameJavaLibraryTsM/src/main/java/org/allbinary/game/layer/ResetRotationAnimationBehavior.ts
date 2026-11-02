@@ -43,7 +43,7 @@ import { FrameUtil } from '../../../../org/allbinary/math/FrameUtil.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { ResetAnimationBehavior } from './ResetAnimationBehavior.js';
-//not GWT import - same folder const ResetAnimationBehavior
+//sameFolderImports - not GWT import - same folder const ResetAnimationBehavior
 
 export class ResetRotationAnimationBehavior extends ResetAnimationBehavior {
         

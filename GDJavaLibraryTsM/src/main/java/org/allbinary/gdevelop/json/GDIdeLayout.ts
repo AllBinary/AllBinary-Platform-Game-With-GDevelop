@@ -37,9 +37,9 @@ import { JSONObject } from '../../../../org/json/JSONObject.js';
                                         
         //Current folder imports from return types, extended types, and scope (deduplicated)
         import { GDEditorSettings } from './GDEditorSettings.js';
-//not GWT import - same folder const GDEditorSettings
+//sameFolderImports - not GWT import - same folder const GDEditorSettings
 import { GDProjectStrings } from './GDProjectStrings.js';
-//not GWT import - same folder const GDProjectStrings
+//sameFolderImports - not GWT import - same folder const GDProjectStrings
 
 export class GDIdeLayout
             extends Object

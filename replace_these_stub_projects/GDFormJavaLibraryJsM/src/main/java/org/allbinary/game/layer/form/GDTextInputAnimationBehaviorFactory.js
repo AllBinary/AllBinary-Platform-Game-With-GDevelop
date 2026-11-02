@@ -16,7 +16,7 @@ import { GDAnimationBehaviorBaseFactory } from '../../../../../org/allbinary/gam
 //not GWT import const GDAnimationBehaviorBaseFactory
 //Current folder imports from return types, extended types, and scope (deduplicated)
 import { GDTextInputAnimationBehavior } from './GDTextInputAnimationBehavior.js';
-//not GWT import - same folder const GDTextInputAnimationBehavior
+//sameFolderImports - not GWT import - same folder const GDTextInputAnimationBehavior
 export class GDTextInputAnimationBehaviorFactory extends GDAnimationBehaviorBaseFactory {
     static getInstance() {
         //if statement needs to be on the same line and ternary does not work the same way.

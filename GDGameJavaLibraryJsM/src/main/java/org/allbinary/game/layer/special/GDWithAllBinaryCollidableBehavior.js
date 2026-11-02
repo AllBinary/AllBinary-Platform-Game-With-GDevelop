@@ -19,9 +19,9 @@ const ForcedLogUtil = globalThis.org.allbinary.logic.communication.log.ForcedLog
 const StringMaker = globalThis.org.allbinary.logic.string.StringMaker;
 //not plain js import { StringUtil } 
 const StringUtil = globalThis.org.allbinary.logic.string.StringUtil;
-//not GWT import - same folder const CollidableDestroyableDamageableLayer
+//sameFolderImports - not GWT import - same folder const CollidableDestroyableDamageableLayer
 import { TempGameLayerUtil } from './TempGameLayerUtil.js';
-//not GWT import - same folder const TempGameLayerUtil
+//sameFolderImports - not GWT import - same folder const TempGameLayerUtil
 export class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior {
     constructor(collidableBehavior, collidable) {
         super(collidable);
