@@ -45,7 +45,7 @@ Created By: Travis Berthelot
                                     gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$paramOne" />GDGameLayerList.get(index);
                                     gameLayer.gdObject.scaleX = gameLayer.gdObject.scaleY = (float) <xsl:value-of select="$paramThree" />;
                                     gameLayer.setScalable();
-                                    gameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+                                    gameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
                                 }
 
                             } catch(Exception e) {

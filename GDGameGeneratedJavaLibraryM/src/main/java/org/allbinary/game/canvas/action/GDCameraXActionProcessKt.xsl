@@ -40,7 +40,7 @@ Created By: Travis Berthelot
                             {
                                 gameLayer = allBinaryGameLayerManager.getLayerAt(index) as GDGameLayer
                                 gameLayer.setPosition(gameLayer.getXP() -<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each> (<xsl:for-each select="parameters" ><xsl:if test="position() > 2" ><xsl:value-of select="translate(text(), $quote, '')" /></xsl:if> </xsl:for-each>).toInt(), gameLayer.getYP(), gameLayer.getZP())
-                                gameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta)
+                                gameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta)
                             }
 
                             return true

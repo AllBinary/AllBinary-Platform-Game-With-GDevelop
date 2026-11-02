@@ -46,7 +46,7 @@ Created By: Travis Berthelot
                                     gameLayer.gdObject.scaleY = (<xsl:value-of select="$paramThree" />).toFloat()
                                     gameLayer.gdObject.scaleX = gameLayer.gdObject.scaleY
                                     gameLayer.setScalable()
-                                    gameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta)
+                                    gameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta)
                                 }
 
                             } catch(e: Exception) {

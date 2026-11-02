@@ -287,7 +287,7 @@
             -->
 
             //updateGDObject - 8
-            <xsl:value-of select="$gdGameLayer" />.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta)
+            <xsl:value-of select="$gdGameLayer" />.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta)
                 </xsl:if>
 
                 <xsl:if test="not((contains($parametersHasGDObjectName, 'found') and contains($hasCreate, 'found')) or contains($parametersAsString0, $gdObjectName))" >

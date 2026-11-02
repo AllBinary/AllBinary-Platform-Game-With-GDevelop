@@ -66,6 +66,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.game.canvas.GDExtensionGDNodes;
                 import org.allbinary.game.layer.GDGameLayer;
+                import org.allbinary.game.layout.GDUtil;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.color.BasicColorFactory;
                 import org.allbinary.graphics.color.BasicColorSetUtil;
@@ -101,6 +102,7 @@ Created By: Travis Berthelot
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final PointFactory pointFactory = PointFactory.getInstance();
                         
+                        private final GDUtil gdUtil = GDUtil.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
                 

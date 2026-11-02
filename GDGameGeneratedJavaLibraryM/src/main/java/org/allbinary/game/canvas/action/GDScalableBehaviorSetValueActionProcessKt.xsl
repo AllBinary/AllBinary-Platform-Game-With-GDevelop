@@ -46,7 +46,7 @@ Created By: Travis Berthelot
                                     <xsl:value-of select="$paramOne" />.scaleY = (<xsl:value-of select="$paramFour" />).toFloat()
                                     <xsl:value-of select="$paramOne" />.scaleX = <xsl:value-of select="$paramOne" />.scaleY
                                     <xsl:value-of select="$paramOne" />GDGameLayer.setScalable()
-                                    <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta)
+                                    <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta)
                                 }
 
                             } catch(e: Exception) {
@@ -70,7 +70,7 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="$paramOne" />.scaleY = (<xsl:value-of select="$paramFour" />).toFloat()
                                 <xsl:value-of select="$paramOne" />.scaleX = <xsl:value-of select="$paramOne" />.scaleY
                                 <xsl:value-of select="$paramOne" />GDGameLayer.setScalable()
-                                <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta)
+                                <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta)
 
                             } catch(e: Exception) {
                                 this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e)
@@ -100,7 +100,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$paramOne" />.scaleY = (<xsl:value-of select="$paramFour" />).toFloat()
                             <xsl:value-of select="$paramOne" />.scaleX = <xsl:value-of select="$paramOne" />.scaleY
                             <xsl:value-of select="$paramOne" />GDGameLayer.setScalable()
-                            <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta)
+                            <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta)
 
                         <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 

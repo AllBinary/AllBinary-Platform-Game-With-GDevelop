@@ -92,6 +92,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.NullUtil;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+                import org.allbinary.game.layout.GDUtil;
 
                 //LayoutObjectEvent name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes extends SpecialAnimation
@@ -112,6 +113,7 @@ Created By: Travis Berthelot
                         private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
                         
                         private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
+                        private final GDUtil gdUtil = GDUtil.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
@@ -155,66 +157,6 @@ Created By: Travis Berthelot
                             this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e);
                         }
 
-                    }
-
-                    public int SceneWindowWidth() {
-                        return gameTickDisplayInfoSingleton.getLastWidth();
-                    }
-
-                    public int SceneWindowHeight() {
-                        return gameTickDisplayInfoSingleton.getLastHeight();
-                    }
-
-                    public int abs(final int value) {
-                        return Math.abs(value);
-                    }
-                    
-                    public float abs(final float value) {
-                        return Math.abs(value);
-                    }
-
-                    public double log2(final int value) {
-                        return Math.log(value);
-                    }
-
-                    public int Random(final int range) {
-                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
-                    }
-
-                    public int Variable(final int value) {
-                        return value;
-                    }
-
-                    public float Variable(final float value) {
-                        return value;
-                    }
-
-                    public double Variable(final double value) {
-                        return value;
-                    }
-
-                    public String GlobalVariable(final String value) {
-                        return value;
-                    }
-
-                    public float GlobalVariable(final float value) {
-                        return value;
-                    }
-
-                    public long GlobalVariable(final long value) {
-                        return value;
-                    }
-                    
-                    public int GlobalVariable(final int value) {
-                        return value;
-                    }
-                    
-                    public String ToString(final int value) {
-                        if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
-                            return Integer.toString(value);
-                        } else {
-                            return smallIntegerSingletonFactory.getString(value);
-                        }
                     }
 
                 }

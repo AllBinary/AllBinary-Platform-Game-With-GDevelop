@@ -370,7 +370,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
     private final String PARAMETERS_START = "<parameters>";
     private final String PARAMETERS_END = "</parameters>";
     private final String QUOTE = "&quot;";
-    private final String THIS = "this.";
+    private final String THIS_GDUTIL = "this.gdUtil.";
 
     private final String FINISHED = "Finished";
     private final String SKIPPING_INDEX_AS_STRING = "skipping indexAsString:";
@@ -1153,7 +1153,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
     //TypeScript and JavaScript require this. before local method calls.
     //Calls already qualified with globals., gameGlobals., this., GDGameLayer., Ship., etc are skipped as are calls inside quoted strings.
-    private String addThisToLocalCalls(final String xmlAsString, final StringMaker stringMaker) {
+    private String addThisToGDUtilLocalCalls(final String xmlAsString, final StringMaker stringMaker) {
         stringMaker.delete(0, stringMaker.length());
         final int size = xmlAsString.length();
         int lastIndex = 0;
@@ -1185,7 +1185,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                             identifierEndIndex++;
                         }
                         if (identifierEndIndex < endIndex && xmlAsString.charAt(identifierEndIndex) == '(') {
-                            stringMaker.append(THIS);
+                            stringMaker.append(THIS_GDUTIL);
                         }
                         stringMaker.append(xmlAsString.substring(index, identifierEndIndex));
                         index = identifierEndIndex;
@@ -1258,8 +1258,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             }
 
             //Add this before all method calls here
-            gameXmlAsString = this.addThisToLocalCalls(gameXmlAsString, stringMaker);
-            layoutGameXmlAsString = this.addThisToLocalCalls(layoutGameXmlAsString, stringMaker);
+            gameXmlAsString = this.addThisToGDUtilLocalCalls(gameXmlAsString, stringMaker);
+            layoutGameXmlAsString = this.addThisToGDUtilLocalCalls(layoutGameXmlAsString, stringMaker);
 
             final String gameXmlAsString2 = gameXmlAsString;
             final String layoutGameXmlAsString2 = layoutGameXmlAsString;

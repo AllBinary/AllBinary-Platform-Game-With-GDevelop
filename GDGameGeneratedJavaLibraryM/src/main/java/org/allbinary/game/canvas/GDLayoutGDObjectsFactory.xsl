@@ -66,6 +66,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.game.layout.GDConfig;
+                import org.allbinary.game.layout.GDUtil;
                 import org.allbinary.game.canvas.GDExtensionGDNodes;
                 import org.allbinary.game.layer.SoftJoystickInterface;
                 import org.allbinary.game.layer.SWTUtil;
@@ -111,6 +112,7 @@ Created By: Travis Berthelot
                     private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
                     
                     private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
+                    private final GDUtil gdUtil = GDUtil.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                     private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
 

@@ -32,7 +32,7 @@ Created By: Travis Berthelot
                     
                         //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
 
-                        <xsl:for-each select="parameters" ><xsl:if test="position() = 2" >globals.<xsl:value-of select="translate(text(), '&quot;', '')" />TimeDelayHelper.setStartTime(globals.globalsGameTickTimeDelayHelper.lastStartTime);</xsl:if></xsl:for-each>
+                        <xsl:for-each select="parameters" ><xsl:if test="position() = 2" >globals.<xsl:value-of select="translate(text(), '&quot;', '')" />TimeDelayHelper.setStartTime(this.gdUtil.globalsGameTickTimeDelayHelper.lastStartTime);</xsl:if></xsl:for-each>
 
                         return true;
                     }

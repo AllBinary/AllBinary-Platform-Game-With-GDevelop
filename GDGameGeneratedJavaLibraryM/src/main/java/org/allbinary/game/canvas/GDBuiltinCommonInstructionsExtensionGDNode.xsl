@@ -43,6 +43,7 @@ Created By: Travis Berthelot
         //nodeId=<xsl:value-of select="$selectedNodeId" /> - //extension - childevents
         public class GD<xsl:value-of select="$selectedNodeId" />GDNode extends GDNode
         {
+            private final GDUtil gdUtil = GDUtil.getInstance();
             private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
             public GD<xsl:value-of select="$selectedNodeId" />GDNode() {

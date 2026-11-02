@@ -162,6 +162,7 @@ public class GDDelete {
         exclusionList.add("TempNoMapMovementBehavior.java");
         exclusionList.add("TempMapMovementBehavior.java");
         exclusionList.add("TempMovementBehavior.java");
+        exclusionList.add("GDUtil.java");
 
         final BasicArrayList files = this.getFiles(
               gdPaths.GEN_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java", this.gdToolStrings.JAVA);

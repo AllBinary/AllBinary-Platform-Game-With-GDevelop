@@ -204,7 +204,7 @@ Created By: Travis Berthelot
                         globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer)
 
                         //updateGDObject - 7
-                        <xsl:value-of select="name" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta)
+                        <xsl:value-of select="name" />GDGameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta)
 
                         <xsl:variable name="gameLayer" ><xsl:value-of select="name" />GDGameLayer</xsl:variable>
                         //this.logUtil.putF("<xsl:value-of select="$gameLayer" />.gdObject.zOrder" + <xsl:value-of select="$gameLayer" />.gdObject.zOrder, this, this.commonStrings.PROCESS)

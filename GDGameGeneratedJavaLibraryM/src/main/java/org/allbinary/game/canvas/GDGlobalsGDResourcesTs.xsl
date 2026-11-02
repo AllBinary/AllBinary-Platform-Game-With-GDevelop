@@ -116,6 +116,7 @@ Created By: Travis Berthelot
                         private final PointFactory pointFactory = PointFactory.getInstance();
                         private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
 
+                        private final GDUtil gdUtil = GDUtil.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
        

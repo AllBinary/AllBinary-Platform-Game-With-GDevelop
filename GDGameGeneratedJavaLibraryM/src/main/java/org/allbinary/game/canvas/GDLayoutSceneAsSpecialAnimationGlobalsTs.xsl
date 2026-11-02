@@ -120,6 +120,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+                import org.allbinary.game.layout.GDUtil;
 
                 //LayoutGlobals name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals extends GDSceneGlobals
@@ -291,6 +292,7 @@ Created By: Travis Berthelot
                     <xsl:call-template name="objectsClassProperty" >
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
+            private final GDUtil gdUtil = GDUtil.getInstance();
             private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
             private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
             
@@ -446,8 +448,6 @@ Created By: Travis Berthelot
                     <xsl:text>&#10;</xsl:text>
 
                     private final LayerManagerEventListener layerManagerEventListener;
-                    
-                    public final GameTickTimeDelayHelper globalsGameTickTimeDelayHelper = new GameTickTimeDelayHelper(System.currentTimeMillis());
                  
                     private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals() {
                     
@@ -531,113 +531,6 @@ Created By: Travis Berthelot
                     <xsl:text>&#10;</xsl:text>
                     }
                     
-                    public int SceneWindowWidth() {
-                        return gameTickDisplayInfoSingleton.getLastWidth();
-                    }
-
-                    public int SceneWindowHeight() {
-                        return gameTickDisplayInfoSingleton.getLastHeight();
-                    }
-
-                    public int abs(final int value) {
-                        return Math.abs(value);
-                    }
-                    
-                    public float abs(final float value) {
-                        return Math.abs(value);
-                    }
-
-                    public double log2(final int value) {
-                        return Math.log(value);
-                    }
-
-                    public int Random(final int range) {
-                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
-                    }
-
-                    public float Random(final double range) {
-                        return ((float) MyRandomFactory.getInstance().getAbsoluteNextInt((int) (range * 1000))) / 1000;
-                    }
-                    
-                    public int Variable(final int value) {
-                        return value;
-                    }
-
-                    public float Variable(final float value) {
-                        return value;
-                    }
-
-                    public double Variable(final double value) {
-                        return value;
-                    }
-
-                    public String Variable(final String value) {
-                        return value;
-                    }
-
-                    public int VariableString(final int value) {
-                        return value;
-                    }
-
-                    public String VariableString(final String string) {
-                        return string;
-                    }
-
-                    public int VariableChildCount(final String[] array) {
-                        return array.length;
-                    }
-
-                    public int VariableChildCount(final int[] array) {
-                        return array.length;
-                    }
-
-                    public String GlobalVariable(final String value) {
-                        return value;
-                    }
-                    
-                    public float GlobalVariable(final float value) {
-                        return value;
-                    }
-                    
-                    public long GlobalVariable(final long value) {
-                        return value;
-                    }
-
-                    public int GlobalVariable(final int value) {
-                        return value;
-                    }
-
-                    public int MouseX(String string, int value) {
-                        return value;
-                    }
-
-                    public int MouseY(String string, int value) {
-                        return value;
-                    }
-                    
-                    public int CameraX(final String string, int value) {
-                        
-                        return 0;
-                    }
-
-                    public int CameraY(final String string, int value) {
-                        
-                        return 0;
-                    }
-
-                    public int CameraWidth(final String string, int value) {
-                        
-                        return gameTickDisplayInfoSingleton.getLastWidth();
-                    }
-
-                    public String ToString(final int value) {
-                        if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
-                            return Integer.toString(value);
-                        } else {
-                            return smallIntegerSingletonFactory.getString(value);
-                        }
-                    }
-
                 }
             </xsl:if>
         </xsl:for-each>

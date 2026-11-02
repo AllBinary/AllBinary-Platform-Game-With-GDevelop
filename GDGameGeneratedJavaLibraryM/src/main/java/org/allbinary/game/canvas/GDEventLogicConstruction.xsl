@@ -2508,6 +2508,7 @@ Created By: Travis Berthelot
                 globals.lastPointGDNode = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 
                     private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
+                    private final GDUtil gdUtil = GDUtil.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
                     public boolean processMotion(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
@@ -2584,6 +2585,7 @@ Created By: Travis Berthelot
                     globals.spriteMultitouchJoystickGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
 
+                    private final GDUtil gdUtil = GDUtil.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
                     public boolean processMotion(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
@@ -2612,6 +2614,7 @@ Created By: Travis Berthelot
                     globals.mouseWheelScrollingDownGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
 
+                    private final GDUtil gdUtil = GDUtil.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
                     public boolean processScrolling(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {

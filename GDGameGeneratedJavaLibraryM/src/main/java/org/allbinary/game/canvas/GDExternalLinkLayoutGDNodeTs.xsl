@@ -113,6 +113,7 @@ Created By: Travis Berthelot
                     private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                     
                     //private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
+                    private final GDUtil gdUtil = GDUtil.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                     //private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
                     

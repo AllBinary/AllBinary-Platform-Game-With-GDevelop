@@ -123,6 +123,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayListD
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory
                 import org.allbinary.J2MEUtil
+                import org.allbinary.game.layout.GDUtil
 
                 //LayoutGlobals name=<xsl:value-of select="$layoutName" />
                 open public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals : GDSceneGlobals
@@ -538,117 +539,6 @@ Created By: Travis Berthelot
                     <xsl:call-template name="layerManagerEventListenerRemove" >
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
-                    }
-
-                    open public fun SceneWindowWidth(): Int {
-                        return gameTickDisplayInfoSingleton.getLastWidth()
-                    }
-
-                    open public fun SceneWindowHeight(): Int {
-                        return gameTickDisplayInfoSingleton.getLastHeight()
-                    }
-
-                    open public fun abs(value: Int): Int {
-                        return Math.abs(value)
-                    }
-
-                    open public fun abs(value: Float): Float {
-                        return Math.abs(value)
-                    }
-
-                    open public fun log2(value: Int): Double {
-                        return Math.log(value.toDouble())
-                    }
-
-                    open public fun Random(range: Int): Int {
-                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1)
-                    }
-
-                    open public fun Random(range: Double): Float {
-                        return (MyRandomFactory.getInstance().getAbsoluteNextInt((range * 1000).toInt()).toFloat()) / 1000
-                    }
-
-                    open public fun Variable(value: Int): Int {
-                        return value
-                    }
-
-                    open public fun Variable(value: Float): Float {
-                        return value
-                    }
-
-                    open public fun Variable(value: Double): Double {
-                        return value
-                    }
-
-                    open public fun Variable(value: String): String {
-                        return value
-                    }
-
-                    open public fun VariableString(value: Int): Int {
-                        return value
-                    }
-
-                    open public fun VariableString(string: String): String {
-                        return string
-                    }
-
-                    open public fun VariableChildCount(array: Array&lt;String?&gt;): Int {
-                        return array.size
-                    }
-
-                    open public fun VariableChildCount(array: IntArray): Int {
-                        return array.size
-                    }
-
-                    open public fun GlobalVariable(value: String): String {
-                        return value
-                    }
-
-                    open public fun GlobalVariable(value: Float): Float {
-                        return value
-                    }
-
-                    open public fun GlobalVariable(value: Long): Long {
-                        return value
-                    }
-
-                    open public fun GlobalVariable(value: Int): Int {
-                        return value
-                    }
-
-                    open public fun MouseX(string: String, value: Int): Int {
-                        var string = string
-                        var value = value
-                        return value
-                    }
-
-                    open public fun MouseY(string: String, value: Int): Int {
-                        var string = string
-                        var value = value
-                        return value
-                    }
-
-                    open public fun CameraX(string: String, value: Int): Int {
-                        var value = value
-                        return 0
-                    }
-
-                    open public fun CameraY(string: String, value: Int): Int {
-                        var value = value
-                        return 0
-                    }
-
-                    open public fun CameraWidth(string: String, value: Int): Int {
-                        var value = value
-                        return gameTickDisplayInfoSingleton.getLastWidth()
-                    }
-
-                    open public fun ToString(value: Int): String {
-                        if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
-                            return value.toString()
-                        } else {
-                            return smallIntegerSingletonFactory.getString(value)
-                        }
                     }
 
                 }

@@ -341,7 +341,7 @@ Created By: Travis Berthelot
                     override fun process() {
                         try {
 
-                        globals.globalsGameTickTimeDelayHelper.loop()
+                        this.gdUtil.globalsGameTickTimeDelayHelper.loop()
 
                         if(globals.processingMotionEventListIndex == 0) {
                             globals.processingMotionEventListIndex = 1
@@ -371,7 +371,7 @@ Created By: Travis Berthelot
 
                         gdNodes.process()
 
-                        gdGlobalsSpecialAnimation.process(globals.globalsGameTickTimeDelayHelper.timeDelta)
+                        gdGlobalsSpecialAnimation.process(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta)
 
                     //eventsProcess - START
                     <xsl:call-template name="eventsProcess" >
@@ -423,14 +423,14 @@ Created By: Travis Berthelot
                            var gameLayer: GDGameLayer
                            for(index in 0 until size) {
                                gameLayer = (<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(index) as GDGameLayer)
-                               gameLayer.process(globals.globalsGameTickTimeDelayHelper.timeDelta)
-                               gameLayer.animate(globals.globalsGameTickTimeDelayHelper.timeDelta)
+                               gameLayer.process(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta)
+                               gameLayer.animate(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta)
                            }
 
                         }
                     </xsl:for-each>
 
-                        globals.globalsGameTickTimeDelayHelper.lastStartTime = gameTickTimeDelayHelper.startTime
+                        this.gdUtil.globalsGameTickTimeDelayHelper.lastStartTime = gameTickTimeDelayHelper.startTime
 
                         } catch (e: Exception) {
                             this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.PROCESS, e)

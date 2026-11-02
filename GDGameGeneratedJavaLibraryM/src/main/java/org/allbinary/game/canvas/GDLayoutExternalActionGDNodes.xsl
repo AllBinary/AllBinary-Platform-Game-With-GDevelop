@@ -105,6 +105,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
                 import org.allbinary.thread.PathFindingThreadPool;
                 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
+                import org.allbinary.game.layout.GDUtil;
 
                 //LayoutExternalAction name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes extends SpecialAnimation
@@ -117,6 +118,7 @@ Created By: Travis Berthelot
                             return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes.instance;
                         }
 
+                        private final GDUtil gdUtil = GDUtil.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
 
@@ -167,120 +169,6 @@ Created By: Travis Berthelot
                         }
 
                     }
-
-<!--                 
-                    public int SceneWindowWidth() {
-                        return gameTickDisplayInfoSingleton.getLastWidth();
-                    }
-
-                    public int SceneWindowHeight() {
-                        return gameTickDisplayInfoSingleton.getLastHeight();
-                    }
-
-                    public int abs(final int value) {
-                        return Math.abs(value);
-                    }
-                    
-                    public float abs(final float value) {
-                        return Math.abs(value);
-                    }
-
-                    public double log2(final int value) {
-                        return Math.log((double) value);
-                    }
-
-                    public int Random(final int range) {
-                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
-                    }
-
-                    public String VariableString(final String string) {
-                        return string;
-                    }
-
-                    public int Variable(final int value) {
-                        return value;
-                    }
-
-                    public float Variable(final float value) {
-                        return value;
-                    }
-
-                    public double Variable(final double value) {
-                        return value;
-                    }
-
-                    public String GlobalVariable(final String value) {
-                        return value;
-                    }
-
-                    public float GlobalVariable(final float value) {
-                        return value;
-                    }
-
-                    public long GlobalVariable(final long value) {
-                        return value;
-                    }
-
-                    public int GlobalVariable(final int value) {
-                        return value;
-                    }
-
-                    public String GlobalVariableString(final String value) {
-                        return value;
-                    }
-
-                    public int GlobalVariableChildCount(final String[] array) {
-                        return array.length;
-                    }
-
-                    public int GlobalVariableChildCount(final int[] array) {
-                        return array.length;
-                    }
-
-                    public int GlobalVariableChildCount(final long[] array) {
-                        return array.length;
-                    }
-
-                    public String GlobalVarToJSON(final String value) {
-                        return value;
-                    }
-
-                    public String GlobalVarToJSON(final int value) {
-                        return Integer.toString(value);
-                    }
-
-                    public String GlobalVarToJSON(final long value) {
-                        return Long.toString(value);
-                    }
-                    
-                    public int ToJSONType(final GDStructure value) {
-                        return value.getJSONType();
-                    }
-
-                    public String ToJSON(final GDStructure value) {
-                        return value.toJSONAsString();
-                    }
-
-                    public String ToJSON(final String value) {
-                        return value;
-                    }
-
-                    public String ToJSON(final int value) {
-                        return Integer.toString(value);
-                    }
-
-                    public String ToJSON(final long value) {
-                        return Long.toString(value);
-                    }
-
-                    public String ToString(final int value) {
-                        if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
-                            return Integer.toString(value);
-                        } else {
-                            return smallIntegerSingletonFactory.getString(value);
-                        }
-                    }
-                    -->
 
                 }
             </xsl:if>

@@ -35,6 +35,7 @@ Created By: Travis Berthelot
         import org.allbinary.AndroidUtil;
         import org.allbinary.J2MEUtil;
         import org.allbinary.game.layout.GDConfig;
+        import org.allbinary.game.layout.GDUtil;
         
         import org.allbinary.animation.Animation;
         import org.allbinary.animation.AnimationInterfaceFactoryInterface;
@@ -170,6 +171,7 @@ Created By: Travis Berthelot
                     private final BasicGeographicMapUtil basicGeographicMapUtil = BasicGeographicMapUtil.getInstance();
                     
                     private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
+                    private final GDUtil gdUtil = GDUtil.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                     private final GroupCommonFactory groupCommonFactory = GroupCommonFactory.getInstance();
 
@@ -828,7 +830,7 @@ Created By: Travis Berthelot
         //this.updateSpecialAnimation();
 //      }
 
-        //updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+        //updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
         updateGDObject(1000);
         VelocityUtil.reduceX(this.velocityInterface, 90, 100);
     }

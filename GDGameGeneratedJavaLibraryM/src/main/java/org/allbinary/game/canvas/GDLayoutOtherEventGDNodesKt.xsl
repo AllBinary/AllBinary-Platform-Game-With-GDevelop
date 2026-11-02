@@ -105,6 +105,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.NullUtil
                 import org.allbinary.util.ArrayUtil
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory
+                import org.allbinary.game.layout.GDUtil
 
                     <xsl:call-template name="eventsCreateAssignGDObjectGDNodesOtherEventImports" >
                         <xsl:with-param name="caller" >otherEventLayout</xsl:with-param>
@@ -211,70 +212,6 @@ Created By: Travis Berthelot
                             this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e)
                         }
 
-                    }
-
-                    //open fun TimeDelta(): Long {
-                        //return globals.globalsGameTickTimeDelayHelper.timeDelta
-                    //}
-
-                    open public fun SceneWindowWidth(): Int {
-                        return gameTickDisplayInfoSingleton.getLastWidth()
-                    }
-
-                    open public fun SceneWindowHeight(): Int {
-                        return gameTickDisplayInfoSingleton.getLastHeight()
-                    }
-
-                    open public fun abs(value: Int): Int {
-                        return Math.abs(value)
-                    }
-
-                    open public fun abs(value: Float): Float {
-                        return Math.abs(value)
-                    }
-
-                    open public fun log2(value: Int): Double {
-                        return Math.log(value.toDouble())
-                    }
-
-                    open public fun Random(range: Int): Int {
-                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1)
-                    }
-
-                    open public fun Variable(value: Int): Int {
-                        return value
-                    }
-
-                    open public fun Variable(value: Float): Float {
-                        return value
-                    }
-
-                    open public fun Variable(value: Double): Double {
-                        return value
-                    }
-
-                    open public fun GlobalVariable(value: String): String {
-                        return value
-                    }
-
-                    open public fun GlobalVariable(value: Float): Float {
-                        return value
-                    }
-
-                    open public fun GlobalVariable(value: Long): Long {
-                        return value
-                    }
-
-                    open public fun GlobalVariable(value: Int): Int {
-                        return value
-                    }
-
-                    open public fun ToString(value: Int): String {
-                        if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
-                            return value.toString()
-                        } else {
-                            return smallIntegerSingletonFactory.getString(value)
-                        }
                     }
 
                 }

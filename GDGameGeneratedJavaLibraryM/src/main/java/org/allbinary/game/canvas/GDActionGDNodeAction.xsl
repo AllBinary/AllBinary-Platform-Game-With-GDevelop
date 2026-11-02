@@ -207,6 +207,7 @@ Created By: Travis Berthelot
                         private final GDStrings gdStrings = GDStrings.getInstance();
                         private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
                         private final AbeClientInformationInterface abeClientInformation = (AbeClientInformationInterface) GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION;
+                        private final GDUtil gdUtil = GDUtil.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         <xsl:if test="string(number($layoutIndex)) != 'NaN'" >
                         private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();

@@ -166,6 +166,7 @@ Created By: Travis Berthelot
 
                         private final GDNodes gdNodes = GDNodeUtil.getInstance().getOrCreateInstance(<xsl:value-of select="$layoutIndex" />);
                                                 
+                        private final GDUtil gdUtil = GDUtil.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
                         
@@ -338,7 +339,7 @@ Created By: Travis Berthelot
                         
                         try {
 
-                        globals.globalsGameTickTimeDelayHelper.loop();
+                        this.gdUtil.globalsGameTickTimeDelayHelper.loop();
 
                         if(globals.processingMotionEventListIndex == 0) {
                             globals.processingMotionEventListIndex = 1;
@@ -368,7 +369,7 @@ Created By: Travis Berthelot
 
                         gdNodes.process();
 
-                        gdGlobalsSpecialAnimation.process(globals.globalsGameTickTimeDelayHelper.timeDelta);
+                        gdGlobalsSpecialAnimation.process(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
 
                     //eventsProcess - START
                     <xsl:call-template name="eventsProcess" >
@@ -420,14 +421,14 @@ Created By: Travis Berthelot
                            GDGameLayer gameLayer;
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                gameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(index));
-                               gameLayer.process(globals.globalsGameTickTimeDelayHelper.timeDelta);
-                               gameLayer.animate(globals.globalsGameTickTimeDelayHelper.timeDelta);
+                               gameLayer.process(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
+                               gameLayer.animate(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
                            }
 
                         }
                     </xsl:for-each>
 
-                        globals.globalsGameTickTimeDelayHelper.lastStartTime = gameTickTimeDelayHelper.startTime;
+                        this.gdUtil.globalsGameTickTimeDelayHelper.lastStartTime = gameTickTimeDelayHelper.startTime;
                     
                         } catch(Exception e) {
                             this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.PROCESS, e);

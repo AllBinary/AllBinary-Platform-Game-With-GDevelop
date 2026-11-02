@@ -76,7 +76,7 @@ Created By: Travis Berthelot
                                     <xsl:value-of select="$paramOne" />.updateSize(<xsl:value-of select="$paramOne" />.width, (int) <xsl:value-of select="$paramFour" />);
                                     <xsl:value-of select="$paramOne" />GDGameLayer.updateSize();
                                     <xsl:value-of select="$paramOne" />GDGameLayer.setScalable();
-                                    <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+                                    <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
 <!--    
                                     if(<xsl:value-of select="$paramOne" />.scaleY == 1.0f) {
                                         <xsl:value-of select="$paramOne" />.widthAtInitialScale = <xsl:value-of select="$paramOne" />.width;
@@ -84,7 +84,7 @@ Created By: Travis Berthelot
                                     }
                                     <xsl:value-of select="$paramOne" />.scaleY = (<xsl:value-of select="$paramFour" />) / <xsl:value-of select="$paramOne" />.heightAtInitialScale;
                                     <xsl:value-of select="$paramOne" />GDGameLayer.setScalable();
-                                    <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+                                    <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
 -->
                                 }
 
@@ -122,7 +122,7 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="$paramOne" />.updateSize(<xsl:value-of select="$paramOne" />.width, (int) <xsl:value-of select="$paramFour" />);
                                 <xsl:value-of select="$paramOne" />GDGameLayer.updateSize();
                                 <xsl:value-of select="$paramOne" />GDGameLayer.setScalable();
-                                <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+                                <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
 
 <!--
                                 if(<xsl:value-of select="$paramOne" />.scaleY == 1.0f) {
@@ -131,7 +131,7 @@ Created By: Travis Berthelot
                                 }
                                 <xsl:value-of select="$paramOne" />.scaleY = (<xsl:value-of select="$paramFour" />) / <xsl:value-of select="$paramOne" />.heightAtInitialScale;
                                 <xsl:value-of select="$paramOne" />GDGameLayer.setScalable();
-                                <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+                                <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
 -->
 
                             <xsl:if test="string-length($hasObjectGroup) > 0" >
@@ -165,7 +165,7 @@ Created By: Travis Berthelot
                         <xsl:value-of select="$paramOne" />.updateSize(<xsl:value-of select="$paramOne" />.width, (int) <xsl:value-of select="$paramFour" />);
                         <xsl:value-of select="$paramOne" />GDGameLayer.updateSize();
                         <xsl:value-of select="$paramOne" />GDGameLayer.setScalable();
-                        <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+                        <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
 
 <!--
                                 if(<xsl:value-of select="$paramOne" />.scaleY == 1.0f) {
@@ -174,7 +174,7 @@ Created By: Travis Berthelot
                                 }
                                 <xsl:value-of select="$paramOne" />.scaleY = (<xsl:value-of select="$paramFour" />) / <xsl:value-of select="$paramOne" />.heightAtInitialScale;
                                 <xsl:value-of select="$paramOne" />GDGameLayer.setScalable();
-                                <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+                                <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
 -->
 
                         <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>

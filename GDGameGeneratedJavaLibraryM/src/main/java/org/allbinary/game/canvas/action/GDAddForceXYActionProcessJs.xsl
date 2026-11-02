@@ -155,7 +155,7 @@ Created By: Travis Berthelot
                                     
                                     <xsl:text>&#10;</xsl:text>
                                     //updateGDObject - 4
-                                    <xsl:value-of select="$name" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+                                    <xsl:value-of select="$name" />GDGameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
                                     <xsl:text>&#10;</xsl:text>
                                 
                                     </xsl:if>

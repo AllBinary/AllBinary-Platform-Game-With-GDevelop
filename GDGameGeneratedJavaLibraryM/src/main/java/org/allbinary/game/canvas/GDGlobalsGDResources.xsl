@@ -58,6 +58,7 @@ Created By: Travis Berthelot
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.J2MEUtil;
                 import org.allbinary.game.layout.GDConfig;   
+                import org.allbinary.game.layout.GDUtil;
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
                 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
@@ -117,6 +118,7 @@ Created By: Travis Berthelot
                         private final PointFactory pointFactory = PointFactory.getInstance();
                         private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
 
+                        private final GDUtil gdUtil = GDUtil.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
        

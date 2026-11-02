@@ -171,6 +171,7 @@ Created By: Travis Berthelot
                     private final BasicGeographicMapUtil basicGeographicMapUtil = BasicGeographicMapUtil.getInstance();
                     
                     private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
+                    private final GDUtil gdUtil = GDUtil.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                     private final GroupCommonFactory groupCommonFactory = GroupCommonFactory.getInstance();
 
@@ -824,7 +825,7 @@ Created By: Travis Berthelot
         //this.updateSpecialAnimation();
 //      }
 
-        //updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+        //updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
         updateGDObject(1000);
         VelocityUtil.reduceX(this.velocityInterface, 90, 100);
     }

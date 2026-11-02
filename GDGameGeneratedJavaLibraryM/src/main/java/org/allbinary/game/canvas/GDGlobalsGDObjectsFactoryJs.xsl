@@ -93,6 +93,7 @@ Created By: Travis Berthelot
                     
                     private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
 
+                    private final GDUtil gdUtil = GDUtil.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                     private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
                     

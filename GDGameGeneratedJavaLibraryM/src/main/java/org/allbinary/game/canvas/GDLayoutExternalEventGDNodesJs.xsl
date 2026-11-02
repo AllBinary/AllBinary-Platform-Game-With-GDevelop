@@ -112,6 +112,7 @@ Created By: Travis Berthelot
                     private final NullUtil nullUtil = NullUtil.getInstance();
                     private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                     
+                    private final GDUtil gdUtil = GDUtil.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                     private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
 

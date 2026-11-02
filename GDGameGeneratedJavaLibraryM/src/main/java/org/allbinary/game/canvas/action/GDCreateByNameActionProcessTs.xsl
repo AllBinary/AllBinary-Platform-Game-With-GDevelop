@@ -487,7 +487,7 @@ Created By: Travis Berthelot
                             
                             if(<xsl:value-of select="$gameLayer" /> != null) {
                                 //updateGDObject - 3
-                                <xsl:value-of select="$gameLayer" />.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+                                <xsl:value-of select="$gameLayer" />.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
                                 
                                 //this.logUtil.putF("<xsl:value-of select="$gameLayer" />.gdObject.zOrder" + <xsl:value-of select="$gameLayer" />.gdObject.zOrder, this, this.commonStrings.PROCESS);
                                 //this.logUtil.putF("<xsl:value-of select="$gameLayer" />.getZ()" + <xsl:value-of select="$gameLayer" />.getZ(), this, this.commonStrings.PROCESS);

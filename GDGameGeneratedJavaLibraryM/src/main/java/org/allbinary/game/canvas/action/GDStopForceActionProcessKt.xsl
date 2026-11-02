@@ -126,7 +126,7 @@ Created By: Travis Berthelot
 
                                     <xsl:text>&#10;</xsl:text>
                                     //updateGDObject - 4
-                                    <xsl:value-of select="$name" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta)
+                                    <xsl:value-of select="$name" />GDGameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta)
                                     <xsl:text>&#10;</xsl:text>
 
                             <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>

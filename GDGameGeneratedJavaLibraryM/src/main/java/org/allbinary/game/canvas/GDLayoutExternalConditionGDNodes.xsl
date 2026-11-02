@@ -117,6 +117,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
                 import org.allbinary.thread.NullRunnable;
+                import org.allbinary.game.layout.GDUtil;
 
                 //LayoutExternalCondition name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes extends SpecialAnimation
@@ -147,6 +148,7 @@ Created By: Travis Berthelot
 
                         private final GDNodes gdNodes = GDNodeUtil.getInstance().getOrCreateInstance(<xsl:value-of select="$layoutIndex" />);
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
+                        private final GDUtil gdUtil = GDUtil.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
 
@@ -196,149 +198,6 @@ Created By: Travis Berthelot
                             this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e);
                         }
 
-                    }
-
-                    public int SceneWindowWidth() {
-                        return gameTickDisplayInfoSingleton.getLastWidth();
-                    }
-
-                    public int SceneWindowHeight() {
-                        return gameTickDisplayInfoSingleton.getLastHeight();
-                    }
-
-                    public int abs(final int value) {
-                        return Math.abs(value);
-                    }
-                    
-                    public float abs(final float value) {
-                        return Math.abs(value);
-                    }
-
-                    public double log2(final int value) {
-                        return Math.log((double) value);
-                    }
-
-                    public int Random(final int range) {
-                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
-                    }
-
-                    public int Variable(final int value) {
-                        return value;
-                    }
-
-                    public float Variable(final float value) {
-                        return value;
-                    }
-
-                    public double Variable(final double value) {
-                        return value;
-                    }
-
-                    public String VariableString(final String string) {
-                        return string;
-                    }
-
-                    public String VariableString(final Object object) {
-                        return object.toString();
-                    }
-
-                    public int VariableChildCount(final String[] array) {
-                        return array.length;
-                    }
-
-                    public int VariableChildCount(final int[] array) {
-                        return array.length;
-                    }
-                    
-                    public String GlobalVariable(final String value) {
-                        return value;
-                    }
-                    
-                    public float GlobalVariable(final float value) {
-                        return value;
-                    }
-
-                    public long GlobalVariable(final long value) {
-                        return value;
-                    }
-
-                    public int GlobalVariable(final int value) {
-                        return value;
-                    }
-                    
-                    public String GlobalVariableString(final String value) {
-                        return value;
-                    }
-
-                    public int GlobalVariableChildCount(final String[] array) {
-                        return array.length;
-                    }
-
-                    public int GlobalVariableChildCount(final int[] array) {
-                        return array.length;
-                    }
-
-                    public int GlobalVariableChildCount(final long[] array) {
-                        return array.length;
-                    }
-                    
-                    public int MouseX() {
-                        
-                        return gameGlobalsFactory.point.getX();
-                    }
-
-                    public int MouseY() {
-                        
-                        return gameGlobalsFactory.point.getY();
-                    }
-
-                    public int MouseX(final String string, int value) {
-                        
-                        return gameGlobalsFactory.point.getX();
-                    }
-
-                    public int MouseY(final String string, int value) {
-                        
-                        return gameGlobalsFactory.point.getY();
-                    }
-                    
-                    public int CameraX(final String string, int value) {
-                        
-                        return 0;
-                    }
-
-                    public int CameraY(final String string, int value) {
-                        
-                        return 0;
-                    }
-
-                    public int CameraWidth(final String string, int value) {
-                        
-                        return gameTickDisplayInfoSingleton.getLastWidth();
-                    }
-                    
-                    public float ToNumber(final String string) {
-                        return Float.parseFloat(string);
-                    }
-                    
-                    public int StrLength(final String string) {
-                        return string.length();
-                    }
-                    
-                    public int StrFind(String string, String key) {
-                        return string.indexOf(key);
-                    }
-                    
-                    public String ToString(final String string) {
-                        return string;
-                    }
-
-                    public String ToString(final int value) {
-                        if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
-                            return Integer.toString(value);
-                        } else {
-                            return smallIntegerSingletonFactory.getString(value);
-                        }
                     }
 
                 }

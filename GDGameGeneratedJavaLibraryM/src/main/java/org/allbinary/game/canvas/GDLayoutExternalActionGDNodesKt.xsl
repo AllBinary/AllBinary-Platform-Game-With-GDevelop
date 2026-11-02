@@ -106,6 +106,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory
                 import org.allbinary.thread.PathFindingThreadPool
                 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
+                import org.allbinary.game.layout.GDUtil
 
                 //LayoutExternalAction name=<xsl:value-of select="$layoutName" />
                 open public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes : SpecialAnimation
@@ -169,120 +170,6 @@ Created By: Travis Berthelot
                         }
 
                     }
-
-<!--
-                    open fun SceneWindowWidth(): Int {
-                        return gameTickDisplayInfoSingleton.getLastWidth()
-                    }
-
-                    open fun SceneWindowHeight(): Int {
-                        return gameTickDisplayInfoSingleton.getLastHeight()
-                    }
-
-                    open fun abs(value: Int): Int {
-                        return Math.abs(value)
-                    }
-
-                    open fun abs(value: Float): Float {
-                        return Math.abs(value)
-                    }
-
-                    open fun log2(value: Int): Double {
-                        return Math.log(value.toDouble())
-                    }
-
-                    open fun Random(range: Int): Int {
-                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1)
-                    }
-
-                    open fun VariableString(string: String): String {
-                        return string
-                    }
-
-                    open fun Variable(value: Int): Int {
-                        return value
-                    }
-
-                    open fun Variable(value: Float): Float {
-                        return value
-                    }
-
-                    open fun Variable(value: Double): Double {
-                        return value
-                    }
-
-                    open fun GlobalVariable(value: String): String {
-                        return value
-                    }
-
-                    open fun GlobalVariable(value: Float): Float {
-                        return value
-                    }
-
-                    open fun GlobalVariable(value: Long): Long {
-                        return value
-                    }
-
-                    open fun GlobalVariable(value: Int): Int {
-                        return value
-                    }
-
-                    open fun GlobalVariableString(value: String): String {
-                        return value
-                    }
-
-                    open fun GlobalVariableChildCount(array: Array&lt;String?&gt;): Int {
-                        return array.size
-                    }
-
-                    open fun GlobalVariableChildCount(array: IntArray): Int {
-                        return array.size
-                    }
-
-                    open fun GlobalVariableChildCount(array: LongArray): Int {
-                        return array.size
-                    }
-
-                    open fun GlobalVarToJSON(value: String): String {
-                        return value
-                    }
-
-                    open fun GlobalVarToJSON(value: Int): String {
-                        return value.toString()
-                    }
-
-                    open fun GlobalVarToJSON(value: Long): String {
-                        return (value).toString()
-                    }
-
-                    open fun ToJSONType(value: GDStructure): Int {
-                        return value.getJSONType()
-                    }
-
-                    open fun ToJSON(value: GDStructure): String {
-                        return value.toJSONAsString()
-                    }
-
-                    open fun ToJSON(value: String): String {
-                        return value
-                    }
-
-                    open fun ToJSON(value: Int): String {
-                        return value.toString()
-                    }
-
-                    open fun ToJSON(value: Long): String {
-                        return (value).toString()
-                    }
-
-                    open fun ToString(value: Int): String {
-                        if(this.abs(value) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 499) {
-                            return value.toString()
-                        } else {
-                            return smallIntegerSingletonFactory.getString(value)
-                        }
-                    }
-                    -->
 
                 }
             </xsl:if>

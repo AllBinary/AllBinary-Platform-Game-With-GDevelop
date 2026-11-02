@@ -59,7 +59,7 @@ Created By: Travis Berthelot
                                 <xsl:call-template name="rotateActionProcessGDObject" >
                                 </xsl:call-template>   
   
-                                <xsl:value-of select="$name" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+                                <xsl:value-of select="$name" />GDGameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
                             }
                             
                             <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param><xsl:with-param name="includeList" >found</xsl:with-param></xsl:call-template>
@@ -85,7 +85,7 @@ Created By: Travis Berthelot
                                 this.processReleased(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(index)).gdObject);
 
                                 //updateGDObject - 6
-                                gameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+                                gameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
                             }
                             } else {
                                 //this.logUtil.putF("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> <xsl:value-of select="$name" />GDGameLayerList was null", this, this.commonStrings.PROCESS);
@@ -114,7 +114,7 @@ Created By: Travis Berthelot
                             <xsl:call-template name="rotateActionProcessGDObject" >
                             </xsl:call-template>
 
-                            <xsl:value-of select="$name" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
+                            <xsl:value-of select="$name" />GDGameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
 
                         <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 

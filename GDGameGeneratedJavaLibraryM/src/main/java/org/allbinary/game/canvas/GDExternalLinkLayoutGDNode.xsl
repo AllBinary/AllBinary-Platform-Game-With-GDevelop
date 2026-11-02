@@ -71,6 +71,7 @@ Created By: Travis Berthelot
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.J2MEUtil;
                 import org.allbinary.game.layout.GDConfig;
+                import org.allbinary.game.layout.GDUtil;
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.canvas.GDExtensionGDNodes;
@@ -113,6 +114,7 @@ Created By: Travis Berthelot
                     private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                     
                     //private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
+                    private final GDUtil gdUtil = GDUtil.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                     //private final GDExtensionGDNodes gdExtensionGDNodes = GDExtensionGDNodes.getInstance();
                     
