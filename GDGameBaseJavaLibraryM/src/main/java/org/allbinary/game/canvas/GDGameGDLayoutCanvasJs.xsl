@@ -268,13 +268,13 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
     protected void setProcessGameProcessorInit() {
         if(ProgressCanvasFactory.getInstance().isInGame()) {
             this.setProcessGameProcessor(new GameProcessor(this));
-            if(this.getMainStateProcessor() == initGameProcessor) {
+            if(this.getMainStateProcessor() == this.initGameProcessor) {
                 if (this.getGameState() == this.gameStateFactory.PLAYING_GAME_STATE) {
                     this.setMainStateProcessor(this.getProcessGameProcessor());
                 }
             }
         } else {
-            this.setProcessGameProcessor(initGameProcessor);
+            this.setProcessGameProcessor(this.initGameProcessor);
         }
     }
 
@@ -353,7 +353,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
 
     public void mediaInit() throws Exception
     {
-        logUtil.putF(commonStrings.START, this, "mediaInit");
+        this.logUtil.putF(this.commonStrings.START, this, "mediaInit");
         AllBinaryMediaManager.init(GDGameSoundsFactory.getInstance());
     }
 
@@ -414,7 +414,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
 
         } catch (Exception e)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, "initConfigurable", e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, "initConfigurable", e);
         }
     }
 
@@ -422,7 +422,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
     {
         try
         {
-            //logUtil.putF(commonStrings.START, this, "threadInit");
+            //this.logUtil.putF(this.commonStrings.START, this, "threadInit");
 
             final int portion = 60;
             super.initApp(this.abeClientInformation);
@@ -491,13 +491,13 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
         
         } catch (Exception e)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, "_init", e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, "_init", e);
         }
     }
 
     public void buildGame(boolean isProgress) throws Exception
     {
-        //logUtil.putF(commonStrings.START, this, "buildGame");
+        //this.logUtil.putF(this.commonStrings.START, this, "buildGame");
     
         this.specialAnimation = GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance(this, gameLayerManager);
         this.setPlayingGameState();
@@ -669,7 +669,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
         //if (this.isFirst)
         //{
             //this.isFirst = false;
-            //logUtil.put(commonStrings.START, this, DRAW);
+            //this.logUtil.put(this.commonStrings.START, this, DRAW);
         //}
 
         this.clear(graphics);
@@ -886,20 +886,20 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
             }
         } catch (Exception e)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, SET_RUNNING, e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, SET_RUNNING, e);
         }        
     }
 
     //Special end2 case for GDevelop
     public void end2() {
 //        try {
-//            logUtil.putF(this.commonStrings.END, this, this.commonStrings.END);
+//            this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.END);
 //            this.cleanupGame();
 //            this.specialAnimation = SpecialAnimation.getInstance();
 //            this.setGameSpecificPaintableP(NullPaintable.getInstance());
 //        } catch (Exception e)
 //        {
-//            logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.END, e);
+//            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.END, e);
 //        }
     }
 
@@ -912,10 +912,10 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
             this.specialAnimation.reset();
             //GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance().clear();
             GDGameGlobals.getInstance().reset();
-            logUtil.putF(this.commonStrings.END, this, this.commonStrings.END);
+            this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.END);
         } catch (Exception e)
         {
-            logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.END, e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.END, e);
         }
     }
 

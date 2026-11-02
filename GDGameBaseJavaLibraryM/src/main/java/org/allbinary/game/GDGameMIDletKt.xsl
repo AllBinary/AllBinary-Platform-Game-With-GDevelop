@@ -165,7 +165,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
 
     @Synchronized open fun set<xsl:value-of select="$name" />RunnableInterface()
     {
-        logUtil.putF(commonStrings.START, this, "set<xsl:value-of select="$name" />")
+        this.logUtil.putF(this.commonStrings.START, this, "set<xsl:value-of select="$name" />")
 
         ////TWB - Loading Feature Change - Can remove remark after testing
         ProgressCanvasFactory.getInstance().start()
@@ -204,7 +204,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
 
     @Synchronized open fun set<xsl:value-of select="$name" />RunnableInterface()
     {
-        logUtil.putF(commonStrings.START, this, "set<xsl:value-of select="$name" />")
+        this.logUtil.putF(this.commonStrings.START, this, "set<xsl:value-of select="$name" />")
 
         ////TWB - Loading Feature Change - Can remove remark after testing
         ProgressCanvasFactory.getInstance().start()
@@ -258,15 +258,15 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
 
    override fun mediaShutdown()
    {
-        //PrelogUtil.putF(commonStrings.START, this, "mediaShutdown - postStopGameCanvasRunnableInterface")
+        //Prethis.logUtil.putF(this.commonStrings.START, this, "mediaShutdown - postStopGameCanvasRunnableInterface")
 
-        logUtil.putF(commonStrings.START, this,
+        this.logUtil.putF(this.commonStrings.START, this,
                 "mediaShutdown - postStopGameCanvasRunnableInterface")
 
         AllBinaryMediaManagerShutdown.shutdown(EarlySoundsFactory.getInstance())
         AllBinaryMediaManagerShutdown.shutdown(GDGameSoundsFactory.getInstance())
 
-        logUtil.putF(commonStrings.END, this,
+        this.logUtil.putF(this.commonStrings.END, this,
                 "mediaShutdown - postStopGameCanvasRunnableInterface")
    }
 
@@ -275,7 +275,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
 //    {
         <!--
         <xsl:if test="$totalLayouts > 1" >
-        logUtil.putF(commonStrings.START, this, "setDemo")
+        this.logUtil.putF(this.commonStrings.START, this, "setDemo")
 
         ProgressCanvasFactory.getInstance().start()
 
@@ -297,14 +297,14 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
     override fun setDisplay(newDisplay: Displayable)
     {
         gameGlobalsFactory.newDisplaybleTime = System.currentTimeMillis()
-        //logUtil.putF("newDisplaybleTime: " + gameGlobalsFactory.newDisplaybleTime, this, "setDisplay")
+        //this.logUtil.putF("newDisplaybleTime: " + gameGlobalsFactory.newDisplaybleTime, this, "setDisplay")
         super.setDisplay(newDisplay)
     }
 
-    //private val NEW_CANVAS: String = commonStrings.START + "newCanvas"
+    //private val NEW_CANVAS: String = this.commonStrings.START + "newCanvas"
     override fun startGameCanvasRunnableInterface() {
 
-        //logUtil.putF(NEW_CANVAS, this, "startGameCanvasRunnableInterface")
+        //this.logUtil.putF(NEW_CANVAS, this, "startGameCanvasRunnableInterface")
 
         gameGlobalsFactory.newCanvas = true
         super.startGameCanvasRunnableInterface()
@@ -345,7 +345,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
                 }
                 else
                 {
-                    logUtil.putF("Starting Game Too Often", this, MidletStrings.getInstance().COMMAND_ACTION)
+                    this.logUtil.putF("Starting Game Too Often", this, MidletStrings.getInstance().COMMAND_ACTION)
                 }
 
        </xsl:for-each>
@@ -356,7 +356,7 @@ open class GDGameMIDlet : SpecialDemoGameMidlet
         }
         catch(e: Exception)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, MidletStrings.getInstance().COMMAND_ACTION, e)
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, MidletStrings.getInstance().COMMAND_ACTION, e)
             if (command != GameCommandsFactory.getInstance().EXIT_COMMAND)
             {
                 this.exitProgress(false)

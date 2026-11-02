@@ -82,7 +82,7 @@ open class <xsl:value-of select="$layoutName" /> : StartCanvas
 
     open fun initPostPaint()
     {
-        //logUtil.put("initPostPaint", this, "initPostPaint")
+        //this.logUtil.put("initPostPaint", this, "initPostPaint")
 
         //this.setBasicGameDemoPaintable(
                 //GDGameMenuPaintable(FormPaintable(this.getMenuForm()))

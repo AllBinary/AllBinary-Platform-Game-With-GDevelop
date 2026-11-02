@@ -11,12 +11,12 @@
         *
         *  Created By: Travis Berthelot
 */
-/* Generated Code Do Not Modify */
-import { BasicBuildGameInitializerFactory } from '../../../../org/allbinary/game/init/BasicBuildGameInitializerFactory.js';
 //not GWT import const ResourceInitialization
 import { GDGameJ2MEEarlyResourceInitialization } from '../../../../org/allbinary/game/resource/GDGameJ2MEEarlyResourceInitialization.js';
 //not GWT import const GDGameJ2MEEarlyResourceInitialization
 //Current folder imports from return types, extended types, and scope (deduplicated)
+import { BasicBuildGameInitializerFactory } from './BasicBuildGameInitializerFactory.js';
+//sameFolderImports - not GWT import - same folder const BasicBuildGameInitializerFactory
 import { J2MEGDGameStaticInitializer } from './J2MEGDGameStaticInitializer.js';
 //sameFolderImports - not GWT import - same folder const J2MEGDGameStaticInitializer
 import { GDGameResourceInitialization } from './GDGameResourceInitialization.js';
@@ -24,11 +24,11 @@ import { GDGameResourceInitialization } from './GDGameResourceInitialization.js'
 import { GDGameJ2MEAnimationInterfaceFactoryEarlyResourceInitialization } from './GDGameJ2MEAnimationInterfaceFactoryEarlyResourceInitialization.js';
 //sameFolderImports - not GWT import - same folder const GDGameJ2MEAnimationInterfaceFactoryEarlyResourceInitialization
 import { GDGameJ2MEAnimationInterfaceFactoryResourceInitialization } from './GDGameJ2MEAnimationInterfaceFactoryResourceInitialization.js';
-//sameFolderImports - not GWT import - same folder const GDGameJ2MEAnimationInterfaceFactoryResourceInitialization
+//sameFolderImports - not GWT import - same folder const GameInitializationInterface
 export class GDGameStaticInitializerFactory extends BasicBuildGameInitializerFactory {
     getInstance() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return STATIC;
+        return GDGameStaticInitializerFactory.STATIC;
     }
 }
 GDGameStaticInitializerFactory.STATIC = new J2MEGDGameStaticInitializer([

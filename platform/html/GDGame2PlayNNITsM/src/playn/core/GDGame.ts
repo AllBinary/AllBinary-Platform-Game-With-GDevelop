@@ -110,8 +110,6 @@ const PlayN2InputInterface = globalThis.playn.core.PlayN2InputInterface;
 const TypedEvent = globalThis.playn.core.TypedEvent;
 //not plain js - same folder import { Keyboard } 
 const Keyboard = globalThis.playn.core.Keyboard;
-//not plain js - same folder import { Key } 
-const Key = globalThis.playn.core.Key;
 //not plain js - same folder import { KeyEvent } 
 const KeyEvent = globalThis.playn.core.KeyEvent;
 //not plain js - same folder import { Event } 
@@ -275,24 +273,21 @@ this.logUtil!.put(this.commonStrings!.EXCEPTION, this, "stopAll", e);
 
     public onKeyDown(event: Keyboard.KeyEvent){
 
- try { this.rawKeyEventHandler!.fireEvent(event.key.ordinal(), this.DEVICE_ID, true);
+ try { this.rawKeyEventHandler!.fireEvent(event.keyOrdinal(), this.DEVICE_ID, true);
     
  }
  catch (caught: any) {
  {
   const e = caught;
   
-this.logUtil!.put(CommonLabels.getInstance()!.START_LABEL +event.key.ordinal(), this, "onKeyDown", e);
+this.logUtil!.put(CommonLabels.getInstance()!.START_LABEL +event.keyOrdinal(), this, "onKeyDown", e);
     
 
  }
    }
  
 
-    let key: Key = event.key;;
-    
-
-    let abKey: number = this.playNToAllBinaryKeyInputUtil!.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[key.ordinal()]!;;
+    let abKey: number = this.playNToAllBinaryKeyInputUtil!.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[event.keyOrdinal()]!;;
     
 
                         if(abKey !=  -1)
@@ -308,10 +303,7 @@ this.logUtil!.put(CommonLabels.getInstance()!.START_LABEL +event.key.ordinal(), 
 
     public onKeyUp(event: Keyboard.KeyEvent){
 
-    let key: Key = event.key;;
-    
-
-    let abKey: number = this.playNToAllBinaryKeyInputUtil!.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[key.ordinal()]!;;
+    let abKey: number = this.playNToAllBinaryKeyInputUtil!.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[event.keyOrdinal()]!;;
     
 
                         if(abKey !=  -1)
@@ -385,7 +377,7 @@ this.logUtil!.put(this.commonStrings!.EXCEPTION, this, "onPointerDrag", e);
 
     public onMouseDown(mouseEvent: Mouse.ButtonEvent){
 
- try { this.motionRecognizer!.processStartMotionEvent(globalThis.Math.trunc(mouseEvent!.x()), globalThis.Math.trunc(mouseEvent!.y()), this.DEVICE_ID, mouseEvent!.button.ordinal());
+ try { this.motionRecognizer!.processStartMotionEvent(globalThis.Math.trunc(mouseEvent!.x()), globalThis.Math.trunc(mouseEvent!.y()), this.DEVICE_ID, mouseEvent!.buttonOrdinal());
     
  }
  catch (caught: any) {
@@ -403,7 +395,7 @@ logUtil!.put(commonStrings!.EXCEPTION, this, "onMouseDown", e);
 
     public onMouseUp(mouseEvent: Mouse.ButtonEvent){
 
- try { this.motionRecognizer!.processEndMotionEvent(globalThis.Math.trunc(mouseEvent!.x()), globalThis.Math.trunc(mouseEvent!.y()), this.DEVICE_ID, mouseEvent!.button.ordinal());
+ try { this.motionRecognizer!.processEndMotionEvent(globalThis.Math.trunc(mouseEvent!.x()), globalThis.Math.trunc(mouseEvent!.y()), this.DEVICE_ID, mouseEvent!.buttonOrdinal());
     
  }
  catch (caught: any) {

@@ -159,13 +159,12 @@ public class GDGame
         //logUtil.put(CommonLabels.getInstance().START_LABEL + event.key(), this, "onKeyDown");
     
         try {
-            this.rawKeyEventHandler.fireEvent(event.key.ordinal(), this.DEVICE_ID, true);
+            this.rawKeyEventHandler.fireEvent(event.keyOrdinal(), this.DEVICE_ID, true);
         } catch(Exception e) {
-            this.logUtil.put(CommonLabels.getInstance().START_LABEL + event.key.ordinal(), this, "onKeyDown", e);
+            this.logUtil.put(CommonLabels.getInstance().START_LABEL + event.keyOrdinal(), this, "onKeyDown", e);
         }
         
-        final Key key = event.key;
-        final int abKey = this.playNToAllBinaryKeyInputUtil.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[key.ordinal()];
+        final int abKey = this.playNToAllBinaryKeyInputUtil.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[event.keyOrdinal()];
         if(abKey != -1) {
             this.getCurrentDisplayable().keyPressed(abKey);
         }
@@ -176,9 +175,7 @@ public class GDGame
     {
         //logUtil.put(CommonLabels.getInstance().START_LABEL + event.key(), this, "onKeyUp");
         
-        final Key key = event.key;
-
-        final int abKey = this.playNToAllBinaryKeyInputUtil.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[key.ordinal()];
+        final int abKey = this.playNToAllBinaryKeyInputUtil.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[event.keyOrdinal()];
         if(abKey != -1) {
             this.getCurrentDisplayable().keyReleased(abKey);
         }
@@ -242,7 +239,7 @@ public class GDGame
         try
         {
             //logUtil.putF(commonStrings.START, this, "onMouseDown");
-            this.motionRecognizer.processStartMotionEvent((int) mouseEvent.x(), (int) mouseEvent.y(), this.DEVICE_ID, mouseEvent.button.ordinal());
+            this.motionRecognizer.processStartMotionEvent((int) mouseEvent.x(), (int) mouseEvent.y(), this.DEVICE_ID, mouseEvent.buttonOrdinal());
         }
         catch (Exception e)
         {
@@ -256,7 +253,7 @@ public class GDGame
         try
         {
             //logUtil.putF(commonStrings.START, this, "onMouseUp");
-            this.motionRecognizer.processEndMotionEvent((int) mouseEvent.x(), (int) mouseEvent.y(), this.DEVICE_ID, mouseEvent.button.ordinal());
+            this.motionRecognizer.processEndMotionEvent((int) mouseEvent.x(), (int) mouseEvent.y(), this.DEVICE_ID, mouseEvent.buttonOrdinal());
         }
         catch (Exception e)
         {

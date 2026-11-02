@@ -22,8 +22,8 @@
 
     <modules>
 
-        <module>../../../resource/GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
-        <module>../../../resource/GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
+<!--        <module>../../../resource/GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
+        <module>../../../resource/GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM</module>-->
                 
         <!--
         <module>../GDGameTouchHTMLM</module>

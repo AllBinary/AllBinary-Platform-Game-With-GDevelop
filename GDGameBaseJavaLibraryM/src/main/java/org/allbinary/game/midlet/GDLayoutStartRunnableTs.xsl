@@ -60,10 +60,10 @@ public class GDGameStart<xsl:value-of select="$layoutName" />CanvasRunnable impl
     {
         try
         {
-            logUtil.put(
+            this.logUtil.put(
                     CommonLabels.getInstance().START_LABEL +
                     "GDGameStart<xsl:value-of select="$layoutName" />CanvasRunnableInterface",
-                    this, commonStrings.RUN);
+                    this, this.commonStrings.RUN);
 
             this.demoGameMidlet.commandAction(
                     MyCommandsFactory.getInstance().SET_DISPLAYABLE,
@@ -88,11 +88,11 @@ public class GDGameStart<xsl:value-of select="$layoutName" />CanvasRunnable impl
 
             this.demoGameMidlet.postDemoSetup();
 
-            logUtil.putF(commonStrings.END_RUNNABLE, this, commonStrings.RUN);
+            this.logUtil.putF(this.commonStrings.END_RUNNABLE, this, this.commonStrings.RUN);
         }
         catch (Exception e)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.RUN, e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.RUN, e);
         }
 
     }

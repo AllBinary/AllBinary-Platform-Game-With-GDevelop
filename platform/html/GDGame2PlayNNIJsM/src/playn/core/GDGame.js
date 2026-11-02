@@ -54,8 +54,6 @@ const PlayN2InputInterface = globalThis.playn.core.PlayN2InputInterface;
 const TypedEvent = globalThis.playn.core.TypedEvent;
 //not plain js - same folder import { Keyboard } 
 const Keyboard = globalThis.playn.core.Keyboard;
-//not plain js - same folder import { Key } 
-const Key = globalThis.playn.core.Key;
 //not plain js - same folder import { KeyEvent } 
 const KeyEvent = globalThis.playn.core.KeyEvent;
 //not plain js - same folder import { Event } 
@@ -153,26 +151,22 @@ export class GDGame extends GDGameMIDlet {
     }
     onKeyDown(event) {
         try {
-            this.rawKeyEventHandler.fireEvent(event.key.ordinal(), this.DEVICE_ID, true);
+            this.rawKeyEventHandler.fireEvent(event.keyOrdinal(), this.DEVICE_ID, true);
         }
         catch (caught) {
             {
                 const e = caught;
-                this.logUtil.put(CommonLabels.getInstance().START_LABEL + event.key.ordinal(), this, "onKeyDown", e);
+                this.logUtil.put(CommonLabels.getInstance().START_LABEL + event.keyOrdinal(), this, "onKeyDown", e);
             }
         }
-        let key = event.key;
-        ;
-        let abKey = this.playNToAllBinaryKeyInputUtil.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[key.ordinal()];
+        let abKey = this.playNToAllBinaryKeyInputUtil.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[event.keyOrdinal()];
         ;
         if (abKey != -1) {
             this.getCurrentDisplayable().keyPressed(abKey);
         }
     }
     onKeyUp(event) {
-        let key = event.key;
-        ;
-        let abKey = this.playNToAllBinaryKeyInputUtil.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[key.ordinal()];
+        let abKey = this.playNToAllBinaryKeyInputUtil.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[event.keyOrdinal()];
         ;
         if (abKey != -1) {
             this.getCurrentDisplayable().keyReleased(abKey);
@@ -215,7 +209,7 @@ export class GDGame extends GDGameMIDlet {
     }
     onMouseDown(mouseEvent) {
         try {
-            this.motionRecognizer.processStartMotionEvent(globalThis.Math.trunc(mouseEvent.x()), globalThis.Math.trunc(mouseEvent.y()), this.DEVICE_ID, mouseEvent.button.ordinal());
+            this.motionRecognizer.processStartMotionEvent(globalThis.Math.trunc(mouseEvent.x()), globalThis.Math.trunc(mouseEvent.y()), this.DEVICE_ID, mouseEvent.buttonOrdinal());
         }
         catch (caught) {
             {
@@ -226,7 +220,7 @@ export class GDGame extends GDGameMIDlet {
     }
     onMouseUp(mouseEvent) {
         try {
-            this.motionRecognizer.processEndMotionEvent(globalThis.Math.trunc(mouseEvent.x()), globalThis.Math.trunc(mouseEvent.y()), this.DEVICE_ID, mouseEvent.button.ordinal());
+            this.motionRecognizer.processEndMotionEvent(globalThis.Math.trunc(mouseEvent.x()), globalThis.Math.trunc(mouseEvent.y()), this.DEVICE_ID, mouseEvent.buttonOrdinal());
         }
         catch (caught) {
             {

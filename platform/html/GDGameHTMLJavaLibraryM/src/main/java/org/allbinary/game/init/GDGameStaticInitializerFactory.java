@@ -13,8 +13,6 @@
 */
 package org.allbinary.game.init;
 
-import org.allbinary.game.init.BasicBuildGameInitializerFactory;
-import org.allbinary.game.init.GameInitializationInterface;
 import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.game.resource.GDGameJ2MEEarlyResourceInitialization;
 
@@ -36,6 +34,6 @@ extends BasicBuildGameInitializerFactory
 
     public GameInitializationInterface getInstance()
     {
-        return STATIC;
+        return GDGameStaticInitializerFactory.STATIC;
     }
 }

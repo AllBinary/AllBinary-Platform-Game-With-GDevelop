@@ -49,8 +49,8 @@ import org.allbinary.util.ABHashtable
 
 open class GDGame<xsl:value-of select="$layoutName" />CanvasRunnable : Runnable
 {
-    val logUtil: LogUtil = LogUtil.getInstance()
-    private val commonStrings: CommonStrings = CommonStrings.getInstance()
+    val this.logUtil: LogUtil = LogUtil.getInstance()
+    private val this.commonStrings: CommonStrings = CommonStrings.getInstance()
 
     private val demoGameMidlet: GDGameMIDlet
     private val hashtable: ABHashtable&lt;Any, Any&gt;
@@ -72,7 +72,7 @@ open class GDGame<xsl:value-of select="$layoutName" />CanvasRunnable : Runnable
     {
         try
         {
-            logUtil.putF(commonStrings.START_RUNNABLE, this, commonStrings.RUN)
+            this.logUtil.putF(this.commonStrings.START_RUNNABLE, this, this.commonStrings.RUN)
 
             this.demoGameMidlet.commandAction(
                     MyCommandsFactory.getInstance().SET_DISPLAYABLE,
@@ -97,11 +97,11 @@ open class GDGame<xsl:value-of select="$layoutName" />CanvasRunnable : Runnable
             DemoGameMidletEventHandler.getInstance().fireEvent(
                     this.startGameMidletEvent)
 
-            logUtil.putF(commonStrings.END_RUNNABLE, this, commonStrings.RUN)
+            this.logUtil.putF(this.commonStrings.END_RUNNABLE, this, this.commonStrings.RUN)
         }
         catch(e: Exception)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.RUN, e)
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.RUN, e)
         }
     }
 }

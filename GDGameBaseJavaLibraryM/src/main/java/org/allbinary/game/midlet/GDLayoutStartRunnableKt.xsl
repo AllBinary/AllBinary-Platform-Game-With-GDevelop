@@ -40,8 +40,8 @@ import org.allbinary.graphics.displayable.command.MyCommandsFactory
 
 open class GDGameStart<xsl:value-of select="$layoutName" />CanvasRunnable : Runnable
 {
-    val logUtil: LogUtil = LogUtil.getInstance()
-    private val commonStrings: CommonStrings = CommonStrings.getInstance()
+    val this.logUtil: LogUtil = LogUtil.getInstance()
+    private val this.commonStrings: CommonStrings = CommonStrings.getInstance()
 
     private val demoGameMidlet: GDGameMIDlet
 
@@ -61,10 +61,10 @@ open class GDGameStart<xsl:value-of select="$layoutName" />CanvasRunnable : Runn
     {
         try
         {
-            logUtil.put(
+            this.logUtil.put(
                     CommonLabels.getInstance().START_LABEL +
                     "GDGameStart<xsl:value-of select="$layoutName" />CanvasRunnableInterface",
-                    this, commonStrings.RUN)
+                    this, this.commonStrings.RUN)
 
             this.demoGameMidlet.commandAction(
                     MyCommandsFactory.getInstance().SET_DISPLAYABLE,
@@ -89,11 +89,11 @@ open class GDGameStart<xsl:value-of select="$layoutName" />CanvasRunnable : Runn
 
             this.demoGameMidlet.postDemoSetup()
 
-            logUtil.putF(commonStrings.END_RUNNABLE, this, commonStrings.RUN)
+            this.logUtil.putF(this.commonStrings.END_RUNNABLE, this, this.commonStrings.RUN)
         }
         catch(e: Exception)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.RUN, e)
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.RUN, e)
         }
 
     }

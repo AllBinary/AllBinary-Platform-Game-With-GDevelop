@@ -292,7 +292,7 @@ ImageModifierUtil.getInstanceOrCreate()!.setAlpha(this.originalImage, this.image
 
     let cy: number = PlayN.graphics()!.screenHeight() /2;;
     
-touchVectorX= (x -cx) *1.0 /cx;
+this.touchVectorX= (x -cx) *1.0 /cx;
     
 this.touchVectorY= (y -cy) *1.0 /cy;
     

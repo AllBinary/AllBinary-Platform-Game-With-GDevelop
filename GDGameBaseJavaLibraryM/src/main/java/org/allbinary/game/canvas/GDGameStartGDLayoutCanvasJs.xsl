@@ -84,7 +84,7 @@ public class <xsl:value-of select="$layoutName" /> extends StartCanvas
 
     public void initPostPaint() throws Exception
     {
-        //logUtil.put("initPostPaint", this, "initPostPaint");
+        //this.logUtil.put("initPostPaint", this, "initPostPaint");
 
         //this.setBasicGameDemoPaintable(
                 //new GDGameMenuPaintable(new FormPaintable(this.getMenuForm()))
