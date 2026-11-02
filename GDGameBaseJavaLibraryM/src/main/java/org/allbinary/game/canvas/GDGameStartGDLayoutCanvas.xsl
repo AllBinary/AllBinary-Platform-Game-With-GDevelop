@@ -69,7 +69,7 @@ public class <xsl:value-of select="$layoutName" /> extends StartCanvas
                 NullPaintable.getInstance(), NullInitUpdatePaintable.getInstance(),
                 new GDGameStaticInitializerFactory(), false);
 
-        this.setWait(WAIT);
+        this.setWait(this.WAIT);
 
         <!--
             <xsl:variable name="layoutTotal" ><xsl:for-each select="../layouts" ><xsl:if test="position() = last()" ><xsl:value-of select="position()" /></xsl:if></xsl:for-each></xsl:variable>

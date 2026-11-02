@@ -38,7 +38,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
     private final Directory directory = Directory.getInstance();
 
     private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
-    private final StreamUtil streamUtil = StreamUtil.getInstance();
+    //private final StreamUtil streamUtil = StreamUtil.getInstance();
 
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDXslTemplates gdXslTemplates = GDXslTemplates.getInstance();
@@ -60,6 +60,393 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
     private final String BUILT_IN = "BuiltIn";
     private final String END2 = "GDNodes.java";
 
+    private final String[] VARIABLE_ARRAY = {
+        "ToJSON(",
+        "Variable(",
+        "VariableString(",
+        "VariableChildCount("
+    };
+    
+    private final String GLOBALS = "globals.";
+
+    private final String[] EXTERNAL_LINK_LAYOUTS_START = {
+        this.GENERATED_START_WITH_PATH,
+    };
+
+    private final String[] EXTERNAL_LINK_LAYOUTS_MID = {
+        "Game",
+    };
+
+    private final String[] EXTERNAL_LINK_LAYOUTS_END = {
+        "ExternalLinkLayoutGDNode.java"
+    };
+
+    private final String[] LAYOUT_START = {
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.gdPaths.GEN_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\GD",
+    };
+
+    private final String[] LAYOUT_END = {
+        "SpecialAnimation.xml",
+        "SpecialAnimation.java",
+        "SpecialAnimationBuilder.java",
+        "SpecialAnimationExternalEventGDNodes.java",
+        "SpecialAnimationExternalLayoutGDNodes.java",
+        "SpecialAnimationExternalActionGDNodes.java",
+        "SpecialAnimationExternalConditionGDNodes.java",
+        "SpecialAnimationExternalObjectEventGDNodes.java",
+        "SpecialAnimationExternalOtherEventGDNodes.java",
+        "SpecialAnimationActionGDNodes.java",
+        "SpecialAnimationConditionGDNodes.java",
+        "SpecialAnimationObjectEventGDNodes.java",
+        "SpecialAnimationOtherEventGDNodes.java",
+        "SpecialAnimationGDResources.java",
+        "SpecialAnimationGlobals.java",
+        "GDObjectsFactory.java",
+        "GamePlaynResources.java",
+    };
+
+    private final String[] GLOBALS_XSL_PATH_INPUT_ARRAY = {
+        this.gdData.GD_NON_LAYOUT_AS_XML,
+        this.gdData.GD_GLOBALS_ANIMATION,
+        this.gdData.GD_GLOBALS,
+        this.gdData.GD_GLOBALS_GD_OBJECTS_FACTORY,
+        this.gdData.GD_GLOBALS_GD_RESOURCES,
+        this.gdData.GD_EXTENSION_GD_NODES,
+        this.gdData.GD_GLOBAL_GAME_THREED_LEVEL_LOADER,
+    };
+
+    private final String[] GLOBALS_START = {
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.GENERATED_START_WITH_PATH,
+        this.gdPaths.GEN_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
+    };
+
+    private final String[] GLOBALS_END = {
+        "NonLayout.xml",
+        "GlobalsSpecialAnimation.java",
+        "GameGlobals.java",
+        "GlobalsGDObjectsFactory.java",
+        "GlobalsGDResources.java",
+        "ExtensionGDNodes.java",
+        "GlobalGameThreedLevelBuilder.java",
+    };
+
+    private final String[] XSL_PATH_INPUT_CREATE_INSTANCE_ARRAY = {this.gdData.GD_EXTERNAL_CREATE_INSTANCE_GD_NODE};
+
+    private final String[] EXTERNAL_CREATE_INSTANCE_START = {
+        this.GENERATED_START_WITH_PATH,
+    };
+
+    private final String[] EXTERNAL_CREATE_INSTANCE_MID = {
+        "GameExternal",
+    };
+
+    private final String[] EXTERNAL_CREATE_INSTANCE_END = {
+        "CreateInstance.java"
+    };
+
+    private final String[] CREATE_INSTANCE_XSL_PATH_INPUT_ARRAY = {this.gdData.GD_CREATE_INSTANCE_GD_NODE};
+
+    private final String[] CREATE_INSTANCE_START = {
+        this.GENERATED_START_WITH_PATH,
+    };
+
+    private final String[] CREATE_INSTANCE_MID = {
+        "Game",
+    };
+
+    private final String[] CREATE_INSTANCE_END = {
+        "CreateInstance.java"
+    };
+    
+    private final String[] LAYOUT_XSL_PATH_INPUT_ARRAY = {
+        this.gdData.GD_LAYOUT_AS_XML,
+        this.gdData.GD_LAYOUT,
+        this.gdData.GD_LAYOUT_BUILDER,
+        this.gdData.GD_LAYOUT_EXTERNAL_EVENT_GD_NODES,
+        this.gdData.GD_LAYOUT_EXTERNAL_LAYOUT_GD_NODES,
+        this.gdData.GD_LAYOUT_EXTERNAL_ACTION_GD_NODES,
+        this.gdData.GD_LAYOUT_EXTERNAL_CONDITION_GD_NODES,
+        this.gdData.GD_LAYOUT_EXTERNAL_OBJECT_EVENT_GD_NODES,
+        this.gdData.GD_LAYOUT_EXTERNAL_OTHER_EVENT_GD_NODES,
+        this.gdData.GD_LAYOUT_ACTION_GD_NODES,
+        this.gdData.GD_LAYOUT_CONDITION_GD_NODES,
+        this.gdData.GD_LAYOUT_OBJECT_EVENT_GD_NODES,
+        this.gdData.GD_LAYOUT_OTHER_EVENT_GD_NODES,
+        this.gdData.GD_LAYOUT_GD_RESOURCES,
+        this.gdData.GD_LAYOUT_SCENE_AS_SPECIAL_ANIMATION_GLOBALS,
+        this.gdData.GD_LAYOUT_GD_OBJECTS_FACTORY,
+        this.gdData.GD_GAME_PLAYN_RESOURCES,};
+
+    private final String[] BUILT_IN_XSL_PATH_INPUT_ARRAY = {this.gdData.GD_OTHER_EVENT_GD_NODES};
+
+    private final String[] BUILT_IN_END = {
+        this.END2,};
+
+    private final String[] BUILT_IN_START = {
+        this.BUILTIN_GDNODE_START_WITH_PATH,};
+
+    private final String[] BUILT_IN_MIDDLE = {
+        this.BUILT_IN,};
+
+    private final String[] ACTION_GDNODES_XSL_PATH_INPUT_ARRAY = {
+        this.gdData.GD_LAYOUT_N_EXTERNAL_ACTION_GD_NODES,
+        this.gdData.GD_LAYOUT_N_ACTION_GD_NODES,};
+
+    private final String ACTION_GDNODES_END2 = "GDNodes.java";
+    private final String[] ACTION_GDNODES_END = {
+        ACTION_GDNODES_END2,
+        ACTION_GDNODES_END2,};
+
+    private final String[] ACTION_GDNODES_START = {
+        this.ACTION_GDNODE_START_WITH_PATH,
+        this.ACTION_GDNODE_START_WITH_PATH,};
+
+    private final String[] ACTION_GDNODES_MIDDLE = {
+        "ExternalAction",
+        "Action",};
+    
+    private final String[] RESOURCE_LOADER_XSL_PATH_INPUT_ARRAY = {
+        this.gdData.GD_ANDROID_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_J2SE_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_LAZY_J2SE_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_HTML_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_LAZY_HTML_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_LAZY_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_OPENGL_TWO_D_J2SE_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_OPENGL_TWO_D_LAZY_J2SE_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_OPENGL_TWO_D_ANDROID_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_OPENGL_THREED_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_GLOBAL_RESOURCES,
+        this.gdData.GD_THREED_GLOBAL_RESOURCES,
+        this.gdData.GD_GLOBAL_IMAGE_RESOURCES,
+        this.gdData.GD_THREED_GLOBAL_IMAGE_RESOURCES,
+        this.gdData.GD_GAME_MUSIC_FACTORY,
+        this.gdData.GD_ANDROID_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_J2SE_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_LAZY_J2SE_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_HTML_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_LAZY_HTML_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_LAZY_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_OPENGL_TWO_D_J2SE_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_OPENGL_TWO_D_LAZY_J2SE_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_OPENGL_TWO_D_ANDROID_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_OPENGL_THREED_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_ANDROID_TOUCH_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_J2SE_TOUCH_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_LAZY_J2SE_TOUCH_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_HTML_TOUCH_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_LAZY_HTML_TOUCH_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_TOUCH_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_LAZY_TOUCH_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_OPENGL_THREED_TOUCH_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
+        this.gdData.GD_GAME_SOUNDS_FACTORY,
+        this.gdData.GD_LAYOUT_RESOURCES,
+        this.gdData.GD_THREED_LAYOUT_RESOURCES,
+        this.gdData.GD_LAYOUT_IMAGE_RESOURCES,
+        this.gdData.GD_THREED_LAYOUT_IMAGE_RESOURCES,
+        this.gdData.GD_LAYOUT_TOUCH_IMAGE_RESOURCES,
+        this.gdData.GD_THREED_LAYOUT_TOUCH_IMAGE_RESOURCES,
+        this.gdData.GD_LAYOUT_GAME_THREED_LEVEL_LOADER,
+        this.gdData.GD_GAME_CAMERA_SETUP,
+        this.gdData.GD_LAYOUT_UTIL,};
+
+    private final String[] RESOURCE_LOADER_OUTPUT_FILE_PATH_ARRAY = {
+        this.gdPaths.GEN_PATH + "resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameLazyImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameOpenGLTwoDJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameOpenGLTwoDAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
+        this.gdPaths.GEN_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
+        this.gdPaths.GEN_PATH + "GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
+        this.gdPaths.GEN_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
+        this.gdPaths.GEN_PATH + "GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameLazyImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameOpenGLTwoDJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameOpenGLTwoDAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameLazyImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+        this.gdPaths.GEN_PATH + "GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio\\GD",
+        this.gdPaths.GEN_PATH + "GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
+        this.gdPaths.GEN_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
+        this.gdPaths.GEN_PATH + "GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
+        this.gdPaths.GEN_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
+        this.gdPaths.GEN_PATH + "GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
+        this.gdPaths.GEN_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
+        this.gdPaths.GEN_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
+        this.gdPaths.GEN_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\graphics\\threed\\min3d\\GD",
+        this.gdPaths.GEN_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",};
+
+    private final String[] RESOURCE_LOADER_OUTPUT_FILE_PATH_END_ARRAY = {
+        "GameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GlobalSpecialAnimationResources.java",
+        "GlobalSpecialAnimationResources.java",
+        "GlobalSpecialAnimationImageResources.java",
+        "GlobalSpecialAnimationImageResources.java",
+        "GameMusicFactory.java",
+        "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+        "GameSoundsFactory.java",
+        "SpecialAnimationResources.java",
+        "SpecialAnimationResources.java",
+        "SpecialAnimationImageResources.java",
+        "SpecialAnimationImageResources.java",
+        "SpecialAnimationTouchImageResources.java",
+        "SpecialAnimationTouchImageResources.java",
+        "GameThreedLevelBuilder.java",
+        "GameCameraSetup.java",
+        "LayoutUtil.java",};
+
+    private final String PARAMETERS_START = "<parameters>";
+    private final String PARAMETERS_END = "</parameters>";
+    private final String QUOTE = "&quot;";
+    private final String THIS = "this.";
+
+    private final String FINISHED = "Finished";
+    private final String SKIPPING_INDEX_AS_STRING = "skipping indexAsString:";
+    private final String NO_GDNODE = "No GDNode: ";
+    private final String ACTION_LIST = " action list:";
+
+    private final String ELAPSED_TIME = "ElapsedTime: ";
+    private final String CURRENT_STATE_ELAPSED_TIME = "Current State ElapsedTime: ";
+    private final String GENERATE_XML_AND_GLOBALS = "generateXMLAndGlobals (Takes a long time and has little output) ";
+    private final String GENERATE_LAYOUTS = "generateLayouts ";
+    private final String GENERATE_CREATE_INSTANCES = "generateCreateInstances ";
+    private final String GENERATE_EXTERNAL_LINK_LAYOUTS = "generateExternalLinkLayouts ";
+    private final String GENERATE_EXTERNAL_CREATE_INSTANCES = "generateExternalCreateInstances ";
+    private final String GENERATE_ACTION_GDNODES = "generateActionGDNodes ";
+    private final String GENERATE_BUILT_IN_GDNODES = "generateBuiltInGDNodes ";
+    private final String GENERATE_RESOURCES_LOADERS_SETUP = "generateResourcesLoadersSetup ";
+    private final String GAME_XML_NOT_FORMATTED = "Is the game xml formatted when it is not we get an error from: gglobals.dVersion";
+
+    //Applied in order to the game xml
+    private final String[] GAME_XML_REPLACE_FIND_ARRAY = {
+        ".Width()",
+        ".Height()",
+        "GlobalVariable(",
+        "GlobalVariableString(",
+        "GlobalVariableChildCount(",
+        "Time(&quot;timestamp&quot;)",
+        "GlobalVarToJSON(",
+        "Text::Value()",
+        "FileSystem::",
+        "FileSystem.ReadDirectory",
+        "AdvancedHTTP::ResponseStatusText",
+        ".Text()",
+    };
+
+    private final String[] GAME_XML_REPLACE_WITH_ARRAY = {
+        //".Width(globals.graphics)",
+        ".Width(null)",
+        //".Height(globals.graphics)",
+        ".Height(null)",
+        "GlobalVariable(gameGlobals.",
+        "GlobalVariableString(gameGlobals.",
+        "GlobalVariableChildCount(gameGlobals.",
+        "gameTickTimeDelayHelper.startTime",
+        "GlobalVarToJSON(gameGlobals.",
+        "Text()",
+        "FileSystem.",
+        "FileSystem::ReadDirectory",
+        "AdvancedHTTP.ResponseStatusText",
+        "GDGameLayer.Text()",
+    };
+
+    //Applied in order to the layout game xml
+    private final String[] LAYOUT_GAME_XML_REPLACE_FIND_ARRAY = {
+        "PointX(&quot;",
+        "PointY(&quot;",
+        "MouseX(&quot;&quot;",
+        "MouseY(&quot;&quot;",
+        "CameraX(&quot;&quot;",
+        "CameraY(&quot;&quot;",
+        "CameraWidth(&quot;&quot;",
+        "\"value\": \" V\"",
+        "\"value\": \"V \"",
+    };
+
+    private final String[] LAYOUT_GAME_XML_REPLACE_WITH_ARRAY = {
+        "PointX(&quot;globals.",
+        "PointY(&quot;globals.",
+        "MouseX(EMPTY_STRING",
+        "MouseY(EMPTY_STRING",
+        "CameraX(EMPTY_STRING",
+        "CameraY(EMPTY_STRING",
+        "CameraWidth(EMPTY_STRING",
+        "\"value\": \" &#8595;\"",
+        "\"value\": \"&#8595; \"",
+    };
+
     public GDLayoutsToAllBinaryLayoutGenerator() {
         this.smallIntegerSingletonFactory.init();
     }
@@ -78,38 +465,10 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             gameXmlAsString,
             gameXmlAsString,};
 
-        final String[] xslPathInputArray0 = {
-            this.gdData.GD_NON_LAYOUT_AS_XML,
-            this.gdData.GD_GLOBALS_ANIMATION,
-            this.gdData.GD_GLOBALS,
-            this.gdData.GD_GLOBALS_GD_OBJECTS_FACTORY,
-            this.gdData.GD_GLOBALS_GD_RESOURCES,
-            this.gdData.GD_EXTENSION_GD_NODES,
-            this.gdData.GD_GLOBAL_GAME_THREED_LEVEL_LOADER,
-        };
-
-        final String[] START0 = {
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.gdPaths.GEN_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",};
-
-        final String[] END0 = {
-            "NonLayout.xml",
-            "GlobalsSpecialAnimation.java",
-            "GameGlobals.java",
-            "GlobalsGDObjectsFactory.java",
-            "GlobalsGDResources.java",
-            "ExtensionGDNodes.java",
-            "GlobalGameThreedLevelBuilder.java",};
-
-        final int xslTotal0 = xslPathInputArray0.length;
+        final int xslTotal0 = GLOBALS_XSL_PATH_INPUT_ARRAY.length;
         final String[] xslDocumentAsString0 = new String[xslTotal0];
         for (int index = 0; index < xslTotal0; index++) {
-            xslDocumentAsString0[index] = this.gdData.getAsString(xslPathInputArray0[index], sharedBytes);
+            xslDocumentAsString0[index] = this.gdData.getAsString(GLOBALS_XSL_PATH_INPUT_ARRAY[index], sharedBytes);
         }
 
         for (int index2 = 0; index2 < xslTotal0; index2++) {
@@ -118,7 +477,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             final Runnable runnable = new Runnable() {
                 public void run() {
                     try {
-                        generateXMLAndGlobalsAt(xmlStringArray0, xslPathInputArray0, START0, END0, xslDocumentAsString0, currentIndex, new StringMaker());
+                        generateXMLAndGlobalsAt(xmlStringArray0, GLOBALS_XSL_PATH_INPUT_ARRAY, GLOBALS_START, GLOBALS_END, xslDocumentAsString0, currentIndex, new StringMaker());
                         finished[0] = true;
                     } catch (Exception e) {
                         logUtil.put(commonStrings.EXCEPTION, this, commonStrings.RUN, e);
@@ -186,18 +545,6 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             xslDocumentAsString[index] = this.gdData.getAsString(xslPathInputArray[index], sharedBytes);
         }
 
-        final String[] START = {
-            this.GENERATED_START_WITH_PATH,
-        };
-
-        final String[] MID = {
-            "Game",
-        };
-        
-        final String[] END = {
-            "ExternalLinkLayoutGDNode.java"
-        };
-
         String indexAsString;
         String index4AsString;
         int externalLayoutTotalForSceneLayout;
@@ -228,7 +575,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     xmlStringArray[index2]);
                  
                 stringMaker.delete(0, stringMaker.length());
-                final String fileName = this.gdPaths.getOutputPath(stringMaker.append(START[index2]).append(indexAsString).append(MID[index2]).appendint(index4).append(END[index2]).toString());
+                final String fileName = this.gdPaths.getOutputPath(stringMaker.append(EXTERNAL_LINK_LAYOUTS_START[index2]).append(indexAsString).append(EXTERNAL_LINK_LAYOUTS_MID[index2]).appendint(index4).append(EXTERNAL_LINK_LAYOUTS_END[index2]).toString());
                 this.directory.create(new AbFilePath(fileName));
 
                 //logUtil.put(RESULT + result, this, commonStrings.PROCESS);
@@ -247,7 +594,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         }
 
         stringMaker.delete(0, stringMaker.length());
-        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).append("Finished").toString(), this, this.commonStrings.PROCESS);
+        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).append(this.FINISHED).toString(), this, this.commonStrings.PROCESS);
 
     }
 
@@ -262,25 +609,11 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             layoutGameXmlAsString
         };
 
-        final String[] xslPathInputArray = {this.gdData.GD_EXTERNAL_CREATE_INSTANCE_GD_NODE};
-
-        final int xslTotal = xslPathInputArray.length;
+        final int xslTotal = XSL_PATH_INPUT_CREATE_INSTANCE_ARRAY.length;
         final String[] xslDocumentAsString = new String[xslTotal];
         for (int index = 0; index < xslTotal; index++) {
-            xslDocumentAsString[index] = this.gdData.getAsString(xslPathInputArray[index], sharedBytes);
+            xslDocumentAsString[index] = this.gdData.getAsString(XSL_PATH_INPUT_CREATE_INSTANCE_ARRAY[index], sharedBytes);
         }
-
-        final String[] START = {
-            this.GENERATED_START_WITH_PATH,
-        };
-
-        final String[] MID = {
-            "GameExternal",
-        };
-        
-        final String[] END = {
-            "CreateInstance.java"
-        };
         
         String indexAsString;
         String index4AsString;
@@ -311,15 +644,15 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
                 //logUtil.put("xsl index: " + index2, this, commonStrings.PROCESS);
                 stringMaker.delete(0, stringMaker.length());
-                this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(xslPathInputArray[index2]).toString(), this, this.commonStrings.PROCESS);
+                this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(XSL_PATH_INPUT_CREATE_INSTANCE_ARRAY[index2]).toString(), this, this.commonStrings.PROCESS);
 
-                String result = this.gdXslTemplates.translate(xslPathInputArray[index2], xslDocumentAsString[index2],
+                String result = this.gdXslTemplates.translate(XSL_PATH_INPUT_CREATE_INSTANCE_ARRAY[index2], xslDocumentAsString[index2],
                     new String[] {this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, this.gdToolStrings.GD_EXTERNAL_LAYOUT_INDEX, this.gdToolStrings.GD_CREATE_INSTANCE_INDEX},
                     new String[] {indexAsString, index4AsString, createInstanceIndexAsString},
                     xmlStringArray[index2]);
                  
                 stringMaker.delete(0, stringMaker.length());
-                final String fileName = this.gdPaths.getOutputPath(stringMaker.append(START[index2]).append(indexAsString).append(MID[index2]).appendint(index5).append(END[index2]).toString());
+                final String fileName = this.gdPaths.getOutputPath(stringMaker.append(EXTERNAL_CREATE_INSTANCE_START[index2]).append(indexAsString).append(EXTERNAL_CREATE_INSTANCE_MID[index2]).appendint(index5).append(EXTERNAL_CREATE_INSTANCE_END[index2]).toString());
                 this.directory.create(new AbFilePath(fileName));
 
                 //logUtil.put(RESULT + result, this, commonStrings.PROCESS);
@@ -339,7 +672,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         }
 
         stringMaker.delete(0, stringMaker.length());
-        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).append("Finished").toString(), this, this.commonStrings.PROCESS);
+        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).append(this.FINISHED).toString(), this, this.commonStrings.PROCESS);
 
     }
 
@@ -354,25 +687,11 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             layoutGameXmlAsString
         };
 
-        final String[] xslPathInputArray = {this.gdData.GD_CREATE_INSTANCE_GD_NODE};
-
-        final int xslTotal = xslPathInputArray.length;
+        final int xslTotal = CREATE_INSTANCE_XSL_PATH_INPUT_ARRAY.length;
         final String[] xslDocumentAsString = new String[xslTotal];
         for (int index = 0; index < xslTotal; index++) {
-            xslDocumentAsString[index] = this.gdData.getAsString(xslPathInputArray[index], sharedBytes);
+            xslDocumentAsString[index] = this.gdData.getAsString(CREATE_INSTANCE_XSL_PATH_INPUT_ARRAY[index], sharedBytes);
         }
-
-        final String[] START = {
-            this.GENERATED_START_WITH_PATH,
-        };
-
-        final String[] MID = {
-            "Game",
-        };
-        
-        final String[] END = {
-            "CreateInstance.java"
-        };
         
         String indexAsString;
 
@@ -397,15 +716,15 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
                 //logUtil.put("xsl index: " + index2, this, commonStrings.PROCESS);
                 stringMaker.delete(0, stringMaker.length());
-                this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(xslPathInputArray[index2]).toString(), this, this.commonStrings.PROCESS);
+                this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(CREATE_INSTANCE_XSL_PATH_INPUT_ARRAY[index2]).toString(), this, this.commonStrings.PROCESS);
 
-                String result = this.gdXslTemplates.translate(xslPathInputArray[index2], xslDocumentAsString[index2],
+                String result = this.gdXslTemplates.translate(CREATE_INSTANCE_XSL_PATH_INPUT_ARRAY[index2], xslDocumentAsString[index2],
                     new String[] {this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, this.gdToolStrings.GD_CREATE_INSTANCE_INDEX},
                     new String[] {indexAsString, createInstanceIndexAsString},
                     xmlStringArray[index2]);
                  
                 stringMaker.delete(0, stringMaker.length());
-                final String fileName = this.gdPaths.getOutputPath(stringMaker.append(START[index2]).append(indexAsString).append(MID[index2]).appendint(index4).append(END[index2]).toString());
+                final String fileName = this.gdPaths.getOutputPath(stringMaker.append(CREATE_INSTANCE_START[index2]).append(indexAsString).append(CREATE_INSTANCE_MID[index2]).appendint(index4).append(CREATE_INSTANCE_END[index2]).toString());
                 this.directory.create(new AbFilePath(fileName));
 
                 //logUtil.put(RESULT + result, this, commonStrings.PROCESS);
@@ -424,7 +743,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         }
 
         stringMaker.delete(0, stringMaker.length());
-        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).append("Finished").toString(), this, this.commonStrings.PROCESS);
+        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).append(this.FINISHED).toString(), this, this.commonStrings.PROCESS);
 
     }
     
@@ -454,70 +773,12 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             layoutGameXmlAsString,
             gameXmlAsString,};
 
-        final String[] xslPathInputArray = {
-            this.gdData.GD_LAYOUT_AS_XML,
-            this.gdData.GD_LAYOUT,
-            this.gdData.GD_LAYOUT_BUILDER,
-            this.gdData.GD_LAYOUT_EXTERNAL_EVENT_GD_NODES,
-            this.gdData.GD_LAYOUT_EXTERNAL_LAYOUT_GD_NODES,
-            this.gdData.GD_LAYOUT_EXTERNAL_ACTION_GD_NODES,
-            this.gdData.GD_LAYOUT_EXTERNAL_CONDITION_GD_NODES,
-            this.gdData.GD_LAYOUT_EXTERNAL_OBJECT_EVENT_GD_NODES,
-            this.gdData.GD_LAYOUT_EXTERNAL_OTHER_EVENT_GD_NODES,
-            this.gdData.GD_LAYOUT_ACTION_GD_NODES,
-            this.gdData.GD_LAYOUT_CONDITION_GD_NODES,
-            this.gdData.GD_LAYOUT_OBJECT_EVENT_GD_NODES,
-            this.gdData.GD_LAYOUT_OTHER_EVENT_GD_NODES,
-            this.gdData.GD_LAYOUT_GD_RESOURCES,
-            this.gdData.GD_LAYOUT_SCENE_AS_SPECIAL_ANIMATION_GLOBALS,
-            this.gdData.GD_LAYOUT_GD_OBJECTS_FACTORY,
-            this.gdData.GD_GAME_PLAYN_RESOURCES,
-        };
-
-        final int xslTotal = xslPathInputArray.length;
+        final int xslTotal = LAYOUT_XSL_PATH_INPUT_ARRAY.length;
         final String[] xslDocumentAsString = new String[xslTotal];
         for (int index = 0; index < xslTotal; index++) {
-            xslDocumentAsString[index] = this.gdData.getAsString(xslPathInputArray[index], sharedBytes);
+            xslDocumentAsString[index] = this.gdData.getAsString(LAYOUT_XSL_PATH_INPUT_ARRAY[index], sharedBytes);
         }
-        this.gdXslTemplates.compile(xslPathInputArray, xslDocumentAsString);
-
-        final String[] START = {
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.GENERATED_START_WITH_PATH,
-            this.gdPaths.GEN_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\GD",};
-
-        final String[] END = {
-            "SpecialAnimation.xml",
-            "SpecialAnimation.java",
-            "SpecialAnimationBuilder.java",
-            "SpecialAnimationExternalEventGDNodes.java",
-            "SpecialAnimationExternalLayoutGDNodes.java",
-            "SpecialAnimationExternalActionGDNodes.java",
-            "SpecialAnimationExternalConditionGDNodes.java",
-            "SpecialAnimationExternalObjectEventGDNodes.java",
-            "SpecialAnimationExternalOtherEventGDNodes.java",
-            "SpecialAnimationActionGDNodes.java",
-            "SpecialAnimationConditionGDNodes.java",
-            "SpecialAnimationObjectEventGDNodes.java",
-            "SpecialAnimationOtherEventGDNodes.java",
-            "SpecialAnimationGDResources.java",
-            "SpecialAnimationGlobals.java",
-            "GDObjectsFactory.java",
-            "GamePlaynResources.java",};
+        this.gdXslTemplates.compile(LAYOUT_XSL_PATH_INPUT_ARRAY, xslDocumentAsString);
 
         String indexAsString;
         for (int index = startIndex; index < size; index++) {
@@ -534,13 +795,13 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
                 //logUtil.put("xsl index: " + index2, this, commonStrings.PROCESS);
                 stringMaker.delete(0, stringMaker.length());
-                this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(xslPathInputArray[index2]).toString(), this, this.commonStrings.PROCESS);
+                this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(LAYOUT_XSL_PATH_INPUT_ARRAY[index2]).toString(), this, this.commonStrings.PROCESS);
 
-                String result = this.gdXslTemplates.translate(xslPathInputArray[index2], xslDocumentAsString[index2],
+                String result = this.gdXslTemplates.translate(LAYOUT_XSL_PATH_INPUT_ARRAY[index2], xslDocumentAsString[index2],
                     this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, indexAsString, xmlStringArray[index2]);
                  
                 stringMaker.delete(0, stringMaker.length());
-                final String fileName = this.gdPaths.getOutputPath(stringMaker.append(START[index2]).append(indexAsString).append(END[index2]).toString());
+                final String fileName = this.gdPaths.getOutputPath(stringMaker.append(LAYOUT_START[index2]).append(indexAsString).append(LAYOUT_END[index2]).toString());
                 this.directory.create(new AbFilePath(fileName));
 
                 //logUtil.put(RESULT + result, this, commonStrings.PROCESS);
@@ -568,7 +829,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         }
 
         stringMaker.delete(0, stringMaker.length());
-        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).append("Finished").toString(), this, this.commonStrings.PROCESS);
+        this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).append(this.FINISHED).toString(), this, this.commonStrings.PROCESS);
 
     }
 
@@ -657,23 +918,12 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
             final String[] xmlStringArray = {
                 layoutGameXmlAsString2,};
-
-            final String[] gdNodeXSLPathInputArray = {this.gdData.GD_OTHER_EVENT_GD_NODES};
-
-            final String[] END = {
-                this.END2,};
-
-            final int xslTotal = gdNodeXSLPathInputArray.length;
+            
+            final int xslTotal = BUILT_IN_XSL_PATH_INPUT_ARRAY.length;
             final String[] xslDocumentAsString = new String[xslTotal];
             for (int index = 0; index < xslTotal; index++) {
-                xslDocumentAsString[index] = this.gdData.getAsString(gdNodeXSLPathInputArray[index], sharedBytes);
+                xslDocumentAsString[index] = this.gdData.getAsString(BUILT_IN_XSL_PATH_INPUT_ARRAY[index], sharedBytes);
             }
-
-            final String[] START = {
-                this.BUILTIN_GDNODE_START_WITH_PATH,};
-
-            final String[] MIDDLE = {
-                this.BUILT_IN,};
 
             String indexAsString;
             //while (charIndex < primitiveLongSingleton.NUMBER_CHAR_ARRAY.length) {
@@ -683,7 +933,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
                 if (indexAsString.isEmpty()) {
                     stringMaker.delete(0, stringMaker.length());
-                    this.logUtil.putF(stringMaker.append("skipping indexAsString:").append(indexAsString).toString(), this, this.commonStrings.PROCESS);
+                    this.logUtil.putF(stringMaker.append(this.SKIPPING_INDEX_AS_STRING).append(indexAsString).toString(), this, this.commonStrings.PROCESS);
                     continue;
                 }
 
@@ -699,7 +949,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     timeDelayHelper.setStartTimeTNT();
 
                     //logUtil.put("xsl index: " + index2, this, commonStrings.PROCESS);
-                    String result = this.gdXslTemplates.translate(gdNodeXSLPathInputArray[index2], xslDocumentAsString[index2],
+                    String result = this.gdXslTemplates.translate(BUILT_IN_XSL_PATH_INPUT_ARRAY[index2], xslDocumentAsString[index2],
                         placeholderArray, valueArray, xmlStringArray[index2]);
 
                     final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
@@ -707,16 +957,16 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
                     stringMaker.delete(0, stringMaker.length());
                     //String fileName = stringMaker.append(START[index2]).append(layoutIndex).append(MIDDLE[index2]).append(indexAsString.substring(indexAsString.length() - 2, indexAsString.length() - 1)).append(END[index2]).toString();
-                    String fileName = this.gdPaths.getOutputPath(stringMaker.append(START[index2]).appendint(layoutIndex).append(MIDDLE[index2]).appendint(fileIndex).append(END[index2]).toString());
+                    String fileName = this.gdPaths.getOutputPath(stringMaker.append(BUILT_IN_START[index2]).appendint(layoutIndex).append(BUILT_IN_MIDDLE[index2]).appendint(fileIndex).append(BUILT_IN_END[index2]).toString());
 
                     if (result.indexOf(this.PACKAGE) < 0) {
                         stringMaker.delete(0, stringMaker.length());
-                        this.logUtil.putF(stringMaker.append("No GDNode: ").append(this.gdToolStrings.FILENAME).append(fileName).toString(), this, this.commonStrings.PROCESS);
+                        this.logUtil.putF(stringMaker.append(this.NO_GDNODE).append(this.gdToolStrings.FILENAME).append(fileName).toString(), this, this.commonStrings.PROCESS);
                         continue;
                     }
 
                     stringMaker.delete(0, stringMaker.length());
-                    this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(gdNodeXSLPathInputArray[index2]).toString(), this, this.commonStrings.PROCESS);
+                    this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(BUILT_IN_XSL_PATH_INPUT_ARRAY[index2]).toString(), this, this.commonStrings.PROCESS);
 
                     //logUtil.put(RESULT + result, this, commonStrings.PROCESS);
                     stringMaker.delete(0, stringMaker.length());
@@ -731,7 +981,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             }
 
             stringMaker.delete(0, stringMaker.length());
-            this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).append("Finished").toString(), this, this.commonStrings.PROCESS);
+            this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).append(this.FINISHED).toString(), this, this.commonStrings.PROCESS);
 
         }
     }
@@ -780,35 +1030,17 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             final BasicArrayList list = this.getActionGDNodeList(gameXmlAsString, layoutIndex, sharedBytes);
 
             stringMaker.delete(0, stringMaker.length());
-            this.logUtil.putF(stringMaker.appendint(layoutIndex).append(" action list:").appendint(list.size()).toString(), this, this.commonStrings.PROCESS);
+            this.logUtil.putF(stringMaker.appendint(layoutIndex).append(this.ACTION_LIST).appendint(list.size()).toString(), this, this.commonStrings.PROCESS);
 
             final String[] xmlStringArray = {
                 layoutGameXmlAsString2,
                 layoutGameXmlAsString2,};
-
-            final String[] gdNodeXSLPathInputArray = {
-                this.gdData.GD_LAYOUT_N_EXTERNAL_ACTION_GD_NODES,
-                this.gdData.GD_LAYOUT_N_ACTION_GD_NODES,
-            };
-
-            final String END2 = "GDNodes.java";
-            final String[] END = {
-                END2,
-                END2,};
-
-            final int xslTotal = gdNodeXSLPathInputArray.length;
+            
+            final int xslTotal = ACTION_GDNODES_XSL_PATH_INPUT_ARRAY.length;
             final String[] xslDocumentAsString = new String[xslTotal];
             for (int index = 0; index < xslTotal; index++) {
-                xslDocumentAsString[index] = this.gdData.getAsString(gdNodeXSLPathInputArray[index], sharedBytes);
+                xslDocumentAsString[index] = this.gdData.getAsString(ACTION_GDNODES_XSL_PATH_INPUT_ARRAY[index], sharedBytes);
             }
-
-            final String[] START = {
-                this.ACTION_GDNODE_START_WITH_PATH,
-                this.ACTION_GDNODE_START_WITH_PATH,};
-
-            final String[] MIDDLE = {
-                "ExternalAction",
-                "Action",};
 
             String indexAsString;
             //while (charIndex < primitiveLongSingleton.NUMBER_CHAR_ARRAY.length) {
@@ -818,7 +1050,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
                 if (indexAsString.isEmpty()) {
                     stringMaker.delete(0, stringMaker.length());
-                    this.logUtil.putF(stringMaker.append("skipping indexAsString:").append(indexAsString).toString(), this, this.commonStrings.PROCESS);
+                    this.logUtil.putF(stringMaker.append(this.SKIPPING_INDEX_AS_STRING).append(indexAsString).toString(), this, this.commonStrings.PROCESS);
                     continue;
                 }
 
@@ -834,23 +1066,23 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     timeDelayHelper.setStartTimeTNT();
 
                     //logUtil.put("xsl index: " + index2, this, commonStrings.PROCESS);
-                    String result = this.gdXslTemplates.translate(gdNodeXSLPathInputArray[index2], xslDocumentAsString[index2],
+                    String result = this.gdXslTemplates.translate(ACTION_GDNODES_XSL_PATH_INPUT_ARRAY[index2], xslDocumentAsString[index2],
                         placeholderArray, valueArray, xmlStringArray[index2]);
 
                     final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
                     result = replaceLT.all(result);
 
                     stringMaker.delete(0, stringMaker.length());
-                    String fileName = this.gdPaths.getOutputPath(stringMaker.append(START[index2]).appendint(layoutIndex).append(MIDDLE[index2]).appendint(fileIndex).append(END[index2]).toString());
+                    String fileName = this.gdPaths.getOutputPath(stringMaker.append(ACTION_GDNODES_START[index2]).appendint(layoutIndex).append(ACTION_GDNODES_MIDDLE[index2]).appendint(fileIndex).append(ACTION_GDNODES_END[index2]).toString());
 
                     if (result.indexOf(this.PACKAGE) < 0) {
                         stringMaker.delete(0, stringMaker.length());
-                        this.logUtil.putF(stringMaker.append("No GDNode: ").append(this.gdToolStrings.FILENAME).append(fileName).toString(), this, this.commonStrings.PROCESS);
+                        this.logUtil.putF(stringMaker.append(this.NO_GDNODE).append(this.gdToolStrings.FILENAME).append(fileName).toString(), this, this.commonStrings.PROCESS);
                         continue;
                     }
 
                     stringMaker.delete(0, stringMaker.length());
-                    this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(gdNodeXSLPathInputArray[index2]).toString(), this, this.commonStrings.PROCESS);
+                    this.logUtil.putF(stringMaker.append(this.gdToolStrings.FILENAME).append(ACTION_GDNODES_XSL_PATH_INPUT_ARRAY[index2]).toString(), this, this.commonStrings.PROCESS);
 
                     //logUtil.put(RESULT + result, this, commonStrings.PROCESS);
                     stringMaker.delete(0, stringMaker.length());
@@ -865,7 +1097,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             }
 
             stringMaker.delete(0, stringMaker.length());
-            this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).append("Finished").toString(), this, this.commonStrings.PROCESS);
+            this.logUtil.putF(stringMaker.append(CommonLabels.getInstance().ELAPSED).append(this.FINISHED).toString(), this, this.commonStrings.PROCESS);
 
         }
     }
@@ -877,156 +1109,12 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         final SharedBytes sharedBytes = new SharedBytes();
         final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(Integer.MAX_VALUE);
 
-        final String[] xslPathInputArray2 = {
-            this.gdData.GD_ANDROID_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_J2SE_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_LAZY_J2SE_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_HTML_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_LAZY_HTML_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_LAZY_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_OPENGL_TWO_D_J2SE_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_OPENGL_TWO_D_LAZY_J2SE_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_OPENGL_TWO_D_ANDROID_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_OPENGL_THREED_GLOBAL_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_GLOBAL_RESOURCES,
-            this.gdData.GD_THREED_GLOBAL_RESOURCES,
-            this.gdData.GD_GLOBAL_IMAGE_RESOURCES,
-            this.gdData.GD_THREED_GLOBAL_IMAGE_RESOURCES,
-            this.gdData.GD_GAME_MUSIC_FACTORY,
-            this.gdData.GD_ANDROID_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_J2SE_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_LAZY_J2SE_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_HTML_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_LAZY_HTML_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_LAZY_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_OPENGL_TWO_D_J2SE_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_OPENGL_TWO_D_LAZY_J2SE_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_OPENGL_TWO_D_ANDROID_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_OPENGL_THREED_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_ANDROID_TOUCH_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_J2SE_TOUCH_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_LAZY_J2SE_TOUCH_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_HTML_TOUCH_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_LAZY_HTML_TOUCH_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_TOUCH_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_LAZY_TOUCH_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_OPENGL_THREED_TOUCH_GAME_RESOURCES_IMAGE_ANIMATION_FACTORY,
-            this.gdData.GD_GAME_SOUNDS_FACTORY,
-            this.gdData.GD_LAYOUT_RESOURCES,
-            this.gdData.GD_THREED_LAYOUT_RESOURCES,
-            this.gdData.GD_LAYOUT_IMAGE_RESOURCES,
-            this.gdData.GD_THREED_LAYOUT_IMAGE_RESOURCES,
-            this.gdData.GD_LAYOUT_TOUCH_IMAGE_RESOURCES,
-            this.gdData.GD_THREED_LAYOUT_TOUCH_IMAGE_RESOURCES,
-            this.gdData.GD_LAYOUT_GAME_THREED_LEVEL_LOADER,
-            this.gdData.GD_GAME_CAMERA_SETUP,
-            this.gdData.GD_LAYOUT_UTIL,
-        };
-
-        final String[] OUTPUT_FILE_PATHS = {
-            this.gdPaths.GEN_PATH + "resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameLazyImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameOpenGLTwoDJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameOpenGLTwoDAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
-            this.gdPaths.GEN_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
-            this.gdPaths.GEN_PATH + "GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
-            this.gdPaths.GEN_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
-            this.gdPaths.GEN_PATH + "GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameLazyImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameOpenGLTwoDJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameOpenGLTwoDAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameLazyImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-            this.gdPaths.GEN_PATH + "GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio\\GD",
-            this.gdPaths.GEN_PATH + "GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
-            this.gdPaths.GEN_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
-            this.gdPaths.GEN_PATH + "GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
-            this.gdPaths.GEN_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
-            this.gdPaths.GEN_PATH + "GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
-            this.gdPaths.GEN_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
-            this.gdPaths.GEN_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
-            this.gdPaths.GEN_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\graphics\\threed\\min3d\\GD",
-            this.gdPaths.GEN_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
-        };
-
-        final String[] OUTPUT_FILE_PATH_END_ARRAY = {
-            "GameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GlobalSpecialAnimationResources.java",
-            "GlobalSpecialAnimationResources.java",
-            "GlobalSpecialAnimationImageResources.java",
-            "GlobalSpecialAnimationImageResources.java",
-            "GameMusicFactory.java",
-            "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-            "GameSoundsFactory.java",
-            "SpecialAnimationResources.java",
-            "SpecialAnimationResources.java",
-            "SpecialAnimationImageResources.java",
-            "SpecialAnimationImageResources.java",
-            "SpecialAnimationTouchImageResources.java",
-            "SpecialAnimationTouchImageResources.java",
-            "GameThreedLevelBuilder.java",
-            "GameCameraSetup.java",
-            "LayoutUtil.java",
-        };
-
-        final int xslTotal2 = OUTPUT_FILE_PATHS.length;
+        final int xslTotal2 = RESOURCE_LOADER_OUTPUT_FILE_PATH_ARRAY.length;
         final String[] xslDocumentAsString2 = new String[xslTotal2];
         for (int index = 0; index < xslTotal2; index++) {
-            xslDocumentAsString2[index] = this.gdData.getAsString(xslPathInputArray2[index], sharedBytes);
+            xslDocumentAsString2[index] = this.gdData.getAsString(RESOURCE_LOADER_XSL_PATH_INPUT_ARRAY[index], sharedBytes);
         }
-        this.gdXslTemplates.compile(xslPathInputArray2, xslDocumentAsString2);
+        this.gdXslTemplates.compile(RESOURCE_LOADER_XSL_PATH_INPUT_ARRAY, xslDocumentAsString2);
 
         //TWB - need to update to allow loading for every layout.
         String indexAsString;
@@ -1038,17 +1126,17 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             for (int index2 = 0; index2 < xslTotal2; index2++) {
 
                 //logUtil.put("xsl2 index: " + index2, this, commonStrings.PROCESS);
-                String result = this.gdXslTemplates.translate(xslPathInputArray2[index2], xslDocumentAsString2[index2],
+                String result = this.gdXslTemplates.translate(RESOURCE_LOADER_XSL_PATH_INPUT_ARRAY[index2], xslDocumentAsString2[index2],
                     this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, indexAsString, gameXmlAsString);
 
                 final Replace replaceLT = new Replace(this.gdToolStrings.LESS_THAN_ESCAPE_CODE, this.gdToolStrings.LESS_THAN);
                 result = replaceLT.all(result);
 
                 stringMaker.delete(0, stringMaker.length());
-                String outputFilePath = this.gdPaths.getOutputPath(stringMaker.append(OUTPUT_FILE_PATHS[index2]).appendint(index).append(OUTPUT_FILE_PATH_END_ARRAY[index2]).toString());
+                String outputFilePath = this.gdPaths.getOutputPath(stringMaker.append(RESOURCE_LOADER_OUTPUT_FILE_PATH_ARRAY[index2]).appendint(index).append(RESOURCE_LOADER_OUTPUT_FILE_PATH_END_ARRAY[index2]).toString());
                 if (index2 < 15) {
                     stringMaker.delete(0, stringMaker.length());
-                    outputFilePath = this.gdPaths.getOutputPath(stringMaker.append(OUTPUT_FILE_PATHS[index2]).append(OUTPUT_FILE_PATH_END_ARRAY[index2]).toString());
+                    outputFilePath = this.gdPaths.getOutputPath(stringMaker.append(RESOURCE_LOADER_OUTPUT_FILE_PATH_ARRAY[index2]).append(RESOURCE_LOADER_OUTPUT_FILE_PATH_END_ARRAY[index2]).toString());
                 }
 
                 stringMaker.delete(0, stringMaker.length());
@@ -1063,6 +1151,63 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         }
     }
 
+    //TypeScript and JavaScript require this. before local method calls.
+    //Calls already qualified with globals., gameGlobals., this., GDGameLayer., Ship., etc are skipped as are calls inside quoted strings.
+    private String addThisToLocalCalls(final String xmlAsString, final StringMaker stringMaker) {
+        stringMaker.delete(0, stringMaker.length());
+        final int size = xmlAsString.length();
+        int lastIndex = 0;
+        int startIndex;
+        int endIndex;
+        while ((startIndex = xmlAsString.indexOf(PARAMETERS_START, lastIndex)) >= 0) {
+            startIndex += PARAMETERS_START.length();
+            endIndex = xmlAsString.indexOf(PARAMETERS_END, startIndex);
+            if (endIndex < 0) {
+                break;
+            }
+
+            stringMaker.append(xmlAsString.substring(lastIndex, startIndex));
+
+            boolean inQuote = false;
+            int index = startIndex;
+            char c;
+            while (index < endIndex) {
+                if (xmlAsString.startsWith(QUOTE, index)) {
+                    inQuote = !inQuote;
+                    stringMaker.append(QUOTE);
+                    index += QUOTE.length();
+                } else {
+                    c = xmlAsString.charAt(index);
+                    if (!inQuote && (Character.isLetter(c) || c == '_')
+                        && (index == startIndex || !this.isQualifiedOrIdentifierPart(xmlAsString.charAt(index - 1)))) {
+                        int identifierEndIndex = index + 1;
+                        while (identifierEndIndex < endIndex && (Character.isLetterOrDigit(xmlAsString.charAt(identifierEndIndex)) || xmlAsString.charAt(identifierEndIndex) == '_')) {
+                            identifierEndIndex++;
+                        }
+                        if (identifierEndIndex < endIndex && xmlAsString.charAt(identifierEndIndex) == '(') {
+                            stringMaker.append(THIS);
+                        }
+                        stringMaker.append(xmlAsString.substring(index, identifierEndIndex));
+                        index = identifierEndIndex;
+                    } else {
+                        stringMaker.appendchar(c);
+                        index++;
+                    }
+                }
+            }
+
+            lastIndex = endIndex;
+        }
+        if (lastIndex < size) {
+            stringMaker.append(xmlAsString.substring(lastIndex));
+        }
+        return stringMaker.toString();
+    }
+
+    private boolean isQualifiedOrIdentifierPart(final char c) {
+        return c == '.' || c == '_' || Character.isLetterOrDigit(c);
+    }
+
     public void process(final int startIndex, final GDGameInfo gdGameInfo, final boolean[] finished) {
         try {
             final int layoutTotal = gdGameInfo.layoutTotal;
@@ -1073,41 +1218,13 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
             String gameXmlAsString = this.gdData.getAsString(this.gdPaths.GAME_XML_PATH, sharedBytes);
 
-            //final Replace replace2 = new Replace(".Width()", ".Width(globals.graphics)");
-            final Replace replace2 = new Replace(".Width()", ".Width(null)");
-            gameXmlAsString = replace2.all(gameXmlAsString);
-            //final Replace replace3 = new Replace(".Height()", ".Height(globals.graphics)");
-            final Replace replace3 = new Replace(".Height()", ".Height(null)");
-            gameXmlAsString = replace3.all(gameXmlAsString);
-            final Replace replace4 = new Replace("GlobalVariable(", "GlobalVariable(gameGlobals.");
-            gameXmlAsString = replace4.all(gameXmlAsString);
-            final Replace replace5 = new Replace("GlobalVariableString(", "GlobalVariableString(gameGlobals.");
-            gameXmlAsString = replace5.all(gameXmlAsString);
-            final Replace replace6 = new Replace("GlobalVariableChildCount(", "GlobalVariableChildCount(gameGlobals.");
-            gameXmlAsString = replace6.all(gameXmlAsString);
-            final Replace replace9 = new Replace("Time(&quot;timestamp&quot;)", "gameTickTimeDelayHelper.startTime");
-            gameXmlAsString = replace9.all(gameXmlAsString);
-            final Replace replace10 = new Replace("GlobalVarToJSON(", "GlobalVarToJSON(gameGlobals.");
-            gameXmlAsString = replace10.all(gameXmlAsString);
-            final Replace replace11 = new Replace("Text::Value()", "Text()");
-            gameXmlAsString = replace11.all(gameXmlAsString);
-            final Replace replace1 = new Replace("FileSystem::", "FileSystem.");
-            gameXmlAsString = replace1.all(gameXmlAsString);
-            final Replace replaceRevert = new Replace("FileSystem.ReadDirectory", "FileSystem::ReadDirectory");
-            gameXmlAsString = replaceRevert.all(gameXmlAsString);
-            final Replace replaceHTTP = new Replace("AdvancedHTTP::ResponseStatusText", "AdvancedHTTP.ResponseStatusText");
-            gameXmlAsString = replaceHTTP.all(gameXmlAsString);
-            final Replace replaceText = new Replace(".Text()", "GDGameLayer.Text()");
-            gameXmlAsString = replaceText.all(gameXmlAsString);
+            final int gameXmlReplaceTotal = GAME_XML_REPLACE_FIND_ARRAY.length;
+            for (int index = 0; index < gameXmlReplaceTotal; index++) {
+                final Replace replace = new Replace(GAME_XML_REPLACE_FIND_ARRAY[index], GAME_XML_REPLACE_WITH_ARRAY[index]);
+                gameXmlAsString = replace.all(gameXmlAsString);
+            }
 
             String layoutGameXmlAsString = new String(gameXmlAsString);
-            final String[] VARIABLE_ARRAY = {
-                "ToJSON(",
-                "Variable(",
-                "VariableString(",
-                "VariableChildCount("
-            };
-            final String GLOBALS = "globals.";
             final int size2 = VARIABLE_ARRAY.length;
             for (int index2 = 0; index2 < size2; index2++) {
                 final String VARIABLE = VARIABLE_ARRAY[index2];
@@ -1134,28 +1251,15 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                 }
             }
 
-            final Replace replace7 = new Replace("PointX(&quot;", "PointX(&quot;globals.");
-            layoutGameXmlAsString = replace7.all(layoutGameXmlAsString);
+            final int layoutGameXmlReplaceTotal = LAYOUT_GAME_XML_REPLACE_FIND_ARRAY.length;
+            for (int index = 0; index < layoutGameXmlReplaceTotal; index++) {
+                final Replace replace = new Replace(LAYOUT_GAME_XML_REPLACE_FIND_ARRAY[index], LAYOUT_GAME_XML_REPLACE_WITH_ARRAY[index]);
+                layoutGameXmlAsString = replace.all(layoutGameXmlAsString);
+            }
 
-            final Replace replace8 = new Replace("PointY(&quot;", "PointY(&quot;globals.");
-            layoutGameXmlAsString = replace8.all(layoutGameXmlAsString);
-
-            final Replace replace12 = new Replace("MouseX(&quot;&quot;", "MouseX(EMPTY_STRING");
-            layoutGameXmlAsString = replace12.all(layoutGameXmlAsString);
-            final Replace replace13 = new Replace("MouseY(&quot;&quot;", "MouseY(EMPTY_STRING");
-            layoutGameXmlAsString = replace13.all(layoutGameXmlAsString);
-
-            final Replace replace14 = new Replace("CameraX(&quot;&quot;", "CameraX(EMPTY_STRING");
-            layoutGameXmlAsString = replace14.all(layoutGameXmlAsString);
-            final Replace replace15 = new Replace("CameraY(&quot;&quot;", "CameraY(EMPTY_STRING");
-            layoutGameXmlAsString = replace15.all(layoutGameXmlAsString);
-            final Replace replace16 = new Replace("CameraWidth(&quot;&quot;", "CameraWidth(EMPTY_STRING");
-            layoutGameXmlAsString = replace16.all(layoutGameXmlAsString);
-
-            final Replace replace17 = new Replace("\"value\": \" V\"", "\"value\": \" &#8595;\"");
-            layoutGameXmlAsString = replace17.all(layoutGameXmlAsString);
-            final Replace replace18 = new Replace("\"value\": \"V \"", "\"value\": \"&#8595; \"");
-            layoutGameXmlAsString = replace18.all(layoutGameXmlAsString);
+            //Add this before all method calls here
+            gameXmlAsString = this.addThisToLocalCalls(gameXmlAsString, stringMaker);
+            layoutGameXmlAsString = this.addThisToLocalCalls(layoutGameXmlAsString, stringMaker);
 
             final String gameXmlAsString2 = gameXmlAsString;
             final String layoutGameXmlAsString2 = layoutGameXmlAsString;
@@ -1165,7 +1269,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     try {
                         final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(0);
                         generateXMLAndGlobals(gameXmlAsString2, finished);
-                        System.out.println(new StringMaker().append("generateXMLAndGlobals (Takes a long time and has little output) ElapsedTime: ").appendlong(timeDelayHelper.getElapsedTNT()).toString());
+                        System.out.println(new StringMaker().append(GENERATE_XML_AND_GLOBALS).append(ELAPSED_TIME).appendlong(timeDelayHelper.getElapsedTNT()).toString());
                         finished[1] = true;
                     } catch (Exception e) {
                         logUtil.put(commonStrings.EXCEPTION, this, commonStrings.RUN, e);
@@ -1174,9 +1278,6 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                 }
             };
 
-            final String ELAPSED_TIME = "ElapsedTime: ";
-            final String CURRENT_STATE_ELAPSED_TIME = "Current State ElapsedTime: ";
-            
             new Thread(runnable).start();
 
             final Runnable runnable2a = new Runnable() {
@@ -1186,7 +1287,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                         final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(0);
                         generateLayouts(startIndex, layoutTotal, gameXmlAsString2, layoutGameXmlAsString2, stringMaker);
                         stringMaker.delete(0, stringMaker.length());
-                        System.out.println(stringMaker.append("generateLayouts ").append(ELAPSED_TIME).appendlong(timeDelayHelper.getElapsedTNT()).toString());
+                        System.out.println(stringMaker.append(GENERATE_LAYOUTS).append(ELAPSED_TIME).appendlong(timeDelayHelper.getElapsedTNT()).toString());
                         finished[2] = true;
                         stringMaker.delete(0, stringMaker.length());
                         System.out.println(stringMaker.append(CURRENT_STATE_ELAPSED_TIME).append(BooleanUtil.getInstance().toStringFromBooleanArray(finished)).toString());
@@ -1206,7 +1307,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                         final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(0);
                         generateCreateInstances(startIndex, layoutTotal, gameXmlAsString2, layoutGameXmlAsString2, gdGameInfo, new StringMaker());
                         stringMaker.delete(0, stringMaker.length());
-                        System.out.println(stringMaker.append("generateCreateInstances ").append(ELAPSED_TIME).appendlong(timeDelayHelper.getElapsedTNT()).toString());
+                        System.out.println(stringMaker.append(GENERATE_CREATE_INSTANCES).append(ELAPSED_TIME).appendlong(timeDelayHelper.getElapsedTNT()).toString());
                         finished[3] = true;
                         stringMaker.delete(0, stringMaker.length());
                         System.out.println(stringMaker.append(CURRENT_STATE_ELAPSED_TIME).append(BooleanUtil.getInstance().toStringFromBooleanArray(finished)).toString());
@@ -1226,7 +1327,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                         final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(0);
                         generateExternalLinkLayouts(startIndex, layoutTotal, gameXmlAsString2, layoutGameXmlAsString2, gdGameInfo, new StringMaker());
                         stringMaker.delete(0, stringMaker.length());
-                        System.out.println(stringMaker.append("generateExternalLinkLayouts ").append(ELAPSED_TIME).appendlong(timeDelayHelper.getElapsedTNT()).toString());
+                        System.out.println(stringMaker.append(GENERATE_EXTERNAL_LINK_LAYOUTS).append(ELAPSED_TIME).appendlong(timeDelayHelper.getElapsedTNT()).toString());
                         finished[4] = true;
                         stringMaker.delete(0, stringMaker.length());
                         System.out.println(stringMaker.append(CURRENT_STATE_ELAPSED_TIME).append(BooleanUtil.getInstance().toStringFromBooleanArray(finished)).toString());
@@ -1246,7 +1347,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                         final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(0);
                         generateExternalCreateInstances(startIndex, layoutTotal, gameXmlAsString2, layoutGameXmlAsString2, gdGameInfo, new StringMaker());
                         stringMaker.delete(0, stringMaker.length());
-                        System.out.println(stringMaker.append("generateExternalCreateInstances ").append(ELAPSED_TIME).appendlong(timeDelayHelper.getElapsedTNT()).toString());
+                        System.out.println(stringMaker.append(GENERATE_EXTERNAL_CREATE_INSTANCES).append(ELAPSED_TIME).appendlong(timeDelayHelper.getElapsedTNT()).toString());
                         finished[5] = true;
                         stringMaker.delete(0, stringMaker.length());
                         System.out.println(stringMaker.append(CURRENT_STATE_ELAPSED_TIME).append(BooleanUtil.getInstance().toStringFromBooleanArray(finished)).toString());
@@ -1266,7 +1367,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                         final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(0);
                         generateActionGDNodes(gameXmlAsString2, layoutGameXmlAsString2, layoutTotal, new StringMaker());
                         stringMaker.delete(0, stringMaker.length());
-                        System.out.println(stringMaker.append("generateActionGDNodes ").append(ELAPSED_TIME).appendlong(timeDelayHelper.getElapsedTNT()).toString());
+                        System.out.println(stringMaker.append(GENERATE_ACTION_GDNODES).append(ELAPSED_TIME).appendlong(timeDelayHelper.getElapsedTNT()).toString());
                         finished[6] = true;
                         stringMaker.delete(0, stringMaker.length());
                         System.out.println(stringMaker.append(CURRENT_STATE_ELAPSED_TIME).append(BooleanUtil.getInstance().toStringFromBooleanArray(finished)).toString());
@@ -1286,7 +1387,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                         final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(0);
                         generateBuiltInGDNodes(gameXmlAsString2, layoutGameXmlAsString2, layoutTotal, new StringMaker());
                         stringMaker.delete(0, stringMaker.length());
-                        System.out.println(stringMaker.append("generateBuiltInGDNodes ").append(ELAPSED_TIME).appendlong(timeDelayHelper.getElapsedTNT()).toString());
+                        System.out.println(stringMaker.append(GENERATE_BUILT_IN_GDNODES).append(ELAPSED_TIME).appendlong(timeDelayHelper.getElapsedTNT()).toString());
                         finished[7] = true;
                         stringMaker.delete(0, stringMaker.length());
                         System.out.println(stringMaker.append(CURRENT_STATE_ELAPSED_TIME).append(BooleanUtil.getInstance().toStringFromBooleanArray(finished)).toString());
@@ -1306,7 +1407,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                         final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(0);
                         generateResourcesLoadersSetup(startIndex, layoutTotal, gameXmlAsString2, new StringMaker());
                         stringMaker.delete(0, stringMaker.length());
-                        System.out.println(stringMaker.append("generateResourcesLoadersSetup ").append(ELAPSED_TIME).appendlong(timeDelayHelper.getElapsedTNT()).toString());
+                        System.out.println(stringMaker.append(GENERATE_RESOURCES_LOADERS_SETUP).append(ELAPSED_TIME).appendlong(timeDelayHelper.getElapsedTNT()).toString());
                         finished[8] = true;
                         stringMaker.delete(0, stringMaker.length());
                         System.out.println(stringMaker.append(CURRENT_STATE_ELAPSED_TIME).append(BooleanUtil.getInstance().toStringFromBooleanArray(finished)).toString());
@@ -1320,7 +1421,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             new Thread(runnable5).start();
 
         } catch (Exception e) {
-            this.logUtil.put("Is the game xml formatted when it is not we get an error from: gglobals.dVersion", this, this.commonStrings.PROCESS, e);
+            this.logUtil.put(this.GAME_XML_NOT_FORMATTED, this, this.commonStrings.PROCESS, e);
         }
 
     }

@@ -21,6 +21,6 @@ public class GDGameSoundsFactory
     
     public static SoundsFactoryInterface getInstance()
     {
-        return STATIC;
+        return GDGameSoundsFactory.STATIC;
     }
 }

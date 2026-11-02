@@ -168,7 +168,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
 
                 AllBinaryVibration.init();
 
-                //super.initConfigurable(portion);
+                //super.initConfigurable(this.portion);
 
                 ChangedGameFeatureListener.getInstance().setChanged(false);
 
@@ -210,7 +210,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
                 ProgressCanvas progressCanvas = 
                     ProgressCanvasFactory.getInstance();
                 
-                progressCanvas.addNormalPortion(portion, "Main Processors");
+                progressCanvas.addNormalPortion(this.portion, "Main Processors");
 
                 this.setWait(this.WAIT);
                 this.loadState();
@@ -243,7 +243,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
 
                 this.gameLayerManager.setLayerProcessorList(list);
 
-                progressCanvas.addNormalPortion(portion, "Initializing Game");
+                progressCanvas.addNormalPortion(this.portion, "Initializing Game");
             }
 
             this.buildGameInit(false);
@@ -290,11 +290,11 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
 
         //Some games update intermission here
 
-        progressCanvas.addNormalPortion(portion, "Building Game Level");
+        progressCanvas.addNormalPortion(this.portion, "Building Game Level");
 
         //new GDGameLevelBuilder(this.getLayerManager()).build();
 
-        progressCanvas.addNormalPortion(portion, "Set Background");
+        progressCanvas.addNormalPortion(this.portion, "Set Background");
 
         //Some games update backgrounds here
 
@@ -309,7 +309,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
 
         this.gameLayerManager.append(new PlayerGameInputGameLayer(0));
 
-        progressCanvas.addNormalPortion(portion, "Ending Custom Build");
+        progressCanvas.addNormalPortion(this.portion, "Ending Custom Build");
 
         if (this.gameLayerManager.getGameInfo().getGameType() != GameTypeFactory.getInstance().BOT)
         {
@@ -317,7 +317,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
                     //GameSounds.getBegin());
         }
 
-        super.buildGame(portion);
+        super.buildGame(this.portion);
 
         this.getStartIntermissionInterface().setEnabled(true);
         this.getEndLevelIntermissionInterface().setEnabled(false);

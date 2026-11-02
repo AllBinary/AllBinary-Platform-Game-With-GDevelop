@@ -67,7 +67,7 @@ open class <xsl:value-of select="$layoutName" /> : StartCanvas
                 GDGameStaticInitializerFactory(), false)
     {
 
-        this.setWait(WAIT)
+        this.setWait(this.WAIT)
 
         <!--
             <xsl:variable name="layoutTotal" ><xsl:for-each select="../layouts" ><xsl:if test="position() = last()" ><xsl:value-of select="position()" /></xsl:if></xsl:for-each></xsl:variable>

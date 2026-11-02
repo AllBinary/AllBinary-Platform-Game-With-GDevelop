@@ -281,7 +281,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
 
     public void setPlayingGameState()
     {
-        this.setWait(WAIT);
+        this.setWait(this.WAIT);
 
         //super.setPlayingGameState();
 
@@ -401,12 +401,12 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
             {
                 super.initConfigurable(abeClientInformation);
 
-                //progressCanvas.addNormalPortion(portion, "Group Manager");
+                //progressCanvas.addNormalPortion(this.portion, "Group Manager");
                 //GroupLayerManagerListener.getInstance().init(SIZE);
 
                 AllBinaryVibration.init();
 
-                super.initConfigurablePortion(portion);
+                super.initConfigurablePortion(this.portion);
 
                 ChangedGameFeatureListener.getInstance().setChanged(false);
 
@@ -450,9 +450,9 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
                 ProgressCanvas progressCanvas =
                     ProgressCanvasFactory.getInstance();
 
-                progressCanvas.addNormalPortion(portion, "Main Processors");
+                progressCanvas.addNormalPortion(this.portion, "Main Processors");
 
-                this.setWait(WAIT);
+                this.setWait(this.WAIT);
                 this.loadState();
 
                 BasicArrayList list = new BasicArrayListD();
@@ -483,9 +483,9 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
                     list.add(new OptimizedTickableLayerProcessor());
                 }
 
-                gameLayerManager.setLayerProcessorList(list);
+                this.gameLayerManager.setLayerProcessorList(list);
 
-                progressCanvas.addNormalPortion(portion, "Initializing Game");
+                progressCanvas.addNormalPortion(this.portion, "Initializing Game");
             }
 
             this.addPlayerGameInput(this.gameInputProcessor.getPlayerGameInput());
@@ -507,10 +507,10 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
     {
         //this.logUtil.putF(this.commonStrings.START, this, "buildGame");
     
-        this.specialAnimation = GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance(this, gameLayerManager);
+        this.specialAnimation = GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance(this, this.gameLayerManager);
         this.setPlayingGameState();
         
-        this.loadResources(gameLayerManager.getGameInfo().getCurrentLevel());
+        this.loadResources(this.gameLayerManager.getGameInfo().getCurrentLevel());
 
         final ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
 
@@ -542,13 +542,13 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
 
         //Some games update intermission here
 
-        progressCanvas.addNormalPortion(portion, "Building Game Level");
+        progressCanvas.addNormalPortion(this.portion, "Building Game Level");
 
         final AllBinaryGameLayerManager layerManager = this.getLayerManager();
 
         new GDGame<xsl:value-of select="$layoutName" />LevelBuilder(layerManager).build();
 
-        progressCanvas.addNormalPortion(portion, "Set Background");
+        progressCanvas.addNormalPortion(this.portion, "Set Background");
 
         <xsl:variable name="hasOneOrMoreTileMaps" ><xsl:for-each select="objects" ><xsl:if test="type = 'TileMap::TileMap'" >found</xsl:if></xsl:for-each></xsl:variable>
         <xsl:variable name="hasOneOrMoreTiledSprites" ><xsl:for-each select="objects" ><xsl:if test="type = 'TiledSpriteObject::TiledSprite'" >found</xsl:if></xsl:for-each></xsl:variable>
@@ -605,17 +605,17 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
             return;
         }
 
-        //gameLayerManager.append(new PlayerGameInputGameLayer(0));
+        //this.gameLayerManager.append(new PlayerGameInputGameLayer(0));
 
-        progressCanvas.addNormalPortion(portion, "Ending Custom Build");
+        progressCanvas.addNormalPortion(this.portion, "Ending Custom Build");
 
-        if (gameLayerManager.getGameInfo().getGameType() != GameTypeFactory.getInstance().BOT)
+        if (this.gameLayerManager.getGameInfo().getGameType() != GameTypeFactory.getInstance().BOT)
         {
             //PrimaryPlayerQueueFactory.getInstance().add(
                     //GameSounds.getBegin());
         }
 
-        super.buildGame(portion);
+        super.buildGame(this.portion);
 
         this.getStartIntermissionInterface().setEnabled(true);
         this.getEndLevelIntermissionInterface().setEnabled(false);
@@ -684,7 +684,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
 
         this.clear(graphics);
 
-        this.basicSetColorUtil.setBasicColorP(graphics, gameLayerManager.getForegroundBasicColor());
+        this.basicSetColorUtil.setBasicColorP(graphics, this.gameLayerManager.getForegroundBasicColor());
 
         //graphics.drawString(TEXT, 0, halfHeight, 0);
 
@@ -692,7 +692,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
 
         this.tileLayerPaintable.paint(graphics);
 
-    	gameLayerManager.paint(graphics, 0, 0);
+    	this.gameLayerManager.paint(graphics, 0, 0);
 
     	nonBotPaintable.paint(graphics);
 
@@ -726,7 +726,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
     {
         if (playerTimeDelayHelper.isTimeTNT())
         {
-            if(this.features.isFeature(soundGameFeature))
+            if(this.features.isFeature(this.soundGameFeature))
             {
                 //this.primaryPlayerQueue.add(TestSound.getInstance());
             }

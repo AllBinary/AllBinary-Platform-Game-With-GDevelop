@@ -183,7 +183,7 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
                 }
                 let progressCanvas = ProgressCanvasFactory.getInstance();
                 ;
-                progressCanvas.addNormalPortion(portion, "Main Processors");
+                progressCanvas.addNormalPortion(this.portion, "Main Processors");
                 this.setWait(this.WAIT);
                 this.loadState();
                 let list = new BasicArrayListD();
@@ -205,7 +205,7 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
                     list.add(new OptimizedTickableLayerProcessor());
                 }
                 this.gameLayerManager.setLayerProcessorList(list);
-                progressCanvas.addNormalPortion(portion, "Initializing Game");
+                progressCanvas.addNormalPortion(this.portion, "Initializing Game");
             }
             this.buildGameInit(false);
         }
@@ -235,17 +235,17 @@ export class GDGameGameCanvas extends AllBinaryGameCanvas {
             //if statement needs to be on the same line and ternary does not work the same way.
             return;
         }
-        progressCanvas.addNormalPortion(portion, "Building Game Level");
-        progressCanvas.addNormalPortion(portion, "Set Background");
+        progressCanvas.addNormalPortion(this.portion, "Building Game Level");
+        progressCanvas.addNormalPortion(this.portion, "Set Background");
         if (!this.isRunning()) {
             //if statement needs to be on the same line and ternary does not work the same way.
             return;
         }
         this.gameLayerManager.append(new PlayerGameInputGameLayer(0));
-        progressCanvas.addNormalPortion(portion, "Ending Custom Build");
+        progressCanvas.addNormalPortion(this.portion, "Ending Custom Build");
         if (this.gameLayerManager.getGameInfo().getGameType() != GameTypeFactory.getInstance().BOT) {
         }
-        super.buildGame(portion);
+        super.buildGame(this.portion);
         this.getStartIntermissionInterface().setEnabled(true);
         this.getEndLevelIntermissionInterface().setEnabled(false);
         this.setGameState(this.gameStateFactory.PLAYING_GAME_STATE);
