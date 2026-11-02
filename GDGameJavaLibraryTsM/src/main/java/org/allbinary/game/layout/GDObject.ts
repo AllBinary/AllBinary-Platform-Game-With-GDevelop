@@ -307,6 +307,7 @@ this.halfHeight= globalThis.Math.trunc(height /2);
 
 setX(...args: any[]): any {
    
+   
     if (args.length === 1 && typeof args[0] === 'number') return this.setX$overload1(args[0]);
    
     if (args.length === 1 && typeof args[0] === 'number') return this.setX$overload2(args[0]);
@@ -325,6 +326,7 @@ this.xP= x;
 }
 
 setY(...args: any[]): any {
+   
    
     if (args.length === 1 && typeof args[0] === 'number') return this.setY$overload1(args[0]);
    
@@ -469,6 +471,7 @@ adjustedAngle += 360;
 
 setAngle(...args: any[]): any {
    
+   
     if (args.length === 1 && typeof args[0] === 'number') return this.setAngle$overload1(args[0]);
    
     if (args.length === 2 && typeof args[0] === 'number') return this.setAngle$overload2(args[0], args[1]);
@@ -509,6 +512,7 @@ gameLayer!.setRotation(adjustedAngle);
 
 Angle(...args: any[]): any {
    
+   
     if (args.length === 1) return this.Angle$overload1(args[0]);
    
     if (args.length === 0) return this.Angle$overload2();
@@ -536,6 +540,7 @@ Angle(...args: any[]): any {
 
 Variable(...args: any[]): any {
    
+   
     if (args.length === 1 && typeof args[0] === 'number') return this.Variable$overload1(args[0]);
    
     if (args.length === 1 && typeof args[0] === 'number') return this.Variable$overload2(args[0]);
@@ -562,6 +567,7 @@ Variable(...args: any[]): any {
 }
 
 VariableChildCount(...args: any[]): any {
+   
    
     if (args.length === 1) return this.VariableChildCount$overload1(args[0]);
    

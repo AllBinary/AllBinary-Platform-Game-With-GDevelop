@@ -7,7 +7,9 @@ package playn.core;
 import org.allbinary.canvas.Processor;
 import org.allbinary.init.InitInterface;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.StringMaker;
 import org.allbinary.playn.AllBinaryPlayNGame;
+import org.allbinary.string.CommonSeps;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.util.BasicArrayList;
 
@@ -24,24 +26,27 @@ public class GDGameModuleReadyProcessor
     protected final LogUtil logUtil = LogUtil.getInstance();
     protected final CommonStrings commonStrings = CommonStrings.getInstance();
     
+    private final String GD = ":GDGameModuleReadyProcessor ";
+    
     private final InitInterface initInterface;
     private final BasicArrayList list;
 
     public GDGameModuleReadyProcessor(final InitInterface initInterface, final BasicArrayList list)
     {
-        this.logUtil.putF(this.toString() + ":GDGameModuleReadyProcessor", this, this.commonStrings.CONSTRUCTOR);
+        this.logUtil.putF(this.toString() + this.GD, this, this.commonStrings.CONSTRUCTOR);
         this.initInterface = initInterface;
         this.list = list;
     }
-
+    
     public void process() throws Exception
     {
-        this.logUtil.putF(this.commonStrings.START + ":GDGameModuleReadyProcessor", this, this.commonStrings.PROCESS);
-        if (this.isGDGameReady() && this.isTouchButtonShieldActionResourceReady() && this.isAllBinaryMidletReady())
+        this.logUtil.putF(new StringMaker().append(this.commonStrings.START).append(this.GD).appendboolean(this.isGDGameReady()).append(CommonSeps.getInstance().SPACE).appendboolean(this.isAllBinaryMidletReady()).toString(), this, this.commonStrings.PROCESS);
+        //this.isTouchButtonShieldActionResourceReady() && 
+        if (this.isGDGameReady() && this.isAllBinaryMidletReady())
         {
             this.logUtil.putF(this.commonStrings.END + this.list.size(), this, this.commonStrings.PROCESS);
             if(!this.list.remove(this)) {
-                this.logUtil.putF(this.commonStrings.EXCEPTION + ":GDGameModuleReadyProcessor", this, this.commonStrings.PROCESS);
+                this.logUtil.putF(this.commonStrings.EXCEPTION + this.GD, this, this.commonStrings.PROCESS);
             }
 
             this.initInterface.init();
@@ -54,9 +59,9 @@ public class GDGameModuleReadyProcessor
         return !!($wnd.playn && $wnd.playn.core && $wnd.playn.core.GDGame);
     }-*/;
 
-    private native boolean isTouchButtonShieldActionResourceReady()/*-{
-        return !!($wnd.org && $wnd.org.allbinary && $wnd.org.allbinary && $wnd.org.allbinary.ag && $wnd.org.allbinary.ag.input && $wnd.org.allbinary.ag.input.TouchButtonShieldActionResource);
-    }-*/;
+//    private native boolean isTouchButtonShieldActionResourceReady()/*-{
+//        return !!($wnd.org && $wnd.org.allbinary && $wnd.org.allbinary && $wnd.org.allbinary.ag && $wnd.org.allbinary.ag.input && $wnd.org.allbinary.ag.input.TouchButtonShieldActionResource);
+//    }-*/;
 
     private native boolean isAllBinaryMidletReady()/*-{
         return !!($wnd.org.allbinary.midlet.AllBinaryMidlet);

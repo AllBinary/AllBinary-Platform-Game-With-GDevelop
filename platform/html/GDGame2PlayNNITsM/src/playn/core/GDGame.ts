@@ -455,5 +455,9 @@ this.logUtil!.put(this.commonStrings!.EXCEPTION, this, "onMouseWheelScroll", e);
 }
 
 
-}
+}//JSNI Expose on $wnd.playn.core so JSNI (GDGameMidletFactory) can construct this class *** 
+ globalThis.playn = globalThis.playn || {}; 
+ globalThis.playn.core = globalThis.playn.core || {}; 
+ globalThis.playn.core.GDGame = GDGame; 
+ console.log('Exported GDGame as globalThis'); 
 

@@ -55,9 +55,8 @@ export class GDBehaviorUtil
     private static readonly instance: GDBehaviorUtil = new GDBehaviorUtil();
 static getInstance(...args: any[]): any {
    
-    if (args.length === 0) return this.getInstance$overload1();
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.getInstance$overload2(args[0]);
+    if (args.length === 0) return this.getInstance$overload1();
    
    throw new TypeError('No matching overload: getInstance'); }
   
@@ -76,7 +75,13 @@ static getInstance(...args: any[]): any {
     public readonly DRAGGABLE_BEHAVIOR_INDEX: number = 1;
 
     public readonly MAX: number = this.DRAGGABLE_BEHAVIOR_INDEX +1;
-
+getInstance(...args: any[]): any {
+   
+   
+    if (args.length === 1 && typeof args[0] === 'number') return this.getInstance$overload2(args[0]);
+   
+   throw new TypeError('No matching overload: getInstance'); }
+  
     public getInstance$overload2(index: number): GDBehavior{
 
                         if(index == this.PATHFINDING_BEHAVIOR_INDEX)

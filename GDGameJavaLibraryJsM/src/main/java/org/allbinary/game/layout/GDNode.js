@@ -14,6 +14,7 @@
 /* Generated Code Do Not Modify */
 import { Object } from '../../../../java/lang/Object.js';
 import { RuntimeException } from '../../../../java/lang/RuntimeException.js';
+import { GameKeyEvent } from '../../../../org/allbinary/game/input/event/GameKeyEvent.js';
 //not GWT import const MotionGestureEvent
 //not plain js import { NullUtil } 
 const NullUtil = globalThis.org.allbinary.logic.NullUtil;
@@ -57,12 +58,16 @@ export class GDNode extends Object {
         this.nodeStatsFactory.push(3, this.name);
     }
     processReleased(...args) {
+        if (args.length === 1 && args[0] instanceof GameKeyEvent)
+            return this.processReleased$overload2(args[0]);
         if (args.length === 0)
             return this.processReleased$overload1();
-        if (args.length === 1)
+        if (args.length === 1 && args[0] == null)
             return this.processReleased$overload2(args[0]);
         if (args.length === 1)
             return this.processReleased$overload3(args[0]);
+        if (args.length === 1)
+            return this.processReleased$overload2(args[0]);
         throw new TypeError('No matching overload: processReleased');
     }
     //@Throws(Exception.constructor)

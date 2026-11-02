@@ -27,7 +27,7 @@ export class CallStackGDNodeStats extends Object {
         super(...arguments);
         this.logUtil = LogUtil.getInstance();
         this.SIZE = 16;
-        this.callStack = new Array(this.SIZE).fill(null).map(() => new Array(6000).fill(null));
+        this.callStack = new Array(this.SIZE).fill(null).map(() => new Array(6000).fill(0));
         this.total = 0;
     }
     reset() {

@@ -57,8 +57,8 @@ export class GDObject extends Object {
         this.noDecimalTrigTable = NoDecimalTrigTable.getInstance();
         this.initialVariables = GDInitialVariables.getInstance();
         this.behaviorArray = new Array(GDBehaviorUtil.getInstance().MAX);
-        this.isBehaviorEnabledArray = new Array(10);
-        this.hasBehaviorArray = new Array(10);
+        this.isBehaviorEnabledArray = new Array(10).fill(false);
+        this.hasBehaviorArray = new Array(10).fill(false);
         this.xP = 0;
         this.yP = 0;
         this.zOrder = 0;

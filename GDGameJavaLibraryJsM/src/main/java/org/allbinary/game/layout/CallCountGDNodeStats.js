@@ -28,7 +28,7 @@ export class CallCountGDNodeStats extends Object {
         this.logUtil = LogUtil.getInstance();
         this.TOTAL_CALLS = "total calls: ";
         this.SIZE = 16;
-        this.totalCalls = new Array(this.SIZE).fill(null).map(() => new Array(15000).fill(null));
+        this.totalCalls = new Array(this.SIZE).fill(null).map(() => new Array(15000).fill(0));
     }
     reset() {
         for (let index2 = 0; index2 < this.SIZE; index2++) {

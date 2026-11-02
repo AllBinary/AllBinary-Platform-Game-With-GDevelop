@@ -57,7 +57,7 @@ export class GDPrimitiveDrawingLinesOnly extends Animation {
         ;
         let nextPoint;
         ;
-        for (let index = 1; index < size;) {
+        for (let index = 1; index < size; index += 2) {
             point = this.pointList.get(index - 1);
             nextPoint = this.pointList.get(index);
             this.linePathAnimation.paint(graphics, point, nextPoint, this.NULL_ALLBINARY_LAYER);

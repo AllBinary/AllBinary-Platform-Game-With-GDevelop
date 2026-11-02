@@ -72,9 +72,8 @@ export class GDGameTitleAnimationFactory
     private static readonly instance: GDGameTitleAnimationFactory = new GDGameTitleAnimationFactory();
 static getInstance(...args: any[]): any {
    
-    if (args.length === 0) return this.getInstance$overload1();
    
-    if (args.length === 1) return this.getInstance$overload2(args[0]);
+    if (args.length === 0) return this.getInstance$overload1();
    
    throw new TypeError('No matching overload: getInstance'); }
   
@@ -87,7 +86,13 @@ static getInstance(...args: any[]): any {
     
 }
 
-
+getInstance(...args: any[]): any {
+   
+   
+    if (args.length === 1) return this.getInstance$overload2(args[0]);
+   
+   throw new TypeError('No matching overload: getInstance'); }
+  
                 //@Throws(Exception.constructor)
             
     public getInstance$overload2(animationInterfaceArray: IndexedAnimation[]): TitleAnimation{

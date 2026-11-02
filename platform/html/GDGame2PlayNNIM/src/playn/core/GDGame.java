@@ -26,6 +26,12 @@ import org.allbinary.media.audio.GDGameSoundsFactory;
 import org.allbinary.playn.PlayN2InputConnector;
 import org.allbinary.playn.input.PlayNToAllBinaryKeyInputUtil;
 
+/*//JSNI Expose on $wnd.playn.core so JSNI (GDGameMidletFactory) can construct this class *** &#10;
+globalThis.playn = globalThis.playn || {}; &#10;
+globalThis.playn.core = globalThis.playn.core || {}; &#10;
+globalThis.playn.core.GDGame = GDGame; &#10;
+console.log('Exported GDGame as globalThis');
+*/
 public class GDGame
     extends GDGameMIDlet
     implements PlayN2InputInterface

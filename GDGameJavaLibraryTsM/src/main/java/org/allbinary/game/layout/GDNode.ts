@@ -151,12 +151,17 @@ this.nodeStatsFactory!.push(3, this.name);
 
 processReleased(...args: any[]): any {
    
+   
+    if (args.length === 1 && args[0] instanceof GameKeyEvent) return this.processReleased$overload2(args[0]);
+    
     if (args.length === 0) return this.processReleased$overload1();
    
-    if (args.length === 1) return this.processReleased$overload2(args[0]);
+    if (args.length === 1 && args[0] == null) return this.processReleased$overload2(args[0]);
    
     if (args.length === 1) return this.processReleased$overload3(args[0]);
    
+    if (args.length === 1) return this.processReleased$overload2(args[0]);
+    
    throw new TypeError('No matching overload: processReleased'); }
   
                 //@Throws(Exception.constructor)
@@ -173,6 +178,7 @@ this.processReleasedStats();
 }
 
 processReleasedStats(...args: any[]): any {
+   
    
     if (args.length === 0) return this.processReleasedStats$overload1();
    

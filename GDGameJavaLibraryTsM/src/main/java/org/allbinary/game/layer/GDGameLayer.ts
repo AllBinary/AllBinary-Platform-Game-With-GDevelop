@@ -938,6 +938,7 @@ this.initIndexedAnimationInterfaceArrayP[0]!.setBackgroundBasicColorP(basicColor
 
 setText(...args: any[]): any {
    
+   
     if (args.length === 1 && typeof args[0] === 'number') return this.setText$overload1(args[0]);
    
     if (args.length === 1 && typeof args[0] === 'string') return this.setText$overload2(args[0]);
