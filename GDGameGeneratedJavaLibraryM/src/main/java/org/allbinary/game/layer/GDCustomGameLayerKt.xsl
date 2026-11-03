@@ -159,6 +159,7 @@ Created By: Travis Berthelot
         import org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory
         import org.allbinary.thread.PathFindingThreadPool
         import org.allbinary.util.BasicArrayListUtil
+        import org.allbinary.game.layer.GDFlagLayerInterfaceFactory
 
         </xsl:if>
 
@@ -399,7 +400,7 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
-                    this.waypointLayerInterfaceFactoryInterface = org.allbinary.game.layer.GDFlagLayerInterfaceFactory.getInstance() //waypointLayerInterfaceFactoryInterface
+                    this.waypointLayerInterfaceFactoryInterface = GDFlagLayerInterfaceFactory.getInstance() //waypointLayerInterfaceFactoryInterface
                     this.geographicMapCellPositionArea = GeographicMapCellPositionArea(this)
                 </xsl:if>
 
@@ -520,7 +521,7 @@ Created By: Travis Berthelot
 //                var player: GDGameLayer = this.gameGlobals.PlayerGDGameLayerList.get(0) as GDGameLayer
 //                if(this == player) {
 //                    var layerManagerAsString: String = this.allBinaryGameLayerManagerP.toString()
-//                    if(lastString.compareTo(layerManagerAsString) != 0)
+//                    if(this.tsUtil.compareTo(lastString, layerManagerAsString) != 0)
 //                    lastString = layerManagerAsString
 //                    if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
 //                        this.logUtil.putF("1this.allBinaryGameLayerManager: " + this.allBinaryGameLayerManagerP, this, "move")

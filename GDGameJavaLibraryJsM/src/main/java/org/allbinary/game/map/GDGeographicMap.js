@@ -124,7 +124,7 @@ export class GDGeographicMap extends RaceTrackGeographicMap {
             this.logUtil.putF(CREATING_ANIMATION_TILE + animationTileIndex, this, this.commonStrings.PROCESS);
             this.animationArray[index] = animation = tile.getAnimation();
             this.animationTileIndexArray[index] = animationTileIndex;
-            allBinaryJ2METiledLayer.updateCells(getLayer.getMapArray(), get.getTileid(), animationTileIndex);
+            allBinaryJ2METiledLayer.updateCells(this.map.getLayer(0).getMapArray(), animation.getFrame().get(0).getTileid(), animationTileIndex);
         }
     }
     update() {
@@ -144,7 +144,7 @@ export class GDGeographicMap extends RaceTrackGeographicMap {
         ;
         let frame;
         ;
-        let tiledLayer = getAllBinaryTiledLayer.getTiledLayer();
+        let tiledLayer = this.getAllBinaryTiledLayer().getTiledLayer();
         ;
         for (let index = 0; index < size; index++) {
             animation = this.animationArray[index];

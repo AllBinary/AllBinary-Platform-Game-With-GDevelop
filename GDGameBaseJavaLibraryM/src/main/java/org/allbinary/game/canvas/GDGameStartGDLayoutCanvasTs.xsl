@@ -55,7 +55,7 @@ public class <xsl:value-of select="$layoutName" /> extends StartCanvas
 
     private final int WAIT = ((GameSpeed.getInstance().getDelay() * 3) <xsl:text disable-output-escaping="yes" >&gt;&gt;</xsl:text> 1);
     
-    private final GDGameInputProcessor gameInputProcessor = new GDGameInputProcessor();
+    private final GDGameInputProcessor gdGameInputProcessor = new GDGameInputProcessor();
 
     private final DownKeyEventHandler downKeyEventHandler = DownKeyEventHandler.getInstance();
     private final UpKeyEventHandler upKeyEventHandler = UpKeyEventHandler.getInstance();
@@ -153,7 +153,7 @@ public class <xsl:value-of select="$layoutName" /> extends StartCanvas
 
     protected void processGame() throws Exception
     {
-        this.gameInputProcessor.process(null, this.paintedSpecialAnimationInterface);
+        this.gdGameInputProcessor.process(null, this.paintedSpecialAnimationInterface);
         super.processGame();
     }
 

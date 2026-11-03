@@ -139,9 +139,9 @@ export class GDObject extends Object {
         return this.height;
     }
     setX(...args) {
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0]))
             return this.setX$overload1(args[0]);
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0]))
             return this.setX$overload2(args[0]);
         throw new TypeError('No matching overload: setX');
     }
@@ -152,9 +152,9 @@ export class GDObject extends Object {
         this.xP = x;
     }
     setY(...args) {
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0]))
             return this.setY$overload1(args[0]);
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0]))
             return this.setY$overload2(args[0]);
         throw new TypeError('No matching overload: setY');
     }
@@ -255,9 +255,9 @@ export class GDObject extends Object {
         return this.angleP;
     }
     Variable(...args) {
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0]))
             return this.Variable$overload1(args[0]);
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0]))
             return this.Variable$overload2(args[0]);
         throw new TypeError('No matching overload: Variable');
     }

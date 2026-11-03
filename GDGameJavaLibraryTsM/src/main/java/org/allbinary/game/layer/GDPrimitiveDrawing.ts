@@ -200,9 +200,7 @@ this.aRetangleFilledAnimationInUseList!.add(rectangleFilledAnimation);
                         for (
     let index: number = 0;index < size; index++)
         {
-get = animationList!.get(index)get as Animation
-get.
-                    paintXY(graphics, x, y);
+(animationList!.get(index) as Animation).paintXY(graphics, x, y);
     
 }
 

@@ -116,6 +116,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
+                import org.allbinary.TsUtil;
                 import org.allbinary.thread.NullRunnable;
                 import org.allbinary.game.layout.GDUtil;
 
@@ -123,12 +124,14 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes extends SpecialAnimation
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes instance = 
-                        new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes();
+                    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes getInstance()
                         {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes.instance;
+                            if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes.instance == NullUtil.getInstance().NULL_OBJECT) {
+                                GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes.instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes();
+                            }
+                            return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes.instance;
                         }
 
                         private final StringUtil stringUtil = StringUtil.getInstance();

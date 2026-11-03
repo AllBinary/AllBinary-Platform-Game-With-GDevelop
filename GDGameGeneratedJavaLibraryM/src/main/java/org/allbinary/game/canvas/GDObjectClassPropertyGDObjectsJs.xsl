@@ -422,7 +422,7 @@ Created By: Travis Berthelot
 
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             //TWB - This is slow please fix me.
-                            if(this.ANIMATION_NAMES[index].compareTo(animationName) == 0) {
+                            if(this.tsUtil.compareTo(this.ANIMATION_NAMES[index], animationName) == 0) {
                                 //this.logUtil.put(animationName, this, "getAnimation");
                                 return this.ANIMATION_NAMES[index];
                             }

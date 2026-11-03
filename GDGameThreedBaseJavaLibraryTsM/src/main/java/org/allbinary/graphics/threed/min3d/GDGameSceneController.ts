@@ -141,8 +141,7 @@ export class GDGameSceneController extends AllBinaryGameSceneController {
     public process(gdGameCameraSetup: GDGameCameraSetup){
 }
 
-                                }
-                            ;
+                                }();
 
 public constructor (){
             super(new AllBinaryToMin3dRendererFactory(), new OffsetTargetXCameraFactory(), new AllBinarySceneFactory(), true, true);

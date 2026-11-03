@@ -83,6 +83,24 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.NullUtil
                 import org.allbinary.util.ArrayUtil
 
+                <xsl:variable name="selectedNodeIds" ></xsl:variable>
+        
+                    <xsl:call-template name="actionGDNodesImports" >
+                        <xsl:with-param name="caller" >actionLayout</xsl:with-param>
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                        <xsl:with-param name="forExtension" >found</xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >Extension</xsl:with-param>
+                        <xsl:with-param name="selectedNodeIds" >
+                            <xsl:value-of select="$selectedNodeIds" />
+                        </xsl:with-param>
+                        <xsl:with-param name="thisNodeIndex" >
+                            <xsl:value-of select="-1" />
+                        </xsl:with-param>
+
+                    </xsl:call-template>
+        
                 //Search for "//extensionNames"
                 //Current exclusion list (Used by RPG) - TextInputVirtualKeyboard, TouchScreen, PanelSpriteSlider, MirrorFillBarExtension, SpriteMultitouchJoystick'
                 open public class GDExtensionGDNodes : SpecialAnimation

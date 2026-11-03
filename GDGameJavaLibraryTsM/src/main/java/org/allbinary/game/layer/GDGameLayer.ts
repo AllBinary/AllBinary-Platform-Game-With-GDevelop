@@ -253,8 +253,7 @@ move();
     
 }
 
-                                }
-                            ;
+                                }();
 
     processor: Processor = this.moveProcessor;
 
@@ -670,8 +669,7 @@ updateGDObject(timeDelta);
     
 }
 
-                                }
-                            ;
+                                }();
     
 
                                     }

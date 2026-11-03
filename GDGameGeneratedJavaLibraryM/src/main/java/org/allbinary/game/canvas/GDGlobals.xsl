@@ -109,6 +109,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
+                import org.allbinary.TsUtil;
 
                 //GameGlobals name=<xsl:value-of select="properties/name" />
                 public class GDGameGlobals extends GDGlobals

@@ -94,17 +94,20 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
+                import org.allbinary.TsUtil;
 
                 //CreateInstance name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="$createInstanceIndex" />CreateInstance
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="$createInstanceIndex" />CreateInstance instance = 
-                       new GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="$createInstanceIndex" />CreateInstance();
+                    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
 
                     public static GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="$createInstanceIndex" />CreateInstance getInstance()
                     {
-                        return GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="$createInstanceIndex" />CreateInstance.instance;
+                        if(GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="$createInstanceIndex" />CreateInstance.instance == NullUtil.getInstance().NULL_OBJECT) {
+                            GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="$createInstanceIndex" />CreateInstance.instance = new GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="$createInstanceIndex" />CreateInstance();
+                        }
+                        return (GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="$createInstanceIndex" />CreateInstance) GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="$createInstanceIndex" />CreateInstance.instance;
                     }
 
                     protected final LogUtil logUtil = LogUtil.getInstance();

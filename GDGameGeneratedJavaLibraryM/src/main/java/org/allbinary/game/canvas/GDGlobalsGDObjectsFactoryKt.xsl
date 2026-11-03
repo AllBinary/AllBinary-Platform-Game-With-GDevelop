@@ -73,6 +73,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.string.StringUtil
                 import org.allbinary.util.BasicArrayList
                 import org.allbinary.util.BasicArrayListD
+                import org.allbinary.TsUtil
 
                 open public class GDGlobalsGDObjectsFactory
                 {

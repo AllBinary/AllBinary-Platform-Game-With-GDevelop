@@ -281,7 +281,7 @@ export class GDWaypointBehavior extends WaypointBehaviorBase {
     setCurrentTargetLayerInterface(currentTargetLayerInterface) {
         this.currentTargetLayerInterfaceP = currentTargetLayerInterface;
         if (this.currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance()) {
-            this.currentTargetGeographicMapCellPosition = currentTargetLayerInterfaceP.getCurrentGeographicMapCellPosition();
+            this.currentTargetGeographicMapCellPosition = this.currentTargetLayerInterfaceP.getCurrentGeographicMapCellPosition();
         }
         else {
             this.currentTargetGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;

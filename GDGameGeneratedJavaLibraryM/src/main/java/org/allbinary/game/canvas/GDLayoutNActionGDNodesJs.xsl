@@ -75,6 +75,7 @@ Created By: Travis Berthelot
                 import org.json.me.JSONObject;
                 import org.json.me.JSONTokener;
 
+                import org.allbinary.TsUtil;
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.J2MEUtil;
                 import org.allbinary.game.layout.GDConfig;
@@ -167,7 +168,24 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
                 import org.allbinary.game.layout.GDStrings;
                 import org.allbinary.game.layout.GDUtil;
-                
+
+                    <xsl:call-template name="actionGDNodesImports" >
+                        <xsl:with-param name="caller" >actionLayout</xsl:with-param>
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="selectedNodeIds" >
+                            <xsl:value-of select="$selectedNodeIds" />
+                        </xsl:with-param>
+                        <xsl:with-param name="thisNodeIndex" >
+                            <xsl:value-of select="-1" />
+                        </xsl:with-param>
+
+                    </xsl:call-template>
+                                
                 <xsl:variable name="selectedNodeIdSet" select="substring(substring($selectedNodeIds, string-length($selectedNodeIds) - 1), 1, 1)" />
                 <xsl:variable name="lastDigit2" ><xsl:if test="4 >= $selectedNodeIdSet" >0</xsl:if><xsl:if test="$selectedNodeIdSet > 4" >1</xsl:if></xsl:variable>
                 //selectedNodeIdSet=<xsl:value-of select="$selectedNodeIdSet" />
@@ -175,12 +193,14 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes instance = 
-                        new GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes();
+                    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
 
                         public static GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes getInstance()
                         {
-                            return GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes.instance;
+                            if(GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes.instance == NullUtil.getInstance().NULL_OBJECT) {
+                                GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes.instance = new GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes();
+                            }
+                            return (GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes) GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$lastDigit2" />GDNodes.instance;
                         }
 
                         private final NullUtil nullUtil = NullUtil.getInstance();

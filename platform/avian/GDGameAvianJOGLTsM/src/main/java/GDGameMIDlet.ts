@@ -267,9 +267,7 @@ openGLConfiguration!.write();
 
 
     public initView(){
-glSurfaceView = this.glSurfaceViewglSurfaceView as EmulatorViewInterface
-glSurfaceView.
-                    setMidlet(this);
+(this.glSurfaceView as EmulatorViewInterface).setMidlet(this);
     
 }
 

@@ -155,7 +155,7 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
     private var specialAnimation: SpecialAnimation = SpecialAnimation.getInstance()
     private var tileLayerPaintable: PaintableInterface = NullPaintable.getInstance()
 
-    private val gameInputProcessor: GDGameInputProcessor = GDGameInputProcessor()
+    private val gdGameInputProcessor: GDGameInputProcessor = GDGameInputProcessor()
 
     private val downKeyEventHandler: DownKeyEventHandler = DownKeyEventHandler.getInstance()
     private val upKeyEventHandler: UpKeyEventHandler = UpKeyEventHandler.getInstance()
@@ -476,7 +476,7 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
                 progressCanvas.addNormalPortion(this.portion, "Initializing Game")
             }
 
-            this.addPlayerGameInput(this.gameInputProcessor.getPlayerGameInput())
+            this.addPlayerGameInput(this.gdGameInputProcessor.getPlayerGameInput())
 
             this.buildGame(false)
 
@@ -756,7 +756,7 @@ open class GDGame<xsl:value-of select="$layoutName" />Canvas : CombatGameCanvas 
 
         musicManager.process()
 
-        this.gameInputProcessor.process(this.gameLayerManager, this.specialAnimation)
+        this.gdGameInputProcessor.process(this.gameLayerManager, this.specialAnimation)
 
         super.processPlayingGame()
 

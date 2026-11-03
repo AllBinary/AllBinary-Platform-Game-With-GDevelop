@@ -701,7 +701,7 @@ this.currentTargetLayerInterfaceP= currentTargetLayerInterface;
                         if(this.currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance())
                         
                                     {
-                                    this.currentTargetGeographicMapCellPosition= (currentTargetLayerInterfaceP as PathFindingLayerInterface).getCurrentGeographicMapCellPosition();
+                                    this.currentTargetGeographicMapCellPosition= (this.currentTargetLayerInterfaceP as PathFindingLayerInterface).getCurrentGeographicMapCellPosition();
     
 
                                     }

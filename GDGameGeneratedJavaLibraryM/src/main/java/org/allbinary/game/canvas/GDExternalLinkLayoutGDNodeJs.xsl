@@ -92,17 +92,20 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
+                import org.allbinary.TsUtil;
 
                 //LayoutExternalEvent name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode instance = 
-                       new GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode();
+                    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
 
                     public static GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode getInstance()
                     {
-                        return GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode.instance;
+                        if(GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode.instance == NullUtil.getInstance().NULL_OBJECT) {
+                            GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode.instance = new GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode();
+                        }
+                        return (GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode) GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode.instance;
                     }
 
                     protected final LogUtil logUtil = LogUtil.getInstance();

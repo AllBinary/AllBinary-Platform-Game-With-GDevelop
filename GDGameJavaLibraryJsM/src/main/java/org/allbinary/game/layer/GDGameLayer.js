@@ -96,7 +96,7 @@ export class GDGameLayer extends MultiPlayerGameLayer {
             processt(timeDelta) {
                 move();
             }
-        };
+        }();
         this.processor = this.moveProcessor;
         this.velocityBehavior = DragVelocityBehavior.instance;
         this.textChangeListener = new this.GDTextChangeListener(this);
@@ -283,7 +283,7 @@ export class GDGameLayer extends MultiPlayerGameLayer {
                         move();
                         updateGDObject(timeDelta);
                     }
-                };
+                }();
             }
         }
     }

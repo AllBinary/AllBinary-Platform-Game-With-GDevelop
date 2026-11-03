@@ -88,7 +88,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
     public boolean isCollision(final CollidableCompositeLayer ownerLayer, final CollidableCompositeLayer collisionLayer) 
     {
 //        final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) ownerLayer);
-//        if (customGameLayer.gdObject.name.compareTo(B) == 0) {
+//        if (this.tsUtil.compareTo(customGameLayer.gdObject.name, B) == 0) {
 //            this.logUtil.putF("isCollision: " + customGameLayer.toString(), this, this.commonStrings.PROCESS);
 //        }
         
@@ -139,7 +139,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
                 final GeographicMapCellPosition geographicMapCellPosition = customGameLayer.topViewGameBehavior.getGeographicMapCellPositionIfNotSolidBlockOrOffMapLocation(
                     geographicMapInterfaceArray, geographicMapCellTypeArray, customGameLayer.getVelocityProperties(), customGameLayer, gdObject.x, gdObject.y);
 
-//                if(customGameLayer.gdObject.name.compareTo(B) == 0) {
+//                if(this.tsUtil.compareTo(customGameLayer.gdObject.name, B) == 0) {
 //                    if(lastGeographicMapCellPosition != geographicMapCellPosition) {
 //                        lastGeographicMapCellPosition = geographicMapCellPosition;
 //                       this.logUtil.putF("geographicMapCellPosition: " + geographicMapCellPosition, this, this.commonStrings.PROCESS);

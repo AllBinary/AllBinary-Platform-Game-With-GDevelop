@@ -90,6 +90,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
+                import org.allbinary.TsUtil;
                 import org.allbinary.logic.NullUtil;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
@@ -99,12 +100,14 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes extends SpecialAnimation
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes instance = 
-                       new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes();
+                    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes getInstance()
                         {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes.instance;
+                            if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes.instance == NullUtil.getInstance().NULL_OBJECT) {
+                                GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes.instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes();
+                            }
+                            return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes.instance;
                         }
 
                         private final StringUtil stringUtil = StringUtil.getInstance();

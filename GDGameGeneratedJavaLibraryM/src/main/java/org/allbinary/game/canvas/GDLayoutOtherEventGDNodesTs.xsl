@@ -136,12 +136,14 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes extends SpecialAnimation
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes instance = 
-                       new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes();
+                    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes getInstance()
                         {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes.instance;
+                            if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes.instance == NullUtil.getInstance().NULL_OBJECT) {
+                                GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes.instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes();
+                            }
+                            return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes.instance;
                         }
 
                         private final StringUtil stringUtil = StringUtil.getInstance();

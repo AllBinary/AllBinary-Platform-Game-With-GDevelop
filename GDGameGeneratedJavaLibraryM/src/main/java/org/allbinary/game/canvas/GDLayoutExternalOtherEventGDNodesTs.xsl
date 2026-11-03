@@ -99,6 +99,7 @@ Created By: Travis Berthelot
                 import org.allbinary.thread.SecondaryThreadPool;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
+                import org.allbinary.TsUtil;
                 import org.allbinary.logic.NullUtil;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
@@ -130,12 +131,14 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes extends SpecialAnimation
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes instance = 
-                        new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes();
+                    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes getInstance()
                         {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes.instance;
+                            if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes.instance == NullUtil.getInstance().NULL_OBJECT) {
+                                GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes.instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes();
+                            }
+                            return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes.instance;
                         }
 
                         private final StringUtil stringUtil = StringUtil.getInstance();

@@ -125,6 +125,7 @@ Created By: Travis Berthelot
                 import org.allbinary.time.TimeDelayHelper;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
+                import org.allbinary.TsUtil;
                 import org.allbinary.logic.NullUtil;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.game.layer.behavior.GDBehaviorUtil;
@@ -139,11 +140,14 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes extends SpecialAnimation
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes();
+                    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes getInstance()
                         {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes.instance;
+                            if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes.instance == NullUtil.getInstance().NULL_OBJECT) {
+                                GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes.instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes();
+                            }
+                            return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes.instance;
                         }
 
                         private final NullUtil nullUtil = NullUtil.getInstance();

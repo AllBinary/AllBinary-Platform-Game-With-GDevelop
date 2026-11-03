@@ -92,10 +92,7 @@ export class GDPrimitiveDrawing extends Animation {
         let size = animationList.size();
         ;
         for (let index = 0; index < size; index++) {
-            get = animationList.get(index);
-            get;
-            get.
-                paintXY(graphics, x, y);
+            animationList.get(index).paintXY(graphics, x, y);
         }
     }
     paintThreedXYZ(graphics, x, y, z) {

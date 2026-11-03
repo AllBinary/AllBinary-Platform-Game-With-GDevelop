@@ -123,6 +123,90 @@ Created By: Travis Berthelot
 
     <xsl:import href="./action/GDExtensionActionProcessKt.xsl" />
 
+    <xsl:template name="actionGDNodesImports" >
+        <xsl:param name="caller" />
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="forExtension" />
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="selectedNodeIds" />
+        <xsl:param name="thisNodeIndex" />
+        <xsl:param name="conditionEventPosition" />
+
+        <xsl:variable name="quote" >"</xsl:variable>
+        
+        <xsl:for-each select="events" >
+            <xsl:variable name="eventPosition" select="position()" />
+
+            <xsl:variable name="logString" >this.EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                        
+            <xsl:variable name="actionWithTextObjectString" >
+                <xsl:for-each select="actions" >
+                    <xsl:variable name="typeValue" select="type/value" />
+                    <xsl:if test="$typeValue = 'TextObject::String'" >found:<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:if>
+                </xsl:for-each>
+            </xsl:variable>
+
+            <xsl:variable name="extensionNames" >
+                <xsl:for-each select="actions" >
+                    <xsl:variable name="typeValue" select="type/value" />
+                    <xsl:for-each select="//eventsFunctionsExtensions" >
+                        <xsl:if test="contains($typeValue, name)" ><xsl:value-of select="$typeValue" />,</xsl:if>
+                    </xsl:for-each>
+                </xsl:for-each>
+            </xsl:variable>
+            <xsl:if test="string-length($extensionNames) > 0" >
+            </xsl:if>
+
+            <!-- actions - START -->
+            <xsl:for-each select="actions" >
+                <xsl:variable name="nodeIdAsString" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
+                <xsl:variable name="typeValue" select="type/value" />
+                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+                <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+
+            <xsl:variable name="selectedNodeId" select="number(substring(generate-id(), 2) - 65536)" />
+            <xsl:variable name="selectedNodeIdWithSep" >,<xsl:value-of select="$selectedNodeId" />,</xsl:variable>            
+                    
+                <xsl:choose>
+                <xsl:when test="$typeValue = 'BuiltinExternalLayouts::CreateObjectsFromExternalLayout'" >
+                    import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes
+                </xsl:when>                
+                <xsl:otherwise>
+                </xsl:otherwise>
+                </xsl:choose>
+            
+            </xsl:for-each>
+            <!-- actions - END -->
+
+            <xsl:call-template name="actionGDNodesImports" >
+                <xsl:with-param name="caller" >
+                    <xsl:value-of select="$caller" />
+                </xsl:with-param>
+                <xsl:with-param name="forExtension" ><xsl:value-of select="$forExtension" /></xsl:with-param>
+                <xsl:with-param name="layoutIndex" >
+                    <xsl:value-of select="$layoutIndex" />
+                </xsl:with-param>
+                <xsl:with-param name="selectedNodeIds" >
+                    <xsl:value-of select="$selectedNodeIds" />
+                </xsl:with-param>
+                <xsl:with-param name="thisNodeIndex" >
+                    <xsl:value-of select="$thisNodeIndex" />
+                </xsl:with-param>
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="number($totalRecursions) + 1" />
+                </xsl:with-param>
+                <xsl:with-param name="conditionEventPosition" >
+                    <xsl:value-of select="$eventPosition" />
+                </xsl:with-param>
+
+            </xsl:call-template>
+
+        </xsl:for-each>
+
+    </xsl:template>
+    
     <xsl:template name="actionGDNodes" >
         <xsl:param name="caller" />
         <xsl:param name="totalRecursions" />
@@ -430,7 +514,7 @@ Created By: Travis Berthelot
                 override fun process(): Boolean {
                     super.processStats()
 
-                    val gdLayoutGDNodes: org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes = org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes.getInstance()
+                    val gdLayoutGDNodes: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes.getInstance()
                     val LAYOUT: String = <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
                     val size: Int = gdLayoutGDNodes.layoutNameList.size()
                     var key: String
@@ -438,7 +522,7 @@ Created By: Travis Berthelot
                     while(index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size) {
                         key = gdLayoutGDNodes.layoutNameList.get(index) as String
                         //stringMaker.append(key)
-                        if(key.compareTo(LAYOUT) == 0) {
+                        if(this.tsUtil.compareTo(key, LAYOUT) == 0) {
                             break
                         }
                         index++

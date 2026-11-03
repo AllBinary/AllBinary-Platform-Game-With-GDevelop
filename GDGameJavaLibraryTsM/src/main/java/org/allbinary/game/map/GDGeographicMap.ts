@@ -310,7 +310,7 @@ this.animationArray[index]= animation= tile.getAnimation();
     
 this.animationTileIndexArray[index]= animationTileIndex;
     
-allBinaryJ2METiledLayer!.updateCells((getLayer as TileLayer).getMapArray(), (get as Frame).getTileid(), animationTileIndex);
+allBinaryJ2METiledLayer!.updateCells((this.map.getLayer(0) as TileLayer).getMapArray(), (animation.getFrame()!.get(0) as Frame).getTileid(), animationTileIndex);
     
 }
 
@@ -351,7 +351,7 @@ allBinaryJ2METiledLayer!.updateCells((getLayer as TileLayer).getMapArray(), (get
     let frame: Frame;;
     
 
-    let tiledLayer: TiledLayer = (getAllBinaryTiledLayer as AllBinaryJ2METiledLayer).getTiledLayer()!;;
+    let tiledLayer: TiledLayer = (this.getAllBinaryTiledLayer() as AllBinaryJ2METiledLayer).getTiledLayer()!;;
     
 
 

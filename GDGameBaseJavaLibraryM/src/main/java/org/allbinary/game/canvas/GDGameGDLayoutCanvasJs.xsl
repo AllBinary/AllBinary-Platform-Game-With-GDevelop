@@ -156,7 +156,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
     private SpecialAnimation specialAnimation = SpecialAnimation.getInstance();
     private PaintableInterface tileLayerPaintable = NullPaintable.getInstance();
     
-    private final GDGameInputProcessor gameInputProcessor = new GDGameInputProcessor();
+    private final GDGameInputProcessor gdGameInputProcessor = new GDGameInputProcessor();
 
     private final DownKeyEventHandler downKeyEventHandler = DownKeyEventHandler.getInstance();
     private final UpKeyEventHandler upKeyEventHandler = UpKeyEventHandler.getInstance();
@@ -480,7 +480,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
                 progressCanvas.addNormalPortion(this.portion, "Initializing Game");
             }
 
-            this.addPlayerGameInput(this.gameInputProcessor.getPlayerGameInput());
+            this.addPlayerGameInput(this.gdGameInputProcessor.getPlayerGameInput());
 
             this.buildGame(false);
 
@@ -757,7 +757,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
     
         this.musicManager.process();
 
-        this.gameInputProcessor.process(this.gameLayerManager, this.specialAnimation);
+        this.gdGameInputProcessor.process(this.gameLayerManager, this.specialAnimation);
 
         super.processPlayingGame();
 

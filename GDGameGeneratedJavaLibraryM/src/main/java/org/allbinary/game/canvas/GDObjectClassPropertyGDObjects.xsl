@@ -186,6 +186,7 @@ Created By: Travis Berthelot
         public class <xsl:value-of select="name" /> extends GDObject {
 
             private final StringUtil stringUtil = StringUtil.getInstance();
+            private final TsUtil tsUtil = TsUtil.getInstance();
 
             public <xsl:value-of select="name" />(final int width, final int height, final String name, final String type) {
                 super(width, height, name, type);
@@ -263,6 +264,7 @@ Created By: Travis Berthelot
 
                     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                     private final StringUtil stringUtil = StringUtil.getInstance();
+                    private final TsUtil tsUtil = TsUtil.getInstance();
 
                     <xsl:variable name="hasObjectInObjectsGroups" ><xsl:for-each select="/game/layouts/objectsGroups" ><xsl:variable name="objectsGroupsName" select="name" /><xsl:for-each select="objects" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
 
@@ -427,7 +429,7 @@ Created By: Travis Berthelot
 
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             //TWB - This is slow please fix me.
-                            if(this.ANIMATION_NAMES[index].compareTo(animationName) == 0) {
+                            if(this.tsUtil.compareTo(this.ANIMATION_NAMES[index], animationName) == 0) {
                                 //this.logUtil.put(animationName, this, "getAnimation");
                                 return this.ANIMATION_NAMES[index];
                             }
@@ -582,6 +584,7 @@ Created By: Travis Berthelot
                 public final class <xsl:value-of select="name" /> extends GDObject {
 
                     private final StringUtil stringUtil = StringUtil.getInstance();
+                    private final TsUtil tsUtil = TsUtil.getInstance();
 
                     //public final StringMaker stringMaker = new StringMaker();
 

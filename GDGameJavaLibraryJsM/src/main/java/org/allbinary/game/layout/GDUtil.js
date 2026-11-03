@@ -60,9 +60,9 @@ export class GDUtil extends Object {
         ;
     }
     Random(...args) {
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0]))
             return this.Random$overload1(args[0]);
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0]))
             return this.Random$overload2(args[0]);
         throw new TypeError('No matching overload: Random');
     }
@@ -113,11 +113,11 @@ export class GDUtil extends Object {
         return result;
     }
     Variable(...args) {
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0]))
             return this.Variable$overload1(args[0]);
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0]))
             return this.Variable$overload2(args[0]);
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0]))
             return this.Variable$overload3(args[0]);
         if (args.length === 1 && typeof args[0] === 'string')
             return this.Variable$overload4(args[0]);
@@ -179,11 +179,11 @@ export class GDUtil extends Object {
     GlobalVariable(...args) {
         if (args.length === 1 && typeof args[0] === 'string')
             return this.GlobalVariable$overload1(args[0]);
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0]))
             return this.GlobalVariable$overload2(args[0]);
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0]))
             return this.GlobalVariable$overload3(args[0]);
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0]))
             return this.GlobalVariable$overload4(args[0]);
         throw new TypeError('No matching overload: GlobalVariable');
     }
@@ -342,11 +342,11 @@ export class GDUtil extends Object {
         return timeDelayHelper.getElapsed(this.globalsGameTickTimeDelayHelper.lastStartTime) / 1000;
     }
     floor(...args) {
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0]))
             return this.floor$overload1(args[0]);
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0]))
             return this.floor$overload2(args[0]);
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0]))
             return this.floor$overload3(args[0]);
         throw new TypeError('No matching overload: floor');
     }
@@ -367,11 +367,11 @@ export class GDUtil extends Object {
         return value % mod;
     }
     round(...args) {
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0]))
             return this.round$overload1(args[0]);
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0]))
             return this.round$overload2(args[0]);
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0]))
             return this.round$overload3(args[0]);
         throw new TypeError('No matching overload: round');
     }
@@ -388,9 +388,9 @@ export class GDUtil extends Object {
         return Math.round(value);
     }
     abs(...args) {
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0]))
             return this.abs$overload1(args[0]);
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0]))
             return this.abs$overload2(args[0]);
         throw new TypeError('No matching overload: abs');
     }
@@ -489,11 +489,11 @@ export class GDUtil extends Object {
     ToString(...args) {
         if (args.length === 1 && typeof args[0] === 'string')
             return this.ToString$overload1(args[0]);
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0]))
             return this.ToString$overload2(args[0]);
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0]))
             return this.ToString$overload3(args[0]);
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0]))
             return this.ToString$overload4(args[0]);
         throw new TypeError('No matching overload: ToString');
     }
@@ -519,9 +519,9 @@ export class GDUtil extends Object {
         ;
     }
     LargeNumberToString(...args) {
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0]))
             return this.LargeNumberToString$overload1(args[0]);
-        if (args.length === 1 && typeof args[0] === 'number')
+        if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0]))
             return this.LargeNumberToString$overload2(args[0]);
         throw new TypeError('No matching overload: LargeNumberToString');
     }

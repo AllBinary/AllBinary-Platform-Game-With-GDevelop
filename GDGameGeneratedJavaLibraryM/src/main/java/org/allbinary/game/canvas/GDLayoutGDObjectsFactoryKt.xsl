@@ -80,6 +80,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.string.StringUtil
                 import org.allbinary.util.BasicArrayList
                 import org.allbinary.util.BasicArrayListD
+                import org.allbinary.TsUtil;
                 import org.allbinary.game.layer.behavior.GDBehaviorUtil
                 import org.allbinary.graphics.GPoint
                 import org.allbinary.graphics.PointFactory

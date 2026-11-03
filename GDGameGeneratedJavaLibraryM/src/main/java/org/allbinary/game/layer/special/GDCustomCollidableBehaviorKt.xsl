@@ -85,7 +85,7 @@ open public class GDCustomCollidableBehavior : CollidableBaseBehavior
 
     override fun isCollision(ownerLayer: CollidableCompositeLayer, collisionLayer: CollidableCompositeLayer): Boolean {
 //        var customGameLayer: GDCustomGameLayer = (ownerLayer as GDCustomGameLayer)
-//        if (customGameLayer.gdObject.name.compareTo(B) == 0) {
+//        if (this.tsUtil.compareTo(customGameLayer.gdObject.name, B) == 0) {
 //            this.logUtil.putF("isCollision: " + customGameLayer.toString(), this, this.commonStrings.PROCESS)
 //        }
 
@@ -133,7 +133,7 @@ open public class GDCustomCollidableBehavior : CollidableBaseBehavior
                 val geographicMapCellPosition: GeographicMapCellPosition = customGameLayer.topViewGameBehavior.getGeographicMapCellPositionIfNotSolidBlockOrOffMapLocation(
                     geographicMapInterfaceArray, geographicMapCellTypeArray, customGameLayer.getVelocityProperties(), customGameLayer, gdObject.x, gdObject.y)
 
-//                if(customGameLayer.gdObject.name.compareTo(B) == 0) {
+//                if(this.tsUtil.compareTo(customGameLayer.gdObject.name, B) == 0) {
 //                    if(lastGeographicMapCellPosition != geographicMapCellPosition) {
 //                        lastGeographicMapCellPosition = geographicMapCellPosition
 //                       this.logUtil.putF("geographicMapCellPosition: " + geographicMapCellPosition, this, this.commonStrings.PROCESS)

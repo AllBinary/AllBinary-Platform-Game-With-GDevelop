@@ -140,9 +140,9 @@ export class GDUtil
 Random(...args: any[]): any {
    
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.Random$overload1(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0])) return this.Random$overload1(args[0]);
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.Random$overload2(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0])) return this.Random$overload2(args[0]);
    
    throw new TypeError('No matching overload: Random'); }
   
@@ -229,11 +229,11 @@ RandomFloatInRange(...args: any[]): any {
 Variable(...args: any[]): any {
    
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.Variable$overload1(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0])) return this.Variable$overload1(args[0]);
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.Variable$overload2(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0])) return this.Variable$overload2(args[0]);
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.Variable$overload3(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0])) return this.Variable$overload3(args[0]);
    
     if (args.length === 1 && typeof args[0] === 'string') return this.Variable$overload4(args[0]);
    
@@ -351,11 +351,11 @@ GlobalVariable(...args: any[]): any {
    
     if (args.length === 1 && typeof args[0] === 'string') return this.GlobalVariable$overload1(args[0]);
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.GlobalVariable$overload2(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0])) return this.GlobalVariable$overload2(args[0]);
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.GlobalVariable$overload3(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0])) return this.GlobalVariable$overload3(args[0]);
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.GlobalVariable$overload4(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0])) return this.GlobalVariable$overload4(args[0]);
    
    throw new TypeError('No matching overload: GlobalVariable'); }
   
@@ -659,11 +659,11 @@ MouseY(...args: any[]): any {
 floor(...args: any[]): any {
    
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.floor$overload1(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0])) return this.floor$overload1(args[0]);
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.floor$overload2(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0])) return this.floor$overload2(args[0]);
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.floor$overload3(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0])) return this.floor$overload3(args[0]);
    
    throw new TypeError('No matching overload: floor'); }
   
@@ -709,11 +709,11 @@ floor(...args: any[]): any {
 round(...args: any[]): any {
    
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.round$overload1(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0])) return this.round$overload1(args[0]);
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.round$overload2(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0])) return this.round$overload2(args[0]);
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.round$overload3(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0])) return this.round$overload3(args[0]);
    
    throw new TypeError('No matching overload: round'); }
   
@@ -749,9 +749,9 @@ round(...args: any[]): any {
 abs(...args: any[]): any {
    
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.abs$overload1(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0])) return this.abs$overload1(args[0]);
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.abs$overload2(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0])) return this.abs$overload2(args[0]);
    
    throw new TypeError('No matching overload: abs'); }
   
@@ -959,11 +959,11 @@ ToString(...args: any[]): any {
    
     if (args.length === 1 && typeof args[0] === 'string') return this.ToString$overload1(args[0]);
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.ToString$overload2(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0])) return this.ToString$overload2(args[0]);
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.ToString$overload3(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0])) return this.ToString$overload3(args[0]);
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.ToString$overload4(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0])) return this.ToString$overload4(args[0]);
    
    throw new TypeError('No matching overload: ToString'); }
   
@@ -1016,9 +1016,9 @@ ToString(...args: any[]): any {
 LargeNumberToString(...args: any[]): any {
    
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.LargeNumberToString$overload1(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && Number.isInteger(args[0])) return this.LargeNumberToString$overload1(args[0]);
    
-    if (args.length === 1 && typeof args[0] === 'number') return this.LargeNumberToString$overload2(args[0]);
+    if (args.length === 1 && typeof args[0] === 'number' && !Number.isInteger(args[0])) return this.LargeNumberToString$overload2(args[0]);
    
    throw new TypeError('No matching overload: LargeNumberToString'); }
   

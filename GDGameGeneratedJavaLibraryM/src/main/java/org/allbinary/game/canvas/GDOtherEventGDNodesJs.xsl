@@ -109,10 +109,13 @@ import org.allbinary.game.layer.identification.GroupLayerManagerListener;
 public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes
 {
 
-    private static final GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes instance = new GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes();
+    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
 
     public static final GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes getInstance() {
-        return GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes.instance;
+        if(GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes.instance == NullUtil.getInstance().NULL_OBJECT) {
+            GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes.instance = new GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes();
+        }
+        return (GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes) GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes.instance;
     }
 
     protected final LogUtil logUtil = LogUtil.getInstance();

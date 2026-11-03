@@ -97,6 +97,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ArrayUtil
                 import org.allbinary.util.BasicArrayList
                 import org.allbinary.util.BasicArrayListD
+                import org.allbinary.TsUtil
 
                 //CreateInstance name=<xsl:value-of select="$layoutName" />
                 open public class GD<xsl:value-of select="$externalLayoutIndex" />GameExternal<xsl:value-of select="$createInstanceIndex" />CreateInstance

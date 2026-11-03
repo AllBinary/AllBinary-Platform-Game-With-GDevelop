@@ -91,6 +91,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.logic.NullUtil;
                 import org.allbinary.string.CommonStrings;
                 import org.allbinary.string.CommonSeps;
                 import org.allbinary.logic.string.StringMaker;
@@ -99,6 +100,7 @@ Created By: Travis Berthelot
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
+                import org.allbinary.TsUtil;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.media.audio.PlayerComposite;
                 import org.allbinary.media.audio.Sound;
@@ -111,11 +113,14 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes extends SpecialAnimation
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes();
+                    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes getInstance()
                         {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes.instance;
+                            if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes.instance == NullUtil.getInstance().NULL_OBJECT) {
+                                GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes.instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes();
+                            }
+                            return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes.instance;
                         }
 
                         private final GDUtil gdUtil = GDUtil.getInstance();

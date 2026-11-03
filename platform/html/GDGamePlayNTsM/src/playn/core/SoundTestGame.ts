@@ -151,8 +151,7 @@ touchMove(event.x(), event.y());
     
 }
 
-                                }
-                            );
+                                }());
     
 DeviceFactory.setDevice(new PlaynDevice());
     
@@ -270,8 +269,7 @@ PlayN.net()!.post("/rpc", payload, new class extends Callback<string>
     public onFailure(error: Throwable){
 }
 
-                                }
-                            );
+                                }());
     
 }
 

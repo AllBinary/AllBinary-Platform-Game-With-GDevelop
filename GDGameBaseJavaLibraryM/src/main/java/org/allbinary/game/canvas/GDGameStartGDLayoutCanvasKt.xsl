@@ -54,7 +54,7 @@ open class <xsl:value-of select="$layoutName" /> : StartCanvas
 
     private val WAIT: Int = ((GameSpeed.getInstance().getDelay() * 3) <xsl:text disable-output-escaping="yes" >&gt;&gt;</xsl:text> 1)
 
-    private val gameInputProcessor: GDGameInputProcessor = GDGameInputProcessor()
+    private val gdGameInputProcessor: GDGameInputProcessor = GDGameInputProcessor()
 
     private val downKeyEventHandler: DownKeyEventHandler = DownKeyEventHandler.getInstance()
     private val upKeyEventHandler: UpKeyEventHandler = UpKeyEventHandler.getInstance()
@@ -151,7 +151,7 @@ open class <xsl:value-of select="$layoutName" /> : StartCanvas
 
     open fun processGame()
     {
-        this.gameInputProcessor.process(null, this.paintedSpecialAnimationInterface)
+        this.gdGameInputProcessor.process(null, this.paintedSpecialAnimationInterface)
         super.processGame()
     }
 

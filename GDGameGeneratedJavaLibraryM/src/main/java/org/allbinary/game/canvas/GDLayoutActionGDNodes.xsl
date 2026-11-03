@@ -131,6 +131,7 @@ Created By: Travis Berthelot
                 import org.allbinary.string.CommonSeps;
                 import org.allbinary.logic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.logic.NullUtil;
                 import org.allbinary.logic.io.file.FileSystem;
                 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
                 import org.allbinary.media.audio.Sound;
@@ -141,6 +142,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
+                import org.allbinary.TsUtil;
                 import org.allbinary.media.audio.PlayerComposite;
                 import org.allbinary.thread.SecondaryThreadPool;
                 import org.allbinary.game.layer.behavior.GDBehaviorUtil;
@@ -180,12 +182,14 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes extends SpecialAnimation
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes instance = 
-                        new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes();
+                    private static Object instance = NullUtil.getInstance().NULL_OBJECT;
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes getInstance()
                         {
-                            return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes.instance;
+                            if(GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes.instance == NullUtil.getInstance().NULL_OBJECT) {
+                                GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes.instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes();
+                            }
+                            return (GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes) GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes.instance;
                         }
 
                         private final GDUtil gdUtil = GDUtil.getInstance();

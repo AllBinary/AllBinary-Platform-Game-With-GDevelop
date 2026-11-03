@@ -149,8 +149,8 @@ Created By: Travis Berthelot
                 //TextObject::Text - set the layer size from the initial text
                 final CustomTextAnimationFactory <xsl:value-of select="name" />CustomTextAnimationFactory = (CustomTextAnimationFactory) <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray[0];
                 <xsl:value-of select="name" />CustomTextAnimationFactory.basicColor = basicColor;
-                <xsl:value-of select="name" />LayerInfo.setWidth((int) (<xsl:value-of select="name" />CustomTextAnimationFactory.getWidth() / scale));
-                <xsl:value-of select="name" />LayerInfo.setHeight((int) (<xsl:value-of select="name" />CustomTextAnimationFactory.getHeight()));
+                this.<xsl:value-of select="name" />LayerInfo.setWidth((int) (<xsl:value-of select="name" />CustomTextAnimationFactory.getWidth() / scale));
+                this.<xsl:value-of select="name" />LayerInfo.setHeight((int) (<xsl:value-of select="name" />CustomTextAnimationFactory.getHeight()));
                 </xsl:if>
 
                 <xsl:if test="type = 'PanelSpriteSlider::PanelSpriteSlider'" >
@@ -175,8 +175,8 @@ Created By: Travis Berthelot
                     <xsl:value-of select="name" />BehaviorList,
                     this.<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
                     this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
-                    <xsl:value-of select="name" />LayerInfo,
-                    <xsl:value-of select="name" />RectangleArrayOfArrays
+                    this.<xsl:value-of select="name" />LayerInfo,
+                    this.<xsl:value-of select="name" />RectangleArrayOfArrays
                     <xsl:variable name="hasMoreThanOneImageOrRotationDisabled" ><xsl:if test="contains($hasMoreThanOneImage, 'found')" >found</xsl:if><xsl:if test="/game/properties/custom[name = name and rotation]" >found</xsl:if></xsl:variable>
                     <xsl:choose>
                         <xsl:when test="type = 'PanelSpriteSlider::PanelSpriteSlider'" >, GDSliderAnimationBehaviorFactory.getInstance()</xsl:when>
@@ -199,7 +199,7 @@ Created By: Travis Berthelot
                         public Rectangle init(final GDObject gdObject, final float scaleX, final float scaleY) {
                             //text animation sizing
                             //this.logUtil.putF("CustomTextAnimation", this, "init");
-                            final CustomTextAnimationFactory customTextAnimationFactory = (CustomTextAnimationFactory) animationInterfaceFactoryInterfaceArray[0];
+                            final CustomTextAnimationFactory customTextAnimationFactory = (CustomTextAnimationFactory) this.animationInterfaceFactoryInterfaceArray[0];
 
                             gdObject.width = (int) (<xsl:value-of select="name" />CustomTextAnimationFactory.getWidth() / scale);
                             gdObject.height = (int) (customTextAnimationFactory.getHeight());
@@ -288,10 +288,10 @@ Created By: Travis Berthelot
                     <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerDestroyedList,
                     new Group[] {<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface},
                     <xsl:value-of select="name" />BehaviorList,
-                    <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
-                    <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
-                    <xsl:value-of select="name" />LayerInfo,
-                    <xsl:value-of select="name" />RectangleArrayOfArrays);
+                    this.<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
+                    this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
+                    this.<xsl:value-of select="name" />LayerInfo,
+                    this.<xsl:value-of select="name" />RectangleArrayOfArrays);
 
                 //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
 

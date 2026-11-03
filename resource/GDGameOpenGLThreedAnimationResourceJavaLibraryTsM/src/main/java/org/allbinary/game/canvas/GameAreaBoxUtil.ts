@@ -159,10 +159,10 @@ export class GameAreaBoxUtil
     let btn_rotate_leftGroupInterface: Group = GroupFactory.getInstance()!.getNextGroupByName(this.BOX)!;;
     
 
-    let boxAnimationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[] = (getBasicAnimationInterfaceFactoryInstance as AnimationInterfaceFactoryInterfaceComposite).getAnimationInterfaceFactoryInterfaceArray() as AnimationInterfaceFactoryInterface[];;
+    let boxAnimationInterfaceFactoryInterfaceArray: AnimationInterfaceFactoryInterface[] = (animationInterfaceFactoryInterfaceFactory!.getBasicAnimationInterfaceFactoryInstance(this.BOX_ANIMATION_NAME) as AnimationInterfaceFactoryInterfaceComposite).getAnimationInterfaceFactoryInterfaceArray() as AnimationInterfaceFactoryInterface[];;
     
 
-    let boxProceduralAnimationInterfaceFactoryInterfaceArray: ProceduralAnimationInterfaceFactoryInterface[] = (getBasicAnimationInterfaceFactoryInstance as BaseAnimationInterfaceFactoryInterfaceComposite).getBasicAnimationInterfaceFactoryInterfaceArray() as ProceduralAnimationInterfaceFactoryInterface[];;
+    let boxProceduralAnimationInterfaceFactoryInterfaceArray: ProceduralAnimationInterfaceFactoryInterface[] = (animationInterfaceFactoryInterfaceFactory!.getBasicAnimationInterfaceFactoryInstance(this.BOX_PROCEDURAL_ANIMATION_NAME) as BaseAnimationInterfaceFactoryInterfaceComposite).getBasicAnimationInterfaceFactoryInterfaceArray() as ProceduralAnimationInterfaceFactoryInterface[];;
     
 
     let boxLayerInfo1: Rectangle = animationInterfaceFactoryInterfaceFactory!.getRectangle(this.BOX_RECTANGLE_NAME_1)!;;

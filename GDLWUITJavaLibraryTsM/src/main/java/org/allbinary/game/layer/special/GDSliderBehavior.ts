@@ -66,8 +66,7 @@ super.setHandlesInput(true);
     
 }
 
-                                }
-                            ;
+                                }();
 
     public build(){
 

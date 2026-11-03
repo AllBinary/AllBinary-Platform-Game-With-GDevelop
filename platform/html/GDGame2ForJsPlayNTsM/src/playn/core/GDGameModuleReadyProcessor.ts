@@ -106,9 +106,7 @@ this.logUtil!.putF(new StringMaker().append(this.commonStrings!.START)!.append(t
                                 
 this.initInterface!.init();
     
-initInterface = this.initInterfaceinitInterface as AllBinaryPlayNGame
-initInterface.
-                    setLoadGameRunnableProcessor(Processor.getInstance());
+(this.initInterface as AllBinaryPlayNGame).setLoadGameRunnableProcessor(Processor.getInstance());
     
 
                                     }

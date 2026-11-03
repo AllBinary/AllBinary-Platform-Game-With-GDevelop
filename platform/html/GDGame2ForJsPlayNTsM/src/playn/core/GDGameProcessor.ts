@@ -160,9 +160,7 @@ this.logUtil!.putF(this.commonStrings!.ADD +"GDGamesModuleReadyProcessor" +this.
     
 this.alreadyDone= true;
     
-initInterface = this.initInterfaceinitInterface as AllBinaryPlayNGame
-initInterface.
-                    setLoadGameRunnableProcessor(miniSpaceWarsModuleReadyProcessor);
+(this.initInterface as AllBinaryPlayNGame).setLoadGameRunnableProcessor(miniSpaceWarsModuleReadyProcessor);
     
 this.initInterface= this.NULL_INIT;
     

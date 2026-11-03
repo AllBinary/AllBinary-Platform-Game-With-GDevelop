@@ -76,6 +76,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.BasicArrayListD;
+                import org.allbinary.TsUtil;
 
                 //Game name=<xsl:value-of select="$gameName" />
                 public class GDGlobalsSpecialAnimation extends GDSpecialAnimation
