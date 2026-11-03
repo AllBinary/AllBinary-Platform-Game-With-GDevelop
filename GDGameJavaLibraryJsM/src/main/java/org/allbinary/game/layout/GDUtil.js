@@ -43,7 +43,7 @@ export class GDUtil extends Object {
     }
     static getInstance() {
         //if statement needs to be on the same line and ternary does not work the same way.
-        return instance;
+        return GDUtil.instance;
     }
     TimeDelta() {
         //if statement needs to be on the same line and ternary does not work the same way.

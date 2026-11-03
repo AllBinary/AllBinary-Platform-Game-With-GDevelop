@@ -35,7 +35,7 @@ public class GDUtil {
      * @return the instance
      */
     public static GDUtil getInstance() {
-        return instance;
+        return GDUtil.instance;
     }
 
     private final CommonSeps commonSeps = CommonSeps.getInstance();
