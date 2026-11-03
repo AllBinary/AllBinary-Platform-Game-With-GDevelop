@@ -193,7 +193,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
                     </xsl:call-template>
 
                         } catch(Exception e) {
-                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
+                            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.CONSTRUCTOR, e);
                         }
 
         super.init(level);
