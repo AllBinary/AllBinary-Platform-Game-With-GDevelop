@@ -55,17 +55,49 @@ import { GDTwodBehavior } from './GDTwodBehavior.js';
 //sameFolderImports - not GWT import - same folder const GDTwodBehavior
 import { ScalableBaseProcessor } from './ScalableBaseProcessor.js';
 //sameFolderImports - not GWT import - same folder const ScalableBaseProcessor
+//import { MoveProcessor } from './MoveProcessor.js';
+//sameFolderImports - not GWT import - same folder const MoveProcessor
 //import { GDTextChangeListener } from './GDTextChangeListener.js';
 //sameFolderImports - not GWT import - same folder const GDTextChangeListener
 import { ResetRotationAnimationBehavior } from './ResetRotationAnimationBehavior.js';
 //sameFolderImports - not GWT import - same folder const ResetRotationAnimationBehavior
 import { GDThreedBehavior } from './GDThreedBehavior.js';
 //sameFolderImports - not GWT import - same folder const GDAnimationBehaviorBase
+//import { MoveAndUpdateProcessor } from './MoveAndUpdateProcessor.js';
+//sameFolderImports - not GWT import - same folder const MoveAndUpdateProcessor
 import { ScalableProcessor } from './ScalableProcessor.js';
 export class GDGameLayer extends MultiPlayerGameLayer {
     constructor(primitiveDrawing, gameLayerList, gameLayerDestroyedList, behaviorList, velocityInterface, remoteInfo, groupInterface, gdName, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, viewPosition, gdObject, animationBehavior, rotationAdjustment) {
         super(remoteInfo, groupInterface, gdName, layerInfo, viewPosition);
-        //    private float lastScaleY = 1;
+        //inner= member=true isStatic=
+        this.MoveProcessor = (() => {
+            const outer$GDGameLayer = this;
+            return class extends Processor {
+                constructor(gameLayer) {
+                    super();
+                    this.gameLayer = gameLayer;
+                }
+                //@Throws(Exception.constructor)
+                processt(timeDelta) {
+                    this.gameLayer.move();
+                }
+            };
+        })();
+        //inner= member=true isStatic=
+        this.MoveAndUpdateProcessor = (() => {
+            const outer$GDGameLayer = this;
+            return class extends Processor {
+                constructor(gameLayer) {
+                    super();
+                    this.gameLayer = gameLayer;
+                }
+                //@Throws(Exception.constructor)
+                processt(timeDelta) {
+                    this.gameLayer.move();
+                    this.gameLayer.updateGDObject(timeDelta);
+                }
+            };
+        })(); //    private float lastScaleY = 1;
         //inner= member=true isStatic=
         this.GDTextChangeListener = (() => {
             const outer$GDGameLayer = this;
@@ -91,12 +123,7 @@ export class GDGameLayer extends MultiPlayerGameLayer {
         this.realY = 0;
         this.linkedGDGameLayerList = new BasicArrayListD();
         this.scalableProcessor = ScalableBaseProcessor.getInstance();
-        this.moveProcessor = new class extends Processor {
-            //@Throws(Exception.constructor)
-            processt(timeDelta) {
-                move();
-            }
-        }();
+        this.moveProcessor = new this.MoveProcessor(this);
         this.processor = this.moveProcessor;
         this.velocityBehavior = DragVelocityBehavior.instance;
         this.textChangeListener = new this.GDTextChangeListener(this);
@@ -277,13 +304,7 @@ export class GDGameLayer extends MultiPlayerGameLayer {
         this.velocityInterface.setVelocityi(length * this.SCALE_FACTOR2, globalThis.Math.trunc(adjustedAngle), 0);
         if (clearing == 1) {
             if (this.processor == this.moveProcessor) {
-                this.processor = new class extends Processor {
-                    //@Throws(Exception.constructor)
-                    processt(timeDelta) {
-                        move();
-                        updateGDObject(timeDelta);
-                    }
-                }();
+                this.processor = new this.MoveAndUpdateProcessor(this);
             }
         }
     }

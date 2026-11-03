@@ -157,6 +157,8 @@ import { GDTwodBehavior } from './GDTwodBehavior.js';
 //sameFolderImports - not GWT import - same folder const GDTwodBehavior
 import { ScalableBaseProcessor } from './ScalableBaseProcessor.js';
 //sameFolderImports - not GWT import - same folder const ScalableBaseProcessor
+//import { MoveProcessor } from './MoveProcessor.js';
+//sameFolderImports - not GWT import - same folder const MoveProcessor
 //import { GDTextChangeListener } from './GDTextChangeListener.js';
 //sameFolderImports - not GWT import - same folder const GDTextChangeListener
 import { ResetRotationAnimationBehavior } from './ResetRotationAnimationBehavior.js';
@@ -165,15 +167,71 @@ import { GDThreedBehavior } from './GDThreedBehavior.js';
 //sameFolderImports - not GWT import - same folder const GDThreedBehavior
 import { GDAnimationBehaviorBase } from './GDAnimationBehaviorBase.js';
 //sameFolderImports - not GWT import - same folder const GDAnimationBehaviorBase
+//import { MoveAndUpdateProcessor } from './MoveAndUpdateProcessor.js';
+//sameFolderImports - not GWT import - same folder const MoveAndUpdateProcessor
 import { ScalableProcessor } from './ScalableProcessor.js';
 //sameFolderImports - not GWT import - same folder const ScalableProcessor
+type MoveProcessor = InstanceType<GDGameLayer['MoveProcessor']>;
+type MoveAndUpdateProcessor = InstanceType<GDGameLayer['MoveAndUpdateProcessor']>;
 type GDTextChangeListener = InstanceType<GDGameLayer['GDTextChangeListener']>;
 
 export class GDGameLayer extends MultiPlayerGameLayer {
         
 
     private static readonly HACK_ANIMATION_NAME: string = "ttack";
-//    private float lastScaleY = 1;
+
+//inner= member=true isStatic=
+MoveProcessor = (() => { const outer$GDGameLayer = this; return class extends Processor {
+        
+/*Static stuff is not allowed for TypeScript inner classes*//**/
+
+
+    private readonly gameLayer: GDGameLayer;
+
+ constructor (gameLayer: GDGameLayer){
+
+            super();
+        this.gameLayer= gameLayer;
+    
+}
+
+
+                //@Throws(Exception.constructor)
+            
+    public processt(timeDelta: number){
+this.gameLayer!.move();
+    
+}
+
+
+}; })();
+//inner= member=true isStatic=
+MoveAndUpdateProcessor = (() => { const outer$GDGameLayer = this; return class extends Processor {
+        
+/*Static stuff is not allowed for TypeScript inner classes*//**/
+
+
+    private readonly gameLayer: GDGameLayer;
+
+ constructor (gameLayer: GDGameLayer){
+
+            super();
+        this.gameLayer= gameLayer;
+    
+}
+
+
+                //@Throws(Exception.constructor)
+            
+    public processt(timeDelta: number){
+this.gameLayer!.move();
+    
+this.gameLayer!.updateGDObject(timeDelta);
+    
+}
+
+
+}; })();//    private float lastScaleY = 1;
 //inner= member=true isStatic=
 GDTextChangeListener = (() => { const outer$GDGameLayer = this; return class extends TextChangeListener {
         
@@ -243,17 +301,7 @@ this.gameLayer!.onMeasure();
 
     scalableProcessor: ScalableBaseProcessor = ScalableBaseProcessor.getInstance()!;
 
-    moveProcessor: Processor = new class extends Processor
-                                {
-                                
-                //@Throws(Exception.constructor)
-            
-    public processt(timeDelta: number){
-move();
-    
-}
-
-                                }();
+    moveProcessor: Processor = new this.MoveProcessor(this);
 
     processor: Processor = this.moveProcessor;
 
@@ -657,19 +705,7 @@ this.velocityInterface!.setVelocityi(length *this.SCALE_FACTOR2, globalThis.Math
                         if(this.processor == this.moveProcessor)
                         
                                     {
-                                    this.processor= new class extends Processor
-                                {
-                                
-                //@Throws(Exception.constructor)
-            
-    public processt(timeDelta: number){
-move();
-    
-updateGDObject(timeDelta);
-    
-}
-
-                                }();
+                                    this.processor= new this.MoveAndUpdateProcessor(this);
     
 
                                     }
