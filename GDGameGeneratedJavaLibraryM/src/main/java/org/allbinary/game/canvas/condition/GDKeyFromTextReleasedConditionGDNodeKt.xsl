@@ -76,7 +76,7 @@ Created By: Travis Berthelot
                             //var nodeId: Event = <xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" />
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process()
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>this.globals.<xsl:value-of select="target" />GDNode.process()
                                     </xsl:if>
                                 </xsl:for-each>
 
@@ -87,11 +87,11 @@ Created By: Travis Berthelot
                                 }
                             }
 
-                            if(globals.inputProcessorArray[<xsl:call-template name="generateCanvasKeyFromGDNameHack" ><xsl:with-param name="key" select="parameters[2]" /></xsl:call-template>] != null) {
-                                val gameInputProcessor2: GDRGameInputProcessor = globals.inputProcessorArray[<xsl:call-template name="generateCanvasKeyFromGDNameHack" ><xsl:with-param name="key" select="parameters[2]" /></xsl:call-template>] as GDRGameInputProcessor
+                            if(this.globals.inputProcessorArray[<xsl:call-template name="generateCanvasKeyFromGDNameHack" ><xsl:with-param name="key" select="parameters[2]" /></xsl:call-template>] != null) {
+                                val gameInputProcessor2: GDRGameInputProcessor = this.globals.inputProcessorArray[<xsl:call-template name="generateCanvasKeyFromGDNameHack" ><xsl:with-param name="key" select="parameters[2]" /></xsl:call-template>] as GDRGameInputProcessor
                                 gameInputProcessor2.releasedGameInputProcessor = gameInputProcessor
                             } else {
-                                globals.inputProcessorArray[<xsl:call-template name="generateCanvasKeyFromGDNameHack" ><xsl:with-param name="key" select="parameters[2]" /></xsl:call-template>] = gameInputProcessor
+                                this.globals.inputProcessorArray[<xsl:call-template name="generateCanvasKeyFromGDNameHack" ><xsl:with-param name="key" select="parameters[2]" /></xsl:call-template>] = gameInputProcessor
 
                                 //Make sure we only call this 1 time
                                 this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />)

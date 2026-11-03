@@ -40,7 +40,7 @@ Created By: Travis Berthelot
                                     <xsl:value-of select="$thirdParam0" />
                                 </xsl:with-param>
                                 <xsl:with-param name="find" >VariableString(</xsl:with-param>
-                                <xsl:with-param name="replacementText" >VariableString(globals.</xsl:with-param>
+                                <xsl:with-param name="replacementText" >VariableString(this.globals.</xsl:with-param>
                             </xsl:call-template>
                             </xsl:variable>
                                                         
@@ -50,12 +50,12 @@ Created By: Travis Berthelot
                                     <xsl:value-of select="$thirdParam1" />
                                 </xsl:with-param>
                                 <xsl:with-param name="find" >TimerElapsedTime("</xsl:with-param>
-                                <xsl:with-param name="replacementText" >TimerElapsedTime(globals.</xsl:with-param>
+                                <xsl:with-param name="replacementText" >TimerElapsedTime(this.globals.</xsl:with-param>
                             </xsl:call-template>
                             </xsl:variable>
 
                             <xsl:variable name="thirdParam4" >
-                                <xsl:if test="contains($thirdParam3, 'TimerElapsedTime(globals.')" >
+                                <xsl:if test="contains($thirdParam3, 'TimerElapsedTime(this.globals.')" >
                             <xsl:call-template name="string-replace-all" >
                                 <xsl:with-param name="text" >
                                     <xsl:value-of select="$thirdParam3" />
@@ -64,7 +64,7 @@ Created By: Travis Berthelot
                                 <xsl:with-param name="replacementText" >TimeDelayHelper)</xsl:with-param>
                             </xsl:call-template>
                                 </xsl:if>
-                                <xsl:if test="not(contains($thirdParam3, 'TimerElapsedTime(globals.'))" ><xsl:value-of select="$thirdParam3" /></xsl:if>
+                                <xsl:if test="not(contains($thirdParam3, 'TimerElapsedTime(this.globals.'))" ><xsl:value-of select="$thirdParam3" /></xsl:if>
                             </xsl:variable>
 
                             <xsl:variable name="thirdParam" >

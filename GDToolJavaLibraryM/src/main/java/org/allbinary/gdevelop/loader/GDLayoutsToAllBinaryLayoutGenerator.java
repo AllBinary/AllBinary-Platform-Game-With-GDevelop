@@ -67,7 +67,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         "VariableChildCount("
     };
     
-    private final String GLOBALS = "globals.";
+    private final String GLOBALS = "this.globals.";
 
     private final String[] EXTERNAL_LINK_LAYOUTS_START = {
         this.GENERATED_START_WITH_PATH,
@@ -371,6 +371,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
     private final String PARAMETERS_END = "</parameters>";
     private final String QUOTE = "&quot;";
     private final String THIS_GDUTIL = "this.gdUtil.";
+    private final String THIS = "this.";
 
     private final String FINISHED = "Finished";
     private final String SKIPPING_INDEX_AS_STRING = "skipping indexAsString:";
@@ -410,11 +411,11 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         ".Width(null)",
         //".Height(globals.graphics)",
         ".Height(null)",
-        "GlobalVariable(gameGlobals.",
-        "GlobalVariableString(gameGlobals.",
-        "GlobalVariableChildCount(gameGlobals.",
+        "GlobalVariable(this.gameGlobals.",
+        "GlobalVariableString(this.gameGlobals.",
+        "GlobalVariableChildCount(this.gameGlobals.",
         "gameTickTimeDelayHelper.startTime",
-        "GlobalVarToJSON(gameGlobals.",
+        "GlobalVarToJSON(this.gameGlobals.",
         "Text()",
         "FileSystem.",
         "FileSystem::ReadDirectory",
@@ -1236,6 +1237,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     } else if (index >= 1 && layoutGameXmlAsString.charAt(index - 1) == '.') {
                         //skip graphics
                     } else if (layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'g') {
+                        //skip this.gameGlobals. and this.globals.
+                    } else if (layoutGameXmlAsString.startsWith(THIS, index + VARIABLE.length())) {
                         //skip max_scale
                         //} else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'm' && layoutGameXmlAsString.charAt(index + VARIABLE.length() + 1) == 'a') {
                         //skip angle

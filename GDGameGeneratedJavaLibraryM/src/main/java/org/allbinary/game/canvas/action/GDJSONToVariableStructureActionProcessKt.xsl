@@ -36,7 +36,7 @@ Created By: Travis Berthelot
                         val jsonTokener: JSONTokener = JSONTokener(<xsl:value-of select="$firstParametersAsString" />)
 
                         val jsonObject: JSONObject = jsonTokener.nextValue() as JSONObject
-                        globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>JSONObject = jsonObject
+                        this.globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>JSONObject = jsonObject
 
                         return true
                     }

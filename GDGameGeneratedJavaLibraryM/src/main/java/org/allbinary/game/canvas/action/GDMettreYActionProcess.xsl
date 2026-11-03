@@ -46,7 +46,7 @@ Created By: Travis Berthelot
 
                             //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
 
-                            final GDGameLayer[] gameLayerArray = gameGlobals.tempGameLayerArray;      
+                            final GDGameLayer[] gameLayerArray = this.gameGlobals.tempGameLayerArray;      
                             <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParamIncludeList" />
 
                             final int size2 = <xsl:value-of select="$name" />GDGameLayerList.size();

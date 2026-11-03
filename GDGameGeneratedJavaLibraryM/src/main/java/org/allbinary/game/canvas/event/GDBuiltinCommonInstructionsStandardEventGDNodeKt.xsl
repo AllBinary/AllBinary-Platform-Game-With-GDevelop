@@ -124,8 +124,8 @@ Created By: Travis Berthelot
                             <xsl:variable name="id" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
                             <xsl:variable name="id2" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
 
-                            //var gameLayer: GDGameLayer = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />]
-                            //var gameLayer2: GDGameLayer = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id2])" />]
+                            //var gameLayer: GDGameLayer = this.gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />]
+                            //var gameLayer2: GDGameLayer = this.gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id2])" />]
                             </xsl:when>
                             <xsl:when test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                         //CollisionNP - include params
@@ -135,8 +135,8 @@ Created By: Travis Berthelot
                             <xsl:variable name="id" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param1 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
                             <xsl:variable name="id2" ><xsl:for-each select="/game/layouts" ><xsl:if test="$layoutIndex = position() - 1" ><xsl:for-each select="objects" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="objectsGroups" ><xsl:if test="$param2 = name" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
 
-                            //var gameLayer: GDGameLayer = gameGlobals.tempGameLayerArray[0]
-                            //var gameLayer2: GDGameLayer = gameGlobals.tempGameLayerArray[1]
+                            //var gameLayer: GDGameLayer = this.gameGlobals.tempGameLayerArray[0]
+                            //var gameLayer2: GDGameLayer = this.gameGlobals.tempGameLayerArray[1]
                             </xsl:when>
                             <xsl:otherwise>
                         if(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]!!.process()) {
@@ -162,7 +162,7 @@ Created By: Travis Berthelot
                             <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if>
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.<xsl:value-of select="$process" />
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>this.globals.<xsl:value-of select="target" />GDNode.<xsl:value-of select="$process" />
                         </xsl:if>
                     </xsl:for-each>
 
@@ -250,7 +250,7 @@ Created By: Travis Berthelot
                             <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if>
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processIndex(index3)
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>this.globals.<xsl:value-of select="target" />GDNode.processIndex(index3)
                         </xsl:if>
                     </xsl:for-each>
 
@@ -326,7 +326,7 @@ Created By: Travis Berthelot
                             <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if>
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processMotion(motionGestureEvent, lastMotionGestureInput)
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>this.globals.<xsl:value-of select="target" />GDNode.processMotion(motionGestureEvent, lastMotionGestureInput)
                         </xsl:if>
                     </xsl:for-each>
 
@@ -393,7 +393,7 @@ Created By: Travis Berthelot
                             <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if>
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processGD(gameLayerArray)
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>this.globals.<xsl:value-of select="target" />GDNode.processGD(gameLayerArray)
                         </xsl:if>
                     </xsl:for-each>
 
@@ -419,7 +419,7 @@ Created By: Travis Berthelot
                 override fun processReleased(): Boolean {
                     super.processReleasedStats()
 
-                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "release, this, globals.PROCESS_RELEASE)
+                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "release, this, this.globals.PROCESS_RELEASE)
 
                     <xsl:for-each select="conditions" >
                         <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -462,7 +462,7 @@ Created By: Travis Berthelot
                             <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if>
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processReleased()
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>this.globals.<xsl:value-of select="target" />GDNode.processReleased()
                         </xsl:if>
                     </xsl:for-each>
 

@@ -235,7 +235,7 @@ Created By: Travis Berthelot
                             GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes otherEventNodes;
                             GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes objectEventNodes;
                         
-                            int size = gameGlobals.nodeArray.length;
+                            int size = this.gameGlobals.nodeArray.length;
                         <!--
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             final int currentIndex = index;
@@ -404,18 +404,18 @@ Created By: Travis Berthelot
                     abCanvas.setInputProcessor(abCanvas.getRawInputProcessor());
                     </xsl:if>
 
-                    if(globals.anyKeyProcessorArray[0] == null) {
-                        globals.anyKeyProcessorArray[0] = GameInputProcessor.getInstance();
+                    if(this.globals.anyKeyProcessorArray[0] == null) {
+                        this.globals.anyKeyProcessorArray[0] = GameInputProcessor.getInstance();
                     }
-                    GameInputProcessorUtil.init(globals.inputProcessorArray);
-                    GameInputProcessorUtil.init(globals.unmappedInputProcessorArray);
+                    GameInputProcessorUtil.init(this.globals.inputProcessorArray);
+                    GameInputProcessorUtil.init(this.globals.unmappedInputProcessorArray);
 
                         //allBinaryGameLayerManager.log();
                         //groupLayerManagerListener.log();
 
                         this.logUtil.putF("DepartScene - completed newCanvas is now false", this, this.commonStrings.PROCESS);
                         gameGlobalsFactory.newCanvas = false;
-                        globals.eventListenerInterfaceLastPoint.initialized = true;
+                        this.globals.eventListenerInterfaceLastPoint.initialized = true;
 
                         } catch(Exception e) {
                             this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.PROCESS, e);

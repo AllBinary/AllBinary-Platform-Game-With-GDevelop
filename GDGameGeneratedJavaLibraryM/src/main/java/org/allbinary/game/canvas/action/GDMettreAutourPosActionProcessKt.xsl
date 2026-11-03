@@ -54,7 +54,7 @@ Created By: Travis Berthelot
                             try {
                                 //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
-                                val gameLayerArray: Array&lt;GDGameLayer?&gt; = gameGlobals.tempGameLayerArray
+                                val gameLayerArray: Array&lt;GDGameLayer?&gt; = this.gameGlobals.tempGameLayerArray
                                 <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParamIncludeList" />
 
                                 //val result: Boolean = this.processG(gdObject, 0)

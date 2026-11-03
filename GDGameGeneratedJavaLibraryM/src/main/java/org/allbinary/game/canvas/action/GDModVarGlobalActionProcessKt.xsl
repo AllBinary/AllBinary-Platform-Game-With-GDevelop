@@ -48,7 +48,7 @@ Created By: Travis Berthelot
                     override fun process(): Boolean {
                         super.processStats()
 
-                        val gameLayerArray: Array&lt;GDGameLayer?&gt; = gameGlobals.tempGameLayerArray
+                        val gameLayerArray: Array&lt;GDGameLayer?&gt; = this.gameGlobals.tempGameLayerArray
                         <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParam" />
 
                         //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)

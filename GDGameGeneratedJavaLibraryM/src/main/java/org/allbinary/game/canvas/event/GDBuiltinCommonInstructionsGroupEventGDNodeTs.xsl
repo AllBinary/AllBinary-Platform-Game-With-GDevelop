@@ -66,7 +66,7 @@ Created By: Travis Berthelot
                             <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> 
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call - //Always
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process();
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>this.globals.<xsl:value-of select="target" />GDNode.process();
                         </xsl:if>
                     </xsl:for-each>                    
                                         
@@ -91,7 +91,7 @@ Created By: Travis Berthelot
                             <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> 
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call - //Always
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processIndex(index3);
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>this.globals.<xsl:value-of select="target" />GDNode.processIndex(index3);
                         </xsl:if>
                     </xsl:for-each>                    
                     
@@ -116,7 +116,7 @@ Created By: Travis Berthelot
                             <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> 
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call - //Always
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processMotion(motionGestureEvent, lastMotionGestureInput);
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>this.globals.<xsl:value-of select="target" />GDNode.processMotion(motionGestureEvent, lastMotionGestureInput);
                         </xsl:if>
                     </xsl:for-each>                    
                     
@@ -140,7 +140,7 @@ Created By: Travis Berthelot
                             <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> 
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call - //Always
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processGD(gameLayerArray);
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>this.globals.<xsl:value-of select="target" />GDNode.processGD(gameLayerArray);
                         </xsl:if>
                     </xsl:for-each>                    
                     
@@ -151,7 +151,7 @@ Created By: Travis Berthelot
                 public boolean processReleased() throws Exception {
                     super.processReleasedStats();
 
-                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "release, this, globals.PROCESS_RELEASE);
+                    //this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "release, this, this.globals.PROCESS_RELEASE);
 
                     <xsl:for-each select="events" >
                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
@@ -164,7 +164,7 @@ Created By: Travis Berthelot
                             <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> 
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call - //Always
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processReleased();
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>this.globals.<xsl:value-of select="target" />GDNode.processReleased();
                         </xsl:if>
                     </xsl:for-each>                    
                     return true;

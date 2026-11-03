@@ -50,8 +50,8 @@ Created By: Travis Berthelot
                             for(index in 0 until <xsl:text disable-output-escaping="yes" ></xsl:text>size) {
 
                                 //stringBuilder.delete(0, stringBuilder.length())
-                                //this.logUtil.put(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(commonSeps.SPACE).append(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >(globals.<xsl:value-of select="text()" disable-output-escaping="yes" />GDGameLayerList.get(index) as GDGameLayer).gdObject.opacity</xsl:if><xsl:if test="position() != 1" ><xsl:text> </xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>).toString(), this, this.commonStrings.PROCESS)
-                                <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >val gdGameLayer: GDGameLayer = (globals.<xsl:value-of select="text()" disable-output-escaping="yes" />GDGameLayerList.get(index) as GDGameLayer)</xsl:if></xsl:for-each>
+                                //this.logUtil.put(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(commonSeps.SPACE).append(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >(this.globals.<xsl:value-of select="text()" disable-output-escaping="yes" />GDGameLayerList.get(index) as GDGameLayer).gdObject.opacity</xsl:if><xsl:if test="position() != 1" ><xsl:text> </xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>).toString(), this, this.commonStrings.PROCESS)
+                                <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >val gdGameLayer: GDGameLayer = (this.globals.<xsl:value-of select="text()" disable-output-escaping="yes" />GDGameLayerList.get(index) as GDGameLayer)</xsl:if></xsl:for-each>
                                 if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:if test="position() = 1" >gdGameLayer.gdObject.opacity</xsl:if><xsl:if test="position() != 1" ><xsl:text> </xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>) {
                                     return true
                                 }
@@ -65,7 +65,7 @@ Created By: Travis Berthelot
                             super.processIndexStats(index)
 
                             //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
-                            <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >val gdGameLayer: GDGameLayer = (globals.<xsl:value-of select="text()" disable-output-escaping="yes" />GDGameLayerList.get(index) as GDGameLayer)</xsl:if></xsl:for-each>
+                            <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >val gdGameLayer: GDGameLayer = (this.globals.<xsl:value-of select="text()" disable-output-escaping="yes" />GDGameLayerList.get(index) as GDGameLayer)</xsl:if></xsl:for-each>
                             if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:if test="position() = 1" >gdGameLayer.gdObject.opacity</xsl:if><xsl:if test="position() != 1" ><xsl:text> </xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>) {
                                 return true
                             }

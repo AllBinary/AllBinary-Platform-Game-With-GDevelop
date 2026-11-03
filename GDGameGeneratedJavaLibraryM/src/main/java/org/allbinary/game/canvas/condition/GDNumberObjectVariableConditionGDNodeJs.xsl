@@ -118,7 +118,7 @@ Created By: Travis Berthelot
                             try {
                             //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
                       
-                            final GDGameLayer[] gameLayerArray = gameGlobals.tempGameLayerArray;      
+                            final GDGameLayer[] gameLayerArray = this.gameGlobals.tempGameLayerArray;      
                             <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParamIncludeList" />
 
                             //this.logUtil.putF(this.commonStrings.START, this, "<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>");

@@ -66,7 +66,7 @@ Created By: Travis Berthelot
 <!--                    <xsl:variable name="closedValueForGDObject" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '&lt;' or text() = '&lt;='" >GDGameLayer.getXP()</xsl:if><xsl:if test="text() = '&gt;' or text() = '&gt;='" >.X2()</xsl:if></xsl:if></xsl:for-each></xsl:variable>-->
                         <xsl:variable name="closedValueForGDObject" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '&lt;' or text() = '&lt;=' or text() = '&gt;' or text() = '&gt;='" >GDGameLayer.getXP()</xsl:if></xsl:if></xsl:for-each></xsl:variable>
                         
-                            final GDGameLayer[] gameLayerArray = gameGlobals.tempGameLayerArray;      
+                            final GDGameLayer[] gameLayerArray = this.gameGlobals.tempGameLayerArray;      
                             <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParamIncludeList" />
 
                             final int size = <xsl:value-of select="$gdObjectName" />GDGameLayerList.size();

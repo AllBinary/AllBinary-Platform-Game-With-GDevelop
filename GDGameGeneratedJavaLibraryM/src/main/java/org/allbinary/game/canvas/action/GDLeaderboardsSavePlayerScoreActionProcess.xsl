@@ -86,14 +86,14 @@ Created By: Travis Berthelot
                                         public void setHighScoresArray(final HighScores[] highScoresArray) {
                                             try {
                                             final HighScoresHelperBase highScoresHelperBase = new HighScoresHelperBase();
-                                            gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
+                                            this.gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
                                             final HighScore highScore = abCanvas.createHighScore(score);
                                             final HighScoreUtil highScoreUtil = new HighScoreUtil(basicHighScoresFactory, highScoresHelperBase, abeClientInformation, gameInfo, abCanvas.getCustomCommandListener(), name, highScore);
                                             highScoreUtil.update(name);
                                             highScoreUtil.saveHighScore();
                                             highScoreUtil.submit(abCanvas);
                                             //this.logUtil.putF("saved highscores", this, this.commonStrings.PROCESS);
-                                            globals.highscoreSubmissionComplete = true;
+                                            this.globals.highscoreSubmissionComplete = true;
                                             } catch(Exception e) {
                                                 this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                                             }
@@ -113,11 +113,11 @@ Created By: Travis Berthelot
                                         public void setHighScoresArray(final HighScores[] highScoresArray) {
                                             try {
                                                 final HighScoresHelperBase highScoresHelperBase = new HighScoresHelperBase();
-                                                gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
+                                                this.gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
                                                 final HighScore highScore = abCanvas.createHighScore(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
                                                 final HighScoreUtil highScoreUtil = new HighScoreUtil(basicHighScoresFactory, highScoresHelperBase, abeClientInformation, gameInfo, abCanvas.getCustomCommandListener(), name, highScore);
                                                 //this.logUtil.putF("set highscores", this, this.commonStrings.PROCESS);
-                                                globals.highscoreSubmissionComplete = true;
+                                                this.globals.highscoreSubmissionComplete = true;
                                             } catch(Exception e) {
                                                 this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                                             }
@@ -218,14 +218,14 @@ Created By: Travis Berthelot
                                         public void setHighScoresArray(final HighScores[] highScoresArray) {
                                             try {
                                             final HighScoresHelperBase highScoresHelperBase = new HighScoresHelperBase();
-                                            gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
+                                            this.gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
                                             final HighScore highScore = abCanvas.createHighScore(score);
                                             final HighScoreUtil highScoreUtil = new HighScoreUtil(basicHighScoresFactory, highScoresHelperBase, abeClientInformation, gameInfo, abCanvas.getCustomCommandListener(), name, highScore);
                                             highScoreUtil.update(name);
                                             highScoreUtil.saveHighScore();
                                             highScoreUtil.submit(abCanvas);
                                             //this.logUtil.putF("saved highscores", this, this.commonStrings.PROCESS);
-                                            globals.highscoreSubmissionComplete = true;
+                                            this.globals.highscoreSubmissionComplete = true;
                                             } catch(Exception e) {
                                                 this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                                             }
@@ -245,11 +245,11 @@ Created By: Travis Berthelot
                                         public void setHighScoresArray(final HighScores[] highScoresArray) {
                                             try {
                                                 final HighScoresHelperBase highScoresHelperBase = new HighScoresHelperBase();
-                                                gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
+                                                this.gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
                                                 final HighScore highScore = abCanvas.createHighScore(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
                                                 final HighScoreUtil highScoreUtil = new HighScoreUtil(basicHighScoresFactory, highScoresHelperBase, abeClientInformation, gameInfo, abCanvas.getCustomCommandListener(), name, highScore);
                                                 //this.logUtil.putF("set highscores", this, this.commonStrings.PROCESS);
-                                                globals.highscoreSubmissionComplete = true;
+                                                this.globals.highscoreSubmissionComplete = true;
                                             } catch(Exception e) {
                                                 this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                                             }

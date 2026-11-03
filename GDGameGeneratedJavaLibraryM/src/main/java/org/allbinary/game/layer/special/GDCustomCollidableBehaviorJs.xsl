@@ -94,11 +94,11 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
 //        }
         
         //final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-        //if(((GDCustomGameLayer) ownerLayer).gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
+        //if(((GDCustomGameLayer) ownerLayer).gdObject.type == this.gameGlobals.TILEMAP__COLLISIONMASK) {
         final GDCustomGameLayer collisionMaskCustomGameLayer = ((GDCustomGameLayer) collisionLayer);
         <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
         final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-        if(collisionMaskCustomGameLayer.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
+        if(collisionMaskCustomGameLayer.gdObject.type == this.gameGlobals.TILEMAP__COLLISIONMASK) {
             
             return this.isCollision3(ownerLayer, collisionMaskCustomGameLayer);
         } else {

@@ -162,7 +162,7 @@ Created By: Travis Berthelot
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process();
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>this.globals.<xsl:value-of select="target" />GDNode.process();
                                     </xsl:if>
                                 </xsl:for-each>
                                 
@@ -187,7 +187,7 @@ Created By: Travis Berthelot
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processMotion(motionGestureEvent, lastMotionGestureInput);
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>this.globals.<xsl:value-of select="target" />GDNode.processMotion(motionGestureEvent, lastMotionGestureInput);
                                     </xsl:if>
                                 </xsl:for-each>
                                 
@@ -213,7 +213,7 @@ Created By: Travis Berthelot
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processGD(gameLayerArray);
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>this.globals.<xsl:value-of select="target" />GDNode.processGD(gameLayerArray);
                                     </xsl:if>
                                 </xsl:for-each>
                                 

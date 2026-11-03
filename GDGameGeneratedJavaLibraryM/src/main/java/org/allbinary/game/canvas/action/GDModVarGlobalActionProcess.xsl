@@ -48,7 +48,7 @@ Created By: Travis Berthelot
                     public boolean process() throws Exception {
                         super.processStats();
 
-                        final GDGameLayer[] gameLayerArray = gameGlobals.tempGameLayerArray;
+                        final GDGameLayer[] gameLayerArray = this.gameGlobals.tempGameLayerArray;
                         <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParam" />
 
                         //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);

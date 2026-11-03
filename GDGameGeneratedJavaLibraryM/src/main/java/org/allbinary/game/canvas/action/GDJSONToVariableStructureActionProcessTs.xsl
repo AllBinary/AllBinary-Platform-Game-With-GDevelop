@@ -36,7 +36,7 @@ Created By: Travis Berthelot
                         final JSONTokener jsonTokener = new JSONTokener(<xsl:value-of select="$firstParametersAsString" />);
                         
                         final JSONObject jsonObject = (JSONObject) jsonTokener.nextValue();
-                        globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>JSONObject = jsonObject;
+                        this.globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>JSONObject = jsonObject;
 
                         return true;
                     }

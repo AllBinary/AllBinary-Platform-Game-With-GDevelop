@@ -45,7 +45,7 @@ Created By: Travis Berthelot
 
                             //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
-                            val gameLayerArray: Array&lt;GDGameLayer?&gt; = gameGlobals.tempGameLayerArray
+                            val gameLayerArray: Array&lt;GDGameLayer?&gt; = this.gameGlobals.tempGameLayerArray
                             <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParamIncludeList" />
 
                             val size2: Int = <xsl:value-of select="$name" />GDGameLayerList.size()

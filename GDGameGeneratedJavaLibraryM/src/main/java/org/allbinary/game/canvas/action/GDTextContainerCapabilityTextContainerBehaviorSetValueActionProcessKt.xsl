@@ -87,7 +87,7 @@ Created By: Travis Berthelot
 
                             //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="$nodeId" />, this, this.commonStrings.PROCESS)
 
-                            val gameLayerArray: Array&lt;GDGameLayer?&gt; = gameGlobals.tempGameLayerArray
+                            val gameLayerArray: Array&lt;GDGameLayer?&gt; = this.gameGlobals.tempGameLayerArray
                             <xsl:value-of select="$siblingOrParentOrList" />
                             <xsl:text>&#10;</xsl:text>
 

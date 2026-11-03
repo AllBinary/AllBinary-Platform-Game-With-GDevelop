@@ -151,12 +151,12 @@ Created By: Travis Berthelot
                             //}
 
                             //CollisionNP - <xsl:value-of select="$name" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
-                            gameGlobals.tempGameLayerArray[0] = gameLayer2;
-                            gameGlobals.tempGameLayerArray[1] = gameLayer;
+                            this.gameGlobals.tempGameLayerArray[0] = gameLayer2;
+                            this.gameGlobals.tempGameLayerArray[1] = gameLayer;
                             //id=<xsl:value-of select="$id" /> for <xsl:value-of select="$name2" />
                             //id2=<xsl:value-of select="$id2" /> for <xsl:value-of select="$name" />
-                            gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = gameLayer2; //<xsl:value-of select="$name2" />GDGameLayer;
-                            gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + (count(//objectsGroups) + count(//objects))" />] = gameLayer; //<xsl:value-of select="$name" />GDGameLayer<xsl:value-of select="count(//objectsGroups) + count(//objects)" />;
+                            this.gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = gameLayer2; //<xsl:value-of select="$name2" />GDGameLayer;
+                            this.gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + (count(//objectsGroups) + count(//objects))" />] = gameLayer; //<xsl:value-of select="$name" />GDGameLayer<xsl:value-of select="count(//objectsGroups) + count(//objects)" />;
 
                             //if(this.gameGlobals.tempGameLayerArray[1] != null) this.logUtil.put(this.gameGlobals.tempGameLayerArray[1].toString(), this, this.commonStrings.PROCESS);
 
@@ -264,12 +264,12 @@ Created By: Travis Berthelot
                             //}
                         
                             //CollisionNP - <xsl:value-of select="$name" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
-                            gameGlobals.tempGameLayerArray[0] = gameLayer2;
-                            gameGlobals.tempGameLayerArray[1] = gameLayer;
+                            this.gameGlobals.tempGameLayerArray[0] = gameLayer2;
+                            this.gameGlobals.tempGameLayerArray[1] = gameLayer;
                             //id=<xsl:value-of select="$id" /> for <xsl:value-of select="$name2" />
                             //id2=<xsl:value-of select="$id2" /> for <xsl:value-of select="$name" />
-                            gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = gameLayer2; //<xsl:value-of select="$name2" />GDGameLayer;
-                            gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + (count(//objectsGroups) + count(//objects))" />] = gameLayer; //<xsl:value-of select="$name" />GDGameLayer<xsl:value-of select="count(//objectsGroups) + count(//objects)" />;
+                            this.gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = gameLayer2; //<xsl:value-of select="$name2" />GDGameLayer;
+                            this.gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + (count(//objectsGroups) + count(//objects))" />] = gameLayer; //<xsl:value-of select="$name" />GDGameLayer<xsl:value-of select="count(//objectsGroups) + count(//objects)" />;
 
                             //if(this.gameGlobals.tempGameLayerArray[1] != null) this.logUtil.put(this.gameGlobals.tempGameLayerArray[1].toString(), this, this.commonStrings.PROCESS);
 

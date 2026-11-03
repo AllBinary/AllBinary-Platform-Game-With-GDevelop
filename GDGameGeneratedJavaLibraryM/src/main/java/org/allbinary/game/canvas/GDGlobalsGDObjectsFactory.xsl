@@ -131,13 +131,13 @@ Created By: Travis Berthelot
                         <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
                     public int get<xsl:value-of select="name" />Index(final String name) {
                         <xsl:for-each select="objects" >
-                            <xsl:if test="position() != 1" >} else </xsl:if>if(name == globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                            <xsl:if test="position() != 1" >} else </xsl:if>if(name == this.globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
                             return <xsl:value-of select="position() - 1" />;
                         </xsl:for-each>
                         <xsl:if test="objects" >
 <!--
                         } else <xsl:for-each select="objects" >
-                            <xsl:if test="position() != 1" >} else </xsl:if>if(name.equals(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME)) {
+                            <xsl:if test="position() != 1" >} else </xsl:if>if(name.equals(this.globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME)) {
                             return <xsl:value-of select="position() - 1" />;
                         </xsl:for-each>
 -->
@@ -149,13 +149,13 @@ Created By: Travis Berthelot
                     
                     public String get<xsl:value-of select="name" />Name(final String name) {
                         <xsl:for-each select="objects" >
-                            <xsl:if test="position() != 1" >} else </xsl:if>if(name == globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
-                            return globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME;
+                            <xsl:if test="position() != 1" >} else </xsl:if>if(name == this.globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                            return this.globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME;
                         </xsl:for-each>
                         <xsl:if test="objects" >
                         } else <xsl:for-each select="objects" >
-                            <xsl:if test="position() != 1" >} else </xsl:if>if(name.equals(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME)) {
-                            return globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME;
+                            <xsl:if test="position() != 1" >} else </xsl:if>if(name.equals(this.globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME)) {
+                            return this.globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME;
                         </xsl:for-each>
                         }
                         </xsl:if>

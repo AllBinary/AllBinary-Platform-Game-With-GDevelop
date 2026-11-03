@@ -90,11 +90,11 @@ open public class GDCustomCollidableBehavior : CollidableBaseBehavior
 //        }
 
         //var gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
-        //if((ownerLayer as GDCustomGameLayer).gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
+        //if((ownerLayer as GDCustomGameLayer).gdObject.type == this.gameGlobals.TILEMAP__COLLISIONMASK) {
         val collisionMaskCustomGameLayer: GDCustomGameLayer = (collisionLayer as GDCustomGameLayer)
         <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
         val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
-        if(collisionMaskCustomGameLayer.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
+        if(collisionMaskCustomGameLayer.gdObject.type == this.gameGlobals.TILEMAP__COLLISIONMASK) {
 
             return this.isCollision3(ownerLayer, collisionMaskCustomGameLayer)
         } else {

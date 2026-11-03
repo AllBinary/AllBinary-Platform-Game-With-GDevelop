@@ -50,7 +50,7 @@ Created By: Travis Berthelot
                         //param1=<xsl:value-of select="$param1" /> hasObject=<xsl:value-of select="$hasObject" /> hasObjectGroup=<xsl:value-of select="$hasObjectGroup" />
                         <xsl:text>&#10;</xsl:text>
 
-                        if(globals.chatRequestBody.messagesIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> <xsl:value-of select="$param1" />.length - 1) {
+                        if(this.globals.chatRequestBody.messagesIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> <xsl:value-of select="$param1" />.length - 1) {
                             final Object[] sourceArray = <xsl:value-of select="$param1" />;
                             final Object[] newDestinationArray = new Object[sourceArray.length * 2];
                             System.arraycopy(sourceArray, 0, newDestinationArray, 0, 0);

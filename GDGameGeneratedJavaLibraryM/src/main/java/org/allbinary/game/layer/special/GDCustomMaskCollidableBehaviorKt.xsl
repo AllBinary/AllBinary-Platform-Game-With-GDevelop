@@ -107,10 +107,10 @@ open public class GDCustomMaskCollidableBehavior : CollidableBaseBehavior
 //        }
 
         val gameGlobals: GDGameGlobals = GDGameGlobals.getInstance()
-        //if((ownerLayer as GDCustomGameLayer).gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
+        //if((ownerLayer as GDCustomGameLayer).gdObject.type == this.gameGlobals.TILEMAP__COLLISIONMASK) {
         val customGameLayer: GDCustomGameLayer = (collisionLayer as GDCustomGameLayer)
         <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
-        if(customGameLayer.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
+        if(customGameLayer.gdObject.type == this.gameGlobals.TILEMAP__COLLISIONMASK) {
 
             return this.isCollision3(ownerLayer, customGameLayer)
         } else {

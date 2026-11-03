@@ -44,7 +44,7 @@ Created By: Travis Berthelot
                             super.processStats();
                             this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
                             //<xsl:value-of select="parameters[2]" />
-                            globals.inputProcessorArray[<xsl:call-template name="generateCanvasKeyFromGDNameHack" ><xsl:with-param name="key" select="parameters[2]" /></xsl:call-template>] = new GDRGameInputProcessor() {
+                            this.globals.inputProcessorArray[<xsl:call-template name="generateCanvasKeyFromGDNameHack" ><xsl:with-param name="key" select="parameters[2]" /></xsl:call-template>] = new GDRGameInputProcessor() {
                                 
                                 private boolean hasPressed = false;
                                 
@@ -75,7 +75,7 @@ Created By: Travis Berthelot
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
                             <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processReleased();
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>this.globals.<xsl:value-of select="target" />GDNode.processReleased();
                                     </xsl:if>
                                 </xsl:for-each>
 

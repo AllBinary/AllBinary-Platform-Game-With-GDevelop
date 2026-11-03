@@ -44,7 +44,7 @@ Created By: Travis Berthelot
                             try {
                             //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
-                            val gameLayerArray: Array&lt;GDGameLayer?&gt; = gameGlobals.tempGameLayerArray
+                            val gameLayerArray: Array&lt;GDGameLayer?&gt; = this.gameGlobals.tempGameLayerArray
                             <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParamIncludeList" />
 
                             var <xsl:value-of select="$name" />GDGameLayer: GDGameLayer
@@ -74,7 +74,7 @@ Created By: Travis Berthelot
 
                         override fun processReleased(): Boolean {  //Rotate
                             super.processReleasedStats()
-                            //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE)
+                            //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.globals.PROCESS_RELEASE)
 
                             if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.objectArray != nullUtil.NULL_OBJECT_ARRAY) {
                             var gameLayer: GDGameLayer

@@ -511,7 +511,7 @@ Created By: Travis Berthelot
                 </xsl:for-each>
 
                 <xsl:variable name="groupInterfaceArray" >
-                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf(globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
+                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf(this.globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                     <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                 </xsl:variable>
 
@@ -563,7 +563,7 @@ Created By: Travis Berthelot
                 this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo)
 
                 <xsl:variable name="groupInterfaceArray" >
-                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf(globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
+                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf(this.globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                     <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                 </xsl:variable>
 
@@ -651,7 +651,7 @@ Created By: Travis Berthelot
                 this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo)
 
                 <xsl:variable name="groupInterfaceArray" >
-                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf(globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
+                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf(this.globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                     <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                 </xsl:variable>
 
@@ -752,7 +752,7 @@ Created By: Travis Berthelot
                 this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo)
 
                 <xsl:variable name="groupInterfaceArray" >
-                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf(globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
+                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf(this.globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                     <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                 </xsl:variable>
 
@@ -954,7 +954,7 @@ Created By: Travis Berthelot
                 this.addRectangle(<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo)
 
                 <xsl:variable name="groupInterfaceArray" >
-                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf(globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
+                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf(this.globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                     <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                 </xsl:variable>
 
@@ -1005,7 +1005,7 @@ Created By: Travis Berthelot
                 this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo)
 
                 <xsl:variable name="groupInterfaceArray" >
-                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf(globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
+                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf(this.globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                     <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                 </xsl:variable>
 
@@ -1063,7 +1063,7 @@ Created By: Travis Berthelot
                 this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo)
 
                 <xsl:variable name="groupInterfaceArray" >
-                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf(globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
+                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf(this.globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                     <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                 </xsl:variable>
 
@@ -1113,7 +1113,7 @@ Created By: Travis Berthelot
                 this.addRectangle(<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo)
 
                 <xsl:variable name="groupInterfaceArray" >
-                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf(globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
+                    <xsl:if test="string-length($parentGroupIfAny) > 0" >arrayOf(this.globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                     <xsl:if test="string-length($parentGroupIfAny) = 0" >arrayOf(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface)</xsl:if>
                 </xsl:variable>
 

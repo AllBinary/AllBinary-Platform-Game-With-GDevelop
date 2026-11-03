@@ -301,13 +301,13 @@ Created By: Travis Berthelot
                                     <xsl:variable name="name" ><xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$variableName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" /></xsl:variable>
                                     <xsl:choose>
                                         <xsl:when test="type = 'number'" >
-                        <xsl:value-of select="$name" /><xsl:text> = </xsl:text><xsl:value-of select="$parentName" /><xsl:text>.getInt(globals.</xsl:text><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                        <xsl:value-of select="$name" /><xsl:text> = </xsl:text><xsl:value-of select="$parentName" /><xsl:text>.getInt(this.globals.</xsl:text><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
                                         </xsl:when>
                                         <xsl:when test="type = 'string'" >
-                        <xsl:value-of select="$name" /><xsl:text> = </xsl:text><xsl:value-of select="$parentName" /><xsl:text>.getString(globals.</xsl:text><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                        <xsl:value-of select="$name" /><xsl:text> = </xsl:text><xsl:value-of select="$parentName" /><xsl:text>.getString(this.globals.</xsl:text><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
                                         </xsl:when>
                                         <xsl:when test="type = 'structure'" >
-                        <xsl:value-of select="$name" /><xsl:text>JSONObject = </xsl:text><xsl:value-of select="$parentName" /><xsl:text>.getJSONObject(globals.</xsl:text><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                        <xsl:value-of select="$name" /><xsl:text>JSONObject = </xsl:text><xsl:value-of select="$parentName" /><xsl:text>.getJSONObject(this.globals.</xsl:text><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
                         <xsl:call-template name="variableJSONMapping" >
                             <xsl:with-param name="parentName" >
                                 <xsl:value-of select="$name" />JSONObject

@@ -43,7 +43,7 @@ Created By: Travis Berthelot
 
                                     <!-- if the color is from more than 1 variable this will break -->
                                     <xsl:variable name="variableName" ><xsl:for-each select="//variables" ><xsl:if test="contains($param2, name)" ><xsl:value-of select="name" /></xsl:if></xsl:for-each></xsl:variable>
-                                    <xsl:variable name="globalWithVariableName" >globals.<xsl:value-of select="$variableName" /></xsl:variable>
+                                    <xsl:variable name="globalWithVariableName" >this.globals.<xsl:value-of select="$variableName" /></xsl:variable>
                                     //variableName=<xsl:value-of select="$variableName" /> globalWithVariableName=<xsl:value-of select="$globalWithVariableName" />
                                     
                                     <xsl:variable name="param2b" >
@@ -75,7 +75,7 @@ Created By: Travis Berthelot
                                 final int colorAsInt = basicColorUtil.get<xsl:value-of select="$color" />);
                                 <xsl:text>&#10;</xsl:text>
 
-                                final GDGameLayer[] gameLayerArray = gameGlobals.tempGameLayerArray;
+                                final GDGameLayer[] gameLayerArray = this.gameGlobals.tempGameLayerArray;
                                 <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParamIncludeList" />
                                 <xsl:text>&#10;</xsl:text>
 

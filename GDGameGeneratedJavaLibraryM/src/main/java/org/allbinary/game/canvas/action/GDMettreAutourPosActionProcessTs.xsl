@@ -54,7 +54,7 @@ Created By: Travis Berthelot
                             try {
                                 //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
 
-                                final GDGameLayer[] gameLayerArray = gameGlobals.tempGameLayerArray;      
+                                final GDGameLayer[] gameLayerArray = this.gameGlobals.tempGameLayerArray;      
                                 <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParamIncludeList" />
 
                                 //final boolean result = this.processG(gdObject, 0);

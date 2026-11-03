@@ -143,8 +143,8 @@ Created By: Travis Berthelot
 
                                 //this.logUtil.put(new StringMaker().append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append("<xsl:if test="$inverted = 'true'" >!</xsl:if>").append(" d: ").append(this.layerDistanceUtil.getDistance(gameLayer, gameLayer2)).append(" lt ").append(<xsl:value-of select="$param3" />).toString(), this, this.commonStrings.PROCESS);
                                 
-                                gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = gameLayer;
-                                gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + (count(//objectsGroups) + count(//objects))" />] = gameLayer2;
+                                this.gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = gameLayer;
+                                this.gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id2]) + (count(//objectsGroups) + count(//objects))" />] = gameLayer2;
 
                                 return true;
                             }

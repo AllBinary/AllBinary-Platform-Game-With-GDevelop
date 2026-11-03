@@ -68,10 +68,10 @@ Created By: Travis Berthelot
                     <xsl:if test="../conditions/type/value = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
                     //TWB - remove this hardcoded logic for soft joystick at some point 0
                         <xsl:variable name="joystickName" ><xsl:for-each select="../conditions" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
-                    if(globals.<xsl:value-of select="$joystickName" />GDGameLayerList.size() == 0) {
+                    if(this.globals.<xsl:value-of select="$joystickName" />GDGameLayerList.size() == 0) {
                         return false
                     }
-                    val <xsl:value-of select="$joystickName" />GDGameLayer: GDGameLayer = globals.<xsl:value-of select="$joystickName" />GDGameLayerList.get(0) as GDGameLayer
+                    val <xsl:value-of select="$joystickName" />GDGameLayer: GDGameLayer = this.globals.<xsl:value-of select="$joystickName" />GDGameLayerList.get(0) as GDGameLayer
                     val <xsl:value-of select="$joystickName" />: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$joystickName" /> = <xsl:value-of select="$joystickName" />GDGameLayer.gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$joystickName" />
                     </xsl:if>
 
@@ -107,12 +107,12 @@ Created By: Travis Berthelot
                         </xsl:variable>
                         <xsl:variable name="textValue" ><xsl:value-of select="$textValue1" /></xsl:variable>
 
-<!--                        <xsl:variable name="textValue3" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" >player_</xsl:with-param><xsl:with-param name="replacementText" >globals.player_</xsl:with-param></xsl:call-template></xsl:variable>
-                        <xsl:variable name="textValue2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:if test="position() = 1" >globals.</xsl:if><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" >(</xsl:with-param><xsl:with-param name="replacementText" >(globals.</xsl:with-param></xsl:call-template></xsl:variable>
+<!--                        <xsl:variable name="textValue3" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" >player_</xsl:with-param><xsl:with-param name="replacementText" >this.globals.player_</xsl:with-param></xsl:call-template></xsl:variable>
+                        <xsl:variable name="textValue2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:if test="position() = 1" >this.globals.</xsl:if><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" >(</xsl:with-param><xsl:with-param name="replacementText" >(this.globals.</xsl:with-param></xsl:call-template></xsl:variable>
                         <xsl:variable name="textValue4" ></xsl:variable>-->
 
 
-                        <xsl:if test="position() = 1" >globals.</xsl:if><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$textValue" /></xsl:with-param><xsl:with-param name="find" >Angle()</xsl:with-param><xsl:with-param name="replacementText" >Angle(playerGDGameLayer)</xsl:with-param></xsl:call-template><xsl:if test="$textValue = '='" ></xsl:if><xsl:if test="$textValue = '+'" >= </xsl:if><xsl:if test="$textValue = '-'" >= </xsl:if>
+                        <xsl:if test="position() = 1" >this.globals.</xsl:if><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$textValue" /></xsl:with-param><xsl:with-param name="find" >Angle()</xsl:with-param><xsl:with-param name="replacementText" >Angle(playerGDGameLayer)</xsl:with-param></xsl:call-template><xsl:if test="$textValue = '='" ></xsl:if><xsl:if test="$textValue = '+'" >= </xsl:if><xsl:if test="$textValue = '-'" >= </xsl:if>
                     </xsl:for-each>
                     <xsl:text>&#10;</xsl:text>
                     <!--
@@ -182,7 +182,7 @@ Created By: Travis Berthelot
                         </xsl:variable>
                         <xsl:variable name="textValue" ><xsl:value-of select="$textValue1" /></xsl:variable>
 
-                        <xsl:if test="position() = 1" >globals.</xsl:if><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$textValue" /></xsl:with-param><xsl:with-param name="find" >Angle()</xsl:with-param><xsl:with-param name="replacementText" >Angle(<xsl:value-of select="$gameObjectName" />GDGameLayer)</xsl:with-param></xsl:call-template><xsl:if test="$textValue = '='" > </xsl:if><xsl:if test="$textValue = '+'" >= </xsl:if><xsl:if test="$textValue = '-'" >= </xsl:if>
+                        <xsl:if test="position() = 1" >this.globals.</xsl:if><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$textValue" /></xsl:with-param><xsl:with-param name="find" >Angle()</xsl:with-param><xsl:with-param name="replacementText" >Angle(<xsl:value-of select="$gameObjectName" />GDGameLayer)</xsl:with-param></xsl:call-template><xsl:if test="$textValue = '='" > </xsl:if><xsl:if test="$textValue = '+'" >= </xsl:if><xsl:if test="$textValue = '-'" >= </xsl:if>
                     </xsl:for-each>
                     <xsl:text>&#10;</xsl:text>
 

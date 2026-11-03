@@ -556,7 +556,7 @@ Created By: Travis Berthelot
             //this.logUtil.putF("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move");
 
 //            if(this.gameGlobals.PlayerGDGameLayerList.size() >= 0) {
-//                final GDGameLayer player = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
+//                final GDGameLayer player = (GDGameLayer) this.gameGlobals.PlayerGDGameLayerList.get(0);
 //                if(this == player) {
 //                    String layerManagerAsString = this.allBinaryGameLayerManagerP.toString();
 //                    if(lastString.compareTo(layerManagerAsString) != 0)
@@ -592,9 +592,9 @@ Created By: Travis Berthelot
                 <xsl:variable name="hasValues" ><xsl:for-each select="//objects/type[count(. | key('uniqueValues', .)[1]) = 1]" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template></xsl:for-each></xsl:variable>
                 
                 <xsl:if test="contains($hasValues, 'TILEMAP__TILEMAP')" >
-                if(this.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
+                if(this.gdObject.type == this.gameGlobals.TILEMAP__COLLISIONMASK) {
 
-                } else if(this.gdObject.type == gameGlobals.TILEMAP__TILEMAP) {
+                } else if(this.gdObject.type == this.gameGlobals.TILEMAP__TILEMAP) {
                     if(<xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                     final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.get(0);
                     //this.logUtil.put(new StringMaker().append("Move Map: ").append(this.getName()).toString(), this, "move");
@@ -663,9 +663,9 @@ Created By: Travis Berthelot
             if(geographicMapInterfaceArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
                 final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                 <xsl:if test="contains($hasValues, 'TILEMAP__TILEMAP')" >
-                if(this.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
+                if(this.gdObject.type == this.gameGlobals.TILEMAP__COLLISIONMASK) {
 
-                } else if(this.gdObject.type == gameGlobals.TILEMAP__TILEMAP) {
+                } else if(this.gdObject.type == this.gameGlobals.TILEMAP__TILEMAP) {
                     if(<xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                     final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.get(0);
                     //this.logUtil.put(new StringMaker().append("Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move2");
@@ -1776,7 +1776,7 @@ Created By: Travis Berthelot
         //TWB - temp hack for path finding to work
         final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
         Enemies.direction = this.direction;
-        final String animationName = gdObject.getAnimation(this.gdObject.ObjectName() + gameGlobals.walkAnimationArray[this.direction]);
+        final String animationName = gdObject.getAnimation(this.gdObject.ObjectName() + this.gameGlobals.walkAnimationArray[this.direction]);
         if(gdObject.setAnimation(animationName)) this.resetAnimation();
         
         this.updateAngle();
@@ -1801,7 +1801,7 @@ Created By: Travis Berthelot
         //TWB - temp hack for path finding to work
         final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
         Enemies.direction = this.direction;
-        final String animationName = gdObject.getAnimation(this.gdObject.ObjectName() + gameGlobals.walkAnimationArray[this.direction]);
+        final String animationName = gdObject.getAnimation(this.gdObject.ObjectName() + this.gameGlobals.walkAnimationArray[this.direction]);
         if(gdObject.setAnimation(animationName)) this.resetAnimation();
 
         this.updateAngle();

@@ -46,7 +46,7 @@ Created By: Travis Berthelot
                             val jsonTokener: JSONTokener = JSONTokener(<xsl:value-of select="$firstParametersAsString" />)
 
                             val jsonObject: JSONObject = jsonTokener.nextValue() as JSONObject
-                            globals.<xsl:value-of select="$variableName" />JSONObject = jsonObject
+                            this.globals.<xsl:value-of select="$variableName" />JSONObject = jsonObject
 
                         <xsl:for-each select="//variables" >
                             <xsl:if test="name = $variableName" >
@@ -70,7 +70,7 @@ Created By: Travis Berthelot
                             val jsonTokener: JSONTokener = JSONTokener(<xsl:value-of select="$firstParametersAsString" />)
 
                             val jsonArray: JSONArray = jsonTokener.nextValue() as JSONArray
-                            globals.<xsl:value-of select="$variableName" />JSONArray = jsonArray
+                            this.globals.<xsl:value-of select="$variableName" />JSONArray = jsonArray
 
                             this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " I don't think JSONArrays should map here", this, this.commonStrings.PROCESS)
                         }

@@ -35,16 +35,16 @@ Created By: Travis Berthelot
                         <xsl:variable name="hasPriorInstanceWithSameName" ><xsl:if test="../instances[name = $name and number(substring(generate-id(), 2) - 65536) &lt; $nodeId]" >found</xsl:if></xsl:variable>
                             <xsl:if test="not(contains($hasPriorInstanceWithSameName, 'found'))" >
             //Global reinit instance
-            size = globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.size()
+            size = this.globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.size()
             for(index in 0 until size) {
-                gameLayer = globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.get(index) as GDGameLayer
+                gameLayer = this.globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.get(index) as GDGameLayer
                 gameLayer.gdObject.reset()
                 gameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager)
                 allBinaryGameLayerManager.insert(gameLayer)
             }
 
             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.addAllList(
-                globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList)
+                this.globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList)
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>
@@ -58,9 +58,9 @@ Created By: Travis Berthelot
                 <xsl:for-each select="../instances" >
                 <xsl:if test="name = $name" >
             //Layout reinit instance
-            size = globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.size()
+            size = this.globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.size()
             for(index in 0 until size) {
-                gameLayer = globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.get(index) as GDGameLayer
+                gameLayer = this.globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.get(index) as GDGameLayer
                 gameLayer.getDimensionalBehavior().getAnimationBehavior().add(gameLayer)
                 gameLayer.gdObject.reset()
                 gameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager)
@@ -68,7 +68,7 @@ Created By: Travis Berthelot
             }
 
             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.addAllList(
-                globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList)
+                this.globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList)
                 </xsl:if>
             </xsl:for-each>
         </xsl:for-each>

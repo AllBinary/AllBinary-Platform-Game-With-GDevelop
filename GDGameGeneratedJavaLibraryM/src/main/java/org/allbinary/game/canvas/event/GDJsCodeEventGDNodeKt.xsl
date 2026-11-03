@@ -46,7 +46,7 @@ Created By: Travis Berthelot
                                     <xsl:variable name="speechVariable" ><xsl:value-of select="substring($speechVariable2, 0, string-length($speechVariable2))" /></xsl:variable>
 
                                     //var voiceName: String =
-                                    val speech: String = globals.<xsl:value-of select="$speechVariable" />
+                                    val speech: String = this.globals.<xsl:value-of select="$speechVariable" />
                                     this.logUtil.putF("Speaking: " + speech, this, this.commonStrings.PROCESS)
 
                                     if(speech != null) {

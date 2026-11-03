@@ -191,7 +191,7 @@ Created By: Travis Berthelot
                         //Touch Rectangle
                         //var <xsl:value-of select="name" />Rectangle: Rectangle = Rectangle(
                         //    pointFactory.createXY(<xsl:value-of select="name" />.xP, <xsl:value-of select="name" />.yP),
-                        //    (<xsl:value-of select="name" />.Width(globals.graphics) * scaleTouchButtons).toInt(), (<xsl:value-of select="name" />.Height(globals.graphics) * scaleTouchButtons).toInt())
+                        //    (<xsl:value-of select="name" />.Width(this.globals.graphics) * scaleTouchButtons).toInt(), (<xsl:value-of select="name" />.Height(this.globals.graphics) * scaleTouchButtons).toInt())
                         //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle)
                         </xsl:if>
 
@@ -201,7 +201,7 @@ Created By: Travis Berthelot
                         <xsl:value-of select="name" />GDGameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager)
                         //this.logUtil.putF("<xsl:value-of select="$nodeIdAsString" /> for <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0", this, this.commonStrings.PROCESS)
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer)
-                        globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer)
+                        this.globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer)
 
                         //updateGDObject - 7
                         <xsl:value-of select="name" />GDGameLayer.updateGDObject(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta)

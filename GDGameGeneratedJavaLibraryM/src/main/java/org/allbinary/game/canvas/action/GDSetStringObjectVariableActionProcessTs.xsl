@@ -54,7 +54,7 @@ Created By: Travis Berthelot
 
                             //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
 
-                            final GDGameLayer[] gameLayerArray = gameGlobals.tempGameLayerArray;      
+                            final GDGameLayer[] gameLayerArray = this.gameGlobals.tempGameLayerArray;      
                             <xsl:value-of select="$siblingOrParentOrList" />
                             <xsl:text>&#10;</xsl:text>
                             
@@ -84,7 +84,7 @@ Created By: Travis Berthelot
 
                             //this.logUtil.putF(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, this.commonStrings.PROCESS);
                         
-                            final GDGameLayer[] gameLayerArray = gameGlobals.tempGameLayerArray;      
+                            final GDGameLayer[] gameLayerArray = this.gameGlobals.tempGameLayerArray;      
                             <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParamIncludeList" />
                             <xsl:text>&#10;</xsl:text>
                             

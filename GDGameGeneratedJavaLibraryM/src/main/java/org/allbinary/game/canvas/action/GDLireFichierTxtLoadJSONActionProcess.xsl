@@ -51,11 +51,11 @@ Created By: Travis Berthelot
                                 final JSONObject jsonObject = (JSONObject) jsonTokener.nextValue();
                             
                                 if(jsonObject.has(SECOND_PARAM)) {
-                                    globals.<xsl:value-of select="$param4" /> = jsonObject.getString(SECOND_PARAM);
-                                    this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + globals.<xsl:value-of select="$param4" />, this, this.commonStrings.PROCESS);
+                                    this.globals.<xsl:value-of select="$param4" /> = jsonObject.getString(SECOND_PARAM);
+                                    this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + this.globals.<xsl:value-of select="$param4" />, this, this.commonStrings.PROCESS);
                                 } else {
                                     this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "missing", this, this.commonStrings.PROCESS);
-                                    //globals.<xsl:value-of select="$param4" /> = CommonPhoneStrings.getInstance().ZERO;
+                                    //this.globals.<xsl:value-of select="$param4" /> = CommonPhoneStrings.getInstance().ZERO;
                                     throw new RuntimeException();
                                 }
 

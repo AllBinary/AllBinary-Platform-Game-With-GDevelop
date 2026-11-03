@@ -97,7 +97,7 @@ Created By: Travis Berthelot
                                 //this.logUtil.putF(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>: ").appendint(size).toString(), this, this.commonStrings.PROCESS);
                             //} if(index % 10 == 0) {
                                 //final StringMaker stringBuilder = new StringMaker();
-                                //this.logUtil.putF(stringBuilder.append(CONDITION_AS_STRING_19818).append(" groupLayerManagerListener.getGroupSize(globals.BulletGroupInterface): ").appendint(size).toString(), this, this.commonStrings.PROCESS);                                
+                                //this.logUtil.putF(stringBuilder.append(CONDITION_AS_STRING_19818).append(" groupLayerManagerListener.getGroupSize(this.globals.BulletGroupInterface): ").appendint(size).toString(), this, this.commonStrings.PROCESS);                                
                             //}
                             //index++;
 

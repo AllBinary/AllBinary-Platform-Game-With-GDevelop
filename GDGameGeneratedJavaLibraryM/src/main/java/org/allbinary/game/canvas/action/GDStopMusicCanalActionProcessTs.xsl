@@ -33,7 +33,7 @@ Created By: Travis Berthelot
                         //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
 
                         try {
-                            final BasicArrayList list = gameGlobals.channelSoundArray[<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>];
+                            final BasicArrayList list = this.gameGlobals.channelSoundArray[<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>];
                             final int size = list.size();
 
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {

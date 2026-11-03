@@ -32,7 +32,7 @@ Created By: Travis Berthelot
                         //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
                         try {
-                            val list: BasicArrayList = gameGlobals.channelSoundArray[<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>]
+                            val list: BasicArrayList = this.gameGlobals.channelSoundArray[<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>]
                             val size: Int = list.size()
 
                             for(index in 0 until<xsl:text disable-output-escaping="yes" ></xsl:text> size) {

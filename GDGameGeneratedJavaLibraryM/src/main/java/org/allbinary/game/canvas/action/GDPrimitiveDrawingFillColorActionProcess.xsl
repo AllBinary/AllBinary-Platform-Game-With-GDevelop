@@ -43,7 +43,7 @@ Created By: Travis Berthelot
                     //PrimitiveDrawing::FillColor - END              
         
                                     <xsl:variable name="variableName" ><xsl:for-each select="//variables" ><xsl:if test="contains($param2, name)" ><xsl:value-of select="name" /></xsl:if></xsl:for-each></xsl:variable>
-                                    <xsl:variable name="globalWithVariableName" >globals.<xsl:value-of select="$variableName" /></xsl:variable>
+                                    <xsl:variable name="globalWithVariableName" >this.globals.<xsl:value-of select="$variableName" /></xsl:variable>
                                     //variableName=<xsl:value-of select="$variableName" /> globalWithVariableName=<xsl:value-of select="$globalWithVariableName" />
                                     
                                     <xsl:variable name="param2b" >
@@ -65,7 +65,7 @@ Created By: Travis Berthelot
 
                         //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
 
-                        final GDGameLayer[] gameLayerArray = gameGlobals.tempGameLayerArray;
+                        final GDGameLayer[] gameLayerArray = this.gameGlobals.tempGameLayerArray;
                         <xsl:value-of select="$siblingOrParentOrList" />
 
                         <xsl:if test="contains($param2b, '.')" >

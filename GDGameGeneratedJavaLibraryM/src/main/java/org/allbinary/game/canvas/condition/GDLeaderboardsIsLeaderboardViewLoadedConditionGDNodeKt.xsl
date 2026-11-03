@@ -44,36 +44,36 @@ Created By: Travis Berthelot
 
                             //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
-                            if(globals.highscoreSubmissionComplete) {
+                            if(this.globals.highscoreSubmissionComplete) {
 
-                                val highScoresArray: Array&lt;HighScores?&gt; = gameGlobals.highScoresHelper.getHighScoresArray()
+                                val highScoresArray: Array&lt;HighScores?&gt; = this.gameGlobals.highScoresHelper.getHighScoresArray()
 
                                 val leaderBoardTotal: Int = highScoresArray.size
 
                                 HighScores highScores
                                 //val index2: Int = leaderBoardTotal - 1
-                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " TWB " + leaderBoardTotal + " s:" + gameGlobals.selectedLeaderboardIndex, this, this.commonStrings.PROCESS)
-                                val index2: Int = if(leaderBoardTotal <xsl:text disable-output-escaping="yes" >&gt; </xsl:text> gameGlobals.selectedLeaderboardIndex) gameGlobals.selectedLeaderboardIndex else leaderBoardTotal - 1
+                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " TWB " + leaderBoardTotal + " s:" + this.gameGlobals.selectedLeaderboardIndex, this, this.commonStrings.PROCESS)
+                                val index2: Int = if(leaderBoardTotal <xsl:text disable-output-escaping="yes" >&gt; </xsl:text> this.gameGlobals.selectedLeaderboardIndex) this.gameGlobals.selectedLeaderboardIndex else leaderBoardTotal - 1
                                 //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " TWB c: " + index2, this, this.commonStrings.PROCESS)
                                 //for(index2 in 0 until <xsl:text disable-output-escaping="yes" ></xsl:text>leaderBoardTotal) {
                                 if(org.allbinary.game.score.BasicHighScoresFactory.loaded(index2)) {
                                     highScores = highScoresArray[index2]
 
-                                    gameGlobals.highScoresTitle = highScores.getHeading()
-                                    //gameGlobals.highScoresColumnHeadingOne = highScores.getColumnOneHeading()
-                                    //gameGlobals.highScoresColumnHeadingOne = highScores.getColumnTwoHeading()
+                                    this.gameGlobals.highScoresTitle = highScores.getHeading()
+                                    //this.gameGlobals.highScoresColumnHeadingOne = highScores.getColumnOneHeading()
+                                    //this.gameGlobals.highScoresColumnHeadingOne = highScores.getColumnTwoHeading()
 
                                     val highScoreList: BasicArrayList = highScores.getList()
                                     val size: Int = highScoreList.size()
                                     //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "highScoreList.size(): " + size, this, this.commonStrings.PROCESS)
-                                    gameGlobals.highScoresNameArray = arrayOfNulls&lt;String&gt;(size)
-                                    gameGlobals.highScoresLongArray = LongArray(size)
+                                    this.gameGlobals.highScoresNameArray = arrayOfNulls&lt;String&gt;(size)
+                                    this.gameGlobals.highScoresLongArray = LongArray(size)
                                     HighScore highScore
                                     for(index in 0 until <xsl:text disable-output-escaping="yes" ></xsl:text>size) {
 
                                         highScore = highScoreList.get(index) as HighScore
-                                        gameGlobals.highScoresNameArray[index] = highScore.getName()
-                                        gameGlobals.highScoresLongArray[index] = highScore.getScore()
+                                        this.gameGlobals.highScoresNameArray[index] = highScore.getName()
+                                        this.gameGlobals.highScoresLongArray[index] = highScore.getScore()
                                     }
                                 }
 
@@ -100,7 +100,7 @@ Created By: Travis Berthelot
                             try {
                                 //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, this.commonStrings.PROCESS)
 
-                                if(globals.highscoreSubmissionComplete) {
+                                if(this.globals.highscoreSubmissionComplete) {
                                     return true
                                 }
 

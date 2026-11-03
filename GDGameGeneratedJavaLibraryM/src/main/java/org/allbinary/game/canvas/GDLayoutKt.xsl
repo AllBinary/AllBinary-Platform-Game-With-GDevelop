@@ -226,11 +226,11 @@ Created By: Travis Berthelot
                             <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
                         var point: GPoint
                         var gameLayer: GDGameLayer
-                        val size2: Int = globals.<xsl:value-of select="name" />GDGameLayerList.size()
+                        val size2: Int = this.globals.<xsl:value-of select="name" />GDGameLayerList.size()
                             </xsl:if>
                         </xsl:for-each>
 
-                        val motionEventList: BasicArrayList = globals.motionEventListOfList[globals.processingMotionEventListIndex] as BasicArrayList
+                        val motionEventList: BasicArrayList = this.globals.motionEventListOfList[this.globals.processingMotionEventListIndex] as BasicArrayList
                         var motionEventSize: Int = motionEventList.size()
                         var motionGestureEvent: MotionGestureEvent
                         var motionGestureInput: MotionGestureInput
@@ -241,7 +241,7 @@ Created By: Travis Berthelot
                             motionGestureInput = motionGestureEvent.getMotionGesture()
 
                             if (motionGestureInput == touchMotionGestureFactory.PRESSED) {
-                                globals.lastMotionGestureInput = motionGestureInput
+                                this.globals.lastMotionGestureInput = motionGestureInput
                                 pressedAlready = true
                             } else if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
 
@@ -249,7 +249,7 @@ Created By: Travis Berthelot
                             <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
                             for(index2 in 0 until size2) {
                                 //SpriteMultitouchJoystick::SpriteMultitouchJoystick
-                                gameLayer = globals.<xsl:value-of select="name" />GDGameLayerList.get(index2) as GDGameLayer
+                                gameLayer = this.globals.<xsl:value-of select="name" />GDGameLayerList.get(index2) as GDGameLayer
                                 val <xsl:value-of select="name" />: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> = gameLayer.gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />
                                 if(motionGestureEvent.getId() == <xsl:value-of select="name" />.getId()) {
                                     <xsl:value-of select="name" />.setId(-1)
@@ -263,14 +263,14 @@ Created By: Travis Berthelot
                                     motionEventSize = index
                                     break
                                 }
-                                globals.lastMotionGestureInput = motionGestureInput
+                                this.globals.lastMotionGestureInput = motionGestureInput
                             }
 
                         <xsl:for-each select="objects" >
                             <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
                             for(index2 in 0 until size2) {
                                 //SpriteMultitouchJoystick::SpriteMultitouchJoystick
-                                gameLayer = globals.<xsl:value-of select="name" />GDGameLayerList.get(index2) as GDGameLayer
+                                gameLayer = this.globals.<xsl:value-of select="name" />GDGameLayerList.get(index2) as GDGameLayer
                                 point = motionGestureEvent.getCurrentPoint()
                                 if (rectangleCollisionUtil.isInside(gameLayer.getXP(), gameLayer.getYP() - 2, gameLayer.getX2(), gameLayer.getY2() + 2, point.getX(), point.getY())) {
                                     val <xsl:value-of select="name" />: GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> = gameLayer.gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /><xsl:text>&#10;</xsl:text>
@@ -290,7 +290,7 @@ Created By: Travis Berthelot
                         </xsl:for-each>
 
                             //var motionGestureInput: MotionGestureInput = motionGestureEvent.getMotionGesture()
-                            globals.lastPointGDNode.processMotion(motionGestureEvent, globals.lastMotionGestureInput)
+                            this.globals.lastPointGDNode.processMotion(motionGestureEvent, this.globals.lastMotionGestureInput)
 
                             //MouseButton
                         <xsl:call-template name="processNodesForMotionGestureEvent" >
@@ -304,7 +304,7 @@ Created By: Travis Berthelot
                         }
 
                         //Scrolling - START
-                        val scrollingMotionEventList: BasicArrayList = globals.scrollingMotionEventListOfList[globals.processingMotionEventListIndex] as BasicArrayList
+                        val scrollingMotionEventList: BasicArrayList = this.globals.scrollingMotionEventListOfList[this.globals.processingMotionEventListIndex] as BasicArrayList
                         motionEventSize = scrollingMotionEventList.size()
                         pressedAlready = false
                         for(index in 0 until motionEventSize) {
@@ -313,7 +313,7 @@ Created By: Travis Berthelot
                             motionGestureInput = motionGestureEvent.getMotionGesture()
 
                             if (motionGestureInput == touchMotionGestureFactory.PRESSED) {
-                                globals.lastMotionGestureInput = motionGestureInput
+                                this.globals.lastMotionGestureInput = motionGestureInput
                                 pressedAlready = true
                             } else if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
 
@@ -321,7 +321,7 @@ Created By: Travis Berthelot
                                     motionEventSize = index
                                     break
                                 }
-                                globals.lastScrollingMotionGestureInput = motionGestureInput
+                                this.globals.lastScrollingMotionGestureInput = motionGestureInput
                             }
 
                             //MouseButton
@@ -343,20 +343,20 @@ Created By: Travis Berthelot
 
                         this.gdUtil.globalsGameTickTimeDelayHelper.loop()
 
-                        if(globals.processingMotionEventListIndex == 0) {
-                            globals.processingMotionEventListIndex = 1
-                            globals.inUseMotionEventListIndex = 0
+                        if(this.globals.processingMotionEventListIndex == 0) {
+                            this.globals.processingMotionEventListIndex = 1
+                            this.globals.inUseMotionEventListIndex = 0
                         } else {
-                            globals.processingMotionEventListIndex = 0
-                            globals.inUseMotionEventListIndex = 1
+                            this.globals.processingMotionEventListIndex = 0
+                            this.globals.inUseMotionEventListIndex = 1
                         }
 
-                        if(globals.processingScrollingMotionEventListIndex == 0) {
-                            globals.processingScrollingMotionEventListIndex = 1
-                            globals.inUseScrollingMotionEventListIndex = 0
+                        if(this.globals.processingScrollingMotionEventListIndex == 0) {
+                            this.globals.processingScrollingMotionEventListIndex = 1
+                            this.globals.inUseScrollingMotionEventListIndex = 0
                         } else {
-                            globals.processingScrollingMotionEventListIndex = 0
-                            globals.inUseScrollingMotionEventListIndex = 1
+                            this.globals.processingScrollingMotionEventListIndex = 0
+                            this.globals.inUseScrollingMotionEventListIndex = 1
                         }
 
                     //PrimitiveDrawing::Drawer - clearBetweenFrames - START
@@ -398,9 +398,9 @@ Created By: Travis Berthelot
                                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
                                <xsl:if test="type = 'DestroyOutsideBehavior::DestroyOutside'" >
                                //this.logUtil.putF("Behavior objectName=<xsl:value-of select="$objectName" /> name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />: check", this, this.commonStrings.PROCESS)
-                               if(globals.destroyOutsideBehavior.process(globals.<xsl:value-of select="$objectName" />GDGameLayerList, index, globals.graphics)) {
+                               if(this.globals.destroyOutsideBehavior.process(this.globals.<xsl:value-of select="$objectName" />GDGameLayerList, index, this.globals.graphics)) {
                                    //this.logUtil.putF("Behavior objectName=<xsl:value-of select="$objectName" /> name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />: remove", this, this.commonStrings.PROCESS)
-                                   removeList.add(globals.<xsl:value-of select="$objectName" />GDGameLayerList.get(index))
+                                   removeList.add(this.globals.<xsl:value-of select="$objectName" />GDGameLayerList.get(index))
                                }
                                </xsl:if>
                            </xsl:for-each>
@@ -493,7 +493,7 @@ Created By: Travis Berthelot
                                 //Rectangle 2
                                 val <xsl:value-of select="name" />Rectangle: Rectangle = Rectangle(
                                     pointFactory.createXY(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
-                                    <xsl:value-of select="name" />GDobject.Width(globals.graphics), <xsl:value-of select="name" />GDobject.Height(globals.graphics))
+                                    <xsl:value-of select="name" />GDobject.Width(this.globals.graphics), <xsl:value-of select="name" />GDobject.Height(this.globals.graphics))
                                 <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle)
                             }
                         }
@@ -506,9 +506,9 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                     <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
-                        BasicMotionGesturesHandler.getInstance().addListenerInterface(globals.eventListenerInterfaceLastPoint)
-                        MovedMotionGesturesHandler.getInstance().addListenerInterface(globals.eventListenerInterfaceLastPoint)
-                        ScrolledMotionGesturesHandler.getInstance().addListenerInterface(globals.eventListenerInterfaceLastPoint)
+                        BasicMotionGesturesHandler.getInstance().addListenerInterface(this.globals.eventListenerInterfaceLastPoint)
+                        MovedMotionGesturesHandler.getInstance().addListenerInterface(this.globals.eventListenerInterfaceLastPoint)
+                        ScrolledMotionGesturesHandler.getInstance().addListenerInterface(this.globals.eventListenerInterfaceLastPoint)
                     </xsl:if>
 
                         GDFormInputProcessor.getInstance().open()
@@ -528,12 +528,12 @@ Created By: Travis Berthelot
                         GDFormInputProcessor.getInstance().close()
 
                     <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
-                        MovedMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterfaceLastPoint)
-                        BasicMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterfaceLastPoint)
-                        ScrolledMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterfaceLastPoint)
+                        MovedMotionGesturesHandler.getInstance().removeListener(this.globals.eventListenerInterfaceLastPoint)
+                        BasicMotionGesturesHandler.getInstance().removeListener(this.globals.eventListenerInterfaceLastPoint)
+                        ScrolledMotionGesturesHandler.getInstance().removeListener(this.globals.eventListenerInterfaceLastPoint)
                     </xsl:if>
 
-                        val motionEventListOfList: Array&lt;BasicArrayList?&gt; = globals.motionEventListOfList
+                        val motionEventListOfList: Array&lt;BasicArrayList?&gt; = this.globals.motionEventListOfList
 
                         val size: Int = motionEventListOfList.size
                         for(index in 0 until size) {
@@ -541,7 +541,7 @@ Created By: Travis Berthelot
                             motionEventList.clear()
                         }
 
-                        globals.lastMotionGestureInput = touchMotionGestureFactory.NO_MOTION
+                        this.globals.lastMotionGestureInput = touchMotionGestureFactory.NO_MOTION
 
                     //eventsClose - START
                     <xsl:call-template name="eventsClose" >
@@ -580,7 +580,7 @@ Created By: Travis Berthelot
                         <xsl:if test="not(contains($hasHighscoreSubmissionComplete, 'found'))" >
                         //This layout should not be the highscore layout
                         this.logUtil.putF("This layout should not be the highscore layout", this, this.commonStrings.PROCESS)
-                        globals.highscoreSubmissionComplete = false
+                        this.globals.highscoreSubmissionComplete = false
                         </xsl:if>
 
                         clear = false
@@ -600,12 +600,12 @@ Created By: Travis Berthelot
 
                         //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
                         //<xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" />.clear()
-                        globals.<xsl:value-of select="name" />GDGameLayerList<xsl:value-of select="$initialVariablesValue" />.clear()
+                        this.globals.<xsl:value-of select="name" />GDGameLayerList<xsl:value-of select="$initialVariablesValue" />.clear()
                         <xsl:if test="type = 'TextObject::Text'" >
-                        globals.<xsl:value-of select="name" />RectangleList<xsl:value-of select="$initialVariablesValue" />.clear()
+                        this.globals.<xsl:value-of select="name" />RectangleList<xsl:value-of select="$initialVariablesValue" />.clear()
                         </xsl:if>
 
-                        globals.<xsl:value-of select="name" />CacheGDGameLayerList.clear()
+                        this.globals.<xsl:value-of select="name" />CacheGDGameLayerList.clear()
 
             </xsl:for-each>
 

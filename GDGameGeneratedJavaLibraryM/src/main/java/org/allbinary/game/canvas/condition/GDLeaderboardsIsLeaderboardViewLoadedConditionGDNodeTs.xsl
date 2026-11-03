@@ -44,36 +44,36 @@ Created By: Travis Berthelot
 
                             //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
 
-                            if(globals.highscoreSubmissionComplete) {
+                            if(this.globals.highscoreSubmissionComplete) {
 
-                                final HighScores[] highScoresArray = gameGlobals.highScoresHelper.getHighScoresArray();
+                                final HighScores[] highScoresArray = this.gameGlobals.highScoresHelper.getHighScoresArray();
                                 
                                 final int leaderBoardTotal = highScoresArray.length;
                                 
                                 HighScores highScores;
                                 //final int index2 = leaderBoardTotal - 1;
-                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " TWB " + leaderBoardTotal + " s:" + gameGlobals.selectedLeaderboardIndex, this, this.commonStrings.PROCESS);
-                                final int index2 = leaderBoardTotal <xsl:text disable-output-escaping="yes" >&gt; </xsl:text> gameGlobals.selectedLeaderboardIndex ? gameGlobals.selectedLeaderboardIndex : leaderBoardTotal - 1;
+                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " TWB " + leaderBoardTotal + " s:" + this.gameGlobals.selectedLeaderboardIndex, this, this.commonStrings.PROCESS);
+                                final int index2 = leaderBoardTotal <xsl:text disable-output-escaping="yes" >&gt; </xsl:text> this.gameGlobals.selectedLeaderboardIndex ? this.gameGlobals.selectedLeaderboardIndex : leaderBoardTotal - 1;
                                 //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " TWB c: " + index2, this, this.commonStrings.PROCESS);                            
                                 //for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt; </xsl:text> leaderBoardTotal; index2++) {
                                 if(org.allbinary.game.score.BasicHighScoresFactory.loaded(index2)) {
                                     highScores = highScoresArray[index2];
                                                                 
-                                    gameGlobals.highScoresTitle = highScores.getHeading();
-                                    //gameGlobals.highScoresColumnHeadingOne = highScores.getColumnOneHeading();
-                                    //gameGlobals.highScoresColumnHeadingOne = highScores.getColumnTwoHeading();
+                                    this.gameGlobals.highScoresTitle = highScores.getHeading();
+                                    //this.gameGlobals.highScoresColumnHeadingOne = highScores.getColumnOneHeading();
+                                    //this.gameGlobals.highScoresColumnHeadingOne = highScores.getColumnTwoHeading();
 
                                     final BasicArrayList highScoreList = highScores.getList();
                                     final int size = highScoreList.size();
                                     //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "highScoreList.size(): " + size, this, this.commonStrings.PROCESS);
-                                    gameGlobals.highScoresNameArray = new String[size];
-                                    gameGlobals.highScoresLongArray = new long[size];
+                                    this.gameGlobals.highScoresNameArray = new String[size];
+                                    this.gameGlobals.highScoresLongArray = new long[size];
                                     HighScore highScore;
                                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt; </xsl:text> size; index++) {
 
                                         highScore = (HighScore) highScoreList.get(index);
-                                        gameGlobals.highScoresNameArray[index] = highScore.getName();
-                                        gameGlobals.highScoresLongArray[index] = highScore.getScore();
+                                        this.gameGlobals.highScoresNameArray[index] = highScore.getName();
+                                        this.gameGlobals.highScoresLongArray[index] = highScore.getScore();
                                     }
                                 }
                             
@@ -100,7 +100,7 @@ Created By: Travis Berthelot
                             try {
                                 //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, this.commonStrings.PROCESS);
 
-                                if(globals.highscoreSubmissionComplete) {
+                                if(this.globals.highscoreSubmissionComplete) {
                                     return true;
                                 }
 

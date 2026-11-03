@@ -48,7 +48,7 @@ Created By: Travis Berthelot
 
                         //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
-                        val gameLayerArray: Array&lt;GDGameLayer?&gt; = gameGlobals.tempGameLayerArray
+                        val gameLayerArray: Array&lt;GDGameLayer?&gt; = this.gameGlobals.tempGameLayerArray
                         <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParam" />
 
                         //createGDObject - process - START
@@ -87,7 +87,7 @@ Created By: Travis Berthelot
 
                         //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
 
-                        val gameLayerArray: Array&lt;GDGameLayer?&gt; = gameGlobals.tempGameLayerArray
+                        val gameLayerArray: Array&lt;GDGameLayer?&gt; = this.gameGlobals.tempGameLayerArray
                         <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParam" />
 
                         //createGDObject - process - START
@@ -138,7 +138,7 @@ Created By: Travis Berthelot
 
                                 <xsl:text>&#10;</xsl:text>
                                 if(this.gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] == Integer.MAX_VALUE) {
-                                    gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = 0
+                                    this.gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = 0
                                 }
                                 <xsl:text>&#10;</xsl:text>
                                 <xsl:value-of select="text()" />GDGameLayer = <xsl:call-template name="globalResource" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerFactory.create(<xsl:value-of select="$layoutIndex" />, stringBuilder.append(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>_OBJECT_NAME).append(CommonSeps.getInstance().UNDERSCORE)
@@ -149,7 +149,7 @@ Created By: Travis Berthelot
                                         <xsl:value-of select="text()" />
                                     </xsl:with-param>
                                 </xsl:call-template>.<xsl:value-of select="text()" />GDConditionWithGroupActions)
-                                gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] + 1
+                                this.gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = this.gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] + 1
                                 <xsl:text>&#10;</xsl:text>
                                 //stringBuilder.delete(0, stringBuilder.length())
                             } else {
@@ -172,7 +172,7 @@ Created By: Travis Berthelot
                             val abToGBUtil: ABToGBUtil = ABToGBUtil.getInstance()
                             val allBinaryGameLayerManager: AllBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager
                             //Using param that is not from the first 2 GameLayers - set
-                            gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = <xsl:value-of select="text()" />GDGameLayer
+                            this.gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = <xsl:value-of select="text()" />GDGameLayer
                             <xsl:value-of select="text()" />GDGameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager)
                             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer)
                             this.createdGameLayer = <xsl:value-of select="text()" />GDGameLayer
@@ -511,7 +511,7 @@ Created By: Travis Berthelot
                                                 <xsl:variable name="groupName"><xsl:value-of select="name" /></xsl:variable>
                                                 <xsl:for-each select="objects" >
                                                     <xsl:if test="name = $layerName" >
-                                                        //this.logUtil.putF("<xsl:value-of select="$nodeIdAsString" /> for globals.<xsl:value-of select="$groupName" />GDGameLayerList.add(<xsl:value-of select="$gameLayer" />); at: " + index, this, this.commonStrings.PROCESS)
+                                                        //this.logUtil.putF("<xsl:value-of select="$nodeIdAsString" /> for this.globals.<xsl:value-of select="$groupName" />GDGameLayerList.add(<xsl:value-of select="$gameLayer" />); at: " + index, this, this.commonStrings.PROCESS)
                                                         //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$groupName" />GDGameLayerList.add(<xsl:value-of select="$gameLayer" />)
                                                         //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$layerName" />GDGameLayerList.add(<xsl:value-of select="$gameLayer" />)
                                                     </xsl:if>

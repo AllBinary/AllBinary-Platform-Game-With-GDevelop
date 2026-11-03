@@ -2455,9 +2455,9 @@ Created By: Travis Berthelot
                         
                             gameGlobalsFactory.point = motionGestureEvent.getCurrentPoint();
 
-                            globals.motionEventListOfList[globals.inUseMotionEventListIndex].add(motionGestureEvent);
+                            this.globals.motionEventListOfList[this.globals.inUseMotionEventListIndex].add(motionGestureEvent);
 
-                            //globals.lastPointGDNode.processMotion(motionGestureEvent, lastMotionGestureInput);
+                            //this.globals.lastPointGDNode.processMotion(motionGestureEvent, lastMotionGestureInput);
                 
         <xsl:for-each select="events" >
 
@@ -2465,23 +2465,23 @@ Created By: Travis Berthelot
                 
                 <xsl:if test="type/value = 'MouseButtonReleased'" >
                     ////MouseButtonReleased - eventListener
-                    //globals.mouseButtonReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processMotion(motionGestureEvent, lastMotionGestureInput);
+                    //this.globals.mouseButtonReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processMotion(motionGestureEvent, lastMotionGestureInput);
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonFromTextReleased'" >
                     ////MouseButtonFromTextReleased - //MouseButtonReleased - eventListener
-                    //globals.mouseButtonFromTextReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processMotion(motionGestureEvent, lastMotionGestureInput);
+                    //this.globals.mouseButtonFromTextReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processMotion(motionGestureEvent, lastMotionGestureInput);
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonPressed'" >
                     ////MouseButtonPressed - eventListener
-                    //globals.mouseButtonPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processMotion(motionGestureEvent, lastMotionGestureInput);
+                    //this.globals.mouseButtonPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processMotion(motionGestureEvent, lastMotionGestureInput);
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonFromTextPressed'" >
                     ////MouseButtonFromTextPressed - //MouseButtonPressed - eventListener
-                    //globals.mouseButtonFromTextPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processMotion(motionGestureEvent, lastMotionGestureInput);
+                    //this.globals.mouseButtonFromTextPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processMotion(motionGestureEvent, lastMotionGestureInput);
                 </xsl:if>
                 <xsl:if test="type/value = 'SourisBouton'" >
                     ////MouseButton - //SourisBouton - eventListener
-                    //globals.mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processMotion(motionGestureEvent, lastMotionGestureInput);
+                    //this.globals.mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processMotion(motionGestureEvent, lastMotionGestureInput);
                 </xsl:if>
                 
             </xsl:for-each>
@@ -2498,14 +2498,14 @@ Created By: Travis Berthelot
                         @Override
                         public void onScrolledMotionGestureEvent(MotionGestureEvent motionGestureEvent) {
                             //logUtil.putF(new StringMaker().append("motionGestureEvent: ").append(motionGestureEvent.getMotionGesture().getName()).toString(), this, "onScrolledMotionGestureEvent");
-                            globals.scrollingMotionEventListOfList[globals.inUseScrollingMotionEventListIndex].add(motionGestureEvent);
+                            this.globals.scrollingMotionEventListOfList[this.globals.inUseScrollingMotionEventListIndex].add(motionGestureEvent);
                         }
 
                     };
                 
-                globals.eventListenerInterfaceLastPoint = new MouseBaseMotionGestureEventListener();
+                this.globals.eventListenerInterfaceLastPoint = new MouseBaseMotionGestureEventListener();
 
-                globals.lastPointGDNode = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                this.globals.lastPointGDNode = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 
                     private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
                     private final GDUtil gdUtil = GDUtil.getInstance();
@@ -2562,27 +2562,27 @@ Created By: Travis Berthelot
                     
                 <xsl:if test="type/value = 'MouseButtonReleased'" >
                     //GDNode - //MouseButtonReleased - eventListener
-                    globals.mouseButtonReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    this.globals.mouseButtonReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonFromTextReleased'" >
                     //GDNode - //MouseButtonFromTextReleased - //MouseButtonReleased - eventListener
-                    globals.mouseButtonFromTextReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    this.globals.mouseButtonFromTextReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonPressed'" >
                     //GDNode - //MouseButtonPressed - eventListener
-                    globals.mouseButtonPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    this.globals.mouseButtonPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonFromTextPressed'" >
                     //GDNode - //MouseButtonFromTextPressed - //MouseButtonPressed - eventListener
-                    globals.mouseButtonFromTextPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    this.globals.mouseButtonFromTextPressedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
                 <xsl:if test="type/value = 'SourisBouton'" >
                     //GDNode - //MouseButton - //SourisBouton - eventListener
-                    globals.mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    this.globals.mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
                 <xsl:if test="type/value = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
                     //SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed - eventListener
-                    globals.spriteMultitouchJoystickGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    this.globals.spriteMultitouchJoystickGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
 
                     private final GDUtil gdUtil = GDUtil.getInstance();
@@ -2607,11 +2607,11 @@ Created By: Travis Berthelot
                                         
                 <xsl:if test="type/value = 'IsMouseWheelScrollingUp'" >
                     //GDNode - //IsMouseWheelScrollingUp - eventListener
-                    globals.mouseWheelScrollingUpGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    this.globals.mouseWheelScrollingUpGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
                 <xsl:if test="type/value = 'IsMouseWheelScrollingDown'" >
                     //GDNode - //IsMouseWheelScrollingDown - eventListener
-                    globals.mouseWheelScrollingDownGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    this.globals.mouseWheelScrollingDownGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
 
                     private final GDUtil gdUtil = GDUtil.getInstance();

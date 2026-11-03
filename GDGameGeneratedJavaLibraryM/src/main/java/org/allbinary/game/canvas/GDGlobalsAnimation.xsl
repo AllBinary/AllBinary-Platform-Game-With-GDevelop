@@ -145,9 +145,9 @@ Created By: Travis Berthelot
                                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
                                <xsl:if test="type = 'DestroyOutsideBehavior::DestroyOutside'" >
                                //this.logUtil.putF("Behavior objectName=<xsl:value-of select="$objectName" /> name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />: check", this, this.commonStrings.PROCESS);
-                               if(globals.destroyOutsideBehavior.process(globals.<xsl:value-of select="$objectName" />GDGameLayerList, index, globals.graphics)) {
+                               if(this.globals.destroyOutsideBehavior.process(this.globals.<xsl:value-of select="$objectName" />GDGameLayerList, index, this.globals.graphics)) {
                                    //this.logUtil.putF("Behavior objectName=<xsl:value-of select="$objectName" /> name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />: remove", this, this.commonStrings.PROCESS);
-                                   removeList.add(globals.<xsl:value-of select="$objectName" />GDGameLayerList.get(index));
+                                   removeList.add(this.globals.<xsl:value-of select="$objectName" />GDGameLayerList.get(index));
                                }
                                </xsl:if>
                            </xsl:for-each>
@@ -224,7 +224,7 @@ Created By: Travis Berthelot
                             //TextObject::Text - //Rectangle 1
                             final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
                                 pointFactory.createXY(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
-                                <xsl:value-of select="name" />GDobject.Width(globals.graphics) * scale, <xsl:value-of select="name" />GDobject.Height(globals.graphics) * scale);
+                                <xsl:value-of select="name" />GDobject.Width(this.globals.graphics) * scale, <xsl:value-of select="name" />GDobject.Height(this.globals.graphics) * scale);
                             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         }
                         </xsl:if>

@@ -299,7 +299,7 @@ Created By: Travis Berthelot
             //uniqueValues - Layout - START 
             <xsl:key name="uniqueValues" match="type" use="." />
             <xsl:for-each select="objects/type[count(. | key('uniqueValues', .)[1]) = 1]" >
-                public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template> = gameGlobals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template>;
+                public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template> = this.gameGlobals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template>;
             </xsl:for-each>
             //uniqueValues - Layout - END
 

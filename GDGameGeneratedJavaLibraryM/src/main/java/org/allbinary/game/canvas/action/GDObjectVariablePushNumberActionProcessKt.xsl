@@ -59,7 +59,7 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
 
 <xsl:text>                        </xsl:text>
-                        //<xsl:if test="$paramTwoName != ''" >val paramTwoGameLayer: GDGameLayer = globals.<xsl:value-of select="$paramTwoName" />GDGameLayerList.get(index) as GDGameLayer</xsl:if>
+                        //<xsl:if test="$paramTwoName != ''" >val paramTwoGameLayer: GDGameLayer = this.globals.<xsl:value-of select="$paramTwoName" />GDGameLayerList.get(index) as GDGameLayer</xsl:if>
                         <xsl:text>&#10;</xsl:text>
 <xsl:text>                        </xsl:text>val oldSize: Int = (paramOneGameLayer.gdObject as <xsl:value-of select="$gdObjectFactory" />).<xsl:value-of select="$secondParam" />.length
                         <xsl:text>&#10;</xsl:text>
@@ -68,7 +68,7 @@ Created By: Travis Berthelot
                                       (paramOneGameLayer.gdObject as <xsl:value-of select="$gdObjectFactory" />).<xsl:value-of select="$secondParam" />.length + 1)
 
 <xsl:text>                        </xsl:text>
-                        <xsl:if test="$paramTwoName != ''" >val paramTwoGameLayer: GDGameLayer = (globals.<xsl:value-of select="$paramTwoName" />GDGameLayerList.get(index) as GDGameLayer)</xsl:if>
+                        <xsl:if test="$paramTwoName != ''" >val paramTwoGameLayer: GDGameLayer = (this.globals.<xsl:value-of select="$paramTwoName" />GDGameLayerList.get(index) as GDGameLayer)</xsl:if>
                         <xsl:text>&#10;</xsl:text>
 <xsl:text>                        </xsl:text>(paramOneGameLayer.gdObject as <xsl:value-of select="$gdObjectFactory" />).<xsl:value-of select="$secondParam" />[oldSize] = <xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$thirdParam" /></xsl:with-param><xsl:with-param name="find" >.VariableChildCount(</xsl:with-param><xsl:with-param name="replacementText" >.VariableChildCount(<xsl:value-of select="$gdObject" />.</xsl:with-param></xsl:call-template><xsl:if test="$thirdParam = '+'" >=</xsl:if><xsl:if test="$thirdParam = '-'" >=</xsl:if><xsl:if test="$paramTwoName != ''" ><xsl:if test="substring-before($fourthParam, '.') = ''" ><xsl:value-of select="$fourthParam" /></xsl:if><xsl:if test="substring-before($fourthParam, '.') != ''" >paramTwoGameLayer.gdObject.<xsl:value-of select="substring-after($fourthParam, '.')" /></xsl:if></xsl:if><xsl:if test="$paramTwoName = ''" ><xsl:value-of select="$fourthParam" /></xsl:if>
 

@@ -28,7 +28,7 @@ Created By: Travis Berthelot
                                     for(index in 0 until <xsl:value-of select="$name" />Size2) {
                                         <xsl:value-of select="$name" />GDGameLayer2 = (gameLayerArray[index] as GDGameLayer)
                                         if(<xsl:value-of select="$name" />GDGameLayer2 != null) {
-                                            //this.logUtil.put(StringMaker().append(" GDGameLayer2 name: ").append(<xsl:value-of select="$name" />GDGameLayer2.getName()).append(" GD name: ").append(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>).toString(), this, "param")
+                                            //this.logUtil.put(StringMaker().append(" GDGameLayer2 name: ").append(<xsl:value-of select="$name" />GDGameLayer2.getName()).append(" GD name: ").append(this.globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>).toString(), this, "param")
                                             <xsl:variable name="hasObject" >
                                                 <xsl:for-each select="key('objectsByName', $name)" >found</xsl:for-each>
                                             </xsl:variable>

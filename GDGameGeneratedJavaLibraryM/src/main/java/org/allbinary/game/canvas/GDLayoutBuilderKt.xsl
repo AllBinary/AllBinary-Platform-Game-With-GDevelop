@@ -233,7 +233,7 @@ Created By: Travis Berthelot
                             var otherEventNodes: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes
                             var objectEventNodes: GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes
 
-                            val nodeArray: Array&lt;GDNode?&gt; = gameGlobals.nodeArray
+                            val nodeArray: Array&lt;GDNode?&gt; = this.gameGlobals.nodeArray
 
                             var size: Int = nodeArray.size
                         <!--
@@ -403,18 +403,18 @@ Created By: Travis Berthelot
                     abCanvas.setInputProcessor(abCanvas.getRawInputProcessor())
                     </xsl:if>
 
-                    if(globals.anyKeyProcessorArray[0] == null) {
-                        globals.anyKeyProcessorArray[0] = GameInputProcessor.getInstance()
+                    if(this.globals.anyKeyProcessorArray[0] == null) {
+                        this.globals.anyKeyProcessorArray[0] = GameInputProcessor.getInstance()
                     }
-                    GameInputProcessorUtil.init(globals.inputProcessorArray)
-                    GameInputProcessorUtil.init(globals.unmappedInputProcessorArray)
+                    GameInputProcessorUtil.init(this.globals.inputProcessorArray)
+                    GameInputProcessorUtil.init(this.globals.unmappedInputProcessorArray)
 
                         //allBinaryGameLayerManager.log()
                         //groupLayerManagerListener.log()
 
                         this.logUtil.putF("DepartScene - completed newCanvas is now false", this, this.commonStrings.PROCESS)
                         gameGlobalsFactory.newCanvas = false
-                        globals.eventListenerInterfaceLastPoint.initialized = true;
+                        this.globals.eventListenerInterfaceLastPoint.initialized = true;
 
                         } catch (e: Exception) {
                             this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.PROCESS, e)

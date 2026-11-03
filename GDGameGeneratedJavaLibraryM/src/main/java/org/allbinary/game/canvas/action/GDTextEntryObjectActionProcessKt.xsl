@@ -43,7 +43,7 @@ Created By: Travis Berthelot
 
                         override fun process(): Boolean {
                             this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS)
-                            ((globals.TextEntryGDGameLayerList.get(0) as GDGameLayer).gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry).stringMaker.delete(0, ((globals.TextEntrGDGameLayerList.get(0) as GDGameLayer).gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry).stringMaker.length())
+                            ((this.globals.TextEntryGDGameLayerList.get(0) as GDGameLayer).gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry).stringMaker.delete(0, ((this.globals.TextEntrGDGameLayerList.get(0) as GDGameLayer).gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry).stringMaker.length())
 
                             return true
                         }
@@ -81,7 +81,7 @@ Created By: Travis Berthelot
                             if(hasReleased[key]) {
                                 //this.logUtil.putF("append: " + keyAsInteger, this, this.commonStrings.PROCESS)
                                 hasReleased[key] = false
-                                ((globals.TextEntryGDGameLayerList.get(0) as GDGameLayer).gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry).stringMaker.append(key.toChar())
+                                ((this.globals.TextEntryGDGameLayerList.get(0) as GDGameLayer).gdObject as GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry).stringMaker.append(key.toChar())
                             } else {
                                 //this.logUtil.putF("not append: " + keyAsInteger, this, this.commonStrings.PROCESS)
                             }

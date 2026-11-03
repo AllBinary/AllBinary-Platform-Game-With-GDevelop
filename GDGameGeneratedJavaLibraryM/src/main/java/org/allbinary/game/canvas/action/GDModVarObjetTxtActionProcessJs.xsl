@@ -34,7 +34,7 @@ Created By: Travis Berthelot
                                     <xsl:value-of select="$thirdParam0" />
                                 </xsl:with-param>
                                 <xsl:with-param name="find" >TextEntry.</xsl:with-param>
-                                <xsl:with-param name="replacementText" >((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry) ((GDGameLayer) globals.TextEntryGDGameLayerist.get(0)).gdObject).</xsl:with-param>
+                                <xsl:with-param name="replacementText" >((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry) ((GDGameLayer) this.globals.TextEntryGDGameLayerist.get(0)).gdObject).</xsl:with-param>
                             </xsl:call-template>
                                 </xsl:if>
                                 <xsl:if test="not(contains($thirdParam0, 'TextEntry.'))" ><xsl:value-of select="$thirdParam0" /></xsl:if>
