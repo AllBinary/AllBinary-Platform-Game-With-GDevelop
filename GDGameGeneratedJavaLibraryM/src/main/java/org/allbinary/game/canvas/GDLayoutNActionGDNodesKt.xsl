@@ -169,6 +169,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.GDStrings
                 import org.allbinary.game.layout.GDUtil
 
+                //Action - imports - START
                     <xsl:call-template name="actionGDNodesImports" >
                         <xsl:with-param name="caller" >actionLayout</xsl:with-param>
                         <xsl:with-param name="totalRecursions" >
@@ -185,6 +186,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
 
                     </xsl:call-template>
+                //Action - imports - END
 
                 <xsl:variable name="selectedNodeIdSet" select="substring(substring($selectedNodeIds, string-length($selectedNodeIds) - 1), 1, 1)" />
                 <xsl:variable name="lastDigit2" ><xsl:if test="4 >= $selectedNodeIdSet" >0</xsl:if><xsl:if test="$selectedNodeIdSet > 4" >1</xsl:if></xsl:variable>

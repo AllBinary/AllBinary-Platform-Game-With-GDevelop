@@ -41,7 +41,7 @@ Created By: Travis Berthelot
                         
                         try {
 
-                            final Sound sound = <xsl:if test="$fileName4 = 'Select' or $fileName4 = 'Error'" >org.allbinary.media.audio.</xsl:if><xsl:if test="not($fileName4 = 'Select' or $fileName4 = 'Error')" >org.allbinary.game.gd.resource.GD</xsl:if><xsl:value-of select="$fileName4" />Sound.getInstance();
+                            final Sound sound = <xsl:if test="not($fileName4 = 'Select' or $fileName4 = 'Error')" >GD</xsl:if><xsl:value-of select="$fileName4" />Sound.getInstance();
                             final PlayerComposite player = (PlayerComposite) sound.getPlayerP();
                             
                             int leftVolume = 100;

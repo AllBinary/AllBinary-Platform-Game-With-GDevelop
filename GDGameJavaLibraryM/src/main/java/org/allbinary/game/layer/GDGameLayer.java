@@ -105,13 +105,22 @@ public class GDGameLayer
     public Animation primitiveDrawing;
 
     protected ScalableBaseProcessor scalableProcessor = ScalableBaseProcessor.getInstance();
-    protected Processor moveProcessor = new Processor() {
+    
+    class MoveProcessor extends Processor{
+        
+        private final GDGameLayer gameLayer;
+
+        MoveProcessor(final GDGameLayer gameLayer) {
+            this.gameLayer = gameLayer;
+        }
         
         @Override
         public void processt(final long timeDelta) throws Exception {
-            move();
+            this.gameLayer.move();
         }
-    };
+    };    
+
+    protected Processor moveProcessor = new MoveProcessor(this);
     protected Processor processor = this.moveProcessor;
 
     public VelocityBehaviorBase velocityBehavior = DragVelocityBehavior.instance;

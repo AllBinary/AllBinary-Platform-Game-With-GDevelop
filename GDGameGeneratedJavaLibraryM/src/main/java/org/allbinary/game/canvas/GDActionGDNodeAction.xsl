@@ -170,6 +170,16 @@ Created By: Travis Berthelot
             <xsl:variable name="selectedNodeIdWithSep" >,<xsl:value-of select="$selectedNodeId" />,</xsl:variable>            
                     
                 <xsl:choose>
+
+                <xsl:when test="$typeValue = 'PlayMusic' or $typeValue = 'PlaySoundOnChannel'" >
+                    <xsl:variable name="fileName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:call-template name="after-lastIndexOf"><xsl:with-param name="string" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="char" >/</xsl:with-param></xsl:call-template></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="fileName2" ><xsl:value-of select="translate(substring-before($fileName, '.'), '_', ' ')" /></xsl:variable>
+                    <xsl:variable name="fileName3" ><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$fileName2" /></xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:variable name="fileName4" ><xsl:value-of select="translate($fileName3, ' ', '')" /></xsl:variable>
+                        
+                    import <xsl:if test="$fileName4 = 'Select' or $fileName4 = 'Error'" >org.allbinary.media.audio.</xsl:if><xsl:if test="not($fileName4 = 'Select' or $fileName4 = 'Error')" >org.allbinary.game.gd.resource.GD</xsl:if><xsl:value-of select="$fileName4" />Sound;
+
+                </xsl:when>
                 <xsl:when test="$typeValue = 'BuiltinExternalLayouts::CreateObjectsFromExternalLayout'" >
                     import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes;
                 </xsl:when>                

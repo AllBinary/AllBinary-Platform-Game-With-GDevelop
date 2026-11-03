@@ -84,6 +84,7 @@ Created By: Travis Berthelot
 
                 <xsl:variable name="selectedNodeIds" ></xsl:variable>
 
+                //Action - imports - START
                     <xsl:call-template name="actionGDNodesImports" >
                         <xsl:with-param name="caller" >actionLayout</xsl:with-param>
                         <xsl:with-param name="totalRecursions" >
@@ -99,6 +100,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
 
                     </xsl:call-template>
+                //Action - imports - END
         
                 //Search for "//extensionNames"
                 //Current exclusion list (Used by RPG) - TextInputVirtualKeyboard, TouchScreen, PanelSpriteSlider, MirrorFillBarExtension, SpriteMultitouchJoystick'
