@@ -13,6 +13,7 @@ import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.layer.AllBinaryLayer;
 import org.allbinary.layer.AllBinaryLayerManager;
 import org.allbinary.logic.NullUtil;
+import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
@@ -978,6 +979,7 @@ extends GDWaypointBehavior
             catch(Exception e)
             {
                 final CommonStrings commonStrings = CommonStrings.getInstance();
+                final LogUtil logUtil = LogUtil.getInstance();
                 logUtil.put(commonStrings.EXCEPTION, this, "visit", e);
                 return NullUtil.getInstance().NULL_OBJECT;
             }
